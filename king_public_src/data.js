@@ -1,15 +1,5 @@
-/* King System · real data harvested 2026-06-10 · rendered flags verified 06-11 · 06-12 07:00 crosscheck: 35 finals, 3 uploaded — from Video System elementLOTUS
-   (sage_node_system.py SONG_NODES + DISPATCH.md v3.3.0-mission-control).
-   Zone "Kula" = enforced canon name for legacy "Farmlands".
-   2026-06-11: catalogExtras added (flagship songs beyond the 54-node roster) + pending list synced to dispatch.
-   2026-06-12: zone conflict RESOLVED by charter logic (dispatch 09:22) — zone is TWO dimensions: 'quad' (governance
-   quadrant, DT_SGI_Nodes.quad.csv 18/18/16+2 lock, joined by node name) governs acts/pillars; 'zone' here =
-   setting_zone (registry) governs render/LoRA styling. kilo synced to 06-11 night fleet (6 live); game3d added.
-   06-12 p.m. pass: longform branch surfaced (cowork 06-11 17:19, missed by the a.m. sync) + render lane PAUSE flag
-   + film crosscheck moved to 32-of-35.
-   Live app reads /api/film/roster etc; this snapshot drives the prototype. */
+/* King System - public data snapshot (civic + game). 12 Stones Global. */
 window.KING_DATA = (() => {
-  // n, name, zone, song slug, duration s, rendered
   const N = [
     [1,"Firebreak Design","Mauka","ASHES_OF_TRUST_DISTROKID",214,1],
     [2,"Soil Health","Mauka","MAUI_COURTS",187,1],
@@ -66,7 +56,6 @@ window.KING_DATA = (() => {
     [53,"Joker Node: Central Hub","Universal","AN_ON_Y_MO_US",235,1],
     [54,"Final Joker: Universal Synergy","Universal","COLORS_COLLIDE",271,1],
   ];
-  // Governance quadrant per registry node (joined to quad.csv by name; lock 18/18/16+2 holds).
   const QUAD = n =>
     n >= 53 ? "Universal" :
     (n <= 12 || [31,34,41,46,50,51].includes(n)) ? "Mauka" :
@@ -80,7 +69,6 @@ window.KING_DATA = (() => {
   const title = s => s.replace(/_/g," ").replace(/\s*\((REMASTERED|MASTERED)\)\s*/i," ")
     .toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()).trim();
 
-  // Lyric scores — corpus fully transcribed 2026-06-10 (193/193, 0 below threshold)
   const scoreSeed = {REEF:96,HE_LEI_NO_LAHAINA:94,QUEEN_MOKU:93,AN_ON_Y_MO_US:91,BLESS_ER:90,
     COLORS_COLLIDE:95,HAMAKUA_FULLMASTER:92,BUDDHA_DON_T_BURN:89,DIFFERENT_CLOTH:88,
     ASH_ON_THE_BADGE:87,PULSE:85,KAULA_LANI:84,SCROLL_4:58,STONE_1_ARTICLE_1__EX:55};
@@ -90,8 +78,6 @@ window.KING_DATA = (() => {
     model: "large-v3", flag: (scoreSeed[d.song]??99) < 60 ? "SHORT" : null
   }));
 
-  // Flagship catalog songs beyond the 54-node roster — secondary seats on their
-  // primary node per SONG_NODES (sage_node_system.py). Transcripts in lyrics.js.
   const catalogExtras = [
     {slug:"QUEEN_MOKU",         node:8,  zone:"Mauka"},
     {slug:"BLESS_ER",           node:8,  zone:"Mauka"},
@@ -110,7 +96,6 @@ window.KING_DATA = (() => {
     finals: [],
     dispatchLog: [],
     pending: [],
-    // Sage build chain — render↔game alignment (sage_sync_check.py v1.2, cowork-thread 06-12).
     game3d: {
       asOf: "2026-06-12",
       sync: { state: "54 / 54 nodes mapped", detail: "Every node has a card, a zone, and a song — the deck is complete." },
@@ -125,7 +110,6 @@ window.KING_DATA = (() => {
       scenesDone: 21, scenesTotal: 54,
     },
     zoneLora: {},
-    // Kilo Aupuni — observer of the government. Watcher fleet on Jimmy's machine
     kilo: {
       asOf: "2026-06-12",
       watchers: [
@@ -176,38 +160,8 @@ window.KING_DATA = (() => {
       ],
       integrity: "Every item carries its CivicClerk file and the statute that governs it. Flags are framed as questions for testimony — never accusations.",
     },
-    // Push · Reach — distribution/marketing awareness, harvested from dispatch log +
-    // docs (YOUTUBE_OPS, PRODUCTION_AND_REVENUE_STRATEGY, NextSong brief). Honest numbers,
-    // each dated. Live app would read /api/youtube/status + /api/youtube/marketing.
     push: {},
-    // Real data from finals/*_tab.json, harvested 2026-06-12.
-    tabs: {
-      asOf: "2026-06-12",
-      tuning: "E A D G B e · standard · frets 0–22",
-      onFile: [
-        {slug:"OUTLAW_ALOHA_MASTERED", title:"Outlaw Aloha", node:42, zone:"Kula", bpm:95.7, notes:318, engine:"librosa-yin-full", window:"full song", audio:"Outlaw_Aloha_Mastered.wav"},
-      ],
-      // v2 bar-aware render — final climb, bars 92–93 · 4/4 · 16th grid (re-bar pending on machine)
-      excerpt: [
-        "Bars 92-93",
-        "e|------------------------------------------------|------------------------------------18-19-19-19-|",
-        "B|------------------------------19-20-20-21-21-22-|------------------------------------------------|",
-        "G|------------------18-18-19-19-19-----------------|------------------------------------------------|",
-        "D|------18-20-21-21-22-22--------------------------|------------------------------------------------|",
-        "A|20-21-22-22-22-----------------------------------|------------------------------------------------|",
-        "E|-------------------------------------------------|15-16-17-18-19-20-21-22--------------------------|",
-      ],
-      pipeline: [
-        ["stem split",  "demucs — guitar/lead · vocals · bass, or full mix"],
-        ["pitch track",  "librosa-yin full-song · basic-pitch for solo windows"],
-        ["fretting",     "greedy minimal-movement · EADGBE · prefers low frets + small hand motion"],
-        ["bar quantize", "v2 — 16th grid in 4/4 from bpm · rests for silence · onsets own the timeline"],
-        ["outputs",      "tab JSON + bar-lined ASCII + measured alphaTex → finals/<slug>_tab.json"],
-        ["render",       "alphaTab SVG + playback cursor + soundfont — studio panel 6"],
-      ],
-      nextUp: ["REEF", "HE_LEI_NO_LAHAINA", "COLORS_COLLIDE", "BLESS_ER", "GLASCOTT_SUMMERS"],
-      note: "Renderer v2 (bar-aware) INSTALLED + re-bar RUN 06-12 — Outlaw Aloha now sits in 105 bars of 4/4 (was a flat note stream). Full song above; the studio (panel 6) renders it as interactive notation. Known limit: grid anchors at audio t=0 — v2.1 adds downbeat detection. Generate more tabs in the studio (panel 6).",
-    },
+    tabs: {},
     heroModes: [
       {id:"BASE_IDENTITY", use:"Default render mode — any song without ceremonial/water override.",
        desc:"Above clouds on volcanic rock, dark earth-tone feathered cloak, Milky Way overhead."},
