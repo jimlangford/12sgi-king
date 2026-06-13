@@ -63,6 +63,7 @@ jobs:
             python "$P/lege_legiscan.py" --years 2024 2026 || true
           fi
           python "$P/commission_watch.py" || true
+          python "$P/bill9_testimony.py" || true
           python "$P/charter_law_map.py" || true
           python "$P/patterns.py" || true
           python "$P/kilo_aupuni.py" || true
