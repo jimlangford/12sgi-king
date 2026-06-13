@@ -1,0 +1,56 @@
+/* ============================================================
+   12sgi · Ops / telemetry register
+   ------------------------------------------------------------
+   The utility language of the live ops surfaces — overview.html
+   (command center) and mission_control.html. Deliberately
+   un-ceremonial: cool GitHub-dark, blue links, tabular numerals,
+   status dots, 4px left-border state tiles. Use for dashboards,
+   monitors, and anything whose job is honest telemetry — never
+   for brand-facing surfaces.
+   ============================================================ */
+
+:root {
+  /* ---- Ops surfaces ---- */
+  --ops-bg:     #0b0e14;
+  --ops-card:   #141925;
+  --ops-card-2: #1b2333;
+  --ops-line:   #243047;
+
+  /* ---- Ops ink ---- */
+  --ops-ink: #e6edf3;
+  --ops-dim: #8b97a8;
+
+  /* ---- Ops status (the GitHub-dark family) ---- */
+  --ops-green: #3fb950;
+  --ops-amber: #d29922;
+  --ops-red:   #f85149;
+  --ops-blue:  #58a6ff;   /* links, default bar fill */
+  --ops-gold:  #c8921a;   /* the one brand echo in ops chrome */
+  --ops-mint:  #6ee7b7;   /* mission-control accent */
+
+  /* Status washes for badges/tiles */
+  --ops-green-wash: rgba(63,185,80,0.16);
+  --ops-amber-wash: rgba(210,153,34,0.16);
+  --ops-red-wash:   rgba(248,81,73,0.16);
+}
+
+/* Apply wholesale (dashboards, monitors). */
+[data-surface="ops"] {
+  --bg:        var(--ops-bg);
+  --panel:     var(--ops-card);
+  --panel-2:   var(--ops-card-2);
+  --panel-3:   #222c40;
+  --line:      var(--ops-line);
+  --ink:       var(--ops-ink);
+  --ink-dim:   var(--ops-dim);
+  --ink-faint: #5a6378;
+  --accent:     var(--ops-blue);
+  --accent-2:   #79b8ff;
+  --accent-dim: rgba(88,166,255,0.12);
+  --accent-ink: #04101f;
+  --ok:   var(--ops-green);
+  --warn: var(--ops-amber);
+  --err:  var(--ops-red);
+  --info: var(--ops-blue);
+  --app-backdrop: var(--ops-bg); /* @kind other */
+}

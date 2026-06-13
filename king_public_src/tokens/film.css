@@ -1,0 +1,36 @@
+/* ============================================================
+   12sgi · Film color-grade arc tokens — derived anchors
+   ------------------------------------------------------------
+   JIMMY_BRAND.md §7 defines the color grade per arc position
+   (arc_pos = scene_idx / (n_scenes − 1)) in prose. These tokens
+   encode each stage as a shadow/warm-point pair for use in film
+   slates, decks, and grading reference UI. Hexes are design-system
+   anchors derived from the prose, not sampled from finals.
+
+     0.00–0.20  Pacific dawn — teal shadows, warm amber skin, crushed blacks
+     0.20–0.40  green-shifted midtones, shadows cooling toward blue
+     0.40–0.60  desaturated world, Jimmy holds the warmth
+     0.60–0.75  deep teal full saturation, a single warm point
+     0.75–0.85  silver & black, a single gold point
+     0.85–1.00  warm shadows lifting — the earned calm
+   ============================================================ */
+
+:root {
+  --grade-dawn-shadow:    #123b3e;  /* @kind color */
+  --grade-dawn-warm:      #d99a4e;
+
+  --grade-tension-shadow: #1e4034;
+  --grade-tension-warm:   #c9905a;
+
+  --grade-drain-shadow:   #3a3a36;
+  --grade-drain-warm:     #d97b35;
+
+  --grade-peak-shadow:    #0e5560;
+  --grade-peak-warm:      #e3a23a;
+
+  --grade-silver-shadow:  #2a2c2e;
+  --grade-silver-warm:    #d4af4a;
+
+  --grade-return-shadow:  #46362a;
+  --grade-return-warm:    #c98a52;
+}

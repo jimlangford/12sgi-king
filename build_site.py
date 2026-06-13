@@ -48,6 +48,12 @@ def main():
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
             shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
+
+    # [king-system] publish the public King System shell at /king/
+    _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
+    if os.path.isdir(_ksrc):
+        shutil.copytree(_ksrc, os.path.join(SITE, "king"))
+        print("  + king/: public King System (govOS + Council + Sage; studio locked, not deployed)")
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'

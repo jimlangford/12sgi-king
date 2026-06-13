@@ -1,0 +1,47 @@
+/* ============================================================
+   12sgi · Sage Game cosmology tokens (HFEv4 54-node topology)
+   ------------------------------------------------------------
+   The unifying taxonomy behind all four Quadcast surfaces:
+   3 zones + 2 jokers · 7 chakras · 5 lineages · 12 covenants.
+
+   ZONE hexes are CANONICAL (sage-game-node-assignment skill —
+   production colors for content/music-video grading).
+   CHAKRA + LINEAGE hexes: derived from the canon's verbal
+   descriptors, APPROVED by Jimmy 2026-06-10 (hex review sheet,
+   all 12 ruled) — LOCKED canon.
+
+   Naming: upcountry zone = KULA (enforced runtime canon per
+   SYSTEM_RULES.md). "Farmlands" is a legacy alias still seen in
+   older docs and the live Studio UI.
+   ============================================================ */
+
+:root {
+  /* ---- Zones (canonical) — 18 / 18 / 16 / 1 / 1 = 54 nodes ---- */
+  --sage-mauka:  #4ade80;  /* Zone 1 · nodes 1–18 · Governance & Cultural Sovereignty */
+  --sage-kula:   #fbbf24;  /* Zone 2 · nodes 19–36 · Agriculture, Culture & Education (legacy alias: Farmlands) */
+  --sage-makai:  #38bdf8;  /* Zone 3 · nodes 37–52 · Revenue, Franchise & Civic Commerce */
+  --sage-n53:    #f4f1e8;  /* Joker N53 · Emergency Override — white / glyph-as-blade */
+  --sage-n54:    #ffffff;  /* Joker N54 · Universal Synergy — white / all colors woven */
+
+  /* Zone washes for badges/fills on dark chrome */
+  --sage-mauka-wash: rgba(74,222,128,0.14);
+  --sage-kula-wash:  rgba(251,191,36,0.14);
+  --sage-makai-wash: rgba(56,189,248,0.14);
+  --sage-joker-wash: rgba(255,255,255,0.10);
+
+  /* ---- Chakras (APPROVED 2026-06-10 — descriptors canonical) ---- */
+  --chakra-violet: #b9a3e3;  /* crown light · release → flight */
+  --chakra-purple: #6d5bb8;  /* indigo-dusk · inspiration → vision */
+  --chakra-blue:   #58a6d6;  /* sky-clear · expression → voice */
+  --chakra-green:  #5fbf7f;  /* living-glow · compassion → healing */
+  --chakra-yellow: #e8c84a;  /* sun-disc · will → telekinesis */
+  --chakra-orange: #e0913f;  /* ember-amber · emotion → clarification */
+  --chakra-red:    #c94f38;  /* volcanic-red · passion → strength */
+
+  /* ---- Lineages (APPROVED 2026-06-10 — from zone/deity associations) ---- */
+  --lineage-pele:    #d4502e;  /* fire, transformation */
+  --lineage-kane:    #4a9e6f;  /* water of life, cultivation */
+  --lineage-ku:      #8a4f2d;  /* upright stone, structure */
+  --lineage-lono:    #9fb83d;  /* harvest, peace, forest */
+  --lineage-kanaloa: #2d6f9e;  /* ocean sovereignty, navigation */
+}

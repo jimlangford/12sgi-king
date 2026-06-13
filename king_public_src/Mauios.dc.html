@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script src="./data.js"></script>
+</helmet>
+
+<div data-surface="mauios" data-screen-label="govOS · civic" style="min-height:100%; background:var(--mauios-backdrop,#0c100e); color:var(--mauios-ink,#eef3ef); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
+
+  <div style="text-align:center; margin-bottom:20px;">
+    <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:50%; border:2px solid var(--mauios-seal,#c9a13b); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--mauios-gold,#d9b24c);">🌺</div>
+    <h1 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3vw,30px); font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">govOS</h1>
+    <p style="margin:4px auto 0; max-width:520px; font-size:13px; color:var(--mauios-mut,#9fb1a6);">Sovereign County operating system · <span style="color:var(--mauios-gold,#d9b24c);">formerly MauiOS</span> · the public face of the 12sgi system · RAIS ledger · Charter v5 canon</p>
+  </div>
+
+  <!-- civic apps -->
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; max-width:1040px; margin:0 auto 18px;">
+    <sc-for list="{{ apps }}" as="a" hint-placeholder-count="4">
+      <a href="{{ a.href }}" onClick="{{ a.onClick }}" style="display:block; text-decoration:none; background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:18px; color:var(--mauios-ink,#eef3ef); box-shadow:var(--mauios-shadow); cursor:pointer;" style-hover="border-color:var(--mauios-gold,#d9b24c);">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:8px;">
+          <span style="font-size:21px;">{{ a.icon }}</span>
+          <span style="font-family:var(--font-serif-display,Georgia,serif); font-size:16.5px; font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">{{ a.name }}</span>
+        </div>
+        <p style="margin:0 0 10px; font-size:12.5px; line-height:1.55; color:var(--mauios-mut,#9fb1a6);">{{ a.desc }}</p>
+        <sc-if value="{{ a.live }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:12px; background:rgba(86,192,138,0.12); color:var(--mauios-ok,#56c08a);">{{ a.tag }}</span></sc-if>
+        <sc-if value="{{ a.locked }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:12px; background:rgba(217,178,76,0.12); color:var(--mauios-gold,#d9b24c);">{{ a.tag }}</span></sc-if>
+      </a>
+    </sc-for>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; max-width:1040px; margin:0 auto;">
+    <!-- Charter status -->
+    <section style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:16px 18px;">
+      <h2 style="margin:0 0 10px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Sovereign Charter</h2>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px;">
+          <span style="font-family:var(--font-serif-display,Georgia,serif); font-weight:700; color:var(--mauios-gold-2,#f0cf7a);">v5</span>
+          <span style="flex:1; font-size:12.5px;">Canon for all MauiOS surfaces · Art. XI = Land Use &amp; Zoning</span>
+          <span style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--mauios-ok,#56c08a);">canon</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px; opacity:0.7;">
+          <span style="font-family:var(--font-serif-display,Georgia,serif); font-weight:700; color:var(--mauios-mut,#9fb1a6);">V2</span>
+          <span style="flex:1; font-size:12.5px;">28-article master, 04/2025 · Art. XI = Spirit Contract</span>
+          <span style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">historical</span>
+        </div>
+      </div>
+      <h2 style="margin:16px 0 8px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Civic zones</h2>
+      <div style="display:flex; gap:7px; flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 11px; border-radius:14px; border:1px solid var(--mauios-line,#243029); background:var(--mauios-panel-2,#1a2420);"><span style="width:8px; height:8px; border-radius:50%; background:var(--mauios-mauka,#3f9b6d);"></span>Mauka</span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 11px; border-radius:14px; border:1px solid var(--mauios-line,#243029); background:var(--mauios-panel-2,#1a2420);"><span style="width:8px; height:8px; border-radius:50%; background:var(--mauios-kula,#c9943f);"></span>Kula</span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 11px; border-radius:14px; border:1px solid var(--mauios-line,#243029); background:var(--mauios-panel-2,#1a2420);"><span style="width:8px; height:8px; border-radius:50%; background:var(--mauios-makai,#3a8fb7);"></span>Makai</span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 11px; border-radius:14px; border:1px solid var(--mauios-line,#243029); background:var(--mauios-panel-2,#1a2420);"><span style="width:8px; height:8px; border-radius:50%; background:var(--mauios-univ,#b8c2cc);"></span>Universal</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- Kilo Aupuni — observer of the government -->
+  <section style="max-width:1040px; margin:14px auto 0; background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:16px 18px;">
+    <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px;">
+      <h2 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:17px; font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">🔭 Kilo Aupuni</h2>
+      <span style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">observer of the government · snapshot {{ kiloAsOf }}</span>
+    </div>
+    <p style="margin:0 0 12px; font-size:12.5px; line-height:1.55; color:var(--mauios-mut,#9fb1a6);">One watcher per county data source, rolled into the county dashboard on gov.12sgi.com. {{ kiloIntegrity }}</p>
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+      <sc-for list="{{ kiloWatchers }}" as="w" hint-placeholder-count="5">
+        <div style="display:grid; grid-template-columns:128px 1fr 72px; gap:12px; align-items:baseline; padding:8px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--mauios-gold,#d9b24c);">{{ w.name }}</span>
+          <span style="font-size:12.5px; color:var(--mauios-ink,#eef3ef);"><span style="color:var(--mauios-mut,#9fb1a6);">{{ w.src }}</span> · <span style="font-variant-numeric:tabular-nums;">{{ w.n }}</span></span>
+          <sc-if value="{{ w.live }}" hint-placeholder-val="{{ true }}"><span style="justify-self:end; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:12px; background:rgba(86,192,138,0.12); color:var(--mauios-ok,#56c08a);">live</span></sc-if>
+          <sc-if value="{{ w.captured }}" hint-placeholder-val="{{ false }}"><span style="justify-self:end; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:12px; background:rgba(58,143,183,0.16); color:#6fb6da;">captured</span></sc-if>
+          <sc-if value="{{ w.planned }}" hint-placeholder-val="{{ false }}"><span style="justify-self:end; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:12px; background:rgba(217,178,76,0.12); color:var(--mauios-gold,#d9b24c);">planned</span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <h3 style="margin:0 0 8px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Standing reports</h3>
+    <div style="display:flex; flex-direction:column; gap:5px;">
+      <sc-for list="{{ kiloOutputs }}" as="o" hint-placeholder-count="4">
+        <div style="display:flex; gap:9px; align-items:baseline; font-size:12.5px; color:var(--mauios-ink,#eef3ef);"><span style="color:var(--mauios-gold,#d9b24c);">📄</span><span>{{ o }}</span></div>
+      </sc-for>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const noop = e => { if (!e.currentTarget.getAttribute('href')) e.preventDefault(); };
+    const K = (window.KING_DATA || {}).kilo || { asOf: '—', watchers: [], outputs: [], integrity: '' };
+    return {
+      kiloAsOf: K.asOf,
+      kiloIntegrity: K.integrity,
+      kiloWatchers: K.watchers.map(w => ({ ...w, live: w.stat === 'live', captured: w.stat === 'captured', planned: w.stat === 'planned' })),
+      kiloOutputs: K.outputs,
+      apps: [
+        { icon: '⚖', name: 'Budget Transparency', desc: 'FY2027 as passed 06-05 (Bills 55–56, unanimous) over the FY2026 penny ledger — council-watch flagged the ordinance text 06-11; exact re-parse queued.', tag: 'live page', href: '../budget-transparency/Budget Transparency.html', onClick: () => {}, live: true, locked: false },
+        { icon: '🗺', name: 'Title 19 Crosswalk', desc: 'Charter v5 Article XI mapped against Maui County Title 19 zoning — clause by clause.', tag: 'live page', href: '../title19-crosswalk/Title19 Crosswalk.html', onClick: () => {}, live: true, locked: false },
+        { icon: '📜', name: 'County Audit', desc: 'RAIS scroll filings — AUDIT-001 and ACCOUNTABILITY-001 in ledger form, sealed in truth.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
+        { icon: '🂡', name: 'Node Dashboard', desc: '54-node civic dashboard over the public ledger. Opens when access is issued.', tag: 'keyed', href: '', onClick: noop, live: false, locked: true },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

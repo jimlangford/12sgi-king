@@ -1,0 +1,97 @@
+/* ============================================================
+   12sgi · Ceremonial / Codex register
+   ------------------------------------------------------------
+   The brand-presentation language of the universe surfaces —
+   HUB.html, demos/12STONES_SHOWCASE, demos/SAGE_POC. Distinct
+   from studio chrome on purpose:
+   · serif display (Iowan Old Style → Palatino → Georgia)
+   · softer ceremonial gold #d9b24c (vs studio #e3ad33 — BOTH
+     are canon; the register decides which you use)
+   · a second accent the studio never uses: sea-teal
+   · dual radial glows (sea NW + gold NE) on deep blue-black
+   · paper-faced playing-card artifacts (5/7)
+   · faint sacred-geometry gold grid on the HUB
+
+   Apply wholesale with [data-surface="codex"], or reach for the
+   --codex-* primitives individually.
+   ============================================================ */
+
+:root {
+  /* ---- Codex surfaces ---- */
+  --codex-bg:      #0a0e14;
+  --codex-bg-2:    #0f141d;
+  --codex-panel:   #141b26;
+  --codex-panel-2: #19222f;
+  --codex-line:    #1f2c3a;
+
+  /* ---- Codex ink ---- */
+  --codex-ink:   #eaf1f5;
+  --codex-mut:   #9fb0c0;
+  --codex-faint: #647688;
+
+  /* ---- Ceremonial gold (the codex gold — NOT the studio gold) ---- */
+  --codex-gold:   #d9b24c;
+  --codex-gold-2: #f3d589;
+  --codex-copper: #b8702e;  /* HUB tile accent / hover links */
+
+  /* ---- Sea-teal — the codex's second accent ---- */
+  --codex-sea:   #3a8fb7;
+  --codex-sea-2: #5fc0d8;
+  --codex-abyss: #1c3a52;
+
+  /* ---- Serif display stack (codex headlines, KPI values, card corners) ----
+     Source Serif 4 is the APPROVED SUBSTITUTE for Iowan Old Style
+     (Apple-licensed, no redistributable file — Jimmy's call 2026-06-09).
+     Iowan stays in the stack so native Macs still render it. */
+  --font-serif-display: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+
+  /* ---- Playing-card artifact ---- */
+  --codex-card-face: linear-gradient(180deg, #f7fafc, #e6edf3); /* @kind other */
+  --codex-card-ink:  #1a2533;
+  --codex-card-red:  #c0322c;
+
+  /* ---- Zone & lineage UI hexes, codex context ----
+     (UI-badge palette — separate context from the canonical
+     production zone hexes in cosmology.css) */
+  --codex-mauka:   #4fae7a;
+  --codex-kula:    #d2a04a;
+  --codex-makai:   #3f9ec4;
+  --codex-univ:    #cdd6e0;
+  --codex-kane:    #e6bf57;
+  --codex-ku:      #c45f35;
+  --codex-lono:    #4fae7a;
+  --codex-kanaloa: #3f9ec4;
+  --codex-pele:    #e06a30;
+
+  /* ---- Ambient: dual radial glows (sea + gold) ---- */
+  --codex-glow-sea:  radial-gradient(1200px 700px at 50% -12%, rgba(58,143,183,0.16), transparent 62%); /* @kind other */
+  --codex-glow-gold: radial-gradient(900px 600px at 90% 110%, rgba(217,178,76,0.10), transparent 60%); /* @kind other */
+  --codex-backdrop: var(--codex-glow-sea), var(--codex-glow-gold), var(--codex-bg); /* @kind other */
+
+  /* ---- HUB sacred-geometry grid (64px gold mesh @ 5%, radially masked) ---- */
+  --codex-grid: linear-gradient(var(--codex-gold) 1px, transparent 1px), linear-gradient(90deg, var(--codex-gold) 1px, transparent 1px); /* @kind other */
+
+  /* ---- Codex shadow (deeper than studio) ---- */
+  --codex-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 20px 50px rgba(0,0,0,0.55); /* @kind other */
+}
+
+/* Apply the whole register: components built on the semantic
+   aliases inherit the codex look inside this scope. */
+[data-surface="codex"] {
+  --bg:        var(--codex-bg);
+  --panel:     var(--codex-panel);
+  --panel-2:   var(--codex-panel-2);
+  --panel-3:   #1e2836;
+  --line:      var(--codex-line);
+  --ink:       var(--codex-ink);
+  --ink-dim:   var(--codex-mut);
+  --ink-faint: var(--codex-faint);
+  --accent:     var(--codex-gold);
+  --accent-2:   var(--codex-gold-2);
+  --accent-dim: rgba(217,178,76,0.12);
+  --accent-ink: #241c06;
+  --info:      var(--codex-sea-2);
+  --font-display: var(--font-serif-display);
+  --app-backdrop: var(--codex-backdrop); /* @kind other */
+  --shadow-card: var(--codex-shadow); /* @kind other */
+}
