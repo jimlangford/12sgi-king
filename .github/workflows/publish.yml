@@ -66,20 +66,24 @@ jobs:
         run: |
           P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
           C="$HOME/Documents/Claude/tools/council-watch"
-          python "$C/council_watch.py" || true
-          python "$P/votes_watch.py" || true
-          python "$P/bids_watch.py" || true
-          python "$P/mapps_watch.py" || true
-          python "$P/donor_watch.py" || true
-          python "$P/statewide_money.py" || true
+          # Each watcher is a REFRESH on top of the committed seed floor. Cap every one with
+          # `timeout` so a slow/hung network fetch can never stall the build -> the site
+          # always reaches the deploy step. A capped watcher just leaves the seeded version.
+          run() { echo "::group::$1"; timeout 240 python "$@" ; echo "(exit $?)"; echo "::endgroup::"; }
+          run "$C/council_watch.py" || true
+          run "$P/votes_watch.py" || true
+          run "$P/bids_watch.py" || true
+          run "$P/mapps_watch.py" || true
+          run "$P/donor_watch.py" || true
+          run "$P/statewide_money.py" || true
           if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
-            python "$P/lege_legiscan.py" --years 2024 2026 || true
+            run "$P/lege_legiscan.py" --years 2024 2026 || true
           fi
-          python "$P/commission_watch.py" || true
-          python "$P/bill9_testimony.py" || true
-          python "$P/charter_law_map.py" || true
-          python "$P/patterns.py" || true
-          python "$P/kilo_aupuni.py" || true
+          run "$P/commission_watch.py" || true
+          run "$P/bill9_testimony.py" || true
+          run "$P/charter_law_map.py" || true
+          run "$P/patterns.py" || true
+          run "$P/kilo_aupuni.py" || true
 
       - name: Build static site
         run: python build_site.py
