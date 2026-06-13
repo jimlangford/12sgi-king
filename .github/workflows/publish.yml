@@ -1,0 +1,77 @@
+name: kilo-aupuni publish
+
+# Runs the civic-transparency watchers on GitHub's FREE runners (off your laptop),
+# rebuilds the static site, and deploys it to Cloudflare Pages. $0/month.
+on:
+  schedule:
+    - cron: "20 15 * * *"     # daily ~05:20 HST (15:20 UTC)
+  workflow_dispatch: {}        # run on demand from the Actions tab
+  push:
+    branches: [ main ]
+    paths: [ "watchers/**", "build_site.py", ".github/workflows/**" ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kilo-aupuni-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Lay out the runtime tree the watchers expect
+        env:
+          LEGISCAN_KEY: ${{ secrets.LEGISCAN_KEY }}
+        run: |
+          set -e
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
+          mkdir -p "$P/tools/kilo-aupuni" "$P/config" "$HOME/Documents/Claude/tools/council-watch"
+          cp watchers/council_watch.py "$HOME/Documents/Claude/tools/council-watch/"
+          cp watchers/*.py "$P/tools/kilo-aupuni/"
+          cp watchers/departments.json watchers/energov_permit_template.json watchers/commission_inputs.json "$P/tools/kilo-aupuni/" 2>/dev/null || true
+          # LegiScan key from the repo SECRET (never committed). Optional: lege step is skipped if absent.
+          if [ -n "$LEGISCAN_KEY" ]; then printf '%s' "$LEGISCAN_KEY" > "$P/config/legiscan_key.txt"; fi
+
+      - name: Run watchers (HTTP/API + pypdf only — no laptop, no browser)
+        env:
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          C="$HOME/Documents/Claude/tools/council-watch"
+          # each guarded with || true so one transient source can't fail the whole publish
+          python "$C/council_watch.py" || true                       # CivicClerk agendas
+          python "$P/votes_watch.py" || true                         # council minutes -> votes/recusals
+          python "$P/bids_watch.py" || true                          # procurement
+          python "$P/mapps_watch.py" || true                         # permits (EnerGov)
+          python "$P/donor_watch.py" || true                         # Maui official donors
+          python "$P/statewide_money.py" || true                     # all-jurisdiction money
+          if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
+            python "$P/lege_legiscan.py" --years 2024 2026 || true    # state per-member votes (recent)
+          fi
+          python "$P/commission_watch.py" || true
+          python "$P/charter_law_map.py" || true
+          python "$P/patterns.py" || true                            # money x votes joins
+          python "$P/kilo_aupuni.py" || true                         # rebuild county dashboard + twin
+
+      - name: Build static site
+        run: python build_site.py
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=kilo-aupuni --commit-dirty=true

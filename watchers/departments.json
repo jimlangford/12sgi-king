@@ -1,0 +1,116 @@
+{
+  "module": "Kilo Aupuni",
+  "meaning": "observer of the government - kilo (sustained sacred observation) + aupuni (government). MauiOS department-coverage watch engine.",
+  "updated": "2026-06-11",
+  "note": "One watcher per county public-data source. council-watch already covers EVERY CivicClerk body (Council, committees, boards, commissions) so legislative coverage is live. Gap watchers below target sources NOT in CivicClerk; sources are verified real Maui County portals.",
+  "lenses_canonical": ["Art.X / Budget", "Title 19 / Land use", "Water", "Housing", "Recovery / Lahaina", "Aina / Agriculture", "Charter / Governance", "Procurement integrity"],
+  "watchers": [
+    {
+      "key": "civicclerk",
+      "dept": "All legislative bodies (Council, BFED/HHC/WAI/etc., Planning Commission, boards & commissions)",
+      "source": {"type": "api", "url": "https://mauicounty.api.civicclerk.com/v1", "portal": "https://mauicounty.portal.civicclerk.com"},
+      "watcher": "council-watch",
+      "lenses": ["Art.X / Budget", "Title 19 / Land use", "Water", "Housing", "Recovery / Lahaina", "Aina / Agriculture", "Charter / Governance"],
+      "status": "live",
+      "freshness": "at-logon + on demand (Startup shortcut); -7d..+21d window"
+    },
+    {
+      "key": "donors",
+      "dept": "Campaign finance - who funds the officials (follow-the-money)",
+      "source": {"type": "api", "url": "https://hicscdata.hawaii.gov/resource/jexd-xbcg.json", "portal": "https://ags.hawaii.gov/campaign/"},
+      "watcher": "donor-watch",
+      "lenses": ["Art.X / Budget", "Conflict of interest", "Real-estate influence"],
+      "status": "live",
+      "freshness": "on demand; CSC dataset jexd-xbcg updates periodically",
+      "build_note": "Hawaii Campaign Spending Commission SODA API. Profiles each tracked official's contributions, flags real-estate/development-sector donors, attaches recusals from votes-watch. Builds money_behind_officials.html. Integrity: public record; donor->vote proximity is a QUESTION, not proof of quid pro quo. NOTE: Cook/Johnson name-pattern matched 0 rows - verify their registered filing names."
+    },
+    {
+      "key": "votes",
+      "dept": "Council VOTES & recusals (follow-the-money accountability)",
+      "source": {"type": "api", "url": "https://mauicounty.api.civicclerk.com/v1", "note": "meeting MINUTES (PDF) -> roll-call votes + recusals"},
+      "watcher": "votes-watch",
+      "lenses": ["Art.X / Budget", "Procurement integrity", "Conflict of interest"],
+      "status": "live",
+      "freshness": "at-logon + on demand; 45-day window (minutes lag ~weeks)",
+      "build_note": "Parses minutes for recusals (formal conflict-of-interest declarations) + motions, anchored to the verified 9-member council roster + mayor; links each to the item/dollars. Builds officials_scorecard.html. Integrity: facts + source links; conflicts framed as questions, never accusations."
+    },
+    {
+      "key": "lege",
+      "dept": "STATE Legislature - bills + final-reading votes (KEYLESS)",
+      "source": {"type": "scrape", "url": "https://www.capitol.hawaii.gov/session/measure_indiv.aspx"},
+      "watcher": "lege-legiscan (primary) + lege-watch (keyless fallback)",
+      "lenses": ["Housing", "Short-term rental", "Real estate / land", "Water / Aina", "Budget / Tax"],
+      "status": "live-FULL",
+      "freshness": "on demand; LegiScan session datasets",
+      "build_note": "PRIMARY: lege_legiscan.py uses the LegiScan API (key in config/legiscan_key.txt - SECRET, keep out of public repo/logs). Pulls session DATASETS (bill+roll_call+person) = COMPLETE per-member yea/nay. HI coverage 2010-2026 (24 sessions). Verified: 125 legislators full-history; career lens-dissent leaders Awa(R) 124, Fevella(R) 75, DeCorte(R) 21, Perruso(D) 16. -> reports/mauios/lege/legislator_scorecard.html + legislators.json (joins to statewide_money). FALLBACK: lege_watch.py keyless capitol.hawaii.gov scrape (counts + dissent names, partial) if no key. KEY GOTCHA: dataset vote files wrap as 'roll_call' not 'vote'."
+    },
+    {
+      "key": "statewide-money",
+      "dept": "STATEWIDE - campaign money patterns, all counties + State, 2008->now",
+      "source": {"type": "api", "url": "https://hicscdata.hawaii.gov/resource/jexd-xbcg.json"},
+      "watcher": "statewide-money",
+      "lenses": ["Real-estate influence", "Conflict of interest", "Cross-jurisdiction patterns"],
+      "status": "live",
+      "freshness": "on demand; server-side SoQL aggregation (fast over ~2M rows)",
+      "build_note": "The one deep-history source spanning every level of HI govt: CSC dataset covers Governor/Lt.Gov/House/Senate + all 4 county Councils + Mayors + Prosecuting Attorney + OHA, back to 2008. Aggregates money-by-jurisdiction, top cross-jurisdiction donor network (spread = # distinct candidates funded), real-estate-sector by jurisdiction, year trend. $87.6M tracked. -> statewide_money_patterns.html. This is where 25-yr 'patterns' actually live (county council VOTES only digitized ~2015+; not available to 2000)."
+    },
+    {
+      "key": "commission",
+      "dept": "Real-estate commission antitrust thread (Thread 2)",
+      "source": {"type": "synthesis", "url": "NAR/Sitzer-Burnett timeline (verified) + public Maui sales volume (RAM/DBEDT) + HRS 480/467"},
+      "watcher": "commission-watch",
+      "lenses": ["Real-estate influence", "Antitrust", "Charter / Governance"],
+      "status": "live-framework",
+      "freshness": "on demand; feed commission_inputs.json with public annual sales stats",
+      "build_note": "HONEST framework: per-deal commission RATES are not public (MLS-proprietary). Builds (1) the verified NAR/Sitzer-Burnett antitrust timeline and (2) an ESTIMATED commission-load = public units*median*conventional-rate from commission_inputs.json (user fills from RAM/DBEDT/Redfin). Frames the antitrust question + referral path (DOJ, HI AG/HRS480, Real Estate Commission/HRS467-RICO). Does NOT accuse anyone. -> commission_antitrust.html."
+    },
+    {
+      "key": "charter",
+      "dept": "Charter -> Law -> Evidence (governance application layer)",
+      "source": {"type": "synthesis", "url": "local: SSC v5 charter + HRS/Maui-Charter citations + live watcher data"},
+      "watcher": "charter-law-map",
+      "lenses": ["Charter / Governance", "Conflict of interest", "Real-estate influence"],
+      "status": "live",
+      "freshness": "every run (reads live donor/votes data); runs last so evidence is current",
+      "build_note": "Binds 12 Stones Sovereign Charter (SSC v5, verbatim Art. VI/IV/III/IX) to the EXISTING enforceable statute that mirrors each provision (Maui Charter Art.10 ethics, HRS Ch.11 campaign finance, HRS 92 Sunshine, HRS 480 antitrust, HRS 467 real-estate licensing, Sherman Act + Noerr-Pennington) and the live evidence. Shows the lawful action path per winnable thread. Builds charter_application.html."
+    },
+    {
+      "key": "permits",
+      "dept": "Planning & Permits (MAPPS - Maui Automated Planning & Permitting System)",
+      "source": {"type": "scrape", "url": "https://publicweb1.co.maui.hi.us/PublicSearch/PlanningPermitsSearch.aspx", "portal": "https://mapps.mauicounty.gov/"},
+      "watcher": "mapps-watch",
+      "lenses": ["Title 19 / Land use", "Recovery / Lahaina", "Housing", "Water / Kane-Kanaloa", "Commercial / Build"],
+      "status": "live",
+      "freshness": "at-logon + on demand (via Kilo Aupuni --run-watchers); default 30-day applied-date window",
+      "build_note": "SOLVED 2026-06-11: captured the EnerGov SelfService search request from a live browser session. POST https://mapps2.co.maui.hi.us/EnerGov_Prod/SelfService/api/energov/search/search; headers tenantId=1 / tenantName=MauiCountyHIProd / Tyler-TenantUrl=MauiCountyHIProd / Tyler-Tenant-Culture=en-US; body frozen in energov_permit_template.json (PermitTypeId/StatusId must be 'none'). Verified replicating headlessly from Python (stdlib urllib, no Playwright needed after all). 3,372 permit cases YTD; mapps_watch.py paginates 50/page."
+    },
+    {
+      "key": "procurement",
+      "dept": "Procurement - Bids, RFPs & Contracts (Finance / Purchasing Division)",
+      "source": {"type": "scrape", "url": "https://www.mauicounty.gov/Bids.aspx", "portal": "https://www.mauicounty.gov/509/Purchasing-Division"},
+      "watcher": "bids-watch",
+      "lenses": ["Art.X / Budget", "Procurement integrity"],
+      "status": "live",
+      "freshness": "at-logon + on demand (via Kilo Aupuni --run-watchers)",
+      "build_note": "Verified 2026-06-11: Bids.aspx is plain HTML, stdlib-parseable (no Playwright needed). bids_watch.py ingests each posting -> reports/mauios/bids/."
+    },
+    {
+      "key": "realproperty",
+      "dept": "Real Property Assessment & Tax (Finance)",
+      "source": {"type": "scrape", "url": "https://qpublic.schneidercorp.com/Application.aspx?App=MauiCountyHI&PageType=Search", "portal": "https://www.mauipropertytax.com"},
+      "watcher": "rpa-watch",
+      "lenses": ["Art.X / Budget", "Aina / Agriculture", "Housing"],
+      "status": "gated-cloudflare-UIPA-or-attended",
+      "build_note": "qPublic owner/value data is Cloudflare bot-protected ('Just a moment...' challenge) - blocks BOTH stdlib and headless Playwright (confirmed 2026-06-13). We will NOT build Cloudflare evasion (adversarial + brittle + detection-evasion line). LAWFUL UNLOCK = UIPA bulk request for the assessment roll (owner+TMK+value is public record under HRS 92F) - drafted at reports/mauios/UIPA_request_assessment_roll.md; drop the returned CSV at reports/mauios/property/assessment_roll.csv and a join to donor-watch is trivial. Public GIS (geodata.hawaii.gov ParcelsZoning/25) has TMK+acreage+geometry but NO owner/value. INTERIM: attended single-owner lookups work via the Chrome MCP (proven: Lanai Resorts LLC -> its parcels). rpa_watch.py holds the Playwright flow for attended use; not in the unattended run loop."
+    },
+    {
+      "key": "docs",
+      "dept": "County Public Documents (cross-department records)",
+      "source": {"type": "scrape", "url": "https://publicweb1.co.maui.hi.us/PublicSearch/Maui.aspx"},
+      "watcher": "docs-watch",
+      "lenses": ["Charter / Governance", "Recovery / Lahaina"],
+      "status": "planned",
+      "build_note": "Catch-all public records search for anything not surfaced by the above."
+    }
+  ]
+}

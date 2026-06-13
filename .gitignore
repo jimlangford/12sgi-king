@@ -1,0 +1,17 @@
+# SECRETS — never commit
+legiscan_key.txt
+*.key
+.env
+config/
+
+# generated locally (CI builds it fresh; deploy uploads it)
+site/
+
+# python cruft + watcher state
+__pycache__/
+*.pyc
+*_state.json
+_probe*.py
+
+# never publish the raw heavy archives by accident
+watchers/*_state.json

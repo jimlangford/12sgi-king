@@ -1,0 +1,13 @@
+{
+  "_README": "Annual Maui County residential sales volume + median price, from PUBLIC sources (Realtors Assoc. of Maui monthly/annual stats, Hawaii DBEDT, or Redfin Data Center county TSV). Fill verified figures here; commission_watch estimates the aggregate commission LOAD = units * median * conventional_rate. Rows marked illustrative=true are PLACEHOLDERS - replace with verified numbers before citing. Actual per-deal commission RATES are NOT public (MLS-proprietary); this estimates load at the documented conventional rate.",
+  "conventional_rate_note": "~5-6% total commission was the long-standing convention the NAR/Sitzer-Burnett antitrust case targeted; post Aug-17-2024 rule changes, rates are supposed to become negotiable/competitive.",
+  "conventional_rate": 0.055,
+  "post2024_rate_hypothesis": 0.045,
+  "years": [
+    {"year": 2008, "units": null, "median": null, "illustrative": false, "source": "fill from RAM/DBEDT"},
+    {"year": 2015, "units": null, "median": null, "illustrative": false, "source": "fill from RAM/DBEDT"},
+    {"year": 2020, "units": null, "median": null, "illustrative": false, "source": "fill from RAM/DBEDT"},
+    {"year": 2023, "units": null, "median": null, "illustrative": false, "source": "fill from RAM/DBEDT"},
+    {"year": 2025, "units": null, "median": null, "illustrative": false, "source": "fill from RAM/DBEDT"}
+  ]
+}
