@@ -1,0 +1,4749 @@
+{
+ "asOf": "2026-06-13 09:20 HST",
+ "sessions": [
+  "2010",
+  "2011",
+  "2012",
+  "2013",
+  "2014",
+  "2015",
+  "2014",
+  "2015",
+  "2016",
+  "2016",
+  "2016",
+  "2017",
+  "2017",
+  "2017",
+  "2018",
+  "2018",
+  "2019",
+  "2019",
+  "2019",
+  "2020",
+  "2021",
+  "2022",
+  "2023",
+  "2024",
+  "2025",
+  "2026"
+ ],
+ "legislators": {
+  "Angus McKelvey": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 3585,
+   "nay": 25,
+   "other": 543,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB2288",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2844",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1039",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2073",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2018",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Kyle Yamashita": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2362,
+   "nay": 0,
+   "other": 95,
+   "dissents": []
+  },
+  "Aaron Johanson": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1059,
+   "nay": 0,
+   "other": 53,
+   "dissents": []
+  },
+  "Linda Ichiyama": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1435,
+   "nay": 0,
+   "other": 159,
+   "dissents": []
+  },
+  "Lauren Matsumoto": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 1705,
+   "nay": 2,
+   "other": 131,
+   "dissents": []
+  },
+  "Sean Quinlan": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 842,
+   "nay": 4,
+   "other": 403,
+   "dissents": []
+  },
+  "Stacelynn Eli": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2045,
+   "nay": 17,
+   "other": 352,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1990",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB2035",
+     "title": "Relating To Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Lisa Kitagawa": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1921,
+   "nay": 6,
+   "other": 50,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1990",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB2035",
+     "title": "Relating To Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "James Tokioka": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1275,
+   "nay": 41,
+   "other": 384,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1039",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1208",
+     "title": "Proposing An Amendment To Article Viii, Section 3 Of The Hawaii Constitution Relating To T",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Mark Hashem": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1282,
+   "nay": 0,
+   "other": 156,
+   "dissents": []
+  },
+  "Takashi Ohno": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 835,
+   "nay": 0,
+   "other": 304,
+   "dissents": []
+  },
+  "Justin Woodson": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 935,
+   "nay": 0,
+   "other": 154,
+   "dissents": []
+  },
+  "Lynn Decoite": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 4224,
+   "nay": 40,
+   "other": 726,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB260",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB260",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR85",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR92",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1741",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2424",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2332",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SR125",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SCR133",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Amy Perruso": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1823,
+   "nay": 62,
+   "other": 142,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB469",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB142",
+     "title": "Relating To Housing Development.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1166",
+     "title": "Relating To Rentals For Public Land Leases.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1837",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2513",
+     "title": "Relating To The Rental Housing Revolving Fund.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB142",
+     "title": "Relating To Housing Development.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2766",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB3096",
+     "title": "Making An Emergency Appropriation To The Department Of Education For An Agriculture Innova",
+     "lens": [
+      "Water / Aina",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB3096",
+     "title": "Making An Emergency Appropriation To The Department Of Education For An Agriculture Innova",
+     "lens": [
+      "Water / Aina",
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "David Tarnas": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1785,
+   "nay": 1,
+   "other": 61,
+   "dissents": []
+  },
+  "Dale Kobayashi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1157,
+   "nay": 83,
+   "other": 216,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB529",
+     "title": "Relating To Residential Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB866",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1039",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1166",
+     "title": "Relating To Rentals For Public Land Leases.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB529",
+     "title": "Relating To Residential Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2002",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2414",
+     "title": "Relating To General Excise Tax Exemptions.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2437",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB866",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2251",
+     "title": "Relating To The Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2478",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Val Okimoto": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 1048,
+   "nay": 55,
+   "other": 55,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB631",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1930",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1944",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1946",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1950",
+     "title": "Relating To An Underwater Tunnel And Supporting Roadways To Provide A More Direct Connecti",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1990",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1990",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB321",
+     "title": "Relating To Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1208",
+     "title": "Proposing An Amendment To Article Viii, Section 3 Of The Hawaii Constitution Relating To T",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1209",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB321",
+     "title": "Relating To Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1208",
+     "title": "Proposing An Amendment To Article Viii, Section 3 Of The Hawaii Constitution Relating To T",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1209",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Tom Brower": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 500,
+   "nay": 0,
+   "other": 49,
+   "dissents": []
+  },
+  "Calvin Say": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 486,
+   "nay": 18,
+   "other": 233,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB2747",
+     "title": "Proposing An Amendment To Article Xvi, Section 2, Of The Hawaii State Constitution, To Aut",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB467",
+     "title": "Making An Appropriation To Restore Adult Dental Benefits To Medicaid Enrollees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB467",
+     "title": "Making An Appropriation To Restore Adult Dental Benefits To Medicaid Enrollees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2942",
+     "title": "Relating To Homelessness.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Chris Lee": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 5030,
+   "nay": 0,
+   "other": 461,
+   "dissents": []
+  },
+  "Cynthia Thielen": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 452,
+   "nay": 17,
+   "other": 184,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB1190",
+     "title": "Relating To Leasehold Condominiums On Lands Controlled By The State.",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Ryan Yamane": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1415,
+   "nay": 3,
+   "other": 229,
+   "dissents": []
+  },
+  "Daynette Morikawa": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1299,
+   "nay": 1,
+   "other": 128,
+   "dissents": []
+  },
+  "Nicole Lowen": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1751,
+   "nay": 3,
+   "other": 203,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB2035",
+     "title": "Relating To Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Gregg Takayama": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1397,
+   "nay": 4,
+   "other": 16,
+   "dissents": []
+  },
+  "Richard Creagan": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 369,
+   "nay": 0,
+   "other": 125,
+   "dissents": []
+  },
+  "Joy San Buenaventura": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 4555,
+   "nay": 35,
+   "other": 309,
+   "dissents": [
+    {
+     "year": 2023,
+     "bill": "SB338",
+     "title": "Relating To The Department Of Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB338",
+     "title": "Relating To The Department Of Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB253",
+     "title": "Relating To Condominium Reserves.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1990",
+     "title": "Relating To Residential Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB253",
+     "title": "Relating To Condominium Reserves.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Brian Taniguchi": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 2144,
+   "nay": 4,
+   "other": 407,
+   "dissents": []
+  },
+  "Les Ihara": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1252,
+   "nay": 12,
+   "other": 477,
+   "dissents": [
+    {
+     "year": 2023,
+     "bill": "SB736",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB736",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Mike Gabbard": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 4560,
+   "nay": 45,
+   "other": 710,
+   "dissents": []
+  },
+  "Stanley Chang": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 3598,
+   "nay": 1,
+   "other": 378,
+   "dissents": []
+  },
+  "Kurt Fevella": {
+   "party": "R",
+   "role": "Sen",
+   "yea": 10849,
+   "nay": 445,
+   "other": 3254,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB714",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB714",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB714",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB869",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2043",
+     "title": "Relating To Leasehold Condominiums On State Land.",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2043",
+     "title": "Relating To Leasehold Condominiums On State Land.",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2043",
+     "title": "Relating To Leasehold Condominiums On State Land.",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB3150",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB3150",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB3150",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1311",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1311",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1311",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1311",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1311",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB7",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB7",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB191",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB367",
+     "title": "Relating To Water Quality.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB367",
+     "title": "Relating To Water Quality.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB367",
+     "title": "Relating To Water Quality.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB567",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB607",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1033",
+     "title": "Relating To Making An Emergency Appropriation To The Stadium Authority.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1169",
+     "title": "Relating To Disposition Of Water Licenses By The Board Of Land And Natural Resources.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1322",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1322",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB756",
+     "title": "Relating To The Board Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1705",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1705",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1705",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2084",
+     "title": "Relating To Important Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2084",
+     "title": "Relating To Important Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2280",
+     "title": "Relating To Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2434",
+     "title": "Relating To Water Carriers.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB7",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB7",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB191",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB567",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB607",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB1033",
+     "title": "Relating To Making An Emergency Appropriation To The Stadium Authority.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB1169",
+     "title": "Relating To Disposition Of Water Licenses By The Board Of Land And Natural Resources.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB1322",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB1322",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2251",
+     "title": "Relating To The Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2251",
+     "title": "Relating To The Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2987",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2987",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2987",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB307",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB73",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB73",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2203",
+     "title": "Relating To Land Use Commission.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2203",
+     "title": "Relating To Land Use Commission.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2204",
+     "title": "Relating To The Land Use Commission.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR72",
+     "title": "Requesting The Department Of Agriculture To Convene A Working Group To Develop A Plan To C",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR89",
+     "title": "Requesting The Department Of Agriculture To Convene A Working Group To Develop A Plan To C",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1741",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1741",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1990",
+     "title": "Relating To Residential Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2424",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Gil Keith-agaran": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 3523,
+   "nay": 1,
+   "other": 324,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Michelle Kidani": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 4992,
+   "nay": 10,
+   "other": 328,
+   "dissents": [
+    {
+     "year": 2025,
+     "bill": "HB1369",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2879",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Donna Kim": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 4835,
+   "nay": 38,
+   "other": 230,
+   "dissents": [
+    {
+     "year": 2022,
+     "bill": "SB2507",
+     "title": "Proposing An Amendment To Article Ix, Section 5, Of The Hawaii State Constitution, To Requ",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR72",
+     "title": "Requesting The Department Of Agriculture To Convene A Working Group To Develop A Plan To C",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR89",
+     "title": "Requesting The Department Of Agriculture To Convene A Working Group To Develop A Plan To C",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Kaiali'i Kahele": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 636,
+   "nay": 2,
+   "other": 468,
+   "dissents": []
+  },
+  "Karl Rhoads": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 5415,
+   "nay": 20,
+   "other": 126,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB2035",
+     "title": "Relating To Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR30",
+     "title": "Requesting The Office Of The Governor, State Building Code Council, Building Departments O",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR74",
+     "title": "Urging The Legislature To Advance Legislation And Support Policies That Safeguard Individu",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR48",
+     "title": "Requesting The Office Of The Governor, State Building Code Council, Building Departments O",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR91",
+     "title": "Urging The Legislature To Advance Legislation And Support Policies That Safeguard Individu",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SR125",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SCR133",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Glenn Wakai": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 5702,
+   "nay": 5,
+   "other": 460,
+   "dissents": []
+  },
+  "Scott Nishimoto": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2292,
+   "nay": 0,
+   "other": 224,
+   "dissents": []
+  },
+  "Sylvia Luke": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1832,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Ty Cullen": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1693,
+   "nay": 0,
+   "other": 13,
+   "dissents": []
+  },
+  "Bertrand Kobayashi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2616,
+   "nay": 13,
+   "other": 2,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Bob McDermott": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 1371,
+   "nay": 60,
+   "other": 1270,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "SB1",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB1",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB1310",
+     "title": "Relating To Individual Housing Accounts.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1388",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1388",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB2206",
+     "title": "Relating To An Appropriation For The University Of Hawaii.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Cedric Gates": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1575,
+   "nay": 1,
+   "other": 169,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Daniel Holt": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2038,
+   "nay": 6,
+   "other": 305,
+   "dissents": []
+  },
+  "Chris Todd": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2235,
+   "nay": 3,
+   "other": 343,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "SB1166",
+     "title": "Relating To Rentals For Public Land Leases.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Nadine Nakamura": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1847,
+   "nay": 9,
+   "other": 219,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Troy Hashimoto": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 3987,
+   "nay": 12,
+   "other": 185,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1946",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1990",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Scot Matayoshi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2030,
+   "nay": 6,
+   "other": 150,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB421",
+     "title": "Relating To The General Excise Tax.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB2167",
+     "title": "Relating To Sustainable Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Tina Wildberger": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 2178,
+   "nay": 55,
+   "other": 212,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1326",
+     "title": "Relating To Water Rights.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1946",
+     "title": "Relating To The Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB2035",
+     "title": "Relating To Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2812",
+     "title": "Relating To Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2828",
+     "title": "Relating To Water.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB469",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1174",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1600",
+     "title": "Relating To The State Budget.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Maile Shimabukuro": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 3775,
+   "nay": 3,
+   "other": 756,
+   "dissents": []
+  },
+  "Kalani English": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1340,
+   "nay": 0,
+   "other": 549,
+   "dissents": []
+  },
+  "Gil Riviere": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1932,
+   "nay": 26,
+   "other": 312,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB1474",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2074",
+     "title": "Proposing An Amendment To The Constitution Of The State Of Hawaii To Authorize The Legisla",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2140",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "SB2216",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB1201",
+     "title": "Relating To General Excise Tax Licenses.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB1201",
+     "title": "Relating To General Excise Tax Licenses.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Donovan Cruz": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 4556,
+   "nay": 0,
+   "other": 178,
+   "dissents": []
+  },
+  "Lorraine Inouye": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 6196,
+   "nay": 55,
+   "other": 700,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "SB1474",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB485",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB23",
+     "title": "Relating To Motor Vehicle Rental Industry.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB23",
+     "title": "Relating To Motor Vehicle Rental Industry.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB646",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB646",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB23",
+     "title": "Relating To Motor Vehicle Rental Industry.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB23",
+     "title": "Relating To Motor Vehicle Rental Industry.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB646",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB646",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB3237",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2049",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2879",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SR125",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SCR133",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Breene Harimoto": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 516,
+   "nay": 2,
+   "other": 478,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "SB740",
+     "title": "Relating To Housing Density.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Dru Kanuha": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 6014,
+   "nay": 1,
+   "other": 260,
+   "dissents": []
+  },
+  "Sharon Moriwaki": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 5669,
+   "nay": 17,
+   "other": 555,
+   "dissents": []
+  },
+  "Sam Kong": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1173,
+   "nay": 30,
+   "other": 161,
+   "dissents": [
+    {
+     "year": 2022,
+     "bill": "HB1809",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "John Mizuno": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1217,
+   "nay": 0,
+   "other": 234,
+   "dissents": []
+  },
+  "Gene Ward": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 1810,
+   "nay": 85,
+   "other": 314,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB424",
+     "title": "Relating To Procurement Of Contracts For Vehicle Rental.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB476",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB476",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1208",
+     "title": "Proposing An Amendment To Article Viii, Section 3 Of The Hawaii Constitution Relating To T",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1209",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1314",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB872",
+     "title": "Relating To The Commission On Water Resource Management.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Della au Belatti": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1043,
+   "nay": 0,
+   "other": 373,
+   "dissents": []
+  },
+  "Roy Takumi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1026,
+   "nay": 4,
+   "other": 207,
+   "dissents": []
+  },
+  "Henry Aquino": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 4261,
+   "nay": 0,
+   "other": 387,
+   "dissents": []
+  },
+  "Rida Cabanilla Arakawa": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 199,
+   "nay": 3,
+   "other": 105,
+   "dissents": []
+  },
+  "Sharon Har": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1401,
+   "nay": 7,
+   "other": 209,
+   "dissents": []
+  },
+  "Richard Onishi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1201,
+   "nay": 22,
+   "other": 68,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB937",
+     "title": "Relating To Department Of Agriculture Loans.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB1507",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB424",
+     "title": "Relating To Procurement Of Contracts For Vehicle Rental.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1146",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB493",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1146",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB493",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Romy Cachola": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 284,
+   "nay": 1,
+   "other": 23,
+   "dissents": []
+  },
+  "Clarence Nishihara": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1458,
+   "nay": 2,
+   "other": 299,
+   "dissents": [
+    {
+     "year": 2022,
+     "bill": "SB2509",
+     "title": "Relating To The General Excise Tax.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Rosalyn Baker": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1562,
+   "nay": 1,
+   "other": 114,
+   "dissents": []
+  },
+  "Laura Thielen": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 653,
+   "nay": 1,
+   "other": 146,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "SB2046",
+     "title": "Proposing An Amendment To Article Ix, Section 5, Of The Hawaii State Constitution, To Requ",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Russell Ruderman": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 497,
+   "nay": 3,
+   "other": 183,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "SB869",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Jarrett Keohokalole": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 4230,
+   "nay": 6,
+   "other": 432,
+   "dissents": [
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2020,
+     "bill": "HB593",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Mark Nakashima": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 996,
+   "nay": 0,
+   "other": 109,
+   "dissents": []
+  },
+  "Patrick Branco": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1504,
+   "nay": 5,
+   "other": 77,
+   "dissents": []
+  },
+  "Greggor Ilagan": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1477,
+   "nay": 7,
+   "other": 13,
+   "dissents": []
+  },
+  "Lisa Marten": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1637,
+   "nay": 15,
+   "other": 6,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB497",
+     "title": "Relating To County Zoning Ordinances.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1705",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1839",
+     "title": "Relating To Transient Accommodations Tax.",
+     "lens": [
+      "Short-term rental",
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2251",
+     "title": "Relating To The Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Jackson Sayama": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1613,
+   "nay": 5,
+   "other": 7,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Adrian Tam": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 1724,
+   "nay": 6,
+   "other": 6,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "HB1184",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Ernesto Ganaden": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 810,
+   "nay": 11,
+   "other": 22,
+   "dissents": []
+  },
+  "Jeanne Kapela": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 915,
+   "nay": 7,
+   "other": 5,
+   "dissents": []
+  },
+  "Matthew Lopresti": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 771,
+   "nay": 4,
+   "other": 342,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "SB1166",
+     "title": "Relating To Rentals For Public Land Leases.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Laura Acasio": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1469,
+   "nay": 97,
+   "other": 50,
+   "dissents": [
+    {
+     "year": 2021,
+     "bill": "HB469",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "HB469",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB191",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB367",
+     "title": "Relating To Water Quality.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB367",
+     "title": "Relating To Water Quality.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2021,
+     "bill": "SB607",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB191",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB219",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB607",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2987",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2022,
+     "bill": "SB2987",
+     "title": "Relating To Crimes On Agricultural Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Bennette Misalucha": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1513,
+   "nay": 5,
+   "other": 63,
+   "dissents": []
+  },
+  "Linda Clark": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 275,
+   "nay": 2,
+   "other": 49,
+   "dissents": []
+  },
+  "Luella Costales": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 156,
+   "nay": 2,
+   "other": 2,
+   "dissents": []
+  },
+  "Carol Fukunaga": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 1958,
+   "nay": 9,
+   "other": 495,
+   "dissents": [
+    {
+     "year": 2025,
+     "bill": "HB850",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB850",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1897",
+     "title": "Relating To Condominium Alternative Dispute Resolution.",
+     "lens": [
+      "Real estate / land"
+     ]
+    }
+   ]
+  },
+  "Brenton Awa": {
+   "party": "R",
+   "role": "Sen",
+   "yea": 3249,
+   "nay": 1059,
+   "other": 1232,
+   "dissents": [
+    {
+     "year": 2023,
+     "bill": "HB307",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB668",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1088",
+     "title": "Relating To Declaration Of Water Shortage And Emergency.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1101",
+     "title": "Relating To Stormwater Fees.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1303",
+     "title": "Relating To Water Conservation.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1363",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1363",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1397",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "HB1397",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB31",
+     "title": "Relating To Attachment And Execution Of Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB73",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB77",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB77",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB101",
+     "title": "Making An Appropriation To Implement The Recommendations Of The Task Force On Mobility Man",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB101",
+     "title": "Making An Appropriation To Implement The Recommendations Of The Task Force On Mobility Man",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB287",
+     "title": "Relating To Agricultural Districts.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB336",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB521",
+     "title": "Relating To Military Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB551",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB551",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB635",
+     "title": "Proposing An Amendment To Article I Of The Constitution Of The State Of Hawaii To Recogniz",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB647",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB709",
+     "title": "Relating To An Income Tax Credit.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB762",
+     "title": "Relating To Water Catchment Systems.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB763",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB763",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB764",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB764",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB861",
+     "title": "Relating To Housing Savings Accounts.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB861",
+     "title": "Relating To Housing Savings Accounts.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB924",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1139",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1357",
+     "title": "Relating To Affordable Housing On Hawaiian Home Lands.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1442",
+     "title": "Relating To Ohana Zones.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1462",
+     "title": "Relating To Limited-profit Housing Associations.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1462",
+     "title": "Relating To Limited-profit Housing Associations.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1551",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1551",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1568",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1568",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1583",
+     "title": "Relating To Agricultural Development.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR41",
+     "title": "Requesting The Department Of Agriculture To Convene A Feral Game Mammal Working Group To F",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR85",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR85",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR192",
+     "title": "Requesting A Feasibility Study On Redeveloping Lands Situated At Tmk (1) 2-8-015:001 Into ",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR46",
+     "title": "Requesting The Department Of Agriculture To Convene A Feral Game Mammal Working Group To F",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR92",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR92",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR164",
+     "title": "Urging The United States To Support Taiwan's Participation In International Organizations,",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR164",
+     "title": "Urging The United States To Support Taiwan's Participation In International Organizations,",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR166",
+     "title": "Requesting A Feasibility Study On Redeveloping Lands Situated At Tmk (1) 2-8-015:001 Into ",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB668",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB1303",
+     "title": "Relating To Water Conservation.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB1542",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2292",
+     "title": "Relating To Affordable Housing Development.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2316",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2328",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2548",
+     "title": "Relating To Accessory Dwelling Units.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2743",
+     "title": "Relating To Wastewater.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2743",
+     "title": "Relating To Wastewater.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB2743",
+     "title": "Relating To Wastewater.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB31",
+     "title": "Relating To Attachment And Execution Of Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB73",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB77",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB77",
+     "title": "Relating To The Transfer Of Non-agricultural Park Lands.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB101",
+     "title": "Making An Appropriation To Implement The Recommendations Of The Task Force On Mobility Man",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB101",
+     "title": "Making An Appropriation To Implement The Recommendations Of The Task Force On Mobility Man",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB287",
+     "title": "Relating To Agricultural Districts.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB336",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB521",
+     "title": "Relating To Military Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB551",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB551",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB635",
+     "title": "Proposing An Amendment To Article I Of The Constitution Of The State Of Hawaii To Recogniz",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB647",
+     "title": "Relating To Agricultural Park Leases.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB709",
+     "title": "Relating To An Income Tax Credit.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB762",
+     "title": "Relating To Water Catchment Systems.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB763",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB763",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB861",
+     "title": "Relating To Housing Savings Accounts.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB861",
+     "title": "Relating To Housing Savings Accounts.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB924",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1139",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1442",
+     "title": "Relating To Ohana Zones.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1462",
+     "title": "Relating To Limited-profit Housing Associations.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1462",
+     "title": "Relating To Limited-profit Housing Associations.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1551",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1551",
+     "title": "Relating To Supportive Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1568",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1568",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1583",
+     "title": "Relating To Agricultural Development.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2029",
+     "title": "Relating To Inclusionary Zoning.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2078",
+     "title": "Relating To Affordable Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB2833",
+     "title": "Relating To Affordable Housing Development.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB3120",
+     "title": "Relating To The Hawaii Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "HB850",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "HB990",
+     "title": "Making Appropriations For Claims Against The State, Its Officers, Or Its Employees.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "HB1020",
+     "title": "Relating To A Program To Characterize Carbon Sequestration Potential And Underground Water",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "HB1093",
+     "title": "Relating To The Hawaii Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "HB1450",
+     "title": "Relating To Agricultural Climate Resiliency.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB38",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB147",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB454",
+     "title": "Relating To The Rental Motor Vehicle Surcharge Tax.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB762",
+     "title": "Relating To Agricultural Crimes.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB1318",
+     "title": "Relating To Water Pollution.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB1629",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB850",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1020",
+     "title": "Relating To A Program To Characterize Carbon Sequestration Potential And Underground Water",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1450",
+     "title": "Relating To Agricultural Climate Resiliency.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1679",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1990",
+     "title": "Relating To Residential Real Property.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB147",
+     "title": "Relating To Condominiums.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB454",
+     "title": "Relating To The Rental Motor Vehicle Surcharge Tax.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB762",
+     "title": "Relating To Agricultural Crimes.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB1629",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2153",
+     "title": "Relating To Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2189",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2332",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2423",
+     "title": "Relating To Zoning.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2975",
+     "title": "Relating To Marine Life Conservation Districts.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2981",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SR125",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SCR133",
+     "title": "Requesting The Department Of Land And Natural Resources, In Consultation With The Departme",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Tim Richards": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 2269,
+   "nay": 27,
+   "other": 477,
+   "dissents": [
+    {
+     "year": 2023,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SR85",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2023,
+     "bill": "SCR92",
+     "title": "Requesting The Department Of Agriculture, Department Of Land And Natural Resources, Depart",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "SB1585",
+     "title": "Relating To Animal Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB681",
+     "title": "Relating To The General Excise Tax.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2424",
+     "title": "Relating To Land Use.",
+     "lens": [
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB681",
+     "title": "Relating To The General Excise Tax.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2332",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Rachele Fernandez Lamosao": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 519,
+   "nay": 1,
+   "other": 79,
+   "dissents": []
+  },
+  "Elijah Pierick": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 72,
+   "nay": 8,
+   "other": 31,
+   "dissents": [
+    {
+     "year": 2025,
+     "bill": "HB1055",
+     "title": "Making An Emergency Appropriation To The Public Utilities Commission.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Brandon Elefante": {
+   "party": "D",
+   "role": "Sen",
+   "yea": 3944,
+   "nay": 23,
+   "other": 27,
+   "dissents": [
+    {
+     "year": 2023,
+     "bill": "HB1182",
+     "title": "Relating To The Department Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2024,
+     "bill": "HB1182",
+     "title": "Relating To The Department Of Agriculture.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1741",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Darius Kila": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 90,
+   "nay": 0,
+   "other": 2,
+   "dissents": []
+  },
+  "David Alcos": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 118,
+   "nay": 2,
+   "other": 9,
+   "dissents": []
+  },
+  "Kanani Souza": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 151,
+   "nay": 0,
+   "other": 10,
+   "dissents": []
+  },
+  "Cory Chun": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 72,
+   "nay": 0,
+   "other": 3,
+   "dissents": []
+  },
+  "Mahina Poepoe": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 114,
+   "nay": 0,
+   "other": 2,
+   "dissents": []
+  },
+  "Andrew Garrett": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 78,
+   "nay": 0,
+   "other": 9,
+   "dissents": []
+  },
+  "Elle Cochran": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 27,
+   "nay": 6,
+   "other": 0,
+   "dissents": [
+    {
+     "year": 2026,
+     "bill": "HB1740",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1741",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2385",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2398",
+     "title": "Relating To Residential Housing Utilities.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2544",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Natalia Hussey-Burdick": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 11,
+   "nay": 0,
+   "other": 4,
+   "dissents": []
+  },
+  "Terez Amato": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 52,
+   "nay": 0,
+   "other": 3,
+   "dissents": []
+  },
+  "Micah Aiu": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 35,
+   "nay": 0,
+   "other": 1,
+   "dissents": []
+  },
+  "Luke Evslin": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 67,
+   "nay": 0,
+   "other": 5,
+   "dissents": []
+  },
+  "Diamond Garcia": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 107,
+   "nay": 16,
+   "other": 12,
+   "dissents": []
+  },
+  "Kirstin Kahaloa": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 50,
+   "nay": 0,
+   "other": 1,
+   "dissents": []
+  },
+  "Jenna Takenouchi": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 78,
+   "nay": 0,
+   "other": 3,
+   "dissents": []
+  },
+  "Rose Martinez": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 14,
+   "nay": 0,
+   "other": 1,
+   "dissents": []
+  },
+  "Trish La Chica": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 45,
+   "nay": 0,
+   "other": 6,
+   "dissents": []
+  },
+  "Tyson Miyake": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 61,
+   "nay": 0,
+   "other": 3,
+   "dissents": []
+  },
+  "May Mizuno": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 11,
+   "nay": 0,
+   "other": 3,
+   "dissents": []
+  },
+  "Garner Shimizu": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 53,
+   "nay": 2,
+   "other": 0,
+   "dissents": []
+  },
+  "Samantha DeCorte": {
+   "party": "R",
+   "role": "Sen",
+   "yea": 1107,
+   "nay": 170,
+   "other": 89,
+   "dissents": [
+    {
+     "year": 2025,
+     "bill": "HB576",
+     "title": "Relating To Restrictions On The Transfer Of Real Property Under Chapter 201h, Hawaii Revis",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB138",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB454",
+     "title": "Relating To The Rental Motor Vehicle Surcharge Tax.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB759",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB762",
+     "title": "Relating To Agricultural Crimes.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR30",
+     "title": "Requesting The Office Of The Governor, State Building Code Council, Building Departments O",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR137",
+     "title": "Requesting The Department Of Hawaiian Home Lands To Develop And Implement A Water Access P",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SR146",
+     "title": "Requesting Each County Police Department To Increase Enforcement Against Out-of-state Vehi",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR48",
+     "title": "Requesting The Office Of The Governor, State Building Code Council, Building Departments O",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR168",
+     "title": "Requesting The Department Of Hawaiian Home Lands To Develop And Implement A Water Access P",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SCR184",
+     "title": "Requesting Each County Police Department To Increase Enforcement Against Out-of-state Vehi",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB576",
+     "title": "Relating To Restrictions On The Transfer Of Real Property Under Chapter 201h, Hawaii Revis",
+     "lens": [
+      "Housing",
+      "Real estate / land"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB1918",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2049",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "HB2049",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB138",
+     "title": "Relating To Taxation.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB454",
+     "title": "Relating To The Rental Motor Vehicle Surcharge Tax.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB759",
+     "title": "Relating To The Hawaii Housing Finance And Development Corporation.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB762",
+     "title": "Relating To Agricultural Crimes.",
+     "lens": [
+      "Water / Aina"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2399",
+     "title": "Relating To A General Excise Tax Exemption For Aircraft Maintenance.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2694",
+     "title": "Relating To Water Carriers.",
+     "lens": [
+      "Water / Aina"
+     ]
+    }
+   ]
+  },
+  "Kim Iwamoto": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 12,
+   "nay": 0,
+   "other": 5,
+   "dissents": []
+  },
+  "Sue Keohokapu-Lee Loy": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 59,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Shirley Ann Templo": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 16,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Tina Grandinetti": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 40,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Ikaika Olds": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 31,
+   "nay": 0,
+   "other": 2,
+   "dissents": []
+  },
+  "Julie Reyes Oda": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 42,
+   "nay": 1,
+   "other": 8,
+   "dissents": []
+  },
+  "Mike Lee": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 60,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Chris Muraoka": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 49,
+   "nay": 5,
+   "other": 20,
+   "dissents": [
+    {
+     "year": 2025,
+     "bill": "SB934",
+     "title": "Relating To The State Budget.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    },
+    {
+     "year": 2025,
+     "bill": "SB1413",
+     "title": "Relating To The Hawaii Public Housing Authority.",
+     "lens": [
+      "Housing"
+     ]
+    },
+    {
+     "year": 2026,
+     "bill": "SB2338",
+     "title": "Relating To Housing.",
+     "lens": [
+      "Housing"
+     ]
+    }
+   ]
+  },
+  "Ikaika Hussey": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 27,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Matthias Kusch": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 32,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Joe Gedeon": {
+   "party": "R",
+   "role": "Rep",
+   "yea": 26,
+   "nay": 1,
+   "other": 5,
+   "dissents": [
+    {
+     "year": 2026,
+     "bill": "SB3125",
+     "title": "Relating To Income Tax.",
+     "lens": [
+      "Budget / Tax"
+     ]
+    }
+   ]
+  },
+  "Daisy Hartsfield": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 12,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  },
+  "Michael Ratcliffe": {
+   "party": "D",
+   "role": "Rep",
+   "yea": 7,
+   "nay": 0,
+   "other": 0,
+   "dissents": []
+  }
+ }
+}

@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}        # run on demand from the Actions tab
   push:
     branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", ".github/workflows/**" ]
+    paths: [ "watchers/**", "build_site.py", "seed_reports/**", ".github/workflows/**" ]
 
 permissions:
   contents: read
@@ -45,6 +45,19 @@ jobs:
           cp watchers/*.py "$P/tools/kilo-aupuni/"
           cp watchers/departments.json watchers/energov_permit_template.json watchers/commission_inputs.json "$P/tools/kilo-aupuni/" 2>/dev/null || true
           if [ -n "$LEGISCAN_KEY" ]; then printf '%s' "$LEGISCAN_KEY" > "$P/config/legiscan_key.txt"; fi
+
+      - name: Seed the curated full-history report floor (so the published site is COMPLETE, not a thin fresh fetch)
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
+          if [ -d seed_reports ]; then
+            mkdir -p "$P/reports/mauios/lege" "$P/reports/mauios/bill9" "$P/reports/council"
+            # no-clobber: a watcher's fresh run wins; the committed floor fills gaps + carries accumulated history
+            cp -rn seed_reports/mauios/.  "$P/reports/mauios/"  2>/dev/null || true
+            cp -rn seed_reports/council/. "$P/reports/council/" 2>/dev/null || true
+            echo "seeded floor:"; find "$P/reports" -type f | sed "s#$P/##" | sort
+          else
+            echo "no seed_reports/ committed — CI will build from a fresh fetch only"
+          fi
 
       - name: Run watchers (public APIs + pypdf only -- no laptop, no browser)
         env:
