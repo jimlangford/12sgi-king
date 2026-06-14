@@ -13,6 +13,8 @@ HOME    = os.path.expanduser("~")
 PROJECT = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS")
 MAUIOS  = os.path.join(PROJECT, "reports", "mauios")
 LEG_F   = os.path.join(MAUIOS, "lege", "legislators.json")
+OFFICIALS_F = os.path.join(MAUIOS, "officials.json")        # county council votes/recusals (votes-watch)
+DONORS_F    = os.path.join(MAUIOS, "donor_profiles.json")   # county campaign money (donor-watch)
 OUT_F   = os.path.join(MAUIOS, "patterns_money_x_votes.html")
 DISPATCH= os.path.join(PROJECT, ".dispatch_log.jsonl")
 SODA    = "https://hicscdata.hawaii.gov/resource/jexd-xbcg.json"
@@ -65,6 +67,27 @@ def cross_jurisdiction_donors():
     return [{"name":r.get("contributor_name"),"offices":int(float(r.get("offices",0))),
              "cands":int(float(r.get("cands",0))),"total":fnum(r.get("total"))} for r in rows if r.get("contributor_name")]
 
+def county_money_votes():
+    """Maui County: join each official's campaign money (donor-watch) to their
+    council votes/recusals (votes-watch). Money + recusals are QUESTIONS, never proof."""
+    try: off = json.load(open(OFFICIALS_F, encoding="utf-8"))
+    except Exception: off = {}
+    try: dp = json.load(open(DONORS_F, encoding="utf-8"))
+    except Exception: dp = []
+    rows = []
+    for p in (dp if isinstance(dp, list) else []):
+        key = p.get("key", "")
+        re = (p.get("realestate") or {}).get("total", 0.0)
+        re_ct = (p.get("realestate") or {}).get("count", 0)
+        o = off.get(key, {})
+        rows.append({"name": p.get("label") or key, "re": re, "re_ct": re_ct,
+                     "raised": p.get("total", 0.0), "recused": o.get("recused", 0),
+                     "ayes": o.get("ayes", 0), "noes": o.get("noes", 0),
+                     "meetings": o.get("meetings", 0), "is_council": bool(o)})
+    rows.sort(key=lambda r: -r["re"])
+    return rows
+
+
 def main():
     os.makedirs(MAUIOS, exist_ok=True)
     leg = json.load(open(LEG_F, encoding="utf-8")).get("legislators", {})
@@ -90,6 +113,15 @@ def main():
         f'<div class="m"><span class="a">{usd(d["total"])}</span><span class="d">{d["offices"]}</span>'
         f'<span class="c">{esc(d["name"])} &mdash; funds {d["cands"]} candidates across <b>{d["offices"]} office-types</b></span></div>'
         for d in crossd)
+    county = county_money_votes()
+    def rowCo(r):
+        vote = (f'{r["ayes"]} aye / {r["noes"]} no over {r["meetings"]} mtgs' if r["is_council"]
+                else 'Mayor &mdash; executive (no council vote)')
+        donors = (f' &middot; {r["re_ct"]} RE/dev donors' if r["re_ct"] else '')
+        return (f'<div class="m"><span class="a">{usd(r["re"])}</span>'
+                f'<span class="d">{r["recused"]}</span>'
+                f'<span class="c">{esc(r["name"])} &mdash; {vote}{donors}</span></div>')
+    county_html="".join(rowCo(r) for r in county)
     g=now_hst().strftime("%Y-%m-%d %H:%M HST")
     html=f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,21 +141,25 @@ def main():
 </style></head><body><div class="wrap">
 <div class="eyebrow">12 Stones Global · Kilo Aupuni · patterns · money x votes</div>
 <h1>The Patterns — Money × Votes (joined)</h1>
-<div class="disc">Two public-record joins. Correlation is a <b>question for investigation</b>, not proof of a
-quid pro quo. Real-estate money received next to dissents on housing/STR/RE/water/budget bills shows where
-to look; it does not establish why anyone voted as they did. Verify before asserting anything about anyone.</div>
-<h2>A. Legislators — real-estate/developer money received vs. lens-bill dissents</h2>
+<div class="disc">Three public-record joins across <b>Maui County and the State of Hawai&#699;i</b>. Correlation is a
+<b>question for investigation</b>, not proof of a quid pro quo. Campaign money received next to recusals
+(county) or dissents (state) on housing/STR/RE/water/budget matters shows where to look; it does not
+establish why anyone voted as they did. Verify before asserting anything about anyone.</div>
+<h2>A. Maui County — campaign money received vs. recusals &amp; council votes</h2>
+<div class="hd"><span style="text-align:right">RE/dev $ (2008+)</span><span style="text-align:center">recusals</span><span>county official (votes from the minutes)</span></div>
+{county_html or '<div class="m"><span class="c">no data yet</span></div>'}
+<h2>B. Hawai&#699;i Legislature — real-estate/developer money received vs. lens-bill dissents</h2>
 <div class="hd"><span style="text-align:right">RE $ (2008+)</span><span style="text-align:center">dissents</span><span>legislator (2010-2026 votes)</span></div>
 {a_html or '<div class="m"><span class="c">no matches</span></div>'}
-<h2>B. Cross-jurisdiction donors — funding the most distinct office-types</h2>
+<h2>C. Cross-jurisdiction donors — funding the most distinct office-types</h2>
 <div class="hd"><span style="text-align:right">total</span><span style="text-align:center">offices</span><span>donor (the influence web)</span></div>
 {cross_html or '<div class="m"><span class="c">none</span></div>'}
-<footer>generated {g} · patterns v1 · sources: LegiScan (votes 2010+) + Campaign Spending Commission (money 2008+) · public record · govOS</footer>
+<footer>generated {g} · patterns v2 · sources: CivicClerk council minutes (county votes/recusals) + LegiScan (state votes 2010+) + HI Campaign Spending Commission (money 2008+) · public record · govOS</footer>
 </div></body></html>"""
     with open(OUT_F,"w",encoding="utf-8") as f: f.write(html)
     matched=sum(1 for r in rowsA if r["re"]>0)
-    dispatch("SHIPPED", f"patterns money x votes: {len(rowsA)} legislators joined ({matched} w/ RE money matched), "
-             f"{len(crossd)} cross-jurisdiction donors (>=4 office-types) -> reports/mauios/patterns_money_x_votes.html")
+    dispatch("SHIPPED", f"patterns money x votes v2: {len(county)} Maui County officials + {len(rowsA)} legislators "
+             f"({matched} w/ RE money matched) + {len(crossd)} cross-jurisdiction donors -> reports/mauios/patterns_money_x_votes.html")
     return 0
 
 if __name__ == "__main__":
