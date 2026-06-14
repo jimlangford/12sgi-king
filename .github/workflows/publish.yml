@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}        # run on demand from the Actions tab
   push:
     branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", "seed_reports/**", ".github/workflows/**" ]
+    paths: [ "watchers/**", "build_site.py", "seed_reports/**", "king_public_src/**", "go.html", "take_action.html", "production_status.json", ".github/workflows/**" ]
 
 permissions:
   contents: read
