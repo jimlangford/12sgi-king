@@ -2,7 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* Mobile/Tailscale fix: if served at /king (no trailing slash), relative links like
+   civic/… resolve to the site root (/civic/… → 404). Force the trailing slash so the
+   shell scripts AND every civic card resolve under /king/. No-op when already slashed
+   (local :8799 root, GitHub Pages /…/king/). */
+(function(){var p=location.pathname;if(p&&!/\/$/.test(p)&&!/\.[a-z0-9]+$/i.test((p.split('/').pop()||'')))location.replace(location.origin+p+'/'+location.search+location.hash);})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
