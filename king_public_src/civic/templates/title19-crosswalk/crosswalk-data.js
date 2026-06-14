@@ -2,7 +2,7 @@
    12 Stones Sovereign Charter ⇄ Maui County + State of Hawaiʻi law
    ------------------------------------------------------------
    Section-level legal crosswalk. The charter spine uses the v5 /
-   MauiOS_CountyAudit 28-article map (canon for MauiOS surfaces).
+   MauiOS_CountyAudit 28-article map (canon for govOS surfaces).
    Each article's `v2` field gives the DIFFERENT label that numeral
    carries in the V2-04082025 master charter (the version gap).
 
@@ -400,7 +400,7 @@
     meta: {
       snapshot: "2026-06-12",
       charterPrimary: "v5 / MauiOS_CountyAudit map (28 articles)",
-      versionGap: "The V2-04082025 master charter orders these 28 numerals differently — e.g. Art.XI is \u201cLand Use & Zoning\u201d here but \u201cSpirit Contract & Creator's Oath\u201d in V2. Each row shows its V2 label. v5 is canon for MauiOS surfaces; V2 is historical.",
+      versionGap: "The V2-04082025 master charter orders these 28 numerals differently — e.g. Art.XI is \u201cLand Use & Zoning\u201d here but \u201cSpirit Contract & Creator's Oath\u201d in V2. Each row shows its V2 label. v5 is canon for govOS surfaces; V2 is historical.",
       feed: "../_feed/agendas.json",
     },
     bodies: BODIES,

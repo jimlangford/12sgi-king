@@ -83,7 +83,7 @@
     { k: "HRS spine", d: "Sunshine (Ch.92), UIPA (Ch.92F), Procurement (Ch.103D), Land Use (Ch.205/205A), Water (Ch.174C) apply statewide" },
     { k: "County charter", d: "each county adopts its own home-rule charter (Maui · Honolulu RCH · Hawaiʻi · Kauaʻi)" },
     { k: "County code", d: "MCC · ROH · Hawaiʻi County Code · Kauaʻi County Code lay local law on top" },
-    { k: "Sovereign overlay", d: "the 12 Stones Sovereign Charter v5 layers above as the MauiOS governance frame" },
+    { k: "Sovereign overlay", d: "the 12 Stones Sovereign Charter v5 layers above as the govOS governance frame" },
   ];
 
   window.STATELAW = {

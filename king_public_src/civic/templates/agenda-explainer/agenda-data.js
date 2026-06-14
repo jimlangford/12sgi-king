@@ -1,5 +1,5 @@
 /* ============================================================
-   MauiOS · Agenda Explainer — data layer
+   govOS · Agenda Explainer — data layer
    ------------------------------------------------------------
    Turns a forecast agenda item into a ready-to-render fact-card
    storyboard. Facts assemble from the Charter ⇄ Law Crosswalk
@@ -73,7 +73,7 @@
   // Render → publish pipeline for a single explainer.
   var PIPELINE = [
     { step: "Storyboard", d: "fact cards from this item", tool: "Agenda Explainer", status: "ready" },
-    { step: "Render", d: "9:16 MP4 · MauiOS motion template", tool: "render lane", status: "queued" },
+    { step: "Render", d: "9:16 MP4 · govOS motion template", tool: "render lane", status: "queued" },
     { step: "Caption", d: "burned-in captions + hook", tool: "clip_forge", status: "queued" },
     { step: "Publish", d: "push to YouTube + TikTok", tool: "YouTube ops · tiktok-ops", status: "queued" },
   ];

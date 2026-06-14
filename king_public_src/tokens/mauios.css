@@ -1,5 +1,5 @@
 /* ============================================================
-   12sgi · MauiOS surface — per demos/MAUIOS_POC.html (the spec)
+   12sgi · govOS surface — per demos/MAUIOS_POC.html (the spec)
    ------------------------------------------------------------
    Sovereign County OS register: warm-dark GREEN-TINTED ground
    (not the studio's brown, not paper-light), ceremonial gold
@@ -10,7 +10,7 @@
    ============================================================ */
 
 :root {
-  /* ---- MauiOS primitives (from MAUIOS_POC.html) ---- */
+  /* ---- govOS primitives (from MAUIOS_POC.html) ---- */
   --mauios-bg:      #0c100e;
   --mauios-bg-2:    #111714;
   --mauios-panel:   #151d19;
@@ -28,13 +28,13 @@
   --mauios-ok:   #56c08a;
   --mauios-warn: #d9b24c;
 
-  /* Civic zone palette (MauiOS context) */
+  /* Civic zone palette (govOS context) */
   --mauios-mauka: #3f9b6d;
   --mauios-kula:  #c9943f;
   --mauios-makai: #3a8fb7;
   --mauios-univ:  #b8c2cc;
 
-  /* Lineage palette (MauiOS context) */
+  /* Lineage palette (govOS context) */
   --mauios-kane:    #e0b54a;
   --mauios-ku:      #b3552f;
   --mauios-lono:    #3f9b6d;

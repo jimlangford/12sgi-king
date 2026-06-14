@@ -1,5 +1,5 @@
 /* ============================================================
-   MauiOS — Charter Government OS · data layer
+   govOS — Charter Government OS · data layer
    ------------------------------------------------------------
    The operating system of a charter government. Five civic loops,
    the departments (mapped to the 28-article Sovereign Charter),

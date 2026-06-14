@@ -1,5 +1,5 @@
 /* ============================================================
-   MauiOS · Maui County Code & Rules — data layer
+   govOS · Maui County Code & Rules — data layer
    ------------------------------------------------------------
    Structural coverage of Maui County law: the Code's titles, the
    Council's standing committees and rules, and the ordinance feed.
