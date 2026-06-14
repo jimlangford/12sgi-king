@@ -60,6 +60,10 @@ jobs:
           fi
 
       - name: Run watchers (public APIs + pypdf only -- no laptop, no browser)
+        # Heavy external fetch ONLY on the cron / manual run. Content-snapshot pushes
+        # (seed_reports/king/status from the local 15-min publisher) skip straight to
+        # build+deploy off the committed snapshot -- fast, and no API hammering.
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           PYTHONUTF8: "1"
           PYTHONIOENCODING: "utf-8"

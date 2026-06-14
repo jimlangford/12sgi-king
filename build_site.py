@@ -81,6 +81,22 @@ def main():
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
         print("  + go.html: live/mirror failover launcher")
+    # [redundancy] production status (public-safe) from the local 15-min publisher
+    _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
+    prod = ""
+    if os.path.exists(_ps):
+        shutil.copy(_ps, os.path.join(SITE, "data", "production_status.json"))
+        try:
+            _p = json.load(open(_ps, encoding="utf-8"))
+            _latest = ", ".join((_p.get("latest_films") or [])[:5])
+            prod = ('<div class="eyebrow" style="margin-top:30px">Production</div>'
+                    f'<p class="lead">{_p.get("films_produced", 0)} films produced'
+                    + (f' · latest: {_latest}' if _latest else "")
+                    + (f' · {_p["youtube_uploaded"]} on YouTube' if _p.get("youtube_uploaded") else "")
+                    + f' <span style="color:#9a957f;font-size:11px">(updated {_p.get("updated", "")})</span></p>')
+            print("  + production_status.json")
+        except Exception:
+            pass
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
@@ -109,6 +125,7 @@ legislative votes, campaign money, procurement, permits, and the patterns betwee
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
 <div class="grid">{cards}</div>
+{prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
 <p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>
 <footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record</footer>
