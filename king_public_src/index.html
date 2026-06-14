@@ -275,16 +275,21 @@ class Component extends DCLogic {
       { id:'push',     label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
     ];
     const unlocked = this.state.owner;
+    // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
+    // owner-access panel even if "unlocked", so they never try to load a missing file (404).
+    // (The full studio surfaces live in the local owner app, not the public site.)
+    const AVAIL = ['mauios', 'council', 'game'];
+    const avail = id => AVAIL.indexOf(id) >= 0;
     const navItems = ITEMS.map(it => ({
       ...it,
       go: () => this.go(it.id),
       on: s === it.id,
       off: s !== it.id,
-      locked: it.owner && !unlocked,
-      lockGlyph: (it.owner && !unlocked) ? '🔒' : '',
+      locked: !avail(it.id),
+      lockGlyph: !avail(it.id) ? '🔒' : '',
     }));
     const cur = ITEMS.find(i => i.id === s) || ITEMS[0];
-    const curLocked = cur.owner && !unlocked;
+    const curLocked = !avail(cur.id);
     const ls = this.state.liveStatus || 'connecting';
     return {
       navItems, isMobile, isDesktop: !isMobile,
@@ -302,13 +307,13 @@ class Component extends DCLogic {
       keyRef: (this._keyRef || (this._keyRef = React.createRef())),
       showLock: curLocked,
       lockLabel: cur.label,
-      showOverview: s === 'overview' && unlocked,
-      showLyrics: s === 'lyrics' && unlocked,
-      showTabs: s === 'tabs' && unlocked,
-      showScenes: s === 'scenes' && unlocked,
-      showFilm: s === 'film' && unlocked,
-      showMission: s === 'mission' && unlocked,
-      showPush: s === 'push' && unlocked,
+      showOverview: s === 'overview' && unlocked && avail('overview'),
+      showLyrics: s === 'lyrics' && unlocked && avail('lyrics'),
+      showTabs: s === 'tabs' && unlocked && avail('tabs'),
+      showScenes: s === 'scenes' && unlocked && avail('scenes'),
+      showFilm: s === 'film' && unlocked && avail('film'),
+      showMission: s === 'mission' && unlocked && avail('mission'),
+      showPush: s === 'push' && unlocked && avail('push'),
       showGame: s === 'game',
       showMauios: s === 'mauios',
       showCouncil: s === 'council',
