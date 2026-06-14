@@ -51,6 +51,13 @@ def main():
         if os.path.exists(src):
             shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
 
+    # [links] copy linked supporting folders so per-official "full profile" pages resolve
+    for sub in ("donors",):
+        s = os.path.join(MAUIOS, sub)
+        if os.path.isdir(s):
+            shutil.copytree(s, os.path.join(SITE, sub))
+            print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
+
     # [king-system] publish the public King System shell at /king/
     _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
     if os.path.isdir(_ksrc):
