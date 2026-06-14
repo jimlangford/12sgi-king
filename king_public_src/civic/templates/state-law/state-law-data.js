@@ -90,7 +90,7 @@
     meta: {
       snapshot: "2026-06-12", feed: "../_feed/agendas.json", jurisdiction: "HI-000",
       note: "Structural index of the parent corpus. HRS is 28 titles in 5 divisions; civic-load-bearing titles are detailed with key chapters. Chapter text + amendments via the State feed (Capitol · data.hawaii.gov).",
-      counties: ["MAU-001", "HON-003", "HAW-004", "KAU-005"],
+      counties: ["MAU-001", "HON-004", "HAW-002", "KAU-003"],
     },
     constitution: CONST, divisions: DIVISIONS, inherit: INHERIT,
     har: "Hawaiʻi Administrative Rules (HAR) — agency rules implementing HRS: e.g. HAR Title 13 (DLNR), Title 11 (Health), Title 15 (Planning / Land Use Commission).",

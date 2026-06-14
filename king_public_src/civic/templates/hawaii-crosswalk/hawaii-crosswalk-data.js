@@ -6,13 +6,13 @@
    Constitution, and — as the top overlay — the 12 Stones Sovereign
    Charter article each function answers to.
 
-   Same engine as Maui's Title 19 crosswalk, instanced for HAW-004.
+   Same engine as Maui's Title 19 crosswalk, instanced for HAW-002.
    The County Charter is organized by its functional articles
    (powers · council · executive · departments · planning · water ·
    safety · civil defense · finance · personnel · direct democracy ·
    amendment). Exact article numbers track the published charter;
    chapter detail hydrates from the State feed. Conflicts hydrate
-   from the Hawaiʻi County feed (agendas-HAW-004.json).
+   from the Hawaiʻi County feed (agendas-HAW-002.json).
 
    Distinctive to Hawaiʻi Island: an active Civil Defense Agency
    (Kīlauea lava + tsunami) and lava-hazard zoning overlays.
@@ -113,7 +113,7 @@
 
   window.HAWCROSS = {
     meta: {
-      snapshot: "2026-06-12", jurisdiction: "HAW-004", feed: "../_feed/agendas-HAW-004.json",
+      snapshot: "2026-06-12", jurisdiction: "HAW-002", feed: "../_feed/agendas-HAW-002.json",
       county: "County of Hawaiʻi", seat: "Hilo", councilSize: 9,
       note: "County Charter functions crosswalked to HCC + HRS + Constitution, with the 12 Stones Sovereign Charter as the top overlay. Conflicts hydrate from the Hawaiʻi County feed.",
     },

@@ -53,7 +53,7 @@
     ] },
     { id: "land", nm: "Land, Water & Environment", haw: "Ka ʻĀina me ka Wai", modules: [
       { nm: "Charter ⇄ Law Crosswalk", haw: "Ke Kānāwai Pili", art: ["XI"], law: "MCC Title 19 · HRS Ch.205/205A", status: "built", metric: "28 arts · 6 law bodies", tool: null, href: "../title19-crosswalk/Title19 Crosswalk.html" },
-      { nm: "Hawaiʻi County Crosswalk", haw: "HAW-004 · ⬢", art: ["XI", "XXIII"], law: "County Charter · HCC Ch.25 · HRS · Sovereign overlay", status: "built", metric: "13 functions · lava-hazard", tool: "HAW-004", href: "../hawaii-crosswalk/Hawaiʻi County Crosswalk.html" },
+      { nm: "Hawaiʻi County Crosswalk", haw: "HAW-002 · ⬢", art: ["XI", "XXIII"], law: "County Charter · HCC Ch.25 · HRS · Sovereign overlay", status: "built", metric: "13 functions · lava-hazard", tool: "HAW-002", href: "../hawaii-crosswalk/Hawaiʻi County Crosswalk.html" },
       { nm: "Permits & Land Use", haw: "Nā ʻAe Hana", art: ["XI"], law: "MCC Title 19 · §205A SMA", status: "live", metric: "834 permits/30d · 114 Lahaina", tool: "mapps-watch" },
       { nm: "Water Sovereignty", haw: "Wai Kapu", art: ["VI"], law: "HRS Ch.174C · Const XI §7", status: "wired", metric: "Bill 37 flagged", tool: "kilo-aupuni" },
       { nm: "Environmental Review", haw: "Ka Pono Kaiapuni", art: ["XVII"], law: "HRS Ch.343 · MCC Title 20", status: "planned", metric: "EIS pipeline", tool: null },
@@ -88,10 +88,10 @@
     { nm: "docs-watch", d: "official documents & filings", metric: "queued", status: "planned" },
   ];
 
-  // Multi-jurisdiction tenancy. The State of Hawaiʻi is the parent; Maui &
-  // Honolulu instance beneath it as full county tenants. Liverpool, NY (002)
-  // is the first out-of-state municipal instance (home of American High
-  // Studios, the former A.V. Zogg School — ties to the 12sgi Film surface).
+  // Multi-jurisdiction tenancy — the State of Hawaiʻi is the parent (000); the
+  // four counties instance beneath it: Maui 001 · Hawaiʻi 002 · Kauaʻi 003 ·
+  // Honolulu 004. The same OS instances for any municipality by swapping its
+  // charter, code, feeds, zones and seal (see TIERS for the general model).
   var TENANTS = [
     { id: "HI-000", nm: "State of Hawaiʻi", region: "USA", status: "active", seal: "✦", jtier: "state", parent: null,
       governing: "Governor + Lt. Governor · Legislature (25 Senate · 51 House) · Judiciary",
@@ -123,7 +123,7 @@
         ["Zones", "Mauka · Kula · Makai"],
         ["Seal & register", "⚖ gold · ʻōlelo Hawaiʻi diacritics"],
       ] },
-    { id: "HON-003", nm: "City & County of Honolulu", region: "Oʻahu, Hawaiʻi", status: "active", seal: "◈", jtier: "county", parent: "HI-000",
+    { id: "HON-004", nm: "City & County of Honolulu", region: "Oʻahu, Hawaiʻi", status: "active", seal: "◈", jtier: "county", parent: "HI-000",
       governing: "Mayor + Managing Director · City Council (9 districts) · 33 Neighborhood Boards",
       charter: "Revised Charter of the City & County of Honolulu",
       code: "Revised Ordinances of Honolulu (ROH) + HRS · LUO Ch.21",
@@ -138,7 +138,7 @@
         ["Zones", "8 community-plan areas across Oʻahu"],
         ["Seal & register", "◈ gold · ʻōlelo Hawaiʻi diacritics"],
       ] },
-    { id: "HAW-004", nm: "County of Hawaiʻi", region: "Hawaiʻi Island", status: "active", seal: "⬢", jtier: "county", parent: "HI-000",
+    { id: "HAW-002", nm: "County of Hawaiʻi", region: "Hawaiʻi Island", status: "active", seal: "⬢", jtier: "county", parent: "HI-000",
       governing: "Mayor + Managing Director · County Council (9 districts) · seat at Hilo",
       charter: "Charter of the County of Hawaiʻi",
       code: "Hawaiʻi County Code + HRS · Zoning Ch.25",
@@ -153,7 +153,7 @@
         ["Zones", "9 council districts · lava-hazard overlay"],
         ["Seal & register", "⬢ gold · ʻōlelo Hawaiʻi diacritics"],
       ] },
-    { id: "KAU-005", nm: "County of Kauaʻi", region: "Kauaʻi & Niʻihau", status: "active", seal: "❖", jtier: "county", parent: "HI-000",
+    { id: "KAU-003", nm: "County of Kauaʻi", region: "Kauaʻi & Niʻihau", status: "active", seal: "❖", jtier: "county", parent: "HI-000",
       governing: "Mayor + Managing Director · County Council (7 at-large) · seat at Līhuʻe",
       charter: "Charter of the County of Kauaʻi",
       code: "Kauaʻi County Code (1987) + HRS · Comprehensive Zoning Ordinance",
@@ -168,26 +168,11 @@
         ["Zones", "5 districts · SMA shoreline overlay"],
         ["Seal & register", "❖ gold · ʻōlelo Hawaiʻi diacritics"],
       ] },
-    { id: "LIV-002", nm: "Village of Liverpool", region: "New York, USA", status: "provisioning", seal: "◆", jtier: "municipal", parent: null,
-      governing: "Mayor + Board of Trustees (4) · Village Clerk-Treasurer",
-      charter: "NY Municipal Home Rule (Const. Art. IX) · Village Law",
-      code: "Village of Liverpool Code + NY Consolidated Laws",
-      zones: "Village · Town of Salina · Onondaga County", pop: "2,400", feed: "Village clerk · Onondaga County · NYS Open Data",
-      anchor: "American High Studios — former A.V. Zogg School · ties to 12sgi Film",
-      bodies: ["Village Board of Trustees", "Planning Board", "Zoning Board of Appeals", "Code Enforcement", "Village Clerk-Treasurer"],
-      legal: [["MHRL", "NY Municipal Home Rule Law"], ["Village Law", "NY Village Law Art. 7 (zoning)"], ["Liverpool Code", "Village local laws"], ["POL Art.7", "NY Open Meetings Law"], ["POL Art.6", "FOIL — records"]],
-      loads: [
-        ["Charter", "NY Municipal Home Rule Law · Village Law Art. 7"],
-        ["Law crosswalk", "Village of Liverpool Code + NY Consolidated Laws (Village Law, Town Law, Gen. Municipal Law)"],
-        ["Feed adapters", "Village clerk · NYS Open Data · Onondaga GIS"],
-        ["Zones", "Village · Town of Salina · Onondaga County"],
-        ["Seal & register", "◆ slate · English · NY Open Meetings + FOIL"],
-      ] },
   ];
   var TIERS = [
     { tier: "T0", nm: "State tier", ex: "State of Hawaiʻi (000) — live parent jurisdiction", model: "constitution + HRS + HAR · counties instance beneath", status: "live" },
-    { tier: "T1", nm: "Hawaiʻi counties", ex: "All 4 live — Maui (001) · Honolulu (003) · Hawaiʻi (004) · Kauaʻi (005)", model: "same HRS spine · swap county code + charter", status: "live" },
-    { tier: "T2", nm: "US municipalities", ex: "Liverpool, NY (002) — provisioning · any home-rule city/village", model: "swap state statutes + local code + home-rule charter", status: "provisioning" },
+    { tier: "T1", nm: "Hawaiʻi counties", ex: "All 4 — Maui (001) · Hawaiʻi (002) · Kauaʻi (003) · Honolulu (004)", model: "same HRS spine · swap county code + charter", status: "live" },
+    { tier: "T2", nm: "US municipalities", ex: "any home-rule city/village", model: "swap state statutes + local code + home-rule charter", status: "model" },
     { tier: "T3", nm: "Global charter jurisdictions", ex: "indigenous & sovereign bodies", model: "swap legal corpus + zones + seal · UNDRIP layer", status: "model" },
   ];
 
