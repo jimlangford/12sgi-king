@@ -254,7 +254,7 @@ def report_html(ev, a, url):
 <div class="note">{esc(", ".join(a["members"]))}</div>
 <div class="sect">Items / bills / resolutions</div>
 <ul>{items_html}</ul>
-<footer>generated {g} · votes-watch v1 · facts + source link; conflicts are questions, not conclusions · MauiOS</footer>
+<footer>generated {g} · votes-watch v1 · facts + source link; conflicts are questions, not conclusions · govOS</footer>
 </div></body></html>"""
 
 def council_committee_events(a_iso, b_iso):
@@ -354,7 +354,7 @@ declarations — the cleanest paper trail of where an official has a financial o
 A recusal is lawful and proper — it is also a roadmap of where to look. Every line links to the
 source minutes. Verify before you assert anything about any person.</div>
 {cards}
-<footer>generated {g} · votes-watch v1 · sources: CivicClerk minutes · MauiOS · aloha in action</footer>
+<footer>generated {g} · votes-watch v1 · sources: CivicClerk minutes · govOS · aloha in action</footer>
 </div></body></html>"""
 
 def main():

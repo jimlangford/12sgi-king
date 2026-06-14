@@ -172,7 +172,7 @@ def report_html(ev, fname, hits, items, dollars, agenda_url):
 {money_html}
 <div class="sect">Agenda matters detected</div>
 <ul>{items_html}</ul>
-<footer>generated {g} · council-watch v2 · MauiOS · aloha in action</footer>
+<footer>generated {g} · council-watch v2 · govOS · aloha in action</footer>
 </div></body></html>"""
 
 # ---------------- digest: Financial Motivations — Maui County 2026 ----------------
@@ -294,7 +294,7 @@ Everything below is what the agendas themselves say, aggregated.</p>
 {body_rows}
 <div class="sect">Largest dollar figures on any agenda (top {len(big)})</div>
 {big_rows}
-<footer>generated {g} · council-watch v2 digest · sources: CivicClerk agenda texts · MauiOS · aloha in action</footer>
+<footer>generated {g} · council-watch v2 digest · sources: CivicClerk agenda texts · govOS · aloha in action</footer>
 </div></body></html>"""
     with open(DIGEST_F, "w", encoding="utf-8") as f:
         f.write(html)

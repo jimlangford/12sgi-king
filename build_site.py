@@ -95,7 +95,7 @@ def main():
  footer{{margin-top:40px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}}
  a.data{{color:#d9b24c;font-family:Consolas,monospace;font-size:11px}}
 </style></head><body><div class="wrap">
-<div class="eyebrow">12 Stones Global · Kilo Aupuni · MauiOS civic transparency</div>
+<div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS civic transparency</div>
 <h1>Kilo Aupuni — Watching the Government</h1>
 <p class="lead">Public-record civic intelligence for Maui County and the State of Hawaii: council &amp;
 legislative votes, campaign money, procurement, permits, and the patterns between them.</p>

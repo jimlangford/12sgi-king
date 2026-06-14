@@ -168,7 +168,7 @@ need to be sovereign law for any of this to work &mdash; existing Hawaii and cou
 mechanism shown. Verify before asserting anything about anyone.</div>
 {cards}
 <footer>generated {ts} · charter-law-map v1 · Charter: SSC v5 (verbatim) · law: HRS / Maui Charter / federal antitrust ·
- evidence: live Kilo Aupuni watchers · MauiOS · aloha in action</footer>
+ evidence: live Kilo Aupuni watchers · govOS · aloha in action</footer>
 </div></body></html>"""
 
 def main():

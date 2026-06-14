@@ -118,7 +118,7 @@ to look; it does not establish why anyone voted as they did. Verify before asser
 <h2>B. Cross-jurisdiction donors — funding the most distinct office-types</h2>
 <div class="hd"><span style="text-align:right">total</span><span style="text-align:center">offices</span><span>donor (the influence web)</span></div>
 {cross_html or '<div class="m"><span class="c">none</span></div>'}
-<footer>generated {g} · patterns v1 · sources: LegiScan (votes 2010+) + Campaign Spending Commission (money 2008+) · public record · MauiOS</footer>
+<footer>generated {g} · patterns v1 · sources: LegiScan (votes 2010+) + Campaign Spending Commission (money 2008+) · public record · govOS</footer>
 </div></body></html>"""
     with open(OUT_F,"w",encoding="utf-8") as f: f.write(html)
     matched=sum(1 for r in rowsA if r["re"]>0)

@@ -116,7 +116,7 @@ def report_html(rec, hits):
 {fld}
 <div class="sect">12 Stones lenses</div>
 {lens_html}
-<footer>generated {g} / mapps-watch v1 (EnerGov API) / Kilo Aupuni / MauiOS / aloha in action</footer>
+<footer>generated {g} / mapps-watch v1 (EnerGov API) / Kilo Aupuni / govOS / aloha in action</footer>
 </div></body></html>"""
 
 def harvest_window(st, date_from, date_to, max_pages=400, page_size=50):

@@ -4,7 +4,7 @@
 **Maui County and the State of Hawaii**: council & legislative votes, campaign money,
 procurement, permits, and the patterns between them — published as a free static site.
 
-**This is the publishable subset** of the MauiOS / Kilo Aupuni system. It contains only the
+**This is the publishable subset** of the govOS / Kilo Aupuni system. It contains only the
 watchers that run on free CI from public data sources. The full local system (renders, gated
 property data, iOS router, etc.) stays on the operator's machine.
 

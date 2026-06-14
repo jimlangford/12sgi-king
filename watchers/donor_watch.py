@@ -171,7 +171,7 @@ def official_report(p):
 {rec_html}
 <div class="sect">Top donors overall</div>
 {top}
-<footer>generated {g} · donor-watch v1 · source: Hawaii Campaign Spending Commission (jexd-xbcg) · facts + questions, not accusations · MauiOS</footer>
+<footer>generated {g} · donor-watch v1 · source: Hawaii Campaign Spending Commission (jexd-xbcg) · facts + questions, not accusations · govOS</footer>
 </div></body></html>"""
 
 def build_page(profiles):
@@ -209,7 +209,7 @@ Sorted by real-estate-sector money — the dollars closest to housing, STR (Bill
 The point is the <b>map</b>: who funds whom, and whether votes track the money. Every claim here is a
 question for reporting and verification — not an allegation against any donor or official.</div>
 {cards}
-<footer>generated {g} · donor-watch v1 · source: Hawaii Campaign Spending Commission · MauiOS · aloha in action</footer>
+<footer>generated {g} · donor-watch v1 · source: Hawaii Campaign Spending Commission · govOS · aloha in action</footer>
 </div></body></html>"""
 
 def main():

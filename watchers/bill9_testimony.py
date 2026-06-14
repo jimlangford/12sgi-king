@@ -149,7 +149,7 @@ conclude that any person or firm conspired or violated licensing. If a genuine a
 signal is here, it is <b>referable</b> to: the Hawaii Attorney General (antitrust), DCCA/RICO + the Real
 Estate Commission (licensing). Verify before asserting anything about anyone.</div>
 {blocks or '<p class="lead">No Bill 9 hearing packets matched in the scanned window.</p>'}
-<footer>generated {g} · bill9-testimony v1 · sources: CivicClerk packets · raw leads, not conclusions · MauiOS</footer>
+<footer>generated {g} · bill9-testimony v1 · sources: CivicClerk packets · raw leads, not conclusions · govOS</footer>
 </div></body></html>"""
 
 def main():

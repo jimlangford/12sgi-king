@@ -127,7 +127,7 @@ def build_scorecard(leg, sessions_done):
 housing / short-term-rental / real-estate / water / budget bills — cross-check against the statewide
 money map. Public record; questions, not accusations.</div>
 {cards}
-<footer>generated {g} · lege-legiscan v1 · source: LegiScan (HI 2010+) · per-member roll calls · MauiOS</footer>
+<footer>generated {g} · lege-legiscan v1 · source: LegiScan (HI 2010+) · per-member roll calls · govOS</footer>
 </div></body></html>"""
 
 def main():

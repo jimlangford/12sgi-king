@@ -110,7 +110,7 @@ fixed, non-competitive rate) and only move after the rule change? If RAM/MLS dat
 ~6% regardless of competition, that is the pattern regulators examine — referable to DOJ Antitrust, the
 HI Attorney General (HRS 480), and the Real Estate Commission (HRS 467 / DCCA-RICO).</div>
 <footer>generated {g} · commission-watch v1 · timeline per public reporting (NAR/Sitzer-Burnett, Inman/NAR/RISMedia) ·
- load = public sales volume × conventional rate (estimate) · actual rates require MLS · MauiOS</footer>
+ load = public sales volume × conventional rate (estimate) · actual rates require MLS · govOS</footer>
 </div></body></html>"""
     with open(OUT_F, "w", encoding="utf-8") as f:
         f.write(html)

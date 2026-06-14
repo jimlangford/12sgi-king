@@ -1,6 +1,6 @@
 {
   "module": "Kilo Aupuni",
-  "meaning": "observer of the government - kilo (sustained sacred observation) + aupuni (government). MauiOS department-coverage watch engine.",
+  "meaning": "observer of the government - kilo (sustained sacred observation) + aupuni (government). govOS department-coverage watch engine.",
   "updated": "2026-06-11",
   "note": "One watcher per county public-data source. council-watch already covers EVERY CivicClerk body (Council, committees, boards, commissions) so legislative coverage is live. Gap watchers below target sources NOT in CivicClerk; sources are verified real Maui County portals.",
   "lenses_canonical": ["Art.X / Budget", "Title 19 / Land use", "Water", "Housing", "Recovery / Lahaina", "Aina / Agriculture", "Charter / Governance", "Procurement integrity"],

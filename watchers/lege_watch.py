@@ -135,7 +135,7 @@ def report_html(records):
 <div class="disc">Keyless, from capitol.hawaii.gov (~2009+). Captures aye COUNT + the NAMES of dissenters /
 excused (who broke ranks). Cross-check dissenters against the statewide money map. Public record; questions, not accusations.</div>
 {blocks}
-<footer>generated {g} · lege-watch v1 (keyless) · source: capitol.hawaii.gov measure status · MauiOS</footer>
+<footer>generated {g} · lege-watch v1 (keyless) · source: capitol.hawaii.gov measure status · govOS</footer>
 </div></body></html>"""
 
 def main():

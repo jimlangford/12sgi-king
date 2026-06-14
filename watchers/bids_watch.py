@@ -143,7 +143,7 @@ def report_html(bid, title, fields, hits, dollars, url):
 {lens_html}
 <div class="sect">Money trail</div>
 {money_html}
-<footer>generated {g} / bids-watch v1 / Kilo Aupuni / MauiOS / aloha in action</footer>
+<footer>generated {g} / bids-watch v1 / Kilo Aupuni / govOS / aloha in action</footer>
 </div></body></html>"""
 
 def main():

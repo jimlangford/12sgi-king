@@ -137,7 +137,7 @@ whether the money tracks the votes.</div>
 {donor_rows}
 <div class="sect">Year by year (2008 →)</div>
 {yr_rows}
-<footer>generated {g} · statewide-money v1 · source: Hawaii Campaign Spending Commission (jexd-xbcg) · public record · MauiOS</footer>
+<footer>generated {g} · statewide-money v1 · source: Hawaii Campaign Spending Commission (jexd-xbcg) · public record · govOS</footer>
 </div></body></html>"""
     with open(OUT_F,"w",encoding="utf-8") as f: f.write(html)
     dispatch("SHIPPED", f"statewide-money patterns: {usd(grand)} tracked across {len(off)} offices/jurisdictions "
