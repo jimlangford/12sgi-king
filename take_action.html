@@ -21,6 +21,8 @@
  label{font-size:12px;color:var(--mut);font-family:Consolas,monospace;text-transform:uppercase;letter-spacing:.5px}
  .f textarea{min-height:80px;font-family:inherit}
  .note{font-size:11.5px;color:var(--mut);font-style:italic;margin-top:8px}
+ #signupMsg{font-size:13px;margin:8px 0;font-family:Consolas,monospace}
+ .okmsg{color:var(--ok)} .errmsg{color:var(--warn)}
  .setup{display:none;font-size:12px;color:var(--warn);border:1px dashed rgba(224,106,74,.5);border-radius:9px;padding:9px 12px;margin:8px 0}
  .disc{font-size:11.5px;color:var(--mut);font-style:italic;border-left:2px solid rgba(217,178,76,.4);padding:7px 12px;margin:16px 0}
  footer{margin-top:38px;border-top:1px solid rgba(255,255,255,.1);padding-top:13px;font-family:Consolas,monospace;font-size:10.5px;color:var(--mut)}
@@ -60,13 +62,13 @@ Date:</textarea>
 
 <h2>2. Sign up &mdash; add your name to the demand</h2>
 <p class="lead">Get notified when the records come back, and show the County how many people want them released.</p>
-<form class="f" id="signup" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-  <div class="setup" id="setup">&#9881; Owner setup (one time, ~2 min): create a free form at <b>formspree.io</b> with your email, then replace <code>YOUR_FORM_ID</code> in this form&#8217;s action with your form ID. Until then, submissions won&#8217;t be collected.</div>
+<form class="f" id="signup" method="POST" action="https://formspree.io/f/xzdqydpe">
   <label>Name</label><input name="name" required placeholder="Your name">
   <label>Email</label><input name="email" type="email" required placeholder="you@example.com">
   <label>Why this matters to you (optional)</label><textarea name="message" placeholder="Optional"></textarea>
   <input type="hidden" name="_subject" value="Kilo Aupuni - new supporter / records demand">
   <div class="btns"><button class="btn primary" type="submit">Add my name</button></div>
+  <div id="signupMsg" role="status"></div>
   <p class="note">Your info goes only to the campaign organizer to send you updates. It is not shared or sold.</p>
 </form>
 
@@ -86,10 +88,32 @@ Date:</textarea>
    var body=document.getElementById('req').value;
    document.getElementById('mailbtn').href='mailto:ocs.request@mauicounty.us?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
  })();
- // Show owner-setup note until a real Formspree endpoint is wired
+ // AJAX submit -> inline thank-you (no page redirect). Degrades to a normal POST if JS is off.
  (function(){
-   var f=document.getElementById('signup');
-   if(f.action.indexOf('YOUR_FORM_ID')>=0){ document.getElementById('setup').style.display='block'; }
+   var f=document.getElementById('signup'), msg=document.getElementById('signupMsg');
+   f.addEventListener('submit', function(e){
+     e.preventDefault();
+     var btn=f.querySelector('button[type=submit]'), label=btn.textContent;
+     btn.disabled=true; btn.textContent='Sending…'; msg.className=''; msg.textContent='';
+     fetch(f.action, {method:'POST', body:new FormData(f), headers:{'Accept':'application/json'}})
+       .then(function(r){
+         if(r.ok){
+           ['input','textarea','label','.btns','.note'].forEach(function(sel){
+             f.querySelectorAll(sel).forEach(function(el){ el.style.display='none'; });
+           });
+           msg.className='okmsg';
+           msg.textContent='Thank you - your name is added. You will get an update when the records come back.';
+         } else {
+           return r.json().then(function(d){
+             throw new Error((d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'submission error');
+           });
+         }
+       })
+       .catch(function(err){
+         btn.disabled=false; btn.textContent=label;
+         msg.className='errmsg'; msg.textContent='Could not submit ('+err.message+'). Please try again.';
+       });
+   });
  })();
 </script>
 </div></body></html>
