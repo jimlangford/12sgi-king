@@ -80,6 +80,8 @@ jobs:
           run "$P/mapps_watch.py" || true
           run "$P/donor_watch.py" || true
           run "$P/statewide_money.py" || true
+          run "$P/hands_awards.py" || true
+          run "$P/vendor_donor_join.py" || true
           if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
             run "$P/lege_legiscan.py" --years 2024 2026 || true
           fi

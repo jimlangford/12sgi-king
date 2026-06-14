@@ -1,0 +1,238 @@
+{
+ "generated": "2026-06-14T05:33:22.844501-10:00",
+ "method": "mechanical name match on distinctive entity tokens; every hit is a QUESTION to verify, not proof",
+ "maui_vendors_scanned": 74,
+ "matches": 9,
+ "matched": [
+  {
+   "vendor": "FUKUMOTO ENGINEERING, INC.",
+   "award_total": 4723680.0,
+   "award_count": 22,
+   "contrib_total": 1750.0,
+   "officials": [
+    "Batangan",
+    "Sugimura"
+   ],
+   "hits": [
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Kay Fukumoto Trust",
+     "amount": 1050.0,
+     "n": 3,
+     "basis": "firm"
+    },
+    {
+     "official": "Batangan",
+     "official_label": "Kauanoe Batangan - Councilmember, Kahului",
+     "contributor": "Fukumoto, Kay",
+     "amount": 400.0,
+     "n": 1,
+     "basis": "individual"
+    },
+    {
+     "official": "Batangan",
+     "official_label": "Kauanoe Batangan - Councilmember, Kahului",
+     "contributor": "Fukumoto, Mitchell",
+     "amount": 300.0,
+     "n": 1,
+     "basis": "individual"
+    }
+   ]
+  },
+  {
+   "vendor": "R. T. TANAKA ENGINEERS, INC.",
+   "award_total": 1316727.03,
+   "award_count": 8,
+   "contrib_total": 3975.0,
+   "officials": [
+    "Bissen",
+    "Lee",
+    "Sugimura"
+   ],
+   "hits": [
+    {
+     "official": "Lee",
+     "official_label": "Alice L. Lee - Council Chair",
+     "contributor": "Tanaka, Robin S.",
+     "amount": 1400.0,
+     "n": 5,
+     "basis": "individual"
+    },
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Tanaka, Robert T.",
+     "amount": 950.0,
+     "n": 3,
+     "basis": "individual"
+    },
+    {
+     "official": "Lee",
+     "official_label": "Alice L. Lee - Council Chair",
+     "contributor": "Tanaka, Robert T.",
+     "amount": 875.0,
+     "n": 2,
+     "basis": "individual"
+    },
+    {
+     "official": "Bissen",
+     "official_label": "Richard Bissen - Mayor",
+     "contributor": "Tanaka, Ryan",
+     "amount": 500.0,
+     "n": 1,
+     "basis": "individual"
+    },
+    {
+     "official": "Bissen",
+     "official_label": "Richard Bissen - Mayor",
+     "contributor": "Tanaka, Wayne Y.",
+     "amount": 250.0,
+     "n": 1,
+     "basis": "individual"
+    }
+   ]
+  },
+  {
+   "vendor": "MICHAEL WRIGHT & ASSOCIATES, INC.",
+   "award_total": 1000000.0,
+   "award_count": 2,
+   "contrib_total": 400.0,
+   "officials": [
+    "Sugimura"
+   ],
+   "hits": [
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Michael Wright & Associates Inc.",
+     "amount": 400.0,
+     "n": 2,
+     "basis": "firm"
+    }
+   ]
+  },
+  {
+   "vendor": "NISHIKAWA ARCHITECTS, INC.",
+   "award_total": 464330.0,
+   "award_count": 3,
+   "contrib_total": 750.0,
+   "officials": [
+    "Sugimura"
+   ],
+   "hits": [
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Nishikawa, C.H.",
+     "amount": 750.0,
+     "n": 4,
+     "basis": "individual"
+    }
+   ]
+  },
+  {
+   "vendor": "Allana Buick & Bers, Inc.",
+   "award_total": 391280.0,
+   "award_count": 2,
+   "contrib_total": 500.0,
+   "officials": [
+    "Cook"
+   ],
+   "hits": [
+    {
+     "official": "Cook",
+     "official_label": "Tom Cook - Councilmember, South Maui",
+     "contributor": "Allana Buick & Bers, Inc.",
+     "amount": 500.0,
+     "n": 1,
+     "basis": "firm"
+    }
+   ]
+  },
+  {
+   "vendor": "CDF ENGINEERING",
+   "award_total": 248870.0,
+   "award_count": 1,
+   "contrib_total": 500.0,
+   "officials": [
+    "Cook"
+   ],
+   "hits": [
+    {
+     "official": "Cook",
+     "official_label": "Tom Cook - Councilmember, South Maui",
+     "contributor": "CDF Engineering LLC",
+     "amount": 500.0,
+     "n": 1,
+     "basis": "firm"
+    }
+   ]
+  },
+  {
+   "vendor": "OTOMO ENGINEERING, INC.",
+   "award_total": 91246.0,
+   "award_count": 1,
+   "contrib_total": 850.0,
+   "officials": [
+    "Sugimura"
+   ],
+   "hits": [
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Otomo, Stacy & Carole",
+     "amount": 450.0,
+     "n": 3,
+     "basis": "individual"
+    },
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Otomo, Stacy",
+     "amount": 400.0,
+     "n": 2,
+     "basis": "individual"
+    }
+   ]
+  },
+  {
+   "vendor": "HAWAII OFF-GRID LLC",
+   "award_total": 64293.17,
+   "award_count": 1,
+   "contrib_total": 1038.52,
+   "officials": [
+    "Cook"
+   ],
+   "hits": [
+    {
+     "official": "Cook",
+     "official_label": "Tom Cook - Councilmember, South Maui",
+     "contributor": "Hawaii Off Grid",
+     "amount": 1038.52,
+     "n": 1,
+     "basis": "individual"
+    }
+   ]
+  },
+  {
+   "vendor": "Park Consulting Group, Inc.",
+   "award_total": 50000.0,
+   "award_count": 1,
+   "contrib_total": 50.0,
+   "officials": [
+    "Sinenci"
+   ],
+   "hits": [
+    {
+     "official": "Sinenci",
+     "official_label": "Shane Sinenci - Councilmember, East Maui",
+     "contributor": "Park, Faith",
+     "amount": 50.0,
+     "n": 1,
+     "basis": "individual"
+    }
+   ]
+  }
+ ]
+}

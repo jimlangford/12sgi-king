@@ -1,0 +1,2696 @@
+{
+ "generated": "2026-06-14T05:29:45.243959-10:00",
+ "source": "HANDS hands.ehawaii.gov",
+ "statewide_total": 10609,
+ "maui_awards": 271,
+ "maui_vendors": 74,
+ "maui_dollars": 118644164.81,
+ "vendors": [
+  {
+   "vendor": "Bowers + Kubota Consulting, Inc.",
+   "total": 15346011.559999999,
+   "count": 26,
+   "awards": [
+    {
+     "amount": 295600.0,
+     "date": "05/07/2026",
+     "title": "Lahaina Recreation Center Rehabilitations Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 184500.0,
+     "date": "03/30/2026",
+     "title": "23-05-Upper Kula Transmission Improvements-Proj. Management/Constr. Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 131900.0,
+     "date": "03/30/2026",
+     "title": "24-03B-Keanini Street Waterline Replacement-Project Management/Construction Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 237000.0,
+     "date": "03/30/2026",
+     "title": "20-02C&D-Waipuka & Kanaha Wells MCC & Electrical Upgrades with EM. Generators - Prj. Management/Constr. Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 150000.0,
+     "date": "03/10/2026",
+     "title": "Fire Station Limited Facility Condition Assessment",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 975000.0,
+     "date": "03/04/2026",
+     "title": "Haiku Fire Station - Construction Management and Inspection Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 42429.95,
+     "date": "01/13/2026",
+     "title": "Wailuku Station Parking Lot Gate",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 100000.0,
+     "date": "05/22/2025",
+     "title": "Construction Management Services for Various Highways CIP Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 3500000.0,
+     "date": "03/17/2025",
+     "title": "LLTRP Engineering Support",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 300000.0,
+     "date": "02/03/2025",
+     "title": "Construction Management Support Services for Various Building Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 415700.0,
+     "date": "11/25/2024",
+     "title": "Project Management for Kehalani Mauka, Waikapu & Kanaha Beach Park Improvement Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 851300.0,
+     "date": "11/08/2024",
+     "title": "Lower Honoapiilani Road Pavement Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 714800.0,
+     "date": "10/22/2024",
+     "title": "Paia Gym Project Management",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1034000.0,
+     "date": "10/10/2024",
+     "title": "Construction Management Support Services; Maui Department of Transportation Baseyard Facility",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 614000.0,
+     "date": "03/27/2024",
+     "title": "Old Courthouse Building Repairs & Abatement - PM & CM Support Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1000000.0,
+     "date": "01/18/2024",
+     "title": "Construction Management Support Services for Various CIP Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 605100.0,
+     "date": "11/15/2023",
+     "title": "Old Hana School Improvements - Phase 2",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 644537.0,
+     "date": "09/21/2023",
+     "title": "Wailea and Makena Culvert Assessment (FY 2024)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 110740.84,
+     "date": "09/13/2023",
+     "title": "Kihei Data Server Room at Kihei Police Station",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 843716.0,
+     "date": "09/11/2023",
+     "title": "Highways Division Makawao Baseyard Equipment Storage Building Replacement Design, Permitting & Construction Management",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 998995.12,
+     "date": "08/30/2023",
+     "title": "Maui Lani Parkway Extension (Wailuku Road to Kuikahi Drive)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 270492.65,
+     "date": "07/14/2023",
+     "title": " Project and Grant Management Services for Liloa Drive Extension, Phase IIA",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 243200.0,
+     "date": "05/18/2023",
+     "title": "Lanai Baseyard Improvements - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 288800.0,
+     "date": "04/19/2023",
+     "title": "Papalaua Traffic Signal Improvements at Wainee Street - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 394400.0,
+     "date": "04/19/2023",
+     "title": "Kamehameha Ave and Wakea Ave Intersection Improvements - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 399800.0,
+     "date": "09/07/2021",
+     "title": "Onehee Avenue Roadway Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "BROWN AND CALDWELL & Subs",
+   "total": 14197556.0,
+   "count": 10,
+   "awards": [
+    {
+     "amount": 199742.0,
+     "date": "06/26/2025",
+     "title": "Kaunakakai WWRF Effluent Force Main",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1998581.0,
+     "date": "06/26/2025",
+     "title": "WK WWRF 4th Aeration Basin",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1291821.0,
+     "date": "01/29/2025",
+     "title": "One Water Strategy",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 399759.0,
+     "date": "12/18/2024",
+     "title": "Countywide Large Capacity Cesspool Audit",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 361409.0,
+     "date": "08/14/2024",
+     "title": "Seaside Place Drainage Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 740260.0,
+     "date": "02/07/2023",
+     "title": "WK WWRF Effluent Management Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1234684.0,
+     "date": "02/07/2023",
+     "title": "CBS-6084 Waikapu/Wailuku Diversion Gravity Sewer and Force Main",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 6842400.0,
+     "date": "02/01/2022",
+     "title": "Central Maui WWRF - Design Phase",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 428900.0,
+     "date": "08/13/2021",
+     "title": "Central and West Maui Drainline Repair",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 700000.0,
+     "date": "07/22/2021",
+     "title": "South Maui Drainline Assessment",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "SSFM INTERNATIONAL, INC.",
+   "total": 9526482.66,
+   "count": 14,
+   "awards": [
+    {
+     "amount": 600000.0,
+     "date": "05/05/2025",
+     "title": "Construction Management Support Services for Various CIP Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 822000.0,
+     "date": "03/14/2025",
+     "title": "Makani Rd Improvements (Kalama Intermediate School to Makawao Ave) - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 688300.0,
+     "date": "12/20/2024",
+     "title": "Front Street Railing, Sidewalk, and Seawall Repair",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 814552.0,
+     "date": "11/22/2024",
+     "title": "Project Management for Keopuolani & Wells Park Improvement Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 458422.0,
+     "date": "10/21/2024",
+     "title": "West Maui Greenway - Environmental Phase",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1118691.76,
+     "date": "06/04/2024",
+     "title": "Keawe Street Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 189200.0,
+     "date": "11/20/2023",
+     "title": "Haiku Road Slope Stability Improvements - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 162000.0,
+     "date": "11/20/2023",
+     "title": "Lower Kula Road and Kepa Road Emergency Repairs - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 590053.88,
+     "date": "09/27/2023",
+     "title": "Playground Improvements Phase 1 - Maui Sites",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 445189.02,
+     "date": "06/01/2023",
+     "title": "Lower Main Resurfacing Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 887300.0,
+     "date": "05/23/2023",
+     "title": "Makawao Avenue Pavement Reconstruction, MP 0.8 to AI Street - CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 224658.0,
+     "date": "04/26/2023",
+     "title": "Pu'u Hauole Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 826191.0,
+     "date": "12/02/2022",
+     "title": "Imi Kala Extension",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1699925.0,
+     "date": "11/10/2021",
+     "title": "Lower Honoapiilani Road Complete Streets",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "JACOBS ENGINEERING GROUP INC.",
+   "total": 8554053.0,
+   "count": 7,
+   "awards": [
+    {
+     "amount": 999999.0,
+     "date": "06/26/2025",
+     "title": "CM Services for WWRD Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 4999932.0,
+     "date": "06/26/2025",
+     "title": "Lahaina Wastewater Pump Station Nos. 5 and 6 Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 231593.0,
+     "date": "04/11/2025",
+     "title": "CML Phase VII Groundwater Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 621642.0,
+     "date": "03/24/2025",
+     "title": "Honolua Aquifer Wells H1 & H2 Wells (Exploratory Phase)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 710942.0,
+     "date": "11/14/2023",
+     "title": "Lahaina Wildfire Damage Assessment Phase 2",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 698030.0,
+     "date": "02/07/2023",
+     "title": "Lahaina WWRF RAS/WAS Dewatering Upgrades",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 291915.0,
+     "date": "09/02/2021",
+     "title": "Napili 1 Force Main Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "HDR ENGINEERING, INC.",
+   "total": 8343633.0,
+   "count": 13,
+   "awards": [
+    {
+     "amount": 200000.0,
+     "date": "02/12/2026",
+     "title": "Lanai Solid Waste Management Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 80000.0,
+     "date": "01/27/2026",
+     "title": "SWD Rate Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 882000.0,
+     "date": "02/25/2025",
+     "title": "Kulanihakoi and Waipuilani Stream Drainage Study and Preliminary Design",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 999032.0,
+     "date": "02/25/2025",
+     "title": "Design Support for Lahaina Drainage System Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 910770.0,
+     "date": "08/21/2024",
+     "title": "Lahainaluna Road Pavement Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 364770.0,
+     "date": "08/02/2024",
+     "title": "Honokalani Street Drainage Repairs",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 488124.0,
+     "date": "03/29/2023",
+     "title": "353 Puu Way Drainage Evaluation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 378555.0,
+     "date": "02/13/2023",
+     "title": "West Maui Source (Kahana Development) Phase II - Construction Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 835340.0,
+     "date": "02/07/2023",
+     "title": "CBS-5526 Waiehu Kou WWPS Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 563257.0,
+     "date": "02/07/2023",
+     "title": "CBS-1119 WK WWRF Solids Building Piping Rehab",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 604438.0,
+     "date": "01/19/2023",
+     "title": "Pukalani Terrace Subdivision Pavement Reconstruction (FY 2023)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 799977.0,
+     "date": "09/02/2021",
+     "title": "CBS-3570 Kihei WWPS No. 7 Relocation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1237370.0,
+     "date": "04/08/2020",
+     "title": "Planning and Design Services for Waikakoi and South Wailua Bridge Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "GROUP 70 INTERNATIONAL, INC.",
+   "total": 7968164.529999999,
+   "count": 9,
+   "awards": [
+    {
+     "amount": 245874.68,
+     "date": "01/27/2026",
+     "title": "24 North Church Street Building Renovations",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 400000.0,
+     "date": "10/23/2025",
+     "title": "Architectural Services to Various Facilities",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1250000.0,
+     "date": "09/02/2025",
+     "title": "Lahaina Community Center and Field House",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 3247400.0,
+     "date": "08/14/2025",
+     "title": "New County Service Center, Phase II",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 414832.3,
+     "date": "04/30/2025",
+     "title": "Kahoma Stream Flood Control Modification Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1000000.0,
+     "date": "04/10/2025",
+     "title": "Lahaina Royal Complex Master Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 582512.38,
+     "date": "11/15/2024",
+     "title": "Holomua Road Nighttime Safety and Fire Mitigation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 708054.17,
+     "date": "03/27/2024",
+     "title": "Design Services for Hazard Materials Abatement & Interior/Exterior Repairs for Old County Courthouse",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 119491.0,
+     "date": "03/30/2023",
+     "title": "New Ceilings & Fire Sprinklers for Kalana O Maui Restrooms - Design Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
+   "total": 7536200.0,
+   "count": 20,
+   "awards": [
+    {
+     "amount": 66600.0,
+     "date": "12/17/2025",
+     "title": "Lanai District Resurfacing (FY 2026/2027)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 495549.0,
+     "date": "09/26/2025",
+     "title": "Waiopai Embankment Repairs",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 72500.0,
+     "date": "07/24/2025",
+     "title": "Koali Tank Replacement Survey and On-call Surveying Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 549659.0,
+     "date": "02/21/2025",
+     "title": "Pavement Reconstruction of Kahului Roads",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 302272.0,
+     "date": "01/09/2025",
+     "title": "Lelekea Culverts Scour Repairs",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 356450.0,
+     "date": "12/09/2024",
+     "title": "Reconstruction of Concrete Pavement Roads",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 785065.0,
+     "date": "12/05/2024",
+     "title": "Kahekili Highway Repairs, Milepost 15.3",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1359912.0,
+     "date": "09/16/2024",
+     "title": "Kamole WTP Raw Water Resources",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 200000.0,
+     "date": "06/27/2024",
+     "title": "Surveying Services for the Street Monument Certification",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 360000.0,
+     "date": "06/05/2024",
+     "title": "South Maui Drainline Repairs (FY 2025)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 315997.0,
+     "date": "03/01/2024",
+     "title": "Po'opo'o Bridge Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 237130.0,
+     "date": "09/25/2023",
+     "title": "War Memorial Football Stadium Rehabilitation Construction Management",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 173700.0,
+     "date": "07/26/2023",
+     "title": "Dairy Road Traffic Signal Upgrades",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 85900.0,
+     "date": "04/20/2023",
+     "title": "Kealakapu Road Drainage and Boundary Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 143144.0,
+     "date": "12/12/2022",
+     "title": "Planning and Design Services for Pauwela Bridge Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 347100.0,
+     "date": "11/30/2022",
+     "title": "Safety Improvements at Various Locations",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 800000.0,
+     "date": "11/29/2022",
+     "title": "County of Maui Traffic Calming Program",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 378122.0,
+     "date": "06/08/2022",
+     "title": "Planning and Design Services for Iao Bridge Repairs",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 120100.0,
+     "date": "07/31/2021",
+     "title": "Repair of Kaupakalua Road in the Vicinity of Lepo Street, Phase 2",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 387000.0,
+     "date": "10/15/2020",
+     "title": "Kanaloa Avenue, Mahalani Street, Maui Lani Parkway, and Waiinu Road Pavement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "FUKUMOTO ENGINEERING, INC.",
+   "total": 4723680.0,
+   "count": 22,
+   "awards": [
+    {
+     "amount": 14000.0,
+     "date": "05/21/2026",
+     "title": "Kona Low-Olowalu TDS/Closed Landfill Drone Survey",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 33000.0,
+     "date": "05/07/2026",
+     "title": "Makawao Fire Station Septic Tank Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 50000.0,
+     "date": "04/22/2026",
+     "title": "FY26 Misc Survey: Land Surveying Support Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 460970.0,
+     "date": "01/09/2026",
+     "title": "Hana Highway-Waterline Replacement/Upgrade-St. Peter's Church to Koali Booster Pump Station",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 200000.0,
+     "date": "11/25/2025",
+     "title": "Kanaha Beach Park - Lifeguard Tower Planning, Design, and Permits",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 103200.0,
+     "date": "10/13/2025",
+     "title": "Makena Road Realignment Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 199700.0,
+     "date": "09/10/2025",
+     "title": "Bus Stops & Shelters",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 165700.0,
+     "date": "09/09/2025",
+     "title": "Vevau Street Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 130000.0,
+     "date": "06/19/2025",
+     "title": "Hina Avenue Retaining Wall Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 182200.0,
+     "date": "06/06/2025",
+     "title": "Kaanapali Beach (Pu'u Keka'a) - Lifeguard Tower Planning, Design, and Permits",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 16800.0,
+     "date": "03/25/2025",
+     "title": "Von Tempsky Waterline Easement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 313400.0,
+     "date": "11/18/2024",
+     "title": "South Kihei Road Pavement Rehabilitation (Uwapo Road to Kaonoulu Street)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 300900.0,
+     "date": "10/09/2024",
+     "title": "Keonekai Road Pavement Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 562200.0,
+     "date": "08/05/2024",
+     "title": "Ualapue and Kawela Backup Wells - Exploratory Phase",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 77350.0,
+     "date": "05/21/2024",
+     "title": "Waikapu Park Drainage Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 541040.0,
+     "date": "05/17/2024",
+     "title": "Waiehu Heights Well #1 Replacement - Design Development Phase",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 83000.0,
+     "date": "01/22/2024",
+     "title": "Holo Place Drainage Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 133110.0,
+     "date": "07/31/2023",
+     "title": "South Kihei Road Pavement Rehabilitation (Uwapo Road to Kaonoulu Street)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 108000.0,
+     "date": "04/25/2023",
+     "title": "Palama Drive Drainage Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 73400.0,
+     "date": "03/20/2023",
+     "title": "Lahaina Recreation Center Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 436710.0,
+     "date": "02/01/2022",
+     "title": "Piiholo Road Pavement Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 539000.0,
+     "date": "09/09/2021",
+     "title": "Lower Honoapiilani Road Pavement Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "KENNEDY/JENKS CONSULTANTS, INC.",
+   "total": 4037944.0,
+   "count": 8,
+   "awards": [
+    {
+     "amount": 147801.0,
+     "date": "10/20/2025",
+     "title": "Floodplain Management Support",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 608269.0,
+     "date": "06/26/2025",
+     "title": "Kihei WWPS No. 8 Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 719893.0,
+     "date": "06/26/2025",
+     "title": "Kihei WWP S No. 3 Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 99910.0,
+     "date": "02/26/2025",
+     "title": "Drainageway Delineation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 845070.0,
+     "date": "05/14/2024",
+     "title": "WK WWRF Process and Facility Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 500000.0,
+     "date": "01/24/2024",
+     "title": "Waiakoa Culverts Debris and Silt Removal",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 453169.0,
+     "date": "02/07/2023",
+     "title": "CBS-3207 Paia Pump Station Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 663832.0,
+     "date": "02/07/2023",
+     "title": "CBS-3199 Kihei 4 PS Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "A-Mehr Inc",
+   "total": 4032110.0,
+   "count": 15,
+   "awards": [
+    {
+     "amount": 274100.0,
+     "date": "02/04/2026",
+     "title": "Preparation of New Permit Application, Construction Documents, CQA Services and NPDES Permit for Organics Processing Facility Stage 2 Composting and FOG System",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 100000.0,
+     "date": "10/20/2025",
+     "title": "Molokai Landfill Permit Renewal Package",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 119200.0,
+     "date": "08/21/2025",
+     "title": "Asset Management Support Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 295700.0,
+     "date": "08/18/2025",
+     "title": "Encapsulation of Lahaina Waste Debris at CL Ph VII Part 1",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 100000.0,
+     "date": "07/31/2025",
+     "title": "CML III-B Litter Fence",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 178275.0,
+     "date": "03/27/2025",
+     "title": "CML Infrastructure ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 529885.0,
+     "date": "05/03/2024",
+     "title": "CML CQA Services for Phase VI",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 657400.0,
+     "date": "05/03/2024",
+     "title": "CML Design, Permitting, Bid Package & EOR Services for Phase VI",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 49900.0,
+     "date": "04/22/2024",
+     "title": "CL Alternative Cover Demonstration ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 249900.0,
+     "date": "04/22/2024",
+     "title": "CL Permanent Gulch Crossing from Phase V to Phase III",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 392600.0,
+     "date": "12/01/2023",
+     "title": "West Maui Final Disposition Design & Bid Package",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 250000.0,
+     "date": "11/03/2023",
+     "title": "Molokai Landfill Master Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 236195.0,
+     "date": "11/03/2023",
+     "title": "CL Phase III-B EOR Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 108700.0,
+     "date": "09/28/2023",
+     "title": "West Maui Memorial Park Design and Permitting Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 490255.0,
+     "date": "09/06/2023",
+     "title": "CML Phase III-B CQA Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "CAROLLO ENGINEERS, INC.",
+   "total": 2843064.79,
+   "count": 5,
+   "awards": [
+    {
+     "amount": 447829.4,
+     "date": "12/18/2025",
+     "title": "Launiupoko and Olowalu Water Systems Acquisition Appraisal",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1934674.0,
+     "date": "09/08/2025",
+     "title": "Water Master Plan for Central and Upcountry Systems",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 160139.0,
+     "date": "03/19/2025",
+     "title": "2025 DWS RRA and ERP in Compliance with AWIA of 2018",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 259180.0,
+     "date": "01/27/2025",
+     "title": "Mahinahina Water Treatment Plant Ultraviolet (UV) Disinfection System Evaluation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 41242.39,
+     "date": "10/23/2024",
+     "title": "Flood Program Strategic Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "TRIPLE HS, INC.",
+   "total": 2800000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 2800000.0,
+     "date": "04/24/2026",
+     "title": "Watershed Planning for Revegetation and Reforestation of Lahaina & Kula",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "STANTEC CONSULTING SERVICES INC.",
+   "total": 2265694.67,
+   "count": 4,
+   "awards": [
+    {
+     "amount": 294858.73,
+     "date": "02/19/2026",
+     "title": "East Maui Water System Assessment and Operating Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 384098.94,
+     "date": "10/27/2025",
+     "title": "Honokowai Valley Tunnel Source Development and Transmission Line",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 215398.0,
+     "date": "06/03/2024",
+     "title": "Lahaina Emergency Watershed Protection - Planning Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1371339.0,
+     "date": "09/18/2023",
+     "title": "FEMA Recovery - Engineering Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "TETRA TECH BAS, INC.",
+   "total": 2036064.19,
+   "count": 4,
+   "awards": [
+    {
+     "amount": 597997.0,
+     "date": "05/21/2025",
+     "title": "Compliance Reporting and Operations and Maintenance Support Services for the Central Maui Landfill, Molokai Landfill, Hana Landfill, and Lanai Landfill",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1092880.19,
+     "date": "12/16/2024",
+     "title": "Environmental Monitoring for Opt-Out Program and Temporary Debris Storage (TDS) to Permanent Disposal Site (PDS) Transfer",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 96251.0,
+     "date": "08/29/2024",
+     "title": "Landfill Gas Beneficial Use RFP",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 248936.0,
+     "date": "08/29/2024",
+     "title": "CML GCCS EXPANSION",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "AECOM TECHNICAL SERVICES, INC.",
+   "total": 2016768.45,
+   "count": 5,
+   "awards": [
+    {
+     "amount": 314611.97,
+     "date": "04/15/2025",
+     "title": "Hana Highway Void Repair at Alelele MP 38.9",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 366047.46,
+     "date": "05/07/2024",
+     "title": "Manawainui Rockfall Netting Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 599765.54,
+     "date": "04/29/2024",
+     "title": "Construction Management Support Services for Various CIP Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 500863.48,
+     "date": "10/19/2023",
+     "title": "Piilani Highway Slope Stabilization at Nuanualoa Gulch",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 235480.0,
+     "date": "04/24/2023",
+     "title": "Kalepa Rockfall Netting Replacement - Construction Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "FUKUNAGA & ASSOCIATES, INC.",
+   "total": 1882419.0,
+   "count": 5,
+   "awards": [
+    {
+     "amount": 241164.0,
+     "date": "06/26/2025",
+     "title": "Kihei Reuse Water Distribution System Expansion",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 397843.0,
+     "date": "06/26/2025",
+     "title": "CBS-1954 Honokawai R-1 Water Dist. Syst.",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 399771.0,
+     "date": "06/26/2025",
+     "title": "CBS-5031 Kihei WWRF UV System Upgrade",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 498891.0,
+     "date": "06/26/2025",
+     "title": "CBS-6080 Lahaina Recycled Force Main Construction/Rehab",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 344750.0,
+     "date": "02/07/2023",
+     "title": "North Kihei Reuse Water System Expansion",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "R. T. TANAKA ENGINEERS, INC.",
+   "total": 1316727.03,
+   "count": 8,
+   "awards": [
+    {
+     "amount": 86104.71,
+     "date": "01/02/2026",
+     "title": "Kualapuu Court Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 218659.6,
+     "date": "10/30/2025",
+     "title": "South Kihei Road Waterline Replacement (Ohukai Rd to Kaonoulu St)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 40275.59,
+     "date": "06/09/2025",
+     "title": "Maui Nui Botanical Garden Sewer Service Clean out for the Department of Parks and Recreation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 8082.72,
+     "date": "10/31/2024",
+     "title": "Land Acquisition Support for CML",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 390417.28,
+     "date": "10/09/2024",
+     "title": "Pukalani Terrace Subdivision Pavement Reconstruction (FY 2025)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 66862.81,
+     "date": "10/02/2024",
+     "title": "Waipuilani Park Court Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 222123.62,
+     "date": "11/06/2023",
+     "title": "Pukalani Terrace Subdivision Pavement Reconstruction (FY24)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 284200.7,
+     "date": "10/07/2022",
+     "title": "Piilani Highway Pavement Reconstruction (MP34.8 to MP35.8)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "RANDOLPH H. MURAYAMA & ASSOCIATES, INC.",
+   "total": 1159784.0,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 145201.0,
+     "date": "08/28/2024",
+     "title": "Design Services for Above-Ground Fuel Storage Tank",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 364583.0,
+     "date": "06/28/2024",
+     "title": "Design Services for A/C Repairs for Various County Buildings",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 650000.0,
+     "date": "08/28/2023",
+     "title": "Lahaina Police Station Air Conditioning Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "WILSON OKAMOTO CORPORATION",
+   "total": 1118785.2,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 595700.0,
+     "date": "09/03/2024",
+     "title": "Kahekili Highway Guardrail & Slope Repairs at MP 14.5",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 153610.2,
+     "date": "08/02/2024",
+     "title": "Waiale Road Improvements (Kuikahi St to Waiko Rd)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 369475.0,
+     "date": "07/15/2022",
+     "title": "130 Iao Valley Road Guardrail & Wall Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MITSUNAGA & ASSOCIATES, INC.",
+   "total": 1110585.0,
+   "count": 5,
+   "awards": [
+    {
+     "amount": 107733.0,
+     "date": "11/17/2025",
+     "title": "Kahului Community Center Roof Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 342517.0,
+     "date": "11/07/2025",
+     "title": "Coach Soichi Sakamoto Pool Repairs",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 541088.0,
+     "date": "09/04/2025",
+     "title": "Lahaina Aquatic Center Rehabilitation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 36409.0,
+     "date": "10/22/2024",
+     "title": "Joseph C. Cravalho, Hale Maka'i, Name Sign (Wailuku Police Station)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 82838.0,
+     "date": "09/04/2024",
+     "title": "Lanai Community Filed House Phase 2",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MICHAEL WRIGHT & ASSOCIATES, INC.",
+   "total": 1000000.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 500000.0,
+     "date": "07/17/2024",
+     "title": "Lahaina Police State Site Programming",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 500000.0,
+     "date": "07/17/2024",
+     "title": "Molokai Police Station - Site Programming",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "TEKSYSTEMS GLOBAL SERVICES, LLC",
+   "total": 968414.87,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 441229.93,
+     "date": "03/23/2026",
+     "title": "Implementation Consultant/Project Manager - ITSD PMO Program",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 289262.68,
+     "date": "03/23/2026",
+     "title": "Application Developer - ITSD Legacy Applications Conversion Program",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 237922.26,
+     "date": "03/23/2026",
+     "title": "Consultant Technical Writer Services - ITSD Policies and Documentation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "WARREN S. UNEMORI ENGINEERING, INC.",
+   "total": 805885.0,
+   "count": 4,
+   "awards": [
+    {
+     "amount": 205474.0,
+     "date": "01/17/2024",
+     "title": "Waikapu Waterline Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 255127.0,
+     "date": "12/19/2023",
+     "title": "Makawao Avenue and Loha Street Sidewalk Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 41623.0,
+     "date": "05/25/2023",
+     "title": "Design Services for Wailuku Apartments Drainage Channel",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 303661.0,
+     "date": "02/07/2023",
+     "title": "Upper Waiko Road Subdivision Sewer System (CBS-3204)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "NAGAMINE OKAWA ENGINEERS INC.",
+   "total": 724542.07,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 200000.0,
+     "date": "07/26/2025",
+     "title": "Structural Engineering Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 524542.07,
+     "date": "07/01/2024",
+     "title": "Bridge Inspection and Evaluations to Various County of Maui Bridges (2024-2026)",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "OCEANIT LABORATORIES, INC.",
+   "total": 721439.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 721439.0,
+     "date": "01/16/2020",
+     "title": "Kahana Nui Basin Modifications",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "PACIFIC NETWORK GROUP, LLC",
+   "total": 713862.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 362206.0,
+     "date": "04/14/2026",
+     "title": "Network Lifecycle Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 351656.0,
+     "date": "05/05/2025",
+     "title": "Network Lifecycle Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "ARCHITECTURAL DESIGN & CONSTRUCTION, INC.",
+   "total": 629111.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 389607.0,
+     "date": "04/16/2026",
+     "title": "DPW-Highways Lalo Office & Warehouse Improvements Design & CM",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 239504.0,
+     "date": "04/16/2026",
+     "title": "DPW-Highways Wailuku Garage Repairs Design & CM Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "KPFF, INC.",
+   "total": 520000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 520000.0,
+     "date": "07/21/2025",
+     "title": "Maui Department of Transportation Ferry System Development",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "CONTROLPOINT SURVEYING, INC.",
+   "total": 517184.36,
+   "count": 6,
+   "awards": [
+    {
+     "amount": 123077.47,
+     "date": "05/14/2026",
+     "title": "Annual Topographic Surveys of Central Maui, Hana, Molokai, and Lanai Landfills",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 28075.97,
+     "date": "12/04/2025",
+     "title": "CML Topography Surveying Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 70438.33,
+     "date": "11/01/2024",
+     "title": "CML Land Surveying for PDS",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 145316.0,
+     "date": "11/01/2024",
+     "title": "Annual Surveys for All Landfills FY25",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 90600.59,
+     "date": "12/20/2023",
+     "title": "Land Surveying Services for CML",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 59676.0,
+     "date": "11/23/2021",
+     "title": "Surveying of Wailea Alanui Drive",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "NISHIKAWA ARCHITECTS, INC.",
+   "total": 464330.0,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 257497.0,
+     "date": "05/01/2026",
+     "title": "Accessory Dwelling Unit (ADU) Design Registration",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 54254.0,
+     "date": "06/18/2025",
+     "title": "Misc Building Design Services for Various Highways CIP Projects",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 152579.0,
+     "date": "04/24/2024",
+     "title": "Kula Fire Station Apparatus Bay Design",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "`AILANA SURVEYING & GEOMATICS LLC",
+   "total": 455000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 455000.0,
+     "date": "01/26/2024",
+     "title": "Land Surveying and Mapping for Lahaina Town",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "PACIFIC TECHNOLOGY SOLUTIONS, LLC",
+   "total": 450000.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 150000.0,
+     "date": "04/15/2026",
+     "title": "Endpoint Management and Lifecycle Maintenance Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 300000.0,
+     "date": "03/24/2025",
+     "title": "County of Maui Computer/Device Management and Lifecycle Maintenance Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "AKINAKA & ASSOCIATES, LTD.",
+   "total": 400000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 400000.0,
+     "date": "05/26/2026",
+     "title": "Lanai Water Use & Development Plan Update",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Infinity Technologies",
+   "total": 400000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 400000.0,
+     "date": "02/23/2026",
+     "title": "ESRI GIS Consulting and Support Services ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "COASTAL FRONTIERS CORPORATION",
+   "total": 393949.12,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 393949.12,
+     "date": "01/08/2025",
+     "title": "Coastal Sand Dune Impacts on the Kihei Drainage Master Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Allana Buick & Bers, Inc.",
+   "total": 391280.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 181100.0,
+     "date": "01/23/2026",
+     "title": "Kihei Fire Station - Roof Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 210180.0,
+     "date": "12/19/2025",
+     "title": "Lahaina Fire Station Re-Roof - Planning, Design, Permitting, and Construction Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "NELSON\\NYGAARD CONSULTING ASSOCIATES, INC.",
+   "total": 363956.98,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 189488.59,
+     "date": "09/17/2025",
+     "title": "Maui DOT RFP Improvements for Bus Service",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 174468.39,
+     "date": "04/01/2025",
+     "title": "Microtransit Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "N&K CPAs, INC.",
+   "total": 350000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 350000.0,
+     "date": "10/31/2023",
+     "title": "Request for Proposals:  Financial Audit of the County of Maui",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Services",
+     "sol": "RFP No. 24-01oca"
+    }
+   ]
+  },
+  {
+   "vendor": "HAWAIIAN BREEZE SOLUTIONS CORP.",
+   "total": 349290.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 209290.0,
+     "date": "10/01/2025",
+     "title": "MPD Email and File Systems",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 140000.0,
+     "date": "08/26/2025",
+     "title": "Windows Patch Management",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "GANNETT FLEMING, INC.",
+   "total": 337297.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 337297.0,
+     "date": "05/02/2023",
+     "title": "West Maui DPW Dam Safety Program",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Dixon Resources Unlimited",
+   "total": 300340.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 55500.0,
+     "date": "03/30/2026",
+     "title": "Parking Consultant Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 244840.0,
+     "date": "12/22/2025",
+     "title": "Parking Managment & Operations Professional Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "CIVICPLUS, LLC",
+   "total": 300000.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 150000.0,
+     "date": "04/01/2025",
+     "title": "Agenda and meeting management, legislative tracking",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": null
+    },
+    {
+     "amount": 150000.0,
+     "date": "04/01/2025",
+     "title": "Agenda and meeting management; legislative tracking",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Lynn Surayan",
+   "total": 300000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 300000.0,
+     "date": "04/26/2024",
+     "title": "Project Management, Organizational Change Management and Management Consulting Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "ECM, INC.",
+   "total": 297624.39,
+   "count": 5,
+   "awards": [
+    {
+     "amount": 5288.1,
+     "date": "02/17/2026",
+     "title": "Special Events Arena (Sea) Updating Electrical Meter Boxes",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 135453.61,
+     "date": "10/15/2025",
+     "title": "Kalama Park Pedestrian Path Light Replacement  ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 12393.01,
+     "date": "10/15/2025",
+     "title": "South Maui Gym Emergency Generator",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 10005.51,
+     "date": "12/02/2024",
+     "title": "Morgue Forensic Facility Generator Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 134484.16,
+     "date": "02/23/2024",
+     "title": "Keopuolani Field Lights Replacement",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MAIA DESIGN STUDIO, LLC",
+   "total": 284204.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 284204.0,
+     "date": "12/06/2024",
+     "title": "Prefabricated Building with Solar Power at CL",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "RIZIKON, INC.",
+   "total": 275000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 275000.0,
+     "date": "02/16/2024",
+     "title": "Safety and Occupational Health Management Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MAUI COUNTY COMMUNITY TELEVISION, INC.",
+   "total": 273256.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 273256.0,
+     "date": "05/23/2025",
+     "title": "Video Production, Broadcast, and Distribution Services for the Maui County Council",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": "25-009OCS"
+    }
+   ]
+  },
+  {
+   "vendor": "ELEMENT ENVIRONMENTAL, LLC",
+   "total": 270821.15,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 77273.0,
+     "date": "01/22/2026",
+     "title": "Waste Characterization Study, County of Maui Landfills",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 174276.0,
+     "date": "05/21/2025",
+     "title": "Environmental Consulting Services Construction and Demolition Waste and Special Waste County of Maui, Hawaii",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 19272.15,
+     "date": "12/01/2023",
+     "title": "West Maui Soil Sampling and Testing",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "CDF ENGINEERING",
+   "total": 248870.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 248870.0,
+     "date": "08/19/2024",
+     "title": "Keanae Park Septic System Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "HALEY & ALDRICH, INC.",
+   "total": 218785.09,
+   "count": 3,
+   "awards": [
+    {
+     "amount": 29794.0,
+     "date": "02/20/2026",
+     "title": "CML Gulch Crossing Environmental Permitting Support ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 89118.09,
+     "date": "08/14/2025",
+     "title": "Mangrove Removal at Kaunakakai Stream",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 99873.0,
+     "date": "09/09/2021",
+     "title": "Systemwide Improvement Framework for the Iao Stream Flood Control Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "R. M. TOWILL CORPORATION",
+   "total": 211733.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 211733.0,
+     "date": "05/16/2024",
+     "title": "Lahaina Emergency Watershed Protection - Civil Engineering Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "SPIRE HAWAII LLP",
+   "total": 200419.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 200419.0,
+     "date": "09/17/2024",
+     "title": "Request for Proposals for:  Countywide Fraud Risk Assessment",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Services",
+     "sol": "RFP No. 25-01oca"
+    }
+   ]
+  },
+  {
+   "vendor": "HUAYRA LLC",
+   "total": 200000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 200000.0,
+     "date": "02/27/2025",
+     "title": "Hana Ranch North Water System Acquisition",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Paul Y Morioka",
+   "total": 150000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 150000.0,
+     "date": "04/22/2026",
+     "title": "WWRD Pre-Treatment Consulting Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "DK TECH SOLUTIONS LLC",
+   "total": 134460.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 134460.0,
+     "date": "03/31/2025",
+     "title": "Virtualization Infrastructure Support",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "WISS, JANNEY, ELSTNER ASSOCIATES, INC.",
+   "total": 123193.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 123193.0,
+     "date": "12/22/2025",
+     "title": "Iao Theater Roof Restoration - Structural Assessment",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "eScribers, LLC",
+   "total": 123030.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 123030.0,
+     "date": "05/16/2025",
+     "title": "Transcription Services",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": "25-008OCS"
+    }
+   ]
+  },
+  {
+   "vendor": "INTERA INCORPORATED",
+   "total": 100000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 100000.0,
+     "date": "12/05/2024",
+     "title": "Groundwater Source Development - Hydro-Geological Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MUNEKIYO HIRAGA",
+   "total": 97736.92,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 97736.92,
+     "date": "04/25/2024",
+     "title": "Kihei Fire Station Relocation - Site Selection Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Munekiyo & Hiraga, Inc.",
+   "total": 96908.89,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 96908.89,
+     "date": "09/28/2023",
+     "title": "Technical Studies and Related Consulting Services for Lahaina Wildfire Final Disposition Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "OTOMO ENGINEERING, INC.",
+   "total": 91246.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 91246.0,
+     "date": "04/12/2023",
+     "title": "Lower Kula Road Pavement Reconstruction",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "AC Disaster Consulting",
+   "total": 79970.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 79970.0,
+     "date": "04/10/2026",
+     "title": "Kona Low Storm Events: After Action Report & Corrective Action Planning Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "HIGH PERFORMANCE SYSTEMS, INC.",
+   "total": 79162.27,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 79162.27,
+     "date": "08/08/2025",
+     "title": "Computer System Services",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "HAWAII OFF-GRID LLC",
+   "total": 64293.17,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 64293.17,
+     "date": "09/12/2025",
+     "title": "Kahului Transit Center Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "GUIDEHOUSE INC.",
+   "total": 55000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 55000.0,
+     "date": "03/24/2026",
+     "title": "Workday - Human Capital Management, Finance and Technical Support Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Park Consulting Group, Inc.",
+   "total": 50000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 50000.0,
+     "date": "08/25/2025",
+     "title": "Tyler Technologies Land Management Support Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "TETRA TECH, INC.",
+   "total": 50000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 50000.0,
+     "date": "01/30/2024",
+     "title": "2024 CRS Verification Visit Support",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MUNEKIYO & HIRAGA, INC.",
+   "total": 46310.12,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 46310.12,
+     "date": "08/26/2020",
+     "title": "FY21 Miscellaneous Permitting - Central Maui WWRF",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MORIKAWA & ASSOCS LLC",
+   "total": 42500.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 42500.0,
+     "date": "08/14/2025",
+     "title": "Phase 10 Forensic Engineering Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "GYA ARCHITECTS, INC.",
+   "total": 38766.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 38766.0,
+     "date": "03/30/2023",
+     "title": "Kalana O Maui Plaza Deck Repairs & Waterproofing, East & North Sides",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "PUUMAKANI PUBLISHING, LLC",
+   "total": 35000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 35000.0,
+     "date": "06/27/2023",
+     "title": "ADMINISTRATIVE SERVICES TO SUPPORT THE COST OF GOVERNMENT COMMISSION OF THE COUNTY OF MAUI FOR FISCAL YEAR 2024 (July 1, 2023 – June 30, 2024)",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Services",
+     "sol": "RFP 23-01oca"
+    }
+   ]
+  },
+  {
+   "vendor": "HEALTHCARE STAFFING PROFESSIONALS, INC., EMPLOYERS OPTIONS, LLC",
+   "total": 20000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 20000.0,
+     "date": "06/17/2024",
+     "title": "RFP for Temporary Staffing Services for the Primary and General Elections",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": "RFP 24-02-OCC"
+    }
+   ]
+  },
+  {
+   "vendor": "SECURITY RESOURCES PACIFIC, INC.*",
+   "total": 7230.68,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 7230.68,
+     "date": "06/30/2025",
+     "title": "KOM 7th & 8th Floor Intercom",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Goods & Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "Maria Katrina Z. Furukawa",
+   "total": 7036.65,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 7036.65,
+     "date": "01/15/2026",
+     "title": "E-newsletter and Social Media Services",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Services",
+     "sol": null
+    }
+   ]
+  }
+ ]
+}
