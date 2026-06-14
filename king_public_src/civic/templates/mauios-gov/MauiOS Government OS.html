@@ -1,0 +1,368 @@
+<!-- @template name="MauiOS — Charter Government OS" description="The operating system of a charter government — civic loop, departments mapped to the Sovereign Charter, live integrity watch fleet, and the multi-jurisdiction tenancy model. Maui County 001, instanceable anywhere." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MauiOS — Charter Government OS · 12 Stones Global</title>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c100e"/><circle cx="50" cy="42" r="17" fill="none" stroke="#d9b24c" stroke-width="2"/><text x="50" y="48" font-family="Georgia,serif" font-size="16" fill="#f0cf7a" text-anchor="middle">⚖</text><text x="50" y="78" font-family="Georgia,serif" font-size="13" font-weight="600" fill="#d9b24c" text-anchor="middle">MauiOS</text></svg>
+</template>
+<link rel="icon" href="../../assets/logo/favicon-32.png">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--mauios-backdrop);
+    color: var(--mauios-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px 80px; }
+  a { color: inherit; }
+
+  /* Classification bar */
+  .classbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--mauios-faint); padding: 9px 0; border-bottom: 1px solid var(--mauios-line); }
+  .classbar .seal { color: var(--mauios-gold); letter-spacing: 1.6px; }
+  .classbar .r { margin-left: auto; color: var(--mauios-mut); }
+  .classbar .live { color: var(--mauios-ok); }
+
+  /* Masthead */
+  header.top { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; padding: 24px 0 14px; }
+  header.top .crest { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(217,178,76,.4);
+    display: grid; place-items: center; font-size: 26px; color: var(--mauios-gold);
+    background: radial-gradient(120px 120px at 50% 0%, rgba(217,178,76,.12), transparent 70%); }
+  .brand h1 { font-family: var(--font-serif-display); font-weight: 600; font-size: 29px; margin: 0; letter-spacing: .2px; }
+  .brand .sub { color: var(--mauios-mut); font-size: 13px; margin-top: 5px; letter-spacing: .3px; }
+  .jx { margin-left: auto; display: flex; flex-direction: column; gap: 7px; align-items: flex-end; }
+  .jpick { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(217,178,76,.4);
+    background: rgba(217,178,76,.07); border-radius: 11px; padding: 8px 13px; }
+  .jpick .s { font-size: 18px; color: var(--mauios-gold); }
+  .jpick .jn { font-family: var(--font-serif-display); font-size: 15px; font-weight: 600; }
+  .jpick .jid { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-faint); letter-spacing: .4px; }
+  .jpick .badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: .5px; text-transform: uppercase;
+    color: var(--mauios-ok); border: 1px solid rgba(86,192,138,.4); border-radius: 6px; padding: 2px 7px; }
+  .jpick .badge.provisioning { color: var(--mauios-gold); border-color: rgba(217,178,76,.4); }
+  .jpick { cursor: pointer; transition: border-color var(--dur-fast); }
+  .jpick:hover { border-color: var(--mauios-gold); }
+  .jx .swhint { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); letter-spacing: .4px; }
+  .tagline { font-family: var(--font-serif-display); font-style: italic; color: var(--mauios-mut); font-size: 15px; margin: 8px 0 26px; max-width: 86ch; }
+
+  /* Section heads */
+  .secthd { display: flex; align-items: baseline; gap: 12px; margin: 40px 0 16px; }
+  .secthd .n { font-family: var(--font-mono); font-size: 11px; color: var(--mauios-gold); letter-spacing: 1px; }
+  .secthd h3 { font-family: var(--font-serif-display); font-size: 21px; font-weight: 600; margin: 0; }
+  .secthd .hw { font-family: var(--font-serif-display); font-style: italic; font-size: 14px; color: var(--mauios-faint); }
+  .secthd .sp { flex: 1; height: 1px; background: var(--mauios-line); }
+  .secthd .meta { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-faint); letter-spacing: .4px; }
+
+  /* Status pip */
+  .pip { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .5px; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 5px; white-space: nowrap; }
+  .pip.live { color: var(--mauios-ok); background: rgba(86,192,138,.13); }
+  .pip.built { color: var(--mauios-gold-2); background: rgba(217,178,76,.13); }
+  .pip.wired { color: var(--mauios-makai); background: rgba(58,143,183,.14); }
+  .pip.planned { color: var(--mauios-faint); background: rgba(111,130,120,.13); }
+  .pip.model { color: var(--mauios-faint); background: rgba(111,130,120,.13); }
+  .pip.provisioning { color: var(--mauios-gold-2); background: rgba(217,178,76,.13); }
+  .pip.active { color: var(--mauios-ok); background: rgba(86,192,138,.13); }
+
+  /* Civic loop */
+  .loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: stretch; }
+  @media (max-width: 900px) { .loop { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .loop { grid-template-columns: 1fr; } }
+  .ls { position: relative; border: 1px solid var(--mauios-line); border-radius: 13px; padding: 15px 14px 14px;
+    background: linear-gradient(180deg, var(--mauios-panel), var(--mauios-bg-2)); box-shadow: var(--mauios-shadow);
+    text-decoration: none; display: block; transition: border-color var(--dur-fast), transform var(--dur-fast); }
+  a.ls:hover { border-color: rgba(217,178,76,.5); transform: translateY(-2px); }
+  .ls .gl { font-size: 22px; color: var(--mauios-gold); }
+  .ls .step { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); letter-spacing: 1px; margin-top: 8px; }
+  .ls .ln { font-family: var(--font-serif-display); font-size: 17px; font-weight: 600; margin-top: 2px; }
+  .ls .lh { font-family: var(--font-serif-display); font-style: italic; font-size: 11.5px; color: var(--mauios-faint); }
+  .ls .ld { font-size: 12px; color: var(--mauios-mut); margin-top: 9px; }
+  .ls .lf { display: flex; align-items: center; gap: 7px; margin-top: 11px; }
+  .ls .lf .t { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-mut); }
+  .ls .arrow { position: absolute; right: -11px; top: 50%; transform: translateY(-50%); z-index: 2;
+    color: var(--mauios-faint); font-size: 14px; }
+  @media (max-width: 900px) { .ls .arrow { display: none; } }
+
+  /* Departments */
+  .branch { margin-bottom: 22px; }
+  .branchhd { display: flex; align-items: baseline; gap: 10px; margin: 0 0 11px; }
+  .branchhd .bn { font-family: var(--font-mono); font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--mauios-gold-2); }
+  .branchhd .bh { font-family: var(--font-serif-display); font-style: italic; font-size: 12.5px; color: var(--mauios-faint); }
+  .branchhd .bl { flex: 1; height: 1px; background: rgba(255,255,255,.05); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .mod { border: 1px solid var(--mauios-line); border-radius: 12px; padding: 13px 14px 12px; background: var(--mauios-panel);
+    box-shadow: var(--mauios-shadow); display: flex; flex-direction: column; gap: 0; text-decoration: none;
+    transition: border-color var(--dur-fast), transform var(--dur-fast); position: relative; min-height: 132px; }
+  a.mod:hover { border-color: rgba(217,178,76,.5); transform: translateY(-2px); }
+  a.mod::after { content: "↗"; position: absolute; top: 12px; right: 13px; color: var(--mauios-gold); font-size: 12px; }
+  .mod .mr1 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .mod .arts { display: flex; gap: 4px; flex-wrap: wrap; }
+  .mod .ab { font-family: var(--font-mono); font-size: 8.5px; color: var(--mauios-gold); border: 1px solid rgba(217,178,76,.28);
+    border-radius: 4px; padding: 1px 5px; }
+  .mod .mn { font-size: 14px; font-weight: 600; line-height: 1.25; margin-top: 2px; }
+  .mod .mh { font-family: var(--font-serif-display); font-style: italic; font-size: 11.5px; color: var(--mauios-faint); margin-top: 1px; }
+  .mod .ml { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-makai); margin-top: 9px; line-height: 1.4; }
+  .mod .mm { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-mut); margin-top: auto; padding-top: 9px; letter-spacing: .2px; }
+  .mod .mm b { color: var(--mauios-ink); font-weight: 600; }
+
+  /* Watch fleet */
+  .fleet { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .fl { border: 1px solid var(--mauios-line); border-radius: 11px; padding: 12px 14px; background: var(--mauios-panel-2);
+    box-shadow: var(--mauios-shadow); }
+  .fl .fr { display: flex; align-items: center; gap: 8px; }
+  .fl .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .fl .dot.live { background: var(--mauios-ok); box-shadow: 0 0 8px rgba(86,192,138,.5); animation: pulse 2.4s ease-in-out infinite; }
+  .fl .dot.planned { background: var(--mauios-faint); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+  .fl .fn { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--mauios-ink); }
+  .fl .fd { font-size: 11.5px; color: var(--mauios-mut); margin-top: 6px; }
+  .fl .fm { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-gold-2); margin-top: 7px; }
+
+  /* Multi-jurisdiction */
+  .roster { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .rchip { display: flex; align-items: center; gap: 9px; border: 1px solid var(--mauios-line); border-radius: 11px; padding: 9px 13px; background: var(--mauios-panel); cursor: pointer; transition: border-color var(--dur-fast), background var(--dur-fast); }
+  .rchip:hover { border-color: var(--mauios-faint); }
+  .rchip.on { border-color: var(--mauios-gold); background: rgba(217,178,76,.07); box-shadow: var(--mauios-shadow); }
+  .rchip .rs { font-size: 17px; color: var(--mauios-gold); }
+  .rchip .rn { font-size: 13px; font-weight: 600; line-height: 1.1; }
+  .rchip .rid { font-family: var(--font-mono); font-size: 8.5px; color: var(--mauios-faint); letter-spacing: .3px; margin-top: 2px; }
+  .rchip .rtier { font-family: var(--font-mono); font-size: 8px; letter-spacing: .5px; text-transform: uppercase; color: var(--mauios-mut); border: 1px solid var(--mauios-line); border-radius: 4px; padding: 1px 5px; }
+  .tdetail { display: grid; grid-template-columns: 1fr 1.3fr 1.1fr; gap: 14px; margin-top: 14px; }
+  @media (max-width: 880px) { .tdetail { grid-template-columns: 1fr; } }
+  .tdcol { border: 1px solid var(--mauios-line); border-radius: 12px; padding: 14px 16px; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); }
+  .tdcol .tdh { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .7px; text-transform: uppercase; color: var(--mauios-gold); margin-bottom: 9px; }
+  .tdcol .gov { font-size: 13px; color: var(--mauios-ink); line-height: 1.5; }
+  .tdcol .bchips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tdcol .bchip { font-size: 11.5px; color: var(--mauios-mut); border: 1px solid var(--mauios-line); border-radius: 7px; padding: 4px 9px; background: var(--mauios-panel-2); }
+  .tdcol .lrow { display: flex; gap: 9px; align-items: baseline; padding: 5px 0; border-top: 1px solid rgba(255,255,255,.04); }
+  .tdcol .lrow:first-of-type { border-top: 0; }
+  .tdcol .lc { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--mauios-gold-2); white-space: nowrap; }
+  .tdcol .lt { font-size: 12px; color: var(--mauios-mut); }
+  .jurwrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 880px) { .jurwrap { grid-template-columns: 1fr; } }
+  .tenant { border: 1px solid rgba(217,178,76,.4); border-radius: 15px; padding: 18px 20px;
+    background: linear-gradient(150deg, var(--mauios-panel), var(--mauios-bg-2)); box-shadow: var(--mauios-shadow); }
+  .tenant .th { display: flex; align-items: center; gap: 12px; }
+  .tenant .crest2 { width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(217,178,76,.4); display: grid; place-items: center; font-size: 21px; color: var(--mauios-gold); }
+  .tenant .tn { font-family: var(--font-serif-display); font-size: 20px; font-weight: 600; }
+  .tenant .tid { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-faint); letter-spacing: .4px; margin-top: 2px; }
+  .tenant .trow { display: grid; grid-template-columns: 110px 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.05); font-size: 12.5px; }
+  .tenant .trow:first-of-type { margin-top: 14px; }
+  .tenant .trow .l { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .5px; text-transform: uppercase; color: var(--mauios-faint); padding-top: 2px; }
+  .tenant .trow .v { color: var(--mauios-ink); }
+
+  .instance { border: 1px solid var(--mauios-line); border-radius: 14px; padding: 16px 18px; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); }
+  .instance .ih { font-family: var(--font-mono); font-size: 10px; letter-spacing: .7px; text-transform: uppercase; color: var(--mauios-gold); margin-bottom: 4px; }
+  .instance .ihd { font-family: var(--font-serif-display); font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .instance .irow { display: flex; gap: 11px; align-items: baseline; padding: 7px 0; border-top: 1px solid rgba(255,255,255,.05); }
+  .instance .irow .k { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--mauios-gold-2); width: 108px; flex: none; }
+  .instance .irow .d { font-size: 12.5px; color: var(--mauios-mut); }
+
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; margin-top: 16px; }
+  @media (max-width: 720px) { .tiers { grid-template-columns: 1fr; } }
+  .tier { border: 1px dashed var(--mauios-line); border-radius: 12px; padding: 13px 14px; background: rgba(255,255,255,.012); }
+  .tier .tt { display: flex; align-items: center; gap: 9px; }
+  .tier .tg { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-makai); border: 1px solid rgba(58,143,183,.3); border-radius: 5px; padding: 1px 6px; }
+  .tier .tnm { font-family: var(--font-serif-display); font-size: 15px; font-weight: 600; }
+  .tier .tex { font-size: 12px; color: var(--mauios-mut); margin-top: 7px; }
+  .tier .tmodel { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-faint); margin-top: 8px; line-height: 1.45; }
+
+  /* Integrity band */
+  .integrity { margin-top: 30px; border: 1px solid rgba(86,192,138,.28); border-left: 3px solid var(--mauios-ok);
+    border-radius: 13px; padding: 16px 20px; background: rgba(86,192,138,.04); }
+  .integrity .il { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .9px; text-transform: uppercase; color: var(--mauios-ok); }
+  .integrity p { margin: 6px 0 0; font-size: 13.5px; color: var(--mauios-mut); max-width: 92ch; }
+  .integrity b { color: var(--mauios-ink); font-weight: 600; }
+
+  footer { margin-top: 44px; border-top: 1px solid var(--mauios-line); padding-top: 16px;
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline;
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-faint); letter-spacing: .4px; }
+  footer .r { margin-left: auto; }
+</style>
+</head>
+<body data-surface="mauios">
+<div class="wrap">
+
+  <div class="classbar">
+    <span class="seal">⚖ 12 STONES SOVEREIGN CHARTER</span>
+    <span>CHARTER GOVERNMENT OS</span>
+    <span class="r">RAIS LEDGER · <span class="live">5 WATCHERS LIVE</span></span>
+  </div>
+
+  <header class="top">
+    <div class="crest">⚖</div>
+    <div class="brand">
+      <h1>MauiOS</h1>
+      <div class="sub">The operating system of a charter government · He ʻōnaehana aupuni</div>
+    </div>
+    <div class="jx">
+      <div class="jpick" id="jpick">
+        <span class="s">⚖</span>
+        <div>
+          <div class="jn" id="jn">Maui County</div>
+          <div class="jid" id="jid">TENANT MAU-001 · Hawaiʻi</div>
+        </div>
+        <span class="badge">active</span>
+      </div>
+      <span class="swhint">jurisdiction · click to switch · 6 instances · State → counties → municipal</span>
+    </div>
+  </header>
+  <div class="tagline">One charter, the whole machinery of governance — forecast, inform, decide, publish, audit. Maui County runs as tenant 001; the same OS instances for any municipality, anywhere, by swapping its charter, code, feeds, zones and seal.</div>
+
+  <div class="secthd"><span class="n">00</span><h3>The civic loop</h3><span class="hw">Ka huila kīwila</span><span class="sp"></span><span class="meta">the government's heartbeat</span></div>
+  <div class="loop" id="loop"></div>
+
+  <div class="secthd"><span class="n">01</span><h3>Departments</h3><span class="hw">Nā ʻoihana</span><span class="sp"></span><span class="meta" id="modmeta"></span></div>
+  <div id="branches"></div>
+
+  <div class="secthd"><span class="n">02</span><h3>Kilo Aupuni — integrity watch fleet</h3><span class="hw">Nā kiaʻi</span><span class="sp"></span><span class="meta">facts + source · correlations are questions</span></div>
+  <div class="fleet" id="fleet"></div>
+
+  <div class="secthd"><span class="n">03</span><h3>One charter, many jurisdictions</h3><span class="hw">He ʻāpana, he lehulehu</span><span class="sp"></span><span class="meta">multi-tenant model</span></div>
+  <div class="roster" id="roster"></div>
+  <div class="jurwrap">
+    <div class="tenant" id="tenant"></div>
+    <div class="instance">
+      <div class="ih">What an instance loads</div>
+      <div class="ihd">The jurisdiction-agnostic contract</div>
+      <div id="instance"></div>
+    </div>
+  </div>
+  <div class="tdetail" id="tdetail"></div>
+  <div class="tiers" id="tiers"></div>
+
+  <div class="integrity">
+    <div class="il">Integrity standard</div>
+    <p><b>Facts plus source links. Correlations are questions, never accusations.</b> Every figure traces to a public record — the agenda file, the statute, the campaign-finance filing. The 14th Stone glyph audit tags every output before it publishes. The foundation: Christ energy = aloha in action.</p>
+  </div>
+
+  <footer>
+    <span>MauiOS · 12 Stones Global Inc.</span>
+    <span id="ver"></span>
+    <span id="snap"></span>
+    <a href="../title19-crosswalk/Title19 Crosswalk.html" style="color:var(--mauios-gold-2);text-decoration:none">Charter ⇄ Law Crosswalk →</a>
+    <span class="r">aloha in action</span>
+  </footer>
+</div>
+
+<script src="gov-os-data.js"></script>
+<script>
+(function () {
+  var G = window.GOVOS;
+  function esc(s) { return (s || "").replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+  function pip(s) { return '<span class="pip ' + s + '">' + s + '</span>'; }
+
+  /* Civic loop */
+  (function () {
+    var host = document.getElementById("loop");
+    host.innerHTML = G.loop.map(function (s, i) {
+      var arrow = i < G.loop.length - 1 ? '<span class="arrow">→</span>' : '';
+      var inner =
+        '<span class="gl">' + s.glyph + '</span>' +
+        '<div class="step">' + String(i + 1).padStart(2, "0") + ' · ' + s.k.toUpperCase() + '</div>' +
+        '<div class="ln">' + esc(s.nm) + '</div>' +
+        '<div class="lh">' + esc(s.haw) + '</div>' +
+        '<div class="ld">' + esc(s.d) + '</div>' +
+        '<div class="lf">' + pip(s.status) + '<span class="t">' + esc(s.tool) + '</span></div>';
+      if (s.href) return '<a class="ls" href="' + s.href + '">' + inner + arrow + '</a>';
+      return '<div class="ls">' + inner + arrow + '</div>';
+    }).join("");
+  })();
+
+  /* Departments */
+  (function () {
+    var host = document.getElementById("branches");
+    var counts = { live: 0, built: 0, wired: 0, planned: 0 }, total = 0;
+    host.innerHTML = G.branches.map(function (b) {
+      var cards = b.modules.map(function (m) {
+        total++; if (counts[m.status] != null) counts[m.status]++;
+        var arts = m.art.map(function (a) { return '<span class="ab">Art.' + a + '</span>'; }).join("");
+        var inner =
+          '<div class="mr1">' + pip(m.status) + '<span class="arts">' + arts + '</span></div>' +
+          '<div class="mn">' + esc(m.nm) + '</div>' +
+          '<div class="mh">' + esc(m.haw) + '</div>' +
+          '<div class="ml">' + esc(m.law) + '</div>' +
+          '<div class="mm"><b>' + esc(m.metric) + '</b>' + (m.tool ? ' · ' + esc(m.tool) : '') + '</div>';
+        if (m.href) return '<a class="mod" href="' + m.href + '">' + inner + '</a>';
+        return '<div class="mod">' + inner + '</div>';
+      }).join("");
+      return '<div class="branch">' +
+        '<div class="branchhd"><span class="bn">' + esc(b.nm) + '</span><span class="bh">' + esc(b.haw) + '</span><span class="bl"></span></div>' +
+        '<div class="grid">' + cards + '</div></div>';
+    }).join("");
+    document.getElementById("modmeta").textContent =
+      total + " modules · " + counts.live + " live · " + counts.built + " built · " + counts.wired + " wired · " + counts.planned + " planned";
+  })();
+
+  /* Fleet */
+  (function () {
+    document.getElementById("fleet").innerHTML = G.fleet.map(function (f) {
+      return '<div class="fl"><div class="fr"><span class="dot ' + f.status + '"></span>' +
+        '<span class="fn">' + esc(f.nm) + '</span>' + pip(f.status) + '</div>' +
+        '<div class="fd">' + esc(f.d) + '</div><div class="fm">' + esc(f.metric) + '</div></div>';
+    }).join("");
+  })();
+
+  /* Tenant switcher + roster */
+  var TEN = G.tenants;
+  var ti = Math.max(0, TEN.findIndex(function (x) { return x.id === "MAU-001"; }));
+  function renderRoster() {
+    document.getElementById("roster").innerHTML = TEN.map(function (t, i) {
+      return '<div class="rchip' + (i === ti ? ' on' : '') + '" data-i="' + i + '">' +
+        '<span class="rs">' + t.seal + '</span>' +
+        '<div><div class="rn">' + esc(t.nm) + '</div><div class="rid">' + esc(t.id) + ' · ' + esc(t.region) + '</div></div>' +
+        '<span class="rtier">' + esc(t.jtier) + '</span>' + pip(t.status) + '</div>';
+    }).join("");
+    document.querySelectorAll("#roster .rchip").forEach(function (el) {
+      el.addEventListener("click", function () { ti = +el.dataset.i; renderTenant(); });
+    });
+  }
+  function renderTenant() {
+    var t = TEN[ti];
+    document.querySelector('#jpick .s').textContent = t.seal;
+    document.getElementById('jn').textContent = t.nm;
+    document.getElementById('jid').textContent = 'TENANT ' + t.id + ' · ' + t.region;
+    var bdg = document.querySelector('#jpick .badge');
+    bdg.textContent = t.status; bdg.className = 'badge ' + t.status;
+    var rows = [["Charter", t.charter], ["Legal code", t.code], ["Zones", t.zones], ["Population", t.pop], ["Live feeds", t.feed]];
+    if (t.anchor) rows.push(["Anchor", t.anchor]);
+    document.getElementById("tenant").innerHTML =
+      '<div class="th"><div class="crest2">' + t.seal + '</div><div>' +
+        '<div class="tn">' + esc(t.nm) + '</div><div class="tid">TENANT ' + esc(t.id) + ' · ' + esc(t.region) + ' · ' + esc(t.status).toUpperCase() + (t.parent ? ' · under ' + esc(t.parent) : '') + '</div></div></div>' +
+      rows.map(function (r) { return '<div class="trow"><div class="l">' + r[0] + '</div><div class="v">' + esc(r[1]) + '</div></div>'; }).join("");
+    document.getElementById("instance").innerHTML = t.loads.map(function (r) {
+      return '<div class="irow"><span class="k">' + esc(r[0]) + '</span><span class="d">' + esc(r[1]) + '</span></div>';
+    }).join("");
+    document.getElementById("tdetail").innerHTML =
+      '<div class="tdcol"><div class="tdh">Governing</div><div class="gov">' + esc(t.governing) + '</div></div>' +
+      '<div class="tdcol"><div class="tdh">Key bodies & agencies</div><div class="bchips">' +
+        t.bodies.map(function (b) { return '<span class="bchip">' + esc(b) + '</span>'; }).join("") + '</div></div>' +
+      '<div class="tdcol"><div class="tdh">Legal anchors</div>' +
+        t.legal.map(function (l) { return '<div class="lrow"><span class="lc">' + esc(l[0]) + '</span><span class="lt">' + esc(l[1]) + '</span></div>'; }).join("") + '</div>';
+    renderRoster();
+  }
+  document.getElementById('jpick').addEventListener('click', function () { ti = (ti + 1) % TEN.length; renderTenant(); });
+  renderTenant();
+
+  /* Tiers */
+  document.getElementById("tiers").innerHTML = G.tiers.map(function (t) {
+    return '<div class="tier"><div class="tt"><span class="tg">' + t.tier + '</span><span class="tnm">' + esc(t.nm) + '</span>' + pip(t.status) + '</div>' +
+      '<div class="tex">' + esc(t.ex) + '</div><div class="tmodel">↳ ' + esc(t.model) + '</div></div>';
+  }).join("");
+
+  document.getElementById("ver").textContent = "OS " + G.meta.version;
+  document.getElementById("snap").textContent = "snapshot · " + G.meta.snapshot;
+})();
+</script>
+</body>
+</html>

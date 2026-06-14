@@ -1,0 +1,76 @@
+/* ============================================================
+   elementLOTUS · Color tokens
+   ------------------------------------------------------------
+   A warm, rich dark palette — "a creative studio, not a terminal."
+   Near-black volcanic browns, bone-white ink, a single gold accent
+   pulled straight from the lotus mark. Status colors are muted and
+   earthy, never neon. Two faint radial glows (gold + cool blue) sit
+   over the base background to give the dark room some depth.
+   ============================================================ */
+
+:root {
+  /* ---- Base surfaces (darkest → lightest) ---- */
+  --bg:        #0c0b09;   /* app background — warm volcanic black */
+  --panel:     #16140f;   /* primary panel / chrome */
+  --panel-2:   #1e1b14;   /* inset fields, raised rows */
+  --panel-3:   #2a261c;   /* hover / active fills */
+  --line:      #34301f;   /* hairline borders, dividers */
+
+  /* ---- Ink (text) ---- */
+  --ink:       #efe9da;   /* primary text — warm bone white */
+  --ink-dim:   #b3a98f;   /* secondary text, labels */
+  --ink-faint: #756b56;   /* tertiary, metadata, placeholders */
+
+  /* ---- Accent — the lotus gold ---- */
+  --accent:     #e3ad33;            /* primary gold */
+  --accent-2:   #f4c95d;            /* lighter gold — hover, links, highlights */
+  --accent-dim: rgba(227,173,51,0.14); /* tinted gold wash — active fills */
+  --accent-ink: #2a1d04;            /* text that sits ON a gold fill */
+
+  /* ---- Brand mark ---- */
+  --lotus-purple: #2c2150;  /* deep purple field behind the lotus star */
+  --lotus-orchid: #a23a86;  /* magenta-orchid lotus center */
+
+  /* ---- Status / semantic ---- */
+  --ok:    #6abf86;   /* success / kept / online — sage green */
+  --warn:  #e3ad33;   /* warning / pending — gold (== accent) */
+  --err:   #e06a4a;   /* error / rejected / offline — terracotta */
+  --info:  #74a8d8;   /* informational — dusty blue */
+
+  /* Tinted status backgrounds (sit behind badges, banners, dots) */
+  --ok-wash:   rgba(106,191,134,0.15);
+  --warn-wash: rgba(227,173,51,0.15);
+  --err-wash:  rgba(224,106,74,0.12);
+  --info-wash: rgba(116,168,216,0.12);
+
+  /* ---- Semantic aliases (prefer these in components) ---- */
+  --surface-app:      var(--bg);
+  --surface-panel:    var(--panel);
+  --surface-inset:    var(--panel-2);
+  --surface-raised:   var(--panel-3);
+  --border-hairline:  var(--line);
+  --border-focus:     var(--accent);
+
+  --text-primary:     var(--ink);
+  --text-secondary:   var(--ink-dim);
+  --text-tertiary:    var(--ink-faint);
+  --text-on-accent:   var(--accent-ink);
+  --text-link:        var(--accent-2);
+
+  /* ---- Ambient background glows (warm gold + cool blue) ---- */
+  --glow-gold: radial-gradient(1200px 620px at 16% -10%, rgba(227,173,51,0.07), transparent 60%); /* @kind other */
+  --glow-blue: radial-gradient(900px 520px at 102% -4%, rgba(116,168,216,0.05), transparent 55%); /* @kind other */
+  --app-backdrop: var(--glow-gold), var(--glow-blue), var(--bg);
+
+  /* ---- Content "style zone" palette ----
+     The seven visual worlds a song's video can inhabit. These are
+     CONTENT colors (used to tag style presets), distinct from the UI
+     chrome above. Each is a saturated, cinematic anchor hue. */
+  --zone-underwater:  #0F6E56;  /* Underwater Mystical · Makai */
+  --zone-memorial:    #854F0B;  /* Hawaiian Memorial · Mauka */
+  --zone-cosmic:      #3C3489;  /* Cosmic Polynesian · Universal */
+  --zone-affirmation: #3B6D11;  /* Affirmation Anthem · Kula */
+  --zone-fire:        #993C1D;  /* Fire & Faith · Mauka */
+  --zone-reggae:      #185FA5;  /* Reggae Island · Makai */
+  --zone-dark:        #26215C;  /* Dark Mystical · Override */
+}

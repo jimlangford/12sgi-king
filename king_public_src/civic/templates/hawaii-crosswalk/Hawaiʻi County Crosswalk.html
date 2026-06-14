@@ -1,0 +1,281 @@
+<!-- @template name="Hawaiʻi County Crosswalk" description="MauiOS · County of Hawaiʻi — Charter of the County of Hawaiʻi mapped against Hawaiʻi County Code, HRS, the State Constitution, and the 12 Stones Sovereign Charter overlay. Same engine as Maui's, instanced for HAW-004." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hawaiʻi County Crosswalk — MauiOS · 12 Stones Global</title>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c100e"/><text x="50" y="46" font-family="Georgia,serif" font-size="22" fill="#d9b24c" text-anchor="middle">⬢</text><text x="50" y="70" font-family="Georgia,serif" font-size="13" font-weight="600" fill="#f0cf7a" text-anchor="middle">HawCo</text></svg>
+</template>
+<link rel="icon" href="../../assets/logo/favicon-32.png">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--mauios-backdrop); color: var(--mauios-ink); font-family: var(--font-sans); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px 80px; }
+  a { color: inherit; }
+
+  .classbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mauios-faint); padding: 9px 0; border-bottom: 1px solid var(--mauios-line); }
+  .classbar .seal { color: var(--mauios-gold); letter-spacing: 1.6px; }
+  .classbar .r { margin-left: auto; color: var(--mauios-mut); }
+
+  header.top { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; padding: 22px 0 14px; }
+  header.top .crest { width: 50px; height: 50px; border-radius: 13px; border: 1px solid rgba(217,178,76,.4); display: grid; place-items: center; font-size: 23px; color: var(--mauios-gold); }
+  .brand h1 { font-family: var(--font-serif-display); font-weight: 600; font-size: 25px; margin: 0; }
+  .brand .sub { color: var(--mauios-mut); font-size: 12.5px; margin-top: 4px; }
+  .pills { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 10.5px; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--mauios-line); color: var(--mauios-mut); }
+  .pill.gold { color: var(--mauios-gold-2); border-color: rgba(217,178,76,.5); background: rgba(217,178,76,.08); }
+  a.xnav { font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-gold-2); text-decoration: none; border-bottom: 1px dotted rgba(217,178,76,.5); }
+  .tagline { font-family: var(--font-serif-display); font-style: italic; color: var(--mauios-mut); font-size: 14.5px; margin: 4px 0 18px; max-width: 86ch; }
+
+  .note { display: flex; gap: 11px; align-items: flex-start; border: 1px solid rgba(155,123,184,.3); border-left: 3px solid #9b7bb8; border-radius: 11px; padding: 12px 15px; margin-bottom: 24px; background: rgba(155,123,184,.05); }
+  .note .ic { color: #9b7bb8; font-size: 14px; }
+  .note p { margin: 0; font-size: 12.5px; color: var(--mauios-mut); max-width: 96ch; }
+  .note b { color: var(--mauios-ink); font-weight: 600; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 6px; }
+  @media (max-width: 760px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi { background: linear-gradient(180deg, var(--mauios-panel), var(--mauios-bg-2)); border: 1px solid var(--mauios-line); border-radius: 13px; padding: 14px 14px 12px; box-shadow: var(--mauios-shadow); }
+  .kpi .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .7px; text-transform: uppercase; color: var(--mauios-faint); }
+  .kpi .v { font-family: var(--font-serif-display); font-size: 24px; margin-top: 7px; font-weight: 600; }
+  .kpi .d { font-size: 11px; color: var(--mauios-mut); margin-top: 3px; }
+
+  .secthd { display: flex; align-items: baseline; gap: 12px; margin: 36px 0 14px; }
+  .secthd .n { font-family: var(--font-mono); font-size: 11px; color: var(--mauios-gold); letter-spacing: 1px; }
+  .secthd h3 { font-family: var(--font-serif-display); font-size: 20px; font-weight: 600; margin: 0; }
+  .secthd .hw { font-family: var(--font-serif-display); font-style: italic; font-size: 13px; color: var(--mauios-faint); }
+  .secthd .sp { flex: 1; height: 1px; background: var(--mauios-line); }
+  .secthd .meta { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-faint); }
+
+  /* Conflicts */
+  .conflicts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .conflicts { grid-template-columns: 1fr; } }
+  .cf { border: 1px solid var(--mauios-line); border-radius: 12px; padding: 13px 15px; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); }
+  .cf.alert { border-left: 3px solid var(--mauios-pele); }
+  .cf.watch { border-left: 3px solid var(--mauios-gold); }
+  .cf.resolved { border-left: 3px solid var(--mauios-faint); opacity: .72; }
+  .cf .row1 { display: flex; align-items: center; gap: 10px; }
+  .cf .sev { font-family: var(--font-mono); font-size: 9px; letter-spacing: .6px; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; }
+  .cf.alert .sev { color: var(--mauios-pele); background: rgba(217,98,43,.13); }
+  .cf.watch .sev { color: var(--mauios-gold); background: rgba(217,178,76,.12); }
+  .cf .art { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-gold-2); }
+  .cf h4 { font-size: 14px; font-weight: 600; margin: 8px 0 0; }
+  .cf .against { font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-makai); margin-top: 5px; }
+  .cf p { font-size: 12.5px; color: var(--mauios-mut); margin: 7px 0 0; }
+  .cf .src { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); margin-top: 8px; }
+
+  /* Controls */
+  .controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--mauios-line); border-radius: 10px; overflow: hidden; }
+  .seg button { background: transparent; border: 0; color: var(--mauios-mut); font-family: var(--font-sans); font-size: 12.5px; padding: 7px 14px; cursor: pointer; }
+  .seg button.on { background: var(--mauios-panel-2); color: var(--mauios-ink); }
+  .search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--mauios-line); border-radius: 10px; padding: 6px 12px; background: var(--mauios-panel); flex: 1; min-width: 200px; max-width: 340px; }
+  .search input { background: transparent; border: 0; outline: 0; color: var(--mauios-ink); font-family: var(--font-sans); font-size: 13px; width: 100%; }
+  .search .mag { color: var(--mauios-faint); }
+  .chips { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 10.5px; padding: 5px 11px; border-radius: 8px; border: 1px solid var(--mauios-line); color: var(--mauios-mut); cursor: pointer; user-select: none; }
+  .chip .sw { width: 9px; height: 9px; border-radius: 3px; }
+  .chip.off { opacity: .4; }
+
+  /* Table */
+  .xtable { border: 1px solid var(--mauios-line); border-radius: 13px; overflow: hidden; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); }
+  .xrow { border-bottom: 1px solid rgba(255,255,255,.04); }
+  .xrow:last-child { border-bottom: 0; }
+  .xhead { display: grid; grid-template-columns: 60px 1fr 180px 130px 76px; gap: 13px; align-items: center; padding: 12px 16px; cursor: pointer; }
+  .xhead:hover { background: rgba(255,255,255,.025); }
+  .xrow.anchor .xhead { box-shadow: inset 3px 0 0 var(--mauios-gold); }
+  .xrow.alert .xhead { box-shadow: inset 3px 0 0 var(--mauios-pele); }
+  .art { font-family: var(--font-mono); font-size: 11.5px; color: var(--mauios-gold); }
+  .ttl { font-weight: 600; font-size: 14px; }
+  .ttl small { display: block; font-family: var(--font-serif-display); font-style: italic; font-weight: 400; color: var(--mauios-faint); font-size: 12px; margin-top: 1px; }
+  .sov { font-family: var(--font-mono); font-size: 10px; color: #b79fd0; }
+  .sov b { color: #c9b3e0; }
+  .bodydots { display: flex; gap: 5px; flex-wrap: wrap; }
+  .bd { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-mut); }
+  .bd .sw { width: 8px; height: 8px; border-radius: 2px; }
+  .bd.z0 { opacity: .25; }
+  .st { font-family: var(--font-mono); font-size: 10px; letter-spacing: .4px; text-transform: uppercase; text-align: right; }
+  .st.active { color: var(--mauios-ok); } .st.pending { color: var(--mauios-warn); } .st.alert { color: var(--mauios-pele); }
+  .xbody { display: none; padding: 4px 16px 18px 89px; }
+  .xrow.open .xbody { display: block; }
+  .xbody .desc { color: var(--mauios-mut); font-size: 13px; max-width: 92ch; margin-bottom: 14px; }
+  .cgroups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 900px) { .cgroups { grid-template-columns: 1fr; } .xhead { grid-template-columns: 52px 1fr 76px; } .xhead .bodydots, .xhead .sov-col { display: none; } .xbody { padding-left: 16px; } }
+  .cg { border: 1px solid var(--mauios-line); border-left-width: 3px; border-radius: 9px; padding: 9px 12px; background: var(--mauios-panel-2); }
+  .cg.empty { display: none; }
+  .cg .cgh { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .cg .cgh .nm { font-family: var(--font-mono); font-size: 10px; letter-spacing: .5px; text-transform: uppercase; }
+  .cite { display: flex; gap: 9px; align-items: baseline; padding: 3px 0; border-top: 1px solid rgba(255,255,255,.035); }
+  .cite:first-of-type { border-top: 0; }
+  .cite .c { font-family: var(--font-mono); font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .cite .ct2 { font-size: 12px; color: var(--mauios-mut); }
+
+  .empty-note { font-family: var(--font-mono); font-size: 11px; color: var(--mauios-faint); padding: 18px; text-align: center; }
+
+  footer { margin-top: 44px; border-top: 1px solid var(--mauios-line); padding-top: 16px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-faint); letter-spacing: .4px; }
+  footer .r { margin-left: auto; }
+</style>
+</head>
+<body data-surface="mauios">
+<div class="wrap">
+
+  <div class="classbar">
+    <span class="seal">⬢ COUNTY OF HAWAIʻI</span>
+    <span>CHARTER ⇄ CODE CROSSWALK · HAW-004</span>
+    <span class="r" id="feedstate">FEED · checking…</span>
+  </div>
+
+  <header class="top">
+    <div class="crest">⬢</div>
+    <div class="brand">
+      <h1>Hawaiʻi County Crosswalk</h1>
+      <div class="sub">MauiOS · County Charter ⇄ Hawaiʻi County Code ⇄ HRS · seat at Hilo · 9-member Council</div>
+    </div>
+    <div class="pills">
+      <span class="pill gold">TENANT HAW-004 · ACTIVE</span>
+      <a class="xnav" href="../state-law/State of Hawaiʻi Law Index.html">State law index →</a>
+    </div>
+  </header>
+  <div class="tagline">The same crosswalk engine as Maui's — the Charter of the County of Hawaiʻi mapped to its code and to the State, with the 12 Stones Sovereign Charter as the overlay every function answers up to.</div>
+
+  <div class="note"><span class="ic">◆</span><p id="notetext"></p></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="secthd"><span class="n">01</span><h3>Live conflicts &amp; watch items</h3><span class="sp"></span><span class="meta" id="cfmeta"></span></div>
+  <div class="conflicts" id="conflicts"></div>
+
+  <div class="secthd"><span class="n">02</span><h3>Charter ⇄ code crosswalk</h3><span class="sp"></span><span class="meta">click a row · gold edge = anchor</span></div>
+  <div class="controls">
+    <div class="search"><span class="mag">⌕</span><input id="q" type="text" placeholder="Search functions, statutes…" autocomplete="off"></div>
+    <div class="seg" id="status">
+      <button data-s="all" class="on">All</button>
+      <button data-s="active">Active</button>
+      <button data-s="pending">Pending</button>
+      <button data-s="alert">Alerts</button>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="xtable" id="xtable"></div>
+
+  <footer>
+    <span>MauiOS · 12 Stones Global Inc.</span>
+    <span>County of Hawaiʻi · HAW-004</span>
+    <span id="snap"></span>
+    <a href="../mauios-gov/MauiOS Government OS.html" style="color:var(--mauios-gold-2);text-decoration:none">MauiOS home →</a>
+    <span class="r">aloha in action</span>
+  </footer>
+</div>
+
+<script src="hawaii-crosswalk-data.js"></script>
+<script>
+(function () {
+  var H = window.HAWCROSS;
+  var BODIES = H.bodies, FUNCS = H.funcs;
+  var active = {}; BODIES.forEach(function (b) { active[b.id] = true; });
+  var state = { status: "all", q: "" };
+  var conflicts = [];
+
+  function esc(s) { return (s || "").replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+  function citeCount(f) { var n = 0; BODIES.forEach(function (b) { n += (f.cites[b.id] || []).length; }); return n; }
+
+  document.getElementById("notetext").innerHTML = "<b>County Charter ⇄ code, with the Sovereign Charter overlay.</b> " + esc(H.meta.note.replace("County Charter functions crosswalked to ", "Functions crosswalked to "));
+  document.getElementById("snap").textContent = "snapshot · " + H.meta.snapshot;
+
+  /* KPIs */
+  (function () {
+    var totalCites = 0, sov = 0; FUNCS.forEach(function (f) { totalCites += citeCount(f); if ((f.cites.sovereign || []).length) sov++; });
+    document.getElementById("kpis").innerHTML = [
+      { k: "Charter functions", v: FUNCS.length, d: "crosswalked below" },
+      { k: "Law bodies", v: BODIES.length, d: "Charter · HCC · HRS · Const · Sov · Ord" },
+      { k: "Section citations", v: totalCites, d: "real statute references" },
+      { k: "Sovereign overlay", v: sov + "/" + FUNCS.length, d: "functions mapped to 12 Stones" },
+    ].map(function (x) { return '<div class="kpi"><div class="k">' + x.k + '</div><div class="v">' + x.v + '</div><div class="d">' + x.d + '</div></div>'; }).join("");
+  })();
+
+  /* Conflicts */
+  function renderConflicts() {
+    var host = document.getElementById("conflicts");
+    if (!conflicts.length) { host.innerHTML = '<div class="empty-note">No conflicts on file — Hawaiʻi County feed pending. Items hydrate from agendas-HAW-004.json.</div>'; document.getElementById("cfmeta").textContent = "feed pending"; return; }
+    var order = { alert: 0, watch: 1, resolved: 2 };
+    host.innerHTML = conflicts.slice().sort(function (a, b) { return order[a.sev] - order[b.sev]; }).map(function (c) {
+      return '<div class="cf ' + c.sev + '"><div class="row1"><span class="sev">' + c.sev + '</span><span class="art">Art.' + c.art + '</span></div>' +
+        '<h4>' + esc(c.title) + '</h4><div class="against">⇄ ' + esc(c.against) + '</div><p>' + esc(c.desc) + '</p>' +
+        '<div class="src">source · ' + esc(c.source) + ' · ' + esc(c.date) + '</div></div>';
+    }).join("");
+    var alerts = conflicts.filter(function (c) { return c.sev === "alert"; }).length;
+    document.getElementById("cfmeta").textContent = alerts + " active · " + conflicts.length + " tracked";
+  }
+
+  /* Chips */
+  document.getElementById("chips").innerHTML = BODIES.map(function (b) {
+    var n = 0; FUNCS.forEach(function (f) { n += (f.cites[b.id] || []).length; });
+    return '<span class="chip" data-b="' + b.id + '"><span class="sw" style="background:' + b.color + '"></span>' + b.label + ' <span style="color:var(--mauios-faint)">' + n + '</span></span>';
+  }).join("");
+  document.querySelectorAll("#chips .chip").forEach(function (el) {
+    el.addEventListener("click", function () { var id = el.dataset.b; active[id] = !active[id]; el.classList.toggle("off", !active[id]); renderTable(); });
+  });
+
+  function matchFunc(f) {
+    if (state.status !== "all" && f.s !== state.status) return false;
+    if (!state.q) return true;
+    var hay = (f.n + " " + f.t + " " + f.h + " " + f.desc + " Art." + f.sov).toLowerCase();
+    BODIES.forEach(function (b) { (f.cites[b.id] || []).forEach(function (c) { hay += " " + c[0] + " " + c[1]; }); });
+    return hay.indexOf(state.q.toLowerCase()) >= 0;
+  }
+
+  function renderTable() {
+    var host = document.getElementById("xtable"); host.innerHTML = ""; var shown = 0;
+    FUNCS.forEach(function (f) {
+      if (!matchFunc(f)) return; shown++;
+      var row = document.createElement("div");
+      row.className = "xrow" + (f.anchor ? " anchor" : "") + (f.s === "alert" ? " alert" : "");
+      var dots = BODIES.map(function (b) { var n = (f.cites[b.id] || []).length; return '<span class="bd ' + (n ? "" : "z0") + '"><span class="sw" style="background:' + b.color + '"></span>' + b.short + ' ' + n + '</span>'; }).join("");
+      var groups = BODIES.map(function (b) {
+        var list = f.cites[b.id] || []; if (!list.length || !active[b.id]) return '<div class="cg empty"></div>';
+        var rows = list.map(function (c) { return '<div class="cite"><span class="c" style="color:' + b.color + '">' + esc(c[0] || "—") + '</span><span class="ct2">' + esc(c[1]) + '</span></div>'; }).join("");
+        return '<div class="cg" style="border-left-color:' + b.color + '"><div class="cgh"><span class="nm" style="color:' + b.color + '">' + b.label + '</span></div>' + rows + '</div>';
+      }).join("");
+      row.innerHTML =
+        '<div class="xhead"><span class="art">Art.' + f.n + '</span>' +
+          '<span class="ttl">' + esc(f.t) + '<small>' + esc(f.h) + '</small></span>' +
+          '<span class="sov sov-col">↑ Sovereign <b>Art.' + esc(f.sov) + '</b></span>' +
+          '<span class="bodydots">' + dots + '</span>' +
+          '<span class="st ' + f.s + '">' + f.s + '</span></div>' +
+        '<div class="xbody"><div class="desc">' + esc(f.desc) + '</div><div class="cgroups">' + groups + '</div></div>';
+      row.querySelector(".xhead").addEventListener("click", function () { row.classList.toggle("open"); });
+      host.appendChild(row);
+    });
+    if (!shown) host.innerHTML = '<div class="empty-note">No functions match this filter.</div>';
+  }
+
+  document.getElementById("status").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    this.querySelectorAll("button").forEach(function (x) { x.classList.remove("on"); });
+    b.classList.add("on"); state.status = b.dataset.s; renderTable();
+  });
+  document.getElementById("q").addEventListener("input", function () { state.q = this.value; renderTable(); });
+
+  renderConflicts(); renderTable();
+
+  /* Hawaiʻi County feed */
+  (function () {
+    var el = document.getElementById("feedstate"); var done = false;
+    var timer = setTimeout(function () { if (!done) { done = true; el.innerHTML = 'FEED · <span style="color:var(--mauios-faint)">SNAPSHOT</span> · ' + H.meta.snapshot; } }, 3000);
+    try {
+      fetch(H.meta.feed, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (data) {
+        if (done) return; done = true; clearTimeout(timer);
+        if (data && data.meta && data.meta.jurisdiction && data.meta.jurisdiction !== H.meta.jurisdiction) { el.innerHTML = 'FEED · <span style="color:var(--mauios-warn)">MISMATCH</span> · snapshot'; return; }
+        if (data && Array.isArray(data.conflicts)) { conflicts = data.conflicts; renderConflicts(); }
+        var n = (data && Array.isArray(data.agendas)) ? data.agendas.length : "—";
+        el.innerHTML = 'FEED · <span style="color:var(--mauios-ok)">LIVE</span> · ' + ((data && data.meta && data.meta.source) || 'HAW-004') + ' · ' + n + ' agendas';
+      }).catch(function () { if (!done) { done = true; clearTimeout(timer); el.innerHTML = 'FEED · <span style="color:var(--mauios-faint)">SNAPSHOT</span> · ' + H.meta.snapshot; } });
+    } catch (e) { clearTimeout(timer); el.innerHTML = 'FEED · SNAPSHOT'; }
+  })();
+})();
+</script>
+</body>
+</html>

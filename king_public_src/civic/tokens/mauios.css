@@ -1,0 +1,71 @@
+/* ============================================================
+   12sgi · MauiOS surface — per demos/MAUIOS_POC.html (the spec)
+   ------------------------------------------------------------
+   Sovereign County OS register: warm-dark GREEN-TINTED ground
+   (not the studio's brown, not paper-light), ceremonial gold
+   seal, serif display, zone/lineage civic palette. Reworked
+   2026-06-09 to match the shipped POC — supersedes the earlier
+   paper-light proposal. Platform target: locally-hosted
+   WordPress via WP REST API (Quadcast decision 2026-06-09).
+   ============================================================ */
+
+:root {
+  /* ---- MauiOS primitives (from MAUIOS_POC.html) ---- */
+  --mauios-bg:      #0c100e;
+  --mauios-bg-2:    #111714;
+  --mauios-panel:   #151d19;
+  --mauios-panel-2: #1a2420;
+  --mauios-line:    #243029;
+
+  --mauios-ink:   #eef3ef;
+  --mauios-mut:   #9fb1a6;
+  --mauios-faint: #6f8278;
+
+  --mauios-gold:   #d9b24c;
+  --mauios-gold-2: #f0cf7a;
+  --mauios-seal:   #c9a13b;
+
+  --mauios-ok:   #56c08a;
+  --mauios-warn: #d9b24c;
+
+  /* Civic zone palette (MauiOS context) */
+  --mauios-mauka: #3f9b6d;
+  --mauios-kula:  #c9943f;
+  --mauios-makai: #3a8fb7;
+  --mauios-univ:  #b8c2cc;
+
+  /* Lineage palette (MauiOS context) */
+  --mauios-kane:    #e0b54a;
+  --mauios-ku:      #b3552f;
+  --mauios-lono:    #3f9b6d;
+  --mauios-kanaloa: #2f7fa6;
+  --mauios-pele:    #d9622b;
+
+  /* Dual glows: gold NE + sea SW over green-black */
+  --mauios-glow-gold: radial-gradient(1100px 620px at 78% -8%, rgba(217,178,76,0.10), transparent 60%); /* @kind other */
+  --mauios-glow-sea:  radial-gradient(900px 560px at 8% 108%, rgba(47,127,166,0.10), transparent 60%); /* @kind other */
+  --mauios-backdrop: var(--mauios-glow-gold), var(--mauios-glow-sea), var(--mauios-bg); /* @kind other */
+
+  --mauios-shadow: 0 1px 0 rgba(255,255,255,0.03), 0 18px 44px rgba(0,0,0,0.5); /* @kind other */
+}
+
+/* Apply the whole surface. */
+[data-surface="mauios"] {
+  --bg:        var(--mauios-bg);
+  --panel:     var(--mauios-panel);
+  --panel-2:   var(--mauios-panel-2);
+  --panel-3:   #20302a;
+  --line:      var(--mauios-line);
+  --ink:       var(--mauios-ink);
+  --ink-dim:   var(--mauios-mut);
+  --ink-faint: var(--mauios-faint);
+  --accent:     var(--mauios-gold);
+  --accent-2:   var(--mauios-gold-2);
+  --accent-dim: rgba(217,178,76,0.10);
+  --accent-ink: #241c06;
+  --ok:   var(--mauios-ok);
+  --warn: var(--mauios-warn);
+  --font-display: var(--font-serif-display);
+  --app-backdrop: var(--mauios-backdrop); /* @kind other */
+  --shadow-card: var(--mauios-shadow); /* @kind other */
+}

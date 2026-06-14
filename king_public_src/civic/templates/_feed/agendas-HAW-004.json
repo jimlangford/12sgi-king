@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "source": "sample-feed · HAW-004",
+    "generated": "2026-06-12T07:05:00-10:00",
+    "jurisdiction": "HAW-004",
+    "county": "County of Hawaiʻi",
+    "sunshine": "HRS §92-7 · agendas post ≥6 days before a meeting",
+    "producer": "council-watch (Hawaiʻi County · sample — swap for live Granicus ingest)"
+  },
+  "agendas": [
+    { "file": "HawCo Council", "title": "Lava Zone 1/2 rebuild & permit policy", "body": "Committee on Planning · Civil Defense", "type": "permit", "meeting": "2026-06-19", "charter": "10", "stake": 5 },
+    { "file": "HawCo Council", "title": "Short-term vacation-rental zoning — Puna & Kona", "body": "Committee on Planning", "type": "zoning", "meeting": "2026-06-22", "charter": "5", "stake": 4 },
+    { "file": "HawCo Council", "title": "Puna geothermal relicensing & community benefit", "body": "Committee on Environmental Management", "type": "water", "meeting": "2026-06-24", "charter": "11", "stake": 4 },
+    { "file": "HawCo Council", "title": "GET transportation surcharge — CIP allocation", "body": "Committee on Finance", "type": "budget", "meeting": "2026-06-26", "charter": "8", "stake": 3 },
+    { "file": "HawCo Council", "title": "Dept of Water Supply — system capital plan", "body": "Committee on Public Works", "type": "water", "meeting": "2026-06-30", "charter": "6", "stake": 3 }
+  ],
+  "conflicts": [
+    { "id": "H-lava", "sev": "alert", "art": "10", "title": "Lava Zone rebuild policy", "against": "HCC Ch.25 zoning · HRS Ch.127A · Civil Defense", "desc": "Rebuild entitlements in Lava Flow Hazard Zones 1–2 weighed against hazard-mitigation duties. Framed as a question of risk vs. kuleana to place — needs the policy text.", "source": "council-watch · HAW-004", "date": "2026-06-12" },
+    { "id": "H-geo", "sev": "watch", "art": "11", "title": "Puna geothermal relicensing", "against": "HRS Ch.343 EIS · Ch.205A · §6E", "desc": "Community-benefit and cultural-review questions surface in relicensing. Correlations between operator and approvals are questions for testimony, not findings.", "source": "council-watch · HAW-004", "date": "2026-06-12" },
+    { "id": "H-stvr", "sev": "watch", "art": "5", "title": "Vacation-rental zoning", "against": "HCC Ch.25 · housing supply", "desc": "STVR caps in Puna/Kona crossed against housing availability and the General Plan. Open question pending the draft bill.", "source": "council-watch · HAW-004", "date": "2026-06-12" }
+  ],
+  "ledger": [
+    { "id": "Lava policy", "t": "Zone 1/2 rebuild & permits", "status": "flagged" },
+    { "id": "STVR bill", "t": "vacation-rental zoning", "status": "forecast" },
+    { "id": "Geothermal", "t": "Puna relicensing", "status": "flagged" },
+    { "id": "GET surcharge", "t": "transportation CIP", "status": "forecast" }
+  ]
+}

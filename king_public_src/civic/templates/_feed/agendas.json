@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "source": "sample-feed",
+    "generated": "2026-06-12T07:05:00-10:00",
+    "jurisdiction": "MAU-001",
+    "sunshine": "HRS §92-7 · agendas post ≥6 days before a meeting",
+    "producer": "council-watch v2 (sample — swap for live output in production)"
+  },
+  "agendas": [
+    { "file": "EnerGov batch", "title": "Building-permit batch — 114 Lahaina parcels", "body": "Dept. of Planning · administrative", "type": "permit", "meeting": "2026-06-16", "charter": "XI", "stake": 3 },
+    { "file": "CivicClerk 5901", "title": "Bill 37 — $25M water sovereignty fund", "body": "Water, Infrastructure & Transportation Cmte", "type": "water", "meeting": "2026-06-18", "charter": "VI", "stake": 5 },
+    { "file": "CivicClerk 5893", "title": "Bills 55–56 — FY2027 county budget adoption", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-20", "charter": "X", "stake": 5 },
+    { "file": "CivicClerk 5907", "title": "SMA use permit — Makai coastal parcel", "body": "Housing & Land Use Cmte", "type": "zoning", "meeting": "2026-06-25", "charter": "XI", "stake": 4 },
+    { "file": "CivicClerk 5888", "title": "Bill 32 — CDBG-DR Lahaina recovery allocation", "body": "Disaster, Resilience & Recovery Cmte", "type": "housing", "meeting": "2026-06-27", "charter": "VIII", "stake": 5 }
+  ],
+  "conflicts": [
+    { "id": "C-37", "sev": "alert", "art": "VI", "title": "Bill 37 — $25M water fund", "against": "HRS Ch.174C public trust · Haw. Const. Art.XI §7", "desc": "Fund structure flagged as a step toward de-facto privatization of a public-trust resource. Question raised, not an accusation — needs the ordinance text to resolve.", "source": "council-watch", "date": "2026-06-12" },
+    { "id": "C-32", "sev": "alert", "art": "VIII", "title": "Bill 32 + Reso 25-80 — CDBG-DR $1.639B", "against": "42 USC §5301 §105(a) eligible activities · MCC Ch.2.96", "desc": "Lahaina recovery block-grant allocation crossed against workforce-housing eligibility and the federal eligible-activities list. FarmBox shelter eligibility under §105(a) pending HUD read.", "source": "council-watch", "date": "2026-06-12" },
+    { "id": "C-budget", "sev": "watch", "art": "X", "title": "FY2027 budget — Bills 55–56", "against": "Charter Art.9 · MCC Title 3", "desc": "Passed 2nd & final reading 2026-06-05 ($1.6B total). Penny-level dept ledger re-parse ACTIONABLE — CivicClerk file 5893 ordinance text detected; re-checksum on post.", "source": "council-watch", "date": "2026-06-12" },
+    { "id": "C-9", "sev": "resolved", "art": "XVI", "title": "Bill 9 — realtor-PAC linkage", "against": "HRS Ch.205 · Ch.84 (ethics)", "desc": "Documented donor↔Bill 9 correlation surfaced as a question. Entry now DEAD on the council feed — closed.", "source": "donor-watch", "date": "2026-06-11" }
+  ],
+  "ledger": [
+    { "id": "Bill 55–56", "t": "FY2027 county budget", "status": "passed 2nd reading" },
+    { "id": "Bill 37", "t": "$25M water sovereignty fund", "status": "flagged" },
+    { "id": "Bill 32", "t": "CDBG-DR Lahaina recovery", "status": "flagged" },
+    { "id": "Bill 9", "t": "(realtor-PAC linkage)", "status": "dead" }
+  ]
+}
