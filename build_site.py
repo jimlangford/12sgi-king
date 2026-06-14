@@ -75,6 +75,12 @@ def main():
             shutil.rmtree(_kdst, ignore_errors=True)
             raise SystemExit("LEAK GATE tripped — internal markers in public King build, refusing to publish: " + "; ".join(_hits[:20]))
         print("  + king/: public King System (leak-gate clean)")
+    # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
+    # when the laptop is up, else falls back to this GitHub mirror.
+    _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
+    if os.path.exists(_go):
+        shutil.copy(_go, os.path.join(SITE, "go.html"))
+        print("  + go.html: live/mirror failover launcher")
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
