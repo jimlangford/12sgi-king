@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# kilo_aupuni.py - Kilo Aupuni: the MauiOS department-coverage watch engine.
+# kilo_aupuni.py - Kilo Aupuni: the govOS department-coverage watch engine.
 #   kilo   = the practice of careful, sustained observation (kilo hoku = star-watching)
 #   aupuni = government / nation
 # Orchestrates one watcher per county public-data source and rolls every
@@ -257,7 +257,7 @@ def build_dashboard(reg):
  footer{{margin-top:40px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;
         font-family:Consolas,monospace;font-size:10.5px;color:#9a957f;letter-spacing:.4px}}
 </style></head><body><div class="wrap">
-<div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; MauiOS department watch</div>
+<div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; govOS department watch</div>
 <h1>Maui County &mdash; Situational Dashboard</h1>
 <div class="when">rolled up {g} &middot; regenerates on every watch run</div>
 <div class="kpi">
@@ -285,7 +285,7 @@ def build_dashboard(reg):
 <div class="sect">Largest dollar figures across ingested agendas</div>
 {big_rows}
 <footer>generated {g} &middot; Kilo Aupuni v1 (Phase 1) &middot; live: council-watch / CivicClerk all bodies &middot;
- span {esc(roll['span'])} &middot; MauiOS &middot; aloha in action</footer>
+ span {esc(roll['span'])} &middot; govOS &middot; aloha in action</footer>
 </div></body></html>"""
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(DASH_F, "w", encoding="utf-8") as f:
