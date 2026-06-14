@@ -100,8 +100,8 @@ class Component extends DCLogic {
       kiloWatchers: K.watchers.map(w => ({ ...w, live: w.stat === 'live', captured: w.stat === 'captured', planned: w.stat === 'planned' })),
       kiloOutputs: K.outputs,
       apps: [
-        { icon: '⚖', name: 'Budget Transparency', desc: 'FY2027 as passed 06-05 (Bills 55–56, unanimous) over the FY2026 penny ledger — council-watch flagged the ordinance text 06-11; exact re-parse queued.', tag: 'live page', href: '../budget-transparency/Budget Transparency.html', onClick: () => {}, live: true, locked: false },
-        { icon: '🗺', name: 'Title 19 Crosswalk', desc: 'Charter v5 Article XI mapped against Maui County Title 19 zoning — clause by clause.', tag: 'live page', href: '../title19-crosswalk/Title19 Crosswalk.html', onClick: () => {}, live: true, locked: false },
+        { icon: '⚖', name: 'Budget Transparency', desc: 'FY2027 as passed 06-05 (Bills 55–56, unanimous) over the FY2026 penny ledger — council-watch flagged the ordinance text 06-11; exact re-parse queued.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
+        { icon: '🗺', name: 'Title 19 Crosswalk', desc: 'Charter v5 Article XI mapped against Maui County Title 19 zoning — clause by clause.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
         { icon: '📜', name: 'County Audit', desc: 'RAIS scroll filings — AUDIT-001 and ACCOUNTABILITY-001 in ledger form, sealed in truth.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
         { icon: '🂡', name: 'Node Dashboard', desc: '54-node civic dashboard over the public ledger. Opens when access is issued.', tag: 'keyed', href: '', onClick: noop, live: false, locked: true },
       ],

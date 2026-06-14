@@ -52,8 +52,29 @@ def main():
     # [king-system] publish the public King System shell at /king/
     _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
     if os.path.isdir(_ksrc):
-        shutil.copytree(_ksrc, os.path.join(SITE, "king"))
-        print("  + king/: public King System (govOS + Council + Sage; studio locked, not deployed)")
+        _kdst = os.path.join(SITE, "king")
+        shutil.copytree(_ksrc, _kdst)
+        # [king-system] LEAK GATE: refuse to publish if any internal/infra marker slipped
+        # into the public King build (durable re-leak guard for the cowork snapshot).
+        _markers = ("ngrok", "uvicorn", "RAIS_API_KEYS", ":8765", ":8780", ":8000",
+                    "render_pause", "roster_loop", "tunnel_keepalive", "kohya",
+                    "sdxl_train", "sage_node_system", "GPU handoff", "Google login")
+        _hits = []
+        for _root, _dirs, _files in os.walk(_kdst):
+            for _fn in _files:
+                if _fn.rsplit(".", 1)[-1].lower() not in ("html", "js", "css", "json"):
+                    continue
+                try:
+                    _txt = open(os.path.join(_root, _fn), encoding="utf-8", errors="ignore").read()
+                except Exception:
+                    continue
+                for _m in _markers:
+                    if _m in _txt:
+                        _hits.append("%s::%s" % (_fn, _m))
+        if _hits:
+            shutil.rmtree(_kdst, ignore_errors=True)
+            raise SystemExit("LEAK GATE tripped — internal markers in public King build, refusing to publish: " + "; ".join(_hits[:20]))
+        print("  + king/: public King System (leak-gate clean)")
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
