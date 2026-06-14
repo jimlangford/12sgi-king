@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MauiOS — FY2026 Budget Intelligence Platform</title>
+<style>
+:root {
+  --bg:    #04070e;
+  --bg2:   #080d1a;
+  --bg3:   #0c1422;
+  --bg4:   #101c30;
+  --teal:  #00c9b1;
+  --teal2: #007a6e;
+  --teal3: #003d38;
+  --gold:  #f5c842;
+  --gold2: #9a7e28;
+  --coral: #ff6b6b;
+  --jade:  #2ecc71;
+  --jade2: #1a7a43;
+  --blue:  #38bdf8;
+  --violet:#c084fc;
+  --sand:  #f0e6c8;
+  --txt:   #dde8e3;
+  --dim:   #7a8a7a;
+  --bdr:   rgba(0,201,177,.15);
+  --bdr2:  rgba(245,200,66,.15);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Georgia',serif;font-size:15px;line-height:1.7}
+
+/* TOPBAR */
+#topbar{position:sticky;top:0;z-index:200;background:linear-gradient(90deg,#020407,#050c18,#020407);
+  border-bottom:2px solid var(--teal2);display:flex;align-items:center;padding:0 20px;height:54px;gap:6px}
+.logo{font-family:'Courier New',monospace;font-size:17px;font-weight:bold;color:var(--teal);letter-spacing:2px;white-space:nowrap}
+.logo-sub{font-family:'Courier New',monospace;font-size:9px;color:var(--gold2);letter-spacing:2px;margin-left:6px;white-space:nowrap}
+.flex1{flex:1}
+.live-badge{font-family:'Courier New',monospace;font-size:10px;color:var(--jade);border:1px solid var(--jade2);
+  padding:3px 8px;border-radius:3px;letter-spacing:1px;white-space:nowrap}
+
+/* TABS */
+#tabs{background:var(--bg2);border-bottom:1px solid var(--bdr);display:flex;overflow-x:auto;padding:0 20px;gap:2px}
+.tab{font-family:'Courier New',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  padding:12px 16px;cursor:pointer;border-bottom:3px solid transparent;color:var(--dim);
+  white-space:nowrap;transition:all .15s;user-select:none}
+.tab:hover{color:var(--teal);background:rgba(0,201,177,.05)}
+.tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* MAIN */
+.page{max-width:1200px;margin:0 auto;padding:32px 24px 80px}
+.panel{display:none}.panel.active{display:block}
+
+/* HERO STRIP */
+.hero-strip{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.kpi{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:20px 24px;flex:1;min-width:180px}
+.kpi .val{font-family:'Courier New',monospace;font-size:28px;font-weight:bold;color:var(--gold);display:block;line-height:1.1}
+.kpi .val.teal{color:var(--teal)}.kpi .val.jade{color:var(--jade)}.kpi .val.coral{color:var(--coral)}.kpi .val.blue{color:var(--blue)}.kpi .val.violet{color:var(--violet)}
+.kpi .lbl{font-family:'Courier New',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.kpi .sub{font-size:12px;color:var(--jade);margin-top:2px}
+
+/* SECTIONS */
+h2{font-size:22px;color:var(--gold);letter-spacing:.5px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--bdr2)}
+h3{font-size:17px;color:var(--teal);margin:24px 0 10px}
+h4{font-family:'Courier New',monospace;font-size:12px;color:var(--sand);text-transform:uppercase;letter-spacing:1px;margin:16px 0 6px}
+p{margin-bottom:12px}
+
+/* CALLOUT */
+.callout{border-left:4px solid var(--teal);background:rgba(0,201,177,.06);padding:14px 18px;margin:16px 0;border-radius:0 6px 6px 0}
+.callout.gold{border-left-color:var(--gold);background:rgba(245,200,66,.06)}
+.callout.coral{border-left-color:var(--coral);background:rgba(255,107,107,.06)}
+.callout.jade{border-left-color:var(--jade);background:rgba(46,204,113,.06)}
+.callout.violet{border-left-color:var(--violet);background:rgba(192,132,252,.06)}
+.callout-title{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:bold;color:var(--teal)}
+.callout.gold .callout-title{color:var(--gold)}.callout.jade .callout-title{color:var(--jade)}
+.callout.coral .callout-title{color:var(--coral)}.callout.violet .callout-title{color:var(--violet)}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{background:var(--teal3);color:var(--teal);font-family:'Courier New',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:1px;padding:9px 12px;text-align:left;border-bottom:1px solid var(--teal2);
+  cursor:pointer;user-select:none;white-space:nowrap}
+thead th:hover{background:rgba(0,201,177,.15)}
+thead th.gold-hdr{background:rgba(245,200,66,.08);color:var(--gold);border-bottom-color:var(--gold2)}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.05);transition:background .1s}
+tbody tr:hover{background:rgba(0,201,177,.04)}
+tbody td{padding:9px 12px;vertical-align:top}
+td.val{font-family:'Courier New',monospace;color:var(--gold);font-weight:bold;white-space:nowrap}
+td.val.teal{color:var(--teal)}td.val.jade{color:var(--jade)}td.val.coral{color:var(--coral)}
+td.mono{font-family:'Courier New',monospace;font-size:12px}
+td.dim{color:var(--dim);font-size:13px}
+
+/* TAGS */
+.tag{display:inline-block;font-family:'Courier New',monospace;font-size:10px;padding:2px 7px;
+  border-radius:3px;margin:1px;font-weight:bold;letter-spacing:.5px}
+.tag.teal{background:rgba(0,201,177,.15);color:var(--teal)}
+.tag.gold{background:rgba(245,200,66,.15);color:var(--gold)}
+.tag.jade{background:rgba(46,204,113,.15);color:var(--jade)}
+.tag.coral{background:rgba(255,107,107,.15);color:var(--coral)}
+.tag.violet{background:rgba(192,132,252,.15);color:var(--violet)}
+.tag.blue{background:rgba(56,189,248,.15);color:var(--blue)}
+
+/* SEARCH & FILTER */
+.search-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.search-bar input,.search-bar select{
+  background:var(--bg3);border:1px solid var(--bdr);color:var(--txt);
+  font-family:'Courier New',monospace;font-size:12px;padding:8px 12px;border-radius:4px;
+  outline:none;transition:border .15s}
+.search-bar input{flex:1;min-width:200px}
+.search-bar input:focus,.search-bar select:focus{border-color:var(--teal2)}
+.search-bar select option{background:var(--bg3)}
+
+/* BAR CHART */
+.bar-chart{margin:16px 0}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-label{font-family:'Courier New',monospace;font-size:11px;color:var(--dim);width:220px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:rgba(255,255,255,.06);border-radius:2px;height:20px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;padding:0 8px;transition:width .4s ease}
+.bar-fill-label{font-family:'Courier New',monospace;font-size:10px;color:#000;font-weight:bold;white-space:nowrap}
+.bar-amt{font-family:'Courier New',monospace;font-size:11px;color:var(--gold);width:130px;flex-shrink:0;text-align:right}
+
+/* DONUT LEGEND */
+.donut-section{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;margin:16px 0}
+.donut-wrap{position:relative;width:220px;height:220px;flex-shrink:0}
+canvas{border-radius:50%}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.donut-center .big{font-family:'Courier New',monospace;font-size:18px;font-weight:bold;color:var(--gold)}
+.donut-center .small{font-family:'Courier New',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.legend-list{flex:1;min-width:280px}
+.legend-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;padding:4px 6px;border-radius:4px;transition:background .1s}
+.legend-item:hover{background:rgba(255,255,255,.04)}
+.legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.legend-name{font-family:'Courier New',monospace;font-size:11px;color:var(--txt);flex:1}
+.legend-pct{font-family:'Courier New',monospace;font-size:11px;color:var(--dim)}
+.legend-val{font-family:'Courier New',monospace;font-size:11px;color:var(--gold);width:110px;text-align:right}
+
+/* DEPARTMENT CARDS */
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin:16px 0}
+.dept-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;overflow:hidden;
+  cursor:pointer;transition:border-color .15s}
+.dept-card:hover{border-color:var(--teal2)}
+.dept-card.expanded .dept-body{display:block}
+.dept-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.dept-head-left .dept-name{font-size:14px;font-weight:bold;color:var(--sand)}
+.dept-head-left .dept-tag{margin-top:4px}
+.dept-total{font-family:'Courier New',monospace;font-size:18px;font-weight:bold;color:var(--gold);white-space:nowrap}
+.dept-chevron{font-size:12px;color:var(--dim);transition:transform .2s}
+.dept-card.expanded .dept-chevron{transform:rotate(180deg)}
+.dept-body{display:none;border-top:1px solid var(--bdr);padding:14px 16px}
+.dept-line{display:flex;justify-content:space-between;align-items:center;padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.dept-line:last-child{border-bottom:none}
+.dept-line-name{font-size:13px;color:var(--txt);flex:1}
+.dept-line-val{font-family:'Courier New',monospace;font-size:13px;color:var(--teal);white-space:nowrap}
+.dept-bar-mini{height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:2px}
+.dept-bar-mini-fill{height:100%;border-radius:2px;background:var(--teal)}
+
+/* GWT CALCULATOR */
+.gwt-calc{background:var(--bg3);border:1px solid var(--bdr2);border-radius:8px;padding:24px;margin:16px 0}
+.gwt-slider-wrap{margin:16px 0}
+.gwt-slider-label{display:flex;justify-content:space-between;margin-bottom:8px}
+.gwt-slider-label span{font-family:'Courier New',monospace;font-size:12px;color:var(--dim)}
+.gwt-slider-label .val{color:var(--gold)}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;background:var(--bg4);border-radius:3px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;transition:background .1s}
+input[type=range]::-webkit-slider-thumb:hover{background:var(--gold)}
+.gwt-result-strip{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px}
+.gwt-result{background:var(--bg4);border:1px solid var(--bdr);border-radius:6px;padding:14px 18px;flex:1;min-width:150px;text-align:center}
+.gwt-result .r-val{font-family:'Courier New',monospace;font-size:22px;font-weight:bold;color:var(--jade)}
+.gwt-result .r-lbl{font-family:'Courier New',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* GRANT TRACKER */
+.grant-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:16px 20px;margin-bottom:12px;transition:border-color .15s}
+.grant-card:hover{border-color:var(--teal2)}
+.grant-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.grant-name{font-size:15px;font-weight:bold;color:var(--sand);flex:1}
+.grant-amount{font-family:'Courier New',monospace;font-size:18px;font-weight:bold;color:var(--jade);white-space:nowrap}
+.grant-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.grant-desc{font-size:13px;color:var(--dim);line-height:1.6}
+.align-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin:8px 0 2px;overflow:hidden}
+.align-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--jade),var(--teal))}
+.align-label{font-family:'Courier New',monospace;font-size:10px;color:var(--jade);letter-spacing:1px}
+
+/* PROGRESS BARS */
+.prog-section{margin:16px 0}
+.prog-row{margin-bottom:12px}
+.prog-header{display:flex;justify-content:space-between;margin-bottom:4px}
+.prog-name{font-family:'Courier New',monospace;font-size:12px;color:var(--txt)}
+.prog-val{font-family:'Courier New',monospace;font-size:12px;color:var(--gold)}
+.prog-track{height:10px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+.prog-fill{height:100%;border-radius:5px}
+
+/* GRID 2-COL */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--bdr2),transparent);margin:32px 0}
+
+/* FOOTER */
+footer{text-align:center;font-family:'Courier New',monospace;font-size:10px;color:var(--dim);
+  padding:20px;border-top:1px solid var(--bdr)}
+
+/* ALERT */
+.alert{background:rgba(245,200,66,.08);border:1px solid var(--gold2);border-radius:6px;padding:12px 16px;margin-bottom:20px;
+  font-family:'Courier New',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px}
+
+/* TOGGLE SWITCH */
+.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.toggle-label{font-family:'Courier New',monospace;font-size:11px;color:var(--dim)}
+.toggle-btn{font-family:'Courier New',monospace;font-size:10px;padding:5px 12px;border-radius:3px;
+  border:1px solid var(--bdr);color:var(--dim);background:transparent;cursor:pointer;transition:all .15s;letter-spacing:1px}
+.toggle-btn.on{border-color:var(--teal);color:var(--teal);background:rgba(0,201,177,.1)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <span class="logo">MauiOS</span>
+  <span class="logo-sub">BUDGET INTELLIGENCE PLATFORM</span>
+  <div class="flex1"></div>
+  <span class="live-badge">● FY2026 LIVE DATA</span>
+</div>
+
+<!-- TABS -->
+<div id="tabs">
+  <div class="tab active" onclick="showTab('overview',this)">Overview</div>
+  <div class="tab" onclick="showTab('revenue',this)">Revenue</div>
+  <div class="tab" onclick="showTab('departments',this)">Departments</div>
+  <div class="tab" onclick="showTab('cip',this)">Capital Budget</div>
+  <div class="tab" onclick="showTab('gwt',this)">GWT Analysis</div>
+  <div class="tab" onclick="showTab('grants',this)">Grant Pipeline</div>
+  <div class="tab" onclick="showTab('agriculture',this)">Agriculture</div>
+  <div class="tab" onclick="showTab('mou',this)" style="color:#f5c842;border-color:#9a7e28">MOU Compliance</div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 1: OVERVIEW
+══════════════════════════════════════════════════ -->
+<div id="panel-overview" class="panel active">
+
+  <div class="alert">
+    SOURCE: County of Maui — Mayor's Proposed Budget FY2026 (Mayor Richard T. Bissen, Jr.) · Submitted March 25, 2025 · Bill No. (2025) Operating Budget July 1, 2025 – June 30, 2026
+  </div>
+
+  <div class="hero-strip">
+    <div class="kpi">
+      <span class="val">$1.512B</span>
+      <div class="lbl">Operating Budget Revenue</div>
+      <div class="sub">+$249.4M from FY2025 (+19.7%)</div>
+    </div>
+    <div class="kpi">
+      <span class="val teal">$1.870B</span>
+      <div class="lbl">Total Gross Revenue (All Sources)</div>
+      <div class="sub">+26.3% vs FY2025's $1.480B</div>
+    </div>
+    <div class="kpi">
+      <span class="val">$1.991B</span>
+      <div class="lbl">Total Budget (Incl. Revolving Fund)</div>
+      <div class="sub">$121.2M Revolving Fund added</div>
+    </div>
+    <div class="kpi">
+      <span class="val jade">$461.4M</span>
+      <div class="lbl">Capital Improvement Program</div>
+      <div class="sub">$128.6M grant-funded (27.9%)</div>
+    </div>
+    <div class="kpi">
+      <span class="val coral">$1.6B</span>
+      <div class="lbl">CDBG-DR Federal Recovery Funds</div>
+      <div class="sub">HUD Lahaina recovery · 88% undeployed</div>
+    </div>
+  </div>
+
+  <h2>Budget Architecture — FY2026</h2>
+
+  <div class="grid2">
+    <div>
+      <h3>Operating Budget</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Component</th><th class="gold-hdr">Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Operating Expenditures</td><td class="val">$1,226,000,000</td></tr>
+            <tr><td>Capital Improvement Program</td><td class="val jade">$461,429,197</td></tr>
+            <tr><td>Bond Issuance / Debt Service</td><td class="val">$76,986,225</td></tr>
+            <tr><td>Affordable Housing Fund Transfer</td><td class="val teal">$32,519,431</td></tr>
+            <tr><td>Emergency Fund Transfer</td><td class="val">$25,000,000</td></tr>
+            <tr><td>Open Space / Cultural Resources Fund</td><td class="val">$6,503,886</td></tr>
+            <tr><td>Managed Retreat Fund</td><td class="val">$2,578,827</td></tr>
+            <tr><td>Revolving Fund</td><td class="val">$121,234,050</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>Budget Priorities (Mayor Bissen)</h3>
+      <div class="callout jade">
+        <div class="callout-title">Priority 1 — Kamaʻāina Housing</div>
+        <p>5% of certified real property tax revenue allocated to Affordable Housing Fund = <strong>$32,519,431</strong> (exceeds 3% charter minimum). Lahaina Community Land Trust, Hale O La'ie, Lānaʻi infrastructure, workforce housing projects.</p>
+      </div>
+      <div class="callout teal" style="border-left-color:var(--blue);background:rgba(56,189,248,.06)">
+        <div class="callout-title" style="color:var(--blue)">Priority 2 — Recovery &amp; Well-Being</div>
+        <p>CDBG-DR action plan. Safe Parking Program. Non-profit grants for health, food security, arts, senior services. Electric bus grant. Ferry feasibility study.</p>
+      </div>
+      <div class="callout violet">
+        <div class="callout-title">Priority 3 — Cultural &amp; Natural Resources</div>
+        <p>NOAA grant: 423 acres Pōhākea to ocean. One Water Strategy for Lahaina. $10.5M+ agriculture grants. $7M+ environmental grants. Watershed management.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Credit Ratings &amp; Financial Position</h3>
+  <div class="hero-strip" style="margin-bottom:0">
+    <div class="kpi" style="min-width:140px">
+      <span class="val jade">Aa2</span>
+      <div class="lbl">Moody's Rating</div>
+      <div class="sub">Stable outlook · post-wildfire</div>
+    </div>
+    <div class="kpi" style="min-width:140px">
+      <span class="val jade">AA+</span>
+      <div class="lbl">S&P Rating</div>
+      <div class="sub">Stable · reassessed post-2023</div>
+    </div>
+    <div class="kpi" style="min-width:140px">
+      <span class="val jade">AA+</span>
+      <div class="lbl">Fitch Rating</div>
+      <div class="sub">Affirmed May 2024</div>
+    </div>
+    <div class="kpi" style="min-width:140px">
+      <span class="val">6.2%</span>
+      <div class="lbl">Debt Service / Expenditures</div>
+      <div class="sub">Well under 10% self-imposed limit</div>
+    </div>
+    <div class="kpi" style="min-width:140px">
+      <span class="val teal">$120.5M</span>
+      <div class="lbl">General Obligation Bonds</div>
+      <div class="sub">Authorized this budget cycle</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 2: REVENUE
+══════════════════════════════════════════════════ -->
+<div id="panel-revenue" class="panel">
+  <h2>Revenue Breakdown — FY2026</h2>
+
+  <div class="callout gold">
+    <div class="callout-title">Total Operating Revenue: $1,512,277,295</div>
+    <p>Source: FY2026 Budget Ordinance, Section 2 — Estimated Revenues. Fiscal year July 1, 2025 – June 30, 2026.</p>
+  </div>
+
+  <h3>Revenue by Source — Visual</h3>
+  <div class="donut-section">
+    <div class="donut-wrap">
+      <canvas id="revenueDonut" width="220" height="220"></canvas>
+      <div class="donut-center">
+        <div class="big">$1.51B</div>
+        <div class="small">Operating</div>
+      </div>
+    </div>
+    <div class="legend-list" id="revLegend"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>YoY Comparison — FY2025 Adopted vs FY2026 Proposed</h3>
+  <div class="tbl-wrap">
+    <table id="revTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable('revTable',0)">Revenue Source ▲</th>
+          <th onclick="sortTable('revTable',1)" class="gold-hdr">FY2025 Adopted ▲</th>
+          <th onclick="sortTable('revTable',2)" class="gold-hdr">FY2026 Proposed ▲</th>
+          <th onclick="sortTable('revTable',3)">Change $ ▲</th>
+          <th onclick="sortTable('revTable',4)">Change % ▲</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Real Property Taxes</td><td class="val">$586,905,349</td><td class="val">$650,774,341</td><td class="val jade">+$63,868,992</td><td class="mono jade">+10.9%</td></tr>
+        <tr><td>Circuit Breaker Tax Credit</td><td class="val">($293,838)</td><td class="val">($385,718)</td><td class="val coral">-$91,880</td><td class="mono coral">+31.3%</td></tr>
+        <tr><td>Charges for Current Services</td><td class="val">$167,395,404</td><td class="val">$187,435,923</td><td class="val jade">+$20,040,519</td><td class="mono jade">+12.0%</td></tr>
+        <tr><td>Transient Accommodation Tax</td><td class="val">$60,000,000</td><td class="val">$65,000,000</td><td class="val jade">+$5,000,000</td><td class="mono jade">+8.3%</td></tr>
+        <tr><td>Public Service Company Tax</td><td class="val">$7,000,000</td><td class="val">$8,000,000</td><td class="val jade">+$1,000,000</td><td class="mono jade">+14.3%</td></tr>
+        <tr><td>Licenses and Permits</td><td class="val">$38,645,332</td><td class="val">$39,934,438</td><td class="val jade">+$1,289,106</td><td class="mono jade">+3.3%</td></tr>
+        <tr><td>Fuel Taxes</td><td class="val">$15,500,000</td><td class="val">$15,500,000</td><td class="val dim">$0</td><td class="mono dim">n/a</td></tr>
+        <tr><td>Franchise Taxes</td><td class="val">$9,000,000</td><td class="val">$10,000,000</td><td class="val jade">+$1,000,000</td><td class="mono jade">+11.1%</td></tr>
+        <tr><td>Special Assessments</td><td class="val">$9,866,000</td><td class="val">$17,300,000</td><td class="val jade">+$7,434,000</td><td class="mono jade">+75.3%</td></tr>
+        <tr><td>Other Intergovernmental</td><td class="val">$10,750,000</td><td class="val">$14,950,000</td><td class="val jade">+$4,200,000</td><td class="mono jade">+39.1%</td></tr>
+        <tr><td>Fines, Forfeitures, Penalties</td><td class="val">$2,000,000</td><td class="val">$3,000,000</td><td class="val jade">+$1,000,000</td><td class="mono jade">+50.0%</td></tr>
+        <tr><td>Use of Money &amp; Property</td><td class="val">$4,868,000</td><td class="val">$16,894,000</td><td class="val jade">+$12,026,000</td><td class="mono jade">+247.0%</td></tr>
+        <tr><td>Miscellaneous</td><td class="val">$840,000</td><td class="val">$10,209,964</td><td class="val jade">+$9,369,964</td><td class="mono jade">+1,115.5%</td></tr>
+        <tr><td>General Obligation Bonds</td><td class="val">$104,241,793</td><td class="val">$120,507,284</td><td class="val jade">+$16,265,491</td><td class="mono jade">+15.6%</td></tr>
+        <tr><td>Lapsed Bond Proceeds</td><td class="val">$3,543,207</td><td class="val">$3,926,861</td><td class="val jade">+$383,654</td><td class="mono jade">+10.8%</td></tr>
+        <tr><td>Carryover Savings</td><td class="val">$103,932,430</td><td class="val">$167,540,734</td><td class="val jade">+$63,608,304</td><td class="mono jade">+61.2%</td></tr>
+        <tr><td>General Excise Tax</td><td class="val">$60,000,000</td><td class="val">$70,000,000</td><td class="val jade">+$10,000,000</td><td class="mono jade">+16.7%</td></tr>
+        <tr><td><strong>Grant Revenue</strong></td><td class="val">$217,556,683</td><td class="val jade">$357,646,395</td><td class="val jade">+$140,089,712</td><td class="mono jade">+64.4%</td></tr>
+        <tr><td>Interfund Transfers</td><td class="val">$78,707,485</td><td class="val">$111,689,468</td><td class="val jade">+$32,981,983</td><td class="mono jade">+41.9%</td></tr>
+        <tr style="font-weight:bold;background:rgba(245,200,66,.06)"><td><strong>TOTAL GROSS REVENUES</strong></td><td class="val">$1,480,457,845</td><td class="val">$1,869,923,690</td><td class="val jade">+$389,465,845</td><td class="mono jade">+26.3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Carryover Savings by Fund (FY2026)</h3>
+  <div class="bar-chart" id="carryoverBars"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 3: DEPARTMENTS
+══════════════════════════════════════════════════ -->
+<div id="panel-departments" class="panel">
+  <h2>Department Appropriations — FY2026</h2>
+
+  <div class="search-bar">
+    <input type="text" id="deptSearch" placeholder="Search departments..." oninput="filterDepts()">
+    <select id="deptFilter" onchange="filterDepts()">
+      <option value="">All Departments</option>
+      <option value="legislative">Legislative</option>
+      <option value="management">Management & Admin</option>
+      <option value="safety">Safety & Emergency</option>
+      <option value="environment">Environment & Utilities</option>
+      <option value="social">Social Services</option>
+    </select>
+  </div>
+
+  <div class="dept-grid" id="deptGrid"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 4: CAPITAL BUDGET
+══════════════════════════════════════════════════ -->
+<div id="panel-cip" class="panel">
+  <h2>Capital Improvement Program — FY2026</h2>
+
+  <div class="hero-strip">
+    <div class="kpi">
+      <span class="val">$461.4M</span>
+      <div class="lbl">Total CIP Budget</div>
+    </div>
+    <div class="kpi">
+      <span class="val teal">$128.6M</span>
+      <div class="lbl">Grant-Funded (27.9%)</div>
+    </div>
+    <div class="kpi">
+      <span class="val">$124.4M</span>
+      <div class="lbl">Bond-Funded (27.0%)</div>
+    </div>
+    <div class="kpi">
+      <span class="val jade">$208.4M</span>
+      <div class="lbl">County Funds</div>
+    </div>
+  </div>
+
+  <h3>CIP by Project Type</h3>
+  <div class="bar-chart" id="cipBars"></div>
+
+  <div class="divider"></div>
+
+  <h3>Key FY2026 Capital Projects</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Project</th><th>Category</th><th>Significance</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Maui Wildfire Disaster Recovery</strong></td><td><span class="tag coral">Recovery</span></td><td class="dim">Ongoing — Lahaina rebuild infrastructure</td></tr>
+        <tr><td><strong>Waiʻale Road Extension</strong></td><td><span class="tag teal">Roads</span></td><td class="dim">Wailuku–Waikāpū connection · construction begins summer 2025</td></tr>
+        <tr><td><strong>Haʻikū Fire Station</strong></td><td><span class="tag jade">Safety</span></td><td class="dim">New station construction</td></tr>
+        <tr><td><strong>Countywide Roadway Resurfacing</strong></td><td><span class="tag teal">Roads</span></td><td class="dim">Pavement preservation across Maui Nui</td></tr>
+        <tr><td><strong>Upper Kula Transmission Improvements</strong></td><td><span class="tag blue">Water</span></td><td class="dim">Water system capacity upgrade</td></tr>
+        <tr><td><strong>West Maui Recycled Water System</strong></td><td><span class="tag blue">Water</span></td><td class="dim">Expansion for post-fire recovery</td></tr>
+        <tr><td><strong>Māʻalaea Regional Wastewater Reclamation</strong></td><td><span class="tag violet">Sewer</span></td><td class="dim">Up to $1.25M Māʻalaea Village Association design/site prep</td></tr>
+        <tr><td><strong>Nāpili Wastewater Pump Station No. 2</strong></td><td><span class="tag violet">Sewer</span></td><td class="dim">Modifications and force main replacement</td></tr>
+        <tr><td><strong>Rockfall &amp; Embankment Repairs</strong></td><td><span class="tag teal">Roads</span></td><td class="dim">Post-wildfire slope stabilization</td></tr>
+        <tr><td><strong>Pōhākea to Ocean Conservation (NOAA)</strong></td><td><span class="tag jade">Environment</span></td><td class="dim">423 acres · reef restoration · climate adaptation</td></tr>
+        <tr><td><strong>Lānaʻi Affordable Housing Water/Wastewater</strong></td><td><span class="tag gold">Housing</span></td><td class="dim">$10M infrastructure for affordable housing development</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout jade" style="margin-top:20px">
+    <div class="callout-title">12 Stones Infrastructure Alignment</div>
+    <p>The $155.6M road improvements, $105.5M sewer, and $63.7M water supply CIP lines are the physical infrastructure backbone that supports FarmBox site access, IoT sensor deployment, and the Hua Lani 9.2-acre land development at Kula. The Māʻalaea wastewater reclamation project is a direct MauiOS integration point for the RAIS scroll compliance system.</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 5: GWT ANALYSIS
+══════════════════════════════════════════════════ -->
+<div id="panel-gwt" class="panel">
+  <h2>Generational Wealth Trust — Budget Alignment Calculator</h2>
+
+  <div class="callout gold">
+    <div class="callout-title">GWT Model — Article XXVIII of the 12 Stones Sovereign Charter</div>
+    <p>The Generational Wealth Trust captures 12.5% of all public contracts executed under 12 Stones platform licensing. Breakdown: 10% community fund + 2% trust management + 0.5% Langford fiduciary. The FY2026 budget of $1.512B establishes the baseline for computing GWT opportunity at each deployment tier.</p>
+  </div>
+
+  <h3>Interactive GWT Calculator</h3>
+  <div class="gwt-calc">
+    <div class="gwt-slider-wrap">
+      <div class="gwt-slider-label">
+        <span>% of County Budget Captured by 12 Stones Platform</span>
+        <span class="val" id="captureLabel">5%</span>
+      </div>
+      <input type="range" id="captureSlider" min="1" max="50" value="5" oninput="calcGWT()">
+    </div>
+    <div class="gwt-slider-wrap">
+      <div class="gwt-slider-label">
+        <span>GWT Percentage (Charter: 12.5%)</span>
+        <span class="val" id="gwtPctLabel">12.5%</span>
+      </div>
+      <input type="range" id="gwtSlider" min="5" max="15" value="12.5" step="0.5" oninput="calcGWT()">
+    </div>
+    <div class="gwt-result-strip">
+      <div class="gwt-result">
+        <div class="r-val" id="r-captured">$75.6M</div>
+        <div class="r-lbl">County Budget Captured</div>
+      </div>
+      <div class="gwt-result">
+        <div class="r-val" id="r-gwt">$9.5M</div>
+        <div class="r-lbl">GWT Annual Flow</div>
+      </div>
+      <div class="gwt-result">
+        <div class="r-val" id="r-community">$7.6M</div>
+        <div class="r-lbl">Community Fund (10%)</div>
+      </div>
+      <div class="gwt-result">
+        <div class="r-val" id="r-mgmt">$1.5M</div>
+        <div class="r-lbl">Trust Management (2%)</div>
+      </div>
+      <div class="gwt-result">
+        <div class="r-val" id="r-fiduciary">$378K</div>
+        <div class="r-lbl">Langford Fiduciary (0.5%)</div>
+      </div>
+      <div class="gwt-result">
+        <div class="r-val" id="r-5yr">$47.4M</div>
+        <div class="r-lbl">5-Year GWT Cumulative</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>GWT Baseline Scenario Table</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th class="gold-hdr">Budget Base</th><th class="gold-hdr">Capture %</th><th class="gold-hdr">Contracts Captured</th><th class="gold-hdr">GWT Annual</th><th>Basis</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Minimum (1 Dept.)</strong></td>
+          <td class="val">$1,512,277,295</td>
+          <td class="mono">1%</td>
+          <td class="val jade">$15,122,773</td>
+          <td class="val jade">$1,890,347</td>
+          <td class="dim">Single department SaaS license</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 1 Pilot</strong></td>
+          <td class="val">$1,512,277,295</td>
+          <td class="mono">3%</td>
+          <td class="val jade">$45,368,319</td>
+          <td class="val jade">$5,671,040</td>
+          <td class="dim">MauiOS + RAIS + 2 depts active</td>
+        </tr>
+        <tr style="background:rgba(245,200,66,.04)">
+          <td><strong>Charter Baseline (12.5%)</strong></td>
+          <td class="val">$1,512,277,295</td>
+          <td class="mono">12.5%</td>
+          <td class="val">$189,034,662</td>
+          <td class="val">$23,629,333</td>
+          <td class="dim">SSC Article XXVIII stated baseline</td>
+        </tr>
+        <tr>
+          <td><strong>Full County Integration</strong></td>
+          <td class="val">$1,512,277,295</td>
+          <td class="mono">25%</td>
+          <td class="val jade">$378,069,324</td>
+          <td class="val jade">$47,258,665</td>
+          <td class="dim">All major depts on MauiOS platform</td>
+        </tr>
+        <tr>
+          <td><strong>+ Grant Revenue Layer</strong></td>
+          <td class="val">$357,646,395</td>
+          <td class="mono">30%</td>
+          <td class="val jade">$107,293,919</td>
+          <td class="val jade">$13,411,740</td>
+          <td class="dim">Grant admin contracts only</td>
+        </tr>
+        <tr style="font-weight:bold;background:rgba(245,200,66,.06)">
+          <td><strong>Total Budget (All Sources)</strong></td>
+          <td class="val">$1,991,157,740</td>
+          <td class="mono">12.5%</td>
+          <td class="val">$248,894,718</td>
+          <td class="val">$31,111,840</td>
+          <td class="dim">Incl. revolving funds — full deployment</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Highest-Value Budget Lines for 12 Stones Alignment</h3>
+  <div class="prog-section">
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Fringe Benefits (Countywide)</span><span class="prog-val">$171,763,735</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:91%;background:var(--teal)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Debt Service (Bond + Issuance)</span><span class="prog-val">$76,986,225</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:41%;background:var(--gold)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Fire/Rescue Operations</span><span class="prog-val">$50,995,759</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:27%;background:var(--coral)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Affordable Housing Fund Transfer</span><span class="prog-val">$32,519,431</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:17%;background:var(--jade)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Wastewater Operations (Sewer Fund)</span><span class="prog-val">$29,476,239</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:16%;background:var(--blue)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Emergency Fund Transfer</span><span class="prog-val">$25,000,000</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:13%;background:var(--violet)"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-header"><span class="prog-name">Houseless Programs (Human Concerns)</span><span class="prog-val">$2,858,300</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:2%;background:var(--sand)"></div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 6: GRANT PIPELINE
+══════════════════════════════════════════════════ -->
+<div id="panel-grants" class="panel">
+  <h2>Grant Pipeline — 12 Stones Alignment</h2>
+
+  <div class="hero-strip">
+    <div class="kpi">
+      <span class="val">$357.6M</span>
+      <div class="lbl">FY2026 County Grant Revenue</div>
+      <div class="sub">+64.4% from FY2025's $217.6M</div>
+    </div>
+    <div class="kpi">
+      <span class="val coral">$1.6B</span>
+      <div class="lbl">CDBG-DR (HUD) — Lahaina</div>
+      <div class="sub">88% undeployed · action plan active</div>
+    </div>
+    <div class="kpi">
+      <span class="val jade">$1.75B+</span>
+      <div class="lbl">12 Stones Grant Pipeline</div>
+      <div class="sub">7 active federal/state applications</div>
+    </div>
+    <div class="kpi">
+      <span class="val teal">Mar 31</span>
+      <div class="lbl">USDA VAPG Deadline</div>
+      <div class="sub">$500K · CRITICAL · DUE NOW</div>
+    </div>
+  </div>
+
+  <div class="callout coral">
+    <div class="callout-title">⚠ URGENT — USDA VAPG Due March 31, 2026</div>
+    <p>Value-Added Producer Grant · $500K · Application deadline is <strong>4 days from today (March 27, 2026)</strong>. This is the most time-sensitive item in the 12 Stones grant stack.</p>
+  </div>
+
+  <h3>Active Grant Applications — 12 Stones</h3>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">CDBG-DR — HUD Lahaina Recovery</div>
+      <div class="grant-amount">$1,639,000,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag coral">ACTIVE</span>
+      <span class="tag gold">HUD / Federal</span>
+      <span class="tag jade">88% UNDEPLOYED</span>
+      <span class="tag teal">12SGI ALIGNMENT: HIGH</span>
+    </div>
+    <p class="grant-desc">Maui County secured $1.6B from HUD for Lahaina wildfire recovery. The Lahaina Recovery Plan and CDBG-DR action plan govern deployment. 12 Stones RAIS system directly tracks compliance scrolls tied to this fund. FarmBox infrastructure, MauiOS platform, and charter-compliant housing projects are eligible deployment targets.</p>
+    <div class="align-bar"><div class="align-fill" style="width:92%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 92%</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">USDA VAPG — Value-Added Producer Grant</div>
+      <div class="grant-amount">$500,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag coral">⚠ DUE MAR 31, 2026</span>
+      <span class="tag gold">USDA Rural Development</span>
+      <span class="tag jade">FARMBOX DIRECT</span>
+    </div>
+    <p class="grant-desc">Supports value-added agricultural production. FarmBox 52-node HFE system qualifies as value-added processing infrastructure. Hua Lani 9.2-acre property and produce processing pipeline align directly with eligibility criteria.</p>
+    <div class="align-bar"><div class="align-fill" style="width:95%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 95% · APPLY IMMEDIATELY</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">FEMA BRIC — Building Resilient Infrastructure</div>
+      <div class="grant-amount">$25,000,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag blue">Q2 2026</span>
+      <span class="tag gold">FEMA / Federal</span>
+      <span class="tag teal">MAUI OS INFRA</span>
+    </div>
+    <p class="grant-desc">Pre-disaster mitigation for community resilience. 52-node IoT sensor mesh, Digital Twin emergency response integration, and MauiOS real-time data platform qualify as resilient infrastructure. MEMA collaboration pathway active.</p>
+    <div class="align-bar"><div class="align-fill" style="width:78%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 78%</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">DOE REAP — Rural Energy for America Program</div>
+      <div class="grant-amount">$10,000,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag blue">Q2 2026</span>
+      <span class="tag gold">DOE / Federal</span>
+      <span class="tag jade">SOLAR + FARMBOX</span>
+    </div>
+    <p class="grant-desc">Renewable energy for rural agricultural operations. FarmBox units with integrated solar panels and the Hua Lani property qualify as rural agricultural businesses. Aligns with County's $100K Renewable Energy Program Grants and $10M solar pipeline.</p>
+    <div class="align-bar"><div class="align-fill" style="width:85%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 85%</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">USDA Rural Development Community Facilities</div>
+      <div class="grant-amount">$5,000,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag jade">ROLLING</span>
+      <span class="tag gold">USDA Rural Dev</span>
+      <span class="tag teal">COMMUNITY INFRASTRUCTURE</span>
+    </div>
+    <p class="grant-desc">Essential community facilities in rural areas. MauiOS platform as civic infrastructure, community charter deployment, and FarmBox as food security facility qualify. Hawaiian Home Lands context strengthens application.</p>
+    <div class="align-bar"><div class="align-fill" style="width:80%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 80%</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">USDA 502 Direct Loan — Hua Lani Property</div>
+      <div class="grant-amount">$3,400,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag teal">ACTIVE</span>
+      <span class="tag gold">USDA Rural Housing</span>
+      <span class="tag jade">LAND ACQUISITION</span>
+    </div>
+    <p class="grant-desc">Direct loan for Hua Lani 9.2-acre agricultural property acquisition. Combined with private financing ($3.4M total). Primary anchor for FarmBox Phase 1 deployment and WFCF blockchain traceability system.</p>
+    <div class="align-bar"><div class="align-fill" style="width:100%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 100% · DIRECT ASSET</div>
+  </div>
+
+  <div class="grant-card">
+    <div class="grant-header">
+      <div class="grant-name">USDA RBDG — Rural Business Development Grant</div>
+      <div class="grant-amount">$500,000</div>
+    </div>
+    <div class="grant-meta">
+      <span class="tag blue">Q3 2026</span>
+      <span class="tag gold">USDA Rural Dev</span>
+      <span class="tag teal">FRANCHISE SUPPORT</span>
+    </div>
+    <p class="grant-desc">Technical assistance and training for small rural businesses. 12 Stones franchise training program, FarmBox operator training, and MauiOS small-farm onboarding align with eligibility. Maui county RBDG history supports application.</p>
+    <div class="align-bar"><div class="align-fill" style="width:75%"></div></div>
+    <div class="align-label">12 Stones Alignment Score: 75%</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>County FY2026 Grant Lines — 12 Stones Co-Application Targets</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>County Grant Program</th><th class="gold-hdr">FY2026 Amount</th><th>12 Stones Hook</th></tr></thead>
+      <tbody>
+        <tr><td>Agricultural Micro Grants Program</td><td class="val jade">$3,000,000</td><td class="dim">FarmBox operators · WFCF farms · Hua Lani tenants</td></tr>
+        <tr><td>Agriculture Operations/Infrastructure/Education</td><td class="val jade">$1,917,000</td><td class="dim">FarmBox curriculum · Sage Game ag education module</td></tr>
+        <tr><td>Agriculture Recovery Grants</td><td class="val jade">$1,000,000</td><td class="dim">Post-wildfire FarmBox rapid deployment</td></tr>
+        <tr><td>Hawaiʻi Farmers Union United</td><td class="val">$375,000</td><td class="dim">WFCF traceability integration · farmer union partnership</td></tr>
+        <tr><td>Maui Invasive Species Committee (MISC)</td><td class="val">$2,800,000</td><td class="dim">IoT sensor environmental monitoring overlay</td></tr>
+        <tr><td>Maui County Wetlands Grants</td><td class="val">$800,000</td><td class="dim">Pōhākea conservation + HFE node environmental compliance</td></tr>
+        <tr><td>Renewable Energy Program Grants</td><td class="val">$100,000</td><td class="dim">FarmBox solar integration · MauiPod energy systems</td></tr>
+        <tr><td>Green Building and Resilient Housing Grants</td><td class="val">$100,000</td><td class="dim">MauiPod construction · recycled PETG/PLA feedstock</td></tr>
+        <tr><td>Lahaina Community Land Trust</td><td class="val teal">$3,000,000</td><td class="dim">Charter-compliant housing · GWT distribution model</td></tr>
+        <tr><td>Hale O La'ie (Workforce Housing)</td><td class="val teal">$5,200,000</td><td class="dim">Kamaʻāina housing · franchise employee housing pipeline</td></tr>
+        <tr><td>Lānaʻi Affordable Housing / Water Infrastructure</td><td class="val teal">$10,000,000</td><td class="dim">Tier 1 island license · FarmBox Lānaʻi expansion</td></tr>
+        <tr><td>Grow Some Good</td><td class="val">$150,000</td><td class="dim">Community food education · Sage Game curriculum tie-in</td></tr>
+        <tr><td>Maui Nui Botanical Gardens</td><td class="val">$150,000</td><td class="dim">Native species database · Glyph cultural documentation</td></tr>
+        <tr><td>University of Hawaiʻi Tropical Agriculture</td><td class="val">$150,000</td><td class="dim">FarmBox research partnership · WFCF academic validation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PANEL 7: AGRICULTURE
+══════════════════════════════════════════════════ -->
+<div id="panel-agriculture" class="panel">
+  <h2>Agriculture Budget — FY2026 Detail</h2>
+
+  <div class="hero-strip">
+    <div class="kpi">
+      <span class="val jade">$10.5M+</span>
+      <div class="lbl">Total Agriculture Grants</div>
+      <div class="sub">Largest ag grant package in county history</div>
+    </div>
+    <div class="kpi">
+      <span class="val">$2,137,076</span>
+      <div class="lbl">Dept. of Agriculture Operations</div>
+      <div class="sub">16.5 equivalent personnel</div>
+    </div>
+    <div class="kpi">
+      <span class="val teal">$3,000,000</span>
+      <div class="lbl">Agricultural Micro Grants</div>
+      <div class="sub">Socially disadvantaged farmers priority</div>
+    </div>
+    <div class="kpi">
+      <span class="val">$1,917,000</span>
+      <div class="lbl">Ag Operations/Infrastructure/Education</div>
+      <div class="sub">Direct infrastructure funding</div>
+    </div>
+  </div>
+
+  <h3>Complete Agriculture Appropriations — FY2026</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Program</th><th class="gold-hdr">Salaries (A)</th><th class="gold-hdr">Ops &amp; Equip (B)</th><th class="gold-hdr">Total</th><th>12 Stones Hook</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Agriculture Program (Core Dept.)</strong></td><td class="val">$1,071,831</td><td class="val">$1,065,245</td><td class="val jade">$2,137,076</td><td class="dim">FarmBox operator liaison · WFCF integration</td></tr>
+        <tr><td>Agriculture Operations/Infrastructure/Education</td><td class="val">$0</td><td class="val">$1,917,000</td><td class="val jade">$1,917,000</td><td class="dim">Direct infrastructure grants · FarmBox co-app</td></tr>
+        <tr><td>Agriculture Recovery Grants</td><td class="val">$0</td><td class="val">$1,000,000</td><td class="val jade">$1,000,000</td><td class="dim">Post-wildfire rapid deployment</td></tr>
+        <tr><td><strong>Agricultural Micro Grants Program</strong></td><td class="val">$0</td><td class="val">$3,000,000</td><td class="val jade">$3,000,000</td><td class="dim">Farm operators &lt;12 acres · Hua Lani tenants eligible</td></tr>
+        <tr><td>Grow Some Good</td><td class="val">$0</td><td class="val">$150,000</td><td class="val">$150,000</td><td class="dim">Food education · Sage Game curriculum</td></tr>
+        <tr><td>Hawaiʻi Farmers Union United</td><td class="val">$0</td><td class="val">$375,000</td><td class="val">$375,000</td><td class="dim">WFCF farm union partnership</td></tr>
+        <tr><td>Lānaʻi Agriculture</td><td class="val">$0</td><td class="val">$80,000</td><td class="val">$80,000</td><td class="dim">Tier 1 island FarmBox pilot</td></tr>
+        <tr><td>Lānaʻi Grown Food Stimulus Program</td><td class="val">$0</td><td class="val">$70,000</td><td class="val">$70,000</td><td class="dim">Food voucher system → WFCF traceability</td></tr>
+        <tr><td>Livestock</td><td class="val">$0</td><td class="val">$80,000</td><td class="val">$80,000</td><td class="dim">IoT livestock monitoring · FarmBox animal units</td></tr>
+        <tr><td>Maui Nui Botanical Gardens</td><td class="val">$0</td><td class="val">$150,000</td><td class="val">$150,000</td><td class="dim">Native species · Glyph cultural database</td></tr>
+        <tr><td>Molokai Agriculture</td><td class="val">$0</td><td class="val">$100,000</td><td class="val">$100,000</td><td class="dim">Molokai FarmBox expansion node</td></tr>
+        <tr><td>Molokai Livestock Cooperative</td><td class="val">$0</td><td class="val">$20,000</td><td class="val">$20,000</td><td class="dim">Cooperative model → GWT profit share pilot</td></tr>
+        <tr><td>Non-Food Agriculture</td><td class="val">$0</td><td class="val">$80,000</td><td class="val">$80,000</td><td class="dim">Fiber crops · MauiPod feedstock research</td></tr>
+        <tr><td>University of Hawaiʻi Tropical Agriculture</td><td class="val">$0</td><td class="val">$150,000</td><td class="val">$150,000</td><td class="dim">Research partnership · FarmBox validation data</td></tr>
+        <tr><td>Animal Sheltering (Maui Humane Society)</td><td class="val">$0</td><td class="val">$2,033,000</td><td class="val">$2,033,000</td><td class="dim">Animal management node in 52-node map</td></tr>
+        <tr><td>Animal Enforcement Program</td><td class="val">$0</td><td class="val">$1,061,000</td><td class="val">$1,061,000</td><td class="dim">IoT livestock tracking integration</td></tr>
+        <tr><td>Spay/Neuter Programs</td><td class="val">$0</td><td class="val">$165,000</td><td class="val">$165,000</td><td class="dim">Community health node</td></tr>
+        <tr style="font-weight:bold;background:rgba(46,204,113,.06)"><td><strong>AGRICULTURE TOTAL</strong></td><td class="val jade">$1,071,831</td><td class="val jade">$11,496,245</td><td class="val jade">$12,568,076</td><td class="dim">12 Stones alignment: 87%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Micro Grant Eligibility — 12 Stones Farm Operators</h3>
+  <div class="callout jade">
+    <div class="callout-title">Agricultural Micro Grants: $3,000,000 — FarmBox Operator Strategy</div>
+    <p>The FY2026 Micro Grants program requires farm businesses operating on <strong>less than 12 acres</strong> (or up to 40 usable acres for livestock). FarmBox units on Hua Lani's 9.2-acre property qualify. Grants are distributed with equity preference to <strong>socially disadvantaged farmers, women, and Native Hawaiians</strong>. Operators must be Maui County residents for 1+ year. FarmBox operators placed by 12 Stones would qualify for individual grants of up to the full program amount per approved applicant. Strategy: place 6 FarmBox operators on Hua Lani by June 2026, each applying independently.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">FarmBox Foods Partnership — Budget Alignment</div>
+    <p>FarmBox Foods (CEO Rusty Walker, rusty@farmboxfoods.com) provides the physical units at $33,200 base. Maui County's $1,917,000 Agriculture Operations/Infrastructure/Education grant line is the most direct co-application target. The 6 FarmBox units planned for Phase 1 represent $199,200 in hardware — well within the grant envelope when combined with IoT sensor integration ($1.2K/mo/site × 6 = $7.2K/mo) and WFCF traceability certification ($3K/farm/year × 6 = $18K/yr).</p>
+  </div>
+</div>
+
+<!-- MOU COMPLIANCE PANEL -->
+<div class="panel" id="panel-mou">
+
+  <div class="callout gold" style="margin-bottom:28px">
+    <div class="callout-title">⚠ URGENT: USDA VAPG $500K — DEADLINE MARCH 31, 2026</div>
+    <p>The Value-Added Producer Grant (VAPG) deadline is in <strong>3 days</strong>. This grant directly funds the FarmBox hydroponic deployment at Hua Lani and is explicitly required by MOU obligations. FarmBox Foods (Rusty Walker) must be listed as equipment supplier. Complete the grant application and file with USDA Rural Development immediately.</p>
+  </div>
+
+  <h2 style="color:#f5c842;border-bottom:1px solid rgba(245,200,66,.2);padding-bottom:8px;margin-bottom:20px">MOU — 12 Stones Project Compliance Tracker</h2>
+  <p style="color:#a0b0a0;margin-bottom:24px">Active MOU: <strong style="color:#e2ede8">Langford Consulting Trust ↔ Maui County Office of Recovery / FarmBox Foods / HCA / WFCF</strong> · $10,000,000 · 24 months · Governing Law: State of Hawaii</p>
+
+  <!-- DELIVERABLES STATUS -->
+  <h3 style="color:#00c9b1;margin-bottom:14px">Required Deliverables — Compliance Status</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Deliverable</th>
+          <th>Frequency</th>
+          <th>Next Due</th>
+          <th>Amount / Value</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(255,107,107,.08)">
+          <td><strong style="color:#ff6b6b">USDA VAPG Grant Report</strong></td>
+          <td>One-time (application)</td>
+          <td style="color:#ff6b6b;font-weight:bold">MAR 31, 2026 ⚠</td>
+          <td class="val">$500,000</td>
+          <td><span style="color:#ff6b6b;font-weight:bold">CRITICAL — 3 DAYS</span></td>
+        </tr>
+        <tr>
+          <td><strong>Quarterly Progress Report — Q1 2026</strong></td>
+          <td>Quarterly (4×/yr)</td>
+          <td>Mar 31 / Jun 30 / Sep 30 / Dec 31</td>
+          <td class="val" style="color:#a0b0a0">Compliance req.</td>
+          <td><span style="color:#f5c842">● Q1 Draft Needed</span></td>
+        </tr>
+        <tr>
+          <td><strong>Annual Impact Assessment</strong></td>
+          <td>Annual (1×/yr)</td>
+          <td>December 31, 2026</td>
+          <td class="val" style="color:#a0b0a0">Compliance req.</td>
+          <td><span style="color:#a0b0a0">● Scheduled</span></td>
+        </tr>
+        <tr>
+          <td><strong>Final Comprehensive Report</strong></td>
+          <td>End of term</td>
+          <td>Year 5 (2031)</td>
+          <td class="val" style="color:#a0b0a0">Compliance req.</td>
+          <td><span style="color:#a0b0a0">● Future</span></td>
+        </tr>
+        <tr>
+          <td><strong>IP Assignment &amp; Charter Filing</strong></td>
+          <td>One-time (done)</td>
+          <td style="color:#2ecc71">April 14, 2025 ✓</td>
+          <td class="val" style="color:#a0b0a0">Foundational</td>
+          <td><span style="color:#2ecc71">✓ Filed — SSC v5</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PARTNER OBLIGATIONS -->
+  <h3 style="color:#00c9b1;margin:28px 0 14px">Partner Obligations vs. FY2026 Budget Alignment</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>MOU Party</th>
+          <th>Core Obligation</th>
+          <th>FY2026 Budget Line</th>
+          <th style="text-align:right">$ Alignment</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:#00c9b1">Langford Consulting Trust</strong></td>
+          <td>Primary PM — oversee all phases, disbursements, reporting</td>
+          <td>GWT 12.5% of contracts; Platform SaaS $120K/yr</td>
+          <td class="val" style="text-align:right">$248.9M potential</td>
+          <td><span style="color:#f5c842">● In Development</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#38bdf8">Maui County OOR</strong></td>
+          <td>Land access, permitting, public comms, stakeholder engagement</td>
+          <td>CDBG-DR Lahaina ($1.639B); Ag Grants $12.5M</td>
+          <td class="val" style="text-align:right">$1.639B unlocked</td>
+          <td><span style="color:#2ecc71">✓ Budget Approved</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#fbbf24">FarmBox Foods</strong></td>
+          <td>Supply &amp; maintain FarmBox units; train personnel; IoT mesh</td>
+          <td>Ag Ops/Infrastructure/Education $1,917,000</td>
+          <td class="val" style="text-align:right">$1,917,000</td>
+          <td><span style="color:#ff6b6b">⚠ VAPG Due Mar 31</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#2ecc71">Hawaiian Community Assets</strong></td>
+          <td>Financial literacy, homeownership pathways, GWT distribution</td>
+          <td>Affordable Housing Fund $32.5M; Community grants</td>
+          <td class="val" style="text-align:right">$32,519,431</td>
+          <td><span style="color:#f5c842">● Coordination Phase</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#c084fc">Where Food Comes From</strong></td>
+          <td>Sustainability certification, blockchain traceability, env. compliance</td>
+          <td>WFCF smart contract: $3K/farm/yr × N nodes</td>
+          <td class="val" style="text-align:right">$3K/farm/yr</td>
+          <td><span style="color:#2ecc71">✓ Partner Contracted</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUDGET BREAKDOWN -->
+  <h3 style="color:#00c9b1;margin:28px 0 14px">MOU $10M Budget vs. FY2026 County Budget — Cross-Reference</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:24px">
+    <div style="background:#090e1a;border:1px solid rgba(245,200,66,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#f5c842;font-size:22px;font-weight:bold">$2.6M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Modular Housing</div>
+      <div style="color:#e2ede8;font-size:12px">County Affordable Housing Fund: $32.5M</div>
+    </div>
+    <div style="background:#090e1a;border:1px solid rgba(251,191,36,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#fbbf24;font-size:22px;font-weight:bold">$2.025M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Hydroponic Food</div>
+      <div style="color:#e2ede8;font-size:12px">County Ag Budget: $12.6M + VAPG $500K</div>
+    </div>
+    <div style="background:#090e1a;border:1px solid rgba(192,132,252,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#c084fc;font-size:22px;font-weight:bold">$1.25M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Cultural Preservation</div>
+      <div style="color:#e2ede8;font-size:12px">County Cultural Resources ~$28M</div>
+    </div>
+    <div style="background:#090e1a;border:1px solid rgba(46,204,113,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#2ecc71;font-size:22px;font-weight:bold">$1.35M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Training &amp; Education</div>
+      <div style="color:#e2ede8;font-size:12px">County Education Budget: $72.9M</div>
+    </div>
+    <div style="background:#090e1a;border:1px solid rgba(56,189,248,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#38bdf8;font-size:22px;font-weight:bold">$1.5M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Land Restoration</div>
+      <div style="color:#e2ede8;font-size:12px">CDBG-DR Lahaina: $1.639B (88% undeployed)</div>
+    </div>
+    <div style="background:#090e1a;border:1px solid rgba(0,201,177,.2);border-radius:6px;padding:16px;text-align:center">
+      <div style="color:#00c9b1;font-size:22px;font-weight:bold">$10M</div>
+      <div style="color:#a0b0a0;font-size:12px;margin-top:4px">Total MOU Budget</div>
+      <div style="color:#e2ede8;font-size:12px">vs. $1.870B County Budget — 0.5% leverage</div>
+    </div>
+  </div>
+
+  <!-- KEY TERMS -->
+  <h3 style="color:#00c9b1;margin:28px 0 14px">Key MOU Terms — Platform Integration</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Term</th><th>Provision</th><th>Platform Node</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="teal"><strong>Duration</strong></td><td>24 months from signing · 5-year project term</td><td>N38 (Budget Tracker), N16 (Legal/MOU)</td></tr>
+        <tr><td style="color:#ff6b6b"><strong>Termination</strong></td><td>90 days written notice · All financial obligations must be settled before exit</td><td>N16 (Legal/MOU), N53 (Emergency Override)</td></tr>
+        <tr><td style="color:#c084fc"><strong>IP Ownership</strong></td><td>12 Stones: software + digital twin · Maui County: data + public records</td><td>N04 (RAIS), N07 (Digital Twin), N13 (Compliance)</td></tr>
+        <tr><td style="color:#2ecc71"><strong>Confidentiality</strong></td><td>24 months post-termination · Software codes and digital twin models are confidential</td><td>N04 (RAIS — immudb sealed), N13</td></tr>
+        <tr><td style="color:#fbbf24"><strong>Dispute Resolution</strong></td><td>30-day negotiation → 60-day mediation (resident voice via platform) → binding arbitration</td><td>N44 (Testimony Engine), N16 (Legal/MOU)</td></tr>
+        <tr><td style="color:#38bdf8"><strong>Governing Law</strong></td><td>State of Hawaii · Federal compliance (CDBG-DR, USDA, FEMA)</td><td>N13 (Compliance), N40 (Federal Grant Portal)</td></tr>
+        <tr><td style="color:#00c9b1"><strong>Amendments</strong></td><td>Written agreement + signatures of authorized reps from both parties</td><td>N04 (RAIS scroll seal), N16 (Legal/MOU)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- END MOU COMPLIANCE PANEL -->
+
+</div><!-- end .page -->
+
+<footer>
+  CONFIDENTIAL — 12 Stones Global Inc. · MauiOS Budget Intelligence Platform · FY2026 Data ·
+  Source: County of Maui Mayor's Proposed Budget (Mayor Richard T. Bissen, Jr.) March 25, 2025 ·
+  James Langford · jimlangford@me.com · March 27, 2026
+</footer>
+
+<script>
+// ── TAB NAVIGATION ──
+function showTab(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+  // Render charts on first view
+  if (id === 'revenue' && !window._revRendered) { renderRevenue(); window._revRendered = true; }
+  if (id === 'cip' && !window._cipRendered) { renderCIP(); window._cipRendered = true; }
+  if (id === 'departments' && !window._deptRendered) { renderDepts(); window._deptRendered = true; }
+}
+
+// ── FORMAT ──
+function fmt(n) {
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + Math.round(n/1000) + 'K';
+  return '$' + n.toLocaleString();
+}
+function fmtFull(n) { return '$' + Math.abs(n).toLocaleString(); }
+
+// ── REVENUE DONUT ──
+const revData = [
+  { label:'Real Property Taxes', val:650774341, color:'#f5c842' },
+  { label:'Charges for Services', val:187435923, color:'#00c9b1' },
+  { label:'Carryover Savings', val:167540734, color:'#38bdf8' },
+  { label:'Bond/Lapsed Bond', val:124434145, color:'#c084fc' },
+  { label:'Interfund Transfers', val:111689468, color:'#2ecc71' },
+  { label:'General Excise Tax', val:70000000, color:'#fbbf24' },
+  { label:'Licenses/Permits', val:70038402, color:'#a78bfa' },
+  { label:'Transient Accom. Tax', val:65000000, color:'#34d399' },
+  { label:'Fuel & Franchise', val:25500000, color:'#f87171' },
+  { label:'Special Assessments', val:17300000, color:'#60a5fa' },
+  { label:'Other Intergovernmental', val:14950000, color:'#fb923c' },
+  { label:'Public Service Co. Tax', val:8000000, color:'#e879f9' },
+];
+const revTotal = 1512277295;
+
+function renderRevenue() {
+  const canvas = document.getElementById('revenueDonut');
+  const ctx = canvas.getContext('2d');
+  const cx = 110, cy = 110, r = 90, inner = 55;
+  let start = -Math.PI/2;
+  revData.forEach(d => {
+    const angle = (d.val / revTotal) * 2 * Math.PI;
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start,start+angle);
+    ctx.closePath(); ctx.fillStyle = d.color; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,inner,0,2*Math.PI);
+    ctx.fillStyle = '#04070e'; ctx.fill();
+    start += angle;
+  });
+  // Legend
+  const leg = document.getElementById('revLegend');
+  leg.innerHTML = revData.map(d => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${d.color}"></div>
+      <span class="legend-name">${d.label}</span>
+      <span class="legend-pct">${(d.val/revTotal*100).toFixed(1)}%</span>
+      <span class="legend-val">${fmt(d.val)}</span>
+    </div>`).join('');
+  // Carryover bars
+  const coBars = document.getElementById('carryoverBars');
+  const coData = [
+    { label:'General Fund', val:122934571, color:'#f5c842' },
+    { label:'Sewer Fund', val:10239592, color:'#38bdf8' },
+    { label:'Highway Fund', val:11217761, color:'#2ecc71' },
+    { label:'Solid Waste Fund', val:3867796, color:'#fb923c' },
+    { label:'Env. Protection Fund', val:984524, color:'#34d399' },
+    { label:'Liquor Fund', val:816172, color:'#c084fc' },
+    { label:'Water Fund', val:17480318, color:'#60a5fa' },
+  ];
+  const coMax = Math.max(...coData.map(d=>d.val));
+  coBars.innerHTML = coData.map(d => `
+    <div class="bar-row">
+      <div class="bar-label">${d.label}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${(d.val/coMax*100).toFixed(1)}%;background:${d.color}">
+          <span class="bar-fill-label">&nbsp;</span>
+        </div>
+      </div>
+      <div class="bar-amt">${fmtFull(d.val)}</div>
+    </div>`).join('');
+}
+
+// ── CIP BARS ──
+const cipData = [
+  { label:'Road Improvements', val:155658251, pct:33.7, color:'#00c9b1' },
+  { label:'Sewer', val:105522013, pct:22.9, color:'#38bdf8' },
+  { label:'Water Supply', val:63719964, pct:13.8, color:'#2ecc71' },
+  { label:'Government Facilities', val:60804869, pct:13.2, color:'#f5c842' },
+  { label:'Parks and Recreation', val:23400000, pct:5.1, color:'#c084fc' },
+  { label:'Other Projects', val:22000000, pct:4.8, color:'#fb923c' },
+  { label:'Drainage', val:21200000, pct:4.6, color:'#60a5fa' },
+  { label:'Sanitation', val:9124100, pct:2.0, color:'#f87171' },
+];
+function renderCIP() {
+  const el = document.getElementById('cipBars');
+  el.innerHTML = cipData.map(d => `
+    <div class="bar-row">
+      <div class="bar-label">${d.label}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${d.pct*2.9}%;background:${d.color}">
+          <span class="bar-fill-label">${d.pct}%</span>
+        </div>
+      </div>
+      <div class="bar-amt">${fmt(d.val)}</div>
+    </div>`).join('');
+}
+
+// ── DEPARTMENT DATA ──
+const deptData = [
+  { name:'Office of the County Clerk', cat:'legislative', total:3039503, color:'#38bdf8',
+    lines:[{n:'County Clerk Program — Salaries',v:1420203},{n:'County Clerk Program — Ops',v:1619300}] },
+  { name:'Office of the County Council', cat:'legislative', total:12125898, color:'#38bdf8',
+    lines:[{n:'Council Services — Salaries',v:6878034},{n:'Council Services — Ops',v:3026923},{n:'County Auditor Program',v:2220941}] },
+  { name:'Department of Agriculture', cat:'management', total:2137076, color:'#2ecc71',
+    lines:[{n:'Agriculture Program — Salaries',v:1071831},{n:'Agriculture Program — Ops',v:1065245},{n:'Ag Grants (separate lines)',v:'$12.5M+'}] },
+  { name:'Department of Corporation Counsel', cat:'management', total:5857759, color:'#f5c842',
+    lines:[{n:'Legal Services — Salaries',v:5219598},{n:'Legal Services — Ops',v:638161}] },
+  { name:'East Maui Water Authority', cat:'management', total:1273491, color:'#60a5fa',
+    lines:[{n:'Administration — Salaries',v:443244},{n:'Administration — Ops',v:830247}] },
+  { name:'Emergency Management Agency', cat:'safety', total:3659464, color:'#f87171',
+    lines:[{n:'Emergency Mgmt — Salaries',v:2085295},{n:'Emergency Mgmt — Ops',v:1519169},{n:'Grant to American Red Cross',v:55000}] },
+  { name:'Dept. of Environmental Management', cat:'environment', total:75487065, color:'#34d399',
+    lines:[{n:'Admin (Gen. Fund)',v:2127732},{n:'Wastewater Administration (Sewer)',v:4616271},{n:'Wastewater Operations (Sewer)',v:29476239},{n:'Solid Waste Administration',v:1884233},{n:'Solid Waste Operations',v:22831993},{n:'Env. Protection & Sustainability',v:11850827},{n:'Env. Protection Grants',v:'$7M+'}] },
+  { name:'Department of Finance', cat:'management', total:16703580, color:'#f5c842',
+    lines:[{n:'Administration',v:3412893},{n:'Accounts Program',v:1835521},{n:'Real Property Assessment',v:3625168},{n:'Motor Vehicle & Licensing',v:5302768},{n:'Purchasing Program',v:532882},{n:'Treasury Program',v:1995348}] },
+  { name:'Countywide Costs (Finance)', cat:'management', total:351978783, color:'#9a7e28',
+    lines:[{n:'Fringe Benefits',v:171763735},{n:'Fringe Benefits Reimbursement',v:-37486231},{n:'Bond Issuance & Debt Service',v:76986225},{n:'Transfer to Env. Protection Fund',v:15054237},{n:'Transfer to Highway Fund',v:35848245},{n:'Transfer to Solid Waste Fund',v:14559183},{n:'Insurance Programs',v:21600000},{n:'Open Space/Cultural Fund',v:6503886},{n:'Affordable Housing Fund',v:32519431},{n:'General Excise Tax Fund (DHHL)',v:15132512},{n:'Post-Employment Obligations',v:8566147},{n:'Managed Retreat Fund',v:2578827},{n:'Emergency Fund Transfer',v:25000000}] },
+  { name:'Dept. of Fire and Public Safety', cat:'safety', total:67775907, color:'#f87171',
+    lines:[{n:'Administration Program',v:3995212},{n:'Training Program',v:3200455},{n:'Fire/Rescue Operations',v:50995759},{n:'Fire Prevention Program',v:2153487},{n:'Ocean Safety Program',v:7430994}] },
+  { name:'Department of Housing', cat:'social', total:46483380, color:'#c084fc',
+    lines:[{n:'Housing Program (Admin)',v:3168380},{n:'Homeowner Programs Revolving Fund',v:3000000},{n:'Experimental/Demo Housing Projects',v:4750000},{n:'Affordable Rental Housing Grants',v:3000000},{n:'Hale Mahaolu Counseling',v:190000},{n:'Lānaʻi Housing Water/Wastewater',v:10000000},{n:'Lahaina Community Land Trust',v:3000000},{n:'Hale O La\'ie',v:5200000},{n:'Kilohana Makai Workforce Housing',v:1000000},{n:'Women\'s Reintegration Program',v:175000}] },
+  { name:'Department of Human Concerns', cat:'social', total:25000000, color:'#fb923c',
+    lines:[{n:'Administration',v:678929},{n:'Human Concerns Program',v:6672060},{n:'Food, Shelter & Safety Grants',v:1136800},{n:'Early Childhood Programs',v:2055402},{n:'Houseless Programs',v:2858300},{n:'Mental Health Programs',v:500000},{n:'Health & Human Services Grants',v:'~$3M+'}] },
+];
+
+function renderDepts() {
+  const grid = document.getElementById('deptGrid');
+  grid.innerHTML = deptData.map((d,i) => `
+    <div class="dept-card" id="dept-${i}" onclick="toggleDept(${i})">
+      <div class="dept-head">
+        <div class="dept-head-left">
+          <div class="dept-name">${d.name}</div>
+          <div class="dept-tag"><span class="tag" style="background:${d.color}22;color:${d.color}">${d.cat.toUpperCase()}</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <div class="dept-total">${fmt(d.total)}</div>
+          <div class="dept-chevron">▼</div>
+        </div>
+      </div>
+      <div class="dept-body">
+        ${d.lines.map(l => `
+          <div class="dept-line">
+            <div class="dept-line-name">${l.n}</div>
+            <div class="dept-line-val">${typeof l.v === 'number' ? fmtFull(l.v) : l.v}</div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function toggleDept(i) {
+  document.getElementById('dept-'+i).classList.toggle('expanded');
+}
+function filterDepts() {
+  const q = document.getElementById('deptSearch').value.toLowerCase();
+  const f = document.getElementById('deptFilter').value;
+  if (!window._deptRendered) { renderDepts(); window._deptRendered = true; }
+  deptData.forEach((d,i) => {
+    const card = document.getElementById('dept-'+i);
+    if (!card) return;
+    const matchQ = !q || d.name.toLowerCase().includes(q) || d.cat.includes(q);
+    const matchF = !f || d.cat === f;
+    card.style.display = (matchQ && matchF) ? '' : 'none';
+  });
+}
+
+// ── TABLE SORT ──
+function sortTable(id, col) {
+  const table = document.getElementById(id);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const dir = table.dataset.sortDir === 'asc' ? -1 : 1;
+  table.dataset.sortDir = dir === 1 ? 'asc' : 'desc';
+  rows.sort((a,b) => {
+    const av = a.cells[col]?.textContent.replace(/[$,%+,\s]/g,'') || '';
+    const bv = b.cells[col]?.textContent.replace(/[$,%+,\s]/g,'') || '';
+    const an = parseFloat(av.replace(/[^0-9.-]/g,''));
+    const bn = parseFloat(bv.replace(/[^0-9.-]/g,''));
+    if (!isNaN(an) && !isNaN(bn)) return (an - bn) * dir;
+    return av.localeCompare(bv) * dir;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+// ── GWT CALCULATOR ──
+function calcGWT() {
+  const pct = parseFloat(document.getElementById('captureSlider').value) / 100;
+  const gwt = parseFloat(document.getElementById('gwtSlider').value) / 100;
+  document.getElementById('captureLabel').textContent = Math.round(pct*100) + '%';
+  document.getElementById('gwtPctLabel').textContent = (gwt*100).toFixed(1) + '%';
+  const base = 1512277295;
+  const captured = base * pct;
+  const gwtFlow = captured * gwt;
+  const community = gwtFlow * 0.8;   // 10/12.5 = 80%
+  const mgmt = gwtFlow * 0.16;        // 2/12.5
+  const fid = gwtFlow * 0.04;         // 0.5/12.5
+  document.getElementById('r-captured').textContent = fmt(captured);
+  document.getElementById('r-gwt').textContent = fmt(gwtFlow);
+  document.getElementById('r-community').textContent = fmt(community);
+  document.getElementById('r-mgmt').textContent = fmt(mgmt);
+  document.getElementById('r-fiduciary').textContent = fmt(fid);
+  document.getElementById('r-5yr').textContent = fmt(gwtFlow * 5);
+}
+
+// ── INIT ──
+window.onload = function() {
+  renderRevenue();
+  window._revRendered = true;
+  calcGWT();
+};
+</script>
+</body>
+</html>

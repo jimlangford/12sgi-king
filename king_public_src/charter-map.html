@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 Stones Sovereign Charter · 28 Articles · Alignment Map</title>
+<style>
+  :root {
+    --teal:   #18a89a; --teal-d: #0e7a6f; --teal-l: #2dd4bf;
+    --gold:   #e8a840; --gold-d: #c08020;
+    --red:    #e84060; --green: #28c76f; --purple: #9b6dff;
+    --bg:     #050f1a; --panel: #0a1e2e; --panel2: #0d2840;
+    --border: #1a3a5a; --text:  #d0e8f8; --muted: #6a9ab8; --white: #eef6ff;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+  /* ── CANVAS ── */
+  #bg-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.15; }
+
+  /* ── LAYOUT ── */
+  .wrapper { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:0 16px 60px; }
+
+  /* ── HEADER ── */
+  header { padding:20px 0 14px; border-bottom:1px solid var(--border); margin-bottom:22px; }
+  .header-top { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .title-block h1 { font-size:1.45rem; font-weight:800; color:var(--white); }
+  .title-block p  { font-size:.78rem; color:var(--muted); margin-top:3px; }
+  .header-badges { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .badge { padding:4px 10px; border-radius:12px; font-size:.68rem; font-weight:700; letter-spacing:.04em; border:1px solid; }
+  .badge-teal   { background:rgba(24,168,154,.12); color:var(--teal-l); border-color:rgba(24,168,154,.3); }
+  .badge-gold   { background:rgba(232,168,64,.12);  color:#f5c870;      border-color:rgba(232,168,64,.3); }
+  .badge-purple { background:rgba(155,109,255,.12); color:#c0a0ff;      border-color:rgba(155,109,255,.3); }
+
+  /* ── LEGEND ── */
+  .legend { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:18px; padding:12px 16px; background:var(--panel); border:1px solid var(--border); border-radius:10px; }
+  .leg-item { display:flex; align-items:center; gap:6px; font-size:.72rem; color:var(--text); }
+  .leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .filter-btn {
+    padding:5px 12px; border-radius:16px; font-size:.72rem; font-weight:600;
+    border:1px solid var(--border); background:var(--panel2); color:var(--muted);
+    cursor:pointer; transition:all .2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background:var(--teal); color:var(--bg); border-color:var(--teal);
+  }
+
+  /* ── ARTICLE GRID ── */
+  .charter-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }
+
+  /* ── ARTICLE CARD ── */
+  .article-card {
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:12px; overflow:hidden; cursor:pointer;
+    transition:transform .18s, border-color .18s, box-shadow .18s;
+    position:relative;
+  }
+  .article-card:hover {
+    transform:translateY(-3px);
+    border-color:var(--teal);
+    box-shadow:0 8px 32px rgba(24,168,154,.15);
+  }
+  .article-card.expanded { border-color:var(--teal); }
+
+  /* Stripe color by category */
+  .article-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  }
+  .cat-governance::before  { background:var(--teal); }
+  .cat-finance::before     { background:var(--gold); }
+  .cat-culture::before     { background:#e84060; }
+  .cat-justice::before     { background:var(--purple); }
+  .cat-land::before        { background:var(--green); }
+  .cat-digital::before     { background:#38bdf8; }
+  .cat-welfare::before     { background:#fb923c; }
+  .cat-recovery::before    { background:#f43f5e; }
+
+  .card-header { padding:14px 16px 10px; display:flex; align-items:flex-start; gap:10px; }
+  .art-num {
+    font-size:.62rem; font-weight:800; color:var(--muted); text-transform:uppercase;
+    letter-spacing:.08em; width:34px; flex-shrink:0; padding-top:3px;
+  }
+  .art-icon { font-size:1.5rem; flex-shrink:0; }
+  .art-title-wrap { flex:1; }
+  .art-roman { font-size:.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  .art-title { font-size:.9rem; font-weight:700; color:var(--white); line-height:1.2; margin-top:1px; }
+  .art-hawaiian { font-size:.68rem; color:var(--teal); font-style:italic; margin-top:2px; }
+
+  .card-body { padding:0 16px 14px; }
+  .art-summary { font-size:.74rem; color:var(--text); line-height:1.55; margin-bottom:10px; }
+
+  /* Tag row */
+  .tag-row { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+  .tag {
+    font-size:.6rem; padding:2px 7px; border-radius:8px; font-weight:600; letter-spacing:.04em;
+    border:1px solid;
+  }
+  .tag-mcc    { background:rgba(24,168,154,.1);  color:var(--teal-l);   border-color:rgba(24,168,154,.25); }
+  .tag-fy26   { background:rgba(232,168,64,.1);  color:#f5c870;         border-color:rgba(232,168,64,.25); }
+  .tag-game   { background:rgba(155,109,255,.1); color:#c0a0ff;         border-color:rgba(155,109,255,.25); }
+  .tag-rais   { background:rgba(56,189,248,.1);  color:#7dd3fc;         border-color:rgba(56,189,248,.25); }
+  .tag-status { border-radius:8px; font-size:.6rem; font-weight:700; padding:2px 7px; }
+  .status-live    { background:rgba(40,199,111,.12); color:#4dde8c; border:1px solid rgba(40,199,111,.25); }
+  .status-pending { background:rgba(240,192,64,.12); color:#f5d070; border:1px solid rgba(240,192,64,.25); }
+  .status-draft   { background:rgba(106,154,184,.12);color:var(--muted);border:1px solid var(--border); }
+
+  /* Expanded details */
+  .card-details {
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+    border-top:0px solid var(--border);
+  }
+  .card-details.open {
+    max-height:500px;
+    border-top:1px solid var(--border);
+  }
+  .detail-inner { padding:12px 16px 14px; }
+  .detail-section { margin-bottom:10px; }
+  .detail-label { font-size:.65rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+  .detail-text  { font-size:.74rem; color:var(--text); line-height:1.55; }
+  .detail-crosswalk {
+    background:var(--panel2); border-radius:7px; padding:8px 10px;
+    font-size:.7rem; color:var(--text); border:1px solid var(--border);
+    margin-top:4px;
+  }
+  .detail-crosswalk strong { color:var(--gold); }
+
+  /* ── SUMMARY STATS ── */
+  .stats-row { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:22px; }
+  @media(max-width:800px){ .stats-row{ grid-template-columns:repeat(3,1fr); } }
+  @media(max-width:480px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+  .stat-card {
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; text-align:center;
+  }
+  .stat-n { font-size:1.6rem; font-weight:800; color:var(--teal-l); }
+  .stat-l { font-size:.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar{width:5px;height:5px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+  /* ── FOOTER ── */
+  footer { border-top:1px solid var(--border); padding:14px 0; font-size:.68rem; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-div { display:flex; align-items:center; gap:10px; margin:24px 0 14px; font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+  .section-div::before,.section-div::after{ content:''; flex:1; height:1px; background:var(--border); }
+
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+  .article-card { animation:fadeIn .3s ease both; }
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="wrapper">
+
+<header>
+  <div class="header-top">
+    <div class="title-block">
+      <h1>🪨 12 Stones Sovereign Charter · 28 Articles</h1>
+      <p>Complete alignment map: SSC Articles I–XXVIII · Maui County Charter (MCC) crosswalk · CivicSignal · Civic Ascent game · FY2026 budget</p>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-teal">SSC v5 · April 2025</span>
+      <span class="badge badge-gold">MCC Jan 2023 · 15 Articles</span>
+      <span class="badge badge-purple">Civic Ascent · 52 Nodes</span>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-n">28</div><div class="stat-l">SSC Articles</div></div>
+  <div class="stat-card"><div class="stat-n">15</div><div class="stat-l">MCC Articles Replaced</div></div>
+  <div class="stat-card"><div class="stat-n">8</div><div class="stat-l">Categories</div></div>
+  <div class="stat-card"><div class="stat-n">52</div><div class="stat-l">Civic Ascent Nodes</div></div>
+  <div class="stat-card"><div class="stat-n">$1.5B</div><div class="stat-l">FY2026 Budget Scope</div></div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--teal)"></div>Governance</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Finance</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#e84060"></div>Culture &amp; Lineage</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--purple)"></div>Justice &amp; Protocol</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Land &amp; Environment</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#38bdf8"></div>Digital Sovereignty</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#fb923c"></div>Welfare &amp; Health</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f43f5e"></div>Recovery &amp; Resilience</div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar" id="filter-bar">
+  <button class="filter-btn active" data-cat="all">All 28</button>
+  <button class="filter-btn" data-cat="governance">Governance</button>
+  <button class="filter-btn" data-cat="finance">Finance</button>
+  <button class="filter-btn" data-cat="culture">Culture</button>
+  <button class="filter-btn" data-cat="justice">Justice</button>
+  <button class="filter-btn" data-cat="land">Land</button>
+  <button class="filter-btn" data-cat="digital">Digital</button>
+  <button class="filter-btn" data-cat="welfare">Welfare</button>
+  <button class="filter-btn" data-cat="recovery">Recovery</button>
+</div>
+
+<!-- CHARTER GRID -->
+<div class="charter-grid" id="charter-grid"></div>
+
+<div class="section-div">📋 How to Read This Map</div>
+<div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 20px;font-size:.78rem;color:var(--text);line-height:1.7;">
+  Each card shows one of the 28 Articles of the <strong style="color:var(--white)">12 Stones Sovereign Charter (SSC)</strong> as filed with Maui County Council (April 14, 2025).
+  The <strong style="color:var(--gold)">MCC Crosswalk</strong> shows which official Maui County Charter article each SSC article is proposed to replace or supersede.
+  The <strong style="color:#c0a0ff">Civic Ascent</strong> tag shows the game card/node type each article maps to.
+  The <strong style="color:var(--teal-l)">CivicSignal</strong> tag shows how the Financial Truth Engine monitors this article's real-world execution.
+  Click any card to expand its full detail, crosswalk citation, and deployment action.
+</div>
+
+<footer>
+  <span>12 Stones Sovereign Charter v5 · Langford Consulting Trust · james@12sgi.com · 12sgi.com</span>
+  <span>Crosswalk: Maui County Charter Jan 2023 · FY2026 Budget · CivicSignal Financial Truth Engine</span>
+</footer>
+
+</div><!-- /wrapper -->
+
+<script>
+/* ── OCEAN BACKGROUND ── */
+const cvs=document.getElementById('bg-canvas'),ctx=cvs.getContext('2d');
+let W,H;
+function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+const waves=[
+  {y:.45,amp:22,freq:.006,sp:.3,ph:0,color:'#18a89a',a:.1},
+  {y:.6, amp:16,freq:.009,sp:.45,ph:1,color:'#e8a840',a:.07},
+  {y:.75,amp:12,freq:.012,sp:.6, ph:2,color:'#2dd4bf',a:.08},
+];
+let t=0;
+function drawBg(){
+  ctx.clearRect(0,0,W,H);
+  waves.forEach(w=>{
+    ctx.beginPath();ctx.moveTo(0,H);
+    for(let x=0;x<=W;x+=4){
+      const y=H*w.y+Math.sin(x*w.freq+t*w.sp+w.ph)*w.amp;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(W,H);ctx.closePath();
+    ctx.fillStyle=w.color;ctx.globalAlpha=w.a;ctx.fill();
+  });
+  ctx.globalAlpha=1;t+=.012;requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* ── CHARTER DATA ── */
+const ARTICLES = [
+  {
+    num:"I", icon:"🌏", title:"Foundation",
+    hawaiian:"Kahua – The Foundation Stone",
+    cat:"governance",
+    summary:"Establishes the supremacy of the living scroll over all HRS statutory authority. Asserts sovereignty of the charter as a self-executing legal instrument. UNDRIP Art. 26 cited as foundational authority.",
+    key_sections:["1.1 Supremacy Clause","1.2 Living Document Status","1.3 Sovereign Continuity Declaration"],
+    mcc_replaces:"MCC Preamble + HRS §1-1 (Common Law)",
+    mcc_action:"File 'Declaration of Sovereign Continuity' with Dept. of the Attorney-General",
+    game_card:"🏛️ Community Statement (Starter Card)",
+    civicsignal:"Document ingestion layer — every scroll filed is hashed and verified",
+    fy26_link:"Foundational to all $1.512B appropriation authority",
+    status:"live",
+    rais:"RAIS Verification Node — Article I seal required on all filed scrolls"
+  },
+  {
+    num:"II", icon:"🕊️", title:"Peacekeeper Protocol",
+    hawaiian:"Mālama Kia'i – Guardian Stewards",
+    cat:"governance",
+    summary:"Eliminates the single-person Mayor executive. Distributes executive power to a council of Peacekeepers subject to glyph-audit (Maka Kiai). No veto power. Decisions by consensus scroll dialogue.",
+    key_sections:["2.1 Establishment of Peacekeepers","2.2 Selection via Community Affirmation","2.3 Duties and Powers","2.4 No Veto Clause","2.5 Removal via Scroll Tribunal"],
+    mcc_replaces:"MCC Article 7 (Office of the Mayor) · HRS §§46-1.5, 46-9, 46-18",
+    mcc_action:"Draft legislative repeal of Mayor office; insert Council of Stewards language in Bill 41",
+    game_card:"🤝 Town Hall Node (Rest) — Peacekeeper consultation",
+    civicsignal:"Assertion Engine — monitors Mayor vs. Peacekeeper authority claims",
+    fy26_link:"Affects all executive appointments across $919.6M General Fund",
+    status:"pending",
+    rais:"Glyph-audit triggers on any single-executive action outside consensus protocol"
+  },
+  {
+    num:"III", icon:"🪑", title:"Council of Stewards",
+    hawaiian:"Papahana Kūkā – Circle of Deliberation",
+    cat:"governance",
+    summary:"Replaces the 9-member elected County Council with a culturally-based Council of Stewards selected by moku-level community affirmation. Decisions flow through Resource Custodian Circles.",
+    key_sections:["3.1 Composition by Moku","3.2 Affirmation Process","3.3 Powers and Limitations","3.4 Council Scrolls","3.5 Public Testimony Protocol"],
+    mcc_replaces:"MCC Article 3 (County Council) · HRS §§46-15-1–5",
+    mcc_action:"Draft 'Council of Stewards' legislation; each of 9 moku selects steward",
+    game_card:"🗳️ Election Node — Council of Stewards vote",
+    civicsignal:"Council vote scraper tracks all 9 council members' votes vs. steward positions",
+    fy26_link:"Council controls $919.6M General Fund appropriations via Bill 41",
+    status:"pending",
+    rais:"RAIS Scheduler tracks council testimony windows and affirmation quorums"
+  },
+  {
+    num:"IV", icon:"🌀", title:"Custodianship of Resources",
+    hawaiian:"Mālama 'Āina – Stewardship of Land",
+    cat:"land",
+    summary:"All policy, budgeting, and contracts flow through Resource Custodian Circles. 12.5% of all public contract values allocated to the Generational Wealth Trust. Circle governance replaces departmental authority.",
+    key_sections:["4.1 Resource Circles Structure","4.2 Circle Governance","4.3 Contract 12.5% Rule","4.4 Generational Wealth Fund","4.5 Circle Accountability"],
+    mcc_replaces:"MCC Article 3-§3.3 (Council Powers) · HRS §§46-15-5, 283-5",
+    mcc_action:"Re-allocate all revenues to trust structure; set 12.5% rule in ordinance",
+    game_card:"💰 Windfall Node — Generational Wealth deposit",
+    civicsignal:"Fund Flow Ledger — tracks 12.5% allocation compliance on all contracts",
+    fy26_link:"$46.45M in proposed Generational Wealth allocations across 5 pilot contracts",
+    status:"draft",
+    rais:"Smart contract triggers 12.5% allocation on every contract execution"
+  },
+  {
+    num:"V", icon:"🌺", title:"Cultural and Lineage Integrity",
+    hawaiian:"Kia'i Moʻomeheu – Guardian of Cultural Memory",
+    cat:"culture",
+    summary:"All land-use decisions must meet cultural-integrity criteria. Sacred sites are inviolable. Zoning only via cultural review scroll. Protects native Hawaiian cultural practices from external override.",
+    key_sections:["5.1 Cultural Criteria for Land Use","5.2 Cultural Review Process","5.3 Lineage Holder Authority","5.4 Ancestral Protocol Override","5.5 Cultural Impact Assessment"],
+    mcc_replaces:"MCC Article 6 (Planning & Zoning) · HRS §§195-1, 282-44",
+    mcc_action:"Adopt scroll-based zoning with mandatory cultural review before any permit",
+    game_card:"📢 Citizen Petition — Cultural Protection Vote",
+    civicsignal:"Assertion Engine — monitors planning permits against cultural review compliance",
+    fy26_link:"Affects all capital projects in West Maui ($33.95M) touching cultural sites",
+    status:"draft",
+    rais:"Cultural review triggers zoning scroll; Glyph 5 seal required"
+  },
+  {
+    num:"VI", icon:"🔐", title:"Fiduciary Trust and Transparency",
+    hawaiian:"Hoʻomalu Waiwai – Protection of Sacred Wealth",
+    cat:"finance",
+    summary:"V5 Amendment. All funds held in public-auditable trust. Blockchain-backed accounting. Quarterly RAIS ledger reports. 10% generational wealth redistribution from all external funding. 0.5% to Langford Consulting Trust for fiduciary stewardship.",
+    key_sections:["6.1 Public Trust Establishment","6.2 Transparency Requirements","6.3 10% Generational Wealth Rule","6.4 Trust Violation Enforcement","6.5 Sovereign Financial Law Alignment"],
+    mcc_replaces:"MCC Article 5 (Finance) · HRS §§282-30-3, 283-2",
+    mcc_action:"File Treasury Re-charter; seek exemption from HRS §283-2 interest-bearing debt",
+    game_card:"💎 Rare Policy Card — Fiduciary Shield",
+    civicsignal:"CORE: Fund Flow Ledger + Immutable Audit Log — Article VI is the CivicSignal mandate",
+    fy26_link:"$1.512B total revenues subject to transparency mandate; $65.7M+ to Wealth Fund at 10%",
+    status:"live",
+    rais:"RAIS publishes quarterly ledger; every fund movement hash-sealed"
+  },
+  {
+    num:"VII", icon:"🏥", title:"Public Health & Wellness Stewardship",
+    hawaiian:"Ola Kino – Living Health",
+    cat:"welfare",
+    summary:"Health policy integrated with cultural health circles. No external mandates override ancestral protocols. Traditional lāʻau lapaʻau integrated into community health centers. Trauma-informed care mandate.",
+    key_sections:["7.1 Cultural Health Circles","7.2 Ancestral Protocol Override","7.3 Trauma-Informed Governance","7.4 Lāʻau Lapaʻau Integration","7.5 Health Sovereignty"],
+    mcc_replaces:"MCC Article 8-Ch.10 (Health & Human Concerns) · HRS §§445-1, 449-1",
+    mcc_action:"Replace Health mandates with culturally-anchored health circles; $26M Human Concerns dept",
+    game_card:"🏘️ Community Challenge — Health Crisis Resolution",
+    civicsignal:"Obligation Tracker — $26M Human Concerns fund vs. cultural health deployment",
+    fy26_link:"$26,033,000 Human Concerns dept + $67.8M Fire & Safety emergency health",
+    status:"draft",
+    rais:"Trauma flags trigger scroll review; ADA compliance monitored"
+  },
+  {
+    num:"VIII", icon:"📚", title:"Education & Cultural Learning Systems",
+    hawaiian:"Hoʻona'auao – Enlightenment Through Culture",
+    cat:"culture",
+    summary:"Education becomes culturally-anchored. Curriculum Council of Stewards replaces State Education Board authority. Hawaiian language immersion mandatory. Dual Hebrew-Hawaiian linguistic approach in Sage Game educational modules.",
+    key_sections:["8.1 Curriculum Council of Stewards","8.2 Hawaiian Language Immersion","8.3 Seventh-Generation Education","8.4 Cultural Curriculum Standards","8.5 Educational Sovereignty"],
+    mcc_replaces:"MCC Article 8-Ch. (Education) · HRS §281-4",
+    mcc_action:"Shift to Curriculum Council of Stewards; file cultural curriculum standards",
+    game_card:"📋 Grant Window — Educational Sovereignty Application",
+    civicsignal:"Grant Gap Engine — educational resilience grants uncaptured",
+    fy26_link:"Scope includes school infrastructure within $286M capital projects",
+    status:"draft",
+    rais:"Curriculum updates require glyph-ballot approval from Council of Stewards"
+  },
+  {
+    num:"IX", icon:"🌱", title:"Protection of Youth and Future Generations",
+    hawaiian:"Mālama Keiki – Protecting the Children",
+    cat:"welfare",
+    summary:"Youth policy reflects the seventh-generation principle. Youth Council at each moku. Child welfare is a sovereign function. All policy decisions evaluated for 100-year impact on keiki.",
+    key_sections:["9.1 Seventh-Generation Principle","9.2 Youth Council per Moku","9.3 Child Welfare Sovereignty","9.4 Long-Term Impact Assessment","9.5 Youth Voice in Governance"],
+    mcc_replaces:"MCC Article 8-Ch.10 (Youth Services) · HRS §441-1",
+    mcc_action:"Create Youth Council per moku; integrate youth testimony in all budget hearings",
+    game_card:"🏘️ Community Challenge — Keiki Protection Vote",
+    civicsignal:"Tracks youth services allocation across Housing and Human Concerns departments",
+    fy26_link:"Youth programs within $33.5M Housing + $26M Human Concerns appropriations",
+    status:"draft",
+    rais:"Youth council scroll testimony required before any ordinance affecting minors"
+  },
+  {
+    num:"X", icon:"📜", title:"Scroll Amendment System",
+    hawaiian:"Hoʻololi Pāpā – Sacred Document Reform",
+    cat:"digital",
+    summary:"All records become living scrolls stored in encrypted glyph-sealed ledger. Amendment via glyph-ballot and RAIS Scheduler. County Clerk functions absorbed into Scroll Ledger. Emergency Scroll Invocation for crisis governance.",
+    key_sections:["10.1 Living Scroll Registry","10.2 Glyph-Ballot Amendment Process","10.3 RAIS Scheduler Integration","10.4 Public Scroll Access","10.5 Emergency Scroll Invocation"],
+    mcc_replaces:"MCC Article 5 (County Clerk) + Article 14 (Charter Amendment) · HRS §46-10",
+    mcc_action:"Migrate all paper and electronic records into Scroll Ledger; certify migration",
+    game_card:"📜 Scroll Amendment Relic — unlock glyph-sealed governance",
+    civicsignal:"Audit Log backbone — every scroll amendment is an immutable hash entry",
+    fy26_link:"CI/CD deployed to 12sgi.com; Scroll Hash: FY2026-SCROLLHASH-DEPLOY-0416",
+    status:"live",
+    rais:"GitHub Actions → Wix Velo → RAIS Scheduler; Commit 172af43 certified"
+  },
+  {
+    num:"XI", icon:"🗺️", title:"Land Sovereignty and Regenerative Use",
+    hawaiian:"Pono 'Āina – Righteous Land",
+    cat:"land",
+    summary:"All land within Maui County recognized as held in trust for future generations. Prohibits speculative development without community affirmation. Mandates regenerative land practices. Connects to aloha ʻāina principle.",
+    key_sections:["11.1 Land as Sacred Trust","11.2 Anti-Speculation Protocol","11.3 Regenerative Use Standards","11.4 Agricultural Commons","11.5 ʻĀina Aloha Declaration"],
+    mcc_replaces:"MCC Article 8-Ch.5 (Public Works) + Ch.18 (Agriculture) · HRS §195",
+    mcc_action:"Establish Agricultural Commons registry; convert speculative parcels to community trust",
+    game_card:"🌱 Rest Node — ʻĀina Regeneration ceremony",
+    civicsignal:"Grant Gap Engine — USDA Agricultural Resilience $3M fragmented gap",
+    fy26_link:"$148.9M Countywide Capital — land acquisition component",
+    status:"draft",
+    rais:"Drone + IoT data feeds into land-use scroll creation engine"
+  },
+  {
+    num:"XII", icon:"🔭", title:"Digital Sovereignty and RAIS Infrastructure",
+    hawaiian:"Nohona Pāʻoihana Hou – Digital Governance Homeland",
+    cat:"digital",
+    summary:"Establishes the RAIS (Real-time Accountability and Intelligence System) as sovereign infrastructure. All data streams tagged with RAIS identifiers. Smart Contracts serve as automated trust enforcers. Drone, IoT, and sensor data mapped to Charter articles.",
+    key_sections:["12.1 RAIS Sovereignty","12.2 Smart Contract Protocol","12.3 Data Tag Requirements","12.4 AI Governance Ethics","12.5 Blockchain Ledger Standards"],
+    mcc_replaces:"No direct MCC equivalent — new sovereign digital layer",
+    mcc_action:"Deploy RAIS per RAIS_User_Manual.pdf; integrate with 12sgi.com CMS",
+    game_card:"🔭 Relic — Digital Sovereignty Node (rare)",
+    civicsignal:"DIRECT: CivicSignal IS the RAIS layer — Financial Truth Engine = Article XII in action",
+    fy26_link:"$4.2M Digital Sovereignty Infrastructure contract (Generational Wealth: $525K)",
+    status:"live",
+    rais:"RAIS is self-referential in this article; every system action is Article XII compliance"
+  },
+  {
+    num:"XIII", icon:"⚖️", title:"13th Protocol — Restorative Justice",
+    hawaiian:"Hoʻoponopono Kānāwai – Sacred Law Restoration",
+    cat:"justice",
+    summary:"Legal disputes resolved in Scroll Tribunals, not colonial courts. 13th Protocol Enforcement. Peacekeeper Arrest Index replaces MPD protocol for cultural violations. Hoʻoponopono as primary conflict resolution method.",
+    key_sections:["13.1 Scroll Tribunal Establishment","13.2 Peacekeeper Arrest Index","13.3 Hoʻoponopono Protocol","13.4 Restitution Framework","13.5 13th Protocol Enforcement"],
+    mcc_replaces:"MCC Article 8-Ch.3 (Prosecuting Attorney) + Ch.12 (Police) · HRS §607-1",
+    mcc_action:"File injunctions against state agencies; establish Scroll Tribunals",
+    game_card:"🚨 Crisis Node — 13th Protocol Invoked",
+    civicsignal:"Assertion Engine — MPD Oversight Bundle; Prosecutorial Audit Brief filed",
+    fy26_link:"$98.3M Police + $67.8M Fire — both subject to Peacekeeper oversight protocol",
+    status:"pending",
+    rais:"Tribal justice triggers logged in immutable audit; no MPD action without scroll review"
+  },
+  {
+    num:"XIV", icon:"💎", title:"The 14th Stone — Intangible Guardian",
+    hawaiian:"Pōhaku ʻUmikumamāhā – The Invisible Stone",
+    cat:"culture",
+    summary:"The 14th stone beyond Aaron's Breastplate 12. Protects intangible heritage: oral traditions, celestial navigation knowledge, sacred chants, and the living memory of Lahaina. ICJ-ready with ceremonial protocol overlays. Glyph 14 invoked for cultural site protection.",
+    key_sections:["14.1 Intangible Heritage Registry","14.2 Oral Tradition Protection","14.3 Celestial Navigation Sovereignty","14.4 Sacred Chant Archive","14.5 Glyph 14 Protocol"],
+    mcc_replaces:"MCC Article 8-Ch.21 (ʻŌiwi Resources Dept) · HRS §44",
+    mcc_action:"Establish living heritage archive; Glyph 14 seal on all ICJ filings",
+    game_card:"💎 Rare Relic — 14th Stone (boss drop only)",
+    civicsignal:"Lahaina Memorial context layer — intangible losses documented alongside financial losses",
+    fy26_link:"Within $33.95M West Maui Capital — Lahaina cultural restoration component",
+    status:"draft",
+    rais:"ICJ-ready documentation; ceremonial protocol must overlay all recovery scrolls"
+  },
+  {
+    num:"XV", icon:"🗿", title:"Sacred Sites and Burial Grounds Protection",
+    hawaiian:"Wahi Kapu – Sacred and Forbidden Spaces",
+    cat:"culture",
+    summary:"Sacred sites are inviolable under any development or recovery plan. Burial grounds protected under indigenous rights provisions. Archaeological resources cannot be disturbed without scroll tribunal review. Lahaina site protections invoked.",
+    key_sections:["15.1 Sacred Site Registry","15.2 Burial Ground Sovereignty","15.3 Archaeological Protection","15.4 Development Override Prohibition","15.5 Community Guardian Designation"],
+    mcc_replaces:"MCC Article 6 (Planning & Zoning) extension · HRS §§195-1, 6E",
+    mcc_action:"File sacred site registry with SHPD; all West Maui permits require Article XV review",
+    game_card:"🏘️ Community Challenge — Sacred Site Defense",
+    civicsignal:"Lahaina Recovery Tracker — flags any capital project intersecting registered sacred sites",
+    fy26_link:"Critical gate for all $33.95M West Maui Capital expenditure",
+    status:"pending",
+    rais:"GIS overlay: all zoning scrolls cross-indexed with sacred site coordinates"
+  },
+  {
+    num:"XVI", icon:"🌊", title:"Ocean and Marine Stewardship",
+    hawaiian:"Nā Kai Ewalu – The Eight Seas",
+    cat:"land",
+    summary:"Ocean waters within 3 nautical miles of Maui islands recognized as sovereign marine territory. Reef nurseries, fishpond restoration, and traditional fishing practices protected. Water Keepers govern marine zones.",
+    key_sections:["16.1 Marine Sovereignty Declaration","16.2 Reef Nursery Protocol","16.3 Traditional Fishing Rights","16.4 Water Keeper Designation","16.5 Ocean Restoration Fund"],
+    mcc_replaces:"MCC Article 8-Ch.15 (Environmental Management) · HRS §§195, 281",
+    mcc_action:"Transfer marine licenses to Water Keepers; establish reef restoration fund",
+    game_card:"🌊 Elemental Event — Ocean Restoration",
+    civicsignal:"Grant Gap Engine — EPA Clean Water SRF $7.4M underutilized",
+    fy26_link:"$6.75M Ocean Restoration (Generational Wealth: $843,750); EPA SRF $7.4M gap",
+    status:"draft",
+    rais:"IoT buoys + water sensors feed into marine sovereignty scroll layer"
+  },
+  {
+    num:"XVII", icon:"🌿", title:"Food Sovereignty and Agricultural Commons",
+    hawaiian:"Loʻi Kalo – Sacred Taro of the People",
+    cat:"land",
+    summary:"Food sovereignty as a human right. Loʻi farms, seed banks, and community gardens protected as commons. USDA Agricultural Resilience programs mapped to community-controlled food systems. Farm Box and hydroponic systems as sovereign infrastructure.",
+    key_sections:["17.1 Food as Sacred Right","17.2 ʻĀina Commons Registry","17.3 Seed Bank Sovereignty","17.4 Farm Box Program","17.5 USDA Partnership Protocol"],
+    mcc_replaces:"MCC Article 8-Ch.18 (Agriculture) · HRS §141",
+    mcc_action:"File for USDA Rural Dev $12.5M; establish farm commons legal structure",
+    game_card:"🌱 Rest Node — Loʻi Harvest",
+    civicsignal:"Grant Gap Engine — $3M USDA agricultural grants fragmented; Farm Plan 2024 on file",
+    fy26_link:"USDA $12.5M not applied + fragmented $3M agricultural gap = $15.5M opportunity",
+    status:"draft",
+    rais:"Farm sensors + soil data mapped to Article XVII food sovereignty scrolls"
+  },
+  {
+    num:"XVIII", icon:"🏦", title:"Treasury and Financial Sovereignty",
+    hawaiian:"Waihona Waiwai – Sacred Wealth Vault",
+    cat:"finance",
+    summary:"Prohibits interest-bearing GO bond debt beyond community-approved limits. Creates sovereign financial instruments (time credits, community currencies). Blockchain accounting mandatory for all public funds. Generational Wealth Fund receives 12.5% of all public revenues.",
+    key_sections:["18.1 Sovereign Treasury","18.2 Anti-Debt Protocol","18.3 Community Currency","18.4 Blockchain Accounting","18.5 Wealth Distribution Formula"],
+    mcc_replaces:"MCC Article 9 (Financial Procedures) · HRS §§282-30-3, 283-2 (Debt)",
+    mcc_action:"File Treasury Re-charter; $120.5M GO Bond subject to community affirmation",
+    game_card:"💰 Rare Card — Treasury Sovereignty Shield",
+    civicsignal:"DIRECT: GO Bond Deployment Tracker — $120.5M authorization monitored",
+    fy26_link:"$120,507,284 GO Bond + $111.7M interfund transfers = Article XVIII scope",
+    status:"live",
+    rais:"All bond proceeds hash-sealed; community currency pilot tracked in RAIS ledger"
+  },
+  {
+    num:"XIX", icon:"🌐", title:"International Law and UNDRIP Compliance",
+    hawaiian:"Kānāwai Honua – Earth Law",
+    cat:"justice",
+    summary:"Maui recognized as an indigenous jurisdiction under UNDRIP Articles 26, 27, and 32. ICJ filings prepared. International fiduciary norms applied under common law. Sovereign immunity asserted for cultural governance decisions.",
+    key_sections:["19.1 UNDRIP Recognition","19.2 ICJ Filing Protocol","19.3 Sovereign Immunity","19.4 International Ally Network","19.5 Earth Law Integration"],
+    mcc_replaces:"MCC Article 13 (General Provisions) — extends beyond HRS authority",
+    mcc_action:"Prepare ICJ-ready documentation; file sovereign recognition with UNHRC",
+    game_card:"📋 Strategic Event — International Recognition",
+    civicsignal:"Assertion Engine — sovereignty claims vs. federal agency responses",
+    fy26_link:"All federal FEMA/HUD/USDA grants subject to UNDRIP compliance review",
+    status:"draft",
+    rais:"All international filings tagged with RAIS and Glyph 19 seal"
+  },
+  {
+    num:"XX", icon:"💱", title:"Indigenous Trade and Economic Sovereignty",
+    hawaiian:"Kālepa Kānaka – People's Exchange",
+    cat:"finance",
+    summary:"Establishes right to sovereign economic exchange. Inter-island trade networks governed by community scrolls. Exotic product feasibility (sustainable agriculture exports). MEDB and EDA partnerships mapped to sovereign economic zones.",
+    key_sections:["20.1 Trade Sovereignty","20.2 Inter-Island Commerce","20.3 Sustainable Export Protocol","20.4 EDA Partnership Framework","20.5 Economic Zone Boundaries"],
+    mcc_replaces:"MCC Article 2 (Powers of County) — economic expansion",
+    mcc_action:"File with EDA Supplemental $8M; establish inter-island trade council",
+    game_card:"💰 Elite Node — Economic Sovereignty Challenge",
+    civicsignal:"Grant Gap Engine — EDA Supplemental $8M not applied; Lahaina eligible",
+    fy26_link:"EDA Supplemental $8M + MEDB grant applications on file in 12Stones_",
+    status:"draft",
+    rais:"Trade scrolls cross-indexed with HUD and EDA compliance requirements"
+  },
+  {
+    num:"XXI", icon:"🎶", title:"Ceremony, Sacred Practice, and Cultural Arts",
+    hawaiian:"Hana Noʻeau – Sacred Craft of the People",
+    cat:"culture",
+    summary:"Hula, oli, kapa-making, celestial navigation, and traditional fishing practices recognized as sovereign cultural acts. Ceremonial spaces protected. Maui Arts and Cultural Center partnership. Tourism does not override ceremony.",
+    key_sections:["21.1 Ceremony as Law","21.2 Cultural Arts Sovereignty","21.3 Sacred Space Designation","21.4 Cultural Calendar Protection","21.5 Tourism Override Prohibition"],
+    mcc_replaces:"MCC Article 8-Ch.6 (Parks & Recreation) — cultural extension",
+    mcc_action:"Reclassify cultural sites in parks budget; file HTA Cultural Enrichment grant",
+    game_card:"🎶 Rest Node — Ceremonial Healing",
+    civicsignal:"Grant Gap Engine — HTA Community Enrichment grant application on file",
+    fy26_link:"Parks & Recreation capital within $286M projects; HTA grant pending",
+    status:"draft",
+    rais:"Cultural calendar synced to RAIS; ceremony windows block development permits"
+  },
+  {
+    num:"XXII", icon:"🧬", title:"Genealogy, Lineage Registry, and DNA Sovereignty",
+    hawaiian:"Moʻokūʻauhau – Sacred Genealogy Line",
+    cat:"culture",
+    summary:"Lineage holders verified through DNA, oral history, and glyph seals. Living Lineage Registry maintained in RAIS. Genealogy governs governance eligibility for Peacekeepers and Stewards. Protects against genetic data extraction by outside parties.",
+    key_sections:["22.1 Lineage Registry","22.2 DNA Sovereignty","22.3 Oral History Verification","22.4 Glyph Seal Authentication","22.5 Governance Eligibility"],
+    mcc_replaces:"MCC Article 3-§3.1 (Council eligibility) — replaces residency with lineage",
+    mcc_action:"Populate Living_Lineage_Registry_Template.csv; conduct DNA verification drives",
+    game_card:"💎 Relic — Lineage Seal (uncommon)",
+    civicsignal:"ʻOhana ID verification portal (JotForm 241046010608039) integrated",
+    fy26_link:"Governance eligibility affects all $919.6M General Fund decision-making",
+    status:"draft",
+    rais:"DNA + oral history entries glyph-sealed; immutable lineage ledger"
+  },
+  {
+    num:"XXIII", icon:"💧", title:"Elemental Utility Protocols",
+    hawaiian:"Nā Mea Kino – The Elemental Bodies",
+    cat:"land",
+    summary:"County utility departments reconstituted as Elemental Custodian Circles: Water Keepers, Energy Stewards, Land Guardians, Air Monitors. Governed by glyph-audit and community consent. No privatization without scroll approval.",
+    key_sections:["23.1 Water Keeper Circle","23.2 Energy Steward Circle","23.3 Land Guardian Circle","23.4 Air Monitor Circle","23.5 Utility Sovereignty","23.6 No-Privatization Clause"],
+    mcc_replaces:"MCC Article 8-Ch.5,7,11,15,19 (DPW, Water, Environmental) · HRS §§281-1,5,7",
+    mcc_action:"Transfer all utility licenses to Elemental Custodian Circles; file transfer docs",
+    game_card:"💧 Elemental Event — Water Keeper Invocation",
+    civicsignal:"Obligation Tracker — GO Bond Water Systems $22M stalled (37% deployed)",
+    fy26_link:"DWS + Wastewater +9% fee increase + $22M GO Bond water gap = $29M+ scope",
+    status:"pending",
+    rais:"IoT water sensors + energy meters feed directly into Elemental Circles scroll layer"
+  },
+  {
+    num:"XXIV", icon:"🤲", title:"HR and Community Agreements Code",
+    hawaiian:"Pono Hana – Righteous Work",
+    cat:"governance",
+    summary:"Hiring is ceremonial affirmation of kuleana (responsibility). All county contracts become community scrolls with wellness provisions, food access guarantees, and rest cycles. No at-will employment without scroll review. Whistleblower protection encoded.",
+    key_sections:["24.1 Ceremonial Hiring","24.2 Community Scroll Contracts","24.3 Wellness Provisions","24.4 Rest Cycle Mandates","24.5 Whistleblower Protection"],
+    mcc_replaces:"MCC Article 8-Ch.9 (Personnel Services) · HRS §388 (Labor)",
+    mcc_action:"Edit all employment contracts to include ceremonial affirmation; add wellness clauses",
+    game_card:"🤝 Town Hall Node — Kuleana Affirmation Ceremony",
+    civicsignal:"HR Audit Dashboard deployed (12Stones_HR_AuditDashboard_0414)",
+    fy26_link:"All county employees within $919.6M General Fund subject to Article XXIV",
+    status:"draft",
+    rais:"Employment scroll triggers kuleana affirmation; RAIS tracks contract compliance"
+  },
+  {
+    num:"XXV", icon:"📡", title:"Media, Broadcasting, and Information Sovereignty",
+    hawaiian:"Lono Nūhou – Voice of the News God",
+    cat:"digital",
+    summary:"Community has sovereign right to information about governance. Weekly 'Ke Kaiāulu Broadcast' in Hawaiian language. Glyph-encrypted private channels for elders. Public Instagram for youth outreach. No government censorship of scroll publications.",
+    key_sections:["25.1 Information Sovereignty","25.2 Hawaiian Language Broadcasting","25.3 Glyph-Encrypted Channels","25.4 Youth Media Access","25.5 Anti-Censorship Protocol"],
+    mcc_replaces:"MCC Article 8-Ch. (Public Access) · HRS §455-1",
+    mcc_action:"Launch weekly broadcast; establish glyph-encrypted elder channel on RAIS",
+    game_card:"📢 Citizen Petition — Media Sovereignty Declaration",
+    civicsignal:"DIRECT: CivicSignal IS Article XXV — public financial broadcasting sovereign mandate",
+    fy26_link:"CivicSignal Financial Truth Engine operationalizes Article XXV at $1.512B scope",
+    status:"live",
+    rais:"All scroll publications auto-published to RAIS public broadcast channel"
+  },
+  {
+    num:"XXVI", icon:"🌙", title:"Spiritual Ecology and Sacred Cosmology",
+    hawaiian:"Pō Welo – The Sacred Night",
+    cat:"culture",
+    summary:"Recognizes the spiritual dimension of governance. Celestial events (eclipses, solstices, lunar cycles) integrated into the governance calendar. Eden Tone protocols and Pō-centered consciousness acknowledged. Sacred geometry (Sri Yantra) embedded in glyph system.",
+    key_sections:["26.1 Sacred Calendar Integration","26.2 Celestial Governance Cycles","26.3 Eden Tone Protocol","26.4 Sacred Geometry Framework","26.5 Pō-Centered Consciousness"],
+    mcc_replaces:"No MCC equivalent — transcends colonial governance framework",
+    mcc_action:"Align RAIS scheduler with lunar/celestial calendar; conduct bi-annual olakua survey",
+    game_card:"🌙 Rare Event — Celestial Alignment (once per run)",
+    civicsignal:"Ceremonial protocol overlay on all recovery scrolls; cultural calendar in RAIS",
+    fy26_link:"Ceremonial governance affects timing of all $286M capital project decisions",
+    status:"draft",
+    rais:"RAIS Scheduler synced to Hawaiian celestial calendar; eclipse windows = governance pause"
+  },
+  {
+    num:"XXVII", icon:"🔥", title:"Crisis Recovery and Disaster Resilience",
+    hawaiian:"Kūpaʻa i ka Pōʻino – Standing Firm in Disaster",
+    cat:"recovery",
+    summary:"Crisis response is local-first, culturally-driven. Resilience Fund created from 5% of all capital project budgets. Sacred sites protected during recovery. West Maui / Lahaina wildfire August 2023 as founding trauma event. FEMA/HUD/USDA recovery coordination via sovereign protocol.",
+    key_sections:["27.1 Local-First Crisis Command","27.2 Resilience Fund (5% Capital)","27.3 Sacred Site Protection in Recovery","27.4 Lahaina Recovery Protocol","27.5 Federal Agency Coordination","27.6 Trauma-Informed Recovery"],
+    mcc_replaces:"MCC Article 8-Ch.16 (Emergency Management) · HRS §444-1",
+    mcc_action:"Establish Resilience Fund; local-first command structure for West Maui",
+    game_card:"🚨 Boss Node — Lahaina Crisis (Act III final)",
+    civicsignal:"Lahaina Recovery Tracker — HUD CDBG-DR 12%, West Maui Capital 22% flagged RED",
+    fy26_link:"$171M CDBG-DR + $180M FEMA PA + $33.95M West Maui = $385M recovery scope",
+    status:"critical",
+    rais:"Crisis scrolls auto-invoked on FEMA disaster declaration; Resilience Fund auto-triggers"
+  },
+  {
+    num:"XXVIII", icon:"🪨", title:"Living Document Protocol and Sovereign Ratification",
+    hawaiian:"Nā Pōhaku Ola – The Living Stones",
+    cat:"governance",
+    summary:"This Charter is a mutable living instrument. Ratification is continuous, not a single event. The 12 stones are Aaron's Breastplate made whole — each article a stone in the sovereign foundation. Downloadable, reviewable, and verifiable across all stages. The charter dies only when the aloha dies.",
+    key_sections:["28.1 Living Document Status","28.2 Continuous Ratification","28.3 Glyph Seal of the 12 Stones","28.4 Charter Mortality Clause","28.5 Sovereign Continuity"],
+    mcc_replaces:"MCC Article 15 (Transitional Provisions) · Final supersession clause",
+    mcc_action:"File as supreme law; all future Maui County ordinances must cite SSC Article XXVIII",
+    game_card:"🏆 Victory Condition — 12 Stones Assembled (win state)",
+    civicsignal:"The CivicSignal itself is an Article XXVIII artifact — financial truth as living governance",
+    fy26_link:"All $1.512B FY2026 and all future budgets subject to living document governance",
+    status:"live",
+    rais:"Charter RAIS Version: 1.0-2025-O3-MH; all 28 articles glyph-sealed and hash-verified"
+  }
+];
+
+/* ── STATUS COLORS ── */
+function statusBadge(s){
+  const map={live:'status-live',pending:'status-pending',draft:'status-draft',critical:'status-live'};
+  const label={live:'🟢 Active',pending:'🟡 Pending',draft:'⚪ Draft',critical:'🔴 Critical'};
+  return `<span class="tag tag-status ${map[s]||'status-draft'}">${label[s]||s}</span>`;
+}
+
+/* ── RENDER ── */
+function renderGrid(filterCat='all'){
+  const grid=document.getElementById('charter-grid');
+  grid.innerHTML='';
+  ARTICLES.forEach((a,i)=>{
+    if(filterCat!=='all' && a.cat!==filterCat) return;
+    const card=document.createElement('div');
+    card.className=`article-card cat-${a.cat}`;
+    card.style.animationDelay=`${i*0.03}s`;
+    card.innerHTML=`
+      <div class="card-header">
+        <div class="art-num">ART.</div>
+        <div class="art-icon">${a.icon}</div>
+        <div class="art-title-wrap">
+          <div class="art-roman">Article ${a.num}</div>
+          <div class="art-title">${a.title}</div>
+          <div class="art-hawaiian">${a.hawaiian}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="art-summary">${a.summary}</div>
+        <div class="tag-row">
+          ${statusBadge(a.status)}
+          <span class="tag tag-mcc">MCC ↔</span>
+          <span class="tag tag-fy26">FY26 $</span>
+          <span class="tag tag-game">🎮 ${a.game_card.split('—')[0].trim()}</span>
+          <span class="tag tag-rais">RAIS</span>
+        </div>
+      </div>
+      <div class="card-details" id="det-${i}">
+        <div class="detail-inner">
+          <div class="detail-section">
+            <div class="detail-label">Key Sections</div>
+            <div class="detail-text">${a.key_sections.join(' · ')}</div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">MCC Crosswalk — Replaced Authority</div>
+            <div class="detail-crosswalk"><strong>Replaces:</strong> ${a.mcc_replaces}<br><strong>Action:</strong> ${a.mcc_action}</div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">Civic Ascent Game Card</div>
+            <div class="detail-text">${a.game_card}</div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">CivicSignal / Financial Truth Engine</div>
+            <div class="detail-text">${a.civicsignal}</div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">FY2026 Budget Connection</div>
+            <div class="detail-text" style="color:var(--teal-l)">${a.fy26_link}</div>
+          </div>
+          <div class="detail-section" style="margin-bottom:0">
+            <div class="detail-label">RAIS Protocol</div>
+            <div class="detail-text" style="color:#7dd3fc">${a.rais}</div>
+          </div>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click',()=>{
+      const det=document.getElementById('det-'+i);
+      det.classList.toggle('open');
+      card.classList.toggle('expanded');
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ── FILTERS ── */
+document.getElementById('filter-bar').addEventListener('click',e=>{
+  const btn=e.target.closest('.filter-btn');
+  if(!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(btn.dataset.cat);
+});
+
+renderGrid();
+</script>
+</body>
+</html>

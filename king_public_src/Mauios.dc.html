@@ -40,11 +40,16 @@
     <section style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:16px 18px;">
       <h2 style="margin:0 0 10px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Sovereign Charter</h2>
       <div style="display:flex; flex-direction:column; gap:8px;">
-        <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px;">
+        <a href="charter-explainer.html" style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px; text-decoration:none; color:inherit;" style-hover="background:#22302a;">
           <span style="font-family:var(--font-serif-display,Georgia,serif); font-weight:700; color:var(--mauios-gold-2,#f0cf7a);">v5</span>
-          <span style="flex:1; font-size:12.5px;">Canon for all govOS surfaces · Art. XI = Land Use &amp; Zoning</span>
+          <span style="flex:1; font-size:12.5px;">Canon for all govOS surfaces · Art. XI = Land Use &amp; Zoning · <span style="color:var(--mauios-gold,#d9b24c);">open explainer →</span></span>
           <span style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--mauios-ok,#56c08a);">canon</span>
-        </div>
+        </a>
+        <a href="charter-map.html" style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px; text-decoration:none; color:inherit;" style-hover="background:#22302a;">
+          <span style="font-family:var(--font-serif-display,Georgia,serif); font-weight:700; color:var(--mauios-gold,#d9b24c);">🗺</span>
+          <span style="flex:1; font-size:12.5px;">Charter Map — all articles visualized · <span style="color:var(--mauios-gold,#d9b24c);">open map →</span></span>
+          <span style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--mauios-ok,#56c08a);">live</span>
+        </a>
         <div style="display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(--mauios-panel-2,#1a2420); border-radius:8px; opacity:0.7;">
           <span style="font-family:var(--font-serif-display,Georgia,serif); font-weight:700; color:var(--mauios-mut,#9fb1a6);">V2</span>
           <span style="flex:1; font-size:12.5px;">28-article master, 04/2025 · Art. XI = Spirit Contract</span>
@@ -100,9 +105,9 @@ class Component extends DCLogic {
       kiloWatchers: K.watchers.map(w => ({ ...w, live: w.stat === 'live', captured: w.stat === 'captured', planned: w.stat === 'planned' })),
       kiloOutputs: K.outputs,
       apps: [
-        { icon: '⚖', name: 'Budget Transparency', desc: 'FY2027 as passed 06-05 (Bills 55–56, unanimous) over the FY2026 penny ledger — council-watch flagged the ordinance text 06-11; exact re-parse queued.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
-        { icon: '🗺', name: 'Title 19 Crosswalk', desc: 'Charter v5 Article XI mapped against Maui County Title 19 zoning — clause by clause.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
-        { icon: '📜', name: 'County Audit', desc: 'RAIS scroll filings — AUDIT-001 and ACCOUNTABILITY-001 in ledger form, sealed in truth.', tag: 'scaffolded', href: '', onClick: noop, live: false, locked: true },
+        { icon: '⚖', name: 'Budget Transparency', desc: 'FY2026 line-by-line county budget — departments, funds, where every dollar is appropriated. (FY2027 passed 06-05, Bills 55–56; re-parse queued.)', tag: 'live page', href: 'budget.html', onClick: () => {}, live: true, locked: false },
+        { icon: '🗺', name: 'Title 19 Crosswalk', desc: 'Charter v5 Article XI mapped against Maui County Code Title 19 zoning — principle to enforceable statute, with sources.', tag: 'live page', href: 'title19.html', onClick: () => {}, live: true, locked: false },
+        { icon: '📜', name: 'County Audit', desc: 'County audit findings in ledger form — the public accountability record over Maui County government.', tag: 'live page', href: 'county-audit.html', onClick: () => {}, live: true, locked: false },
         { icon: '🂡', name: 'Node Dashboard', desc: '54-node civic dashboard over the public ledger. Opens when access is issued.', tag: 'keyed', href: '', onClick: noop, live: false, locked: true },
       ],
     };

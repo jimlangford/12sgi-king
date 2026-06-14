@@ -65,9 +65,12 @@ def main():
         shutil.copytree(_ksrc, _kdst)
         # [king-system] LEAK GATE: refuse to publish if any internal/infra marker slipped
         # into the public King build (durable re-leak guard for the cowork snapshot).
-        _markers = ("ngrok", "uvicorn", "RAIS_API_KEYS", ":8765", ":8780", ":8000",
-                    "render_pause", "roster_loop", "tunnel_keepalive", "kohya",
-                    "sdxl_train", "sage_node_system", "GPU handoff", "Google login")
+        # infra markers in their real leak form (loopback-prefixed ports, not bare
+        # numbers) so legit content like a budget "val:8000000" doesn't false-trip.
+        _markers = ("ngrok", "uvicorn", "RAIS_API_KEYS", "127.0.0.1:8765", "127.0.0.1:8780",
+                    "127.0.0.1:8000", "localhost:87", "render_pause",
+                    "roster_loop", "tunnel_keepalive", "kohya", "sdxl_train",
+                    "sage_node_system", "GPU handoff", "Google login")
         _hits = []
         for _root, _dirs, _files in os.walk(_kdst):
             for _fn in _files:

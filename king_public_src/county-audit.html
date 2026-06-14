@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MauiOS — 12 Stones Sovereign County Audit + Hyper Farming Engine v4</title>
+<style>
+  :root {
+    --ocean-deep: #080f1e;
+    --ocean-mid:  #0c1a30;
+    --teal:       #00c9b1;
+    --teal-dim:   #007a6e;
+    --gold:       #f5c842;
+    --gold-dim:   #9a7e28;
+    --coral:      #ff6b6b;
+    --jade:       #2ecc71;
+    --jade-dim:   #1a7a43;
+    --sand:       #f0e6c8;
+    --sand-dim:   #8a7850;
+    --violet:     #c084fc;
+    --orange:     #f97316;
+    --mauka:      #4ade80;
+    --farmlands:  #fbbf24;
+    --makai:      #38bdf8;
+    --universal:  #c084fc;
+    --text:       #e2ede8;
+    --dim:        #6b9080;
+    --panel:      rgba(8,15,30,0.93);
+    --border:     rgba(0,201,177,0.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ocean-deep);color:var(--text);font-family:'Courier New',monospace;height:100vh;overflow:hidden;position:relative}
+  canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.3}
+  #app{position:relative;z-index:1;display:grid;grid-template-rows:52px 14px 1fr 136px;grid-template-columns:268px 1fr 292px;height:100vh}
+  #topbar{grid-column:1/-1;background:linear-gradient(90deg,#040a14,#091526,#040a14);border-bottom:2px solid var(--teal);display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0}
+  .logo{font-size:17px;font-weight:bold;color:var(--teal);letter-spacing:2px;flex-shrink:0}
+  .logo-sub{font-size:9px;color:var(--sand-dim);flex-shrink:0;margin-left:3px}
+  .flex1{flex:1}
+  .act-pill{background:var(--gold-dim);color:#000;font-size:9px;font-weight:bold;padding:3px 8px;border-radius:3px;letter-spacing:1px;flex-shrink:0}
+  .sbadge{display:flex;flex-direction:column;align-items:center;min-width:72px;padding:3px 8px;border:1px solid var(--border);border-radius:4px;background:rgba(0,0,0,.3)}
+  .sbadge .v{font-size:13px;font-weight:bold}.sbadge .l{font-size:8px;color:var(--dim);text-transform:uppercase}
+  .sbadge.t .v{color:var(--teal)}.sbadge.g .v{color:var(--gold)}.sbadge.j .v{color:var(--jade)}.sbadge.r .v{color:var(--coral)}
+  .trust-wrap{display:flex;align-items:center;gap:5px}
+  .trust-wrap .tl{font-size:9px;color:var(--dim)}
+  .tbar{width:88px;height:7px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+  .tbar-fill{height:100%;background:linear-gradient(90deg,var(--jade),var(--teal));border-radius:3px;transition:width .5s}
+  .tpct{font-size:11px;color:var(--jade);font-weight:bold}
+  #ticker{grid-column:1/-1;background:rgba(255,107,107,.1);border-bottom:1px solid rgba(255,107,107,.25);font-size:8px;color:var(--coral);padding:2px 14px;overflow:hidden;white-space:nowrap}
+  #ticker span{display:inline-block;animation:tick 50s linear infinite}
+  @keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-250%)}}
+  #charter{background:var(--panel);border-right:1px solid var(--border);overflow-y:auto;padding:10px 6px}
+  #charter h3{font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--gold-dim)}
+  .art{padding:6px 7px;margin-bottom:2px;border-radius:3px;cursor:pointer;border-left:3px solid transparent;transition:all .18s;font-size:9px}
+  .art:hover{background:rgba(0,201,177,.08);border-left-color:var(--teal)}
+  .art .an{color:var(--teal);font-weight:bold;font-size:8px}
+  .art .at{color:var(--text);font-size:9px;margin-top:1px}
+  .art .ah{color:var(--sand-dim);font-size:8px;font-style:italic}
+  .art .as{display:inline-block;font-size:7px;padding:1px 4px;border-radius:2px;margin-top:2px}
+  .sa{background:rgba(46,204,113,.18);color:var(--jade)}.sp{background:rgba(245,200,66,.18);color:var(--gold)}.sr{background:rgba(255,107,107,.18);color:var(--coral)}
+  #center{display:flex;flex-direction:column;overflow:hidden}
+  #mapwrap{flex:1;position:relative;overflow:hidden;padding:6px}
+  #map-lbl{text-align:center;font-size:10px;color:var(--dim);margin-bottom:4px;letter-spacing:.5px}
+  #svg{width:100%;height:calc(100% - 20px);display:block}
+  .zone-legend{position:absolute;top:8px;right:10px;display:flex;flex-direction:column;gap:3px;z-index:5}
+  .zl-row{display:flex;align-items:center;gap:4px;font-size:8px}
+  .zl-dot{width:8px;height:8px;border-radius:50%}
+  #popup{position:absolute;background:rgba(4,10,22,.97);border:1px solid var(--teal);border-radius:5px;padding:10px;width:248px;font-size:9px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+  #popup.show{opacity:1;pointer-events:all}
+  #popup h4{font-size:11px;margin-bottom:4px}
+  #popup .pt{font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+  #popup .pb{line-height:1.55;color:var(--text);margin:4px 0}
+  #popup .pp{color:var(--teal);font-size:8px}.popup-art{color:var(--sand-dim);font-size:8px;margin-top:2px}
+  #popup .pbudget{color:var(--jade);font-weight:bold;font-size:9px;margin-top:3px}
+  #popup .pcards{margin-top:5px}
+  #popup .pcards span{display:inline-block;background:rgba(0,201,177,.12);color:var(--teal);font-size:7px;padding:1px 5px;border-radius:2px;margin:1px}
+  #popup .px{position:absolute;top:5px;right:8px;cursor:pointer;color:var(--dim);font-size:14px;pointer-events:all}
+  #rais{background:var(--panel);border-left:1px solid var(--border);overflow-y:auto;padding:10px 7px;display:flex;flex-direction:column;gap:6px}
+  #rais h3{font-size:10px;color:var(--coral);text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid rgba(255,107,107,.25);padding-bottom:5px;flex-shrink:0}
+  .rstat{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:3px;padding:7px;flex-shrink:0}
+  .rstat .rt{font-size:8px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+  .rr{display:flex;justify-content:space-between;font-size:8px;padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+  .rr:last-child{border:none}.rr .rv{color:var(--teal);font-weight:bold}
+  .sc{background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:3px;padding:7px;cursor:pointer;transition:all .18s;flex-shrink:0}
+  .sc:hover{border-color:var(--teal);background:rgba(0,201,177,.06)}
+  .sc .si{font-size:8px;color:var(--coral);font-weight:bold}.sc .stt{font-size:9px;color:var(--text);margin-top:1px}
+  .sc .sar{font-size:8px;color:var(--teal);margin-top:2px}
+  .sc .ss{display:inline-block;font-size:7px;padding:1px 4px;border-radius:2px;margin-top:2px}
+  .ssfiled{background:rgba(46,204,113,.15);color:var(--jade)}.ssactive{background:rgba(245,200,66,.15);color:var(--gold)}
+  .sspend{background:rgba(0,201,177,.15);color:var(--teal)}.ssalert{background:rgba(255,107,107,.15);color:var(--coral)}
+  #deck{grid-column:1/-1;background:linear-gradient(180deg,rgba(4,10,22,.65) 0%,rgba(4,10,22,.96) 100%);border-top:1px solid var(--border);display:flex;align-items:center;padding:6px 14px;gap:8px;overflow-x:auto}
+  .dmeta{display:flex;flex-direction:column;gap:3px;flex-shrink:0;min-width:82px}
+  .dmeta .dl{font-size:8px;color:var(--dim);text-transform:uppercase}
+  .dmeta .dv{font-size:20px;font-weight:bold;color:var(--gold)}
+  .epips{display:flex;gap:2px;margin-top:2px}
+  .epip{width:11px;height:11px;border-radius:50%;background:var(--gold);transition:background .2s}
+  .epip.off{background:rgba(255,255,255,.12)}
+  .divv{width:1px;height:72px;background:var(--border);flex-shrink:0;margin:0 3px}
+  .card{width:76px;height:116px;background:linear-gradient(155deg,#0c1a30,#060e1c);border:1px solid var(--border);border-radius:5px;padding:5px;cursor:pointer;transition:all .22s;flex-shrink:0;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-20px) scale(1.06);border-color:var(--teal);box-shadow:0 10px 28px rgba(0,201,177,.28);z-index:20}
+  .card.mauka{border-top:3px solid var(--mauka)}.card.makai{border-top:3px solid var(--makai)}
+  .card.farmlands{border-top:3px solid var(--farmlands)}.card.universal{border-top:3px solid var(--universal)}
+  .card.audit{border-top:3px solid var(--gold)}.card.peacekeeper{border-top:3px solid var(--jade)}
+  .card.policy{border-top:3px solid var(--teal)}.card.scroll{border-top:3px solid var(--coral)}
+  .card .cc{position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--gold);color:#000;font-size:8px;font-weight:bold;display:flex;align-items:center;justify-content:center}
+  .card .ci{font-size:16px;text-align:center;margin-top:5px}
+  .card .cn{font-size:7px;font-weight:bold;color:var(--text);margin-top:3px;text-align:center;line-height:1.2}
+  .card .ce{font-size:6px;color:var(--dim);margin-top:2px;text-align:center;line-height:1.3}
+  .card .cz{position:absolute;bottom:3px;left:3px;font-size:6px;color:var(--dim)}
+  .card .ca{position:absolute;bottom:3px;right:3px;font-size:6px;color:var(--teal)}
+  .relic-slot{width:52px;height:52px;border:1px dashed var(--border);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .2s}
+  .relic-slot:hover{border-color:var(--violet)}.rsl-i{font-size:18px}.rsl-n{font-size:6px;color:var(--dim);text-align:center;margin-top:1px}
+  #alog{position:fixed;bottom:142px;left:276px;right:300px;height:56px;overflow:hidden;pointer-events:none;z-index:4}
+  .ale{font-size:8px;color:var(--dim);padding:1px 8px;animation:aslide .25s ease-out}
+  .ale.ok{color:var(--jade)}.ale.warn{color:var(--gold)}.ale.alert{color:var(--coral)}
+  @keyframes aslide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+  #modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:none;align-items:center;justify-content:center}
+  #modal.open{display:flex}
+  .mbox{background:#080f1e;border:1px solid var(--teal);border-radius:7px;padding:22px;max-width:480px;width:92%;max-height:78vh;overflow-y:auto;position:relative}
+  .mbox h2{color:var(--gold);font-size:15px;margin-bottom:3px}
+  .mhaw{color:var(--sand-dim);font-style:italic;font-size:11px;margin-bottom:10px}
+  .mbox p{font-size:10px;line-height:1.65;color:var(--text);margin-bottom:7px}
+  .mx{position:absolute;top:10px;right:14px;color:var(--dim);cursor:pointer;font-size:18px}
+  .mcw{background:rgba(0,201,177,.05);border:1px solid var(--border);border-radius:3px;padding:9px;font-size:9px;margin-top:8px}
+  .mcw h4{color:var(--teal);font-size:9px;margin-bottom:5px}
+  .mscrolls h4{color:var(--coral);font-size:9px;margin-bottom:5px;margin-top:10px}
+  .spill{display:inline-block;background:rgba(255,107,107,.14);color:var(--coral);font-size:8px;padding:1px 5px;border-radius:2px;margin:2px}
+  .mbudget{display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+  .mbudget .bamt{color:var(--jade);font-weight:bold}
+  .node-cards h4{color:var(--farmlands);font-size:9px;margin-bottom:5px;margin-top:10px}
+  .nc-pill{display:inline-block;background:rgba(251,191,36,.1);color:var(--farmlands);font-size:8px;padding:2px 6px;border-radius:3px;margin:2px;border:1px solid rgba(251,191,36,.2)}
+  ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--teal-dim);border-radius:2px}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="app">
+  <div id="topbar">
+    <div class="logo">🌺 MauiOS</div>
+    <div class="logo-sub">12 Stones Sovereign · Hyper Farming Engine v4 · County Audit System</div>
+    <div class="flex1"></div>
+    <div class="act-pill" id="act-pill">ACT I — MAUKA ZONE</div>
+    <div class="sbadge t"><span class="v">52</span><span class="l">HFE Nodes</span></div>
+    <div class="sbadge g"><span class="v">$1.51B</span><span class="l">FY2026</span></div>
+    <div class="sbadge j"><span class="v">28</span><span class="l">Articles</span></div>
+    <div class="sbadge r"><span class="v" id="s-flags">7</span><span class="l">Violations</span></div>
+    <div class="trust-wrap">
+      <span class="tl">TRUST</span>
+      <div class="tbar"><div class="tbar-fill" id="tfill" style="width:72%"></div></div>
+      <span class="tpct" id="tpct">72%</span>
+    </div>
+  </div>
+  <div id="ticker"><span>
+    ⚠ BILL 32 CDBG-DR $1.639B: Sovereign subrecipient inclusion required — Art.VIII ·
+    🌱 HFE v4 LIVE: 52 nodes across Mauka / Farmlands / Makai · Joker 53 Central Hub + 54 Universal Synergy queued ·
+    Node 1 Firebreak: IoT moisture sensors active — Lahaina zone ·
+    Node 37 FarmBox: $33.2K modular unit deployment pending — Art.XVI+XIX ·
+    Node 21 Coral Restoration: UV bleaching threshold exceeded — $6.75M sovereign contract ·
+    Node 46 Sacred Forests: Invasive species alert triggered — Art.VII ·
+    🔴 GHOST-001: 3 contracts, $211M stalled · 🟡 12.5% GWT: 3 contracts non-compliant · 188 scrolls indexed
+  </span></div>
+  <div id="charter"><h3>⛩ 12 Stones Charter</h3><div id="art-list"></div></div>
+  <div id="center">
+    <div id="mapwrap">
+      <div id="map-lbl">HYPER FARMING ENGINE v4 — 52 Nodes · Mauka · Farmlands · Makai · Charter-Governed Run</div>
+      <div class="zone-legend">
+        <div class="zl-row"><div class="zl-dot" style="background:var(--mauka)"></div><span style="color:var(--mauka);font-size:7px">MAUKA</span></div>
+        <div class="zl-row"><div class="zl-dot" style="background:var(--farmlands)"></div><span style="color:var(--farmlands);font-size:7px">FARMLANDS</span></div>
+        <div class="zl-row"><div class="zl-dot" style="background:var(--makai)"></div><span style="color:var(--makai);font-size:7px">MAKAI</span></div>
+        <div class="zl-row"><div class="zl-dot" style="background:var(--violet)"></div><span style="color:var(--violet);font-size:7px">UNIVERSAL</span></div>
+      </div>
+      <svg id="svg" viewBox="0 0 760 480" preserveAspectRatio="xMidYMid meet"></svg>
+      <div id="popup">
+        <span class="px" onclick="closePopup()">×</span>
+        <div class="pt" id="pp-type"></div>
+        <h4 id="pp-title"></h4>
+        <div class="pb" id="pp-body"></div>
+        <div class="pp" id="pp-zone"></div>
+        <div class="popup-art" id="pp-art"></div>
+        <div class="pbudget" id="pp-budget"></div>
+        <div class="pcards" id="pp-cards"></div>
+      </div>
+    </div>
+  </div>
+  <div id="rais">
+    <h3>📡 RAIS Feed</h3>
+    <div class="rstat">
+      <div class="rt">Active Data — Apr 9 2025</div>
+      <div class="rr"><span>HFE Node Reports</span><span class="rv">52 nodes</span></div>
+      <div class="rr"><span>Council Meetings</span><span class="rv">48 scrolls</span></div>
+      <div class="rr"><span>Ordinance Rewrites</span><span class="rv">97 scrolls</span></div>
+      <div class="rr"><span>Complaint Scrolls</span><span class="rv">12 active</span></div>
+      <div class="rr"><span>Peacekeeper Reports</span><span class="rv">9 filed</span></div>
+      <div class="rr"><span>Total Indexed</span><span class="rv">188 scrolls</span></div>
+    </div>
+    <div id="scroll-feed"></div>
+  </div>
+  <div id="deck">
+    <div class="dmeta">
+      <span class="dl">Turn</span>
+      <span class="dv" id="turn-n">1</span>
+      <span class="dl">Energy</span>
+      <div class="epips" id="epips"></div>
+    </div>
+    <div class="divv"></div>
+    <div id="hand"></div>
+    <div class="divv"></div>
+    <div id="relics"></div>
+  </div>
+</div>
+<div id="alog"></div>
+<div id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="mbox">
+    <span class="mx" onclick="closeModal()">×</span>
+    <h2 id="m-title"></h2>
+    <div class="mhaw" id="m-haw"></div>
+    <p id="m-desc"></p>
+    <div class="mcw" id="m-cw"></div>
+    <div class="mscrolls" id="m-scrolls"></div>
+    <div id="m-budget"></div>
+    <div id="m-nodecards"></div>
+  </div>
+</div>
+<script>
+// OCEAN BG
+const cvs=document.getElementById('bg'),ctx2=cvs.getContext('2d');
+let W,H,waves=[];
+function resize(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;waves=Array.from({length:6},(_,i)=>({y:H*(.25+i*.13),amp:18+i*7,freq:.007-i*.0006,spd:.002+i*.0008,phase:Math.random()*Math.PI*2,col:`rgba(0,${80+i*18},${130+i*18},.12)`}))}
+function draw(){ctx2.clearRect(0,0,W,H);waves.forEach(w=>{w.phase+=w.spd;ctx2.beginPath();ctx2.moveTo(0,w.y);for(let x=0;x<=W;x+=3){ctx2.lineTo(x,w.y+Math.sin(x*w.freq+w.phase)*w.amp)}ctx2.lineTo(W,H);ctx2.lineTo(0,H);ctx2.closePath();ctx2.fillStyle=w.col;ctx2.fill()});requestAnimationFrame(draw)}
+window.addEventListener('resize',resize);resize();draw();
+
+// 28 CHARTER ARTICLES
+const ARTS=[
+  {n:'I',   t:'Foundation & Supremacy',      h:'Ke Kahua o ka Pono',        s:'active', mcc:'Preamble',        scrolls:['AUDIT-001','DASHBOARD-001'], budget:'$1,512,277,295 — Full FY2026', desc:'12 Stones Sovereign Charter declared supreme law over all Maui County operations. Supersedes MCC where inconsistent. Invokes UNDRIP Art.26, HRS §50/46, 1864 Hawaiian Constitution. All 52 HFE v4 nodes operate under this governance framework.'},
+  {n:'II',  t:'Peacekeeper Network',          h:'Nā Kiai Maluhia',           s:'active', mcc:'MCC Art.II',      scrolls:['MPD-07','ENFORCEMENT-001'], budget:null, desc:'Sovereign Peacekeepers replace militarized policing. ICJ-registered enforcement. Community-based restorative justice officers. 9 reports filed. Governs security at all HFE node deployment sites across Mauka, Farmlands, Makai.'},
+  {n:'III', t:'Resource Custodian Circles',   h:'Pōʻaiapuni Mālama Waiwai',  s:'active', mcc:'MCC Art.III',     scrolls:['FOOD-001','ZONING-001'], budget:null, desc:'Moku-level councils govern all land and resource stewardship. Veto power over extractive contracts. Oversees HFE Mauka zone: Nodes 1–10 (Firebreak, Soil, Rainwater, Carbon, Biodiversity, IoT Fire, Renewable Energy, Cultural Sites, Microclimate, Ecosystem Connectivity).'},
+  {n:'IV',  t:'Lineage & Genealogy Rights',   h:'Nā Kuleana Moʻokūʻauhau',   s:'active', mcc:'MCC Art.III §3.3',scrolls:['CULTURE-001','PETITION-001'], budget:null, desc:'Lineage-based land access rights. DNA + oral history + glyph seal verification. Traditional Fishing Practices (Node 30) and Heirloom Seed Libraries (Node 49) are governed by lineage sovereignty under this article.'},
+  {n:'V',   t:'Moku Council Governance',      h:'Ka Mokuʻāina Kūkākūkā',    s:'pending',mcc:'MCC Art.VI',      scrolls:['TESTIMONY-001'], budget:null, desc:'Nine moku councils replace county districts. Monthly open-forum testimony. Supermajority required for all ʻāina ordinances. All 52 HFE node deployment proposals require moku council approval.'},
+  {n:'VI',  t:'Wai Kapu — Water Sovereignty', h:'Wai Kapu o Nā Kānaka',      s:'alert',  mcc:'MCC Art.V',       scrolls:['AUDIT-001','GHOST-001'], budget:'$25M — Bill 37 Water Fund', desc:'Sacred water rights vest exclusively in the Makaʻāinana. No privatization of aquifer, stream, or rainfall. Governs Nodes 3 (Rainwater), 15 (Smart Irrigation), 27 (Desalination), 34 (Fog Harvesting), 41 (Waterfall), 50 (Wave Irrigation). Bill 37 violation active.'},
+  {n:'VII', t:'Sacred Sites & Burial',         h:'Nā Wāhi Kapu',              s:'alert',  mcc:'MCC Art.VIII',    scrolls:['CULTURE-001'], budget:'$24M — Bill 35 Disposal', desc:'All heiau, burial grounds, and sacred sites protected. Node 8 (Cultural Site Preservation) and Node 46 (Sacred Forests) are primary HFE v4 implementations of this article. Ceremonial clearance before any node deployment at sacred zones.'},
+  {n:'VIII',t:'Housing & Rebuilding',          h:'Ka Hale Hoʻihoʻi',          s:'alert',  mcc:'MCC Art.IX',      scrolls:['HOUSING-001','AUDIT-001'], budget:'$1.639B — CDBG-DR Bill 32', desc:'Post-Lahaina rebuild under sovereign protocols. 3D-printed homes + FarmBox clusters (Node 37) as rebuild infrastructure. Sovereign entities eligible CDBG-DR subrecipients. Reso 25-80 violation active.'},
+  {n:'IX',  t:'Judicial Sovereignty',          h:'Ka Hoʻokolokolo Kūpono',    s:'pending',mcc:'MCC Art.X',       scrolls:['TRIBUNAL-001','COURT-001'], budget:null, desc:'Sovereign tribunal replaces County Corporation Counsel for charter matters. 13th Protocol governs all enforcement. ICJ filing credentials recognized. Node 9 Microclimate and Node 46 Sacred Forests have triggered pending tribunal filings.'},
+  {n:'X',   t:'Budget Transparency',           h:'Ka ʻOiaʻiʻo Kālā',          s:'active', mcc:'MCC Art.XIII',    scrolls:['AUDIT-001','COMPLIANCE-001'], budget:'$9,090.91/resident', desc:'Full expenditure traceability at resident level. $1.512B / 165K = $9,090.91/person. 12 Stones: 12.5% direct benefit. County: 3.3%. All 52 HFE node budgets must be glyph-verified and publicly ledgered.'},
+  {n:'XI',  t:'Land Use & Zoning',             h:'Ka Hoʻohana ʻĀina',         s:'active', mcc:'MCC Art.XIV',     scrolls:['ZONING-001','GHOST-001'], budget:null, desc:'Land use decisions require moku approval and charter review. Title 19 rewrite: 97 ordinance scrolls. All HFE Mauka nodes (1–10, 31, 34, 41, 46) require zoning clearance under Art.XI before deployment.'},
+  {n:'XII', t:'RAIS Digital Sovereignty',      h:'Ka ʻIkepili Sovereign',      s:'active', mcc:'MCC Art.XIV',     scrolls:['DASHBOARD-001','TWINS-001'], budget:'$4.2M — C-2025-005', desc:'RAIS: every council agenda item becomes a sovereign scroll. Governs IoT Fire Detection (Node 6), Microclimate Monitoring (Node 9), Digital Twin (Nodes 12, 15, 26 sensor arrays). Node 53 Central Hub is the RAIS aggregation point.'},
+  {n:'XIII',t:'Restorative Justice',           h:'Ka Hoʻoponopono Kānāwai',   s:'active', mcc:'MCC Art.XIII',    scrolls:['ENFORCEMENT-001','TRIBUNAL-001'], budget:null, desc:'13th Protocol: hoʻoponopono-based justice circles replace punitive enforcement. Peacekeeper intake live. 12 complaint scrolls routed through ICJ logic. Eco-Tourism Education (Node 29) includes restorative justice curriculum.'},
+  {n:'XIV', t:'14th Stone Algorithm',          h:'Ka Pohaku ʻUmikūmāhā',      s:'active', mcc:null,              scrolls:['CULTURE-001','TESTIMONY-001'], budget:null, desc:'The AI-driven glyph audit guardian. Every HFE v4 node output, bill, contract, and resolution passes through the 14th Stone Algorithm for sovereign compliance tagging. Governs all 52 nodes and 2 Jokers: Node 53 (Central Hub) + Node 54 (Universal Synergy).'},
+  {n:'XV',  t:'Cultural Preservation',         h:'Ka Mālama Moʻomeheu',       s:'active', mcc:'MCC Art.VI',      scrolls:['CULTURE-001'], budget:'$50M target', desc:'Kapa, hula, navigation, ʻōlelo Hawaiʻi as core infrastructure. HFE nodes: Cultural Site Preservation (N8), Sacred Forests (N46), Eco-Tourism Education (N29), Traditional Fishing (N30) are primary cultural sovereignty implementations.'},
+  {n:'XVI', t:'Food Sovereignty',              h:'Ka Mana ʻAi o Nā Kānaka',   s:'active', mcc:null,              scrolls:['FOOD-001','ZONING-001'], budget:'$8.5M — C-2025-002', desc:'Sovereign agriculture governs the entire Farmlands zone. HFE Farmlands nodes: Crop Diversification (N11), Hydroponics (N12), Mushrooms (N13), Smart Irrigation (N15), Aquaponics (N19), FarmBox (N37), Food Forest (N32), Vertical Farming (N35), Closed-Loop (N51), Heirloom Seeds (N49).'},
+  {n:'XVII',t:'Environmental Justice',         h:'Ka Pono Kaiapuni',           s:'pending',mcc:null,              scrolls:['AUDIT-001','DISASTER-001'], budget:null, desc:'Prohibits ecological exploitation without sovereign review. HFE nodes: Soil Health (N2), Carbon Sequestration (N4), Biodiversity (N5), Waste Recycling (N14), Native Tree Planting (N31), Compost (N42), Nutrient Recovery (N39), Ridge-to-Reef (N33), Rotational Grazing (N47).'},
+  {n:'XVIII',t:'Generational Wealth Trust',    h:'Ka Waiwai Hanauna Hou',      s:'active', mcc:'MCC Art.V',       scrolls:['AUDIT-001'], budget:'$5.8M — 12.5% of $46.45M', desc:'12.5% of all county contracts flow to the Generational Wealth Trust. All HFE node deployment contracts must embed 12.5% community benefit. Node 20 Crop Quality Optimization uses bronze/silver/gold tiers mapped to trust allocations.'},
+  {n:'XIX', t:'Workforce Development',         h:'Ka Hānai ʻOhana Hana',       s:'pending',mcc:null,              scrolls:['TESTIMONY-001'], budget:'$160M target vs $7M', desc:'Sovereign workforce pipelines. All HFE Farmlands nodes (11–20, 32, 35, 37, 39, 42, 44, 47, 49, 51) generate workforce training programs. Node 37 FarmBox deploys workforce shelters eligible under CDBG Section 105(a).'},
+  {n:'XX',  t:'Ocean & Reef Restoration',      h:'Ka Mālama Moana',            s:'active', mcc:null,              scrolls:['AUDIT-001'], budget:'$6.75M — C-2025-004', desc:'Water Keepers sovereign council governs all Makai zone nodes. HFE Makai: Coral Restoration (N21), Marine Biodiversity (N23), Artificial Reef (N38), Seaweed Farming (N40), Renewable Marine (N52), Sustainable Fishing (N22), Traditional Fishing (N30), Plastic Cleanup (N24).'},
+  {n:'XXI', t:'Digital Infrastructure',        h:'Ka Paepae Huna Kikohoʻe',    s:'active', mcc:null,              scrolls:['TWINS-001','DASHBOARD-001'], budget:'$55M target vs $2M', desc:'Sovereign digital twin integrating all HFE node IoT feeds. Primary IoT nodes: 6, 9, 12, 15, 26. Node 53 Central Hub is the digital twin aggregation point. Real-time drone + sensor overlay for all 52 nodes.'},
+  {n:'XXII',t:'Renewable Energy Sovereignty',  h:'Ka Mana Pūʻaneane',          s:'active', mcc:null,              scrolls:['AUDIT-001'], budget:'$15M — C-2025-001', desc:'Community-owned energy systems. HFE nodes: Renewable Energy (N7), Wave Energy (N36), Offshore Wind (N45), Algae Biofuel (N43), Wave-Based Irrigation (N50), Water Desalination (N27). No privatization without moku consent.'},
+  {n:'XXIII',t:'Emergency & Disaster',         h:'Ka Pio i ka Pōʻino',         s:'pending',mcc:'MCC Art.VII',     scrolls:['DISASTER-001','SAFETY-001'], budget:null, desc:'Sovereign emergency management. HFE nodes: Firebreak Design (N1), IoT Fire Detection (N6), Flood Management (N48), Coastal Erosion (N28), Climate-Resilient Crops (N44). August 8 Lahaina fires triggered 14th Stone emergency activation.'},
+  {n:'XXIV',t:'ICJ & International Law',       h:'Ka Kānāwai Honua',           s:'active', mcc:'MCC Art.XI',      scrolls:['ICJ-JL-001','ICJPROTECT-001'], budget:null, desc:'ICJ filing (ICJ-JL-001) establishes international standing. All HFE sovereign projects carry ICJ-backed protective designation. Node 54 Universal Synergy achieves full international recognition of the sovereign ecological governance framework.'},
+  {n:'XXV', t:'Healthcare Sovereignty',        h:'Ka Olakino Kānaka',          s:'pending',mcc:null,              scrolls:['ADA-001'], budget:'$12M — C-2025-003', desc:'Community health centers integrating lāʻau lapaʻau with western medicine. Mushroom Cultivation (Node 13) contributes medicinal fungi. All food sovereignty HFE nodes feed direct nutritional access. ADA compliance scroll active.'},
+  {n:'XXVI',t:'Youth & Elder Governance',      h:'Ka Nohona Hanauna',          s:'pending',mcc:null,              scrolls:['CULTURE-001','TESTIMONY-001'], budget:null, desc:'Bi-generational governance. HFE nodes providing inter-generational knowledge transmission: Cultural Site Preservation (N8), Sacred Forests (N46), Traditional Fishing (N30), Eco-Tourism Education (N29), Heirloom Seed Libraries (N49).'},
+  {n:'XXVII',t:'Petition & Direct Democracy',  h:'Ka Noi Kānāwai',             s:'active', mcc:'MCC Art.XII',     scrolls:['PETITION-001','PRESS-001'], budget:null, desc:'Sovereign petition: 60% of registered voters. Q4 2025 signature drive. Full HFE v4 deployment requires community ratification. The 52-node system is itself the demonstration of sovereign governance capacity to the people.'},
+  {n:'XXVIII',t:'Living Scroll Amendment',     h:'Ka Puke Ola Kānāwai',        s:'pending',mcc:'MCC Art.XIV',     scrolls:['PETITION-001'], budget:null, desc:'Charter is a living document. V5 Amendment (Art.VI Water) filed 2025. First full Scroll Amendment cycle: 2027 H2. As each HFE node goes live it can trigger charter annotation updates through the 14th Stone Algorithm.'}
+];
+
+// RAIS SCROLLS
+const SCROLLS=[
+  {id:'BILL-32',      t:'CDBG-DR $1.639B',          a:'Art.VIII',     s:'alert', sum:'Sovereign subrecipient inclusion required.'},
+  {id:'BILL-35',      t:'Wildfire Disposal +$8M',    a:'Art.VII',      s:'alert', sum:'Ceremonial ash-scatter clearance pending.'},
+  {id:'BILL-37',      t:'Water Fund $25M',            a:'Art.VI',       s:'alert', sum:'Wai Kapu sovereignty protocol invoked.'},
+  {id:'RESO-25-80',   t:'HUD CDBG Application',      a:'Art.VIII',     s:'alert', sum:'Sovereign housing orgs must be named.'},
+  {id:'AUDIT-001',    t:'FY2026 Financial Audit',    a:'Art.X',        s:'active',sum:'$211M stalled obligations detected.'},
+  {id:'GHOST-001',    t:'Ghost Contractor Alert',    a:'Art.XI',       s:'active',sum:'3 contracts: no deliverable verification.'},
+  {id:'MPD-07',       t:'Peacekeeper Reform',         a:'Art.II',       s:'filed', sum:'MPD-07 compliance review active.'},
+  {id:'HOUSING-001',  t:'Lahaina Housing',            a:'Art.VIII',     s:'active',sum:'3D housing CDBG-DR linkage confirmed.'},
+  {id:'FOOD-001',     t:'Food Sovereignty Zones',    a:'Art.XVI',      s:'pending',sum:'FarmBox N37 + loʻi overlay active.'},
+  {id:'ZONING-001',   t:'Title 19 Zoning Rewrite',   a:'Art.XI',       s:'active',sum:'97 ordinances. 52 HFE nodes mapped.'},
+  {id:'CULTURE-001',  t:'Cultural Restoration',      a:'Art.XIV–XV',   s:'filed', sum:'N8 Cultural Sites + N46 Sacred Forests.'},
+  {id:'ICJ-JL-001',   t:'ICJ International Filing',  a:'Art.XXIV',     s:'filed', sum:'International standing confirmed.'},
+  {id:'TWINS-001',    t:'Digital Twin + IoT',         a:'Art.XXI',      s:'pending',sum:'All 52 HFE node IoT feeds wiring to RAIS.'},
+  {id:'DISASTER-001', t:'Lahaina Recovery',           a:'Art.XXIII',    s:'active',sum:'N1 Firebreak + N6 IoT Fire deployed.'},
+  {id:'PETITION-001', t:'Sovereign Petition',         a:'Art.XXVII',    s:'active',sum:'60% target. Q4 2025 drive active.'},
+  {id:'COMPLIANCE-001',t:'12.5% GWT Compliance',     a:'Art.XVIII',    s:'active',sum:'3 HFE contracts non-compliant.'},
+  {id:'SAFETY-001',   t:'Community Safety Net',       a:'Art.XXIII',    s:'pending',sum:'9 Peacekeeper reports. HFE zone coverage.'},
+  {id:'TRIBUNAL-001', t:'Sovereign Tribunal',         a:'Art.IX–XIII',  s:'pending',sum:'13th Protocol intake live.'},
+  {id:'ADA-001',      t:'ADA Compliance',             a:'Art.XXV',      s:'filed', sum:'Healthcare + N13 Mushroom cultivation.'},
+  {id:'DASHBOARD-001',t:'RAIS Dashboard',             a:'Art.XII',      s:'active',sum:'52 HFE nodes feeding live data streams.'}
+];
+
+// 52 HFE v4 NODES
+const NODES=[
+  // ACT I: MAUKA ZONE [2,2,2,3,2,2,2,2,1] = 18
+  {id:0, type:'start',    zone:'mauka',     label:'Charter Awakening',               article:'Art.I',        scroll:'AUDIT-001',     budget:null,                    hfe:'Governance Origin — All 52 HFE nodes online',           cards:['Sovereign Invocation','Charter Supremacy','Glyph Seal Init'],            desc:'The 12 Stones Sovereign Charter is declared supreme law. The Hyper Farming Engine v4 initializes all 52 nodes under charter governance. 3 zones: Mauka, Farmlands, Makai.'},
+  {id:1, type:'battle',   zone:'mauka',     label:'N1 · Firebreak Design',           article:'Art.XXIII',    scroll:'DISASTER-001',  budget:'~$45K IoT+vegetation',  hfe:'Mauka · Fire-resistant plant growth + decay logic',       cards:['Dry Vegetation Alert','Wildfire Threat','Erosion Risk'],                  desc:'Develop firebreak zones with fire-resistant vegetation and strategic placement. IoT sensors monitor soil moisture and vegetation dryness. Challenge: force county to fund sovereign firebreak infrastructure.'},
+  {id:2, type:'event',    zone:'mauka',     label:'N2 · Soil Health',                article:'Art.XVII',     scroll:'FOOD-001',      budget:'~$18K sensors',         hfe:'Mauka · pH, moisture, oxygen soil data',                  cards:['Nutrient Deficiency','Soil Erosion','pH Imbalance'],                     desc:'IoT sensors measure soil pH, moisture, nutrients, and oxygen content. Automated amendment recommendations. Regenerative practices restore degraded soils for all HFE farming cycles.'},
+  {id:3, type:'shop',     zone:'mauka',     label:'N3 · Rainwater Harvesting',       article:'Art.VI',       scroll:'AUDIT-001',     budget:'~$22K collection sys',  hfe:'Mauka · UV/seasonal storage efficiency',                  cards:['Drought Alert','Overflow Risk','Storage Optimization'],                  desc:'UV-triggered collection systems with seasonal efficiency tracking. Wai Kapu sacred water sovereignty protocols apply to all stored water. Connects to Smart Irrigation Node 15.'},
+  {id:4, type:'event',    zone:'mauka',     label:'N4 · Carbon Sequestration',       article:'Art.XVII',     scroll:'ZONING-001',    budget:'~$28K planting',        hfe:'Mauka · CO₂ absorption + plant decay logic',              cards:['Carbon Sink Alert','Decay Chain','Reforestation Push'],                  desc:'Growth stages tied to CO₂ absorption rates. Connects to Biodiversity Restoration and Food Forest nodes. Qualifies for carbon credit revenue streams that fund community trust.'},
+  {id:5, type:'rest',     zone:'mauka',     label:'N5 · Biodiversity Restoration',   article:'Art.XVII',     scroll:'CULTURE-001',   budget:'~$35K surveys',         hfe:'Mauka · Seasonal sickness/recovery states',               cards:['Species Return','Invasive Threat','Habitat Heal'],                       desc:'Seasonal dependencies for ecosystem recovery. Native species reintroduction. REST NODE: Trust restored. Connects Mauka biodiversity to Makai reef health through Ridge-to-Reef Node 33.'},
+  {id:6, type:'elite',    zone:'mauka',     label:'N6 · IoT Fire Detection',         article:'Art.XII+XXIII',scroll:'DISASTER-001',  budget:'~$32K sensor network',  hfe:'Mauka · Early detection IoT sensor array',                cards:['High Temperature Zone','Smoke Plume Alert','Emergency Evacuate'],        desc:'CRISIS: IoT sensor array for early fire detection. Temperature + smoke thresholds trigger Peacekeeper emergency protocol. Feeds data to RAIS Digital Twin. Lahaina prevention network.'},
+  {id:7, type:'shop',     zone:'mauka',     label:'N7 · Renewable Energy Systems',   article:'Art.XXII',     scroll:'AUDIT-001',     budget:'$15M — C-2025-001',     hfe:'Mauka · Solar/wind operational support',                  cards:['Power Surge','Grid Expansion','Energy Sovereignty'],                     desc:'Community-owned solar + wind installations. Contract C-2025-001: $15M → $1.875M to Generational Wealth Trust. Powers all Mauka IoT infrastructure and HFE sensor arrays.'},
+  {id:8, type:'event',    zone:'mauka',     label:'N8 · Cultural Site Preservation', article:'Art.VII+XV',   scroll:'CULTURE-001',   budget:'~$28K AR tools',        hfe:'Mauka · Cultural landmark monitoring + AR experiences',   cards:['Erosion Alert','Community Education Boost','Invasive Species Threat'],   desc:'IoT sensors monitor temperature and structural integrity of heiau and cultural sites. AR tools for interactive cultural education. Governs Art.VII sacred site protections.'},
+  {id:9, type:'event',    zone:'mauka',     label:'N9 · Microclimate Monitoring',    article:'Art.XII',      scroll:'DASHBOARD-001', budget:'~$19K sensors',         hfe:'Mauka · Temp, humidity, UV, wind patterns',               cards:['Temperature Drop','UV Spike','Wind Shift'],                              desc:'Predictive analytics for fire and farming risk. Real-time microclimate data feeds into RAIS digital twin (Art.XII). Foundation for all IoT-linked farming nodes across all 3 zones.'},
+  {id:10,type:'battle',   zone:'mauka',     label:'N10 · Ecosystem Connectivity',    article:'Art.XVII',     scroll:'ZONING-001',    budget:'~$42K corridors',       hfe:'Mauka · Wildlife corridors + habitat bridges',            cards:['Corridor Breach','Species Migration','Habitat Expansion'],               desc:'Wildlife corridor establishment across Mauka. Connects firebreak zones to food forests. Requires zoning clearance from moku council. Challenge: force corridor protections into Title 19 rewrites.'},
+  {id:11,type:'shop',     zone:'farmlands', label:'N11 · Crop Diversification',      article:'Art.XVI',      scroll:'FOOD-001',      budget:'~$38K rotation',        hfe:'Farmlands · Seasonal rotation + nutrient dependencies',   cards:['Monoculture Risk','Harvest Surge','Soil Fatigue'],                       desc:'Seasonal crop rotation cycles with nutrient-dependent yields. Connects to Seed Germination (N18), Food Forest (N32), and Generational Wealth Trust allocation. Budget shop for crop infrastructure.'},
+  {id:12,type:'event',    zone:'farmlands', label:'N12 · Hydroponic Systems',        article:'Art.XVI+XII',  scroll:'TWINS-001',     budget:'~$55K systems',         hfe:'Farmlands · Water/oxygen/UV growth monitoring',           cards:['Nutrient Flow Drop','UV Deficiency','Root System Stress'],               desc:'Growth-stage IoT monitoring. Water + oxygen + UV requirements tracked in real time. Connects to Aquaponics (N19) and Smart Irrigation (N15). RAIS telemetry feed active.'},
+  {id:13,type:'rest',     zone:'farmlands', label:'N13 · Mushroom Cultivation',      article:'Art.XVI+XXV',  scroll:'FOOD-001',      budget:'~$14K grow ops',        hfe:'Farmlands · Medicinal + food fungi cultivation',          cards:['Humidity Spike','Contamination Alert','Yield Harvest'],                  desc:'Cultivating mushrooms for food security and soil regeneration. Medicinal applications support Art.XXV healthcare sovereignty. REST NODE: Yields restore community resources and trust.'},
+  {id:14,type:'battle',   zone:'farmlands', label:'N14 · Waste-to-Resource',         article:'Art.XVII',     scroll:'ZONING-001',    budget:'~$26K systems',         hfe:'Farmlands · Compost decay + nutrient recovery cycles',    cards:['Waste Overflow','Toxic Runoff','Cycle Complete'],                        desc:'Compost decay and nutrient recovery tied to farming cycles. Challenge: force county contracts to mandate waste-to-resource protocols and closed-loop requirements before project approval.'},
+  {id:15,type:'shop',     zone:'farmlands', label:'N15 · Smart Irrigation',          article:'Art.VI+XII',   scroll:'AUDIT-001',     budget:'~$33K drip IoT',        hfe:'Farmlands · Automated drip IoT soil moisture',            cards:['Water Shortage','Irrigation Overload','System Sync'],                    desc:'Automated drip irrigation from real-time IoT moisture data. Wai Kapu protocols applied to all water usage. Budget shop: allocate irrigation resources across Mauka and Farmlands zones.'},
+  {id:16,type:'elite',    zone:'farmlands', label:'N16 · Pest Control',               article:'Art.XVI+XVII', scroll:'FOOD-001',      budget:'~$21K biocontrol',      hfe:'Farmlands · Damage-based crop decay + pest logic',        cards:['Pest Invasion CRISIS','Crop Damage -30%','Biocontrol Deploy'],           desc:'CRISIS: Damage-based crop decay from pest population surge. Deploy biocontrol agents and IoT-triggered automated response. Failure costs yield points and erodes community food trust.'},
+  {id:17,type:'boss',     zone:'mauka',     label:'⚠ BOSS: Mauka Zone Sovereignty',  article:'Art.XVI+XXIII',scroll:'AUDIT-001',     budget:'$38.5M combined',       hfe:'ACT I BOSS — Mauka + Farmlands Foundation',               cards:['Charter Override','Emergency Invoke','Sovereign Deploy'],                desc:'ACT I BOSS: Council vote on Mauka zone emergency management + Farmlands food sovereignty combined funding. Force charter-aligned allocation across all first 17 nodes. Defeat = colonial land management prevails.'},
+  // ACT II: FARMLANDS → MAKAI [2,2,2,2,2,2,2,3,1] = 18
+  {id:18,type:'shop',     zone:'farmlands', label:'N18 · Seed Germination',          article:'Art.XVI+IV',   scroll:'FOOD-001',      budget:'~$16K seed banks',      hfe:'Farmlands · Moisture+UV germination processes',           cards:['Germination Fail','Seed Vault Breach','New Strain'],                     desc:'Moisture and UV-dependent germination monitoring. Connects to Heirloom Seed Libraries (N49) and Lineage Rights (Art.IV). Sovereign seed vaults: no GMO without moku council consent.'},
+  {id:19,type:'event',    zone:'farmlands', label:'N19 · Aquaponics Fish Farming',   article:'Art.XVI+XX',   scroll:'FOOD-001',      budget:'~$44K systems',         hfe:'Farmlands · Closed-loop fish + plant ecosystems',         cards:['Nutrient Imbalance','Water Quality Alert','System Expansion'],           desc:'Integrate fish farming with hydroponics into closed-loop ecosystems. IoT monitors pH, temperature, oxygen. Connects to Marine Biodiversity (N23) and Ocean Restoration (Art.XX).'},
+  {id:20,type:'battle',   zone:'farmlands', label:'N20 · Crop Quality Optimization', article:'Art.XVIII',    scroll:'COMPLIANCE-001',budget:'~$12K QC systems',      hfe:'Farmlands · Bronze/silver/gold quality tiers + feedback',  cards:['Bronze Grade Lock','Quality Surge','Gold Tier Achieved'],                desc:'Data-driven quality tiers mapped to Generational Wealth Trust allocations. Challenge: force county procurement to prioritize gold-tier sovereign-grown produce over conventional imports.'},
+  {id:21,type:'battle',   zone:'makai',     label:'N21 · Coral Restoration',         article:'Art.XX',       scroll:'AUDIT-001',     budget:'$6.75M — C-2025-004',   hfe:'Makai · UV + water quality coral growth',                 cards:['Coral Bleaching Event','Sediment Overload','Marine Biodiversity Boost'], desc:'Rehabilitate degraded reefs. IoT monitors pH, temperature, salinity, UV. Contract C-2025-004: $6.75M → verify 12.5% ($843K) flows to Water Keepers Generational Wealth Trust.'},
+  {id:22,type:'elite',    zone:'makai',     label:'N22 · Sustainable Fishing',       article:'Art.XX+IV',    scroll:'FOOD-001',      budget:'~$18K monitoring',      hfe:'Makai · Population thresholds + ecosystem health',        cards:['Overfishing CRISIS','Population Collapse','Sanctuary Deploy'],           desc:'CRISIS: Fishing population threshold breached. Deploy sovereign marine sanctuary zones. Traditional Fishing lineage rights (Art.IV) must be protected in all catch limits and sovereign fishing agreements.'},
+  {id:23,type:'event',    zone:'makai',     label:'N23 · Marine Biodiversity',       article:'Art.XX+XVII',  scroll:'AUDIT-001',     budget:'~$24K sensors',         hfe:'Makai · Water quality marine ecosystem dependencies',     cards:['Biodiversity Drop','Algae Bloom','Species Reintro'],                     desc:'Water quality dependencies for marine ecosystems. IoT monitors nutrient levels, temperature, pH. Feeds data to RAIS Digital Twin (Art.XXI). Critical link between Mauka watershed and Makai health.'},
+  {id:24,type:'battle',   zone:'makai',     label:'N24 · Plastic Cleanup',           article:'Art.XVII+XX',  scroll:'DISASTER-001',  budget:'~$38K IoT nets',        hfe:'Makai · IoT detection + removal systems',                 cards:['Plastic Surge','Current Shift','Cleanup Deploy'],                        desc:'IoT-enabled plastic detection and removal systems. Challenge: force county to fund cleanup as a permanent budget line. Connects to Coastal Erosion (N28) and Ridge-to-Reef (N33).'},
+  {id:25,type:'event',    zone:'makai',     label:'N25 · Saltwater Hydroponics',     article:'Art.XVI+VI',   scroll:'FOOD-001',      budget:'~$28K systems',         hfe:'Makai · Salinity + nutrient salt-tolerant crops',         cards:['Salinity Spike','Crop Adapt','Coastal Harvest'],                         desc:'Salinity and nutrient-dependent growth for salt-tolerant coastal crops. Bridges Water Sovereignty (Art.VI) and Food Sovereignty (Art.XVI) in coastal farming zones.'},
+  {id:26,type:'shop',     zone:'makai',     label:'N26 · Fish Activity Monitoring',  article:'Art.XX+XII',   scroll:'DASHBOARD-001', budget:'~$20K sensors',         hfe:'Makai · Water temperature + motion thresholds',           cards:['School Movement','Predator Alert','Harvest Window'],                     desc:'Real-time fish population and activity monitoring via IoT motion sensors. Data feeds to RAIS digital twin (Art.XXI). Budget shop: allocate marine monitoring resources across Makai zone.'},
+  {id:27,type:'battle',   zone:'makai',     label:'N27 · Water Desalination',        article:'Art.VI+XXII',  scroll:'BILL-37',       budget:'$25M — Bill 37',        hfe:'Makai · Seasonal energy requirements for freshwater',     cards:['Brine Overflow','Energy Shortage','Fresh Water Secured'],                desc:'Bill 37 $25M water fund. Sovereign desalination must include Wai Kapu ceremonial protocols. Challenge: block privatization of desalination output under Art.VI water sovereignty.'},
+  {id:28,type:'elite',    zone:'makai',     label:'N28 · Coastal Erosion Prevention',article:'Art.XXIII+XX', scroll:'DISASTER-001',  budget:'~$34K barriers',        hfe:'Makai · Sediment transport simulations',                  cards:['Storm Surge CRISIS','Erosion Accelerate','Barrier Deploy'],              desc:'CRISIS: Storm-surge triggered coastal erosion event. Deploy sediment barriers and native vegetation buffers. Connects to Flood Management (N48), Lahaina recovery, and Ridge-to-Reef (N33).'},
+  {id:29,type:'rest',     zone:'makai',     label:'N29 · Eco-Tourism Education',     article:'Art.XV+XX',    scroll:'CULTURE-001',   budget:'~$15K programs',        hfe:'Makai · Seasonal marine habitat educational tours',       cards:['Visitor Surge','Cultural Guide','Ocean Classroom'],                      desc:'Seasonal marine habitat educational programs. REST NODE: Community trust restored. Includes restorative justice curriculum (Art.XIII) and inter-generational knowledge transfer (Art.XXVI).'},
+  {id:30,type:'event',    zone:'makai',     label:'N30 · Traditional Fishing',       article:'Art.IV+XX',    scroll:'CULTURE-001',   budget:'~$12K preservation',    hfe:'Makai · Damage-based tool durability + lineage methods',  cards:['Tool Wear','Ancestral Technique','Lineage Harvest'],                     desc:'Traditional fishing methods governed by lineage rights (Art.IV). Damage-based durability logic tracks tool and practice sustainability. Connects lineage sovereignty to marine restoration.'},
+  {id:31,type:'battle',   zone:'mauka',     label:'N31 · Native Tree Planting',      article:'Art.XVII+VII', scroll:'ZONING-001',    budget:'~$45K reforestation',   hfe:'Mauka · Reforestation ecosystem + carbon sequestration',  cards:['Monoculture Replace','Native Grove','Carbon Credit'],                    desc:'Reforestation restoring ecosystems, watershed protection, and carbon sequestration. Challenge: force county reforestation contracts to include sacred grove protections (Art.VII).'},
+  {id:32,type:'shop',     zone:'farmlands', label:'N32 · Food Forest Design',        article:'Art.XVI+XVII', scroll:'FOOD-001',      budget:'~$32K design',          hfe:'Farmlands · Multi-crop soil health dependencies',         cards:['Canopy Layer','Understory Plant','Soil Web'],                            desc:'Self-sustaining multi-crop food forests. Connects to Native Tree Planting (N31), Composting (N42), and Ridge-to-Reef (N33). Budget shop for food forest resource allocation.'},
+  {id:33,type:'event',    zone:'makai',     label:'N33 · Ridge-to-Reef Systems',     article:'Art.VI+XX',    scroll:'AUDIT-001',     budget:'~$21K IoT grid',        hfe:'Makai · Watershed water flow + sediment tracking',        cards:['Sediment Runoff','Pollution Alert','Flood Risk'],                        desc:'Watershed management connecting Mauka ridges to Makai reefs. Integrates water sovereignty (Art.VI), reef restoration (Art.XX), and land-use (Art.XI) into a single connected system.'},
+  {id:34,type:'shop',     zone:'mauka',     label:'N34 · Fog Harvesting',            article:'Art.VI+XVII',  scroll:'AUDIT-001',     budget:'~$17K mesh nets',       hfe:'Mauka · Coastal fog moisture capture',                    cards:['Fog Bank Arrival','Net Clog','Harvest Surplus'],                         desc:'Capture fog moisture for reforestation and water supply. Supplements rainwater harvesting (N3). Wai Kapu sovereignty applies to all captured moisture. Budget shop for fog infrastructure.'},
+  {id:35,type:'battle',   zone:'farmlands', label:'N35 · Vertical Farming',          article:'Art.XVI+XXI',  scroll:'TWINS-001',     budget:'~$62K stacked systems', hfe:'Farmlands · UV + water efficiency stacked crop systems',  cards:['Stack Failure','Vertical Expand','Urban Harvest'],                       desc:'UV and water efficiency for stacked crop systems. Digital twin integration (Art.XXI). Challenge: force urban vertical farms into CDBG-DR recovery zone rebuilds as sovereign food infrastructure.'},
+  {id:36,type:'boss',     zone:'makai',     label:'⚠ BOSS: Ocean Sovereignty Vote',  article:'Art.XX+VI+XXII',scroll:'RESO-25-80',   budget:'$1.639B CDBG-DR',       hfe:'ACT II BOSS — Makai + Farmlands Sovereignty',             cards:['Wai Kapu Decree','Marine Sovereign','CDBG-DR Force'],                    desc:'ACT II BOSS: Full ocean sovereignty vote — water rights, marine contracts, HUD CDBG application. Reso 25-80: force sovereign housing org inclusion in all federal funds. Defeat = colonial ocean contracts issued.'},
+  // ACT III: ADVANCED SYSTEMS [2,2,2,2,2,1,2,2,1] = 16
+  {id:37,type:'shop',     zone:'farmlands', label:'N37 · Modular FarmBox Design',    article:'Art.XVI+XIX',  scroll:'FOOD-001',      budget:'$33.2K — IoT+units+irr',hfe:'Farmlands · Data-table crop requirements, scalable units', cards:['Pest Intrusion','Water Shortage','System Expansion'],                    desc:'Modular FarmBox: IoT sensors $7.2K, 4 modular units $16K, automated irrigation $10K. Workforce shelters eligible under CDBG Section 105(a). 12.5% → Generational Wealth Trust enforced.'},
+  {id:38,type:'battle',   zone:'makai',     label:'N38 · Artificial Reef Creation',  article:'Art.XX+XXIII', scroll:'AUDIT-001',     budget:'~$88K reef structures',  hfe:'Makai · Water quality + biodiversity deployment',         cards:['Current Disruption','Reef Anchor','Biodiversity Surge'],                 desc:'Deploy artificial reef structures. Water quality and biodiversity monitoring required. Challenge: force reef contracts to include sovereign marine sovereignty overlay and ICJ protective designation.'},
+  {id:39,type:'event',    zone:'farmlands', label:'N39 · Nutrient Recovery',         article:'Art.XVI+XVII', scroll:'ZONING-001',    budget:'~$29K closed-loop',     hfe:'Farmlands · Closed-loop nutrient cycling',                cards:['Nutrient Flush','Cycle Closed','Soil Enrich'],                           desc:'Closed-loop nutrient cycling for sustainable agriculture. Connects Compost Management (N42) and Waste Recycling (N14) into a zero-waste HFE circuit.'},
+  {id:40,type:'shop',     zone:'makai',     label:'N40 · Seaweed Farming',           article:'Art.XX+XVI',   scroll:'FOOD-001',      budget:'~$38K cultivation',     hfe:'Makai · Seasonal salinity seaweed growth',                cards:['Salinity Drop','Harvest Tide','Kelp Forest'],                            desc:'Seasonal and salinity-dependent seaweed cultivation. Dual function: food sovereignty + ocean restoration. Budget shop for seaweed infrastructure along Maui coastline.'},
+  {id:41,type:'rest',     zone:'mauka',     label:'N41 · Waterfall Restoration',     article:'Art.VI+VII',   scroll:'CULTURE-001',   budget:'~$26K flow work',       hfe:'Mauka · Sediment + flow dynamics',                        cards:['Sediment Clearance','Water Return','Sacred Flow'],                       desc:'Restore natural waterfall flow dynamics. Connects Water Sovereignty (Art.VI) and Sacred Sites (Art.VII). REST NODE: Wai ceremony performed. Trust restored. Lahaina watershed healing.'},
+  {id:42,type:'event',    zone:'farmlands', label:'N42 · Compost Management',        article:'Art.XVI+XVII', scroll:'FOOD-001',      budget:'~$18K compost systems', hfe:'Farmlands · Heat + decay driven nutrient recovery',       cards:['Compost Heat Drop','Decompose Surge','Soil Ready'],                      desc:'Heat and decay-driven nutrient recovery enhancing soil fertility. Connects Waste Recycling (N14) and Nutrient Recovery (N39). Foundation of closed-loop HFE systems across Farmlands zone.'},
+  {id:43,type:'battle',   zone:'makai',     label:'N43 · Algae Biofuel Production',  article:'Art.XXII+XX',  scroll:'AUDIT-001',     budget:'~$55K bioreactors',     hfe:'Makai · Light + nutrient algae growth biofuel',           cards:['Algae Bloom Crisis','Light Deficiency','Biofuel Yield'],                  desc:'Algae photobioreactors for renewable fuel production. Challenges county fossil fuel contracts. Force renewable energy sovereignty (Art.XXII) to replace diesel-dependent county operations.'},
+  {id:44,type:'elite',    zone:'farmlands', label:'N44 · Climate-Resilient Crops',   article:'Art.XVI+XXIII',scroll:'DISASTER-001',  budget:'~$34K seed trials',     hfe:'Farmlands · Seasonal drought-resilience dependencies',    cards:['Drought CRISIS','Heat Stress -40%','Resilient Cultivar'],                desc:'CRISIS: Climate-induced drought event. Deploy drought-resilient cultivars from sovereign seed banks. Connects Emergency Protocol (Art.XXIII) to Food Sovereignty (Art.XVI).'},
+  {id:45,type:'shop',     zone:'makai',     label:'N45 · Offshore Wind Energy',      article:'Art.XXII+XX',  scroll:'AUDIT-001',     budget:'~$120K turbines',       hfe:'Makai · Marine renewable energy generation',              cards:['Wind Drop','Grid Connect','Ocean Power'],                                 desc:'Offshore wind turbines in Makai marine zone. Community-owned energy sovereignty. Connects Wave Energy (N36) and Renewable Marine Farming (N52). Budget shop for offshore energy contracts.'},
+  {id:46,type:'event',    zone:'mauka',     label:'N46 · Sacred Forests',            article:'Art.VII+XV',   scroll:'CULTURE-001',   budget:'~$32K protection',      hfe:'Mauka · Habitat connectivity + culturally significant forests', cards:['Invasive Species Alert','Canopy Growth','Cultural Preservation'],         desc:'Protect and monitor culturally significant forests. IoT automated alerts for invasive species and environmental threats. Governs Art.VII sacred site protections in all forested moku zones.'},
+  {id:47,type:'battle',   zone:'farmlands', label:'N47 · Rotational Grazing',        article:'Art.XVI+XVII', scroll:'ZONING-001',    budget:'~$24K fencing+IoT',     hfe:'Farmlands · Soil + vegetation recovery controlled grazing',cards:['Overgrazing Alert','Pasture Rotate','Soil Recovery'],                    desc:'Controlled grazing rotations for soil and vegetation recovery. Challenge: force county pasture management contracts to include regenerative grazing protocols and moku council approval.'},
+  {id:48,type:'elite',    zone:'makai',     label:'N48 · Flood Management',          article:'Art.XXIII+VI', scroll:'DISASTER-001',  budget:'~$48K sensors+barriers',hfe:'Makai · Water level coastal resilience',                  cards:['Flood CRISIS','Levee Alert','Community Evacuate'],                       desc:'CRISIS: Coastal flood event. Water level monitoring triggers emergency response under Art.XXIII. Connects to Coastal Erosion (N28), Lahaina recovery, and Wave-Based Irrigation (N50).'},
+  {id:49,type:'treasure', zone:'farmlands', label:'N49 · Heirloom Seed Libraries',   article:'Art.XVI+IV',   scroll:'CULTURE-001',   budget:'~$19K vaults',          hfe:'Farmlands · Lineage crop diversity seed banks',           cards:['Seed Vault Activated','Ancestral Strain','Biodiversity Relic'],          desc:'RELIC: Heirloom Seed Libraries unlocked. Lineage-based crop diversity protected (Art.IV). Sovereign seed sovereignty established. All future HFE farming nodes benefit from improved resilience.'},
+  {id:50,type:'event',    zone:'makai',     label:'N50 · Wave-Based Irrigation',     article:'Art.VI+XXII',  scroll:'TWINS-001',     budget:'~$44K wave capture',    hfe:'Makai · Ocean wave energy tied to irrigation',            cards:['Wave Pattern Change','Irrigation Sync','Coastal Farm'],                  desc:'Ocean wave energy capture for coastal agriculture irrigation. Bridges Water Sovereignty (Art.VI) and Renewable Energy (Art.XXII) into a single coastal sovereignty infrastructure node.'},
+  {id:51,type:'boss',     zone:'universal', label:'⚜ FINAL BOSS: Closed Loop · Node 53 Central Hub · Joker 54 Universal Synergy', article:'Art.I–XXVIII', scroll:'TWINS-001', budget:'$189M/yr GWT target', hfe:'Universal — All 52 HFE nodes + Joker 53 + Joker 54 fully integrated',    cards:['Universal Harmony','Cross-Realm Deploy','Full Closure'],                 desc:'FINAL BOSS: Closed-Loop Systems (N51) + Renewable Marine Farming (N52) + Central Hub (Joker 53) + Universal Synergy (Joker 54). All 52 HFE nodes charter-compliant. $189M/year to Generational Wealth Trust. All 28 Articles enforced. VICTORY = Maui OS fully sovereign.'}
+];
+
+// POLICY CARD DECK (from HFE node cards + charter)
+const DECK=[
+  {n:'Dry Vegetation Alert',   type:'mauka',      cost:1, icon:'🔥', e:'Reinforce firebreak. Prevent wildfire -30 Trust loss.',   art:'XXIII'},
+  {n:'Nutrient Deficiency',    type:'farmlands',  cost:1, icon:'🌱', e:'Apply soil amendments. +15% yield next Farmlands node.',  art:'XVI'},
+  {n:'Coral Bleaching Event',  type:'makai',      cost:2, icon:'🐚', e:'Deploy reef coolers. Prevent Makai node crisis damage.',   art:'XX'},
+  {n:'Glyph Audit Sweep',      type:'audit',      cost:2, icon:'🔍', e:'Reveal 1 ghost contract. Remove 1 violation flag.',        art:'XIV'},
+  {n:'Peacekeeper Deploy',     type:'peacekeeper',cost:2, icon:'🛡', e:'Neutralize crisis node. Reduce damage by 50%.',            art:'II'},
+  {n:'Wai Kapu Decree',        type:'policy',     cost:1, icon:'💧', e:'Sacred water asserted. Block non-compliant water contract.',art:'VI'},
+  {n:'12.5% GWT Enforce',      type:'audit',      cost:2, icon:'⚖',  e:'Force GWT allocation on current contract. +Trust +5.',    art:'XVIII'},
+  {n:'Sovereign Invocation',   type:'policy',     cost:1, icon:'📜', e:'+20 Trust. Charter supremacy asserted in proceedings.',    art:'I'},
+  {n:'FarmBox Deploy',         type:'farmlands',  cost:2, icon:'🌾', e:'Activate N37 modular unit. Food sovereignty secured.',     art:'XVI'},
+  {n:'Hoʻoponopono Circle',    type:'peacekeeper',cost:1, icon:'🌺', e:'Restore +15 Trust. Resolve 1 active complaint scroll.',   art:'XIII'},
+  {n:'IoT Sensor Surge',       type:'mauka',      cost:1, icon:'📡', e:'All Mauka IoT nodes go live. +10 RAIS scrolls indexed.',   art:'XII'},
+  {n:'Marine Biodiversity',    type:'makai',      cost:2, icon:'🐬', e:'Reef health +20. Prevents next Makai elite damage.',       art:'XX'},
+  {n:'Seed Vault Open',        type:'farmlands',  cost:1, icon:'🌿', e:'Heirloom seeds deployed. +2 energy next turn.',           art:'XVI'},
+  {n:'Carbon Strike',          type:'mauka',      cost:2, icon:'🌳', e:'Plant native grove. Earns carbon credits +$15K.',          art:'XVII'},
+  {n:'ICJ Shield',             type:'policy',     cost:1, icon:'🌐', e:'International protection active. Immune to legal challenge.',art:'XXIV'},
+  {n:'Closed Loop Active',     type:'farmlands',  cost:2, icon:'♻',  e:'All Farmlands: 0 waste this turn. Trust +8.',             art:'XVI'},
+  {n:'Wave Energy Capture',    type:'makai',      cost:1, icon:'🌊', e:'Harvest wave energy. Powers coastal IoT array.',           art:'XXII'},
+  {n:'Sacred Forest Guard',    type:'mauka',      cost:1, icon:'🌲', e:'Protect N46. Block invasive species CRISIS this turn.',    art:'VII'},
+];
+
+const RELICS=[
+  {n:'14th Stone',   i:'🗿', d:'All scrolls cost -1 energy'},
+  {n:'FarmBox Key',  i:'📦', d:'+$33K on each Farmlands shop node'},
+  {n:'Glyph Lens',   i:'🔮', d:'Reveal hidden violations each turn'},
+  {n:'Marine Crown', i:'🐚', d:'Makai crisis nodes deal 50% less damage'},
+  {n:'Wai Seal',     i:'💧', d:'Water contracts auto-blocked until Art.VI compliant'},
+];
+
+// NODE TYPE META
+const NTYPE={
+  start:   {icon:'🏁',label:'START',    col:'#00c9b1'},
+  battle:  {icon:'⚔', label:'VOTE',     col:'#ff6b6b'},
+  elite:   {icon:'🔥',label:'CRISIS',   col:'#f97316'},
+  boss:    {icon:'👁', label:'BOSS',     col:'#dc2626'},
+  shop:    {icon:'🏛', label:'BUDGET',   col:'#f5c842'},
+  event:   {icon:'📜',label:'SCROLL',   col:'#a78bfa'},
+  rest:    {icon:'🌺',label:'RESTORE',  col:'#2ecc71'},
+  treasure:{icon:'💎',label:'RELIC',    col:'#c084fc'}
+};
+const ZCOL={mauka:'#4ade80',farmlands:'#fbbf24',makai:'#38bdf8',universal:'#c084fc'};
+
+// NODE POSITIONS
+const ACT_LAYOUT=[
+  {rows:[2,2,2,3,2,2,2,2,1],sx:10, w:228,sn:0},
+  {rows:[2,2,2,2,2,2,2,3,1],sx:266,w:226,sn:18},
+  {rows:[2,2,2,2,2,1,2,2,1],sx:516,w:232,sn:36}
+];
+function computePos(){
+  const p={};
+  ACT_LAYOUT.forEach(act=>{
+    let ni=act.sn;const rc=act.rows.length;
+    act.rows.forEach((cnt,ri)=>{
+      const y=24+(ri/(rc-1))*446;const sx=act.w/(cnt+1);
+      for(let ci=0;ci<cnt;ci++){p[ni]={x:act.sx+sx*(ci+1),y};ni++;}
+    });
+  });
+  return p;
+}
+const POS=computePos();
+function buildEdges(){
+  const edges=[];
+  ACT_LAYOUT.forEach((act,ai)=>{
+    let ni=act.sn;const grps=[];
+    act.rows.forEach(cnt=>{const g=[];for(let i=0;i<cnt;i++)g.push(ni++);grps.push(g);});
+    for(let ri=0;ri<grps.length-1;ri++){
+      const fr=grps[ri],to=grps[ri+1];
+      fr.forEach((fid,fi)=>{
+        const bi=Math.min(fi,to.length-1);edges.push({f:fid,t:to[bi]});
+        if(to.length>fr.length&&fi<fr.length-1){const ni2=Math.min(bi+1,to.length-1);if(ni2!==bi)edges.push({f:fid,t:to[ni2]});}
+      });
+    }
+    if(ai<ACT_LAYOUT.length-1){
+      const boss=act.sn+act.rows.reduce((a,b)=>a+b,0)-1;
+      const na=ACT_LAYOUT[ai+1];
+      edges.push({f:boss,t:na.sn});edges.push({f:boss,t:na.sn+1});
+    }
+  });
+  return edges;
+}
+const EDGES=buildEdges();
+
+// GAME STATE
+let G={trust:72,energy:5,maxE:5,turn:1,cur:0,act:1,hand:[],relics:[RELICS[0],RELICS[1]],done:new Set([0]),avail:new Set([1,2])};
+function dealHand(){G.hand=[];const pool=[...DECK];for(let i=0;i<5;i++)G.hand.push(pool[Math.floor(Math.random()*pool.length)]);}
+dealHand();
+
+// RENDER CHARTER
+function renderCharter(){
+  document.getElementById('art-list').innerHTML=ARTS.map((a,i)=>`
+    <div class="art" onclick="openArt(${i})">
+      <div class="an">ARTICLE ${a.n}</div>
+      <div class="at">${a.t}</div>
+      <div class="ah">${a.h}</div>
+      <span class="as s${a.s}">${a.s.toUpperCase()}</span>
+    </div>`).join('');
+}
+
+// RENDER SCROLLS
+function renderScrolls(){
+  document.getElementById('scroll-feed').innerHTML=SCROLLS.map(s=>`
+    <div class="sc" onclick="activateScroll('${s.id}')">
+      <div class="si">${s.id}</div>
+      <div class="stt">${s.t}</div>
+      <div class="sar">${s.a}</div>
+      <span class="ss ss${s.s}">${s.s.toUpperCase()}</span>
+    </div>`).join('');
+}
+
+// RENDER HAND
+function renderHand(){
+  document.getElementById('hand').innerHTML=G.hand.map((c,i)=>`
+    <div class="card ${c.type}" onclick="playCard(${i})" title="${c.e}">
+      <div class="cc">${c.cost}</div>
+      <div class="ci">${c.icon}</div>
+      <div class="cn">${c.n}</div>
+      <div class="ce">${c.e}</div>
+      <div class="cz">${c.type.toUpperCase()}</div>
+      <div class="ca">§${c.art}</div>
+    </div>`).join('');
+  document.getElementById('epips').innerHTML=Array.from({length:G.maxE},(_,i)=>`<div class="epip ${i>=G.energy?'off':''}"></div>`).join('');
+}
+function renderRelics(){
+  document.getElementById('relics').innerHTML=G.relics.map(r=>`
+    <div class="relic-slot" title="${r.d}"><div class="rsl-i">${r.i}</div><div class="rsl-n">${r.n}</div></div>`).join('');
+}
+
+// RENDER MAP
+function renderMap(){
+  const svg=document.getElementById('svg');
+  const acts=`
+    <text x="124" y="13" fill="#4ade80" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT I — MAUKA ZONE</text>
+    <text x="379" y="13" fill="#fbbf24" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT II — FARMLANDS + MAKAI</text>
+    <text x="632" y="13" fill="#38bdf8" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT III — ADVANCED SYSTEMS</text>
+    <line x1="252" y1="6" x2="252" y2="476" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="506" y1="6" x2="506" y2="476" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>`;
+  const edgeHTML=EDGES.map(e=>{
+    const p1=POS[e.f],p2=POS[e.t];if(!p1||!p2)return'';
+    const done=G.done.has(e.f)&&G.done.has(e.t);
+    const avail=G.done.has(e.f)&&G.avail.has(e.t);
+    const col=done?'rgba(0,201,177,.55)':avail?'rgba(245,200,66,.45)':'rgba(255,255,255,.09)';
+    return`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${col}" stroke-width="${done?1.5:1}"/>`;
+  }).join('');
+  const nodeHTML=NODES.map(n=>{
+    const p=POS[n.id];if(!p)return'';
+    const nt=NTYPE[n.type];const zc=ZCOL[n.zone];
+    const done=G.done.has(n.id),avail=G.avail.has(n.id);
+    const opacity=(!done&&!avail)?.28:1;
+    const r=n.type==='boss'?13:10;
+    const stroke=G.cur===n.id?'#fff':avail?'#f5c842':done?zc:'rgba(255,255,255,.18)';
+    const sw=G.cur===n.id?2.5:1.5;
+    const fill=done?zc+'44':avail?zc+'22':'rgba(0,0,0,.4)';
+    const bRing=n.type==='boss'?`<circle cx="${p.x}" cy="${p.y}" r="${r+4}" fill="none" stroke="${nt.col}" stroke-width="1" stroke-dasharray="3,3" opacity=".4"/>`:'';
+    return`<g opacity="${opacity}" onclick="nodeClick(${n.id})" onmouseenter="nodeHover(${n.id},event)" style="cursor:pointer">
+      ${bRing}<circle cx="${p.x}" cy="${p.y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>
+      <text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="${n.type==='boss'?11:9}" pointer-events="none">${nt.icon}</text>
+    </g>`;
+  }).join('');
+  svg.innerHTML=acts+edgeHTML+nodeHTML;
+}
+
+// INTERACTIONS
+function nodeHover(id,evt){
+  const n=NODES[id];const nt=NTYPE[n.type];const zc=ZCOL[n.zone];
+  const pop=document.getElementById('popup');
+  document.getElementById('pp-type').textContent=`${nt.label} · HFE ${n.zone.toUpperCase()}`;
+  document.getElementById('pp-type').style.color=zc;
+  document.getElementById('pp-title').textContent=n.label;
+  document.getElementById('pp-title').style.color=zc;
+  document.getElementById('pp-body').textContent=n.desc;
+  document.getElementById('pp-zone').textContent=`⚙ ${n.hfe}`;
+  document.getElementById('pp-art').textContent=`📜 ${n.article}  ·  ${n.scroll}`;
+  document.getElementById('pp-budget').textContent=n.budget?`💰 ${n.budget}`:'';
+  document.getElementById('pp-cards').innerHTML=n.cards?n.cards.map(c=>`<span>${c}</span>`).join(''):'';
+  const mw=document.getElementById('mapwrap').getBoundingClientRect();
+  const sv=document.getElementById('svg').getBoundingClientRect();
+  const p=POS[id];const sx=sv.width/760,sy=sv.height/480;
+  let px=sv.left-mw.left+p.x*sx+14;
+  let py=sv.top-mw.top+p.y*sy-20;
+  px=Math.min(px,mw.width-260);py=Math.min(Math.max(py,0),mw.height-220);
+  pop.style.left=px+'px';pop.style.top=py+'px';
+  pop.classList.add('show');
+}
+function closePopup(){document.getElementById('popup').classList.remove('show')}
+
+function nodeClick(id){
+  const n=NODES[id];
+  if(!G.avail.has(id)&&!G.done.has(id))return;
+  closePopup();G.done.add(id);G.cur=id;
+  G.act=id<18?1:id<37?2:3;
+  const apills=['ACT I — MAUKA ZONE','ACT II — FARMLANDS + MAKAI','ACT III — ADVANCED SYSTEMS'];
+  document.getElementById('act-pill').textContent=apills[G.act-1];
+  EDGES.forEach(e=>{if(e.f===id)G.avail.add(e.t)});
+  if(n.type==='rest'){G.trust=Math.min(100,G.trust+15);log(`🌺 ${n.label}: +15 Trust restored`,'ok')}
+  else if(n.type==='boss'){G.trust=Math.max(0,G.trust-10);log(`⚠ BOSS: ${n.label} — Trust -10`,'alert')}
+  else if(n.type==='elite'){G.trust=Math.max(0,G.trust-7);log(`🔥 CRISIS: ${n.label} — Trust -7. Play cards.`,'warn')}
+  else if(n.type==='treasure'){log(`💎 RELIC: ${n.label} acquired — ${n.cards[0]}`,'ok')}
+  else if(n.type==='battle'){log(`⚔ VOTE: ${n.label} — play policy cards to win`,'warn')}
+  else if(n.type==='shop'){log(`🏛 BUDGET NODE: ${n.label} — ${n.budget||'allocate resources'}`,'ok')}
+  else log(`📜 SCROLL: ${n.label} — ${n.scroll} activated`,'');
+  dealHand();renderHand();updateStats();renderMap();
+}
+
+function openArt(idx){
+  const a=ARTS[idx];
+  document.getElementById('m-title').textContent=`ARTICLE ${a.n} — ${a.t}`;
+  document.getElementById('m-haw').textContent=a.h;
+  document.getElementById('m-desc').textContent=a.desc;
+  document.getElementById('m-cw').innerHTML=`<h4>⇄ MCC CROSSWALK</h4>${a.mcc||'New sovereign provision — no MCC equivalent'}`;
+  document.getElementById('m-scrolls').innerHTML=`<h4>📡 RAIS SCROLLS</h4>`+(a.scrolls||[]).map(s=>`<span class="spill">${s}</span>`).join('');
+  document.getElementById('m-budget').innerHTML=a.budget?`<div class="mbudget"><span>💰 Budget Scope</span><span class="bamt">${a.budget}</span></div>`:'';
+  document.getElementById('m-nodecards').innerHTML='';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+
+function playCard(idx){
+  const c=G.hand[idx];
+  if(G.energy<c.cost){log(`⚡ Not enough energy for: ${c.n}`,'warn');return}
+  G.energy-=c.cost;
+  if(c.type==='audit'){const f=document.getElementById('s-flags');f.textContent=Math.max(0,parseInt(f.textContent)-1);}
+  if(c.type==='peacekeeper'||c.type==='policy')G.trust=Math.min(100,G.trust+(c.n.includes('Hoʻo')?15:5));
+  if(['mauka','makai','farmlands'].includes(c.type))G.trust=Math.min(100,G.trust+3);
+  log(`✅ PLAYED: ${c.n} — ${c.e}`,'ok');
+  G.hand.splice(idx,1);G.hand.push(DECK[Math.floor(Math.random()*DECK.length)]);
+  updateStats();renderHand();
+}
+function activateScroll(id){log(`📡 RAIS: ${id} activated`,'ok');G.trust=Math.min(100,G.trust+2);updateStats();}
+function log(msg,type=''){
+  const el=document.getElementById('alog');const d=document.createElement('div');
+  d.className=`ale ${type}`;d.textContent=`[${new Date().toLocaleTimeString('en-US',{hour12:false})}] ${msg}`;
+  el.prepend(d);while(el.children.length>7)el.removeChild(el.lastChild);
+}
+function updateStats(){
+  document.getElementById('tfill').style.width=G.trust+'%';
+  document.getElementById('tpct').textContent=G.trust+'%';
+  document.getElementById('turn-n').textContent=G.turn;
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key===' '||e.key==='Enter'){e.preventDefault();G.turn++;G.energy=G.maxE;dealHand();renderHand();updateStats();log(`▶ TURN ${G.turn} — Energy restored. New hand dealt.`,'');}
+  if(e.key==='Escape'){closeModal();closePopup();}
+});
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+// INIT
+renderCharter();renderScrolls();renderHand();renderRelics();renderMap();updateStats();
+setTimeout(()=>log('🌺 MauiOS v2 — HFE v4 (52 nodes) + 12 Stones Charter (28 articles) online','ok'),300);
+setTimeout(()=>log('⚙ Zones: Mauka (N1–N10,N31,N34,N41,N46) · Farmlands (N11–N20,N32,N35,N37,N39,N42,N44,N47,N49,N51) · Makai (N21–N30,N33,N36,N38,N40,N43,N45,N48,N50,N52)','ok'),900);
+setTimeout(()=>log('📡 RAIS live — Legistar scraper active — 188 scrolls — 52 HFE node reports ingesting','ok'),1500);
+setTimeout(()=>log('🔴 ALERT: Bill 32 sovereign exclusion — Art.VIII violation active','alert'),2200);
+setTimeout(()=>log('🔴 GHOST-001: 3 ghost contracts, $211M stalled obligations — Art.XI','alert'),2900);
+setTimeout(()=>log('🟡 N46 Sacred Forests: IoT invasive species alert triggered — Art.VII','warn'),3600);
+setTimeout(()=>log('🟡 N21 Coral Restoration: UV bleaching threshold exceeded — play Coral Bleaching Event card','warn'),4300);
+setTimeout(()=>log('🟡 N6 IoT Fire Detection: High temperature zone flagged — Lahaina sector','warn'),5000);
+</script>
+</body>
+</html>

@@ -91,7 +91,7 @@
 
     <!-- actions -->
     <div style="display:flex; gap:11px; flex-wrap:wrap; margin-top:18px;">
-      <a href="{{ explainerHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-gold,#d9b24c); color:#241c06; font-weight:600; font-size:13px; border-radius:10px; padding:11px 16px;">▶ Build an explainer video</a>
+      <a href="{{ explainerHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-gold,#d9b24c); color:#241c06; font-weight:600; font-size:13px; border-radius:10px; padding:11px 16px;">📖 Charter explainer</a>
       <a href="{{ crosswalkHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#f0cf7a); font-size:13px; border:1px solid var(--mauios-line,#243029); border-radius:10px; padding:11px 16px;">⚖ Charter ⇄ Law Crosswalk</a>
       <a href="{{ codeHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#f0cf7a); font-size:13px; border:1px solid var(--mauios-line,#243029); border-radius:10px; padding:11px 16px;">§ County Code &amp; Rules</a>
     </div>
@@ -127,9 +127,9 @@ class Component extends DCLogic {
       forecast, forecastN: forecast.length,
       committees: C.committees || [], committeeN: (C.committees || []).length,
       ledger, integrity: C.integrity,
-      explainerHref: "../agenda-explainer/Agenda Explainer.html",
-      crosswalkHref: "../title19-crosswalk/Title19 Crosswalk.html",
-      codeHref: "../county-code/Maui County Code & Rules.html",
+      explainerHref: "charter-explainer.html",
+      crosswalkHref: "title19.html",
+      codeHref: "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances",
     };
   }
 }
