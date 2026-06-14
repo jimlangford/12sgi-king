@@ -90,6 +90,10 @@ def main():
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
         print("  + go.html: live/mirror failover launcher")
+    _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
+    if os.path.exists(_ta):
+        shutil.copy(_ta, os.path.join(SITE, "take_action.html"))
+        print("  + take_action.html: demand-the-records + supporter signup")
     # [redundancy] production status (public-safe) from the local 15-min publisher
     _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
     prod = ""
@@ -133,6 +137,7 @@ legislative votes, campaign money, procurement, permits, and the patterns betwee
 <div class="disc">Everything here is built from public records and presented as <b>documented facts and
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
+<p style="margin:16px 0"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Demand the records &mdash; file a UIPA request &amp; sign up &rarr;</a></p>
 <div class="grid">{cards}</div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
