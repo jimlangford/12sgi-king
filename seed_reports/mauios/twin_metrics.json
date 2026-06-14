@@ -1,16 +1,18 @@
 {
  "module": "kilo-aupuni",
  "version": "1.1",
- "run_iso": "2026-06-13 09:03:06 HST",
+ "run_iso": "2026-06-13 16:13:17 HST",
  "watchers_live": [
   "civicclerk",
   "donors",
   "votes",
+  "statewide-money",
   "charter",
   "permits",
   "procurement"
  ],
  "watchers_planned": [
+  "lege",
   "commission",
   "realproperty",
   "docs"
