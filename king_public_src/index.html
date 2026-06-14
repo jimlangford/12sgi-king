@@ -269,15 +269,15 @@ class Component extends DCLogic {
     const isMobile = this.state.w < 860;
     // owner:true => private to the operator (shown in nav, locked for the public).
     // owner:false => public-facing govOS system (civic transparency + Sage Game).
+    // Civic side is CIVIC-ONLY. The studio surfaces (Lyric Manager / Note for Note /
+    // Scene Review / Motion Picture) live in the elementLOTUS Studio app (:8770) and
+    // are reached via the "Studio ->" door, NOT from the civic nav. (2026-06-14)
     const ITEMS = [
       { id:'mauios',   label:'govOS',           short:'govOS',   icon:'🌺', register:'public', owner:false },
       { id:'council',  label:'Council & Agendas', short:'Council', icon:'🏛', register:'public', owner:false },
       { id:'game',     label:'Sage Game',       short:'Game',    icon:'🂡',  register:'public', owner:false },
+      { id:'studio',   label:'Studio →',        short:'Studio',  icon:'🎛', register:'studio', owner:false, href:'https://12sgianonymous.tail760750.ts.net/' },
       { id:'overview', label:'Overview',        short:'Home',    icon:'◉',  register:'ops',    owner:true },
-      { id:'lyrics',   label:'Lyric Manager',   short:'Lyrics',  icon:'♪',  register:'studio', owner:true },
-      { id:'tabs',     label:'Note for Note',   short:'Tabs',    icon:'🎸', register:'studio', owner:true },
-      { id:'scenes',   label:'Scene Review',    short:'Scenes',  icon:'🎞', register:'studio', owner:true },
-      { id:'film',     label:'Motion Picture',  short:'Film',    icon:'🎬', register:'studio', owner:true },
       { id:'mission',  label:'Mission Control', short:'Mission', icon:'⌖',  register:'ops',    owner:true },
       { id:'push',     label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
     ];
@@ -289,11 +289,12 @@ class Component extends DCLogic {
     const avail = id => AVAIL.indexOf(id) >= 0;
     const navItems = ITEMS.map(it => ({
       ...it,
-      go: () => this.go(it.id),
+      // external doors (href, e.g. Studio) navigate out; everything else is an in-app surface
+      go: () => it.href ? (window.location.href = it.href) : this.go(it.id),
       on: s === it.id,
       off: s !== it.id,
-      locked: !avail(it.id),
-      lockGlyph: !avail(it.id) ? '🔒' : '',
+      locked: !it.href && !avail(it.id),
+      lockGlyph: (!it.href && !avail(it.id)) ? '🔒' : '',
     }));
     const cur = ITEMS.find(i => i.id === s) || ITEMS[0];
     const curLocked = !avail(cur.id);
