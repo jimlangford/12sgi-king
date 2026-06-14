@@ -153,6 +153,25 @@ Sources are linked on every page.</div>
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
         f.write(index)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
+
+    # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
+    # of the public build — same civic dashboards + data, plus the owner-only surfaces it
+    # already has. We mirror the public artifacts into it so PRIVATE serves the same
+    # information, and (running locally) it updates BEFORE the git push reaches GitHub
+    # Pages — "private first, public mirror." On CI this dir is absent, so it no-ops.
+    KLOCAL = os.path.expanduser(os.path.join("~", "AppData", "Local", "king-extract", "deploy", "king-local"))
+    if os.path.isdir(KLOCAL):
+        import glob
+        for h in glob.glob(os.path.join(SITE, "*.html")):
+            b = os.path.basename(h)
+            # the public root landing becomes the private "all reports" hub; never clobber
+            # king-local's own index.html (the King shell).
+            shutil.copy(h, os.path.join(KLOCAL, "reports.html" if b == "index.html" else b))
+        for sub in ("data", "donors"):
+            s = os.path.join(SITE, sub)
+            if os.path.isdir(s):
+                shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
+        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data -> served first via Tailscale")
     return 0
 
 if __name__ == "__main__":
