@@ -463,34 +463,255 @@
  {
   "key": "Cook",
   "label": "Tom Cook - Councilmember, South Maui",
-  "rows": 0,
-  "total": 0.0,
-  "candidate_names": [],
-  "by_type": {},
-  "realestate": {
-   "count": 0,
-   "total": 0.0,
-   "donors": []
+  "rows": 422,
+  "total": 372580.28,
+  "candidate_names": [
+   "Cook, Thomas"
+  ],
+  "by_type": {
+   "Individual": 221049.77000000002,
+   "Noncandidate Committee": 90200.0,
+   "Other Entity": 60898.63999999999,
+   "Candidate": 431.87
   },
-  "out_of_state_pct": 0,
+  "realestate": {
+   "count": 80,
+   "total": 84267.57,
+   "donors": [
+    {
+     "name": "Lanai Resorts, LLC",
+     "amount": 6000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Gomes, Terrance",
+     "amount": 4200.0,
+     "employer": "Self",
+     "occupation": "Contractor"
+    },
+    {
+     "name": "Ledcor Development LP",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Hawaii Realtors PAC",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Churchill, Ryan",
+     "amount": 4000.0,
+     "employer": "Self",
+     "occupation": "Developer"
+    },
+    {
+     "name": "Dowling, Evertt R.",
+     "amount": 4000.0,
+     "employer": "Self",
+     "occupation": "Developer"
+    },
+    {
+     "name": "Stoner, Robert E.",
+     "amount": 3853.34,
+     "employer": "S & F Land",
+     "occupation": "Owner"
+    },
+    {
+     "name": "Hawaii Hotel Alliance",
+     "amount": 3000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Kobayashi, Patrick K.",
+     "amount": 3000.0,
+     "employer": "Kobayaski Group",
+     "occupation": "Real Estate Investments"
+    },
+    {
+     "name": "Bower Development LLC",
+     "amount": 3000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Stenger, James Jr.",
+     "amount": 2985.48,
+     "employer": "Alpha Construction",
+     "occupation": "President"
+    },
+    {
+     "name": "General Contractors Association of Hawaii",
+     "amount": 2500.0,
+     "employer": "",
+     "occupation": ""
+    }
+   ]
+  },
+  "out_of_state_pct": 2,
   "recusals": [],
-  "top_donors": []
+  "top_donors": [
+   {
+    "name": "Lanai Resorts, LLC",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "MTP dba Maui Tropical Plantation",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Operating Engineers Local Union 3",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Goodfellow, Tamar C.",
+    "amount": 6000.0,
+    "n": 6,
+    "employer": "Retired",
+    "occupation": "Retired"
+   },
+   {
+    "name": "Hawaii Laborers Political Action Committee",
+    "amount": 5000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Gomes, Terrance",
+    "amount": 4200.0,
+    "n": 3,
+    "employer": "Self",
+    "occupation": "Contractor"
+   },
+   {
+    "name": "Meier, John",
+    "amount": 4000.0,
+    "n": 2,
+    "employer": "RETIRED",
+    "occupation": "RETIRED"
+   },
+   {
+    "name": "Ledcor Development LP",
+    "amount": 4000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   }
+  ]
  },
  {
   "key": "Johnson",
   "label": "Gabe Johnson - Councilmember",
-  "rows": 0,
-  "total": 0.0,
-  "candidate_names": [],
-  "by_type": {},
-  "realestate": {
-   "count": 0,
-   "total": 0.0,
-   "donors": []
+  "rows": 124,
+  "total": 57224.15,
+  "candidate_names": [
+   "Johnson, Gabriel"
+  ],
+  "by_type": {
+   "Other Entity": 6440.0,
+   "Noncandidate Committee": 5461.34,
+   "Individual": 40480.61,
+   "Immediate Family": 2460.0,
+   "Candidate": 2382.2
   },
-  "out_of_state_pct": 0,
+  "realestate": {
+   "count": 3,
+   "total": 4500.0,
+   "donors": [
+    {
+     "name": "Hawaii Realtors PAC",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Grace, Lorraine",
+     "amount": 1500.0,
+     "employer": "Hale Akua Resort",
+     "occupation": "Business owner"
+    },
+    {
+     "name": "Del Rosario, Michelle",
+     "amount": 1000.0,
+     "employer": "Keller Williams Realty",
+     "occupation": "Principle Broker"
+    }
+   ]
+  },
+  "out_of_state_pct": 7,
   "recusals": [],
-  "top_donors": []
+  "top_donors": [
+   {
+    "name": "IWAMOTO, KIM COCO",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "SELF EMPLOYED",
+    "occupation": "CANDIDATE"
+   },
+   {
+    "name": "AURORA INVESTMENTS",
+    "amount": 2500.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Johnson, Gabriel L.",
+    "amount": 2382.2,
+    "n": 13,
+    "employer": "Pulama Lanai",
+    "occupation": "Invasive Species Technician"
+   },
+   {
+    "name": "MAUI PONO NETWORK",
+    "amount": 2291.8,
+    "n": 4,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Hawaii Realtors PAC",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Love, Linda",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "Pueo Farms",
+    "occupation": "Business owner"
+   },
+   {
+    "name": "Williams, Michael",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "Pueo Farms",
+    "occupation": "Retired"
+   },
+   {
+    "name": "Atherton, Mike",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "MTP Operating Company",
+    "occupation": "Business owner"
+   }
+  ]
  },
  {
   "key": "Paltin",
