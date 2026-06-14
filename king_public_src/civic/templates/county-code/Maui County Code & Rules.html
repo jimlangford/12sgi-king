@@ -82,6 +82,10 @@
   .prow:last-child { border-bottom: 0; }
   .prow .pn { font-size: 13.5px; font-weight: 600; }
   .prow .pd { font-size: 12px; color: var(--mauios-mut); margin-top: 3px; }
+  a.slink { color: var(--mauios-gold); text-decoration: none; border-bottom: 1px dotted rgba(217,178,76,.5); }
+  a.slink:hover { border-bottom-style: solid; }
+  .slink-plain { color: inherit; }
+  .slink-sep { color: var(--mauios-faint); }
   .prow .pl { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-makai); margin-top: 5px; }
   .orow { display: grid; grid-template-columns: 90px 1fr auto; gap: 10px; align-items: baseline; padding: 11px 15px; border-bottom: 1px solid rgba(255,255,255,.04); }
   .orow:last-child { border-bottom: 0; }
@@ -149,6 +153,29 @@
 (function () {
   var C = window.COUNTYCODE;
   function esc(s) { return (s || "").replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+  /* ---- source links: URLs ONLY from the verified portal map; unmapped/ambiguous -> plain ---- */
+  function srcUrlFor(label) {
+    if (!label) return null;
+    var s = String(label).toLowerCase(), hits = [];
+    if (/municode|county code|\bmcc\b|county charter/.test(s)) hits.push("https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances");
+    if (/constitution/.test(s)) hits.push("https://lrb.hawaii.gov/constitution");
+    if (/\bhrs\b|revised statutes|capitol\.hawaii\.gov|\bhar\b/.test(s)) hits.push("https://www.capitol.hawaii.gov/docs/hrs.htm");
+    if (/civicclerk|council-watch|agenda|council services|granicus|\bcouncil\b/.test(s)) hits.push("https://www.mauicounty.gov/AgendaCenter");
+    if (/u\.s\. code|federal|uscode|treaties/.test(s)) hits.push("https://uscode.house.gov");
+    var uniq = hits.filter(function (v, i) { return hits.indexOf(v) === i; });
+    return uniq.length === 1 ? uniq[0] : null;
+  }
+  function slink(label) {
+    if (label == null || label === "") return "";
+    var u = srcUrlFor(label);
+    return u ? '<a class="slink" href="' + u + '" target="_blank" rel="noopener">' + esc(label) + ' ↗</a>'
+             : '<span class="slink-plain">' + esc(label) + '</span>';   /* VERIFY: no mapped public source */
+  }
+  function clink(citation) {
+    if (!citation) return "";
+    return String(citation).split(" · ").map(slink).join(' <span class="slink-sep">·</span> ');
+  }
   function pip(s) { return '<span class="pip ' + s + '">' + s + '</span>'; }
 
   document.getElementById("notetext").innerHTML = "<b>Coverage index, not a reproduction of the code.</b> " + esc(C.meta.note.replace("Coverage index — ", ""));
@@ -178,14 +205,14 @@
 
   /* Rules */
   document.getElementById("rules").innerHTML = C.rules.map(function (r) {
-    return '<div class="prow"><div class="pn">' + esc(r.nm) + '</div><div class="pd">' + esc(r.d) + '</div><div class="pl">' + esc(r.law) + '</div></div>';
+    return '<div class="prow"><div class="pn">' + esc(r.nm) + '</div><div class="pd">' + esc(r.d) + '</div><div class="pl">' + clink(r.law) + '</div></div>';
   }).join("");
 
   /* Ordinances */
   document.getElementById("ords").innerHTML = C.ords.map(function (o) {
     var cls = o.status.split(" ")[0];
     return '<div class="orow"><span class="oid">' + esc(o.id) + '</span>' +
-      '<span class="ot">' + esc(o.t) + '<small>' + esc(o.body) + ' · Art.' + o.art + ' · ' + esc(o.date) + '</small></span>' +
+      '<span class="ot">' + esc(o.t) + '<small>' + slink(o.body) + ' · Art.' + o.art + ' · ' + esc(o.date) + '</small></span>' +
       '<span class="ost ' + cls + '">' + esc(o.status) + '</span></div>';
   }).join("");
 

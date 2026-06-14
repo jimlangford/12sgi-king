@@ -91,6 +91,10 @@
   .cf .against { font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-makai); margin-top: 5px; }
   .cf p { font-size: 12.5px; color: var(--mauios-mut); margin: 7px 0 0; }
   .cf .src { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); margin-top: 8px; letter-spacing: .4px; }
+  a.slink { color: var(--mauios-gold); text-decoration: none; border-bottom: 1px dotted rgba(217,178,76,.5); }
+  a.slink:hover { border-bottom-style: solid; }
+  .slink-plain { color: inherit; }
+  .slink-sep { color: var(--mauios-faint); }
 
   /* Controls */
   .controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
@@ -280,6 +284,35 @@
   function esc(s) { return (s || "").replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
   function citeCount(a) { var n = 0; BODIES.forEach(function (b) { n += (a.cites[b.id] || []).length; }); return n; }
 
+  /* ---- source links: "facts + source LINKS." URLs come ONLY from the verified portal
+     map; an unmapped label stays plain (a wrong link is worse than none). A label that
+     names TWO different bodies is ambiguous -> stays plain. Cited statutes link to the
+     body's portal ROOT, never a fabricated deep anchor. ---- */
+  function srcUrlFor(label) {
+    if (!label) return null;
+    var s = String(label).toLowerCase(), hits = [];
+    if (/municode|county code|\bmcc\b|county charter/.test(s)) hits.push("https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances");
+    if (/constitution/.test(s)) hits.push("https://lrb.hawaii.gov/constitution");
+    if (/\bhrs\b|revised statutes|capitol\.hawaii\.gov/.test(s)) hits.push("https://www.capitol.hawaii.gov/docs/hrs.htm");
+    if (/civicclerk|council-watch|agenda|council services|granicus/.test(s)) hits.push("https://www.mauicounty.gov/AgendaCenter");
+    if (/campaign spending|donor-watch|\bcsc\b/.test(s)) hits.push("https://ags.hawaii.gov/campaign/");
+    if (/\bhands\b/.test(s)) hits.push("https://hands.ehawaii.gov/hands/awards");
+    if (/hiepro|procurement/.test(s)) hits.push("https://hiepro.ehawaii.gov");
+    if (/u\.s\. code|federal|uscode|treaties/.test(s)) hits.push("https://uscode.house.gov");
+    var uniq = hits.filter(function (v, i) { return hits.indexOf(v) === i; });
+    return uniq.length === 1 ? uniq[0] : null;   /* 0 = unmapped, >1 = ambiguous -> plain */
+  }
+  function slink(label) {
+    if (label == null || label === "") return "";
+    var u = srcUrlFor(label);
+    return u ? '<a class="slink" href="' + u + '" target="_blank" rel="noopener">' + esc(label) + ' ↗</a>'
+             : '<span class="slink-plain">' + esc(label) + '</span>';   /* VERIFY: no mapped public source */
+  }
+  function clink(citation) {   /* compound "A · B" lines: link each segment by prefix */
+    if (!citation) return "";
+    return String(citation).split(" · ").map(slink).join(' <span class="slink-sep">·</span> ');
+  }
+
   /* ---- KPIs ---- */
   (function () {
     var totalCites = 0; ARTS.forEach(function (a) { totalCites += citeCount(a); });
@@ -304,9 +337,9 @@
       return '<div class="cf ' + c.sev + '">' +
         '<div class="row1"><span class="sev">' + c.sev + '</span><span class="art">Art.' + c.art + '</span></div>' +
         '<h4>' + esc(c.title) + '</h4>' +
-        '<div class="against">⇄ ' + esc(c.against) + '</div>' +
+        '<div class="against">⇄ ' + clink(c.against) + '</div>' +
         '<p>' + esc(c.desc) + '</p>' +
-        '<div class="src">source · ' + esc(c.source) + ' · ' + esc(c.date) + '</div>' +
+        '<div class="src">source · ' + slink(c.source) + ' · ' + esc(c.date) + '</div>' +
       '</div>';
     }).join("");
     var alerts = D.conflicts.filter(function (c) { return c.sev === "alert"; }).length;
@@ -348,7 +381,7 @@
       }).join("");
       return '<div class="cg" style="border-left-color:' + b.color + '">' +
         '<div class="cgh"><span class="nm" style="color:' + b.color + '">' + b.label + '</span><span class="ct">' + list.length + ' §</span></div>' +
-        rows + '<div class="srcl">' + esc(b.src) + '</div></div>';
+        rows + '<div class="srcl">' + slink(b.src) + '</div></div>';
     }).join("");
   }
 
@@ -412,7 +445,7 @@
       }).join("");
       card.innerHTML =
         '<div class="lbhead"><span class="sw" style="background:' + b.color + '"></span>' +
-          '<span class="nm">' + b.label + '<small>' + esc(b.src) + (b.live ? " · live feed" : "") + '</small></span>' +
+          '<span class="nm">' + b.label + '<small>' + slink(b.src) + (b.live ? " · live feed" : "") + '</small></span>' +
           '<span class="cnt">' + orderKeys.length + ' citations<br>' + countArtsFor(b.id) + ' articles</span></div>' +
         '<div class="lbbody">' + rows + '</div>';
       card.querySelector(".lbhead").addEventListener("click", function () { card.classList.toggle("open"); });

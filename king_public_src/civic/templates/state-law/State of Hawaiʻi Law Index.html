@@ -73,6 +73,8 @@
   .trow:last-child { border-bottom: 0; }
   .trow.key { box-shadow: inset 3px 0 0 var(--mauios-gold); }
   .trow .tnum { font-family: var(--font-mono); font-size: 11px; color: var(--mauios-gold); }
+  a.cn, a.tnum { text-decoration: none; cursor: pointer; }
+  a.cn:hover, a.tnum:hover { color: var(--mauios-gold-2); }
   .trow .tnm { font-weight: 600; font-size: 13.5px; }
   .trow .tch { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-mut); margin-top: 3px; line-height: 1.5; }
   @media (max-width: 700px) { .trow { grid-template-columns: 50px 1fr; } .trow .inh { grid-column: 2; justify-self: start; margin-top: 4px; } }
@@ -163,7 +165,7 @@
 
   /* Constitution */
   document.getElementById("constitution").innerHTML = S.constitution.map(function (a) {
-    return '<div class="ca' + (a.inherit ? " key" : "") + '"><div class="c1"><span class="cn">Art.' + a.n + '</span><span class="ct">' + esc(a.t) + '</span></div>' +
+    return '<div class="ca' + (a.inherit ? " key" : "") + '"><div class="c1"><a class="cn" href="https://lrb.hawaii.gov/constitution" target="_blank" rel="noopener">Art.' + a.n + ' ↗</a><span class="ct">' + esc(a.t) + '</span></div>' +
       '<div class="cnote">' + esc(a.note) + '</div>' + (a.inherit ? '<div style="margin-top:7px;">' + INH + '</div>' : '') + '</div>';
   }).join("");
 
@@ -171,7 +173,7 @@
   document.getElementById("divisions").innerHTML = S.divisions.map(function (d) {
     var rows = d.titles.map(function (t) {
       return '<div class="trow' + (t.key ? " key" : "") + '">' +
-        '<span class="tnum">Title ' + t.n + '</span>' +
+        '<a class="tnum" href="https://www.capitol.hawaii.gov/docs/hrs.htm" target="_blank" rel="noopener">Title ' + t.n + ' ↗</a>' +
         '<span><span class="tnm">' + esc(t.nm) + '</span><div class="tch">' + esc(t.ch) + '</div></span>' +
         (t.inherit ? INH : '<span></span>') + '</div>';
     }).join("");
