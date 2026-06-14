@@ -26,6 +26,12 @@
     { id: "const",     label: "Hawaiʻi Constitution",   short: "Const",     color: "#3f9b6d", src: "Constitution of the State of Hawaiʻi" },
     { id: "sovereign", label: "Sovereign Charter overlay", short: "Sov",    color: "#9b7bb8", src: "12 Stones Sovereign Charter v5" },
     { id: "ord",       label: "Ordinances & Bills",     short: "Ord",       color: "#d9622b", src: "Hawaiʻi County Council · Granicus", live: true },
+    // --- the sovereign hierarchy above the State (inherited from each function's mapped charter article) ---
+    { id: "fed",       label: "U.S. Federal",           short: "Fed",       color: "#a07850", src: "U.S. Code & federal statutes" },
+    { id: "intl",      label: "International Law",       short: "Int'l",     color: "#5fa8a0", src: "UN treaties & instruments" },
+    { id: "icc",       label: "Int'l Criminal Court",   short: "ICC",       color: "#b0566e", src: "Rome Statute · ICC" },
+    { id: "icj",       label: "Int'l Court of Justice", short: "ICJ",       color: "#7b86c4", src: "Statute of the ICJ" },
+    { id: "holysee",   label: "Holy See · Canon Law",   short: "Holy See",  color: "#c9b38a", src: "Holy See · Canon Law" },
   ];
 
   // Charter functions → law. `sov` = the Sovereign overlay article.
@@ -70,6 +76,40 @@
       desc: "Charter Commission and amendment process; the charter as a living instrument.",
       cites: { charter: [["Art.14", "Charter amendment & commission"]], hcc: [], hrs: [["Ch.50", "County charters — amendment"]], const: [["Art.XVII", "Revision & amendment"]], sovereign: [["Art.XXVIII", "Living Scroll Amendment"]], ord: [] } },
   ];
+
+  /* ---- Supranational tier (real instruments). Each Hawaiʻi County function INHERITS the
+     correspondences of the 12 Stones Sovereign Charter article(s) it maps to (cites.sovereign),
+     so the county crosswalk spans the same county → state → federal → int'l → ICC → ICJ →
+     Holy See hierarchy. Correspondence map, not a claim of binding jurisdiction. ---- */
+  const SUPRA = {
+    "I":     { fed: [["PL 103-150", "Apology Resolution (1993)"]], intl: [["UNDRIP Art.3", "Right of self-determination"], ["ICCPR Art.1", "Self-determination of peoples"], ["UN Charter Art.1(2)", "Self-determination"]], icj: [["Western Sahara (1975)", "Self-determination — advisory opinion"], ["Chagos (2019)", "Decolonization & self-determination"]], holysee: [["Pacem in Terris (1963)", "Sovereignty & rights among peoples"]] },
+    "II":    { intl: [["UNDRIP Art.18", "Right to participate in decision-making"]] },
+    "V":     { intl: [["UNDRIP Art.18", "Participation in decision-making"]] },
+    "VI":    { intl: [["UN Res 64/292", "Human right to water & sanitation"], ["UNDRIP Art.25", "Spiritual relationship to waters"]] },
+    "X":     { fed: [["33 USC §1251", "Clean Water Act"]], intl: [["UN Res 76/300", "Right to a healthy environment"]] },
+    "XI":    { intl: [["UNDRIP Art.26", "Lands, territories & resources"]] },
+    "XVI":   { intl: [["UNDROP (2018)", "Rights of peasants & rural workers"], ["ICESCR Art.11", "Right to food"]] },
+    "XVII":  { fed: [["33 USC §1251", "Clean Water Act"]], intl: [["UN Res 76/300", "Right to a healthy environment"], ["Rio Declaration", "Principle 10 — participation"]] },
+    "XXI":   { intl: [["UDHR Art.12", "Privacy"], ["ICCPR Art.17", "Protection from interference"]] },
+    "XXII":  { intl: [["Paris Agreement (2015)", "Climate & energy transition"]] },
+    "XXIII": { fed: [["42 USC §5121", "Stafford Act / FEMA"]], intl: [["Sendai Framework (2015)", "Disaster risk reduction"]] },
+    "XXVII": { intl: [["ICCPR Art.25", "Right to political participation"]] },
+    "XXVIII":{ intl: [["UNDRIP Art.3", "Self-determination — living instrument"]] },
+  };
+  FUNCS.forEach(function (f) {
+    var acc = { fed: [], intl: [], icc: [], icj: [], holysee: [] }, seen = { fed: {}, intl: {}, icc: {}, icj: {}, holysee: {} };
+    (f.cites.sovereign || []).forEach(function (sv) {
+      var m = /Art\.([IVXLC]+)/.exec(sv[0] || "");
+      if (m && SUPRA[m[1]]) {
+        Object.keys(acc).forEach(function (k) {
+          (SUPRA[m[1]][k] || []).forEach(function (c) {
+            if (!seen[k][c[0]]) { seen[k][c[0]] = 1; acc[k].push(c); }
+          });
+        });
+      }
+    });
+    Object.keys(acc).forEach(function (k) { f.cites[k] = acc[k]; });
+  });
 
   window.HAWCROSS = {
     meta: {

@@ -195,7 +195,11 @@
     if (/civicclerk|council-watch|agenda|granicus/.test(s)) hits.push("https://www.hawaiicounty.gov/our-county/county-council");
     if (/campaign spending|donor-watch|\bcsc\b/.test(s)) hits.push("https://ags.hawaii.gov/campaign/");
     if (/\bhands\b/.test(s)) hits.push("https://hands.ehawaii.gov/hands/awards");
-    if (/u\.s\. code|federal|uscode|treaties/.test(s)) hits.push("https://uscode.house.gov");
+    if (/u\.s\. code|federal|uscode|\bnagpra\b|\bnhpa\b|stafford|cdbg/.test(s)) hits.push("https://uscode.house.gov");
+    if (/un treat|un instrument|undrip|iccpr|icescr|\budhr\b|unclos|unesco|\bcrc\b|\bcrpd\b|\bicerd\b|paris agreement|\bun charter\b|united nations|\bun res\b|undrop/.test(s)) hits.push("https://treaties.un.org");
+    if (/rome statute|\bicc\b|criminal court/.test(s)) hits.push("https://www.icc-cpi.int");
+    if (/\bicj\b|court of justice|world court|western sahara|chagos/.test(s)) hits.push("https://www.icj-cij.org");
+    if (/holy see|canon law|lateran|vatican|pacem in terris|dignitatis/.test(s)) hits.push("https://www.vatican.va");
     var uniq = hits.filter(function (v, i) { return hits.indexOf(v) === i; });
     return uniq.length === 1 ? uniq[0] : null;
   }

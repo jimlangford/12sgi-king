@@ -28,7 +28,12 @@
     { id: "hrs",     label: "Hawaiʻi Revised Statutes",   short: "HRS",     color: "#3a8fb7", src: "capitol.hawaii.gov" },
     { id: "const",   label: "Hawaiʻi State Constitution", short: "Const",   color: "#3f9b6d", src: "Constitution of the State of Hawaiʻi" },
     { id: "ord",     label: "Ordinances & Bills",         short: "Ord",     color: "#d9622b", src: "Maui County Council · CivicClerk", live: true },
-    { id: "fed",     label: "Federal & International",     short: "Fed",     color: "#9b7bb8", src: "U.S. Code · treaties · UN instruments" },
+    // --- the sovereign hierarchy above the State: federal -> international -> the courts of nations -> the Holy See ---
+    { id: "fed",     label: "U.S. Federal",               short: "Fed",     color: "#9b7bb8", src: "U.S. Code & federal statutes" },
+    { id: "intl",    label: "International Law",           short: "Int'l",   color: "#5fa8a0", src: "UN treaties & instruments" },
+    { id: "icc",     label: "Int'l Criminal Court",       short: "ICC",     color: "#b0566e", src: "Rome Statute · ICC" },
+    { id: "icj",     label: "Int'l Court of Justice",     short: "ICJ",     color: "#7b86c4", src: "Statute of the ICJ" },
+    { id: "holysee", label: "Holy See · Canon Law",       short: "Holy See",color: "#c9b38a", src: "Holy See · Canon Law" },
   ];
 
   // Citation tuples: [citation, plain-language title].
@@ -316,6 +321,46 @@
         fed: [],
       } },
   ];
+
+  /* ---- The sovereign hierarchy above the State. Each charter principle is set
+     beside the REAL instrument in each body that articulates the same principle —
+     a correspondence map (the charter's claim ⇄ the existing law), not a claim of
+     binding jurisdiction. Every citation is a real instrument; bodies with no
+     defensible correspondence stay empty. This merge REPLACES the legacy combined
+     "fed" bucket with cleanly-separated U.S. / International / ICC / ICJ / Holy See
+     columns so the crosswalk spans county → state → federal → the courts of nations. */
+  const SUPRA = {
+    "I":     { fed: [["PL 103-150", "Apology Resolution (1993)"]], intl: [["UNDRIP Art.3", "Right of self-determination"], ["ICCPR Art.1", "Self-determination of peoples"], ["UN Charter Art.1(2)", "Self-determination"]], icj: [["Western Sahara (1975)", "Self-determination — advisory opinion"], ["Chagos (2019)", "Decolonization & self-determination"]], holysee: [["Pacem in Terris (1963)", "Sovereignty & rights among peoples"]] },
+    "III":   { intl: [["UNDRIP Art.26", "Lands, territories & resources"]] },
+    "IV":    { fed: [["25 USC §3001", "NAGPRA — graves protection"]], intl: [["UNDRIP Art.11–13", "Culture, lineage & tradition"], ["ICERD", "Racial-discrimination convention"]] },
+    "V":     { intl: [["UNDRIP Art.18", "Right to participate in decision-making"]] },
+    "VI":    { intl: [["UN Res 64/292", "Human right to water & sanitation"], ["UNDRIP Art.25", "Spiritual relationship to waters"]] },
+    "VII":   { fed: [["25 USC §3001", "NAGPRA"], ["54 USC §306108", "NHPA §106 review"]], intl: [["UNDRIP Art.12", "Sacred sites & ceremonial objects"], ["Hague Conv. 1954", "Cultural property protection"]], icc: [["Rome Statute Art.8(2)(b)(ix)", "Attacks on religious / cultural sites"]], holysee: [["Code of Canon Law c.1205–1213", "Sacred places"]] },
+    "VIII":  { fed: [["42 USC §5301", "HCDA / CDBG-DR §105(a)"], ["42 USC §5121", "Stafford Act — disaster relief"]], intl: [["UDHR Art.25", "Right to adequate housing"], ["ICESCR Art.11", "Adequate standard of living"]] },
+    "IX":    { icj: [["ICJ Statute Art.36", "Jurisdiction of the Court"], ["ICJ Statute Art.38", "Sources of international law"]], icc: [["Rome Statute Art.1", "The Court — complementary jurisdiction"]], intl: [["UNDRIP Art.27 & 40", "Adjudication & redress"]], holysee: [["Lateran Treaty (1929)", "Sovereign juridical personality of the Holy See"]] },
+    "XI":    { intl: [["UNDRIP Art.26", "Lands, territories & resources"]] },
+    "XII":   { intl: [["UDHR Art.12", "Privacy"], ["ICCPR Art.17", "Protection from interference"]] },
+    "XIII":  { intl: [["UN Res 40/34 (1985)", "Justice for victims — restorative principles"]] },
+    "XV":    { intl: [["UNESCO 2003 Convention", "Intangible cultural heritage"], ["UNDRIP Art.13", "Languages & oral traditions"]] },
+    "XVI":   { intl: [["UNDROP (2018)", "Rights of peasants & rural workers"], ["ICESCR Art.11", "Right to food"]] },
+    "XVII":  { fed: [["33 USC §1251", "Clean Water Act"]], intl: [["UN Res 76/300", "Right to a healthy environment"], ["Rio Declaration", "Principle 10 — access & participation"]] },
+    "XIX":   { fed: [["42 USC §5305", "CDBG §105(a) eligible activities"]], intl: [["ICESCR Art.6", "Right to work"]] },
+    "XX":    { fed: [["33 USC §1251", "Clean Water Act"]], intl: [["UNCLOS (1982)", "Marine resources & stewardship"]] },
+    "XXII":  { intl: [["Paris Agreement (2015)", "Climate & energy transition"]] },
+    "XXIII": { fed: [["42 USC §5121", "Stafford Act / FEMA"]], intl: [["Sendai Framework (2015)", "Disaster risk reduction"]] },
+    "XXIV":  { fed: [["PL 103-150", "Apology Resolution"]], intl: [["UN Charter Art.1(2)", "Self-determination"], ["UNDRIP", "Indigenous peoples' rights"]], icj: [["ICJ Statute Art.36 & 38", "International adjudication"], ["Western Sahara (1975)", "Self-determination opinion"], ["Chagos (2019)", "Decolonization opinion"]], icc: [["Rome Statute Art.5", "Core international crimes"]], holysee: [["Holy See — UN Permanent Observer", "Sovereign subject of international law"]] },
+    "XXV":   { fed: [["42 USC §12101", "Americans with Disabilities Act"]], intl: [["ICESCR Art.12", "Right to health"], ["CRPD", "Rights of persons with disabilities"]] },
+    "XXVI":  { intl: [["CRC", "Convention on the Rights of the Child"], ["UN Res 46/91", "Principles for Older Persons"]] },
+    "XXVII": { intl: [["ICCPR Art.25", "Right to political participation"]] },
+  };
+  ARTICLES.forEach(function (a) {
+    var s = SUPRA[a.n] || {};
+    a.cites.fed     = s.fed     || [];   // legacy combined bucket -> clean U.S.-only
+    a.cites.intl    = s.intl    || [];
+    a.cites.icc     = s.icc     || [];
+    a.cites.icj     = s.icj     || [];
+    a.cites.holysee = s.holysee || [];
+  });
 
   // Nodes requiring Title 19 / Art.XI zoning clearance (the deep-dive anchor).
   const CLEAR = [
