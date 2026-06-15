@@ -83,8 +83,103 @@ def reading(s):
             "phase": phase, "nature": nature, "offering": offering, "moon_age": round(age, 1),
             "note": "kaulana mahina — forecast from lunation; the true reckoning is observed. Offering, not directive; confirm with a kumu."}
 
+# ---------------------------------------------------------------------------
+# CREATIVE LANE — the sun↔moon overlap (see docs/SAGE_REALM_MODEL.md §6).
+# The SAME date the civic lane reads as a pō-night, the creative lane reads as a
+# place in the 13-moon year → which Sage sphere's energy is "in light" to express,
+# in which Ao(sun)/Pō(moon) key. Civic offering and creative offering are two
+# readings of one balance, both drawn from the source (lineage + moon).
+# ---------------------------------------------------------------------------
+import os, json
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_NODES_CACHE = None
+_CARDS_CACHE = None
+
+def _load_json(*relparts):
+    p = os.path.join(_HERE, *relparts)
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+def _unwrap(d, key):
+    """Accept a bare list, a {key:[...]} wrapper, or a dict-of-items; return the list of item dicts."""
+    if isinstance(d, dict):
+        if isinstance(d.get(key), (list, dict)):
+            d = d[key]
+    if isinstance(d, dict):
+        d = list(d.values())
+    return [x for x in (d or []) if isinstance(x, dict)]
+
+def _nodes():
+    global _NODES_CACHE
+    if _NODES_CACHE is None:
+        d = _load_json("..", "..", "node_map", "node_map_canonical.json")
+        _NODES_CACHE = [n for n in _unwrap(d, "nodes") if "id" in n]
+    return _NODES_CACHE
+
+def _cards():
+    global _CARDS_CACHE
+    if _CARDS_CACHE is None:
+        d = _load_json("..", "..", "config", "sage_deck_cards.json")
+        _CARDS_CACHE = {c.get("node"): c for c in _unwrap(d, "cards") if "node" in c}
+    return _CARDS_CACHE
+
+def year_moon(d):
+    """Which moon of the 13-moon Hawaiian year a date falls in (1..13).
+    Schematic: lunations counted from Jan 1 so moon 1 ~ Jan, matching the node
+    moon_binding data (moon 1 = Q1 Hooilo-Kupulau). Forecast; confirm with a kumu."""
+    jan1 = date(d.year, 1, 1)
+    lun = int((_jd(d) - _jd(jan1)) // SYNODIC)
+    return (lun % 13) + 1
+
+def creative_offering(s):
+    """Date -> the Sage sphere whose energy is 'in light' to express on that date,
+    keyed to the sun(Ao)/moon(Po) phase. Returns None if the realm data isn't present."""
+    d = parse(s)
+    if not d:
+        return None
+    r = reading(s)
+    moon_n = year_moon(d)
+    # nodes anchored to this moon of the year are the spheres "in season"
+    cand = [n for n in _nodes() if (n.get("moon_binding") or {}).get("moon") == moon_n]
+    if not cand:
+        return None
+    # sun/moon key: waxing+full = Ao (light growing/peak); waning+dark = Po (turning in)
+    ao = r["phase"] in ("waxing", "full")
+    phase_pref = "Ao" if ao else "Pō"
+    cards = _cards()
+    def card_for(n): return cards.get(n.get("id")) or {}
+    pick = None
+    for n in cand:
+        if (card_for(n).get("wa_phase") or "") == phase_pref:
+            pick = n; break
+    pick = pick or cand[0]
+    c = card_for(pick)
+    akua = c.get("akua") or ""
+    role = (pick.get("governance_role") or {}).get("value") or pick.get("name") or ""
+    lineage = pick.get("hawaiian_lineage") or []
+    creative = ("express the energy of node %d — %s (akua %s), in the %s key: %s" % (
+        pick.get("id"), pick.get("name", role), akua or "—", phase_pref,
+        c.get("particles") or pick.get("particles") or "the sphere's own light"))
+    return {
+        "date": d.isoformat(), "moon_of_year": moon_n, "ao_po": phase_pref,
+        "node": pick.get("id"), "node_name": pick.get("name"), "zone": pick.get("zone"),
+        "governance_role": role, "akua": akua, "frame_hex": c.get("frame_hex"),
+        "wa_archetype": c.get("wa_archetype"), "particles": c.get("particles") or pick.get("particles"),
+        "hawaiian_lineage": lineage, "creative_offering": creative,
+        "civic_offering": r["offering"], "po": r["po"], "po_night": r["night"],
+        "note": "the same date, two readings of one balance — civic (pō offering) and creative (sphere in light). "
+                "Schematic moon-of-year; node↔phase binding kumu-validation-pending.",
+    }
+
 if __name__ == "__main__":
     import sys
     for s in (sys.argv[1:] or ["2026-06-15", "2026-06-17", "2026-07-09"]):
         r = reading(s)
-        print(f"{s}: pō {r['night']} {r['po']} ({r['anahulu']}, {r['phase']}) — {r['nature']}\n   offering: {r['offering']}")
+        print(f"{s}: pō {r['night']} {r['po']} ({r['anahulu']}, {r['phase']}) — {r['nature']}\n   civic : {r['offering']}")
+        co = creative_offering(s)
+        if co:
+            print(f"   moon {co['moon_of_year']}/13 · {co['ao_po']} key · node {co['node']} {co['node_name']} (akua {co['akua']})")
+            print(f"   create: {co['creative_offering']}")
