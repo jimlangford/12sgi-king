@@ -76,6 +76,7 @@ jobs:
           run() { echo "::group::$1"; timeout 240 python "$@" ; echo "(exit $?)"; echo "::endgroup::"; }
           run "$C/council_watch.py" || true
           run "$P/votes_watch.py" || true
+          run "$P/n53_ingest.py" || true   # N53 integrity engine — ingest minutes/votes/recusals corpus (needs votes_watch first)
           run "$P/bids_watch.py" || true
           run "$P/mapps_watch.py" || true
           run "$P/donor_watch.py" || true

@@ -64,7 +64,13 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "agendas_state.html", "agendas_maui.html", "agendas_honolulu.html", "agendas_hawaii.html", "agendas_kauai.html",
                "agendas_nyc.html", "agendas_nys.html", "agendas_liverpool.html",
                "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
-               "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html"]
+               "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html",
+               # N53 integrity engine — past minutes / supplemental materials / roll-call corpus
+               "n53_engine.html", "archive.html",
+               "archive_state.html", "archive_maui.html", "archive_honolulu.html", "archive_hawaii.html", "archive_kauai.html",
+               "archive_nyc.html", "archive_nys.html", "archive_liverpool.html",
+               "archive_london.html", "archive_tokyo.html", "archive_hongkong.html", "archive_singapore.html",
+               "archive_zurich.html", "archive_frankfurt.html", "archive_paris.html", "archive_dubai.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -99,6 +105,8 @@ NAV_LABEL = {
     "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
     "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
     "money_holysee.html": "Holy See Finances",
+    "n53_engine.html": "N53 — Ka Luna Kiaʻi (integrity engine)",
+    "archive.html": "Past Record — Minutes & Votes",
     "crosswalk_london.html": "London (City of London + GLA)",
     "crosswalk_tokyo.html": "Tokyo",
     "crosswalk_hongkong.html": "Hong Kong",
@@ -124,9 +132,9 @@ NAV_GROUPS = [
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
                           "wildfire_recovery_watch.html", "money_holysee.html"]),
-    ("The Record", ["parity_check.html", "accountability_record.html", "sole_source_watch.html",
-                    "commission_antitrust.html", "bill9_bill9_testimony_scan.html", "charter_application.html",
-                    "lege_legislator_scorecard.html"]),
+    ("The Record", ["n53_engine.html", "archive.html", "parity_check.html", "accountability_record.html",
+                    "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
+                    "charter_application.html", "lege_legislator_scorecard.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
     # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
     # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).

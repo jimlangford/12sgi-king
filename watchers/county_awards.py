@@ -97,7 +97,8 @@ def dim_links(tid, contracts_page):
     cands = [("contracts", contracts_page), ("money", sp.get("money", f"money_{tid}.html")),
              ("lobby", sp.get("lobby", f"lobby_{tid}.html")), ("parity", sp.get("parity", f"parity_{tid}.html")),
              ("voice", sp.get("voice", f"ka_leo_{tid}.html")), ("subcontractors", f"subcontractors_{tid}.html"),
-             ("charter &#8644; law", f"crosswalk_{tid}.html"), ("agendas", f"agendas_{tid}.html")]
+             ("charter &#8644; law", f"crosswalk_{tid}.html"), ("agendas", f"agendas_{tid}.html"),
+             ("past record", f"archive_{tid}.html")]
     if tid == "maui":
         cands.append(("wildfire", sp.get("wildfire")))
     out = [f'<a href="{fn}">{lbl}</a>' for lbl, fn in cands
@@ -120,6 +121,8 @@ def hub(stats):
             if os.path.exists(os.path.join(MAUIOS, t["page"])): parts.append('<a href="%s">charter &#8644; law</a>' % t["page"])
             ag = f'agendas_{t["id"]}.html'
             if os.path.exists(os.path.join(MAUIOS, ag)): parts.append('<a href="%s">agendas</a>' % ag)
+            ar = f'archive_{t["id"]}.html'
+            if os.path.exists(os.path.join(MAUIOS, ar)): parts.append('<a href="%s">past record</a>' % ar)
             link = " &middot; ".join(parts) if parts else '<span style="color:#756b56">building</span>'
         elif t["status"] in ("live", "thin"):
             link = dim_links(t["id"], t["page"])

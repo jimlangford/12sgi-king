@@ -1,0 +1,527 @@
+{
+ "archive": [
+  {
+   "tenant_id": "maui",
+   "past_url": "https://mauicounty.api.civicclerk.com/v1/Events?$orderby=startDateTime+desc&$top=50",
+   "minutes_available": true,
+   "minutes_how": "Maui County publishes PAST minutes through CivicClerk (NOT Legistar's EventMinutesFile field, which is null for Maui). Live source: CivicClerk OData API at https://mauicounty.api.civicclerk.com/v1. GET /v1/Events?$orderby=startDateTime+desc&$top=N returns each County Council Meeting (plus committee/public-hearing events) with a publishedFiles[] collection; files of type Minutes are the official what-happened record. Fetch the minutes PDF via /v1/Meetings/GetMeetingFileStream(fileId=<id>,plainText=false) (plainText=true returns empty; these are PDFs, parse with pypdf as votes_watch.py does). Public viewer: https://mauicounty.portal.civicclerk.com/event/<eventId>/files/minutes/<fileId>. VERIFIED 2026-06-15: Events list resolves and returns 15 recent events; minutes fileId 5880 (event 1371, May 1 2026) = real 9-page 336KB application/pdf %PDF-1.7.",
+   "supplemental_available": true,
+   "supplemental_how": "Supplemental materials ARE linked at meeting (event) level, not per-agenda-item attachment. Each event publishedFiles[] includes an Agenda Packet file = full bundled supporting-docs PDF (event 1371 packet fileId 5862; event 1376 packet fileId 5882), plus an Agenda and a 'Papa kumumanaʻo' (Other / supplemental) file. Fetch any via GetMeetingFileStream(fileId=<id>,plainText=false). Maui bundles supporting docs into the Agenda Packet rather than discrete per-item matterAttachments. Legistar lists the same events but its attachment fields come back null for Maui; CivicClerk is the populated source. VERIFIED: packet PDFs resolve as large application/pdf bodies (5837 = 7.2MB scanned exhibits; 5862 and 5820 exceed a 10MB fetch cap, i.e. large valid packets, not 404s).",
+   "votes_structured": true,
+   "votes_how": "Roll-call votes are present in cleanly parseable structured form INSIDE the minutes PDFs (no separate votes API). Each motion renders as a fixed two-column table pypdf extracts deterministically: every member by name with an AYE/NO/EXC column (check glyph = aye), plus Maker <name>, Seconder <name>, motion type (ADOPT/AMEND/etc.), and a terminal anchor TOTAL VOTES n MOTION PASSED. CONFIRMED NOT JUST BY SCHEMA BUT BY ACTUAL PARSER OUTPUT ON DISK: tools/kilo-aupuni/votes_watch.py has already run and produced reports/mauios/officials.json + votes_index.jsonl with real machine-readable per-member/per-motion records (e.g. CM Batangan: 14 meetings, 40 ayes, itemized vote_log mapping each AYE/NO/RECUSED to a named bill — Bill 55, Bill 80, CC 26-13, etc. — and the source minutes URL; minutes 5880 May 1 parsed 11+ motions; recusals captured, e.g. Batangan recused on May 15). votes_structured=true is honest (machine-parseable), though the votes live within the minutes document, not a standalone JSON votes endpoint.",
+   "recent_past": [
+    {
+     "date": "2026-05-15",
+     "body": "Maui County Council (Regular Meeting)",
+     "minutes_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5888,plainText=false)",
+     "materials_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5882,plainText=false)"
+    },
+    {
+     "date": "2026-05-01",
+     "body": "Maui County Council (Regular Meeting)",
+     "minutes_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5880,plainText=false)",
+     "materials_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5862,plainText=false)"
+    },
+    {
+     "date": "2026-04-02",
+     "body": "Maui County Council (Regular Meeting)",
+     "minutes_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5844,plainText=false)",
+     "materials_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5837,plainText=false)"
+    },
+    {
+     "date": "2026-03-06",
+     "body": "Maui County Council (Regular Meeting)",
+     "minutes_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5835,plainText=false)",
+     "materials_url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5820,plainText=false)"
+    }
+   ],
+   "conf": "v",
+   "note": "VERIFIED via direct live fetch 2026-06-15 (adversarial check). PAST-record source for Maui County Council = CivicClerk (client mauicounty), NOT Legistar (its EventMinutesFile is null for this tenant). All proposed URLs resolve; nothing blanked or deleted.\n\nEVENTS API (past_url): HTTP 200, returned 15 events. The 4 snapshotted Regular County Council Meetings all map to confirmed events: May 15 = event 1376 / minutes fileId 5888; May 1 = event 1371 / minutes 5880; Apr 2 = event 1365 / minutes 5844; Mar 6 = event 1360 / minutes 5835. (Other minutes in the feed are public-hearings/emergency/committee meetings, intentionally not in recent_past which is restricted to Regular Council Meetings.)\n\nMINUTES (all real application/pdf, %PDF-1.7): 5888 = 19pp 479.5KB; 5880 = 9pp 336KB (May 1, header MAUI COUNTY COUNCIL REGULAR COUNCIL MEETING MINUTES, 11+ roll-call blocks); 5844 = 10pp 280KB; 5835 = 15pp 363KB. All four minutes_url values verified resolving.\n\nMATERIALS (Agenda Packets, fileType Agenda Packet): 5837 = 7.2MB scanned-exhibit PDF (a small fast summarizer mislabeled the JPEG/DCTDecode image streams as 'corrupt' — it is a normal scanned packet, %PDF-1.7 header valid); 5862 (May 1) and 5820 (Mar 6) exceeded the 10MB fetch cap = large valid packets, NOT 404s; 5882 (May 15) confirmed present in publishedFiles[]. All four materials_url values resolve.\n\nVOTES_STRUCTURED HONESTY CHECK (the key adversarial test): not just claimed — CONFIRMED by parser output already on disk. reports/mauios/officials.json + votes_index.jsonl hold real per-member/per-motion structured records (Batangan 14 mtgs/40 ayes with itemized bill-linked vote_log; recusals like Batangan on May 15) produced by tools/kilo-aupuni/votes_watch.py from these exact minutes PDFs. So votes_structured=true stands. conf stays 'v'.\n\nKey file: C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni/votes_watch.py (existing integrity-correct parser: facts+source links, conflicts framed as questions, roster-restricted attribution). Outputs: reports/mauios/officials.json, reports/mauios/votes_index.jsonl, reports/mauios/officials_scorecard.html."
+  },
+  {
+   "tenant_id": "nyc",
+   "past_url": "https://legistar.council.nyc.gov/Calendar.aspx",
+   "minutes_available": true,
+   "minutes_how": "NYC City Council uses Granicus Legistar (client \"nyc\"). The human-facing Legistar InSite calendar at legistar.council.nyc.gov/Calendar.aspx lists meetings with Name / Meeting Date / Agenda / Minutes / Multimedia columns (filter by year, e.g. Calendar.aspx?Mode=2026). VERIFIED: Calendar.aspx loads and shows those columns. Each meeting links to a MeetingDetail.aspx?ID=...&GUID=... page that carries a \"Minutes\" PDF link (status Final) and an \"Agenda\" PDF link. VERIFIED two MeetingDetail pages: ID=1422868 (6/11/2026 City Council Stated Meeting, Final Minutes + Agenda links + 161 agenda items) and ID=1415366 (6/1/2026 Committee on Public Safety executive-budget hearing). Minutes/agenda PDFs are served from legistar.council.nyc.gov/View.ashx?M=F&ID=...&GUID=... (VERIFIED: View.ashx?M=F&ID=10905568 returns a real ~655KB PDF). Programmatic access: the Legistar WebAPI webapi.legistar.com/v1/nyc/events exposes EventMinutesFile / EventAgendaFile / EventInSiteURL (read-access public API, optional free API token via council.nyc.gov/legislation/api/). NOTE: webapi.legistar.com is behind an Imperva/Incapsula WAF that returns HTTP 403 to non-browser clients, so verification was done via the open human-facing InSite (legistar.council.nyc.gov), which is NOT WAF-blocked.",
+   "supplemental_available": true,
+   "supplemental_how": "On each MeetingDetail.aspx page the agenda-item table links individual legislation items (Int / Res / LU / T-numbers) to LegislationDetail.aspx pages, and item rows carry attachments/supporting documents. VERIFIED on the 6/11/2026 Stated Meeting (MeetingDetail.aspx?ID=1422868): 161 agenda items spanning committee reports, introductions, general orders, and resolutions, with per-item legislation links. In the Legistar WebAPI these are MatterAttachments on eventitems/matters. Attachment files are served via the same View.ashx?M=F endpoint.",
+   "votes_structured": true,
+   "votes_how": "Roll-call votes are fully structured, not just minutes prose. Each legislative action links to a HistoryDetail.aspx (\"Action Details\") page that lists every council member by name with their VoteValueName (Affirmative / Negative / Abstain / Excused) plus an Aye/Nay tally. VERIFIED live at legistar.council.nyc.gov/HistoryDetail.aspx?ID=11483084&GUID=D4D9570B-394C-4627-B111-1D554B7E20AB — shows \"Votes (11:0)\", all 11 members listed individually with their vote value (each Affirmative) on a designation/expense-budget action (the live page renders Res 0995-2016, a prior-session designation action, not a 2026 item, but the per-member structure is genuine and machine-readable). Same data is machine-readable via Legistar WebAPI /v1/nyc/eventitems -> /votes (VoteValueName per PersonName). Caveat: pure oversight/budget hearings with no legislation (e.g. the 6/1/2026 Public Safety executive-budget hearing) take no recorded vote, so no roll-call is available for those.",
+   "recent_past": [
+    {
+     "date": "2026-06-11",
+     "body": "City Council Stated Meeting",
+     "minutes_url": "https://legistar.council.nyc.gov/MeetingDetail.aspx?ID=1422868&GUID=4ABECF95-2771-47F8-AF2A-1FD24B24288A",
+     "materials_url": "https://legistar.council.nyc.gov/View.ashx?M=F&ID=10905568&GUID=D7E13BAB-BD64-4C5B-B61B-5428DDEAD6B3"
+    },
+    {
+     "date": "2026-06-01",
+     "body": "Committee on Public Safety (Executive Budget Hearing)",
+     "minutes_url": "https://legistar.council.nyc.gov/MeetingDetail.aspx?ID=1415366&GUID=37A58F34-528B-4FF5-AF29-F5575DCE1ACB"
+    }
+   ],
+   "conf": "v",
+   "note": "Independently re-verified via WebFetch against the open human-facing Legistar InSite (legistar.council.nyc.gov), which is NOT WAF-blocked (the raw webapi.legistar.com/v1/nyc API is Imperva-403 to non-browser clients). All five proposed URLs resolve: (1) Calendar.aspx loads with Name/Date/Agenda/Minutes/Multimedia columns; (2) MeetingDetail.aspx?ID=1422868 = 6/11/2026 City Council Stated Meeting, Final Minutes + Agenda links + 161 agenda items + per-item legislation links; (3) MeetingDetail.aspx?ID=1415366 = 6/1/2026 Committee on Public Safety executive-budget hearing (finalized agenda/minutes); (4) View.ashx?M=F&ID=10905568 returns a real ~655KB council-proceeding PDF; (5) HistoryDetail.aspx?ID=11483084 returns a genuine structured roll-call (11 named members, each Affirmative, tally 11:0). One honesty correction vs the proposal: that HistoryDetail page renders a prior-session designation action (Res 0995-2016, 11-0), not a 2026 expense-budget action with the specific names previously cited (Ferreras-Copeland / Rodriguez / Van Bramer) — the per-member roll-call STRUCTURE is real and machine-readable, but those exact 2026 member names were not confirmed on this page and should not be asserted. recent_past minutes_url values are MeetingDetail hubs (canonical per-meeting page holding the Minutes PDF link); the 6/11 materials_url is a verified real View.ashx PDF. votes_structured=true is honest. conf stays v. Nothing deleted; nothing invented. For bulk ingest, request a free token at council.nyc.gov/legislation/api/ and call webapi.legistar.com/v1/nyc/{events,eventitems,votes} from a browser-like client/IP the Imperva WAF permits."
+  },
+  {
+   "tenant_id": "honolulu",
+   "past_url": "https://hnldoc.ehawaii.gov/hnldoc/",
+   "minutes_available": true,
+   "minutes_how": "PAST MINUTES are published by the Honolulu Office of the City Clerk in the HNLDoc legislative records system (hnldoc.ehawaii.gov/hnldoc/, Tyler Technologies; browsable/searchable by year and document type, with collections for Bills, Resolutions, Ordinances, Agendas & Minutes, Committee Reports, and Communications). Each meeting has a record page at hnldoc.ehawaii.gov/hnldoc/agenda/{id} that bundles the agenda, the minutes, and supporting materials. Minutes appear under two labels: full Council = \"Council Minutes - ADOPTED <date>\" (adopted at a later meeting); committees = \"<MMDDYY> Committee on <X> Written Summary for Video Record\". The legacy Granicus path also works: ViewPublisherRSS.php?view_id=3&mode=minutes is a valid RSS 2.0 feed whose MinutesViewer.php?clip_id=N links 302-redirect (via a Google Docs viewer wrapper) to real DocuShare PDFs at www4.honolulu.gov/docushare/dsweb/Get/Document-XXXX/...Written Summary for Video Record.pdf — but that Granicus minutes feed is STALE (newest item Sep 2019); use HNLDoc for current minutes. Minutes/written-summaries are PDFs.",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. Each HNLDoc meeting record page (hnldoc.ehawaii.gov/hnldoc/agenda/{id}) lists supplemental/supporting materials alongside the agenda and minutes: public + Neighborhood Board testimony (M-series and D-series communications), department/Managing Director presentation materials (e.g. MM-series Mayor's Messages), draft resolutions, bill versions (e.g. Bill 5 CD1), committee reports, and Council/Departmental communications. On the Granicus video portal (honolulu.granicus.com/ViewPublisher.php?view_id=3) recent meetings expose an \"Agenda\", a \"Meeting Materials\" link, and Video — \"Meeting Materials\" being the Granicus-side bundle of attachments/exhibits. So attachments are linked both in HNLDoc (canonical, per-meeting) and via Granicus \"Meeting Materials\".",
+   "votes_structured": false,
+   "votes_how": "in minutes text. Honolulu has NO structured votes API (no Legistar, no open votes endpoint). Individual roll-call votes are recorded only inside the minutes / \"Written Summary for Video Record\" PDF prose, as AYES/NOES blocks listing councilmember names (with \"aye with reservations\" noted when applicable). The Granicus MetaViewer (honolulu.granicus.com/MetaViewer.php?view_id=3&clip_id=N) surfaces the same minutes text. To extract who-voted-how you must parse the minutes PDF text; there is no machine-readable vote table.",
+   "recent_past": [
+    {
+     "date": "2025-01-29",
+     "body": "Honolulu City Council (Regular Full Council, 2nd Session)",
+     "minutes_url": "https://hnldoc.ehawaii.gov/hnldoc/agenda/551",
+     "materials_url": "https://hnldoc.ehawaii.gov/hnldoc/agenda/551"
+    },
+    {
+     "date": "2025-08-21",
+     "body": "Committee on Government Efficiency & Customer Services",
+     "minutes_url": "https://hnldoc.ehawaii.gov/hnldoc/agenda/624",
+     "materials_url": "https://hnldoc.ehawaii.gov/hnldoc/agenda/624"
+    },
+    {
+     "date": "2019-09-25",
+     "body": "Committee on Public Infrastructure, Technology and Sustainability (PITS)",
+     "minutes_url": "http://www4.honolulu.gov/docushare/dsweb/Get/Document-240848/092519%20Committee%20on%20Public%20Infrastructure%2c%20Technology%20and%20Sustainability%20Written%20Summary%20for%20Video%20Record.pdf",
+     "materials_url": "https://honolulu.granicus.com/MinutesViewer.php?view_id=3&clip_id=1151"
+    }
+   ],
+   "conf": "v",
+   "note": "RE-VERIFIED 2026-06-15 via WebFetch; all five URLs in the proposed record resolve, nothing blanked or deleted. CANONICAL PAST-RECORD HOME = the City Clerk's HNLDoc legislative records system, hnldoc.ehawaii.gov/hnldoc/ (CONFIRMED: official Honolulu Office of the City Clerk \"Honolulu Records Collection\", Tyler Technologies; Bill/Resolution + Document search; collections for Bills, Resolutions, Ordinances, Agendas & Minutes, Committee Reports, Communications; archived legislation back to 2004). CONFIRMED LIVE PAGES: (1) agenda/551 = Honolulu City Council 2nd Session Regular Meeting, Wed Jan 29 2025 10AM, listing 12/11/24 and 1/2/25 \"Council Minutes - ADOPTED 01/29/25\", multiple committee \"Written Summary for Video Record\" docs (Jan 14-16 2025), plus bills/resolutions/appointments and M-/D-series testimony. (2) agenda/624 = Committee on Government Efficiency & Customer Services, Thu Aug 21 2025 2:30PM — record page bundles a \"021325 Committee on Public Safety & Customer Services Written Summary for Video Record\", \"012925 Council Minutes - ADOPTED 02/26/25\", MM-131(25) Managing Director presentation on rulemaking, and M-series testimony (M-0425(25), M-0438(25)). (3) DocuShare PDF Document-240848 = genuine 125.5KB City Clerk PDF (Microsoft Word 2013, author City Clerk, dated Sep 26 2019, embeds granicus player/clip/1151 link) = the 092519 PITS Written Summary for Video Record. GRANICUS MINUTES PATH: MinutesViewer.php?view_id=3&clip_id=1151 confirmed 302-redirects (through a docs.google.com/gview wrapper) to that same DocuShare PDF — so both the minutes_url and materials_url of the 2019 entry resolve to the authentic written summary. Granicus minutes RSS exists but is STALE (newest 2019); use HNLDoc for current minutes. SUPPLEMENTAL: confirmed per-meeting in HNLDoc (testimony, presentations/Mayor's Messages, communications, bill versions, committee reports); Granicus video portal also offers \"Meeting Materials\" bundles. VOTES = NOT STRUCTURED (votes_structured=false, honest): no Legistar/API; roll-call AYES/NOES name blocks live only inside minutes PDF prose (Granicus MetaViewer surfaces the same text). RECOMMENDED CHECKER: scrape HNLDoc agenda/{id} record pages for \"Council Minutes - ADOPTED\" and \"...Written Summary for Video Record\" PDFs + materials, then PDF-parse the minutes for AYES/NOES blocks; treat the Granicus minutes RSS as a legacy (<=2019) signal only. CAVEAT (unchanged): HNLDoc browse list pages (/hnldoc/browse/agendas, /browse/minutes) are JS-rendered and did not populate via WebFetch, but individual agenda/{id} record pages and document-download?id=N PDFs resolve fine — a checker should hit the JSON/record endpoints or render JS rather than scrape the browse-list HTML. conf=v retained: past-minutes home, naming, supplemental linkage, vote-location, and all three meetings were fetch-confirmed; nothing invented."
+  },
+  {
+   "tenant_id": "hawaii",
+   "past_url": "https://records.hawaiicounty.gov/weblink/Browse.aspx?dbid=1&cr=1",
+   "minutes_available": true,
+   "minutes_how": "Official County of Hawaiʻi Council MINUTES are published as PDFs in the Laserfiche WebLink Council Records System at records.hawaiicounty.gov/weblink/ (DocView.aspx?dbid=...&id=...). Confirmed live: real document IDs return large (~44-50KB) minutes documents whose document-name metadata matches the meeting date. The separate Granicus streaming archive (hawaiicounty.granicus.com/viewpublisher.php?view_id=1) carries Agenda + Video (MP4) for every meeting but no Minutes links — minutes are the Laserfiche record. The county website's records pages link into this same Laserfiche system but return 403 to automated fetch. Note: WebLink 9 requires a cookie session; without cookies every URL (valid or invalid) returns an identical error shell, so a bare HTTP 200 is NOT proof a document exists — verification must check returned document content/metadata.",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. The Laserfiche WebLink system holds supporting/supplemental documents as separately filed records: Communications (COM ####.### 2024-2026), bills, resolutions, ordinances, and committee reports, all searchable by subject/text. Each Granicus meeting also exposes an Agenda document (AgendaViewer) linking the agenda packet/attachments. Supplemental materials are individual documents in the records system, not a single bundled attachment list.",
+   "votes_structured": false,
+   "votes_how": "In minutes text. Hawaiʻi County does not use Legistar and has no open votes API or structured voting-result pages. Roll-call votes (member names with Ayes/Noes) are recorded inside the minutes PDFs in the Laserfiche WebLink system, and also summarized in the per-meeting agenda \"Actions\" PDF on the county site. Both are prose/PDF, not machine-readable.",
+   "recent_past": [
+    {
+     "date": "2025-02-19",
+     "body": "Hawaiʻi County Council (Regular Session)",
+     "minutes_url": "https://records.hawaiicounty.gov/WebLink/0/doc/1108758/Page4.aspx"
+    },
+    {
+     "date": "2023-11-08",
+     "body": "Hawaiʻi County Council (Regular Meeting)",
+     "minutes_url": "https://records.hawaiicounty.gov/WebLink/1/doc/137981/Page2.aspx"
+    },
+    {
+     "date": "2019-04-22",
+     "body": "Hawaiʻi County Council (Regular Session)",
+     "minutes_url": "https://records.hawaiicounty.gov/weblink/DocView.aspx?dbid=1&id=100635&page=1&cr=1"
+    }
+   ],
+   "conf": "v",
+   "note": "VERIFIED with corrected method. CAVEAT on the proposer's verification: curl HTTP 200 + valid cert is NOT proof here — WebLink 9 requires a cookie session, and without cookies EVERY url (Browse, real docs, and a deliberately invalid id) returns the identical 1681-byte 'Cookies are not enabled' error shell (title=Error). I re-verified all three minutes docs with a cookie jar and read the returned document-name metadata. Each is a genuine minutes document whose name matches its claimed date: id=1108758 (dbid=0) -> 'MIN COUNCIL 2025-02-19 2024-2026' (49.9KB); id=137981 (dbid=1) -> \\\"('23) - 11-08-2023 - Meeting Minutes\\\" (43.6KB); id=100635 (dbid=1) -> '2019-04-22 Regular Session Minutes' (47.1KB). An invalid id (99999999) returned only 1716 bytes, confirming the system distinguishes real from fake. All three minutes_urls kept (none deleted/blanked). past_url is the legitimate WebLink Browse root. Granicus (view_id=1) re-confirmed Agenda+Video only, most recent meetings Jun 3 2026 / May 21 2026 (Special) / May 20 2026 all Agenda+Video but minutes not yet posted (minutes lag until approved); minutes are NOT on Granicus. recent_past lists confirmed real minutes rather than inventing minutes for just-held 2026 meetings. VOTES: no Legistar/API; roll-call votes live in PDF/prose minutes and the per-agenda 'Actions' PDF, so votes_structured=false (honest). conf=v: every substantive claim independently confirmed via document content, not bare status codes."
+  },
+  {
+   "tenant_id": "kauai",
+   "past_url": "https://kauai.granicus.com/ViewPublisher.php?view_id=2",
+   "minutes_available": true,
+   "minutes_how": "Minutes are official PDFs published on kauai.gov after Council approval (per HRS Ch. 92). Two index pages link them: https://www.kauai.gov/Government/Council/Council-Meeting-Agendas-Minutes-Recap-Memoranda (full Council meetings, confirmed present in search index) and https://www.kauai.gov/Government/Council/Committee-Meeting-Agendas-Minutes (committee). Canonical minutes URL pattern: https://www.kauai.gov/files/assets/public/v/1/county-council/documents/council-meetings/minutes/YYYY-MM-DD-council-meeting-minutes.pdf (some 2026 files sit one level up without the /minutes/ segment, e.g. .../council-meetings/2026-01-07-council-meeting-minutes.pdf, or compacted as 2026-03-11councilmeetingminutes.pdf). The Granicus archive (kauai.granicus.com/ViewPublisher.php?view_id=2) is the machine-readable per-meeting INDEX (Agenda + Video + Captions/TranscriptViewer columns) but does NOT host minutes; minutes live only as the kauai.gov PDFs. IMPORTANT: www.kauai.gov returns HTTP 403 to all programmatic fetches (WebFetch/curl/Invoke-WebRequest) even with a browser User-Agent — a bot wall, not a 404. PDFs open in a real browser. Existence of the minutes files was confirmed (this verification pass) via search-engine indexing returning the exact proposed URLs with their in-document titles ('COUNCIL MEETING MARCH 11, 2026', 'February 18, 2026 Council Meeting Minutes', '2026-01-07 Council Meeting Minutes'). A scraper must fetch these PDFs with a headless browser to bypass the 403, then parse text.",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. Agenda packets with attachments/supporting documents are available two ways: (1) Granicus AgendaViewer per meeting (verified resolving this pass — clip_id 3091 and clip_id 3083 each 302-redirect to a real agenda PDF on granicus_production_attachments.s3.amazonaws.com via a Google Docs viewer, e.g. https://kauai.granicus.com/AgendaViewer.php?view_id=2&clip_id=3083); (2) the kauai.gov index links 'agenda with links' packets (e.g. .../council-meetings/2026-03-11councilmeetingagendawithlinksdmc.pdf, confirmed in search index). Recap Memoranda are published on the same kauai.gov Council index page. Granicus attachments resolve fine; the deeper kauai.gov-hosted attachment PDFs share the same 403 bot wall as the minutes.",
+   "votes_structured": false,
+   "votes_how": "in minutes text. Individual roll-call votes are recorded in prose inside the minutes PDFs (e.g. 'Councilmember X moved to approve... seconded by... the motion was carried' with member-by-member roll call). There is no Legistar/open-votes API and no structured voting-result page — Granicus provides only Agenda, Video, and a TranscriptViewer (captions), not parseable vote tallies. Votes must be extracted from minutes PDF prose. votes_structured=false is honest.",
+   "recent_past": [
+    {
+     "date": "2026-03-11",
+     "body": "Kauaʻi County Council",
+     "minutes_url": "https://www.kauai.gov/files/assets/public/v/1/county-council/documents/council-meetings/2026-03-11councilmeetingminutes.pdf",
+     "materials_url": "https://www.kauai.gov/files/assets/public/v/1/county-council/documents/council-meetings/2026-03-11councilmeetingagendawithlinksdmc.pdf"
+    },
+    {
+     "date": "2026-02-18",
+     "body": "Kauaʻi County Council",
+     "minutes_url": "https://www.kauai.gov/files/assets/public/v/1/county-council/documents/council-meetings/minutes/2026-02-18-council-meeting-minutes.pdf"
+    },
+    {
+     "date": "2026-01-07",
+     "body": "Kauaʻi County Council",
+     "minutes_url": "https://www.kauai.gov/files/assets/public/v/1/county-council/documents/council-meetings/2026-01-07-council-meeting-minutes.pdf"
+    },
+    {
+     "date": "2026-06-03",
+     "body": "Kauaʻi County Council",
+     "minutes_url": "",
+     "materials_url": "https://kauai.granicus.com/AgendaViewer.php?view_id=2&clip_id=3091"
+    },
+    {
+     "date": "2026-05-20",
+     "body": "Kauaʻi County Council",
+     "minutes_url": "",
+     "materials_url": "https://kauai.granicus.com/AgendaViewer.php?view_id=2&clip_id=3083"
+    }
+   ],
+   "conf": "v",
+   "note": "VERIFIED this pass. (1) past_url https://kauai.granicus.com/ViewPublisher.php?view_id=2 resolves — WebFetch returned HTTP 200 but exceeded the 10MB content cap, which itself confirms it serves the large multi-meeting HTML index (also present in search results). Best machine target for the meeting LIST + supplemental agenda packets. (2) The two materials_url Granicus AgendaViewer links (clip 3091, clip 3083) BOTH resolve: each 302-redirects to a real agenda PDF on granicus_production_attachments.s3.amazonaws.com — confirmed not 404. (3) All three kauai.gov minutes PDFs (2026-03-11, 2026-02-18, 2026-01-07) and the 2026-03-11 agenda packet return HTTP 403 to direct fetch (Cloudflare/Akamai-style bot wall, NOT missing) — but independent search-engine indexing returns the EXACT proposed URLs with their real in-document titles, so existence is corroborated. CAVEATS (kept honest, not downgraded): (a) I could not directly load any kauai.gov PDF due to the 403, so minutes existence rests on search indexing rather than a direct 200; (b) I confirmed the two AgendaViewer clip links resolve to real agendas but did NOT independently re-confirm the clip_id→date mapping (3091=Jun 3, 3083=May 20) — those dates come from the prior live Granicus parse. minutes_url left EMPTY for 2026-06-03 and 2026-05-20 is correct: approved minutes post only after Council approval and were not confirmed published. votes_structured=false is honest — roll-call votes live only in minutes-PDF prose, no API. conf=v: every link in the record either resolved directly (Granicus) or was corroborated by independent search indexing at the exact URL (kauai.gov); nothing was invented and nothing 404'd. Scraper guidance: pull meeting list + agendas/supplemental from Granicus; fetch minutes PDFs from kauai.gov via headless browser to bypass 403; resolve actual minutes links from the kauai.gov Council index page rather than constructing them (filename pattern is inconsistent across years)."
+  },
+  {
+   "tenant_id": "nys",
+   "past_url": "https://www.nysenate.gov/search/legislation?searchTerm=&type=transcript",
+   "minutes_available": true,
+   "minutes_how": "NY has no traditional \"minutes\" file. The official past record is the Senate session pages plus full stenographic transcripts at nysenate.gov. Each session page (e.g. /calendar/sessions/february-28-2023/session-2-28-2023) lists every bill acted on with vote tallies and a \"Read Full Transcript\" link. Transcripts are searchable via the legislation search portal (filter by content type \"Session Transcripts\") and download as PDF (e.g. https://legislation.nysenate.gov/pdf/transcripts/2025-05-07T10:32/). VERIFIED resolving: the Feb 28 2023 session page and the May 7 2025 transcript page both load; the bare /calendar/sessions, /calendar, and /transcripts browse paths return HTTP 404, so use the dated session pages, the legislation search portal, or the transcript PDFs as entry points. Assembly proceedings/Journal are analogous via nyassembly.gov. The transcript is the Journal/proceedings analog.",
+   "supplemental_available": true,
+   "supplemental_how": "Each session/transcript page links the full stenographic transcript PDF (e.g. legislation.nysenate.gov/pdf/transcripts/2025-05-07T10:32/ — confirmed present on the May 7 2025 transcript page). Individual bill pages link supporting docs: full bill text, sponsor memos, and amendments. Committee/session calendars are searchable via the legislation search portal (filter \"Session Calendars\" / \"Committee Meeting Agendas\").",
+   "votes_structured": true,
+   "votes_how": "Strong structured votes. nysenate.gov public bill pages (no API key) render full roll-call votes — individual member names hyperlinked to senator profiles, with Aye/Nay/Excused/Absent/Abstained categories plus a tally, for BOTH Floor votes and Committee votes. VERIFIED on 2025 S1100 (multiple dated floor votes, e.g. 'Aye 41 Nay 17' on 2026-05-29, plus Libraries Committee votes) and 2025 A7862 ('Aye 37 Nay 22 Excused 4' Floor on 2025-06-11 + Rules Committee 'Aye 15 Nay 2' on 2025-06-09, with named members). The Open Legislation REST API (legislation.nysenate.gov/api/3) returns the same votes as JSON but requires a free API key (HTTP 401 without one). Assembly floor votes appear on nyassembly.gov bill pages when a bill reaches the floor. Machine-readable / cleanly parseable.",
+   "recent_past": [
+    {
+     "date": "2026-05-29",
+     "body": "NY State Senate (Floor)",
+     "minutes_url": "https://www.nysenate.gov/legislation/bills/2025/S1100",
+     "materials_url": "https://www.nysenate.gov/legislation/bills/2025/S1100"
+    },
+    {
+     "date": "2025-06-11",
+     "body": "NY State Senate (Floor + Rules Committee)",
+     "minutes_url": "https://www.nysenate.gov/legislation/bills/2025/A7862",
+     "materials_url": "https://www.nysenate.gov/legislation/bills/2025/A7862"
+    },
+    {
+     "date": "2025-05-07",
+     "body": "NY State Senate (Regular Session, 10:32am)",
+     "minutes_url": "https://www.nysenate.gov/transcripts/2025-05-07t1032",
+     "materials_url": "https://legislation.nysenate.gov/pdf/transcripts/2025-05-07T10:32/"
+    },
+    {
+     "date": "2023-02-28",
+     "body": "NY State Senate (Floor Proceedings)",
+     "minutes_url": "https://www.nysenate.gov/calendar/sessions/february-28-2023/session-2-28-2023"
+    }
+   ],
+   "conf": "v",
+   "note": "Adversarially verified via WebFetch 2026-06-15. FIX: original past_url https://www.nysenate.gov/calendar/sessions returns HTTP 404 (so does /calendar and /transcripts); replaced with the confirmed-resolving legislation search portal (search/legislation?type=transcript) which lists 'Session Transcripts' and 'Session Calendars' as filterable content types, 1993-2026. All four recent_past entries CONFIRM resolving: (1) S1100 bill page 200 — per-member roll-call, multiple dated Floor votes + Libraries Committee votes, no API key; (2) A7862 bill page 200 — Floor 37-22 on 2025-06-11 + Rules Committee 15-2 on 2025-06-09, named members; (3) 2025-05-07 transcript page 200 with working PDF link; (4) Feb 28 2023 session page 200, lists bills+tallies (e.g. S1365 62-0) + 'Read Full Transcript' link. votes_structured=true is honest — individual member votes render machine-readably on public bill pages without a key. Open Legislation API (legislation.nysenate.gov/api/3) returns 401 without a free key. recent_past uses bill-page anchors as canonical roll-call locations since NY ties votes to bills, not to discrete minutes files. Nothing invented; no entries deleted."
+  },
+  {
+   "tenant_id": "state",
+   "past_url": "https://www.capitol.hawaii.gov/advreports/main.aspx",
+   "minutes_available": true,
+   "minutes_how": "Hawaiʻi has no municipal-style per-meeting \"minutes.\" The official what-happened record lives in two confirmed places on capitol.hawaii.gov: (1) the per-measure Archives status page, e.g. https://www.capitol.hawaii.gov/session/archives/measure_indiv_Archives.aspx?billtype=HB&billnumber=1378&year=2025 — a dated action history (referrals, hearings, committee passages, final readings, conference) with linked Standing Committee Reports (Stand. Com. Rep. No. NNN) and Conference Committee Reports as the prose record of what each committee decided; and (2) the chamber Journals (House/Senate, by year) and the Standing Committee Reports archive reachable from the Reports & Lists page (advreports/main.aspx). Confirmed via WebFetch: advreports/main.aspx loads as the \"Reports and Lists\" hub (12 categories incl. Standing Committee Reports, Hearing Notices, Daily Updates, Conference Committee, filterable 2013-2026); the HB1378 (2025) Archives page loaded a full dated action history from introduction (1/23/2025) through becoming Act 131 (5/29/2025) with linked committee reports.",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. Each measure's hearing actions link testimony PDFs and all bill versions (HTML+PDF). Confirmed via WebFetch on HB1378 (2025): five linked committee reports (House CAA Arts & Culture, House FIN Finance, Senate TCA Tourism & Culture, Senate WAM Ways & Means, plus a Conference Committee Report) and testimony documents from hearings held February–April 2025 across the four committees. Hearing Notices (HRS 92) list each meeting's agenda, room, chair, and testimony instructions — confirmed via WebFetch on the EDU 02-10-23 hearing notice (https://www.capitol.hawaii.gov/sessions/session2023/hearingnotices/HEARING_EDU_02-10-23_.HTM), which loaded with Chair Sen. Kidani, Conf. Room 229, 8 SB measures, and written/in-person/videoconference testimony instructions. Past Hearing Notices and Standing Committee Reports are archived under Reports & Lists. Attachments/exhibits are delivered as PDF testimony and committee-report documents linked off each measure's status page.",
+   "votes_structured": false,
+   "votes_how": "In committee-report / measure-status text, not a clean API. Confirmed via WebFetch on HB1378 (2025): committee votes appear in Standing Committee Reports as tallies, and Final Reading tallies appear in the status history as prose naming only the exceptions. Exact text returned by the live page — Senate Final Reading 4/30/2025: \"Ayes, 22; Aye(s) with reservations: Senator(s) Fevella. Noes, 2 (Senator(s) Awa, DeCorte). Excused, 1\"; House Final Reading 4/30/2025: \"Representative(s) Belatti voting aye with reservations; Representative(s) Garcia, Hussey, Iwamoto, Muraoka, Pierick voting no (5) and Representative(s) Cochran excused (1).\" Only dissenters/reservations/excused are named; full per-member roll calls live in the chamber Journals as PDF/HTML prose. No open votes API or structured voting-result page — votes are parseable from text but not machine-readable.",
+   "recent_past": [
+    {
+     "date": "2025-04-30",
+     "body": "Hawaiʻi State Senate + House of Representatives (Final Reading, HB1378 / Act 131)",
+     "minutes_url": "https://www.capitol.hawaii.gov/session/archives/measure_indiv_Archives.aspx?billtype=HB&billnumber=1378&year=2025",
+     "materials_url": "https://www.capitol.hawaii.gov/session/archives/measure_indiv_Archives.aspx?billtype=HB&billnumber=1378&year=2025"
+    },
+    {
+     "date": "2023-02-10",
+     "body": "Senate Committee on Education (Chair Sen. Michelle N. Kidani) — hearing notice, 8 SB measures, Conf. Room 229",
+     "minutes_url": "https://www.capitol.hawaii.gov/sessions/session2023/hearingnotices/HEARING_EDU_02-10-23_.HTM",
+     "materials_url": "https://www.capitol.hawaii.gov/sessions/session2023/hearingnotices/HEARING_EDU_02-10-23_.HTM"
+    }
+   ],
+   "conf": "v",
+   "note": "All three URLs verified resolving via WebFetch (2026-06-15). past_url (advreports/main.aspx) loads as the Reports & Lists hub. The HB1378 (2025) Archives page is the spine of the past record: full dated action history (intro 1/23/2025 → Act 131 on 5/29/2025), five linked committee reports (House CAA, House FIN, Senate TCA, Senate WAM, + Conference Committee Report), testimony PDFs (Feb–Apr 2025), and Final Reading vote tallies with named exceptions in both chambers. CORRECTION applied during verification: the proposed record's Senate vote quote (dated 4/8/2025, \"Ayes, 23; Noes, 2\" with a 7-senator reservation list incl. DeCoite/Ihara/Inouye/Keohokalole/Kim/McKelvey) did NOT match the live page. The page actually returns, for Senate Final Reading 4/30/2025: \"Ayes, 22; Aye(s) with reservations: Senator(s) Fevella. Noes, 2 (Senator(s) Awa, DeCorte). Excused, 1.\" Vote quotes and the Senate recent_past entry date have been corrected to the confirmed text; the unverifiable 4/8/2025 Senate entry was merged into the confirmed 4/30/2025 Final Reading. EDU 02-10-23 hearing notice confirmed (Chair Kidani, 8 SB measures, testimony instructions). Caveats: Hawaiʻi does NOT publish municipal-style minutes — equivalents are per-measure status histories + committee/conference reports and chamber Journals. votes_structured=false (no API; prose with named exceptions only; full roll calls require parsing Journal PDFs). conf=v: every URL and the corrected vote text was loaded and confirmed."
+  },
+  {
+   "tenant_id": "liverpool",
+   "past_url": "https://villageofliverpoolny.gov/board-of-trustees/",
+   "minutes_available": true,
+   "minutes_how": "Past meeting minutes are published as PDFs on the Board of Trustees page (https://villageofliverpoolny.gov/board-of-trustees/), grouped by year (2025 and 2026 listed). The legacy domain villageofliverpool.org 301-redirects to the official villageofliverpoolny.gov. PDFs follow the pattern /wp-content/uploads/YYYY/MM/... (filenames vary: \"MMDDYYYY-Minutes.pdf\", \"MMDDYYYY.pdf\", or \"MMDDYYYYspecial-meeting-minutes.pdf\"; the upload-month folder is sometimes the publish month, not the meeting month). Verified by downloading and text-extracting five PDFs end-to-end (Jan 12 2026 10pp, Oct 20 2025 7pp, May 18 2026 7pp, Apr 13 2026 6pp, Feb 9 2026 7pp) — all are real, full minutes with attendance, motions, and discussion. Regular meetings are the 3rd Monday of each month at 6:00 PM at 310 Sycamore St, Village Hall; special meetings are also posted.",
+   "supplemental_available": true,
+   "supplemental_how": "Supplemental materials are linked. The current/upcoming meeting (June 15, 2026) has a combined \"Agenda & Board Packet\" PDF (https://villageofliverpoolny.gov/wp-content/uploads/2026/06/Board-Packet-06152026.pdf) plus a Zoom link. Minutes reference financial Abstracts by number and amount (e.g. Oct 20 2025 itemizes General/Sewer/TEA fund Abstracts). For 2025, generally only minutes PDFs are posted (no separate agendas); 2026 adds board packets. Attachments/exhibits referenced in minutes are not always individually linked as separate files.",
+   "votes_structured": false,
+   "votes_how": "Roll-call votes ARE recorded by individual trustee inside the minutes PDF text, not in any API or structured page. Verified across multiple years: the minutes contain explicit, consistently-formatted per-trustee roll calls (e.g. Oct 20 2025: \"Roll Call Vote: Trustee LaMontagne - Yes; Trustee Devendorf - Yes; Trustee Ciotti - Excused; Trustee Cassidy - Yes; Mayor Finney - Yes. Motion Passed.\" and Jan 12 2026: \"Stacy Finney, Mayor Voted Yes; Michael LaMontagne, Deputy Mayor Voted Yes; ... Matt Devendorf, Trustee Excused\"). Many actions per meeting carry such roll calls; routine items use prose (\"Motion was made by Trustee X, seconded by Trustee Y. Motion passed.\"). Because votes live only inside minutes PDFs (no Legistar/CivicClerk, no open-votes API, no structured voting-result pages), votes_structured=false — but per-member votes are cleanly parseable from the PDF text on roll-call items.",
+   "recent_past": [
+    {
+     "date": "2026-05-18",
+     "body": "Village Board of Trustees (Regular Meeting)",
+     "minutes_url": "https://villageofliverpoolny.gov/wp-content/uploads/2026/05/05182026.pdf"
+    },
+    {
+     "date": "2026-04-13",
+     "body": "Village Board of Trustees (Regular Meeting)",
+     "minutes_url": "https://villageofliverpoolny.gov/wp-content/uploads/2026/04/04132026.pdf"
+    },
+    {
+     "date": "2026-02-09",
+     "body": "Village Board of Trustees (Regular Meeting)",
+     "minutes_url": "https://villageofliverpoolny.gov/wp-content/uploads/2026/03/02092026.pdf"
+    },
+    {
+     "date": "2026-01-12",
+     "body": "Village Board of Trustees (Organizational + Regular Meeting)",
+     "minutes_url": "https://villageofliverpoolny.gov/wp-content/uploads/2026/01/01122026-Minutes.pdf"
+    },
+    {
+     "date": "2025-10-20",
+     "body": "Village Board of Trustees (Regular Meeting)",
+     "minutes_url": "https://villageofliverpoolny.gov/wp-content/uploads/2025/11/10202025-minutes.pdf"
+    }
+   ],
+   "conf": "v",
+   "note": "CONFIRMED. All five recent_past minutes URLs were downloaded AND text-extracted end-to-end (not just two) — every one is a real, full minutes PDF whose internal meeting date matches the listed date: May 18 2026 (7pp), Apr 13 2026 (6pp), Feb 9 2026 (7pp), Jan 12 2026 (10pp), Oct 20 2025 (7pp). past_url (https://villageofliverpoolny.gov/board-of-trustees/) resolves and lists minutes by year (2025, 2026); villageofliverpool.org 301-redirects to villageofliverpoolny.gov. The board packet (Board-Packet-06152026.pdf) and 3rd-Monday-6PM schedule are confirmed on the page. KEY FINDING: votes are richer than the hint suggested — minutes record individual trustee roll-call votes on most substantive items (named trustee + Yes/No/Excused/Absent + \"Motion passed\"), consistently formatted across years, alongside prose records for routine items. But these live only inside minutes PDFs — no Legistar/CivicClerk/open API — so votes_structured=false; a scraper parses them from PDF text. URL note: the Feb 9 2026 minutes are correctly under the /2026/03/ upload folder (publish-month, not meeting-month) — verified. Trustees: Stacy Finney (Mayor), Michael LaMontagne (Deputy Mayor), Melissa Cassidy, Matt Devendorf, Rachel Ciotti; Desiree Salvagni (Clerk), Richard Andino (Attorney). Nothing deleted or blanked — all proposed links resolve."
+  },
+  {
+   "tenant_id": "london",
+   "past_url": "https://democracy.cityoflondon.gov.uk/ieDocHome.aspx?bcr=1",
+   "minutes_available": true,
+   "minutes_how": "City of London Corporation runs ModernGov at democracy.cityoflondon.gov.uk (CONFIRMED). Each committee has a meeting list (ieListMeetings.aspx?CId=NNN&Year=0) and each past meeting has a documents page (ieListDocuments.aspx?CId=NNN&MId=NNN) carrying an official \"Public minutes ... PDF\" record (the in-page label is \"Public minutes\", not \"Printed minutes\"; confirmed via WebFetch on Court of Common Council CId=223/MId=25160 and Planning & Transportation CId=143 across four meetings). Pre-May-2012 docs are under Search Documents. GLA / London Assembly publishes a parallel record on its own ModernGov instance at gla.moderngov.co.uk (also reachable under london.gov.uk) with agendas, reports and minutes per committee — identified by web search but NOT confirmed: gla.moderngov.co.uk returned HTTP 403 to the fetcher and the london.gov.uk assembly-meetings path returned 404. The GLA half of this tenant requires a browser-based/authenticated snapshot before relying on it.",
+   "supplemental_available": true,
+   "supplemental_how": "City of London ModernGov links supplemental materials per meeting on the same ieListDocuments page as the minutes (CONFIRMED): agenda frontsheet, agenda reports pack, addenda, information packs, written-question responses, supporting statements, and per-item appendices. Verified examples: Court of Common Council 23-Apr-2026 (MId=25160) carried Agenda frontsheet, Addendum, Questions Summary Sheet, Question 6 Written Response, Item 5 Supporting Statements, Appendix 1 (2 MB), and committee reports; Planning & Transportation 02-Dec-2025 (MId=24906) carried an Information Pack (3 MB) plus appendices for the Carbon Options Guidance, Environment Dept Business Plan, Risk Management, and Vision Zero Action Plan. GLA ModernGov is expected to follow the same attachment model but is unconfirmed due to the 403 block.",
+   "votes_structured": false,
+   "votes_how": "No structured/machine-readable roll-call votes. City of London ModernGov meeting pages show no separate recorded-vote or voting-result link; outcomes appear only as resolution prose inside the Public minutes PDF (e.g. \"Resolved unanimously\", \"Resolved -\"). For any per-member roll call you must parse the minutes PDF prose. GLA / London Assembly similarly records decisions/minutes per agenda item; no confirmed open-votes API or structured roll-call page exists (GLA unconfirmed due to 403).",
+   "recent_past": [
+    {
+     "date": "2026-04-23",
+     "body": "City of London Corporation - Court of Common Council",
+     "minutes_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=223&MId=25160",
+     "materials_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=223&MId=25160"
+    },
+    {
+     "date": "2025-12-02",
+     "body": "City of London Corporation - Planning and Transportation Committee",
+     "minutes_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=24906",
+     "materials_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=24906"
+    },
+    {
+     "date": "2025-01-21",
+     "body": "City of London Corporation - Planning and Transportation Committee",
+     "minutes_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=24237",
+     "materials_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=24237"
+    },
+    {
+     "date": "2024-11-05",
+     "body": "City of London Corporation - Planning and Transportation Committee",
+     "minutes_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=23818",
+     "materials_url": "https://democracy.cityoflondon.gov.uk/ieListDocuments.aspx?CId=143&MId=23818"
+    }
+   ],
+   "conf": "p",
+   "note": "VERIFIED in this pass. City of London Corporation half is fully CONFIRMED: past_url (ieDocHome.aspx) resolves as the ModernGov committee home; all four recent_past document pages fetched and resolved with real meetings, real official minutes PDFs, and supplemental attachments. Correction: the minutes PDF in-page label is \"Public minutes\", not \"Printed minutes\" as the proposal stated (the official record exists either way). All four minutes_url entries verified live; I added materials_url to the two entries that lacked it (same ieListDocuments page carries both minutes and supplemental docs). Nothing deleted — every City of London link is good. votes_structured=false confirmed honest: outcomes are resolution prose inside the minutes PDFs, no machine-readable roll-call. DOWNGRADED conf v -> p because the GLA / London Assembly half of tenant_id=london could NOT be confirmed: gla.moderngov.co.uk returns HTTP 403 (bot block) and www.london.gov.uk/who-we-are/what-london-assembly-does/london-assembly-meetings returned HTTP 404. GLA source is identified by web search but unverified; recommend a browser-based/authenticated fetch to snapshot real GLA meetings before relying on that half. past_url returned is the confirmed City of London ModernGov home."
+  },
+  {
+   "tenant_id": "tokyo",
+   "past_url": "https://www.gikai.metro.tokyo.lg.jp/record/proceedings/",
+   "minutes_available": true,
+   "minutes_how": "Past plenary minutes (会議録 / kaigiroku) are published as free HTML at https://www.gikai.metro.tokyo.lg.jp/record/proceedings/ , organized by Japanese-era (Reiwa) year and session (定例会/臨時会), back to 平成11年/1999 on-site. Each session has a 会議録目次 (minutes index), e.g. /record/proceedings/2026-1/ for the 2026 1st Regular Session and /record/proceedings/2025-3/ for the 2025 3rd Regular Session, listing per-sitting-day pages (01.html, 06.html, ...) with full verbatim proceedings broken out by speaker. Committee verbatim records (速記録) are separately at /record/committees.html. A dedicated full-text minutes search system covering older records lives at https://www.record.gikai.metro.tokyo.lg.jp/ . All Japanese-language. Confirmed loading via WebFetch: the proceedings index, the 2026-1 and 2025-3 session indexes, and the 2026-1 day-1 (01.html, Feb 18 2026) and day-6 (06.html, Mar 27 2026) pages all resolved with real verbatim content.",
+   "supplemental_available": true,
+   "supplemental_how": "Supplemental/supporting docs are linked from the bills-and-results pages at https://www.gikai.metro.tokyo.lg.jp/bill/ (per session, e.g. bill/reg2026-1.html = 提出議案と議決結果, confirmed listing 131 governor bills + 10 member bills with outcomes). These pages link to 予算案の概要 (budget overview) and 条例案の概要 (ordinance overview) summaries (mostly external TMG bureau pages), plus a per-session faction voting-position page in both text and PDF form (e.g. bill/pdf/367.pdf). Related categories: 意見書・決議 (/opinion/), 請願・陳情 (/petition/), 委員会視察報告 (/record/inspection/). Note: full original bill-text PDFs are not consistently attached on-site; many overview docs point to external TMG bureau pages rather than inline attachments.",
+   "votes_structured": false,
+   "votes_how": "Votes are published only at the PARTY-FACTION (会派) level, not as individual-member roll-call. Each session's 各会派等の議案への賛否 (\"for/against by each faction\") page is published as HTML (confirmed loading: https://www.gikai.metro.tokyo.lg.jp/newsletter/367/07.html) and PDF (bill/pdf/367.pdf), linked from bill/reg2026-1.html. The HTML table groups bills by category and lists 賛成 (for) / 反対 (against) factions per bill plus the outcome — that faction-level table is cleanly parseable. HOWEVER, individual legislator votes do NOT exist publicly: the plenary minutes record only aggregate standing-vote results (起立多数 → 可決), never naming how each member voted, and the faction table reports whole-faction positions (e.g. 都民ファ 32人 賛成), not per-member breakdowns. Set votes_structured=false because machine-readable INDIVIDUAL-member votes are not available; the best machine-parseable vote source is the faction-level newsletter/<n>/07.html (+ matching bill/pdf/<n>.pdf) table.",
+   "recent_past": [
+    {
+     "date": "2026-03-27",
+     "body": "Tokyo Metropolitan Assembly — Plenary (2026 1st Regular Session, day 6, final bill votes / 議案の議決など)",
+     "minutes_url": "https://www.gikai.metro.tokyo.lg.jp/record/proceedings/2026-1/06.html",
+     "materials_url": "https://www.gikai.metro.tokyo.lg.jp/newsletter/367/07.html"
+    },
+    {
+     "date": "2026-02-18",
+     "body": "Tokyo Metropolitan Assembly — Plenary (2026 1st Regular Session, day 1, governor's policy address by Gov. Koike)",
+     "minutes_url": "https://www.gikai.metro.tokyo.lg.jp/record/proceedings/2026-1/01.html",
+     "materials_url": "https://www.gikai.metro.tokyo.lg.jp/bill/reg2026-1.html"
+    },
+    {
+     "date": "2025-10-09",
+     "body": "Tokyo Metropolitan Assembly — Plenary (2025 3rd Regular Session, final day, bill votes / 議案の議決など)",
+     "minutes_url": "https://www.gikai.metro.tokyo.lg.jp/record/proceedings/2025-3/",
+     "materials_url": "https://www.gikai.metro.tokyo.lg.jp/bill/reg2025-3.html"
+    },
+    {
+     "date": "2025-09-24",
+     "body": "Tokyo Metropolitan Assembly — Plenary (2025 3rd Regular Session, day 1, governor's policy statement / 知事所信表明)",
+     "minutes_url": "https://www.gikai.metro.tokyo.lg.jp/record/proceedings/2025-3/",
+     "materials_url": "https://www.gikai.metro.tokyo.lg.jp/bill/reg2025-3.html"
+    }
+   ],
+   "conf": "v",
+   "note": "All seven proposed URLs confirmed to resolve with real content via WebFetch (proceedings index; 2026-1 and 2025-3 session indexes; 2026-1/01.html and 06.html; bill/reg2026-1.html and bill/reg2025-3.html; newsletter/367/07.html). CHANGED votes_structured true→false: the only structured vote data is PARTY-FACTION-level (the cleanly-parseable 各会派等の議案への賛否 HTML+PDF table), and individual-member roll-call does NOT exist publicly — plenary minutes record only aggregate standing-vote outcomes (起立多数→可決). Per the rule that votes_structured should reflect machine-readable INDIVIDUAL votes, false is the honest value; full faction-level detail retained in votes_how. recent_past dates verified against the confirmed indexes: 2026-1 day 1 = Feb 18 2026, day 6 = Mar 27 2026; 2025-3 index shows day 1 = Sep 24 2025 (issue 12), final bill-vote day = Oct 9 2025 (issue 15). Per-day deep links exist for 2025-3 (issue numbers shown in the index) but were not individually fetched, so the two 2025-3 minutes_urls point at the confirmed session index rather than unverified deep links. URL-year convention is Reiwa-era based: 2026-1 = 令和8年第1回, 2025-3 = 令和7年第3回. All Japanese-language. conf=v: every listed URL resolved."
+  },
+  {
+   "tenant_id": "hongkong",
+   "past_url": "https://www.legco.gov.hk/en/legco-business/council/council-meetings.html",
+   "minutes_available": true,
+   "minutes_how": "LegCo publishes per-meeting records on the Council Meetings pages (term-indexed schedules, e.g. https://www.legco.gov.hk/general/english/counmtg/yr22-25/mtg_2022.htm). Each Council meeting row links to Agenda, Meeting arrangements, Debate and voting arrangements, Voting results, Minutes, Official Record of Proceedings (Hansard, English + Floor/Chinese), and Webcast (verified: the council-meetings.html page renders exactly these columns). Minutes and the verbatim Official Record of Proceedings are the official \"what happened\" records, published in English and Chinese. A full-text Hansard search is at https://app.legco.gov.hk/HansardDB/english/Search.aspx.",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. Each Council meeting links \"Meeting arrangements\" and \"Debate and voting arrangements\" documents, plus agenda papers/LC Papers (CB-numbered) attached to items. The Official Record of Proceedings PDFs embed per-item webcast links. Committee/panel minutes (e.g. https://www.legco.gov.hk/yr2026/english/panels/ps/minutes/ps20260316.pdf — verified, valid 38-page PDF with embedded webcast timestamps, meeting id M26030011) carry their own supporting papers. So supplemental/supporting docs are linked per meeting, not just the bare minutes.",
+   "votes_structured": true,
+   "votes_how": "Individual roll-call votes are available structured via the Voting Result Database OData API: https://app.legco.gov.hk/vrdb/odata/vVotingResult (JSON default, ?$format=xml for XML; $metadata at https://app.legco.gov.hk/vrdb/odata/$metadata). VERIFIED LIVE: each record carries individual-member fields name_en/name_ch, constituency (Functional/Geographical), and vote (Yes/No/Abstain/Present), plus motion_en/motion_ch, vote_date, vote_time, term_no, vote_number, and aggregate overall_yes_count/overall_no_count/overall_abstain_count/overall_present_count/overall_result. Supports $filter/$orderby/$select/$top. Confirmed live: $orderby=vote_date desc returns most-recent vote_date 2026-06-11. Also mirrored on data.gov.hk (legco-vrdb-voting-results). Per-meeting human-readable voting-result PDFs also exist at https://www.legco.gov.hk/yr{YEAR}/{lang}/counmtg/voting/v{YYYYMMDD}.pdf (verified resolving).",
+   "recent_past": [
+    {
+     "date": "2026-01-14",
+     "body": "Legislative Council (Council Meeting) — voting results",
+     "minutes_url": "https://www.legco.gov.hk/yr2026/chinese/counmtg/voting/v20260114.pdf",
+     "materials_url": "https://app.legco.gov.hk/vrdb/odata/vVotingResult?$filter=vote_date%20eq%202026-01-14&$format=json"
+    },
+    {
+     "date": "2025-07-02",
+     "body": "Legislative Council (Council Meeting) — voting results",
+     "minutes_url": "https://www.legco.gov.hk/yr2025/chinese/counmtg/voting/v20250702.pdf",
+     "materials_url": "https://app.legco.gov.hk/vrdb/odata/vVotingResult?$filter=vote_date%20eq%202025-07-02&$format=json"
+    },
+    {
+     "date": "2026-03-16",
+     "body": "LegCo Panel on Public Service (minutes)",
+     "minutes_url": "https://www.legco.gov.hk/yr2026/english/panels/ps/minutes/ps20260316.pdf"
+    }
+   ],
+   "conf": "v",
+   "note": "CONFIRMED via WebFetch (re-verified). past_url https://www.legco.gov.hk/en/legco-business/council/council-meetings.html resolves and renders the documented column set (Date / Agenda / Meeting arrangements / Debate and voting arrangements / Voting results / Minutes / Official Record of Proceedings / Webcast), in English + Chinese.\n\nVOTES = STRUCTURED (high quality, VERIFIED): the Voting Result Database OData API https://app.legco.gov.hk/vrdb/odata/vVotingResult returns individual-member roll-call (name_en, name_ch, constituency, vote=Yes/No/Abstain/Present) + motion text + aggregate counts, cleanly machine-parseable JSON/XML with $filter/$orderby/$top. $orderby=vote_date desc confirmed latest vote_date 2026-06-11. Also on data.gov.hk and per-meeting voting PDFs.\n\nAll three recent_past minutes_url PDFs RESOLVE (binary downloaded in full): v20260114.pdf (206KB), v20250702.pdf (375KB), and committee minutes ps20260316.pdf (valid 38-page PDF, meeting id M26030011). The two voting PDFs returned valid PDF binary that the fetch helper could not render to text — they are reachable, not 404.\n\nHONESTY CAVEAT (unchanged): I could NOT blind-confirm the Council-meeting *minutes* PDF filename pattern (a guessed m{YYYYMMDD}.pdf 404'd). So for the two Council meetings, minutes_url points at the verified-resolving VOTING-RESULTS PDF (Chinese path; English equivalents exist under .../english/...) — these are voting records, not the formal minutes document; body labels updated to say so. materials_url is the live OData filter for that date. The third entry is a genuine committee minutes PDF. The proper minutes/Hansard links themselves are reachable from the meeting-list pages above; only the exact bare-minutes filename was not blind-verified. Hansard full-text search: https://app.legco.gov.hk/HansardDB/english/Search.aspx."
+  },
+  {
+   "tenant_id": "singapore",
+   "past_url": "https://www.parliament.gov.sg/parliamentary-business/votes-and-proceedings",
+   "minutes_available": true,
+   "minutes_how": "Official minutes = \"Votes and Proceedings\" (V&P), published per sitting day at https://www.parliament.gov.sg/parliamentary-business/votes-and-proceedings as downloadable PDFs (e.g. /api/media/.../VP-8Apr26.pdf). Each V&P records member attendance, Speaker announcements, papers presented, all orders/resolutions, and a division list IF a division was held. The fuller verbatim record is the Official Report (Hansard), published ~7 working days after each sitting and searchable by date/MP/topic/keyword at the Hansard portal https://sprs.parl.gov.sg/search/ (gateway page: https://www.parliament.gov.sg/parliamentary-business/official-reports). VERIFIED: V&P listing page loads and lists real 15th-Parliament sittings (VP No.19-28, 25 Feb 2026 - 8 Apr 2026); the two most recent per-sitting PDFs were fetched and confirmed as valid en-SG PDF documents.",
+   "supplemental_available": false,
+   "supplemental_how": "No discrete supplemental-materials / exhibits / attachments archive is exposed alongside the minutes. The V&P PDF itself lists \"papers presented to Parliament\" by title, and separate Parliamentary Business pages exist for Order Papers, Bills, and Parliamentary Questions, but there is no per-sitting bundle of attached supporting documents linked from the minutes. Tabled papers are referenced by name inside the V&P text rather than provided as downloadable exhibits.",
+   "votes_structured": false,
+   "votes_how": "In minutes text. Singapore Parliament normally decides by voice vote (\"Ayes\"/\"Noes\"); a recorded division (the only mechanism that captures how each member voted) happens only when an MP, supported by at least 4 others, calls for one — divisions are rare. When a division occurs, the division list is embedded inside that sitting's Votes and Proceedings document (and in the Hansard text). There is no Legistar/open-votes API or structured machine-readable voting-result feed; individual roll-call results live only as prose/tables inside the V&P PDF and Hansard.",
+   "recent_past": [
+    {
+     "date": "2026-04-08",
+     "body": "Parliament of Singapore (15th Parliament)",
+     "minutes_url": "https://www.parliament.gov.sg/api/media/305eeede-4190-4a35-9a18-62b5da13e0fc/VP-8Apr26.pdf"
+    },
+    {
+     "date": "2026-04-07",
+     "body": "Parliament of Singapore (15th Parliament)",
+     "minutes_url": "https://www.parliament.gov.sg/api/media/9bed670f-8e1b-4935-b92e-a3966c4eb001/VP-7Apr26.pdf"
+    },
+    {
+     "date": "2026-03-06",
+     "body": "Parliament of Singapore (15th Parliament)",
+     "minutes_url": "https://www.parliament.gov.sg/parliamentary-business/votes-and-proceedings"
+    },
+    {
+     "date": "2026-03-05",
+     "body": "Parliament of Singapore (15th Parliament)",
+     "minutes_url": "https://www.parliament.gov.sg/parliamentary-business/votes-and-proceedings"
+    },
+    {
+     "date": "2026-02-25",
+     "body": "Parliament of Singapore (15th Parliament)",
+     "minutes_url": "https://www.parliament.gov.sg/parliamentary-business/votes-and-proceedings"
+    }
+   ],
+   "conf": "v",
+   "note": "Adversarially re-verified 2026-06-15. (1) past_url loads and lists real 15th-Parliament sittings VP No.19-28 (25 Feb 2026 through 8 Apr 2026, most recent = 8 Apr 2026, 168KB PDF). (2) Both April minutes_url PDFs were fetched and confirmed: VP-8Apr26.pdf (164KB) and VP-7Apr26.pdf (154KB) are valid PDFs carrying en-SG locale markers (genuine Singapore Parliament docs; text uses CID glyph encoding so prose does not plain-text extract, but the documents resolve and download). (3) The other three rows (6 Mar, 5 Mar, 25 Feb = VP No.26/25/19) are real sittings seen on the verified listing page, but I did not resolve their individual PDF media GUIDs, so they point at the verified listing page rather than a fabricated /api/media URL — invent nothing. (4) votes_structured=false is honest: voice votes are the norm, recorded divisions are rare and appear only inside V&P/Hansard text; no structured votes API. (5) supplemental_available=false honest: no standalone exhibits archive linked to minutes. Conf kept at v: listing page + both April PDFs are directly confirmed; the three fallback rows are real sittings pointed at the verified listing page."
+  },
+  {
+   "tenant_id": "zurich",
+   "past_url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/",
+   "minutes_available": true,
+   "minutes_how": "Per-session pages at https://www.gemeinderat-zuerich.ch/sitzungen/sitzung/?gid=<sessionGUID> link the official minutes as PDFs served from /dokumente/<docid>-332: a \"Protokoll\" (decision protocol), a \"Substanzielles Protokoll\" (verbatim/substantive protocol of the debate), and a \"Tagliste\" (agenda). Sessions are listed via the Termine page and the Ratspost weekly archive. The /dokumente/ PDF endpoint resolves to real files (verified two protocol PDFs, 536KB and 622KB, plus the Session 177 page). Audio protocols and Vimeo video are also linked per agenda item. Machine-readable access: PARIS-API (Parlamentsinformationssystem) base http://www.gemeinderat-zuerich.ch/api/ exposes Sitzung, Geschaeft, Dokument, Abstimmung and ~19 more entities (CQL queries, JSON; per-index schema at /api/<index>/schema).",
+   "supplemental_available": true,
+   "supplemental_how": "Yes. Each session page lists \"Sitzungsunterlagen\" (meeting documents) alongside the protocols, and each Geschaeft (business record, searchable at /geschaefte/) carries its associated documents/attachments (motions, postulates, committee reports, departmental responses) as PDFs under the same /dokumente/ path. The PARIS-API Dokument entity exposes these attachments by file id in machine-readable form.",
+   "votes_structured": true,
+   "votes_how": "Individual roll-call/named votes (namentliche Abstimmungen) are published in structured form. The per-vote page https://www.gemeinderat-zuerich.ch/abstimmungen/detail.php renders, per vote ID (gid parameter), the Geschaeft/business number, vote type, total votes, Schlussresultat, \"Abstimmungen nach Parteien\" (by party), \"Abstimmungen nach Fraktionen\" (by faction), and a per-councillor \"Name (Partei) — Abstimmungsverhalten\" list. The PARIS-API additionally exposes an \"Abstimmung\" entity queryable via CQL (JSON), which is the cleanest machine-readable path. Caveat: the detail.php page is parameter/JS-driven and renders an empty shell without a valid gid; reliable structured harvest should drive the PARIS-API Abstimmung entity rather than scraping the HTML.",
+   "recent_past": [
+    {
+     "date": "2026-01-28",
+     "body": "Gemeinderat der Stadt Zürich (Session 177)",
+     "minutes_url": "https://www.gemeinderat-zuerich.ch/sitzungen/sitzung/?gid=a129f012f70147f1b9fe73f683ca287d",
+     "materials_url": "https://www.gemeinderat-zuerich.ch/dokumente/4aecf236089b4be780f71ec7272c300e-332"
+    },
+    {
+     "date": "2025-12-11",
+     "body": "Gemeinderat der Stadt Zürich (Budget 2026 Beschluss)",
+     "minutes_url": "https://www.gemeinderat-zuerich.ch/dokumente/486ecd2b38ab4849b8fc25780efc8d5a-332",
+     "materials_url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2025/budget/budget-2026-beschluss-gemeinderat.pdf"
+    }
+   ],
+   "conf": "v",
+   "note": "Source: gemeinderat-zuerich.ch (PARIS Parlamentsinformationssystem), German. All URLs re-verified via WebFetch on 2026-06-15. past_url (/sitzungen/termine/) loads and shows the session list (next session noted Wed 17 Jun 2026). Session 177 page (Wed 28 Jan 2026, 17:00-21:10) resolves and exposes Protokoll + Substanzielles Protokoll + Tagliste PDFs, audio protocols, Vimeo video. Both /dokumente/<id>-332 links resolve to real PDFs (4aecf236... = 536KB protocol; 486ecd2b... = 622KB protocol). The 2025-12-11 materials_url (stadt-zuerich.ch Budget-2026-Beschluss) resolves to a real 4.2MB PDF. PARIS-API confirmed real (opendatazurich.github.io/paris-api/), base http://www.gemeinderat-zuerich.ch/api/, entities incl. Sitzung, Geschaeft, Dokument, Abstimmung, Ratspost (~22 total), CQL/JSON, per-index schema endpoints; also catalogued on data.stadt-zuerich.ch and opendata.swiss (open OGD license). Roll-call votes are STRUCTURED: /abstimmungen/detail.php has explicit per-councillor Name+Partei+Abstimmungsverhalten fields plus party/faction breakdowns, and the API Abstimmung entity exposes them machine-readably — votes_structured=true is honest. Caveat: live site pages (termine, detail.php) are JS/parameter-rendered so plain WebFetch sees template shells until a valid GUID/gid is supplied; the resolving artifacts (session-GUID page + /dokumente/ PDFs) and the PARIS-API are the reliable scrape targets. Nothing deleted or blanked — every link confirmed. conf=v."
+  },
+  {
+   "tenant_id": "frankfurt",
+   "past_url": "https://www.stvv.frankfurt.de/parlis/ni.html",
+   "minutes_available": true,
+   "minutes_how": "PARLIS (PARLamentsInformationsSystem, stvv.frankfurt.de/parlis) is the canonical past-record source. Confirmed resolving (HTTP 200): Niederschriften (minutes) index https://www.stvv.frankfurt.de/parlis/ni.html, Wortprotokolle (verbatim transcripts) https://www.stvv.frankfurt.de/parlis2/wp.html, and the main menu https://www.stvv.frankfurt.de/parlis2/parlis.html. Covers minutes for the Stadtverordnetenversammlung plenum, its Ausschuesse (committees) and Ortsbeiraete (district councils), archived since 1 April 1993 (full text from 1 April 2001); ~300 minutes + ~2000 Beschlussausfertigungen per year. German only. Each minutes document is reached via a dynamic Direkte-Anwahl / Volltextsuche search form (POST backend); no static dated minutes URLs are exposed to a plain fetch.",
+   "supplemental_available": true,
+   "supplemental_how": "Supporting documents are the parliamentary Vorlagen (motions/submissions) with Beratungsergebnisse (consultation results) plus Beschlussausfertigungen (resolution documents: text + participating bodies) and Tagesordnungen (agendas), all searchable in PARLIS via Vorlagensuche https://www.stvv.frankfurt.de/PARLIS/vorlagen.html and Beschlussausfertigungen https://www.stvv.frankfurt.de/PARLIS/beschluss.html (both confirmed resolving HTTP 200, both dynamic search forms). Linkage is through the PARLIS search backend (Vorlagennummer / Volltextsuche), not static per-session attachment lists.",
+   "votes_structured": false,
+   "votes_how": "No structured roll-call vote data. Confirmed: the PARLIS main menu (parlis.html) exposes no open-data/API/structured export — it is a document-retrieval interface only. Beschlussausfertigungen contain only the resolution text and the participating bodies, not how individual members voted. Individual votes (including any namentliche Abstimmungen) where recorded live in minutes text / Wortprotokoll prose. votes_structured=false; votes only in minutes/transcript prose.",
+   "recent_past": [],
+   "conf": "v",
+   "note": "Adversarial verification complete. All five PARLIS URLs in the proposal were WebFetched and resolve: past_url ni.html (Niederschriften search portal), wp.html (Wortprotokolle), parlis.html (main menu, no API/export), beschluss.html (Beschlussausfertigungen), vorlagen.html (Vorlagensuche). Each document index is a dynamic German Direkte-Anwahl + Volltextsuche search/POST form that exposes no static dated minutes URLs to WebFetch, so no specific per-session minutes file can be deep-linked. Per integrity rules no minutes URLs were invented, hence recent_past is empty (correct over invention). Nothing to delete — the proposal already included no fabricated meeting/minutes links. votes_structured=false is honest: resolution docs carry no individual vote breakdown and there is no votes API/open-data. conf kept at v because every included URL is confirmed HTTP 200 and the empty recent_past is the honest state; the only limitation (cannot deep-link a single minutes doc) is inherent to the dynamic-form backend, not an unverified claim. To harvest real minutes_url values, a session-by-session POST query against the PARLIS Niederschriften backend (or a browser MCP that submits the form) is required."
+  },
+  {
+   "tenant_id": "paris",
+   "past_url": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224",
+   "minutes_available": true,
+   "minutes_how": "Conseil de Paris publishes minutes per séance on paris.fr (hub page .../comptes-rendus-...-224) as downloadable cdn.paris.fr PDFs, in two tiers: (1) \"compte-rendu sommaire\" ~8 days after the séance, recording all votes, designations and member attendance; (2) \"Bulletin officiel des débats\" (BOD) = the procès-verbal intégral / full verbatim minutes ~1 month after, including a table of votes by political group. A searchable archive 1995-present (~294K records: débats + délibérations) lives at https://a06-v7.apps.paris.fr/a06/#. French only. Confirmed: hub page resolves and lists recent séances (it independently surfaced the same May/April/March 2026 and Dec 2025 deliberations-bulletin URLs used below); all sommaire and bulletin PDFs below download as valid PDF files (verified %PDF magic bytes, multi-hundred-KB to multi-MB sizes).",
+   "supplemental_available": true,
+   "supplemental_how": "Each séance has a companion \"Bulletin officiel des délibérations\" (bovp-deliberations-*.pdf on cdn.paris.fr) — the official adopted-decisions record with full legal text of every délibération, rapporteur, and publication/transmission-to-State notes. Also published: ordre du jour (agenda) via https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm, video archives of every séance since Sept 2008, and the projets de délibération referenced inside each act. All four deliberations bulletins below confirmed to download as valid PDFs.",
+   "votes_structured": false,
+   "votes_how": "No structured/machine-readable votes API. The Paris open-data portal (opendata.paris.fr) only carries election results (bureaux de vote), not Conseil de Paris scrutins. Votes are recorded as prose/tables inside PDFs: the compte-rendu sommaire records \"l'ensemble des votes\" and the Bulletin officiel des débats includes a table of votes by political group (pour/contre/abstention). Council votes are nominal-and-public by default but only available in minutes text, not as a parseable feed. -> votes in minutes text.",
+   "recent_past": [
+    {
+     "date": "2026-05-19",
+     "body": "Conseil de Paris",
+     "minutes_url": "https://cdn.paris.fr/paris/2026/06/02/sommaire_mai_2026-blWG.pdf",
+     "materials_url": "https://cdn.paris.fr/paris/2026/06/09/bovp-deliberations-mai-2026-qfa2.pdf"
+    },
+    {
+     "date": "2026-04-14",
+     "body": "Conseil de Paris (séance exceptionnelle)",
+     "minutes_url": "https://cdn.paris.fr/paris/2026/04/22/sommaire_avril_2026-compresse-QySk.pdf",
+     "materials_url": "https://cdn.paris.fr/paris/2026/04/23/bovp-deliberations-avril-2026-jOcO.pdf"
+    },
+    {
+     "date": "2026-03-29",
+     "body": "Conseil de Paris",
+     "minutes_url": "https://cdn.paris.fr/paris/2026/04/03/sommaire_mars_2026-8bDV.pdf",
+     "materials_url": "https://cdn.paris.fr/paris/2026/03/29/bovp-deliberations-mars-2026-hAEv.pdf"
+    },
+    {
+     "date": "2025-12-16",
+     "body": "Conseil de Paris",
+     "minutes_url": "https://cdn.paris.fr/paris/2026/01/05/sommaire_decembre_2025-HoyY.pdf",
+     "materials_url": "https://cdn.paris.fr/paris/2026/01/13/bovp-deliberations-decembre-2025-03Yu.pdf"
+    }
+   ],
+   "conf": "v",
+   "note": "All links verified to resolve (none 404). Hub page .../comptes-rendus-...-224 confirmed live and listing recent séances; it independently surfaced the same Dec 2025 / Mar / Apr / May 2026 deliberations-bulletin URLs used here, corroborating all four materials_url. All 8 PDFs (4 sommaire minutes_url + 4 bovp-deliberations materials_url) were downloaded and confirmed valid: each begins with %PDF magic bytes and is hundreds of KB to ~5MB in size. WebFetch's small extractor reported them \"corrupted/unreadable,\" but that is a text-extraction failure on compressed/scanned (JBIG2/JPEG) streams, NOT a missing file — the binaries are genuine PDFs on disk. Document tiers: compte-rendu sommaire (minutes_url, ~8 days, votes+attendance) + Bulletin officiel des débats (full verbatim minutes, ~1 month, vote table by group) + Bulletin officiel des délibérations (materials_url, adopted decisions). Searchable 1995-present archive at a06-v7.apps.paris.fr/a06/#. French only. Votes exist only inside PDF prose/tables — no open votes API, so votes_structured=false is honest. CAVEAT: cdn.paris.fr URLs carry random per-file suffixes, so exact filenames for future/older séances should be re-resolved from the hub rather than pattern-guessed. conf kept at v: every checkable claim held."
+  },
+  {
+   "tenant_id": "dubai",
+   "past_url": "https://mediaoffice.ae/en/news",
+   "minutes_available": false,
+   "minutes_how": "No Western-style official public minutes exist for the Government of Dubai. The Dubai Executive Council (the emirate's main executive body, chaired by Crown Prince Sheikh Hamdan bin Mohammed) does not publish verbatim or formal meeting minutes. The closest public \"what-happened\" record is press-release coverage from the Dubai Government Media Office (mediaoffice.ae/en/news), which summarizes each Executive Council (and other council) meeting: date, who chaired, who attended, and which initiatives/strategies/resolutions were approved. Separately, the Dubai Legislative Portal (dlp.dubai.gov.ae) publishes the FINAL enacted legal text of resolutions and laws, plus the Official Gazette archive back to 1961 — but that portal explicitly does NOT publish meeting minutes or procedural records, only final legislation, legal opinions, and gazette issues. So there is no minutes file; there is press summary (Media Office) + final resolution text (legislative portal). VERIFIED 2026-06-15: mediaoffice.ae/en/news loads as the Government of Dubai Media Office news center; dlp.dubai.gov.ae loads and self-describes as legislation + Official Gazette (1961-present) + legal opinions only, no minutes/votes.",
+   "supplemental_available": false,
+   "supplemental_how": "No supplemental materials, exhibits, or attachments are linked to any meeting record. The Media Office press releases are self-contained narrative summaries with no document attachments or agenda packets (confirmed on the loaded Mar 30 and Jun 9 2026 pages). The legislative portal hosts the resolution/law text itself but does not attach the supporting/supplemental materials that were before the Council when it decided.",
+   "votes_structured": false,
+   "votes_how": "No roll-call votes are published in any form — not structured and not even in prose. Decisions are reported as collective approvals by the council under its chair; individual members' votes (for/against/abstain) are never disclosed. There is no Legistar/open-votes API and no voting-result page. Confirmed on the loaded 2026 Media Office meeting pages (Mar 30 Executive Council, Jun 9 Defence Council): each lists chair/attendees/approved items but no how-each-member-voted record. The Dubai Legislative Portal likewise publishes only final enacted text, not voting records.",
+   "recent_past": [
+    {
+     "date": "2026-03-30",
+     "body": "Dubai Executive Council",
+     "minutes_url": "https://mediaoffice.ae/en/news/2026/march/30-3/hamdan-bin-mohammed-approves-aed-1-billion-in-facilitations-for-dubai-economic-sector",
+     "materials_url": ""
+    },
+    {
+     "date": "2026-03-15",
+     "body": "Higher Committee for Development and Citizens Affairs (Dubai)",
+     "minutes_url": "https://mediaoffice.ae/en/news/2026/march/15-03/hamdan-bin-mohammed-chairs-meeting",
+     "materials_url": ""
+    },
+    {
+     "date": "2026-06-09",
+     "body": "Dubai Defence Council",
+     "minutes_url": "https://mediaoffice.ae/en/news/2026/jun/09-06/hamdan-bin-mohammed-chairs-second-defence-council-meeting-of-2026",
+     "materials_url": ""
+    }
+   ],
+   "conf": "v",
+   "note": "Hint CONFIRMED. Dubai has no Western-style public legislative minutes or roll-call votes. The Government of Dubai operates through the Executive Council (Law No. 3 of 2003, updated by Law No. 26 of 2023), chaired by the Crown Prince. Two distinct public surfaces exist, neither a true \"minutes\" source: (1) Dubai Government Media Office press releases (mediaoffice.ae/en/news) = the practical past-record of each meeting — date, chair, attendees, approved items — narrative only, no votes, no attachments; (2) Dubai Legislative Portal dlp.dubai.gov.ae = final enacted resolution/law TEXT + Official Gazette (1961-present) + legal opinions, explicitly NOT minutes or votes.\n\nVERIFICATION 2026-06-15 (all 4 URLs WebFetched and confirmed to resolve, none 404'd):\n- past_url mediaoffice.ae/en/news: loads, Government of Dubai Media Office news center. KEPT.\n- Mar 30, 2026 (recent_past[0]): loads, headline \"Hamdan bin Mohammed approves AED1 billion in economic incentives during Dubai Executive Council meeting\" — confirmed Executive Council meeting, no votes, no attachments. KEPT, body correct.\n- Mar 15, 2026 (recent_past[1]): loads, headline \"Hamdan bin Mohammed approves package of strategic initiatives\" — but the page is about the HIGHER COMMITTEE FOR DEVELOPMENT AND CITIZENS AFFAIRS (Hamdan-chaired), NOT the Executive Council. CORRECTED the body label from \"Dubai Executive Council\" to the actual committee name. URL valid, kept.\n- Jun 9, 2026 (recent_past[2]): loads, headline \"Hamdan bin Mohammed chairs second Defence Council Meeting of 2026\" — DEFENCE Council, not Executive Council. Body label was already honest in the proposal. KEPT.\n- dlp.dubai.gov.ae: loads, self-describes as legislation database + Official Gazette (1961-present) + legal opinions only; confirms NO minutes/votes.\n\nNet change from proposal: only recent_past[1].body corrected (was mislabeled \"Dubai Executive Council\"; it is the Higher Committee for Development and Citizens Affairs). All URLs verified live, none deleted. votes_structured=false is honest — no votes published in any form, structured or prose. conf kept at 'v' because every source surface resolves and the absence of minutes/votes is positively confirmed by the legislative portal's own self-description and the press-release format."
+  }
+ ]
+}
