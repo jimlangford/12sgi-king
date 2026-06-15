@@ -329,4 +329,10 @@
       fetch(A.meta.feed, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (data) {
         if (done) return; done = true; clearTimeout(timer);
         el.innerHTML = 'FEED · <span style="color:var(--mauios-ok)">LIVE</span> · ' + ((data && data.meta && data.meta.source) || 'council-watch');
-      }).catch(function () { if (!done) { done = true; clearTimeout(timer); el.innerHTML = 'FEED · <
+      }).catch(function () { if (!done) { done = true; clearTimeout(timer); el.innerHTML = 'FEED · <span style="color:var(--mauios-faint)">SNAPSHOT</span> · ' + A.meta.snapshot; } });
+    } catch (e) { clearTimeout(timer); el.innerHTML = 'FEED · SNAPSHOT'; }
+  })();
+})();
+</script>
+</body>
+</html>
