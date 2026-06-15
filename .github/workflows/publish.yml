@@ -82,6 +82,7 @@ jobs:
           run "$P/bids_watch.py" || true
           run "$P/mapps_watch.py" || true
           run "$P/rebuild_first.py" || true   # Who Rebuilt First (Lahaina/Kula fire-recovery permit line)
+          run "$P/request_records.py" || true # tenant-aware records-request page (each tenant own access law)
           run "$P/donor_watch.py" || true
           run "$P/statewide_money.py" || true
           run "$P/hands_awards.py" || true
