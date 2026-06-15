@@ -45,7 +45,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "money_state.html", "parity_state.html",
                "money_honolulu.html", "parity_honolulu.html",
                # item-2 gaps (workflow 2): lobby crosses for HI State / Honolulu / NY State
-               "lobby_state.html", "lobby_honolulu.html", "lobby_nys.html"]
+               "lobby_state.html", "lobby_honolulu.html", "lobby_nys.html",
+               # workflow 3: matrix close + subcontractor chains + Ka Leo fan-out (ka_leo_nyc withheld - failed verify)
+               "money_liverpool.html", "subcontractors_nyc.html",
+               "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -71,14 +74,16 @@ NAV_LABEL = {
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
 }
+# Citizen-first IA: organized around what a voting community member needs to participate —
+# know your officials, follow the money, read the record. (Testify/Take-action lead via the CTA + a Participate link.)
 NAV_GROUPS = [
-    ("Money & Contracts", ["county_dashboard.html", "patterns_money_x_votes.html", "money_behind_officials.html",
-                           "statewide_money_patterns.html", "contracts_x_donors.html", "maui_contract_awards.html",
-                           "lobby_money_watch.html"]),
-    ("Accountability", ["officials_scorecard.html", "lege_legislator_scorecard.html", "accountability_record.html",
-                        "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
-                        "charter_application.html"]),
-    ("The Mechanic", ["parity_check.html", "ka_leo_voice.html", "wildfire_recovery_watch.html"]),
+    ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
+    ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
+                          "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
+                          "wildfire_recovery_watch.html"]),
+    ("The Record", ["parity_check.html", "accountability_record.html", "sole_source_watch.html",
+                    "commission_antitrust.html", "bill9_bill9_testimony_scan.html", "charter_application.html",
+                    "lege_legislator_scorecard.html"]),
 ]
 NAV_CSS = ("<style>"
     ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"
@@ -224,10 +229,16 @@ def main():
     _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
-        # also under king/ so the King shell's "Studio ->" door (href="go.html")
-        # resolves on BOTH the public /king/ mount and the Tailscale /king/ mount.
+        # also under king/ so the King shell's "Studio ->" door (href="go.html") resolves.
+        # The root go.html uses root-relative civic links (king/civic/...); when served at
+        # /king/ those become /king/king/... (404), so rewrite them to be /king/-relative.
         if os.path.isdir(os.path.join(SITE, "king")):
-            shutil.copy(_go, os.path.join(SITE, "king", "go.html"))
+            _kgo = (open(_go, encoding="utf-8").read()
+                    .replace('href="king/civic/', 'href="civic/')   # civic templates live under /king/
+                    .replace('href="king/"', 'href="./"')           # the King shell IS this dir
+                    .replace('href="take_action.html"', 'href="../take_action.html"'))  # take_action is at root
+            with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_kgo)
         print("  + go.html: live/mirror failover launcher (root + king/)")
     _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
     if os.path.exists(_ta):
@@ -278,7 +289,7 @@ legislative votes, campaign money, procurement, permits, and the patterns betwee
 <div class="disc">Everything here is built from public records and presented as <b>documented facts and
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
-<p style="margin:16px 0"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Demand the records &mdash; file a UIPA request &amp; sign up &rarr;</a></p>
+<p style="margin:16px 0;display:flex;gap:12px;flex-wrap:wrap"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Demand the records &mdash; file a UIPA request &amp; sign up &rarr;</a><a href="king/" style="display:inline-block;background:rgba(217,178,76,.12);border:1px solid #d9b24c;color:#f4c95d;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#10022; Open the govOS app &rarr;</a></p>
 <div class="grid">{cards}</div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
@@ -304,9 +315,9 @@ Sources are linked on every page.</div>
         import glob
         for h in glob.glob(os.path.join(SITE, "*.html")):
             b = os.path.basename(h)
-            # the public root landing becomes the private "all reports" hub; never clobber
-            # king-local's own index.html (the King shell).
-            shutil.copy(h, os.path.join(KLOCAL, "reports.html" if b == "index.html" else b))
+            # SINGLE SOURCE: local root == public root (the civic landing front door).
+            # The King System app lives at /king/ on BOTH (one tap from the landing).
+            shutil.copy(h, os.path.join(KLOCAL, b))
         for sub in ("data", "donors", "king"):   # +king: civic/templates tree so go.html resolves on the private server (true superset)
             s = os.path.join(SITE, sub)
             if os.path.isdir(s):
