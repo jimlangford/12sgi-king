@@ -66,7 +66,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
                "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html",
                # N53 integrity engine — past minutes / supplemental materials / roll-call corpus
-               "n53_engine.html", "archive.html", "testimony_money.html",
+               "n53_engine.html", "archive.html", "testimony_money.html", "testimony_record.html",
                "archive_state.html", "archive_maui.html", "archive_honolulu.html", "archive_hawaii.html", "archive_kauai.html",
                "archive_nyc.html", "archive_nys.html", "archive_liverpool.html",
                "archive_london.html", "archive_tokyo.html", "archive_hongkong.html", "archive_singapore.html",
@@ -108,6 +108,7 @@ NAV_LABEL = {
     "n53_engine.html": "N53 — Ka Luna Kiaʻi (integrity engine)",
     "archive.html": "Past Record — Minutes & Votes",
     "testimony_money.html": "Follow the Money by Testimony",
+    "testimony_record.html": "Who Testified — the record",
     "crosswalk_london.html": "London (City of London + GLA)",
     "crosswalk_tokyo.html": "Tokyo",
     "crosswalk_hongkong.html": "Hong Kong",
@@ -133,7 +134,7 @@ NAV_GROUPS = [
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
                           "wildfire_recovery_watch.html", "money_holysee.html"]),
-    ("The Record", ["n53_engine.html", "archive.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
+    ("The Record", ["n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
                     "charter_application.html", "lege_legislator_scorecard.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up

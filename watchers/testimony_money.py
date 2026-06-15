@@ -132,11 +132,11 @@ documented as a question &mdash; never an accusation.</p>
 agenda and testify before the vote &mdash; <a href="agendas_maui.html">upcoming Maui agendas</a> &middot;
 <a href="https://mauicounty.granicusideas.com/meetings" target="_blank" rel="noopener">eComment (submit testimony) &#8599;</a> &middot;
 <a href="testify.html">testify through govOS</a>.</div>
-<div class="disc">Honest data note: Maui publishes its <b>votes</b> (the govOS N53 engine ingests them) but does
-<b>not</b> publish individual citizen testifier names in machine-readable form &mdash; not in Legistar, the
-minutes PDFs, or eComment (which records positions and counts, not a public named roster). So a per-citizen
-testimony&times;money link is intentionally NOT shown here; that would require inventing names. The professional
-lobbyist&times;money link above IS shown because it is genuinely public record (HSEC registry &times; campaign finance).</div>
+<div class="disc">This page is the <b>professional advocacy</b> layer (registered lobbyists &times; campaign finance &times; contracts).
+The <b>named citizen testimony</b> record &mdash; who testified and what they urged &mdash; is parsed separately from the
+Maui County committee transcripts on <a href="testimony_record.html">Who Testified</a>, where any testifier or org that
+also appears in a public donation/contract/lobby record is flagged as a question. All public record; correlations are
+questions for further reporting, never accusations.</div>
 <p style="margin-top:10px"><a href="lobby_money_watch.html">lobby + money (full registry scan)</a> &middot;
 <a href="money_behind_officials.html">money behind officials</a> &middot;
 <a href="contracts_x_donors.html">contracts &times; donors</a> &middot;

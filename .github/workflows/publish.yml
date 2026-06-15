@@ -99,6 +99,7 @@ jobs:
           run "$P/ka_leo_nyc.py" || true     # Ka Leo NYC - real CFB aggregates (no fabricated donors)
           run "$P/wildfire_watch.py" || true # wildfire recovery money, ranked by firm (needs hands_awards first)
           run "$P/lobby_money_watch.py" || true # state lobbyist registry x donors: who lobbies AND pays the deciders (needs donor_watch first)
+          run "$P/testimony_watch.py" || true   # extract NAMED public testifiers from Maui committee minutes (Legistar transcripts) + link to money
           run "$P/testimony_money.py" || true   # Follow the Money by Testimony: lobbyist advocacy x donations x contracts (needs lobby_money_watch + vendor_donor_join)
           if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
             run "$P/lege_legiscan.py" --years 2024 2026 || true
