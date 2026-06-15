@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# build_site.py - assemble the public static site for Cloudflare Pages / GitHub Pages.
+# build_site.py - assemble the public static site for GitHub Pages.
 # Collects the Kilo Aupuni report HTML + JSON from reports/mauios (+ council) and writes
 # a flat ./site/ with an index.html linking everything. Runs locally OR on a CI runner.
 #
