@@ -5,13 +5,13 @@
    ships to consumers (tokens + @font-face webfonts).
    ============================================================ */
 
-@import "tokens/fonts.css";
-@import "tokens/colors.css";
-@import "tokens/typography.css";
-@import "tokens/spacing.css";
-@import "tokens/motion.css";
-@import "tokens/cosmology.css";
-@import "tokens/film.css";
-@import "tokens/codex.css";
-@import "tokens/ops.css";
-@import "tokens/mauios.css";
+@import "tokens/fonts.css?v=2026-06-15";
+@import "tokens/colors.css?v=2026-06-15";
+@import "tokens/typography.css?v=2026-06-15";
+@import "tokens/spacing.css?v=2026-06-15";
+@import "tokens/motion.css?v=2026-06-15";
+@import "tokens/cosmology.css?v=2026-06-15";
+@import "tokens/film.css?v=2026-06-15";
+@import "tokens/codex.css?v=2026-06-15";
+@import "tokens/ops.css?v=2026-06-15";
+@import "tokens/mauios.css?v=2026-06-15";
