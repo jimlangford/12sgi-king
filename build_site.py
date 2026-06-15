@@ -220,6 +220,7 @@ def nav_bar(current):
             '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') + groups +
             '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
+            '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "") +
             '<a class="gn-cta" href="take_action.html">Take action</a>'
             '</div></nav>' + NAV_JS)
 
@@ -345,6 +346,11 @@ def main():
         with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
             f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
         print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
+    _rr = os.path.join(os.path.dirname(os.path.abspath(__file__)), "request_records.html")
+    if os.path.exists(_rr):
+        with open(os.path.join(SITE, "request_records.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(inject_nav(open(_rr, encoding="utf-8", errors="replace").read(), "request_records.html"))
+        print("  + request_records.html: pre-drafted UIPA/FOIA + send-the-records-back form (+nav)")
     # [redundancy] production status (public-safe) from the local 15-min publisher
     _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
     prod = ""

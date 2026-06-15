@@ -208,7 +208,9 @@ def build_html(out):
           'or the portfolio? A question grounded in the public testimony, for reporting and verification &mdash; not a finding '
           'against any person.</div>'
           '<div style="font-size:11px;color:#9a957f;margin-top:6px;font-style:italic">Precision note: the real-estate flag is '
-          'keyword-based on the transcript; confirm each speaker&rsquo;s actual affiliation in the linked minutes before relying on it.</div></div>')
+          'keyword-based on the transcript; confirm each speaker&rsquo;s actual affiliation in the linked minutes before relying on it.</div>'
+          '<div style="font-size:12.5px;margin-top:8px"><b><a href="request_records.html#fema">→ Request the FEMA &amp; State disaster-housing rates (and send them back)</a></b> '
+          '&mdash; the rate-paid-vs-fair-market number that answers the question, ready to file.</div></div>')
     mtgs = ""
     for m in out["meetings"]:
         if not m["testifiers"]: continue
