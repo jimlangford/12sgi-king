@@ -1,0 +1,368 @@
+{
+ "tenants": [
+  {
+   "id": "maui",
+   "code": "MAU-001",
+   "name": "Maui County",
+   "seat": "Wailuku",
+   "state_parent": "state",
+   "local_jur": "Maui County (Charter + MCC)",
+   "local_label": "Maui County (Charter + MCC)",
+   "tagline": "The home tenant — the Charter of the County of Maui and the Maui County Code, laid on the State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "Charter of the County of Maui Art. 10 (Code of Ethics) — financial disclosure statements; Art. 9 (Financial Procedures) — County Auditor independent audit",
+     "note": "Financial disclosure statements of elected county officers, candidates, and appointed department heads filed under the Code of Ethics are open to public inspection, and the County Auditor conducts an independent annual audit of county funds and operations.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Maui County Code Ch. 2.56 (Code of Ethics); Charter of the County of Maui Art. 10, §10-2 (Board of Ethics)",
+     "note": "Sets conflict-of-interest, gift, and disclosure standards for county officers and employees, administered and enforced by the Board of Ethics through review of disclosure statements and advisory opinions.",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Charter of the County of Maui Art. 4 (The Council) — passage of ordinances; Art. 9 (Financial Procedures) — annual budget and public hearing provisions",
+     "note": "Provides for County Council consideration and passage of ordinances and adoption of the annual budget through a public process, giving the public a voice before the Council votes.",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Charter of the County of Maui Art. 9 (Financial Procedures) — Office of the County Auditor",
+     "note": "Vests stewardship oversight of public funds in the County Auditor, who within six months after the start of each fiscal year must conduct an independent financial audit of county funds and accounts by a disinterested certified public accountant.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Maui County Code Ch. 2.88 (Cultural Resources Commission)",
+     "note": "Establishes the Cultural Resources Commission, which administers the county's historic districts and provides design review for new construction and sites within those districts.",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Charter of the County of Maui Art. 10, §10-2 (Board of Ethics) + transmittal to the Prosecuting Attorney",
+     "note": "The Board of Ethics investigates ethics matters with power to administer oaths and subpoena witnesses and records, may initiate impeachment proceedings against elected officers, and transmits its findings to the appropriate appointing authority and the prosecuting attorney.",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Maui County Code Ch. 2.88 (Cultural Resources Commission)",
+     "note": "Staffs the commission with members experienced in disciplines including Hawaiian culture, history, archaeology, and ethnic culture to help preserve the county's historic and cultural resources.",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Charter of the County of Maui Art. 1 (Incorporation), §1-1 et seq.",
+     "note": "Establishes the County of Maui as a body politic and corporate vested with the powers granted to counties under the Constitution and laws of the State of Hawaiʻi.",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "honolulu",
+   "code": "HON-004",
+   "name": "City & County of Honolulu",
+   "seat": "Honolulu",
+   "state_parent": "state",
+   "local_jur": "Honolulu (Revised Charter + ROH)",
+   "local_label": "City & County of Honolulu (Revised Charter + ROH)",
+   "tagline": "Oʻahu — the Revised Charter of the City and County of Honolulu and the Revised Ordinances of Honolulu, on the State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. XI, § 11-103 (Disclosure of Interest); Revised Ordinances of Honolulu (ROH) financial-disclosure provisions (ROH Ch. 3 ethics-commission article; ROH Ch. 1, Art. 19 additional standards of conduct)",
+     "note": "Requires city elected and appointed officers to file public disclosure/financial-disclosure statements, kept and administered through the Honolulu Ethics Commission.",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. XI — Standards of Conduct (§ 11-102 Conflicts of Interest, et seq.); Honolulu Ethics Commission (RCH § 11-107); ROH Ch. 3 ethics-commission provisions",
+     "note": "Sets conflict-of-interest, fair-treatment, and disclosure standards for city officers and employees, enforced by the Honolulu Ethics Commission.",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. III — Council (public-notice and public-hearing requirements for council action on ordinances and resolutions)",
+     "note": "Requires the City Council to act through publicly noticed meetings and public hearings before adopting ordinances and resolutions.",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. IX — Financial Administration (budget, appropriations, and audit provisions); executive Department of Budget and Fiscal Services",
+     "note": "Establishes stewardship of city funds through the budget, appropriation, and audit procedures administered by the executive budget and fiscal-services functions.",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Revised Ordinances of Honolulu (ROH) Ch. 3, Art. 10 (§ 3-10 — Oʻahu Historic Preservation Commission); Revised Charter of Honolulu (RCH) historic-preservation provisions",
+     "note": "Establishes the Oʻahu Historic Preservation Commission and the historic-property inventory protecting historic and archaeological sites, with confidentiality where disclosure could harm sites or traditional practice.",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. XI — Ethics Commission penalties and referrals (§ 11-106 Penalties and Disciplinary Action; § 11-107 Ethics Commission); RCH Department of the Corporation Counsel provisions",
+     "note": "Provides for Ethics Commission findings, penalties, and referral, with the Corporation Counsel handling the city's civil legal actions (judicial trials lie with the separate State courts).",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Revised Ordinances of Honolulu (ROH) — historic, cultural, and scenic district / historic-preservation zoning provisions (Land Use Ordinance)",
+     "note": "Provides local protection of historic, cultural, and scenic resources through designated districts and preservation review.",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Revised Charter of Honolulu (RCH) Art. I — Incorporation and General Powers (§ 1-101 Incorporation; general powers for local self-government)",
+     "note": "Constitutes the City and County of Honolulu as a body politic with the powers necessary for local self-government, the charter basis of this government's authority.",
+     "conf": "p"
+    }
+   }
+  },
+  {
+   "id": "hawaii",
+   "code": "HAW-002",
+   "name": "Hawaiʻi County",
+   "seat": "Hilo",
+   "state_parent": "state",
+   "local_jur": "Hawaiʻi County (Charter + HCC)",
+   "local_label": "County of Hawaiʻi (Charter + Hawaiʻi County Code)",
+   "tagline": "Hawaiʻi Island — the Charter of the County of Hawaiʻi and the Hawaiʻi County Code (9-member Council), on the State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "Hawaiʻi County Code Ch. 2, Art. 15 (Code of Ethics), §2-91.1 — Financial disclosures and disclosures of interest",
+     "note": "Requires County officers and certain board/commission members to file financial-interest disclosure statements kept on file by the Board of Ethics.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Charter of the County of Hawaiʻi, Art. XIV (Code of Ethics; Board of Ethics) + Hawaiʻi County Code Ch. 2, Art. 15 (Code of Ethics)",
+     "note": "Sets conflict-of-interest, gifts, and recusal standards for County officials, interpreted and enforced by the County Board of Ethics.",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "Charter of the County of Hawaiʻi, Art. 3 — County Council legislative-procedure provisions (introduction, readings, and adoption of ordinances)",
+     "note": "Requires the County Council to introduce, read, and adopt ordinances through its established legislative procedures before they take effect.",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Charter of the County of Hawaiʻi — Department of Finance provisions (Director of Finance; custody of public funds, budget, and county indebtedness) and Art. 1 powers of the County",
+     "note": "Vests custody of County public funds and budget administration in the Director of Finance under the charter's financial-administration provisions.",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Hawaiʻi County Code Ch. 25 (Zoning) — land-use provisions addressing historic, cultural, and landmark sites",
+     "note": "County zoning regulates development and land use, including treatment of historic areas, structures, and cultural sites within County jurisdiction.",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Charter of the County of Hawaiʻi — Office of Corporation Counsel (county legal officer); civil actions heard in the State courts of the Third Circuit",
+     "note": "The Corporation Counsel represents the County in civil legal proceedings, which are heard in the State judiciary serving Hawaiʻi Island.",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Charter of the County of Hawaiʻi — executive department provisions supporting research, planning, and community/cultural programs",
+     "note": "County charter departments are authorized to administer programs that can support cultural, heritage, and community needs within County jurisdiction.",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Charter of the County of Hawaiʻi, Art. 1 — Powers of the County (name, general powers, exercise of powers), adopted under Haw. Const. Art. VIII §2",
+     "note": "Establishes the County of Hawaiʻi as a self-governing body exercising the powers of local self-government permitted by the State Constitution.",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "kauai",
+   "code": "KAU-003",
+   "name": "Kauaʻi County",
+   "seat": "Līhuʻe",
+   "state_parent": "state",
+   "local_jur": "Kauaʻi County (Charter + KCC)",
+   "local_label": "County of Kauaʻi (Charter + Kauaʻi County Code)",
+   "tagline": "Kauaʻi — the Charter of the County of Kauaʻi and the Kauaʻi County Code, on the State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "Charter of the County of Kauaʻi, Art. XX (Code of Ethics) — financial-disclosure statements filed with and examined by the Board of Ethics",
+     "note": "County officers and employees file disclosure statements that the Board of Ethics examines for possible conflicts as part of the public ethics record.",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Charter of the County of Kauaʻi, Art. XX (Code of Ethics), §20.02 — prohibited conduct; enforced by the seven-member County Board of Ethics",
+     "note": "Bars use of office for private benefit and disclosure or use of non-public information acquired in official duties; the seven-member Board of Ethics investigates complaints and issues advisory opinions.",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Charter of the County of Kauaʻi — County Council meeting and public-participation provisions",
+     "note": "Council meetings are open and provide for public testimony before action is taken on County matters.",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Charter of the County of Kauaʻi — Office of the County Attorney and Department of Finance fiscal-stewardship provisions",
+     "note": "County officers are charged with stewardship of County funds and property held in public trust.",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Kauaʻi County Code, Ch. 8 (Comprehensive Zoning Ordinance), Art. 14 — Kauaʻi Historic Preservation Review Commission",
+     "note": "Establishes the Commission that reviews projects affecting historic, archaeological, and cultural properties on Kauaʻi.",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Charter of the County of Kauaʻi — Office of the County Attorney; civil actions and abatement proceedings in courts of competent jurisdiction",
+     "note": "The County Attorney commences civil actions and abatement or injunctive proceedings to remedy violations of County law.",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Kauaʻi County Code, Ch. 8 (Comprehensive Zoning Ordinance), Art. 14 — Historic Preservation Review Commission (cultural/historic resources)",
+     "note": "County-level review and protection of cultural and historic resources, including those of Native Hawaiian significance.",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Charter of the County of Kauaʻi (2022 codified version), adopted under Hawaiʻi Const. Art. VIII (county self-government / home rule)",
+     "note": "The Charter is the foundational instrument constituting the County government and the people's home-rule self-governance.",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "nys",
+   "code": "NY-STATE",
+   "name": "State of New York",
+   "seat": "Albany",
+   "state_parent": null,
+   "local_jur": "State of New York (Constitution + Consolidated Laws)",
+   "local_label": "State of New York (Constitution + Consolidated Laws)",
+   "tagline": "The New York parent corpus — the State Constitution and the Consolidated Laws — that NYC and the villages lay on top of.",
+   "local": {
+    "transparency": {
+     "cite": "Public Officers Law Art. 6 §§84-90 (FOIL); Election Law Art. 14 §14-102 (Statements of campaign receipts, contributions and expenditures)",
+     "note": "Public right of access to government records, plus mandatory public filing of campaign contributions and expenditures with the State Board of Elections.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Public Officers Law §73 & §74 (business/professional activities restrictions; Code of Ethics)",
+     "note": "Sets conflict-of-interest restrictions and general ethical standards for state officers and employees, enforced by the Commission on Ethics and Lobbying in Government (COELIG).",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Public Officers Law Art. 7 §§100-111 (Open Meetings Law)",
+     "note": "Requires that the public business of state and local public bodies be conducted in meetings open to the public, with advance notice and public access to deliberations.",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "N.Y. Constitution Art. XIV §1 (Forest Preserve 'forever wild')",
+     "note": "Holds the state forest preserve lands as a public trust to be forever kept as wild forest lands, alterable only by constitutional amendment.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Parks, Recreation and Historic Preservation Law §14.09 (State Historic Preservation Act of 1980)",
+     "note": "Requires state agencies to give notice, consult, and avoid or mitigate impacts to historic, architectural, archeological and cultural property eligible for the state or national register.",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "N.Y. Constitution Art. VI (Unified Court System / Judiciary)",
+     "note": "Establishes the state's unified court system, through which civil remedies including CPLR Article 78 proceedings against agencies are pursued.",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "N.Y. Constitution Art. XI §1 (Education clause)",
+     "note": "Directs the legislature to maintain and support a system of free common schools wherein all the children of the state may be educated.",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "N.Y. Constitution Art. I (Bill of Rights), incl. §1 (rights, privileges and franchise) & §2 (trial by jury)",
+     "note": "Declares the foundational rights of the people of the state, including the franchise and trial by jury, as the basis of New York's government.",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "nyc",
+   "code": "NYC",
+   "name": "New York City",
+   "seat": "New York",
+   "state_parent": "nys",
+   "local_jur": "New York City (Charter + Admin Code)",
+   "local_label": "New York City (Charter + Administrative Code)",
+   "tagline": "NYC — the New York City Charter and Administrative Code, on the New York State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "NYC Charter Ch. 46, §1052 (Campaign Finance Board); NYC Admin. Code Title 3, Ch. 7 (Campaign Finance Act)",
+     "note": "Establishes the Campaign Finance Board, which administers public matching funds and makes every candidate's contributions and expenditures a publicly disclosed record.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "NYC Charter Ch. 68, §§2601-2604 (Conflicts of Interest); §2602 establishes the Conflicts of Interest Board",
+     "note": "Sets the ethics code and recusal/financial-disclosure standards for public servants, interpreted and enforced by the Conflicts of Interest Board.",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "NYC Charter Ch. 45, §1043 (City Administrative Procedure Act rulemaking); Ch. 8, §197-c (Uniform Land Use Review Procedure)",
+     "note": "Requires public notice and a public hearing before agencies adopt rules and before major land-use actions are approved.",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "NYC Charter Ch. 15, §383 (Inalienable Property)",
+     "note": "Declares the city's waterfront, land under water, wharves, parks, waterways and other public places inalienable, holding them in public trust except as the law expressly permits disposition.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "NYC Admin. Code Title 25, Ch. 3, §25-303 (Landmarks Preservation and Historic Districts)",
+     "note": "Empowers the Landmarks Preservation Commission, after a public hearing, to designate and protect landmarks, interior and scenic landmarks, and historic districts of cultural and historic value.",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "NYC Charter Ch. 17, §§391-396 (Law Department / Corporation Counsel); Conflicts of Interest Board civil penalties under Ch. 68, §2603(e)",
+     "note": "The Law Department's Corporation Counsel conducts the city's litigation, and the Conflicts of Interest Board may impose civil penalties for ethics violations.",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "NYC Charter Ch. 67, §§2501-2503 (Department of Cultural Affairs)",
+     "note": "Establishes the Department of Cultural Affairs and its commissioner to plan, support, and coordinate the city's cultural institutions and activities.",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "NYC Charter Ch. 2, §28 (Powers of the Council) & §38 (local laws; referendum); Ch. 1 (Mayor); Charter Revision Commission process",
+     "note": "The Charter is the foundational instrument of the city's authority, vesting legislative power in the elected Council and reserving certain charter changes to the voters by referendum.",
+     "conf": "p"
+    }
+   }
+  },
+  {
+   "id": "liverpool",
+   "code": "NY-LIVERPOOL",
+   "name": "Village of Liverpool",
+   "seat": "Liverpool, NY",
+   "state_parent": "nys",
+   "local_jur": "Village of Liverpool (Village Code + NY Village Law)",
+   "local_label": "Village of Liverpool (Code + NY Village Law)",
+   "tagline": "A small NY village (Onondaga County) — its own Code under NY Village Law, on the New York State corpus.",
+   "local": {
+    "transparency": {
+     "cite": "NY Public Officers Law Art. 6, Freedom of Information Law (§§84-90), administered by the Village of Liverpool as a local agency; assessment rolls under Code of the Village of Liverpool Ch. 10 (Assessments)",
+     "note": "Public access to Village records and assessment rolls runs through the FOIL records-officer duties the Village fulfills as a local agency.",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Code of the Village of Liverpool — Code of Ethics provisions, adopted under NY General Municipal Law §806; advisory opinions via a board of ethics under GML §808",
+     "note": "Sets conflict-of-interest disclosure and recusal standards for Village officers and employees, with provision for an ethics board to render advisory opinions.",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "NY Public Officers Law Art. 7, Open Meetings Law (§§100-111), governing meetings of the Village of Liverpool Board of Trustees",
+     "note": "Requires the Board of Trustees to deliberate and vote in meetings open to the public with advance notice.",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "NY Village Law §4-412 (board of trustees' management of village property, funds, and affairs)",
+     "note": "Vests stewardship of Village property, public funds, and lands in the Board of Trustees for the general welfare of inhabitants.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Code of the Village of Liverpool Ch. 380 (Zoning) under NY Village Law §7-700 et seq. zoning authority, with NY General Municipal Law §96-a as the state historic-landmark-protection enabling authority",
+     "note": "Authorizes the Village to regulate land use and, where adopted, to protect historic and landmark properties through zoning and state historic-preservation authority.",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Code of the Village of Liverpool — general penalty provisions for code violations, with adjudication under NY Village Law (village enforcement powers) and the applicable local justice court / Uniform Justice Court Act",
+     "note": "Provides the civil-penalty mechanism and local tribunal for adjudicating violations of Village ordinances.",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Code of the Village of Liverpool Ch. 380 (Zoning) and comprehensive-plan provisions under NY Village Law §7-722 (comprehensive planning)",
+     "note": "Protects the Village's heritage and community character through comprehensive-plan goals and consistent land-use regulation.",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "NY Village Law (incorporation under Art. 2) and NY Municipal Home Rule Law §10 (local-law authority of the Village)",
+     "note": "Establishes the Village as an incorporated self-governing municipality with home-rule power to adopt its own local laws.",
+     "conf": "v"
+    }
+   }
+  }
+ ]
+}

@@ -51,7 +51,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html",
                "ka_leo_nyc.html",   # rebuilt on real CFB aggregates (no fabricated donors) - no longer withheld
                # per-tenant Charter <-> Law crosswalk (12 Stones SSC v5 up through the Holy See); State = the proof tenant
-               "crosswalk_state.html"]
+               "crosswalk_state.html",
+               "crosswalk_maui.html", "crosswalk_honolulu.html", "crosswalk_hawaii.html", "crosswalk_kauai.html",
+               "crosswalk_nys.html", "crosswalk_nyc.html", "crosswalk_liverpool.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -77,6 +79,13 @@ NAV_LABEL = {
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
     "crosswalk_state.html": "Charter ⇄ Law (State of Hawaiʻi)",
+    "crosswalk_maui.html": "Charter ⇄ Law (Maui County)",
+    "crosswalk_honolulu.html": "Charter ⇄ Law (Honolulu)",
+    "crosswalk_hawaii.html": "Charter ⇄ Law (Hawaiʻi County)",
+    "crosswalk_kauai.html": "Charter ⇄ Law (Kauaʻi County)",
+    "crosswalk_nys.html": "Charter ⇄ Law (New York State)",
+    "crosswalk_nyc.html": "Charter ⇄ Law (New York City)",
+    "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
     # Charter / law / budget reference layer (govOS-styled pages in the King civic tree).
     # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
@@ -100,12 +109,11 @@ NAV_GROUPS = [
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
     # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
     # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).
-    ("Charter & Law", ["crosswalk_state.html",
-                       "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html",
+    ("Charter & Law", ["crosswalk_state.html", "crosswalk_maui.html", "crosswalk_honolulu.html",
+                       "crosswalk_hawaii.html", "crosswalk_kauai.html", "crosswalk_nys.html",
+                       "crosswalk_nyc.html", "crosswalk_liverpool.html",
+                       # unique non-crosswalk reference pages (real budget data + the publish loop)
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
-                       "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html",
-                       "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html",
-                       "king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html",
                        "king/civic/templates/agenda-explainer/Agenda%20Explainer.html"]),
 ]
 NAV_CSS = ("<style>"
