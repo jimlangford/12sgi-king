@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Testify — Ka haʻi manaʻo — Maui County | govOS</title>
+<style>
+ :root{--bg:#0c100e;--panel:#151d19;--line:#243029;--ink:#e8e4d8;--mut:#9a957f;--gold:#d9b24c;--ok:#56c08a;--warn:#e06a4a;--aloha:#9fd9bf}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,serif;line-height:1.6}
+ .wrap{max-width:780px;margin:0 auto;padding:32px 22px calc(env(safe-area-inset-bottom,0px) + 80px)}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.3px;color:var(--gold);text-transform:uppercase}
+ h1{font-size:27px;margin:8px 0 6px} h2{font-size:18px;margin:26px 0 8px}
+ .lead{font-size:14px;color:#cfc9b6;max-width:72ch}
+ .deadline{font-size:12.5px;color:#cfc9ba;border:1px solid rgba(224,106,74,.35);border-radius:11px;padding:11px 14px;margin:16px 0;background:rgba(224,106,74,.06)}
+ label{display:block;font-size:11.5px;color:var(--mut);font-family:Consolas,monospace;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 4px}
+ input,select,textarea{width:100%;background:#0e1411;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-family:inherit;font-size:14px}
+ textarea{min-height:150px;resize:vertical} .row2{display:flex;gap:12px;flex-wrap:wrap} .row2>div{flex:1;min-width:180px}
+ .btns{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px}
+ .btn{display:inline-block;text-decoration:none;font-family:Consolas,monospace;font-size:13px;padding:12px 20px;border-radius:10px;border:1px solid var(--gold);color:var(--gold);background:rgba(217,178,76,.06);cursor:pointer}
+ .btn.primary{background:var(--gold);color:#0c100e;font-weight:700}
+ .btn:hover{background:rgba(217,178,76,.16)}
+ .note{font-size:11.5px;color:var(--mut);font-style:italic;margin-top:8px;line-height:1.5}
+ .ctx{font-size:12.5px;color:#bdb8a4;border-left:2px solid rgba(217,178,76,.4);padding:7px 12px;margin:14px 0}
+ .ctx a{color:var(--gold)}
+ .aloha{font-size:13px;color:var(--aloha);border-left:3px solid #2a6b4e;padding:9px 13px;margin:18px 0;line-height:1.65} .aloha b{color:#c8efd9}
+ #msg{font-size:13px;margin:8px 0;font-family:Consolas,monospace} .okmsg{color:var(--ok)} .errmsg{color:var(--warn)}
+ a.home{color:var(--gold);font-family:Consolas,monospace;font-size:11px;text-decoration:none}
+ footer{margin-top:34px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:var(--mut)}
+</style></head><body><div class="wrap">
+<a class="home" href="reports.html">&larr; govOS</a>
+<div class="eyebrow" style="margin-top:12px">12 Stones Global &middot; Kilo Aupuni &middot; participate</div>
+<h1>Testify &mdash; Ka ha&#699;i mana&#699;o</h1>
+<p class="lead">Your testimony is the most direct voice you have in county government &mdash; and a single resident&rsquo;s
+testimony carries real weight in the record. Write it here; send it to the <b>Maui County Clerk</b> (the County&rsquo;s
+official channel) with one tap, and optionally record it on govOS so the community can see the people speaking.</p>
+
+<div class="deadline">&#9201; <b>Deadline:</b> for a <b>Council</b> meeting, email testimony to the County Clerk at least
+<b>24 hours before</b> so copies reach the members in time. For a <b>Committee</b> meeting, the official channel is
+<b>eComment</b> on that meeting&rsquo;s agenda. Find the meeting + item first:
+<a href="https://mauicounty.us/agendas/" target="_blank" rel="noopener" style="color:var(--gold)">MauiCounty.us/agendas &#8599;</a></div>
+
+<h2>1. Write your testimony</h2>
+<form class="f" id="testify" method="POST" action="https://formspree.io/f/xzdqydpe">
+  <label>Agenda item / bill number (and meeting, if known)</label>
+  <input name="item" id="f_item" required placeholder="e.g. Bill 9 (2024) — STR phase-out · Housing & Land Use Committee">
+  <div class="row2">
+    <div><label>Your position</label><select name="position" id="f_pos"><option>Support</option><option>Oppose</option><option>Comment</option></select></div>
+    <div><label>Your town / district</label><input name="town" id="f_town" placeholder="e.g. Kīhei, South Maui"></div>
+  </div>
+  <label>Your testimony</label>
+  <textarea name="testimony" id="f_text" required placeholder="Aloha Chair and Members — my name is …, I live in …, and I write in support of / opposition to …"></textarea>
+  <div class="row2">
+    <div><label>Your name (testimony is logged by name)</label><input name="name" id="f_name" required placeholder="Your full name"></div>
+    <div><label>Your email (the Clerk replies here; you get a copy)</label><input name="email" id="f_email" type="email" required placeholder="you@example.com"></div>
+  </div>
+  <input type="hidden" name="_cc" value="county.clerk@mauicounty.us">
+  <input type="hidden" name="_subject" id="f_subject" value="Maui Council testimony">
+  <label style="text-transform:none;letter-spacing:0;font-family:inherit;font-size:12.5px;color:var(--mut);margin-top:14px">
+    <input type="checkbox" id="f_consent" required style="width:auto;margin-right:7px"> I am submitting this as my own public testimony. Send it to the Maui County Clerk (county.clerk@mauicounty.us) and record it on govOS.</label>
+
+  <h2>2. Send it</h2>
+  <div class="btns">
+    <a class="btn primary" id="mailbtn" target="_blank" rel="noopener">&#9993; Send to the County Clerk (from your email)</a>
+    <button class="btn" type="submit">Submit &amp; record on govOS &rarr;</button>
+    <a class="btn" href="https://mauicounty.us/ecomment/" target="_blank" rel="noopener">Committee item? Use eComment &#8599;</a>
+  </div>
+  <div id="msg" role="status"></div>
+  <p class="note">The first button opens your own email pre-filled to the Clerk &mdash; the gold standard, because it
+  comes from you. The second records your testimony on govOS and copies the Clerk. Either way, your words are yours.</p>
+</form>
+
+<div class="ctx">Testify <b>informed</b>: before you write, see <a href="money_behind_officials.html">who funds the decider</a>,
+<a href="ka_leo_voice.html">how loud the money&rsquo;s voice is</a>, and <a href="parity_check.html">which pairs no longer answer</a>
+&mdash; all public record, framed as questions.</div>
+
+<div class="aloha">Aloha. To testify is to add your voice to the chant of the people &mdash; <b>ka leo o ka lāhui</b>. When
+enough quiet voices speak, a pair out of balance can return to <b>pono</b>. This is paradise momentum: not anger at the
+record, but the people showing up. The <b>&#699;āina</b> hears you. Mahalo for participating.</div>
+
+<footer>12 Stones Global &middot; Kilo Aupuni &middot; testimony via the Maui County Clerk (county.clerk@mauicounty.us) &amp; eComment &middot; aloha &middot; pono</footer>
+
+<script>
+ (function(){
+   var f=document.getElementById('testify'), msg=document.getElementById('msg');
+   var item=document.getElementById('f_item'), pos=document.getElementById('f_pos'), txt=document.getElementById('f_text'),
+       nm=document.getElementById('f_name'), town=document.getElementById('f_town'), subj=document.getElementById('f_subject'),
+       mail=document.getElementById('mailbtn');
+   function refresh(){
+     var it=item.value||'(agenda item)';
+     subj.value='Maui Council testimony — '+it;
+     var body=(pos.value||'Comment')+' on '+it+'.\n\n'+(txt.value||'')+'\n\n— '+(nm.value||'')+(town.value?(', '+town.value):'');
+     mail.href='mailto:county.clerk@mauicounty.us?subject='+encodeURIComponent(subj.value)+'&body='+encodeURIComponent(body);
+   }
+   ['input','change'].forEach(function(e){ f.addEventListener(e,refresh); }); refresh();
+   mail.addEventListener('click',function(ev){
+     if(!item.value||!txt.value||!nm.value){ ev.preventDefault(); msg.className='errmsg'; msg.textContent='Add the agenda item, your testimony, and your name first.'; }
+   });
+   f.addEventListener('submit',function(e){
+     e.preventDefault();
+     if(!document.getElementById('f_consent').checked){ msg.className='errmsg'; msg.textContent='Please confirm consent to send + record.'; return; }
+     var btn=f.querySelector('button[type=submit]'), label=btn.textContent; btn.disabled=true; btn.textContent='Sending…'; msg.className=''; msg.textContent='';
+     var fd=new FormData(f); fd.append('_replyto', document.getElementById('f_email').value);
+     fetch(f.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+       .then(function(r){ if(r.ok){ msg.className='okmsg'; msg.textContent='Mahalo — your testimony was sent to the Clerk and recorded. You will get a copy by email.'; f.querySelectorAll('input,select,textarea,.btns,.note').forEach(function(el){el.style.display='none';}); }
+         else { return r.json().then(function(d){ throw new Error((d.errors&&d.errors.map(function(x){return x.message;}).join(', '))||'submission error'); }); } })
+       .catch(function(err){ btn.disabled=false; btn.textContent=label; msg.className='errmsg'; msg.textContent='Could not submit ('+err.message+'). Use the “Send to the County Clerk” button instead — it sends straight from your email.'; });
+   });
+ })();
+</script>
+</div></body></html>

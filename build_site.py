@@ -48,7 +48,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "lobby_state.html", "lobby_honolulu.html", "lobby_nys.html",
                # workflow 3: matrix close + subcontractor chains + Ka Leo fan-out (ka_leo_nyc withheld - failed verify)
                "money_liverpool.html", "subcontractors_nyc.html",
-               "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html"]
+               "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html",
+               "ka_leo_nyc.html"]   # rebuilt on real CFB aggregates (no fabricated donors) - no longer withheld
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -109,6 +110,8 @@ NAV_CSS = ("<style>"
     ".gn-link{color:#cfc9b6;text-decoration:none;padding:8px 12px;border-radius:7px}"
     ".gn-link:hover{color:#efe9da;background:rgba(255,255,255,.045)}"
     ".gn-link.cur{color:#f4c95d}"
+    ".gn-lead{color:#9fd9bf;font-weight:600;text-decoration:none;padding:8px 12px;border-radius:7px;margin-right:4px}"
+    ".gn-lead:hover{background:rgba(67,211,158,.12)}.gn-lead.cur{color:#c8efd9}"
     ".gn-cta{margin-left:auto;background:#d9b24c;color:#0c100e;font-weight:600;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;white-space:nowrap}"
     ".gn-cta:hover{background:#e7c361}"
     ".gn-burger{display:none;margin-left:auto;background:none;border:0;color:#efe9da;font-size:21px;cursor:pointer;padding:4px 8px;line-height:1}"
@@ -145,7 +148,8 @@ def nav_bar(current):
             '<a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span>'
             '<b>govOS</b><span class="sub">Kilo Aupuni</span></a>'
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
-            '<div class="gn-menu">' + groups +
+            '<div class="gn-menu">'
+            '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') + groups +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
             '<a class="gn-cta" href="take_action.html">Take action</a>'
             '</div></nav>' + NAV_JS)
@@ -246,6 +250,11 @@ def main():
         with open(os.path.join(SITE, "take_action.html"), "w", encoding="utf-8", newline="\n") as f:
             f.write(_tah)
         print("  + take_action.html: demand-the-records + supporter signup (+nav)")
+    _tf = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testify.html")
+    if os.path.exists(_tf):
+        with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
+        print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
     # [redundancy] production status (public-safe) from the local 15-min publisher
     _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
     prod = ""
