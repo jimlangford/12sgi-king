@@ -113,7 +113,8 @@ jobs:
           run "$P/charter_law_map.py" || true
           run "$P/charter_crosswalk.py" || true  # per-tenant 12 Stones Charter <-> law crosswalk up through the Holy See
           run "$P/vatican_finances.py" || true   # Holy See finances (real FY2024 reports) — the apex tenant's money page
-          run "$P/agenda_watch.py" || true        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
+          run "$P/agenda_watch.py" || true
+          run "$P/agenda_explainer.py" || true   # shareable agenda fact-cards (needs agenda_watch first)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
           run "$P/patterns.py" || true
           run "$P/kilo_aupuni.py" || true
 
