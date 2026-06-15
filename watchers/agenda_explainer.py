@@ -69,7 +69,11 @@ def card(tid, m, idx):
     chips += '<a class="chip act" href="' + esc(tlink) + '">how to testify</a>'
     src_btn = ('<a class="sb" href="' + esc(src) + '" target="_blank" rel="noopener">source ↗</a>') if src else ""
     sub = esc(body) + ((" — " + esc(title)) if title else "") + " · " + esc(date)
-    return ('<div class="ex" data-cap="' + ja(caption) + '" data-url="' + ja(share_url) + '">'
+    title_text = body[:80] + ((" — " + title) if title else "")
+    moon_text = (mr["po"] + " moon · pō " + str(mr["night"]) + " — " + mr["offering"]) if mr else ""
+    return ('<div class="ex" data-cap="' + ja(caption) + '" data-url="' + ja(share_url) + '"'
+      ' data-date="' + ja(date) + '" data-tenant="' + ja(nm) + '" data-title="' + ja(title_text) + '"'
+      ' data-cta="' + ja(tip) + '" data-moon="' + ja(moon_text) + '">'
       '<div class="card9"><div class="c9-top"><span class="c9-eye">govOS · get ahead of the vote</span></div>'
       '<div class="c9-body"><div class="c9-when">' + esc(date) + '</div>'
       '<div class="c9-what">' + esc(nm) + '</div>'
@@ -83,11 +87,12 @@ def card(tid, m, idx):
       '<div class="chips">' + chips + '</div>'
       '<div class="cap">' + esc(caption) + '</div>'
       '<div class="sbtns">'
-      '<button class="sb primary" data-share>&#128228; Share to TikTok / IG / FB / X…</button>'
+      '<button class="sb primary" data-share>&#128228; Share graphic</button>'
+      '<button class="sb" data-save>&#11015; Save card (.png)</button>'
       '<button class="sb" data-copy>Copy caption</button>'
       '<a class="sb" data-x target="_blank" rel="noopener">Post to X</a>'
       '<a class="sb" data-fb target="_blank" rel="noopener">Facebook</a>' + src_btn + '</div>'
-      '<div class="hint">Tip: the 9:16 card on the left IS the post — screenshot it (or long-press to save), then Share and paste the caption.</div>'
+      '<div class="hint">&#128228; Share graphic sends the card <b>image</b> itself (with the date in its title) straight to TikTok / IG / FB / X via your share sheet. No share sheet? It saves the .png and copies the caption.</div>'
       '</div></div>')
 
 def build():
@@ -132,20 +137,57 @@ def build():
      " .hint{font-size:11px;color:#9a957f;font-style:italic;margin-top:6px} .none{font-size:14px;color:#9a957f;font-style:italic}"
      " .tsec{font-size:16px;color:#f0ead8;margin:28px 0 2px;border-bottom:1px solid #243029;padding-bottom:6px;scroll-margin-top:60px} .tlink{font-family:Consolas,monospace;font-size:11px;margin-left:8px;font-weight:400} .jump{font-size:12px;color:#cfc9b6;margin:12px 0} .jump a{color:#d9b24c;font-family:Consolas,monospace;font-size:11px}"
      " a{color:#d9b24c} footer{margin-top:28px;border-top:1px solid #243029;padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}</style>")
-    JS = ("<script>document.querySelectorAll('.ex').forEach(function(ex){var cap=ex.getAttribute('data-cap'),url=ex.getAttribute('data-url');"
-     "var x=ex.querySelector('[data-x]');if(x)x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(cap)+'&url='+encodeURIComponent(url);"
-     "var fb=ex.querySelector('[data-fb]');if(fb)fb.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url)+'&quote='+encodeURIComponent(cap);"
-     "var sh=ex.querySelector('[data-share]');if(sh)sh.addEventListener('click',function(){if(navigator.share){navigator.share({title:'govOS — get ahead of the vote',text:cap,url:url}).catch(function(){});}else{navigator.clipboard&&navigator.clipboard.writeText(cap+' '+url);sh.textContent='Caption copied — paste in your app';}});"
-     "var cp=ex.querySelector('[data-copy]');if(cp)cp.addEventListener('click',function(){if(navigator.clipboard)navigator.clipboard.writeText(cap+' '+url);var o=cp.textContent;cp.textContent='Copied ✓';setTimeout(function(){cp.textContent=o;},1500);});});</script>")
+    JS = r"""<script>
+(function(){
+ var SANS="-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif",MONO="'Consolas','SF Mono','Menlo',monospace";
+ function wrap(x,text,maxw){var w=(text||'').split(/\s+/),L=[],c='';for(var i=0;i<w.length;i++){var t=c?c+' '+w[i]:w[i];if(c&&x.measureText(t).width>maxw){L.push(c);c=w[i];}else{c=t;}}if(c)L.push(c);return L;}
+ function drawCard(ex){
+  var W=1080,H=1920,pad=84,maxw=W-pad*2,cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d');
+  var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#10231b');g.addColorStop(.65,'#0c100e');g.addColorStop(1,'#0c100e');
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.strokeStyle='#2a6b4e';x.lineWidth=5;x.strokeRect(22,22,W-44,H-44);
+  x.textBaseline='top';x.textAlign='left';
+  var date=ex.getAttribute('data-date')||'',tenant=ex.getAttribute('data-tenant')||'',title=ex.getAttribute('data-title')||'',cta=ex.getAttribute('data-cta')||'',moon=ex.getAttribute('data-moon')||'';
+  var y=150;
+  x.fillStyle='#9fd9bf';x.font='600 30px '+MONO;x.fillText('govOS · GET AHEAD OF THE VOTE',pad,y);y+=78;
+  x.fillStyle='#d9b24c';x.font='bold 60px '+MONO;x.fillText(date,pad,y);y+=104;        // date is the headline
+  x.fillStyle='#f0ead8';x.font='bold 64px '+SANS;wrap(x,tenant,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=78;});y+=18;
+  x.fillStyle='#cfc9b6';x.font='40px '+SANS;wrap(x,title,maxw).slice(0,6).forEach(function(l){x.fillText(l,pad,y);y+=54;});
+  y+=34;x.fillStyle='#e06a4a';x.font='36px '+MONO;x.fillText('⏱ Testify BEFORE the vote',pad,y);y+=62;
+  x.fillStyle='#9fd9bf';x.font='38px '+SANS;wrap(x,cta,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=50;});
+  if(moon){y+=26;x.strokeStyle='rgba(205,180,240,.35)';x.lineWidth=2;x.beginPath();x.moveTo(pad,y);x.lineTo(W-pad,y);x.stroke();y+=26;
+   x.fillStyle='#cdb4f0';x.font='italic 34px '+SANS;wrap(x,'🌙 '+moon,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=46;});}
+  x.fillStyle='#9a957f';x.font='28px '+MONO;x.textAlign='center';x.fillText('⚖ 12 Stones · Kilo Aupuni · the people’s record',W/2,H-96);
+  return cv;
+ }
+ function fname(ex){var d=(ex.getAttribute('data-date')||'agenda').replace(/[^0-9A-Za-z-]/g,'');var t=(ex.getAttribute('data-tenant')||'card').replace(/[^0-9A-Za-z]+/g,'-').replace(/(^-|-$)/g,'');return 'govOS_'+d+'_'+t+'.png';}
+ try{window.govosDrawCard=drawCard;}catch(e){}   // exposed for verification + future batch export
+ function toPng(ex,cb){drawCard(ex).toBlob(function(b){cb(b);},'image/png');}
+ function dl(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},4000);}
+ document.querySelectorAll('.ex').forEach(function(ex){
+  var cap=ex.getAttribute('data-cap'),url=ex.getAttribute('data-url');
+  var ttl='govOS agenda — '+(ex.getAttribute('data-tenant')||'')+' — '+(ex.getAttribute('data-date')||'');
+  var xb=ex.querySelector('[data-x]');if(xb)xb.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(cap)+'&url='+encodeURIComponent(url);
+  var fb=ex.querySelector('[data-fb]');if(fb)fb.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url)+'&quote='+encodeURIComponent(cap);
+  var sh=ex.querySelector('[data-share]');if(sh)sh.addEventListener('click',function(){var o=sh.textContent;sh.textContent='Rendering…';toPng(ex,function(blob){
+    var file=new File([blob],fname(ex),{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:ttl,text:cap}).then(function(){sh.textContent=o;}).catch(function(){sh.textContent=o;});}
+    else{dl(blob,fname(ex));if(navigator.clipboard)navigator.clipboard.writeText(cap+' '+url);sh.textContent='Saved .png + caption copied';setTimeout(function(){sh.textContent=o;},2600);}
+  });});
+  var sv=ex.querySelector('[data-save]');if(sv)sv.addEventListener('click',function(){var o=sv.textContent;sv.textContent='Rendering…';toPng(ex,function(blob){dl(blob,fname(ex));sv.textContent='Saved ✓';setTimeout(function(){sv.textContent=o;},1800);});});
+  var cp=ex.querySelector('[data-copy]');if(cp)cp.addEventListener('click',function(){if(navigator.clipboard)navigator.clipboard.writeText(cap+' '+url);var o=cp.textContent;cp.textContent='Copied ✓';setTimeout(function(){cp.textContent=o;},1500);});
+ });
+})();
+</script>"""
     return ("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">"
       "<title>Agenda Explainer — get ahead of the vote | govOS</title>" + CSS + "</head><body><div class=\"wrap\">"
       "<div class=\"eyebrow\">12 Stones Global · Kilo Aupuni · forecast → fact → publish</div>"
       "<h1>Agenda Explainer — get ahead of the vote</h1>"
       "<p class=\"lead\">Every upcoming meeting becomes a shareable fact-card: what's being decided, the law that "
-      "governs it, the money behind the deciders, and how to testify <b>before</b> the vote. Screenshot the 9:16 card, "
-      "tap Share to send it to TikTok / Instagram / Facebook / X with the caption, and bring your neighbors to the table. "
-      "Each government has its own cards below.</p>" + jumpnav + cards +
+      "governs it, the money behind the deciders, and how to testify <b>before</b> the vote. Tap <b>Share graphic</b> to send "
+      "the 9:16 card <b>image</b> (with the date in its title) straight to TikTok / Instagram / Facebook / X with the caption — "
+      "or <b>Save card</b> to download the .png. Each government has its own cards below.</p>" + jumpnav + cards +
       "<footer>generated " + g + " · agenda-explainer v1 · live from the daily agenda feed · share opens your own apps — no auto-posting · Kilo Aupuni · aloha · pono</footer>"
       + JS + "</div></body></html>")
 
