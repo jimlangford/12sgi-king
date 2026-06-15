@@ -20,6 +20,10 @@ review pending" where not attested — never an automated sacred guess. Hewa is 
 """
 import os, json, re, html
 from datetime import datetime, timezone, timedelta
+try:
+    import moon_calendar          # kaulana mahina: agenda date -> pō night + aloha offering
+except Exception:
+    moon_calendar = None
 
 HOME    = os.path.expanduser("~")
 TOOL_DIR= os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +54,11 @@ def hewa_list(p):
 
 def main():
     cards = (load(CARDS, {}) or {}).get("cards", [])
+    # the Sage 13-moon binding per node (Moon N of 13) — the studio-node side of the moon link
+    NMOON = {}
+    for n in (load(os.path.join(PROJECT, "node_map", "node_map_canonical.json"), {}) or {}).get("nodes", []):
+        mb = n.get("moon_binding") or {}
+        NMOON[n.get("id")] = mb.get("moon")
     par = load(PARITY, {})
     hewa = hewa_list(par)
     hewa_txt = [(json.dumps(x, ensure_ascii=False).lower(), x) for x in hewa]
@@ -74,11 +83,17 @@ def main():
         # OPPORTUNITY: an upcoming agenda touching this node's domain
         opps = [a for a in ag if dom & a["tok"]][:4]
         balance = "hewa" if hv else ("opportunity" if opps else "pono")
+        opp_out = []
+        for o in opps:
+            mr = moon_calendar.reading(o["date"]) if moon_calendar else None
+            opp_out.append({"tenant": o["tenant"], "date": o["date"], "body": o["body"], "url": o["url"],
+                            "moon": ({"night": mr["night"], "po": mr["po"], "phase": mr["phase"],
+                                      "offering": mr["offering"]} if mr else None)})
         nodes.append({"node": c.get("node"), "name": c.get("realm") or c.get("card_name"),
                       "role": role, "zone": c.get("zone"), "akua": c.get("akua"),
                       "wa": c.get("wa"), "phase": c.get("wa_phase"), "frame": c.get("frame_hex","#9a957f"),
-                      "balance": balance, "hewa_evidence": hv,
-                      "opportunities": [{"tenant": o["tenant"], "date": o["date"], "body": o["body"], "url": o["url"]} for o in opps]})
+                      "moon13": NMOON.get(c.get("node")),     # Sage 13-moon binding (Moon N of 13)
+                      "balance": balance, "hewa_evidence": hv, "opportunities": opp_out})
     summary = {"pono": sum(1 for n in nodes if n["balance"]=="pono"),
                "opportunity": sum(1 for n in nodes if n["balance"]=="opportunity"),
                "hewa": sum(1 for n in nodes if n["balance"]=="hewa")}
@@ -99,13 +114,15 @@ def render(b):
         opp = ""
         if n["opportunities"]:
             o = n["opportunities"][0]
+            mo = o.get("moon") or {}
+            moonline = (' <div class="moon">🌙 pō ' + esc(mo.get("po","")) + ' — ' + esc(mo.get("offering","")) + '</div>') if mo else ""
             opp = ('<div class="opp">live: ' + esc(o["body"][:40]) + ' · ' + esc(o["date"]) +
-                   ' <a href="agenda_explainer.html">act ↗</a></div>')
+                   ' <a href="agenda_explainer.html">act ↗</a></div>' + moonline)
         elif n["balance"] == "hewa":
             opp = '<div class="opp hw">broken pair — ' + esc(str(n["hewa_evidence"])[:46]) + ' · <a href="parity_check.html">N53 ↗</a></div>'
         return ('<div class="nd" style="border-color:' + col + '44">'
                 '<div class="nh"><span class="ng" style="color:' + col + '">' + glyph + '</span>'
-                '<span class="nn">' + esc(n["name"]) + '</span><span class="nw">wā ' + esc(n["wa"]) + ' · ' + esc(n["phase"]) + '</span></div>'
+                '<span class="nn">' + esc(n["name"]) + '</span><span class="nw">wā ' + esc(n["wa"]) + ' · ' + esc(n["phase"]) + (' · moon ' + esc(n["moon13"]) + '/13' if n.get("moon13") else '') + '</span></div>'
                 '<div class="nr">' + esc(n["role"]) + ' · ' + esc(n["akua"]) + '</div>' + opp + '</div>')
     tiles = "".join(tile(n) for n in b["nodes"])
     CSS = ("<style> body{margin:0;background:#0c100e;color:#e8e4d8;font-family:Georgia,serif;line-height:1.55}"
@@ -119,6 +136,7 @@ def render(b):
      " .nh{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap} .ng{font-size:14px} .nn{font-size:14px;font-weight:600;color:#f0ead8;flex:1}"
      " .nw{font-family:Consolas,monospace;font-size:9.5px;color:#9a957f} .nr{font-size:11.5px;color:#9a957f;margin:2px 0}"
      " .opp{font-size:11.5px;color:#cfc9b6;margin-top:5px} .opp.hw{color:#e9b48a} .opp a{color:#d9b24c}"
+     " .moon{font-size:11px;color:#9fd9bf;margin-top:4px;font-style:italic}"
      " a{color:#d9b24c} .aloha{font-size:13px;color:#9fd9bf;border-left:3px solid #2a6b4e;padding:9px 13px;margin:18px 0;line-height:1.6}"
      " footer{margin-top:26px;border-top:1px solid #243029;padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}</style>")
     return ("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"

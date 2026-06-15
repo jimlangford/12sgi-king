@@ -14,6 +14,10 @@ Output: reports/mauios/agenda_explainer.html
 """
 import os, json, html
 from datetime import datetime, timezone, timedelta
+try:
+    import moon_calendar          # kaulana mahina: the meeting date's pō + aloha offering on each card
+except Exception:
+    moon_calendar = None
 
 HOME    = os.path.expanduser("~")
 PROJECT = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS")
@@ -53,9 +57,11 @@ def card(tid, m, idx):
     nm = NAMES.get(tid, tid); L = links_for(tid)
     body = m.get("body", "Meeting"); title = m.get("title", ""); date = m.get("date", "")
     src = m.get("url", ""); tip, tlink = how_to_testify(tid)
+    mr = moon_calendar.reading(date) if (moon_calendar and date) else None
+    moon_cap = (" 🌙 %s moon (pō %d) — %s." % (mr["po"], mr["night"], mr["offering"])) if mr else ""
     caption = ("⚖ %s — %s%s on %s. Know the law, follow the money, and testify BEFORE the vote. "
-               "This is how we get ahead of it. #govOS #FollowTheMoney #%s #KiloAupuni #Aloha" % (
-                 nm, body, (" — " + title) if title else "", date, tid))
+               "This is how we get ahead of it.%s #govOS #FollowTheMoney #%s #KiloAupuni #Aloha" % (
+                 nm, body, (" — " + title) if title else "", date, moon_cap, tid))
     share_url = "https://jimlangford.github.io/12sgi-king/agenda_explainer.html"
     chips = ""
     for k, lbl in (("law","the law ⇄"),("money","the money"),("parity","the pairs"),("agendas","full agenda")):
@@ -69,7 +75,9 @@ def card(tid, m, idx):
       '<div class="c9-what">' + esc(nm) + '</div>'
       '<div class="c9-title">' + esc(body[:80]) + ((" — " + esc(title)) if title else "") + '</div>'
       '<div class="c9-deadline">&#9201; Testify BEFORE the vote</div>'
-      '<div class="c9-cta">' + esc(tip) + '</div></div>'
+      '<div class="c9-cta">' + esc(tip) + '</div>'
+      + (('<div class="c9-moon">🌙 ' + esc(mr["po"]) + ' moon · pō ' + str(mr["night"])
+          + ' — ' + esc(mr["offering"]) + '</div>') if mr else '') + '</div>'
       '<div class="c9-foot">⚖ 12 Stones · Kilo Aupuni · the people&rsquo;s record</div></div>'
       '<div class="ex-side"><div class="ex-h">' + esc(nm) + '</div><div class="ex-sub">' + sub + '</div>'
       '<div class="chips">' + chips + '</div>'
@@ -114,7 +122,9 @@ def build():
      " .c9-when{font-family:Consolas,monospace;font-size:13px;color:#d9b24c;margin-bottom:8px}"
      " .c9-what{font-size:21px;font-weight:700;color:#f0ead8;line-height:1.2} .c9-title{font-size:14px;color:#cfc9b6;margin-top:8px}"
      " .c9-deadline{font-family:Consolas,monospace;font-size:12px;color:#e06a4a;margin-top:14px}"
-     " .c9-cta{font-size:13px;color:#9fd9bf;margin-top:6px} .c9-foot{font-family:Consolas,monospace;font-size:10px;color:#9a957f;text-align:center}"
+     " .c9-cta{font-size:13px;color:#9fd9bf;margin-top:6px}"
+     " .c9-moon{font-size:12px;color:#cdb4f0;margin-top:12px;padding-top:10px;border-top:1px solid rgba(205,180,240,.22);font-style:italic;line-height:1.4}"
+     " .c9-foot{font-family:Consolas,monospace;font-size:10px;color:#9a957f;text-align:center}"
      " .ex-side{flex:1;min-width:260px} .ex-h{font-size:17px;font-weight:600;color:#f0ead8} .ex-sub{font-size:12.5px;color:#9a957f;margin-bottom:8px}"
      " .chips{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 10px} .chip{font-family:Consolas,monospace;font-size:11px;text-decoration:none;color:#d9b24c;border:1px solid #243029;border-radius:8px;padding:5px 9px} .chip.act{color:#9fd9bf;border-color:#2a6b4e} .chip:hover{background:rgba(217,178,76,.1)}"
      " .cap{font-size:12.5px;color:#cfc9b6;background:#151d19;border:1px solid #243029;border-radius:9px;padding:10px 12px;margin:6px 0}"
