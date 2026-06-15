@@ -234,13 +234,24 @@ def main():
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
         # also under king/ so the King shell's "Studio ->" door (href="go.html") resolves.
-        # The root go.html uses root-relative civic links (king/civic/...); when served at
-        # /king/ those become /king/king/... (404), so rewrite them to be /king/-relative.
+        # The root go.html is root-relative to the site (govOS dashboards live at root: e.g.
+        # jurisdictions.html, county_dashboard.html, ./ = govOS home, king/ = the King app).
+        # When the SAME file is served at /king/go.html, every root-relative link must go up
+        # one level. Generic rule (no per-link maintenance): keep absolute/anchor links as-is;
+        #   king/  -> ./    (the King shell IS this dir)
+        #   ./     -> ../   (govOS home lives at site root, one up)
+        #   X.html -> ../X.html  (all govOS dashboards/tenant pages live at site root)
         if os.path.isdir(os.path.join(SITE, "king")):
-            _kgo = (open(_go, encoding="utf-8").read()
-                    .replace('href="king/civic/', 'href="civic/')   # civic templates live under /king/
-                    .replace('href="king/"', 'href="./"')           # the King shell IS this dir
-                    .replace('href="take_action.html"', 'href="../take_action.html"'))  # take_action is at root
+            def _king_href(m):
+                h = m.group(1)
+                if h.startswith(("http", "#", "../", "mailto:")):
+                    return 'href="%s"' % h
+                if h == "king/":
+                    return 'href="./"'
+                if h in ("./", "."):
+                    return 'href="../"'
+                return 'href="../%s"' % h    # root-level govOS page -> up one from /king/
+            _kgo = re.sub(r'href="([^"]*)"', _king_href, open(_go, encoding="utf-8").read())
             with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(_kgo)
         print("  + go.html: live/mirror failover launcher (root + king/)")

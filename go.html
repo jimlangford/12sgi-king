@@ -27,6 +27,11 @@
  .tag.live{background:rgba(86,192,138,.14);color:var(--ok)} .tag.mir{background:rgba(217,178,76,.14);color:var(--gold)}
  .tag.act{background:rgba(217,178,76,.14);color:var(--gold)}
  .foot{text-align:center;font-size:11px;color:var(--mut);margin-top:18px;line-height:1.5}
+ .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+ .chip{flex:1 1 calc(50% - 4px);text-decoration:none;background:var(--panel);border:1px solid var(--line);
+       border-radius:10px;padding:10px 12px;color:inherit;transition:border-color .15s}
+ .chip:hover{border-color:var(--gold)} .chip .cn{font-size:13px;font-weight:600}
+ .chip .cl{font-size:10px;letter-spacing:.6px;color:var(--mut);margin-top:2px;font-family:Consolas,monospace}
 </style></head><body><div class="wrap">
   <div class="seal">🪷</div>
   <h1>12 Stones — Live / Mirror</h1>
@@ -39,23 +44,37 @@
   <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders. Control-only, no public mirror.</div></a>
   <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">King System (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
 
-  <!-- ══ MIRROR (public, always-on) ══ -->
+  <!-- ══ MIRROR (public, always-on) — the govOS civic system ══ -->
   <div class="sect">Always-on mirror · public (any phone, no laptop)</div>
-  <a class="card" href="king/"><span class="tag mir">mirror</span><div class="t">King System (mirror)</div><div class="b">Always-on snapshot shell — govOS · Council · Sage</div></a>
-  <a class="card" href="./"><span class="tag mir">mirror</span><div class="t">Kilo Aupuni dashboards</div><div class="b">Votes · money · permits · patterns · contracts · scorecards</div></a>
+  <a class="card" href="./"><span class="tag mir">mirror</span><div class="t">govOS — home</div><div class="b">The civic transparency system — votes · money · permits · patterns · contracts · scorecards</div></a>
+  <a class="card" href="jurisdictions.html"><span class="tag mir">mirror</span><div class="t">Jurisdictions — all tenants</div><div class="b">Every government on govOS — State of Hawaiʻi · Maui · Honolulu · Hawaiʻi · Kauaʻi · NYC · NY State · Liverpool</div></a>
+  <a class="card" href="king/"><span class="tag mir">mirror</span><div class="t">King System app</div><div class="b">The full shell — govOS · Council · Sage</div></a>
 
-  <!-- ══ govOS civic surfaces — direct static mirror links (mobile-friendly) ══ -->
-  <div class="sect">govOS surfaces · direct mirror links</div>
-  <a class="card" href="king/civic/templates/budget-transparency/Budget%20Transparency.html"><span class="tag mir">mirror</span><div class="t">Budget Transparency</div><div class="b">Article X ledger — FY2027 adopted + FY2026 baseline, every dollar traceable</div></a>
-  <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><span class="tag mir">mirror</span><div class="t">govOS — Government OS (home)</div><div class="b">Civic loop hub — departments, watch fleet, the whole system at a glance</div></a>
-  <a class="card" href="king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html"><span class="tag mir">mirror</span><div class="t">Title 19 — Charter ⇄ Law Crosswalk</div><div class="b">28 charter articles × 6 law bodies (Maui)</div></a>
-  <a class="card" href="king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html"><span class="tag mir">mirror</span><div class="t">Maui County Code &amp; Rules</div><div class="b">MCC titles · council committees · rules · ordinance ledger</div></a>
-  <a class="card" href="king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html"><span class="tag mir">mirror</span><div class="t">State of Hawaiʻi Law Index</div><div class="b">Constitution + HRS — the corpus every county inherits</div></a>
-  <a class="card" href="king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html"><span class="tag mir">mirror</span><div class="t">Hawaiʻi County Crosswalk</div><div class="b">Same charter⇄law engine, Hawaiʻi County tenant</div></a>
-  <a class="card" href="king/civic/templates/agenda-explainer/Agenda%20Explainer.html"><span class="tag mir">mirror</span><div class="t">Agenda Explainer</div><div class="b">Publish loop — agenda item → fact-card storyboard</div></a>
+  <!-- ══ govOS DASHBOARDS — the new civic surfaces (replaces the old MauiOS templates) ══ -->
+  <div class="sect">govOS dashboards · follow the money</div>
+  <a class="card" href="county_dashboard.html"><span class="tag mir">govOS</span><div class="t">Maui County Dashboard</div><div class="b">The home tenant — council, money, votes, contracts in one view</div></a>
+  <a class="card" href="money_behind_officials.html"><span class="tag mir">govOS</span><div class="t">Money Behind Officials</div><div class="b">Who funds each decider — public campaign-finance record</div></a>
+  <a class="card" href="ka_leo_voice.html"><span class="tag mir">govOS</span><div class="t">Ka Leo — The Louder Voice</div><div class="b">How much louder a donation makes a voice, as a question</div></a>
+  <a class="card" href="parity_check.html"><span class="tag mir">govOS</span><div class="t">Parity — Pairs That No Longer Answer</div><div class="b">The Kumulipo broken-pair scan across money × votes</div></a>
+  <a class="card" href="contracts_x_donors.html"><span class="tag mir">govOS</span><div class="t">Contracts × Donors</div><div class="b">Public-records join: who wins work and also gives</div></a>
+  <a class="card" href="patterns_money_x_votes.html"><span class="tag mir">govOS</span><div class="t">Money × Votes</div><div class="b">Patterns where giving and deciding line up — framed as questions</div></a>
+
+  <!-- ══ TENANTS — one tap each, matching the local govOS ══ -->
+  <div class="sect">Tenants · jump straight in</div>
+  <div class="chips">
+    <a class="chip" href="money_state.html"><div class="cn">State of Hawaiʻi</div><div class="cl">000 · money</div></a>
+    <a class="chip" href="county_dashboard.html"><div class="cn">Maui County</div><div class="cl">001 · dashboard</div></a>
+    <a class="chip" href="contracts_hawaii.html"><div class="cn">Hawaiʻi County</div><div class="cl">002 · contracts</div></a>
+    <a class="chip" href="contracts_kauai.html"><div class="cn">Kauaʻi County</div><div class="cl">003 · contracts</div></a>
+    <a class="chip" href="money_honolulu.html"><div class="cn">Honolulu</div><div class="cl">004 · money</div></a>
+    <a class="chip" href="money_nyc.html"><div class="cn">New York City</div><div class="cl">NYC · money</div></a>
+    <a class="chip" href="money_nys.html"><div class="cn">New York State</div><div class="cl">NYS · money</div></a>
+    <a class="chip" href="money_liverpool.html"><div class="cn">Village of Liverpool</div><div class="cl">NY · money</div></a>
+  </div>
 
   <!-- ══ ACT ══ -->
   <div class="sect">Act</div>
+  <a class="card" href="testify.html"><span class="tag act">act</span><div class="t">⚖ Testify</div><div class="b">Write testimony → send it straight to the County Clerk + record it on govOS</div></a>
   <a class="card" href="take_action.html"><span class="tag act">act</span><div class="t">Demand the Records</div><div class="b">File a UIPA request for the contract logs · sign up</div></a>
 
   <div class="foot">Live = your laptop via Tailscale (private). Mirror = GitHub Pages (public, read-only, no credentials or controls).</div>
