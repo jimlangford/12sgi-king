@@ -33,7 +33,7 @@ OUT     = os.path.join(MAUIOS, "testimony_record.json")
 LEG     = "https://mauicounty.legistar.com/"
 HST     = timezone(timedelta(hours=-10))
 UA      = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) 12sgi-kilo"}
-MAXMTG  = 16
+MAXMTG  = 56   # full year's committee minutes
 esc     = lambda s: html.escape(str(s or ""))
 def now_hst(): return datetime.now(HST)
 
@@ -58,11 +58,18 @@ def enumerate_minutes(year):
 # ── 2. parse a transcript for self-identified public testifiers ─────────────────────────────
 STAFF_TITLES = re.compile(r"\b(Director|Deputy|Corporation Counsel|Planning|Budget Director|"
                           r"Administrator|Officer|Department of|Staff|Clerk|Supervising|First Deputy)\b", re.I)
-ORG_RE = re.compile(r"(?:on behalf of|representing|(?:here )?with|from)\s+(?:the\s+)?"
-                    r"([A-Z][A-Za-zʻ'&.\- ]{3,48}?(?:Association|Hui|Coalition|Foundation|Council|Union|"
-                    r"Chamber|Alliance|Society|Partners|Group|LLC|Inc|Company|Corporation|Ltd|Trust|"
-                    r"Department|Realtors|Farm Bureau|Sierra Club))")
+ORG_RE = re.compile(r"(?:on behalf of|representing|(?:here )?with the|with|from the|for the|president of|director of|executive director of|work for)\s+(?:the\s+)?"
+                    r"([A-Z][A-Za-zʻ'&.\- ]{3,52}?(?:Association|Assn|Hui|Coalition|Foundation|Council|Union|"
+                    r"Chamber|Alliance|Society|Partners|Partnership|Group|LLC|L\.L\.C\.|Inc|Company|Corporation|Corp|Ltd|"
+                    r"Trust|Department|Realtors|Realty|Properties|Bureau|Club|Institute|Fund|Ohana|Board))")
 NAME_RE = re.compile(r"[Mm]y name is\s+([A-Z][A-Za-zʻ'\-]+(?:\s+[A-Z][A-Za-zʻ'\-]+){0,2})")
+# real-estate / disaster-housing affiliation — the Bill 9 (short-term rental) follow-the-money angle
+REALTOR_RE = re.compile(r"\b(realtor|real estate|real-estate|broker|realty|property manager|"
+                        r"vacation rental|short-term rental|transient (?:vacation|accommodation)|"
+                        r"rental (?:owner|manager)|lodging|hotel|resort)\b", re.I)
+BILL9_RE   = re.compile(r"\bBill\s*9\b|short-term rental|transient vacation|\bTVR\b|\bMinatoya\b|phase[- ]?out|"
+                        r"\bSTR\b|vacation rental", re.I)
+FEMA_RE    = re.compile(r"\bFEMA\b|disaster (?:housing|recovery)|emergency housing|displaced|wildfire (?:housing|survivors)", re.I)
 
 def meeting_header(t):
     m = re.search(r"([A-Z][A-Z ,’'&]+COMMITTEE|COUNCIL[A-Z ]*)\s+MINUTES", t)
@@ -110,7 +117,10 @@ def parse_testifiers(t):
         bm = re.search(r"\b(Bill No\.?\s*\d+|Bill\s+\d+|Resolution\s+\d+\-\d+|Reso\.?\s*\d+\-\d+)", body)
         if bm: bill = bm.group(1)
         out.append({"name": name, "org": org, "position": pos, "bill": bill,
-                    "quote": re.sub(r"\s+", " ", body)[:220]})
+                    "realtor": bool(REALTOR_RE.search(body)),
+                    "bill9": bool(BILL9_RE.search(body)),
+                    "fema": bool(FEMA_RE.search(body)),
+                    "quote": re.sub(r"\s+", " ", body)[:240]})
     # de-dup by (name,bill,position)
     seen, dedup = set(), []
     for r in out:
@@ -183,6 +193,22 @@ def build_html(out):
     money_html = "".join('<div class="money">%s<div style="font-size:11px;color:#9a957f;margin-top:4px">%s &middot; %s &middot; <a href="%s" target="_blank" rel="noopener">minutes &#8599;</a></div></div>'
                          % (_trow(r, m["url"]), esc(m["date"]), esc(m["body"]), esc(m["url"])) for m, r in linked) \
                  or '<div class="none">No testifier in the scanned window matches a public donation/contract/lobby record. Most public testifiers are private citizens with no money footprint — which is the honest result.</div>'
+    # front-end Bill 9 insight — the QUESTION (aloha + factual), with the precision caveat
+    allt = [r for m in out["meetings"] for r in m["testifiers"]]
+    re_b9 = [r for r in allt if r.get("realtor") and r.get("bill9")]
+    fema_n = sum(1 for r in allt if r.get("fema"))
+    bill9_html = ""
+    if re_b9 or fema_n:
+        bill9_html = ('<h2>A question on Bill 9 (short-term rentals)</h2>'
+          '<div class="money"><b>%d</b> real-estate / rental-affiliated voices appear in the Bill 9 / short-term-rental '
+          'testimony, and <b>%d</b> testimony segments invoke FEMA or disaster housing in the same record. '
+          '<div style="font-size:12.5px;color:#bdb8a4;margin-top:8px"><b>The question for the record:</b> where an industry '
+          'compensated on rental and property values helps shape the bill that sets those values &mdash; and where some of '
+          'those interests also hold disaster-housing exposure or fund the deciders &mdash; does the vote answer the displaced, '
+          'or the portfolio? A question grounded in the public testimony, for reporting and verification &mdash; not a finding '
+          'against any person.</div>'
+          '<div style="font-size:11px;color:#9a957f;margin-top:6px;font-style:italic">Precision note: the real-estate flag is '
+          'keyword-based on the transcript; confirm each speaker&rsquo;s actual affiliation in the linked minutes before relying on it.</div></div>')
     mtgs = ""
     for m in out["meetings"]:
         if not m["testifiers"]: continue
@@ -203,6 +229,7 @@ donation, contract, or lobbying record, it is flagged &mdash; as a question for 
  <div class="kpi"><div class="kpv">%d</div><div class="kpl">with a public money link</div></div></div>
 <h2>Testimony the money may follow</h2>
 %s
+%s
 <h2>The full testimony record (by meeting)</h2>
 %s
 <div class="disc">Source: Maui County committee minutes, the verbatim Legistar transcripts (View.ashx?M=M).
@@ -215,7 +242,7 @@ available — in the committee transcripts, though not in the council vote-minut
 <a href="n53_engine.html">N53 — the votes side</a> &middot; <a href="agendas_maui.html">upcoming agendas</a> &middot;
 <a href="jurisdictions.html">all jurisdictions</a></p>
 <footer>generated %s &middot; testimony-watch v1 &middot; source: Maui County committee minutes (Legistar) &times; CSC/HANDS/HSEC public records &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
-</div></body></html>""" % (CSS, out["testifiers"], out["minutes_scanned"], out["money_links"], money_html, mtgs, g)
+</div></body></html>""" % (CSS, out["testifiers"], out["minutes_scanned"], out["money_links"], money_html, bill9_html, mtgs, g)
 
 def main():
     yr = now_hst().year

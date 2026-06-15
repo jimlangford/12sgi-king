@@ -421,6 +421,13 @@ Sources are linked on every page.</div>
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
         print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ -> served first via Tailscale")
+        # [OWNER ONLY] the prosecutorial back end — copied to king-local (private/Tailscale) ONLY.
+        # Deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE, so it can never reach
+        # public GitHub Pages. Front end stays Aloha + factual; this rigor is owner-private.
+        _cf = os.path.join(MAUIOS, "case_files.html")
+        if os.path.exists(_cf):
+            shutil.copy(_cf, os.path.join(KLOCAL, "case_files.html"))
+            print("  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)")
     return 0
 
 if __name__ == "__main__":
