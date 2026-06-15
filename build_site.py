@@ -49,7 +49,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # workflow 3: matrix close + subcontractor chains + Ka Leo fan-out (ka_leo_nyc withheld - failed verify)
                "money_liverpool.html", "subcontractors_nyc.html",
                "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html",
-               "ka_leo_nyc.html"]   # rebuilt on real CFB aggregates (no fabricated donors) - no longer withheld
+               "ka_leo_nyc.html",   # rebuilt on real CFB aggregates (no fabricated donors) - no longer withheld
+               # per-tenant Charter <-> Law crosswalk (12 Stones SSC v5 up through the Holy See); State = the proof tenant
+               "crosswalk_state.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -74,6 +76,16 @@ NAV_LABEL = {
     "parity_check.html": "Parity — Pairs That No Longer Answer",
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
+    "crosswalk_state.html": "Charter ⇄ Law (State of Hawaiʻi)",
+    # Charter / law / budget reference layer (govOS-styled pages in the King civic tree).
+    # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
+    "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
+    "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html": "Charter ⇄ Law Crosswalk",
+    "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
+    "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
+    "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html": "Hawaiʻi Law Index",
+    "king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html": "Hawaiʻi County Crosswalk",
+    "king/civic/templates/agenda-explainer/Agenda%20Explainer.html": "Agenda Explainer",
 }
 # Citizen-first IA: organized around what a voting community member needs to participate —
 # know your officials, follow the money, read the record. (Testify/Take-action lead via the CTA + a Participate link.)
@@ -85,6 +97,16 @@ NAV_GROUPS = [
     ("The Record", ["parity_check.html", "accountability_record.html", "sole_source_watch.html",
                     "commission_antitrust.html", "bill9_bill9_testimony_scan.html", "charter_application.html",
                     "lege_legislator_scorecard.html"]),
+    # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
+    # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
+    # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).
+    ("Charter & Law", ["crosswalk_state.html",
+                       "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html",
+                       "king/civic/templates/budget-transparency/Budget%20Transparency.html",
+                       "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html",
+                       "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html",
+                       "king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html",
+                       "king/civic/templates/agenda-explainer/Agenda%20Explainer.html"]),
 ]
 NAV_CSS = ("<style>"
     ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"

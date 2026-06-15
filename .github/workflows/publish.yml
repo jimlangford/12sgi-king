@@ -104,6 +104,7 @@ jobs:
           run "$P/commission_watch.py" || true
           run "$P/bill9_testimony.py" || true
           run "$P/charter_law_map.py" || true
+          run "$P/charter_crosswalk.py" || true  # per-tenant 12 Stones Charter <-> law crosswalk up through the Holy See
           run "$P/patterns.py" || true
           run "$P/kilo_aupuni.py" || true
 
