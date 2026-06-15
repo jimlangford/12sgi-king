@@ -126,8 +126,7 @@ def build():
       "<h1>Agenda Explainer — get ahead of the vote</h1>"
       "<p class=\"lead\">Every upcoming meeting becomes a shareable fact-card: what's being decided, the law that "
       "governs it, the money behind the deciders, and how to testify <b>before</b> the vote. Screenshot the 9:16 card, "
-      "tap Share to send it to TikTok / Instagram / Facebook / X with the caption, and bring your neighbors to the table. "
-      "(A narrated-video lane is coming next.)</p>" + cards +
+      "tap Share to send it to TikTok / Instagram / Facebook / X with the caption, and bring your neighbors to the table.</p>" + cards +
       "<footer>generated " + g + " · agenda-explainer v1 · live from the daily agenda feed · share opens your own apps — no auto-posting · Kilo Aupuni · aloha · pono</footer>"
       + JS + "</div></body></html>")
 
