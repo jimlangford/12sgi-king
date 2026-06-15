@@ -34,6 +34,7 @@ PAGES = [
     ("wildfire_recovery_watch.html",     "Wildfire Recovery Watch",      "Where the $22M+ in post-August-2023 Maui wildfire recovery money went, ranked by firm - repeat players flagged, set beside the deciders. Public records, framed as questions."),
     ("lobby_money_watch.html",           "Lobby + Money",                "Entities that BOTH register to lobby the State and donate to tracked Maui officials - a double channel of influence. Led by Lanai Resorts (5 council members). Public records, framed as questions."),
     ("jurisdictions.html",               "govOS Jurisdictions",          "Every govOS tenant - the Hawaii counties + State, and the New York tenants (NYC, NY State, Liverpool) - with the contract record loaded for each. One civic engine, many governments."),
+    ("ka_leo_voice.html",                "Ka Leo - The Louder Voice",    "How much louder money makes some voices, per official - rigor in the numbers, aloha in the asking; an invitation to return each pair to pono. Public records, framed as questions."),
 ]
 # extra civic pages copied + nav-injected but NOT shown as their own nav pill (reached via the hub)
 EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kauai.html", "contracts_hawaii.html",
@@ -68,6 +69,7 @@ NAV_LABEL = {
     "charter_application.html": "Charter → Law → Evidence",
     "parity_check.html": "Parity — Pairs That No Longer Answer",
     "wildfire_recovery_watch.html": "Wildfire Recovery",
+    "ka_leo_voice.html": "Ka Leo — The Louder Voice",
 }
 NAV_GROUPS = [
     ("Money & Contracts", ["county_dashboard.html", "patterns_money_x_votes.html", "money_behind_officials.html",
@@ -76,7 +78,7 @@ NAV_GROUPS = [
     ("Accountability", ["officials_scorecard.html", "lege_legislator_scorecard.html", "accountability_record.html",
                         "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
                         "charter_application.html"]),
-    ("The Mechanic", ["parity_check.html", "wildfire_recovery_watch.html"]),
+    ("The Mechanic", ["parity_check.html", "ka_leo_voice.html", "wildfire_recovery_watch.html"]),
 ]
 NAV_CSS = ("<style>"
     ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"
