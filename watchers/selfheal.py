@@ -134,6 +134,63 @@ CHECKS = [
     ("Batch files pure ASCII",         chk_bats_ascii),
 ]
 
+# ---------------------------------------------------------------------------
+# PROGRESS / best practices — self-healing is not only guarding against drift, it is advancing.
+# These nudge the system forward (MET / TODO). A TODO never blocks the build; it points at next work.
+# ---------------------------------------------------------------------------
+def _site_pages():
+    site = os.path.join(REPO, "site")
+    if not os.path.isdir(site): return []
+    return [f for f in os.listdir(site) if f.endswith(".html")]
+
+def prog_narrative_coverage():
+    """Best practice: every page opens with a plain-words door-in (clarity for the everyday person)."""
+    pages = _site_pages()
+    if not pages: return False, "site/ not built — skipped"
+    with_narr = sum(1 for f in pages if "govos-narrative" in
+                    open(os.path.join(REPO, "site", f), encoding="utf-8", errors="ignore").read())
+    pct = round(100 * with_narr / len(pages))
+    return (pct >= 90), "%d%% of %d pages carry a plain-words narrative" % (pct, len(pages))
+
+def prog_creative_surfaced():
+    """Best practice: the creative lane is visible publicly on the same sun↔moon rhythm as civic."""
+    ok = _has("sage_bridge.html", "sun↔moon overlap")
+    if ok is None: return False, "sage_bridge not generated — skipped"
+    return bool(ok), "creative offering surfaced on the Sage board" if ok else "creative overlap panel missing"
+
+def prog_canon_backed_up():
+    """Best practice: the model canon is backed up in the public repo (not only the project)."""
+    ok = os.path.exists(os.path.join(REPO, "docs", "SAGE_REALM_MODEL.md"))
+    return ok, "SAGE_REALM_MODEL.md is in the public repo" if ok else "canon not yet backed up to repo"
+
+def prog_olelo_recipient():
+    """Best practice: the ʻŌlelo verification has a real recipient so the weekly draft can be prepared."""
+    p = os.path.join(MAUIOS, "olelo_terms.json")
+    if not os.path.exists(p): return False, "olelo_terms.json not generated"
+    try: rec = json.load(open(p, encoding="utf-8")).get("recipient")
+    except Exception: rec = None
+    return bool(rec), ("recipient set: " + rec) if rec else "no ʻŌiwi recipient set yet"
+
+def prog_freshness():
+    """Best practice: the public record is alive — key reports regenerated recently."""
+    import time
+    keys = ["agenda_explainer.html", "sage_bridge.html", "olelo_glossary.html"]
+    ages = []
+    for k in keys:
+        p = os.path.join(MAUIOS, k)
+        if os.path.exists(p): ages.append((time.time() - os.path.getmtime(p)) / 86400.0)
+    if not ages: return False, "no key reports found"
+    oldest = max(ages)
+    return (oldest <= 8.0), "oldest key report regenerated %.1f days ago" % oldest
+
+PROGRESS = [
+    ("Plain-words on every page",   prog_narrative_coverage),
+    ("Creative lane surfaced",      prog_creative_surfaced),
+    ("Model canon backed up",       prog_canon_backed_up),
+    ("ʻŌlelo recipient set",        prog_olelo_recipient),
+    ("Record stays fresh",          prog_freshness),
+]
+
 def run():
     now = datetime.now(HST)
     results = []
@@ -142,14 +199,26 @@ def run():
         except Exception as e: status, detail = "FAIL", "check errored: %s" % e
         results.append({"check": name, "status": status, "detail": detail})
     summary = {s: sum(1 for r in results if r["status"] == s) for s in ("PASS", "WARN", "FAIL")}
+    # progress / best-practice meter (MET / TODO — advances the system, never blocks)
+    prog = []
+    for name, fn in PROGRESS:
+        try: met, detail = fn()
+        except Exception as e: met, detail = False, "check errored: %s" % e
+        prog.append({"check": name, "status": "MET" if met else "TODO", "detail": detail})
+    prog_met = sum(1 for p in prog if p["status"] == "MET")
     os.makedirs(MAUIOS, exist_ok=True)
     with open(os.path.join(MAUIOS, "selfheal.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump({"generated": now.isoformat(), "summary": summary, "results": results}, f, ensure_ascii=False, indent=1)
+        json.dump({"generated": now.isoformat(), "summary": summary, "results": results,
+                   "progress": prog, "progress_met": prog_met, "progress_total": len(prog)},
+                  f, ensure_ascii=False, indent=1)
 
-    color = {"PASS": "#4ade80", "WARN": "#d9b24c", "FAIL": "#e06a4a"}
+    color = {"PASS": "#4ade80", "WARN": "#d9b24c", "FAIL": "#e06a4a", "MET": "#4ade80", "TODO": "#d9b24c"}
     rows = "".join(
         '<tr><td>%s</td><td style="color:%s;font-weight:700">%s</td><td class="d">%s</td></tr>' % (
             esc(r["check"]), color.get(r["status"], "#999"), r["status"], esc(r["detail"])) for r in results)
+    prows = "".join(
+        '<tr><td>%s</td><td style="color:%s;font-weight:700">%s</td><td class="d">%s</td></tr>' % (
+            esc(p["check"]), color.get(p["status"], "#999"), p["status"], esc(p["detail"])) for p in prog)
     overall = "FAIL" if summary["FAIL"] else ("WARN" if summary["WARN"] else "PASS")
     page = (
         "<!doctype html><html lang='en'><head><meta charset='utf-8'>"
@@ -167,15 +236,22 @@ def run():
         "<span class='badge' style='background:" + color[overall] + ";color:#0e1311'>" + overall +
         "</span> &nbsp;<span style='color:#9a957f'>" + str(summary["PASS"]) + " pass · " + str(summary["WARN"]) +
         " warn · " + str(summary["FAIL"]) + " fail</span>"
+        "<h2 style='font-size:15px;margin:20px 0 0;color:#cfc9b6'>Guards — promises we keep</h2>"
         "<table><tbody>" + rows + "</tbody></table>"
-        "<footer>Private records are kept private; public records are kept public; the words are held under "
-        "community review. This page proves we hold ourselves to that. · Kilo Aupuni</footer>"
+        "<h2 style='font-size:15px;margin:24px 0 0;color:#cfc9b6'>Progress — best practices we advance "
+        "<span style='color:#9a957f;font-weight:400'>(" + str(prog_met) + "/" + str(len(prog)) + " met)</span></h2>"
+        "<table><tbody>" + prows + "</tbody></table>"
+        "<footer>Self-healing is two things: we keep what we promised (guards) and we keep getting better "
+        "(progress). Private stays private, public stays public, the words are held under community review. · Kilo Aupuni</footer>"
         "</div></body></html>")
     with open(os.path.join(MAUIOS, "selfheal.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
-    print("selfheal: %s — %d pass / %d warn / %d fail" % (overall, summary["PASS"], summary["WARN"], summary["FAIL"]))
+    print("selfheal: %s — %d pass / %d warn / %d fail · progress %d/%d" % (
+        overall, summary["PASS"], summary["WARN"], summary["FAIL"], prog_met, len(prog)))
     for r in results:
         print("  [%s] %s — %s" % (r["status"], r["check"], r["detail"]))
+    for p in prog:
+        print("  [%s] %s — %s" % (p["status"], p["check"], p["detail"]))
     return overall
 
 if __name__ == "__main__":

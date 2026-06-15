@@ -18,6 +18,11 @@ MAUIOS = os.path.join(PROJ, "reports", "mauios")
 HST    = timezone(timedelta(hours=-10))
 def esc(s): return html.escape(str(s or ""))
 
+# Department of ʻŌiwi Resources, County of Maui — the verification recipient (Jimmy reviews + sends).
+OIWI_EMAIL = "oiwi@mauicounty.gov"
+OIWI_NAME  = "Department of ʻŌiwi Resources, County of Maui"
+OIWI_PHONE = "808-270-1719"
+
 # Curated core lexicon: term -> (plain working gloss, kind). EVERY gloss is review-pending by design.
 # These are the words we actually surface; ʻŌiwi resources confirm/correct them.
 LEXICON = {
@@ -138,14 +143,17 @@ def build():
         + notice +
         "<table><thead><tr><th>Term</th><th>Kind</th><th>Working gloss (review-pending)</th>"
         "<th>Used</th><th>Where</th></tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
-        "<footer>Sent weekly to ʻŌiwi resources at Maui County for verification · "
-        "a working glossary, corrected by community guidance · Kilo Aupuni</footer>"
+        "<footer>Sent weekly to the County of Maui Department of ʻŌiwi Resources (" + esc(OIWI_EMAIL) +
+        ") for verification · a working glossary, corrected by community guidance · Kilo Aupuni</footer>"
         "</div></body></html>")
     with open(os.path.join(MAUIOS, "olelo_glossary.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
 
     # ---- weekly email body (Jimmy reviews + sends as a Gmail draft; never auto-sent) ----
     lines = [
+        "To: %s <%s>" % (OIWI_NAME, OIWI_EMAIL),
+        "Subject: ʻŌlelo Hawaiʻi verification — govOS / Kilo Aupuni (%s)" % now.strftime("%Y-%m-%d"),
+        "",
         "Aloha kākou,",
         "",
         "Mahalo for helping us hold ʻŌlelo Hawaiʻi with care. The govOS / Kilo Aupuni civic-transparency",
@@ -180,8 +188,8 @@ def build():
         "subject": "ʻŌlelo Hawaiʻi verification — govOS / Kilo Aupuni (%s)" % now.strftime("%Y-%m-%d"),
         "terms": [{"term": t, "kind": LEXICON[t][1], "gloss": LEXICON[t][0],
                    "used": usage[t], "pages": sorted(pages[t])} for t in live],
-        "recipient": None,   # set by Jimmy — the ʻŌiwi resources office at Maui County
-        "note": "working glosses, community-review pending; never auto-sent",
+        "recipient": OIWI_EMAIL, "recipient_name": OIWI_NAME, "recipient_phone": OIWI_PHONE,
+        "note": "working glosses, community-review pending; Gmail draft is reviewable — never auto-sent",
     }
     with open(os.path.join(MAUIOS, "olelo_terms.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

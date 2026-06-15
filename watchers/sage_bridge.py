@@ -97,14 +97,35 @@ def main():
     summary = {"pono": sum(1 for n in nodes if n["balance"]=="pono"),
                "opportunity": sum(1 for n in nodes if n["balance"]=="opportunity"),
                "hewa": sum(1 for n in nodes if n["balance"]=="hewa")}
+    # the sun(Ao)<->moon(Po) OVERLAP for today: one date, two readings of one balance —
+    # the civic pō-offering AND the creative sphere "in light" (the creative lane, surfaced with humility).
+    today = now_hst().strftime("%Y-%m-%d")
+    co = moon_calendar.creative_offering(today) if moon_calendar else None
+    today_overlap = ({"date": today, "moon_of_year": co["moon_of_year"], "ao_po": co["ao_po"],
+                      "node": co["node"], "node_name": co["node_name"], "akua": co["akua"],
+                      "po": co["po"], "po_night": co["po_night"],
+                      "civic_offering": co["civic_offering"], "creative_offering": co["creative_offering"]}
+                     if co else None)
     bridge = {"generated": now_hst().strftime("%Y-%m-%d %H:%M HST"),
               "what": "Cloud bridge: the live govOS civic record projected onto the 54-node Sage twin (Kumulipo parity).",
-              "summary": summary, "overseer": par.get("overseer"), "nodes": nodes}
+              "summary": summary, "overseer": par.get("overseer"), "today": today_overlap, "nodes": nodes}
     open(OUTJ, "w", encoding="utf-8", newline="\n").write(json.dumps(bridge, ensure_ascii=False, indent=1))
     open(OUTH, "w", encoding="utf-8", newline="\n").write(render(bridge))
     print("sage-bridge: 54 nodes · pono %d / opportunity %d / hewa %d · %d live agenda signals"
           % (summary["pono"], summary["opportunity"], summary["hewa"], len(ag)))
     return 0
+
+def _overlap_panel(t):
+    """The sun(Ao)<->moon(Po) overlap for today: civic offering AND creative sphere-in-light, with humility."""
+    if not t:
+        return ""
+    return (
+        '<div class="overlap"><div class="ot">🌙 today · the sun↔moon overlap · ' + esc(t["date"]) +
+        ' · moon ' + esc(t["moon_of_year"]) + '/13 · ' + esc(t["ao_po"]) + ' key</div>'
+        '<div class="oc"><b>Civic (pō ' + esc(t["po_night"]) + ' ' + esc(t["po"]) + '):</b> ' + esc(t["civic_offering"]) +
+        '<br><b>Creative (sphere in light):</b> ' + esc(t["creative_offering"]) + '</div>'
+        '<div class="ohum">One date, two readings of one balance — the civic ledger and the creative realm drawn from '
+        'the same source. The sacred binding of node to night is offered with humility and stays kumu-validation-pending.</div></div>')
 
 def render(b):
     s = b["summary"]
@@ -138,6 +159,10 @@ def render(b):
      " .opp{font-size:11.5px;color:#cfc9b6;margin-top:5px} .opp.hw{color:#e9b48a} .opp a{color:#d9b24c}"
      " .moon{font-size:11px;color:#9fd9bf;margin-top:4px;font-style:italic}"
      " a{color:#d9b24c} .aloha{font-size:13px;color:#9fd9bf;border-left:3px solid #2a6b4e;padding:9px 13px;margin:18px 0;line-height:1.6}"
+     " .overlap{margin:16px 0;padding:14px 16px;border:1px solid rgba(205,180,240,.3);border-radius:12px;background:rgba(205,180,240,.05)}"
+     " .overlap .ot{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.2px;color:#cdb4f0;text-transform:uppercase}"
+     " .overlap .oc{font-size:13.5px;color:#e8e4d8;margin-top:6px;line-height:1.6} .overlap .oc b{color:#9fd9bf}"
+     " .overlap .ohum{font-size:11px;color:#9a957f;font-style:italic;margin-top:7px}"
      " footer{margin-top:26px;border-top:1px solid #243029;padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}</style>")
     return ("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
       "<title>Sage — the living twin | govOS · Kilo Aupuni</title>" + CSS + "</head><body><div class=\"wrap\">"
@@ -150,6 +175,7 @@ def render(b):
       "<div class=\"bal\"><span class=\"bp p\">● Pono " + str(s["pono"]) + "</span>"
       "<span class=\"bp o\">◆ Opportunity " + str(s["opportunity"]) + "</span>"
       "<span class=\"bp h\">⚠ Hewa " + str(s["hewa"]) + "</span></div>"
+      + _overlap_panel(b.get("today")) +
       "<div class=\"grid\">" + tiles + "</div>"
       "<div class=\"aloha\">Aloha. The twin does not invent the world — it listens to it. Where the record shows a pair no "
       "longer answering, the node dims to Hewa; where an agenda opens, it glows gold — your chance to breathe the balance back. "
