@@ -42,7 +42,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "money_nyc.html", "lobby_nyc.html", "parity_nyc.html",
                "money_nys.html", "parity_nys.html",
                "money_state.html", "parity_state.html",
-               "money_honolulu.html", "parity_honolulu.html"]
+               "money_honolulu.html", "parity_honolulu.html",
+               # item-2 gaps (workflow 2): lobby crosses for HI State / Honolulu / NY State
+               "lobby_state.html", "lobby_honolulu.html", "lobby_nys.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]

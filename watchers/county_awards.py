@@ -156,7 +156,8 @@ def main():
         dollars = sum(v["total"] for v in vendors)
         stats[t["id"]] = {"awards": len(brows), "vendors": len(vendors), "dollars": dollars}
         # State + Honolulu (+ thin Kauai) get a generated page; Maui keeps its own existing page
-        if t["id"] in ("state", "honolulu", "kauai", "hawaii") and t["page"]:
+        # kauai/hawaii get richer honest "pending" pages from the gap workflow — don't clobber them here
+        if t["id"] in ("state", "honolulu") and t["page"]:
             open(os.path.join(MAUIOS, t["page"]), "w", encoding="utf-8").write(page(t["label"], vendors, len(brows), dollars))
     # Maui stats for the hub (from its existing dataset)
     mb = buckets.get("maui", []); mv = H.build_vendors(mb)

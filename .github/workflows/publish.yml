@@ -87,7 +87,11 @@ jobs:
           run "$P/nys_money_parity.py" || true        # NY State money (BOE) + parity
           run "$P/state_build.py" || true             # HI State money + parity
           run "$P/_build_honolulu.py" || true         # Honolulu money + parity
-          run "$P/county_awards.py" || true           # re-run hub so dimension links pick up the new pages
+          # item-2 gap fillers (workflow 2) — run AFTER the base generators so the better pages win:
+          run "$P/lobby_hi_build.py" || true          # HI State + Honolulu lobby+money crosses
+          run "$P/nyc_parity_v2.py" || true           # NYC parity upgraded to contributor-level (overrides the thin one)
+          run "$P/liverpool_village_finance.py" || true # Liverpool village budget (overrides the Onondaga proxy)
+          run "$P/county_awards.py" || true           # re-run hub LAST so dimension links pick up every page
           run "$P/vendor_donor_join.py" || true
           run "$P/parity_check.py" || true   # Kumulipo parity: broken pairs from the money x votes join
           run "$P/wildfire_watch.py" || true # wildfire recovery money, ranked by firm (needs hands_awards first)
