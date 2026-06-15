@@ -296,6 +296,16 @@ def main():
             shutil.rmtree(_kdst, ignore_errors=True)
             raise SystemExit("LEAK GATE tripped — internal markers in public King build, refusing to publish: " + "; ".join(_hits[:20]))
         print("  + king/: public King System (leak-gate clean)")
+        # [king-landing] The old Vue shell renders {{ template }} literals on static hosting and
+        # says nothing of the 16-tenant global work. Replace the /king/ landing with a clean static
+        # page that reflects the live global system (the owner Vue app is preserved at king/app.html).
+        _kl = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_landing.html")
+        if os.path.exists(_kl):
+            _kidx = os.path.join(_kdst, "index.html")
+            if os.path.exists(_kidx):
+                shutil.copy(_kidx, os.path.join(_kdst, "app.html"))   # keep the owner shell, reachable
+            shutil.copy(_kl, _kidx)
+            print("  + king/index.html: clean static landing (global system + live progress); old shell -> king/app.html")
     # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
     # when the laptop is up, else falls back to this GitHub mirror.
     _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
