@@ -55,7 +55,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "crosswalk_maui.html", "crosswalk_honolulu.html", "crosswalk_hawaii.html", "crosswalk_kauai.html",
                "crosswalk_nys.html", "crosswalk_nyc.html", "crosswalk_liverpool.html",
                # phase 2 — the Holy See: apex crosswalk (SSC <-> Canon Law) + its finances (real FY2024 reports)
-               "crosswalk_holysee.html", "money_holysee.html",
+               "crosswalk_holysee.html", "money_holysee.html", "rebuild_first.html",
                # world financial-center cities (per-country national layer up the shared apex)
                "crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html", "crosswalk_singapore.html",
                "crosswalk_zurich.html", "crosswalk_frankfurt.html", "crosswalk_paris.html", "crosswalk_dubai.html",
@@ -105,6 +105,7 @@ NAV_LABEL = {
     "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
     "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
     "money_holysee.html": "Holy See Finances",
+    "rebuild_first.html": "Who Rebuilt First (Lahaina/Kula)",
     "n53_engine.html": "N53 — Ka Luna Kiaʻi (integrity engine)",
     "archive.html": "Past Record — Minutes & Votes",
     "testimony_money.html": "Follow the Money by Testimony",
@@ -133,7 +134,7 @@ NAV_GROUPS = [
     ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
-                          "wildfire_recovery_watch.html", "money_holysee.html"]),
+                          "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
     ("The Record", ["n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
                     "charter_application.html", "lege_legislator_scorecard.html"]),

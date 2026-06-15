@@ -149,8 +149,10 @@ def build_corpus():
         else:
             e = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
             if tid == "nys":   # structured votes exist but the nysenate Open Legislation API needs a free key
-                e["note"] = ("NY Senate roll-call is structured via the Open Legislation API "
-                             "(legislation.nysenate.gov) — pending a free API key; minutes/materials links captured. " + e["note"])
+                e["source"] = "https://legislation.nysenate.gov/#signup"   # <- one-click: sign up for a free API key
+                e["note"] = ("NY Senate roll-call is structured via the Open Legislation API but needs a FREE API key — "
+                             "sign up at the source link above (legislation.nysenate.gov), then drop the key into "
+                             "config/nysenate_key.txt and the votes ingest activates. Minutes/materials links captured meanwhile. " + e["note"])
             tenants[tid] = e
     return {"generated": now_hst().strftime("%Y-%m-%d %H:%M HST"), "tenants": tenants}
 

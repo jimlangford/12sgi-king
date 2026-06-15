@@ -79,6 +79,7 @@ jobs:
           run "$P/n53_ingest.py" || true   # N53 integrity engine — ingest minutes/votes/recusals corpus (needs votes_watch first)
           run "$P/bids_watch.py" || true
           run "$P/mapps_watch.py" || true
+          run "$P/rebuild_first.py" || true   # Who Rebuilt First (Lahaina/Kula fire-recovery permit line)
           run "$P/donor_watch.py" || true
           run "$P/statewide_money.py" || true
           run "$P/hands_awards.py" || true
