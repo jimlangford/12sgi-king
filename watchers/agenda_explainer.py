@@ -88,14 +88,21 @@ def build():
     except Exception:
         srcs = {}
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
-    cards, n = "", 0
+    # each tenant gets its OWN card section (anchored #<tenant>) + a jump-nav
+    sections, jump, n = "", [], 0
     for tid in ORDER:
         s = srcs.get(tid)
         if not s: continue
-        for m in (s.get("upcoming") or [])[:3]:
-            cards += card(tid, m, n); n += 1
-    if not cards:
-        cards = '<div class="none">No upcoming meetings in the current feed — check back as agendas post.</div>'
+        items = (s.get("upcoming") or [])[:3]
+        if not items: continue
+        nm = NAMES.get(tid, tid)
+        tcards = "".join(card(tid, m, n + i) for i, m in enumerate(items)); n += len(items)
+        ag = ('<a class="tlink" href="agendas_%s.html">full agenda feed ↗</a>' % tid) if os.path.exists(os.path.join(MAUIOS, "agendas_%s.html" % tid)) else ""
+        sections += ('<h2 class="tsec" id="%s">%s — %d card%s %s</h2>%s' % (
+            tid, esc(nm), len(items), "" if len(items) == 1 else "s", ag, tcards))
+        jump.append('<a href="#%s">%s</a>' % (tid, esc(nm)))
+    cards = sections or '<div class="none">No upcoming meetings in the current feed — check back as agendas post.</div>'
+    jumpnav = ('<div class="jump">Each government&rsquo;s cards: ' + " · ".join(jump) + '</div>') if jump else ""
     CSS = ("<style> body{margin:0;background:#0c100e;color:#e8e4d8;font-family:Georgia,serif;line-height:1.6}"
      " .wrap{max-width:1040px;margin:0 auto;padding:30px 22px 70px}"
      " .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.4px;color:#d9b24c;text-transform:uppercase}"
@@ -113,6 +120,7 @@ def build():
      " .cap{font-size:12.5px;color:#cfc9b6;background:#151d19;border:1px solid #243029;border-radius:9px;padding:10px 12px;margin:6px 0}"
      " .sbtns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0} .sb{font-family:Consolas,monospace;font-size:12px;padding:8px 13px;border-radius:9px;border:1px solid #d9b24c;color:#d9b24c;background:rgba(217,178,76,.06);cursor:pointer;text-decoration:none} .sb.primary{background:#d9b24c;color:#0c100e;font-weight:700} .sb:hover{background:rgba(217,178,76,.16)}"
      " .hint{font-size:11px;color:#9a957f;font-style:italic;margin-top:6px} .none{font-size:14px;color:#9a957f;font-style:italic}"
+     " .tsec{font-size:16px;color:#f0ead8;margin:28px 0 2px;border-bottom:1px solid #243029;padding-bottom:6px;scroll-margin-top:60px} .tlink{font-family:Consolas,monospace;font-size:11px;margin-left:8px;font-weight:400} .jump{font-size:12px;color:#cfc9b6;margin:12px 0} .jump a{color:#d9b24c;font-family:Consolas,monospace;font-size:11px}"
      " a{color:#d9b24c} footer{margin-top:28px;border-top:1px solid #243029;padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}</style>")
     JS = ("<script>document.querySelectorAll('.ex').forEach(function(ex){var cap=ex.getAttribute('data-cap'),url=ex.getAttribute('data-url');"
      "var x=ex.querySelector('[data-x]');if(x)x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(cap)+'&url='+encodeURIComponent(url);"
@@ -126,7 +134,8 @@ def build():
       "<h1>Agenda Explainer — get ahead of the vote</h1>"
       "<p class=\"lead\">Every upcoming meeting becomes a shareable fact-card: what's being decided, the law that "
       "governs it, the money behind the deciders, and how to testify <b>before</b> the vote. Screenshot the 9:16 card, "
-      "tap Share to send it to TikTok / Instagram / Facebook / X with the caption, and bring your neighbors to the table.</p>" + cards +
+      "tap Share to send it to TikTok / Instagram / Facebook / X with the caption, and bring your neighbors to the table. "
+      "Each government has its own cards below.</p>" + jumpnav + cards +
       "<footer>generated " + g + " · agenda-explainer v1 · live from the daily agenda feed · share opens your own apps — no auto-posting · Kilo Aupuni · aloha · pono</footer>"
       + JS + "</div></body></html>")
 
