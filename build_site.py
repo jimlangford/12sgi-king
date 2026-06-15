@@ -58,7 +58,13 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "crosswalk_holysee.html", "money_holysee.html",
                # world financial-center cities (per-country national layer up the shared apex)
                "crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html", "crosswalk_singapore.html",
-               "crosswalk_zurich.html", "crosswalk_frankfurt.html", "crosswalk_paris.html", "crosswalk_dubai.html"]
+               "crosswalk_zurich.html", "crosswalk_frankfurt.html", "crosswalk_paris.html", "crosswalk_dubai.html",
+               # agenda watch — every tenant's upcoming meetings, daily-checked (index + per-tenant)
+               "agendas.html",
+               "agendas_state.html", "agendas_maui.html", "agendas_honolulu.html", "agendas_hawaii.html", "agendas_kauai.html",
+               "agendas_nyc.html", "agendas_nys.html", "agendas_liverpool.html",
+               "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
+               "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -193,6 +199,7 @@ def nav_bar(current):
         groups += ('<div class="gn-group"><button class="gn-top%s">%s<span class="ar">&#9662;</span></button>'
                    '<div class="gn-panel">%s</div></div>') % (active, glabel.replace("&", "&amp;"), links)
     jc = " cur" if current == "jurisdictions.html" else ""
+    ac = " cur" if current == "agendas.html" else ""
     return (NAV_CSS +
             '<nav class="govos-nav">'
             '<a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span>'
@@ -200,6 +207,7 @@ def nav_bar(current):
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
             '<div class="gn-menu">'
             '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') + groups +
+            '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
             '<a class="gn-cta" href="take_action.html">Take action</a>'
             '</div></nav>' + NAV_JS)
