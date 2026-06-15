@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-15 11:53 HST",
+ "generated": "2026-06-15 12:56 HST",
  "what": "Cloud bridge: the live govOS civic record projected onto the 54-node Sage twin (Kumulipo parity).",
  "summary": {
   "pono": 44,
@@ -22,6 +22,7 @@
    "wa": 8,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 1,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -35,6 +36,7 @@
    "wa": 8,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 1,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -42,7 +44,13 @@
      "tenant": "london",
      "date": "2026-06-17",
      "body": "City of London Corporation — Health and Wellbeing Board",
-     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
+     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1",
+     "moon": {
+      "night": 2,
+      "po": "Hoaka",
+      "phase": "waxing",
+      "offering": "go gently — gather the facts before the vote casts its shadow"
+     }
     }
    ]
   },
@@ -55,6 +63,7 @@
    "wa": 9,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 1,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -68,6 +77,7 @@
    "wa": 9,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 1,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -81,6 +91,7 @@
    "wa": 10,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 2,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -94,6 +105,7 @@
    "wa": 10,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 2,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -101,7 +113,13 @@
      "tenant": "tokyo",
      "date": "2026-06-19",
      "body": "Standing Committees (常任委員会)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
     }
    ]
   },
@@ -114,6 +132,7 @@
    "wa": 11,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 2,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -121,7 +140,13 @@
      "tenant": "honolulu",
      "date": "2026-06-23",
      "body": "Committee on Energy, Environment & Sustainability",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
     }
    ]
   },
@@ -134,6 +159,7 @@
    "wa": 11,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 2,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -147,6 +173,7 @@
    "wa": 12,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 3,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -160,6 +187,7 @@
    "wa": 12,
    "phase": "Ao",
    "frame": "#4ade80",
+   "moon13": 3,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -173,6 +201,7 @@
    "wa": 13,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 3,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -186,6 +215,7 @@
    "wa": 13,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 3,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -199,6 +229,7 @@
    "wa": 14,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 4,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -212,6 +243,7 @@
    "wa": 14,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 4,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -225,6 +257,7 @@
    "wa": 15,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 4,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -238,6 +271,7 @@
    "wa": 15,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 4,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -251,6 +285,7 @@
    "wa": 16,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 5,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -264,6 +299,7 @@
    "wa": 16,
    "phase": "Ao",
    "frame": "#fbbf24",
+   "moon13": 5,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -277,6 +313,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 5,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -290,6 +327,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 5,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -303,6 +341,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 6,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -316,6 +355,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 6,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -329,6 +369,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 6,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -342,6 +383,7 @@
    "wa": 5,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 6,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -355,6 +397,7 @@
    "wa": 5,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 7,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -368,6 +411,7 @@
    "wa": 5,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 7,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -381,6 +425,7 @@
    "wa": 5,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 7,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -394,6 +439,7 @@
    "wa": 5,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 7,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -407,6 +453,7 @@
    "wa": 6,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 8,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -414,7 +461,13 @@
      "tenant": "honolulu",
      "date": "2026-06-23",
      "body": "Committee on Energy, Environment & Sustainability",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
     }
    ]
   },
@@ -427,6 +480,7 @@
    "wa": 6,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 8,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -440,6 +494,7 @@
    "wa": 6,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 8,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -447,7 +502,13 @@
      "tenant": "maui",
      "date": "2026-06-17",
      "body": "Disaster Recovery, International Affairs, and Planning Committee (2025-2027)",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 2,
+      "po": "Hoaka",
+      "phase": "waxing",
+      "offering": "go gently — gather the facts before the vote casts its shadow"
+     }
     }
    ]
   },
@@ -460,6 +521,7 @@
    "wa": 6,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 8,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -473,6 +535,7 @@
    "wa": 6,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 9,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -486,6 +549,7 @@
    "wa": 7,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 9,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -499,6 +563,7 @@
    "wa": 7,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 9,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -512,6 +577,7 @@
    "wa": 1,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 9,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -525,6 +591,7 @@
    "wa": 1,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 10,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -532,7 +599,13 @@
      "tenant": "honolulu",
      "date": "2026-06-23",
      "body": "Committee on Energy, Environment & Sustainability",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
     }
    ]
   },
@@ -545,6 +618,7 @@
    "wa": 1,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 10,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -558,6 +632,7 @@
    "wa": 1,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 10,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -571,6 +646,7 @@
    "wa": 1,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 10,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -584,6 +660,7 @@
    "wa": 2,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 11,
    "balance": "hewa",
    "hewa_evidence": "vendor: fukumoto engineering, inc., award_total: 4723680.0, award_coun",
    "opportunities": [
@@ -591,19 +668,37 @@
      "tenant": "nyc",
      "date": "2026-06-24",
      "body": "Committee on Education (jointly with Committee on Technology)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 9,
+      "po": "ʻOlekūkolu",
+      "phase": "waxing",
+      "offering": "patience — let the record speak before you do"
+     }
     },
     {
      "tenant": "nyc",
      "date": "2026-09-15",
      "body": "Committee on Oversight and Investigations (jointly with Education)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
     },
     {
      "tenant": "tokyo",
      "date": "2026-06-19",
      "body": "Standing Committees (常任委員会)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
     }
    ]
   },
@@ -616,6 +711,7 @@
    "wa": 2,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 11,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -623,13 +719,25 @@
      "tenant": "maui",
      "date": "2026-06-15",
      "body": "Water Authority, Social Services, and Parks Committee (2025-2027)",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 30,
+      "po": "Muku",
+      "phase": "new/dark",
+      "offering": "the dark before renewal — rest, then begin the cycle in pono"
+     }
     },
     {
      "tenant": "maui",
      "date": "2026-06-15",
      "body": "Water and Infrastructure Committee (2025-2027)",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 30,
+      "po": "Muku",
+      "phase": "new/dark",
+      "offering": "the dark before renewal — rest, then begin the cycle in pono"
+     }
     }
    ]
   },
@@ -642,6 +750,7 @@
    "wa": 2,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 11,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -655,6 +764,7 @@
    "wa": 2,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 11,
    "balance": "hewa",
    "hewa_evidence": "vendor: fukumoto engineering, inc., award_total: 4723680.0, award_coun",
    "opportunities": [
@@ -662,19 +772,37 @@
      "tenant": "nyc",
      "date": "2026-06-24",
      "body": "Committee on Education (jointly with Committee on Technology)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 9,
+      "po": "ʻOlekūkolu",
+      "phase": "waxing",
+      "offering": "patience — let the record speak before you do"
+     }
     },
     {
      "tenant": "nyc",
      "date": "2026-09-15",
      "body": "Committee on Oversight and Investigations (jointly with Education)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
     },
     {
      "tenant": "tokyo",
      "date": "2026-06-19",
      "body": "Standing Committees (常任委員会)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
     }
    ]
   },
@@ -687,6 +815,7 @@
    "wa": 3,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 12,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -700,6 +829,7 @@
    "wa": 3,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 12,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -713,6 +843,7 @@
    "wa": 3,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 12,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -726,6 +857,7 @@
    "wa": 3,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 12,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -739,6 +871,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#fbbf24",
+   "moon13": 13,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -752,6 +885,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 13,
    "balance": "opportunity",
    "hewa_evidence": null,
    "opportunities": [
@@ -759,7 +893,13 @@
      "tenant": "honolulu",
      "date": "2026-06-23",
      "body": "Committee on Energy, Environment & Sustainability",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
     }
    ]
   },
@@ -772,6 +912,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#4ade80",
+   "moon13": 13,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -785,6 +926,7 @@
    "wa": 4,
    "phase": "Po",
    "frame": "#38bdf8",
+   "moon13": 13,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -798,6 +940,7 @@
    "wa": null,
    "phase": "Ao->Po",
    "frame": "#ffffff",
+   "moon13": null,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
@@ -811,6 +954,7 @@
    "wa": null,
    "phase": "Ao->Po",
    "frame": "#ffffff",
+   "moon13": null,
    "balance": "pono",
    "hewa_evidence": null,
    "opportunities": []
