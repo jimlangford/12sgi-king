@@ -49,48 +49,99 @@ DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
 
-# ── govOS top navigation: injected into every civic page so you can move around the
-#    system from any report (desktop + mobile). Short labels keep the bar compact. ──
-NAV_SHORT = {
-    "county_dashboard.html": "Dashboard",
-    "patterns_money_x_votes.html": "Money×Votes",
-    "contracts_x_donors.html": "Contracts×Donors",
-    "parity_check.html": "Parity",
-    "wildfire_recovery_watch.html": "🔥 Wildfire $",
-    "lobby_money_watch.html": "Lobby+Money",
-    "jurisdictions.html": "🗺 Jurisdictions",
-    "money_behind_officials.html": "Money·Officials",
-    "officials_scorecard.html": "Officials",
-    "lege_legislator_scorecard.html": "Legislators",
-    "maui_contract_awards.html": "Awards",
-    "sole_source_watch.html": "Sole-Source",
-    "statewide_money_patterns.html": "Statewide $",
-    "accountability_record.html": "Accountability",
-    "commission_antitrust.html": "Antitrust",
-    "charter_application.html": "Charter",
-    "bill9_bill9_testimony_scan.html": "Bill 9",
+# ── govOS top navigation: a professional grouped top-bar injected into every civic page
+#    (wordmark + dropdown menus + CTA; responsive with a mobile menu). ──
+NAV_LABEL = {
+    "county_dashboard.html": "Maui County Dashboard",
+    "patterns_money_x_votes.html": "Money × Votes",
+    "money_behind_officials.html": "Money Behind Officials",
+    "statewide_money_patterns.html": "Statewide Money",
+    "contracts_x_donors.html": "Contracts × Donors",
+    "maui_contract_awards.html": "Contract Awards",
+    "lobby_money_watch.html": "Lobby + Money",
+    "officials_scorecard.html": "Officials Scorecard",
+    "lege_legislator_scorecard.html": "Legislator Scorecard",
+    "accountability_record.html": "Accountability Record",
+    "sole_source_watch.html": "Sole-Source Watch",
+    "commission_antitrust.html": "Antitrust Thread",
+    "bill9_bill9_testimony_scan.html": "Bill 9 Testimony",
+    "charter_application.html": "Charter → Law → Evidence",
+    "parity_check.html": "Parity — Pairs That No Longer Answer",
+    "wildfire_recovery_watch.html": "Wildfire Recovery",
 }
+NAV_GROUPS = [
+    ("Money & Contracts", ["county_dashboard.html", "patterns_money_x_votes.html", "money_behind_officials.html",
+                           "statewide_money_patterns.html", "contracts_x_donors.html", "maui_contract_awards.html",
+                           "lobby_money_watch.html"]),
+    ("Accountability", ["officials_scorecard.html", "lege_legislator_scorecard.html", "accountability_record.html",
+                        "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
+                        "charter_application.html"]),
+    ("The Mechanic", ["parity_check.html", "wildfire_recovery_watch.html"]),
+]
 NAV_CSS = ("<style>"
-    ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;flex-wrap:wrap;align-items:center;"
-    "gap:6px;padding:9px 14px;background:#0a0e0c;border-bottom:1px solid rgba(217,178,76,.3);"
-    "font-family:Consolas,'Segoe UI',system-ui,monospace;font-size:12px;line-height:1.3}"
-    ".govos-nav a{color:#bdb8a4;text-decoration:none;border:1px solid transparent;border-radius:20px;padding:4px 10px;white-space:nowrap}"
-    ".govos-nav .gnav-home{font-weight:700;color:#e8e4d8;font-size:13px;margin-right:6px;border-radius:8px}"
-    ".govos-nav .gnav-pill:hover{border-color:rgba(217,178,76,.5);color:#e8e4d8}"
-    ".govos-nav .gnav-cur{background:rgba(217,178,76,.16);border-color:#d9b24c;color:#f4c95d}"
-    ".govos-nav .gnav-cta{margin-left:auto;background:#d9b24c;color:#0c100e;font-weight:700;border:0;border-radius:8px;padding:5px 12px}"
-    "</style>")
+    ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"
+    "padding:0 18px;background:#0b0f0d;border-bottom:1px solid rgba(217,178,76,.26);"
+    "font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;font-size:13px;box-shadow:0 1px 0 rgba(0,0,0,.4)}"
+    ".govos-nav *{box-sizing:border-box}"
+    ".gn-brand{display:flex;align-items:center;gap:9px;text-decoration:none;margin-right:16px;white-space:nowrap}"
+    ".gn-brand .mk{color:#d9b24c;font-size:17px;line-height:1}"
+    ".gn-brand b{color:#efe9da;font-weight:600;font-size:15px;letter-spacing:.2px}"
+    ".gn-brand .sub{color:#8a8674;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;border-left:1px solid #34301f;padding-left:9px}"
+    ".gn-menu{display:flex;align-items:center;gap:1px;flex:1}"
+    ".gn-group{position:relative}"
+    ".gn-top{display:flex;align-items:center;gap:6px;background:none;border:0;color:#cfc9b6;font:inherit;font-size:13px;padding:8px 12px;border-radius:7px;cursor:pointer}"
+    ".gn-top .ar{font-size:9px;color:#8a8674}"
+    ".gn-top:hover,.gn-group:hover .gn-top{color:#efe9da;background:rgba(255,255,255,.045)}"
+    ".gn-top.active{color:#f4c95d}"
+    ".gn-panel{position:absolute;top:calc(100% + 5px);left:0;min-width:240px;background:#121714;border:1px solid #2a2f29;"
+    "border-radius:11px;padding:6px;box-shadow:0 16px 38px rgba(0,0,0,.55);display:none;flex-direction:column;gap:1px;z-index:50}"
+    ".gn-group:hover .gn-panel,.gn-group.open .gn-panel{display:flex}"
+    ".gn-panel a{display:block;color:#cfc9b6;text-decoration:none;padding:8px 11px;border-radius:6px;font-size:13px;white-space:nowrap}"
+    ".gn-panel a:hover{background:rgba(217,178,76,.1);color:#efe9da}"
+    ".gn-panel a.cur{color:#f4c95d;background:rgba(217,178,76,.13)}"
+    ".gn-link{color:#cfc9b6;text-decoration:none;padding:8px 12px;border-radius:7px}"
+    ".gn-link:hover{color:#efe9da;background:rgba(255,255,255,.045)}"
+    ".gn-link.cur{color:#f4c95d}"
+    ".gn-cta{margin-left:auto;background:#d9b24c;color:#0c100e;font-weight:600;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;white-space:nowrap}"
+    ".gn-cta:hover{background:#e7c361}"
+    ".gn-burger{display:none;margin-left:auto;background:none;border:0;color:#efe9da;font-size:21px;cursor:pointer;padding:4px 8px;line-height:1}"
+    "@media(max-width:880px){"
+    ".gn-burger{display:block}"
+    ".gn-menu{display:none;position:absolute;top:54px;left:0;right:0;flex-direction:column;align-items:stretch;"
+    "background:#0b0f0d;border-bottom:1px solid #2a2f29;padding:8px;gap:2px;max-height:82vh;overflow:auto}"
+    ".govos-nav.open .gn-menu{display:flex}"
+    ".gn-top{width:100%;justify-content:space-between}"
+    ".gn-panel{position:static;box-shadow:none;border:0;background:rgba(255,255,255,.03);min-width:0;margin:1px 0 3px 10px}"
+    ".gn-group:hover .gn-panel{display:none}.gn-group.open .gn-panel{display:flex}"
+    ".gn-cta{margin:6px 0 2px;text-align:center}"
+    "}</style>")
+NAV_JS = ("<script>(function(){var n=document.querySelector('.govos-nav');if(!n)return;"
+    "var b=n.querySelector('.gn-burger');if(b)b.addEventListener('click',function(){n.classList.toggle('open');});"
+    "n.querySelectorAll('.gn-top').forEach(function(t){t.addEventListener('click',function(e){e.preventDefault();"
+    "var g=t.parentNode,was=g.classList.contains('open');"
+    "n.querySelectorAll('.gn-group').forEach(function(x){x.classList.remove('open');});if(!was)g.classList.add('open');});});"
+    "document.addEventListener('click',function(e){if(!n.contains(e.target))"
+    "n.querySelectorAll('.gn-group').forEach(function(x){x.classList.remove('open');});});})();</script>")
 
 def nav_bar(current):
-    """Build the sticky govOS nav for `current` (a flat filename, '' for the hub)."""
-    items = ['<a class="gnav-home" href="reports.html">🌺 govOS</a>']
-    for rel, name, _blurb in PAGES:
-        flat = rel.replace("/", "_")
-        label = NAV_SHORT.get(flat, name)
-        cur = " gnav-cur" if flat == current else ""
-        items.append(f'<a class="gnav-pill{cur}" href="{flat}">{label}</a>')
-    items.append('<a class="gnav-cta" href="take_action.html">⚖ Take action</a>')
-    return NAV_CSS + '<nav class="govos-nav">' + "".join(items) + "</nav>"
+    """Professional grouped top-bar for `current` (a flat filename, '' for the hub)."""
+    groups = ""
+    for glabel, files in NAV_GROUPS:
+        active = " active" if current in files else ""
+        links = "".join('<a class="%s" href="%s">%s</a>' % ("cur" if f == current else "", f, NAV_LABEL.get(f, f))
+                        for f in files)
+        groups += ('<div class="gn-group"><button class="gn-top%s">%s<span class="ar">&#9662;</span></button>'
+                   '<div class="gn-panel">%s</div></div>') % (active, glabel, links)
+    jc = " cur" if current == "jurisdictions.html" else ""
+    return (NAV_CSS +
+            '<nav class="govos-nav">'
+            '<a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span>'
+            '<b>govOS</b><span class="sub">Kilo Aupuni</span></a>'
+            '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
+            '<div class="gn-menu">' + groups +
+            '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
+            '<a class="gn-cta" href="take_action.html">Take action</a>'
+            '</div></nav>' + NAV_JS)
 
 def inject_nav(html, current):
     """Insert the nav right after <body>; if there's no body tag, prepend it."""
