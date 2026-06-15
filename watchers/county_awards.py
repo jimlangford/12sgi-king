@@ -38,6 +38,15 @@ TENANTS = [
     {"id": "nys",      "label": "New York State",              "code": "NY-STATE",     "page": None, "source": "OpenBookNY (Comptroller) + NYS BOE", "status": "pending", "note": "NYS Comptroller OpenBookNY contracts + State Board of Elections campaign finance. Source confirmed; fetcher is the next wave."},
     {"id": "liverpool","label": "Village of Liverpool, NY",    "code": "NY-LIV",       "page": None, "source": "Onondaga County + NYS", "status": "pending", "note": "Small village — little standalone open data; leans on Onondaga County records + NYS OpenBook/BOE. Source path identified; thin by nature."},
     {"id": "holysee",  "label": "Holy See / Vatican City State","code": "✦ APEX",      "page": "crosswalk_holysee.html", "source": "Holy See financial reports (FY2024)", "status": "apex", "note": "The apex of every tenant's hierarchy. Its own law (Code of Canon Law + Fundamental Law of Vatican City State) and audited finances — added so the same transparency govOS asks of every county is asked at the top, too."},
+    # world financial-center cities — charter crosswalk only (city + national law up the shared apex)
+    {"id": "london",   "label": "City of London / Greater London", "code": "UK-LON", "page": "crosswalk_london.html",   "source": "United Kingdom", "status": "world"},
+    {"id": "tokyo",    "label": "Tokyo Metropolis",                "code": "JP-TYO", "page": "crosswalk_tokyo.html",    "source": "Japan", "status": "world"},
+    {"id": "hongkong", "label": "Hong Kong SAR",                   "code": "HK",     "page": "crosswalk_hongkong.html","source": "Hong Kong SAR", "status": "world"},
+    {"id": "singapore","label": "Singapore",                       "code": "SG",     "page": "crosswalk_singapore.html","source": "Republic of Singapore", "status": "world"},
+    {"id": "zurich",   "label": "Zürich",                          "code": "CH-ZRH", "page": "crosswalk_zurich.html",   "source": "Switzerland", "status": "world"},
+    {"id": "frankfurt","label": "Frankfurt am Main",               "code": "DE-FRA", "page": "crosswalk_frankfurt.html","source": "Germany (ECB seat)", "status": "world"},
+    {"id": "paris",    "label": "Paris",                           "code": "FR-PAR", "page": "crosswalk_paris.html",    "source": "France", "status": "world"},
+    {"id": "dubai",    "label": "Dubai + DIFC",                    "code": "AE-DXB", "page": "crosswalk_dubai.html",    "source": "United Arab Emirates", "status": "world"},
 ]
 
 def page(label, vendors, n_awards, dollars):
@@ -99,12 +108,15 @@ def hub(stats):
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     badge = {"live": '<span style="color:#43d39e">live</span>', "thin": '<span style="color:#e0863a">thin in HANDS</span>',
              "pending": '<span style="color:#9a957f">source identified · next wave</span>',
-             "apex": '<span style="color:#d9b24c">✦ apex</span>'}
+             "apex": '<span style="color:#d9b24c">✦ apex</span>',
+             "world": '<span style="color:#9fd9bf">✦ world center</span>'}
     cards = ""
     for t in TENANTS:
         st = stats.get(t["id"], {})
         if t["status"] == "apex":
             link = '<a href="crosswalk_holysee.html">charter &#8644; canon law</a> &middot; <a href="money_holysee.html">finances</a>'
+        elif t["status"] == "world":
+            link = ('<a href="%s">charter &#8644; law</a>' % t["page"]) if os.path.exists(os.path.join(MAUIOS, t["page"])) else '<span style="color:#756b56">building</span>'
         elif t["status"] in ("live", "thin"):
             link = dim_links(t["id"], t["page"])
         else:

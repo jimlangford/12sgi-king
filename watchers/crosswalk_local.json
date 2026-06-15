@@ -1,4 +1,366 @@
 {
+ "nations": {
+  "uk": {
+   "label": "United Kingdom",
+   "layer": {
+    "transparency": {
+     "cite": "Freedom of Information Act 2000 (public access to information held by public authorities) + Companies Act 2006 (mandatory public filing/disclosure at Companies House)",
+     "note": "Do FOIA 2000's right-to-information regime and the Companies Act 2006's mandatory public filing of company information together provide the UK's baseline records and corporate transparency?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Bribery Act 2010 (bribery offences and the corporate failure-to-prevent-bribery offence) + the Nolan Principles overseen by the Committee on Standards in Public Life",
+     "note": "Do the Bribery Act 2010 offences and the Nolan Principles overseen by the Committee on Standards in Public Life set the national standard for bribery and ethical conduct in public life?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Freedom of Information Act 2000 (enforced by the Information Commissioner's Office, with appeal to the First-tier Tribunal)",
+     "note": "Does FOIA 2000, with the Information Commissioner's Office as regulator and the First-tier Tribunal as appeal route, give the public a statutory right of access to information held by public authorities?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Financial Services and Markets Act 2000 (market-integrity supervision by the FCA and PRA) + the statutory directors' duties in the Companies Act 2006 (ss.171-177)",
+     "note": "Do FSMA 2000's supervision of financial-market integrity by the FCA and PRA, alongside the statutory directors' duties in the Companies Act 2006, embody the UK's market-stewardship and corporate public-trust standards?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Planning (Listed Buildings and Conservation Areas) Act 1990 (listed buildings and conservation areas) + Ancient Monuments and Archaeological Areas Act 1979 (scheduled monuments)",
+     "note": "Do the 1990 Act (listed buildings and conservation areas) and the 1979 Act (scheduled monuments) form the UK's national framework for protecting historic and heritage sites?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "The courts of England & Wales + Proceeds of Crime Act 2002 (confiscation, civil recovery and money-laundering offences), enforced by bodies including the Serious Fraud Office and the National Crime Agency",
+     "note": "Do the courts of England & Wales applying the Proceeds of Crime Act 2002, with the SFO and NCA pursuing confiscation and money-laundering cases, constitute the national financial-crime enforcement machinery?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Equality Act 2010 (protected characteristics including race and religion or belief) + heritage protection under the Planning (Listed Buildings and Conservation Areas) Act 1990",
+     "note": "Do the Equality Act 2010's protection of characteristics such as race and religion or belief, alongside national heritage-listing law, provide the UK's cultural and identity protections?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "The UK's uncodified constitution resting on parliamentary sovereignty, under which sub-national self-government is conferred by ordinary statute (e.g. Greater London Authority Act 1999 for London; Localism Act 2011)",
+     "note": "Is the foundational basis of UK governance the uncodified constitution resting on parliamentary sovereignty, under which sub-national self-government such as London's is conferred by ordinary statute rather than an entrenched charter?",
+     "conf": "v"
+    }
+   }
+  },
+  "jp": {
+   "label": "Japan",
+   "layer": {
+    "transparency": {
+     "cite": "Political Funds Control Act (Seiji Shikin Kisei Ho) — political-finance reports filed with the Ministry of Internal Affairs and Communications / prefectural election commissions",
+     "note": "Does the Political Funds Control Act's requirement that political organizations file reports on funds raised and spent provide Japan's national political-finance disclosure regime?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "National Public Service Ethics Act (Act No. 129 of 1999) plus the National Public Service Ethics Board established within the National Personnel Authority",
+     "note": "Do the National Public Service Ethics Act and its enforcing Ethics Board — which reviews officials' gift and stock reports and handles ethics complaints — set and police conflict-of-interest rules for national officials?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Act on Access to Information Held by Administrative Organs (Act No. 42 of 1999, in force April 2001)",
+     "note": "Does this Act, by granting any person the right to request disclosure of administrative documents from the Cabinet and administrative organs, provide Japan's national access-to-government-information mechanism?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Financial Instruments and Exchange Act (FIEA / Kin'yu Shohin Torihiki Ho), supervised by the Financial Services Agency (FSA)",
+     "note": "Does the FIEA, administered by the FSA, provide the national framework for financial-market integrity and investor-protection supervision in Japan?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Act on Protection of Cultural Properties (Bunkazai Hogo Ho, Act No. 214 of 1950), administered by the Agency for Cultural Affairs",
+     "note": "Does the 1950 Act on Protection of Cultural Properties, under which the Commissioner for Cultural Affairs designates and protects national cultural properties and historic sites, anchor heritage protection nationally?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Penal Code bribery provisions (Arts. 197-198) prosecuted by the Public Prosecutors Office, plus the Securities and Exchange Surveillance Commission (SESC) within the FSA for financial crime",
+     "note": "Do the Penal Code's bribery offenses (passive bribery Art. 197, active bribery Art. 198) enforced through the courts, together with SESC investigation of market crimes, provide Japan's anti-corruption and financial-crime enforcement?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Act on Protection of Cultural Properties (1950) plus the Basic Act on Education (Act No. 120 of 2006), administered by the Agency for Cultural Affairs and MEXT",
+     "note": "Do the Cultural Properties Protection Act and the Basic Act on Education, under MEXT and the Agency for Cultural Affairs, provide Japan's national cultural-heritage and education protections?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Constitution of Japan, Chapter VIII (Local Self-Government), Articles 92-94, implemented by the Local Autonomy Act (Act No. 67 of 1947)",
+     "note": "Does Chapter VIII of the Constitution — guaranteeing local autonomy, elected assemblies and chief executives, and the right of local entities to manage their affairs and enact regulations — provide the constitutional basis for self-government that the Local Autonomy Act implements?",
+     "conf": "v"
+    }
+   }
+  },
+  "hk": {
+   "label": "Hong Kong SAR (under the PRC)",
+   "layer": {
+    "transparency": {
+     "cite": "Hong Kong Basic Law, Art. 73(2)-(3) (LegCo power to examine and approve budgets, taxation and public expenditure)",
+     "note": "Basic Law Art. 73's vesting of budget and public-expenditure approval in the legislature is the constitutional-level public-finance transparency anchor under the PRC sovereign frame.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Hong Kong Basic Law, Art. 47 (Chief Executive integrity / declaration of assets to the Chief Justice) and Art. 57 (Commission Against Corruption functioning independently, accountable to the Chief Executive)",
+     "note": "Basic Law Arts. 47 and 57, mandating an integrity/asset-declaration standard and an independent anti-corruption commission, set the constitutional conflict-of-interest floor.",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Hong Kong Basic Law, Arts. 27 and 39 (freedoms of speech, press and association; ICCPR as applied through the Hong Kong Bill of Rights Ordinance, Cap. 383)",
+     "note": "Basic Law Arts. 27 and 39, importing ICCPR guarantees via the Bill of Rights Ordinance, provide the constitutional basis for public participation and access to information.",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Hong Kong Basic Law, Arts. 105-113 (protection of property, independent finances, the Exchange Fund and an independent monetary/financial system), with the Exchange Fund Ordinance (Cap. 66)",
+     "note": "Basic Law Arts. 105-113 and the Exchange Fund Ordinance establish the constitutional public-trust stewardship of Hong Kong's reserves and financial system.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Hong Kong Basic Law, Art. 8 (laws previously in force, including ordinances, are maintained), continuing the Antiquities and Monuments Ordinance (Cap. 53) as prior law; Art. 138 (Chinese and Western medicine) is ancillary",
+     "note": "Basic Law Art. 8, which preserves previously valid laws including Cap. 53, is the indirect constitutional basis for continued heritage and monument protection.",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Hong Kong Basic Law, Arts. 80-85 (independent Judiciary and the Court of Final Appeal's power of final adjudication) and Art. 63 (Department of Justice controls criminal prosecutions free from interference)",
+     "note": "Basic Law Arts. 80-85 and Art. 63, establishing independent courts and prosecutorial control, constitute the constitutional enforcement and adjudication frame.",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Hong Kong Basic Law, Art. 9 (Chinese, and English as an official language) and Arts. 136-137 (autonomy over education and cultural policy)",
+     "note": "Basic Law Art. 9 on official languages and Arts. 136-137 on educational and cultural autonomy provide the constitutional culture and language protections.",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Hong Kong Basic Law, Arts. 1 and 12 (Hong Kong is an inalienable part of the PRC; a Special Administrative Region with a high degree of autonomy under the Central People's Government), enacted under PRC Constitution Art. 31",
+     "note": "Basic Law Arts. 1 and 12, grounded in PRC Constitution Art. 31, define the sovereign source of authority and the bounded self-government of the SAR.",
+     "conf": "v"
+    }
+   }
+  },
+  "sg": {
+   "label": "Republic of Singapore",
+   "layer": {
+    "transparency": {
+     "cite": "Political Donations Act 2000 (Singapore)",
+     "note": "Does Singapore's Political Donations Act 2000, which prohibits foreign donations, restricts anonymous donations and requires political associations to report donations to the Registrar of Political Donations, constitute the country's political-finance disclosure regime?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Prevention of Corruption Act 1960; ministerial Code of Conduct; Corrupt Practices Investigation Bureau (CPIB)",
+     "note": "Do the Prevention of Corruption Act 1960 and the Government's ministerial Code of Conduct, enforced by the functionally independent CPIB, govern conflict-of-interest and bribery for public officers?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "No general Freedom of Information Act in Singapore; Constitution Art. 63 (parliamentary privilege/proceedings)",
+     "note": "Singapore has NO general Freedom of Information Act, so public access to government information rests on sectoral disclosure rules and published parliamentary proceedings rather than a statutory right to records — is this the honest state of open-government access?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Constitution Part V (Elected President; safeguard of past reserves, Fifth Schedule entities); Securities and Futures Act 2001 administered by the Monetary Authority of Singapore",
+     "note": "Do the constitutional safeguard of the national reserves (the Elected President's discretionary veto over draws on past reserves) plus MAS supervision of market integrity under the Securities and Futures Act 2001 together form Singapore's public-trust and financial-integrity stewardship?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Preservation of Monuments Act (current consolidation PMA 2009; originally enacted 1970), administered by the National Heritage Board",
+     "note": "Does the Preservation of Monuments Act, under which the National Heritage Board gazettes and protects National Monuments such as temples, mosques and churches, serve as Singapore's protection of heritage and sacred sites?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Constitution Part VIII (Judiciary; Supreme Court); Prevention of Corruption Act 1960 enforced by CPIB",
+     "note": "Do Singapore's courts established under Part VIII of the Constitution, combined with CPIB investigation and prosecution under the Prevention of Corruption Act 1960, constitute the anti-corruption and financial-crime enforcement mechanism?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Constitution Art. 152 (minorities / special position of the Malays and the Malay language) and Art. 153 (Muslim religious affairs)",
+     "note": "Do Constitution Articles 152 and 153 — recognising the special position of the Malays as the indigenous people, protecting racial and religious minorities and the Malay language, and providing for Muslim religious administration — provide the country's cultural and language protections?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Constitution of the Republic of Singapore (Art. 4 supremacy; Republic of Singapore Independence Act 1965)",
+     "note": "Is the Constitution of the Republic of Singapore, declared supreme law under Article 4 and grounded in the 1965 separation from Malaysia (Republic of Singapore Independence Act 1965), the foundational basis of the Republic's authority and self-government?",
+     "conf": "v"
+    }
+   }
+  },
+  "ch": {
+   "label": "Swiss Confederation",
+   "layer": {
+    "transparency": {
+     "cite": "Federal Act on Freedom of Information in the Administration (Öffentlichkeitsgesetz, BGÖ, SR 152.3, 2004); political-finance disclosure under the Federal Act on Political Rights (BPR, SR 161.1, Art. 76b ff.) with the PolFO ordinance (SR 161.18), audited by the Swiss Federal Audit Office (EFK/SFAO)",
+     "note": "Do the BGÖ's public-access principle and the political-finance disclosure rules audited by the Federal Audit Office give the public access to federal records and to party/campaign funding above the statutory thresholds?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Parliament Act (ParlG, SR 171.10) recusal and register-of-interests provisions; Swiss Criminal Code corruption articles (Art. 322ter ff. StGB)",
+     "note": "Do the Parliament Act's recusal and register-of-interests rules, backed by the Criminal Code's bribery provisions, govern conflicts of interest of federal officeholders?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "Federal Constitution (BV/Cst., SR 101) Art. 158 (public sittings of the Federal Assembly) and Arts. 138-142 (initiative and referendum rights)",
+     "note": "Are parliamentary sittings public and is direct public participation guaranteed through the constitutional rights of popular initiative and referendum?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Banking Act (BankG, SR 952.0); Financial Market Supervision Act (FINMASA, SR 956.1, 2007) and the Swiss Financial Market Supervisory Authority (FINMA)",
+     "note": "Do the Banking Act and FINMASA empower FINMA to supervise the integrity of banks and financial markets as steward of public confidence in the financial system?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Federal Act on the Protection of Nature and Cultural Heritage (NHG/NCHA, SR 451, 1 July 1966); Federal Constitution Art. 78",
+     "note": "Does the 1966 Nature and Cultural Heritage Act, on the constitutional basis of Art. 78 BV, protect monuments, historic sites and cultural heritage of national importance?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Swiss Criminal Code corruption articles (Art. 322ter-322septies StGB, SR 311.0); Anti-Money Laundering Act (GwG/AMLA, SR 955.0); Office of the Attorney General and Federal Criminal Court",
+     "note": "Do the Criminal Code bribery articles and the Anti-Money Laundering Act, prosecuted by the Office of the Attorney General before the federal courts, provide the anti-corruption and financial-crime enforcement mechanism?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Federal Constitution (BV/Cst., SR 101) Art. 69 (culture) and Art. 70 (national and official languages)",
+     "note": "Do Arts. 69-70 of the Federal Constitution allocate cultural promotion to the cantons and protect Switzerland's national languages and linguistic communities?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Federal Constitution of the Swiss Confederation (Bundesverfassung, SR 101), of 18 April 1999, Arts. 1, 3 and 47",
+     "note": "Is the Confederation's authority and the sovereignty of the cantons (including Zürich) founded on the 1999 Federal Constitution, with cantons sovereign except as their sovereignty is limited by it?",
+     "conf": "v"
+    }
+   }
+  },
+  "de": {
+   "label": "Federal Republic of Germany",
+   "layer": {
+    "transparency": {
+     "cite": "Parteiengesetz (PartG) §§23-31 — annual statements of party accounts submitted to and published by the President of the Bundestag (donations over EUR 10,000 disclosed)",
+     "note": "Does Germany require political parties to file audited annual accounts with the President of the Bundestag, who publishes them, with larger donations disclosed?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Abgeordnetengesetz (AbgG) §44a ff. and the Verhaltensregeln fuer Mitglieder des Bundestages (Anlage 1 GO-BT), overseen by the President of the Bundestag",
+     "note": "Are conflicts of interest and outside-income disclosures of federal lawmakers regulated by the Members of the Bundestag Act and the parliamentary Code of Conduct, supervised by the Bundestag President?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "Informationsfreiheitsgesetz (IFG, in force 1 Jan 2006) giving a right of access to federal records, with the Bundesbeauftragte fuer den Datenschutz und die Informationsfreiheit (BfDI) acting as ombudsperson",
+     "note": "Does the federal Freedom of Information Act grant a general right of access to federal authorities' records, with the Federal Commissioner overseeing it?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Kreditwesengesetz (KWG) supervised by the Bundesanstalt fuer Finanzdienstleistungsaufsicht (BaFin) for financial-market integrity, alongside Bundeshaushaltsordnung (BHO) audited by the Bundesrechnungshof",
+     "note": "Is financial-market integrity supervised by BaFin under the Banking Act while public funds are stewarded under the Federal Budget Code and audited by the Federal Court of Audit?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Grundgesetz Art. 73(1) Nr. 5a / Art. 74 (cultural property) and the Kulturgutschutzgesetz (KGSG, 2016) protecting cultural property against unlawful export",
+     "note": "Does Germany protect cultural heritage at the federal level chiefly through the Cultural Property Protection Act, with day-to-day heritage care reserved to the Laender?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Strafgesetzbuch (StGB) §§331-338 (Vorteilsannahme, Bestechlichkeit, Bestechung) prosecuted by the public prosecution service before the ordinary criminal courts and ultimately the Bundesgerichtshof",
+     "note": "Is public-official corruption criminalized in StGB §§331-338 and enforced through the prosecution service and ordinary criminal courts up to the Federal Court of Justice?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Grundgesetz Art. 30 / Art. 70 (Kulturhoheit der Laender — cultural sovereignty of the states); federal coordination via the Beauftragte der Bundesregierung fuer Kultur und Medien (BKM)",
+     "note": "Does the Basic Law assign cultural and education matters primarily to the Laender, with the federal Commissioner for Culture and Media coordinating national cultural policy?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Grundgesetz (Basic Law) — Art. 20 (democratic and social federal state, sovereignty of the people) and Art. 79(3) (eternity clause), as guarded by the Bundesverfassungsgericht",
+     "note": "Does the authority of the German state rest on the Basic Law's principles of popular sovereignty and federal democracy in Art. 20, protected by the Federal Constitutional Court?",
+     "conf": "v"
+    }
+   }
+  },
+  "fr": {
+   "label": "French Republic",
+   "layer": {
+    "transparency": {
+     "cite": "Loi n° 2013-907 du 11 octobre 2013 relative à la transparence de la vie publique (asset/interest declarations published via the HATVP)",
+     "note": "Does France's 2013 transparency-of-public-life law require senior officials to file asset and interest declarations published through the High Authority for Transparency in Public Life?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Haute Autorité pour la transparence de la vie publique (HATVP), created by Loi n° 2013-907; conflict-of-interest defined at its Art. 2",
+     "note": "Is the HATVP the independent authority that prevents and resolves conflicts of interest among public officials, with the statutory definition set in Article 2 of the 2013 law?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Code des relations entre le public et l'administration (CRPA), Livre III, enforced via the Commission d'accès aux documents administratifs (CADA)",
+     "note": "Does Book III of the CRPA grant a right of access to administrative documents, with the CADA giving a mandatory pre-litigation opinion on refusals?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Autorité des marchés financiers (AMF) for financial-market integrity, alongside the Cour des comptes for stewardship of public funds (Code monétaire et financier / Code des juridictions financières)",
+     "note": "Is financial-market integrity supervised by the AMF while stewardship of public funds is audited by the Cour des comptes under their respective codes?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Code du patrimoine, Livre VI (Monuments historiques), Art. L621-1 et seq., notably L621-30 on abords (as amended by Loi n° 2016-925 du 7 juillet 2016)",
+     "note": "Does Book VI of the Heritage Code protect classified and registered historic monuments and their surroundings, including changes made by the 2016 creation/architecture/heritage law?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Code pénal (corruption offences Art. 432-11 et seq.) prosecuted via the Parquet national financier, with prevention by the Agence française anticorruption created by Loi n° 2016-1691 du 9 décembre 2016 (Sapin II)",
+     "note": "Are corruption offences prosecuted under the Penal Code and the financial prosecutor, with the Anticorruption Agency created by the 2016 Sapin II law handling prevention?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Constitution du 4 octobre 1958, Art. 2 ('La langue de la République est le français'), reinforced by Loi n° 94-665 (Loi Toubon) on the use of the French language",
+     "note": "Does the Constitution establish French as the language of the Republic, reinforced by the 1994 Toubon law on the use of French?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Constitution du 4 octobre 1958 (Fifth Republic), Art. 1 (indivisible secular democratic Republic) and Art. 72 (free administration of territorial collectivities)",
+     "note": "Is the Republic's authority and the principle of free administration of local collectivities grounded in the 1958 Constitution, notably Articles 1 and 72?",
+     "conf": "v"
+    }
+   }
+  },
+  "ae": {
+   "label": "United Arab Emirates",
+   "layer": {
+    "transparency": {
+     "cite": "UAE — no general federal freedom-of-information / political-finance-disclosure statute; federal audit oversight via the UAE Accountability Authority (Federal Decree-Law No. (56) of 2023, successor to the State Audit Institution)",
+     "note": "With no federal FOI or campaign-finance-disclosure law (and no elected partisan campaigns), does federal audit oversight — now the UAE Accountability Authority, successor to the State Audit Institution — carry most of the national financial-transparency function?",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "UAE Federal Decree-Law No. (31) of 2021 (Crimes and Penalties / Penal Code, as amended) — bribery and abuse-of-public-office offences",
+     "note": "Do the bribery and abuse-of-office provisions of the federal Penal Code (Decree-Law No. 31 of 2021), enforced through the public prosecution and federal courts, anchor conflict-of-interest accountability for public officials nationally?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "UAE — no general federal open-meetings or freedom-of-information law; Federal National Council (a partly-elected consultative body under the Constitution)",
+     "note": "Since the UAE has no federal open-meetings or access-to-information statute, is the Constitution's consultative Federal National Council the principal, though limited, channel for public participation at the national level?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Central Bank of the UAE (Federal Decree-Law No. (14) of 2018) + the federal capital-markets regulator (the Securities and Commodities Authority under Federal Law No. (4) of 2000, succeeded by the Capital Market Authority effective 1 Jan 2026 under Federal Laws No. (32) and (33) of 2025)",
+     "note": "Do the Central Bank of the UAE and the federal capital-markets regulator (the former Securities and Commodities Authority, now the Capital Market Authority) jointly supervise financial-market integrity and prudent stewardship of the financial system as the national fiduciary regulators?",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "UAE Federal Law No. (11) of 2017 Concerning Antiquities (national registry administered by the Ministry of Culture)",
+     "note": "Does Federal Law No. 11 of 2017, which vests antiquities in the State and maintains a national registry to protect cultural heritage and national identity, serve as the country's protection of heritage and sacred sites?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Federal Decree-Law No. (10) of 2025 on Anti-Money Laundering (repealing and replacing Federal Decree-Law No. (20) of 2018) + UAE Federal Judiciary / Federal Supreme Court under the Constitution",
+     "note": "Does the federal AML framework (Decree-Law No. 10 of 2025, successor to No. 20 of 2018), with its National Committee and supervision led from the Central Bank, enforced through the federal courts, constitute the national financial-crime and anti-corruption enforcement mechanism?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "UAE Constitution (1971), Article 7 (Islam the official religion, Arabic the official language) + Federal Law No. (11) of 2017 on Antiquities (Ministry of Culture)",
+     "note": "Do the Constitution's designation of Arabic as the official language plus the federal antiquities law administered by the Ministry of Culture together provide the national language, culture, and heritage protections?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Constitution of the United Arab Emirates (1971, made permanent 1996)",
+     "note": "Does the 1971 UAE Constitution, which establishes the federation of seven emirates and vests authority in the Federal Supreme Council, President, Cabinet, Federal National Council and Federal Judiciary, form the foundational basis of the State's self-government?",
+     "conf": "v"
+    }
+   }
+  }
+ },
  "tenants": [
   {
    "id": "maui",
@@ -360,6 +722,430 @@
     "selfdet": {
      "cite": "NY Village Law (incorporation under Art. 2) and NY Municipal Home Rule Law §10 (local-law authority of the Village)",
      "note": "Establishes the Village as an incorporated self-governing municipality with home-rule power to adopt its own local laws.",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "london",
+   "code": "UK-LON",
+   "name": "City of London / Greater London",
+   "seat": "London",
+   "nation": "uk",
+   "state_parent": null,
+   "local_jur": "City of London Corporation + Greater London (GLA)",
+   "local_label": "City of London Corporation + Greater London (GLA) — United Kingdom",
+   "tagline": "City of London / Greater London — a world financial center; its city charter/code and the law of United Kingdom, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Greater London Authority Act 1999 (statutory budget-setting and publication duties for the GLA) + Local Government Transparency Code 2015 (statutory guidance under the Local Government, Planning and Land Act 1980, applied to relevant local authorities including the City of London Corporation acting as a local authority)",
+     "note": "Does the GLA's statutory budget-setting and publication regime under the 1999 Act, together with the Transparency Code's expectation that local authorities publish spending over GBP 500, give Londoners a view of how city-level public money is raised and spent?",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "City of London Corporation Members' Code of Conduct and Standards arrangements made under the Localism Act 2011 (Part 1, Chapter 7), with disclosable pecuniary interests under the Relevant Authorities (Disclosable Pecuniary Interests) Regulations 2012 and dispensations",
+     "note": "Does the Corporation's Code of Conduct, with Standards arrangements under the Localism Act 2011 and the disclosable-pecuniary-interest rules requiring a member to declare an interest and, absent a dispensation, withdraw from voting, channel conflicts into a recusal process?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Greater London Authority Act 1999 (London Assembly scrutiny, People's Question Time, and public access to meetings, applying the Local Government Act 1972 Part VA access regime) and the public-admission rules applied to the Court of Common Council",
+     "note": "Do the Assembly-scrutiny and open-meeting duties on the GLA (which apply the Local Government Act 1972 Part VA access provisions), alongside public-admission rules for the Court of Common Council, let the public attend and observe city governance?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "City of London Corporation stewardship of the City Fund (the Corporation's public money, raised by rates/council tax and grant, with locally audited statements of account) and the GLA's financial-management duties under the Greater London Authority Act 1999",
+     "note": "Does the Corporation's duty to steward the City Fund (its public money) and the GLA's statutory financial-management duties hold city-level officials to a public-trust standard over public assets, distinct from the Corporation's private City's Cash endowment?",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Planning (Listed Buildings and Conservation Areas) Act 1990 (notably ss.16, 66 and 72), with the City of London Corporation acting as local planning authority for the Square Mile",
+     "note": "When the Corporation acts as local planning authority, does the 1990 Act require it to have special regard to preserving listed buildings (s.66) and to the character of conservation areas (s.72) in the City?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "City of London Police (the Corporation-run force, appointed National Lead Force for fraud following the 2006 Attorney General's Fraud Review) + the Corporation's Standards complaints process under the Localism Act 2011",
+     "note": "Does the City of London Police, the Corporation-run force that is the appointed national lead force for fraud and economic crime, together with the Standards complaints route, provide the local enforcement arm for misconduct and financial crime in the Square Mile?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "City of London Corporation cultural and educational institutions operated under its statutory and charter powers (e.g. the Barbican Centre, Guildhall School of Music & Drama, Guildhall Library, and City of London schools)",
+     "note": "Do the cultural and educational bodies the Corporation funds and operates under its statutory and charter powers serve as a heritage-and-education function at city level?",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "City of London Corporation's status as a corporation by prescription, its ancient liberties confirmed by Magna Carta 1215 (and the 1297 confirmation the Corporation holds) and successive royal charters, including King John's 1215 grant of an elected Mayor",
+     "note": "Is the Corporation's self-governing authority grounded not in a single modern statute but in incorporation by prescription, with its ancient liberties confirmed by Magna Carta and royal charters, including King John's 1215 grant of an annually elected Mayor?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "tokyo",
+   "code": "JP-TYO",
+   "name": "Tokyo Metropolis",
+   "seat": "Tokyo",
+   "nation": "jp",
+   "state_parent": null,
+   "local_jur": "Tokyo Metropolitan Government",
+   "local_label": "Tokyo Metropolitan Government — Japan",
+   "tagline": "Tokyo Metropolis — a world financial center; its city charter/code and the law of Japan, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Tokyo Metropolitan Government Ordinance on Disclosure of Information (Tokyo-to Joho Kokai Jorei, in force Jan. 1, 2000)",
+     "note": "Does the TMG's own information-disclosure ordinance, which lets any person request administrative documents held by metropolitan agencies, serve as Tokyo's open-records and financial-transparency floor?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Local Public Service Act (integrity/duty-of-fidelity provisions for local officials) plus the Tokyo Metropolitan Assembly's own member-conduct and disciplinary rules",
+     "note": "Do the integrity and duty-of-good-conduct obligations on metropolitan officials under the Local Public Service Act, together with the Assembly's internal member-conduct rules, govern conflict-of-interest and recusal questions at the Tokyo level?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "Local Autonomy Act open-meeting principle for local assemblies (plenary sessions of the Tokyo Metropolitan Assembly held open to the public) plus the Tokyo information-disclosure ordinance",
+     "note": "Are Metropolitan Assembly plenary sessions presumptively open to the public under the Local Autonomy Act's open-meeting principle, with public access to records via Tokyo's disclosure ordinance?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Local Autonomy Act audit framework — TMG audit commissioners (kansa iin) and the resident audit-request / resident-litigation provisions (Arts. 242, 242-2)",
+     "note": "Do the Local Autonomy Act's audit-commissioner system and the resident audit-request and resident-suit mechanisms let Tokyo residents challenge misuse of metropolitan funds and assets?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Tokyo Metropolitan Government Ordinance on the Protection of Cultural Properties (Tokyo-to Bunkazai Hogo Jorei, Ordinance No. 25 of 1976)",
+     "note": "Does Tokyo's own cultural-properties protection ordinance, under which the TMG designates and protects metropolitan-level cultural properties, safeguard heritage and historic sites within the metropolis?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Local Autonomy Act resident audit request and resident lawsuit (jumin sosho) provisions (Arts. 242, 242-2), heard by the courts",
+     "note": "Does the resident-audit-then-resident-lawsuit pathway provide Tokyo's local-level enforcement channel by letting residents take alleged financial wrongdoing by metropolitan officials to court?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Tokyo Metropolitan Cultural Properties Protection Ordinance (Ordinance No. 25 of 1976) plus the Metropolitan Board of Education's cultural and educational administration under the Local Autonomy Act and the Local Educational Administration Act",
+     "note": "Do Tokyo's cultural-properties ordinance and the Metropolitan Board of Education's authority over cultural and educational programs provide the metropolis's heritage and education protections?",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Local Autonomy Act (Act No. 67 of 1947) establishing Tokyo as a 'to' (metropolis) with an elected governor and Metropolitan Assembly, implementing Constitution of Japan Chapter VIII (Arts. 92-94)",
+     "note": "Is Tokyo's authority to manage its own affairs and enact ordinances grounded in the Local Autonomy Act, which gives effect to the constitutional guarantee of local self-government for local public entities?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "hongkong",
+   "code": "HK",
+   "name": "Hong Kong SAR",
+   "seat": "Hong Kong",
+   "nation": "hk",
+   "state_parent": null,
+   "local_jur": "Hong Kong Special Administrative Region",
+   "local_label": "Hong Kong Special Administrative Region — Hong Kong SAR (under the PRC)",
+   "tagline": "Hong Kong SAR — a world financial center; its city charter/code and the law of Hong Kong SAR (under the PRC), up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Code on Access to Information (1995, administered by Constitutional and Mainland Affairs Bureau) and Legislative Council members' registers of interests",
+     "note": "Hong Kong has no statutory freedom-of-information law; the administrative Code on Access to Information (1995, CMAB) plus LegCo registers of interests function as the territorial open-records and disclosure layer.",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Prevention of Bribery Ordinance (Cap. 201), s.3 (solicitation/acceptance of advantages by public servants) enforced by the Independent Commission Against Corruption (ICAC)",
+     "note": "POBO Cap. 201 s.3, enforced by the ICAC, sets the advantage-and-acceptance conflict-of-interest standard for public servants at the SAR level.",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Code on Access to Information (1995), with complaints to the Office of the Ombudsman; Legislative Council (Powers and Privileges) Ordinance (Cap. 382) open-sitting rules",
+     "note": "The Access Code, Ombudsman oversight, and LegCo's public-sitting regime under Cap. 382 together serve as Hong Kong's access-to-government-information and open-meetings mechanism.",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Securities and Futures Ordinance (Cap. 571) administered by the Securities and Futures Commission (SFC); Banking Ordinance (Cap. 155) supervised by the Hong Kong Monetary Authority (HKMA)",
+     "note": "The SFC under Cap. 571 and the HKMA under the Banking Ordinance provide financial-market-integrity and public-asset stewardship supervision for the territory.",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Antiquities and Monuments Ordinance (Cap. 53), administered by the Antiquities Authority with the Antiquities and Monuments Office",
+     "note": "Cap. 53, which declares and protects monuments and archaeological sites, serves as Hong Kong's heritage and sacred-site protection instrument.",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Independent Commission Against Corruption Ordinance (Cap. 204) establishing the ICAC, prosecuting through the Department of Justice before the Hong Kong Judiciary (District Court / Court of First Instance)",
+     "note": "The ICAC under Cap. 204, prosecuting before Hong Kong's courts, constitutes the territory's anti-corruption and financial-crime enforcement chain.",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Official Languages Ordinance (Cap. 5) on Chinese and English status and use; supplemented by the Antiquities and Monuments Ordinance (Cap. 53)",
+     "note": "The Official Languages Ordinance (Cap. 5) and Cap. 53 together provide Hong Kong's language and cultural-heritage protections at the SAR level.",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Hong Kong Basic Law, Arts. 2 and 12 (high degree of autonomy; Hong Kong as a local administrative region directly under the Central People's Government)",
+     "note": "Basic Law Arts. 2 and 12 supply the constitutional basis for Hong Kong's local self-government and high degree of autonomy (the operative instrument is constitutional, applied at the territorial level).",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "singapore",
+   "code": "SG",
+   "name": "Singapore",
+   "seat": "Singapore",
+   "nation": "sg",
+   "state_parent": null,
+   "local_jur": "Republic of Singapore (city-state)",
+   "local_label": "Republic of Singapore (city-state) — Republic of Singapore",
+   "tagline": "Singapore — a world financial center; its city charter/code and the law of Republic of Singapore, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Town Councils Act 1988 (Singapore) — duties to keep audited accounts and lay annual reports before Parliament (ss 49–52)",
+     "note": "At the sub-national level, do the Town Councils Act 1988's requirements that elected Town Councils keep annually audited accounts and submit financial/annual reports for tabling in Parliament provide the city-scale public financial transparency?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "Town Councils Act 1988 — disclosure-of-interest rules for Town Council members; Prevention of Corruption Act 1960 enforced by CPIB",
+     "note": "Do the Town Councils Act's rules requiring members to disclose interests in matters before the Council, backstopped by the Prevention of Corruption Act and CPIB's reach across public and private sectors, govern conflicts of interest at the town/municipal level?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "No general Freedom of Information Act in Singapore; Town Councils Act 1988 + Town Councils Financial Rules (published audited accounts)",
+     "note": "Since Singapore has no general Freedom of Information Act even locally, does municipal openness rest on Town Councils' statutory publication of audited accounts rather than a general right to attend meetings or obtain records — is that the honest position?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Town Councils Act 1988 — Town Council holds and manages operating and sinking funds and estate property",
+     "note": "Do the Town Councils Act provisions requiring Town Councils to establish and manage sinking and operating funds out of conservancy charges for the maintenance of public-housing estates establish local public-trust stewardship of funds and assets?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Planning Act 1998 — conservation areas / Master Plan conservation status (administered by the Urban Redevelopment Authority as competent authority)",
+     "note": "Do the Planning Act's conservation provisions, under which conservation areas are designated and buildings and districts gazetted for conservation with the URA as the competent authority, protect locally significant heritage alongside national monuments?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "State Courts Act 1970 (State Courts of Singapore, formerly the Subordinate Courts); Prevention of Corruption Act 1960 enforced by CPIB",
+     "note": "Do the State Courts constituted under the State Courts Act 1970, together with CPIB enforcement under the Prevention of Corruption Act, provide the day-to-day local adjudication and anti-corruption enforcement mechanism?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "National Heritage Board Act 1993 (establishment and functions of the National Heritage Board)",
+     "note": "Does the National Heritage Board Act 1993, establishing the NHB to promote heritage, museums and cultural education, serve as the institutional vehicle for cultural and heritage protection at the operational level?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Town Councils Act 1988 — statutory delegation of estate management to Town Councils run by elected Members of Parliament",
+     "note": "As a city-state with no separate municipal charter, does the Town Councils Act 1988 — devolving management of public-housing estates to Town Councils run by elected Members of Parliament — represent the closest local basis of self-management beneath the national Constitution?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "zurich",
+   "code": "CH-ZRH",
+   "name": "Zürich (Switzerland)",
+   "seat": "Zürich",
+   "nation": "ch",
+   "state_parent": null,
+   "local_jur": "City & Canton of Zürich",
+   "local_label": "City & Canton of Zürich — Swiss Confederation",
+   "tagline": "Zürich (Switzerland) — a world financial center; its city charter/code and the law of Swiss Confederation, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Canton of Zürich, Gesetz über die Information und den Datenschutz (IDG, LS 170.4); City of Zürich Gemeindeordnung",
+     "note": "Does the cantonal Information and Data Protection Act's principle of public access, together with the City of Zürich municipal charter, give residents a right to inspect official records and municipal information?",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Verfassung des Kantons Zürich (KV ZH, 27 Feb 2005); Gemeindegesetz des Kantons Zürich (Ausstand / recusal provisions)",
+     "note": "Do the cantonal constitution and municipal law require members of Zürich authorities to recuse themselves where they have a personal interest?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "City of Zürich Gemeindeordnung / Geschäftsordnung des Gemeinderats; direct-democratic initiative & referendum rights under KV ZH",
+     "note": "Are sittings of the Gemeinderat generally public and is participation secured through municipal initiative and referendum rights under the city charter and cantonal constitution?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Verfassung des Kantons Zürich (KV ZH 2005), financial-administration articles; cantonal Finanzkontrolle (audit office)",
+     "note": "Do the cantonal constitution's financial provisions and the cantonal audit office (Finanzkontrolle) impose stewardship and audit duties over public funds in Zürich?",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Canton of Zürich Planungs- und Baugesetz (PBG, LS 700.1), heritage-protection provisions (Denkmalschutz, ss. 203 ff.); Kantonale Natur- und Heimatschutzverordnung",
+     "note": "Does the cantonal planning and building law's heritage chapter protect historic buildings and cultural monuments within the City and Canton of Zürich?",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Verfassung des Kantons Zürich (KV ZH 2005) judiciary articles; cantonal courts (Bezirksgerichte, Obergericht) and Staatsanwaltschaft Zürich",
+     "note": "Do the cantonal courts and the Zürich public prosecutor (Staatsanwaltschaft), established under the cantonal constitution, adjudicate and prosecute offences including corruption at the local level?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Verfassung des Kantons Zürich (KV ZH, 27 Feb 2005), education and cultural-promotion articles",
+     "note": "Does the cantonal constitution task the Canton and communes of Zürich with public education and the promotion of cultural life?",
+     "conf": "v"
+    },
+    "selfdet": {
+     "cite": "Verfassung des Kantons Zürich (Constitution of the Canton of Zürich), adopted by popular vote 27 February 2005",
+     "note": "Is the authority of the Canton and the self-government of its communes founded on the 2005 cantonal constitution within the Swiss federal structure?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "frankfurt",
+   "code": "DE-FRA",
+   "name": "Frankfurt am Main (Germany)",
+   "seat": "Frankfurt",
+   "nation": "de",
+   "state_parent": null,
+   "local_jur": "City of Frankfurt am Main + Land Hesse",
+   "local_label": "City of Frankfurt am Main + Land Hesse — Federal Republic of Germany",
+   "tagline": "Frankfurt am Main (Germany) — a world financial center; its city charter/code and the law of Federal Republic of Germany, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Hessische Gemeindeordnung (HGO) §§92-134 (Gemeindewirtschaft / Haushaltswirtschaft) i.V.m. Gemeindehaushaltsverordnung (GemHVO) — adoption and disclosure of the municipal budget (Haushaltssatzung) and annual accounts, applied via Frankfurt's Hauptsatzung",
+     "note": "Does Frankfurt's budget statute and annual accounts get publicly disclosed under the HGO municipal-finance rules and the GemHVO as applied in the city?",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Hessische Gemeindeordnung (HGO) §25 (Widerstreit der Interessen / recusal of council members) decided by the Stadtverordnetenversammlung, with financial oversight by the Frankfurt Revisionsamt",
+     "note": "Are Frankfurt council members barred from voting where a personal conflict of interest exists under HGO §25, with the municipal audit office overseeing financial integrity?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "Hessische Gemeindeordnung (HGO) §52 (Öffentlichkeit — public council meetings) i.V.m. der Geschäftsordnung der Stadtverordnetenversammlung Frankfurt",
+     "note": "Are sittings of Frankfurt's Stadtverordnetenversammlung public by default under HGO §52 as applied in the city's rules of procedure?",
+     "conf": "v"
+    },
+    "fiduciary": {
+     "cite": "Hessische Gemeindeordnung (HGO) §§92-114 (Gemeindewirtschaft / haushaltswirtschaftliche Grundsätze) with audit by the Frankfurt Revisionsamt and the Hessischer Rechnungshof",
+     "note": "Is the stewardship of Frankfurt's public funds governed by the HGO municipal-economy rules and checked by the city Revisionsamt and the Hessian Court of Audit?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Hessisches Denkmalschutzgesetz (HDSchG, 28 Nov 2016) administered locally by Frankfurt's Untere Denkmalschutzbehörde / Denkmalamt",
+     "note": "Are Frankfurt's historic monuments protected through the Hessian Monument Protection Act as applied by the city's lower monument-protection authority?",
+     "conf": "v"
+    },
+    "enforcement": {
+     "cite": "Staatsanwaltschaft Frankfurt am Main investigating StGB §§331-338 (corruption offences), tried before the Amtsgericht / Landgericht Frankfurt",
+     "note": "Is corruption involving Frankfurt officials investigated by the Frankfurt public prosecutor and tried in the local courts under the federal Criminal Code?",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Stadt Frankfurt — Dezernat fuer Kultur und Wissenschaft funding museums, libraries and cultural institutions under the city's kommunale Selbstverwaltung",
+     "note": "Does Frankfurt fund and protect its cultural and educational institutions through its cultural-affairs department under municipal self-administration?",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Grundgesetz Art. 28(2) (kommunale Selbstverwaltung) and Hessische Verfassung Art. 137, given concrete form by the Hessische Gemeindeordnung and Frankfurt's Hauptsatzung",
+     "note": "Does Frankfurt's authority to govern its own local affairs rest on the constitutional guarantee of municipal self-administration in Basic Law Art. 28(2) and the Hessian constitution?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "paris",
+   "code": "FR-PAR",
+   "name": "Paris (France)",
+   "seat": "Paris",
+   "nation": "fr",
+   "state_parent": null,
+   "local_jur": "Ville de Paris",
+   "local_label": "Ville de Paris — French Republic",
+   "tagline": "Paris (France) — a world financial center; its city charter/code and the law of French Republic, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Ville de Paris budget and accounts (budget primitif/compte administratif voted by the Conseil de Paris) under CGCT publicity-of-budgets rules (Art. L2313-1) applied to Paris via L2512-1, plus the opendata.paris.fr open-data portal",
+     "note": "Does Paris vote and publish its budget and accounts under the CGCT budget-publicity regime and operate an open-data portal for fiscal information?",
+     "conf": "p"
+    },
+    "conflict": {
+     "cite": "Déontologue / référent déontologue de la Ville de Paris, alongside interest/asset declarations filed by Paris executive officeholders to the national HATVP under Loi n° 2013-907",
+     "note": "Does Paris maintain a déontologue arrangement for its elected officials while declarations of its senior officeholders are handled by the national HATVP under the 2013 transparency law?",
+     "conf": "p"
+    },
+    "sunshine": {
+     "cite": "CGCT Art. L2121-18 (sessions of the council assembly are public) applied to the Conseil de Paris via Art. L2512-1",
+     "note": "Are deliberative sessions of the Conseil de Paris public by default under the CGCT rule on open council meetings (subject to the closed-session exception)?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "Chambre régionale des comptes d'Île-de-France review of Ville de Paris accounts under the Code des juridictions financières / CGCT",
+     "note": "Is the stewardship of Paris's public funds subject to external review by the regional Chamber of Accounts as for other French local authorities?",
+     "conf": "p"
+    },
+    "sacred": {
+     "cite": "Plan local d'urbanisme (PLU) of Paris together with the Code du patrimoine 'abords' protected-surroundings regime (Art. L621-30) applied to Paris monuments via the Architecte des Bâtiments de France",
+     "note": "Does Paris protect its heritage through its local urbanism plan working alongside the national Code du patrimoine's protected-surroundings (abords) regime?",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "Tribunal administratif de Paris reviewing acts of the Ville de Paris under the Code de justice administrative",
+     "note": "Are acts of the Ville de Paris reviewable by the Paris administrative tribunal as first-instance court for local-government disputes?",
+     "conf": "p"
+    },
+    "culture": {
+     "cite": "Ville de Paris cultural competence under the CGCT, notably its municipal museums operated through the Paris Musées établissement public, plus municipal libraries and conservatoires",
+     "note": "Does Paris exercise its cultural competence directly, for example operating its municipal museums through the Paris Musées public establishment?",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "CGCT Art. L2512-1 — Ville de Paris as a collectivité à statut particulier, established by Loi n° 2017-257 du 28 février 2017 relative au statut de Paris et à l'aménagement métropolitain",
+     "note": "Is Paris's authority to govern itself grounded in its special-status single collectivity created by the 2017 Statut de Paris law and codified at CGCT L2512-1?",
+     "conf": "v"
+    }
+   }
+  },
+  {
+   "id": "dubai",
+   "code": "AE-DXB",
+   "name": "Dubai (UAE) + DIFC",
+   "seat": "Dubai",
+   "nation": "ae",
+   "state_parent": null,
+   "local_jur": "Government of Dubai + DIFC",
+   "local_label": "Government of Dubai + DIFC — United Arab Emirates",
+   "tagline": "Dubai (UAE) + DIFC — a world financial center; its city charter/code and the law of United Arab Emirates, up the shared apex to the Holy See.",
+   "local": {
+    "transparency": {
+     "cite": "Government of Dubai — Financial Audit Authority, Law No. (4) of 2018 (issued by the Ruler of Dubai; amended by Law No. (24) of 2024)",
+     "note": "Does Dubai's Financial Audit Authority, which audits public-fund spending and reports to the Ruler with financial and administrative independence, carry the public financial-oversight function at the emirate level (noting Dubai has no general open-records statute)?",
+     "conf": "v"
+    },
+    "conflict": {
+     "cite": "DFSA Regulatory Law 2004 (DIFC Law No. (1) of 2004) + DFSA General (GEN) Rulebook conduct/conflicts provisions",
+     "note": "Within the DIFC free zone, do the conflict-of-interest and conduct rules administered by the Dubai Financial Services Authority under the Regulatory Law 2004 govern the ethics and recusal of regulated participants?",
+     "conf": "v"
+    },
+    "sunshine": {
+     "cite": "DIFC Data Protection Law (DIFC Law No. 5 of 2020), administered by the DIFC Commissioner of Data Protection",
+     "note": "Given Dubai has no general open-meetings or freedom-of-information statute, does the DIFC's GDPR-modeled Data Protection Law No. 5 of 2020 provide the closest sub-national mechanism for individuals to access and control information held about them, limited to DIFC-registered entities?",
+     "conf": "p"
+    },
+    "fiduciary": {
+     "cite": "DFSA Regulatory Law 2004 (DIFC Law No. (1) of 2004) — DIFC market-integrity supervision; Dubai Financial Audit Authority Law No. (4) of 2018 — public-fund stewardship",
+     "note": "Do the DFSA's supervision of DIFC financial-market integrity and the Financial Audit Authority's stewardship of Dubai public funds together discharge the public-trust fiduciary function at the city/free-zone level?",
+     "conf": "v"
+    },
+    "sacred": {
+     "cite": "Dubai Culture & Arts Authority, established by Dubai Law No. (6) of 2008 (heritage/historic-site stewardship), with federal antiquities law applying above it",
+     "note": "Does the Dubai Culture and Arts Authority, the emirate-level body for heritage and historic sites, protect Dubai's cultural and sacred sites under municipal authority, with federal antiquities law governing above it?",
+     "conf": "p"
+    },
+    "enforcement": {
+     "cite": "DIFC Courts (independent common-law jurisdiction established under Dubai Law) + DFSA enforcement powers under Regulatory Law 2004 (DIFC Law No. (1) of 2004); Dubai Courts for on-shore matters",
+     "note": "Within the free zone, do the independent common-law DIFC Courts together with the DFSA's enforcement powers form the courts-plus-financial-supervision mechanism, while Dubai Courts handle on-shore matters?",
+     "conf": "v"
+    },
+    "culture": {
+     "cite": "Dubai Culture & Arts Authority, established by Dubai Law No. (6) of 2008",
+     "note": "Does the Dubai Culture and Arts Authority serve as the emirate's institution for cultural, heritage, and arts stewardship at the sub-national level?",
+     "conf": "p"
+    },
+    "selfdet": {
+     "cite": "Dubai Law No. (5) of 2021 Concerning the DIFC (replacing the original Dubai Law No. (9) of 2004), establishing the DIFC Authority, DFSA and DIFC Courts",
+     "note": "Does Dubai Law No. (5) of 2021, which re-establishes the DIFC Authority, DFSA and the DIFC's centre bodies and recognizes the Centre's financial and administrative independence, supply the local legal basis for the DIFC's autonomous common-law jurisdiction within the emirate?",
      "conf": "v"
     }
    }

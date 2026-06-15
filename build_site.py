@@ -55,7 +55,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "crosswalk_maui.html", "crosswalk_honolulu.html", "crosswalk_hawaii.html", "crosswalk_kauai.html",
                "crosswalk_nys.html", "crosswalk_nyc.html", "crosswalk_liverpool.html",
                # phase 2 — the Holy See: apex crosswalk (SSC <-> Canon Law) + its finances (real FY2024 reports)
-               "crosswalk_holysee.html", "money_holysee.html"]
+               "crosswalk_holysee.html", "money_holysee.html",
+               # world financial-center cities (per-country national layer up the shared apex)
+               "crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html", "crosswalk_singapore.html",
+               "crosswalk_zurich.html", "crosswalk_frankfurt.html", "crosswalk_paris.html", "crosswalk_dubai.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -90,6 +93,14 @@ NAV_LABEL = {
     "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
     "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
     "money_holysee.html": "Holy See Finances",
+    "crosswalk_london.html": "London (City of London + GLA)",
+    "crosswalk_tokyo.html": "Tokyo",
+    "crosswalk_hongkong.html": "Hong Kong",
+    "crosswalk_singapore.html": "Singapore",
+    "crosswalk_zurich.html": "Zürich (Switzerland)",
+    "crosswalk_frankfurt.html": "Frankfurt (Germany)",
+    "crosswalk_paris.html": "Paris (France)",
+    "crosswalk_dubai.html": "Dubai (UAE + DIFC)",
     # Charter / law / budget reference layer (govOS-styled pages in the King civic tree).
     # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
@@ -119,6 +130,11 @@ NAV_GROUPS = [
                        # unique non-crosswalk reference pages (real budget data + the publish loop)
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
                        "king/civic/templates/agenda-explainer/Agenda%20Explainer.html"]),
+    # world financial-center cities — same SSC charter, each city's real charter/code + national law,
+    # up the shared apex to the Holy See. "Act local, think global."
+    ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",
+                       "crosswalk_singapore.html", "crosswalk_zurich.html", "crosswalk_frankfurt.html",
+                       "crosswalk_paris.html", "crosswalk_dubai.html"]),
 ]
 NAV_CSS = ("<style>"
     ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"

@@ -108,6 +108,13 @@ FUNCTIONS = [
 ]
 FUNC_BY_KEY = {f["key"]: f for f in FUNCTIONS}
 
+# The national layer was historically baked into each function's spine as a "United States" cell.
+# Lift it into NATIONS so the layer can vary by country (UK, Japan, Switzerland, ...). What remains
+# of the spine — International -> ICC -> ICJ -> Holy See — is universal and shared by every tenant.
+NATIONS = {"us": {"label": "United States",
+                  "layer": {fn["key"]: next((c for c in fn["spine"] if c["layer"] == "United States"), None) for fn in FUNCTIONS}}}
+def apex_spine(fn): return [c for c in fn["spine"] if c["layer"] != "United States"]
+
 # ── built-in proof tenant: State of Hawaiʻi (it IS the parent corpus -> no state_parent) ─────
 TENANTS = {
     "state": {
@@ -165,6 +172,12 @@ def load_extra_tenants():
         data = json.load(open(LOCAL_JSON, encoding="utf-8"))
     except Exception as e:
         print("  ! crosswalk_local.json unreadable:", e); return
+    # per-country national layers (UK, Japan, ...) used by the world-city tenants
+    for ncode, nobj in data.get("nations", {}).items():
+        lbl = nobj.get("label", ncode)
+        NATIONS[ncode] = {"label": lbl,
+                          "layer": {k: C(lbl, c.get("cite", ""), c.get("note", ""), c.get("conf", "p"))
+                                    for k, c in nobj.get("layer", {}).items()}}
     for t in data.get("tenants", []):
         tid = t["id"]
         local = {}
@@ -172,7 +185,8 @@ def load_extra_tenants():
             local[k] = C(t.get("local_jur", t.get("local_label", t["name"])),
                          cell.get("cite", ""), cell.get("note", ""), cell.get("conf", "p"))
         TENANTS[tid] = {"id": t.get("code", tid), "name": t["name"], "seat": t.get("seat", ""),
-                        "state_parent": t.get("state_parent"), "tagline": t.get("tagline", ""),
+                        "state_parent": t.get("state_parent"), "nation": t.get("nation", "us"),
+                        "tagline": t.get("tagline", ""),
                         "local_label": t.get("local_label", t["name"]), "local": local}
 
 CONF_TAG = {"v": '<span class="cf v">cited</span>', "p": '<span class="cf p">§ pending verification</span>'}
@@ -195,7 +209,11 @@ def layers_for(fn, t):
     if sp and sp in TENANTS:
         st = TENANTS[sp]["local"].get(fn["key"])
         if st: out.append(st)
-    out.extend(fn["spine"])
+    nat = NATIONS.get(t.get("nation", "us"))
+    if nat:
+        nc = nat["layer"].get(fn["key"])
+        if nc: out.append(nc)
+    out.extend(apex_spine(fn))
     return out
 
 def row_card(fn, t):
@@ -216,7 +234,9 @@ def hierarchy_line(t):
     chain = [t["local_label"]]
     sp = t.get("state_parent")
     if sp and sp in TENANTS: chain.append(TENANTS[sp]["name"])
-    chain += ["United States", "International", "ICC", "ICJ", "Holy See"]
+    nat = NATIONS.get(t.get("nation", "us"))
+    if nat: chain.append(nat["label"])
+    chain += ["International", "ICC", "ICJ", "Holy See"]
     return " &rarr; ".join("<b>%s</b>" % esc(x) for x in chain)
 
 def build(tid):
