@@ -1,0 +1,340 @@
+{
+ "generated": "2026-06-14 15:19:00",
+ "source": "reports/mauios/vendor_donor_join.json (CSC donors x HANDS awards, public records)",
+ "method": "Kumulipo parity: a pair that does not answer = output (award) shadowed by private input (donation). leverage = award/contrib. Correlations as QUESTIONS, never accusations; names a broken pair, not a guilty person.",
+ "hewa": {
+  "n_broken_pairs": 9,
+  "vendors_scanned": 74,
+  "total_award_in_broken_pairs": 8350426.2,
+  "total_contrib_in_broken_pairs": 9813.52,
+  "aggregate_leverage": 850.9,
+  "pairs": [
+   {
+    "vendor": "FUKUMOTO ENGINEERING, INC.",
+    "award_total": 4723680.0,
+    "award_count": 22,
+    "contrib_total": 1750.0,
+    "leverage": 2699.2,
+    "officials": [
+     "Batangan",
+     "Sugimura"
+    ],
+    "hits": [
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Kay Fukumoto Trust",
+      "amount": 1050.0,
+      "n": 3,
+      "basis": "firm"
+     },
+     {
+      "official": "Batangan",
+      "official_label": "Kauanoe Batangan - Councilmember, Kahului",
+      "contributor": "Fukumoto, Kay",
+      "amount": 400.0,
+      "n": 1,
+      "basis": "individual"
+     },
+     {
+      "official": "Batangan",
+      "official_label": "Kauanoe Batangan - Councilmember, Kahului",
+      "contributor": "Fukumoto, Mitchell",
+      "amount": 300.0,
+      "n": 1,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does FUKUMOTO ENGINEERING, INC.'s $4,723,680 in county awards answer the public, or the $1,750 given to Batangan, Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "MICHAEL WRIGHT & ASSOCIATES, INC.",
+    "award_total": 1000000.0,
+    "award_count": 2,
+    "contrib_total": 400.0,
+    "leverage": 2500.0,
+    "officials": [
+     "Sugimura"
+    ],
+    "hits": [
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Michael Wright & Associates Inc.",
+      "amount": 400.0,
+      "n": 2,
+      "basis": "firm"
+     }
+    ],
+    "question": "Does MICHAEL WRIGHT & ASSOCIATES, INC.'s $1,000,000 in county awards answer the public, or the $400 given to Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "Park Consulting Group, Inc.",
+    "award_total": 50000.0,
+    "award_count": 1,
+    "contrib_total": 50.0,
+    "leverage": 1000.0,
+    "officials": [
+     "Sinenci"
+    ],
+    "hits": [
+     {
+      "official": "Sinenci",
+      "official_label": "Shane Sinenci - Councilmember, East Maui",
+      "contributor": "Park, Faith",
+      "amount": 50.0,
+      "n": 1,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does Park Consulting Group, Inc.'s $50,000 in county awards answer the public, or the $50 given to Sinenci who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "Allana Buick & Bers, Inc.",
+    "award_total": 391280.0,
+    "award_count": 2,
+    "contrib_total": 500.0,
+    "leverage": 782.6,
+    "officials": [
+     "Cook"
+    ],
+    "hits": [
+     {
+      "official": "Cook",
+      "official_label": "Tom Cook - Councilmember, South Maui",
+      "contributor": "Allana Buick & Bers, Inc.",
+      "amount": 500.0,
+      "n": 1,
+      "basis": "firm"
+     }
+    ],
+    "question": "Does Allana Buick & Bers, Inc.'s $391,280 in county awards answer the public, or the $500 given to Cook who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "NISHIKAWA ARCHITECTS, INC.",
+    "award_total": 464330.0,
+    "award_count": 3,
+    "contrib_total": 750.0,
+    "leverage": 619.1,
+    "officials": [
+     "Sugimura"
+    ],
+    "hits": [
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Nishikawa, C.H.",
+      "amount": 750.0,
+      "n": 4,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does NISHIKAWA ARCHITECTS, INC.'s $464,330 in county awards answer the public, or the $750 given to Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "CDF ENGINEERING",
+    "award_total": 248870.0,
+    "award_count": 1,
+    "contrib_total": 500.0,
+    "leverage": 497.7,
+    "officials": [
+     "Cook"
+    ],
+    "hits": [
+     {
+      "official": "Cook",
+      "official_label": "Tom Cook - Councilmember, South Maui",
+      "contributor": "CDF Engineering LLC",
+      "amount": 500.0,
+      "n": 1,
+      "basis": "firm"
+     }
+    ],
+    "question": "Does CDF ENGINEERING's $248,870 in county awards answer the public, or the $500 given to Cook who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "R. T. TANAKA ENGINEERS, INC.",
+    "award_total": 1316727.03,
+    "award_count": 8,
+    "contrib_total": 3975.0,
+    "leverage": 331.3,
+    "officials": [
+     "Bissen",
+     "Lee",
+     "Sugimura"
+    ],
+    "hits": [
+     {
+      "official": "Lee",
+      "official_label": "Alice L. Lee - Council Chair",
+      "contributor": "Tanaka, Robin S.",
+      "amount": 1400.0,
+      "n": 5,
+      "basis": "individual"
+     },
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Tanaka, Robert T.",
+      "amount": 950.0,
+      "n": 3,
+      "basis": "individual"
+     },
+     {
+      "official": "Lee",
+      "official_label": "Alice L. Lee - Council Chair",
+      "contributor": "Tanaka, Robert T.",
+      "amount": 875.0,
+      "n": 2,
+      "basis": "individual"
+     },
+     {
+      "official": "Bissen",
+      "official_label": "Richard Bissen - Mayor",
+      "contributor": "Tanaka, Ryan",
+      "amount": 500.0,
+      "n": 1,
+      "basis": "individual"
+     },
+     {
+      "official": "Bissen",
+      "official_label": "Richard Bissen - Mayor",
+      "contributor": "Tanaka, Wayne Y.",
+      "amount": 250.0,
+      "n": 1,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does R. T. TANAKA ENGINEERS, INC.'s $1,316,727 in county awards answer the public, or the $3,975 given to Bissen, Lee, Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "OTOMO ENGINEERING, INC.",
+    "award_total": 91246.0,
+    "award_count": 1,
+    "contrib_total": 850.0,
+    "leverage": 107.3,
+    "officials": [
+     "Sugimura"
+    ],
+    "hits": [
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Otomo, Stacy & Carole",
+      "amount": 450.0,
+      "n": 3,
+      "basis": "individual"
+     },
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Otomo, Stacy",
+      "amount": 400.0,
+      "n": 2,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does OTOMO ENGINEERING, INC.'s $91,246 in county awards answer the public, or the $850 given to Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "HAWAII OFF-GRID LLC",
+    "award_total": 64293.17,
+    "award_count": 1,
+    "contrib_total": 1038.52,
+    "leverage": 61.9,
+    "officials": [
+     "Cook"
+    ],
+    "hits": [
+     {
+      "official": "Cook",
+      "official_label": "Tom Cook - Councilmember, South Maui",
+      "contributor": "Hawaii Off Grid",
+      "amount": 1038.52,
+      "n": 1,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does HAWAII OFF-GRID LLC's $64,293 in county awards answer the public, or the $1,039 given to Cook who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
+   }
+  ]
+ },
+ "by_official": {
+  "Sugimura": {
+   "label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+   "award_shadowed": 7595983.03,
+   "contrib_received": 4000.0,
+   "vendors": [
+    "FUKUMOTO ENGINEERING, INC.",
+    "MICHAEL WRIGHT & ASSOCIATES, INC.",
+    "NISHIKAWA ARCHITECTS, INC.",
+    "OTOMO ENGINEERING, INC.",
+    "R. T. TANAKA ENGINEERS, INC."
+   ],
+   "n_vendors": 5
+  },
+  "Batangan": {
+   "label": "Kauanoe Batangan - Councilmember, Kahului",
+   "award_shadowed": 4723680.0,
+   "contrib_received": 700.0,
+   "vendors": [
+    "FUKUMOTO ENGINEERING, INC."
+   ],
+   "n_vendors": 1
+  },
+  "Lee": {
+   "label": "Alice L. Lee - Council Chair",
+   "award_shadowed": 1316727.03,
+   "contrib_received": 2275.0,
+   "vendors": [
+    "R. T. TANAKA ENGINEERS, INC."
+   ],
+   "n_vendors": 1
+  },
+  "Bissen": {
+   "label": "Richard Bissen - Mayor",
+   "award_shadowed": 1316727.03,
+   "contrib_received": 750.0,
+   "vendors": [
+    "R. T. TANAKA ENGINEERS, INC."
+   ],
+   "n_vendors": 1
+  },
+  "Cook": {
+   "label": "Tom Cook - Councilmember, South Maui",
+   "award_shadowed": 704443.17,
+   "contrib_received": 2038.52,
+   "vendors": [
+    "Allana Buick & Bers, Inc.",
+    "CDF ENGINEERING",
+    "HAWAII OFF-GRID LLC"
+   ],
+   "n_vendors": 3
+  },
+  "Sinenci": {
+   "label": "Shane Sinenci - Councilmember, East Maui",
+   "award_shadowed": 50000.0,
+   "contrib_received": 50.0,
+   "vendors": [
+    "Park Consulting Group, Inc."
+   ],
+   "n_vendors": 1
+  }
+ },
+ "overseer": {
+  "node": 53,
+  "name": "Ka Luna Kiaʻi (the Overseer Joker)",
+  "broken_pairs": 9,
+  "charge": "9 pairs no longer answer ($8,350,426 in awards shadowed by $9,814 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
+ },
+ "pono_restoration": "Each award answers the public record, voiced as its pair. The remedy is disclosure sung, not accusation."
+}
