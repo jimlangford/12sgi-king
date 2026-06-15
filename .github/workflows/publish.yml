@@ -82,6 +82,9 @@ jobs:
           run "$P/statewide_money.py" || true
           run "$P/hands_awards.py" || true
           run "$P/vendor_donor_join.py" || true
+          run "$P/parity_check.py" || true   # Kumulipo parity: broken pairs from the money x votes join
+          run "$P/wildfire_watch.py" || true # wildfire recovery money, ranked by firm (needs hands_awards first)
+          run "$P/lobby_money_watch.py" || true # state lobbyist registry x donors: who lobbies AND pays the deciders (needs donor_watch first)
           if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
             run "$P/lege_legiscan.py" --years 2024 2026 || true
           fi

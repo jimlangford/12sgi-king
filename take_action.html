@@ -60,6 +60,33 @@ Date:</textarea>
 </div>
 <p class="note">Executive-branch contracts (where the Stant awards were) go through the County portal. The email button reaches the Council&#8217;s records office (ocs.request@mauicounty.us). Paste the copied text, add your name, and send.</p>
 
+<h2>1b. Demand the wildfire-recovery records</h2>
+<p class="lead">After the 2023 fires, <b>$22.6M+</b> in Lahaina / disaster-recovery contracts went to a
+handful of firms (<a href="wildfire_recovery_watch.html">see the breakdown &rarr;</a>). The records that
+show whether those awards were <b>competitive</b> &mdash; and <b>who actually did the work</b> (the
+subcontractors) &mdash; aren&#8217;t posted anywhere. This request asks for them, lawfully.</p>
+<textarea id="reqwf" readonly>To: County of Maui - Department of Finance, Purchasing Division (UIPA Records)
+
+Under the Uniform Information Practices Act (HRS Chapter 92F), I request copies of the following County of Maui records concerning August 2023 wildfire recovery contracts (including the Lahaina/disaster recovery awards to Jacobs Engineering, Group 70 International, Triple HS, HDR Engineering, Stantec, Tetra Tech, and Bowers + Kubota):
+
+1. SUBCONTRACTORS: for each prime contract, the list of all subcontractors and sub-consultants (name, scope, and dollar value of each subcontract), plus any subcontractor-substitution requests and County approvals.
+
+2. PROCUREMENT METHOD & JUSTIFICATION: for each contract, the method used - competitive bid/proposal, sole-source (HRS 103D-306), or emergency procurement (HRS 103D-307) - and the written justification and Chief Procurement Officer approval for any sole-source or emergency award.
+
+3. RECUSALS: any conflict-of-interest disclosures or recusal notices filed by County officials or employees in connection with the award, approval, or oversight of these contracts.
+
+Please provide electronic copies (PDF or CSV). I request a fee waiver in the public interest (HRS 92F-12). If any portion is withheld, please cite the specific UIPA exception (HRS 92F-13).
+
+Name:
+Email:
+Date:</textarea>
+<div class="btns">
+  <button class="btn primary" onclick="copyById('reqwf')">Copy request</button>
+  <a class="btn" href="https://www.mauicounty.gov/2771/UIPA-Public-Records-Request" target="_blank" rel="noopener">County records portal &#8599;</a>
+  <a class="btn" id="mailbtnwf" target="_blank" rel="noopener">Email the records office</a>
+</div>
+<p class="note">Same open-records law (HRS&nbsp;92F). Paste, add your name, send. When the records come back, they can be set beside the campaign-money and lobbying record &mdash; that is where any connection shows from documents.</p>
+
 <h2>2. Sign up &mdash; add your name to the demand</h2>
 <p class="lead">Get notified when the records come back, and show the County how many people want them released.</p>
 <form class="f" id="signup" method="POST" action="https://formspree.io/f/xzdqydpe">
@@ -76,17 +103,19 @@ Date:</textarea>
 <footer>12 Stones Global &middot; Kilo Aupuni &middot; HRS 92F (UIPA) &middot; sources on the <a class="home" href="accountability_record.html">Accountability Record</a></footer>
 
 <script>
- function copyReq(){
-   var t=document.getElementById('req'); t.select(); t.setSelectionRange(0,99999);
+ function copyById(id){
+   var t=document.getElementById(id); t.select(); t.setSelectionRange(0,99999);
    try{ document.execCommand('copy'); }catch(e){}
    navigator.clipboard && navigator.clipboard.writeText(t.value);
    var b=event.target; var o=b.textContent; b.textContent='Copied ✓'; setTimeout(function(){b.textContent=o;},1800);
  }
- // Council records mailto, pre-filled
+ function copyReq(){ copyById('req'); }
+ // Records-office mailto, pre-filled (sole-source + wildfire requests)
  (function(){
-   var subj='UIPA request - sole-source & exemption contract records (HRS 92F)';
-   var body=document.getElementById('req').value;
-   document.getElementById('mailbtn').href='mailto:ocs.request@mauicounty.us?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+   var mk=function(id){return 'mailto:ocs.request@mauicounty.us?subject='
+     +encodeURIComponent('UIPA request (HRS 92F)')+'&body='+encodeURIComponent(document.getElementById(id).value);};
+   document.getElementById('mailbtn').href=mk('req');
+   var wf=document.getElementById('mailbtnwf'); if(wf) wf.href=mk('reqwf');
  })();
  // AJAX submit -> inline thank-you (no page redirect). Degrades to a normal POST if JS is off.
  (function(){

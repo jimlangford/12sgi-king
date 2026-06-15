@@ -30,10 +30,65 @@ PAGES = [
     ("charter_application.html",         "Charter -> Law -> Evidence",   "12 Stones Charter bound to existing enforceable law + live data."),
     ("commission_antitrust.html",        "Commission Antitrust Thread",  "NAR/Sitzer-Burnett timeline + estimated commission load."),
     ("bill9/bill9_testimony_scan.html",  "Bill 9 Testimony Scan",        "STR-ban testimony: industry lobbying flagged, no collusion language."),
+    ("parity_check.html",                "Pairs That No Longer Answer",  "Kumulipo parity: county awards shadowed by donations to the deciders, as leverage. The civic-capture the Overseer (N53) voices. Public records, framed as questions."),
+    ("wildfire_recovery_watch.html",     "Wildfire Recovery Watch",      "Where the $22M+ in post-August-2023 Maui wildfire recovery money went, ranked by firm - repeat players flagged, set beside the deciders. Public records, framed as questions."),
+    ("lobby_money_watch.html",           "Lobby + Money",                "Entities that BOTH register to lobby the State and donate to tracked Maui officials - a double channel of influence. Led by Lanai Resorts (5 council members). Public records, framed as questions."),
 ]
-DATA = ["statewide_money.json", "donor_profiles.json", "officials.json",
+DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
+
+# ── govOS top navigation: injected into every civic page so you can move around the
+#    system from any report (desktop + mobile). Short labels keep the bar compact. ──
+NAV_SHORT = {
+    "county_dashboard.html": "Dashboard",
+    "patterns_money_x_votes.html": "Money×Votes",
+    "contracts_x_donors.html": "Contracts×Donors",
+    "parity_check.html": "Parity",
+    "wildfire_recovery_watch.html": "🔥 Wildfire $",
+    "lobby_money_watch.html": "Lobby+Money",
+    "money_behind_officials.html": "Money·Officials",
+    "officials_scorecard.html": "Officials",
+    "lege_legislator_scorecard.html": "Legislators",
+    "maui_contract_awards.html": "Awards",
+    "sole_source_watch.html": "Sole-Source",
+    "statewide_money_patterns.html": "Statewide $",
+    "accountability_record.html": "Accountability",
+    "commission_antitrust.html": "Antitrust",
+    "charter_application.html": "Charter",
+    "bill9_bill9_testimony_scan.html": "Bill 9",
+}
+NAV_CSS = ("<style>"
+    ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;flex-wrap:wrap;align-items:center;"
+    "gap:6px;padding:9px 14px;background:#0a0e0c;border-bottom:1px solid rgba(217,178,76,.3);"
+    "font-family:Consolas,'Segoe UI',system-ui,monospace;font-size:12px;line-height:1.3}"
+    ".govos-nav a{color:#bdb8a4;text-decoration:none;border:1px solid transparent;border-radius:20px;padding:4px 10px;white-space:nowrap}"
+    ".govos-nav .gnav-home{font-weight:700;color:#e8e4d8;font-size:13px;margin-right:6px;border-radius:8px}"
+    ".govos-nav .gnav-pill:hover{border-color:rgba(217,178,76,.5);color:#e8e4d8}"
+    ".govos-nav .gnav-cur{background:rgba(217,178,76,.16);border-color:#d9b24c;color:#f4c95d}"
+    ".govos-nav .gnav-cta{margin-left:auto;background:#d9b24c;color:#0c100e;font-weight:700;border:0;border-radius:8px;padding:5px 12px}"
+    "</style>")
+
+def nav_bar(current):
+    """Build the sticky govOS nav for `current` (a flat filename, '' for the hub)."""
+    items = ['<a class="gnav-home" href="reports.html">🌺 govOS</a>']
+    for rel, name, _blurb in PAGES:
+        flat = rel.replace("/", "_")
+        label = NAV_SHORT.get(flat, name)
+        cur = " gnav-cur" if flat == current else ""
+        items.append(f'<a class="gnav-pill{cur}" href="{flat}">{label}</a>')
+    items.append('<a class="gnav-cta" href="take_action.html">⚖ Take action</a>')
+    return NAV_CSS + '<nav class="govos-nav">' + "".join(items) + "</nav>"
+
+def inject_nav(html, current):
+    """Insert the nav right after <body>; if there's no body tag, prepend it."""
+    if "govos-nav" in html:           # already injected (idempotent safety)
+        return html
+    nav = nav_bar(current)
+    m = re.search(r"<body[^>]*>", html, re.I)
+    if m:
+        return html[:m.end()] + "\n" + nav + html[m.end():]
+    return nav + html
 
 def now_hst(): return datetime.now(HST)
 
@@ -47,7 +102,10 @@ def main():
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
             flat = rel.replace("/", "_")
-            shutil.copy(src, os.path.join(SITE, flat))
+            html = open(src, encoding="utf-8", errors="replace").read()
+            html = inject_nav(html, flat)          # govOS top nav on every civic page
+            with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
+                f.write(html)
             present.append((flat, name, blurb))
     for rel in DATA:
         src = os.path.join(MAUIOS, rel)
@@ -98,8 +156,10 @@ def main():
         print("  + go.html: live/mirror failover launcher")
     _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
     if os.path.exists(_ta):
-        shutil.copy(_ta, os.path.join(SITE, "take_action.html"))
-        print("  + take_action.html: demand-the-records + supporter signup")
+        _tah = inject_nav(open(_ta, encoding="utf-8", errors="replace").read(), "take_action.html")
+        with open(os.path.join(SITE, "take_action.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(_tah)
+        print("  + take_action.html: demand-the-records + supporter signup (+nav)")
     # [redundancy] production status (public-safe) from the local 15-min publisher
     _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
     prod = ""
@@ -150,7 +210,12 @@ Sources are linked on every page.</div>
 <p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>
 <footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record</footer>
 </div></body></html>"""
+    index = inject_nav(index, "")     # nav on the hub too (home pill highlights nothing)
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
+        f.write(index)
+    # the nav's "🌺 govOS" home points at reports.html — make it the named hub in BOTH
+    # contexts (public site root + king-local, where index.html is the King shell).
+    with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
         f.write(index)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
@@ -167,11 +232,11 @@ Sources are linked on every page.</div>
             # the public root landing becomes the private "all reports" hub; never clobber
             # king-local's own index.html (the King shell).
             shutil.copy(h, os.path.join(KLOCAL, "reports.html" if b == "index.html" else b))
-        for sub in ("data", "donors"):
+        for sub in ("data", "donors", "king"):   # +king: civic/templates tree so go.html resolves on the private server (true superset)
             s = os.path.join(SITE, sub)
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
-        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data -> served first via Tailscale")
+        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ -> served first via Tailscale")
     return 0
 
 if __name__ == "__main__":
