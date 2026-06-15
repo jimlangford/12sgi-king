@@ -148,6 +148,15 @@ def main():
     # Maui stats for the hub (from its existing dataset)
     mb = buckets.get("maui", []); mv = H.build_vendors(mb)
     stats["maui"] = {"awards": len(mb), "vendors": len(mv), "dollars": sum(v["total"] for v in mv)}
+    # NY tenants: if a contracts_<id>.json exists (from ny_watch.py), mark that tenant live with its stats
+    for t in TENANTS:
+        if t["id"] in ("nyc", "nys", "liverpool"):
+            jf = os.path.join(MAUIOS, f"contracts_{t['id']}.json")
+            if os.path.exists(jf):
+                j = json.load(open(jf, encoding="utf-8"))
+                stats[t["id"]] = {"awards": j.get("clean_awards") or j.get("awards", 0),
+                                  "vendors": j.get("vendors", 0), "dollars": j.get("dollars", 0)}
+                t["status"] = "live"; t["page"] = f"contracts_{t['id']}.html"
     open(os.path.join(MAUIOS, "jurisdictions.html"), "w", encoding="utf-8").write(hub(stats))
     json.dump({"generated": now_hst().isoformat(), "tenants": stats},
               open(os.path.join(MAUIOS, "jurisdictions.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)

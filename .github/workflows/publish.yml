@@ -81,7 +81,8 @@ jobs:
           run "$P/donor_watch.py" || true
           run "$P/statewide_money.py" || true
           run "$P/hands_awards.py" || true
-          run "$P/county_awards.py" || true # multi-tenant contract pages (State/Honolulu/etc.) from statewide HANDS
+          run "$P/ny_watch.py" || true      # New York tenants: NYC Open Data contracts (must run before county_awards)
+          run "$P/county_awards.py" || true # multi-tenant contract pages (State/Honolulu/etc.) from statewide HANDS + NY hub
           run "$P/vendor_donor_join.py" || true
           run "$P/parity_check.py" || true   # Kumulipo parity: broken pairs from the money x votes join
           run "$P/wildfire_watch.py" || true # wildfire recovery money, ranked by firm (needs hands_awards first)
