@@ -224,7 +224,11 @@ def main():
     _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
-        print("  + go.html: live/mirror failover launcher")
+        # also under king/ so the King shell's "Studio ->" door (href="go.html")
+        # resolves on BOTH the public /king/ mount and the Tailscale /king/ mount.
+        if os.path.isdir(os.path.join(SITE, "king")):
+            shutil.copy(_go, os.path.join(SITE, "king", "go.html"))
+        print("  + go.html: live/mirror failover launcher (root + king/)")
     _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
     if os.path.exists(_ta):
         _tah = inject_nav(open(_ta, encoding="utf-8", errors="replace").read(), "take_action.html")
