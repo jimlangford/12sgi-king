@@ -119,6 +119,52 @@ def ingest_maui():
             "decisions": sum(len(m["items"]) for m in meetings),
             "note": "Real per-member roll-call (AYE/NO/recused) parsed from the County's official minutes by votes_watch.py — %d meetings on file." % len(vi)}
 
+# ── New York State — real per-member roll-call from the nysenate Open Legislation API (keyed) ──
+def ingest_nys():
+    keyf = os.path.join(PROJECT, "config", "nysenate_key.txt")
+    if not os.path.exists(keyf):
+        return None
+    key = open(keyf, encoding="utf-8").read().strip()
+    if not key:
+        return None
+    import ssl, urllib.request, urllib.parse
+    def api(path, params):
+        params = dict(params); params["key"] = key
+        u = "https://legislation.nysenate.gov/api/3/" + path + "?" + urllib.parse.urlencode(params)
+        return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "12sgi-kilo"}),
+                          timeout=50, context=ssl.create_default_context()).read().decode("utf-8", "replace"))
+    try:
+        d = api("bills/2025", {"limit": "80", "full": "true"})
+    except Exception:
+        return None
+    from collections import OrderedDict
+    meetings = OrderedDict()
+    for b in d.get("result", {}).get("items", []):
+        for v in (b.get("votes") or {}).get("items") or []:
+            date = (v.get("voteDate") or "")[:10]; vt = (v.get("voteType") or "").title()
+            comm = ((v.get("committee") or {}).get("name")) or "Floor"
+            mk = (date, vt, comm)
+            mt = meetings.setdefault(mk, {"date": date, "body": "NY %s — %s" % (vt, comm),
+                                          "minutes_url": "https://www.nysenate.gov/legislation", "items": []})
+            mv = (v.get("memberVotes") or {}).get("items") or {}
+            votes = []
+            for code, blk in mv.items():
+                for m in (blk.get("items") if isinstance(blk, dict) else blk) or []:
+                    nm = (m.get("fullName") or m.get("shortName")) if isinstance(m, dict) else m
+                    if nm: votes.append({"person": nm, "value": code.title()})
+            if votes:
+                mt["items"].append({"title": ("%s — %s" % (b.get("printNo", ""), b.get("title", "")))[:200],
+                                    "action": "%s vote" % vt, "passed": "", "votes": votes[:60],
+                                    "recusals": [], "file": b.get("printNo", "")})
+    mlist = [m for m in meetings.values() if m["items"]][:8]
+    if not mlist:
+        return None
+    return {"name": NAMES["nys"], "source": "https://legislation.nysenate.gov (Open Legislation API — keyed)",
+            "votes_structured": True, "meetings": mlist, "officials": [], "meetings_total": len(meetings),
+            "votes": sum(len(i["votes"]) for m in mlist for i in m["items"]), "recusals": 0,
+            "decisions": sum(len(m["items"]) for m in mlist),
+            "note": "Real per-member roll-call (Aye/Nay/Exc) from the NY Senate Open Legislation API — live with the configured key."}
+
 # ── other tenants: minutes/materials links from the verified discovery workflow ─────────────
 def ingest_archive(tid, a, g):
     meetings = []
@@ -146,14 +192,18 @@ def build_corpus():
         elif tid == "hongkong":
             hk = ingest_hongkong()
             tenants[tid] = hk if (hk and hk["votes"]) else ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
-        else:
-            e = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
-            if tid == "nys":   # structured votes exist but the nysenate Open Legislation API needs a free key
-                e["source"] = "https://legislation.nysenate.gov/#signup"   # <- one-click: sign up for a free API key
+        elif tid == "nys":
+            ny = ingest_nys()
+            if ny and ny["votes"]:
+                tenants[tid] = ny
+            else:
+                e = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
+                e["source"] = "https://legislation.nysenate.gov/#signup"
                 e["note"] = ("NY Senate roll-call is structured via the Open Legislation API but needs a FREE API key — "
-                             "sign up at the source link above (legislation.nysenate.gov), then drop the key into "
-                             "config/nysenate_key.txt and the votes ingest activates. Minutes/materials links captured meanwhile. " + e["note"])
-            tenants[tid] = e
+                             "sign up (legislation.nysenate.gov), drop it into config/nysenate_key.txt, and the votes ingest activates. " + e["note"])
+                tenants[tid] = e
+        else:
+            tenants[tid] = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
     return {"generated": now_hst().strftime("%Y-%m-%d %H:%M HST"), "tenants": tenants}
 
 # ── rendering ───────────────────────────────────────────────────────────────────────────────

@@ -37,6 +37,7 @@ jobs:
       - name: Lay out the runtime tree the watchers expect
         env:
           LEGISCAN_KEY: ${{ secrets.LEGISCAN_KEY }}
+          NYSENATE_KEY: ${{ secrets.NYSENATE_KEY }}
         run: |
           set -e
           P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
@@ -45,6 +46,7 @@ jobs:
           cp watchers/*.py "$P/tools/kilo-aupuni/"
           cp watchers/departments.json watchers/energov_permit_template.json watchers/commission_inputs.json "$P/tools/kilo-aupuni/" 2>/dev/null || true
           if [ -n "$LEGISCAN_KEY" ]; then printf '%s' "$LEGISCAN_KEY" > "$P/config/legiscan_key.txt"; fi
+          if [ -n "$NYSENATE_KEY" ]; then printf '%s' "$NYSENATE_KEY" > "$P/config/nysenate_key.txt"; fi
 
       - name: Seed the curated full-history report floor (so the published site is COMPLETE, not a thin fresh fetch)
         run: |
