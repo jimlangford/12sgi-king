@@ -375,6 +375,12 @@ def main():
             with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(_kgo)
         print("  + go.html: live/mirror failover launcher (root + king/)")
+    # [no-access] friendly 404 — GitHub Pages serves /404.html for any missing OR owner-only path
+    # (e.g. case_files.html), explaining it's a private surface by design instead of a bare 404.
+    _404 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "404.html")
+    if os.path.exists(_404):
+        shutil.copy(_404, os.path.join(SITE, "404.html"))
+        print("  + 404.html: 'no access — private surface' explanation (served by GitHub Pages on any 404)")
     _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
     if os.path.exists(_ta):
         _tah = inject_nav(open(_ta, encoding="utf-8", errors="replace").read(), "take_action.html")
