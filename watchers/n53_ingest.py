@@ -42,6 +42,50 @@ def load(p, d):
     try: return json.load(open(p, encoding="utf-8"))
     except Exception: return d
 
+# ── Hong Kong LegCo — real per-member roll-call from the keyless VRDB OData API ──────────────
+def ingest_hongkong():
+    import ssl, urllib.request, urllib.parse
+    UA = {"User-Agent": "Mozilla/5.0 12sgi-kilo"}
+    url = "https://app.legco.gov.hk/vrdb/odata/vVotingResult?" + urllib.parse.urlencode(
+        {"$top": "800", "$format": "json", "$orderby": "vote_date desc"})
+    try:
+        rows = json.loads(urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=45,
+                          context=ssl.create_default_context()).read().decode("utf-8", "replace")).get("value", [])
+    except Exception:
+        return None
+    from collections import OrderedDict
+    motions = OrderedDict()
+    for r in rows:
+        key = (r.get("vote_date", ""), r.get("motion_en", ""))
+        m = motions.setdefault(key, {"date": (r.get("vote_date") or "")[:10], "motion": r.get("motion_en", ""),
+                                     "mover": r.get("mover_en", ""), "type": r.get("type", ""),
+                                     "yes": r.get("overall_yes_count"), "no": r.get("overall_no_count"),
+                                     "abstain": r.get("overall_abstain_count"), "result": r.get("overall_result"),
+                                     "votes": []})
+        if r.get("name_en"):
+            m["votes"].append({"person": r["name_en"], "value": r.get("vote", "")})
+    # group motions into meetings by date; keep the most recent ~6 sitting days
+    dates = []
+    for mo in motions.values():
+        if mo["date"] not in dates: dates.append(mo["date"])
+    keep = set(dates[:6])
+    meetings = OrderedDict()
+    for mo in motions.values():
+        if mo["date"] not in keep: continue
+        mt = meetings.setdefault(mo["date"], {"date": mo["date"], "body": "LegCo — %s" % (mo["type"] or "Council Meeting"),
+                                              "minutes_url": "https://app.legco.gov.hk/vrdb/", "items": []})
+        res = (" · %s" % mo["result"]) if mo["result"] else ""
+        tally = " / ".join("%s %s" % (lbl, mo[k]) for lbl, k in (("Yes", "yes"), ("No", "no"), ("Abstain", "abstain")) if mo.get(k) is not None)
+        mt["items"].append({"title": (mo["motion"] or "Motion")[:240],
+                            "action": ("vote (%s)" % tally if tally else "recorded vote") + res,
+                            "passed": mo["result"] or "", "votes": mo["votes"][:60], "recusals": [], "file": ""})
+    mlist = list(meetings.values())
+    return {"name": NAMES["hongkong"], "source": "https://app.legco.gov.hk/vrdb/ (LegCo Voting Result Database, keyless OData)",
+            "votes_structured": True, "meetings": mlist, "officials": [], "meetings_total": len(dates),
+            "votes": sum(len(i["votes"]) for m in mlist for i in m["items"]),
+            "recusals": 0, "decisions": sum(len(m["items"]) for m in mlist),
+            "note": "Real per-member roll-call (Yes/No/Abstain) from the Hong Kong LegCo Voting Result Database (public OData API) — %d sitting days on file." % len(dates)}
+
 # ── MAUI: the real parsed-minutes corpus from votes_watch.py ────────────────────────────────
 def ingest_maui():
     vi = []
@@ -99,8 +143,15 @@ def build_corpus():
     for tid in NAMES:
         if tid == "maui":
             tenants[tid] = ingest_maui()
+        elif tid == "hongkong":
+            hk = ingest_hongkong()
+            tenants[tid] = hk if (hk and hk["votes"]) else ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
         else:
-            tenants[tid] = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
+            e = ingest_archive(tid, arch.get(tid, {}), agen.get(tid, {}))
+            if tid == "nys":   # structured votes exist but the nysenate Open Legislation API needs a free key
+                e["note"] = ("NY Senate roll-call is structured via the Open Legislation API "
+                             "(legislation.nysenate.gov) — pending a free API key; minutes/materials links captured. " + e["note"])
+            tenants[tid] = e
     return {"generated": now_hst().strftime("%Y-%m-%d %H:%M HST"), "tenants": tenants}
 
 # ── rendering ───────────────────────────────────────────────────────────────────────────────
