@@ -33,7 +33,10 @@ PAGES = [
     ("parity_check.html",                "Pairs That No Longer Answer",  "Kumulipo parity: county awards shadowed by donations to the deciders, as leverage. The civic-capture the Overseer (N53) voices. Public records, framed as questions."),
     ("wildfire_recovery_watch.html",     "Wildfire Recovery Watch",      "Where the $22M+ in post-August-2023 Maui wildfire recovery money went, ranked by firm - repeat players flagged, set beside the deciders. Public records, framed as questions."),
     ("lobby_money_watch.html",           "Lobby + Money",                "Entities that BOTH register to lobby the State and donate to tracked Maui officials - a double channel of influence. Led by Lanai Resorts (5 council members). Public records, framed as questions."),
+    ("jurisdictions.html",               "govOS Jurisdictions",          "Every govOS tenant - the Hawaii counties + State, and the New York tenants (NYC, NY State, Liverpool) - with the contract record loaded for each. One civic engine, many governments."),
 ]
+# extra civic pages copied + nav-injected but NOT shown as their own nav pill (reached via the hub)
+EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kauai.html", "contracts_hawaii.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -47,6 +50,7 @@ NAV_SHORT = {
     "parity_check.html": "Parity",
     "wildfire_recovery_watch.html": "🔥 Wildfire $",
     "lobby_money_watch.html": "Lobby+Money",
+    "jurisdictions.html": "🗺 Jurisdictions",
     "money_behind_officials.html": "Money·Officials",
     "officials_scorecard.html": "Officials",
     "lege_legislator_scorecard.html": "Legislators",
@@ -107,6 +111,12 @@ def main():
             with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
                 f.write(html)
             present.append((flat, name, blurb))
+    # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills)
+    for rel in EXTRA_PAGES:
+        src = os.path.join(MAUIOS, rel)
+        if os.path.exists(src):
+            with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
+                f.write(inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel))
     for rel in DATA:
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
