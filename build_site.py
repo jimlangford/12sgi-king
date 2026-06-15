@@ -53,7 +53,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # per-tenant Charter <-> Law crosswalk (12 Stones SSC v5 up through the Holy See); State = the proof tenant
                "crosswalk_state.html",
                "crosswalk_maui.html", "crosswalk_honolulu.html", "crosswalk_hawaii.html", "crosswalk_kauai.html",
-               "crosswalk_nys.html", "crosswalk_nyc.html", "crosswalk_liverpool.html"]
+               "crosswalk_nys.html", "crosswalk_nyc.html", "crosswalk_liverpool.html",
+               # phase 2 — the Holy See: apex crosswalk (SSC <-> Canon Law) + its finances (real FY2024 reports)
+               "crosswalk_holysee.html", "money_holysee.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json"]
@@ -86,6 +88,8 @@ NAV_LABEL = {
     "crosswalk_nys.html": "Charter ⇄ Law (New York State)",
     "crosswalk_nyc.html": "Charter ⇄ Law (New York City)",
     "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
+    "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
+    "money_holysee.html": "Holy See Finances",
     # Charter / law / budget reference layer (govOS-styled pages in the King civic tree).
     # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
@@ -102,7 +106,7 @@ NAV_GROUPS = [
     ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
-                          "wildfire_recovery_watch.html"]),
+                          "wildfire_recovery_watch.html", "money_holysee.html"]),
     ("The Record", ["parity_check.html", "accountability_record.html", "sole_source_watch.html",
                     "commission_antitrust.html", "bill9_bill9_testimony_scan.html", "charter_application.html",
                     "lege_legislator_scorecard.html"]),
@@ -111,7 +115,7 @@ NAV_GROUPS = [
     # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).
     ("Charter & Law", ["crosswalk_state.html", "crosswalk_maui.html", "crosswalk_honolulu.html",
                        "crosswalk_hawaii.html", "crosswalk_kauai.html", "crosswalk_nys.html",
-                       "crosswalk_nyc.html", "crosswalk_liverpool.html",
+                       "crosswalk_nyc.html", "crosswalk_liverpool.html", "crosswalk_holysee.html",
                        # unique non-crosswalk reference pages (real budget data + the publish loop)
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
                        "king/civic/templates/agenda-explainer/Agenda%20Explainer.html"]),

@@ -125,6 +125,35 @@ TENANTS = {
             "selfdet":      C("State of Hawaiʻi", "Haw. Const. Preamble & Art. XII; 1978 Con-Con Hawaiian provisions", "Constitutional recognition of Native Hawaiian rights and trust obligations."),
         },
     },
+    # The APEX tenant — the Holy See is the top of every tenant's hierarchy, so it has no
+    # downward spine; it crosswalks the SSC to its OWN law (Code of Canon Law + the Fundamental
+    # Law of Vatican City State) and to the financial-governance body that administers it.
+    "holysee": {
+        "id": "VAT-HS", "name": "Holy See / Vatican City State", "seat": "Vatican City",
+        "apex": True, "state_parent": None,
+        "tagline": "The apex of the hierarchy. Where every tenant's crosswalk terminates — here it is the subject: the Holy See's own law and the financial-governance bodies that administer it.",
+        "local_label": "Holy See (Canon Law + Fundamental Law of Vatican City State)",
+        "local": {
+            "transparency": C("Holy See — law", "Code of Canon Law (1983), c. 1287 §2", "Administrators of ecclesiastical goods must render a public account of offerings to the faithful."),
+            "conflict":     C("Holy See — law", "Code of Canon Law (1983), c. 1298", "Caution against alienation of Church goods to administrators or their relatives.", "p"),
+            "sunshine":     C("Holy See — law", "Code of Canon Law (1983), c. 212 §3", "The faithful have the right, even the duty, to make their views on the good of the Church known."),
+            "fiduciary":    C("Holy See — law", "Code of Canon Law (1983), c. 1254; Laudato Si' (2015)", "Church goods are held for sacred purposes and the care of the common home, not private gain."),
+            "sacred":       C("Holy See — law", "Code of Canon Law (1983), cc. 1205–1213", "Sacred places: their dedication, protection, and the loss of that character only by decree."),
+            "enforcement":  C("Holy See — law", "Code of Canon Law (1983), Book VII (Processes), cc. 1400+; Fundamental Law of Vatican City State (2023), judicial order", "The Church's canonical forum and the Vatican City State penal jurisdiction."),
+            "culture":      C("Holy See — law", "Vatican II, Sacrosanctum Concilium (1963) — inculturation/vernacular", "Magisterial principle of honoring a people's language and culture.", "p"),
+            "selfdet":      C("Holy See — law", "Lateran Treaty (1929); Fundamental Law of Vatican City State (2023)", "Established Vatican City State sovereignty and the Holy See's international legal personality."),
+        },
+        "gov": {
+            "transparency": C("Holy See — governance", "Secretariat for the Economy (2014); Office of the Auditor General (2014)", "Publishes the annual Consolidated Financial Statement; independent audit of Holy See entities."),
+            "conflict":     C("Holy See — governance", "Council for the Economy (2014); financial-reform motu proprios", "Sets economic policy and oversight across all Holy See and Vatican City State entities."),
+            "sunshine":     C("Holy See — governance", "Praedicate Evangelium (2022) — apostolic constitution on the Roman Curia", "Reorganized the Curia and its consultative/accountability structures.", "p"),
+            "fiduciary":    C("Holy See — governance", "APSA — Administration of the Patrimony of the Apostolic See", "Manages the Holy See's patrimony, real estate, and investments; reports net results annually."),
+            "sacred":       C("Holy See — governance", "Fabric of St. Peter; Pontifical Commission for Sacred Archaeology", "Custody and conservation of sacred sites and the catacombs.", "p"),
+            "enforcement":  C("Holy See — governance", "Vatican City State Tribunal + Office of the Promoter of Justice", "The court that in Dec. 2023 convicted a cardinal of embezzlement in the London-property case (on appeal)."),
+            "culture":      C("Holy See — governance", "Dicastery for Culture and Education (Praedicate Evangelium, 2022)", "Curial body for culture, education, and heritage."),
+            "selfdet":      C("Holy See — governance", "Secretariat of State; Vatican UN Permanent Observer Mission", "Conducts the Holy See's diplomacy and its standing in international law."),
+        },
+    },
 }
 
 def load_extra_tenants():
@@ -153,10 +182,15 @@ def cell_html(c):
         "pend" if c["conf"] == "p" else "", esc(c["layer"]), esc(c["cite"]), CONF_TAG[c["conf"]], esc(c["note"]))
 
 def layers_for(fn, t):
-    """local -> (inherited state) -> shared apex spine."""
+    """local -> (inherited state) -> shared apex spine. The apex tenant (Holy See) has no
+    downward spine: it shows its own law + its governing body."""
     out = []
     loc = t["local"].get(fn["key"])
     if loc: out.append(loc)
+    if t.get("apex"):
+        gov = t.get("gov", {}).get(fn["key"])
+        if gov: out.append(gov)
+        return out
     sp = t.get("state_parent")
     if sp and sp in TENANTS:
         st = TENANTS[sp]["local"].get(fn["key"])
@@ -176,6 +210,9 @@ def row_card(fn, t):
              esc(art), esc(text), "".join(cell_html(c) for c in layers))
 
 def hierarchy_line(t):
+    if t.get("apex"):
+        return ("<b>%s</b> &mdash; the apex every other tenant&rsquo;s crosswalk answers up to "
+                "(no layer sits above it).") % esc(t["local_label"])
     chain = [t["local_label"]]
     sp = t.get("state_parent")
     if sp and sp in TENANTS: chain.append(TENANTS[sp]["name"])

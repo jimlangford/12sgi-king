@@ -37,6 +37,7 @@ TENANTS = [
     {"id": "nyc",      "label": "New York City",               "code": "NY-NYC",       "page": None, "source": "NYC Open Data (Checkbook NYC + NYC CFB)", "status": "pending", "note": "Different ecosystem: NYC Open Data (Socrata) — Checkbook contracts + Campaign Finance Board. Source confirmed; fetcher is the next wave."},
     {"id": "nys",      "label": "New York State",              "code": "NY-STATE",     "page": None, "source": "OpenBookNY (Comptroller) + NYS BOE", "status": "pending", "note": "NYS Comptroller OpenBookNY contracts + State Board of Elections campaign finance. Source confirmed; fetcher is the next wave."},
     {"id": "liverpool","label": "Village of Liverpool, NY",    "code": "NY-LIV",       "page": None, "source": "Onondaga County + NYS", "status": "pending", "note": "Small village — little standalone open data; leans on Onondaga County records + NYS OpenBook/BOE. Source path identified; thin by nature."},
+    {"id": "holysee",  "label": "Holy See / Vatican City State","code": "✦ APEX",      "page": "crosswalk_holysee.html", "source": "Holy See financial reports (FY2024)", "status": "apex", "note": "The apex of every tenant's hierarchy. Its own law (Code of Canon Law + Fundamental Law of Vatican City State) and audited finances — added so the same transparency govOS asks of every county is asked at the top, too."},
 ]
 
 def page(label, vendors, n_awards, dollars):
@@ -81,10 +82,13 @@ who is paid, so it can be set beside who funds the officials. Documented facts a
 def dim_links(tid, contracts_page):
     """Link every dimension page that actually exists for this tenant (contracts/money/lobby/parity)."""
     specials = {"maui": {"money": "money_behind_officials.html", "lobby": "lobby_money_watch.html",
-                          "parity": "parity_check.html", "wildfire": "wildfire_recovery_watch.html"}}
+                          "parity": "parity_check.html", "wildfire": "wildfire_recovery_watch.html",
+                          "voice": "ka_leo_voice.html"}}
     sp = specials.get(tid, {})
     cands = [("contracts", contracts_page), ("money", sp.get("money", f"money_{tid}.html")),
-             ("lobby", sp.get("lobby", f"lobby_{tid}.html")), ("parity", sp.get("parity", f"parity_{tid}.html"))]
+             ("lobby", sp.get("lobby", f"lobby_{tid}.html")), ("parity", sp.get("parity", f"parity_{tid}.html")),
+             ("voice", sp.get("voice", f"ka_leo_{tid}.html")), ("subcontractors", f"subcontractors_{tid}.html"),
+             ("charter &#8644; law", f"crosswalk_{tid}.html")]
     if tid == "maui":
         cands.append(("wildfire", sp.get("wildfire")))
     out = [f'<a href="{fn}">{lbl}</a>' for lbl, fn in cands
@@ -94,11 +98,17 @@ def dim_links(tid, contracts_page):
 def hub(stats):
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     badge = {"live": '<span style="color:#43d39e">live</span>', "thin": '<span style="color:#e0863a">thin in HANDS</span>',
-             "pending": '<span style="color:#9a957f">source identified · next wave</span>'}
+             "pending": '<span style="color:#9a957f">source identified · next wave</span>',
+             "apex": '<span style="color:#d9b24c">✦ apex</span>'}
     cards = ""
     for t in TENANTS:
         st = stats.get(t["id"], {})
-        link = dim_links(t["id"], t["page"]) if t["status"] in ("live", "thin") else '<span style="color:#756b56">building</span>'
+        if t["status"] == "apex":
+            link = '<a href="crosswalk_holysee.html">charter &#8644; canon law</a> &middot; <a href="money_holysee.html">finances</a>'
+        elif t["status"] in ("live", "thin"):
+            link = dim_links(t["id"], t["page"])
+        else:
+            link = '<span style="color:#756b56">building</span>'
         kpi = (f'<div class="tk">${usd(st.get("dollars",0))} &middot; {st.get("awards",0):,} awards &middot; {st.get("vendors",0):,} vendors</div>'
                if t["status"] in ("live", "thin") else f'<div class="tk" style="color:#756b56">{esc(t.get("source",""))}</div>')
         note = f'<div class="tn">{esc(t.get("note",""))}</div>' if t.get("note") else ""
