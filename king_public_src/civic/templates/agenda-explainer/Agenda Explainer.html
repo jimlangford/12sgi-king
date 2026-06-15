@@ -60,6 +60,7 @@
   .t-zoning { color: var(--mauios-mauka); background: rgba(63,155,109,.14); }
   .t-housing { color: var(--mauios-pele); background: rgba(217,98,43,.13); }
   .t-permit { color: var(--mauios-univ); background: rgba(184,194,204,.1); }
+  .t-gov { color: #c9a3e0; background: rgba(201,163,224,.12); }
 
   /* Storyboard panel */
   .board { min-width: 0; }
@@ -189,7 +190,7 @@
 
       <div class="integrity">
         <div class="il">Integrity gate · 14th Stone</div>
-        <p><b>Every card carries its source.</b> Statute from the Charter ⇄ Law Crosswalk, dollars from the council-watch money trail, dates from the agenda file. Flags are framed as questions — never accusations — and tagged before publish.</p>
+        <p><b>Every card carries its source.</b> Every item, date, dollar figure, and statute on this page is taken from the official Maui County Council committee agenda posted on Legistar (linked on each card). The “what to ask” line is a neutral question for testimony — never an accusation. Where a detail isn't in the agenda, we link to the source instead of inventing it.</p>
       </div>
     </section>
   </div>
@@ -216,8 +217,8 @@
   }
   function pubBy(iso) { var d = new Date(iso + "T00:00:00"); d.setDate(d.getDate() - 3); return fmtDate(d.toISOString().slice(0, 10)); }
 
-  document.getElementById("qsub").textContent = ITEMS.length + " items · sorted by Sunshine clock";
-  document.getElementById("snap").textContent = "snapshot · " + A.meta.snapshot;
+  document.getElementById("qsub").textContent = ITEMS.length + " items this week · " + (A.meta.week || "") + " · sorted by Sunshine clock";
+  document.getElementById("snap").textContent = "this week · " + (A.meta.week || A.meta.snapshot);
   document.getElementById("sunshine").textContent = "SUNSHINE · " + A.meta.sunshine.split("·")[1].trim();
 
   /* Queue */
@@ -231,7 +232,7 @@
         '<div class="q1"><span class="ty t-' + it.type + '">' + it.type + '</span>' +
           '<span class="clock ' + (soon ? "soon" : "ok") + '">' + (soon ? "⏱ " : "") + it.days + 'd → ' + fmtDate(it.meeting) + '</span></div>' +
         '<div class="qn">' + esc(it.title) + '</div>' +
-        '<div class="qmeta">Art.' + it.charter + ' · ' + esc(it.file) + '</div>' +
+        '<div class="qmeta">' + esc(it.cite) + '</div>' +
         '<div class="stake">' + stake + '</div>' +
       '</div>';
     }).join("");
@@ -252,12 +253,13 @@
     var topLaw = it.law[0];
     cards.push({ kind: "law", t: "0:16–0:26", big: topLaw[0], sub: topLaw[1] + (it.law[1] ? " · " + it.law[1][0] : ""), src: it.law.map(function (l) { return l[0]; }).join(" · "), broll: "statute / chambers", vo: "This is governed by " + topLaw[0] + " — " + topLaw[1] + ". " + (it.law[1] ? "It also touches " + it.law[1][0] + "." : "") });
     if (it.money !== "—") cards.push({ kind: "money", t: "0:26–0:34", big: it.money, sub: it.moneyNote, src: "council-watch money trail", broll: it.clips[2] || "figures", vo: "The number: " + it.money + " — " + it.moneyNote + "." });
-    cards.push({ kind: "stakes", t: nextT(it), big: "Charter Art." + it.charter, sub: it.conflict || "Crosswalked, clean — no standing conflict on file.", src: it.conflict ? "flag · framed as a question" : "Charter ⇄ Law Crosswalk", broll: "zone / map", vo: it.conflict ? it.conflict : "Crosswalked to charter Article " + it.charter + " — no standing conflict on file.", flag: !!it.conflict });
+    cards.push({ kind: "stakes", t: nextT(it), big: "What to ask", sub: it.ask, src: "question for testimony", broll: "chambers / map", vo: it.ask, flag: false });
     cards.push({ kind: "deadline", t: "—", big: it.days + " days · " + fmtDate(it.meeting), sub: it.testify, src: A.meta.sunshine, broll: "calendar / testify", vo: "Decision date: " + fmtDate(it.meeting) + ". " + it.testify });
     cards.push({ kind: "cta", t: "outro", big: "Your move", sub: "Read the record. Submit testimony. Show up.", src: "mauicounty.us/agendas", broll: "logo / CTA", vo: "Read the full record and submit your testimony — link below. This is your government." });
     return cards;
   }
   function hookLine(it) {
+    if (it.hook) return it.hook;
     if (it.type === "water") return "Who owns the water?";
     if (it.type === "budget") return "$1.6 billion. Where does it go?";
     if (it.type === "zoning") return "Building on the shoreline?";
@@ -274,7 +276,8 @@
     var cards = buildCards(it);
     document.getElementById("boardhd").innerHTML =
       '<div><div class="bt">' + esc(it.title) + '</div>' +
-        '<div class="bm"><b>' + esc(it.body) + '</b> · Art.' + it.charter + ' · ' + esc(it.file) + ' · meeting ' + fmtDate(it.meeting) + '</div></div>' +
+        '<div class="bm"><b>' + esc(it.body) + '</b> · ' + esc(it.cite) + ' · meeting ' + fmtDate(it.meeting) +
+          ' · <a href="' + esc(it.url) + '" target="_blank" rel="noopener" style="color:var(--mauios-gold-2);text-decoration:none;border-bottom:1px dotted rgba(217,178,76,.5)">read the agenda →</a></div></div>' +
       '<div class="render"><div class="dur">~' + (cards.length * 7) + 's</div>' +
         '<div class="pubby">publish by <b>' + pubBy(it.meeting) + '</b> · ' + it.days + 'd out</div></div>';
 
@@ -326,10 +329,4 @@
       fetch(A.meta.feed, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (data) {
         if (done) return; done = true; clearTimeout(timer);
         el.innerHTML = 'FEED · <span style="color:var(--mauios-ok)">LIVE</span> · ' + ((data && data.meta && data.meta.source) || 'council-watch');
-      }).catch(function () { if (!done) { done = true; clearTimeout(timer); el.innerHTML = 'FEED · <span style="color:var(--mauios-faint)">SNAPSHOT</span> · ' + A.meta.snapshot; } });
-    } catch (e) { clearTimeout(timer); el.innerHTML = 'FEED · SNAPSHOT'; }
-  })();
-})();
-</script>
-</body>
-</html>
+      }).catch(function () { if (!done) { done = true; clearTimeout(timer); el.innerHTML = 'FEED · <

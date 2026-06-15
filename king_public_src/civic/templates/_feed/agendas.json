@@ -1,28 +1,29 @@
 {
   "meta": {
-    "source": "sample-feed",
-    "generated": "2026-06-12T07:05:00-10:00",
+    "source": "Maui County Council committee agendas (Legistar)",
+    "generated": "2026-06-15T07:00:00-10:00",
     "jurisdiction": "MAU-001",
+    "week": "2026-06-15 / 2026-06-17",
     "sunshine": "HRS §92-7 · agendas post ≥6 days before a meeting",
-    "producer": "council-watch v2 (sample — swap for live output in production)"
+    "producer": "council-watch — this week's posted committee agendas"
   },
   "agendas": [
-    { "file": "EnerGov batch", "title": "Building-permit batch — 114 Lahaina parcels", "body": "Dept. of Planning · administrative", "type": "permit", "meeting": "2026-06-16", "charter": "XI", "stake": 3 },
-    { "file": "CivicClerk 5901", "title": "Bill 37 — $25M water sovereignty fund", "body": "Water, Infrastructure & Transportation Cmte", "type": "water", "meeting": "2026-06-18", "charter": "VI", "stake": 5 },
-    { "file": "CivicClerk 5893", "title": "Bills 55–56 — FY2027 county budget adoption", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-20", "charter": "X", "stake": 5 },
-    { "file": "CivicClerk 5907", "title": "SMA use permit — Makai coastal parcel", "body": "Housing & Land Use Cmte", "type": "zoning", "meeting": "2026-06-25", "charter": "XI", "stake": 4 },
-    { "file": "CivicClerk 5888", "title": "Bill 32 — CDBG-DR Lahaina recovery allocation", "body": "Disaster, Resilience & Recovery Cmte", "type": "housing", "meeting": "2026-06-27", "charter": "VIII", "stake": 5 }
+    { "file": "Legistar · WASSP", "title": "Bill 77 — Affordable Housing Fund for the unhoused", "body": "Water Authority, Social Services & Parks Cmte", "type": "housing", "meeting": "2026-06-15", "charter": "WASSP-11", "stake": 5 },
+    { "file": "Legistar · WAI", "title": "Bill 68 — Special parking regulations (West & South Maui)", "body": "Water & Infrastructure Cmte", "type": "permit", "meeting": "2026-06-15", "charter": "WAI-24", "stake": 3 },
+    { "file": "Legistar · BFED", "title": "Reso 26-100 — $9.0M energy-performance lease (Johnson Controls)", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-16", "charter": "BFED-61", "stake": 4 },
+    { "file": "Legistar · BFED", "title": "Bill 73 — Uniform rules for the county Grants Program", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-16", "charter": "BFED-58", "stake": 3 },
+    { "file": "Legistar · GREAT", "title": "14 proposed Charter amendments for the ballot", "body": "Government Relations, Ethics & Transparency Cmte", "type": "gov", "meeting": "2026-06-16", "charter": "GREAT-10", "stake": 5 },
+    { "file": "Legistar · HLU", "title": "Title 19 zoning rewrite — Planning Dept. briefing", "body": "Housing & Land Use Cmte", "type": "zoning", "meeting": "2026-06-17", "charter": "HLU-3(5)", "stake": 4 },
+    { "file": "Legistar · DRIP", "title": "Long-term recovery & the 2026 Kona Low storms", "body": "Disaster Recovery, International Affairs & Planning Cmte", "type": "housing", "meeting": "2026-06-17", "charter": "DRIP-9(4)", "stake": 4 }
   ],
-  "conflicts": [
-    { "id": "C-37", "sev": "alert", "art": "VI", "title": "Bill 37 — $25M water fund", "against": "HRS Ch.174C public trust · Haw. Const. Art.XI §7", "desc": "Fund structure flagged as a step toward de-facto privatization of a public-trust resource. Question raised, not an accusation — needs the ordinance text to resolve.", "source": "council-watch", "date": "2026-06-12" },
-    { "id": "C-32", "sev": "alert", "art": "VIII", "title": "Bill 32 + Reso 25-80 — CDBG-DR $1.639B", "against": "42 USC §5301 §105(a) eligible activities · MCC Ch.2.96", "desc": "Lahaina recovery block-grant allocation crossed against workforce-housing eligibility and the federal eligible-activities list. FarmBox shelter eligibility under §105(a) pending HUD read.", "source": "council-watch", "date": "2026-06-12" },
-    { "id": "C-budget", "sev": "watch", "art": "X", "title": "FY2027 budget — Bills 55–56", "against": "Charter Art.9 · MCC Title 3", "desc": "Passed 2nd & final reading 2026-06-05 ($1.6B total). Penny-level dept ledger re-parse ACTIONABLE — CivicClerk file 5893 ordinance text detected; re-checksum on post.", "source": "council-watch", "date": "2026-06-12" },
-    { "id": "C-9", "sev": "resolved", "art": "XVI", "title": "Bill 9 — realtor-PAC linkage", "against": "HRS Ch.205 · Ch.84 (ethics)", "desc": "Documented donor↔Bill 9 correlation surfaced as a question. Entry now DEAD on the council feed — closed.", "source": "donor-watch", "date": "2026-06-11" }
-  ],
+  "conflicts": [],
   "ledger": [
-    { "id": "Bill 55–56", "t": "FY2027 county budget", "status": "passed 2nd reading" },
-    { "id": "Bill 37", "t": "$25M water sovereignty fund", "status": "flagged" },
-    { "id": "Bill 32", "t": "CDBG-DR Lahaina recovery", "status": "flagged" },
-    { "id": "Bill 9", "t": "(realtor-PAC linkage)", "status": "dead" }
+    { "id": "Bill 77", "t": "Affordable Housing Fund for the unhoused (WASSP)", "status": "first reading" },
+    { "id": "Bill 68", "t": "Special parking regulations, West & South Maui (WAI)", "status": "first reading" },
+    { "id": "Reso 26-100", "t": "$9.0M energy-performance lease, Johnson Controls (BFED)", "status": "adoption" },
+    { "id": "Bill 73", "t": "Uniform rules for county Grants Program (BFED)", "status": "first reading" },
+    { "id": "GREAT-10", "t": "14 proposed Charter amendments for the ballot", "status": "first reading" },
+    { "id": "Title 19", "t": "Zoning code rewrite — Planning briefing (HLU)", "status": "presentation" },
+    { "id": "DRIP-9(4)", "t": "Long-term recovery / 2026 Kona Low storms", "status": "presentation" }
   ]
 }

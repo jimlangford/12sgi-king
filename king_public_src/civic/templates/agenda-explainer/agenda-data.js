@@ -1,69 +1,108 @@
 /* ============================================================
    govOS · Agenda Explainer — data layer
    ------------------------------------------------------------
-   Turns a forecast agenda item into a ready-to-render fact-card
-   storyboard. Facts assemble from the Charter ⇄ Law Crosswalk
-   (governing statute), the council-watch money trail (dollars),
-   and the Sunshine Law clock (HRS §92-7 — agendas post ≥6 days
-   before a meeting; publish the explainer inside that window so
-   the public can still testify).
+   This week's CURRENT Maui County Council committee agendas,
+   turned into plain-language fact-cards (what it is, the law it
+   touches, the dollars, the deadline, and how to testify).
 
-   Integrity: every card carries its source. Correlations are
-   questions, never accusations. Hydrates from council-watch when
-   the feed is reachable; else this dated snapshot stands.
-   Snapshot: 2026-06-12.
+   Every item is sourced from the official meeting agenda posted
+   on Legistar (mauicounty.legistar.com) and linked to its
+   committee page on mauicounty.us. Facts only — the "what to
+   ask" line is a neutral question for testimony, never an
+   accusation. Where a detail isn't in the agenda, we link to the
+   source instead of inventing it.
+
+   Snapshot: 2026-06-15 · week of Mon Jun 15 – Wed Jun 17, 2026.
+   Source: Maui County Council committee meeting notices (Legistar).
    ============================================================ */
 (function () {
-  // Forecast queue — upcoming items, ranked by public stakes.
-  // `meeting` is the decision date; `days` is days out (Sunshine clock).
+  // This week's queue — current committee items, sorted by the Sunshine clock.
+  // `meeting` is the decision/hearing date; `days` is days out from the snapshot.
+  // `cite` is the official agenda item number; `url` is the committee page.
   var ITEMS = [
-    { id: "I-37", file: "CivicClerk 5901", title: "Bill 37 — $25M water sovereignty fund", body: "Water, Infrastructure & Transportation Cmte", type: "water",
-      meeting: "2026-06-18", days: 6, stake: 5, charter: "VI", status: "forecast",
-      decision: "Establishes a $25M county fund for water-system acquisition and management. The fund's governance structure decides whether a public-trust resource stays in public hands.",
-      law: [["HRS Ch.174C", "State Water Code"], ["Haw. Const. Art.XI §7", "Public trust in water (Waiāhole)"], ["MCC Title 14", "Dept. of Water Supply"]],
-      money: "$25,000,000", moneyNote: "general fund appropriation",
-      conflict: "Flagged: fund structure raises a public-trust question — needs the ordinance text to resolve. Not an accusation.",
-      testify: "Written testimony via mauicounty.us eComment, or testify in person / online — by meeting start, 9:00 AM.",
-      clips: ["ʻīao stream", "Nā Wai ʻEhā", "council chambers"] },
-    { id: "I-55", file: "CivicClerk 5893", title: "Bills 55–56 — FY2027 county budget adoption", body: "Budget, Finance & Economic Development Cmte", type: "budget",
-      meeting: "2026-06-20", days: 8, stake: 5, charter: "X", status: "forecast",
-      decision: "Final adoption of the $1.6B FY2027 budget — $1.2B operating + $351M CIP. Passed 2nd & final reading 06-05; ordinance text now posting for the penny-level dept re-parse.",
-      law: [["Charter Art.9", "Financial procedures & budget"], ["MCC Title 3", "Revenue & taxation"], ["HRS Ch.46", "County budget powers"]],
-      money: "$1,600,000,000", moneyNote: "$1.2B operating · $351M CIP · −$8.4M vs Mayor's proposal",
-      conflict: null,
-      testify: "Budget already adopted at 2nd reading — track the Mayor's signature (effective 07-01). Implementation testimony at dept level.",
-      clips: ["budget binder", "Kalana O Maui", "resident b-roll"] },
-    { id: "I-SMA", file: "CivicClerk 5907", title: "SMA use permit — Makai coastal parcel", body: "Housing & Land Use Cmte", type: "zoning",
-      meeting: "2026-06-25", days: 13, stake: 4, charter: "XI", status: "forecast",
-      decision: "Special Management Area use permit for development within the shoreline zone. Triggers charter Art.XI review and moku approval before ground is touched.",
-      law: [["MCC §19.510", "Special Management Area (SMA)"], ["HRS Ch.205A", "Coastal Zone Management"], ["HRS Ch.343", "Environmental impact statements"]],
-      money: "—", moneyNote: "permit action — no appropriation",
-      conflict: null,
-      testify: "Written testimony to the HLU committee via eComment, or testify in person / online before the hearing.",
-      clips: ["shoreline", "SMA boundary map", "reef"] },
-    { id: "I-32", file: "CivicClerk 5888", title: "Bill 32 — CDBG-DR Lahaina recovery allocation", body: "Disaster, Resilience & Recovery Cmte", type: "housing",
-      meeting: "2026-06-27", days: 15, stake: 5, charter: "VIII", status: "forecast",
-      decision: "Allocation within the $1.639B federal CDBG-DR block grant for Lahaina rebuild. Decides which recovery activities are funded and whether they meet federal eligibility.",
-      law: [["42 USC §5301", "HCDA / CDBG-DR §105(a) eligible activities"], ["HRS Ch.201H", "Affordable housing"], ["MCC Ch.2.96", "Residential workforce housing"]],
-      money: "$1,639,000,000", moneyNote: "federal block grant · HUD",
-      conflict: "Flagged: FarmBox shelter eligibility under §105(a) pending HUD read. Reso 25-80 cross-referenced.",
-      testify: "Written testimony to the DRR committee via eComment; recovery-affected residents prioritized for in-person testimony.",
-      clips: ["Lahaina rebuild", "FarmBox shelter", "ʻohana"] },
-    { id: "I-PRM", file: "EnerGov batch", title: "Building-permit batch — 114 Lahaina parcels", body: "Dept. of Planning · administrative", type: "permit",
-      meeting: "2026-06-16", days: 4, stake: 3, charter: "XI", status: "forecast",
-      decision: "Administrative release of 114 Lahaina rebuild permits (of 834 county-wide in 30 days). Charter Art.XI clearance precedes deployment-adjacent parcels.",
-      law: [["MCC Title 19", "Comprehensive zoning"], ["MCC Title 16", "Building & construction"], ["§205A SMA", "Coastal parcels"]],
-      money: "—", moneyNote: "permit fees only",
-      conflict: null,
-      testify: "Administrative action — comment via the Planning Dept. permit portal; appeals through the Planning Commission.",
-      clips: ["permit counter", "rebuild site", "map overlay"] },
+    { id: "WASSP-11", cite: "WASSP-11 · Bill 77 (2026)", file: "Legistar · WASSP", url: "https://www.mauicounty.us/WASSP",
+      title: "Bill 77 — Affordable Housing Fund for the unhoused", body: "Water Authority, Social Services & Parks Cmte · Chair Sinenci",
+      type: "housing", meeting: "2026-06-15", days: 0, stake: 5, status: "current",
+      hook: "Should the Housing Fund pay for the unhoused?",
+      decision: "Bill 77 would require a portion of the county's Affordable Housing Fund to be used to systemically address housing needs and provide “suitable living environments” for County residents who are houseless. The committee may recommend it for first reading (with or without revisions), or file it.",
+      law: [["MCC · Affordable Housing Fund", "county housing trust fund"], ["Bill 77 (2026)", "proposed ordinance — see agenda for full text"]],
+      money: "—", moneyNote: "redirects a share of an existing fund — the amount is set in the bill text",
+      ask: "How large a share of the fund would be redirected, and what counts as a “suitable living environment”? Would this add capacity or move money away from other affordable-housing projects?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 15) or WASSP.committee@mauicounty.us. Oral testimony in person (Council Chamber, 8th Flr.) or online via Teams — 3 min/item.",
+      clips: ["kūpuna / housing", "Wailuku", "council chambers"] },
+
+    { id: "WAI-24", cite: "WAI-24 · Bill 68 (2026)", file: "Legistar · WAI", url: "https://www.mauicounty.us/WAI",
+      title: "Bill 68 — Special parking regulations (West & South Maui)", body: "Water & Infrastructure Cmte · Chair Cook",
+      type: "permit", meeting: "2026-06-15", days: 0, stake: 3, status: "current",
+      hook: "Paid parking coming to West Maui?",
+      decision: "Bill 68 would amend Title 10, Article II of the Maui County Code to: (1) authorize paid-parking and permit-parking zones in West Maui; (2) create “Resident Town Benefit” locations in paid-parking zones in Wailuku and West Maui; (3) change Resident Recreation Hours locations at South Maui beach-park paid-parking zones; and (4) remove outdated references to parking lots, piers, and loading zones in West Maui. First reading.",
+      law: [["MCC Title 10, Art. II", "special parking regulations"]],
+      money: "—", moneyNote: "parking-policy change — no appropriation in the bill",
+      ask: "Who qualifies for the resident exemptions, and how would paid zones affect everyday resident access to beaches and town parking?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 15) or WAI.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["West Maui parking", "beach access", "Wailuku town"] },
+
+    { id: "BFED-61", cite: "BFED-61 · Reso 26-100", file: "Legistar · BFED", url: "https://www.mauicounty.us/BFED",
+      title: "Reso 26-100 — $9.0M energy-performance lease (Johnson Controls)", body: "Budget, Finance & Economic Development Cmte · Chair Sugimura",
+      type: "budget", meeting: "2026-06-16", days: 1, stake: 4, status: "current",
+      hook: "$9M to cut the county's energy bills?",
+      decision: "Resolution 26-100 would authorize a tax-exempt lease-purchase agreement, through TD Equipment Finance, Inc., for Phase 3 of the county's energy-performance contract with Johnson Controls, Inc., under HRS §36-41 — $9,021,259 for the work, plus interest at 4.49%. The committee may recommend adoption (with or without revisions), or file it.",
+      law: [["HRS §36-41", "tax-exempt lease-purchase financing"]],
+      money: "$9,021,259", moneyNote: "Phase 3 work · + 4.49% interest · via TD Equipment Finance",
+      ask: "What energy savings does Phase 3 promise, and over how many years? Would the projected utility-bill reduction cover the financing cost and interest?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 16) or BFED.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["county buildings", "HVAC / solar retrofit", "ledger"] },
+
+    { id: "BFED-58", cite: "BFED-58 · Bill 73 (2026)", file: "Legistar · BFED", url: "https://www.mauicounty.us/BFED",
+      title: "Bill 73 — Uniform rules for the county Grants Program", body: "Budget, Finance & Economic Development Cmte · Chair Sugimura",
+      type: "budget", meeting: "2026-06-16", days: 1, stake: 3, status: "current",
+      hook: "Standard rules for county grants?",
+      decision: "Bill 73 would amend MCC §3.36.020 to require the county to adopt uniform, countywide administrative rules (under HRS Chapter 91) for the Maui County Grants Program, while still letting grant-accepting agencies keep supplemental internal policies that don't conflict with those rules. First reading.",
+      law: [["MCC §3.36.020", "Maui County Grants Program"], ["HRS Ch. 91", "administrative rulemaking"]],
+      money: "—", moneyNote: "process / governance change — no appropriation",
+      ask: "Would uniform Chapter 91 rules make grant awards more transparent and consistent, or add steps that slow funding to community nonprofits?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 16) or BFED.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["grant paperwork", "nonprofit", "Kalana O Maui"] },
+
+    { id: "GREAT-10", cite: "GREAT-10 · 14 charter amendments", file: "Legistar · GREAT", url: "https://www.mauicounty.us/GREAT",
+      title: "14 proposed Charter amendments for the ballot", body: "Government Relations, Ethics & Transparency Cmte · Chair Batangan · reconvened from 6/2",
+      type: "gov", meeting: "2026-06-16", days: 1, stake: 5, status: "current",
+      hook: "14 changes to the County Charter — onto your ballot?",
+      decision: "The committee is weighing 14 resolutions that would each place a proposed Maui County Charter amendment on the next General Election ballot for voters to decide. They include: modernizing public-meeting notice to the Sunshine Law and dropping the newspaper-notice requirement (25-215); standardizing deadlines for voter initiative, recall and charter amendments (25-216); computation of time (25-217); filing injury/property claims directly with Corporation Counsel (26-61); special elections to fill council vacancies (26-11); removing the English translation of the state motto from the preamble (26-85); publishing bill digests online instead of in a newspaper (26-94); staggering Cost of Government Commission terms (26-86); one successive reappointment for Board of Ethics members (26-95); a Climate Action & Resiliency Revolving Fund of at least 20% of hotel-tax (TAT) revenue (26-87); using the Open Space / Natural / Cultural Resources / Scenic Views Preservation Fund for wildfire fuel-hazard removal (24-100); dissolving the Independent Nomination Board (26-93); and emergency-appropriation and appropriation-transfer changes (26-88, 26-89).",
+      law: [["Maui County Charter (1983)", "14 amendments — placed on the ballot for voter ratification"], ["HRS §92", "Sunshine Law (Reso 25-215)"]],
+      money: "—", moneyNote: "ballot questions — Reso 26-87 would dedicate ≥20% of TAT revenue to a climate fund if passed",
+      ask: "Which of these 14 belong on your ballot? The highest-stakes are 26-87 (≥20% of hotel-tax revenue to a climate fund) and 26-93 (dissolving the Independent Nomination Board) — do they widen or narrow public oversight?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 16) or GREAT.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["ballot box", "county charter", "council chambers"] },
+
+    { id: "HLU-3(5)", cite: "HLU-3(5) · Title 19 rewrite", file: "Legistar · HLU", url: "https://www.mauicounty.us/HLU",
+      title: "Title 19 zoning rewrite — Planning Dept. briefing", body: "Housing & Land Use Cmte · Chair Uʻu-Hodgins",
+      type: "zoning", meeting: "2026-06-17", days: 2, stake: 4, status: "current",
+      hook: "Rewriting Maui's zoning code",
+      decision: "Under Council Rule 7(B), the Department of Planning will brief the committee on its project to modernize and rewrite Maui County Code Title 19 (zoning). This meeting is a presentation and discussion only — no legislative action will be taken.",
+      law: [["MCC Title 19", "comprehensive zoning code"], ["Council Rule 7(B)", "informational presentation"]],
+      money: "—", moneyNote: "informational briefing — no appropriation",
+      ask: "What is actually changing in the zoning rewrite, and when will the public get to weigh in on specific districts before any new code is adopted?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 17) or HLU.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["zoning map", "Maui towns", "planning dept."] },
+
+    { id: "DRIP-9(4)", cite: "DRIP-9(4) · long-term recovery", file: "Legistar · DRIP", url: "https://www.mauicounty.us/DRIP",
+      title: "Long-term recovery & the 2026 Kona Low storms", body: "Disaster Recovery, International Affairs & Planning Cmte · Chair Paltin",
+      type: "housing", meeting: "2026-06-17", days: 2, stake: 4, status: "current",
+      hook: "Where does Kona Low storm recovery stand?",
+      decision: "Under Council Rule 7(B), the Office of Recovery and the U.S. Small Business Administration will brief the committee on Maui's long-term recovery operations, with emphasis on recovery from the 2026 Kona Low storms — including disaster assistance for homeowners, renters, businesses, and nonprofits. Presentation and discussion only — no legislative action.",
+      law: [["Council Rule 7(B)", "informational presentation"], ["U.S. Small Business Administration", "federal disaster-assistance programs"]],
+      money: "—", moneyNote: "briefing — federal disaster assistance discussed, not appropriated here",
+      ask: "Where does long-term recovery stand for Kona Low storm survivors, and what SBA or county help is still open to homeowners, renters, and small businesses?",
+      testify: "Written testimony via eComment at mauicounty.us/agendas (search June 17) or DRIP.committee@mauicounty.us. Oral testimony in person or via Teams — 3 min/item.",
+      clips: ["storm damage", "recovery / SBA", "East Maui"] },
   ];
 
   // Storyboard card recipe — the order of shots in every explainer.
   var RECIPE = ["hook", "what", "law", "money", "stakes", "deadline", "cta"];
 
-  // Platform render targets. YouTube + TikTok are the active push channels
-  // (APPROVED 06-12); Canvas is passive reach.
+  // Platform render targets. YouTube + TikTok are the active push channels;
+  // Canvas is passive reach.
   var PLATFORMS = [
     { id: "youtube", nm: "YouTube Short", spec: "9:16 · ≤60s", handle: "Jimmy Langford · 62 subs", ops: "YouTube ops · daily 6:30a · OAuth self-heal", status: "automated", note: "watch-hours = the Partner lever" },
     { id: "tiktok", nm: "TikTok", spec: "9:16 · ≤60s", handle: "@jimmylangfordofficial", ops: "tiktok-ops · Playwright draft-push · 3 slots/day", status: "staged", note: "~2/3 of discovery starts here" },
@@ -79,7 +118,7 @@
   ];
 
   window.AGENDA = {
-    meta: { snapshot: "2026-06-12", feed: "../_feed/agendas.json", sunshine: "HRS §92-7 · ≥6 days notice" },
+    meta: { snapshot: "2026-06-15", week: "Jun 15–17, 2026", feed: "../_feed/agendas.json", sunshine: "HRS §92-7 · ≥6 days notice" },
     items: ITEMS, recipe: RECIPE, platforms: PLATFORMS, pipeline: PIPELINE,
   };
 })();
