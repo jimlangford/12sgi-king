@@ -78,6 +78,19 @@ who is paid, so it can be set beside who funds the officials. Documented facts a
 <footer>generated {g} &middot; county-awards v1 &middot; source: HANDS award notices (public record) &middot; Kilo Aupuni &middot; govOS</footer>
 </div></body></html>"""
 
+def dim_links(tid, contracts_page):
+    """Link every dimension page that actually exists for this tenant (contracts/money/lobby/parity)."""
+    specials = {"maui": {"money": "money_behind_officials.html", "lobby": "lobby_money_watch.html",
+                          "parity": "parity_check.html", "wildfire": "wildfire_recovery_watch.html"}}
+    sp = specials.get(tid, {})
+    cands = [("contracts", contracts_page), ("money", sp.get("money", f"money_{tid}.html")),
+             ("lobby", sp.get("lobby", f"lobby_{tid}.html")), ("parity", sp.get("parity", f"parity_{tid}.html"))]
+    if tid == "maui":
+        cands.append(("wildfire", sp.get("wildfire")))
+    out = [f'<a href="{fn}">{lbl}</a>' for lbl, fn in cands
+           if fn and os.path.exists(os.path.join(MAUIOS, fn))]
+    return " &middot; ".join(out) if out else '<span style="color:#756b56">building</span>'
+
 def hub(stats):
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
     badge = {"live": '<span style="color:#43d39e">live</span>', "thin": '<span style="color:#e0863a">thin in HANDS</span>',
@@ -85,7 +98,7 @@ def hub(stats):
     cards = ""
     for t in TENANTS:
         st = stats.get(t["id"], {})
-        link = f'<a href="{t["page"]}">open &rarr;</a>' if (t["page"] and t["status"] in ("live", "thin")) else '<span style="color:#756b56">building</span>'
+        link = dim_links(t["id"], t["page"]) if t["status"] in ("live", "thin") else '<span style="color:#756b56">building</span>'
         kpi = (f'<div class="tk">${usd(st.get("dollars",0))} &middot; {st.get("awards",0):,} awards &middot; {st.get("vendors",0):,} vendors</div>'
                if t["status"] in ("live", "thin") else f'<div class="tk" style="color:#756b56">{esc(t.get("source",""))}</div>')
         note = f'<div class="tn">{esc(t.get("note",""))}</div>' if t.get("note") else ""
