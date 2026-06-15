@@ -131,7 +131,7 @@ def nav_bar(current):
         links = "".join('<a class="%s" href="%s">%s</a>' % ("cur" if f == current else "", f, NAV_LABEL.get(f, f))
                         for f in files)
         groups += ('<div class="gn-group"><button class="gn-top%s">%s<span class="ar">&#9662;</span></button>'
-                   '<div class="gn-panel">%s</div></div>') % (active, glabel, links)
+                   '<div class="gn-panel">%s</div></div>') % (active, glabel.replace("&", "&amp;"), links)
     jc = " cur" if current == "jurisdictions.html" else ""
     return (NAV_CSS +
             '<nav class="govos-nav">'
