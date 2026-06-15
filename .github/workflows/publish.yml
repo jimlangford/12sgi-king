@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}        # run on demand from the Actions tab
   push:
     branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", "seed_reports/**", "king_public_src/**", "go.html", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", ".github/workflows/**" ]
+    paths: [ "watchers/**", "build_site.py", "narratives.json", "seed_reports/**", "king_public_src/**", "go.html", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", ".github/workflows/**" ]
 
 permissions:
   contents: read
@@ -115,12 +115,21 @@ jobs:
           run "$P/vatican_finances.py" || true   # Holy See finances (real FY2024 reports) — the apex tenant's money page
           run "$P/agenda_watch.py" || true
           run "$P/agenda_explainer.py" || true   # shareable agenda fact-cards (needs agenda_watch first)
-          run "$P/sage_bridge.py" || true        # CLOUD BRIDGE: live civic state -> 54-node Sage twin (needs parity_check + agenda_watch)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
+          run "$P/sage_bridge.py" || true        # CLOUD BRIDGE: live civic state -> 54-node Sage twin (needs parity_check + agenda_watch)
+          run "$P/olelo_watch.py" || true        # ʻŌlelo glossary + weekly verification digest (community review)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
           run "$P/patterns.py" || true
           run "$P/kilo_aupuni.py" || true
 
       - name: Build static site
         run: python build_site.py
+
+      - name: Self-check the built site (integrity page reflects exactly what ships)
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          if [ -f "$P/selfheal.py" ]; then
+            python "$P/selfheal.py" || true   # validates: no leak, links resolve, moon live, deps mirrored, olelo under review, bats ascii
+            cp "$HOME/Documents/Claude/Projects/Video System elementLOTUS/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
