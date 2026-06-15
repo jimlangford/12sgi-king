@@ -234,6 +234,31 @@ def inject_nav(html, current):
         return html[:m.end()] + "\n" + nav + html[m.end():]
     return nav + html
 
+# Wherever a page's records are THIN or UNAVAILABLE, give the public the way to get them.
+# A page that carries any thinness marker (and doesn't already link the request page) gets a
+# standard "request the records, send them back" banner before </body>. One place, whole govOS.
+_THIN_MARKERS = ("pending verification", "ingestion pending", "parse pending", "votes-parse pending",
+                 "source identified", "daily checker pending", "no machine-readable", "source check needed",
+                 "thin in hands", "awaiting", ">building<", "building</span>", "source pending",
+                 "not yet wired", "pending a free api key", "feed pending", "links pending",
+                 "next wave", "minutes/materials links", "roll-call parsing of those minutes is marked pending",
+                 "files almost nothing", "no fire-recovery permits", "deeper pull")
+_RECORDS_CTA = ('<div style="max-width:1100px;margin:18px auto 0;padding:11px 16px;border:1px dashed '
+    'rgba(217,178,76,.45);border-radius:10px;background:rgba(217,178,76,.05);font-family:Consolas,monospace;'
+    'font-size:12px;color:#cfc9b6;line-height:1.55">&#128196; Some records on this page are <b>thin or pending</b>. '
+    'They are public &mdash; you can <a href="request_records.html" style="color:#d9b24c;font-weight:700">request them '
+    'and send them back</a> to turn a gap into a fact on the ledger.</div>')
+def add_records_cta(html, current=""):
+    # skip the target page itself, or pages that already carry the banner / an anchored gap-link
+    # (the plain "Request Records" NAV link does NOT count — every page has that).
+    if current == "request_records.html" or "request them\n" in html or "request them and send" in html or "request_records.html#" in html:
+        return html
+    low = html.lower()
+    if not any(m in low for m in _THIN_MARKERS):
+        return html
+    m = re.search(r"</body>", html, re.I)
+    return (html[:m.start()] + _RECORDS_CTA + html[m.start():]) if m else (html + _RECORDS_CTA)
+
 def now_hst(): return datetime.now(HST)
 
 def main():
@@ -248,6 +273,7 @@ def main():
             flat = rel.replace("/", "_")
             html = open(src, encoding="utf-8", errors="replace").read()
             html = inject_nav(html, flat)          # govOS top nav on every civic page
+            html = add_records_cta(html, flat)     # request-the-record banner where data is thin/pending
             with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
                 f.write(html)
             present.append((flat, name, blurb))
@@ -256,7 +282,7 @@ def main():
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
             with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
-                f.write(inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel))
+                f.write(add_records_cta(inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel), rel))
     for rel in DATA:
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
