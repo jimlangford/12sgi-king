@@ -167,7 +167,7 @@ pair has been examined. Generated {esc(p['generated'])}.</div>
 <div class=verdict>{esc(p['verdict'])}</div>
 <h2>Coverage</h2><table><tbody>{cov}</tbody></table>
 <h2>Open items (money &#8596; votes to examine)</h2><table><tbody>{opn}</tbody></table>
-<div class=note>Prosecutorial case files present: {p['prosecutorial_case_files']} (private; content is owner-only and never published). Every flagged pair is a QUESTION for oversight - "name match, verify identity" - never an accusation.</div>
+<div class=note>Prosecutorial layer: kept private (owner-only; never published; not summarized here). Every flagged pair is a QUESTION for oversight - "name match, verify identity" - never an accusation.</div>
 <h2>Next cycle will</h2><ul>{todo}</ul>"""
     with open(HTML_F + ".tmp", "w", encoding="utf-8") as f:
         f.write(html)

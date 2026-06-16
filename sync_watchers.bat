@@ -13,7 +13,7 @@ REM kilo-aupuni watchers + the data files the generators need on CI.
 REM EXCLUDE: rpa (Cloudflare/Playwright, not CI), probes, per-run state, secret keys,
 REM and prosecutor.py (the OWNER-ONLY prosecutorial back end - must NEVER reach the public repo).
 robocopy "%KA%" "%DEST%" *.py departments.json energov_permit_template.json commission_inputs.json ^
-  crosswalk_local.json agenda_sources.json n53_archive.json ^
+  crosswalk_local.json agenda_sources.json n53_archive.json tenants.json ^
   /XF rpa_watch.py prosecutor.py _probe*.py legiscan_key.txt nysenate_key.txt *_state.json /NFL /NDL /NJH /NJS /NP >nul
 REM council_watch.py lives in a separate folder
 copy /Y "%CW%\council_watch.py" "%DEST%\council_watch.py" >nul

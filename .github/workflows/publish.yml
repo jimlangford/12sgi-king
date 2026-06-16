@@ -109,6 +109,10 @@ jobs:
             run "$P/lege_legiscan.py" --years 2024 2026 || true
           fi
           run "$P/commission_watch.py" || true
+          KA_FED_PAGES=3 run "$P/federal_money.py" || true   # federal $ into Maui + State of Hawaii (USASpending; page-capped for CI)
+          run "$P/hands_statewide.py" || true                # learn-all contracts, classified by tenant (Maui/State/other)
+          run "$P/tenant_pages.py" || true                   # per-tenant index pages + simplified tenant-picker landing (tenants_hub)
+          run "$P/audit_balance.py" || true                  # the money x votes "equation" scorecard (LAST; reads the others)
           run "$P/bill9_testimony.py" || true
           run "$P/charter_law_map.py" || true
           run "$P/charter_crosswalk.py" || true  # per-tenant 12 Stones Charter <-> law crosswalk up through the Holy See
