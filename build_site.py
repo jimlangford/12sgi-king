@@ -257,6 +257,68 @@ def inject_nav(html, current):
         html = (html[:i] + COPYRIGHT + html[i:]) if i != -1 else (html + COPYRIGHT)
     return html
 
+# ── Yale-blue civic recolor (2026-06-16, Option A — Jimmy: new graphics on ALL sites) ──
+# COLOR-ONLY skin remap: the old warm-dark / green-gold chrome hexes -> the new light
+# Yale-blue civic palette (matches go.html's 12sgi-design 2026-06-16 export). Applied as a
+# post-generation pass over emitted .html/.css ONLY (never .js, never structure/markup) so
+# every page and every tenant flips palette while ALL data/search/processing stays identical.
+# Cosmology/zone hexes are deliberately NOT remapped (Mauka #4ade80 · Kula #fbbf24 ·
+# Makai #38bdf8 · joker #9b8cff stay canon), so node/zone data colors are preserved.
+_RECOLOR = [
+    # backgrounds: dark -> white / near-white
+    ("#0c100e", "#ffffff"), ("#0c0b09", "#ffffff"), ("#080c12", "#ffffff"), ("#0a0e14", "#ffffff"),
+    ("#0b0f0d", "#f3f7fc"), ("#0b0e14", "#f3f7fc"),
+    # panels: dark -> light blue
+    ("#121714", "#e7eef8"), ("#151d19", "#e7eef8"), ("#16140f", "#e7eef8"), ("#15110d", "#e7eef8"),
+    ("#1e1b14", "#dae5f3"), ("#1a1610", "#dae5f3"), ("#2a261c", "#ccddef"),
+    # lines/borders: dark -> light blue line
+    ("#2a2f29", "#bacde6"), ("#34301f", "#bacde6"), ("#243029", "#bacde6"),
+    # ink: cream/light -> navy
+    ("#efe9da", "#13243d"), ("#e8e4d8", "#13243d"), ("#eef3ef", "#13243d"), ("#f0ead8", "#13243d"),
+    ("#cfc9b6", "#41536b"), ("#bdb8a4", "#41536b"), ("#b3a98f", "#41536b"),
+    ("#9a957f", "#6d7f97"), ("#8a8674", "#6d7f97"), ("#756b56", "#6d7f97"), ("#9fb1a6", "#6d7f97"),
+    # accents: gold -> Yale navy/blue
+    ("#d9b24c", "#00356b"), ("#e3ad33", "#00356b"), ("#f4c95d", "#1259a3"), ("#f3d589", "#1259a3"),
+    ("#e7c361", "#1259a3"), ("#f0cf7a", "#1259a3"),
+    # aloha teal / sea accents -> new ok-green / accent
+    ("#9fd9bf", "#1f8a5b"), ("#c8efd9", "#1f8a5b"), ("#e3ecdf", "#41536b"), ("#5fc0d8", "#1259a3"), ("#3a8fb7", "#00356b"),
+    # status: keep semantics
+    ("#6abf86", "#1f8a5b"), ("#56c08a", "#1f8a5b"), ("#d29922", "#b07d1a"),
+    ("#e06a4a", "#c0322c"), ("#e5736b", "#c0322c"),
+    # rgba tints (keep the alpha; swap the color): gold/teal -> navy/green
+    ("rgba(217,178,76", "rgba(0,53,107"), ("rgba(227,173,51", "rgba(0,53,107"),
+    ("rgba(159,217,191", "rgba(31,138,91"), ("rgba(67,211,158", "rgba(31,138,91"),
+    # light-on-dark hairline borders -> dark-on-light so they remain visible on white
+    ("rgba(255,255,255,.1)", "rgba(0,53,107,.12)"), ("rgba(255,255,255,.08)", "rgba(0,53,107,.1)"),
+    ("rgba(255,255,255,.06)", "rgba(0,53,107,.08)"), ("rgba(255,255,255,.045)", "rgba(0,53,107,.05)"),
+]
+def recolor(text):
+    """Color-only remap (case-insensitive on hexes). Never alters markup/JS/data."""
+    for old, new in _RECOLOR:
+        if old.startswith("#"):
+            text = re.sub(re.escape(old), new, text, flags=re.IGNORECASE)
+        else:
+            text = text.replace(old, new)
+    return text
+
+def recolor_tree(root):
+    """Walk a built tree and recolor every .html/.css in place (skip .js/.json — no logic touched)."""
+    n = 0
+    for dp, _dn, fns in os.walk(root):
+        for fn in fns:
+            if fn.rsplit(".", 1)[-1].lower() not in ("html", "css"):
+                continue
+            p = os.path.join(dp, fn)
+            try:
+                t = open(p, encoding="utf-8", errors="ignore").read()
+                r = recolor(t)
+                if r != t:
+                    open(p, "w", encoding="utf-8", newline="\n").write(r)
+                    n += 1
+            except Exception:
+                pass
+    return n
+
 # Plain-language door-in for the everyday Maui / Hawaiian person. A short "In plain words: ..."
 # banner injected right after the nav on every page. Content from narratives.json (exact filename,
 # then longest matching prefix, then default). See docs/SAGE_REALM_MODEL.md §8.
@@ -541,6 +603,11 @@ Sources are linked on every page.</div>
     with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
         f.write(index)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
+
+    # [recolor] Yale-blue civic skin across EVERY emitted page + tenant (color-only; logic untouched).
+    # Runs before the king-local mirror so the private superset inherits the same new palette.
+    _rc = recolor_tree(SITE)
+    print(f"  + recolor: Yale-blue civic palette applied to {_rc} html/css files (all tenants; data/JS untouched)")
 
     # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
     # of the public build — same civic dashboards + data, plus the owner-only surfaces it
