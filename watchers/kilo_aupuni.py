@@ -126,6 +126,12 @@ def run_live_watchers(reg):
                 import donor_watch
                 donor_watch.main()        # campaign finance -> money behind officials
                 ran.append(name)
+            elif name == "federal-money":
+                if TOOL_DIR not in sys.path:
+                    sys.path.insert(0, TOOL_DIR)
+                import federal_money
+                federal_money.main()      # federal $ into Maui + State of Hawaii (USASpending)
+                ran.append(name)
             elif name == "charter-law-map":
                 if TOOL_DIR not in sys.path:
                     sys.path.insert(0, TOOL_DIR)
