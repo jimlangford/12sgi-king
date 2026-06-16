@@ -1,0 +1,31 @@
+{
+  "_doc": "govOS tenants for the CPU-balanced per-tenant audit. Each runs its own chain via tenant_audit.py --tenant <id>, one at a time (cpu_lock), staggered across the day (sched_hour) to balance CPU load - the CPU analog of the one-GPU-at-a-time rule. publish=true tenants ship their public-safe subset to the git site; prosecutorial content stays private for ALL. Depth reflects current data: Maui is the proven deep tenant; State is rich (lege+money+contracts+federal); the other counties are agenda+money until their watchers fill.",
+  "tenants": [
+    {"id": "hi-state", "code": "000", "name": "State of Hawaiʻi", "sched_hour": 1,
+     "publish": true, "depth": "rich",
+     "steps": ["statewide_money", "hands_statewide", "federal_money", "lege_legiscan", "audit_balance"],
+     "lenses": ["campaign money (2008+)", "legislator votes (2010+)", "state contracts", "federal dollars"]},
+    {"id": "hi-maui", "code": "001", "name": "Maui County", "sched_hour": 3,
+     "publish": true, "depth": "deep",
+     "steps": ["watchers", "hands_awards", "hands_statewide", "statewide_money", "federal_money",
+               "vendor_donor_join", "parity_check", "lobby_money_watch", "prosecutor", "audit_balance"],
+     "lenses": ["council agendas", "votes/recusals", "donors", "county contracts", "federal dollars",
+                "permits", "bids", "money×votes", "charter⇔law"]},
+    {"id": "hi-hawaii", "code": "002", "name": "Hawaiʻi County", "sched_hour": 5,
+     "publish": true, "depth": "agenda+money",
+     "steps": ["agenda_watch", "statewide_money", "audit_balance"],
+     "lenses": ["agendas", "campaign money (county slice)"]},
+    {"id": "hi-kauai", "code": "003", "name": "Kauaʻi County", "sched_hour": 7,
+     "publish": true, "depth": "agenda+money",
+     "steps": ["agenda_watch", "statewide_money", "audit_balance"],
+     "lenses": ["agendas", "campaign money (county slice)"]},
+    {"id": "hi-honolulu", "code": "004", "name": "City & County of Honolulu", "sched_hour": 9,
+     "publish": true, "depth": "agenda+money",
+     "steps": ["agenda_watch", "statewide_money", "audit_balance"],
+     "lenses": ["agendas", "campaign money (county slice)"]},
+    {"id": "ny", "code": "NY", "name": "New York (NYC + NY State)", "sched_hour": 11,
+     "publish": false, "depth": "experimental",
+     "steps": ["agenda_watch"],
+     "lenses": ["agendas (Legistar/OpenData)"]}
+  ]
+}
