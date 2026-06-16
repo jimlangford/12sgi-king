@@ -1,67 +1,122 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>12sgi — Live / Mirror</title>
+<title>12sgi · Quad-OS — one system, four quadrants</title>
 <style>
- :root{--bg:#0c100e;--panel:#151d19;--line:#243029;--ink:#eef3ef;--mut:#9fb1a6;--gold:#d9b24c;--ok:#56c08a}
+ /* Quad-OS Yale-blue civic palette (12sgi-design 2026-06-16 export). Light/civic, easier to read. */
+ :root{
+   --bg:#ffffff; --panel:#e7eef8; --panel-2:#dae5f3; --panel-3:#ccddef; --line:#bacde6;
+   --ink:#13243d; --ink-dim:#41536b; --ink-faint:#6d7f97;
+   --accent:#00356b; --accent-2:#1259a3; --accent-ink:#ffffff; --accent-wash:rgba(0,53,107,.06);
+   --gold:#b8860b; --ok:#1f8a5b; --warn:#b07d1a; --err:#c0322c;
+   --mauka:#4ade80; --kula:#fbbf24; --makai:#38bdf8; --universal:#9b8cff;
+ }
  *{box-sizing:border-box}
- body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,sans-serif;
-      min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:22px}
- .wrap{width:100%;max-width:460px;margin:0 auto}
- .seal{width:54px;height:54px;margin:14px auto 12px;border-radius:50%;border:2px solid var(--gold);
-       display:flex;align-items:center;justify-content:center;font-size:24px}
- h1{font-family:Georgia,serif;font-size:22px;text-align:center;margin:0 0 2px;color:#f0cf7a}
- .sub{text-align:center;font-size:12.5px;color:var(--mut);margin:0 0 18px}
- .status{display:flex;align-items:center;gap:9px;justify-content:center;font-size:12.5px;
-         padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--line);margin-bottom:18px}
- .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);animation:pulse 1.1s infinite}
- .dot.up{background:var(--ok);animation:none}.dot.down{background:#c46;animation:none}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+      min-height:100vh;padding:20px;-webkit-font-smoothing:antialiased}
+ .wrap{width:100%;max-width:560px;margin:0 auto}
+ .head{display:flex;align-items:center;gap:11px;margin:6px 0 4px}
+ .seal{width:38px;height:38px;border-radius:9px;background:var(--accent);color:var(--accent-ink);
+       display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;letter-spacing:-.5px}
+ .brand{font-size:18px;font-weight:700;color:var(--ink)}
+ .syslabel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+ .sub{font-size:13px;color:var(--ink-dim);margin:2px 0 14px;line-height:1.5}
+ .status{display:flex;align-items:center;gap:9px;font-size:12.5px;padding:8px 13px;border-radius:10px;
+         background:var(--panel);border:1px solid var(--line);margin-bottom:14px;color:var(--ink-dim)}
+ .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);animation:pulse 1.2s infinite}
+ .dot.up{background:var(--ok);animation:none}.dot.down{background:var(--err);animation:none}
  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
- .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut);
-       margin:20px 2px 9px;font-family:Consolas,monospace}
+ .dash{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:inherit;
+       background:var(--accent);color:var(--accent-ink);border-radius:11px;padding:12px 15px;margin-bottom:18px}
+ .dash .dt{font-size:14px;font-weight:600}.dash .db{font-size:11.5px;opacity:.85;margin-top:2px}
+ .dash .pct{font-size:24px;font-weight:700;font-family:'JetBrains Mono',Consolas,monospace}
+ .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);
+       margin:18px 2px 9px;font-weight:600}
+ /* quadrant cards */
+ .quad{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
+       border-radius:12px;padding:13px 15px;margin-bottom:10px;transition:border-color .14s,transform .14s}
+ .quad:hover{border-color:var(--accent);transform:translateY(-1px)} .quad.dim{opacity:.5}
+ /* ghost: private/studio quadrants are alpha-translucent on the PUBLIC server (not reachable without the
+    laptop+Tailscale); they solidify on the owner's devices when the live system answers. govOS is never ghosted. */
+ .quad.ghost{opacity:.4;filter:saturate(.45)} .quad.ghost:hover{opacity:.62}
+ .quad.ghost .tag{background:var(--panel-3);color:var(--ink-faint)}
+ .dash.ghost{opacity:.5;filter:saturate(.55)} .dash.ghost:hover{opacity:.78}
+ .qtop{display:flex;align-items:center;gap:10px}
+ .qi{font-size:19px;width:26px;text-align:center}
+ .qn{font-size:15px;font-weight:650;flex:1}
+ .qpct{font-family:'JetBrains Mono',Consolas,monospace;font-size:14px;font-weight:700;color:var(--accent)}
+ .qbar{height:6px;border-radius:99px;background:var(--panel-3);overflow:hidden;margin:8px 0 6px}
+ .qbar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+ .qb{font-size:12px;color:var(--ink-dim);line-height:1.45}
+ .tag{float:right;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;font-weight:600}
+ .tag.live{background:rgba(31,138,91,.13);color:var(--ok)} .tag.mir{background:var(--accent-wash);color:var(--accent-2)}
+ /* link cards + chips (govOS substance — every tenant + correlation preserved) */
  a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
-        border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
- a.card:hover{border-color:var(--gold)} a.card.dim{opacity:.45}
- .t{font-size:15px;font-weight:600} .b{font-size:12px;color:var(--mut);margin-top:3px}
- .tag{float:right;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:10px}
- .tag.live{background:rgba(86,192,138,.14);color:var(--ok)} .tag.mir{background:rgba(217,178,76,.14);color:var(--gold)}
- .tag.act{background:rgba(217,178,76,.14);color:var(--gold)}
- .foot{text-align:center;font-size:11px;color:var(--mut);margin-top:18px;line-height:1.5}
+        border-radius:11px;padding:12px 14px;margin-bottom:9px;transition:border-color .14s}
+ a.card:hover{border-color:var(--accent)} a.card.dim{opacity:.5}
+ .t{font-size:14px;font-weight:600}.b{font-size:12px;color:var(--ink-dim);margin-top:3px;line-height:1.4}
  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
  .chip{flex:1 1 calc(50% - 4px);text-decoration:none;background:var(--panel);border:1px solid var(--line);
-       border-radius:10px;padding:10px 12px;color:inherit;transition:border-color .15s}
- .chip:hover{border-color:var(--gold)} .chip .cn{font-size:13px;font-weight:600}
- .chip .cl{font-size:10px;letter-spacing:.6px;color:var(--mut);margin-top:2px;font-family:Consolas,monospace}
+       border-radius:10px;padding:10px 12px;color:inherit;transition:border-color .14s}
+ .chip:hover{border-color:var(--accent)} .chip .cn{font-size:13px;font-weight:600}
+ .chip .cl{font-size:10px;letter-spacing:.5px;color:var(--ink-faint);margin-top:2px;font-family:'JetBrains Mono',Consolas,monospace}
+ .foot{font-size:11px;color:var(--ink-faint);margin-top:18px;line-height:1.6;text-align:center}
+ a{color:var(--accent-2)}
 </style></head><body><div class="wrap">
-  <div class="seal">🪷</div>
-  <h1>12 Stones — Live / Mirror</h1>
-  <p class="sub">One door. Live system when the studio's online; always-on public mirror — works on your phone with no laptop, no Tailscale.</p>
+
+  <div class="head">
+    <div class="seal">12</div>
+    <div><div class="brand">12 Stones Global</div><div class="syslabel">Quad-OS</div></div>
+  </div>
+  <p class="sub">One system, four quadrants. The civic surfaces are public and always-on; the studio surfaces go live when the laptop is online.</p>
 
   <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">Checking the live system…</span></div>
 
-  <!-- ══ LIVE (private, laptop + Tailscale) ══ -->
-  <div class="sect">Live system · private (laptop + Tailscale)</div>
-  <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders. Control-only, no public mirror.</div></a>
-  <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">King System (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
-  <a class="card dim" id="liveStatus" href="http://12sgianonymous.tail760750.ts.net:8781/system_status.html"><span class="tag live">live</span><div class="t">System Status — hardware &amp; software</div><div class="b">Real-time self-heal dashboard — GPU/CPU/VRAM, live LoRA training step &amp; ETA, locks, servers, every surface's health, money×votes balance. Auto-refresh.</div></a>
+  <!-- ══ PROGRESS DASHBOARD — the hourly self-heal across all four quadrants ══ -->
+  <a class="dash ghost" href="quadrant_progress.html" id="dashLink">
+    <div><div class="dt">Progress dashboard</div><div class="db">Self-healed + scored hourly across the four quadrants · log →</div></div>
+    <div class="pct" id="overallPct">61%</div>
+  </a>
 
-  <!-- ══ MIRROR (public, always-on) — the govOS civic system ══ -->
-  <div class="sect">Always-on mirror · public (any phone, no laptop)</div>
-  <a class="card" href="./"><span class="tag mir">mirror</span><div class="t">govOS — home</div><div class="b">The civic transparency system — votes · money · permits · patterns · contracts · scorecards</div></a>
-  <a class="card" href="jurisdictions.html"><span class="tag mir">mirror</span><div class="t">Jurisdictions — all tenants</div><div class="b">Every government on govOS — State of Hawaiʻi · Maui · Honolulu · Hawaiʻi · Kauaʻi · NYC · NY State · Liverpool</div></a>
-  <a class="card" href="partner.html"><span class="tag mir">partner</span><div class="t">Partner with us — 501(c)(3) sponsor</div><div class="b">Seeking an aligned 501(c)(3) to fiscal-sponsor our food-security, housing, culture &amp; education work</div></a>
-  <a class="card" href="king/"><span class="tag mir">mirror</span><div class="t">King System app</div><div class="b">The full shell — govOS · Council · Sage</div></a>
+  <!-- ══ THE FOUR QUADRANTS ══ -->
+  <div class="sect">The four quadrants</div>
 
-  <!-- ══ govOS DASHBOARDS — the new civic surfaces (replaces the old MauiOS templates) ══ -->
-  <div class="sect">govOS dashboards · follow the money</div>
-  <a class="card" href="county_dashboard.html"><span class="tag mir">govOS</span><div class="t">Maui County Dashboard</div><div class="b">The home tenant — council, money, votes, contracts in one view</div></a>
-  <a class="card" href="money_behind_officials.html"><span class="tag mir">govOS</span><div class="t">Money Behind Officials</div><div class="b">Who funds each decider — public campaign-finance record</div></a>
-  <a class="card" href="ka_leo_voice.html"><span class="tag mir">govOS</span><div class="t">Ka Leo — The Louder Voice</div><div class="b">How much louder a donation makes a voice, as a question</div></a>
-  <a class="card" href="parity_check.html"><span class="tag mir">govOS</span><div class="t">Parity — Pairs That No Longer Answer</div><div class="b">The Kumulipo broken-pair scan across money × votes</div></a>
-  <a class="card" href="contracts_x_donors.html"><span class="tag mir">govOS</span><div class="t">Contracts × Donors</div><div class="b">Public-records join: who wins work and also gives</div></a>
-  <a class="card" href="patterns_money_x_votes.html"><span class="tag mir">govOS</span><div class="t">Money × Votes</div><div class="b">Patterns where giving and deciding line up — framed as questions</div></a>
+  <a class="quad ghost" id="qMV" href="https://12sgianonymous.tail760750.ts.net/" data-q="music_video">
+    <div class="qtop"><span class="qi">🎬</span><span class="qn">Music Video</span><span class="qpct" data-pct>71%</span></div>
+    <div class="qbar"><span data-bar style="width:71%"></span></div>
+    <div class="qb">211-song catalog → face-locked SDXL keyframe → Wan2.2 i2v. <span class="tag live">studio</span></div>
+  </a>
 
-  <!-- ══ TENANTS — one tap each, matching the local govOS ══ -->
+  <a class="quad ghost" id="qFilm" href="https://12sgianonymous.tail760750.ts.net/" data-q="film">
+    <div class="qtop"><span class="qi">🎞</span><span class="qn">Film</span><span class="qpct" data-pct>26%</span></div>
+    <div class="qbar"><span data-bar style="width:26%"></span></div>
+    <div class="qb">12 STONES feature · Mokuʻula · LUNA Chronicles · Keys of Starforge · Seventh Stone. <span class="tag live">studio</span></div>
+  </a>
+
+  <a class="quad ghost" id="qGame" href="https://12sgianonymous.tail760750.ts.net/king/" data-q="game">
+    <div class="qtop"><span class="qi">🎮</span><span class="qn">Game · Sage</span><span class="qpct" data-pct>86%</span></div>
+    <div class="qbar"><span data-bar style="width:86%"></span></div>
+    <div class="qb">54 nodes across 4 zone-spheres — Mauka · Kula · Makai · Universal. <span class="tag live">king</span></div>
+  </a>
+
+  <a class="quad" href="county_dashboard.html" data-q="govos">
+    <div class="qtop"><span class="qi">🏛</span><span class="qn">govOS</span><span class="qpct" data-pct>62%</span></div>
+    <div class="qbar"><span data-bar style="width:62%"></span></div>
+    <div class="qb">Civic transparency — votes · money · permits · patterns, across 8 tenants. <span class="tag mir">public</span></div>
+  </a>
+
+  <!-- ══ govOS — the public substance (every dashboard + correlation preserved) ══ -->
+  <div class="sect">govOS · follow the money</div>
+  <a class="card" href="./"><span class="tag mir">govOS</span><div class="t">govOS — home</div><div class="b">The civic transparency system — votes · money · permits · patterns · contracts · scorecards</div></a>
+  <a class="card" href="county_dashboard.html"><span class="tag mir">govOS</span><div class="t">Maui County dashboard</div><div class="b">The home tenant — council, money, votes, contracts in one view</div></a>
+  <a class="card" href="money_behind_officials.html"><span class="tag mir">govOS</span><div class="t">Money behind officials</div><div class="b">Who funds each decider — public campaign-finance record</div></a>
+  <a class="card" href="ka_leo_voice.html"><span class="tag mir">govOS</span><div class="t">Ka Leo — the louder voice</div><div class="b">How much louder a donation makes a voice, asked as a question</div></a>
+  <a class="card" href="parity_check.html"><span class="tag mir">govOS</span><div class="t">Parity — pairs that no longer answer</div><div class="b">The Kumulipo broken-pair scan across money × votes</div></a>
+  <a class="card" href="contracts_x_donors.html"><span class="tag mir">govOS</span><div class="t">Contracts × donors</div><div class="b">Public-records join: who wins work and also gives</div></a>
+  <a class="card" href="patterns_money_x_votes.html"><span class="tag mir">govOS</span><div class="t">Money × votes</div><div class="b">Patterns where giving and deciding line up — framed as questions</div></a>
+
+  <!-- ══ TENANTS — one tap each (all eight preserved) ══ -->
   <div class="sect">Tenants · jump straight in</div>
   <div class="chips">
     <a class="chip" href="money_state.html"><div class="cn">State of Hawaiʻi</div><div class="cl">000 · money</div></a>
@@ -73,33 +128,52 @@
     <a class="chip" href="money_nys.html"><div class="cn">New York State</div><div class="cl">NYS · money</div></a>
     <a class="chip" href="money_liverpool.html"><div class="cn">Village of Liverpool</div><div class="cl">NY · money</div></a>
   </div>
+  <a class="card" href="jurisdictions.html"><span class="tag mir">mirror</span><div class="t">All jurisdictions</div><div class="b">Every government on govOS, in one index</div></a>
 
   <!-- ══ ACT ══ -->
   <div class="sect">Act</div>
-  <a class="card" href="testify.html"><span class="tag act">act</span><div class="t">⚖ Testify</div><div class="b">Write testimony → send it straight to the County Clerk + record it on govOS</div></a>
-  <a class="card" href="take_action.html"><span class="tag act">join</span><div class="t">Request the Records</div><div class="b">A UIPA request for the contract logs, offered in aloha · join in</div></a>
+  <a class="card" href="testify.html"><span class="tag mir">act</span><div class="t">⚖ Testify</div><div class="b">Write testimony → send it straight to the County Clerk + record it on govOS</div></a>
+  <a class="card" href="take_action.html"><span class="tag mir">join</span><div class="t">Request the records</div><div class="b">A UIPA request for the contract logs, offered in aloha · join in</div></a>
+  <a class="card" href="partner.html"><span class="tag mir">partner</span><div class="t">Partner with us — 501(c)(3) sponsor</div><div class="b">Seeking an aligned 501(c)(3) to fiscal-sponsor our food, housing, culture &amp; education work</div></a>
 
-  <div class="foot">Live = your laptop via Tailscale (private). Mirror = GitHub Pages (public, read-only, no credentials or controls).<br>&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div>
+  <!-- ══ LIVE SYSTEM (private, laptop + Tailscale) ══ -->
+  <div class="sect">Live system · private (laptop + Tailscale)</div>
+  <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">King System (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
+  <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
+  <a class="card dim" id="liveStatus" href="http://12sgianonymous.tail760750.ts.net:8781/system_status.html"><span class="tag live">live</span><div class="t">System status — hardware &amp; software</div><div class="b">Real-time self-heal — GPU/CPU/VRAM, LoRA training, locks, every surface's health. Auto-refresh.</div></a>
+  <a class="card" href="king/"><span class="tag mir">mirror</span><div class="t">King System app (public)</div><div class="b">The full shell — govOS · Council · Sage</div></a>
+
+  <div class="foot">Live = your laptop via Tailscale (private). Mirror = GitHub Pages (public, read-only).<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</div>
 </div>
 <script>
+ // Live-system probe: toggles the private cards active when the King is reachable.
  var LIVE = "https://12sgianonymous.tail760750.ts.net/king/";
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
-   if(up){
-     dot.className='dot up'; st.textContent='Live system online — open it for full control.';
-     document.getElementById('liveStudio').classList.remove('dim');
-     document.getElementById('liveKing').classList.remove('dim');
-   } else {
-     dot.className='dot down'; st.textContent='Live system offline (laptop off / Tailscale off) — use the always-on mirror below.';
-   }
+   if(up){ dot.className='dot up'; st.textContent='Live system online — studio surfaces open for full control.';
+     ['liveStudio','liveKing','liveStatus','qMV','qFilm','qGame','dashLink'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+   } else { dot.className='dot down'; st.textContent='Live system offline (laptop/Tailscale off) — civic mirror below is always on.'; }
  }
- // Probe the live system: opaque no-cors fetch resolves if reachable, rejects/aborts if not.
- (function(){
-   var done=false, ctl=new AbortController();
+ (function(){ var done=false, ctl=new AbortController();
    var t=setTimeout(function(){ if(!done){done=true; ctl.abort(); setState(false);} }, 3000);
-   fetch(LIVE, {mode:'no-cors', cache:'no-store', signal:ctl.signal})
+   fetch(LIVE,{mode:'no-cors',cache:'no-store',signal:ctl.signal})
      .then(function(){ if(!done){done=true; clearTimeout(t); setState(true);} })
      .catch(function(){ if(!done){done=true; clearTimeout(t); setState(false);} });
+ })();
+ // Live quadrant progress: upgrade the baked snapshot from quadrant_progress.json when reachable
+ // (served by the status server on the machine). Falls back silently to the baked values on public.
+ (function(){
+   fetch('quadrant_progress.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+     if(!d||!d.quadrants)return;
+     var byId={music_video:d.quadrants,film:0,game:0,govos:0}; var m={};
+     d.quadrants.forEach(function(q){m[q.id]=q.pct;});
+     if(typeof d.overall_pct==='number'){var o=document.getElementById('overallPct'); if(o)o.textContent=d.overall_pct+'%';}
+     document.querySelectorAll('.quad[data-q]').forEach(function(card){
+       var q=card.getAttribute('data-q'); if(m[q]==null)return;
+       var p=card.querySelector('[data-pct]'), b=card.querySelector('[data-bar]');
+       if(p)p.textContent=m[q]+'%'; if(b)b.style.width=m[q]+'%';
+     });
+   }).catch(function(){});
  })();
 </script>
 </body></html>
