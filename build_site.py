@@ -65,6 +65,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "agendas_nyc.html", "agendas_nys.html", "agendas_liverpool.html",
                "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
                "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html",
+               # minutes watch — the people's record per tenant (dignified, sourced; private evidence stays in _status)
+               "minutes_hi-maui.html", "minutes_hi-state.html", "minutes_hi-hawaii.html",
+               "minutes_hi-kauai.html", "minutes_hi-honolulu.html", "minutes_ny.html",
                # N53 integrity engine — past minutes / supplemental materials / roll-call corpus
                "n53_engine.html", "archive.html", "testimony_money.html", "testimony_record.html",
                "archive_state.html", "archive_maui.html", "archive_honolulu.html", "archive_hawaii.html", "archive_kauai.html",
