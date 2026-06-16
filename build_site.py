@@ -238,7 +238,7 @@ def nav_bar(current):
             '<a class="gn-link%s" href="olelo_glossary.html">ʻŌlelo</a>' % (" cur" if current=="olelo_glossary.html" else "") +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
             '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "") +
-            '<a class="gn-cta" href="take_action.html">Take action</a>'
+            '<a class="gn-cta" href="take_action.html">Take part</a>'
             '</div></nav>' + NAV_JS)
 
 COPYRIGHT = ('<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;'
@@ -509,13 +509,13 @@ def main():
  a.data{{color:#d9b24c;font-family:Consolas,monospace;font-size:11px}}
 </style></head><body><div class="wrap">
 <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS civic transparency</div>
-<h1>Kilo Aupuni — Watching the Government</h1>
+<h1>Kilo Aupuni — Knowing Our Government</h1>
 <p class="lead">Public-record civic intelligence for Maui County and the State of Hawaii: council &amp;
 legislative votes, campaign money, procurement, permits, and the patterns between them.</p>
 <div class="disc">Everything here is built from public records and presented as <b>documented facts and
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
-<p style="margin:16px 0;display:flex;gap:12px;flex-wrap:wrap"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Demand the records &mdash; file a UIPA request &amp; sign up &rarr;</a><a href="king/" style="display:inline-block;background:rgba(217,178,76,.12);border:1px solid #d9b24c;color:#f4c95d;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#10022; Open the govOS app &rarr;</a></p>
+<p style="margin:16px 0;display:flex;gap:12px;flex-wrap:wrap"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Request the records &mdash; a UIPA request, in aloha &amp; join in &rarr;</a><a href="king/" style="display:inline-block;background:rgba(217,178,76,.12);border:1px solid #d9b24c;color:#f4c95d;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#10022; Open the govOS app &rarr;</a></p>
 <div class="eyebrow" style="margin-top:26px">Choose a government</div>
 <p class="lead">One civic engine, many governments. Pick a tenant to enter its own pages — Maui is the deepest; the others fill as their watchers run.</p>
 <div class="grid">
