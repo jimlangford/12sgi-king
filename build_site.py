@@ -79,7 +79,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "tenants_hub.html",
                "tenant_hi-state.html", "tenant_hi-maui.html", "tenant_hi-hawaii.html",
                "tenant_hi-kauai.html", "tenant_hi-honolulu.html", "tenant_ny.html",
-               "federal_money.html", "audit_balance.html"]
+               "federal_money.html", "audit_balance.html",
+               # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
+               "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json"]
