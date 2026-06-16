@@ -567,6 +567,12 @@ Sources are linked on every page.</div>
         if os.path.exists(_cf):
             shutil.copy(_cf, os.path.join(KLOCAL, "case_files.html"))
             print("  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)")
+        # [OWNER ONLY] recusal/conflict dollar evidence (the Po behind the public eligibility questions) -
+        # king-local/Tailscale ONLY; deliberately NOT in PAGES/EXTRA_PAGES/seed so it never reaches Pages.
+        _re = os.path.join(MAUIOS, "recusal_evidence.html")
+        if os.path.exists(_re):
+            shutil.copy(_re, os.path.join(KLOCAL, "recusal_evidence.html"))
+            print("  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)")
     return 0
 
 if __name__ == "__main__":
