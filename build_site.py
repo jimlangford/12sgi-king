@@ -238,15 +238,21 @@ def nav_bar(current):
             '<a class="gn-cta" href="take_action.html">Take action</a>'
             '</div></nav>' + NAV_JS)
 
+COPYRIGHT = ('<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;'
+             'color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">'
+             '&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div>')
+
 def inject_nav(html, current):
-    """Insert the nav right after <body>; if there's no body tag, prepend it."""
-    if "govos-nav" in html:           # already injected (idempotent safety)
-        return html
-    nav = nav_bar(current)
-    m = re.search(r"<body[^>]*>", html, re.I)
-    if m:
-        return html[:m.end()] + "\n" + nav + html[m.end():]
-    return nav + html
+    """Insert the nav right after <body>; if there's no body tag, prepend it. Also append the
+    James RCS Langford copyright footer to every served page (idempotent)."""
+    if "govos-nav" not in html:           # nav not yet injected
+        nav = nav_bar(current)
+        m = re.search(r"<body[^>]*>", html, re.I)
+        html = (html[:m.end()] + "\n" + nav + html[m.end():]) if m else (nav + html)
+    if "sgi-copyright" not in html:        # append copyright once, before </body>
+        i = html.lower().rfind("</body>")
+        html = (html[:i] + COPYRIGHT + html[i:]) if i != -1 else (html + COPYRIGHT)
+    return html
 
 # Plain-language door-in for the everyday Maui / Hawaiian person. A short "In plain words: ..."
 # banner injected right after the nav on every page. Content from narratives.json (exact filename,
@@ -522,7 +528,7 @@ Sources are linked on every page.</div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
 <p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>
-<footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record</footer>
+<footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</footer>
 </div></body></html>"""
     index = inject_nav(index, "")     # nav on the hub too (home pill highlights nothing)
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
