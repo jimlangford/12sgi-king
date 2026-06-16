@@ -125,10 +125,11 @@ def build():
      "   border:1px solid #2a6b4e;display:flex;flex-direction:column;justify-content:space-between;padding:18px 16px;box-shadow:0 6px 26px rgba(0,0,0,.4)}"
      " .c9-eye{font-family:Consolas,monospace;font-size:10px;letter-spacing:1px;color:#9fd9bf;text-transform:uppercase}"
      " .c9-when{font-family:Consolas,monospace;font-size:13px;color:#d9b24c;margin-bottom:8px}"
-     " .c9-what{font-size:21px;font-weight:700;color:#f0ead8;line-height:1.2} .c9-title{font-size:14px;color:#cfc9b6;margin-top:8px}"
+     " .c9-what{font-size:21px;font-weight:700;color:#f0ead8;line-height:1.2}"
+     " .c9-title{font-size:16.5px;font-weight:600;color:#f4eeda;margin-top:9px;background:rgba(255,255,255,.06);border-left:3px solid #d9b24c;border-radius:8px;padding:8px 10px;line-height:1.3}"
      " .c9-deadline{font-family:Consolas,monospace;font-size:12px;color:#e06a4a;margin-top:14px}"
      " .c9-cta{font-size:13px;color:#9fd9bf;margin-top:6px}"
-     " .c9-moon{font-size:12px;color:#cdb4f0;margin-top:12px;padding-top:10px;border-top:1px solid rgba(205,180,240,.22);font-style:italic;line-height:1.4}"
+     " .c9-moon{font-size:14.5px;font-weight:600;color:#ecdfff;margin-top:12px;background:rgba(205,180,240,.16);border-left:3px solid #cdb4f0;border-radius:9px;padding:9px 11px;line-height:1.45}"
      " .c9-foot{font-family:Consolas,monospace;font-size:10px;color:#9a957f;text-align:center}"
      " .ex-side{flex:1;min-width:260px} .ex-h{font-size:17px;font-weight:600;color:#f0ead8} .ex-sub{font-size:12.5px;color:#9a957f;margin-bottom:8px}"
      " .chips{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 10px} .chip{font-family:Consolas,monospace;font-size:11px;text-decoration:none;color:#d9b24c;border:1px solid #243029;border-radius:8px;padding:5px 9px} .chip.act{color:#9fd9bf;border-color:#2a6b4e} .chip:hover{background:rgba(217,178,76,.1)}"
@@ -141,6 +142,8 @@ def build():
 (function(){
  var SANS="-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif",MONO="'Consolas','SF Mono','Menlo',monospace";
  function wrap(x,text,maxw){var w=(text||'').split(/\s+/),L=[],c='';for(var i=0;i<w.length;i++){var t=c?c+' '+w[i]:w[i];if(c&&x.measureText(t).width>maxw){L.push(c);c=w[i];}else{c=t;}}if(c)L.push(c);return L;}
+ function rr(x,X,Y,W,H,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+W,Y,X+W,Y+H,r);x.arcTo(X+W,Y+H,X,Y+H,r);x.arcTo(X,Y+H,X,Y,r);x.arcTo(X,Y,X+W,Y,r);x.closePath();}
+ function band(x,lines,X,y,maxw,lineH,bg,bar,fg){var H=lines.length*lineH+24;x.fillStyle=bg;rr(x,X-18,y-14,maxw+36,H,14);x.fill();x.fillStyle=bar;x.fillRect(X-18,y-14,6,H);x.fillStyle=fg;lines.forEach(function(l){x.fillText(l,X,y);y+=lineH;});return y+18;}
  function drawCard(ex){
   var W=1080,H=1920,pad=84,maxw=W-pad*2,cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d');
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#10231b');g.addColorStop(.65,'#0c100e');g.addColorStop(1,'#0c100e');
@@ -151,12 +154,11 @@ def build():
   var y=150;
   x.fillStyle='#9fd9bf';x.font='600 30px '+MONO;x.fillText('govOS · GET AHEAD OF THE VOTE',pad,y);y+=78;
   x.fillStyle='#d9b24c';x.font='bold 60px '+MONO;x.fillText(date,pad,y);y+=104;        // date is the headline
-  x.fillStyle='#f0ead8';x.font='bold 64px '+SANS;wrap(x,tenant,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=78;});y+=18;
-  x.fillStyle='#cfc9b6';x.font='40px '+SANS;wrap(x,title,maxw).slice(0,6).forEach(function(l){x.fillText(l,pad,y);y+=54;});
-  y+=34;x.fillStyle='#e06a4a';x.font='36px '+MONO;x.fillText('⏱ Testify BEFORE the vote',pad,y);y+=62;
+  x.fillStyle='#f0ead8';x.font='bold 64px '+SANS;wrap(x,tenant,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=78;});y+=22;
+  x.font='600 50px '+SANS;y=band(x,wrap(x,title,maxw).slice(0,6),pad,y,maxw,62,'rgba(255,255,255,.07)','#d9b24c','#f6f0dc'); // meeting title — larger + highlight
+  y+=14;x.fillStyle='#e06a4a';x.font='36px '+MONO;x.fillText('⏱ Testify BEFORE the vote',pad,y);y+=62;
   x.fillStyle='#9fd9bf';x.font='38px '+SANS;wrap(x,cta,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=50;});
-  if(moon){y+=26;x.strokeStyle='rgba(205,180,240,.35)';x.lineWidth=2;x.beginPath();x.moveTo(pad,y);x.lineTo(W-pad,y);x.stroke();y+=26;
-   x.fillStyle='#cdb4f0';x.font='italic 34px '+SANS;wrap(x,'🌙 '+moon,maxw).slice(0,3).forEach(function(l){x.fillText(l,pad,y);y+=46;});}
+  if(moon){y+=24;x.font='600 44px '+SANS;y=band(x,wrap(x,'🌙 '+moon,maxw).slice(0,3),pad,y,maxw,56,'rgba(205,180,240,.18)','#cdb4f0','#efe4ff');} // moon offering — larger purple highlight
   x.fillStyle='#9a957f';x.font='28px '+MONO;x.textAlign='center';x.fillText('⚖ 12 Stones · Kilo Aupuni · the people’s record',W/2,H-96);
   return cv;
  }
