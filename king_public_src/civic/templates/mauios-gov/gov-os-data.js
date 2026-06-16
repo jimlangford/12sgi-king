@@ -64,6 +64,7 @@
       { nm: "Peacekeeper Network", haw: "Nā Kiai Maluhia", art: ["II"], law: "HRS Ch.52D · Charter Art.8", status: "planned", metric: "restorative", tool: null },
     ] },
     { id: "people", nm: "Culture, Justice & People", haw: "Ka Lāhui", modules: [
+      { nm: "Sage Realm", haw: "Ka Pāʻani Naʻauao", art: ["XV", "XXVI"], law: "Sage Game canon · 54-node cosmology", status: "built", metric: "54 nodes · songs ↔ deck", tool: null, href: "../sage-realm/Sage Realm.html" },
       { nm: "Sacred Sites & Burial", haw: "Nā Wāhi Kapu", art: ["VII"], law: "HRS §6E-43.5 · NAGPRA", status: "planned", metric: "island burial councils", tool: null },
       { nm: "Restorative Justice", haw: "Hoʻoponopono", art: ["IX", "XIII"], law: "HRS Ch.706 · Ch.571", status: "planned", metric: "justice circles", tool: null },
       { nm: "Cultural Preservation", haw: "Ka Mālama Moʻomeheu", art: ["XV"], law: "HRS §5-7.5 · Const XV §4", status: "planned", metric: "ʻōlelo · hula · kapa", tool: null },
