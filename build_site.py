@@ -60,7 +60,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html", "crosswalk_singapore.html",
                "crosswalk_zurich.html", "crosswalk_frankfurt.html", "crosswalk_paris.html", "crosswalk_dubai.html",
                # agenda watch — every tenant's upcoming meetings, daily-checked (index + per-tenant)
-               "agendas.html", "agenda_explainer.html",
+               "agendas.html", "agenda_explainer.html", "agenda_patterns.html",
                "agendas_state.html", "agendas_maui.html", "agendas_honolulu.html", "agendas_hawaii.html", "agendas_kauai.html",
                "agendas_nyc.html", "agendas_nys.html", "agendas_liverpool.html",
                "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
