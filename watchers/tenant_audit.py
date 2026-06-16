@@ -7,8 +7,13 @@
 #
 #   python tenant_audit.py --tenant hi-maui
 #   python tenant_audit.py --all          # every tenant, sequential (still one-at-a-time)
-import argparse, importlib, json, os, sys, time
+import argparse, importlib, io, json, os, sys, time
 from datetime import datetime, timedelta, timezone
+
+# tenant names carry ʻokina (ʻ); the Windows console is cp1252 and will crash on print.
+if sys.platform == "win32":
+    try: sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    except Exception: pass
 
 TOOL_DIR = os.path.dirname(os.path.abspath(__file__))
 HOME     = os.path.expanduser("~")
@@ -47,21 +52,43 @@ def audit_tenant(t):
     lock = CPULock(f"audit:{t['id']}")
     if not lock.acquire(block=True, timeout=2400):
         print(f"[{t['id']}] CPU busy / another tenant auditing - skipping this run"); return 1
-    print(f"=== audit {t['id']} ({t['name']}) | CPU {cpu_percent():.0f}% | {now_hst():%H:%M HST} ===")
-    dispatch("FINDING", f"tenant_audit START {t['id']} ({t['name']})")
+    t0 = time.perf_counter(); step_times = {}
     try:
+        print(f"=== audit {t['id']} ({t['name']}) | CPU {cpu_percent():.0f}% | {now_hst():%H:%M HST} ===")
+        dispatch("FINDING", f"tenant_audit START {t['id']} ({t['name']})")
         for step in t.get("steps", []):
-            ok = run_step(step); print(f"   {'+' if ok else 'x'} {step}")
+            s = time.perf_counter(); ok = run_step(step); dt = round(time.perf_counter() - s, 1)
+            step_times[step] = dt; print(f"   {'+' if ok else 'x'} {step}  ({dt}s)")
         try:
+            s = time.perf_counter()
             import tenant_pages; importlib.reload(tenant_pages)
             tenant_pages.gen(t); tenant_pages.build_hub(tenants())
-            print("   + pages")
+            step_times["pages"] = round(time.perf_counter() - s, 1); print(f"   + pages  ({step_times['pages']}s)")
         except Exception as e:
             dispatch("FINDING", f"tenant_audit pages {t['id']} failed: {e}"); print(f"   x pages: {e}")
     finally:
         lock.release()
-    dispatch("SHIPPED", f"tenant_audit DONE {t['id']} ({t['name']}) - publish={t.get('publish')}")
+    total = round(time.perf_counter() - t0, 1)
+    _record_timing(t, total, step_times)
+    print(f"=== {t['id']} full update: {total}s ({total/60:.1f} min) ===")
+    dispatch("SHIPPED", f"tenant_audit DONE {t['id']} ({t['name']}) in {total}s ({total/60:.1f}min) - publish={t.get('publish')}")
     return 0
+
+def _record_timing(t, total, step_times):
+    """Persist per-tenant durations so the staggered schedule can be tuned to reality."""
+    p = os.path.join(PROJECT, "reports", "mauios", "tenant_timings.json")
+    try:
+        data = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
+    except Exception:
+        data = {}
+    data[t["id"]] = {"name": t["name"], "last_run": now_hst().strftime("%Y-%m-%d %H:%M HST"),
+                     "total_s": total, "total_min": round(total / 60, 1),
+                     "sched_hour": t.get("sched_hour"), "steps_s": step_times}
+    try:
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p + ".tmp", "w", encoding="utf-8") as f: json.dump(data, f, ensure_ascii=False, indent=1)
+        os.replace(p + ".tmp", p)
+    except Exception: pass
 
 def main():
     ap = argparse.ArgumentParser()
