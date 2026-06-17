@@ -538,17 +538,42 @@ def recolor(text):
             text = text.replace(old, new)
     return text
 
+_VIEWPORT = ('<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+             '<meta name="theme-color" content="#00356b">')
+# the no-zoom heal: keep wide content (tables/images/pre) inside the viewport so the PAGE never overflows on a
+# phone — wide tables scroll within themselves instead of pushing the page sideways.
+_MOBILE_CSS = ('<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}'
+               'table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}'
+               'table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}'
+               'td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>')
+def ensure_mobile(html):
+    """HEAL: every page readable on iPhone/iPad without zoom — inject the viewport meta AND the no-overflow CSS
+    if missing. One place, every access point; no per-generator fixes, no double systems."""
+    add = ("" if "width=device-width" in html else _VIEWPORT) + ("" if 'id="mobile-heal"' in html else _MOBILE_CSS)
+    if not add:
+        return html
+    for pat in (r"<meta\s+charset[^>]*>", r"<head[^>]*>", r"<!doctype[^>]*>"):
+        m = re.search(pat, html, re.I)
+        if m:
+            return html[:m.end()] + add + html[m.end():]
+    return add + html
+
 def recolor_tree(root):
-    """Walk a built tree and recolor every .html/.css in place (skip .js/.json — no logic touched)."""
+    """The ONE heal pass over a built tree: recolor to Yale-blue AND ensure mobile-viewport, in place, every
+    .html (+ .css recolor). Skips .js/.json (no logic touched). Same pass for public site/ and (via king_recolor)
+    the private King — one concept, all access points. The heal improves each page toward the standard each run."""
     n = 0
     for dp, _dn, fns in os.walk(root):
         for fn in fns:
-            if fn.rsplit(".", 1)[-1].lower() not in ("html", "css"):
+            ext = fn.rsplit(".", 1)[-1].lower()
+            if ext not in ("html", "css"):
                 continue
             p = os.path.join(dp, fn)
             try:
                 t = open(p, encoding="utf-8", errors="ignore").read()
                 r = recolor(t)
+                if ext == "html":
+                    r = ensure_mobile(r)
                 if r != t:
                     open(p, "w", encoding="utf-8", newline="\n").write(r)
                     n += 1
