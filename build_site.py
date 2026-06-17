@@ -282,6 +282,12 @@ _RECOLOR = [
     ("#e7c361", "#1259a3"), ("#f0cf7a", "#1259a3"),
     # aloha teal / sea accents -> new ok-green / accent
     ("#9fd9bf", "#1f8a5b"), ("#c8efd9", "#1f8a5b"), ("#e3ecdf", "#41536b"), ("#5fc0d8", "#1259a3"), ("#3a8fb7", "#00356b"),
+    # moon/Po offering: light-purple TEXT (unreadable on the new white bg) -> readable dark indigo;
+    # purple border/bg -> readable indigo on a faint light tint. (Jimmy: "gold and purple is hard to read".)
+    ("#ecdfff", "#2e2a5c"), ("#efe4ff", "#2e2a5c"), ("#cdb4f0", "#5b5fb0"),
+    ("rgba(205,180,240", "rgba(91,95,176"),
+    # stray cream/ivory texts the first pass missed -> navy
+    ("#f4eeda", "#13243d"), ("#f6f0dc", "#13243d"), ("#f4c95d", "#1259a3"),
     # status: keep semantics
     ("#6abf86", "#1f8a5b"), ("#56c08a", "#1f8a5b"), ("#d29922", "#b07d1a"),
     ("#e06a4a", "#c0322c"), ("#e5736b", "#c0322c"),
