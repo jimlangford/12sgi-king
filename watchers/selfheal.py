@@ -34,6 +34,7 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "minutes_review.html",                       # prosecutorial red-flag + missing-minutes review — owner-only, never public
                  "private_completeness.html",
                  "testifiers.json", "testifiers_index.txt",   # testifier×money cross-ref (prosecutor) — public PAGE only, not the join
+                 "nay_narratives.json",                       # dissent-vote spine (prosecutor) — public PAGE only, not the JSON
                  "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
 
 def _known_secrets():
