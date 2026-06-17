@@ -722,6 +722,13 @@ Sources are linked on every page.</div>
     # contexts (public site root + king-local, where index.html is the King shell).
     with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
         f.write(index)
+    # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
+    # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
+    # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
+    _go_src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
+    if os.path.exists(_go_src):
+        shutil.copy(_go_src, os.path.join(SITE, "index.html"))
+        print("  + index.html = go.html (Quad-OS launcher is the front door; civic hub preserved at reports.html)")
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
     # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
