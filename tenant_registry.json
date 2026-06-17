@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-16 19:16 HST",
+ "generated": "2026-06-16 19:26 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -127,7 +127,9 @@
    "kind": "civic",
    "quadrant": "govos",
    "reports": {
-    "govern": [],
+    "govern": [
+     "officials_hawaii.html"
+    ],
     "money": [
      "statewide_money_patterns.html"
     ],
@@ -151,7 +153,7 @@
      "audit_balance.html"
     ]
    },
-   "report_classes_filled": 7,
+   "report_classes_filled": 8,
    "report_classes_total": 9
   },
   {
@@ -160,7 +162,9 @@
    "kind": "civic",
    "quadrant": "govos",
    "reports": {
-    "govern": [],
+    "govern": [
+     "officials_kauai.html"
+    ],
     "money": [
      "statewide_money_patterns.html"
     ],
@@ -184,7 +188,7 @@
      "audit_balance.html"
     ]
    },
-   "report_classes_filled": 7,
+   "report_classes_filled": 8,
    "report_classes_total": 9
   },
   {
