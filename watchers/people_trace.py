@@ -29,6 +29,11 @@ GOV={"state of hawaii","county of maui","city and county of honolulu","county of
      "state of hawaii judiciary","united states government","federal government"}
 def core(n): return set(w for w in re.findall(r"[a-z0-9]+",(n or "").lower()) if len(w)>2 and w not in
                         {"the","and","of","llc","lp","inc","co","corp","ltd","company","group","hawaii","maui"})
+# officer/executive titles in the CSC occupation field — the board/exec layer from the public record (BREG's
+# own officer search is reCAPTCHA-gated, which we do NOT bypass; this is the self-reported executive who gives).
+OFFICER_RX=re.compile(r"\b(president|owner|ceo|cfo|coo|chief|vice[ -]?president|vp|principal|partner|director|"
+                      r"managing|manager|chair|founder|officer|executive|proprietor|broker[ -]?in[ -]?charge|"
+                      r"principal broker)\b",re.I)
 
 TENANTS=[("maui","Maui County","hi-maui",["Maui Council"]),
          ("honolulu","City & County of Honolulu","hi-honolulu",["Honolulu Council"]),
@@ -53,10 +58,12 @@ def build_orgs(rows):
         except: amt=0
         nm=(r.get("contributor_name") or "").strip(); occ=(r.get("occupation") or "").strip()
         key=emp.upper()
-        o=orgs.setdefault(key,{"name":emp,"total":0.0,"people":{},"occ":{}})
+        o=orgs.setdefault(key,{"name":emp,"total":0.0,"people":{},"occ":{},"officers":{}})
         o["total"]+=amt
         if nm: o["people"][nm]=o["people"].get(nm,0)+amt
         if occ and occ.lower() not in GEN: o["occ"][occ]=o["occ"].get(occ,0)+1
+        if nm and occ and OFFICER_RX.search(occ):           # an officer/executive of this org, on the record
+            o["officers"][nm]=occ
     return orgs
 
 def re_entities():
@@ -71,16 +78,19 @@ def page(slug,disp,tid,orgs,gen,mr,ao_po):
     rows=""
     for o in nongov:
         ppl=sorted(o["people"].items(),key=lambda x:-x[1])
-        top_occ=sorted(o["occ"].items(),key=lambda x:-x[1])[:2]
-        occ=(" &middot; "+esc(", ".join(k for k,_ in top_occ))) if top_occ else ""
-        names=", ".join(esc(n) for n,_ in ppl[:5])+(" +%d more"%(len(ppl)-5) if len(ppl)>5 else "")
-        rows+=("<div class=org><div class=oh><b>%s</b><span class=ot>$%s &middot; %d giver(s)%s</span></div>"
-               "<div class=op>%s</div></div>")%(esc(o["name"]),usd(o["total"]),len(o["people"]),occ,names)
+        off=o.get("officers",{})
+        off_line=("<div class=ofx><b>Officers &amp; executives on the record:</b> "+
+                  ", ".join("%s <span class=ti>(%s)</span>"%(esc(n),esc(t)) for n,t in sorted(off.items())[:8])+"</div>") if off else ""
+        names=", ".join(esc(n) for n,_ in ppl[:6])+(" +%d more"%(len(ppl)-6) if len(ppl)>6 else "")
+        rows+=("<div class=org><div class=oh><b>%s</b><span class=ot>$%s &middot; %d giver(s) &middot; %d officer(s)</span></div>"
+               "%s<div class=op>givers incl.: %s</div></div>")%(esc(o["name"]),usd(o["total"]),len(o["people"]),len(off),off_line,names)
     total_orgs=len([o for o in ranked if o["name"].lower() not in GOV])
     sup=("<style>.org{border:1px solid var(--line);border-radius:12px;padding:.7rem 1rem;margin:.5rem 0;background:var(--panel)}"
          ".org .oh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}"
          ".org .oh b{color:var(--accent);font-size:1.02rem}.org .ot{font:600 12px/1 'JetBrains Mono',Consolas,monospace;color:var(--accent2)}"
-         ".org .op{color:var(--dim);font-size:.9rem;margin-top:.35rem;line-height:1.45}</style>")
+         ".org .op{color:var(--dim);font-size:.9rem;margin-top:.35rem;line-height:1.45}"
+         ".org .ofx{font-size:.9rem;color:#13243d;background:#eef6f0;border:1px solid #bfe0cc;border-radius:8px;padding:.45rem .7rem;margin:.4rem 0;line-height:1.5}"
+         ".org .ofx .ti{color:#1f5a3c;font-family:Consolas,monospace;font-size:.8rem}</style>")
     cb=("<div class=cb>&#9790;&#9728; <b>Curse-breaker.</b> Under tonight's %s, an organization&rsquo;s people giving "
         "together is lawful and ordinary &mdash; the question is only whether a later decision answers the public or "
         "the people who funded the seat. The official can <b>disclose, recuse, or decide in the open</b>; the "
@@ -115,6 +125,7 @@ def main():
         orgs=build_orgs(rows)
         fn,top=page(slug,disp,tid,orgs,gen,mr,ao_po)
         priv["tenants"][tid]={"orgs":[{"name":o["name"],"total":round(o["total"]),"n_people":len(o["people"]),
+                              "officers":[{"name":n,"title":t} for n,t in sorted(o.get("officers",{}).items())],
                               "people":sorted(o["people"],key=lambda n:-o["people"][n])[:20],
                               "occupations":sorted(o["occ"],key=lambda k:-o["occ"][k])[:5]} for o in
                               sorted(orgs.values(),key=lambda x:-x["total"])[:60]]}
