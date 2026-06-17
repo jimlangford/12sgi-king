@@ -333,7 +333,10 @@ def nav_bar(current):
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
             '<div class="gn-menu">'
             + here +
-            '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') + groups +
+            # ONE tenant nav = the Government/View pulldown below (inject_switcher). The top bar is now GLOBAL
+            # actions only — the grouped per-tenant dropdowns were redundant with the pulldown (Jimmy: nav
+            # frustration / "complete logic rework"). 'groups' kept built for the client navmap label only.
+            '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') +
             '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="agenda_explainer.html">Explainer</a>' % (" cur" if current=="agenda_explainer.html" else "") +
             '<a class="gn-link%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "") +
@@ -442,6 +445,7 @@ def inject_switcher(html, current_file):
         'if(r[1]===D.cur_file)o.selected=true;view.appendChild(o);});}'
         'if(D.cur_tid)fill(D.cur_tid);'
         'gov.addEventListener("change",function(){var t=this.value,dest;'
+        'try{localStorage.setItem("govos.tenant",t);}catch(e){}'
         'if(D.cur_class&&D.tclass[D.cur_class]&&D.tclass[D.cur_class][t])dest=D.tclass[D.cur_class][t];'
         'else dest="tenant_"+t+".html";location.href=dest;});'
         'view.addEventListener("change",function(){if(this.value)location.href=this.value;});})();</script>'
