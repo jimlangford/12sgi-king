@@ -1,0 +1,132 @@
+<!-- @template name="Title 19 — Plain-Language Service" description="govOS free public service: a plain-language navigator to Maui County Code Title 19 (Zoning) — process, community plans, agriculture, uses, planning bodies. Sourced to Municode; first version, expanding." -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Title 19 — Plain-Language Service · govOS · Kilo Aupuni</title>
+<link rel="stylesheet" href="../../styles.css?v=2026-06-17">
+<style>
+ :root{--bg:#ffffff;--panel:#e7eef8;--panel2:#dae5f3;--line:#bacde6;--ink:#13243d;--ink-dim:#41536b;
+   --ink-faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;--lahaina:#b3541e;}
+ *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Iowan Old Style',serif;line-height:1.6}
+ .wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+ .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:Consolas,monospace;font-size:11.5px}
+ .top a{color:var(--accent2);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase;margin-top:12px}
+ h1{font-size:28px;font-weight:600;margin:6px 0 4px;line-height:1.15}
+ .lead{font-size:15.5px;color:var(--ink-dim);max-width:80ch}
+ .free{display:inline-block;background:var(--ok);color:#fff;font-family:Consolas,monospace;font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 10px;border-radius:6px;text-transform:uppercase}
+ h2{font-size:13px;font-family:Consolas,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);margin:30px 0 8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+ h3{font-size:18px;font-weight:600;margin:16px 0 4px}
+ .src{font-family:Consolas,monospace;font-size:11.5px;color:var(--ink-faint)} .src a{color:var(--accent2)}
+ .src::before{content:"Source: ";font-weight:700;color:var(--ink-dim)}
+ .exp{display:inline-block;font-family:Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);border-radius:9px;padding:1px 8px;margin-left:6px}
+ .pos{font-size:13.5px;color:var(--accent);background:rgba(0,53,107,.06);border-left:3px solid var(--accent);border-radius:8px;padding:9px 13px;margin:8px 0}
+ .pos b{color:var(--accent)} .pos .b{font-family:Consolas,monospace;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:2px}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:11px;margin-top:10px}
+ .card{display:block;border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:13px 15px;text-decoration:none;color:inherit}
+ .card.lah{border-color:var(--lahaina);background:#fbf2ec;border-width:2px}
+ .card .t{font-weight:600;font-size:15.5px;color:var(--ink)} .card.lah .t{color:var(--lahaina)}
+ .card .b{font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+ table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px;display:block;overflow-x:auto}
+ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap} th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint)}
+ .y{color:var(--ok);font-weight:700}.c{color:var(--warn);font-weight:700}.n{color:var(--err);font-weight:700}
+ .steps{counter-reset:s;padding:0;margin:10px 0;list-style:none}
+ .steps li{position:relative;padding:10px 12px 10px 46px;border:1px solid var(--line);border-radius:10px;background:#fbfdff;margin-bottom:8px}
+ .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:11px;top:11px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-family:Consolas,monospace;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+ .steps .w{font-size:12.5px;color:var(--ink-dim);margin-top:3px} .steps .pay{font-family:Consolas,monospace;font-size:11.5px;color:var(--accent2);margin-top:3px}
+ .tier3{border:1px dashed var(--accent);border-radius:10px;background:rgba(0,53,107,.04);padding:11px 14px;margin-top:10px;font-size:13px;color:var(--ink-dim)}
+ .note{font-size:12.5px;color:var(--ink-faint);font-style:italic;margin:6px 0}
+ svg{max-width:100%;height:auto} a{color:var(--accent2)}
+ footer{font-family:Consolas,monospace;font-size:10.5px;color:var(--ink-faint);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+ @media(max-width:430px){ h1{font-size:23px} .wrap{padding:14px 12px 70px} }
+</style></head><body><div class="wrap">
+ <div class="top"><a href="../../../../index.html">← govOS home</a><a href="../title19-crosswalk/Title19%20Crosswalk.html">Charter ⇄ Law Crosswalk</a><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Maui County Code (Municode) ↗</a></div>
+ <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS · public service</div>
+ <h1>Title 19 — Plain-Language Service <span class="free">Free · no account</span></h1>
+ <p class="lead">A plain-language navigator to <b>Maui County Code Title 19 (Zoning)</b>: how the process works, what it costs and who pays, your community plan, agriculture, the use table, and who decides. Every section links to the authoritative code on Municode. <b>This is a first version — sections marked <span class="exp">expanding</span> are being filled in; nothing here is legal advice.</b></p>
+
+ <h2>1 · Plain-language process navigator</h2>
+ <p class="note">The general path a zoning/permit matter takes under Title 19. Each step notes typical conditions, the expense, and who bears it today.</p>
+ <ol class="steps">
+  <li><b>Find your district &amp; community plan</b><div class="w">What zoning district your parcel is in, and which community plan area guides it.</div><div class="pay">Expense: free to look up · paid by: you (time)</div></li>
+  <li><b>Check the use table</b><div class="w">Is your use permitted, conditional (needs a permit), or prohibited in that district?</div><div class="pay">Expense: free to look up</div></li>
+  <li><b>Apply for the permit / approval</b><div class="w">e.g. a Special Use Permit, Conditional Permit, or Special Management Area (SMA) approval, with required studies/plans.</div><div class="pay">Expense: application + study fees · paid by: applicant</div></li>
+  <li><b>Agency &amp; public review</b><div class="w">Planning Department review; notice; hearing before the Planning Commission / committee where required.</div><div class="pay">Expense: County staff review · paid by: County (+ applicant fees)</div></li>
+  <li><b>Decision, conditions &amp; appeal</b><div class="w">Approval (often with conditions), denial, or appeal. Conditions may impose ongoing requirements.</div><div class="pay">Expense: meeting conditions · paid by: applicant</div></li>
+ </ol>
+ <div class="pos"><span class="b">⚖️ Position — James Langford (not law; a stance beside the rule)</span>Where the County <b>imposes a requirement</b> (a study, an upgrade, a condition), the <b>County should bear the cost</b> of the requirement it imposes — not download it onto the resident or small applicant.</div>
+ <p class="src"><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Maui County Code Title 19 (Zoning), Municode</a> · process steps summarized in plain language; exact procedures &amp; fees are in the cited chapters <span class="exp">expanding: per-permit fee schedule</span></p>
+
+ <h2>2 · Community plans <span class="exp">Lāhainā featured</span></h2>
+ <p class="note">Maui County's community plan areas guide <b>future</b> land use for each region. Community plans <b>guide</b> decisions but do <b>not</b> carry zoning's direct legal force — zoning (Title 19) is the enforceable layer.</p>
+ <div class="grid">
+  <a class="card lah" href="https://www.mauicounty.gov/2065/Lahaina-Community-Plan" target="_blank" rel="noopener"><div class="t">🌺 Lāhainā — recovery module</div><div class="b">West Maui / Lāhainā, post-fire recovery focus. Its own top-level module. <span class="exp">expanding</span></div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">West Maui</div><div class="b">Includes Lāhainā, Kāʻanapali, Nāpili–Honokōwai.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Wailuku–Kahului</div><div class="b">Central Maui core.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Kīhei–Mākena</div><div class="b">South Maui.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Makawao–Pukalani–Kula</div><div class="b">Upcountry.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Pāʻia–Haʻikū</div><div class="b">North shore.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Hāna</div><div class="b">East Maui (see Hāna Advisory Committee, §6 below).</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Molokaʻi</div><div class="b">Island of Molokaʻi.</div></a>
+  <a class="card" href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener"><div class="t">Lānaʻi</div><div class="b">Island of Lānaʻi.</div></a>
+ </div>
+ <p class="src">Community-plan framework: Maui County Code <b>§19.06.010</b> + the General Plan / community plan provisions (<b>Ch. 2.80B</b>). Region list = Maui County's nine community plan areas. <span class="exp">expanding: per-plan zoning crosswalk + adoption dates</span></p>
+
+ <h2>3 · Agriculture <span class="exp">first-class · ties to Food Security</span></h2>
+ <p>Maui's agricultural and rural lands are governed primarily by the <b>Agricultural district (Ch. 19.30A)</b> and the <b>Rural district (Ch. 19.29)</b>, which set permitted and special (conditional) agricultural uses — farming, ranching, and related activities — central to local food security.</p>
+ <p class="src">Maui County Code <b>Ch. 19.30A (Agricultural district)</b> &amp; <b>Ch. 19.29 (Rural district)</b>, <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Municode</a> · specific permitted/special-use lists in the chapters <span class="exp">expanding: itemized ag use table</span></p>
+
+ <h2>4 · Table of uses <span class="exp">starter — expanding to all districts</span></h2>
+ <p class="note">Starter version: the districts sourced now. <span class="y">P</span> permitted · <span class="c">C</span> conditional (needs a permit) · <span class="n">✕</span> prohibited. <b>Authoritative use lists are in each chapter on Municode — verify there.</b> Expanding to all residential/business/apartment districts.</p>
+ <table><thead><tr><th>District</th><th>Code</th><th>Farming / ag</th><th>Dwelling</th><th>Retail / business</th><th>Source</th></tr></thead><tbody>
+  <tr><td>Agricultural</td><td>Ch. 19.30A</td><td class="y">P</td><td class="c">C</td><td class="n">✕</td><td class="src" style="border:0"><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">19.30A</a></td></tr>
+  <tr><td>Rural</td><td>Ch. 19.29</td><td class="y">P</td><td class="c">C</td><td class="n">✕</td><td class="src" style="border:0"><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">19.29</a></td></tr>
+  <tr><td>Residential</td><td>Title 19 <span class="exp">verify §</span></td><td class="n">✕</td><td class="y">P</td><td class="n">✕</td><td class="src" style="border:0"><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Municode</a></td></tr>
+  <tr><td>Business</td><td>Title 19 <span class="exp">verify §</span></td><td class="n">✕</td><td class="c">C</td><td class="y">P</td><td class="src" style="border:0"><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Municode</a></td></tr>
+ </tbody></table>
+ <p class="src">Maui County Code Title 19, <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Municode</a>. Ag/Rural rows from Ch. 19.30A / 19.29; residential &amp; business rows are <span class="exp">starter — district chapter §§ being verified</span> before classifications are asserted. Always confirm against the chapter.</p>
+
+ <h2>5 · Planning bodies — who decides</h2>
+ <ul style="font-size:14.5px;padding-left:18px">
+  <li><b>Maui Planning Commission(s)</b> — reviews/decides zoning permits, plan amendments, SMA. <span class="src" style="display:block">Maui County Code <b>Ch. 2.28</b> (Planning Commission), <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Municode</a></span></li>
+  <li><b>Hāna Advisory Committee</b> — the East-Maui referral path: Hāna-region matters route through the Hāna Advisory Committee before/alongside Commission action. <span class="src" style="display:block">Maui County Code Ch. 2.28 (advisory committee provisions) <span class="exp">verify subsection §</span></span></li>
+ </ul>
+
+ <h2>6 · What can the County do to focus the community plans? <span class="exp">analysis</span></h2>
+ <p class="note">Labeled analysis — options the County could pursue, framed as questions for the community, not as adopted law.</p>
+ <ul style="font-size:14.5px;padding-left:18px">
+  <li><b>Align zoning to the adopted plan</b> — rezone where Title 19 districts lag the community plan's stated future use, so the plan's intent becomes enforceable.</li>
+  <li><b>Fund what it requires</b> — pair imposed requirements (studies, infrastructure) with County funding (the ⚖️ position above), so plans don't stall on cost shifted to residents.</li>
+  <li><b>Prioritize recovery</b> — give the Lāhainā recovery module an expedited, well-resourced track.</li>
+  <li><b>Make it legible</b> — keep a free, plain-language service like this so residents can navigate Title 19 without a consultant.</li>
+ </ul>
+
+ <h2>7 · Charts</h2>
+ <svg viewBox="0 0 760 90" role="img" aria-label="Title 19 process flow">
+  <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#00356b"/></marker></defs>
+  <g font-family="Consolas,monospace" font-size="11" fill="#13243d" text-anchor="middle">
+   <g><rect x="6" y="30" width="120" height="34" rx="8" fill="#e7eef8" stroke="#bacde6"/><text x="66" y="51">District + plan</text></g>
+   <line x1="128" y1="47" x2="160" y2="47" stroke="#00356b" stroke-width="2" marker-end="url(#ar)"/>
+   <g><rect x="162" y="30" width="110" height="34" rx="8" fill="#e7eef8" stroke="#bacde6"/><text x="217" y="51">Use table</text></g>
+   <line x1="274" y1="47" x2="306" y2="47" stroke="#00356b" stroke-width="2" marker-end="url(#ar)"/>
+   <g><rect x="308" y="30" width="110" height="34" rx="8" fill="#e7eef8" stroke="#bacde6"/><text x="363" y="51">Apply</text></g>
+   <line x1="420" y1="47" x2="452" y2="47" stroke="#00356b" stroke-width="2" marker-end="url(#ar)"/>
+   <g><rect x="454" y="30" width="140" height="34" rx="8" fill="#e7eef8" stroke="#bacde6"/><text x="524" y="51">Review + hearing</text></g>
+   <line x1="596" y1="47" x2="628" y2="47" stroke="#00356b" stroke-width="2" marker-end="url(#ar)"/>
+   <g><rect x="630" y="30" width="124" height="34" rx="8" fill="#00356b"/><text x="692" y="51" fill="#fff">Decision</text></g>
+  </g>
+ </svg>
+ <p class="note" style="margin-top:14px">Who pays (today):</p>
+ <svg viewBox="0 0 480 120" role="img" aria-label="Who pays bar chart">
+  <g font-family="Consolas,monospace" font-size="12" fill="#13243d">
+   <text x="0" y="24">Applicant fees / studies</text><rect x="200" y="12" width="240" height="16" rx="4" fill="#1259a3"/><text x="446" y="24" fill="#41536b">applicant</text>
+   <text x="0" y="58">Imposed conditions</text><rect x="200" y="46" width="210" height="16" rx="4" fill="#b07d1a"/><text x="446" y="58" fill="#41536b">applicant ⚖️</text>
+   <text x="0" y="92">Staff review</text><rect x="200" y="80" width="120" height="16" rx="4" fill="#1f8a5b"/><text x="446" y="92" fill="#41536b">County</text>
+  </g>
+ </svg>
+ <p class="note">⚖️ The middle bar is where James's position applies: requirements the County imposes should be County-borne. <span class="exp">expanding: charted fee schedule from the code</span></p>
+
+ <div class="tier3"><b>Coming — Tier 3 (verified tools):</b> personalized parcel lookups, saved applications, and submission helpers will be <b>verification-gated</b> (identity-verified). <b>No live billing is enabled.</b> Tiers 1 (this page) &amp; 2 are free and need no account.</div>
+
+ <footer>govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code Title 19 (Municode) · first version 2026-06-17, expanding · not legal advice · public records only</footer>
+</div></body></html>

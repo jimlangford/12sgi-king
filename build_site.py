@@ -169,6 +169,7 @@ NAV_LABEL = {
     # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
     "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html": "Charter ⇄ Law Crosswalk",
+    "king/civic/templates/title19-service/Title19%20Service.html": "Title 19 — Plain-Language Service (free)",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
     "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html": "Hawaiʻi Law Index",
@@ -202,7 +203,8 @@ NAV_GROUPS = [
                        "crosswalk_nyc.html", "crosswalk_liverpool.html", "crosswalk_holysee.html",
                        # unique non-crosswalk reference pages (real budget data + the publish loop)
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
-                       "king/civic/templates/agenda-explainer/Agenda%20Explainer.html"]),
+                       "king/civic/templates/agenda-explainer/Agenda%20Explainer.html",
+                       "king/civic/templates/title19-service/Title19%20Service.html"]),
     # world financial-center cities — same SSC charter, each city's real charter/code + national law,
     # up the shared apex to the Holy See. "Act local, think global."
     ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",
@@ -357,6 +359,7 @@ def nav_bar(current):
             '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') +
             '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="agenda_explainer.html">Explainer</a>' % (" cur" if current=="agenda_explainer.html" else "") +
+            '<a class="gn-link" href="king/civic/templates/title19-service/Title19%20Service.html">&#9878; Title 19</a>' +
             '<a class="gn-link%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "") +
             '<a class="gn-link%s" href="olelo_glossary.html">ʻŌlelo</a>' % (" cur" if current=="olelo_glossary.html" else "") +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
