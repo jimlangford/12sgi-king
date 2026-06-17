@@ -16,6 +16,10 @@ HST=timezone(timedelta(hours=-10))
 HOME=os.path.expanduser("~"); PROJ=os.path.join(HOME,"Documents","Claude","Projects","Video System elementLOTUS")
 M=os.path.join(PROJ,"reports","mauios"); ST=os.path.join(PROJ,"reports","_status"); TXT=os.path.join(PROJ,"reports","minutes_text")
 def esc(s): return str(s if s is not None else "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+def slugify(s): return re.sub(r"[^a-z0-9]+","_",s.lower()).strip("_")[:48]
+def dossier_link(name):
+    fn="entity_%s.html"%slugify(name)
+    return (" &middot; <a href='%s'><b>full dossier &rarr;</b></a>"%fn) if os.path.exists(os.path.join(M,fn)) else ""
 def usd(n): return "{:,.0f}".format(int(n or 0))
 _NS_STOP={"hawaii","hawai","maui","oahu","kauai","honolulu","county","council","state","general","public",
           "department","office","committee","meeting","member","members","chair"}
@@ -98,8 +102,8 @@ def card(name,kind,dates,mr,giving,tx):
           +"</div>")
     offline=("<div class=op><b>Officers/execs:</b> "+", ".join("%s (%s)"%(esc(o.get('name')),esc(o.get('position') or o.get('title') or 'officer')) for o in officers)+"</div>") if officers else ""
     q=("<b>%s</b>%s gave to this council and its name appears in <b>%d meeting(s)</b> of the public record%s. "
-       "Does each decision answer the public, or the giving? A <b>question to verify</b> — never a finding.")%(
-       esc(name),(" (role: %s)"%esc(role)) if role else "",n,(", incl. "+recent) if recent else "")
+       "Does each decision answer the public, or the giving? A <b>question to verify</b> — never a finding.%s")%(
+       esc(name),(" (role: %s)"%esc(role)) if role else "",n,(", incl. "+recent) if recent else "",dossier_link(name))
     cb=("<div class=cb>&#9790;&#9728; Under tonight's %s, the pono path: the official can <b>disclose, recuse, or "
         "decide in the open</b>; the interest can <b>say plainly what it seeks</b>. Aloha is the ask.</div>")%(esc(mr.get("po","") or "moon"))
     return "<section class=e><div class=eh><h2>%s</h2><span class=role>%s</span></div>%s<div class=q>%s</div>%s%s</section>"%(
@@ -133,9 +137,13 @@ def main():
                 "Spending Commission + Maui County records.</div>"%len([1 for nm,h in ents]))
               +("<h2>Donor organizations in %s&rsquo;s record (%d found)</h2>"%(esc(disp),len(ents)))
               +("".join(rows) or "<div class=pono>No donor-organization name matches in this tenant's ingested minutes yet.</div>")
-              +("<p class=sub style='margin-top:1rem'><a href='realestate_%s.html'>money &times; votes</a> &middot; "
-                "<a href='orgs_%s.html'>organizations behind the money</a> &middot; <a href='tenant_%s.html'>%s overview</a> &middot; "
-                "<a href='tenants_hub.html'>all governments</a></p>"%(slug,slug,tid,esc(disp)))
+              +("<p class=sub style='margin-top:1rem'><a href='entity_index.html'>deep dossiers &rarr;</a> &middot; "
+                "<a href='realestate_%s.html'>money &times; votes</a> &middot; "
+                "<a href='orgs_%s.html'>organizations behind the money</a> &middot; "
+                "%s<a href='tenant_%s.html'>%s overview</a> &middot; "
+                "<a href='tenants_hub.html'>all governments</a></p>"%(slug,slug,
+                ("<a href='testifiers_maui.html'>who testifies &times; money</a> &middot; " if slug=="maui" else ""),
+                tid,esc(disp)))
               +("<div class=foot>Name matches are questions to verify (org = full name; person = adjacent name-phrase). "
                 "Public record; questions, not findings &middot; generated %s.</div></div>"%esc(gen)))
         fn="connections_%s.html"%slug

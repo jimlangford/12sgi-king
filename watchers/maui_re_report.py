@@ -44,9 +44,23 @@ def re_entities():
         for d in (p.get("realestate",{}) or {}).get("donors",[]):
             nm=(d.get("name") or "").strip(); amt=d.get("amount",0) or 0
             if not nm or len(core(nm))<2: continue   # need a resolvable entity (>=2 core tokens)
-            e=ent.setdefault(nm.upper(),{"donated":0.0,"officials":{}})
+            e=ent.setdefault(nm.upper(),{"donated":0.0,"officials":{},"occ":set()})
             e["donated"]+=amt; e["officials"][off]=e["officials"].get(off,0)+amt
+            oc=(d.get("occupation") or "").strip()
+            if oc: e["occ"].add(oc)
     return ent
+
+def _role(occs):
+    """Classify a real-estate donor by the part it plays — the loop is closed when we can see who BROKERS
+    the deal (agent/broker) vs who DEVELOPS/BUILDS vs who simply OWNS. From the CSC occupation field."""
+    s=" ".join(occs).lower()
+    if any(k in s for k in ("realtor","broker","real estate agent","salesperson","real estate sales","r(b)","r(s)")):
+        return "Agent / Broker"
+    if "commercial real estate" in s: return "Agent / Broker"
+    if any(k in s for k in ("developer","development","builder")): return "Developer"
+    if "contractor" in s: return "Contractor"
+    if any(k in s for k in ("owner","president","investor","principal","landlord","lessor")): return "Owner / Principal"
+    return "Real-estate interest"
 
 def load_sales():
     sales={}
@@ -94,8 +108,9 @@ def main():
         h=hits.get(name,{"parcels":set(),"owners":set()})
         if not h["parcels"]: continue
         key=frozenset(h["parcels"])
-        g=groups.setdefault(key,{"names":set(),"owners":set(),"donated":0.0,"officials":{}})
+        g=groups.setdefault(key,{"names":set(),"owners":set(),"donated":0.0,"officials":{},"occ":set()})
         g["names"].add(name); g["owners"].update(h["owners"]); g["donated"]+=info["donated"]
+        g["occ"].update(info.get("occ") or set())
         for o,a in info["officials"].items(): g["officials"][o]=g["officials"].get(o,0)+a
     rows=[]
     for key,g in groups.items():
@@ -107,11 +122,13 @@ def main():
         rows.append({"entity":disp,"aka":sorted(g["names"]-{disp})[:3],"donated":g["donated"],
                      "officials":sorted(g["officials"].items(),key=lambda x:-x[1]),
                      "parcels":len(key),"sales":len(psales),"tx_value":tx,
-                     "top":psales[:3],"owner_as":sorted(g["owners"])[:2]})
+                     "top":psales[:3],"owner_as":sorted(g["owners"])[:2],
+                     "role":_role(g["occ"]),"occ":sorted(g["occ"])[:3]})
     rows.sort(key=lambda r:-r["tx_value"])
     matched=[r for r in rows if r["sales"]]
+    n_agents=sum(1 for r in matched if r["role"]=="Agent / Broker")
     summary={"generated":gen,"re_entities":len(ent),"entities_owning_parcels":len(rows),
-             "entities_with_sales":len(matched),
+             "entities_with_sales":len(matched),"agents_brokers":n_agents,
              "total_tx_value":sum(r["tx_value"] for r in matched),
              "total_donated_by_matched":sum(r["donated"] for r in matched)}
     os.makedirs(ST,exist_ok=True)
@@ -135,20 +152,23 @@ def main():
             "the doubt is broken not by blame but by daylight: the official can <b>disclose this giving before the vote</b>, "
             "<b>recuse</b> on this interest's matters, or <b>decide in the open</b>; the interest can <b>say plainly what it "
             "seeks</b>. Any one returns the seat to the people. That is <b>pono</b>.</div>")%(esc(mr.get("po","") or "moon"))
+        role=esc(r.get("role") or "")
+        occ=(" &middot; "+esc(", ".join(r.get("occ") or []))) if r.get("occ") else ""
         return ("<section class=e><div class=eh><h2>%s</h2>"
+                "<span class=role>%s%s</span>"
                 "<span class=kpi>$%s transacted &middot; %d parcels &middot; %d sales</span></div>"
                 "<div class=gave>Gave <b>$%s</b> to: %s</div>"
                 "<div class=q>%s</div><ul class=top>%s</ul>%s</section>")%(
-                esc(r["entity"].title()),usd(r["tx_value"]),r["parcels"],r["sales"],
+                esc(r["entity"].title()),role,occ,usd(r["tx_value"]),r["parcels"],r["sales"],
                 usd(r["donated"]),offs or "—",q,tops,cb)
     body="".join(entbox(r) for r in matched[:40])
     kpis=("<div class=kpis>"
       "<div class=kp><div class=kv>%d</div><div class=kl>RE donors own parcels</div></div>"
       "<div class=kp><div class=kv>%d</div><div class=kl>with recorded sales</div></div>"
       "<div class=kp><div class=kv>$%s</div><div class=kl>property transacted</div></div>"
-      "<div class=kp><div class=kv>$%s</div><div class=kl>they gave officials</div></div></div>")%(
+      "<div class=kp><div class=kv>%d</div><div class=kl>are agents / brokers</div></div></div>")%(
       summary["entities_owning_parcels"],summary["entities_with_sales"],
-      usd(summary["total_tx_value"]),usd(summary["total_donated_by_matched"]))
+      usd(summary["total_tx_value"]),summary["agents_brokers"])
     foot=("<div class=foot>Sources: Hawaiʻi Campaign Spending Commission (giving) × Maui County Real Property "
           "Tax extracts (sales + ownership), public record. Entity match is name-based — <b>verify identity</b>. "
           "&ldquo;Transacted&rdquo; = recorded sale value, not profit. Showing top %d of %d matched entities · generated %s.</div>")%(
@@ -174,7 +194,8 @@ def main():
           "pono way through — disclose, recuse, or decide in the open. Aloha is the ask.</div>"+body
          +"<p class=sub style='margin-top:1rem'><a href='tenant_hi-maui.html'>&larr; Maui County overview</a> &middot; "
           "<a href='money_behind_officials.html'>money behind officials</a> &middot; "
-          "<a href='contracts_x_donors.html'>contracts &times; donors</a> &middot; <a href='tenants_hub.html'>all governments</a></p>"
+          "<a href='contracts_x_donors.html'>contracts &times; donors</a> &middot; "
+          "<a href='testifiers_maui.html'>who testifies &times; money</a> &middot; <a href='tenants_hub.html'>all governments</a></p>"
          +foot+"</div>")
     posted=[]
     try: open(os.path.join(ST,"maui_re_report.html"),"w",encoding="utf-8").write(priv)
