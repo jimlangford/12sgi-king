@@ -1,0 +1,3561 @@
+MINUTES | hi-maui | County Council Meeting | 2022-08-23
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1362,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+MINUIES
+of the
+COUNCIL OF THE COUNTY OF MAUI
+August 23, 2022
+THE REGULAR MEETING OF THE COUNCIL OF THE COUNTY OF MAUI. STATE OF
+HAWAII, WAS HELD IN THE MAYOR'S CONFERENCE ROOM, KALANA O MAUI
+BUILDING, WAILUKU, HAWAII AND ONLINE VIA BLUEJEANS, ON TUESDAY,
+AUGUST 23. 2022, BEGINNING AT 9:06 A.M., WITH CHAIR ALICE L LEE PRESIDING.
+COUNCIL CHAIR ALICE L. LEE: Willthe Maui County Council meeting ofAugust 23. 2022,
+please come to order. Itis9:06 on a Tuesday morning.
+Morning, everyone. Let's see ifwe can get through this as, as expeditiouslyas
+possible. The morning greeting is...
+And may we have rollcall? Madam Clerk.
+ROLL CALL
+COUNTY CLERK KATHY L. KAOHU: Chair,proceeding with rollcall.Members participating
+from non-publiclocationsshould statewho, ifanyone, except minors,ispresentwith
+them as partof the rollcall.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: Aloha and . . .kakou my Maui hikina.(Spoke in Hawaiian.)
+We're joiningeveryone today from the Hana DistrictOffice. And I'm here with my
+districtstaffIwalaniMedeiros and Napua Lono.
+CHAIR LEE: Good morning.
+COUNTY CLERK: Councilmember Mike Molina.
+CHAIR LEE: Excused.
+COUNTY CLERK: Councilmember KellyTakaya King.
+COUNCILMEMBER KING: .. .and aloha kakahiaka everyone. Ihope everyone had a nice
+three-dayweekend. I'mhere transmittingfrom my home officeinSouth Maui. And we
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 2
+are,thisafternoon,having an open house at the South Maui Community Center, Kihei
+Community Center, for the draftcommunity plan, ifanybody wants to show up after
+four. We have no testifiers at this time at the South Maui District Office.
+CHAIR LEE: Good morning.
+COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: Aloha, Chair, Council, community members. ... to allof
+you. 1 am toldthere are no testifiersat the Lanai DistrictOffice. And I'm here inthe
+chambers looking foran expeditious meeting. Mahalo, Chair.
+CHAIR LEE: Thank you.
+COUNTY CLERK: Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: Aloha kakahiaka and .. .from Napili.I'mbroadcasting liveand
+directfrom my house. And otherthan the minors, there'sjustthe pocket pitand me.
+CHAIR LEE: Okay. Good morning.
+COUNCILMEMBER PALTIN: Oh, and no testifiersat the DistrictOffice. Thanks.
+COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: ...everybody. I'minKula and actuallydoing thismeeting
+online,and in my car to charge my phone. And looking forward to a fun Council
+meeting. Good morning, everybody.
+CHAIR LEE: Thank you. Good morning.
+COUNTY CLERK: Council Pro Temp Tasha Kama.
+COUNCILMEMBER KAMA: Aloha kakahiaka, Chair. And ... to my fellowcolleagues this
+morning. . . . alone. And I'm looking forward to having a positive,productive,and
+expeditiousmeeting thismorning. Thank you, Chair.
+CHAIR LEE: Thank you.
+COUNTY CLERK: Council Vice-Chair Keani Rawlins-Fernandez.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 3
+VICE-CHAIR RAWLINS-FERNANDEZ: Aloha kakahiaka, my Molokai nui ahina. Itlooks like
+my internetmight be kind of unstable. I'm at the Molokai DistrictOffice,alone on my
+side of the office.And we have our community outreach specialistZhantellUndo on
+the other side of the office. Hau'oli la Po'alua.
+CHAIR LEE: Good morning.
+COUNTY CLERK: And Council Chair-
+CHAIR LEE: Gabe, do you see Member Molina? Not there? Not yet?
+COUNCILMEMBER JOHNSON: He's coming in rightnow as we speak.
+CHAIR LEE: Ooh. Okay. Very good. Oh, you know what, Madam Clerk,why don'tyou call
+me and then call him.
+COUNTY CLERK: Council Chair Alice L. Lee.
+CHAIR LEE: . . .everyone. Looking forward to,as everyone said,an expeditiousmeeting
+because we don't know how long the connectivityisgoing to last.
+And now, have we given Member Molina enough time to settlein?
+COUNTY CLERK: No, he's connecting.
+CHAIR LEE: Okay, why don't we give him a minute. So, then, he has to actuallydo the
+opening remarks.
+COUNTY CLERK: Can we have a brief recess?
+CHAIR LEE: Sure. Members, five-minute recess. Return at 9:15. Recess.
+(THE MEETING WAS RECESSED BY THE CHAIR AT 9:10 A.M., AND WAS RECONVENED
+AT 9:15 A.M., WITH ALL MEMBERS PRESENT.)
+CHAIR LEE: Willthe Maui County Council meeting ofAugust 23, please reconvene.
+Good morning, Mr. Molina.
+COUNCILMEMBER MOLINA: Good morning. Madam Chair.
+CHAIR LEE: . . .
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 4
+COUNCILMEMBER MOLINA; Isthatthe word of the day? ...
+CHAIR LEE: Yeah. . . .
+COUNCILMEMBER MOLINA: My apologies for being late,Madam Chair. With allthe
+unusual circumstances with regards to power, Iplanned on doing thismeeting from the
+Paia DistrictOffice,then Iwas informed no power in Paia. And Ithought about doing
+itat home, but then no power inMakawao. So, luckily,we got power inWailuku.
+CHAIR LEE; Thank you. Madam Clerk.
+COUNCILMEMBERS SHANE M. SINENCl, MICHAEL J.
+MOLINA, KELLY T. KING. GABRIEL JOHNSON, TAMARA A.M.
+PALTIN, YUKI LEI K. SUGIMURA, NATALIE A. KAMA,
+VICE-CHAIR KEANI N.W. RAWLINS-FERNANDEZ, AND
+CHAIR ALICE L. LEE.
+PRESENT:
+EXCUSED: NONE.
+COUNTY CLERK; Chair, there are nine Members present, zero Members absent, and zero
+Members excused. A quorum ispresent to conduct the business ofthe Council. For
+the record.I'mKathy Kaohu, County Clerk. Also presentfrom theOfficeoftheCounty
+Clerk are Deputy County Clerk James Krueger, and LegislativeDivisionstaffJoyce
+Murashige, Lauren Saldana, and DellYoshida. Joiningthe meeting also from the
+Department of Corporation Counsel is Corporation Counsel Moana Lutey and First
+Deputy CorporationCounsel RichelleThomson.
+CHAIR LEE: Members, thismorning, opening remarks willbe providedby Councilmember
+Mike Molina.
+COUNCILMEMBER MOLINA; Thank you very much. Madam Chair.
+OPENING REMARKS
+The opening remarks were offeredby Councilmember Mike Molina.
+CHAIR LEE: Thank you. Member Molina. Very apt opening remarks. And hopefully
+everybody takes,takes itto heartbecause we need to getthe voteoutand notbe the
+last in the, in the State of Hawaii.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 5
+Members, please joinme in recitingthe Pledge of Allegiance.
+PLEDGE OF ALLEGIANCE
+The Members of the Council rose and recitedthe Pledge of Allegiance.
+CHAIR LEE: Thank you. Before we proceed with today'sagenda, may Iplease request that
+everyone keep theirmicrophones muted unless itisyour turnto speak. Decorum shall
+be maintained at all times.
+Madam Clerk.
+COUNTY CLERK: Chair, proceeding with testimony on settingthe Consent Calendar.
+Members ofthe publicmay testifyinthe Council Chamber, at courtesytestimonysites,
+or remotely through the informationlistedon the meeting agenda.
+Individualsinthe Council chamber may sign up to testifywith the staffmember located
+at the desk in the frontof the 8th floorlobby. Individualsat courtesy testimony sites
+may sign up with staffat the site.Individualsparticipatingremotely may sign up inthe
+meeting chat.
+And ifyou're connected to the meeting by phone, you willautomaticallybe added to
+the testifierlist.Individualsconnected by phone are currentlyon mute and willbe
+unmuted when itistheirtime to testify.
+Individualsconnected by video conference should keep both their video and
+microphones offand should turn them on only when itistheirtime to testify.
+Testimony islimitedto the items listedon the agenda. Individualsmay testifyforup to
+three minutes with one minute to conclude per item. When testifying,please stateyour
+name and the name of any organizationyou represent,as well as the item on which
+you willbe testifying.Please also identifyto the Council ifyou'rea paid lobbyist.
+Individualsmay also be disconnected from the meeting at any time for breaking
+decorum.
+At thistime,individualsmay testifyon settingofthe Consent Calendar.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 6
+Chair, there is nobody signed up to testifyon the consent, settingthe Consent
+Calendar.
+CHAIR LEE: Members, are there any objections to closing publictestimony and accepting
+writtentestimony,ifany, forsettingofthe Consent Calendar?
+MEMBERS VOICED NO OBJECTION.
+SET THE CONSENT CALENDAR
+CHAIR LEE: Okay. At thistime,we willset,set the Consent Calendar. As a reminder,the
+calendar can stillbe adjustedeven afteritisset. Are there any requested changes to
+the Consent Calendar at this time?
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you. Chair. I'dliketo pulltwo items offof the Consent
+Calendar. Item number 22-198 and 22-200.
+CHAIR LEE: 22-198 and 22 dash?
+COUNCILMEMBER PALTIN: 200.
+CHAIR LEE: 200. Okay, any objections,Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay, any other,any other items do you wish pulled? Alright,Members. Let's
+see, no other requested changes. Are there any objectionsto settingthe Consent
+Calendar?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay. Consent Calendar isset.
+Members, before proceeding, I am notifyingyou that Iwillbe enforcingRule 9.F,no
+Member may speak more than twiceon any pending motion. Members may speak for
+two minutes during theirfirstopportunityto speak on a motion. Duringtheirsecond
+opportunity,Members willhave one minute.
+Madam Clerk.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 7
+COUNTY CLERK: Chair, proceeding with the presentation of testimony. At this time,
+individualsmay testifyon allremaining agenda items. Testifierswho do not indicatea
+need to testifyat this time willbe called during the testimony period before the
+appropriateagenda category. For the public'sinformation,at futureCouncil meetings,
+the Council may receivetestimony before each category of the agenda only. The first
+person to testifyisNick Krau.
+MR. NICK KRAU, SHOPO (testifying on Resolution No. 22-188):
+Good morning.
+CHAIR LEE: Good morning.
+MR. KRAU: I’m here to. I'm here to testifyto Resolution, it's22-188. And my name isNick
+Krau. I'm a policeofficerwith the Maui Police Department. And been with the Maui
+Police Department and had the honor and privilegeof servingour community forthe
+last22 years. I'm also the chairperson of the State of Hawaii Organizationof Police
+Officers Police Union.
+So, I'm here to talk about, to testifyon this amendment. This is,and firstto thank
+everyone for being, this Council has been very supportive of our law enforcement
+officersand publicsafety inour community. Ithinkina time where we're having a lot
+of difficultygaining support from, forlaw enforcement around the country,thatsays a
+lot. We see itallover the country and allover the world. And I'm thankfulfor the
+community thatwe have here on Maui thatsupports that. And Ithink,you know, we
+do have the greatestpoliceofficersinthe countryhere. I'vebeen around the country,
+you know, working with many differentagencies and officers,and we do have the best
+agency here.
+And itcomes back to the community support, you know, thatwe work with,we liveand
+work in the community that we serve. And it's,that'sunique. You know, on the
+mainland you have differentagencies. You know, you have State police.Citypolice,
+County police,and many ofthem don'tliveinthe community thatthey serve,you know.
+And over here it'sunique. And itshould be the model forthe country that,thatwe, you
+know, we take more prideinthe community we serve.
+And while it'snot the most popular profession out there,we allknow that,Ithinkwe
+can allagree thatit'sa very necessary profession. And it'snecessary to have our law
+enforcement officershere. And being that,that,you know, we have such good officers
+here, I think that it'snot a secret. The other, other departments inthe country know
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 8
+that. And they'reconstantlytryingto take our officersaway and hirethem away for
+their departments on the mainland. And, you know, by, you know, passing this
+resolutionhere,and givingour officersa pay raise,itwillhelp to keep our officershere,
+some from leaving. So, you know, thank you allfor,foryour time and forthe support
+forthe Maui Police Department. We appreciate ifand we need it.Thank you.
+CHAIR LEE: Thank you. Members, any clarifyingquestions forthe testifier?Ifnot,thank
+you very much.
+MR. KRAU; Thank you.
+CHAIR LEE: Madam Clerk.
+COUNTY CLERK: Chair, our next testifieris identifiedwith the lastfour digitsof telephone
+number 8120. 8120.
+CHAIR LEE: Next.
+COUNTY CLERK: Currently,there is,there are testifierssigned up under the bills.Are we
+going to push thatto the front,or wait tillwe get to thatagenda item?
+CHAIR LEE: Could you ask them ifthey were planning to testifywhen the billsare calledup?
+COUNTY CLERK: Okay. Mr. Gary Elster is going to testifynow. Followed by Lauren
+Spallino.
+MR. GARY ELSTER (testifying on Resolution No. 22-193):
+Madam Chair, I'm,and Members of the Council, I'm Gary Elster. I'm a residentof
+Kehalani,adjacent to the, or at leastacross the Kuikahi from the proposed Kuikahi
+project.I'm here to speak infavor of the project,but against itsproposed location.
+And the reason isone, principallyof safety. Let me digressjustfora second. While I
+was livingin Kihei and a member of the Board of Directors of Kihei Community
+Association, we brought the leading expert in the country to educate us and the
+community about roundabouts; where they belong, where they didn't,and the issues
+of it.And thisdevelopment proposed atthatuphilllocationis,inmy opinion,not a safe
+location. And I'llexplain.
+The reason is.is roundabouts, allof the ones that were discussed and shown to us in
+slideshows by the expert allwere on flatlocations,because they required places to
+Regular Meeting ofthe Councilofthe County of Maui
+August 23, 2022
+Page 9
+stack vehiclesthat were approaching the intersectionthat had to wait while vehicles
+went through. Stacking means thatthey have to have a place to be. On a flatlocation,
+that'snot a problem. And in,when they'reina flatlocation,they save fuel,they,they
+save, mitigateairpollution,and they are the safest intersectionalcontroldevice there
+is. Stop signs, signals are unsafe compared to roundabout. So I'm in favor of
+roundabouts inthe rightlocation.
+But Ithinkthat'sthe wrong location.On a steep hill,infact,Ilook,googled roundabouts
+on a steep hill,looked for itin vain. Didn'tfind any. I think there may be in some
+booklet somewhere that says you can do it.And I asked the developer's associate,
+Mr, Carnicelli,a number of times in our talkingabout thisfor over a year, to please
+show me a location where there's been a roundabout builton a slope similarto Kuikahi.
+And he never came back to me with any.
+So, my suggestion isit'snot a safe location.Ifthey were to builditand tryto create a
+stacked locationforcars,they would actuallyhave to raisethe street-levelof Kuikahi
+to get itup to a levelwhere there would be a flatlocation.That would make itabove
+the sidewalk locationand have the streetlooking down on the sidewalk. Allinall,nuts.
+And Iasked Mr. Carnicelliwhy don'tyou move itdown to the bottom of your property,
+which you own allthe way tothe highway? He says, well,we were grandfathered water
+when they bought the property to the upper location.They'd have to develop itforthe
+lower location. I said,aren'tyou going to eventually do thatforthe whole 148-acres?
+Well, eventually.
+So, Ithinkthey'retalkingabout tryingto move childrenthrough thatsteep locationwith
+morning rush-hour atthe same time the keikiare going to be going toschool. So, they
+want them to cross that street with a lot of trafficoncoming. Isee allthe time people
+running four-way stops,and going rightthrough, because they thinkit'sokay. It'sonly
+a suggestion, not a rule.Stop signs,signals,not safe.
+They can move itto the bottom of the hill.They can make itsafe. They can make it
+walkable. They can make itbikeable. They can walk across to services. They can
+take buses there. None of that is available at the upper portionof the road where
+they'reproposing to buildit.So, my suggestion isdon'tapprove something thatwe're
+going to,we're going to allwish hadn'tbeen built.And allthose people thatliveup in
+Wailuku Heights,Kehalani,alluse thatroad and are,they going to run intoa roadblock
+inthe futurebecause thisprojectwants to builditonly because they have water there?
+Don't do. letbad planning govern this.
+I think itshould be turned down, but not dismissed. Resolution, 22-193, one of the
+three that'sproposed on that,Isay approve thatone. But approve iton conditionthat
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 10
+itmay move down on theirproperty to the bottom of the hill,where itwillbe a perfect
+projectand one thatwe can allbe proud of. Thank you.
+CHAIR LEE: Are there any clarifyingquestions.Members?
+Member Sinenci, then Vice-Chair Rawlins-Fernandez.
+MR. ELSTER; Thank you.
+CHAIR LEE: Oh, wait,Mr.,I'm sorry,testifier,you have a couple of questions.
+MR. ELSTER: Oh, Ididn'thear that. Sorry.
+CHAIR LEE: Clarifyingquestions.
+COUNCILMEMBER SINENCI: Thankyou. Thank you. Chair. Yeah, Ijustwant to clarifyyour
+question. You mentioned Mr. Carnicellisaid that there is water at the top of the
+property. And so, that was the main reason of beginning the development at the top
+near the water infrastructure.Isthatwhat you meant?
+MR. ELSTER: That's what I understand. I understand that that,when they bought the
+property, there had been an earlierproject proposed. They had some water
+grandfathered. And so, when they bought thisparcel,thatcame along to them, and so
+they get the immediate rightto buildup there. And otherwise,they'dhave to arrange
+forwater down at the bottom ofthe hill,probably some investment and so on likethat.
+That's what I understand.
+COUNCILMEMBER SINENCI: Thank you forthatclarification.Thank you. Chair.
+MR. ELSTER: Sure.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez, then Member Kama.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Aloha. Mahalo for your testimony.
+Okay. So, sorry. I know we're going to take thisup in Committee and we'llhave a
+fullerdiscussion next week. But to clarifyyour testimony today, itsounds likethe
+reason thatyou're not in support of thisprojectis because the roundabout. Is,ijust
+wanted to make sure I understood you correctly. That's the, the primary, or only
+reason?
+MR. ELSTER: Well, I can't envision any trafficcontrol device that'sgoing to be safe for
+children,whether it'sthe roundabout, which ismy preference,but not inthat location.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 11
+or worse, stop signs or even worse, signals. So, Ijust don't see it.Ithink that what
+reallyneeds to happen isforthat projectto move to the bottom and for the developer
+to take a look at hisentireproperty and consider running roads internallyand coming
+up with safe ingress and egress to the property. But not have the ingress and egress
+righton the slope of a hill.That's,that'swhat I'msaying.
+VICE-CHAIR RAWLINS-FERNANDEZ; Mahalo for that clarification. Mahalo, Chair.
+MR. ELSTER: Sure. Thank you very much.
+COUNTY CLERK: Chair,our next testifierisLauren Spallino.
+CHAIR LEE: Wait. Madam Clerk,one second. Ijustwant to clarifythe testimony procedure.
+Actually,the procedure isforthe mem, forthe testifiersto speak rightbefore the item
+comes up. We were going to eliminatethe speaking before allitems come up. So,
+you know, previouslywe allowed people to testifyinthe beginning,and alsowhen their
+item comes up. So, we have found out since then,thatOIP does not,well,since then,
+the interpretationiswe are only obligated to provide the opportunityto speak before
+theiritem comes up. So not givingthem a, giving choices, which would prolong the
+meeting, yeah? But because thatwasn't on the agenda, we are not going to use that
+practicenecessarilytoday. We're going to encourage people totestifybeforetheiritem
+comes up today. But ifthey need to testifybefore, likenow, then we're allowingthat.
+Just incase you'rewondering what the practiceisactually.So, we're allina transition
+stage, because thiswas put upon us. So, we're tryingto make the best of it,and work
+through allofthis.So, that'sthe reason why people today,ifthey have to,we'llletthem
+testifyearly,and then they don't have to wait tilltheiritem comes up. Somebody had
+a hand up? Somebody had theirhand up?
+Oh, Member Kama. Did you have a questionforthe testifier?
+COUNCILMEMBER KAMA: Yes, Idid. Chair.
+CHAIR LEE: I'm sorry.
+COUNCILMEMBER KAMA: But ifhe's gone, that'sokay. Thank you. Ifhe's gone.
+CHAIR LEE: Isthat him coming back?
+MR. ELSTER: Ialmost got away. Alright.
+CHAIR LEE: Okay. The member came back. Imean, the testifiercame back. We have one
+more question foryou.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 12
+COUNCILMEMBER KAMA; Yes. Thank you, Chair. Thank you. So, Ijust wanted to ask
+you, are a registeredengineer with trafficexpertise?
+MR. ELSTER; Am Ian engineer?
+COUNCILMEMBER KAMA: Yes.
+MR. ELSTER; No.
+COUNCILMEMBER KAMA: With traffic.Okay. Okay. Thank you so much.
+MR. ELSTER; No. I'm an ex-triallawyer. Does thatqualify?
+CHAIR LEE: Thank you very much.
+MR. ELSTER: Thank you.
+CHAIR LEE: May we have the next testifier,please.
+COUNTY CLERK: Chair,our next testifierisLauren Spallino.
+MS. LAUREN SPALLINO (testifyingon Resolution No. 22-193):
+Good morning to all.This ismy firsttime speaking to the County Council. Of course.
+I'm nervous, and it'snice to see allof you on the screen. Ijustwant to say I likethe
+productive,the positive,and the expeditious. So, what Ido want to say isthat Ithink
+thatthisprojectis,the intentisgood. Iquestion the location.Having livedinWailuku
+Heights for33 years, our childrenborn and raised here, gone to school here. I'vebeen
+a substitute teacher at Pu'u Kukui, Wailuku El, Pomaikai, Baldwin, Maui High, and I've
+seen school's classrooms filled.I'veseen development around Wailuku Heights,and
+a lotof ithas been, you know, Ithinkwell-done.
+This one quite honestly, I have to question. I have seen some statisticson the,the
+demand on the roadways, and I need to do more homework. I'llbe back testifying
+again September 1. 1 reallyquestion, well,firstletme say, you allhave to be multi-
+taskers. There's so many projectshappening rightnow and the numbers thatyou need
+to be on top of,Iquestion inalthonesty some of the numbers I'veseen with the stress
+on Kuikahi and that intersectionwith Honoapiilani. Iquestion the egress situationwith
+the project.My fatherused to say to us, hisfivedaughters,measure twice,cut once.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 13
+I would respectfullyask you to look again at the statistics,the volume coming down
+Kuikahi Drive and the impact on gettingkids to school and to work, and the apartment
+complex also across, we're talkingabout an incredibleamount of densitythatiswell-
+intentioned. But I,Iwould ask that you double-check as Iwillas well. Thank you for
+your time.
+CHAIR LEE: Members, questions? Ifnot,thank you very much.
+Madam Clerk.
+COUNTY CLERK: Chair, there are no other individualsrequesting to testifyat this,at this
+time.
+CHAIR LEE: Okay. Members, any objectionsto closingtestimony? Untilthe other items
+come up and then we'llresume testimony when the other,the othercategories,it’sby
+category not item,comes up. Any objections?
+MEMBERS VOICED NO OBJECTION.
+COUNCILMEMBER MOLINA: Madam Chair?
+CHAIR LEE: Okay, so ordered.
+COUNCILMEMBER MOLINA: Madam Chair?
+CHAIR LEE: Yes?
+COUNCILMEMBER MOLINA: Sorry,thisspecific,where are we?
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: What portionof the agenda are we closingpublictestimony
+off on?
+CHAIR LEE: Oh, we’re closingtestimony on the portionwhere people have an opportunityto
+testifynow ahead, ahead of the category.
+MS. FAITH CHASE: Aloha Chair. This is-
+CHAIR LEE: In the future, what we're planning to do is,we are required to provide
+opportunitiesfortestifiersto speak when theiritem comes up. We are not requiredto
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 14
+provide opportunities for testimony at the beginning of the meeting. That's the
+difference.
+But we, but we startedoff,because not knowing the exact interpretation,we provided
+opportunitiesat the beginning, likenow, and then again. You can, you can, not that
+they can testifytwice,but they could testifyon a resolutionfurtherdown inthe agenda
+now, inthe beginning. So, going forward,because, you know, Ifeelthe publichas to
+get used to,to thisnew system, I,Ifeltthatwe shouldn'tenforce itstrictlyrightnow.
+Sort of likeget everybody used to tothe practice.
+Okay, Ms., madam, madam, madam Member Paltin.
+COUNCILMEMBER PALTIN: Thank you. Chair. Iwas wondering inthe future,when you do
+that,ifyou could indicateon the agenda what are the breaks? Like Iwasn't clear. Is
+itlikeby the letters?Is itat I,J, K? Or that'sjustmy question,cause I'mnot.I'm not
+sure where the various breaks inthe program are forpublictestimony is.
+CHAIR LEE: Okay. We'lltryto make thatclearinthe future.But it's,it'sby category,yeah.
+By category.
+COUNCILMEMBER PALTIN: Isthat, is that the letter,likeI,J, K? Are those categories,or?
+CHAIR LEE: Well, letme see. We took testimony forthe Consent Calendar. So, we didtake
+F. And then we took,then, then we're startingthe general,sortoflikethe general.The
+next one would be we took action on the Consent Calendar, so we did that. So, next
+itwould be county communications. Wait,no, no, letme see. We didI.We tookaction
+on I. So, J would be communications.
+COUNTY CLERK: Chair.
+CHAIR LEE: Yes?
+COUNTY CLERK: I'mstillshowing category H. Minutes.
+CHAIR LEE: No, but I’mtalkingabout inthe future.Those are the categories.Iknow we
+skipped over,we skipped over minutes forsome reason. We should have taken,taken
+testimony on thattoo. But,yeah, we willfollowletters.The lettersshould indicatethe
+category.
+COUNCILMEMBER PALTIN: Okay, thank you, forclearingthat up.
+Regular Meeting of the Council of the County of Maui
+August 23. 2022
+Page 15
+CHAIR LEE: But like I said, it'skind of confusing to the public because they are so
+accustomed to testifyingat the beginning of the meeting. But we are requiredto let
+them testifythroughout the meeting. So, that's,that'sthe issue thatwe have. And so,
+you know, we have to change that law, because itdoesn't make sense, yea. Cause,
+you know. Committee meeting you guys only have one or two items. That's easy. But
+in a Council meeting you have 50, 60. and 70 items. That's ridiculous.
+So, let'sgo back to the minutes.
+Oh, Member Sugimura, isyour computer working?
+COUNCILMEMBER SUGIMURA: Yes. Electricitywent on in Kula.
+CHAIR LEE: And the same foryou inWest Maui? No wonder Ican see you so clearly.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Before we continue on with the
+agenda, Idid hear an individualspeak up to testify,Ms. FaithChase, beforewe close
+testimony atthe beginning of the agenda.
+CHAIR LEE: Okay. We thought we didn'thave any more. So, let'scallup the nexttestifier
+Madam Clerk.
+COUNTY CLERK: Our next testifieris Faith Chase.
+MS. FAITH CHASE [testifying on BillNos. 101. CD1 (2022) and 108. CD1 (2022)1:
+Good morning. Chair. Good morning. Council.
+CHAIR LEE: Good morning.
+MS. CHASE: Yeah, I,I'm not sure about OEP's [sic]decisionabout thistestimony,but I'llbe
+followingit,because there isno way I'dbe able to stayallday and hitthe itemsthatI'm
+interestedinspeaking on. So, thank you for~
+CHAIR LEE: Itotallyagree with you. We totallyagree with you.
+MS. CHASE: Whoa, yeah, Ifeel likethat’sa littlebitof a publicgag order,but foranother
+day. I'm here to speak on Bill108. Iam very proud of thisCouncilforunderstanding
+Regular Meeting of the Council of the County of Maui
+August 23. 2022
+Page 16
+and while maybe your Administrationdidn'tlistento the seriousness throughout the
+COVID, throughout your tenure or your term, I'mvery proud thatthisCouncil has seen
+the importance of this.Iknow some of the concerns thatwere brought up were, were
+good ones. But Ifeel likeifwe don'ttake thisstep, then we're not going to figureout
+how to resolve allthe ancillaryissues that come up.
+And so you have a fearless and a committed public and volunteer force and a
+compassionate body of people who willmake sure and followthatthe,those who need
+thissafe sleeping space willfindsuccess init.And from there,a lotof beautifulthings
+willgrow. So, Ijustwanted to speak instrong support of 108.
+I can'tleave without mentioning thatthe billforthe heights,the fence heights forthe
+axis deer. Ijustwant to reiteratewhat 1 said lasttime that Ifee!likeyou're the,the
+relatinggrant forthe drought,the axis deer feralanimal grant isa littlebitlimitedinits
+capacity by the 12-acre requirement. And while Ihaven'tspoken to Lokahi Pacificthis
+week, Iknow thatthe grantclosed. But ifyou should hear feedback from Lokahi Pacific
+that maybe they didn'tfillallthe pukas forthose grants and thatthere needs to be a
+littlebitof a flexibility,please justkeep that in mind because there are some smaller
+farms that are under 12-acres, you know, 8 to 10 even that could actually be
+considered. They could actuallyuse some help. So, 1 just wanted to take the
+opportunityto make thatplug. Thank you so much. Have a greatday.
+CHAIR LEE: Wait. Let'ssee, we have questions, Faith.
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: So, Chair, I have clarificationfor FaithChase. 1guess I'll
+say itwhen the item comes on up, on the Lokahi Pacificgrant and ...
+CHAIR LEE: Oh, Isee. Okay.
+COUNCILMEMBER SUGIMURA: Yeah. so.
+CHAIR LEE: Okay, nothing thatshe said you need clarification.
+COUNCILMEMBER SUGIMURA: Yeah, so Faith,keep intouch. Or Ican tellyou how many
+grants are out and what the,what's happening with the $1.5 milliongrantswith Lokahi
+Pacific.
+CHAIR LEE: Okay, any clarifyingquestions.Members? Ifnot,let'shave any more testifiers
+please, at the beginning.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 17
+COUNTY CLERK: That is all I-
+MS. LISA DARCY. SHARE YOUR MANA ftestifyina on BillNo. 108, CD1 (2022)1:
+Hi. Yes.
+CHAIR LEE: Yes, can you identifyyourself?
+MS. DARCY: Good morning, Councilmember Lee, Chair Lee. This isLisa Darcy.
+CHAIR LEE: Oh, hello.
+MS. DARCY: And I hope Ididn't,I can'tsee anything. I'm callinginforthe firsttime since I
+can'tget my computer back online. So, isthis,may Itestifythismorning?
+CHAIR LEE: Yes, of course.
+MS. DARCY: Oh, wonderful. Okay, so good morning, everyone. My name isLisa Darcy. I
+am the founder of Share Your Mana, and I am a commissioner on Healing Solutions
+for Homelessness. And Iwould liketo testify,also,on Bill108. And I,1thinkitsaid
+CD1 on the agenda, or something.
+Yes, I'm infullsupport. Iecho the previous testifier.Commissioner Chase inthatthis
+is,it's,it'sreallyhistoricin that thisopens up the opportunityfor so much safetyfor
+community members who have been livinginvery unsafe and dangerous conditions.
+Iam reallylookingforward to thismoving forward and, and to being able to open up
+the door to so much opportunityand success for so many people thatare unable to
+because they can'teven sleep insafety.
+So, thank you so much forallthe work that has been done. And 1,I look forward to
+more dialogue and support formore successes. So, thank you very much.
+CHAIR LEE: Thank you, Lisa. Questions, Members?
+We have a question from Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you, Lisa, for testifying. So, you said in your
+testimony, just clarification,you said for community members to participatein this
+parking for homeless program. And we got testimony from someone saying that
+doesn't include visitors.So, can you clarifyyour position?
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 18
+MS. DARCY: Yeah. It'sfunny thatvisitorskeep gettingbrought intothis.And it's,it’sso far
+from my purview with how many incrediblystruggling,I mean, thousands of really
+strugglingMaui County residents.This,itnever even dawned on me thatvisitorswould
+be inthisdialogue,because the relationshipthatShare Your Mana and many ofthese
+other outreach agencies have is,iswith members who cannot get in. We don'thave
+enough shelterbed space. So, I'm seeing thisas the need of community members
+that are already in our system that are not even able to get intothe firststep of the
+system because the system isso jammed up and logged, backlogged.
+So, the way thatI'm certainlyapproaching thisisto reallystartgivingreliefto people
+who have been livinginthese circumstances foryears. I'veno, Ijustdon'thave any
+capacityto even considervisitorsinthisdialogue. I hope thatbringssome clarityto
+that conversation.
+COUNCILMEMBER SUGIMURA: Thank you forclarifying.
+CHAIR LEE: Okay, Idon'tthink,Idon'tthinkLisa brought up visitors,didshe?
+MS. DARCY: Never.
+COUNCILMEMBER SUGIMURA: She brought up residents.Ijustwanted to make sure that
+there isn't visitors.
+CHAIR LEE: Member Johnson, question?
+COUNCILMEMBER JOHNSON: Thank you. Chair. Good morning. Commissioner Darcy.
+Good to see you. Or good to hear from you. Ihave a clarifyingquestioninregardto
+your idea of thishelpingwith the safetyof our houseless folksand our community
+members. There's a statisticthat I'vebeen reading is that 90 percent of houseless
+women have been either dealt with sexual abuse or some type ofviolence.That’slike
+a mainland statisticthat I'vebeen learning. So, can you speak on what’s happening
+here in Maui County? Is that women are overly victimsof violencewhile they're
+strugglingwith houselessness?
+MS. DARCY: Yes, so-
+CHAIR LEE: Okay, Lisa,did you testifyon this?
+MR. DARCY: I believe so. I'm not sure.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 19
+CHAIR LEE: Okay. I'mjusttryingto restrictthe questionsto clarifyingquestions. Iknow this
+isa very interestingand broad topic,but,but we're time constrained today. So, Ijust
+wanted to make sure you brought itup.
+MS. DARCY; Yeah, Iwillbe brief.
+CHAIR LEE: Okay.
+MS. DARCY: Yeah, and I,and I,thisis,thisisa reallyimportantfactorinopening the door to
+overnight habitation,and inthiscapacity and many more capacities.The experience
+that Share Your Mana can share in, although itis, I have some documentation,
+although I don't have any great,there'sno, no great focus in any capacity in Maui
+County to reallytrulyget the informationyou're asking for,Councilmember Johnson.
+That Idon't know that I'vespoken to a woman and men who have not been incycles
+of violence. And, and whether it'ssexual violence and/or generationalviolence. And
+that isa reallycriticalpiece of this,thatitreallygets almost no, no attention.And Ido
+believe itisone ofthe rootcauses of why people are inthese conditions.
+CHAIR LEE: Okay. Member Johnson?
+COUNCILMEMBER JOHNSON: Thank you. Chair. Ihave no furtherquestions.
+CHAIR LEE: Any more questionsforthe testifier?Ifnot,thank you, Lisa.
+MS. DARCY: Mahalo. Have a good morning.
+CHAIR LEE: You, too.
+Madam Clerk.
+COUNTY CLERK: Chair, Ido not show anybody wishing to testify.
+CHAIR LEE: Alright.
+COUNTY CLERK: And ifthere'sanybody-
+CHAIR LEE: Shall we move on to minutes?
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 20
+MR. DICK MAYER (testifying on General Communication No. 22-4):
+1have, 1would liketo. I'm on, may 1justrequest. Dick Mayer.
+CHAIR LEE: Okay. Mr. Mayer, good morning.
+MR. MAYER; Good morning. On communication 22, Genera! Communication 22-4, the,
+from, the R&T Park inKihei,they submitted theirannual report,and 1would liketo ask
+that you do not accept itat thistime. And I'llgive you two reasons. One isthaton the
+website, only halfof the pages of theirreport are actuallycontained on your website.
+Only the odd numbered pages. Every even pages is not there. They may have
+submitted it,but it'snot available on the website for the Councilmembers to review or
+the public.
+And secondly,a very importantquestion,they got thisentitlementsixyears ago in2016
+from the Council to put in 1200 homes. You've done, you've had many long torturous
+hearings on affordablehousing on South Maui, wetlands and allthose kinds of issues.
+And here are 1200 houses thatare already entitled.They went through a period ofthe
+last five,six years now since that approval, with very low interestrates, and no
+construction has taken place. They put in there the phrase; we're planning certain
+thingswe’ve submitted things.There's no descriptionof what they'replanning or when
+they'replanning to do itor what the time schedule is. Iwould likeyou to ask them,
+ratherthan accepting the report,to submit a reportto the Council what they are doing
+to fulfillthe very great need foraffordablehousing on Maui and inSouth Maui.
+There's been no indication that this has been done. They have infrastructure.They
+have everythingthat'sneeded. And now, the charterschool and the high school are
+located nearby. Just across the streetis Lokelani Elementary, etc.,etc.,the Kihei
+Elementary. So, please put the pressure on them to get that affordable housing
+needed so you don'thave to continuallygo forplaces in,inwetland areas. And ifwe
+can put itexactlywhere the jobs are supposed to be developing and ingeneral forthe
+residents of South Maui who need affordablehousing. So, please take a close look at
+that ratherthan justsaying okay we accept another reportfrom them. And Ithank you.
+CHAIR LEE; Questions, Members?
+Member King.
+COUNCILMEMBER KING; Thank you. Chair. Aloha, Dick. Thanks forbeing here again and
+for your testimony. Do you know ifthe R&T Park has bought any entitlements,you
+know, credits towards that 1200 homes?
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 21
+MR. MAYER: I,Ihave no idea ifthey have bought credits.Itwould be a lot,they would have
+to get a lotof creditsfor1200 homes. And Idon'tknow that I'veseen nothing to indicate
+thatthey had made any effortinthatdirection.
+COUNCILMEMBER KING: Okay.
+MR. MAYER: And it'svery tough to know exactlywhat they'recommunicating to you, because
+every other page ismissing on thatcommunication thatwas put on the website. There
+may be some indicationof they'replanning, or thisyear they'reopening up. They
+indicatedthatthey'resubmittingplans and developing plans. But it'sbeen sixyears
+with very low interestrates,that they had availableto them and nothing,nothing's
+happening.
+COUNCILMEMBER KING: Okay. Thank you. Thank you forbeing here.
+CHAIR LEE: Any more questions.Members? Ifnot,thank you, Dick.
+MR. MAYER: Thank you. Have a lovelyday.
+CHAIR LEE: You too.
+MR. MAYER: We finallygot electricityup inKula.
+CHAIR LEE: Oh, that'sgood. Good to hear.
+Alright,Madam Clerk.
+COUNTY CLERK: Chair,proceed, we have no othertestifiers.
+CHAIR LEE: Okay. Let'smove forwardwiththe minutes.
+COUNTY CLERK: Moving forward with agenda category H. Minutes. This isa callfor
+testimonyon the minutes. And Ishow nobody interestedinprovidingtestimonyforthe
+minutes.
+CHAIR LEE: Any objectionsto closingtestimony on the minutes?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Both oral and written. So, ordered.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 22
+WRITTEN TESTIMONY RECEIVED FROM THE FOLLOWING
+WERE MADE A PART OF THE RECORD OF THIS MEETING:
+Nicholas Krau and Stephen Keogh, SHOPO;
+Gary Elster;
+Karen J. Comcowich;
+David Dorn;
+JeffGilbreath,Hawaii Community Lending;
+Lance Holter;
+Atom Kasprzycki;
+Betty Lynn Moulton;
+Vandici Dumitru Romulus;
+Gary Sanders;
+Tina;
+Pamela Tumpap, Maui Chamber of Commerce; and
+Tina Wildberger.
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+CHAIR LEE: Madam Clerk,proceed with minutes.
+COUNTY CLERK: Okay.
+MINUTES
+The minutes ofthe Council ofthe County of Maui's publichearingsofApril27,2022, May 13
+2022 (FuelTax), and May 13, 2022 {Motor Vehicle Weight Tax) were presentedatthistime.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO APPROVE THE MINUTES AS READ BY THE
+COUNCIL
+CHAIR LEE: Second?
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 23
+VICE-CHAIR RAWLINS-FERNANDEZ:
+CLERK,
+CHAIR LEE; Okay.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Second by, moved by Vice-Chair Rawlins-Fernandez, second by Member
+Sugimura, to the,to approve the minutes read by the Clerk.
+Any discussion? Ifnot,allthose infavor ofthe motion, raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON. KAMA, KING.
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES; NONE.
+It.
+CHAIR LEE: "Aye"? Everybody's on the screen now, thank you. All"ayes'
+motion carries.
+zero noes
+Madam Clerk.
+COUNTY CLERK; Moving forward with agenda category I,actionon the Consent Calendar,
+County Communications. Proceeding with the callfor testimony on the Consent
+Calendar agenda category I. No one has signed up to testifyon these items.
+CHAIR LEE; Members, are there any objectionsto closingpublictestimonyand accepting
+writtentestimony foritems on the consent agenda, calendar?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections.So, ordered.
+COUNTY CLERK; Chair,proceeding with the-
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 24
+CHAIR LEE: Madam Clerk.
+COUNTY CLERK: Proceeding with the Consent Calendar.
+ACTION ON THE CONSENT CALENDAR
+COUNTY COMMUNICATIONS
+- LORI TSUHAKO. DIRECTOR OF HOUSING AND HUMAN
+CONCERNS, (dated July 28, 2022)
+NO. 22-193
+Transmittinga noticeof grantaward from Alexander & Baldwin forthe Kaunoa Senior
+Services- Congregate Meals Program inthe amount of$20,000.
+- JOHN PELLETIER. CHIEF OF POLICE
+(dated July 28, 2022)
+NO. 22-194
+Transmittinga grant agreement with the State of Hawaii, Department of the Attorney
+General for the Combating Domestic Violence and Sexual Assault in Maui County
+grantinthe amount of$71,623,which includes$17,906 inmatching funds.
+- JOHN PELLETIER. CHIEF OF POLICE
+(dated August 4, 2022)
+NO. 22-195
+Transmittinga copy of the MOU ModificationNo. 1 with the Department of Health,
+Alcohol and Drug Abuse Divisionforthe ProhibitingTobacco Sales to Persons Under
+the Age of Twenty-One program to increase the budget by $11,000.
+- MARC I.TAKAMORI. DIRECTOR OF TRANSPORTATIONNO. 22-196
+(dated August 10, 2022)
+Transmittinga copy of the check received for payment of dues, paid pursuant to
+HRS279D, from the State Department of Transportationfor the transportation
+planning portionof the Maui MPO FY2023 UnifiedPlanningWork Program totaling
+$50,000.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 25
+NO. 22-197 - ANDREW H. MARTIN, PROSECUTING ATTORNEY
+(dated August 16, 2022)
+Transmittinga copy of the noticeof grant award from the State of Hawaii. Department
+of the Attorney General, Crime Prevention and Justice Assistance Division,for the
+Career Criminal Prosecution and Victim Witness Assistance Programs, in the total
+amount of $144,736.
+NO. 22-199 - SCOTT K. TERUYA, DIRECTOR OF FINANCE
+(dated August 15. 2022)
+Relatingtothe annual inventoryreportregarding County propertyforthe period ending
+June 30, 2022.
+NO. 22-201 - SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated August 11, 2022)
+Informing of the acceptance of Waterline Easement W-1, Dairy Road industrial
+Subdivision,Lot 1-A, TMK: (2) 3-8-065:022 POR.
+NO. 22-202 - SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated August 11, 2022)
+Informing of the acceptance of an Access and Waterline Easement, Waiakoa Large-
+Lot Subdivision,TMK: (2)2-2-002:016.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO FILE ALL ITEMS. EXCEPT CC 22-198 AND 22-200
+ON THE CONSENT CALENDAR.
+CHAIR LEE: Second?
+COUNCILMEMBER JOHNSON:
+SECOND.
+Regular Meeting ofthe Councilofthe County of Maui
+August 23, 2022
+Page 26
+COUNCILMEMBER SUGIMURA: Second.
+CHAIR LEE; Moved by Vice-Chair Rawlins-Fernandez, seconded by Member Johnson to file
+allthe items on the Consent Calendar, except CC 22-198, CC 22-200.
+Ailthose infavor of the motion, please say "aye" and raiseyour hand.
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with agenda category J,communications.
+CHAIR LEE: Well, oh wait. Wait, wait,wait. On the item of 22-198, so these willbe referred
+to the, to BFED?
+COUNTY CLERK: I think 198 would be BFED and 200 would be IT.
+CHAIR LEE: IT? Okay. Any objections,Members, to referringCC 22-198 to BFED and
+CC 22-200 to IT?
+COUNCILMEMBER SINENCI: No objections.
+COUNCILMEMBER KING: No objections,Chair. But Idon'tthink,Ithinkthe Clerk stillhas
+to read them into the record.
+CHAIR LEE: Okay. That's,that'swhy 1calledher. But Iguess miscommunication.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ; Mahalo, Chair. Also, just a clarificationon why
+Member Paltin,ifthat was the intentionof Member Paltininpullingitfrom the Consent
+Calendar afteryou have asked the Clerk to callthem up ifyou wouldn'tmind callingon
+Member Paltinto explain why she-
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 27
+CHAIR LEE; Oh, okay. Member Paltin.CC 198.
+VICE-CHAIR RAWLINS-FERNANDEZ; Oh, afterthe Clerk callsthem up.
+CHAIR LEE; Madam Clerk,can you callup the CC 22-198?
+COUNTY CLERK; Yes. Sorry,didwe take testimony on county communications and general
+communications?
+VICE-CHAIR RAWLINS-FERNANDEZ; Those two items were part of the Consent Calendar.
+COUNTY CLERK; Okay. Okay.
+COUNTY COMMUNICATIONS
+NO. 22-198 - SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated August 11,2022)
+Relatingto grant revenues and transmittingthe following;
+Approval letterfrom the State of Hawaii, Department of Transportationforthe
+Periodic Motor Vehicle Inspection, Commercial Driver License, State
+Identification,and Motor Vehicle RegistrationPrograms; and
+1.
+Extension ofthe Memorandum ofAgreement with the State of Hawaii Disability
+& Communication Access Board for implementation of the Persons with
+DisabilitiesParking Program.
+2.
+CHAIR LEE; Member Paltin.
+COUNCiLMEMBER PALTIN; Thank you, Chair. Iasked forthisitem to be pulledbecause it
+looks likewe're going to get $41,271 inexcess. And Ijustwanted clarification.Iknow
+you, Member Molina, and myself had pedestrian improvements in our districtsthat
+were kind of short-funded. And ifMember Sugimura would be willingto take thisup,
+we can see ifthese could be used, these $41,271 excess can be used for pedestrian
+improvements in our districtsto furtherthe Vision Zero concept. It's$17,752 excess
+from PeriodicMotor Vehicle Inspection;$18,600 excess from CDL; and $4,919 from
+State ID. I'm not sure ifthatgoes intothe Highway Funds and how itwillbe reallocated.
+Maybe there needs to be a budget amendment. But I just,we need pedestrian
+improvements inmy district.So, justlooking forevery couple 10,000 ...
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 28
+CHAIR LEE: I'mwondering, I'mwondering ifMember Sugimura wouldn't mind thisgoing to
+the BFED Committee so we can take action fairlyquickly?
+COUNCILMEMBER PALTIN: Oh, eitherone. Whatever you guys' think ismost appropriate.
+CHAIR LEE: For 22-198. Member Sugimura?
+COUNCILMEMBER SUGIMURA: Imean, ifit'sgoing to be more expeditiousthe better.So
+Keani?
+CHAIR LEE: Yeah. And there's,it'sa nine-Member Committee. You don't mind?
+COUNCILMEMBER SUGIMURA: No.
+CHAIR LEE; Okay. Members, any objectionsto sending thisto the BFED Committee
+22-198?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections.So, ordered.
+(COUNTY COMMUNICATION NO. 22-198 IMAS FILED LATER
+IN THE MEETING. See pages 30 and 31 fordiscussion.)
+CHAIR LEE: Okay, so the next one, Madam Clerk. 22-200.
+- SCOTT K. TERUYA. DIRECTOR OF FINANCE,NO. 22-200
+(dated August 2, 2022)
+Informing of the acceptance of Sewerline Easement 2, Nona Lani Cottages,LLC,
+TMK: (2)3-9-041:001 POR.
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair. I guess this one ifMember Sugimura
+wouldn'tmind takingitto her Committee? Inoticedthe othertwo easements 22-201
+and 22-202 had zero County funds used. But the,thisone had $32,000 inWastewater
+Admin Budget used. And thisis a hotelpropertygettingowner-occupied tax rates.
+And they have eleven,like,visitorunitson top. So, Imean, itjust,justwanted to like.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 29
+you know, investigatethat a littlebit,because itseems likewhy, Ijust,Ijust have
+questions, that'sall.
+CHAIR LEE: Okay. Any objections,Members, to referringthismatter to the IT Committee?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered.
+COUNCILMEMBERSUGIMURA: So. Chair?
+CHAIR LEE: This item will be referred to IT.
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: So, Chair, I would liketo know, then, as we're looking at
+22-201 and 202, Iknow thatwe initiallysaid thatthiswould allget-
+CHAIRLEE: Filed.
+COUNCILMEMBER SUGIMURA: Considered, the Consent Calendar, yeah. But ifwe're
+going to starttalkingabout easements and I have that easement billthat'sin my
+Committee thatMembers ask questionsfor.so Iwonder ifyou would justsend these
+two because I'mnot going to hear thatbillthatPublicWorks wants tillSeptember 12,I
+think.So, ifyou allremember thatparticularbill,Ideferredwantingmore information
+from the departments and Ithinkthisprovides us some information.Igotta.Igotta
+investigate,Imean, look at itmore closely.But ifthe Members would allowme to,I
+want to take 22-201 and 22-202 also.
+CHAIR LEE: Member, Member Paltin.
+COUNCILMEMBER PALTIN: Oh, well, those one the County didn’thave any County
+contributionto those ones. So, Imean, Idon't know ifone isenough to look at inthe
+context of easements. And, but Imean, Idon't know how to undo what we did. But I
+just,Ijustwanted to clarifythattherewas no County funds used forthe acceptance of
+201 and 202. Itwas only 200 that had $32,000 in the Wastewater Administration
+Budget used. And Ijustwas confused because that'sa hotel-zonedpropertygetting
+owner-occupied tax rateswith 11 transientaccommodation unitson top,so just.
+COUNCILMEMBERSUGIMURA: Oh, so . . .
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 30
+COUNCILMEMBER PALTIN: Look into the easement issue with that,that one property as
+well ismy understanding.
+COUNCILMEMBER SUGIMURA: Okay. So, 1guess we already filed,we already voted to
+filethe two. So, 1can justinvestigateitwith the Clerk'sOffice.Thank you. So, 22-200
+can come to my Committee, and then I'lllook into22-201 and 22-202, separately.
+Thank you. And see ifitfitsin,because we're reallytalkingabout not where County
+funds are used, but the process iswhat Department of PublicWorks issaying thatit's
+a overkillto have that additionalreview of surveying, right,forthe easements. Thank
+you. I'm fine. Next.
+CHAIR LEE: Thank you. So, Madam Clerk,J.
+VICE-CHAIR RAWLINS-FERNANDEZ: Chair?
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+DISCUSSION AND ACTION RELATING TO
+COUNTY COMMUNICATION NO. 22-198
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. For 22-198, it'sgrant revenue. So,
+the grant revenue isfora specificpurpose, and not,it'snot Highway Funds. So, for
+the purpose that Member Paltinwanted to referitto the BFED Committee, it,we
+wouldn't achieve that purpose.
+But forthat discussion, Ior Member Sugimura, as the IT Committee Chair,could pick
+up a 7.B, you know, presentation/discussionon any potentialfunds or,you know, talk
+to the Department about pedestrian safety measures. And so, ifMember Paltinis
+okay, then Iwould liketo move to fileitinstead.
+CHAIR LEE: Member Paltin?
+COUNCILMEMBER PALTIN: Yeah, I'm okay to fileitinstead. Idid have a PAF inabout not
+using Highway Funds forpedestrian projects,because you don'tgenerate pedestrian
+revenue through gas taxes. But a 7.B presentationwould be great,whoever iswilling
+to do it.And I'mokay withfilingit.Thank you forexpeditiouslygettingthatinformation.
+CHAIR LEE: Alright.Anybody else? Any objectionsto filingthatitem insteadof referringit
+to BFED?
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 31
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay, so ordered. Okay.
+Madam Clerk, J.
+COUNTY CLERK: Chair,moving to category--
+CHAIR LEE: Testimony on J.
+COUNTY CLERK: Moving to agenda category J. Communications. Proceeding with
+testimony on County Communications and General Communications. Ifyou want to
+testify,please indicatethatnow. Chair,there are no other,no testifiersindicatingtheir
+intentionto testify.
+CHAIR LEE: Any objectionsto closingpublictestimony and acceptingwrittentestimonyfor
+communications?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Ifnot, so ordered.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with County Communications.
+- SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated August 11,2022)
+NO. 22-203
+Transmitting96 contracts/grantsforJuly 2022.
+The recommended action is that County Communication No. 22-203 be referredto your
+Budget, Finance, and Economic Development Committee.
+(See pages 32 through 24, 86, and 87 foradditionaldiscussion
+and action.)
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 32
+NO. 22-204 - SHAYNE R. AGAWA. DEPUTY DIRECTOR OF WATER SUPPLY
+(dated August 3, 2022)
+Transmitting the Department of Water Supply's Monthly Source Report and
+Groundwater Use Report forthe month ending July 2022.
+The recommended action is that County Communication No. 22-204 be referred to the
+Infrastructureand Transportation Committee.
+(COUNTY COMMUNICATION NO. 22-204 WAS FILED LATER
+IN THE MEETING. See page 34 fordiscussion and action.)
+GENERAL COMMUNICATIONS
+- RYAN CHURCHILL. LIPOA INVESTMENTS. LLC.NO. 22-4
+(dated August 2, 2022)
+Submitting Lipoa Investments, LLC's Conditions of Zoning Compliance Report for
+Ordinance No. 4348, Maui Research and Technology Park.
+The recommended action is that General Communication No. 22-4 be referredto the Planning
+and Sustainable Land Use Committee.
+DISCUSSION AND ACTION RELATING TO
+COUNTY COMMUNICATION NO. 22-203
+CHAIR LEE: Council Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo. Chair.
+I MOVE TO FILE COUNTY COMMUNICATION 22-203 EXCEPT
+FOR THOSE GRANTS AND CONTRACTS THAT
+COUNCILMEMBERS REQUEST FOR COMMITTEE
+REFERRAL.
+CHAIR LEE: Second?
+Regular Meeting ofthe Council ofthe County of Maui
+August 23. 2022
+Page 33
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE; Okay. Moved by Vice-Chair Rawlins-Fernandez, seconded by Member
+Sugimura, to fileCC 203, except forthe contractsrequested to be pulled out.
+Member Johnson.
+COUNCILMEMBER JOHNSON: Thank you, Chair.
+IF NOW IS A GOOD TIME, 1WOULD LIKE TO PULL OUT ONE
+OF THOSE GRANTS C7688 AND ASK IF IT COULD GO INTO
+THE IT COMMITTEE, COUNCILMEMBER SUGIMURA'S, FOR
+DISCUSSION.
+WASTEWATER FACILITY EXPANSION.
+THAT IS IN REGARDS TO THE U\NAI
+Mahalo, Chair.
+CHAIR LEE: Any objections,Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So, ordered. Next.
+Yes, Member Sugimura.
+COUNCILMEMBER SUGIMURA: Before 1 give mine, could Member Johnson give me the
+item number again,forLanai Wastewater?
+COUNCILMEMBER JOHNSON: Certainly.C, as inCharlie,7688.
+COUNCILMEMBER SUGIMURA; Thank you.
+ALSO, I WOULD LIKE TO REFER TO MY COMMITTEE IS
+C6442-5, WHICH IS ON SURVEYING; C7689, DISASTER
+DEBRIS PLANNING AND RFPS.
+CHAIR LEE: Any objections.Members?
+MEMBERS VOICED NO OBJECTION.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 34
+CHAIR LEE: Ifnot,so ordered. Anymore, Members? Ifnot,allthose infavor of the motion
+to filethisitem except those pulledout,raiseyour hand and say "aye". Member King?
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ. AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Okay. Nine "ayes",zero "noes";motion carries.
+Next item. Let'ssee, who would be incharge of thisone? This one, 22-204 would be
+PSLU. File? You want to file?
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair. I'lltake itto my Committee. Ijustwanted
+to confirmthatmaybe only one side ofthe pages got scanned. And, and ifitcomes to
+my Committee, we'llhave both sideofthe pages sent to my Committee.
+CHAIR LEE: Okay. Isaid2204/s/c7,thatwas the water one. So, any objectionstofilingthat
+that one?
+MEMBERS VOICED NO OBJECTION.
+thought you said 22-4.COUNCILMEMBER PALTIN: Oh, sorry,my bad.
+CHAIR LEE: Yeah, no objectionsto filing22-204. So, on GC 22-4,you'rerequestingthatit
+go to your Committee? Isthatcorrect?
+COUNCILMEMBER PALTIN: Yes.
+CHAIR LEE: Any objections.Members?
+COUNCILMEMBER PALTIN: Allthe pages, odd and even.
+CHAIR LEE: Okay. Any objections,Members?
+MEMBERS VOICED NO OBJECTION.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 35
+CHAIR LEE: Ifnot, so ordered that GC 22-4 be referred to PSLU. Okay, so thattakes care
+of communications.
+Madam Clerk.
+COUNTY CLERK; Chair, moving onto agenda category K. Committee Reports. We're
+proceeding with a callfor testimony on committee reports. And currently,we have
+Mr. Mike Moran signed up to testify.
+CHAIR LEE: Okay. Hi,Mike.
+MR. MIKE MORAN. KIHEI COMMUNITY ASSOCIATION gestifvina on Committee Report
+No. 22-80):
+Good morning. Chair and Councilmembers. We thinkwe're doing prettygood keeping
+up withthe process. And itwas our understanding thattestifyingonlyatthistime would
+be the process startingtoday. So, we prepared to do it,and so here Iam. And we too
+have, agree with everyone on the objectionsof the process, itwillbe challengingat
+other times.
+So, on thisparticularitem,22-80. When thiswas out on the,came out on the agenda,
+and we, Iconsulted with our board, and we agreed justto,to support the nine people
+thatwere named. And then, as you know. Chair, and a couple other Councilmembers,
+a few days later,we came up with some informationthat supposedly one of the
+members who was selected was not going to proceed, was going to drop out.
+So, that'swhy we contacted you and two of the Councilmembers in the middle of a
+three-day weekend asking ifwe could get some informationby Monday evening. Well,
+very pleasantlysurprised,we got allkinds of responses over the weekend. So, we
+were totallyprepared, including,Chair,thatyou referredus to David Raatz. He also
+responded lateSaturday nightwith the legalprocess. So, we were prepared, but we're
+not sure ifit'sour place here to say this is what we understand, one member is
+withdrawing.
+So, Iwillwait untilyou guys discuss itand see ifthatiscorrect.Idon'tfeelthatthat's
+our place inpublicto statethat. But ifthatisthe case, then we supportthe othereight
+and see what happens with number nine. And we can go from there. Ithinkthatit
+gives a reasonable bitof our positionwhere we stand rightnow, Thank you forthe
+opportunity.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 36
+CHAIR LEE: Thank you, Mike.
+Questions, Member Paltin.
+COUNCILMEMBER PALTIN: Thank you. Chair. I'dlikethis,to take this opportunity to
+request Mr. Mike Moran as a resource. There's only reallytwo items inthiscategory,
+and I had a previous conversation with him that Ithink ifthe members wanted to ask
+question, when Imake my legalmotions that Igot prepared from, from my Committee
+staff.Thanks to Mr. Moran's questions, itmay be helpfulto the Members.
+CHAIR LEE: Any objections,Members--
+VICE-CHAIR RAWLINS-FERNANDEZ: No objections.
+CHAIR LEE: --todesignating Mr. Moran as a resource person when the item comes up?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So, Mike, I'msure you can stay,right? Can you stay?
+MR. MORAN: Yes, ma'am. Sure.
+CHAIR LEE: Okay, great. Okay. So, ordered. So, let'ssee. Any other questions for
+Mr. Moran, while he’s here? ifnot,we'lltalkto you soon.
+MR. MORAN: Mahalo, guys.
+CHAIR LEE: ... in a few minutes.
+MR. MORAN: You bet. Thank you.
+CHAIR LEE: Alright.Okay. Any other testifiers?
+Madam Clerk.
+COUNTY CLERK: Chair, no other testifiershave identifiedthemselves now.
+CHAIR LEE: Okay, foritem K.
+COUNTY CLERK: Item,category K, yes, committee reports.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 37
+CHAIR LEE: Yeah. Okay, so, Members, any objectionsto closingtestimony on, on category
+K. Committee Reports?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered.
+L. Resolutions.
+COUNTY CLERK: Chair,proceeding with your committee reports.
+VICE-CHAIR RAWLINS-FERNANDEZ; Oh.
+COUNTY CLERK: You have before you from your Government Relation-
+VICE-CHAIR RAWLINS-FERNANDEZ: Point of order.
+COUNTY CLERK: -Ethics, and Transparency Committee.
+VICE-CHAIR RAWLINS-FERNANDEZ: Point of order.
+COUNTY CLERK: Oh, sorry.
+CHAIR LEE; Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. So, afterwe close publictestimony
+on a sectionofthe agenda, Ithought we then would take actionon thatsection.
+CHAIR LEE: Yes, that'swhy she, she justsaid committee reports.When Isaid"L",she said
+K".
+VICE-CHAIR RAWLINS-FERNANDEZ: Okay.
+CHAIR LEE: So she, so the-
+VICE-CHAIR RAWLINS-FERNANDEZ: Okay, sounds good.
+CHAIR LEE: The Clerkgot it,yeah. So, back to Madam Clerk.Continue as you were saying.
+COUNTY CLERK: Chair,proceeding with committee reports.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 38
+COMMITTEE REPORTS
+COMMITTEE REPORT
+22-79 GOVERNMENT RELATIONS. ETHICS, AND
+TRANSPARENCY COMMITTEE:
+NO.
+Recommending thatResolution 22-109 .entitled"AUTHORIZING SETTLEMENT OF
+DONALD S. GUZMAN V. COUNTY OF MAUI, ET AL., CIVIL NO. 21-00202 DKW-RT",
+be FILED.
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair.
+I MOVE TO FILE RESOLUTION 22-109.
+VICE-CHAIR RAWLINS-FERNANDEZ:
+SECOND.
+COUNCILMEMBER JOHNSON: Second.
+CHAIR LEE: Moved by Member Molina, second by Vice-Chair Rawlins-Fernandez, to
+approve the recommendation inCommittee Report 22-79.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much, Madam Chair. Your Government
+Relations,Ethics,and Transparency Committee met on August 2, 2022, and received
+an overview of the claim inopen session by a Deputy Corporation Counsel.
+Claim allegesthe Plaintiffsrightsto privacyand due process under the United States
+Constitutionwere violated.And the claim furtherallegesthe Plaintiffwas discriminated
+againstbased on a disabilityinaccordance with Hawaii Revised Statutes.
+At the request of the Deputy Corporation Counsel, your Committee held an executive
+session meeting to discuss confidentialinformationrelatedto the claim. The purpose
+of proposed resolutionisto authorizethe Department of CorporationCounsel to settle
+the claim filedon April23, 2021, under terms sets forth in the executive session
+meeting.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 39
+Your Committee voted 9-0 to recommend filingof Resolution 22-109. Thank you
+Madam Chair.
+CHAIR LEE: Any more discussion.Ifnot,allthose infavorofthe motion, raiseyour hand and
+say "aye".
+AYES; COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA. PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+Madam Clerk.
+COMMITTEE REPORT
+22-80 PLANNING AND SUSTAINABLE LAND USE COMMITTEE:NO.
+entitled "APPOINTMENTS TO THERecommending that Resolution 22-173, CD1
+SOUTH MAUI COMMUNITY PLAN ADVISORY COMMITTEE", be ADOPTED.
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair.
+I MOVE TO ADOPT THE RECOMMENDATION IN COMMITTEE
+REPORT 22-80.
+CHAIR LEE: Second?
+COUNCILMEMBER KING;
+SECOND.
+CHAIR LEE: Moved by Member Paltin,seconded by Member King, to approve the
+recommendations in Committee Report 22-80.
+Discussion, Member Paltin.
+Regular Meeting of the Council of the County of Maui
+August 23. 2022
+Page 40
+COUNCILMEMBER PALTIN: Thank you, Chair. Your Planning and Sustainable Land Use
+Committee met six times to discuss the South Maui Community Plan Advisory
+Committee. The CPAC's purpose is to update the South Maui Community Plan in
+accordance with Section 2.SOB.080, Maui County Code.
+Council must appoint 9 of the 13 CPAC members, and the Mayor must appoint the
+remaining 4.
+Your Committee began solicitingapplicationsforthe CPAC. Feral cats,it'snot a baby
+crying,sorry. Your Committee began solicitingapplicationsforthe CPAC on May 25,
+2022-
+CHAIR LEE; Whoa.
+COUNCILMEMBER PALTIN: -by announcing it during the meeting and posting the
+applicationmaterials on mauicounty.us. Press releases were also issued on June 2,
+and June 24, inthe Maui News and MauiNow. Psst,eh, get over here. Sorry.
+CHAIR LEE: Do you want a recess so you can settlethe folksover there? No? Okay, they
+must have heard my voice. Okay. Proceed please.
+COUNCILMEMBER PALTIN: Your Committee took into account the applicant'swrittenand
+interview responses before making individualrecommendations. The Committee is
+now recommending nine finalistswho possess strong community connections, are
+representative of the differentregions of South Maui, and have diverse backgrounds
+includingbusiness, construction,environmental and culturalwork, government, and
+youth education.
+Your Committee agreed the nine finalistsprovided a "diversityand balance of age,
+gender, background, profession,heritage,experience, and ideology,"consistentwith
+the intentof Section 2.SOB.080(C).
+Your Committee voted 9-0 to recommend adoption of Resolution 22-173, with attached
+Exhibit "A" with the names of the 18 finalists;Exhibit "B", approving the appointments
+of Cody Nemet Tuivaiti,Daniel Kanahele, EverettDowling, Keoki Pfaeltzer,Lehuanani
+Huddleston-Hafoka, Rob Weltman, Tina Wildberger, Tova Callender, and Vernon
+Kalanikau;and Exhibit"C" disapproving the appointments of Chris Franco, David Dorn,
+Donna Domingo, Genesis Young, Mary Trotto,Michael Duberstein, Mike Moran, Paul
+Gammie, and Robert Aldrich.
+Regular Meeting ofthe Councilofthe County of Maui
+August 23. 2022
+Page 41
+Members, insearching my junk mail,Idid findon August 8, that there was an email
+sent to me. And I did forward the recent email to the County Clerk. And there has
+been a withdrawalof one ofthe finalists,Tina Wildberger.
+SO, I MOVE TO WAIVE THE REQUIREMENT OF A DELAY
+BETWEEN AMENDMENT AND FINAL READING OF A
+RESOLUTION IN ACCORDANCE WITH RULE 19.C OF THE
+RULES OF THE COUNCIL.
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Moved by Member Paltin,seconded by Member Johnson, towaive the Rules of
+the Council--
+COUNCILMEMBER PALTIN: Approval, oh, sorry.
+CHAIR LEE: --as,as read by Member Paltin.Discussion?
+COUNCILMEMBER PALTIN: Approval of my motion by a two-thirdsvote of the entire
+membership willenable the Council totake timelyactionon the proposed resolutionas
+amended today.
+CHAIR LEE: Iwas justthinkingofthe order of your proposal.
+COUNCILMEMBER PALTIN: Oh, Ijustwas assuming you guys would back me up.
+CHAIR LEE: No, no, no. But you did check with,with staffon, on the process,right?
+COUNCILMEMBER PALTIN: Yeah.
+CHAIR LEE: All those in favor of the motion to waive the Rules ofthe Council raiseyour hand
+and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 42
+CHAIR LEE: Nine "ayes",zero "noes". Motion carries.
+Member Paltin.
+COUNCILMEMBER PALTIN: Mahalo, Members.
+I NOW MOVE TO AMEND RESOLUTION 22-173, CD1, BY
+REMOVING THE NAME OF THE WITHDRAWING FINALIST
+TINA WILDBERGER FROM EXHIBIT "B", THE APPROVAL
+LIST, AND ADDING IT TO EXHIBIT "C", THE DISAPPROVAL
+LIST; AND MOVING THE NAME OF MIKE MORAN FROM
+EXHIBIT "C" TO EXHIBIT "B", AS AN APPROVED MEMBER.
+CHAIR LEE; Second?
+COUNCILMEMBER KING:
+SECOND.
+CHAIR LEE: Moved by Member Paltin,seconded by Member King.
+COUNCILMEMBER PALTIN: Thank you, so-
+CHAIR LEE; To remove, to remove, justto repeat. To remove member, or not member, but
+RepresentativeWildberger'sname and replacingit\A/ithMike Moran.
+Discussion, Member Paltin.
+COUNCILMEMBER PALTIN: Thank you. When thiswas broughtto my attention,Ididreach
+out to member, or RepresentativeWiidberger,and she resentthe email. And that's
+how we learned that itwas, had been somehow in my junk folder.
+Ifyou recall,theyAnd then, I did speak with, or communicate with Mr. Moran,
+supported threemembers, and thiswas one ofthe members. And Iasked ifhe would
+be willing,stillwillingto serve on the CPAC Committee? And he indicatedhe would,
+and thatwas why Irequested he be a resource,ifjustincase you wanted tofactcheck.
+And so, that'swhat Iput forward,because Ithinkit'sa greatcompromise to keep the
+process moving forward.
+CHAIR LEE: Any more discussion?
+Member King.
+Regular MeetingoftheCouncilofthe County ofMaui
+August 23, 2022
+Page 43
+COUNCILMEMBER KING: Thank you, Chair. Ithinkwe allknow how involved Mr. Moran is
+inCounty business,and especiallyinSouth Maui development. So, 1wholeheartedly
+support Mr. Moran takingthatspot. I'ma littlesad thatwe don'thave a bettergender
+balance on the committee. But maybe the Mayor willtake itupon himself to appoint
+four women and then we can have a better balance. All we can do is . . . right? And
+we can only work with what we had. So, we had an overwhelming body of,or number
+of men who applied ratherthan women. So, Ihope everybody can support Mr. Moran
+as a stalwartmember of our South Maui community. Thank you.
+CHAIR LEE: Any more discussion? Ifnot,allthose infavor of the motion raise your hand
+and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes". Motion carries.
+The main motion as amended. Discussion, Member Paltin.
+COUNCILMEMBER PALTIN: Thanks forgoing along with my plan,and moving thisforward
+so expeditiously.Members.
+CHAIR LEE: Any more discussion?
+Member King.
+COUNCILMEMBER KING: Thank you. Chair. I,I'm just wanted to thank Mr. Moran for
+stepping in. And Ialso want to thank him for,you know, justbeing reallyconsiderate,
+and puttingother people before him when he came before us the firsttime, and he
+recommended others. Ithinkthat speaks a lotto his character.
+I also wanted to remind all the Councilmembers and any of public who might be
+interested,that the South Maui Community Plan draftis going to be issued today at
+the, at the Kihei Community Center startingfrom 4:00. There's going to be an open
+house from 4-7. So, I'm hoping to see, although I'm not going to stay there the whole
+three hours. I'm hoping that when I do go, I see some of the CPAC members there.
+That's all.Thank you.
+RegularMeeting oftheCouncilofthe County ofMaui
+August 23, 2022
+Page 44
+CHAIR LEE: Any more discussion? Ifnot,allthose infavor of the motion, raiseyour hand
+and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING.
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes". Motion carries.
+Madam Clerk. Now, Ithink we're on resolutions.
+COUNTY CLERK: That iscorrect,Chair. Proceeding with agenda category L. Resolutions.
+This isa callfortestimony on resolutions.And-
+CHAIR LEE: Members, any objectionsto-
+COUNTY CLERK: Oh, sorry.
+CHAIR LEE: -closing public-
+You have one?
+(testifying on ResolutionMR. MIKE MORAN, KIHEI COMMUNITY ASSOCIATION
+No. 22-191):
+Chair Lee. Ihave also signed up-
+COUNTY CLERK: Mike Moran.
+MR. MORAN: -on Resolutions. Thank you.
+CHAIR LEE: Oh, I'm sorry. Mr. Moran.
+MR. MORAN: Yes, I'm likethat bad pain that you can'tget ridof,back again. This ison
+Resolution 22-191. We justask the Council to continue the process thatyou have
+been doing forthe past almost two years now of working carefullyto tryand get some
+sort of balance at the Maui Planning Commission. So, we don'tfeelit'sour place to
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 45
+tellyou who should be appointed,but we did testifyin support of the lastperson who
+came before you to try and get away from itbeing visitorsupported, you know,
+development supporting.
+So, we justask you when you have another end date come up to tryand continue to
+get thisbalance as best as possible. We understand the process thatthe Mayor gives
+you one name and it'sup or down. And ifyou say down, you don'tknow who's coming
+next. So, we justask thatyou continue to do the good, doing your due diligenceon
+this,as you have been. Mahalo forthe opportunity.
+CHAIR LEE: Questions, Members? Ifnot,thank you, Mike.
+Anymore testifiers? Ifnot, Members, are there any objections to closing public
+testimony and accepting writtentestimony for resolutions?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So. ordered.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with resolutions.
+RESOLUTIONS
+RESOLUTION
+NO. 22-183
+APPOINTMENT OF CHARLEEN "NAOMI" CROZIER TO THE
+COMMISSION ON HEALING SOLUTIONS FOR HOMELESSNESS
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair.
+MOVE TO DISCHARGE THE GOVERNMENT RELATIONS,
+ETHICS, AND TRANSPARENCY COMMITTEE FROM
+FURTHER CONSIDERATION OF RESOLUTION 22-183.
+Regular Meeting ofthe Councilofthe County of Maui
+August 23, 2022
+Page 46
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Second? Moved by Member Molina,second by Member Kama, to discharge
+the Committee of this item.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much, Madam Chair. The Committee
+discussed Ms. Crozier's nomination to the Commission on Healing Solutions for
+Homelessness during the GREAT Committee meeting on Tuesday, August 16.
+And since we recessed thatmeeting up untilSeptember 8, 2022, but we heard thatthe
+Commission is strugglingto meet quorum, so therefore,I’m requestingthat we
+discharge thisitem today. Thank you.
+CHAIR LEE: Okay. Any more discussionon thismotion? Allthose infavor,say "aye'
+your hand.
+raise
+COUNCILMEMBERS JOHNSON, KAMA, KING.
+MOLINA, PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+AYES:
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+Mr. Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair.
+MOVE TO WAIVE THE REQUIREMENT OF COMMITTEE
+REFERRAL AND REPORT FOR RESOLUTION 22-183, IN
+ACCORDANCE WITH RULE 7.G OF THE RULES OF THE
+COUNCIL.
+COUNCILMEMBER KAMA:
+SECOND.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 47
+CHAIR LEE; Moved by Member Molina, seconded by Member Kama, to waive the Rule
+requiringCommittee referraland report.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair. This matter istime-sensitiveforthe
+reasons statedduring the discussion of the discharge request. Thank you.
+CHAIR LEE: Anymore discussion? Allthose infavor of the motion, raiseyour hand and say
+"aye".
+COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ. AND
+CHAIR LEE.
+AYES:
+NOES: NONE.
+CHAIR LEE: Nine "ayes zero "noes"; motion carries.
+Mr. Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair.
+MOVE TO ADOPT RESOLUTION 22-183.
+COUNCILMEMBER KAMA:
+SECOND.
+COUNCILMEMBER JOHNSON: Second.
+CHAIR LEE: Moved by Member Molina, seconded by Member Kama, to adopt Resolution
+22-183.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair. As mentioned, your GREAT
+Committee discussed my nomination of Ms. Crozier to the Commission on Healing
+Solutions for Homelessness for a term expiring on March 31, 2024, to filla vacancy
+replacingWendy Hudson.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 48
+Your Committee interviewed Ms. Crozier, who shared her personal experiences and
+told the Committee of her work with Mental Health Kokua, which described her
+expertiseand abilityto provide invaluableinputon the Commission.
+Ms. Crozier confirmed her availabilityto attend meetings, and Ifelther answers to the
+Committee's tough questions were very well thought out, passionate, and in linewith
+her goal of assisting those within Maui Nui’s community who are experiencing
+homelessness, or close to becoming homeless, by coming up with solutionsto move
+forward.
+Ms. Crozier even provided a few suggestions to the Committee on how to combat
+chronic homelessness and said she would liketo especiallyhelp Native Hawaiians and
+individuals who suffer from mental health and addiction, since those are currentlyMaui
+County's most vulnerabilitycommunities.
+I'm confident Ms. Crozier willbe a great asset to thisCommission and I'dliketo thank
+her forher willingnessto serve. Mahalo, Madam Chair.
+CHAIR LEE: Any more discussion? Allthose infavor ofthe motion,raiseyour hand and say
+"aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.Thank you.
+Madam Clerk.
+RESOLUTION
+NO. 22-187
+APPROVING COST ITEMS FOR EMPLOYEES INCLUDED IN
+BARGAINING UNIT 12, POLICE OFFICERS
+The recommended action is that Resolution No. 22-187 be referredto the Budget, Finance,
+and Economic Development Committee.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 49
+RESOLUTION
+NO. 22-188
+APPROVING COST ITEMS FOR EMPLOYEES
+EXCLUDED FROM BARGAINING UNIT 12, POLICE OFFICERS
+The recommended action is that Resolution No. 22-188 be referred to the Budget, Finance
+and Economic Development Committee.
+CHAIR LEE: No actionon thistoday? Alright.Continue.
+COUNTY CLERK: Continue.
+RESOLUTION
+NO. 22-189
+REMOVAL OF ROBERT JOHNSON FROM
+THE PUBLIC WORKS COMMISSION FOR THE COUNTY OF MAUI
+The recommended action is that Resolution No. 22-189 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-190
+RELATING TO THE APPOINTMENT OF GERALD SHIZUO MATSUI
+TO THE FIRE AND PUBLIC SAFETY COMMISSION
+FOR THE COUNTY OF MAUI
+The recommended action is that Resolution No. 22-190 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-191
+RELATING TO THE APPOINTMENT OF
+ROD WADE ANTONE TO THE MAUI PLANNING COMMISSION
+The recommended action is that Resolution No. 22-191 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 50
+RESOLUTION
+NO. 22-192
+APPROVING THE INDEPENDENT DEVELOPMENT
+OF THE KUIKAHI VILLAGE WORKFORCE HOUSING PROJECT
+UNDER CHAPTER 2.97, MAUI COUNTY CODE
+The recommended action is that Resolution No. 22-192 be referredto the Affordable Housing
+Committee.
+RESOLUTION
+NO. 22-193
+APPROVING WITH MODIFICATIONS THE INDEPENDENT DEVELOPMENT
+OF THE KUIKAHI VILLAGE WORKFORCE HOUSING PROJECT
+UNDER CHAPTER 2.97, MAUI COUNTY CODE
+The recommended action is that Resolution No. 22-193 be referredto the Affordable Housing
+Committee.
+RESOLUTION
+NO. 22-194
+DISAPPROVING THE INDEPENDENT DEVELOPMENT
+OF THE KUIKAHI VILLAGE WORKFORCE HOUSING PROJECT
+UNDER CHAPTER 2.97, MAUI COUNTY CODE
+The recommended action is that Resolution No. 22-194 be referredto the Affordable Housing
+Committee.
+RESOLUTION
+NO. 22-195
+APPROVING FOR INCLUSION IN THE 2023
+HAWAN STATE ASSOCIATION OF COUNTIES
+LEGISLATIVE PACKAGE A STATE BILL TO
+REMOVE THE MINIMUM AGE REQUIREMENT
+FOR POLICE OFFICER RETIREMENT
+The recommended action is that Resolution No. 22-195 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 51
+RESOLUTION
+NO. 22-196
+APPROVING FOR INCLUSION IN THE 2023
+HAWAII STATE ASSOCIATION OF COUNTIES
+LEGISLATIVE PACKAGE A STATE BILL
+RELATING TO THE RESIDENTIAL
+LANDLORD-TENANT CODE
+The recommended action is that Resolution No. 22-196 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-197
+APPROVING FOR INCLUSION IN THE 2023
+HAWAII STATE ASSOCIATION OF COUNTIES
+LEGISLATIVE PACKAGE A STATE BILL
+RELATING TO THE HAWAII PUBLIC
+PROCUREMENT CODE
+The recommended action is that Resolution No. 22-197 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-198
+APPROVING FOR INCLUSION IN THE 2023
+HAWAII STATE ASSOCIATION OF COUNTIES
+LEGISLATIVE PACKAGE A STATE BILL
+RELATING TO THE MINIMUM WAGE
+The recommended action is that Resolution No. 22-198 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 52
+RESOLUTION
+NO. 22-199
+APPROVING FOR INCLUSION IN THE 2023
+MAUI COUNTY COUNCIL LEGISU\TlVE
+PACKAGE A STATE BILL RELATING TO PUBLIC
+TESTIMONY AT OPEN MEETINGS
+The recommended action is that Resolution No. 22-199 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-200
+APPROVING FOR INCLUSION IN THE 2023
+MAUI COUNTY COUNCIL LEGISU\TIVE
+PACKAGE A STATE BILL TO REMOVE THE
+MINIMUM AGE REQUIREMENT FOR POLICE
+OFFICER RETIREMENT
+The recommended action is that Resolution No. 22-200 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-201
+APPROVING FOR INCLUSION IN THE 2023
+MAUI COUNTY COUNCIL LEGISLATIVE
+PACKAGE A STATE BILL RELATING TO THE
+RESIDENTIAL LANDLORD-TENANT CODE
+The recommended action is that Resolution No. 22-201 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 53
+RESOLUTION
+NO. 22-202
+APPROVING FOR INCLUSION IN THE 2023
+MAUI COUNTY COUNCIL LEGISLATIVE
+PACKAGE A STATE BILL RELATING TO THE
+HAWAII PUBLIC PROCUREMENT CODE
+The recommended action is that Resolution No. 22-202 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+RESOLUTION
+NO. 22-203
+APPROVING FOR INCLUSION IN THE 2023
+MAUI COUNTY COUNCIL LEGISLATIVE
+PACKAGE A STATE BILL RELATING TO THE
+MINIMUM WAGE
+The recommended action is that Resolution No. 22-203 be referred to the Government
+Relations,Ethics,and Transparency Committee.
+CHAIR LEE: Members, any objectionsto these referrals?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So, ordered.
+Madam Clerk.
+COUNTY CLERK: Thank you, Chair. Proceeding with category,agenda categoryN. Bills.
+A callfortestimonyon the bills.We do have one testifiersignedup and that'sMr.Mike
+Moran.
+VICE-CHAIR RAWLINS-FERNANDEZ: Chair?
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. It'spast our morning break time.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 54
+CHAIR LEE: Members, do you want totake a break,or you want to finishthe lastfour pages?
+Up to you.
+COUNCILMEMBER KAMA: Take a break.
+CHAIR LEE: Okay, we'lltake a break until,let'smake it11:00. Okay, 11:00.
+COUNCILMEMBER KAMA: Thank you. Chair.
+CHAIR LEE: Any objections?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Well, well,that'sokay. Iwas going to say, do you want to take the testimony
+first?But I'msure Mike doesn't mind waiting.
+COUNTY CLERK: Chair?
+CHAIR LEE: Yes?
+COUNTY CLERK: Chair, I made a mistake. Mr. Moran is scheduled for second and final
+reading section.
+CHAIR LEE: Oh, not this one?
+COUNTY CLERK: Yeah.
+CHAIR LEE: Alright.
+COUNTY CLERK: Not this one. Thanks.
+CHAIR LEE: Okay, thismeeting isin recess until11:00.
+AND WAS(THE MEETING WAS RECESSED BY THE CHAIR AT 10:44 A.M
+RECONVENED AT 11:01 A.M., WITH ALL MEMBERS PRESENT.)
+CHAIR LEE: Kathy?
+COUNTY CLERK: Okay, Chair. Oh okay. Continuing on with agenda category N. Bills
+This isa callfortestimony on bills.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 55
+CHAIR LEE: Oh, you did,didyou do the countdown? IsAkaku with us?
+COUNTY CLERK: Idid,yes.
+CHAIR LEE: Oh. 1didn'thear you. Willthe County Council meeting of August 23, please
+reconvene.
+So, you have a question,Vice-Chair Rawlins-Fernandez?
+VICE-CHAIR RAWLINS-FERNANDEZ: You got it.Mahalo, Chair.
+CHAIR LEE: Okay. Madam Clerk.
+COUNTY CLERK: Chair,proceeding with a callfortestimony on agenda category N, forbills.
+No one has indicatedto,they wanting to testify.
+CHAIR LEE: Members, any objectionsto closing publictestimony and accepting written
+testimony forbills?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections. So, ordered.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with bills.
+BILLS
+ORDINANCE NO.	
+BILL NO. 124 (2022)
+A BILL FOR AN ORDINANCE ADOPTING THE HAWAII
+STATE FIRE CODE. WITH CERTAIN AMENDMENTS THERETO
+The recommended action is that BillNo. 124 (2022) be referredto the Infrastructureand
+Transportation Committee.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 56
+ORDINANCE NO.	
+BILL NO. 125 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2023 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX C - CAPITAL IMPROVEMENT PROJECTS
+DEPARTMENT OF POLICE. COUNTYWIDE.
+COUNTYWIDE POLICE FACILITIES
+The recommended action isthat BillNo. 125 (2022) be referredto the Budget, Finance, and
+Economic Development Committee.
+(BILL NO. 125 (2022) IVAS PASSED ON FIRST READING
+LATER IN THE MEETING. See pages 84 through 86 for
+discussion and action.)
+ORDINANCE NO.	
+BILL NO. 126 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE COUNTY OF
+MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE
+STATE OF HAWAII, DEPARTMENT OF HEALTH
+The recommended actionisthatBillNo. 126 (2022) be referredto the Government Relations
+Ethics,and Transparency Committee.
+ORDINANCE NO.	
+BILL NO. 127 (2022)
+A BILL FOR AN ORDINANCE TO AMEND THE STATE LAND USE
+DISTRICT CLASSIFICATION FROM AGRICULTURAL DISTRICT
+TO URBAN DISTRICT (CONDITIONAL BOUNDARY AMENDMENT) FOR
+PROPERTY SITUATED AT WAILUKU, MAUI, HAWAII, TAX MAP KEY NOS. (2) 3-
+5-002:003 (POR.), CONTAINING A TOTAL OF 14.97 ACRES
+The recommended action is that BillNo. 127 (2022) be referred to the Planning and
+Sustainable Land Use Committee.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 57
+(BILL NO. 127 (2022) 1//ASREFERRED TO THE AFFORDABLE
+HOUSING COMMITTEE LATER IN THE MEETING. See pages
+60, 61, and 63 fordiscussion and action.)
+ORDINANCE NO.	
+BILL NO. 128 f2022)
+A BILL FOR AN ORDINANCE AMENDING APPENDIX A
+OF THE FISCAL YEAR 2023 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO PART II.SPECIAL PURPOSE REVENUES -
+SCHEDULE OF REVOLVING/SPECIAL FUNDS FOR FISCAL YEAR 2023
+SPECIAL MANAGEMENT AREA REVOLVING FUND
+The recommended actionisthatBillNo. 128 (2022) be referredto the Budget, Finance, and
+Economic Development Committee.
+(BILL NO. 128 (2022) IVAS PASSED ON FIRST READING
+LATER IN THE MEETING. See pages 58 through 60 for
+discussion and action.)
+ORDINANCE NO.	
+BILL NO. 129 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2023 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO OFFICE OF THE MAYOR,
+ECONOMIC DEVELOPMENT PROGRAM,
+WEST MAUI ECONOMIC DEVELOPMENT, ENVIRONMENTAL, AND CULTURAL PROGRAMS
+The recommended actionisthat BillNo. 129 (2022) be referredto the Budget, Finance, and
+Economic Development Committee.
+(BILL NO. 129 (2022) WAS PASSED ON FIRST READING
+LATER IN THE MEETING. See pages 61 through 63 for
+discussion and action.)
+CHAIR LEE: Any objectionsto these referrals,Members?
+Member King.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 58
+DISCUSSION AND ACTION
+RELATING TO BILL NO. 128 (2022)
+COUNCILMEMBER KING: Thank you. Chair.
+I MOVE TO AMEND THE MOTION TO REMOVE BILL 128
+FROM, OR, I MOVE TO AMEND TO REMOVE BILL 128 FROM
+THE LIST OF REFERRALS TO BFED COMMITTEE.
+CHAIR LEE; Okay. Bill128. Okay, thatone isremoved. And then,any objections.Members
+to remove that?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay. Then, Member Paltin.
+COUNCILMEMBER KING: You want me to take that?
+COUNCILMEMBER PALTIN: I'm not sure ifyou were going to go inorder. But Ithought that
+127 was AH because it'sa 2.9,isitpartof the 2.97? And I'dalso likeconsiderationfor
+129.
+CHAIR LEE: Okay. So, you'resuggesting that127 go toAH and notyour Committee?
+COUNCILMEMBER PALTIN; Yeah. Is that not the one associated with Kuikahi?
+CHAIR LEE; Idon't know, not off hand.
+COUNCILMEMBER KING: I don't think so.
+CHAIR LEE: Well,why don'twe take a shortbreak and let'sfindout,okay? Meetinginrecess
+for five minutes.
+COUNCILMEMBER KING; Iwas asking forconsiderationof 128, Ididn'tgettofinish.
+CHAIR LEE: Okay, Iwas going to take them allto,you know, take them allout but
+COUNCILMEMBER KING; Okay. You want to take a .. .
+CHAIR LEE: Inthe meantime, why don'twe, why don'twe do this.Can staffcheck on Bill127
+and the question thatMember Paltinraised?
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 59
+Okay and inthe meantime, Member King,on Bill128 what isyour pleasure?
+COUNCILMEMBER KING:
+OKAY, I WOULD LIKE TO WAIVE COUNCIL RULE 7.G THE
+REQUIREMENT FOR COMMITTEE REFERRAL FOR BILL 128.
+CHAIR LEE: Second?
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Moved by Member King,seconded by Member Sugimura, towaive the Rule of
+Council. And discussion on thisBill128, Member King.
+COUNCILMEMBER KING: This would allow us to act on this item today. This isan item that
+was approved lastbudget session and was not acted upon by the Administration,so
+we've already had fulldiscussion on thisitem,which is...includes...revolvingfund.
+CHAIR LEE: Okay, juston the waiver, Any more discussion? Allthose infavorofthe motion
+raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE: All"ayes",zero "noes";motion carries.
+Member King, next step.
+COUNCILMEMBER KING: Okay, Imove to,I'mlookingthrough my notes here. Sorry about
+this.
+I MOVE TO PASS BILL 128.
+And Iguess I'lljustleave itat that.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 60
+CHAIR LEE; Alright,Members, any second? Second on the motion?
+COUNCILMEMBER PALTIN;
+SECOND.
+CHAIR LEE: Member, seconded by Member Paltin.Moved by Member King, seconded by
+Member Paltin,to pass Bill128.
+COUNCILMEMBER KING: On firstreading.
+CHAIR LEE; On firstreading.
+Discussion, Member King?
+COUNCILMEMBER KING: Okay. Thank you. Chair. The Administrationwas unable to
+execute a scope of work and solicitgrantees to carry out thisproject.This budget
+amendment reinsertsthe funding. After speaking with the Managing Directorand
+Planning Director,I reiteratedthe importance of this projectfor promoting public
+shoreline access and fulfillingthe ... responsibilityto ensure publicaccess. Now that
+we have met furtherabout the topic and budget amendment, Iexpect thatthisproject
+willnow be funded and executed thisfiscalyear.
+CHAIR LEE: Okay. Any more discussion? Allthose infavorofthe motion,raiseyour hand
+and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN. SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBER KING: Thank you. Members.
+DISCUSSION AND ACTION
+RELATING TO BILL NO. 127 f2Q22)
+CHAIR LEE; Staff,do we have clarificationon Bill128 [sicp
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 61
+COUNTY CLERK: Yes, Chair. That isassociated with the KuikahiVillageWorkforce Housing
+Project.
+CHAIR LEE: So, thisshould go to AH?
+COUNCILMEMBER KING: Oh, Chair, mine was Bill128. Ithinkyou were .. .
+CHAIR LEE: Oh, I'msony. I'msorry. 127. 127.
+COUNTY CLERK: 127.
+CHAIR LEE: 127 should go to AH?
+COUNCILMEMBER JOHNSON: No objection.
+CHAIR LEE: Alright.Where are we? Please proceed. Please proceed.
+Member Paltin.
+DISCUSSION AND ACTION
+RELATING TO BILL NO. 129 (2022)
+COUNCILMEMBER PALTIN: Thank you. Sorry,Member Johnson, not tryingto giveyou all
+my work but,you know.
+I'D LIKE CONSIDERATION FOR BILL 129. I'D LIKE TO MOVE
+TO WAIVE COUNCIL RULE 7.G IN ACCORDANCE WITH THE
+COUNCIL RULES TO TAKE CONSIDERATION ON THIS BILL
+TODAY, TAKE ACTION.
+COUNCILMEMBER KING:
+SECOND.
+COUNCILMEMBER SINENCI: Second.
+CHAIR LEE: Okay, moved by Member Paltin,seconded by Member King,towaive the Rules
+of the Council.
+And discussion, Member Paltin.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 62
+COUNCILMEMBER PALTIN: Thank you. A vote \A/ouldallow us to take action on thisitem
+today. And it'sjusta two-word change, and Idon'twant to take up Member Rawlins-
+Fernandez valuable time for two words.
+CHAIR LEE: Okay. Any more discussionon the waiver? No? Allthose infavor ofthe motion
+raiseyour hand and say "aye".
+COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA, PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+AYES:
+NONE.NOES:
+zero "noes"; motion carries.CHAIR LEE: Nine "ayes'
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you.
+I MOVE TO PASS BILL 129 WITH THE AMENDMENT FROM
+"EARTH MONTH" TO "WEST MAUI".
+There was a mistake because we need those cleanup funds allyear. And by saying
+"Earth Month", they'reonly available,you know, in April,really.And we have the
+InternationalCoastal Cleanup coming in September and people are asking about it
+already. And ifwe wait tillApril,Idon'tknow ifwe're going to be ableto do $30,000
+worth of cleanup in Apriland you have choke rubbish rightnow. So, justifwe can
+amend "Earth Month" to "West Maui community clean-ups and projects",Ialreadyhave
+folksliningup to get dumpsters and throw away tiresand batteriesand so on and so
+forth.
+COUNCILMEMBER SINENCl:
+SECOND.
+CHAIR LEE: Any discussion.Members? Okay. That was a discussion.
+Moved and seconded to pass, to make the amendment of changing "EarthMonth" to
+"West Maui", did you say?
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 63
+COUNCILMEMBER PALTIN: Correct.
+CHAIR LEE: Okay. So. that'syour motion. Seconded by Member Sinenci.
+Any more discussion? Allthose infavor of the motion, raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON. KAMA. KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+And justfor the record, Bill127, any objections to referringthat matter to Affordable
+Housing Committee?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So, ordered.
+So, we got 27, 127, 128, 129. Any other changes, Members?
+Okay, so, so there,are there any objectionsto the restof the referrals?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections.So, ordered.
+So, that takes care of N.
+O. Billsnow. Madam Clerk, bills.
+COUNTY CLERK: Chair,proceeding withtestimony on billsforsecond and finalreading. We
+have Mr. Mike Moran signed up forthat.
+CHAIR LEE: Member Moran, you ready to testify?
+Regular Meeting ofthe Councilofthe County of Maui
+August 23, 2022
+Page 64
+MR. MIKE MORAN. KIHEI COMMUNITY ASSOCIATION ftestifyinaon Bill Nos. 108 (2022)
+and 111 (2022)1:
+Yes, Chair.
+CHAIR LEE: Mike?
+MR. MORAN: Here I am. Thank you for your patience. Yes, we want to testifyon two;
+No. 108 and No. 111. 108 isthe,we're testifyingso many times and you guys have
+discussed it,too. We allknow what we're tryingto do here. That we have members
+of our community, sometimes families,where both parents are working, kidsare going
+to school, but they can’taffordto finda place to live,to habitate,so they end up living
+in a car. And we're justtryingto make itas positiveas we possiblycan, thatsituation,
+thatat leastthey have a safe place to stay withoutbeing disturbedby,by policeofficers
+tellingthem it'sillegal,and by anybody else. So, thatthey can get a reasonable night's
+sleep foreveryone and then, and then conduct business the next day inthe best way.
+And we have had some comments that we need housing. Well, of course we need
+housing, but we have to do something forthese folksnow. And untilwe get a place
+forthem to livepermanently,let'sgivethem any advantage we can to have a placefor
+shelter. That's on 108.
+And then 111, again,justsupport for anything that can help us allto get ridof the
+cesspools. We mentioned, because we speak forour districtand we mentioned that
+we have thatone huge projectMaui Meadows, which istotallyunsewered. So, while
+itmay not be allcesspools, itmay be septictanks and so forth.But as one engineer
+saidto me, a septictank isa cesspool ifit'snotmaintained. And so, anythingthatgoes
+intothe ground can seep down. It'salldownhillto the kai. So, it'sadding one more
+factorto killingour reefs inMaalaea Bay and who knows where else it'sgoing forour
+freshwater. So, we justthink anything that can be done to advance gettingridof
+cesspools and septictanks and so forthisa positivemove. So, we speak insupport
+of that as well. Mahalo for the opportunity. And that'sallIhave today, so you won't
+see me any more today.
+CHAIR LEE: Any questions forthe testifier?Ifnot,thank you. Good seeing you, Mike.
+MR. MORAN: Mahalo, guys. Hope you can wrap itup quickly.
+CHAIR LEE: Okay. Madam Clerk.
+COUNTY CLERK: This is a last call for testifiersfor agenda category O. BillsforSecond and
+Final Reading. Last call.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 65
+CHAIR LEE: Members, any objectionsto closingpublictestimony and accepting written
+testimony forbillsforsecond and finalreading.
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections.So, ordered.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with billsforsecond and finalreading.
+BILLS - SECOND AND FINAL READING
+ORDINANCE NO.	
+BILL NO. 22, FD1 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE
+COUNTY OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT
+WITH THE STATE OF HAWAII JUDICIARY FOR A FOUR-YEAR AND ELEVEN
+MONTH LEASE OF 2,070 SQUARE FEET OF OFFICE SPACE AT 2103 WELLS
+STREET, WAILUKU, MAUI, HAWAII 96793
+ORDINANCE NO.	
+BILL NO. 101 CD1 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 16.26B.105. MAUI
+COUNTY CODE-
+VICE-CHAIR RAWLINS-FERNANDEZ: Chair?
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. For billson second and finalreading
+perhaps the Clerk can read one item at a time,unless a Member asks foranotheritem
+to be called up at the same time?
+CHAIR LEE: Sure. On Bill22, Member Molina.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 66
+COUNCILMEMBER MOLINA; Yes, thank you, Madam Chair.
+MOVE TO PASS BILL 22. FD1 (2022) ON SECOND AND FINAL
+READING.
+COUNCILMEMBER SINENCI:
+SECOND.
+CHAIR LEE: Moved by Member Molina, seconded by Member Sinenci, to pass Bill22 on
+second and finalreading.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much. Madam Chair. Bill22, FD1 (2022)
+would authorize an intergovernmental agreement between the County and the State
+of Hawaii's Judiciary for a lease of 2,070 square feet of officespace, located at
+2103 Wells StreetinWailuku, forthe State Judiciary'sChildren'sJusticeCenter ofMaui
+to provide servicesforchildvictimsof sexual and physical abuse and childwitnesses
+of domestic violence.
+Under the lease, as revised and attached to Bill22, FD1 (2022), the State Judiciary
+would pay the County a rentalfee of $3,100 monthly fora lease term offouryears and
+eleven months.
+I'dliketo thank the Prosecuting Attorney, the Maui CJC, and the Friends of the
+Children's Justice Center of Maui, and ask for the Members fullsupport of thisbill.
+Thank you.
+CHAIR LEE: Any more discussion? Ifnot,allthose infavor of the motion, please say "aye'
+raiseyour hand.
+AYES: COUNCILMEMBERS JOHNSON. KAMA. KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES; NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+Bill101, was thatcalledup already?
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 67
+COUNTY CLERK: Almost there.
+CHAIR LEE: Okay.
+ORDINANCE NO.	
+BILL NO. 101. CD1 f2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 16.26B.105, MAUI
+COUNTY CODE, RELATING TO FENCE HEIGHTS FOR AXIS DEER CONTROL
+CHAIR LEE: Member Sinenci.
+COUNCILMEMBER SINENCI: Thank you. Chair.
+MOVE TO PASS BILL 101, CD1 (2022) ON SECOND AND
+FINAL READING.
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Moved by Member Sinenci,seconded by Member Johnson, to pass Bill101 on
+second and finalreading.
+Any discussion?
+COUNCILMEMBER SINENCI: Thank you, Chair. There isno doubt thataxisdeer isa critical
+issue for our County. Like axis deer populations,the problem willcontinue to grow
+unless and untileffectivemanagement actionsand policiesare inplace. But whilewe
+continue our effortsto findand implement sustainable long-term solutions,measures
+such as Bill101 CD1, would offer some mitigationand relieffor our farmers and
+ranchers who are facing extensive and costly damage caused by axis deer. By
+allowingfences up to 10-feetinheightwithouta buildingpermit,thisbillwould helpto
+protectagriculture,conservation areas, as well as our publicroadways. Respectfully
+request the Members support of my motion.
+CHAIR LEE: Any more discussion? Ifnot,allthose in-
+Member Sugimura.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 68
+COUNCILMEMBER SUGIMURA: Yeah, real fast. To answer, ifyou would allow me to
+answer Faith Chase's questions in testimony, as itrelatesto fencing axis deer feral
+animal mitigation? And the $1.5 million,there are, I just spoke to Lokahi Pacific
+yesterday. They have 47 grants maximum. They are,they have over 60 applications,
+and they willbe meeting allof the deadlines,allof the requirements. They extended
+the deadline,and were able to get grants from Lanai in. And Ithinkthey already had
+good showing from Molokai. So, to answer Ms. Chase's questions intestimony, Lokahi
+Pacificismoving forward. And atthe appropriatetime,when allthe grants get awarded
+because that'swhere they look likethey'regoing to.I'llhave itin my Committee to get
+a reportof allthe grants thatwere awarded forthisparticular1.5 budget amendment
+thatwas done. Thank you.
+CHAIR LEE; Any more discussion? Allthose infavorof the motion, raiseyour hand and say
+"aye". Nine "ayes",zero "noes".
+Member Kama? Member Kama?
+AYES; COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES; NONE.
+CHAIR LEE; Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBER SINENCI; Mahalo.
+CHAIR LEE; Madam Clerk.
+ORDINANCE NO.	
+BILL NO. 108, CD1 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 10.76 AND SECTION
+13.04A.070, MAUI COUNTY CODE, RELATING TO USE OF VEHICLES FOR
+PURPOSES OF HUMAN HABITATION AT COUNTY PARKING LOTS
+CHAIR LEE; Member Johnson.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23. 2022
+Page 69
+COUNCILMEMBER JOHNSON: Mahalo, Chair.
+I MOVE TO PASS ON SECOND AND FINAL READING
+BILL 108, CD1 (2022).
+COUNCILMEMBER MOLINA:
+SECOND.
+CHAIR LEE: Moved by Member Johnson, second by Member Molina,to pass Bill108, CD1
+on second and finalreading.
+Member Johnson, discussion.
+COUNCILMEMBER JOHNSON: Mahalo, Chair. 1want to thank Councilmember King once
+again forintroducingBill108, which laysthe groundwork forestablishinga pilotproject
+forhouseless persons totemporarilyuse theirvehiclesovernighthabitationon County
+property.We've had enlightening,enlighteningdiscussionsand testimonyinsupport
+of having safe sleeping zones that people in need can go to and get the sleep and
+services they need and deserve.
+Ilookforward to the Council'scontinued work on gettingthe pilotprojectoffthe ground
+once this enabling legislationis enacted, and gettingour houseless community
+members intoa safer betterplace. I respectfullyrequest the Members fullsupport of
+my motion.
+CHAIR LEE: Any more discussion?
+Member King.
+COUNCILMEMBER KING: Thank you. Chair.
+I WOULD LIKE TO MOVE TO AMEND THE BILL UNDER
+10.76.076A, "DEFINITIONS", WITH A THIRD DEFINITION
+"PURPOSES OF HUMAN HABITATION INCLUDES USE OF A
+VEHICLE AS A DWELLING PLACE. LIVING ABODE, OR
+SLEEPING PLACE, FOR MAUI COUNTY RESIDENTS ONLY".
+COUNCILMEMBER JOHNSON:
+SECOND.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 70
+CHAIR LEE: Moved by Member King, seconded by Member Johnson, to make that
+amendment.
+Discussidn,Member King.
+COUNCiLMEMBER KING: Thank you, Chair. You know, we had, we did have some concern
+from writtentestimony,inwrittentestimony thatthe way thatthe billwas worded itdidn't
+exclusivelysay for Maui County residents,and itcould be misconstrued to apply to
+visitorswhich we absolutely don't want. In fact,we have a pending billin PSLU that
+would make that illegal.So, we, Ijustwanted to clarifythat this isfor Maui County
+residentsonly.
+CHAIR LEE: Any more discussion? Ifnot,allthose infavor of the amendment, raiseyour
+hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+Then the main motion as amended. Any more discussion?
+Member Molina.
+COUNCILMEMBER MOLINA: Yes, thank you very much, Madam Chair. I stand in full
+support of the bill.I have more of a question for Corporation Counsel, and itrelates
+to, Ibelieve letterC, under Section 10.76.076. That would be letterC, where itstates
+"The Council must review this section within twelve months after the commencement
+of a pilotprojectinaccordance with thissection."There's been some members ofthe
+public that have expressed a little,some concerns about potentiallywhat could
+happen.
+Ifthe next Council chooses to do so to review this matter sooner than twelve months
+as specifiedin the ordinance, they can do that,right? Or would itbe betterthatwe
+spellitout? I'vehad some suggestions maybe to amend thisSectionC to read "The
+Council must review this section within six to twelve months". That way givingthe next
+Council some flexibilityto review any concerns thatmay occur beforetwelve months.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 71
+So, Idon’t know, can we get Corporation Counsel to comment on that? And so, I'm
+justwondering ifit'sbest to leave itas is,or ifforthe next Council,they could review
+it? They can, they can justgo ahead and make that change the next Council term,
+right,ifthey want to review itsooner than twelve months?
+CHAIR LEE: Deputy Thomson.
+FIRST DEPUTY CORPORATION COUNSEL RICHELLE THOMSON: Thank you, Chair.
+Thank you, Councilmember Molina. Yes, you'recorrect.The next Council can choose
+to callup thisordinance, ifitpasses, at any time.
+COUNCILMEMBER MOLINA: Okay. Alright.Thank you.
+CHAIR LEE: So, Isaw Member Sugimura's hand and then Member Paltin.
+COUNCILMEMBER SUGIMURA: Thank you. So, I got calls and concern about which
+parking lotwould be available.And the example thatwere given,there are parks that
+are used by familiesfor soccer, or baseball,or whatever, and they don'tnecessarily
+end at, you know, the proposed time. Although this is only a proposal,which is
+10.76.076 ishuman habitationwithinvehiclesas permittedfrom 7:00 p.m. to 7:00 a.m.
+or such hours depending on the location... to interferewith parkinglot'sopen hours
+forthe general public.So, how willthisbe handled? A concern was expressed that
+there are games thatgo on and familiesstay on untilthe game isover. And would the
+parkinglot,you know, how would the hours be determined?
+CHAIR LEE: Before you, before Icallon you Member King,Ido know thatthe Administration
+isworking on this.This isa pilotproject.Idon'tbelievethey identifiedthe locationyet.
+And I,I know thatthey willgive consideration,serious considerationas to whether
+there are residences abuttingthispark and whether childrenplay inthe park. So, I
+thinkwe need to letthe Administrationput the package together,and then come back
+to the Council. Idon't,your questions are good questions. Idon'tthinkthe answers
+have been determined yet.
+COUNCILMEMBER SUGIMURA: Okay.
+CHAIR LEE: Member King. Member King.
+COUNCILMEMBER SUGIMURA: IfIcould finish? Ijustwant to get thisinthe discussion.
+CHAIR LEE: Oh, okay.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 72
+COUNCILMEMBER SUGIMURA: That the people who contacted me were several districts,
+and they basicallywere concerned about thishappening, and they not having inputas
+to the park. Was itopen to allparks,or isitgoing to be determined once thiscomes
+back to us from the Administration? Chair, maybe you have that answer so that the
+people thatcalledwillknow that,you know, they can have input,yes, or no?
+CHAIR LEE: At thispoint,atthispoint,it'sreallyinthe hands of the Administration,because
+they are tryingto put a pilotprojecttogether as, as requested by the Council. So, I
+don'tthinkthe specificinformation isavailableyet,because they, from my knowledge,
+they've only,the departments have only begun to meet on thissubject. And Ithink,I
+think what we can do isask the Mayor to be sure to notifythe adjoining neighbors or
+the area neighbors, so thatthey can have input. But for now, it's,itwillbe out of the
+Council'shand. We are providingthe enabling legislationfora pilotproject.So, you
+know. I'm sure that the Administration willtake everything that you said under
+consideration.
+COUNCILMEMBER SUGIMURA: Okay, great. One lastthing before Ilose,so Ijustwant to
+say thatafterthe firstreading,Igot a callfrom one ofthe televisionstationsand when
+they reported,they inaccuratelyreportedthat Iwas one ofthe co-chairsor co-makers
+of the bill,which I am not. And so, I sent them an email to correctit,saying Gabe
+Johnson and KellyKing,and the 200,000 during the budget process. So, they may do
+a cover storyand IthinkIgave them allyour contactinformation.Ididn'trealizethat
+was one of the things, itwasn't the whole story,but thatcertainlygave the community
+a wrong impression.
+So, Gabe Johnson, Iapologize to you, cause Idid not say Iwrote the bill,nor Kelly
+King. But itdid give me an opportunityto talkto people who calledme thinkingIwrote
+the bill.So, Igot feedback from the community. So, ina very roundabout way, that
+was good. But you may be hearing from televisionstationsafterthis.They saidthey
+may do itifitdoes pass second and finalreading. So, more tocome. And Ijustwanted
+to publiclyapologize forthat,and to letyou know thatitwasn'twhat Isaid. Ithinkit
+was assumed, and 1 stand corrected, or I stand for itto be corrected. Thank you for
+listeningto the kindoffeedback 1got from the community. Thank you.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you. Chair. I was just going to respond to Member
+Sugimura, but 1 think you did a good job of,you know, explainingthatthis,again,
+explainingthatthisisjustenabling legislation.So, we don'thave a pilotprojectyet.
+CHAIR LEE: Okay. Then Isaw Member Paltinand then Member Kama's hands. No?
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 73
+COUNCILMEMBER PALTiN; Oh, thank you, Chair. Ithinkallmy points that 1was going to
+bring up were brought up. My main point was allof that. And I,I did bring up in
+Committee about residentsonly and not tourists,but then itwasn't taken up at that
+time. And the reason was because, you know, administrativerules might come into
+play. So, we made the enabling legislation.
+And then 1feellikewe can have good faithinthe Administration. They're not going to
+be, like,tryingto make thingsbad forthe restofthe residentsthat have houses. Ihave
+good faithinthem thatthey are going to tryand put a sincere effortintothe pilotproject
+to site itcorrectly,to make the administrativerules be something that,that makes
+sense interms of not locking people in,and things likethat. So, like,any other kind of
+legislation,we made itkind of broad. And then the administrativeruleswould come in
+forthe specificsituations.So, thatwas kind of my discussion,but Iguess italready
+got discussed.
+CHAIR LEE: Okay. Member Kama.
+COUNCILMEMBER KAMA; Thank you. Chair. So, Ijustwant to say that I am gratefulto
+Member King forbringingthisforward. And itissomething that,you know, we talked
+about, you know, offand on the Council floor.But Iwanted tojustletyou allknow that
+Ihad a, not a disturbingcall,but a callthatkind of touched me thispast weekend.
+And itwas about a singlemom who works two jobs,and has a special-needs kid.And
+when she heard about thisparking lotdeal, she feltkind of slighted,because itseems
+like,you know, she works hard, she pays her taxes,she followsthe rules,she does all
+what she's supposed to do, and she's stillstrugglingand having a very difficulttime.
+And then, she feels like,but nobody's helping her the way people are helping the
+homelessness, who she feltthat were not as deserving as her because they don't
+followrules,they don'tpay taxes,and they reallyare not contributorstothe community.
+And so, you know, my conversation was, you know, we're allpartofthe human race.
+And inmany ways, itisour job to help each other and to lifteach other up inwhatever
+way we can. And that's,1 think,what we're doing here. And that'swhy 1 applaud
+Member King and the Council forthe work thatwe do here. Itisnot an easy job,but it
+is an humanitarian one. And itis one that we allsaid, when we alldecided to run, was
+because we wanted to serve. And we serve everyone, everybody, irrespectiveoftheir
+status.
+And Ijustwanted to share thatwith you all,because there are some of our people out
+there who are feelinga littleslighted. And so, as we move on and as we continueto
+do the work that we are elected to do, that we can also remember those things. So,
+thank you. Chair, and thank you. Member King.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 74
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you, Chair,formy second and final.Iwant to appreciate
+Member Kama's comments and remind the person thatshe talkedto thatwe are doing
+our best to help those people as well.That'swhy we focus so much on the affordable
+housing, the affordablerentalsthatare coming inat lessthan $600 a month, you know,
+theirstartingpoint for a two-bedroom apartment. So, we are tryingto help those
+people.
+I also want to remind folks that some of these, some of these homeless people that
+are livingintheircars are paying taxes. They are working. You know, theirkidsare
+going to school and so they are involvedin our community, and they are taxpayers.
+They justcannot affordthe exorbitantrents.
+So, you know, we are paying attentionto allneeds, and nobody shouldfeelslighted.
+We're, I think thisCouncil has spread ourselves as thin as we can tryingto cover
+everybody's needs, honestly. And so, 1 appreciatethe Council'ssupportofthis,this
+pilotproject,because I’vebeen tryingto work on thissinceIfirstgot on the Council.
+And Ithinkit's,the need has not gone away, ifanything,it'sgottengreater.So, thank
+you.
+CHAIR LEE: Member Johnson.
+COUNCILMEMBER JOHNSON: Thank you. Chair. You know, I,Ireallysupportthisbill.We
+talkabout safety.The reason why we want to put,have a parkinglotdesignatedisfor
+safety,because you can lock your car door when you sleep. And rightnow, we
+speaking,when 1went outand dida homeless, or houselessfolksoutreach,theysleep
+with theirbackpacks on theirchests so no one willstealfrom them, you know.
+It'sreally,thisisjust,Imean, justthe bare minimum we can do to helpour folksuntil
+we get those projectsthatCouncilmember King was speaking,untilwe geta bigrobust
+system of housing first.I'm a housing firstadvocate, but housingfirstmodel doesn't
+work untilwe get housing. So, Iknow it'sslow process forus to getthose homes that
+are at the rates that people can afford. But untilthen,Ithink1 stand strongin my
+support of thisbill.
+Chair,Iwant to ask you a quick question. Should we do the move towaive the Rules
+of the Council, because thishas been amended? Do you want me to do thatnow?
+CHAIR LEE: Waive the Rules of the Council, because Ididn'thear the-
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 75
+COUNCILMEMBER JOHNSON: 19.C. Because, you know, waive Rules 19.C ofthe Council
+to take finalaction on this bill,because we did make an amendment?
+CHAIR LEE: Okay. Well, yes. Yes, but Ileteverybody have the discussion.
+COUNCILMEMBER JOHNSON: Okay. I'llwait when you-
+CHAIR LEE: And then. Member Molina had hishand up, too. Member Molina.
+COUNCILMEMBER MOLINA: Yes. Yeah, thank you very much, Madam Chair. Maybe
+Member King or Member Johnson can answer thisquestion. Because of the sense of
+urgency to finda number of solutionsto address thisconcern. I'm lookingat the bill,
+there isn'tanything inthere,that Ican see, that Iguess asks the Administrationto get
+thispilotprogram on itsfeetwithina couple of months or what have you.
+Has there been any indicationfrom the Administrationhow soon they could get the
+pilotprogram going? Cause intheory,you know, not thatthey would do so,they could
+potentiallydrag theirfeeton itbefore gettingsomething roiling.Because 1would like
+to see afterthisenabling legislationispassed thatsome actionistaken ASAP by the
+Administrationwith regards to the pilotprogram. So, justsettingthe record straight,
+has there been any indicationfrom the Administrationthatthey can get a pilotprogram
+going before the end of the term?
+CHAIR LEE: Member Molina, the reason why I'veanswered some of the questions, because
+I'm,Ihave firsthandknowledge thatthey have been meeting, the variousdepartments
+have startedmeeting to identifyplaces and how to set these rulesand procedures up.
+They want to,Iheard, thatthey want to proceed with thisas soon as they can. So,
+they'renot,they'renot delaying.They've alreadystarted.Even though thisthinghasn't
+even passed second reading yet,they've already startedmeeting. But do you want
+more assurances from them, likea letter?
+COUNCILMEMBER MOLINA: Yeah. No, imean, Ijustwanted to,to put itout there on the
+record, that there issome close to specificdate when thispilotprogram could occur.
+So, incase the publicsees thathey,we passed enabling legislation,so,when willthe
+pilotprogram start? So, justso thateverybody has some generalideawhen thisthing
+isgoing to get startedand we can get something on record. So, thatwas the reason
+formy inquiryon this.Chair. Thank you.
+CHAIR LEE: Member Molina, 1would be happy to write that letteron behalfof the Council.
+COUNCILMEMBER MOLINA: Great. Okay. Thank you. Chair.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 76
+CHAIR LEE: Did Isee another hand up? Vice-Chair Rawlins-Fernand ez.
+VICE-CHAIR RAWLiNS-FERNANDEZ: Mahalo, Chair. Ispeak insupport of the motion. So,
+I know, we allknow what we're talkingabout when we say enabling legislation.But
+for,you know, those in our community that may not be as ma‘a to legislativelingo,I
+wanted to expound upon that a littlebit. So, enabling legislationis,is itenables the
+department to be able to take thisaction,because the general rulein State statuteis
+that it'sprohibited. And so, ifthe County wants to enable the department to allow
+something thatgenerallyisprohibited,then thistype of legislationisrequired.And it's
+a "may" and not a "must". So, it'snot a mandate thatthe department provide this.It's,
+it'sjustlanguage thatwould allow the department to do thisunder our County Code.
+For allof us, we've, you know, we've talked about thisover many meetings. For those
+that haven't been followingevery single meeting, the pilotprojectthat we're talking
+about thatfunding was appropriated forin thispast budget isin South Maui. So, for
+the other districtsthat are concerned, the pilotprojectwould be in theirdistrict.The
+districtthatwe're talkingabout rightnow isSouth Maui. But as we're discussing,oh.
+Member King,you are shaking your head.
+COUNCILMEMBER KING: Chair?
+CHAIR LEE: Well, let's,let'shave her finishher comments and then we'llgo to you.
+VICE-CHAIR RAWLINS-FERNANDEZ: Okay. Iwillretractthat and letMember King speak
+to that. And Iwon't, Iwilltake that back that it'snot necessarilygoing to be inSouth
+Maui. Iknow Member King was working on itbeing inSouth Maui previously.But that
+funding may not be exclusivelyto South Maui, even though the Councilmember in
+South Maui isthe one that'sbeen spearheading thiseffort.Okay.
+And just a couple other points that Iwanted to make. So, the department isheld by
+Chapter 91 rule-making process, which requires itto be a publicprocess and would
+have a publiccomment period.And so,the publicwould be involvedinthisrule-making
+process that would enable those individualsthat are not sheltered at the moment to
+stay inthese areas. Inresponse tothe individualthat,you know, spoke with Pro Temp
+Kama, Ijustwanted to remind our community that individualsthat are not sheltered
+rightnow, those that,you know, people referto as houseless,are not a monolith.And
+so, there isn'tone descriptionfor all. It'sjust unsheltered. So, as far as them not
+paying taxes, it'snot ailtruethatallthose thatare not unshelter,are not sheltereddon't
+pay taxes. It'sdifferentcase-by-case.
+And that,but Iagree with our,with thatperson that Iwould likeus todo more, especially
+with the risingcosts of the fuel,and the impact that ithas had on electricityand
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 77
+therefore,everyone's electricitybillsand the cost of groceries,I’venoticed,have gone
+up likelybecause of the cost electricity.And so, Iwould love for the Council to,you
+know, work with the Administrationon providingsome immediate help as a resultof
+what's been going on with the day-to-day. Mahalo, Chair.
+CHAIR LEE: Thank you. Member King.
+COUNCILMEMBER KING: Oh, thank you. Chair. Iwas justgoing to respond to Member
+Molina and Member Rawlins-Fernandez. One of the reasons that we took out the
+requirement forSouth Maui was to expedite the projectincase a bettersitewas found
+somewhere else sooner, we should go ahead with the pilotprojectand not hold up just
+to findsomething inSouth Maui. And, and the factthatitisinthe budget, we approved
+thisunanimously as a budget item hopefullytellsus thatthat'sgoing to happen inthis
+next fiscalyear, because that'sthe periodforthisnext budget. So, I'm happy thatthe
+Administration isworking on itrightaway.
+I know thatthe folkswho are intendingto apply forthe grant are chomping at the bit
+and waitingforus to pass thislegislationso thatthey can, they can’tapply forituntil
+we pass thisenabling legislation.So, 1thinkeverybody realizesthatthishas to happen
+as quicklyas possible.And there'sno, you know, there isno foot-dragging,it'sjustwe
+have to pass thison second and finalreading. Thank you.
+CHAIR LEE: Okay. Any more discussion?
+Member King,we're going to need a motion on Rule 19.C.
+COUNCILMEMBER KING:
+MOVE TO WAIVE RULE 19.C TO PASS THIS ON SECOND
+AND FINAL READING.
+CHAIR LEE: Yes.
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Okay, moved by Member King, seconded by Member Johnson, to waive
+Rule 19.C regardingtakingactionon thismatter,which isatsecond and finalreading.
+Okay. Any more discussion on this? Allthose infavor ofthe motion,raiseyour hand
+and say "aye".
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 78
+Member Paltin. Member Paltin.
+COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA. PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+AYES;
+LEE.
+NOES: NONE.
+CHAIR LEE; Nine "ayes",zero "noes";motion carries.
+So, Iassume we voted on the amendment already? Yeah? So, the main motion as
+amended. No. Okay, any more discussion? Ifnot,allthose infavor ofthe main motion
+as amended, raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA. PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBER KING; Thank you. Members.
+CHAIR LEE; And Iwill.Member Molina, send a letteron behalfof the Council,to the Mayor
+urging him to move on thisas quicklyas possible.
+Alright,Madam Clerk.
+ORDINANCE NO.	
+BILL NO. 111 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE COUNTY OF
+MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE
+STATE OF HAWAII DEPARTMENT OF HEALTH FOR A LOAN FROM THE
+STATE WATER POLLUTION CONTROL REVOLVING FUND FOR THE
+COUNTYWIDE RESIDENTIAL CESSPOOL CONVERSION PROGRAM
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 79
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Ifthere are no objections,may I
+request the Clerk also callup BFED 123?
+CHAIR LEE; Any objections,Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Ifnot, so ordered.
+VICE-CHAIR RAWLINS-FERNANDEZ: I'm sorry,bill,Bill123.
+CHAIR LEE: Yeah. So, ordered.
+And then, Madam Clerk,could you callup one. Bill123?
+ORDINANCE NO.	
+BILL NO. 123 (2022)
+A BILL FOR AN ORDINANCE AMENDING APPENDIX A
+OF THE FISCAL YEAR 2023 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO PART II,SPECIAL PURPOSE REVENUES -
+SCHEDULE OF REVOLVING/SPECIAL FUNDS FOR FISCAL YEAR 2023
+ECONOMIC DEVELOPMENT AND CULTURAL PROGRAMS
+REVOLVING FUND
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO PASS BILLS 111 AND BILL 123 ON SECOND AND
+FINAL READING.
+COUNCILMEMBER KING:
+SECOND.
+CHAIR LEE: Moved by Vice-ChairRawlins-Fernandez, seconded by Member King,to pass
+Bills111 and 123 on second and finalreading.
+Discussion, Vice-Chair Rawlins-Fernandez.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 80
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahaio, Chair. Bill111 (2022),authorizes the Mayor
+to enter intoan intergovernmental agreement with the State of Hawaii Department of
+Health for a loan from the Clean Water State Revolving Fund for the Countywide
+ResidentialCesspool Conversion Program inthe amount not to exceed $1 million.
+And Bill123 (2022) amends Appendix A, Part II,of the FiscalYear 2023 Budget by
+adding an appropriationfrom the Economic Development and Cultural Programs
+Revolving Fund foracquisitionof property on lao Valley Road for$1.5 million.And for
+thisitem,the Administration iscontinuing to work with Ke Kula O Pillanion the future
+lease and coordinationwith the Nature Center as they relocatetheiroperations. Iask
+forthe Members continued support ofthese items. Mahaio, Chair.
+CHAIR LEE: Okay. Any more discussion?
+Member Sinenci.
+COUNCILMEMBER SINENCI; Thank you. Chair. Real quicklyon Bill123. As Ipreviously
+stated, charter schools and some Hawaiian immersion schools don't always receive
+the same amount of funding from the DOE student weighted formula equation despite
+allfamiliespaying theirfairshare of State taxes. So, thisleaves small schools like
+Ke Kula O Pi'ilanito seek grant funding to subsidizetheirteachers'salaries,utilities,
+rent,bus service,school lunches. So, thispurchase willensure thatculturaleducation
+schools like Ke Kula O Pi'ilanihas an equal chance at deliveringtheirschool's
+programs and theireducationaldirectives,so happy to support.
+CHAIR LEE: Any more discussion? Allthose infavorofthe motion,raiseyour hand and say.
+Oh, oh. Member Sugimura, you votingor you have a question?
+COUNCILMEMBER SUGIMURA; I'm voting.
+CHAIR LEE: Voting. Allthose infavor of the motion, raiseyour hand and say "aye".
+Okay. Members King and Paltin.King and Paltin.
+AYES; COUNCILMEMBERS JOHNSON, KAMA. KING.
+MOLINA. PALTIN, SINENCI, SUGIMURA.
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 81
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.Thank you.
+Now on Bill 120.
+ORDINANCE NO.	
+BILL NO. 120. FD1 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 12.40, MAUI
+COUNTY CODE, TO RENAME KULA COMMUNITY CENTER TO VON
+TEMPSKY COMMUNITY CENTER COMPLEX IN KULA
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you.
+I MOVE TO PASS BILL 120, FD1 (2022) ON SECOND AND
+FINAL READING.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura, seconded by Member Kama, to pass Bill120
+FD1 on second and finalreading.
+Discussion, Member Sugimura.
+COUNCILMEMBER SUGIMURA: Councilmembers, Bill120, FD1 (2022), would amend
+Chapter 12.40,Maui County Code, torename Kula Community Center toVon Tempsky
+Community Center Complex in Kula. Iask forthe Councilmembers support. Thank
+you. Chair.
+CHAIR LEE: Any more discussion? Ifnot,ailthose infavoriteofthe motion,raiseyour hand
+and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 82
+CHAIR LEE; Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBERSUGIMURA: Thank you, Members.
+CHAIR LEE: Madam Clerk. Madam Clerk.
+COUNTY CLERK; Chair, proceeding with agenda
+have nobody currentlysigned up to testify,
+unfinished business item.
+category P. Unfinished Business. We
+so this is a finalcallfor testimony on
+CHAIR LEE: Members, any objections to closing
+testimony forunfinishedbusiness?
+public testimony and accepting written
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered.
+Madam Clerk.
+COUNTY CLERK: Chair,proceeding with unfinishedbusiness.
+UNFINISHED BUSINESS
+RESOLUTIONS
+RESOLUTION
+NO. 22-184
+REFERRING TO THE PLANNING COMMISSIONS
+A PROPOSED BILL RELATING TO
+AGRICULTURAL LAND USE FOR HOUSING
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBERSUGIMURA: Thank you.
+I MOVE TO FILE RESOLUTION 22-184.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 83
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura, seconded by Member Kama, to fileResolution
+22-184.
+Discussion? Member Sugimura.
+COUNCILMEMBER SUGIMURA: Yeah, thank you. Members. Thanks forallowingme to let
+this sit on the Clerk's desk until I had a chance to discuss with the Ag Working Group
+who worked on thisbillwith the Planning Department. And afterthey had a meeting
+this past Thursday regarding the proposed legislation,they asked that itget filedso
+that they can rework it,because there were things in the billthat was not part of what
+they had originallyintended. So I'masking forthatto be filed,and you'llhear from us
+again. Thank you.
+CHAIR LEE: Okay. Member, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Isupport the motion. This isthe last
+item on our agenda, so Ijust wanted to flag this before we end, considerationfor
+Bill125 insection N lateron. But Isupport the motion. Mahalo, Chair.
+CHAIR LEE: Okay. Any more discussion? Allthose infavor,raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBER SUGIMURA: Thank you, Members.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 84
+DISCUSSION AND ACTION RELATING TO
+BILL NO. 125 (2022)
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. This isagenda section N. Bills.
+ORDINANCE NO.	
+BILL NO. 125 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2023 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX C - CAPITAL IMPROVEMENT PROJECTS
+DEPARTMENT OF POLICE, COUNTYWIDE,
+COUNTYWIDE POLICE FACILITIES
+VICE-CHAIR RAWLINS-FERNANDEZ:
+[ MOVE TO WAIVE THE REQUIREMENT OF COMMITTEE
+REFERRAL AND REPORT FOR BILL 125 (2022) IN
+ACCORDANCE WITH RULE 7.G OF THE RULES OF THE
+COUNCIL.
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Okay, moved by Vice-Chair Ra\A/lins-Fernandez,seconded by Member
+Johnson, to waive the Rules of the Council regarding Bill125.
+Discussion, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Action is requested today to cover
+additionalcosts of the 23,000 forarchaeologicalmonitoringto complete thisproject.
+CHAIR LEE: What billnumber was that again?
+VICE-CHAIR RAWLINS-FERNANDEZ: 125.
+CHAIR LEE: Okay. Any more discussion?
+Regular Meeting ofthe Councilofthe County of Maui
+August 23, 2022
+Page 85
+VICE-CHAIR RAWLINS-FERNANDEZ: Not on the waiver.
+CHAIR LEE: Okay. This ison the PoliceDepartment, okay. Allthose infavor of the motion
+raiseyour hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE: Motion carries.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+IMOVE TO PASS BILL 125 (2022) ON FIRST READING.
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Moved by Vice-Chair Rawlins-Fernandez, seconded by Member Johnson to bill
+to pass Bill125 on firstreading.
+So, discussion, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Members, the purpose of thisbillis
+to amend Appendix C, Capital Improvement Projects for the Department of Police,
+Countywide Police Facilities,by amending the project descriptionto include the
+Wailuku PoliceStationparking lotimprovements.
+Funds are needed to cover the additional cost of $23,019 for the archaeological
+monitoring requirement during the project. The Countywide Police Facilities
+appropriation has sufficientfunds for the contract amendment for Maui Kupono
+Builders,C7242. Iask forthe Members support. Mahalo, Chair.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 86
+CHAIR LEE: Any more discussion,Members? Ifnot,allthose infavor of the motion, raise
+your hand and say "aye".
+Member Paltin?
+AYES; COUNCILMEMBERS JOHNSON, KAMA, KING.
+MOLINA, PALTIN. SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND CHAIR
+LEE.
+NOES: NONE.
+CHAIR LEE; Nine "ayes",zero "noes";motion carries.
+COUNCILMEMBER KING: Chair?
+CHAIR LEE: Yes, Member King.
+DISCUSSION AND ACTION RELATING TO
+COUNTY COMMUNICATION NO. 22-203
+COUNCILMEMBER KING: Ihave one more request. And itgoes back to CC 22-203. And I
+was hoping ifthere isno objections,we could pull,Igot thisa littlebitlate.So, Iwas
+hoping to pullout G5563-1, which isthe time extension on Ma‘alaea Mauka and TPL.
+And ifMember Paltiniswilling,referto PSLU. Ifnot,ifyou don'thave time,we could
+take itinto CARE. But this is the time extension on thatpurchase ofthatland. Ifthere's
+no objections.And I--
+CHAIR LEE: Members, any objectionsto Member King'srequest? Any objections?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So. ordered.
+COUNCILMEMBER KING; Thank you. Are you okay withthatMember Paltin,or do you want
+me to take itinto CARE, or?
+COUNCILMEMBER PALTIN: Iwas, yeah, you can take itintoCARE.
+Regular Meeting of the Council of the County of Maui
+August 23, 2022
+Page 87
+COUNCILMEMBER KING: Okay. Or, or should itgo to BFED? I'llask Member Rawlins-
+Fernandez.
+CHAIR LEE: For the record, for the record, where isitgoing?
+COUNCILMEMBER KING: I'mwillingto take it.Ijustdon'twant to step on any toes. So, if
+you feellikeitneeds to go intoBFED.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez, do you want thisitem?
+VICE-CHAIR RAWLINS-FERNANDEZ: Itlooks likePro Temp Kama ispointingto herselffor
+Parks.
+CHAIR LEE: Member Kama?
+VICE-CHAIR RAWLINS-FERNANDEZ: Okay.
+CHAIR LEE: No, Iwas saying you should justjan ken po.
+COUNCILMEMBER KING: No, I'm willingto take itintoCARE Committee. Ijustdidn'twant
+to step on anybody's toes.
+CHAIR LEE: Okay. Well,Idon'tsee anybody jumping up totake it.No objectionstosending
+thisitem to the CARE Committee? No objections?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay, so ordered.
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: One question. Ithought thisiswhat was purchased and
+so we are no longerpurchasing the mauka portion? Question.
+COUNCILMEMBER KING: We had itinthe budget to purchase it,but-
+COUNCILMEMBER SUGIMURA: And then itgot purchased by somebody else,right?
+COUNCILMEMBER KING: Right. And we're stillnegotiatingwith thatsomeone else. The
+County isstillnegotiating.That'swhy there'sa time extension on it.
+CHAIR LEE: Okay.
+Regular Meeting ofthe Council ofthe County of Maui
+August 23, 2022
+Page 88
+COUNCILMEMBER SUGIMURA: Okay.
+CHAIR LEE; No, no side bars. Any more items to,any changes, suggestions? Alright
+because we're at the end of the meeting.
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: Ijusthave a question for BFED, Keani. The police,their
+salary,and they'rewondering when it'sgoing to get taken up, because as you know all
+of the, because of collectivebargaining that allthe counties have to approve. And so
+they were wondering when you would be able to schedule itwithyour busy calendar?
+Ithinkitlooks likeSeptember 12.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez, you have a response?
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Like with allthe other collective
+bargaining items,Itake itto Committee, and then Iexpedite.
+COUNCILMEMBER SUGIMURA: Yeah. So, you would bring itup atyour next BFED meeting
+probably, which-
+VICE-CHAIR RAWLINS-FERNANDEZ: Yeah, I'llput iton the three-month calendar.
+COUNCILMEMBER SUGIMURA: Thank you.
+CHAIR LEE: Alright,anything else.Members?
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair. Ijusthad some closingcomments to add
+onto Member Molina'sopening comments. You know, Hawaii votes by mail,and so
+that'sthe most efficientway to do it.And ElectionDay isa holidayforus all.And I'm
+not going to be standing in line. I'm going to go to the beach, hopefully.You know
+take into consideration that we have a number, like, maybe a dozen Charter
+amendments. So, Ipersonallydon'twant to be standing inline,readinga book, making
+decisions. I'mgoing to get my mail-inthe ballot,and I'mgonna likesend itinbecause
+that'swhat the Legislaturemade changes for. Ifwe don't likethat system, we can
+lobby the Legislatureto go back to allthe pollingcentersand trytofindvolunteersand
+hireworkers forthat. But itwas a change made, and maybe we do need to give a
+refresherthatthatwasn't justa pandemic thing.That was a change tothe Legislature,
+to Hawaii votes by mail. And of course, everybody has the optionto go in person to
+Regular Meeting of the Council ofthe County of Maui
+August 23, 2022
+Page 89
+the voter service centers. But for me and my family,we're going to be taking the
+holiday,and enjoying ourselves,and not standing inline.Thank you.
+CHAIR LEE: Yay. And you'llhave time to repeat thatmessage allthe way up to November.
+Anybody else? Last reminder, don't forget Sunday ifyou want to win some great
+prizes,and have thiswonderful day of exercise and friendship. Don't forget,Sunday.
+Alright,and then,so ifthere'snothing else,I'mgoing to adjourn the meeting. Anything
+else? Then thismeeting ofAugust 23, 2022, isnow adjourned.
+ADJOURNMENT
+The regularmeeting ofAugust 23, 2022, was adjourned by the Chair at 12:01 p.m.
+KATHY KAOHU, COUNTY CLERK
+COUNTY OF MAUI, STATE OF HAWAII
+22823/lks;jm
+SHOPO August 18, 2022
+RECEiVED
+W? AUG22 8:09The Honorable Michael Victorino
+The Honorable Councilof the County of Maui
+Kalana 0 Maui Building,8th floor
+200 South High Street
+Wailuku, Hawaii 96793
+OFFICE OF THE
+COUNTY CLERK
+Dear Mayor and Councilmembers:
+On behalf of the State Board of Directors of SHOPO, we write to support
+Councilmember Paltin's resolution to amend the retirement requirements for police
+officersto assistin retainingour current experienced police officersas well as to
+competitivelyrecruitnew officers.We believethisresolutionwillimprove publicsafety
+and we hope to make ita priorityfor the Hawaii State Association of Counties'
+LegislativePackage.
+PRESIDENT
+Robert Cavaco
+VICE PRESIDENT
+Stephen Keogh
+SECRETARY
+Christopher Calio
+TREASURER
+Derek Pa Hawaii's county police departments are in the midst of a staffingcrisisand face
+aggressivecompetition from other law enforcement agenciesfor current officersand
+new recruits.The State of Hawaii's minimum requirement that police officershired
+after2012 cannot retirewithout being penalizedwith a reduction inbenefitsuntilthey
+reach age 60 placesour departments at a huge recruitingand retentiondisadvantage.
+Further,the current system contains a minimum years of servicethat requiresofficers
+to expose themselves to greater long-term physical and emotional health risksand
+danger.
+DIRECTORS AT LARGE
+Mark Arnold
+Shawn Cavaco
+Carmel “Mel"Hurley
+HONOLULU CHAPTER CHAIR
+Nicholas Schlapak
+HAWAI‘1 CHAPTER CHAIR
+James "Kana" Correa
+KAUAT CHAPTER CHAIR
+Kennison Nagahisa Policingisa physically,mentally and emotionally demanding profession.Requiring30
+years of serviceor reaching age 60 puts a tremendous burden on officersto work
+longer despitethe impacts to theirhealth.MAUI CHAPTER CHAIR
+Nicholas Krau
+As officersprogress through theircareer,and have a better understanding of the toll
+the job takes on them, they begin to seek agencies with more realisticretirement
+requirements or they look to leave the profession.Law enforcement agencies on the
+mainland are aggressivelyrecruitinglateral(experienced)officersto jointheirranks
+and inadditionto huge cash signingbonuses, they are offeringeitheryears of service
+creditfor retirement or fullreciprocity.This means an officerin Hawaii can leave for
+another department and not lose anything relativeto theirpension. Our survey of
+Maui PD officersshowed quiteclearlythat at least100 officersare lookingto leavethe
+department within the next two years.
+Main Office & Honolulu Chapter
+1717 Hoe Street
+Honolulu, Hawaii 96819-3125
+Ph. (808) 847-4676 '84 SHOPO'
+Fax: (808)841-4818
+Hawal'i Chapter Office
+688 Kino'ole Street,Room 220 B
+Hilo,Hawaii 96720
+Ph: (808)934-8405
+Fax- (808)934-8210
+Maui Chapter Office
+1887 WiliPa Loop, Suite#2
+Wailuku, Hawaii 96793
+Ph: (808)242-6129
+Fax: (808)242-9519
+Councilmember Paltin's solves this retention issue as well as places reasonable
+requirements on our officersto qualifyfor retirement.We urge you to support her
+resolution.
+Kauai Chapter Office
+3176 Oihana Street,Suite 104, Lihue
+Mailing Address:
+P.O. Box 1708
+Lihue, Hawaii 96766
+Ph- (808)246-8911
+Sincerely,
+NICHOLAS KRAU
+Maui Chapter Chair
+State Board of Directors
+STEPHEN KEOGH
+Vice President
+State Board of DirectorsV/s/f us at
+shopohawaii.org
+Count^£Ieij< RKCgfiyfrp
+m 22 W & 10
+-OUNTYClIrk
+Gary Elster<crazy2kite@gmail.com>
+Sunday, August 21, 2022 11:24 AM
+County Clerk
+Testimony forCouncilHearing August 23,2022 Resolutions22-1
+CarnicelliLetter.pdf
+From:
+Sent:
+To:
+Subject:
+Attachments:
+You don'toftenget emailfrom crazy2kite@gmail.com.Learnwhy thisisimportant
+Testimony of Gary Elster(testifler)insupport of Resolution 22-194 Disapproving the Kuikahi projectin itsuphill
+locationor approving 22-193 with Modificationto move the projectdown Kuikahi to front on Honoapillani Highway
+As with Alaula's("Proponent")Waipuilaniprojectrecentlyturned down by the Councilthisisa case of rightproject
+wrong location.Unlikethe Waipuilaniproject,proponent has the choice to move the projectdownhill on itsown
+property,frontiton Honoapillanihighway and solveallthe safetyproblems caused by itsproposed sitingof iton the
+steep portionof Kuikahiand simultaneously improving the projectimmensely by sitingitacross the streetfrom services
+and on an existingpublictransportationroute.
+Testifierhas been incontactwith Proponent forover 15 months raisingthe safetyissuesand suggestingthat the
+proponent simply move the projectdownhill on itsown property where itwillsolvethe safetyproblems inherent in its
+proposed steep hillsidelocationand simultaneouslymake the projecta walkable community acrossthe streetfrom
+servicesand publictransportation.However, proponent has refusedthatsuggestionand insistson tryingto buildthe
+projecton the steep hillsidelocation.
+Attached isTestifier'sJune 15, 2022 document entitledChallenge to Sufficiencyof FinalEA which spellsout in detailthe
+reasons why Testifierbelievesthat the projectshould not be builton the steep hillsidelocationof Kuikahi.A rejectionof
+that steep hillsidelocationwould not killthe projectas proponent could simply move itto the lower partof itsKuikahi
+property where itwould be a much better project..
+Testifierisinfavorof Workforce Housing and roundabouts,justnot on the steep portion of Kuikahiwhere itwillbe
+unsafe and willcontributeto trafficissuesby not being a walkable community. The problems can be easilysolved by
+moving the projectto the bottom of the steep hillwhere Kuikahilevelsoff. Proponent has confirmed thatthe 14.9 acre
+proposed projectispartof the totalparcelof 148 acres itowns allthe way to the bottom of Kuikahi(see attached letter
+of Lawrence Carnicelli).However, Proponent inthatsame letterinsistson buildingiton the hillsidelocation.
+Accordingly,Testifierrecommends that the Councilrejectthe steep hillsidelocationby approving Resolution22-194 or
+inthe alternativeapproving resolution22-193 by conditioningthe approval of the projecton the conditioningof its
+being sited to fronton HonoapillaniHighway and Kuikahi.
+RespectfullySubmitted
+Gary Elster
+1
+June 16, 2022
+Charlene Shibuya
+Senior Associate
+Munekiyo Hiraga
+305 High St.,Suite 104
+Wailuku, HI 96793
+Doyle Betsill
+KuikahiProperties,LLC
+1325 Lower Main St.
+Wailuku, HI 96793
+LoriTsuhako, Director
+County of Maui
+Department of Housing and Human Concerns
+2200 Main Street,Suite546
+Wailuku, HI 96793
+Michele Chouteau McLean, Director
+County of Maui
+Department of Planning
+2200 Main Street,Suite 315
+Wailuku, HI 96793
+Jordon Molina, Director
+County of Maui
+Department of PublicWorks
+200 South High Street
+Wailuku, HI 96793
+Marc Takamori, Director
+County of Maui
+Department of Transportation
+David Trask Building,Suite 102
+2145 Kaohu Street
+Wailuku, HI 96793
+Mary Alice Evans, Director
+State of Hawaii
+Officeof Planningand SustainableDevelopment
+2
+P.O. Box 2359
+Honolulu, HI 96804
+Jade Butay, Director
+State of Hawaii
+Department of Transportation
+869 Punchbowl Street
+Honolulu, HI 96813
+Gary S. Elster,"Challenger",a residentof property inthe Kehalani planned development adjacent to the proposed
+KuikahiVillageproject,hereby challengesthe sufficiencyof the Kulkahi Villageproject'sFinalEnvironmental
+Assessment on published on May 23, 2022. TMK NO. (2)3-5-002:003(por.)
+The challengeisbased on the EA's woefully insufficientdiscussionof the inherent design issuesposed by proposing to
+builda roundabout on a steep hillsideroad and the failureto discuss, as an alternative location for the project,
+proponent's own downhill property adjacent to Honoapillani Highway that would not have the serous intersection
+issues of the steep hillsidelocation.
+1. THE EA Is insufficient in that itfalls to discuss the factthat a roundabout on a steep hillsideroad has Inherent
+designissuesand, infact,the proponent isactuallyconsidering stops signsand/or signals,both of which may be
+unsafe on that hillside location.
+Challengerisa proponent of roundabouts and was involvedinthe originalKiheiroundabout inseeking and obtaining
+Councilapprovaland initiallylikedthe thought of a roundabout at the proposed locationbecause of itstrafficcalming
+characteristics.However, afterfurtherthought and researchChallengeradvised developer'sagent about concerns with
+the viabilityon a hillsidelocation.
+'Asyou know Iwas involvedingettingthe originalroundabout in Kiheiapproved and built,however, on
+furtherstudyIhave seriousdoubts about itsviabilityon a hillsidestreet.Ihave done an internetsearch
+and have been unable to findany builton a slope.Stacking,fuelconsumption, startingand stopping on
+a slope allmilitateagainsta roundabout atthatlocation.(ChallengeremailofMarch 21,2022).
+Though a roundabout was touted inpublicityabout the proposed project,allthat actuallyisdiscussed inthe EA isthisat
+page 50:
+"Atthe proposed Ku'ikahiDrive/KehalaniMauka Parkway/ProposedProjectAccess intersection,consider a mini
+roundabout when Kehalani Mauka Parkway fullyopens to through traffic.Future design of the roundabout shall
+provide adequate horizontaland verticalsightdistanceon allapproaches while maintaining an acceptable grade
+coupled with enforcement of speeds along the relativelysteep Ku'ikahiDrive approaches".
+The proponent statesitisconsideringstop signsas an alternative:
+EA Page 112
+"Additionally,per comments receivedfrom the Urban Design Review Board, the Applicant isalsoconsideringan
+alternative for the roundabout at the Ku'ikahi Drive and project driveway. The Applicant and itsconsultants are
+alsostudying the potentialfor a four-way intersection,with stop signs on the Kehalani Mauka Parkway and
+projectdriveway" (italicsadded)
+Not mentioned in the EA but included in an email from the proponent isthe factthat that the proponent's engineers are
+now considering signalsifa roundabout isfound to be inappropriate for the location:
+3
+From: Keicee Fujimoto
+To:
+Subject: RE: Kuikahi - Gary Elster'sissuewith the proposed roundabout
+'Hi Charlene/Lawrence,
+Standard practiceisto consider a roundabout in lieuofa signalif/when a signaliswarranted at a
+particularlocation.Based on forecasttraffic,a signal may be warranted atthe Kuikahi Drive/Kehalani
+Mauka Parkway intersectionwith fullbuild-outof Kehalani,which iswhat triggeredthe roundabout
+feasibilityanalysis.A rough schematic indicatesthatthere should be adequate ROW to accommodate a
+roundabout, but the TIAR statesthat itrecognizes various design featureswillneed to be addressed inthe
+RAB design such as grade,sightdistances,and speed enforcement/adherence.
+One of the benefits of a roundabout is that drivers are required to slow theirspeeds on the approach to the
+roundabout toyieldto circulatingtraffic,and the deflectioninthe roundabout approach as the vehicles
+enter the roundabout furtherreduces speeds.Reducing speeds through the intersectioncan improve
+pedestriansafetyespeciallyas we anticipatechildrencrossing the streetto walk to Puu Kukui Elementary
+School.Along KuikahiDrive,the grade isabout 7% but flattensout near the Kehalani Mauka Parkway
+intersection.Indiana and Colorado Departments ofTransportation have noted that there isa precedent for
+installingroundabouts on roadways with mainline grade up to 10%. However, every locationisdifferent,
+and as the TIAR states,there are considerations that willbe evaluated during the design phase of the
+roundabout includingwhether sightdistancerequirements can be met on the verticalcurve which would
+determine the roundabout'sfeasibility.
+Ifitisfound that a roundabout isnot appropriate for the location,a signal could be considered.
+Additionaltrafficcalming recommendations can be consideredto lower speeds along Kuikahi Drive and
+through the intersection,includingchicanes,corner extensions/bulbouts,a raisedcrosswalk,flashing
+speed limitsigns,and speed humps. (Boldadded]
+(email of Lawrence CaricelliApril8,2022]
+2. IF A ROUNDABOUT IS INAPPRORIATE ARE STOP SIGNS OR SIGNALS SAFE ON THAT HILLSIDE
+LOCATION?
+No discussion isfound in the EA as to whether proposed stop signs or signals are safe on a
+steep hillside road.
+The following observations were recently made recently by Challenger:
+Drivers,alreadyblow through stop signs
+A. Now that Kehalani Mauka isopen past the Villasand allthe way around Kehalani,
+Challenger has observed, on two consecutive days thisweek, drivers drivingright
+through intersectionof Kehalani Mauka and Kauna Lipo at high speeds without ever
+stopping at the stop sign at Kauna Lipo.
+B. Drivers regularlydrive down Kuikahi going by the intersectionof Kehalani Mauka at
+high speeds estimated by challengerto be in the area of 60 MPH.
+Conclusion regarding the intersection
+While a stop sign or signalmay seem likean adequate device to an engineer,in realitychallenger
+has observed driversdrivingdown Kuikahiathigh speeds forthe 14 years challengerhas livedthere and
+have been blowing through the stop sign at Kehalani Mauka and Kauna Lipo since the opening of Kehalani
+Mauka past the Villas.
+4
+Since the viabilityof the entireprojectturns on creatinga safeintersectionitisimperativethattheEA be
+revised to spellout the risksand alternativesto elicitseriouscomments from theassortedagenciesas to
+theirconcerns about the safetyof the intersectionunder any oftheproposed alternatives.Itisclearfrom
+the lackof any seriouscomment thatthe agenciesthatshould be concerned about the safetyofthe
+intersectionwere not alertedto the challengeof designinga hillsideroundabout and the inherentsafety
+issuesofstop signsor signalson a steep hillsideroad.
+3. THE EA IS INSUFFICIENT IN THAT IT FAILS TO DISCLOSE THAT THE PROPENENT OWNS THE PROPERTY
+ALL THE WAY TO THE BOTTOM OF KUIKAHI WHERE THE PROPONENT COULD BUILD THIS PROJECT
+WITHOUT ANY DESIGN OR SAFETY ISSUES.
+Not discussed as an alternativewas the factthat the proponent owns allthe property on Kuikahidown to the
+highway and could alleviatethe roundabout design issueand the stop sign/signalsafetyissuessimply by sitingthe
+projectat the intersectionof Honoapillaniand Kuikahi.That would provide the projectwith publictransportationand
+would be adjacent to existingservicesincludingmarket, bank, fastfood, hardware store,etc. The effectof that would
+eliminatedrivingto and from servicesand would create a walkable community.
+Why didn'tthe proponent sitethe projectwhere itshould have been properly located next to servicesand
+transportation availableat the bottom of the hilland why wasn't thisdiscussed as an alternativeinthe EA? Apparently,
+the proponents onlyanswer isthatwater rightswere grandfathered intothe hillsidelocationby a previousdeveloper. Is
+that a good reason forbuildingan otherwise good projectinthe wrong locationand creatinga varietyof potentialsafety
+issues?
+Why wasn't thisviablealternativediscussed inthe EA so that allthe agencies who were given noticecould have been
+alerted to comment on it?
+CONLCUSION ON THE INSUFFICCIENCY OF THE EA
+Ifthere isa purpose to an EA itshouldgivethe ultimatedecisionmakers sufficientdiscussionof the projectand its
+alternativesto make an informed decision.By any means thisEA failsthat testas the seriousissueof an appropriate
+intersectionon a steep hillsideroad isbarelydiscussedmuch lessthe safetyof any alternatives.Second, the factthat
+the proponent has a safeviableoption forlocatingthe project at the bottom of the hillwhere ithas public
+transportation and immediate access to serviceswithout the need for drivinga car isa substantialenvironmental issue
+that has not been discussed at alland should be in an EA. For those reasons itisrequested that EA be revised to include
+the importantissuesraisedinthischallenge.
+Respectfullysubmitted
+Gary Elster
+5
+Alaula Builders LLC
+1325 Lower Main Street
+Suite ‘A’
+Wailuku, HI 96793
+Gary Elster
+12 Maiihini Place
+Wailuku, Hawaii 96793
+qse@hawaii.rr.com
+(808) 250-3726
+Chapter343,Hawai'i Revised Statutes FinalEA(FONSl)
+forthe Proposed KuikahiVillageProjectatTMK (2)3-5-002:003
+(portion),Wailuku,Maui,Hawaii
+SUBJECT:
+Dear Mr. Elster,
+Thank you foryour letterdatedJune 16. 2022 providingcommentson theChapter
+343, Hawaii Revised StatutesFinalEnvironmentalAssessment (FONSI) forthe
+proposedKuikahiVillage100% WorkforceHousingNeighborhoodinWailuku,Maui,Hawaii. While Comments on the Draft EA were due by November 8. 2021,
+behalfof KuikahiPropertiesLLC (Af3plicant)Iofferthefollowinginresponsetothe
+threenumbered comment pointsnoted withinyour letter.
+on
+1. The EA is insufficientin that itfailsto discuss the factComment:
+thata roundabouton a steephillsideroadhas inherentdesignissuesand,
+in fact,theproponentis actuallyconsideringstops[sic]signsand/or
+signals,bothofwhichmaybe unsafeon thathillsidelocation."
+1.
+Response: We appreciatethefactthatyou are“aproponentofroundabouts.
+We alsoappreciatethatyou have conductedan internetsearchon
+itsviabilityon slopedroads.We shareyourconcernforsafetyof
+the residentswithinthe proposed neighborhood and the current
+residentswho will be also using this intersection,
+professionallylicensedtrafficengineers,civilengineersand
+architectswillcontinueto make safetythe highestpriorityas we
+engagethevariousgovernmentalAgenciesand Departmentsin
+designand implementationofany offsiteimprovementobligations,
+we may have inconjunctionwiththisproposed100% workforce
+housing neighborhood.
+Our
+2. IF A ROUNDABOUT IS INAPPRORIATE ARE STOPComment:
+SIGNS OR SIGNALS SAFE ON THAT HILLSIDE LOCATION?
+2.
+Response: Again,we share your concernsabout safety.Thisincludesthe
+safetyforthe currentresidents,residentsof the proposed100%
+workforceneighborhoodand any otherpersonthatwillbe usingthis
+intersection.We share your concerns and take your observations
+about driver’sbreakingthe roadway safetylawsveryseriously.This
+isnotacceptablebehavior.We would be more than happy tojoin,
+shouldyou engage theMaui CountyPoliceDepartmentinan effort
+to have the law enforcedto make thisneighborhood a saferplace
+to livethroughadditionalpatrolor education.Again,our licensed
+professionalswill engage all appropriateAgencies and
+Departmentstotake allprecautionsto ensurethe safetyof allin
+designand constructionofany offsiteimprovement obligationswe
+may construct.
+3. THE EA IS INSUFFICIENT IN THAT IT FAILS TOComment:
+DISCLOSE THAT THE PROPENENT [SIC]OWNS THE PROPERTY
+ALL THE WAY TO THE BOTTOM OF KUIKAH! WHERE THE
+PROPONENT COULD BUILD THIS PROJECT WITHOUT ANY DESIGN
+OR SAFETY ISSUES."
+3.
+Response: The EA referencesthe projectsiteofapproximately14.9acresas
+a portionofthetotalparcelcontainingapproximately148acreson
+ultipleoccasionsthroughoutthe document and appendixes.
+Additionally,and more specifically,figures2,5,6,7,8,11,12,15,
+16,17,18 and 19 allreferenceand clearlyshow thelargerparcel
+“alltheway tothebottomofKuikahi”.Thereareadditionalexhibits
+intheappendixthatalsoreferenceand/ordepictthelarger148+/-
+acre parcel.
+Whilewe appreciateyourconfidencethatwe "...COULDBUILD
+this PROJECT WITHOUT ANY DESIGN OR SAFETY ISSUES"
+ithas been saidthatthereisno perfectprojectand thereisno
+perfectlocation.Our experiencewarnsustoalwaysbe alertand
+awareofdesignand safetyissues.We willstaydiligentindesign
+and withsafetyforevery100% workforcehousingprojectthatwe
+propose,includingKu'ikahiVillage.
+We appreciateyourinputandwillincludea copyofyourcommentletterandthis
+responseletterwiththeMCC 2.97100% WorkforceHousingApplicationfortheproject.
+Shouldyou have any furtherquestionsorwouldliketohaveadditionaldialog,please
+feelfreeto callme again at (808) 283-6090.
+Mahao
+m
+ff-
+Lawrervce"
+VP Development,AlaulaBuildersLLC
+li.Brrii
+Count^^lerk RCOi:, t 'V c . u
+From:
+Sent:
+Karen Comcowich < kcomcowich@yahoo.com >
+Saturday,August 20,2022 12:25 PM
+County Clerk
+Reso 22-193 support APPROVING WITH MODIFICATIONS THE.INDEI
+DEVELOPMENTOF THEKUIKAHIVILLAGEWORKFORCE HOU^45
+mi AUG22 AH 8:09To:
+Subject: T
+)F THE
+CLERK
+You don'toftengetemailfrom kcomcowich@yahoo.com. Learnwhy thisisimportant
+To Maui County Council Members,
+Isupport Reso 22-193 APPROVING WITH MODIFICATIONS THE INDEPENDENT DEVELOPMENT
+OF THE KUIKAHI VILLAGE WORKFORCE HOUSING PROJECT.
+We need affordablehousing;however, thisplan lookslikea parking plan with an affordablehousing
+component. Itcan be improved by incorporatingpoliciesfrom the Central Maui Community Plan.
+Natural Drainage features should be incorporated intothe drainage plan. A linearpark/open
+space along Kuikahi Drive containing the natural drainage way would be ideal for minimizing
+gray infrastructureand maximizing natural drainage. This can be accomplished by removing
+buildings A, C, and J. This issupported by the following policies from the Central Maui
+Community Plan:
+DRAINAGE: 2. Respect naturaldrainageways as partofgood land development.
+URBAN DESIGN: 5. Integratestream channels and gulches intothe region’sopen space system for
+purposes of safety,open space relief,greenways forpublicuse and visualseparation.Drainage
+channels and siltationbasins should not be used for buildingsites,but ratherforpublicopen space.
+Drainage channel rights-of-wayand easements may also be used forpedestrian and bikeway
+facilities.
+The plan should use drought-tolerant plants with a focus on native options. (Although ILove
+the inclusion of fruittrees,mango and avocado, as a way to increase food security and
+provide shade). The following policy supports using drought tolerantspecies.
+URBAN DESIGN: 10. Incorporatedrought tolerantplantspecies and xeriscapinginfuturelandscape
+planting.
+Thank you foryour time,
+Karen J Comcowich
+Lahaina, HI
+Sent from Yahoo Mail. Get the aop
+1
+RPnFiVEPCountj^let^
+2011AUG17 PH ? USDavid Dorn <daviddorn808@gmail.com>
+Wednesday, August 17,2022 6:09AM
+County Clerk
+Isupport Wetlands Billnumber 91 (2022)
+From:
+Sent:
+To:
+OFFICE OF THE
+COUNTY CLERK
+Subject:
+Wetlands Billtestimony 8-17-2022
+Good morning committee members, my name isDavid Dorn and Iam not a lobbyist,Iam
+speaking today on behalf of the South Maui Save the Wetlands Hui, and on behalf of the
+SierraClub Maui, and we support Wetlands Billnumber 91 (2022), and we applaud you all
+fordoing thiswork and forcontributingto the refinements inthislatestversion of the
+document.
+Ihave reviewed thislatestversion along with my colleagues.And we are in agreement that
+thisbillisnot only logicaland practical,but italso embodies the best effortsand collaboration
+of itscreators.Finally,we willhave the toolsto help us make betterplanning decisions going
+forward. And we are confident that this billwill become indispensable inyour effortsto protect
+the wetlands that are vitalfor our watersheds, our wildlife,our culturalpractitioners,and our
+community, both now and inthe future.
+My colleagues and Isupport the adoption of thislatestversion of the billand hope that itwill
+pass out of committee today. And we look forward to the time ahead when we can allstart
+working togetherto protectand preserve wetlands.And we realizeour goals of stabilizingthe
+watershed, restoringour fragileecosystems, and bringingback our livingheritage.
+Thank you again forallyour hard work, and we hope that you can help thisbilltake one step
+closerto completiontoday.
+Mahalo
+David Dorn.
+Count^Clerk
+JeffGilbreath<jeff@hawaiiancommunity.net>
+Monday, August 22,2022 6:02PM
+County Clerk
+Support:Resolution22-194
+From:
+Sent:
+To:
+Subject:
+HighImportance:
+Aloha Councilmembers,
+Iam writingon behalf of Hawaiian Community Assets and Hawaii Community Lendingto stronglysupportthe passage of
+Resolution 22-194. The resolution will move forward Kuikahi,a priorityprojectinthe Maui County Comprehensive
+AffordableHousing Plan and willmake affordablehomeownership opportunitiesavailableto more than 200 local
+familiesranging from 60% area median income to 140% area median income.
+This isa criticalprojectthat needs your approval. We recommend to bypass the AffordableHousing Committee and
+approve directlyout of the Councilmeeting scheduled August 23 at 9am.
+Mahalo,
+JeffGilbreath (he/him/his)(what'sthis?)
+Executive Director
+Hawaii Community Lending
+c/oHawaiian Community Assets
+200 N. Vineyard Blvd. #B140
+Honolulu, HI 96817
+Direct: 808-587-7653
+Main: 808-587-7656
+TTY: 877-477-5990
+Fax Direct: 808-628-6879
+Web: www.HawaiiCommunitvLending.com
+HAWAII
+COMMUNITY (
+* LENDING
+CDFIi
+Hawaii Community Lending isa 50Ic3 nonproiftNativecommunity developmentifnancialinstitutionthatincreasesaccesstocredit
+and capitalfor the economic self-sufifciencyof underservedHawaii residentswitha particularfocuson NativeHawaiians.
+^ Pleaseconsidertheenvironment beforeprintingthisemail
+The informationtransmittedisintendedonly forthepersonor entitytowhich itisaddressedand may containconfidential,proprietary
+and or privilegedmaterial.Any review,retransmission,disseminationorotheruseof,ortakingofany actioninrelianceupon this
+informationby personsor entitiesotherthantheintendedrecipientisprohibited.Ifyou receivedthisemailinerror,pleasecontactthe
+senderand deletethe materialfrom allcomputers.
+1
+REC VEDI
+Lance Hoker
+mi AUG 15 AH & 39P.O. Box 790656
+Paia, HI 96779
+email hokcr@maui.nec tele I-808-283-I056 OFFtCE OF THE
+COUNTY CLERK
+August 14,2022
+ChairAliceLee,Maui CountyCouncil
+Alicc.Lec@maui.councy.us
+Kach)'Kaohu,CountyClerk
+Countv.clcrk@mauicouncv.us
+Mayor Mike Victorino
+Mayors.OFfice@,co.maui.hi.us
+RE: BilltoallowhouselesstoliveinCountyParkingLotsPSLU-49 Rcso22-70
+TESTIMONY - PLEASE DISTRIBUTE TO ALL MAUI COUNTY COUNCIL MEMBERS
+Iam writingbecause of the Councilsplan (Friday,August 4, 2022, The Maui News) to allow "sleeping
+space forhouseless"in Maui County ParkingLots.Ifeeland know from experience that thisisa flawed
+and not fullythought out proposed Bill.
+Myself and many neighbors livenear County Parking Lots and what we have to deal with isdangerous
+and unhealthy.For example, The Hana Hwy parkinglotin Paia has a constant population of "houseless"
+that camp in/oron a propertyowned by an absent landowner EC Paia,LLC-EagleCanyon Management,
+TMK (2)2-5-5:18(339 acres).Thisisthe same propertythat was the subjectof "an inundation with
+concerns regardinggrowing homeless encampments" complaint to the Mayors officeback inJune,
+21,2022. The complaint was passed to LoriTsuhako, Housing and Human Concerns "to findsome
+solutions". MAPPS Case code Number FD-BRUSH2022-00014. A recent fire,July30, 2022, which
+apparently originatedfrom the "houseless" camp or parking lot,burned 400 plus acres exposing 60 or
+more abandoned and wrecked carsthat were being used by the "houseless" campers. Ihave no idea
+how much thisfirecontroloperation cost Maui County, Iwould suggest an audit,but itoriginatedfrom
+those livingat the Paia Hana Hwy County parking Lot and abuttinglands of the absent land owner. 1)
+Who isthe owners representativeon Maui, does Ms. Tsuhako know? 2)Has anyone contacted them for
+the re-imbursement of publicfunds, expenses or economic damages? Had thisfirestartedwhen Kona
+winds were blowing Eastward itwould have taken out Paia Town, The Youth Center and would have
+had been a catastrophe.
+Further,our Policedepartment isthin and deployed, responding to issuesallover the island.Ihave seen
+few patrolsat the Paia Hana Hwy parking Lot,meanwhile the mentally illlivingthere,continue to harass
+traffic,pedestrians,hold up trafficon the Hwy with apparent abandon. Panhandling, Drug use and sales
+continue, especiallyinto the early morning when you can hear them screaming obscenitiesat each
+other, 3:00 AM. Where isthe County security?Where are the patrols?The policesub-stationisat Paia
+Community Center on the other side of town a 1/2 mile away. Maybe itshould be moved into Paia
+town to the Hana Hwy Parking lotwhere they can observe and controlthe "houseless" sleepingthere.
+Page 2
+C
+Testimony- Houseless to livein County parking Lots,PSLU-49 Peso 22-70 (August 14, 2022)
+Finally,shouldn'tthe change of Zoning, for using a County Parking lot,changing the hours of operation
+and duration and use requirea publichearing and noticeto the property owners within the area? So
+that everyone impacted can speak to the change? There are serious criminal,health and safety issues
+involved here.
+Ihope you willallfurtherconsider thisproposed Bill's2"^^reading,discussthe County liabilityand
+community healthand safetyimpacts.Amend the proposalto protectour neighborhoods and the
+public,discusshow the areas willbe patrolled,monitored and securityprovided to the neighborhood
+residents. Most of allconsider other alternatives because thisidea needs publicand professionalinput
+before itbecomes a faileddysfunctionalproblem as I'vegiven you examples of here with thistestimony
+from directexperience.
+Best regards,
+Lance Hoiter
+County Clerk
+Tamara A. Paltin
+Thursday, August 11,2022 8:54 AM
+County Clerk
+Fwd; Negative Impacts of Portionsof Resolution22-184
+From:
+Sent:
+t ' )
+C "n
+To: C=9
+Subject: 3s»
+mcr>
+H Oni
+f (
+o^’ *T1 =S
+fTi —ISent from my iPad my?,X X
+Ou;
+Begin forwarded message:
+From: Atom Kasprzycki<Atom@kasprzyckidesigns.com>
+Date: August 11, 2022 at 8:30:42 AM HST
+To: "AliceL.Lee" <Alice.Lee(S)mauicounty.us>
+Cc: "Keani N. Rawlins" <Keani.Rawlins@mauicounty.us>, "Tasha A. Kama" <Tasha.Kama@mauicounty.us>, Gabe Johnson
+<GabeJohnson@mauicounty.us>, KellyKing <Kelly.King@mauicounty.u s>, "Mike J.Molina" <Mike.Molina@mauicounty.us>, "Tamara A. Paltin
+<Tamara.Paltin@mauicounty.us>, "Shane M. Sinenci"<Shane.Sinenci@mauicounty.us>, YukileiSugimura <Yukilei.Sugimura@mauicounty.u s>
+Subject: Re: Negative Impacts of Portions of Resolution 22-184
+You don'toftengetemailfrom atorn@kasprzyckidesigns.com.Learnwhy thisisimportant
+See attached
+Atom Kasprzycki,AIA
+Architect
+KASPRZYCKi DESiGNS iNC.
+40 Kupuohi Street,Suite 203
+Lahaina, Hawaii 96761
+Office 808-667-6116
+VAvw.kasprzyckidesians.com
+1
+Height & Placement of 5G Towers
+The newer cellsitesneeded for 5Gare much smaller. That’s because the 5G
+radiowave frequency cannot travelas faror pass through structures.The new
+smallcells”showing up throughout citiesand communities onlyeffectively
+cover a mile or less.That means in order to support the 5G rollout,new cells
+willneed tobe placedevery couplehundred feetwith 20-30 foottowers
+scatteredthroughout.
+{(
+On Aug 11,2022, at8:25 AM, Atom Kasprzycki<Atom(5)l<asprzvckiDesigns.com> wrote;
+Aloha Councilmembers,
+Ihave reviewed the subject proposed billand see some changes thatwould negativelyimpactagriculturallands.
+19.30A.050.6
+proposed allowances fortelecommunications and broadcastingantennae fortyfeetor lessinheight
+■ to me thisappears to be creatingan easierrout thatbypassescommunity impute forcel!phone antenna
+installationsand similar communications systems.
+o
+● 19.30A.050.[10] 9
+proposed additionof "surfand otherocean contests"
+■ Ihave surfed most of my life.My experience has been thatsurfand otherocean contests(likethe
+yearly Honolua Bay Roxy contest and other corporate conteststhatoperate on ag land)have littleto do
+with agriculturaluse,and functionmore as a forprofitattractionwith increasednegativeshoreline
+impacts
+o
+19.30A.060.6
+Itismy understanding thatthischange would only requiretelecommunicationsand broadcastingantennae
+greaterthan 40 feetinheightgo through the specialuse permit process
+■ Ido not support this
+o
+Irespectfullyask thatyou remove these proposed changes Ihave referencedabove.
+2
+Atom Kasprzycki, AIA
+Architect
+KASPRZYCKI DESIGNS INC.
+40 Kupuohi Street,Suite 203
+Lahaina, Hawaii 96761
+Office 808-667-6116
+www.kasprzvckidesians.com
+3
+Count^Clerk
+BettyLynn Moulton <bettylynn.moulton@gmail.com>
+Monday, August 22,2022 5:59 PM
+Tasha A. Kama; Gabe Johnson; Keani N. Rawlins;KellyKing;Mike J.Molina;Tamara A.
+Paltin;Shane M. Sinenci;YukileiSugimura; AliceL Lee
+County Clerk
+input regardingproposed changes to Ag land buildingcode
+From:
+Sent:
+To:
+Cc:
+Subject:
+[Some people who receivedthismessage don'toften get email from bettylynn.moulton@gmail.com. Learn why thisis
+important at https://aka.ms/LearnAboutSenderldentification]
+Dear Maui County Council members,
+Iam very concerned by what Ihave seen of the proposed changes to the Ag land buildingcode. Iknow you willbe
+discussingthison August 23 and 24 and Iwant to registermy alarm here.These proposed changes willbe a big problem
+for my family.
+The proposed buildingcodes forthe Ghana dwellingwould make itimpossible for our daughter and her four children to
+liveon the land,thus making our family farm plans much more difficultto pursue.Our kidsare alreadytaking
+"Mainland" because of Maui'shousingcrisis.
+Why would you cut the allowablelivingspace forthe Ghana, reducing covered deck and garage square footage? These
+willmean itisnot a viableoption foryoung families,the very people we need to be housing here on Maui — not to
+mention those with the energy and ambition to develop Ag land uses.Inaddition,as globalwarming increases,the
+outsideoverhangs that provide shade area should be increased to exploitpassivetemperature controls.Your proposal
+does justthe opposite.
+And farm usages typicallyrequirelargervehicles,trucksthat need more, not less,garage space.
+Please reconsiderthese limits,as Iam very sure ours isonly one of many familiesthatwillbe negativelyimpacted.
+Please consider that the typicalhome sizeinthe US covers over twice as much square footage as your proposed code
+allows.Thiscan only mean more familiesmoving to the mainland.
+Thank you fortakingthisinputintoconsideration.
+Aloha, Betty Lynn Moulton from Haiku
+1
+received
+«H«UC 17 w
+office of the
+COUNTY CLERK
+County Clerk
+vandicidumitru romulus <dvandici@yahoo.com>
+Wednesday, August 17,2022 5:16 AM
+County Clerk
+Police officers retirement
+From:
+Sent:
+To:
+Subject:
+[You don'toften get email from dvandici@yahoo.com. Learn why thisisimportant at
+https://aka.ms/LearnAboutSenderldentification]
+Aloha,
+CurrentlyIwork as a policeofficerout of Wailuku district.IVe been an officerfor8 years now. Ihave 22 years leftout of
+my career,which isway to long inthisfield.
+The majorityof other policedepartments on the mainland, require 20-25 years to put infora fillretirement.
+By changing thislaw,not only willboost the moral of the current officerwho are on the 30 years plan,itwillhelp
+recruiting.
+As you know, Maui policedepartment experience a unprecedented staffshortage. This willdefinitelyhelp recruiting
+more and better candidates.
+Thank you foryour consideration.
+Sent from my iPhone
+1
+Count^Clerk
+Gary Sanders <gdsanders9@hotmail.com>
+Monday, August 22,2022 6:10 PM
+County Clerk
+Ag Land Ghana restrictions.
+From:
+Sent:
+To:
+Subject:
+[You don't often get email from gdsanders9@hotmail.com. Learn why thisisimportant at
+https://aka.ms/LearnAboutSenderldentification]
+Council Members,
+My two daughters and four grandkids don't need more restrictionson Ag housing they need less.Running a 43 acre
+farm ishard work enough without having Cramped livingconditionsMy oldestgranddaughter Isalreadytalking
+Mainland afterfinishingUH became of the lackof Housing on Maui. She liveswith her mom now.
+Please quit restrictingand squeezing farmers and theirfamilies.Otherwise Maui family agriculturewillfail.
+Gary Sanders
+Pulehu Road
+808-281-7857
+1
+Count^Clerk
+T B <tina1maui@gmail.com>
+Wednesday, August 17,2022 7:46AM
+Laura L McDowell; Mayors.Office@co.maui.hi.us;Mike J.Molina;AliceL.Lee;County
+Clerk
+A BillregardingvagrantssleepingincarsinCounty parkinglots
+IMG_0220.JPG
+From:
+Sent:
+To:
+Subject:
+Attachments:
+I Some people who receivedthismessage don'toftenget emailfrom tina1maui@gmail.com.Learnwhy thisisimportant
+Dear Mayor Mike Victorino,Mike Molina et al.
+We have read thatthe county isconsideringa billto allow homeless people to sleep intheircarsincounty parkinglots.1
+(and many others)are expressingconcern and oppositionover thisbill.The realityismost of the people Isee, (asa long
+time Paia/ Haiku resident),are people that need seriousand immediate mental health care and should not be allowed
+to be livinginand/or near the county parkinglots,specificallyin Paia by furtherputtingthe publicat risk.
+The homeless camp in Paiahas been proliferatingforyears and has now resultedin a 300-acre firethat could have
+destroyed thistown. Iunderstand that land isprivateproperty,that'sa whole other subjectbut the county has not
+remedied the issuesinthispublicparkinglot,the bypass road or the Paia Bay parking lot.Illegalcarsand activityare
+ongoing on a dailybasis.We allsee itin plainsightduring the day! See photo attached. Not to mention thisisright
+across from a Youth Center.
+How willthe county protectlaw abidingcitizensalsousingthe same county parkinglots?Where willthese people go
+when the sun comes up? There isseeminglyvery little,to no law enforcement over the vagrants dealingdrugs,
+abandoning cars,leavingtrash,takingup spaces forthe public,drivingillegalcarson the road with expiredsafetychecks
+having no Insurance/registrationetc.We do not feelsafe parkinginthislotas itcurrentlystandsiWhy isthisbeing
+allowed?
+The county needs to take immediate stepsto enforcethe law in Paiatown and the parkinglot,we the community are
+gatheringtogether as it'sgone on way too long.
+We hope to see change and enforcement inPaiatown as soon as possible.
+Sincerely,
+Tina
+Os|
+rr\ uj
+xq:Q
+UJ i-~ 111
+> £ u.
+OOUJ Ps. >●LUO
+Li. 3
+Oo
+C9
+LU
+or
+1
+
+;-n MAUICHAMBER OF COMMERCE
+is VOICE OF BUSINESS
+CR 22-70/Bill 108
+Establishing a PilotProject Allowing Houseless Persons to Temporarily Use
+Their Vehicles for the Purposes of Human Habitation on County Property
+Tuesday, August 23, 2022
+Dear Chair Lee, Vice-Chair Rawlins-Fernandez, and
+Members of the Maui County Council,
+The Maui Chamber of Commerce supports the intentand idea of thisbillto allow
+homeless persons to park at a county owned propertyovernight.We are hearing from
+employers and socialworkers who are sharing storiesof individualsand familieswho
+are livingintheirvehiclesand findingplaces to park overnight,but oftentimesthey are
+gettingticketedor are forced to move theircars severaltimes throughout the night.
+Sometimes they cannot affordto pay the ticket,the fees buildup, and they are then
+afraid to drive their vehicle to work or to take their childrento school, causing
+tremendous stress.
+While we feelthispilotprojectisa possiblesolutionand worth tryinggiven the crisis
+we are currentlyexperiencing,we would liketo betterunderstand what models were
+examined and what lessons were learned from those models when draftingthisbillto
+create an improved solution.We also feelitisimportantforthe publicto understand
+the cost analysisof thispilotprogram as additionalemployee and/or contractortime
+would be needed to check people inand monitor the facilityovernight.
+Additionally,we have some questions and suggestions to considerwhen executing
+thispilotproject.Interms of a location,are you lookingatfacilitieswith largeparking
+lotslikethe War Memorial Gym, Lahaina CivicCenter and Kihei Gymnasium? Those
+would seem to be ideallocationsas they are commonly used foremergency shelters,
+have gated entries,and needed amenities.Are other parks or propertiesbeing
+considered? As there may be many cars linedup to enter the propertyat the
+designated time,are trafficconsiderationsbeing discussed and willthere be a limitto
+the number of cars allowed? Willneighboring residences and businesses be notified
+and what willbe done to mitigatethe impacts to neighboring properties?Lastly,as
+some ofthese people cannot affordto pay fortheirregistration,safetycheck and/or
+outstanding ticketsfortheirvehicle,willusing these facilitiessubjectthem to additional
+enforcement?
+808-244-0081 legisiation@MauiChamber.com MauiChamber.com62 North Market Street, Suite 302, Wailuku, Hawaii 96793
+MAUICHAMBER OF COMMERCE
+VOICE OF BUSINESS
+CR 22-70/Bill 108
+Tuesday, August 23 2022
+Page 2.
+We applaud the Council fortryingto help and would ideallyliketo see a more thorough
+proposalwithbackground informationon differentmodels used throughoutthe country,
+a cost analysis,and our questions answered and considered.Also,as thisisa pilot
+program, we suggest the Council review itevery 4 months insteadofevery 12 months
+so you can work out any issues along the way and quicklyidentifyifthisisworking and
+to what degree.
+Mahalo forthe opportunityto provide testimony.
+Sincerely,
+Pamela Tumpap
+President
+To advance and promote a healthyeconomic environment
+forbusiness, advocating fora responsive government and
+qualityeducation,while preservingMaui’s unique community
+characteristics.
+808-244-0081legislation@MauiChamber.com MauiChamber.com62 North Market Street, Suite 302, Wailuku, Hawaii 96793
+MAUICHAMBER OF COMMERCE
+VOICE OF BUSINESS
+CR 22-71 / Bill 101
+Fencing for Axis Deer Management
+Tuesday, August 23, 2022
+Dear Chair Lee, Vice-Chair Rawlins-Fernandez, and
+Members of the Maui County Council,
+I sit on the Axis Deer Task Force on behalf of the Maui Chamber of Commerce and we
+support thismeasure to allow the buildingoffences up to 10ftto protectagricultural
+land from Axis Deer. Axis Deer are a significantchallenge and fencing iscriticalto
+mitigatetheirdamage.
+While we generallyhear 8ftas the requiredheightto keep the deer out,we see inthe
+Committee Report thatthere are other models thatallowfencing up to 10ft,so we
+support the effortto increase the height without requiringa buildingpermit inthese
+circumstances.
+We appreciate the work the Council isdoing to help mitigatethe Axis Deer issue with
+thisbill,funding forfarmers and ranchers and more.
+Mahalo forthe opportunityto provide testimony.
+Sincerely,
+Pamela Tumpap
+President
+To advance and promote a healthyeconomic environment
+forbusiness, advocating fora responsive government and
+qualityeducation,while preservingMaui’s unique community
+characteristics.
+808-244-0081 legislation@MauiChamber.com MauiChamber.com62 North Market Street, Suite 302, Wailuku, Hawaii 96793
+Count^^lerk
+From:
+Sent:
+Tamara A. Paltin
+Tuesday,August 23,2022 8:37AM
+County Clerk
+Fwd; South Maui CPAC
+To:
+Subject:
+Get Outlook for iOS
+From: Tina Wildberger <tw@tinawildberger.com>
+Sent: Tuesday, August 23, 2022 8:36:27 AM
+To: Tamara A. Paltin<Tamara.Paltin@mauicounty.us>
+Subject: Fwd: South Maui CPAC
+Re-send:
+Mahalo,
+~Tina
+Tina Wildberger
+808-870-1739
+tw@tinawildberger.com
+Begin forwarded message:
+From: Tina Wildberger <tw@tinawildberger.com>
+Date: August 8, 2022 at 7:53:38 AM HST
+To: Tamara.Paltin@mauicounty.us
+Cc: Keani Rawlins-Fernandez <keani.rawlins@gmail.com>
+Subject: South Maui CPAC
+Aloha Chair,
+After viewing the restof the meeting that Ihad missed due to another obligation,itisevidentthat
+thiscommittee willnot be a safespace forme to collaborate.
+1am not prepared to endure abuse, racism,and misogyny while Iendeavor to volunteerformy
+community. Your committee chose an individualwith documented publicoffensiveand
+unprofessionalbehavior while advocating on recent municipaldecision-makingefforts.Itismy view
+that someone who behaves thisway ina publicspace, should be disqualified.Itisa personaldeal-
+breaker for me.
+Pleaseaccept thiscorrespondence as noticeof withdraw formy participationon CPAC South Maui.
+Mahalo,
+“"Tina
+Tina Wildberger
+1

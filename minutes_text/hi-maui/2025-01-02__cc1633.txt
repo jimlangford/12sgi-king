@@ -1,0 +1,692 @@
+MINUTES | hi-maui | County Council Organizational Meeting | 2025-01-02
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1633,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+ORGANIZATIONAL MEETING  
+MINUTES 
+ 
+JANUARY 2, 2025 
+2:00 PM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  2:05 p.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Tasha Kama √    
+CM Yuki Lei Sugimura √    
+CM Tamara Paltin √    
+CM Gabe Johnson  √   Exc. 5:43 p.m. – 5:47 p.m. 
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+CM Alice L. Lee √    
+TOTAL PRESENT 9    
+ 
+ 
+ELECTION OF CHAIR 
+ 
+Reso 25-1 "ELECTING THE CHAIR OF THE COUNCIL" 
+ 
+ AYE NO EXC Time Deliberations Began 2:56 p.m. 
+CM Kama √   Time Motion Made 3:02 p.m. 
+CM Sugimura √   Motion  ADOPT, as 
+amended 
+ 2 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:04 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+CM Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Kama √   Time Motion Made 3:02 p.m. 
+CM Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:04 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+CM Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Reso 25-2 "ELECTING THE VICE-CHAIR OF THE COUNCIL" 
+ 
+ AYE NO EXC Time Deliberations Began 3:15 p.m. 
+CM Kama √   Time Motion Made 3:15 p.m. 
+CM Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin  √  Maker Kama 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 3:42 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 6 3  MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Kama  √  Time Motion Made 3:15 p.m. 
+CM Sugimura  √  Motion  AMEND 
+ 3 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:24 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 4 5  MOTION FAILED  
+ 
+ AYE NO EXC   
+CM Kama √   Time Motion Made 3:25 p.m. 
+CM Sugimura √   Motion  AMEND 
+CM Paltin  √  Maker Kama 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 3:28 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 6 3  MOTION PASSED  
+ 
+ 
+Reso 25-3 "APPOINTING THE PRESIDING OFFICER PRO TEMPORE OF THE 
+COUNCIL"  
+ 
+ AYE NO EXC Time Deliberations Began 3:28 p.m. 
+CM Kama √   Time Motion Made 3:28 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 3:31 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 5 4  MOTION PASSED  
+  
+ 4 
+ AYE NO EXC   
+CM Kama √   Time Motion Made 3:29 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 3:30 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 5 4  MOTION PASSED  
+ 
+ 
+Reso 25-4 "ADOPTING THE RULES OF THE COUNCIL" 
+ 
+ AYE NO EXC Time Deliberations Began 3:32 p.m. 
+Pro Tem Kama √   Time Motion Made 3:33 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:40 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 4:07 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:16 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+  
+ 5 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 4:16 p.m. 
+VC Sugimura √   Motion  AMEND per 
+ASF 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:23 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci  √    
+Chair Lee  √    
+TOTAL VOTES 3 6  MOTION FAILED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 4:26 p.m. 
+VC Sugimura √   Motion  AMEND per 
+ASF 
+CM Paltin √   Maker Sugimura 
+CM Johnson  √  Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:16 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+CC 25 -1 COUNCILMEMBER RAWLINS -FERNANDEZ, transmitting an 
+amendment to the resolution entitled "ADOPTING THE RULES OF THE 
+COUNCIL".  
+ 
+ AYE NO EXC Time Deliberations Began 4:29 p.m. 
+Pro Tem Kama √   Time Motion Made 5:09 p.m. 
+VC Sugimura √   Motion  AMEND per 
+CC 25-1; 
+FILE 
+CC 25-1 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:11 p.m. 
+CM Cook √     
+ 6 
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+CC 25-2 COUNCILMEMBER RAWLINS -FERNANDEZ, transmitting an 
+amendment to the resolution entitled "ADOPTING THE RULES OF THE 
+COUNCIL". 
+ 
+ AYE NO EXC Time Deliberations Began 5:12 p.m. 
+Pro Tem Kama √   Time Motion Made 5:35 p.m. 
+VC Sugimura √   Motion  AMEND per 
+CC 25-2; 
+FILE 
+CC 25-2 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 5:37 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:39 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+  
+ 7 
+Reso 25 -6 "APPOINTING DAVID M. RAATZ, JR. DIRECTOR OF COUNCIL 
+SERVICES AND SETTING THE SALARY"  
+ 
+Reso 25 -7 "APPOINTING RICHELLE K. KAWASAKI DEPUTY DIRECTOR OF 
+COUNCIL SERVICES AND SETTING THE SALARY"  
+ 
+Reso 25-8 "APPOINTING THE STAFF OF THE OFFICE OF COUNCIL SERVICES"  
+ 
+ AYE NO EXC Time Deliberations Began 5:41 p.m. 
+Pro Tem Kama √   Time Motion Made 5:41 p.m. 
+VC Sugimura √   Motion  ADOPT 
+Resos 25-6, 
+25-7, and 
+25-8 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:44 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+ORDINANCES  
+ 
+Bill 1 (2025)  "A BILL FOR AN ORDINANCE AMENDING SECTION 2.08.060, 
+MAUI COUNTY CODE, TO REVISE THE PAY PLAN IN THE OFFICE OF COUNCIL 
+SERVICES" 
+ 
+ AYE NO EXC Time Deliberations Began 5:45 p.m. 
+Pro Tem Kama √   Time Motion Made 5:45 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken  
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 8 
+Reso 25 -9 "APPROVING THE APPOINTMENT OF A COUNCILMEMBER AS A 
+MEMBER OF THE CONSERVATION PLANNING COMMITTEE"  
+ 
+ AYE NO EXC Time Deliberations Began 6:05 p.m. 
+Pro Tem Kama √   Time Motion Made 6:06 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:07 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:06 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:07 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Reso 25-10 "APPROVING THE APPOINTMENT OF A COUNCILMEMBER AS A 
+MEMBER OF THE KULA AGRICULTURAL PARK COMMITTEE"  
+ 
+ AYE NO EXC Time Deliberations Began 6:07 p.m. 
+Pro Tem Kama √   Time Motion Made 6:08 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Kama 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:09 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+ 9 
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:08 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Kama 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:09 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Reso 25-11 "APPROVING THE APPOINTMENT OF A COUNCILMEMBER AS A 
+MEMBER OF THE COUNCIL ON AGING"  
+ 
+ AYE NO EXC Time Deliberations Began 6:09 p.m. 
+Pro Tem Kama √   Time Motion Made 6:09 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:11 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 6:09 p.m. 
+Pro Tem Kama √   Time Motion Made 6:09 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:10 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+ 10 
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Reso 25 -5 "ESTABLISHING THE COUNCIL'S STANDING COMMITTEES, 
+DEFINING THEIR DUTIES, AND APPOINTING THEIR MEMBERS"  
+ 
+ AYE NO EXC Time Deliberations Began 6:11 p.m. 
+Pro Tem Kama √   Time Motion Made 6:12 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 8:15 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8 1  MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:13 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:17 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:22 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:25 p.m. 
+CM Cook √     
+ 11 
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:29 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:29 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:32 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:32 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:32 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:33 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 12 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:33 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:35 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:36 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:36 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:37 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:40 p.m. 
+VC Sugimura √   Motion  AMEND 
+ 13 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:41 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 6:41 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Kama 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 7:51 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 5 4  MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama  √  Time Motion Made 6:53 p.m. 
+VC Sugimura  √  Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 7:37 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 4 5  MOTION FAILED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 7:52 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 7:54 p.m. 
+ 14 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 7:54 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 8:01 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 8:02 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 8:04 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made  8:05 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken  8:07 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 15 
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made  8:10 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin  √  Maker Kama 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken  8:14 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  8:18 p.m. 
+ 

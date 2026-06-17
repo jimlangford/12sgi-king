@@ -1,0 +1,1442 @@
+MINUTES | hi-maui | County Council Meeting | 2025-11-07
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2694,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+November 7, 2025 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:06 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √   Exc. 12:06 p.m. – 12:08 p.m. 
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 8    
+ 
+ 
+  
+ 2 
+COMMITTEE REPORTS 
+ 
+CR 25 -72 Recommending the following: 1. ADOPTION of Resolution 25 -193, 
+CD1, to authorize the Mayor to request that the Governor designate the proposed 
+Nāpili Enterprise Zone on Maui Island for a 20-year period; and 2. ADOPTION of 
+Resolution 25-194, CD1, to authori ze the Mayor to request that the Governor 
+redesignate the Greater Maui Enterprise Zone on Maui Island, with proposed 
+adjustments, for a 20-year period. 
+ 
+ AYE NO EXC Time Deliberations Began 10:35 a.m. 
+    Time Motion Made 10:36 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 11:05 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 4 4  MOTION FAILED  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:17 a.m. 
+    Time Motion Made 11:18 a.m. 
+VC Sugimura √   Motion  RECONSIDER 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:19 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:19 a.m. 
+VC Sugimura √   Motion  ADOPT 
+Resolution 
+25-194, CD1 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+ 3 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:21 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+11:21 a.m.: Reso 25-193, CD1 and CR 25-72 postponed until 11/21/2025 Council 
+Meeting. 
+ 
+ 
+CR 25 -73 Recommending the following: 1. FIRST READING of Bill 131, 
+CD1 (2025), to grant a Conditional Change in Zoning from R -1 Residential 
+District to B-2 Community Business District for 14,467 square feet at 1448 Front 
+Street, Lahaina, Hawai‘i, identified for Real Property Tax purposes as Tax Map 
+Key (2) 4 -5-013:012, for th e development of parking structure or lot uses and 
+related accessory uses; and 2. RECORDATION of the Unilateral Agreement.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:05 a.m. 
+    Time Motion Made 11:06 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:09 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+CR 25-74 Recommending ADOPTION of Resolution 25 -174, CD1, to adopt the 
+County of Maui 2025 Hazard Mitigation Plan. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:09 a.m. 
+    Time Motion Made 11:09 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Paltin 
+ 4 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:11 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+CR 25-75 Recommending FIRST READING of Bill 147, CD1 (2025), to simplify 
+the process for adopting real property tax rates and tiers, by: 1) deleting the 
+requirement to reconvene the meeting in three weeks after public notice; 2) 
+clarifying public-notice requirements; and 3) requiring the Counci l adopt rates 
+and tiers by June 20, or the Mayor’s proposed rates and tiers transmitted with 
+the annual budget will take effect. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:11 a.m. 
+    Time Motion Made 11:11 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:12 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+CR 25-76 Recommending FIRST READING of Bill 110, CD1 (2024), to except 
+certain properties destroyed or damaged by the August 8, 2023, Maui wildfires, 
+where the cost to rebuild or repair the structure will exceed 50 percent of the 
+replacement value of the structure as of August 8, 2023, from the requirement 
+of improving public streets. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:12 a.m. 
+    Time Motion Made 11:13 a.m. 
+ 5 
+VC Sugimura √   Motion  ADOPT 
+recommendations, 
+as amended 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:17 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:14 a.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:16 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+CR 25-77 Recommending FIRST READING of Bill 156, CD1 (2025), to allow for 
+the replacement of awnings, canopies, marquees, signs, or similar structures 
+encroaching a public right -of-way that were damaged or destroyed by an 
+emergency or disaster declared by proclama tion of the Governor or the Mayor 
+under Section 127A-14, Hawaiʻi Revised Statutes, subject to certain conditions. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:22 a.m. 
+    Time Motion Made 11:23 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:24 a.m. 
+CM Cook √     
+ 6 
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+CR 25-78 Recommending ADOPTION of Resolution 25 -178, CD1, to authorize 
+the execution of the Park Assessment Agreement for the Waiale Park Large Lot 
+Subdivision, which would require Waiale 905 Partners, LLC to provide land in 
+perpetuity or dedicate land for park an d playground purposes as a condition of 
+subdivision approval. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:25 a.m. 
+    Time Motion Made 11:25 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:26 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+RESOLUTIONS:  
+ 
+Reso 25-189 "APPOINTMENT OF A MEMBER TO THE URBAN DESIGN REVIEW 
+BOARD FOR THE COUNTY OF MAUI"  
+ 
+ AYE NO EXC Time Deliberations Began 11:28 a.m. 
+    Time Motion Made 11:28 a.m. 
+VC Sugimura √   Motion  DISCHARGE 
+from GREAT 
+Committee 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:28 a.m. 
+CM Cook √     
+ 7 
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:28 a.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:35 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:29 a.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:35 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Reso 25-203 "REFERRING TO THE LĀNA ʻI, MAUI, AND MOLOKA ʻI PLANNING 
+COMMISSIONS A PROPOSED BILL ON ACCESSORY DWELLINGS ON 
+RESIDENTIALLY ZONED LOTS" 
+ 
+ AYE NO EXC Time Deliberations Began 11:35 a.m. 
+    Time Motion Made 11:36 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:36 a.m. 
+ 8 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Reso 25-204 "APPOINTMENT OF A MEMBER TO THE COMMISSION ON 
+CHILDREN AND YOUTH FOR THE COUNTY OF MAUI" 
+11:37 a.m.: Referred to the Government Relations, Ethics, and Transparency 
+Committee. 
+ 
+ 
+Reso 25-205 "EXPRESSING SOLIDARITY AND SUPPORT FOR KAMEHAMEHA 
+SCHOOLS AS IT DEFENDS THE LEGACY OF KE ALI ʻI BERNICE PAUAHI 
+BISHOP" 
+ 
+ AYE NO EXC Time Deliberations Began 11:38 a.m. 
+    Time Motion Made 11:38 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:57 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Reso 25-206 "UNDER RULE 9(B), RULES OF THE COUNCIL, SUSPENDING 
+RULE 15(A) FOR COMMITTEE REFERRAL OF BILL 118 (2025) ON THE 
+COMMISSION ON CHILDREN AND YOUTH" 
+ 
+ AYE NO EXC Time Deliberations Began 11:57 a.m. 
+    Time Motion Made 11:58 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:58 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+ 9 
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Reso 25-207  "APPROVING THE WAIKAPU COUNTRY TOWN PROJECT FOR A 
+STATE OF HAWAI ʻI DWELLING UNIT REVOLVING FUND LOAN TO DEVELOP 
+AND CONSTRUCT INFRASTRUCTURE IMPROVEMENTS UNDER SUBSECTION 
+201H-191.5(e), HAWAIʻI REVISED STATUTES" 
+ 
+ AYE NO EXC Time Deliberations Began 11:59 a.m. 
+    Time Motion Made 11:59 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:00 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+ORDINANCES 
+ 
+Bill 166 (2025) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET, INCREASING ESTIMATED REVENUES, 
+LICENSES/PERMITS/OTHERS, BY $350,000, CAPITAL IMPROVEMENT 
+PROJECTS, DEPARTMENT OF WATER SUPPLY, MAKAWAO -PUKALANI-KULA 
+COMMUNITY PLAN AREA, APPENDIX A, PART II, GENERAL EXCISE TAX FUND, 
+AND APPENDIX C, DEPARTMENT OF WA TER SUPPLY, MAKAWAO-PUKALANI-
+KULA COMMUNITY PLAN AREA, INCREASING THE APPROPRIATION FOR 
+UPPER KULA TRANSMISSION IMPROVEMENTS BY $350,000" 
+ 
+Bill 167 (2025) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, DELETING THE APPROPRIATION FOR THE PROFESSIONAL 
+GOLFERS’ ASSOCIATION FOR THE SENTRY TOURNAMENT IN THE AMOUNT 
+OF $100,000, AND DEPARTMENT OF HU MAN CONCERNS, HUMAN 
+CONCERNS PROGRAM, GRANTS AND DISBURSEMENTS FOR SUBSTANCE 
+ABUSE PREVENTION AND TREATMENT, NEW APPROPRIATION FOR ALOHA 
+HOUSE DORMITORY OF $100,000" 
+ 
+ AYE NO EXC Time Deliberations Began 12:01 p.m. 
+ 10 
+    Time Motion Made 12:02 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:06 p.m. 
+CM Cook   √   
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+ORDINANCES – SECOND AND FINAL READING 
+ 
+Bill 103, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET; INCREASE ESTIMATED REVENUES, BOND/LAPSED 
+BOND BY $10,000,000; CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT 
+OF MANAGEMENT, WAILUKU -KAHULUI COMMUNITY PLAN AREA, AND 
+APPENDIX C, DEPARTMENT OF MANAGEM ENT, WAILUKU -KAHULUI 
+COMMUNITY PLAN AREA, APPROPRIATION FOR $10,000,000 FOR 24 NORTH 
+CHURCH STREET BUILDING ACQUISITION AND RENOVATIONS" 
+ 
+Bill 104 (2025) "A BILL FOR AN ORDINANCE AMENDING ORDINANCE 5818, 
+BILL 43, CD1 (2025), RELATING TO THE ISSUANCE OF GENERAL OBLIGATION 
+BONDS OF THE COUNTY OF MAUI ISSUANCE, SALE AND DELIVERY OF SAID 
+BONDS (DEPARTMENT OF MANAGEMENT)" 
+ 
+Bill 127, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, INCREASING ESTIMATED REVENUES, BOND/LAPSED 
+BOND BY $5,862,123, CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT OF 
+AGRICULTURE, MAKAWAO -PUKALANI-KULA COMMUNITY PLAN AREA, AND 
+APPENDIX C, DEPARTMENT OF  AGRICULTURE, MAKAWAO-PUKALANI-KULA 
+COMMUNITY PLAN AREA, NEW APPROPRIATION FOR KULA AGRICULTURAL 
+PARK OF $5,862,123"  
+ 
+Bill 128, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING ORDINANCE 
+5818 (2025), RELATING TO THE ISSUANCE OF GENERAL OBLIGATION BONDS 
+OF THE COUNTY OF MAUI ISSUANCE, SALE AND DELIVERY OF SAID BONDS 
+(DEPARTMENT OF AGRICULTURE)"  
+ 
+Bill 138, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, INCREASING ESTIMATED REVENUES, BOND/LAPSED 
+BOND BY $20,150,000, CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT 
+ 11 
+OF PUBLIC WORKS, WEST MAUI COMMUNITY PLAN AREA, AND APPENDIX C, 
+DEPARTMENT OF PUBLIC WORKS, WEST MAUI COMMUNITY PLAN AREA, 
+NEW APPROPRIATION FOR $20,150,000 FOR WEST MAUI LAND 
+ACQUISITIONS"  
+ 
+Bill 139, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING ORDINANCE 
+5818 (2025), RELATING TO THE ISSUANCE OF GENERAL OBLIGATION BONDS 
+OF THE COUNTY OF MAUI ISSUANCE, SALE AND DELIVERY OF SAID BONDS 
+(DEPARTMENT OF PUBLIC WORKS)"  
+ 
+Bill 140, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING ORDINANCE 
+5819 (2025), RELATING TO APPLICATION OF LAPSED BOND PROCEEDS 
+(DEPARTMENT OF PUBLIC WORKS)"  
+ 
+Bill 162 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET, APPENDIX A, PART II, MANAGED RETREAT REVOLVING FUND, 
+ADDING CONDITIONAL LANGUAGE AND APPROPRIATION FOR BALDWIN 
+BEACH PARK SHORELINE DEBRIS REMOVAL AND DISPOSAL FOR $50,000" 
+ 
+ AYE NO EXC Time Deliberations Began 12:07 p.m. 
+    Time Motion Made 12:11 p.m. 
+VC Sugimura √   Motion  Pass Bills 
+103, CD1, 
+104, 
+127, CD1, 
+128, CD1, 
+138, CD1, 
+139, CD1, 
+140, CD1, 
+and162 on 
+second and 
+final reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:12 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Bill 106, CD1 (2025)  "A BILL FOR AN ORDINANCE NAMING MAPULEHU 
+KULĀIWI" 
+ 12 
+ 
+Bill 107, CD1 (2025)  "A BILL FOR AN ORDINANCE NAMING HĀMĀKUALOA 
+KULĀIWI" 
+ 
+ AYE NO EXC Time Deliberations Began 12:12 p.m. 
+    Time Motion Made  
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:13 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+Bill 159 (2025) "A BILL FOR AN ORDINANCE AMENDING SECTION 2.82.050, 
+MAUI COUNTY CODE, TO EXTEND THE CONSERVATION PLANNING 
+COMMITTEE’S DEADLINE ON THE PROPOSED GREENPRINT"  
+ 
+ AYE NO EXC Time Deliberations Began 12:13 p.m. 
+    Time Motion Made 12:13 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:14 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  12:17 p.m. 
+TRANSCRIPTION
+Council of the County of Maui on 2025-11-07 9:00 AM - Regular Meeting
+[ GAVEL ] Will the November 7th Council meeting please come to order and Public
+Hearing. Good morning, Members. The Public Hearing and regular Council Meeting will
+now come to order and I'm going to ask Ms. Clerk to please proceed with roll call,
+and I just want to say hello and welcome to all of the folks in the gallery. Good
+morning. Roll call. >> Thank you, Chair.\r\n\r\nProceeding with roll call.
+Vice-Chair Yukilei Sugimura? >> Good morning. Looking forward to a productive
+meeting and so happy to see all these Kamehameha School students joining us. >>
+Council Member Tamara Paltin. >> Aloha Kakahiaka Council Member Gabe Johnson? >>
+Aloha and good morning.\r\n\r\nChair, Council Members, community members, there's no
+testifiers at the Lana'i District Office and I'm here and ready to work. >> Council
+Member Keani Rawlins-Fernandez? >> Aloha Kakahiaka, Chair. Aloha Kakahiaka Kakou and
+I love having gallery full of opia and equity. Aloha Kamehameha Schools for
+attending. We currently have no testifiers at the Moloka'i District Office. Mahalo,
+Chair.\r\n\r\n>> Thank you. >> Chair, we're going to need a quick break. We have no
+sound apparently. >> Okay, recess. Five minutes. Until 9:11. [ GAVEL ] [ GAVEL ] >>
+Will the Council Meeting of/Public Hearing please reconvene, November 7th, 9:a.m.
+and proceed with roll call. >> Chair, I will start again because we didn't have
+sound on the last round.\r\n\r\nVice-Chair Yukilei Sugimura. >> Good morning
+everybody and I said so grateful to see so many of the Kamehameha School students
+here in the gallery. >> Council Member Tamara Paltin? >> Aloha Kakahiaka. >> Council
+Member Gabe Johnson? >> Aloha, Chair, Council Members, community Members. There's no
+testifiers at the Lana'i District Office and I'm here and ready to
+work.\r\n\r\nThank you. >> Council Member Keani Rawlins-Fernandez. >> Aloha
+Kakahiaka, Chair. Aloha Kakahiaka Kakou. Mahalo again. I love having a gallery full
+of Opio, mahalo to Kamehameha Schools and say it with the same gusto, there are no
+testifiers at the Moloka'i District Office. Mahalo, Chair.\r\n\r\n>> Council Member
+Tom Cook? >> Aloha Friday. Good morning. There's no currently no testifiers in the
+Kihei office and looking forward to today's meeting. Thank you. >> Council Member
+Nohelani Uu-Hodgins? >> Aloha, Chair.\r\n\r\nAloha everyone. >> Aloha. >> Council
+Member Shane Sinenci? >> Aloha, Chair,. >> Same to you. >> And Council Chair Alice
+Lee? >> Aloha Kakou. >> Chair, will there are eight members present, a quorum is
+present to conduct the business of Council, for the record, I'm the County Clerk
+Moana Lutey and the Deputy County Clerk Richelle Thomson, joining us from our
+legislative division Staff is Joyce Murashige, Lauren Saldana, Del Yoshida, and
+Arthur Suyama.\r\n\r\nAssisting the Council with maintaining order and decorum is
+Council Ambassador Ryan Martins. Joining the meeting from the Office of Council
+Services is Director David Raatz and Deputy Director Richelle Kawasaki and from the
+Department of Corporation Counsel is First Deputy Mimi Desjardins. >> Opening
+remarks will be provided by Council Member Tamara Paltin. >> Thank you, Chair. You
+know, last night our community had a big loss, and the West Maui residency office is
+closed today out of respect and honor for the life and legacy of Uncle Lawrence
+Kabanila. If you didn't know Uncle Lawrence, he came to nearly all of the community
+meetings that we have had in Lahaina for the past few years. He lost his home in the
+Fire, three members of his family lost their homes in the fire his children,
+grandchildren, great-grandchildren, great-great-grandchildren lost their home in the
+Fire, and you know, too many of my peers and I'm sure the whole community he was an
+inspiration.\r\n\r\nHe was the best of us. I think after the Fire through his Pule,
+he taught Lahaina how to pray. He taught us about his relationship with God. Through
+the conversations he would have with God during the Pule for our community. He would
+always ask God to clean the cafeteria when we left, so there's no bad feelings left
+for the keiki when they go the next day to eat lunch. He and his wife were recipient
+of a miracle home from Samaritan's purse. So he did get to go home before he passed
+away.\r\n\r\nIf we could just have a moment of silence for him. (moment of silence
+taken) Thank you. >> Thank you very much. Anybody else who would like to say a few
+words about Lawrence? Well, I too, would like to honor him and his family, because
+the Kabanila family was a big influence, still is, on the West side. And one of my
+closest friend is Priscilla Kabanila Michael, who was the Deputy Director for Human
+Concerns when I was the Housing Director. So I'm very close to their family, and I'm
+very saddened.\r\n\r\nI do remember him coming to all of the meetings. If you
+remember, he always talked about please don't forget the Filipinos. And we -- and I
+assured him we would never do that. But anyway, may his soul rest in peace. Before
+we proceed with today's -- I'm sorry, I missed the Pledge of Allegiance. Let's do
+the Pledge of Allegiance. I pledge allegiance to the flag of the United States of
+America, and to the republic for which it stands, one nation under God, indivisible,
+with liberty and justice for all.\r\n\r\n>> Before we proceed with today's agenda,
+may I please request that everyone keep their microphones muted unless it's your
+turn to speak. As a reminder, testimony must pertain to items on the agenda. When
+testifying, please direct your remarks to the Council, and not to any individual
+Council Member, or Member of the public. Each testifier will be allowed to speak for
+up to three minutes on each item. For individuals wishing to testify on teams,
+please click the raise your hand button to be added to the testifier log. If you are
+calling in, please follow the phone prompts to be added to the log. If you wish to
+testify anonymously, please sign in as anonymous, and you will be given a testifier
+number.\r\n\r\nDecorum shall be maintained at all times. Any person who behaves in a
+manner that disrupts, disturbs or impedes the orderly conduct of any Council Meeting
+can at discretion of the Presiding Officer, or a majority of present Council Members
+be ejected or banned from Council meetings. Or if participating remotely, muted or
+dropped from the meeting. Examples of disruptive behavior include, but not limited
+to heckling, shouting use of profanity, threatening or slanderous remarks made to
+any Member of the Council, Staff, or general public. All meeting attendees whether
+online or in-person are expected to wear clothing which should not display any
+profanity, obscenity or any message that could be considered discriminatory,
+harassing or inappropriate for these proceedings. Ms. Clerk.\r\n\r\n>> Proceeding
+with public testimony. At this time, Members of the public can testify on any agenda
+item listed in our Public Hearing, and today's regular agenda. The first person to
+testify is >> Who would like to answer that question? Don't all rush to the
+microphone. >> Thank you, Chair. I don't think it's really rules of the Council
+issue, but I think it's a Sunshine Law issue, and I think the body is committed to
+accept this testimony before you get to any other items. So I would recommend that
+you finish out the testimony portion with apologies to those who have scheduling
+challenges.\r\n\r\nThank you. >> Oh. the Public Hearing is now adjourned [ GAVEL ]
+>> Thank you, Madam Chair. Shall we proceed to Committee Reports? >> Yes,
+unfortunately the schoolchildren had to leave. So proceeding to Committee Reports,
+currently we just have one person signed up to testify. That is Theo Morrison,
+testifying on Committee Report 25-77. >> Is that a different item?\r\n\r\nOkay.
+>>>Aloha, I just wanted to support Bill 156. I didn't realize I could do it at the
+same time as the other one. So this is the one about the canopies -- the awnings
+over the Front Street shops. It's a real important part of Front Street, and it
+should continue. Thank you. >> Thank you. Any questions?\r\n\r\nIf not, thank you
+very much. Ms. Clerk. >> Thank you, Madam Chair. Currently that was the only
+testifier. So we'll give last call for any testimony on Committee Reports. Chair,
+seeing no one make their way down to the podium, or raising their hand in teams,
+Royal House I see you raising your hand, but you had your opportunity to testify at
+the beginning of the meeting on all items.\r\n\r\nSo Chair, there's no one else to
+testify on Committee Reports. >> Members, any objections to closing public testimony
+and accepting written testimony on Committee Reports? >> No objections. >> So
+ordered. Ms. Clerk. >> Chair from the Budget, Finance, and Economic Development
+Committee is Committee Report 25-72 recommend the following: 1, adoption of
+resolution 25-193, CD 1 to authorize the Mayor to request that the Governor
+designate the proposed Napili Enterprise Zoning on Maui Island for a 20-year period
+and it, adoption of resolution 25-194, CD 1 to authorize the Mayor to request the
+Governor redesignate the greater Maui Enterprise Zone on Maui Island with proposed
+adjustments for a 20-year period.\r\n\r\n>> Vice-Chair Sugimura. >> Thank you, move
+to adopt recommendations in the Committee Report. >> Move by Vice-Chair Sugimura and
+seconded by Member Uu-Hodgins to adopt resolution 25-193 Committee Report 25-72.
+Discussion, Vice-Chair Sugimura. >> Resolutions 25-193, CD 1, and 25-194, CD 1
+respectfully authorizes the Mayor to request the Governor to designate the Napili
+Enterprise Zone and redesignate the greater Maui Enterprise Zone with adjustments
+both would last for 20 years. Current Enterprise Zone designation in these areas
+will expire on April 30, 2026. >> Any more discussion? >> Is Mr. Jason Ushijima
+available to answer questions?\r\n\r\n>> Is Jason still on? >> Ms. Clerk, can you
+double-check? can we designate him as a resource person? >> Any objections to
+designating Mr. Ushijima as resource person? No objections.\r\n\r\nMember Paltin. >>
+Thank you. I have two questions. One is did a definition of what "small business"
+is? Because it was said this is to support small business. >> There is the actual
+statute itself does not specify business or business size. So there's no definition
+provided there for "small business." But in general speaking we use the Small
+Business Administration's code definition of "small business," which does vary
+depending on the industry and type of business, but it would be any business 500
+people and below as a general guideline.\r\n\r\nWhich speaks to most and many
+businesses here in Hawai'i. >> There's no way to remove, say GMO or anything like
+that? >> Yes. Since you brought that up, I took a look at the statute. The statute
+doesn't specifically call out GMO or say GMO specifically. However, it does rely on
+a general description of all agricultural products, which includes GMO, or
+genetically-modified organism. So it includes all crops. So if you would like to
+have that part -- oh, go ahead.\r\n\r\n>> I guess my question is if this passes
+today and we request the Governor to designate it as an Enterprise Zone for the
+purposes of speeding up permitting or giving tax relief, is it still the County of
+Maui that makes the decision who would get the speeded up permits, or the tax
+relief, or is it the State- who would decide? >> So if this Resolution passes, the
+current Enterprise Zones will expire in April 2026. And these new Enterprise Zones
+before you will take on their places. The State credits will remain the same and
+then it would be up to the County in their application to designate whether or not
+these two new Enterprise Zones, are what the credits or permitting or benefit to the
+specific -- what the specific County benefits would be? >> And that would be like
+the Office of the Economic development, the Mayor's administration is there an
+opportunity for the Council to weigh-in? >> Yes, I believe so. I will defer that to
+Jade. However, it is up to the County to decide that.\r\n\r\n>> Is it okay to
+designate Ms. Rojas-Letisi as a resource person? >> Sure. >> And ask her that as
+well? >> Any objections, Members? Designating Jade Letisi, is she on the line? Is
+that the JR?\r\n\r\n>> Yes. >> Do you mind if we take a recess and find her? Ten
+minutes, 10:50 recess [ GAVEL ] [ GAVEL ] >> Will the Council meeting of November
+7th, 2025 please reconvene. It's 11:00 a.m. Ms. Clerk, Members, we're kind of hoping
+to finish before lunch, if possible. Okay? Well, no, I didn't mean to skip anything,
+but you have your hand up, you have a question?\r\n\r\nVice-Chair Sugimura thanks.
+Regarding the Enterprise Zone, Jade Letisi Rojas is on the call, as well as Jason
+Ushijima from DBEDT to answer questions. >> Jade? Can we see you? >> And Jason. >> I
+see him. >> Good.\r\n\r\n>> Apologies, Council. I wasn't able to unmute myself
+earlier, but I'm here and available. >> Member Paltin. >> I was asking who would be
+vetting the applicants and how they would go about that process if the community has
+objections to a specific business that is not in alignment with the community
+desires? Because you know, although I have heard of outreach, I have heard there's
+more questions than answers, and so it makes it difficult for me to vote at this
+time. >> Mahalo for the question, Council Member Paltin. Apologies.\r\n\r\n>> How
+would we ensure that it's a business that is supported by the community? >> Mahalo
+for the question. I do want to reiterate this is a state initiative, and as a
+County, we're supporting the process and the program. I will share with you with the
+application process, the applications are actually vetted through the State, once
+they get approved and meet the different criteria. That is when it's passed down to
+the County and that is we provide our support County incentive programs that we're
+still looking into revitalizing. I will hand it over to Jason regarding the
+community outreach portion of it. >> Yes.\r\n\r\nTo answer -- excuse me, to answer
+the question, the applications do come how to us, through the State, where we use
+the existing criteria to determine whether or not the business is eligible or not? I
+would -- my -- the program itself does not exclude any business, aside from the
+current qualifications, whether it's a type of -- whether it's business type or
+their location. However, if the community does have certain concerns about certain
+businesses or types of businesses that they would prefer not to have in their
+community, take advantage of this program, the best way for them to handle that
+would be to reach out to their State Legislative Representatives to let them know,
+because they would -- the Legislators would then need to amend the current H.R.S. to
+allow for specific, whether it's an inclusion or exclusion. Right now the criteria
+is defined by H.R.S.. >> So I'm not sure if you are aware, we won the prize for
+least attendance with our West Maui reps. So that not very comforting. But thank
+you. >> Are there any more questions?\r\n\r\nFurther discussion? Are we ready for
+the vote? Roll call. >> Vice-Chair Sugimura? >> Aye. >> Council Member Paltin? >>
+No.\r\n\r\n>> Council Member Johnson? >> No. >> Council Member Rawlins-Fernandez? >>
+No. >> Council Member Cook? >> Aye. >> Council Member Uu-Hodgins?\r\n\r\n>> Aye. >>
+Council Member Sinenci? >> No. >> Council Chair Lee? >> Aye. >> Chair, there are
+four ayes, four nos, motion fails. >> Okay.\r\n\r\nNext. >> Chair, from the
+Disaster, Resilience, International Affairs, and Planning Committee is Committee
+Report 25-73 recommending the following: One, first reading of Bill 131, CD 1 (2025)
+to grant a conditional change in zoning from R-1 Residential District to B-2
+Community Business District for 14,4678 square feet at 1448 Front Street, Lahaina,
+Hawai'i. Identified for Real Property Tax purposes as Tax Map Key 2-4-5-013:012 for
+development of parking structure or lot uses and related accessory uses; and 2,
+recordation of the unilateral agreement. >> Member Paltin. >> Thank you, I move to
+adopt the recommendation in CR 25-73. >> Moved by Member Paltin, seconded by Member
+Uu-Hodgins to approve the Committee Report can be recommendations 25-73. Discussion?
+Member Paltin. >> Thank you. Your Committee met on September 24th, 2025 to discuss
+Bill 131. Last term the Council adopted resolution 23-192 on August 4th, 2023. And
+referred the proposed Bill to the Maui Planning Commission.\r\n\r\nThe Maui Planning
+Commission on July 8th, 2025 recommended approval of the proposed Bill without
+conditions, however Bill 131 proposes one condition it allow parking lot and
+structure uses with related accessory uses. 14-50, LLC. owns the subject property at
+1448 Front Street, and the adjacent property at 1450 Front Street. The adjacent
+property will serve as the new location of the restaurant, while the subject
+property will be used as the restaurant's parking lot. Your Committee expressed
+support for Bill 131, CD 1 which would support moku roots business operation as you
+contribute to West Maui's economic recovery. Because the Bill does not follow the
+Planning Commission's recommendation to allow all uses. The Council may pass the
+change in zoning by a vote of six or more.\r\n\r\nIn the community, there's always
+been memory of that lot being used as parking for the restaurant. And it was done
+through, I think, conditional zoning. It would need to be renewed every time the
+conditional zoning expires. So a lot of people that heard the Council was trying to
+allow for that use to be a parking lot, were somewhat confused because they always
+remember the use as a parking lot, and were not aware, I think, that the mechanism
+used as a conditional permit that had expired. And so this is not meant to be a
+taking or a giving, or anything like that, just to allow the use of that adjacent
+lot to be used for parking for the restaurant, which you know in community memory
+it's always been allowed to have been. I respectfully ask for the Members' support
+of my motion. Thank you.\r\n\r\n>> Any further discussion? If not, all those in
+favor of the motion, please raise your hand, say aye. Eight ayes, zero nos. Motion
+passes. Ms. Clerk. >> Thank you, Chair.\r\n\r\nFrom the Disaster, Resilience,
+International Affairs, and Planning Committee is Committee Report 25-74 recommending
+adoption of resolution 25-174, CD 1 to adopt the County of Maui 2025 Hazard
+Mitigation Plan. >> Member Paltin. >> Thank you, Chair. I move to adopt
+recommendation in CR 25-74. >> Moved by Member Paltin, seconded by Member Uu-Hodgins
+to approve the recommendations in Committee Report 25-74, discussion, Member Paltin?
+>> Your Committee met on October 22, 2025 to discuss Resolution 25-174. Your
+Committee notes that federal regulations require the County to review and update its
+Hazard Mitigation Plan every five years to maintain eligibility for hazard
+mitigation assistance Grant Programs. The Emergency Management Agency Administrator
+noted that the County of Maui 2020 Hazard Mitigation Plan expires November 19, 2025.
+The plan does contain technical errors. Such as the spelling of place names, but the
+Administrator committed to producing a final corrected version of the plan following
+Council adoption.\r\n\r\nAs it is like a living document Resolution 25-174 supports
+community resilience again natural hazards and allows the County's continued
+eligibility for certain federal grants. Your Committee does request future Hazard
+Mitigation Plan updates include in-person meetings on Lana'i and Moloka'i. Your
+Committee votes 8-0 to recommend adoption of resolution 25-174, CD 1. I respect-
+fully ask for members' support of my motion? Any further discussion? If into the,
+all in favor, raise your hand, say aye. Eight ayes, zero nos, motion carries. Ms.
+Clerk.\r\n\r\n>> Chair, from the special Committee on Real Property Tax reform is
+recommending first reading of Bill 147, CD 1 to simplify the process for adopting
+Real Property Tax rates by one, deleting the requirement to 2 clarifying the public
+notice requirements and 3, requiring the Council adopt rate and tiers by June 20, or
+the Mayor's proposed rates and tiers transmitted with the annual budget will take
+effect. >> Member Rawlins-Fernandez. >> Mahalo, Chair. I move to adopt the
+representation in CR 25-75. >> Second. >> Moved by Member Rawlins-Fernandez,
+seconded by Vice-Chair Sugimura to approve the recommendations in Committee Report
+25-75. Discussion, Member Rawlins-Fernandez? >> Mahalo, Chair. As the Clerk read,
+Bill 147, CD 1 simplifies how we adopt Real Property Tax rates and tiers and sets a
+firm deadline of June 10th to adopt rates and tiers by Resolution.\r\n\r\nIf we do
+not act by June 10th, the Mayor's proposed rates and tiers will take effect.
+Director of Finance supports streamlining this process. Your Committee voted 4-0 to
+recommend passage of the bill on first reading. Mahalo, Chair. >> Thank you. Any
+further discussion? Not, all those In favor of the motion, please raise your hand,
+say aye?\r\n\r\n>> Aye. >> Eight ayes, zero nos, motion carries Ms. Clerk. >>
+Compare from the Water and Infrastructure Committee is Committee Report 25-74
+recommending first reading of Bill 110, CD 1 (2024) to except certain properties
+destroyed or damaged by the August 8, 2023 Maui wildfires where the cost to rebuild
+or repair the structure will exceed 50% of the replacement value of the structure as
+of August 8, 2023 from the requirements of improving public streets. >> Mr. Cook. >>
+Chair, I move to adopt recommendations in CR 25-76. >> Moved by Member Cook,
+seconded by Member Uu-Hodgins to approve the recommendations in Committee Report
+25-76. Discussion, Member Cook?\r\n\r\n>> Thank you, Chair. Your Water and
+Infrastructure Committee met on October 21st, 2025 to discuss Bill 110. Bill 110's
+purpose is to provide targeted relief for property owners whose structures or
+destroyed or severely damaged by the Maui wildfires. It excepts the properties from
+the requirement to conduct or improve public streets during rebuilding. The CD 1
+version narrows the exemption to Front Street from Shaw to Baker streets from
+Lahaina Districts No. 1 and 2 and focusing the measure on most affected areas while
+maintaining the County's broader infrastructure and safety standards. The Office of
+Recovery Representative explained this exception will not affect enforcement of
+public rights-of-way, encroachments or the County's existing policies on
+undergrounding or roadway properties your Committee voted 7-0 to recommend first
+reading of Bill 110, CD 1, (2024) at this time may I please ask the Clerk to
+distribute my Amendment Summary Form and thank the Clerk for doing that. I move to
+amend Bill 110 (2024) by adding new subsection 16.25.201b7 to read as follows: 7,
+three properties immediately North of Baker Street at 1010, 1024 and 1034 Front
+Street.\r\n\r\nThis Amendment is intended to extend the same Street improvement
+exception provided to properties along Front Street between Shaw and Baker streets,
+to three additional parcels immediately North of Baker Street located at 1010, 1024,
+1034 Front Street. Including these three properties in the covered areas promotes
+consistency, and fairness in the application of the post-disaster rebuilding
+standards. My office worked with the Office of Recovery, and they are supportive of
+this Amendment. I respectfully ask for Members' support of my Amendment. >> Are you
+going to name the properties? Or just use the address? >> 110 Front Street -- >>
+This is Siemen's Hospital; right?\r\n\r\n>> Siemen's Hospital. Lahaina residential
+and channel house. >> Okay. I just wanted him to mention the names on the record.
+Any further discussion? Member Paltin. >> Chair, for the record, the seconder was
+Vice-Chair Sugimura.\r\n\r\n>> Okay. >> Thank you. I'm supportive. I just wanted to
+clarify for the record, that these are all the properties opening onto Front Street
+and Baker is not included because pre-Fire with on-street parking the new way that
+they striped it, you couldn't fit two cars, like somebody it to drive on the yellow
+line to go around the on-street parking. So this Amendment only applies to Front
+Street for clarification and I'm supportive. >> Okay. Any more
+discussion?\r\n\r\nAll those in favor of the motion, raise your hand, say aye. Eight
+ayes, zero nos, motion carries. The main motion -- any more Amendments? >> No. >>
+The main motion as amended. Any more discussion? All those in favor of that, raise
+your hand, say aye.\r\n\r\n>> Aye. >> Nine- eight ayes, zero nos, motion carries. >>
+Chair? >> Yes Mr. Sinenci. >> Could I ask reconsideration for CR 25-72? >> >> I know
+we took the vote, but I see two adoptions as part of the Resolution. There's one for
+the greatest Maui Enterprise Zone and I understand that Member Paltin had some
+concerns for the Napili Enterprise Zone.\r\n\r\nBut would that mean that the second
+part of the Reso would also be affected? >> Okay, wait -- we're talking about the
+prevailing -- you are on the prevailing side, and there was no prevailing side. >>
+Oh. >> Chair? >> I could get help for this? Yes, Member Rawlins-Fernandez. >>
+Mahalo.\r\n\r\nSo because the motion didn't pass, my understanding is the prevailing
+side is the side that made it so that the motion didn't pass and to answer Member
+Sinenci's question, the motion was to accept the recommendations of CR 25-72, which
+included both Resolutions. So if you wanted to separate it, you would -- that would
+be the subsequent motion to make after making the motion for reconsideration. >>
+Well, let's just get confirmation from the Clerk's office, if that is correct? yes,
+Chair. >> Okay. Member Sinenci. >> If I can separate that would be -- >> The motion
+for reconsideration first.\r\n\r\n>> Move to reconsider CR 25-72. Please. >> Second.
+>> Okay. Moved by Member Sinenci, seconded by Member Rawlins-Fernandez to reconsider
+the vote on CR 25-72. And do you have more discussion? >> Yes. Just to separate the
+25-193 from 194, CD 1. >> All right. Any more -- anything else on the
+reconsideration itself?\r\n\r\nAll those in favor of the motion, raise your hand,
+say aye? >> Aye. >> Unanimous. Eight ayes. Zero nos. Motion carries. >> Thank you,
+Chair.\r\n\r\n>> Now you have to make a motion. >> I move to adopt Resolution
+25-194, CD 1. >> Second. >> All right. Moved by Member Rawlins-Fernandez, seconded
+by Member Sinenci to adopt -- what did you say ASF? >> Resolution 25-194. >> 194,
+the second one. >> CR 25-72. >> That is second Resolution and CR 25-72. Discussion?
+Member Sinenci?\r\n\r\n>> I just wanted to recognize Member Paltin's concern about
+the Napili Enterprise Zone as she had brought up, and but still also recognize the
+greater Maui Enterprise Zone. That is all, Chair. >> Okay. Any more discussion?
+Vice-Chair Sugimura. >> Thank you very much, Mr. Sinenci for doing that, because
+then the greater Maui Enterprise Zone can continue, and then I will work with Member
+Paltin just to find out what we can do to get her questions answered.\r\n\r\nAnd we
+can work on this again to meet the deadline that the Governor has to receive it by
+the beginning of the year. Thank you. >> Okay. Member Johnson? >> Thank you, Chair.
+I will support this, and I also want to mention that in the Committee Report, it
+wanted to include slaughterhouses and other food processing facility, commercial
+kitchen and Uncle Bobby has been before us many times for slaughterhouses and
+speaking for many farmers in that big problem that you probably read in the paper,
+that we can't get these animals to our tables. I think that is an important
+part.\r\n\r\nThank you, Chair. >> Anybody else? If not, all those in favor of the
+motion, raise your hand, say aye? >> Aye. >> Okay. Unanimous. Eight ayes, zero
+nos.\r\n\r\nMotion carries. >> Mahalo. >> Chair? >> Member Rawlins-Fernandez. >>
+Mahalo, Chair. Since the motion for reconsideration included the adoption of both
+Resolution 25-193, CD 1 and 25-194, CD 1, I would like to request that resolution
+25-193, CD 1 lay on the Clerk's table. >> Second.\r\n\r\n>> It's just a request. >>
+Any objections, Members? No >> No objections. >> So ordered. Resolution 25-193 will
+lay on the Clerk's table. All right. Next item.\r\n\r\n>> Thank you, Madam Chair,
+just for the record, that would include the Committee Report itself, and the
+Resolution attached to 25-193, CD 1. >> To lay on the Clerk's table, next item. >>
+Chair, from the Water and Infrastructure Committee is Committee Report 25-77
+recommending first reading ever Bill 156, CD 1 (2025) to allow for replacement of
+awnings, canopies, marquees, signs or similar structures encroaching a right-of-way
+that were damaged or Scottish Reed by an emergency or disaster declared by
+Proclamation of the Governor or Mayor under Section 127a-14 Hawai'i Revised Statutes
+subject to certain conditions. >> Member Cook. >> Chair, I move representations of
+Committee Report 25-77. >> Second. >> Moved by Member Cook, seconded by Vice-Chair
+Sugimura to approve Committee Report -- recommendations in Committee Report 25-77.
+Discussion, Member Cook? >> Thank you, Chair. Your Water and Infrastructure
+Committee met on October 21st, 2025 to discuss Bill 156. Bill 156 allows for
+replacement of awnings, canopies, marquees, signs and similar overhead structures
+encroaching into the public right-of-way that were damaged or destroyed during a
+declared emergency or disaster.\r\n\r\nThe Bill would support the County's ongoing
+recovery efforts by enabling property owners particularly in historic areas like
+Lahaina, to replace these structures provided that codes and standards are met. The,
+CD 1 version replaces the term "replacement encroachment with "replacement overhead
+encroachment." To clarify that the provision applies only to structures located
+partially or wholly over a public right-of-way such as awnings and canopies and also
+removes the language related to replacement costs and zoning, or other violations.
+Makes confirming amendments and technical and non-substantive revisions for clarity.
+Your Committee voted 6-0 to recommend first reading of Bill 156, CD 1 (2025) and I
+respectfully ask for Members' support of my motion. >> Any more discussion if not,
+all in favor raise your hand say aye. Eight ayes, zero nos, motion carries.
+Ms.\r\n\r\nClerk. >> From the Water Authority, Social Services, and Parks Committee
+to authorize the execution of the Park assessment agreement for Waiale Park
+large-lot subdivision, which requires Waiale 905 partners, LLC. to provide land in
+perpetuity or dedicated plan for Park and playground purposes as a condition of
+subdivision approval. >> Member Sinenci. >> Thank you, Chair. Move to recommend
+adoption of CR 25--78. >> Second. >> Moved by Member Sinenci.\r\n\r\nSeconded by
+Vice-Chair Sugimura to approve Committee Report 25-78. The recommendations therein.
+Discussion, Member Sinenci? >> Mahalo, Chair. Your Water Authority, Social Services,
+and Parks Committee met for Resolution 25-178. To amend resolution 25-178 to
+incorporate non-substantive revisions and correct the Park's acreage in exhibit 1.
+Your Committee acknowledged the importance of adding green space, which promotes
+health, fosters social connections, and enhances environmental qualities. Your
+Committee voted 6-0 to recommend adoption of resolution 25-178, CD 1. Which was
+approved as to form and legality by the Department of Corporation Counsel. And I ask
+for Members' full support. >> Any more discussion?\r\n\r\nIf not, all those in favor
+of the motion, please raise your hand, say aye? >> Aye. >> Eight ayes, zero nos,
+motion carried. Ms. Clerk >> Chair. moving on to resolutions there's currently no
+one signed up to testify. But this is the opportunity for people to
+testify.\r\n\r\nI see Mr. Lau running to the podium. >> Resolution 25-205. I wish
+the students could be here. But they'll be back. And I want to thank the author of
+this Resolution, because reading it was very informative. And I learned more from
+reading the Resolution than I did all my trips to the Library across the Street. >>
+Thank you.\r\n\r\n>> Chair, there's no one else that has indicated a desire to
+testify. So I will do last countdown. Royal House, you have testified on all items
+previously. Countdown, 3, 2, 1. Chair, there's no one indicating a desire to
+testify. >> Any objections to closing public testimony on Resolutions, and accepting
+written testimony? So ordered. Ms.\r\n\r\nClerk. >> Chair, before you is resolution
+25-189 appointment of a Member to Urban Design Review Board for the County of Maui.
+>> Member Uu-Hodgins. >> Thank you, Chair. I move to discharge the Government
+Relations, Ethics, and Transparency Committee from further consideration of this
+Resolution 25-189. >> Moved by Member Uu-Hodgins, seconded by Vice-Chair Sugimura to
+discharge the Great Committee of this item. Discussion, Member Uu-Hodgins? >> Thank
+you, Chair.\r\n\r\nThe Council's deadline to approve or disapprove this nominee is
+November 12, 2025 and this is the County's last opportunity to consider this
+appointment before our deadline. Okay. >> Any more discussion? If not, all those in
+favor of the discharge, raise your hand, say aye. Eight ayes, zero nos, motion
+carries. Member Uu-Hodgins. >> Thank you, I move to adopt resolution 25-19. >>
+Second.\r\n\r\n>> Moved by Member Uu-Hodgins and second by Vice-Chair Sugimura to
+adopt Resolution, what was it? The number? 189. >> 189. Okay. 189. Discussion?
+Member Uu-Hodgins? >> Thank you, Chair. Further move to amend resolution 25-189 by
+placing Byron Zach Hansel for term expiring March 31st, 2028 on exhibit b for
+approval.\r\n\r\n>> Second. >> Moved by Member Uu-Hodgins, seconded by Vice-Chair
+Sugimura to what she said just was to move. >> Exhibit b for approval. >> Yes,
+exhibit b. Any more discussion? >> Members, his application is on Granicus. And is
+before you. He is a land architect, and has been for the last 20 years.\r\n\r\nHe is
+from Pa'ia, but I don't know him. I have never met him before. We do need architects
+on this Committee. Initially I was going to have it in Council and of course, we
+lost our dear Auntie Tasha. So I canceled my Committee out of respect, so we could
+all just take a minute, which is why it's before us today. I think we have somebody
+from the either the Mayor's Office, should be with us -- she is back there. If
+anybody has any questions for her?\r\n\r\nBut otherwise, this is to be put on the
+UDRB. Thank you, Chair. >> Any more discussion? Member Rawlins-Fernandez? >> Mahalo,
+Chair. Okay. So is Mr.\r\n\r\nHansel here? Okay. Can I invite him up? >> Could you
+come to the mic? >> And then I like that our application includes length of
+residency and County of Maui and said he has been a resident for 20 years. I don't
+know if he is from Pa'ia, a resident of Pa'ia? >> Aloha, I'm Byron Zach
+Hansel.\r\n\r\nThank you for having me. >> Aloha. >> Would you like to provide my
+opening comments? I usually ask if you would foresee any concerns with attending the
+meetings? If you have any experience participating in the meetings? Or watched any
+of the meetings or reviewed any of the meetings minutes, any experience that you
+have with the Urban Design Review Board that you will be serving on and any comments
+on how you envision contributing to the Board? >> And if you want to, you can raise
+the mic up, so you don't have to bend down.\r\n\r\n>> Thank you. So 20 years of
+working here on Maui, and being a licensed landscape architect, I have been involved
+in quite a few diverse projects, and feel that I can bring some of my knowledge to
+the Design Review Committee. And I have been a part of more or less seen Design
+Review Committees and how they operate. I was asked to apply by Paul Arouse, which
+is a colleague of mine, and I have known many other landscape architects that have
+served on the Board over the years. I feel that it's a good time in my profession to
+be able to offer my knowledge to Maui County. >> Thank you so much for your
+willingness to serve on the Urban Design Review Board. I'm sure it's not easy
+finding someone with your background and qualifications to sit on this
+Board.\r\n\r\nDo you have experience with any Native Hawaiian landscape? >>
+Definitely. Yes. I like to incorporate Native Hawaiian plants, adaptive plants
+wherever possible. I think it's -- there's a lot of opportunity for smart use of
+water, and I mean I could just go on and on how I feel I could contribute. I don't
+know how much time you want me to elaborate on? I figured.\r\n\r\nI'm just happy to
+be able to offer some of my knowledge. >> Any other questions? Mr. Johnson. >> Thank
+you, very much, Mr. Hansel. Thank you, Chair thank you, Chair.\r\n\r\nThank you for
+joining us today and putting your name forward. I know you are a landscape
+architect. So one of my passions is urban Forestry, Street trees. Can you tell us
+your opinion about the importance of having trees in our urban areas? >> Thanks for
+asking. Actually I did apply to as part of the -- there sent out a responded to an
+RFP for the urban forest project. Unfortunately I didn't get it, but it gave me a
+good opportunity to dedicate probably 40 hours into submitting the
+proposal.\r\n\r\nAnd so I know there's a huge importance for urban Forestry. And I
+feel like I could really offer a lot in that direction. Especially I didn't mention
+the part that I also do installation, and I'm an contractor as well and understand
+the implications of good design, and that can really, really be a major factor in
+the urban forest. I think it's a great program and really exciting it's happening.
+>> So an architect with a green thumb. You have my support. Thank you.\r\n\r\n>>
+Thanks. >> Anybody else? If not, thank you very much. >> Okay, thank you. >>
+Members, ready for the vote? >> Yes. >> All those in favor of the motion, raise your
+hand, say aye?\r\n\r\n>> Aye. >> Eight ayes, zero nos, motion carries.
+Congratulations! >> Chair, that was the motion to amend. >> Oh, sorry. Take that
+back. [Laughter ] motion to amend.\r\n\r\nYou mean -- the main motion as amended.
+Okay. Any more discussion? All those in favor of the motion, raise your hand, say a.
+>> Aye. >> Eight ayes, zero nos, motion carries. Now congratulations! [ APPLAUSE ]
+Ms.\r\n\r\nClerk. >> Chair, before you is a proposed Bill on additional dwelling
+unit on robberly zoned lots. >> Member Uu-Hodgins. I move to adopt resolution
+25-203. >> Second. >> Moved by Member Uu-Hodgins, seconded by Vice-Chair Sugimura to
+approve the recommendations in Reso 25-203. Discussion, Member Uu-Hodgins? >> Thank
+you. This Resolution would refer to the Planning Commissions a Bill to comply with
+39 sessions laws of Hawai'i (2024) requiring counties to allow at least two
+accessory dwellings per residential lot by December 31, 2026 by adopting this
+Resolution today the Planning Commissions can begin their processes to review the
+proposed Bill and the Planning Department can prepare the report and provide input
+before any discussions of the Bill in Committee, I hope.\r\n\r\nThank you. >> Any
+more discussion? If not, all those in favor of the motion, please raise your hand,
+say aye? >> Eight ayes, zero nos, motion Carries. Ms. Clerk. >> Chair, for referral
+to the Government Relations, Ethics, and Transparency Committee is resolution 25-402
+appointment of a member to the Commission on Children and Youth for the County of
+Maui.\r\n\r\n>> This goes to? >> My Committee. >> Your Committee. Any objections,
+Members to referring this to the Great Committee? Are you -- are you agreeing or
+voting? >> I have a question. >> You have a question.\r\n\r\nMember
+Rawlins-Fernandez. >> Thank you, Chair. I guess for the Great Committee Chair,
+Member Uu-Hodgins does this have a deadline as well? I thought I heard Staff earlier
+saying that they have a deadline. >> Only the UDRB had one and a few Resolutions
+down, 25-206 you will see why I think it would be a good idea to send it to
+Committee and have that discussion for both of those Resolutions, perhaps? >> Okay.
+>> To delete this -- >> I mean, so I don't want to put somebody on and do all of
+that.\r\n\r\nSo we can at least discuss it, yeah. I don't think the deadline is any
+time soon. Thank you. >> Mahalo, Chair. I guess the nominee was asked to attend
+today. So she is in the gallery. >> Oh,. , any more discussion?\r\n\r\nAll those in
+favor of the motion to refer this to the Great Committee raise your hand, say aye.
+Eight ayes, zero nos, motion carries. Ms. Clerk. >> Chair, before you is resolution
+25-205EXPRESSING SOLIDARITY AND SUPPORT FOR KAMEHAMEHA SCHOOLS AS IT DEFENDS THE
+legacy of Ke Ali'i Bernice Pauahi Bishop. >> Member Rawlins-Fernandez. >> Mahalo,
+Chair.\r\n\r\nI move to adopt resolution 25-205. >> Second. >> Moved by Member
+Rawlins-Fernandez, seconded by Member Uu-Hodgins to adopt resolution 25-205.
+Discussion, Member Rawlins-Fernandez? >> Mahalo, Chair. May I read the Resolution in
+its entirety into the record? >> Of course. >> Great and after I read it, I will
+give others an opportunity to speak if they would like and provide my final comments
+after I have a moment to catch my breath. Resolution 25-205EXPRESSING SOLIDARITY AND
+SUPPORT FOR KAMEHAMEHA SCHOOLS AS IT DEFENDS THE LEGACY OF KE ALI'I BERNICE PAUAHI
+BISHOP WHEREAS, Kamehameha Schools was founded under the will of Princess Bernice
+Pauahi Bishop in 1883, dedicating her private estate to uplift Native Hawaiians
+through education and naming the school in honor of her great-grandfather,
+Kamehameha I, a decade before the illegal overthrow of the Hawaiian Kingdom and 15
+years before the U.S. occupation; and WHEREAS, Ke Ali'i Bernice Pauahi Paki was born
+on December 19,1831, the hiapo of Abner Paki and Laura Konia, in their family home
+known as 'Aikupika in Honolulu; her father was a high chief from Moloka who served
+in the House of Nobles and as an Assistant Judge of the Supreme Court, and her
+mother was an Ali'i who served in the House of Nobles; and under the Hawaiian
+tradition of hanai, Ke Ali'i Pauahi was raised by Kina'u, eldest daughter of
+Kamehameha I, and her husband Mataio Kekuanao'a, Governor of O'ahu, as their own;
+and WHEREAS, Ke Ali'i Pauahi inherited lands passed down from generations of royal
+lineages, including 'aina once belonging to Ruth Ke'elikolani, Lot Kapuaiwa, Mataio
+Kekuanao'a, Victoria Kamamalu Moses Kekuaiwa, William Pitt Leleiohoku, William
+Lunalilo, Abner Palo, Laura Konia, 'Akahi, and Mahune; And WHEREAS, since its
+establishment in 1887, Kamehameha Schools has honored the vision of Ke Ali'i Pauahi
+for nearly 140 years by providing educational opportunities rooted in Native
+Hawaiian language, culture, and values, thereby strengthening Hawai'i's social,
+spiritual, and cultural foundations; and WHEREAS, Kamehameha Schools' presence on
+Maui includes the Kamehameha Schools Maui campus, established in 1996 in Pukalani,
+which serves approximately 1,100 K-12 students, and includes Preschool in 'A'apueo,
+Hana, Paukiikalo, and Kalama'ula on Molokai that serve children across Maui County;
+and WHEREAS, Kamehameha Schools also maintains a Resource Center on Molokai that
+provides educational support, community outreach, and post-secondary guidance for
+students and families on Molokai and Lana'i; and WHEREAS, through scholarships,
+grants, community programs, and other educational partnerships, Kamehameha Schools
+continues Ke Ali'i Pauahi's legacy by educating over 5,400 humana from kindergarten
+to grade 12 across three campuses, serving more than 1,650 keiki in 30 preschools,
+and supporting Native Hawaiian learners across the pae'aina; and WHEREAS, Kamehameha
+Schools also has programs benefiting non-Native Hawaiian students, families, and
+communities Throughout Hawai'i, including throughout Hawai'i, including many on
+Maui, with annual investments exceeding $83.9 million; and WHEREAS, Native Hawaiians
+maintain a special political and trust relationship with the United States,
+recognized through more than 250 federal statutes and administrative programs, and
+have rights as aboriginal and indigenous peoples under international law; and
+WHEREAS, in 2003, a federal lawsuit titled John Doe v. Kamehameha Schools was filed
+in the U.S. District Court for the District of Hawai'i challenging the
+constitutionality of Kamehameha Schools' admissions preference policy for students
+of Hawaiian ancestry; WHEREAS, in 2006, the U.S. Court of Appeals for the Ninth
+Circuit, sitting en bane, affirmed the admission policy's legality, recognizing that
+the preference serves a legitimate remedial purpose that advances Native Hawaiian
+education and addresses the continuing effects of historical and social
+disadvantage; and WHEREAS, following the 2006 ruling, the case was settled in 2007,
+preserving Kamehameha Schools' ability to maintain its admissions policy consistent
+with the will and intent of Ke Ali'i Pauahi; and WHEREAS, Kamehameha Schools'
+admission policy rests on its status as a private, charitable institution funded by
+a private trust, receiving no federal funding and established for a specific,
+remedial purpose; WHEREAS, on October 20, 2025, Students for Fair Admissions filed a
+lawsuit challenging Kamehameha Schools' admissions policy, which prioritizes Native
+Hawaiian applicants in accordance with Ke Ali'i Pauahi's will and charitable intent;
+and WHEREAS, Kamehameha Schools has pledged to vigorously defend its admissions
+policy, affirming that the facts and law are on its side, and that preserving the
+policy is essential to upholding the integrity of Ke Ali'i Pauahi's kauoha
+(testamentary instructions); and WHEREAS, through its "E Ulu Koa - Standing Strong
+for Ke Ali'i Pauahi and Hawai'i" campaign and its "Ola Pauahi, Ola Hawai'i movement,
+Kamehameha Schools has called upon the Lahui to unite in KAPU aloha, stand firm in
+faith, and act in defense of justice and equity for Native Hawaiians; and WHEREAS,
+Kamehameha Schools alumni, students, and community members continue to demonstrate
+unity through cultural and civic engagement, including the historic Ku I Ka Pono
+March held in August 2005 in Honolulu, reaffirming Kapu aloha and collective action
+in support of Native Hawaiian educational and cultural rights; and WHEREAS, the
+County of Maui recognizes Kamehameha Schools' long-standing contributions to
+education, community partnerships, and cultural preservation across the islands,
+including on Maui, where its programs continue to uplift students, families, and
+communities; and WHEREAS, the Council finds it necessary and proper to express its
+collective support for Kamehameha Schools and to affirm the importance, and WHEREAS,
+the Council finds it necessary and proper to express its collective support for
+Kamehameha Schools and to affirm the Importance and values of Hawai'i's first
+people; now, therefore, BE IT RESOLVED by the Council of the County of Maui: 1, that
+it expresses solidarity with Kamehameha Schools as it is defends the legacy of Ke
+Ali'i Bernice Pauahi Bishop and 2, that it horns the vision of Ke Ali'i Bernice
+Pauahi Bishop whose enduring gift has empowered generations of Native Hawaiians and
+continues to strength of the fabric of Hawai'i and 3, that it affirms that the
+City's commitment to educational equity, cultural preservation, and
+self-determination for the Native Hawaiian people, and 4, that certified copies of
+this Resolution be transmitted to Christal Rose, Chair Board of Trustees, Kamehameha
+Schools; Livingston Jack Wong, Chief Executive Officer, Kamehameha Schools;
+Dr.\r\n\r\nWai'ale'ale Arroyo, Vice President of Hi'ialo Kamehameha Schools; Dr.
+Scott Parker, Po'o Kula Kamehameha Schools, Maui; the Honorable Josh Green, M.D.,
+Governor, State of Hawai'i; and Ann E. Lopez ,Attorney General, State of Hawai'i;
+Members of the Hawai'i State Legislature; Kaiali'i Kahele, Chair, Office of Hawaiian
+Affairs; Kali Watson, Chair, Hawaiian Homes Commissions; Dawn N.S. Chang, Chair
+Board of Land and Natural Resources, State of Hawai'i; Keith Hayashi ,
+Superintendent, Department of Education, State of Hawai'i; The Honorable Kimo
+Alameda, Mayor, County of Hawai'i; Rick Blangiardi, Mayor, City and County of
+Honolulu; Derek S.K. Kawakami, Mayor, County of Kaua'i; And Richard T. Bissen, Jr.,
+Mayor, County of Maui. >> Council Member Uu-Hodgins. >> Is it coming? >> You know it
+is. Okay >> Without knowing, we all know it's coming. I will be supporting this
+today and the entitlement is unfathomable so I'm just disheartened that we're at
+this point again in our life, where Hawaiians have to continually defend what little
+we have left.\r\n\r\nSo I hope that was sufficient rest for your throat. Thank you,
+Chair. >> Did I see your hand up, Member Sinenci. >> Mahalo, Chair. I too, speak in
+strong support of this Resolution. Mahalo, Member Rawlins-Fernandez for bringing it
+forward. I think a challenge to the Princess Ke Ali'i Bernice Pauahi Bishop estate
+is a challenge to our entire community, Kamehameha Schools supports go well beyond
+their campuses and their borders and into our individual communities, especially our
+rural communities, as mentioned in the Resolution.\r\n\r\nAs a teacher, I have
+always benefited from all of the summer programs that they would come, and I invite
+all of the kids to continue their education throughout the summer. And I do see they
+also help with scholarship programs that provide financial aid opportunities for all
+students. And then I do see that the Princess trust has also established holo Maui
+supporting those affected by the wildfires, including aid for the children's
+educational expenses. Mahalo. >> Any more discussion? Vice-Chair Sugimura. >> Thank
+you.\r\n\r\nI wish the students were here to -- were here to hear this Resolution
+read. But it's now read into the record. I'm grateful. Driving to work this morning,
+all along up country by long's and where Kamehameha School goes in, there were
+students with sign waving and flags and a lot of horns popping and a lot of support
+from the community for the school and the students. Very impressive and to come here
+and here they are, I really wish they could have been here for this moment. Just so
+I want to add my appreciation to Member Rawlins-Fernandez for doing this. As well as
+the many students and I have family members that attend Kamehameha
+School.\r\n\r\nAnd it's quite a campus in terms of what they have given to my
+sister's grandchildren, and I see them grow, and what they are doing, and it really
+is Kamehameha Schools has really planted that seed. Thank you very much. >> Member
+Johnson. >> Thank you. Chair, I also want to thank Council Member Rawlins-Fernandez
+for introducing this Resolution. I use to be able to say that I was honored to sit
+on a Council that was a majority Hawaiians. But since the passing of Council Member
+Kama, I'm not sure that is true -- I don't know everybody's background 100%, but I
+will just say that.\r\n\r\nKamehameha Schools brings leaderships. >> There's four of
+us. >> Four; right? That is what I think. Kamehameha Schools brings leaders and
+future leaders that will hopefully be running this show will hopefully come from
+Kamehameha Schools. Thank you, Chair. >> Any more discussion?\r\n\r\nOf course, I'm
+very grateful. Was I too soon to say that? I didn't want to have the last word. I
+forget the part you are going to do a speech? Member Rawlins-Fernandez, okay. >>
+Mahalo, Chair. And mahalo to my colleagues on the Council for their strong words of
+support.\r\n\r\nI, too, had hoped we could have adopted the Resolution when the
+humana was here to hear their voice to leave lasting presence. I told them we were
+going to adopt this Resolution unanimously. Don't make necessity a liar, guys. If
+you notice, I also wear my blue and white today to be in visible solidarity with
+Humana. Who testified this morning and have exemplified with such dignity why it's
+so important to support the result today. I then learned that it was the human you
+a's idea to come here to testify today and it was the Kumu who asked if anyone was
+interested, but it was driven by the humana. I had the privilege to work on
+Resolution 25-205 with an 'Oiwi leader, and graduate of Kamehameha Schools
+Maui.\r\n\r\nOur OCS analyst Keani Hurdle would share with me his recollection of
+being school in 2003 and that it created such concern over losing one the few gifts
+left to our Lahui from our Ali'i and it compelled many students at that time to
+pursue higher education in law and politics, like today it tested the strong and
+fortitude of our Lahui and Allies. The challenge promoted critical thinking
+cultivated stronger cultural identity and shared value and it provided then as is it
+does now an opportunity to strain and develop familiarity with this government
+structure this can often feel as foreign as it is. We proudly have three alumni of
+Kamehameha with us today with the OCS 'Ohana. Last year the world say the racist
+attacks against Tehran in a promoted that prompted the largest March in protests in
+so in solidarity ever seen and while watching an older woman interviewed and started
+and shared that she was fighting today, she marched today, so her Moe Hu Puna
+wouldn't have to. Just like the HOA on O'ahu that banned the flying the Hawai'i high
+in their subdivision, the Hawaiian flag from being flown, the attempts to erase us
+to homogenize a society to one that is easier to control and exploit will never end.
+Uncle Walter reminds that there is value in the fight to grow like a Koa tree,
+strong and courageous and with integrity and there Lila Johnson said that the most
+important victory is not found in the outcome of the battle, but in the process of
+battle. How you fight where you gain your honor and victory.\r\n\r\n'Oiwi leaders
+such as the humana that testified today continue to encourage Kapu Aloha, we treat
+people with Aloha not because of who they are, but because of who we as we watch the
+Trump Administration defund the Federal Department of Education, Budget and Programs
+the national Hawaiian education funding and programs that reinforces the importance
+of fighting for any and all of it. These opportunities that 'Ke Ali'i have provided
+us I recall Kumu sharing with me a time while teaching that she asked her humana if
+they could imagine Governor Ige giving everything he owned to Hawaiian people or the
+people of Hawai'i and the humana laughed and even though it wasn't meant a joke. The
+point was she was trying to illustrate loved our people so much. They gave us Lahui
+their everything. We honor Ke Ali'i Bernice Pauahi Bishop for the Craig city of
+Kuleana exhibiting emphasizing the idea of wealth is measure by how much we give.
+Like you heard earlier from Council Member Pallin Uncle Lawrence Kabanila modeled
+one of the most important things that is showing up and being present. So mahalo to
+all of the humana who showed up and were heard.\r\n\r\nWe are stronger together. >>
+Very beautiful. Thank you very much. Any more discussion? If not, all those in
+favor. Eight ayes, zero nos, motion carries unanimously. >> Mahalo, Members for not
+making me look like a liar.\r\n\r\n>> We wouldn't do that. Ms. Clerk. >> Chair,
+before you is resolution 25-206 under rule 9 (b) rules of the Council suspending
+rule 15 (a) for Committee referral to Bill 118 (2025) on the Commission on Children
+and Youth. >> Member Paltin. >> I move to adopt Resolution 25-206. >> All right.
+Discussion?\r\n\r\nMoved by Member Paltin, seconded by Member Uu-Hodgins to adopt
+the Resolution 25-206. Discussion? >> As Member Uu-Hodgins said, she does plan to
+schedule this, and I'm okay waiting because it's not like I have a whole lot of time
+in my Committee either. Because we're raring to get going on that South Maui
+Community Plan as well. >> Okay. This would require six. Okay. Suspending rule 15
+(a) for Committee referral of Bill 118. Any more discussion?\r\n\r\nAll those in
+favor, raise your hand, say aye. Eight ayes, Zero nos, motion carries. Ms. Clerk. >>
+Chair, before you is resolution 25-207, approving the Waikapu town property to
+develop and construct infrastructure improvements under Hawai'i Revised Statutes. >>
+Vice-Chair Sugimura. >> Thank you, Chair.\r\n\r\nI move to adopt resolutions 25-207.
+>> Moved by Vice-Chair Sugimura, seconded by Member Uu-Hodgins to adopt the
+Resolution 25-207. Discussion? Vice-Chair Sugimura. >> Thank you. We heard Dr. --
+Director Mitchell, as well as Jeff Ueoka talking about this DURF fund. And
+authorizes the Mayor to execute the related documents. The developer is seeking a
+$17 million loan for infrastructure serving the first build-out of the project which
+includes 212-unit rental progress that we supported Fiscal Year 25, with the
+affordable housing loan fund loans.\r\n\r\nI ask Members' support of my motion. >>
+Any more discussion? All those in favor of the motion, raise your hand, say aye
+eight ayes, zero nos, motion carries. >> Thank you, Members. >> Madam Chair, moving
+on to Ordinances. Currently we see d DMV we have no one signed up to testify. J.C.
+Lau is making his way to the podium.\r\n\r\n>> 166, I'm in favor of that. I was
+coming in the building this morning and saw Mr. Stufflebean leaving, and I'm hoping
+he was going up to Kula to improve the water supply up there. Thank you. >> Ms.
+Clerk. >> Chair, currently no one else is signed up to testify.\r\n\r\nSo last call.
+Anyone wishing to testify on the Ordinances, Chair seeing none, countdown, 3, 2, 1.
+There's no one to testify any objections to closing public testimony and accepting
+written testimony on the Ordinances? So ordered. Ms. Clerk. >> Chair, before you is
+Bill 166 (2025) a Bill for an Ordinance amending the Fiscal Year 2026 budget
+increasing estimated revenues licenses/permits and others. By $350,000 Capital
+Improvement Projects Department of Water Supply Makawao-Pukalani-Kula Community Plan
+Area, Appendix a, part General Excise Tax Fund and part II General Excise Tax Fund
+and Appendix c, Department of Water Supply Makawao-Pukalani-Kula Community Plan Area
+increasing the appropriation for upper Kula transmission improvements by $350,000.
+>> Without objection may I request the Clerk call up Bill 167. >> Any
+objections?\r\n\r\nMs. Clerk, so ordered. >> Chair, before you is Bill 167 (2025) a
+Bill for an Ordinance amending the Fiscal Year 2026 Budget, Office of the Mayor,
+Economic Development Program deleting the appropriation for the professional
+golfers' association for the Sentry Tournament in the amount of $100,000 and
+Department of Human Concerns program, humans concern program grants and
+disbursements for substance-abuse prevention and treat new appropriation for Aloha
+House dormitory of $100,000. >> Vice-Chair Sugimura. >> I move to pass Bill 166, and
+167 (2025) on first reading. Moved by Vice-Chair Sugimura and seconded by Member
+Sinenci to pass bills 166 and 167 on first reading. >> Bill 166 amends Fiscal Year
+26 budget to recognize $350,000 in estimated revenues from licenses, permits,
+others, for the Department of Water Supply and appropriates it to the Department of
+Upper Kula transmission project. This is a transfer to the Department from the
+G.E.T. fund so the Bill also amends the appropriate conditions under the fund
+Appendix A, Part 2. The low bid came in higher than expected.\r\n\r\nSo the
+Department needs additional funds to cover the project costs. Bill 167 amends Fiscal
+Year 26 budget to delete $100,000 appropriation for the PGA Sentry Tournament and
+adding new $100,000 appropriation under the Department of Human concerns for Aloha
+House dormitory construction in Makawao. The Sentry Tournament was not held on Maui
+this Fiscal Year, so the Office of Economic Development has proposed to reallocate
+the funds to support the completion of the Aloha house Makawao dorm. I ask for the
+members' support of my motion. Thank you, Chair. >> More discussion? Member
+Paltin?\r\n\r\n>> Thank you, Chair. I wanted to mahalo Mr. Tadashi for still
+donating to the nonprofit organizations in Maui that usually benefit from the
+appearance of the Sentry Tournament in Kalalau and we have been meeting with his
+Representative on alternatives, but I would like to emphasize how dire the water
+situation is. Many days in the last few months we haven't been able to meet even the
+inflow stream standards for the entire month of September. Pu Ku -- kui recorded on
+6 inches and some change of rain a place that usually gets 400" annually as of late
+September had much less than 150 inch. So we're in a very dire situation. Maui land
+and pine and Commission on Water Resource Management both verified that all of the
+water that goes into the ditch comes out of the ditch and then some because of
+leakage.\r\n\r\nSo the ditch management is not an issue there. Two diversions were
+completely destroyed in 2018 as a result of hurricane Olivia and the Commission on
+Water Resource Management has denied fixing or replacing those diversions. The
+remaining diversion in 2018 in the aftermath of hurricane Olivia the water -- the
+river split itself around the diversion, and CWRM has not granted permission to fix
+that either. So that's why part of the reason why as well that the situation in
+water surface water in West Maui is very dire. And I think the use for Aloha house
+of the funds instead is a good substitute. Thank you. >> Any more
+discussion?\r\n\r\nIf not, all those in favor of the motion, raise your hand, say
+aye. >> Eight ayes, zero nos, motion carries Ms. Clerk. >> Chair? >> I think it's
+seven ayes, Member Cook -- >> I didn't notice he left. Seven ayes, one excused.
+Member Cook.\r\n\r\nMotion carries. >> Thank you. >> Chair? >> If I could just since
+I just wanted to add one more thing. >> Sure. >> The Aloha house has been such a
+great asset to our community, and remember, we put the money in for the 12-bedroom
+dorm for Aloha House and I know they are under construction, should be very soon. So
+this money is going to help our folks stay off their bad addictions and Aloha house
+has been such a great partner.\r\n\r\nJust wanted to add that. Thank you, Chair. >>
+So we had seven ayes, and one excused. Motion carries. Ms. Clerk. >> Thank you,
+Madam Chair, moving on tot Ordinances for second and final reading.\r\n\r\nBefore
+you is Bill 103, CD 1 (2025) a Bill for an Ordinance amending the Fiscal Year 2026
+budget increase estimated revenues bon lapsed bond by $10 million, Capital
+Improvement Projects Department of Management, b Wailuku-Kahului Community Plan Area
+and Appendix A, Department of Management, Wailuku-Kahului Community Plan Area
+appropriation for $10 million for 24 North Church Street building acquisition and
+renovations. >> Vice-Chair Sugimura. >> Thank you, Chair. If there's no objections
+to please request the Clerk to call up the rest of the bills. >> No objections. Go
+for it. >> Bill 104 (2025) a Bill for an Ordinance amending Ordinance 5818, Bill 43,
+CD 1 (2025) relating to the issuance of General Obligation Bonds for the County of
+Maui issuance, sale and delivery of said bonds, Department of
+Management.\r\n\r\nBill 107, CD 1 (2025) a Bill for an Ordinance amending the Fiscal
+Year amending revenues by $5,862,123 Department of Agriculture,
+Makawao-Pukalani-Kula area and appendix c, Makawao-Pukalani-Kula plan area new
+appropriation for Kula Agricultural Park of $5,862,123. And Bill 128, CD 1 (2025) a
+Bill for an Ordinance amending Ordinance 5818 (2025) relating to issuance of General
+Obligation Bonds of County of Maui. Amending the Fiscal Year 2026 budget increasing
+estimated revenues bond/lapsed bond by $20,150,000 Capital Improvement Projects
+Department of Public Works, West Maui Community Plan Area. New appropriation for
+$20,150,000 for West Maui land acquisitions. Bill 139, CD 1 (2025) a Bill for an
+Ordinance amending Ordinance 5818 (2025) relating to the issuance of General
+Obligation Bonds for the County of Maui issuance, sale and delivery of said bonds,
+Department of Public Works. Bill 140, CD 1 (2025) a Bill for an Ordinance amending
+Ordinance 5819 (2025) relating to application of lapsed bond proceeds, Department of
+Public Works. And Bill 162 (2025) a Bill for an Ordinance amending the Fiscal Year
+2026 budget Appendix A, Part II Managed Retreat Revolving Fund adding conditional
+language and appropriation for Baldwin Beach Park Shoreline debris removal and
+disposal for $50,000. >> Vice-Chair Sugimura. >> Thank you, Chair.\r\n\r\nI'm going
+to move to pass all those Bills and before I do that motion, I just wanted to say
+that I got to speak with late Member Kama when I was visiting with her at the
+Hospital. I was going over some of the actions of the Council, and I mentioned to
+her that we're purchasing this Peter Martin property West Maui land. Just the story
+about that as well as other things we were doing at the Council and she said about
+him, thank you, Peter Martin is a good man. So with that I would like to ask the
+Chair, I move to pass bilge 103, CD 1 (2025), Bill 104 (2025), Bill 127, CD 1
+(2025), Bill 128 CD 12 (2025) Bill 138, CD 1 (2025), Bill 139, CD 1 (2025), Bill
+140, CD 1 (2025) and 162 on second and final reading. Thank you. >> Second,
+somebody? Moved by Vice-Chair Sugimura and second by Member -- so pass bills 103,
+104, 127, 128, 138, 139, 140 and 162 on second and final reading.\r\n\r\nMore
+discussion? Any more discussion? Member Paltin. >> Thank you, Chair. In regards to
+Bill 138, many people in my community will be very happy to hopefully get Peter
+Martin out of Lahaina for good once and for all. Thank you. >> Any further
+discussion?\r\n\r\nAll those in favor of the motion, please raise your hand, say
+aye. so look at eight ayes, zero nos, motion carries. Ms. Clerk. >> Chair, before
+you is Bill 106, CD 1 (2025) a Bill for an Ordinance naming Mapulehu Kulaiwi. >>
+Mahalo, Chair. May I please request the Clerk call up Bill 107. >> Any objections
+Members?\r\n\r\nMs. Clerk. >> Chair, before you is Bill 107, CD 1 (2025) a Bill for
+an Ordinance naming Hamakualoa Kulaiwi. >> Mahalo, Chair. I move to pass Bill 106 CD
+(2025) and Bill 107, CD 1 12:00 on second and find read >> Second. >> Moved by
+Member Rawlins-Fernandez, seconded by Member Sinenci to pass bills 106 and 107 on
+second and final reading. Discussion?\r\n\r\nMember Rawlins-Fernandez? >> Mahalo,
+Chair. Just appreciation to my colleagues for their continued support of this
+effort, and the Department of 'Oiwi Resources. Mahalo, Chair. >> Any more
+discussion? >> If not, all those in favor of the motion raise your hand, say aye? >>
+Aye eights, zeros no, motion carries, and then we have one final one.\r\n\r\n>> Yes,
+Chair, before you is Bill 159 (2025) a Bill for an Ordinance amending Section
+2.82.050 mace Maui County Code to expend the Conservation Planning Committee's
+deadline on the proposed green print. >> Member Sinenci. >> Mahalo, Chair. I move to
+pass Bill 139 on second and final reading. >> Moved by Member Sinenci. Seconded by
+Member Uu-Hodgins to pass Bill 159 (2025) on second and find reading. Discussion,
+Member Sinenci.\r\n\r\n>> Mahalo, members. Section of the Maui County Code requires
+the creation of a comprehensive conservation plan known as the greenprint. This Bill
+gives the Conservation Planning Committee additional time to adopt the proposed
+greenprint and submit it tot Council. And I respectfully ask Members support of my
+motion. >> Any more discussion? Member Paltin? >> Has the Conservation Planning
+Committee been able to meet?\r\n\r\n>> We did cancel our last one due to Pro Tem
+Kama's passing, but prior to that, we did meet, and this was their -- we did agree
+to extend the greenprint deadline. >> Thank you. Thank you, Chair. >> Any other --
+any more discussion? If not, all those in favor of the motion, raise your hand, say
+aye. >> Eight ayes, zero nos, motion carries and that brings us to the end of the
+calendar. Any final comments?\r\n\r\n>> Mahalo, Chair. I have a final comment. I
+have a correction to the record, it has come to my attention that I was sorely
+mistaken when I said that we had three Kamehameha Schools Maui alumni in OCS.
+There's actually seven. >> Ooh. >> Yes. So mahalo for allowing me to correct the
+record on that, and that I -- we as I Council now need to mahalo Pauahi for her
+legacy as well.\r\n\r\n>> Excuse me, you are counting EAs as well? No. >> OCS. But
+there's one more in Member Uu-Hodgins. >> In my office. >> In your office. Oh, my
+goodness.\r\n\r\nLook at, that mahalo. Oh. okay. >> Mahalo Pauahi >> I'm from
+Moloka'i High School. >> Any other -- what was I going to say? Anything -- events
+coming up this weekend that you want to talk about? Yes, Member
+Rawlins-Fernandez?\r\n\r\n>> Unless Member Sugimura was going to say the made in
+Maui County festival is today and tomorrow. >> Very good, I always go for the
+Moloka'i bread. There's going to be a whole Moloka'i Section. >> Oh, really? >> Last
+year it was towards the end in the corner. So please support our Moloka'i businesses
+as well. They will all be there.\r\n\r\n>> Okay. >> I also have reunion this weekend
+that started last night. It's apparently the families on Moloka'i. >> Family
+reunion. Congratulations! 'Ohana Pia Lua. >> Vice-Chair Sugimura. >> So I just heard
+as we're going through this meeting that veterans day, which is Tuesday is happening
+at the Makawao Veterans' Cemetery and I did not receive any kind of
+communication.\r\n\r\nSo I thought it wasn't happening, but it is. 8:30 in terms of
+his military title, but he texted me saying it's happening. Just in case people were
+wondering. >> Okay. Member Johnson. >> Chair, there's also Arbor Day in the
+community forest plan will be there for allowing comments. So let's talk
+trees.\r\n\r\n>> Okay. >> Where is it? >> Don't tell us, you used to be a tree;
+right? [ LAUGHTER ] >> You got me. >> Anybody else? Okay. If not, this meeting is
+adjourned.\r\n\r\n[ GAVEL ]

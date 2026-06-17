@@ -1,0 +1,73 @@
+MINUTES | hi-maui | County Council Special Meeting | 2025-08-13
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2744,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+SPECIAL MEETING 
+MINUTES 
+ 
+ 
+August 13, 2025 
+8:45 AM 
+ 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  8:47 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+C Pro Tempore Tasha 
+Kama 
+  √ Arr: 8:48 a.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+  √  
+CM Tamara Paltin   √ Arr: 8:48 a.m. 
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 6  3  
+ 
+ 
+  
+ 2 
+RESOLUTIONS:  
+ 
+Resolution 25-159 "APPOINTING ROBERT HALE PAHIA AS A MEMBER TO THE 
+EAST MAUI REGIONAL COMMUNITY BOARD"  
+ 
+ AYE NO EXC Time Deliberations Began 8:51 a.m. 
+Pro Tem Kama √   Time Motion Made 8:51 a.m. 
+VC Sugimura   √ Motion  ADOPT 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 8:53 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+TIME MEETING ADJOURNED:  8:53 a.m. 

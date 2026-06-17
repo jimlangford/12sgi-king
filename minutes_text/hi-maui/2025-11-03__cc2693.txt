@@ -1,0 +1,1454 @@
+MINUTES | hi-maui | County Council Special Meeting | 2025-11-03
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2693,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+SPECIAL COUNCIL MEETING 
+MINUTES 
+ 
+November 3, 2025 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:09 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 8    
+ 
+ 
+RESOLUTIONS:  
+ 
+Resolution 25 -202 "ESTABLISHING THE PROCESS TO FILL THE COUNCIL 
+VACANCY FOR THE KAHULUI RESIDENCY AREA FOR THE REMAINDER OF 
+THE 2025-2027 TERM" 
+ 
+ AYE NO EXC Time Deliberations Began 9:57 a.m. 
+    Time Motion Made 9:57 a.m. 
+ 2 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:34 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:46 a.m. 
+VC Sugimura √   Motion  AMEND 1(a) 
+CM Paltin  √  Maker Sugimura 
+CM Johnson  √  Seconder Cook 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 11:51 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 4 4  MOTION FAILED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:54 a.m. 
+VC Sugimura  √  Motion  AMEND 1(a) 
+CM Paltin  √  Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:56 a.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 3 5  MOTION FAILED  
+ 
+ AYE NO EXC   
+    Time Motion Made 11:57 a.m. 
+VC Sugimura  √  Motion  AMEND 1(a) 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+ 3 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:59 a.m. 
+CM Cook  √    
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 5 3  MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 12:03 p.m. 
+VC Sugimura √   Motion  AMEND 
+delete 1(b) 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:04 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 12:08 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:08 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7 1  MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 12:08 p.m. 
+VC Sugimura √   Motion  APPLY Rule 
+13(C) and 
+SUSPEND 
+Rule 19  
+CM Paltin √   Maker Paltin 
+ 4 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:10 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8   MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  12:35 p.m. 
+TRANSCRIPTION
+Council of the County of Maui on 2025-11-03 9:00 AM - Special Meeting
+[ GAVEL ] >> Good morning Council Members and Staff, Members of the public, the
+special Council meeting of November 3rd, 2025 will now come to order. Before we
+start roll call, I just want to say that and before we take a moment of silence,
+this is one of the saddest responsibilities we as Council Members will ever have,
+and that is to begin the process to select a replacement for someone who has passed
+away. Let's just do our best to honor our friend and colleague, Pro Tem Kama. May we
+have a moment of silence. (moment of silence taken) Ms. Clerk, please proceed with
+roll call. >> Thank you, Madam Chair.\r\n\r\nProceeding with roll call. Any members
+who are not present, who are present from a non-public location should stay who if
+anyone, except minors, is present with them as part of roll call. Vice-Chair Yukilei
+Sugimura. >> Here, present. >> Council Member Tamara Paltin. >> Aloha Kakahiaka
+Kakou. >> Council Member Gabe Johnson.\r\n\r\n>> Good morning, Chair, Council
+Members, community members no testifiers at the Lana'i District Office and I'm alone
+in my office, thank you. >> Council Member Keani Rawlins-Fernandez. >> Aloha
+Kakahiaka, Chair, Kakou. Can you hear me okay? >> I can hear you, but I can't see
+you. Can anybody see her? We can hear you.\r\n\r\n>> Council Member Tom Cook? >>
+Aloha. >> Now we can see you, okay. >> Okay. I'm alone in my private residence and
+there are currently no testifiers at the Moloka'i District Office. >> Thank you. >>
+Council Member Tom Cook?\r\n\r\n>> Aloha, good morning. There's no testifiers in the
+Kihei office. >> Council Member Nohelani Uu-Hodgins? >> Aloha, Chair, Aloha
+everyone. >> Council Member Shane Sinenci? >> Aloha and good morning. >> Council
+Chair Alice Lee?\r\n\r\n>> Good morning. Aloha Kakou. >> Chair there are eight
+members present, a quorum is present to conduct the business of Council, for the
+record, I'm the Deputy County Clerk Richelle Thomson and to my right is County Clerk
+Moana Lutey and Legislative Division Staff Joy Murashige, Lauren Saldana, Dell
+Yoshida and Arthur Suyama. Assisting the Council with maintaining order and decorum
+is Council Ambassador Ryan Martins withing the meeting from the Office of Council
+Services is Director David Raatz and Attorney Megan Moniz and from the Department of
+Corporation Counsel Corporation Counsel Victoria Takayesu and First Deputy Mimi
+DesJardins. Before we proceed with today's agenda, may I please request that
+everyone keep their microphones muted unless it's your turn to speak. As a reminder
+testimony must pertain to the item on the meeting agenda. Today's meeting is for the
+purpose of Council Members coming into agreement on the process for Council to fill
+a vacancy in the Kahului residency seat held by our esteemed colleague and friend
+Tasha Kama.\r\n\r\nThis meeting is not to discuss potential nominees. We will hold
+another special Council Meeting November 20th to discuss and decide upon the
+nominees. A remind, when testifying please direct your remarks to the Council and
+not to any individual Council Member or Member of the public. Each testifier will be
+allowed to speak up to three minutes on each item for individuals wishing to testify
+on teams, please click your raise your hand button to be added to the testifier log.
+If you are calling in, please follow the phone prompts to be added to the testifier
+log. If you wish to testify anonymously, please sign in an anonymous and you will be
+given a testifier number. Decorum be maintained at all times.\r\n\r\nAny person who
+behave in a manner that disrupts, disturbs or impedes the orderly conduct of any
+Council Meeting can the at discretion of the Presiding Officer or a majority of
+present Council Members be ejected or banned from the Council Meeting. Or if
+participating remotely, muted or dropped from the meeting examples of disruptive
+behavior include, but are not limited to heckling, shouting, use of profanity,
+threatening or slanderous remarks made to any Member of the Council, Staff or
+general public. All meeting attendees whether online or in-person are expected to
+wear clothing which should not display profanity Ms. Clerk, please proceed. >> Thank
+you, Madam Chair. At this time, individuals may testify on the Resolution 25-202
+relating to the establishing the process for filling the Council vacancy for the
+Kahului residency area for the remainder of 2025-2027 term. Chairs first to testify
+is Zandt raw Kraus testifying on the Resolution to be followed by Kathy
+Fleming.\r\n\r\n>> >> Aloha Kakahiaka, Luna ho Malu. I'm in Legislative Analyst.
+Zandra Kraus (speaking Hawaiian) 25-202. I first would like to express our family's
+sincere condolences to Tasha's 'Ohana, and to all of you, which I know Tasha
+considered her family as well. Feeling Tasha's shoes will be a challenge presented
+to whoever you choose to fill this vacancy. We trust you to do due diligence in your
+choice. The Charter, County of Maui Article 3, County Council Section 3-2election of
+Council in terms of office Section, Section 3-2 vacancy in office. A vacancy in the
+Office of Any Council Member shall be filled for the remainder of the unexpired term
+in the following manner: No.\r\n\r\n1, if the expired term is less than 15 months
+the remaining Members of the Council shall appoint a person by Resolution adopted by
+the majority of its remaining members to fill the vacancy for the current unexpired
+term. 2 -- not 2, should the Council fail to fill any vacancy within 30 days after
+its occurrence, the Mayor shall appoint a person to fill the vacancy for the current
+six unexpired terms. The person appointed by Council or the Member shall have the
+same qualifications required of a candidate elected by the voters. No. 2, if the
+unexpired term is more than 15 months, the vacancy shall be filled by a special
+election to be called by this Council within 30 days and to be held within 90 days
+of occurrence of the vacancy. The electors of the County shall then elect -- in a
+special election, the successor with requirement qualifications to fill the vacancy
+for the remainder of the term. At special election the candidate receiving the
+highest numbers will be elected.\r\n\r\nThese guidelines for your -- from your
+Charter, Council Members, and Council Chair, should assist you in making your
+decision, which will serve the residents of Maui County Nui at-large. Mahalo Hua. >>
+Thank you. Any questions for -- The testifier? If not - [ INAUDIBLE ] >> Kathy
+Fleming followed by Evan Dust. >> May I allow Evan Dust to go first? >> All right,
+Evan Dust will be next followed by Kathy Fleming.\r\n\r\n>> Chair, Vice-Chair,
+Members of Council, it's hard for me to say good morning. At first, let me thank all
+of you for the kind expressions of condolences on behalf of myself, and my extended
+'Ohana. Thank you so much. You have returned to our 'Ohana the love that Tasha
+expressed to you. My mother-in-law was very much one to emphasize transparency. She
+wanted the public to know looking over the process which is the subject of this
+meeting she would say, yep, that gives quite a bit of transparency, everybody can
+see all of the moving parts. But she also was one who valued efficiency, and
+effectiveness.\r\n\r\nSo as you consider this process, keep that in mind, if there
+are ways to tighten the process, and get to an answer sooner, Tasha would appreciate
+that. And of course, I would be remiss in not noting that she charged me with doing
+everything humanly possible to see that her final wishes were carried out. I will
+leave you with that. Thank you so much. >> Thank you, Evan. Are there any questions?
+If not, thank you very much.\r\n\r\n>> Chair, the next testifier is Kathy Fleming,
+to be followed by John Pele. >> Good morning, Chair Lee, and Council Members. Kathy
+Fleming, President of Wailuku. We are here under such very sad circumstances. The
+loss of Tasha hurt us personally, because she loved us, and we really loved her
+back. But I must speak today, because I fear some Council Members will see her death
+as an opportunity to advance their own political agenda. This would be a morally
+bankrupt act.\r\n\r\nTasha was elected by us, the interest of the voters must come
+first. We voted for her, and by extension, we trust her to name her replacement. To
+not support her choice is anti-Democratic. If she had recommended someone
+unqualified, it would be a different matter. But she has recommended Mr. Batangan, a
+leader with irreproachable qualifications. So please honor the voters and not
+personal selfish interests.\r\n\r\nThank you. >> Thank you, any questions? No
+questions. Thank you. >> Chair, the next testifier is John Pele, followed by the
+Royal House of Hawai'i. >> Aloha and good morning, Council Members. Can you all hear
+me? >> Yes, good morning.\r\n\r\n>> It is with a heavy heart that I testify before
+you today. But I thought I would share my opinions. Testifying on resolution 25-202.
+And over the years, I have gained some respect for what you guys do. And I respect
+the work that you guys put in to your craft. I think a lot of people in our
+community don't realize how hard it is to perform the jobs that you guys perform, on
+a daily basis. One of those factors I have really become accustomed to that you got
+elected. It's a lot of work.\r\n\r\nI can relate to that work of that process. So
+I'm just asking you to consider in the process of filling the Kahului seat, that you
+take into heavy consideration auntie Tasha's request at her replacement. Because
+let's understand as many of you sitting there, she was not only elected once. She
+was elected four times by constituents of this County, based on her beliefs, based
+on her values, based on what she would bring to the community. In naming her
+replacement, she has solidified for the rest of her term, the vision of what she
+believed in. And I just hope that you consider what she believed in to represent
+this community that she was elected to do, and part of your process to fill her
+vacancy. November 3rd, I think it's November 3rd, 2026, the people speak, and the
+votes will be counted and we'll move on.\r\n\r\nTo fulfill her vision of what the
+people voted on, please consider her request. Thank you so much, and I appreciate
+the work that you guys do on a daily basis. Thank you. >> Thank you. Any questions?
+Thank you very much, John. >> Chair, the next testifier is the Royal House of
+Hawai'i and currently he is the last person signed up to testify.\r\n\r\n>> Aloha.
+This is the Royal House of Hawai'i. A Member of the Royal House of Hawai'i and a
+descendant and Allodial land tenant testifying before you today on hava hava Nui,
+and hava hava Nui. But what is that called Sorry for your loss, but the person that
+is going to be elected, are they going to have the correct qualifications? Because
+okay, so a little class session right now. So where are we right now, you guys? Not
+the State of Hawai'i now. We stay in the Kingdom of Hawai'i, okay?\r\n\r\nHello. So
+there's Hawai'i Revised Statutes basing laws off the kingdom laws, so we're going to
+have to be basing qualifications on kingdom laws, too to see their qualifications,
+yeah? I agree with ending the rentals, but not only just ending the rentals, you
+guys should meet or you guys actually have to call the descendants of those specific
+lands of all of the lands, because all of Hawai'i is Royal Patented Allodial title
+land Commission Award granted or titled royal property land Commission award from
+1800's. From the Mahele. And Hawai'i Revised Statutes 172-11, the lands supposed to
+go back to the descendants, yeah. But the descendants never get called up, so call
+them up. Yeah. And correct me if I'm wrong, I think can be I don't think, I know I
+write you.\r\n\r\nI write you by law. You have to follow the Royal Patents and give
+the land back for real, because again, we never got contacted, and yeah, call the
+descendants of the Royal Patents, because the Royal Patents last forever, here in
+the Kingdom of Hawai'i, yeah? Get it right. Mahalo. >> Time. >> Thank you. Any
+questions?\r\n\r\nIf not, thank you very much. Next testifier. >> Chair, there's
+currently no one else signed up to testify. So this will be last call and I see Mr.
+Lau making his way to the podium. >> Aloha Kakou, Aloha -- J.C. Lau from Ahupua'a. A
+little bit of sunshine is gone from the kingdom, another Hawaiian bites the dust,
+Nalei Kama. I was walking by the apartments the other day, and I saw a guy busting
+up some old furniture in the back of his truck and I asked him is that Tasha's stuff
+and he said yeah.\r\n\r\nSo I recommend taking up a collection for her family,
+because the furniture wasn't new or anything, it was the old stuff that you get from
+-- the restore over there. The Hawaiian word of the day is Pele ka ma, meaning close
+relationship, but not by blood. The Macron is over the first a. I appreciate the
+Royal House of Hawai'i kind of grounding us there with the process, and I think you
+all should look into the Hawaiian Constitution and make sure you're not crossing
+that up. And there's probably pretty sad when Lili'uokalani died, too and I think
+Tasha looked a little like Lili'uokalani and I think you should get a Hawaiian in
+there, for anybody who has any influence over the matter. So the runner-up from the
+last election was -- is Hawaiian. So that would be my first choice. Thank you for
+your time.\r\n\r\n>> Thank you. Questions? If not, thank you. >> Chair, the next
+testifier is Stacey Alapai, followed by Travis Liggett. >> Aloha, Council Members. I
+just want to take a moment to recognize the Kama family, and give everybody my
+condolences. I wasn't planning to testify today, but I felt like somebody needed to
+express support for the process laid out in the Resolution.\r\n\r\nI read through
+it, and I think that this process is fair to not that this are necessarily sides,
+but fair to all perspectives for the Council Members to come up with a list by the
+10th, for the public to review that list, and provide testimony on those nominees. I
+think it's the most fair and Democratic way possible to go about this really
+difficult process of appointing someone to that vacant seat. I also think it's
+really important that this process not hold up the work of the Council as a whole,
+and the important Bills that are on the table waiting to be heard. It would be
+disrespectful, I think, to Tasha's legacy to put all of the important work of the
+people, and the people she represents on hold to fill one seat. Quorum is five
+members. We have quorum today with eight. And that shouldn't hold up the rest of the
+work of the Council.\r\n\r\nI don't think that that would be respectful of anyone's
+legacy or respectful to this body or to all the people that you represent. So please
+don't -- don't -- we all need time to grieve, but there's also work to be done. So
+we need to continue that work. We should hear Bill 9 and all of the other important
+bills on the table, and I just really appreciate this process of a list, because I
+don't think that any one person should be appointing the seat. Mahalo for your
+careful attention to this matter, and for handling this very difficult situation
+with so much grace, especially to Chair Lee and the rest of the Members, who I know
+are also grieve right now. >> Thank you, any questions? Member Paltin?\r\n\r\n>>
+Thank you, Chair. Thank you, Ms. Alapai. I just was wondering were you able to sign
+up for testimony online from the agenda oral testimony link? >> I just joined and
+raised my hands, because I'm pretty familiar with the process. I didn't use any link
+this time. I have it saved in my team's account.\r\n\r\n>> Oh, okay. Because we're
+getting some messages that the link is not working on the English agenda, but you
+didn't use the link. >> No, I have it saved in my teams folder, but I noticed that
+the agenda looked weird today. I was trying to click on the way I normally access
+the Resolutions and everything, the links were kind of broken and why I went through
+my own saved documents. >> Okay. Thank you. Good job.\r\n\r\n>> Thank you. >> Chair,
+the next testifier is Travis Liggett and currently he is the last person signed up
+to testify. >> Ms. Clerk, can you check on what the previous testifier just said? >>
+Yes, I just checked and the hot link that directions testimony to the County.Clerk
+at MauiCounty.US is working in terms of clicking on it and getting to the email that
+would be sent to the County Clerk's testimony for testimony. >> I meant the oral
+testimony link for folks wanting to testify online. >> Instructions that we have are
+that it's online with teams.\r\n\r\nSo we have the teams link, and then we say raise
+your hand, if you are testifying online. >> Chair? >> Member Paltin, are you saying
+some people texted you, or emailed you that they are not able to access this
+meeting? The testimony? >> Yeah, and then when I click on the oral testimony link,
+it says "the site can't be reached." From the agenda. It says "oral testimony linked
+to teams." This is what it looks like on my computer. >> Ms.\r\n\r\nClerk, do you
+need some time to check on it? >> It says oral testimony for information on
+testifying please visit and there's a link to the MauiCounty.US/teams web page when
+I check on it, I see that link is broken, but it's only a general link to teams
+information. At the very top of the meeting says "meeting site online via teams."
+That link is working. >> I'm referring to the one on page 2, where it says "oral
+testimony for more information on testifying please visit -- >> That one is not work
+. you're right. That one, I agree, it's not currently working, but all that leads to
+is a link that gives you general information on teams meeting platform itself. But
+the link to the meeting is working. >> Okay.\r\n\r\n>> And the instructions are
+clear, raise your hand in teams. >> Okay. Vice-Chair Sugimura. >> So I just wanted
+-- I get a text from Pam Tumpap, who says she is online to testify. >> We have
+someone before her. >> Thank you. >> Anybody else with a question or comment for our
+Members?\r\n\r\nIf not, Ms. Clerk, please proceed. >> Mr. Liggett will be followed
+by C Rose Riley. >> Aloha, good morning, Council. I thank you for the opportunity to
+testify . It's a very sad day, and just want to share a couple of thoughts to inform
+this process: One is a little story my first times presenting, I was so nervous and
+I wasn't sure if this public engagement thing was for me. And Member Kama just said
+a kind word to me, something about the -- I had a bottle of LIMU and that small
+kindness, like kind of -- it was just what I needed in that moment, and it was just
+something special about her, and I really think that her successor should have that
+quality of just being kind and open and just holding space the way that she
+did.\r\n\r\nSecond, I lost a partner about two years ago, and it has been trial by
+Fire. So there has been a couple of small lessons that were shared with me that I
+would like to share with everyone about grief, and it's a simple concept that was
+shared with me, which is the idea that grief is love that has nowhere to go. And the
+solution that I developed was to invest that love in other people and projects, and
+not to let it stagnate, and I end up telling the people close to me how much I cared
+about them more than ever. And that the trick is to keep the love moving, and that
+my husband was son of two immigrant refugees, born in a refugee camp in Austria,
+just about the kindest person ever, and -- so that is all I have to say. I sent some
+proposals for different Memorial projects, but my last thought is that I believe
+that the person who is still with us in physical form, who has the most votes would
+be the most logical choice, and I sincerely appreciate your time, and I thank you
+for your important work. Thank you. >> Thank you.\r\n\r\nMembers, any questions? If
+not, next testifier. >> Chair, the next testifier is C Rose Riley, followed by Pam
+Tumpap. >> What does it mean to steal? If you steal a car, it's a felony, if you
+steal a heritage, can I steal a minute of your time and how many minutes I have I
+stolen from busy lives and busy schedules over stressed families just trying to
+survive, just to pass a message, a hope, a vision, of way of being, it is seven
+years that it's been since we elected Tasha Kama. I helped her get elected going to
+meetings and listening to what she had to say, coming up with a platform, coming up
+with things to express to others so she can gain support, getting someone elected
+the first time is the hardest. I heard this year that on the first day she was in
+office, the door was closed and she was threatened for hours.\r\n\r\nHer and her
+family, that is seven years of votes stolen from me, from this community, and from
+the water. The votes that have been passed during that time have been completely
+egregious. Going back against the community that passed laws in the Council before
+previously going through and doing that as first agendas egregious mismanagement,
+and theft. Since we have been stolen from, the first thing that people always say
+when I look to them in the community is are you going to give it back to the
+Hawaiians? Because I want to give it back to the Hawaiians, and this is what
+everybody has wants. I have rallied, educated and gathered, and spread for the
+change and vision that kept inspired me as a youth and the people in place, that
+sparked my infinity hope and vision for the divinity in humanity. This body doesn't
+seem to have the capacity to act Hawaiian enough.\r\n\r\nHow many times does Keana
+Sai have to come in and talk about the illegal occupation? So what happened, the GMO
+moratorium, Tom Cook has been getting double the salary from investors since he got
+elected. We have been standing by each other in all of these meetings. So what? I am
+not getting paid. I'm taking off work and I'm giving up my career and he is on
+unemployment. >> Please Chair?\r\n\r\n>> Excuse me, don't interrupt me, I have time.
+>> Zero water solutions, fight us tooth and nail and just acting Lahaina burning
+down is yesterday's news. This is what is happen right now. This is what is
+happening in this Council. Next person I have gotten into being able to have a
+platform is Carol Lee Kamekona. >> Point of order? Point of order.\r\n\r\n>> All of
+these different ways that this community is educated on her platform and capacity.
+So business as usual is over. >> Thank you. Any questions? If not, thank you very
+much. >> I would like to remind the rest of the people coming to testify to please
+focus on the topic on the agenda and that has to do with process. We're not talking
+about other people, we're actually honoring our colleague who passed
+away.\r\n\r\nMember Cook. >> Thank you, Chair. I would ask the general public,
+people have a lot of strong feelings. It hasn't been a week since Tasha passed. Can
+we please be civil? Passion is respected, but it should take its place. Anyway, just
+ask people to please be civil and understand that this is a sad time that we're
+having this meeting to decide how we're moving forward.\r\n\r\nThank you, Chair. >>
+Thank you. Well-said. Next? >> Chair, the next testifier. >> Wait, wait, Member
+Rawlins-Fernandez. >> Mahalo, Chair.\r\n\r\nI agree with what you instructed the
+testifiers. That to focus on the process, and not be advocating for people, because
+that is not what this meeting is about. And that is what happened in the first few
+testimonies is that they were advocating for specific people, and so if we're going
+to say focus on the process, and not be advocating for any people right now, then it
+should apply to everyone. Mahalo, Chair. >> Yes, it does apply to everyone, but I
+really wasn't talking about that. I was talking about when people point out other
+Council Members, who are not on the agenda. It's really hard to separate people
+talking about their sadness about Tasha passing away, and us having to replace her
+with someone.\r\n\r\nIt's really hard to do that. But anyway, we're at the end,
+almost the end of the testifier list, and for those of you left on the list, please
+try to focus on the process to the extent possible. Thank you. >> Chair, currently
+the last person signed up to testify is Pam Tumpap. Ms. Tumpap. >> Was she
+on?\r\n\r\nOr does it look like she is still on? >> She is on by phone. >> Do you
+see her? Ms. Clerk? >> I believe she is calling in from extension 2320. And unmuted
+on our end. Press star 6 on your end to unmute . It looks like you may have just
+muted and unmuted.\r\n\r\nThere you are unmuted now. >> Aloha, yes >> We hear you.
+Aloha. >> Awesome, thank you so much. Well, first of all, I just really want to say
+and express to the family, and all of Tasha's friends, and supporters, my
+condolences. I know this has just hit us with very heavy hearts and certainly
+unexpected. What I did want to say is that as many of you know, as she -- you know,
+went into the hospital, she was working tirelessly and she hadn't previously thought
+about whether she would run in the future and if she did or didn't, what kind of
+leader she would like to see?\r\n\r\nShe put a lot of thought and I know she was
+doing that up until the final hours when I was very blessed to get to say goodbye to
+her and she worked tirelessly to find someone who would be a good leader. We
+appreciate this process and we appreciate that it's moving forward quickly because
+it's a crucial role in our community. I do want to say and I know I'm last, we
+support honoring her wishes and by way of saying "we" the Maui Chamber of Commerce
+and our Board of Directors supported her wishes and we stand for that and we
+appreciate there will be a fair process and the community has a chance to weigh-in.
+She wanted to ensure that the work she was doing and the commitment to the people of
+Maui County was honored and we stand for that. So I want to thank you for the
+opportunity and thank you all for the tremendous work you are doing. >> Thank you.
+Anyone else?\r\n\r\nIf not, may we have the next testifier. >> Chair, we have signed
+up to testify anonymously and they are online. >> Aloha >> Call them up. >> Aloha.
+>> Yes? Aloha. >> Hi.\r\n\r\nHi. Sending so much Aloha and love to you folks during
+this time, grief and being able to function through hard times is definitely
+probably not what you all signed up for, and it's what you have been faced with a
+long time since COVID. So process what an opportunity for you all to let Tasha's
+light and her spirit still remain with us in the present, as her culture, you know,
+and her faith allows. So when the gentleman was speaking earlier about grief, we can
+still give her the love. She will still feel it. We believe that here, you know, in
+Hawai'i. And you know, with Tasha practiced a religion that also maintained
+everlasting life. So let us honor her and her wishes, and the process that you folks
+have in place, and the grace that she would have loved to share and to have that
+voice.\r\n\r\nYou folks can honor her soul in the present and let her have that
+voice without any coming on you folks -- she is our best friend, and now, you know,
+truly hope to take this opportunity to tip the scales for her soul and her 'Ohana,
+and us, her 'Ohana to that beautiful Aloha honoring -- you know, the thing that will
+make you cry inside that maybe we can't do, because of how the world worked
+yesterday, two days ago, three days ago, now. Let us honor her soul, so it works the
+way she would have dreamed and her 'Ohana dreams. So may each breath you to that
+love that you could give her so you never feel the paint grief and only the love
+that she shares for us all and the truth that she is now free to express through her
+Aloha forever. God bless you all, and may the pause that her beauty when you think
+of her in your heart, before your minds, guide you with this process, and to the
+grace that what a powerful opportunity that you have. God bless you all. >> Time. >>
+Thank you.\r\n\r\nAre there any questions, Members? If not, thank you very much. Ms.
+Clerk. >> Chair, there's currently no one else signed up to testify. So in is last
+call. If there's anybody who would like to testify, this is your
+opportunity.\r\n\r\nI see Mr. Williams making his way to the podium. If you are
+online, you can raise your hand. >> Aloha Kakou. My name is Kan le Williams and
+first to start by expressing condolences for Tasha Kama. But I also want us to be
+very clear as well that none of these Council seats, nobody sitting is a King or
+Queen, okay? These are not thrones.\r\n\r\nIf these were, then we might as well
+admit we're in the Hawaiian kingdom and act like we're anyway kingdom with Kings and
+Queens, but that is what we're doing here; right? This is American government and
+we're playing American politics and so through that process that Democratic process
+of American government, meaning that last wills and wishes don't decide who gets put
+into the seat. It's not decided like airship like it's throne. I am saying this --
+as someone with traditional ka Huna, as you for those are ignorant and not
+knowledgeable about Hawaiian culture, a Kahuna ana ana is a traditional Hawaiian
+priest, that cast curses, that pray people to death and make them sick, okay? People
+sitting in politics are very vulnerable so that because that is an ancient tradition
+in these Highlands that people need to be aware of when they are make the decisions
+that they're doing in these seats. So that is all I wanted to say to Malama what you
+are doing, make good choices and be pono with what you do, because if you are not
+able to protect yourself against a Kahuna ana and ana and probably the best chance
+of protecting themselves is Keani because she is from Moloka'i. If you don't
+understand Moloka'i history, if you don't, it's good to learn some stuff.
+Okay.\r\n\r\nThat is all I wanted to say. >> Thank you, Members, any questions? If
+not, next testifier. >> Chair, there's currently no one else signed up to testify.
+If there's anyone in the Chambers who would like to make your way to the podium.
+This is last call, if you are online raise your hand. The countdown -- oh, we have
+someone signed up as Kahala to testify.\r\n\r\n>> Online? >> Yes. >> Okay. Aloha,
+can you folks hear and see me? >> Aloha. >> Thank you. Aloha.\r\n\r\nOkay. Any I my
+name is ka Hala and live in Happy Valley and say Lords, ladies and peasants of the
+County of Maui, I prostate myself before you today as a ivy tower trained politic
+wizard as one of your most loyal subjects as one of the lowly dirt born ceremonies
+of Maui, who sings daily praises to your role, I come in humility to beseech the
+Council appoint a new overlord. We desperately need a new royal heir to restore
+balance and harmony to the vision of the mushroom kingdom. And so in this spirit,
+the big 5, I wish to make a big suggestion on this appointment procedure No. 1 use
+trial by combat a classic feudal society or candidates can compete the death of
+glory and treasure, if you want more information on trial by combat, you can see
+"game of thrones," season 4 episode 8 time stamp 47:30 where my husband over in
+Martel was slain tragically by Gregor, the mountain clicking No. 2, other procedure
+mystical quest for amulet of Democracy. And you can send candidates on a journey to
+the treacherous lands of Continental United States to seek that rare and elusive
+political ideal.\r\n\r\nNo. 3, magic ideal election, where we can get the talking
+animals, birds and fish and plants of Kahului. To vote alongside for their favorite
+candidate alongside humans elves, doors, hobbits, trolls, fairies, NATO 4, you can
+hire me as a wiz yard consultant and if all spell you could get it over with and
+appoint the People's champion auntie Carlo Lee. I guess but when is the magical
+drama, is that right? Anyways long live the realm, long live King's. Long live the
+kingdom of Maui County Aloha. >> Thank you. Questions, Members?\r\n\r\n>> If not,
+next testifier. >> Chair, there's currently no one else signed up to testify. So
+this is again last call. Countdown is 3, 2, 1. Chair, there's no one indicating a
+desire to testify. >> Members, any objections to closing public testimony and
+accepting written testimony? So ordered. Ms.\r\n\r\nClerk. >> Chair, before you is
+resolution 25-202, establishing the process to fill the Council vacancy for Kahului
+residency area for the remainer of the 2025-2027 term. >> Vice-Chair Sugimura. >>
+Chair, I move to adopt resolution 20-202. >> Moved by Vice-Chair Sugimura, seconded
+by Member Cook to adopt resolution 25-202. Discussion? Vice-Chair Sugimura? >> I
+believe that the Resolution establishes the process for us to move forward with this
+sad vacancy that we're being asked to replace. And I appreciate the deadlines
+established, the Clerk's participation, and the work that OCS put in to develop this
+process.\r\n\r\nThank you. >> Anybody else? Discussion? Member Cook? >> No, thank
+you, Chair. I think this is a well-outlined process well for the Charter and for us
+to hopefully work collectively with mutual respect and move forward to address some
+of the serious issues that are facing us in the community. >> Thank you.\r\n\r\n>>
+Members, do you want the Resolution read? >> Maybe for the public. >> Before I call
+on you, Member Sinenci. Okay? Ms. Clerk. >> Thank you, Madam Chair, this is
+resolution 25-202, establishing the process to fill the Council vacancy for the
+Kahului residency area for the remainder of the 2025-2027 term.\r\n\r\nWhereas, the
+Council and residents of Maui County were saddened to learn of the passing of
+Council Pro Tempore Natalie Tasha Kama on October 26th, 2025; And whereas, Council
+Member Kama was elected to the Council seat for the Kahului residency area, and
+served the public with dedication and integrity; And whereas, Council Member Kama's
+passing created a Council vacancy for the remainder of the 2025-2027 term, which
+expires at noon on January 2nd, 2027; And whereas, because the vacancy is less than
+15 months the Council must fill the vacancy within 30 days of its occurrence under
+Section 3-4, revised Charter of the County of Maui 1983 as amended; and whereas, the
+Council wishes to establish a process to fill the Council. Now, therefore, be
+resolved for the Council of the County of Maui one that establishes the following
+process to fill the Kahului residency area for the remainder of the 2025-2027 term,
+and any Council Member may submit to the County Clerk by noon on November 10th,
+2025, one, proposed Resolution to appoint a qualified nominee, modeled after
+resolution 02-90; and 2, the nominees completed financial disclosure statement form,
+exhibit a and application for a nomination paper exhibit b. B, before submitted
+Resolution is eligible for posting on an agenda, the County Clerk must verify to the
+Council Chair that the nominee meets qualifications enumerated in the Charter and 3,
+one or more Resolutions to fill a vacancy will be considered at a special Council
+Meeting and concurrent Public Hearing before the Council deadline to fill the
+vacancy. D-at special Council Meeting members may interview nominees in an Open
+Session except that an affirmative vote of two-thirds of the members present may ask
+an Executive Session to discuss matters affecting privacy under part 1 Chapter 92
+Hawai'i Revised Statutes and certified copies of this Resolution be transmitted too
+the Mayor, the County Clerk and the Corporation Counsel. >> Member Sinenci. >> Thank
+you, Chair. Like many of the testifiers this morning, I too, wanted to send our
+Aloha and condolences to the Kama 'Ohana to her office Staff Lei, Nalini and Evan
+and I just wanted to express our gratitude to working with them closely. Thank
+you.\r\n\r\n>> Thank you. Any comments on the Resolution? Members? >> Chair? >>
+Member Rawlins-Fernandez. >> Mahalo, Chair. Okay, two things.\r\n\r\nSo the
+Resolution 25-202 references resolution 02-90, and I just tried looking that up, and
+I couldn't find it online. I would like to have that Resolution attached as an
+exhibit just so that since it's being referenced and it can't be immediately found
+online, that if we're going to reference it, then we should, you know, provide --
+make it accessible to the public to be able to see it. Do you want me to make a
+motion for that or are you just going to attach that? >> No, I'm just going to ask
+the County Clerk if they can attach it, and also put it online, yes. >> Yes, Chair.
+We'll post the link to the Resolution in the chat. >> Mahalo.\r\n\r\nBecause I did
+look on the meeting details, and it wasn't -- it wasn't in the meeting details
+either. There's only public mana'o and written testimony in the meeting details. So
+the Resolution 02-90 wasn't available there either. Is that considered a
+non-substantive Amendment to add that? >> Well, >> Well, Richelle? >> You can do
+that by consensus or with a formal motion, either way. >> I think no one objects any
+objects to adding the Resolution 02-90 as an attachment?\r\n\r\nOkay, so ordered.
+And what was your second question? >> Mahalo, Chair. The second thing is so the
+Council Meeting -- -- is it not on here? I know you mentioned it verbally, that it
+would -- the special Council Meeting where we would vote to fill the seat would be
+on November 20. But that's not noted on the Resolution itself. I don't see it. go
+ahead.\r\n\r\nokay. >> I was going to say, we did -- delay, you talk. >> Okay. So if
+it is going to be scheduled on the 20th, or any time between November 20 -- sorry,
+November 13 through November 24th, I would like to request that the meeting be
+recessed . I already had planned to not be available during that time, and I will be
+available on the 25th after 11:00 a.m. And I would be able to participate in-person.
+So I would like to have that opportunity to participate in-person on November 25th,
+when we take that vote. >> I think, David, that is the deadline for us, the 25th? Is
+that the 30th day?\r\n\r\n>> Thank you, Chair. Yes, Staff calculations indicate that
+November 25th is the last day for Council action under the Charter, thank you. >>
+Anyway, you can join us from New Zealand? >> Yes. >> Is that where you are going to
+be? >> What time does the vote need to take place? >> Well, the Council special
+Council Meeting started at 9:00, what time the vote is taken is anybody's
+guess.\r\n\r\n>> Not November 20th, I'm asking what time on the 25th by 11:59 p.m.,
+the 25th? >> David, what time on the 25th is the deadline? >> Thank you, Chair. The
+Charter is silent as to the time of day. I do note that the County government of
+course officially closes its work day at 4:30 p.m. So that might be the safest
+approach. I don't know that we could guaranty that County Clerk would be able to
+certify, for instance, after 4:30 p.m.. >> County Clerk? >> Thank you, Madam
+Chair.\r\n\r\nI believe that as long as the meeting is closed prior to midnight, the
+Council's action would have taken place prior to the deadline on the 25th. >> Prior
+to 12 midnight Hawai'i time? >> Yes. So I will be back in-person. >> By 11:59 >> On
+the 25th in the morning, so I would like to be able to participate in-person. >>
+Members? Comments?\r\n\r\nMember Cook? >> Thank you, Chair. I would like to
+respectfully accommodate my colleague, but I really don't think it's wise to
+postpone this until the very last day on the very last-minute. Is there any way that
+we could coordinate timing with Member Rawlins-Fernandez, Member Paltin was just in
+New Zealand and participated in many, many occasions. I recognize the difficulty and
+it took a lot of effort, but my personal vote is not to leave it to the last day of
+the last-minute for this decision to be done. Thank you. >> Other
+comments?\r\n\r\nWe're going to decide by consensus. Member Uu-Hodgins? >> Thank
+you, Chair. I would prefer not -- I understand, Member Rawlins-Fernandez situation,
+and I would hope we wouldn't wait to the last day, only because the last time we did
+this, we got into a lawsuit good mass nominations on when we were able to submit and
+when we can take in nominations and I think it was a whole issue about what
+constituents the end of day? And whether that is 4:00 p.m. or whether that is
+midnight, maybe Corp. Counsel can kind of speak to that, I'm sure we all remember
+getting sued for mass nominations. I want to be able to accommodate everybody, but I
+want to make sure we're within our timeframe.\r\n\r\n>> Corporation Counsel. >>
+Thank you, Chair. We agree with Deputy Clerk that midnight would be the appropriate
+deadline, but the think to consider if not done by midnight and you have to recess
+your meeting that would take you beyond the deadline. >> Member Paltin. >> I'm ready
+when Nohe is done? >> I'm good, I just wanted it on the record, so we -- not that I
+don't trust clerks, because I do. But that we got into this issue before with mass
+nominations.\r\n\r\nSo I just wanted to clarify it on all ends. Thank you. Thank
+you, Member Paltin. >> Member Paltin. >> I wanted to clarify Member
+Rawlins-Fernandez what she had said did she want us to do the 20th meeting, and then
+recess before a vote was taken? >> Mahalo. >> Member Rawlins-Fernandez.\r\n\r\n>>
+Clarifying question. Yes. So my request was to keep November 20th as the date that
+testimony is received, that enough deliberation happens so that you can recess the
+meeting. And then we complete the work on the 25th. So I know that testimony is
+generally the part of the meeting that we can't anticipate how long it will be. We
+don't know if, you know, it will be all of November 20th, and you have to recess
+again to continue taking testimony on the 21st? So that part, I'm not asking for it
+to be delayed, because that is the part that we don't have control over.\r\n\r\nWe
+only have control over ourselves and when we stop deliberation and when we decide to
+vote, and vote in time to meet the deadline. The reason for making this request for
+me to be there in-person, is because yes, I'm participating remotely right now. I
+can do that from anywhere. But I know that when there are big things, like this,
+that are happening, and the meeting recesses, talk happens. I know this, the public
+knows this, and if I'm not there in-person, then I won't be able to be privy to
+whatever is being discussed, advised, deals being made, whatever. I know this, and
+that is why I'm asking to be there in-person for this very important vote. Mahalo,
+Member Paltin.\r\n\r\n>> And then I wanted to further clarify is it just the
+testimony? Because the Resolution part D, 1D says at the special Council meeting
+Council Members may interview nominees in Open Session, except that upon affirmative
+vote of two-thirds of the members present may request an Executive Session to
+discuss matters affecting privacy under part I, Chapter 92 H.R.S.. Is that part on
+the 20th also? >> Mahalo, Member Paltin, for that follow-up question. Yes. So you
+know, all the way up until we start deliberating on the vote itself. So interviewing
+candidates, if we're go into Executive Session, I can figure that out remotely in
+being a secured location to be able to participate online. But I would like us to
+recess before we complete that portion of the meeting.\r\n\r\n>> Okay, thanks for
+the clarification. I will yield to my colleagues, if there's other questions? I'm
+okay with it. >> Member Sinenci. >> Thank you. If our OCS Staff, Mr. Raatz, if that
+is okay?\r\n\r\nI'm open to it as well, Chair. I did want to address 1A, that there
+may be other submittals to the -- from Council Members, for of other potential
+candidates for the position. And so would that make it to the -- if we submit it by
+November 10th, that will make it for the November 20th. I know one testifier
+requested that a list be posted prior to the November 20th meeting so that people
+could see the list. >> Yes. We're going to make sure that anybody who is -- has
+applied -- well, actually, through a Member, through a Member. >> There is no open
+application, only a Member?\r\n\r\n>> No open application that I know of. David, we
+can talk about that with the final decision was to have the members nominate one
+person? >> Thank you, Chair. Well, actually, it's the purpose of this meeting is to
+consider this Resolution and establish the process. So the Resolution of course can
+be amended, if a majority of the Council would like to do so. But the Resolution is
+drafted right now does not limit the number of potential Resolutions by the body
+cumulatively or by any single Council Member. Thank you, Chair.\r\n\r\n>> We talked
+about that before and the problem with that, and of course, if there's consensus to
+accept that, we can go with that. But what is going to be time-consuming is
+verifying people's applications. See, because once they apply, then the County Clerk
+has to verify their residency and that might have to -- entail checking on bills,
+let's say, to ensure that they were there for one year, electric Bill, telephone
+Bill, things like that. So that part might be time-consuming. So we try to leave as
+much time as possible before all of that to be verified because all of that, because
+the names have to be posted for the next meeting. Yeah? For the meeting on the
+20th.\r\n\r\nAll of the names have to be posted. So whether you want to include all
+names of people who volunteer, or just the members submitting one name. That is what
+we have to discuss. But did I answer your question? >> Yes. Thank you, Chair. >>
+Member Paltin.\r\n\r\n>> For whoever can answer just wanted to also clarify so to be
+considered a nominee, you need to have your financial disclosure in by the 10th and
+it needs to be done correctly. Just -- I don't know, maybe it's a lawyer question?
+>> It's a County Clerk question. And I was told no, but go ahead. >> Thank you,
+Chair. Just having the financial disclosure statement would be information for the
+Council Members, and for the public in terms of potential testimony, or your
+consideration. >> So it's not a requirement?\r\n\r\n>> No, it would be prior to them
+starting in the position officially. But not necessarily as part of your process to
+consider a nominee. In the normal course, in normal elections as you all know, you
+have to file your financial disclosure statement at the time you file your
+application for nomination papers. So that was the reason it was included as to give
+the public and yourselves the same information. >> And so can you clarify for us
+what is needed for a nominee to be accepted by you guys? It's just you put a name on
+a paper with an address where they live on November 10th by 12:00, is that all that
+is needed? Or what specifically is needed by you folks to consider that nominee is
+legit to submit?\r\n\r\n>> What we have discussed, Chair, thank you. What we have
+discussed with Director Raatz is that any nominees submitted that that information
+belongs to the Council. So we will check their voter registration, and the
+information that we have, and we will pass that onto you, whether or not they may
+have live in the residency area for the last year according to voter registration.
+But the ultimate decision is going to be yours in terms of whether they qualify. >>
+So is that what we're doing right now right here is saying what needs to be turned
+in by November 10th at noon for a nominee to be considered legitimate? >> I think
+that's, yes, I believe that is part of what you are considering. So the financial
+disclosure statement being part of that package is up to you folks.\r\n\r\nThe
+Charter requires its Charter Section 3-3, they must be a citizen of the U.S., a
+voter in the County, and a resident of area of the County from which the person
+seeks for a period of not less than one year. So those requirements would apply to
+the Kahului residency seat. >> Do you mind clarifying the boundaries of the Kahului
+residency area, because some people think Sandhills is Wailuku or Kahului, or all of
+the things? >> Yes. So the actual description and it is, I agree a little bit
+cumbersome. We can provide a map >> Would you post it to Granicus? >> Yes, we can do
+that.\r\n\r\nIt's Section 3-1 of the Charter, and it is Section No. 4 the Kahului
+residency District area shall be described as follows: And gives you the spatial
+definition. Yes, we can post a map. >> And that Section of the Charter as well? >>
+Sure. >> Thank you. I will yield to my colleagues, if they have any clarifying
+questions.\r\n\r\n>> We should stay on this subject. So qualifications and what
+requirements we will place on them as far as submittals before we go on to anything
+else. Any comments on this subject? Vice-Chair Sugimura. >> So I just want
+clarification of what was said. >> Your mic. >> Okay.\r\n\r\nHere. I just want
+clarification. According to the Resolution, the nominees would complete qualified
+nominees would complete after Resolutions 02-90, and the nominees completed
+financial disclosure statement form exhibit A and application for a nomination
+paper. You are saying it doesn't have to be completed? It can request be their name
+on a piece of paper, where their address is? Or -- that is what I'm asking about. >>
+Ms.\r\n\r\nClerk. >> So the reason that we -- our office suggested using the
+application for nomination paper as the application is that that gives the same
+information this all of you had to provide when you were running for office. >> Yes.
+>> So we thought that would be useful information for you to have, and also the
+public may want to testify. And the financial disclosure statement as I said, it's
+not required in terms of the Charter doesn't require that to be filed in this
+situation. But it's also information that under normal circumstances the public
+would have available. >> So that is what I wanted to know.\r\n\r\nSo if we wanted
+the nominees to fill out the application, as well as the financial disclosure, we
+can ask for it now. >> Yes. And I think that is exactly what you folks are deciding
+right now is what you want the application to include. >> Okay. I would like that.
+Consistency. >> Any other requirements?\r\n\r\nMembers? So yes, Member Uu-Hodgins?
+>> Thank you so much. So not to dissimilar to what we do, not all of it will be
+public; right? Like their financial disclosure, if we do request that it's in
+similar to what we do for all other nominees, and for us. I think for people to fill
+comfortable to fill it out. Can you tell them not everything is going to be
+public?\r\n\r\n>> So would be up to you folks. If you want to have it public? So
+when you file your nomination papers you have to concurrently file a financial
+disclosure statement, which is public. So it's up to you whether or not you want to
+have the financial disclosure statement be private? Whoever is ultimately nominated
+by you folks and appointed will have to be public, because they'll have to file once
+they're official. >> Thank you. >> Any more questions?\r\n\r\nMember Paltin. >> So
+clarify what Member Uu-Hodgins was asking, anybody that pulls papers when they file
+to run for office, their financial disclosure statement is public whether they
+win-or-lose. >> Yes. >> Okay. I thought I say Member Johnson had his hand up. >>
+Member Johnson? Do you have a question?\r\n\r\n>> Yes, Chair. I just, like, I wanted
+to make sure you were done discussing that, because I had something else. But I just
+wanted to say that I support starting on the 20th and recessing to vote on the 25th.
+I support that. And I guess my question, and if it's not relevant, and you still
+want to go on to what you were discussing, you know? We had in 2002 a Council Member
+Moloka'i Council Member ka WANo pass away and had to do this process then. I'm
+curious, has the process been the same?\r\n\r\nHas it changed? Did you look at that
+as a reference? I know it's a Charter in all of this, but you know, this is not the
+first time and I'm wondering how that played into how this is working now. >> Yes,
+it has changed and I will ask David Raatz to explain it to you, residency
+requirements, as well as posting requirements. David. >> Thank you, Chair. Yes, at
+your request, Staff looked into the 2002 preference, excuse me, precedent, that
+Council Member Johnson referenced.\r\n\r\nIn some respects the process is very
+similar in that the Council scheduled a special Council Meeting just as you are
+having today, to talk about the process. And then a Resolution at that time was not
+adopted. There was just consensus reached during the discussion. Today you do have a
+Resolution before you, so you can get a formal agreement among the body, if you so
+choose on the process. At that time, the Council agreed on an open nomination
+process, where Members of the Public who met the requirements including living in
+the applicable residency area, could fill out a form Districted via e press release
+and nominate themselves. A total of eight Members of the Public did fill out the
+form and an appointment was made at a later special Council Meeting which the
+Council adopted resolution 02-90. That time, in that era, 2002, Office of
+Information practices did not have firm guidance on whether nominees names needed to
+be mentioned -- excuse me, on the body of the agenda, on the face of the agenda.
+Since then OIP has revised their advice, at least in an informal money and told us
+that to ensure Members of the public have the ability to provide well-informed
+testimony, that names should be referenced on the face of the meeting agenda, when
+the appointment is going to be made, and they also suggested that the best way to do
+that to have names submitted would be in the form of legislative proposal such as a
+Resolution.\r\n\r\nSo those are some similarities and differences between the prior
+situation and what we're looking at today. Thank you, Chair. >> Okay. Thank you. >>
+Other questions, Members? Member Rawlins-Fernandez? >> Mahalo, Chair.\r\n\r\nJust
+for everyone's reference, the Resolution 02-90 is on Granicus as well; and in the
+chat. >> Members, are you still trying to decide -- either take a vote or back on
+consensus? Agree on what people need to submit? Member Paltin. >> I would propose
+that it be as close to real election, or real filing for running for office as
+possible to include the nomination, and the accepted financial disclosure form, if
+the form is not filled out correctly, I would give them until the 20th to resubmit
+it correctly. But that is what I would propose, because this person is going to be
+serving in the same manner as the rest of us, and should come in with the same
+disclosures as the rest of us, including how Member Tasha came in. >> Anybody
+else?\r\n\r\nVice-Chair Sugimura. Clerks' office. >> Thank you, Chair. For notice
+purposes, once your Resolution is filed, I believe that whatever has been submitted
+should be submitted at that time. Of course, you will be able to ask questions when
+you are interviewing the nominee, if there are questions, or things in your opinion
+that weren't filled out properly. But the financial disclosure statements if they
+are made a part of that process won't be reviewed by the Board of Ethics and will
+just be accepted they're just going to be whatever the nominee submits. >> So for
+you to do they have to be accepted by the Board of Ethics before we become a
+candidate?\r\n\r\n>> No, they are just required to be filed. >> So to clarify what
+you were saying is that it doesn't necessarily matter if it's filled out correctly
+or incorrectly as long as they submit the nomination and the FDS and if there's not
+blanks where they are supposed to be filled in, it will be deemed legitimate
+nomination because they met the criteria? >> Right. Like I was saying earlier,
+whether or not say one of the candidates or nominees you propose lives outside of
+the residency area, we're going to provides you with our opinion, but ultimately you
+will be making the decision. We're not going to eliminate anyone from the list
+because we know you folks are the ones making the actual decision on who is going to
+replace Member Kama. >> Wait, I need clarification on that. We have to pick someone
+in a lives in Kahului, or else we're not following the law.\r\n\r\n>> Correct. >> So
+you are just going to give us the rope, and say, what you do with it what you will?
+>> And the reason for that is we, and the County Clerk, we didn't want to put
+ourselves in the position of making a decision that could potentially be challenged.
+So we didn't want to hang up your process by a potential legal challenge that we
+made the incorrect decision based on something. >> So you are just going to tell us
+it's our decision, this person doesn't live in the District, that is being replaced
+and you guys do with what you will and don't blame us kind of thing? >> We can ask
+for a clarification from the individual when they are before you, too. So they might
+have a reason for why their voter registration wasn't updated or something like
+that.\r\n\r\nBut we just didn't want to put ourselves in a position of inhibiting
+your ability to vet every nominee that the Council puts forth. >> Okay. I'm okay
+with the process being to be considered a legitimate nominee that completed FDS and
+nomination paper be submitted at the time of nomination prior to November 10th, 2025
+at noon, prior; right? >> Yes. >> I'm okay with that. >> We need ten days. Do you
+want to explain why, Madam Clerk?\r\n\r\n>> Yes. So the 11th as you know is a
+holiday. So the 10th allows us to submit that for Public Hearing notice to the paper
+for hearing on the 20th. >> So I saw your hand. Member Uu-Hodgins. >> Thank you,
+Chair. First, I will start with I agree with Member Paltin, but then I need some
+clarification.\r\n\r\nSo you are not going to tell us if they live in Kahului or
+not? If they don't, for whatever reason. But to accommodate the Charter, where it
+said it must meet the same call of the qualifications, isn't our only qualification
+living in the District for one year, and the other things you have to be a voting
+adult, but for the specifics. >> That is the most important. And looking at the next
+of resolution 02-90, which OCS has recommended using as your template. Under the
+first be it resolved says at that time that Danny Matteo meets the requirements as
+provided by law for appointment to fill a Council vacancy in accordance with Section
+3-4 of the Charter. So the Council at that time made the finding that Danny Matteo
+did meet the qualifications and you folks will be doing the same.\r\n\r\n>> Okay,
+we're doing to do that, doing our own due diligence is what you are basically
+saying. You won't be doing that for us, but we'll appoint someone from the Kahului
+area. >> We will provide that you information that you be sure for your
+consideration. I appreciate that. Thank you. I'm good with that and I'm good with
+Member Paltin's suggestion that I'm good we take up testimony on the 20th and it
+spills over to the 21st , if necessary. And wait until the 25th to do the final
+vote.\r\n\r\nUnfortunately, I hope we would never have to do this again and
+considering that I really hope we never have to do this again, I would prefer that
+we're all here in-person, to more than select the person, we're going to have, but
+really to honor Member Kalua. So I would want Member Rawlins-Fernandez here
+in-person. >> We agree to that. Any objections? No objections. As far as the
+information required, no objections to what is laid out in the Resolution?
+Okay.\r\n\r\nSo then we come to there's only -- would only the members be able to
+propose -- . >> Chair, that wasn't laid out in the Resolution. That was stated
+orally. >> Which one? >> In order to consider a nominee legitimate they need to turn
+in their nomination form and their financial disclosure before noon on November
+10th. That was their suggestion. I would like to say that we're going to follow
+their suggestion. >> Okay.\r\n\r\nI think we understood that. I'm trying to just get
+consensus. So we can add that to the Reso, you know, clarification. >> Yes. I think
+what you could do, if you want to, is under the be it resolved, it's 1A, and it says
+any Council Member may submit. So any Council Member must submit, and that has the
+proposed Resolution to appoint. Also, the completed financial disclosure statement
+and the application for a nomination paper, and those are currently attached as
+exhibits to the Reso.\r\n\r\n>> Okay. I have a question on that. Any Council Member
+may submit? Why was -- why does it have to be "must submit?" >> It doesn't
+necessarily, but if Member Paltin feels if you wanted to have more teeth -- meaning
+one or more nominations, that you have to have your person with the application and
+the financial disclosure. >> It's just that if there are a few people nominating the
+same person, you know? You don't want four or five different Resos on the same
+person. That is what I'm trying to avoid.\r\n\r\n>> Well, I don't necessarily think
+there would be any problem with that. Under Sunshine Law, you may or may not know
+who the other people are nominating. >> Member Paltin. >> I think the point was what
+are we considering a legit nomination without the "must" in there? I would write
+somebody's name and their address, and that is a legit nomination without the
+financial disclosure, without the nomination paper, as it's written for "may" is
+that correct? And then it would be legitimate as written in the Resolution that I
+turned in a name and an address. Because it doesn't say I must include the
+nomination form and the financial disclosure for it to be considered a legitimate
+nomination.\r\n\r\n>> Okay. So Ms. Clerk, could you reword A? So that the reader
+knows that the following items must be provided in order to have a legitimate
+application. But not every Council Member must submit. a nominee. >> Chair Sorry to
+interrupt, our Council Services Staff had suggested language along the lines of what
+you were thinking for the first be it resolved clause. >> Okay.\r\n\r\n>> Which we
+can offer for the body's consideration. Any Council Member wishing to nominate an
+individual to fill the Council vacancy must submit to the County Clerk by noon on
+November 10, 2025: So then you have "must" embedded within that introductory clause,
+so that A would be the Resolution, and B would be the completed financial disclosure
+statement and nomination paper. >> Okay, any objections to that clarification? So
+we're on the subject of do does any Member of the public have an opportunity it
+nominate themselves or somebody else or just a Council Member? Discussion on that?
+Member Paltin. >> I would be for just the Council Member.\r\n\r\nBut I'm open to
+hearing other people's points of view. >> Member Rawlins-Fernandez? >> Mahalo,
+Chair. I would be supportive of allowing the public to submit their name directly to
+the Clerk's office. I think I heard earlier the reason that there are concerns is
+regarding the timing. That it would take time to verify the person's residency for
+at least one year in Kahului, and Sunshine Law posting. But I guess that would be
+part of the timing.\r\n\r\nSo if that timeline could be described just a little bit
+clearer with a little more detail? So I understand and the public understands that
+challenge, if that is the challenge. >> Chair, I'm sorry, if OCS could interject one
+more time? >> Sure, David. >> For context. Another difference between our current
+situation and 2002, which I failed to mention earlier is that any Resolution or Bill
+that is going to be considered by the Council needs to be listed on a meeting
+agenda. So not just names, but in this case, an actual Resolution.\r\n\r\nSo Members
+of the public obviously can't introduce Resolutions. So one of the nine Council
+Members would have to introduce the Resolution to get a Member of the public before
+the body as a candidate. So Members of the public in effect could nominate
+themselves by contacting Council Members and asking to be included on the
+Resolution, but I don't think there's a mechanism for Members of the Public to
+directly get themselves on a Council agenda without a Resolution. Thank you. >>
+David, that is an area can a Council Member nominate more than one person? >> Thank
+you, Chair. Yes.\r\n\r\nThere's no limitation as this procedure is currently
+outlined. Thank you. >> Chair? >> Member Rawlins-Fernandez. >> Mahalo, Chair.
+Mahalo, Director Raatz for that information. So what if I drafted up a Resolution,
+and just had an exhibit that whoever applied directly to the Clerk's office would --
+their names would be added to that exhibit, and that would be the
+Resolution?\r\n\r\n>> David? >> Thank you, Chair. That model would be workable under
+the Sunshine Law. We've seen similar mechanisms for Board/Commission appointment. So
+if the Council accepts that process, it would be workable under the law. Thank you.
+>> Mahalo, Director Raatz.\r\n\r\n>> Is that what you are suggesting? Is that What
+you are suggesting Member Rawlins-Fernandez? >> Yeah. I mean could just be how it
+is, it could all be one Resolution, too. I'm not opposed to it being multiple
+Resolutions. >> Any other comments, Members? Madam Clerk, could you clarify what
+language you will be adding to the Resolution, if we adopt -- if we included that
+suggestion?\r\n\r\n>> I need to take just a short break to be able to come up with
+language. But I think one of the -- I have lost my thought. We could be -- we could
+receive public nominations. I think one of the things that all of you are going to
+have to obviously keep in mind is the timeline and time constraints, and this gets
+into something else, that I'm sure you will talk about in a little bit, which is
+will you start the interviews process on the 20th? And how far? And I know that you
+have to get into deliberation before you recess. So that is something you may want
+to talk to OCS about in terms of how far you get into the deliberations,? And if you
+have many, many nominees it's going to take longer?\r\n\r\n>> Chair? >> Member
+Rawlins-Fernandez? >> Mahalo, Chair. So that -- be it resolved clause could be
+worded as any individual -- sorry -- let me clear my throat. Any individual
+interested in filling the Council seat for the residency area of Kahului may submit
+an application or form, or whatever, directly to the Clerk's office by -- and we can
+set a time that would work for the Clerks in order to give them the amount of time
+that they would need to verify the residency of any individuals that are submitting
+that information, and it doesn't have to be a requirement. But we could add
+information on the Reso or elsewhere, probably on the Reso right now is helpful
+information to assist the Clerks in verifying residency for at least one year
+include an electric Bill from that far back, or whatever. Whatever other forms of
+verification that the Clerks need.\r\n\r\n>> Madam Clerk? >> So when we start
+getting into residency requirements, there's a whole host of information that we can
+look at to determine whether or not a voter has the residency requirement to vote.
+By extension that also leads into candidates for Council offices. So it's going to
+be very difficult, and potentially impossible, if there's situations that are very
+questionable in terms of someone's residency. So they are certifying that they are a
+resident. What we can go on that is readily available us is their voter
+registration. So if they currently live in -- reside in the Kahului residency area,
+even if they moved homes, as long as they moved homes within the residency area and
+they have lived there for one year prior to the submission of their nomination form,
+that's what we would intend to look at.\r\n\r\nGetting deeper into this, in terms of
+trying to do back and forth with the nominee, you know, getting all kinds of
+additional information and all of that is going to be like I said, it's going to be
+very difficult if not impossible in this compressed timeframe. Just related to that,
+what I wanted to request the Council amend on the Resolution you are considering is
+1 B in the be it resolved Section to remove that first clause. So before "a
+submitted Resolution is eligible for posting on an agenda, "Like to remove that A
+clause and just have it start with the County Clerk must verify that the Council
+Chair and the nominee meet those qualifications enumerated in the Section 3-3 of the
+Charter and so those who you are talking about it and really revolves around the
+one-year in the Kahului residency area and that they are a voter in the County. Both
+of those things we can verify we would be using the voter registration data just so
+everyone's clear. >> Okay. I didn't hear how long you would need to verify the
+information? So that is why I'm asking if we were to ask -- so I know if an
+individual is registered to vote in the District, is the easiest and quickest
+way.\r\n\r\nThere's water, and sewer bills, that's information that belongs to the
+County. That possibly could help. Because if someone is not registered, I guess they
+have to register to vote in order to be considered eligible. But if they lived in
+the area and registered the day before? >> Ms. Clerk. >> Thank you, Madam
+Chair.\r\n\r\nWhat we can provide to you is pretty quick. In terms of the voter
+registration data, and how long they have maintained their residency in that area in
+the Kahului residency area. I think that if there's some questions, you know, on --
+we'll provide that, and it will be publicly provided to the Chair for posting in the
+meeting materials. If there are questions on say candidate, you know, nominee A,
+that would be something that the Council would want to follow-up on in terms of its
+inquiry. But I truly don't think that, given the compressed timeline, that we're
+going to be able to go out and get additional sources of information to try to
+qualify someone based on like different records that we would have more time for in
+the normal voter challenge situation. >> Okay. That is fine.\r\n\r\nTheir voting
+record or where they are -- if they are registered to vote in Kahului would be the
+sole way to verify their residency is what you are saying, Ms. Thomson? >> That is
+the information that we can definitely tell you that we can provide to you. >> Okay.
+I just understanding the dynamics of power, I don't feel comfortable just being the
+gate keepers of the Council Members. I would like to give the public an opportunity
+to apply directly with the County Clerk's office. And if that is the only way they
+would be able to apply with the County Clerk's office is through being registered as
+a voter in Kahului for at least a year, then that is more than they would have had
+without it.\r\n\r\n>> Well, the issue is time. If we had more time, then they could
+check further. Yes. >> Yes. I understand. So that would be my preference is to
+enable individuals to apply directly and then the verification would be a registered
+voter in Kahului for at least a year. >> Okay.\r\n\r\nWe already have that; right?
+Ms. Clerk? Ms. Clerk? >> I'm not clear on what was said. If I could
+clarify?\r\n\r\n>> You or the Clerk's office? To clarify? >> I wasn't clear on what
+Member Rawlins-Fernandez said, if I could clarify. >> Member Rawlins-Fernandez,
+could you repeat what you said? >> Mahalo, Chair. >> I wanted to clarify -- >> You
+want to clarify what she said. Go ahead.\r\n\r\n>> Is it only by being a registered
+voter in Kahului that we're accepting for a year, or that is one way to verify? Or
+did you mean -- that that is the only way that they can qualify is if they were
+registered to vote in Kahului for one -- -- at least one year? >> I guess that
+process, that detail of the process would be a little different for those that are
+applying directly to the Clerk's office and not through a Council Member. >> So if
+someone applies directly to the Clerk's office, you are saying the requirement would
+be that they were registered in Kahului for at least a year. But if they are
+applying through a Council Member, any evidence that they were living in Kahului
+residency area for at least a year is acceptable, is that what you meant? >> Yes. >>
+Okay.\r\n\r\nThank you. >> Are you sure you want us to be the ones to verify their
+residency? >> Yes. Well, I mean she is saying that there could be a variety of ways
+that somebody that we nominate could be verified, but if someone is nominating
+themselves they have to be a registered voter in the area that -- in Kahului, in
+order to nominate themselves directly to the Clerk's office, as a standard. But if
+we nominate them, we could get an electric Bill in their name for a year, something,
+if they are not registered to vote, or some other way, because there's more than one
+way to verify that somebody has lived in the District for at least a year; right? >>
+Okay. Does everybody understand that?\r\n\r\nThat we can accept telephone -- I mean
+electric bills? Ms. Clerk? >> It might be time for a morning break. There's a couple
+of things that we would like to talk to OCS about, if you don't mind? >> Okay.
+Members, we'll come back at 11:15. Thank you, meeting in recess.\r\n\r\n[ GAVEL ] >>
+11:15? Yes. [ GAVEL ] >> Will the special meeting of November 3rd, please reconvene.
+It's 11:28. Ms. Clerk, do you have clarifying sentences for us, so we can continue
+our process? >> Thank you, Madam Chair. So before the break, during the break, we
+were speaking with Director Raatz, and he was strongly recommending that the Council
+go one way or the other, so either the nominees go through the Council Members by
+Resolution, or if it's going to be anyone can basically self-nominate, by submitting
+an application, and whatever supporting documents you want us to ask for to our
+office, then that would be listed. Their names would be listed in a Resolution under
+the Council Chair for consideration on the 20th.\r\n\r\n>> Members, what do you
+think of that? Pardon me? Member Cook? >> Can you clarify the options? >> Could you
+repeat what you just said. >> Sure. The first option would be what Council Chair
+presented today, which is that Resolution 25-202. That is where the Council Members
+themselves would submit Resolutions would their nominees' names and you could submit
+more than one.\r\n\r\nYou are not limited to more than one, from what I understand.
+The other way would be that the Council Members don't submit Resolutions and that
+Members of the Public themselves or whoever wishes to be a nominee submit the
+application to our office and we clerk collect all of that information and names to
+put them on a like an exhibit to the Resolution submitted by the Council Chair.
+Because the Resolution is the only vehicle to get it before the body basically. >>
+So you are saying not both, one or the other? >> Yes okay, thankyous. >> Member
+Cook? >> I'm in favor of option 1. I think the timeline that we're under, the
+criteria that it's outlined in the Charter it meets with our needs are and hopeful
+that this can move forward without being to the last-minute.\r\n\r\n>> Thank you. So
+option 1 is only the Council Members would submit. One or more Resolutions. Any more
+feedback? >> Chair? >> Member Uu-Hodgins. >> I can wait for Member
+Rawlins-Fernandez.\r\n\r\n>> Mahalo, Chair. Mahalo, Member Uu-Hodgins. Still
+revolved not super clear to me why we have to choose one or the other. Would you
+please explain that a little clearer? >> Madam Clerk. I didn't meet with them. They
+met by themselves, so they came up with these options.\r\n\r\nMadam Clerk I will ask
+Director Raatz to give his opinions. I think one of the differences would be just
+logistics, really. But Director Raatz. >> Director Raatz. >> Thank you, Chair. Thank
+you, Council Member Rawlins-Fernandez for the question. Really we think it's about
+clarity for both the public, and Council Members considering the short timeframe
+that the body needs to work under.\r\n\r\nYou know, we don't have legal precedent to
+point to exactly, but there's been a thought/discussion among our legal team, could
+even be potential violation of equal protection, if there's different procedures
+that are set-up. So it just a suggestion that it would promote clarity to either go
+with the single Resolution option that lists all of the self-nominated Members of
+the Public and qualified Members of the Public as the Deputy County Clerk was
+outlining, which with take an Amendment to the Resolution that you have before you
+today, or 2, to stick with what Resolution 25-202 envisions, which is Council
+Members in effect that interested Members of the Public, and make a nomination
+through submitting a Resolution. Thank you, Chair. >> Member Rawlins-Fernandez? >>
+Mahalo, Chair. So if we have to choose one or the other, I would choose to enable
+individuals to apply directly or submit their names directly to the Clerk's office.
+Anyone that was intending to submit a Resolution, any of the Council Members
+intending to submit a Resolution can just have the individual apply directly with
+the Clerk's office.\r\n\r\nI think it would also be a little more fair, because then
+it wouldn't have the immediate endorsement of any individual Council Member.
+Everyone would have fairer playing ground/field, whatever, for applications.
+Everyone would be applying or submitting their name themselves, and without
+necessarily having the backing of a politician. Mahalo, Chair. >> Any other
+comments? Preferences? Member Uu-Hodgins first and then Member Paltin.\r\n\r\n>> I'm
+happy we're going to select one way. I think that's the most efficient way to do
+things. Which way, I think I'm still leaning towards the Council Member version of
+supporting it as one, that is what it's here in this Resolution, and two, we are on
+a short timeline. So it would give us the opportunity to vet, because I think we're
+having discussions about residency and how to verify that? It would give the Council
+Member a time to vet and work with you folks and continue that discussion on the
+floor. Otherwise, I think it would be a lot of work for you folks, if we let's say,
+had a whole bunch of names come in your direction, and we only have what was 30 days
+and now we're at 20 something days. So I just want to make sure we're making our
+timeline and to make it the most efficient, I think it would be the Council version
+of the Resolution, considering we can all do a whole bunch, our emails are
+public.\r\n\r\nThey can reach out to us. That is where I'm leaning towards, but I
+figured I would just say that. Thanks, Chair. >> Member Johnson, do have any
+comments? >> Okay, so I would like to hear from the Clerks like how much of a burden
+that would be if we allow John Q. public, Suzy Q. public to do that way as opposed
+to each individual Council Member? If a Council Member wants to put a name forward?
+>> Ms.\r\n\r\nClerk? >> Thank you. Well, for one of the variables we won't know how
+many people may be submitting nominations. So initially, by currently it's noon next
+Monday, we would have to have all of names submitted. In terms of the posting the
+Public Hearing notice, we would have the names attached to the Reso from the Council
+Chair. But following those submissions we would have to do what we can in terms of
+verifying their residency and the other information. But I think the caveat to that
+is any nominee could submit whatever they want to submit in terms of supporting
+documents either at the time of their filing or as testimony when the Council does
+hear the Resolution.\r\n\r\nSo the answer is really it depends. >> Your answer is it
+depends. You are not just going to look at the voter registration, and that's -- I
+think to my mind it sounds like a doable process. But you're saying it depends on
+what the voters do or the people, the applicants do? It doesn't require you to --
+like they might load you up with 20 documents, but all you really need to look at is
+like the voter registration, is that correct? >> That's correct in terms what we can
+readily access and all the prep that goes into what is involved with the legislative
+division Staff in terms of Public Hearing notice and ensuring that the copies are
+sent out and all of the logistics that it takes to run these council meetings. So
+it's not just, you know, putting names on paper and checking voter
+registration.\r\n\r\n>> Okay. Thank you anyone else have comments? Member Paltin. >>
+Before I have any comments, could I have a question? The person that is going to
+fill the council vacancy for Kahului how many votes from Council Members needed is
+it super majority? Is it majority? And only one person can get five or six
+votes?\r\n\r\nWhat if more than one person has five or six votes? >> I can answer
+the first part of that is it's a simple majority. But in terms of the multiple
+nominees getting multiple five votes, I would like to defer to Director Raatz. >>
+Director Raatz. >> Thank you, Chair. Thank you, Council Member Paltin, for the
+question. So again, the Council under the Charter only acts by Ordinance and
+Resolution and what is in this process is acting by Resolution, as Deputy County
+Clerk mentioned.\r\n\r\nit would be simple majority. So you would hope to come out
+of that next special Council meeting with one Resolution adopted. If during the
+course of the Resolution, two different Resolutions attain five votes we would
+recommended that the body not adjourn until there's a motion to reconsider, so you
+end up with only run Resolution coming out of in a meeting. Thank you. >> Okay. So I
+guess for my discussion on it, I don't really care personally. I don't want to gate
+keep, but the whole process is being gate kept by five people, and if an applicant
+can't get one Member to sponsor them, can they get one vote much less five votes
+would be the reality I'm tracking.\r\n\r\nThe alternative to not being gate-kept is
+to pull papers in February, because then that is the process for anybody to
+self-nominate; right? So I guess I would lean towards members submitting Resolutions
+because if they can't get one Member to sponsor them, are they able to Garner the
+needed five votes? But at the end of the day, I don't really care, I mean,
+personally. >> Anybody else? Member Rawlins-Fernandez? >> Mahalo, Chair. I saw
+Member Sugimura's hand up as well.\r\n\r\nI don't know who came first? She hasn't
+spoken yet. I'm happy to yield to Member Sugimura and speak after. >> Please
+proceed, I will speak after. >> She will wait for you. Member Rawlins-Fernandez, you
+can go first. >> Mahalo, Chair.\r\n\r\nI understand my colleague's concerns. For the
+last comment, I don't -- I don't think just because someone may not have the votes
+of the Council Members that they shouldn't even have an opportunity to put their
+name forward. I'm in favor of, I'm a proponent for as much transparency,
+accessibility, inclusivity and Democracy as possible. I'm happy to accommodate our
+Clerk's Office to try to make it as least administratively difficult as possible.
+But I would just -- as someone who came from a family that was not politically
+engaged, that was not involved at all in any government, I know how intimidating
+government can be. I know how intimidating it would be to contact a Council Member,
+when you don't have a pre-existing relationship. And I'm very aware and mindful of
+how those power dynamics can oppress our people, and I want to -- I don't want to
+deny anyone the ability to be able to put their name forward.\r\n\r\nThere could be
+amazing people that we don't know living in that district, who would do an amazing
+job at filling this seat. And I don't want to deprive the District of Kahului, and
+the rest of our County that opportunity to be represented by someone that we just
+don't happen to know. And so I guess, I'm advocating pretty strongly at this point
+for it could be as open a process as possible, and to apply directly with the
+Clerk's office. Mahalo, Chair. >> Anyone else? I'm going to be asking for a motion
+on this, so we can deal with it and move on to the next? Member Cook?\r\n\r\n>> No,
+thank you, Chair. I would just like to point out and remind us all there's going to
+be an election next year; right? After this. So all of the fairness, participation,
+and potential people to bring to this office is going to be an election next year.
+This is somebody to fulfill the seat immediately. So I recognize it would be great
+-- it is a good process that we currently have that anyone who would meet the
+criteria could sign up to run for the Kahului seat. This process right now is
+replacing one of our colleagues for the rest of this term.\r\n\r\nSo right around
+the corner, anybody who wants to sign up and run, can. Right now, hopefully, we can
+keep it the way that the Reso is written, the Council will select someone within 30
+days. If we don't, then the Mayor is going to. So thank you. >> Yes. It's no longer
+30 days. More like 23. Vice-Chair Sugimura.\r\n\r\n>> So could I ask, which I think
+is connected to this, David Raatz earlier in the meeting he talked about a proposed
+language for 1A, where he talked about a Council Member wishing or whatever he said,
+could David Raatz say that again? >> David, do you remember what you said on 1A? >>
+Thank you, Chair. Yes, I think the language was any Council Member wishing to
+nominate an individual to fill the Council vacancy must submit to the County Clerk
+noon on November 10, 2025: , and then there was a Resolution for the A and B for the
+paperwork. >> Okay. So moved. >> Okay. We had agreed on that.\r\n\r\nLet's make it
+real clear, nor the record. Okay, seconded. Moved by Member Vice-Chair Sugimura and
+seconded by Member Cook to adopt the language as stated by Director Raatz, with
+regard to No. 1A. Any discussion? Member Rawlins-Fernandez? >> Mahalo, Chair. I
+think what you were going for was like a poll for each Council Member to state their
+position first.\r\n\r\nBecause otherwise, I'm going to move to amend to make it so
+that individuals interested in filling the Kahului seat can apply directly to the
+Clerk's office. >> I think that would be a separate Amendment. I think this was more
+to clarify when I said earlier that any Council Member -- I think it was "must" I
+thought it was "must." But anyway, the clarification of giving the Council Member a
+choice. It didn't have anything to do with what you are talking about. >> I
+understand. But I heard you ask us to dispose of this first, and by adopting this,
+the "must" because that becomes irrelevant, if we're going to allow the public to
+apply directly with the Clerk's office. This whole correction of "may" or "must"
+becomes irrelevant, because that choice wouldn't be there.\r\n\r\n>> So I thought
+you wanted both a choice? >> So you just want either or? >> Right. >> I mean it can
+be both. >> Chair, point of information? >> Yes, Member Paltin. >> I thought with we
+came back perfect recess that the Clerks and Mr.\r\n\r\nRaatz said it would be to be
+either/or because of legal challenges, is that not what happened? >> Go ahead,
+David. >> Thank you, Chair. Thank you, Council Member Paltin. I wouldn't say that it
+has to be either/or, that was a suggestion we don't have to have specific precedent
+we can point to on a situation like this. Thank you. >> Okay.\r\n\r\nSo I didn't
+understand that correctly. Can you repeat what was said when we came back from
+recess? Because I thought you could do this or you could do that. Tch I thought the
+Clerk said something right after recess, not you, Clerk. >> Chair? >> Member
+Rawlins-Fernandez. >> What Council Member Paltin is saying is that when we came back
+from recess that there was their recommendation.\r\n\r\nBut as the final
+decision-makers we have the authority to make the final decision on whether we take
+their advice and choose one or the other, or we decline to accept their advice and
+we put both. They both, both Director Raatz and Ms. Thomson explained their concerns
+with putting both, and so we're not legally prohibited from putting both. It's just
+their advice that we choose one or the other. I would be happy to put both. :okay so
+the motion on the floor is just one right now and you can argue against it and vote
+no. And make your motion.\r\n\r\nEverybody clear on the motion? This is only for the
+Council Members to make a proposal through a Resolution? Not that other exhibits
+that was referred to earlier in discussion. Any more discussion on the motion on the
+floor? All those in favor -- roll call. I thought I saw Member Johnson's hand up.
+Roll call.\r\n\r\n>> Vice-Chair Sugimura? >> Aye. >> Council Member Paltin? >>
+Kakanilua. >> Council Member Johnson? >> Can you repeat the motion? >>
+Okay.\r\n\r\nMember Vice-Chair Sugimura it was your motion; right? >> So basically
+it takes a first suggestion; right? That the Council Members would submit the
+Resolution, and taking into consideration the nomination paper, and financial
+statement, Financial Disclosure Statement as part of the Resolution. >> I want -- I
+want to be able to have the people submit. >> So you vote no. >> No. Thank you,
+Chair.\r\n\r\n>> One no. Next. >> Council Member Rawlins-Fernandez? >> Chair? I know
+we're voting? >> Yes. >> But the explanation that you just gave Member Johnson was
+contrary to what you just told me before we started taking the vote, which was this
+is cleaning up the Section to enable both, and so if we wanted choose one or the
+other, we would not put this one on and would only have the other.\r\n\r\nAll right,
+I'm just going to vote no. No. >> Okay. I thought I said that they were separating
+the two. It's not a combined thing. This is only with the Council Members providing
+Resolutions to nominate someone. >> Aye.\r\n\r\n>> Council Member Cook votes aye.
+Council Member Uu-Hodgins? >> Aye. >> Council Member Sinenci? >> No. >> Council
+Chair Lee? >> Aye.\r\n\r\n>> And returning to Council Member Paltin? >> No. >>
+Chair, there are five nos, four ayes. Motion fails. I'm sorry, it's 4-4. The dreaded
+score. 4-4. And this is the reason why we need a ninth person. All right, Members,
+we need to make a decision.\r\n\r\nAre you going to now make a motion to include
+both ways to self-nominate and have the Council -- yes, Member Rawlins-Fernandez? >>
+Mahalo, Chair. I am going to make the first motion to be only applying directly to
+the Clerk's office. And then if that fails, I'll make a motion for it to be in
+addition to the Council Members applying directly. Because my preference would be
+just for everyone to apply directly to the Clerk's office. So I move to amend the
+Resolution to strike the clause that Council Members may submit to the County Clerk
+by noon on November 10th. And to replace it with any individual interested in
+applying may submit their application to the County Clerk by noon on November 10th,
+2025. >> Second.\r\n\r\n>> Member Johnson seconded. Moved by Member
+Rawlins-Fernandez, seconded by Member Johnson. Now this is allowing the public to
+apply at the County Clerk's office; right? In addition to? >> Only. >> Only. >>
+Only.\r\n\r\n>> Just only. >> Right. >> So in other words, Council Members will also
+have to have their nominees go to the Clerk's office and apply. >> Correct. Correct.
+If this fails, then I will make a motion to make it both. >> Any more
+discussion?\r\n\r\n>> Chair? >> Member Uu-Hodgins? Where? Member Johnson. >> Thank
+you, Chair. As the seconder, this process is so political and I think this is a good
+way to take the politics out of it. We have -- we have to mourn our Council Member's
+passing.\r\n\r\nAnd one way to do is for us to be respectful and take the politics
+out of this. I think this is a way that we can just move forward, look at a list,
+and then go from there. It's a delicate balance and who would have thought these
+series of events would have led to? But members let's try to make it so it's not so
+darn political. That is my second, Chair. Thank you. >> Member -- discussion, Member
+Uu-Hodgins?\r\n\r\n>> Thank you, Chair. I'm going to be voting no on this. I do
+support both processes, if we need to do that. I don't want to throw this on the
+Clerk's shoulders, and we have only 19 something days to figure this out. So I'm
+going to be voting no, but I'm happy to support both processes. So long as both
+processes are similar in what we determine as qualifications on what they need to
+submit, so we can ensure that it's the same. It might be a different Avenue to get
+to the same place, but as long as it's the same.\r\n\r\nThank you. >> Any more
+discussion? If not, roll call. >> Vice-Chair Sugimura? >> No. >> Council Member
+Paltin? >> No.\r\n\r\n>> Council Member Johnson? >> Yes. >> Council Member
+Rawlins-Fernandez? >> Aye. >> Council Member Cook? >> No. >> Council Member
+Uu-Hodgins?\r\n\r\n>> No. >> Council Member Sinenci? >> Aye. >> Council Chair Lee?
+>> No. >> Chair, there are three ayes, five nos. Motion fails.\r\n\r\n>> Member
+Rawlins-Fernandez? >> Mahalo, Chair. I move to amend the Resolution to add a new
+whereas-clause subsection B, that would enable interested individuals to apply
+directly to the Clerk's office by noon on November 10th, 2025, and have the same
+submission requirements as the Council Members' process to submit. >> Okay, I think
+David or Madam Clerk, it would not be a whereas, but more under the be it resolved
+is No. 2 maybe? >> Oh, I'm sorry, did I say whereas? I meant be it
+resolved.\r\n\r\nYou're correct, Chair. That was my bad. >> Okay everybody got that?
+>> Second. >> Moved by Member Rawlins-Fernandez, seconded by Member Sinenci that we
+add another item under be it resolved, I guess it would be No. 2. And as stated, No.
+1 establishes the process under A a Council Member may submit and we're also going
+to add a Section that says the public may self-submit.\r\n\r\nOkay? >>
+Self-nominate? >> Chair, if I may for clarification, you could modify under be it
+resolved 1a, any Council Member or any individual interested in applying. >> Okay,
+that is good; right? >> Friendly Amendment. >> That's good. It was seconded by
+Member Sinenci.\r\n\r\nAny more discussion? Member Cook? >> Thank you, Chair. I
+won't be supporting this. Anyway, in my career I have learned to listen to the
+people who are doing the work. If the Clerk's office and OCS, who aren't political,
+who are basically doing their job are basically recommending one or the other, I'm
+going to abide by that. So my preference is No.\r\n\r\n1, just letting the people
+know. Thank you. >> Any more discussion? Roll call? >> Vice-Chair Sugimura? >> No.
+>> Council Member Paltin?\r\n\r\n>> Yes. >> Council Member Johnson? >> Yes. >>
+Council Member Rawlins-Fernandez? >> Aye. >> Council Member Cook? >> No.\r\n\r\n>>
+Council Member Uu-Hodgins? >> Aye. >> Council Member Sinenci? >> Aye. >> Council
+Chair Lee? >> No. >> Chair, motion passes 5-3. >> Okay, that one is
+done.\r\n\r\nWhat else do we have here? >> To be a legitimate nominee, either they
+submit or we submit a Reso to the Clerk's office, and it needs to have their
+nomination form, as well as their FDS completed. We did agree on that? >> Yes. >>
+And it would be the "must" or the language that Mr. Raatz had said previously is --
+that consensus agreed that, and now we said it could be either/or, that consensus
+agreement applies to both. >> Right, David, do you want to comment on your
+comment?\r\n\r\n>> Thank you, Chair. I'm sorry, I think it's actually a procedural
+question for the Parliamentarian on where we stand in amending the Resolution at
+this point. >> Madam Clerk. >> So I think that you are bringing up a good point,
+Council Member Paltin. Under 1Ai says a proposed Resolution to appoint a qualified
+nominee model of a resolution 02-90, and for clarification, that would only apply to
+Council Members. But applicants would submit under No. 2, the nominee's completed
+Financial Disclosure Statement form and their application for nomination
+paper.\r\n\r\nSo if it's a public person nominating themselves, they would submit
+those two items under No. 2. And Council Members would submit both little i, and
+iis. >> For clarification, Madam Clerk, when the public submits their nomination, it
+would come onto my Resolution; right? >> Yes. >> I take on all of the public
+nominees >> Correct, yes. >> Okay. Vice-Chair Sugimura.\r\n\r\n>> Thank you. I was
+going to ask that question, because usually there's a process; right? For the
+Resolutions to come forward it's not just general public that -- >> I'm it. >>
+You're it. Thank you. >> Okay. All right.\r\n\r\nEverybody clear on that? So what
+else do we have to vote on to get to the main motion? >> Chair? >> Just currently
+this one Amendment is before you, but I would also request amending it's be it
+resolved 1B to remove the first clause, and so that it would just start "with the
+County Clerk must verify to the Chair that the nominee meets the qualifications
+enumerated in Section 3-3 of the County Charter." >> I believe we agreed on that by
+consensus. But Vice-Chair? You moved. >> To delete before a Resolution is eligible
+for posting on an agenda, delete that part.\r\n\r\n>> Second. >> Moved by Vice-Chair
+Sugimura, seconded by Member Uu-Hodgins to delete before a submitted Resolution is
+eligible for posting on an agenda. Discussion? Any more discussion? Member Paltin.
+>> So this doesn't stop the Clerk from letting us know their benchmarks entered for
+somebody to be eligible, but they won't take action on it and just let us know that
+the benchmark standard of them being eligible it has been met or hasn't been has
+been or has not been met and they we proceed accordingly. >> Madam Clerk?\r\n\r\n>>
+Yes, that is correct. We will verify the information that we can in terms of voter
+registration status, et cetera and provide that for you in order for
+decision-making. >> Thank you, sometimes I need English clarified to regular
+English. >> All right, all those in favor of the motion, raise your hand, say aye.
+>> Aye. >> One excused -- no, not one excused we only have eight, motion carried
+unanimously. Thank you.\r\n\r\n>> Chair, I have a question? >> Yes. >> Earlier it
+was discussed that we were going to be taking up final vote on this, on the deadline
+for the Council, 25th of October. >> Of what? >> I'm sorry, November. >> So what if
+we're not able to come to an decision, it automatically triggers that the Mayor
+makes a decision? >> Yes, if we pass midnight, I guess.\r\n\r\n>> Okay. >> Member
+Cook. >> Chair, do you project we would be having testimony on the 25th, the last
+date? >> That would be a reconvened meeting. >> So no testimony. >> No testimony,
+just deliberations. Okay.\r\n\r\nFingers crossed, and knock on wood and whatever.
+Anything else that needs to be clarified? >> Chair. >> Member Rawlins-Fernandez? >>
+Mahalo, Chair. So quickly again for that same clause be it resolved A, 1A, little i.
+Do we think that is clear to the public any Council Member or individual may submit
+to the County Clerk by noon on November 10th, 2025 a proposed Resolution to appoint
+a qualified nominee? So are we asking them -- I know here we're saying that they
+would just do little ii?\r\n\r\nBut I don't know if having that little i -- >> Well
+A covers the public. A covers the public. >> Yes. But are we asking individuals to
+submit a proposed Resolution? That is how the entire sentence would read; right? Any
+Council Member or individual may submit to the County Clerk by noon on November 10,
+2025 a proposed resolution to appoint a qualified nominee. >> Okay.\r\n\r\nWe have
+some clarification, Madam Clerk. >> If Council wishes those to be separate, so it's
+cleaner, you could do A, as Stated. And then B, a new Section and we could renumber
+it, B the public, any individual interested in applying may submit, and then list
+only the documents that are in ii. >> Okay. >> You want to make a motion to that
+effect? So moved. Second?\r\n\r\nAnybody? Member Uu-Hodgins seconded that. As you
+know to clarify what the public should do, because they are not going to submit a
+Resolution. They are just going to submit their application. Okay. So this clears it
+up for the public. Any further discussion?\r\n\r\nIf not, roll call. >> Vice-Chair
+Sugimura? >> Aye. >> Council Member Paltin? >> Aye. >> Council Member Johnson? >>
+Yes.\r\n\r\n>> Council Member Rawlins-Fernandez? >> Aye. >> Council Member Cook? >>
+No. >> Council Member Uu-Hodgins? >> Aye. >> Council Member Sinenci?\r\n\r\n>> Aye.
+>> Council Chair Lee? >> Aye. >> Chair, seven ayes, one no. Motion carries. >> All
+right, any need for any further clarification, additions or omissions? >> Chair, if
+I could.\r\n\r\n>> Member Paltin? Are you going to give us something that we need to
+do? >> If, yes. If you would, OCS and our office can we please ask for rule 19 --
+sorry 13c authority, which would allow us to make non-substantive changes to the
+Resolution and also rule 19 suspension, due to the Amendments? >> So moved. >> I was
+going to call on you first. You had your hand up.\r\n\r\n>> I can do that after this
+Amendment. >> Okay. >> Second. seconded by Member Uu-Hodgins. Moved by Member Tamara
+Paltin. The motion as stated by the County Clerk. Any more discussion?\r\n\r\n>>
+This is necessary so that we can take final action today, as well as to allow for
+any non-substantive revisions, or changes. >> Correct. >> Do we need a roll call,
+Mr. Cook? >> No. >> All those in favor of the motion, please raise your hand, say
+aye? >> Aye.\r\n\r\n>> All ayes, zero -- all ayes, zero nos motion carries. Now you
+had something else you wanted to do, Member Paltin? >> Yes. I just wanted to say
+that this process that the Clerks and OCS set up for us to fill vacancy was very
+transparent, very Democratic, very fair. And thank you for your work on this to make
+it be so. Also, deepest condolences to the Kama 'Ohana, and Staff. I also wanted to
+say that the process of scheduling meetings has not been Democratic, transparent or
+fair when the Chair unilaterally decides to push back items for months with no good
+reasoning.\r\n\r\nThis is the exact reason why Council Member Molina unset Kelly
+King for not putting items on the agenda in a timely manner. This right here is how
+fairness, Democratic process, transparency opens unilaterally saying we're not going
+to schedule it for months, when the process started two years ago is not fair, is
+not Democratic, is not transparent. And this is why Council Chairs have been
+unseated in the past. So I would like to put that back on the agenda the November
+12th Bill 9. >> And it's not on this agenda. >> The process for moving forward after
+a Council Member has a vacancy is on the agenda, and I feel like it's sufficiently
+broad. >> No. We're talking about the process to fill a vacancy >> At some point, in
+needs to be addressed.\r\n\r\n>> We can address it in another meet if you would like
+me to continue to participate in this process, it all need to be Democratic,
+transparent, and fair. Not one process be Democratic, transparent and fair, and
+another one beyond closed doors undemocratic, untransparent, and unfair. It all
+needs to be, if we're doing our work, it all needs to be Democratic, transparent,
+and fair. Not pick and choose which process are Democratic, transparent and fair? >>
+Yes, I think all that we're doing is transparent. You have a different point of
+view, and if you read my press release, you would see the chronology and the
+timeline, and that until this day, I do not have the Committee Report that I know
+of. So check the facts.\r\n\r\nShall we take the vote? >> Chair? >> No. No. No. You
+didn't call for discussion I thought you were discussing it. >> So only I get to
+discuss?\r\n\r\n>> Le well, I didn't see anybody raising their happened. >> Chair?
+>> Anybody else? Member Rawlins-Fernandez. >> Mahalo, Chair. I'm asking you to
+schedule Bill 9 which we agreed on November 12th because this is the on opportunity
+to ask you publicly and so that you aren't making unilateral decisions without any
+consent of your colleagues, Chair. >> I don't believe in blindsided
+discussions.\r\n\r\nWe need an open and fair discussion that is agendized. And after
+eight years, I'm surprised you guys don't know the process. I'm calling for the
+vote. Madam Clerk. >> Chair, this is an abuse of power, Chair. Don't abuse your
+power in this way, Chair. You have been such a good Chair all the way up until this
+and I don't you don't support Bill 9. I know you is been undermining all of
+it.\r\n\r\n>> You know what? Recess [ GAVEL ] [ GAVEL ] >> Will the November 3rd
+special Council Meeting please reconvene. Members, we have the Resolution 25-202
+before us with the Amendments. We're ready for the vote on the main motion as
+amended. Any further discussion? Member Paltin? >> I don't like being ambushed with
+a press release.\r\n\r\nWe haven't had a Chair's meeting since I asked violence in
+the workplace by you against me to be put on the agenda. So this is where we're
+discussing it. It's not a fair process. It's not transparent. And it's not a
+Democratic process. >> Any more discussion? Roll call.\r\n\r\n>> Vice-Chair
+Sugimura? >> Yes. >> Council Member Paltin? >> Yes. >> Council Member Johnson? >>
+Aye. >> Council Member Rawlins-Fernandez?\r\n\r\n>> Aye. >> Council Member Cook? >>
+Aye. >> Council Member Uu-Hodgins? >> Aye. >> Council Member Sinenci? >>
+Aye.\r\n\r\n>> Council Chair Lee? >> Aye. >> Chair, there are eight ayes, zero nos.
+Motion passes. >> Okay. Thank you, Members, for your participation. And this meeting
+is adjourned.\r\n\r\n[ GAVEL ]

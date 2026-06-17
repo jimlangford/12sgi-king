@@ -1,0 +1,2967 @@
+MINUTES | hi-maui | County Council Meeting | 2025-05-16
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2688,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+May 16, 2025 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:06 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Pro Tempore Tasha 
+Kama 
+  √  
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson    √  
+CM Keani Rawlins-
+Fernandez 
+√   Exc: 5:37 p.m. – 5:45 p.m.; 
+6:11 p.m. - end 
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√   Exc: 11:49 a.m. – 2:10 p.m. 
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 7  2  
+ 
+ 
+CEREMONIAL RESOLUTIONS 
+ 
+ AYE NO EXC Time Deliberations Began 9:22 a.m. 
+Pro Tem Kama   √ Time Motion Made 9:23 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Uʻu-Hodgins 
+ 2 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:42 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+COUNTY COMMUNICATIONS: 
+ 
+CC 25-6 COUNCIL CHAIR LEE, transmitting a proposed amendment to Bill 41, 
+CD1 (2025), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2025 TO JUNE 30, 2026." 
+Postponed, without objection, until Bill 41 was called up. 
+ 
+ 
+CC 25-7 COUNCILMEMBER PALTIN, transmitting a proposed amendment to Bill 
+41, CD1 (2025), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2025 TO JUNE 30, 2026." 
+Postponed, without objection, until Bill 41 was called up. 
+ 
+ 
+CC 25-8 COUNCIL CHAIR LEE, transmitting a proposed amendment to Bill 41, 
+CD1 (2025), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2025 TO JUNE 30, 2026." 
+Postponed, without objection, until Bill 41 was called up. 
+ 
+ 
+CC 25-9 COUNCIL CHAIR LEE, transmitting a proposed amendment to Bill 41, 
+CD1 (2025), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2025 TO JUNE 30, 2026." 
+Postponed, without objection, until Bill 41 was called up. 
+ 
+ 
+CC 25 -10 BUDGET, FINANCE, AND ECONOMIC DEVELOPMENT CHAIR, 
+transmitting a proposed amendment to Bill 42, CD1 (2025), entitled "A BILL FOR 
+AN ORDINANCE RELATING TO THE CAPITAL PROGRAM FOR THE FISCAL 
+YEAR ENDING JUNE 30, 2026." 
+Postponed, without objection, until Bill 42, CD1 was called up. 
+ 3 
+CC 25 -11 WATER AND INFRASTRUCTURE CHAIR, transmitting a proposed 
+amendment to Resolution 25 -86, entitled "ACCEPTING DEDICATION OF 
+ROADWAY LOTS FOR THE KAIMANA AT KEHALANI SUBDIVISION (KEHALANI 
+MAKAI), KEHALANI MAKUA (LARGE-LOT) SUBDIVISIONS, ILIAHI AT KEHALANI 
+ROADWAY LOT SUBDIVISION AND FOR THE SUBDIVISION OF SITE C -1/11 
+OF WAILUKU  PROJECT DISTRICT SITUATED IN WAILUKU, MAUI, HAWAII, 
+PURSUANT TO SECTION 3.44.015, MAUI COUNTY CODE." 
+Postponed, without objection, until Resolution 25-86 was called up. 
+ 
+ 
+COMMITTEE REPORTS: 
+ 
+CR 25-26 Recommending the following: 
+1. FIRST READING of Bill 41, CD1 (2025) , to appropriate estimated  
+revenues for the operating and capital improvement budget. Incorporated within 
+Bill 41, CD1 are Appendix A, which lists Grants and Restricted Use  Revenues 
+and Special Purpose Revenues; Appendix B, which is the  Schedule of Revenues 
+- Fees, Rates, Assessments and Taxes; Appendix  B-1, which lists the County’s 
+concessions, leases, and licenses by  department; and Appendix C, which 
+provides titles and descriptions of Capital Improvement Projects (“Budget bill”); 
+ 
+2. FIRST READING of Bill 42, CD1 (2025), to set the Capital Program for 
+Fiscal Years 2026 through 2031. Incorporated within Bill 42, CD1 are Appendix 
+A-1, a report entitled “COUNTY OF MAUI, CAPITAL IMPROVEMENT PROJECTS 
+REPORT,” which lists all pending capital  improvement projects and 
+appropriations, except for Water Fund projects, as of a date certain; Appendix A-
+2, a report entitled “County of Maui,  Capital Improvement Program by District 
+Job and Index, Fiscal Year  Ending 6/30/2025,” which includes pending Water 
+Fund capital improvement projects and appropriations as of a date certain; and 
+Appendix B, which is the proposed Capital Program for Fiscal Years 2026  
+through 2031 (“Capital Program bill”); 
+ 
+3. FIRST READING of Bill 43, CD1  (2025), to authorize the issuance of  
+$138,187,284 in general obligation bonds for various capital improvement  
+projects (“Bond Authorization bill”); 
+ 
+4. FIRST READING of Bill 44, CD1 (2025 ), to reauthorize the use of  
+$3,926,861 in lapsed bond proceeds for the Department of Environmental  
+Management, West Maui Community Plan Area, Sewer, Lahaina  Wastewater 
+Reclamation Facility Returned Activated Sludge  (RAS)/Dewatering Upgrades; 
+and Department of Water Supply,  Countywide, Water Supply, Countywide 
+Upgrades and Replacements (“Lapsed Bond bill”); 
+ 
+5. FIRST READING of Bill 45, CD1 (2025) , to authorize the Mayor to  
+enter into an intergovernmental agreement to finance the Waiko Road 
+ 4 
+Subdivision Sewer System and the Kīhei Wastewater Pump Station 7 Relocation, 
+with funds not to exceed $11,900,000; 
+ 
+6. FIRST READING of Bill 46, CD1 (2025) , to authorize the Mayor to  
+enter into an intergovernmental agreement to finance Countywide Upgrades and 
+Replacements, with funds not to exceed $3,000,000; 
+ 
+7. FIRST READING of Bill 48, CD1 (2025) , to revise the salaries of  
+Deputies Corporation Counsel and Deputies Prosecuting Attorney; 
+ 
+8. FIRST READING of Bill 49, CD1 (2025), to revise the salary pay plan 
+and pay ranges for the Office of Council Services; 
+ 
+9. FIRST READING of Bill 50 (2025) , to repeal the Employee Parking 
+Fees Fund and transfer all encumbrances and any balance remaining in the  
+Employee Parking Fees Fund to the General Fund; 
+ 
+10. ADOPTION of Resolution 25-83, CD1, to adopt the fuel tax rates for 
+the County of Maui, effective July 1, 2025, in accordance with Section 243 -5, 
+Hawai‘i Revised Statutes, and Section 3.20.010, Maui County Code; 
+ 
+11. ADOPTION of Resolution 25-89, CD1, to set the salary of the Director 
+of Council Services; 
+ 
+12. ADOPTION of Resolution 25-90, CD1, to set the salary of the Deputy 
+Director of Council Services; and 
+ 
+13. REFERRAL of Bill 54 (2025) , to require responsible bidders be 
+signatories to the community workforce agreement for all capital improvement 
+project contracts of more than $500,000, to your Government Relations, Ethics, 
+and Transparency Committee. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+12:28 p.m. 
+Pro Tem Kama   √ Time Motion Made 2:34 p.m 
+VC Sugimura √   Motion  ADOPT 
+recommendations, 
+as amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:06 p.m. 
+CM Cook √     
+ 5 
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:13 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:36 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:17 p.m. 
+VC Sugimura √   Motion  AMEND, 
+FILE CC 25-
+8 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:35 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:44 p.m. 
+VC Sugimura √   Motion  RECONSIDER 
+Filing 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:45 p.m. 
+ 6 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:46 p.m. 
+VC Sugimura √   Motion  AMEND 
+w/CC 25-6 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:47 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:48 p.m. 
+VC Sugimura √   Motion  AMEND 
+w/CC 25-9 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:51 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:52 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:53 p.m. 
+CM Cook √     
+ 7 
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:53 p.m. 
+VC Sugimura √   Motion  FILE 
+CC 25-7 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:59 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 2:59 p.m. 
+VC Sugimura √   Motion  AMEND Bill 
+42, CD1 
+(2025) 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:01 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:05 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:18 p.m. 
+CM Cook √     
+ 8 
+CM Uʻu-Hodgins   √   
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:20 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:20 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:21 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:22 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:23 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:27 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 9 
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:25 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:26 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:28 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:33 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:29 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:32 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 10 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:33 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:42 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:44 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:45 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:46 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:46 p.m. 
+VC Sugimura √   Motion  AMEND 
+ 11 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:48 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 3:48 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:53 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 4:31 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:33 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins   √   
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 4:35 p.m. 
+VC Sugimura √   Motion  FILE 
+CCs 25-6, 
+ 12 
+25-8, 25-9, 
+and 25-10 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:36 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 4:39 p.m. 
+VC Sugimura √   Motion  AMEND 
+Bill 49 
+CM Paltin  √  Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 5:00 p.m.. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee  √    
+TOTAL VOTES 3 4 2 MOTION FAILED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 5:01 p.m. 
+VC Sugimura √   Motion  SEPARATE 
+Bill 49 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:01 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 6 1 2 MOTION PASSED  
+ 
+ 
+5:25 p.m. - Bill 49, CD1 (2025) tabled. 
+  
+ 13 
+RESOLUTIONS 
+ 
+Reso 25 -86 "ACCEPTING DEDICATION OF ROADWAY LOTS FOR THE 
+KAIMANA AT KEHALANI SUBDIVISION (KEHALANI MAKAI), KEHALANI MAUKA 
+(LARGE-LOT) SUBDIVISIONS, ILIAHI AT KEHALANI ROADWAY LOT 
+SUBDIVISION AND FOR  THE SUBDIVISION OF SITE C -1/11 OF WAILUKU 
+PROJECT DISTRICT SITUATED IN WAILUKU, MAUI, HAWAII, PURSUANT TO 
+SECTION 3.44.015, MAUI COUNTY CODE" 
+ 
+CC 25-11 WATER AND INFRASTRUCTURE CHAIR, transmitting a 
+proposed amendment  to Resolution 25 -86, entitled "ACCEPTING 
+DEDICATION OF ROADWAY LOTS  FOR THE KAIMANA AT 
+KEHALANI SUBDIVISION (KEHALANI MAKAI), KEHALANI  MAKUA 
+(LARGE-LOT) SUBDIVISIONS, ILIAHI AT KEHALANI ROADWAY LOT 
+SUBDIVISION AND FOR THE SUBDIVISION OF SITE C -1/11 OF 
+WAILUKU PROJECT DISTRICT SITUATED IN WAILUKU, MAUI, 
+HAWAII, PURSUANT TO SECTION 3.44.015, MAUI COUNTY CODE." 
+ 
+ AYE NO EXC Time Deliberations Began 5:27 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:27 p.m. 
+VC Sugimura √   Motion  DISCHARGE 
+CM Paltin √   Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:28 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 5:28 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:28 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:30 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 14 
+ AYE NO EXC  5:29 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:29 p.m. 
+VC Sugimura √   Motion  SUBSTITUTE 
+w/CC 25-11/ 
+FILE CC 25-11 
+CM Paltin √   Maker Sinenci 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:30 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 5:31 p.m. 
+VC Sugimura √   Motion  SUSPEND 
+RULE 19 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:31 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Reso 25 -108 "APPOINTMENT OF MEMBERS TO THE MAUI PLANNING 
+COMMISSION FOR THE COUNTY OF MAUI" 
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 5:32 p.m. 
+VC Sugimura √   Motion  DISCHARGE 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:34 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 15 
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 5:35 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 6:12 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 5:36 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Reso 25 -109 "AUTHORIZING THE EMPLOYMENT OF SPECIAL COUNSEL 
+MARR JONES &  WANG, LLLP, IN PRE -LITIGATION NEGOTIATIONS 
+REGARDING ALLEGATIONS MADE BY LEO CAIRES, A FORMER COUNTY OF 
+MAUI EMPLOYEE" 
+5:38 p.m.: Referred to the Government Relations, Ethics, and Transparency 
+Committee. 
+ 
+ 
+Reso 25-110 "AUTHORIZING SETTLEMENT OF JMC CLAIM 4088770, COUNTY 
+OF MAUI FILE RISK 2024-0068 OF MERC COIMBRA AND ALISA COIMBRA" 
+5:38 p.m.: Referred to the Government Relations, Ethics, and Transparency 
+Committee. 
+ 
+ 
+ 16 
+Reso 25 -111 "APPROVING COST ITEMS FOR BARGAINING UNIT 01, NON -
+SUPERVISORY, BLUE COLLAR EMPLOYEES" 
+ 
+Reso 25 -112 "APPROVING COST ITEMS FOR EMPLOYEES INCLUDED IN 
+BARGAINING UNIT 2 (SUPERVISORY BLUE COLLAR), BARGAINING UNIT 3  
+(NON-SUPERVISORY WHITE COLLAR), BARGAINING UNIT 4 (SUPERVISORY  
+WHITE COLLAR), AND BARGAINING UNIT 13 (PROFESSIONAL AND  
+SCIENTIFIC)" 
+ 
+Reso 25-113 "APPROVING COST ITEMS FOR EMPLOYEES EXCLUDED FROM  
+BARGAINING UNIT 3 (NON-SUPERVISORY WHITE COLLAR), BARGAINING UNIT 
+4 (SUPERVISORY WHITE COLLAR), AND BARGAINING UNIT 13  
+(PROFESSIONAL AND SCIENTIFIC)" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+5:39 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:39 p.m. 
+VC Sugimura √   Motion  ADOPT 
+Resos 25-111, 
+25-112, and 
+25-113 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 5:42 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+Reso 25-114 "URGING THE MAYOR TO TRANSMIT A RESOLUTION TO ACCEPT 
+HUI ROAD F IN WEST MAUI FROM THE STATE OF HAWAIʻI JUDICIARY" 
+ 
+ AYE NO EXC Time Deliberations Began 5:42 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:43 p.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:46 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 17 
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Reso 25 -115 "REFERRING TO THE MAUI PLANNING COMMISSION AND 
+BOARD OF  WATER SUPPLY A PROPOSED BILL TO IMPOSE INTERIM 
+RESTRICTIONS ON NEW PRIVATE SWIMMING POOLS IN THE WEST MAUI 
+COMMUNITY PLAN AREA" 
+ 
+ AYE NO EXC Time Deliberations Began 5:47 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:47 p.m. 
+VC Sugimura  √  Motion  ADOPT 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:52 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 5 2 2 MOTION PASSED  
+ 
+ 
+Reso 25-116 "AUTHORIZING SETTLEMENT OF FIRST FIRE AND CASUALTY 
+INSURANCE OF HAWAII, INC. v. COUNTY OF MAUI, ET AL.; CIVIL FILE: 2CCV-
+24-0001055" 
+5:53 p.m.: Referred to the Government Relations, Ethics, and Transparency 
+Committee. 
+ 
+ 
+Reso 25-118 "AUTHORIZING THE ACQUISITION OF 2 ACRES OF PROPERTY 
+IDENTIFIED AS TAX MAP KEY (2) 3-8-065:018, KAHULUI, MAUI, HAWAI’I, FOR 
+AN AMOUNT NOT TO EXCEED $7,200,000" 
+Postponed, without objection, until Bills 61 and 62 are called up. 
+ 
+ 
+Reso 25 -119 "URGING THE HAWAI ʻI TOURISM AUTHORITY BE HELD 
+ACCOUNTABLE TO ENSURE A SAFE AND WELCOMING WORK ENVIRONMENT 
+FOR KANAKA ‘ŌIWI AND WOMEN" 
+5:54 p.m.: Referred to the Kōmike Aloha ʻĀina Committee. 
+ 
+ 
+  
+ 18 
+ORDINANCES 
+ 
+Bill 72 (2025)  "A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR TO 
+ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE UNIVERSITY 
+OF HAWAII, OFFICE OF RESEARCH SERVICES" 
+5:56 p.m. Referred to the Budget, Finance, and Economic Development Committee 
+without objection. 
+ 
+ 
+Bill 73 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+BUSINESS DEVELOPMENT AND TECHNOLOGY, WEST MAUI ECONOMIC  
+DEVELOPMENT, ENVIRONMENTAL, AND CULTURAL PROGRAMS, KAIĀULU  
+INITIATIVES" 
+ 
+ AYE NO EXC Time Deliberations Began 5:56 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:56 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:57 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 74 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART I, OFFICE OF 
+THE MAYOR,  DEPARTMENT OF ENVIRONMENTAL MANAGEMENT, UNITED 
+STATES DEPARTMENT OF THE INTERIOR, BUREAU OF RECLAMATION" 
+ 
+ AYE NO EXC Time Deliberations Began 5:57 p.m. 
+Pro Tem Kama   √ Time Motion Made 5:58 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 5:59 p.m. 
+CM Cook √     
+ 19 
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 75 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE 
+COMPREHENSIVE ZONING ORDINANCE ON AGRICULTURAL TOURISM" 
+5:59 p.m. Referred to the Agriculture, Diversification, Environment, & Public 
+Transportation Committee without objection. 
+ 
+ 
+ORDINANCES SECOND AND FINAL READING:  
+ 
+Bill 57, FD1 (2025) "A BILL FOR AN ORDINANCE TO AMEND CHAPTER 3.34, 
+MAUI COUNTY  CODE, TO ESTABLISH A VOLUNTARY DEED RESTRICTION 
+PROGRAM" 
+ 
+ AYE NO EXC Time Deliberations Began 6:00 p.m. 
+Pro Tem Kama   √ Time Motion Made 6:00 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:01 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 59 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, ESTIMATED REVENUES; CAPITAL 
+IMPROVEMENT PROJECTS, DEPARTMENT OF HOUSING, WEST MAUI  
+COMMUNITY PLAN AREA, OTHER PROJECTS, GENERAL FUND,  KOMOHANA 
+HALE APARTMENTS REBUILD; AND APPENDIX C,  DEPARTMENT OF 
+HOUSING, WEST MAUI COMMUNITY PLAN AREA,  KOMOHANA HALE 
+APARTMENTS REBUILD" 
+ 
+Bill 60 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, ESTIMATED REVENUES; CAPITAL 
+ 20 
+IMPROVEMENT PROJECTS, DEPARTMENT OF WATER SUPPLY,  
+COUNTYWIDE, WATER FUND - RESTRICTED; APPENDIX A, PART II, GENERAL 
+EXCISE TAX FUND; AND APPENDIX C, DEPARTMENT OF  MANAGEMENT, 
+COUNTYWIDE; AND DEPARTMENT OF WATER SUPPLY, COUNTYWIDE" 
+ 
+Bill 65 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET  FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+BUSINESS DEVELOPMENT AND TECHNOLOGY, SOUTH MAUI ECONOMIC  
+DEVELOPMENT, ENVIRONMENTAL, AND CULTURAL PROGRAMS" 
+ 
+Bill 66 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET  FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+BUSINESS DEVELOPMENT AND TECHNOLOGY, WAILUKU ECONOMIC  
+DEVELOPMENT, ENVIRONMENTAL, AND CULTURAL PROGRAMS" 
+ 
+Bill 68 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET  FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+BUSINESS DEVELOPMENT AND TECHNOLOGY, SPORTS AND EVENTS  
+PROMOTION; AND GRANTS AND DISBURSEMENTS FOR CULTURE, ARTS, AND 
+TOURISM, CULTURE AND ARTS PROGRAM" 
+ 
+Bill 69 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET  FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+WATER AND ENVIRONMENTAL RESOURCE PROTECTION, DEPARTMENT OF 
+MANAGEMENT, OFFICE OF RECOVERY PROGRAM" 
+ 
+Bill 70 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET  FOR THE COUNTY OF MAUI, CAPITAL IMPROVEMENT 
+PROJECTS, DEPARTMENT OF MANAGEMENT, DEPARTMENT OF WATER 
+SUPPLY; AND APPENDIX C, DEPARTMENT OF MANAGEMENT, DEPARTMENT 
+OF WATER SUPPLY, FIRE FLOW IMPROVEMENTS TO WATER SYSTEM" 
+ 
+Bill 71 (2025) "A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 5659, 
+BILL NO. 62,  CD1 (2024), RELATING TO THE ISSUANCE OF GENERAL 
+OBLIGATION BONDS OF THE COUNTY OF MAUI ISSUANCE, SALE AND 
+DELIVERY OF  SAID BONDS (DEPARTMENT OF MANAGEMENT AND 
+DEPARTMENT OF WATER SUPPLY" 
+ 
+ 
+ AYE NO EXC Time Deliberations Began 6:01 p.m. 
+Pro Tem Kama   √ Time Motion Made 6:03 p.m. 
+ 21 
+VC Sugimura √   Motion  PASS Bills 
+59, 60, 65, 
+66, 68, 69, 
+70 and 71 on 
+second and 
+final reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 6:12 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 6:05 p.m. 
+VC Sugimura √   Motion  WAIVE 
+Rule 19 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:05 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 61 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, ESTIMATED REVENUES; CAPITAL 
+IMPROVEMENT PROJECTS, DEPARTMENT OF PUBLIC WORKS,  
+COUNTYWIDE, GOVERNMENT FACILITIES, BOND FUND, COUNTYWIDE  DPW 
+BASEYARD FACILITIES PROGRAM; AND APPENDIX C, DEPARTMENT  OF 
+PUBLIC WORKS, COUNTYWIDE DPW BASEYARD FACILITIES PROGRAM"  
+ 
+Bill 62 (2025) "A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 5659, 
+BILL 62, CD1 (2024), RELATING TO THE ISSUANCE OF GENERAL OBLIGATION 
+BONDS OF THE COUNTY OF MAUI ISSUANCE, SALE AND DELIVERY OF SAID 
+BONDS (DEPARTMENT OF PUBLIC WORKS)" 
+ 
+ 22 
+Reso 25-118 "AUTHORIZING THE ACQUISITION OF 2 ACRES OF PROPERTY 
+IDENTIFIED AS TAX MAP KEY (2) 3-8-065:018, KAHULUI, MAUI, HAWAI’I, FOR 
+AN AMOUNT NOT TO EXCEED $7,200,000" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+6:05 p.m. 
+Pro Tem Kama   √ Time Motion Made 6:06 p.m. 
+VC Sugimura √   Motion  PASS Bills 61 
+and 62 on 
+second and 
+final 
+reading/ADOPT 
+Reso 25-118, 
+as amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:10 p.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 6:08 p.m. 
+VC Sugimura √   Motion  SUBSTITUTE 
+with 
+ASF/SUSPEND 
+Rule 19 
+CM Paltin √   Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 6:10 p.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  6:14 p.m. 
+ 
+TRANSCRIPTION
+Council of the County of Maui on 2025-05-16 9:00 AM - Regular Meeting
+[ GAVEL ] >> Will the Council Meeting of May 16th, 2025 please come to order. Ms.
+Clerk. >> Chair, proceeding with roll call. For anyone that may be participating
+remotely, please just state who if anyone is present with you, and that just needs
+to be an adult. Council Member Pro Tempore Tasha Kama. >> Excused.\r\n\r\n>>
+Vice-Chair Yuki Lei Sugimura. >> Good morning. >> Council Member Tamara Paltin. >>
+Excused for now. >> She is online, Chair. >> She is online? >> Yes.\r\n\r\n>> Okay.
+>> Aloha Kakahiaka. >> Good morning. >> I'm alone. >> Good morning. >> Thank you. >>
+Council Member Gabe Johnson?\r\n\r\n>> Excused. >> Council Member Keani
+Rawlins-Fernandez. >> Aloha Kakahiaka kakou. There are currently no testifiers at
+the Moloka'i District Office. And before we get started and I forget, I wanted to
+explain why I'm wearing this lei this morning. Yesterday I had the opportunity to
+attend Moloka'i MEO Head Start graduation/promotion and they called me up and gave
+me this lei for the Council, and thanked the Council and the Administration for
+supporting funding that enable them to continue having their preschool day past 12.
+Because of the additional funding they are able to have a whole day of school, and
+so mahalo to they asked me to convey that gratitude and mahalo. >> Nice.\r\n\r\n>>
+Thank you for representing us. We appreciate it. >> Ms. Clerk. >> Council Member Tom
+Cook? >> Good morning, happy Aloha Friday. There's currently no testifiers in the
+Kihei office.\r\n\r\nWe have people on standby. And I'm looking forward to today
+meeting. Thank you. >> Council Member Nohelani Uu-Hodgins. >> Good morning everyone.
+>> Council Member Shane Sinenci. >> Aloha Kakahiaka, Chair.\r\n\r\nNo testifiers in
+Hana, Chair. >> Thank you. >> Council Chair Alice Lee. >> Aloha kakou. >> Chair, you
+have seven members present, two excused members Kama and Johnson. A quorum is
+present to conduct the business of the Council, County Clerk Moana Lutey and
+legislative division Staff Lauren Saldana, Dell Yoshida, Arthur Suyama and out in
+the lobby we have Chris Minford, joining the meeting from the Office of Council
+Services is Deputy Director Richelle Kawasaki and legislative Attorney Carla Nakata
+and from the Department of Corporation Counsel, we'll have Deputy Counsel Kristina
+Toshikiyo joining us shortly and Chair to point out today is our ambassador's
+birthday. >> Ryan Martins.\r\n\r\n[ APPLAUSE ] >> Happy birthday. >> Are we going to
+sing? >> Later on we'll sing to you. >> Promise. >> Okay. >> We don't want to chase
+him away. Before we begin with opening remarks, first of all, Lauren, could you turn
+the mics up, is that possible?\r\n\r\nUp higher and louder? And want to remind
+members that Akaku has advised me today that often times they can't hear you,
+because you need to speak directly into the mic. Not start like this, talking to the
+mic and then the mic is over here and you are talking over there. You have to talk
+right into the mic, close. You know, not like this either. Cannot hear you. So
+please be mindful of that.\r\n\r\nThe mic is your friend. Wherever your mouth goes
+that is where the mic has to go, okay? Everybody? >> I know you are not talking to
+me, Chair >> Your volume is fine. Everybody else might have to speak up a little
+bit. And now it's my pleasure to welcome Member Nohelani Uu-Hodgins to do the
+opening remarks. >> Thank you, Chair.\r\n\r\nAs we end -- as we near the end budget
+season, we step into graduation season. Excuse me. This are a few life lessons I
+think might be important to share for the class of 2025, some things that I wish I
+knew at that age. So one, it's okay not to know what you want to do for the rest of
+your life at 18 years old. It's fantastic if you do, but it's okay if you don't.
+It's okay to change your mind to figure out what fits best and when you look back at
+this time when you are an adult you realize that the kid wearing crocs and pajama
+pants probably shouldn't be in charge of lifetime decision-making and know that you
+can be anything that you want to be, if you put effort into it. Find your balance.
+You have to work hard to play hard.\r\n\r\nWhen you fall on either end of the
+spectrum is when trouble finds us. College is a wonderful learning institution, but
+it may not be for trades are very important facet in our society. Wander, but wander
+safely. This is your time in life to explore your options your life and the world.
+You have an entire life in front of you, try not to look back and say you would have
+done something, but you didn't. Have to make safe mistakes to find your boundaries
+and you have the power to remove yourself from an uncomfortable situation without
+feeling the need to explain yourself, just leave. You have the right to safely
+explore your boundaries at your own pace without anyone making you feel pressured.
+As Member Shane Sinenci just added Maka'ala your surroundings as you
+wander.\r\n\r\nThree, don't make permanent decisions with temporary emotions. Life
+is funny at your age and I mean to disrespect, I'm a parent to a 17-year-old boy who
+will be graduating later this year. So I watch himin this, but there's a lot of
+cognitive dissonance in life like you have so much time to get together and buckle
+down for the future and yet, so much permanency with every emotion that you are
+feeling in the moment. So know that if you are feeling moments of hardship, remember
+this too shall pass. Member Sinenci wants to add for all of you to enjoy your youth.
+Life comes at you fast so enjoy it while you can. Member cook wants you to stay
+curious.\r\n\r\nMember Rawlins-Fernandez wants you to you trust the process. And I
+didn't have time to ask everybody else in the room, but if you do have any
+suggestions, please share. I will also be sharing this with my son. And lastly, know
+that this Council has your back. Like many Councils that have come before us and the
+many that will come after us, we're trying our best to create a space for you to
+continue to call home. When you are done exploring and ready to return, know that in
+this budget, we have done our best to provide you with a home that is safe, that is
+comfortable, as well as economically and culturally stable. Also if you are like me,
+and you didn't need to travel, and wander too much and I only wanted to call Maui
+County my home, know this Council is here for you now.\r\n\r\nWe want you to have
+access to safe and healthy foods, water, and employment opportunities for you to
+thrive here. So class of 2025 best of luck on all your endeavors and God speed.
+Thank you, Chair. >> Beautiful, thank you very much. The other thing that Akaku
+reminded me of is when you are not speak, please remember to turn off your mics.
+Okay, it's not like we don't like hearing you breathe, but you know, just turn off
+your mics. All right.\r\n\r\nSo now comes the instructions. Yes. You're right.
+Pledge of Allegiance. Please join us. I pledge allegiance to the flag of the United
+States of America, and to the republic for which it stands, one nation under God,
+indivisible, with liberty and justice for all. And now may I ask that everyone keep
+their microphones muted unless it's your turn to speak.\r\n\r\nOral or written
+testimony will be accepted at the beginning of the meeting and prior to Council's
+deliberation on each section of the agenda. Each testifier will be allowed to speak
+for up to three minutes on each item. Decorum shall be maintained at all times. Any
+person who behaves in a manner that disrupts, disturbs or impedes the orderly
+conduct of any Council Meeting can at the discretion of the Presiding Officer or a
+majority of present Council Members be ejected or banned from Council Meeting or if
+participating remotely, muted or dropped from the meeting. Examples of disruptive
+behavior include, but not limited to heckling, shouting use of profanity,
+threatening or slanderous remarks made to any Member of the Council, Staff or
+general public. As a reminder the chat should be used only to sign up for testimony
+and not for public commentary on the meeting. It will be considered a breach of
+decorum for Members of the Public to use the chat for anything other than testimony
+sign-up.\r\n\r\nMs. Clerk, please proceed. >> Thank you, Chair. At this time we'll
+be accepting testimony only on the Ceremonial Resolution. If there's anyone who
+would like to testify, this is your opportunity. We'll start with the lovely Cori
+Vincennes, testifying on the ceremonial testimony. I think we'll have someone from
+the team maybe?\r\n\r\n>> Aloha Chair Lee, Council Members. Mahalo. Council Member
+Yuki Lei Sugimura and Uu-Hodgins on today's Ceremonial Resolution. I'm here on my
+own time, and I'm again testifying on resolution 117. Didn't expect this. But
+anyway, it's a milestone. It's a milestone for our community, it's a milestone for
+the women who are athletes, have been athletes, and those who will come after this
+class. I also think it's only befitting that I first acknowledge that without Maui
+born and raised Patsy T. Mink in 1972 was pivotal in crafting and Shepherding the
+passage of Title IX, we would not be here today to congratulate the athletes of the
+MIL inaugural football flag team Kamehameha women, with their coaches, Staff and
+'Ohana.\r\n\r\nWhat an amazing inaugural season it was as an Auntie to one of the
+athletes it was exciting to watch and be this on Saturdays, and watch the six
+overtimes on one afternoon. Sports is a great metaphor for life and as a matter of
+fact it was used in my home with my father and athletes that surrounded us with
+Coach and football and personal sports metaphors every day, home run, get the ball
+rolling, or you win some, you lose some, and go the distance. Up questionably sports
+is the go-to metaphor for navigating life in so many ways and all sports are games
+of resilience and perseverance, just as it is in real - life these two
+characteristics make sports fill this metaphorical role it comes down to the ability
+to recover, and move forward from defeat, mistakes, setbacks, injury,
+disappointment, or failure. Nothing is guaranteed, and neither sports or life except
+the reality that resiliency and perseverance are necessary to sustain one's self and
+move forward. This is what makes sports the best classroom how to overcome the
+challenge and how to deal with pressure, how to deal with anxiety or that will come.
+They will essentially face in the real world. In essence sports is life and it's not
+how you fall in life, but how you get up.\r\n\r\nMahalo to our athletes, for
+exemplifying these characteristics we're proud of you, as well as the other eight
+Maui County schools who participated in the women's athletics and finally I close
+with this quote "nothing great was ever achieved without enthusiasm." It's
+attributed to the late Charlie T., Jr., Captain of the two-time NHL championship
+Detroit Lions Hawai'i sports Hall of Fame, former St. Anthony's head coach and
+great-grandfather to Eva, who is on this team. Neither he or my father would have
+ever thought in their days as athletes, coaches, that they would see these young
+women now participating in a sport that we all love. Ladies, we enthusiastically
+look forward to the 2026 season, and for those who are Seniors, congratulations, and
+best wishes in all your future endeavors. Mahalo. Mahalo, members for the time. [
+APPLAUSE ] >> Ms.\r\n\r\nClerk. >> Thank, Chair. I think we have someone from the
+team. Here she comes. Look, I got one. Good job. I believe the Coach will be
+speaking after the Ceremonial Resolution.\r\n\r\nAloha journey Hett and currently
+girls' team Captain and I'm a Senior. First of all I want to thank you all for
+having us here. And thank you to our coaches, who have set a really good program for
+our girls. And took us to become the first girl MIL flag football state champs. To
+my girls, especially the underclassmen, thank you for making it such an exciting fun
+-- I know we all had fun -- season, we put in our work every day. We made it fun as
+well, and we got our job done, and we set the bar for many other girls. And to the
+future of girls flag football, I hope we have inspired many young girls to come out
+and play, and yeah, so thank you all.\r\n\r\nHopefully next year, MIL champs again.
+Thank you, guys. [ APPLAUSE ] >> Ms. Clerk. >> Chair, we don't have anyone else
+signed up at this time. So this is last call, if there's anyone who would like to
+testify on the Ceremonial Resolution, this is your opportunity. I think the Coach is
+going to wait until after the Ceremonial Resolution.\r\n\r\nLast call, count down,
+3, 2, 1. Chair, there's no one indicating a desire to testify. >> Any objections to
+closing public testimony on Resolutions? >> No objections. >> So ordered. Ms. Clerk.
+>> Chair, before you is resolution 25-117 congratulating the Kamehameha Schools Maui
+girls flag football team for winning the inaugural Maui Interscholastic League Flag
+Football Championship.\r\n\r\n>> Member Uu-Hodgins. >> Thank you, Chair. I move to
+adopt resolution 25-117. >> Second. >> Moved by Member Uu-Hodgins, seconded by
+Vice-Chair Sugimura to adopt resolution 25-117. Discussion, Member Uu-Hodgins? >>
+Thank you, can I please request that the Clerk read the Resolution in its entirety.
+>> Ms. Clerk thank you, Chair.\r\n\r\nResolution 25-117, congratulating the
+Kamehameha Schools Maui girls flag football team for winning the inaugural Maui
+Interscholastic League Flag Football Championship whereas, on August 1, 2024 the
+Hawai'i High School Athletic Association announced that girl flag football would be
+included in spring sports starting in 2025, making Hawai'i the 12th state to
+sanction it as a High School sport; and whereas, girls flag football provide and
+opportunity to empower current and future female athletes by furthering gender
+equity in High School athletics; and whereas, implementing girls flag football as a
+sanctioned High School sport advances the legacy of Patsy Takemoto Mink equal
+opportunity in education act also known as Title IX; and whereas, the Maui
+Interscholastic League fielded nine teams across Maui County in the 2025 girls flag
+football season; and whereas, an undefeated regular season the Kamehameha Schools
+Mari warriors girls plastic bag football team won the inaugural MIL championship on
+April 19, 2025 at Kamehameha Schools Maui Kana'iaupuni Stadium; and whereas, after
+trailing 7-0 in the championship game against Baldwin High School, the warriors made
+a thrilling comeback and tied the game in the final moments of the 4th quarter
+sending the game into overtime; and whereas, in the last seconds the 6th overtime
+Kamehameha Schools Maui scored the winning touchdown to claim the inaugural MIL girl
+flag football title with a thrilling historic 13-7 victory; and whereas, the
+warriors then represented the MIL at the 2025 HHSAA girls flag football state
+championship tournament on O'ahu; and whereas, the 2025 Kamehameha Schools Maui MIL
+championship team consists of the following players: Sofia Abernathy; Tay lnn Kamea
+Abreu; Uilani Ahana; Eva Ane; Kayla Baptist; Kawena Cabanting; Kalewe De La Nux;
+Mylee Hamasaki; Journey Hett; Leimomi Hokoana-Molinas; Makea Hobikaika-Mansanas;
+Nevaeh Howard; Kau'i Joaquin; Leiah Ka'a'a; Mishalei Kapua'ala; Zaysha-Maelee Keawe;
+Evalani Keawekane; Kilihea Lee; Raejia-Li Librando; Selah Rain Librando; Ariana
+Oshiro; Tyra Shimizu; Rylee Souza; Myla Tuitele; and Brooklyn Urayikaika and
+WHEREAS, the team's success can be attributed to the leadership and determination of
+Head Coach Stephen "Kaeo" Ripani; Assistant Coaches Malorie Chong, Joey Tamayose,
+and Clark Tuitele; Athletic Trainers Alika Asing, Erin Barnett, Larissa Jimenez,
+Rachel Jordan, and Sam Perdido; and Athletic Staff Kathleen Birmingham, Dorcas
+Cashman, Kyle Honda, Dayle Hoopii, Kamana Kala, Kublani Kamau, and Tanya Souza; and
+Resolution No. 25-117 WHEREAS, the exceptional team spirit, hard work, discipline,
+and perseverance of the Kamehameha Schools Maui girls flag football team have
+brought pride and honor to the people of the County of Maui; now, therefore, BE IT
+RESOLVED by the Council of the County of Maui: 1, That it congratulates the
+Kamehameha Schools Maui girls flag football team for winning the Inaugural Maui
+Interscholastic League Flag Football Championship; and 2, That certified copies of
+this Resolution be transmitted to the team's players, coaches, athletic trainers,
+and athletic staff; Dr. Scott Parker, Po'o Kula, Kamehameha Schools Maui; Lance
+Cagasan, Po'o Mahele Luna, Kamehameha Schools Maui; Athletic Director Jon Viela and
+Associate Athletic Directors Michael Balangitao and Kaholo Rickard, Kamehameha
+Schools Maui; Joseph Balangitao, Jr., Executive Director, Maui Interscholastic
+League; and the Honorable Richard T. Bissen, Jr., Mayor, County of Maui. Member
+Uu-Hodgins. >> Thank you, Chair. Members I would like to ask for your support of
+this Resolution. I'm proud to honor Kamehameha girls Maui flag football team in
+claiming the first every MIL championship the Wahina warriors won all nine of their
+regular season matches and also proud that Hawai'i is now the 14th state to
+recognize girl flag football as a sanctioned sports, which opens the doors for
+female athletes to explore new opportunity as you challenge the status
+quo.\r\n\r\nAt this time I just respectfully ask for the members' support of this
+motion. Thank you, Chair. >> Any other discussion? Vice-Chair Sugimura. >> Thank
+you. First of all, Chair, I would like to thank you for allowing us to do this joint
+Resolution. It is unusual.\r\n\r\nAs well as we normally do State honors, but this
+is unusual because this is the inaugural first-ever winning team for MIL. >> What I
+said about -- [ INAUDIBLE ] (lost audio) Member Rawlins-Fernandez. >> Mahalo, Chair.
+I'm so sad that the story that you shared was during our break and I hope you make
+mention it a little bit for those watching online, because that was a really fun
+story. So mahalo Member Uu-Hodgins, and Member Sugimura, and Kainoa. For helping to
+get this on today's agenda enabling all of us to celebrate the team together. Mai
+Kahi to the first team and their coaches and families for supporting them and mahalo
+for mentioning Congresswoman Patsy Mink, who championed Title IX to ensure that
+women have the same opportunity as men, and Ms.\r\n\r\nJill Kaua for ensuring that
+Title IX was enforced in Hawai'i. Flag football holds a special place in my heart at
+Richardson law school, at UH Manoa, we have a student versus alum annual game where
+male classmates served as coaches and Alumni men served as their coaches. And the
+students team was called the etis. Latah I was a very proud eti and still am. And
+Alumni team's name was the bruisers and I was fortunate to serve as the eti team
+Captain. I played D-line. I have a photo. >> Wow!\r\n\r\nOkay. >> I got a flag. >>
+Did you win? >> No, we didn't win. When which I was hoping you would share your
+story, because you guys won 6-0, oh, sorry spoiler. To close, women's equality
+doesn't always necessarily look like having the same exact thing as men. It means
+having things that are equitable and that makes sense for all
+individuals.\r\n\r\nWith flag football, well, with tackle football, you know, often
+what's looked upon as like strength is just that brute force and domination.
+Whereas, with flag football, it really is about skill, and speed, and technique and
+finesse, and being nimble. And you know, and what was that? >> And lucky. >>
+Sometimes. [Laughter ]But to dovetail off of Member Uu-Hodgins's opening remarks
+this morning to know your strength in this moment and time and to capitalize on
+them. Mahalo, Chair.\r\n\r\n>> Thank you. Words of wisdom. Thank you. At this time,
+ready to vote everybody or do we have more discussion? If not, all those in favor of
+motion, raise your hand, say aye? >> Aye. >> >> Looks like we have seven ayes,
+Ms.\r\n\r\nClerk? >> Correct, Chair. >> Two excused Pro Tem Kama and Member Johnson.
+>> Motion carries. Ms. Clerk. >> Chair, I believe the Coach at this time does have
+some comments that he would like to make to the Council.\r\n\r\n>> Yes. Coach could
+you mention your name, state your name for the record. >> Okay. Aloha my name is
+Ka'eo Ripani and the girls know me as Coach Rip. I would like to thank the County of
+Maui Council. I appreciate this, very humbled and blessed to be here. I also like to
+thank the school's Athletic Department.\r\n\r\nThey were a very big guiding force
+and role-model for myself, as well as members. Also like to thank my Coaching Staff,
+Coach mall is here with me. I have would coaches mission they are actually at the
+school because we have a big Ho'ike event and they are there right now with
+obligations that they hold. I would also like to thank the parents of our players.
+The support that they have given thought the season and just blessed and humbled to
+be part of this team, especially with these girls and everything. I know part of the
+whole thing was to kind of talk about the season. But I would also like to talk
+about the other coaches.\r\n\r\nThe season went so well because you know, everybody
+kind of like those competitions it was still togetherness. We just got off a meeting
+this past Tuesday, where we had to kind of wrap up the season and all of the coaches
+are looking forward to next year, and moving on and how this sport is growing. I
+would like to thank the other coaches of the other teams and everything. So the
+players when we first started, a lot of them knew football, but didn't know how to
+play Football. We had to come together, work hard, so at the end of the season, you
+know, I started calling them football players just because the boys had the pads on
+you know, it doesn't make -- it makes you a football player because you understand
+the assignments. You would have been so proud. Watching the championship game and
+with coverage and I looked at Coach Clark, oh, we created monsters [laughter ]Each
+and every of the members I thought the season contributed.\r\n\r\nWe had games where
+I had to tell the girls we need to develop grit. You know? We just got to bulk down
+so every player stepped up in this time. The one thing I want to talk about is on
+the Resolution, it talked about the six overtimes. You know? It is by far a
+well-disciplined Coached team, hats to the Coach. He is an amazing Coach.\r\n\r\nHe
+has his players ready, you know? We were down 7-0 going into the what do you call?
+The 4th quarter. You know, we had to fight back, and when we tied the game,
+eventually no one knew it would have gone into six overtimes. And the way it works
+is that each team has a chance to score, and a team has a chance to answer. So when
+it got into the sixth overtime, it had this feeling of okay, it's either going to go
+our way or theirs. The girls on the field gave everything and you could see some of
+them were just exhausted and some were both ways.\r\n\r\nWhat happened was it kind
+of led up to where Baldwin actually drove the ball down to like the 1 yard line and
+had a chance to score. We were able to stop them and I believe it was Mai La to
+stopped them. You know, like I said, the Baldwin has great athletes. So her
+recognizing what play was going to come, you know, with he do studying on Monday.
+You know, film study. Because we're a football team. So it came back to our turn and
+we actually drove the ball down to the 3 yard line on the last down.\r\n\r\nHow to
+set this up it was actually in the 4th quarter, I called the play. And I looked at
+journey, and I went, girl, you are going to get this ball. And we scored in the 4th
+quarter on this play to tie it up. Now we're sitting on the 3 yard line in overtime,
+and said, you are going to get this ball. And when she threw the ball, everything
+went to slow motion. The whole entire oxygen in the Stadium probably went into
+everybody. And when the ball was actually thrown to her, it was thrown just by a
+little bit, okay?\r\n\r\nBecause our quarterback, she had pressure, she had to get
+rid of the ball quick. So journey reached out for that ball and in that area, there
+was the other Baldwin defender. So it could have gone either way. But journey
+stepped in front, grabbed the ball and literally just right into the endzone. And
+that is how we won in the 6th overtime on the last play. [ APPLAUSE ] >> Coach,
+which one is journey? >> Our Captain and the reason why I wanted to kind of bring
+that up, is because in the time of competition, when it matters, you know,
+unfortunately some girls can't get into the game right there.\r\n\r\nIt's just a
+tough game. Baldwin has their best players on and we have to have our best players
+on. What I told the girls in order to win this game we have had to be a team and if
+means you have to be on the side cheering your teammate and having that grit, that
+is what a team is. I will tell you this, throughout the whole season, that is what
+this team is about. Whoever was in, they cheered, they stayed positive, and you
+know, we're very blessed to be the MIL champs for the season. You know, next year is
+going to be even harder. I know all the other teams are looking to be that way, so
+we have to step up our game.\r\n\r\nI know everyone else will. For this, Council
+Members again, thank you. We appreciate it. And very blessed to be here. >> Thank
+you, congratulations! [ APPLAUSE ] Any more testifiers? >> Chair, there are no other
+testifiers.\r\n\r\n>> Could we ask you to all come up, the team, to receive leis and
+take a picture with us, if you want? we're live, let's reconvene. >> Thank you,
+team! Ms. Clerk. Onto the next testimony. >> Yes.\r\n\r\nChair, we'll begin with the
+presentation of written or oral testimony. >> a little louder. >> Chair, we'll
+proceed with the presentation of oral testimony. call the countdown, 3, 2, 1, Chair,
+there's no one indicating a desire to testify. >> Any objections to closing public
+testimony on communications? >> No objections. >> Okay.\r\n\r\nSo ordered. And
+written testimony is always welcome. Ms. Clerk. >> Chair, before you is County
+Communication 25-6 Council Chair Lee transmitting a proposed Amendment to Bill 41,
+CD 1 (2025) entitled, "a Bill for an Ordinance relating to the Operating Budget for
+the County of Maui for the Fiscal Year July 1, 2025 to June 30, 2026 ." >> Members,
+are there any objections with the exception of County Communication 25-11, are there
+any objections to deferring consideration of the remainder of the County
+Communications until we consider Bill 41 CD 1 relating to the Operating Budget, and
+Bill 42, relating to the Capital Program? >> No objections. >> So ordered.\r\n\r\nSo
+that brings us to cc 25-11. >> Chair, before you is 25-11, water infrastructure
+Chair transmit a proposed Amendment to resolution 25-86 entitled, "accepting
+dedication of Roadway Lots for the Kaimana at Kehealani subdivision Kehealani Makai,
+Kehealani Mauka, large-lot subdivisions, 'Iliahi at Kehealani Roadway Lot
+subdivision and for the subdivision of Site C-1/11 of Wailuku project District
+situated in Wailuku, Maui, Hawai'i pursuant to Section 3 about the 44.015 Maui
+County Code. >> Member Cook. >> Chair, if there are no objections may I please
+request County Communication 25-11 be postponed to later in the agenda, when the
+Council considers Resolution 25-86. >> Members, any objections? So ordered. >>
+Chair, we're on Committee Report and there is no one signed up to testify. If
+there's anyone that would like to testify, this is your opportunity. I see
+Mr.\r\n\r\nLau making his way to the podium. >> J.C. Lau, as well as you guys I was
+hoping to do this after lunch for the Staff members speaking Staff members, that is
+a good segue, because I see Bill 49 resolution 25-89 and 25-90 are coming up and I
+would ask you to pay those Council Services, as much as leftover that you can in the
+piggy bank because they are doing a lot of work. No disrespect to the County Clerk's
+office, I see the pile of paperwork on the desk there, but going around in the State
+library across the Street, I kept getting sent back to Council services office and
+keep me from bothering you guys a lot. Thank you. I support those. >> All right. >>
+Chair, there's no one else signed up to testify on Committee Reports this is last
+call, the countdown is 3, 2, 1. Compare, there's no one indicating a desire to
+testify.\r\n\r\n>> Members, any objections to closing public testimony on committee
+reports, and accepting written testimony? >> No objections. >> So ordered. Ms.
+Clerk. >> Chair, we would also now adjourn the Public Hearing and close public
+testimony on Committee Reports. >> Okay.\r\n\r\nWe're adjourning what did you say?
+>> The Public Hearing. >> The Public Hearing. Okay. We are adjourning the Public
+Hearing. >> Thank you. >> Are you going to begin on Committee Reports.\r\n\r\n>>
+Yes. Chair, from the Budget, Finance, and Economic Development Committee is cr25-26
+recommending the following: 1, first reading of Bill 41 CD 1 (2025) to appropriate
+estimated revenues for operating and capital improvement budget incorporated with
+Bill 41 CD 1 Appendix a, which lists grants and Restricted Use Revenues, and Special
+Purpose Revenues, Appendix b, which is the Schedule of Revenue, fees rates
+assessments, taxes Appendix B-1 which lists the County's concessions, leases, and
+licenses by Department and Appendix C consider which provides titles and
+descriptions Capital Improvement Project Budget Bill, 2, first reading Bill 41 CD 1
+(2025) to set the Capital Program for Fiscal Year 2026 through 2031 incorporated
+with Bill 41 CD 1 Appendix A-1, and report Entitled, "County of Maui Capital
+Improvement Program by District job and index Fiscal Year ending 6/30/2025," which
+includes pending water fund capital improvement projects and appropriations as of a
+date certain and Appendix b, which is the proposed Capital Program for Fiscal Year
+2026-2031 Capital Program Bill. 3, first reading of Bill 43 CD (2025) to authorize
+the issuance of $138,187,1284 in General Obligation Bonds for various Capital
+Improvement Projects Bond Authorization Bill. 4, first reading of Bill 44, CD 1
+(2025) to reauthorizing the use of $3,926,861 in lapsed bond proceeds for the
+Department of Environmental Management West Maui Community Plan Area sewer Lahaina
+wastewater reclamation, facility Returned Activated Sludge/dewatering upgrades and
+Department of Water supply Countywide water supply Countywide upgrades and
+replacements lapsed bond. Bill, 5, first reading of the Bill 45, CD 1 (2025) to
+authorize the Mayor to enter into an Intergovernmental Agreement to finance the
+Waiko Road subdivision sewer system with Kihei Wastewater Pump Station 7 relocation
+with funds not to exceed $11,900,000. 6, first reading of Bill 46 CD 1 (2025) to
+authorize the Mayor to enter into an Intergovernmental Agreement to finance
+Countywide upgrades replacements, funds not to exceed $3 million. 7, first reading
+of Bill 48 CD 1 (2025) to revise the salaries of Deputies Corporation Counsel and
+Deputies Prosecuting attorneys. 8, first reading of Bill 49 CD 1 (2025) to revise
+the salary pay plan and pay ranges for the Office of Council Services.\r\n\r\n9,
+first reading of Bill 50 (2025) to repeal employee parking fees fund and transfer
+all encumbrances and any balance remaining in the employee parking fee fund to the
+General Fund. 10, adoption of resolution 25-83 CD 1 to adopt the fuel tax rate for
+the County of Maui effective July 1, 2025, in accordance with section 243-5 Hawai'i
+Revised Statutes and section 3.20, 010 Maui County Code. 11, adoption of resolution
+25-89 CD 1 to set the salary of Director of Council Services. 12, adoption of
+resolution 25-90 CD 1 to set the salary of Deputy Director of Council Services and
+13, referral of Bill 54 (2025) to require responsible bidders to signatories to the
+community workforce agreement for Capital Improvement Projects contracts of more
+than $500,000n to your Government Relations, Ethics, and Transparency Committee. >>
+How much ASF s do you have planned to determine the order of them? >> Eight. >>
+Eight.\r\n\r\nOkay. Michelle Kawasaki. Does that constitute discussion? >> Call for
+lunch. >> Yes, Chair that would. >> Thank you. For the record, just trying to follow
+the rules.\r\n\r\nMembers, it's 12:32 now, my understanding is Member Uu-Hodgins,
+did she tell you what time? Wasn't it around 1:45 she was coming back? does anybody
+remember? >> About 1:45. >> Let's say 1:45 and if it turns out to be 2:00, we can
+always wait. All right. Okay, Members, we're going to recess until 1:45. Thank you.
+[ GAVEL ] [ GAVEL ] >> Will the Council Meeting of May 16th, 2025 please
+reconvene.\r\n\r\nMembers, we're one Member short -- one can join us at 2:00. Any
+objections to making a recess to 2:05? This meeting is in recess until 2:05. Thank
+you [ GAVEL ] [ GAVEL ] >> Will the May 16th Council Meeting please reconvene. Ms.
+Clerk. >> Thank you, Chair. Before you is County Communication 25 HM 8 Council Chair
+Lee transmitting a proposed a.m. to Bill 41 CD 1 (2025) entitled, "A Bill for an
+Ordinance relating to the Operating Budget for the County of Maui for the Fiscal
+Year July 1,2025 to June 30, 2026. >> We're on County Communications. >> Yes, we're
+on County Communications 25-8, Member Uu-Hodgins. >> Let the record show Member
+Uu-Hodgins is with us now from the Pa'ia office?\r\n\r\n>> Aloha Chair. I'm actually
+at home, alone right now and later my minor child will be coming home from school.
+>> Did you hear the County Clerk? >> Yes. On 25-8, I left obviously, so can I ask
+that the clerk also call 25-9 if she doesn't already >> Ms. Clerk. >> Chair, before
+you is County Communication 25-9 Council Chair lie transmit a proposed Amendment to
+Bill 41 CD 1 (2025) entitled, "A Bill for an Ordinance relating to the Operating
+Budget for the County of Maui for the Fiscal Year July 1st, 2025 to June 30, 2026.
+>> Member Uu-Hodgins.\r\n\r\n>> Thank you, Chair. If there's no objections I would
+like to postpone this until we get to Committee Report 25-26. These Amendments
+pertain to that legislation. Thank you. >> Thank you, Ms. Clerk. >> Chair, we called
+the Committee Reports, yes. So we're actually right on time, and I don't know Member
+Uu-Hodgins, if you would also like us to call up County Communication 25-6, but
+we're prepared to proceed with the communications at this time.\r\n\r\n>> Just call
+it up. >> Okay. Chair, before you is County Communication 25-6, Council Chair Lee
+rans mitt a proposed Amendment to Bill 41 CD 1 (2025) entitled, "a Bill for an
+Ordinance relating to the Operating Budget for the County of Maui for the Fiscal
+Year July 1st, 2025 to June 30, 2026. >> Member Uu-Hodgins. >> Thank you Chair. Can
+I also request that legislation also postponed until Committee Reports. 25-26. >>
+We're at that. >> We're at 25-26. Sorry.\r\n\r\nI need to find my light right now --
+thank you so much. Referencing the ASF attached to CC25-8 on behalf of Chair Lee, I
+first move to amend Bill 41 CD 1 by changing Real Property Tax tam rate for the
+listed classifications per 1,000 dollars of net taxable assessed valuation as
+follows: one, hotel and resort $11.75. Time share $14.60. TVR more than $3 million
+at $15, long-term rental up to $1.3 million. At $3. And long-term rental more than
+$3 million at $8.00. >> Is that the motion? >> I'm just thinking if you should
+continue on? I guess you should, Member Uu-Hodgins, just continue on with 2, 3, and
+rest of it. >> Okay. So this Amendment changes the Real Property Tax rates for
+hotel-resort time share, SF long-term rental back to what the Mayor has and results
+in $14,531,563 reduction in RPT revenue for FY'26, and I will go to you, Chair Lee,
+for any further comments?\r\n\r\nBut if not, would you like me to continue to move
+on to amend Bill 41 CD 1 by reducing the estimated revenues from Real Property Tax
+by that amount? >> We can stop there, just in case there are any motions for
+Amendment. X Member Rawlins-Fernandez. >> Mahalo, Chair. Budget Director in
+testimony today requested restoring the demonstration experimental and demonstration
+housing and that is for a total of $2,531,563. As well as one moment, okay, and
+'Oiwi Resources is the one. >> I'm thinking -- >> And then, Chair, I oh, okay,
+there's the other one. The Village Association from $750 back to the $1.25 million
+was requested by the Administration.\r\n\r\nAnd then I'm hoping that the Members
+would consider restoring the $2 million for the Maui United Way Alice initiative
+Kama'aina credit. And I have some proposed numbers to accomplish restoring those
+amounts. >> Second. >> So you move -- >> I move to amend the proposal for
+hotel-resort from $11.75 to $11.80. Time share from your proposed amount of $14.60
+to $14.70. For short-term rental, tier 2, from Mayor's proposed and we kept at
+$13.50 to $14. And STR tier 3 from your proposed $15 to $15.55. Long-term rental
+restoring what the Committee recommended at $2.95. Tier 1. And then for tier 3 for
+long-term rental, from your proposed $8, to $8.50. And that would, one moment --
+generate $5,241,037. It might be $10,000 off. But we can double-check with Budget
+Director on that. And then there's the open space, if we want to address that? But
+for now, that is the proposal on my proposal to amend the motion to amend.\r\n\r\n>>
+Second. >> Okay. Thank you. Because I'm actually the person who initiated the first
+motion, and thank you, Member Uu-Hodgins for stating the motion on my behalf, I do
+support your Amendment. Because initially I tried not to raise too many taxes on any
+classification, simply because the assessments were here, in other words, people are
+going to be paying more taxes already. But then I couldn't find enough areas to cut,
+and that was the challenge. So I thank you very much, Member Rawlins-Fernandez, for
+coming up with these changes, because it does -- at least it tries to modify the
+raises in rates, and at the same time, not cut important programs like Maui United
+Way, and some others.\r\n\r\nSo I think your Amendment certainly achieves the goal,
+and I appreciate that. So Member Vice-Chair Sugimura. >> Chair, if you don't mine, I
+if I could back us up a little bit? We had a motion made by Member Uu-Hodgins to
+amend with the ASF County Communication 25-6. We did not have a second on that. >>
+We didn't ? ? >> No >> We don't have a second on hers. >> Do you want to second,
+Vice-Chair? >> Sure.\r\n\r\n>> She is the seconder, and then the Amendment by Member
+Rawlins-Fernandez, seconded by Member Paltin, and now we're in discussion. >> Yes,
+and at the end of it, just so I don't forget about this, County Communications will
+need to be filed. So we just need to incorporate those in the motions. Thank you,
+Chair. >> Yes. Thank you. It's just that -- oh, yes?\r\n\r\n[ INAUDIBLE ] >> 25-8.
+I'm sorry. >> Okay. Good, we have people watching from all sides. Now Vice-Chair
+Sugimura. >> I wonder if Member Rawlins-Fernandez can repeat what you just said? >>
+Absolutely. All right.\r\n\r\nDo you want me to read the numbers that I have
+proposed or do you want me to explain the change from Chair Lee's? >> No, I got
+Chair Lee's on my paper. >> Hotel-resort $11.80. Time share $14.70. STR tier 2 $14.
+STR tier 3 $15.55. Long-term rental tier 1 $2.95. And long-term rental tier 3, $8.50
+thank you. >> You're welcome. >> What is the amount you got to? >> So six changes to
+Chair Lee's proposal. >> Did everybody get that? Do you want to hear what cuts that
+are -- adjustments on to make this happen?\r\n\r\nCan you go over that, please? >>
+Yes. Okay. On CC25-08, I will start from page 6. so that proposed Amendment is the
+Ma'alaea wastewater reclamation. For the fringe benefits, Chair Lee's proposal is to
+reduce account b to $182,640,474. >> Excuse me, now she is working off of my written
+ASF that was posted. Everybody following? >> On page 10 insurances and
+self-insurance reduced by a million to what Chair Lee proposed $20,600,000. For on
+the same page, for post-employment obligations, adding $200,000 to Chair Lee's
+proposal.\r\n\r\nSo that it would be $2,568,201. The next page, page 11, the
+transfer to experimental and demonstration housing projects fund will remain
+$3,750,000. The next page, page 16, Maui United Way Countywide Alice initiative,
+Kama'aina credit will remain $12 million. The next page 17, under the Office of
+Recovery, Chair Lee proposed reducing wildfire-related expenses to $2,253,000. And
+then for page 67 Appendix A, part 2 that proposed Amendment on CR25-08 under
+experimental and demonstrate housing fund, there would be no change to the Appendix.
+And that would complete the Amendments on CC25-08. >> Okay. Now discussion. >>
+Mahalo, Chair. So we heard in testimony that those items were important to restore
+for the Ma'alaea regional wastewater system there's a matching fund for $1 million
+for EPA and the $1.25 million is needed for the matching fund to satisfy the EPA
+matching fund requirement for that grant. For other post-employment benefit, we
+learned that in past years, we have put $2.5 at least $2.5 million in this line
+item, and we felt it was a good practice.\r\n\r\nSo keeping in line with past
+practice, keeping it at least $2.5 million there. For the demonstration experimental
+and demonstration housing projects, we learned in testimony today that the $3.75
+million already have projects planned for that amount of money. So by reducing that
+projects that are in the pipeline will not be able to be done. It wasn't just the
+open competitive grant. For the Maui United Way we heard from the Executive Director
+the importance of keeping the $12 million, and how important that is to help our
+community right now, especially with the FEMA Cliff. And the way things are at the
+moment. And for the wildfire-related expenditures under the Office of Recovery, my
+understanding is that was more of a broad category to cover some of the wildfire
+expenditures, and that the Administration was okay with that item being reduced by
+$500,000. And that's my discussion.\r\n\r\nMahalo, Chair. >> Anybody else? Yes. >>
+Thank you, Chair. Apologies. I don't -- I do appreciate the motion, but I did want
+to clarify for the record, it will be a competitive process for the experimental and
+demonstration housing funds. They have been meeting with potential grantees, but no
+grantees have been selected yet.\r\n\r\n>> Mahalo for that clarification, Director.
+>> So it's still open to be cut. Member Cook. >> Thank you, Chair. Uh-oh A little
+drama for you there. Everybody awake? Nobody landed?\r\n\r\n[Laughter ] I'm
+supportive of this. I just wonder as far as the experimental and building fund, I do
+understand that it's going to be a competitive grant. If it's possible, I would like
+the Department to be able to give us quarterly, sort of an update, of what it is. I
+don't want to make a homework assignment for them, because I understand it can
+interfere with their actual productivity. But I would really like the Council to be
+informed as the type of applications that they are getting and like that. It can be
+relatively informal to make it simple. But I really feel strongly for this amount of
+money, if we can get visibility as far as the amount of interest and the reviews, et
+cetera would that be acceptable to the administration.\r\n\r\n>> Thank you, Chair.
+Thank you, Council Member Cook. I don't think that would be an issue and we
+discussed earlier, when the projects are selected that will come back to the Council
+as a Budget Amendment for final approval before any grants are issued. >> Thank you.
+One other comment. As far as the Ma'alaea, I'm glad that is going to be reinstated.
+I did have the opportunity to speak to them, and they are currently working with the
+Administration as far as the land lease, a variety of things.\r\n\r\nThis is going
+to give them the opportunity with the funding to get a the plants started that they
+need. So they will be utilizing that money right away, and they do need it. So I'm
+glad that we're reinstating that. Thank you very much, Member Rawlins-Fernandez, and
+Chair. Thank you. >> Anybody else? Member Uu-Hodgins.\r\n\r\n>> Thank you, Chair.
+I'm happy to support this as well. Can I also add into the motion as a
+friendly/friendly Amendment to file CC25-8 with this vote as well? >> Okay. Thank
+you. >> Or when we do the vote. >> No objections.\r\n\r\n>> Thank you. >> Yes. Which
+is right now. >> Want to do some other friendly Amendments? you want to add the four
+in the Maui United Way, since we're doing it? >> Pardon me? >> The Maui United Way
+for the Kama'aina Alice initiative.\r\n\r\nIt's just adding the word "for" into it.
+>> For, okay. You want to make the motion? What is the friendly addition? >> >> For
+Maui United Way to add the word "for" after -- >> For Alice? >> For you. >> Okay, I
+could use the dough, [laughter ]Really.\r\n\r\nStaff, who is taking this down? >>
+It's on page 16. It would read Maui United Way for Countywide Alice initiative
+Kama'aina credit. >> Okay. Any other Amendments, or friendly or otherwise? We don't
+want to hear hostile. Vice-Chair Sugimura. This is only to the real property taxes
+and the associated projects.\r\n\r\n>> So in the project for the Moloka'i that
+project, I have in there an ASF that I can bring up at the appropriate time, or I
+could add it? >> This is only for the Real Property Tax >> Okay. I'll wait. >> Okay.
+Going once, twice, are you ready to vote in Member Uu-Hodgins? >> Thank you, Chair.
+In my motion, I think I failed to say I move to adopt CC -- do I have to do the
+whole thing 25-26? >> It was amended.\r\n\r\n>> It was amended. I know. I think we
+have a motion to amend, but I don't know if we had a motion to adopt. But perhaps
+the Clerk can tell us where we're at? >> Chair? Just to clarify >> Member
+Rawlins-Fernandez. >> So the motion to adopt is for the CR.\r\n\r\n>> Oh, CR >> So
+Member Sugimura has to do that motion it adopt the recommendations from CR whatever
+number it is. 25-86. >> 86. Because then Member Uu-Hodgins made the Amendment to --
+made the motion to amend the main motion, but there was no main motion. So we need a
+main motion. >> I thought she had. Can we start again? Madam Clerk? I thought she
+made the motion, and then there was an Amendment to that motion, but let's start
+again.\r\n\r\n>> So we just need a motion to adopt Committee Report 25-26, and we
+already have two ASF motions on the floor, one by Member Uu-Hodgins, one by Member
+Rawlins-Fernandez. >> Second. >> To adopt the Committee Report. >> I move to adopt
+the Committee Report 25-26. >> Second. >> Okay. And then? >> Then we have got the
+two motions to amend.\r\n\r\n>> So the ASF from Member Uu-Hodgins, and then the
+Amendment from Member Rawlins-Fernandez. >> Correct. And then Member Uu-Hodgins also
+added in the motion to file to her motion to amend. County Communication 25-8. So
+we're in a great spot right now. >> So Vice-Chair you made the motion, but who
+seconded that one? >> Keani Rawlins-Fernandez. >> Okay.\r\n\r\nSo we're all set;
+right? I'm not going to stay here until 2:30 in the morning trying to figure this
+out. Okay? Everything is all set. Ready to vote, all those in favor of the motion,
+please raise your hand, say aye. >> Aye. >> Seven ayes, two excused.\r\n\r\nPro Tem
+Kama, and Member Gabe Johnson. Motion carries. So that only takes care of actually
+my initial ASF, and 25-8, we have 5,000 more to go. >> And one of the eight
+Amendments that Member Sugimura has we can check down off the list here. >> So let's
+have -- -- >> So we had the motion moved by Member Rawlins-Fernandez and voted on,
+correct? That Amendment we still have Member Uu-Hodgins' motion on the floor. So we
+need to get to that.\r\n\r\n>> Her motion as amended. >> Yes. >> Okay. >> I'm sorry,
+I was talking. We're going to start again? >> No, no, just say all those in favor of
+Member Uu-Hodgins. >> All those in favor of Member Uu-Hodgins' amended motion, raise
+your hand, say aye?\r\n\r\n>> Aye. >> Okay. Seven ayes, zero nos, motion carries,
+two excused. Pro Tem Kama and Member Gabe Johnson. The Deputy was talking to me
+while you folks were talking was she wondered if they should work on balancing as we
+go through or at the end so I said at the end. What do you guys want? At the
+end.\r\n\r\n>> At the end. >> At the end, okay. All right. Ms. Clerk. >> I believe
+that we also need to amend the operating appropriations. >> So you mean this cover
+page in the beginning?\r\n\r\nSo I think that might be better to be done at the end
+in case there's other Amendments; right? >> I think she is talking about -- >> The
+RPT revenue? Because there aren't going to be any more Amendments to RPT revenue. >>
+That's true. We're done with RPT. >> Can we take a brief moment just a short recess,
+just a few minutes would be fine. >> 2:36, recess until 2:40. [ GAVEL ] [ GAVEL ] >>
+Will the Council Meeting of May 16th, 2025 please reconvene.\r\n\r\nI forget to
+mention, by the way, Members, practically all of our Staff in OCS is tracking this,
+and also, trying to keep the numbers straight as well. Thank you so much for your
+patience. So Ms. Clerk, perhaps you can explain what happened during the recess? >>
+During the recess, we just discussed at the end of all of these ASFs, and Amendments
+to the Committee Reports we'll then file all of the communications; so I think
+Member Rawlins-Fernandez is going to ask consideration for withdrawing the filing of
+CC25-8. >> I move to reconsider the last motion. >> Second. >> For filing.\r\n\r\n>>
+Okay, moved by Member Rawlins-Fernandez, seconded by Member Paltin to reconsider the
+last motion for filing. Okay. All those in favor. >> Discussion? >> Discussion,
+Member Rawlins-Fernandez. >> Mahalo, Chair. The plan is to file all the CCs one time
+at the end.\r\n\r\nMahalo, Chair. >> All right. Define "the end." Just kidding, all
+those in favor, raise your hand, say aye. Seven ayes, zero nos, two excused. Members
+Johnson and Kama. >> Chair? >> Yes, Member Rawlins-Fernandez.\r\n\r\n>> I withdraw
+that friendly Amendment motion. To file. So it's no longer >> I thought -- >> We
+just reconsidered, which puts the motion back on the floor. >> And then I thought we
+took the vote for that. >> We did. Now I'm disposing of that motion, because we just
+did the reconsideration. >> She is disposing of that motion.\r\n\r\n>> And my
+seconder said cool. >> Good. Okay. All those in favor of that motion? >> You don't
+have to take the vote, I withdrew the motion, the second agreed, I promise. >> Any
+other comments? Anything else done without us knowing?\r\n\r\nOkay, thank you. All
+right. County Clerk, Ms. Clerk, let's continue. >> Thank you, Chair. Before you is
+County Communication 25-6 Council Chair Lee transmitting a proposed Amendment to
+Bill 41 CD 1 (2025) entitled "a Bill for an Ordinance relating to the producing
+budget for the County of Maui for the Fiscal Year July 1,2025 to June 30, 2026." >>
+Member Uu-Hodgins. >> Thank you, chair.\r\n\r\nReferencing the ASF attached to 25-6
+I move to amend Bill 41 CD 1 on page 24 condition a under Wailuku economic
+development environmental and cultural programs to add after beautification the
+following: and Community Association development and support. >> Second. >> Moved by
+Member Uu-Hodgins, seconded by Vice-Chair Sugimura with regard to the ASF, just read
+to you by her. Discussion, Member Uu-Hodgins, or do you want me to say something. >>
+Please do, if you want to. Thanks. >> This is one of those District projects, and
+it's adds the words to the funding already approved 15,000 for the Wailuku Community
+Association, Community Association development and support.\r\n\r\nThat is what
+we're doing, adding those words to the District funding of $15,000. Any more
+discussion? If not, all those in favor of the motion, please raise your hand, say
+aye? Seven ayes, zero nos, two excused. Members Johnson and Pro Tem Kama, motion
+carries. Many pos Clerk. >> Chair, before you County Communication Council Chair Lee
+transmitting a proposed Amendment to Bill 41, CD 1 (2025) entitled, "A Bill for an
+Ordinance relating to the Operating Budget for the County of Maui for the Fiscal
+Year July 1,2025 to June 30, 2026. >> Member Uu-Hodgins. >> Thank you, Chair
+Lee.\r\n\r\nOn behalf of You, I move to amend Bill 41 CD 1 one, for Public Works
+highways Administration program general increasing the appropriation for category a
+salaries by $26,o48 and making the appropriate adjustments for the associated fringe
+costs and 2, under highway -- I'm sorry, under Countywide costs increasing the
+supplemental transfer to the Highway Fund by $50,528, and making the corresponding
+revision to increase estimated revenues from interfund transfers by the same amount,
+and 3, under Countywide costs decreasing transfer to the emergency fund by $26,048
+and making the corresponding revision in Appendix A, part 2, and we'll file the
+communication later. Thank you. >> thank you. Member Uu-Hodgins. This one is
+actually a response to when Pro Tem Kama Member when she reduced salaries from four
+months to eight months. This I was called by the Department that they really needed
+this position, which they have someone ready to hire. So that is why I'm making
+these adjustments on their behalf.\r\n\r\n>> Chair, we just need a second? >>
+Second. >> Okay. I'm sorry, that we didn't have a second. I thought Vice-Chair did,
+but okay, Member Rawlins-Fernandez second, and discussion, Member Rawlins-Fernandez.
+>> Mahalo, Chair. So in testimony, when Budget Director spoke to restoring the
+89,000 and some change to the salaries.\r\n\r\nI asked about the $200,000 for the
+expanded position equipment for 'Oiwi Department. >> Okay. >> That was part of the
+reduction on exhibit 1 on April 27th. >> By whom? >> Member Kama. >> Okay. >> I have
+it here on my screen.\r\n\r\nSo that these new positions have equipment, who you
+like to restore the $200,000 as well? >> Sure, let's do this one first. You want to
+just add it to the motion? >> Yes. Because it's the same Department. >> Okay. >>
+What Department did you say?\r\n\r\n>> Did you not say 'Oiwi? >> No, it's Public
+Works. >> My bad. Sorry. I was getting ahead of myself. You can keep my second
+though. >> Thank you, it's kind.\r\n\r\nThis is the Public Works position that they
+already have somebody to hire. All those in favor of the motion, please raise your
+hand, say aye. Seven ayes, zero nos. Two excused. Member Johnson and Pro Tem Kama,
+motion carries. That takes care of think of my last ASF, I don't know. >> That is
+correct, Chair.\r\n\r\n>> Correct. >> We're moving on to Member Paltin's ASF? >> I
+do? >> No, she had three. [ INAUDIBLE ] >> Okay, Members, do you want to do Member
+Rawlins-Fernandez one, it's the same idea? You want to do that then, and make that
+motion now. >> Sure, mahalo, Chair.\r\n\r\nSo for Department of 'Oiwi Resources,
+same idea. That we heard in testimony from Budget Director, sorry, let me pull up
+the exact numbers. I had it right here, and then I have so many screens open, and if
+Budget Director has it handy at the moment, I will call on her -- oh, here, I found
+it. I move to restore $89,408 to salary a, I'm sorry, account a, salaries. And
+$200,000 to account b operations. >> Moved by Member Rawlins-Fernandez, seconded by
+Vice-Chair Sugimura on the motion to make the adjustments in the 'Oiwi Resources
+Department. Discussion, Member Rawlins-Fernandez?\r\n\r\n>> Mahalo, Chair. Same
+discussion. We heard from Budget Director that the Department has applicants that
+are ready to fill these expanded positions, and I think they are the only Department
+who is fully staffed. So congratulations to them for not having any vacancies, and I
+hope the Members support this restoration of funds. Mahalo, Chair. >> Any more
+discussion? If not, all those in favor of the motion, please raise your hand, say
+aye?\r\n\r\n>> Aye. >> Seven ayes, zero nos, two excused. Members Johnson and Pro
+Tem Kama. Motion carries. Ms. Clerk. >> Chair, before you is County Communication
+25-7 Council Member Paltin transmitting a proposed Amendment to Bill 4 is CD 1
+(2025) Entitled, "A Bill for an Ordinance relating to the Operating Budget for the
+County of Maui for the Fiscal Year July 1st, 2025 to June 30, 2026. >> Member
+Paltin.\r\n\r\n>> Thank you, Chair. I move to file this communication, but I do have
+discussion. >> Okay. This one we can file now; right? Moved by Member Paltin,
+seconded by Member Rawlins-Fernandez to file the communication. Discussion, Member
+Paltin. >> Thank you, Chair.\r\n\r\nI did have an opportunity to speak with Mr.
+Nishita during lunch, and the Department of Housing has the application. They have
+the residential workforce housing agreements. They have a possible path forward that
+they're looking into right now. And so there still is time for them to put this
+together to provide 240 affordable rental units in perpetuity for West Maui in land
+that is already in the correct zoning under state and County jurisdiction, as well
+as in the correct Community Plan Area. I do think it was a mistake not to get this
+going in the immediate aftermath of the Fire, because a lot of folks that applied
+for the Kaiaulu project - don't meet the 60% and below Area Median Income
+requirements because it's quite a bit more expensive to live in Lahaina and this
+project would have had 80 to higher percentage. There are water deals that can be
+worked out, but it's a little bit complicated right now.\r\n\r\nSo they are working
+on it. My hope is that they will pull things out from the bottom of the pile and put
+it to the top of the pile, because the need is greatest in West Maui, maybe they can
+push it to the front like they did for Hono'ula Wailea 670. Time will tell if
+waiting these two years before giving them water was a mistake or not? And time will
+tell whether if they let this project die was a mistake or not? But we do know that
+there is significant need for rental housing in West Maui, because about 80% of the
+people were renters. And right now we're only in the Planning stages of rebuilding
+Komohana Hale. We haven't seen the plans for front Street apartments, David housing,
+Lahaina surf, Hale -- and all the other ones that are expected to take five-plus
+years. So not moving forward with housing in West Maui is basically, you know,
+letting more and more of our Kupuna not be able to come home.\r\n\r\nSo many of them
+did -- a lot of people just want to come home to die. Some people want to come home
+to live. And you know, realistical, like one the testifiers testified today, housing
+first doesn't work without housing. And so if we have this opportunity where all of
+the pieces are lined up, CWRM, the Commission on Water Resource Management says that
+the County can allocate some of their water. There is measures that went through the
+Board of Water supply about wasting water when single-family homes use in excess of
+500 gallons a day up to 2,000 gallons a day, things can be done. The State as part
+of their Lahaina area aquifer sector area plan lists reservoir 140 as a big piece of
+the solution as well as other water that the state has access to, I think 750,000
+gallons a day of Ka'anapali and there are other Avenues that we can pursue on a
+temporary basis just dragging your feet in the aftermath of unprecedented disaster,
+in which over 10,000 people lost their housing is not acceptable, and so if the
+Administration cannot get this done by June 30th, I will patiently wait for their
+Budget Amendment to come down. >> Okay, very good.\r\n\r\nThank you for all you are
+doing on that one. Any more discussion? All those in favor of filing raise your
+hand, say aye? >> Aye. >> Seven ayes, zero nos. Two excused. Members Johnson and Pro
+Tem Kama.\r\n\r\nMotion carries. Ms. Clerk, are we at Vice-Chair Sugimura's ASF now?
+>> Yes, we are. Chair, before you is County Communication 25-10, Budget, Finance,
+and Economic Development Chair transmitting a proposed Amendment to Bill 41 CD 1
+(2025) entitled, "a Bill for an Ordinance for an Ordinance relating to the Capital
+Program for Fiscal Year ending June 302026." Vice-Chair Sugimura. >> Did you wanted
+to do 41 all and then go to 42? I move to amend Bill 42 CD 1 (2025) entitled, "a
+Bill for an Ordinance relating to the Capital Program for the Fiscal Year ending
+June 30, 2026." For the update the date of Capital Improvement Project reports from
+December 31st, 2024 to March 31st, 2025 and replace the appendices A-1 and a2 with
+the Capital Improvement Project report dated March 31, 2025 and transmitted in Bill
+42, CD 2 (2025) and updated appendices. >> Second.\r\n\r\n>> Okay, moved by
+Vice-Chair Sugimura and seconded by Member Rawlins-Fernandez to make those changes,
+discussion, Vice-Chair Sugimura. >> Thank you, an updated from the Administration
+came when we are in the midst of budget and so this action would then replace what
+was in the budget that we received from the Administration and replaced it with the
+most Current and updated CIP report. Thank you, Members. >> Did you just make a
+motion -- I mean an Amendment to Bill 42? >> Yes. I did ask if we could switch? >>
+Bill 42 is not called up; right? >> It was called up.\r\n\r\n>> It was called up.
+This is a posted ASF. >> So you can couple the next one. oh, all those in favor of
+the motion, raise your hand, say aye? >> Aye. >> Seven ayes, zero nos. Two
+excused.\r\n\r\nMembers Johnson and Pro Tem Kama, motion carries. Ms. Clerk. >>
+Chair? >> Yes. >> There are more CCs. >> We have some additional ASFs that were not
+posted.\r\n\r\n>> Mahalo. >> That was the last of the posted. Just for
+clarification, this was for Bill 42 CD 1 (2025) that is what we just voted on. Okay.
+>> Okay. Next item. >> Chair?\r\n\r\n>> We don't have any more of the posted ASFs?
+Yes? >> Chair? >> Who is saying Chair? >> This side, Chair >> Oh, okay. >> Hi.
+Sorry, I believe that would be a CD 1, FD 1, and if I can just asked Clerk to
+confirm that?\r\n\r\nSo we get the numbering correct. >> Clerk, can you confirm
+that? >> Yes. Chair, that is correct. >> They said yes. Okay. All these
+voices.\r\n\r\n[Laughter ] Ms. Clerk. >> Let's see here, Chair, so now we have a
+number of ASFs that as you can see in my hands that are not posted. So if you -- I
+don't know if you want to begin with Vice-Chair, but I have a number of ASFs from
+her. >> All right, let's go. You can start reading, call it up. >> Can I ask a
+question, when you proceed?\r\n\r\n>> Sure. >> Do you also have amend Bill 41 CD 1
+(2025) Appendix A, part 1, Department of Environmental Management? Appropriation
+entitled, "Bureau of Reclamation water smart title 16. >> Chair, that was
+transmitted by the Administration. >> Yes. >> It wasn't an ASF. It's a separate
+Bill. . it's actually amended the Appendix.\r\n\r\n>> Director Milner, can you help
+us clarify? >> Thank you, Chair. This was a request I made this morning during my
+testimony. There is a Bill, but as a result of that Bill we're also asking for an
+Amendment to Fiscal Year 26 budget, and I believe Vice-Chair has prepared an ASF for
+that. Thank you, Chair. >> I will do it in whatever order you want. >> Did you just
+call it up, or you didn't call it up?\r\n\r\n>> I did not. >> Just call anything up.
+>> He want to go home, [laughter ]. >> Can Member Sugimura just make the amendment
+is it Bill 41? >> The Clerk doesn't have it yet. You do now have it? Okay. Why don't
+you just call it up. >> I have a whole stack.\r\n\r\n>> It doesn't have a number.
+It's not an agenda item. It's just -- >> Just say that this is not a posted ASF. And
+what it concerns, and then we can call on Vice-Chair Sugimura. >> Okay. I think that
+the first Amendment, well that I have in front of me, we numbered them ourselves is
+Bill 41 CD 1 Amendment. A Bill for an Ordinance relating to the Operating Budget for
+the County of Maui for the Fiscal Year July 1,2025 to June 30, 2026. And this is for
+the Firefighters Association hazard pay.\r\n\r\n>> Okay. I can do that. >> Let's do
+that. >> I move to Amendment section 3.6.g under Department of Finance Countywide
+cost by one, reducing Frick benefits $6 million. And 2, increasing insurance
+programs and self-insurance by $6 million and adding the following condition: up to
+$8 million must be used to pay the negotiated amount of temporary hazard pay for
+eligible Maui County hazard Firefighters Association Members for performing
+essential work during the COVID-19 public health emergency. I need a second? >>
+Second.\r\n\r\n>> Moved by Vice-Chair Sugimura, and seconded by Member Cook to pass
+this ASF. Amendment to Bill 41 CD 1 (2025). Discussion, Vice-Chair Sugimura. >>
+Thank you. This funding is for temporary hazard pay for eligible Maui County,
+Hawai'i Firefighters Association Members. And it's split between fringe benefits and
+insurance programs and self-insurance. This Amendment ensures all 8 million is to a
+single line item supporting consistency in budget Administration. >> Any discussion
+yes.\r\n\r\nVice-Chair Sugimura -- I mean, Member Rawlins-Fernandez. >> Mahalo,
+Chair. So the Amendment that we made to fringe benefits on your CC25-08 brought it
+down to 182,640,474. So the proposal on page 9 for Member Sugimura would just make
+it $181,640,774. >> Yes. So it might be reduced by the same amount, but to that
+amount. That was what your motion was? >> Yes. >> Okay >> Mahalo, Chair.\r\n\r\n>>
+Any more questions, Member Paltin? >> Question for Ms. Milner. When Josiah said they
+had put aside some money, because Member Sugimura already initially put $10 million,
+and then Josiah said that he had some money set aside for the hazard pay. Was that
+money in that insurance programs and self-insurance category? >> Thank you, Chair.
+Thank you, Council Member Paltin, I actually was just texting Council Member
+Sugimura about that.\r\n\r\nIt's under fringe. So if the body would consider -- I'm
+not allowed to make a friendly Amendment, but moving $8 million instead of $6
+million and then conditioning the $8 million under self-insurance. >> Okay. >> So
+this would be an Amendment to your motion: >> Yes. >> Didn't we just pass that
+motion? >> I was still on my turn when you called on me. >> Pardon me?\r\n\r\n>> I
+was still on my turn. >> I thought you were asking a question. >> I had a follow-up.
+>> Go ahead. >> So to follow-up, the $2 million that Josiah said he had originally
+was in fringe. But then you want to move it to insurance programs and
+self-insurance, because he put it in the wrong place? >> Thank you, Chair.\r\n\r\n>>
+Initially. >> Thank you, Council Member Paltin, we put it under fringe as a
+placeholder while we were still in negotiations, but the payment will most likely be
+made out of one of the indices under insurance and self-insurance. So we'd like to
+move the full amount. >> Okay. >> Chair, are you going to make another motion? >> Or
+no need. >> No need.\r\n\r\n>> Member Cook? Member Uu-Hodgins? >> I'm adding for the
+record, I'm going to recuse myself as I have, unless Member Rawlins-Fernandez has
+something different. >> I support. But I do have a question Member
+Rawlins-Fernandez. >> When Member Uu-Hodgins is Pau. >> I think she is
+Pau.\r\n\r\n>> Okay. So in your proposal, Chair, we reduced fringe benefit to
+$182,640,474. Right? So there isn't that $8 million to move for Member Sugimura's.
+>> Director Milner. >> Oh, okay. All right. I'm making sure that they all jive. >>
+Okay.\r\n\r\nDirector jives, can you please explain. >> I can do a two-step, thank
+you, Chair. So my understanding is the $5 million was cut from the funding that
+Council Member Paltin had added and not from the funding this Council Member
+Sugimura added and this was the $2 million as a placeholder, along with the money
+that Council Member Sugimura added moving from fringe to self-insurance. >> Mahalo.
+>> Member Paltin. >> There was a memo about medical is there still enough for the
+medical. >> Thank you, Chair.\r\n\r\nThank you, Council Member Paltin. Yes, I
+believe the remaining funds will be sufficient to cover the supplemental agreement
+for the medical coverage. >> Okay. >> Remind us how much is that again? Supplemental
+medical coverage? >> Thank you, Chair. I don't have a final number at the
+moment.\r\n\r\nBecause we haven't completed the master agreements with Fire and
+Police. But we can provide that. I think we had said 8-10 million probably for all
+four unions once the supplemental agreements are all completed. >> All of the
+unions? >> Member Paltin. >> Can we do HGEA and UPW first, and if this isn't enough
+for the two other, then go on. >> Thank you, Chair.\r\n\r\nThank you, Council Member
+Paltin. My understanding is those supplemental agreements are being voted on now or
+being voted on by the unions and we'll move forward with them as soon as possible
+and yes, we'll come back if we need additional funding Member Rawlins-Fernandez. >>
+Another one I just want to make sure that it makes sense with the previous
+Amendment. So with the amendment reduced the insurance and self-insurance by a
+million. So instead of $21.6 million, it was $20.6 million, and so this Amendment
+moves $6 million here. So it would end up being $26.6 million. Is that enough for
+all of the things?\r\n\r\n>> Thank you, Chair. Yes. I believe that should be fine.
+Yes, so we're moving, I think the Amendment on the floor is to move $8 million to
+bring us to $28.6 under insurance and self-insurance, which should be sufficient.
+Thank you, Chair. >> Mahalo for that clarification. >> Okay.\r\n\r\nMs. Clerk. >>
+Chair, can I just clarify because Staff is doing the members behind-the-scenes is it
+$6 million or is it $8 million? >> $8 million; right? >> Yes, please. >> Thank you.
+>> Ms.\r\n\r\nClerk. Chair, I think we're onto Member Sugimura's next Amendment. >>
+Okay. Ms. Lutey, so I want to bring up which is I guess No. 3. >> Yes. >> Department
+of -- motion to amend Appendix A, part 1 Department of Environmental Management the
+appropriation entitled, "Bureau of Reclamation water smart title 16 authorized grant
+by changing the appropriations name to United States Department of Interior Bureau
+of Reclamation, and would, reducing the appropriation amount to $3
+million.\r\n\r\n>> I'm sorry, I don't know what is going on right now. We need a
+complete motion and vote on whatever the first -- like don't move to a new ASF until
+we finish the first ASF. >> I thought we finished. >> I think that was me, my
+apologies because I interrupted that by asking for clarification on the amount.
+You're correct, we need to vote. >> Thank you. >> Member Paltin.\r\n\r\n>> Just
+clarifying the ASF on page 10 it should say $29.6 million >> Does everyone have
+that? >> 28.6 because Chair Lee/Council Member Rawlins-Fernandez/Council Member
+Uu-Hodgins' motion earlier cut $8 million. So the remaining balance is $28.6, if
+we're moving $8 million instead of $ million so $28.6 on page 10. >> Thank you,
+Chair. Thank you, Council Member Paltin. That is correct. >> Thank goodness. Have
+all of the questions been asked?\r\n\r\n>> Yes. >> Take your time. >> Chair, later
+when the Council takes a break, we will run through the numbers and ask you for a
+little bit of time before you adjourn, so we can fix anything that doesn't quite
+math out. >> Okay. >> Thank you. >> That sounds great. Do you need us to add -- I'm
+so sorry, Chair.\r\n\r\nDo you need us to say non-substantive, or is that just
+understood and we're good? >> We're good at the end we'll run through anything that
+we need to make changes before you adjourn. >> Thank you. >> Member Paltin >> So
+clarify page 9 should say $179,640,474. >> I'm not following this. Director? >>
+Thank you, Chair. The balance that I currently have with the reduction of $5 million
+earlier and this $8 many is $174,724,499. >> Vice-Chair Sugimura.\r\n\r\nAll your
+ASFs are most of them are all of them coming from the Administration? >> The
+majority, yes. >> What isn't coming from the Administration? >> We didn't vote on
+this one yet? >> No, we haven't. >> I'm just getting clarification, because I don't
+know why there's so much confusion, when we're not proposing this, you know? Yes? >>
+Chair, it was just because we took your Amendments first, so the numbers are
+different than the posted Bill 41. >> I know, but they had my posted ASF.\r\n\r\n>>
+Oh, okay. So they had my numbers. so if they had other numbers, can't control that.
+So how many more do you have? >> So I have one, two, three, four, five, six. >> All
+right. So now we'll vote.\r\n\r\nIf there's no more questions on your motion. On
+your -- can you repeat your motion, please? >> Move to amend section 3.6. -- >>
+Closer to the mic. >> Under Department of Finance, Countywide costs by reducing the
+fringe benefits by $8 million or is it 6. >> 8. >> And increasing insurance programs
+and self-insurance by 8 and sliding the following condition under up to $8 million
+you must be used to pay the negotiated amount for negotiated amount for Maui County
+Firefighters Association Members for performing essential work during COVID-19
+public health emergency. >> Any more questions? All those in favor of the motion,
+please raise your hand, say aye. >> Aye.\r\n\r\n>> Okay we have six ayes, zero nos,
+two excused. Three excused. Members Uu-Hodgins, Member -- >> She was recused. >>
+Sorry, recused. One recused, two excused. What? Johnson/Kama.\r\n\r\n>> I was just
+going to say that. Everybody wants to be Chair today. [ LAUGHTER ]okay. I would
+gladly give you my cold. Recused is Member Uu-Hodgins. Excused is Member Johnson,
+and excused is Pro Tem Kama. The vote carries with six votes.\r\n\r\n>> The video
+isn't on Member Sugimura, if you want it on? It's up to you. >> We're onto
+Vice-Chair's next motion to amend, Chair. >> This is the water smart. >> So I move
+to amend Appendix A, part 1 under Department of Environmental Management the
+appropriation Entitled, "Bureau of Reclamation water title 16 authorized grant by
+appropriation name to United States Department of the Interior. Bureau of
+Reclamation. >> Second.\r\n\r\n>> Moved and seconded. >> Discussion, Vice-Chair. >>
+This Amendment updates the grant amount to reflect what is now anticipated to be
+received in Fiscal Year 26, and changes the grant's name for consistency with Bill
+74 (2025) which recognizes the same grant amount in Fiscal Year 25. >> Any more
+discussion? All those in favor of the motion, raise your hand, say aye? >> Aye. >>
+Seven ayes, two excused. Member Johnson, and Pro Tem Kama, motion
+carries.\r\n\r\nMs. Clerk. >> Chair, this would be another motion to amend by
+Vice-Chair Sugimura, and this is for fringe benefits. >> Vice-Chair. >> I move to
+amend section 3 PST 6.g under Department of Finance Countywide costs fringe benefit
+by adding a condition that reads up to $15 million. >> Just the motion. >> This is
+the motion.\r\n\r\n>> Oh, okay. >> I'm adding a condition. Up to $15 million must be
+used for supplemental agreements to the master agreements for collective bargaining
+contracts of which $10 million must be used for health care benefits program. >>
+Second. >> Moved by Vice-Chair Sugimura and seconded by Member Rawlins-Fernandez,
+the motion presented by Vice-Chair Sugimura. Any discussion? >> Yes.\r\n\r\nThis
+corrects the amount of $15 million condition in Bill 41 CD 1 (2025) and adds up to
+$so million must be used for health care benefit program consistent with discussions
+during the Fiscal Year 25 budget session. >> All right. Any more discussion? Member
+Paltin. >> So just clarifying that the amount on page 9 should be $174,747,900. >>
+Thank you, Chair, Member Paltin, yes, either 499 or 500, there might be some
+rounding but I confirmed with OCS and we're within a dollar of each other. >> You
+are always within a dollar of each other. Okay.\r\n\r\nAny more discussion? If not,
+all those in fair favor of the motion? Seven ayes, two excused, Member Johnson and
+Pro Tem Kama. Ms. Clerk. >> We have another Amendment for Vice-Chair Sugimura. >>
+Vice-Chair Sugimura.\r\n\r\n>> Department of AG. >> Which one? >> The Department of
+AG. >> Okay. Micro grants. >> How many more do you have? >> Three.\r\n\r\nHere. This
+is the one. So I move to amend section 3 by one, revising conditions (3) (11) under
+the Department of Agriculture to read as follows Maui Economic Opportunity, Inc. for
+the agricultural micro-grants program. >> Second. >> Thank you. >> By Vice-Chair
+Sugimura and second by Member Rawlins-Fernandez to the motion >> Yes.\r\n\r\nThank
+you. >> Micro AG grants did you say? >> MEO, Inc. for agricultural micro grants
+program. >> Okay. Any discussion on that? >> This Amendment was requested by the
+Administration, and I think this is really Keani's program.\r\n\r\n>> Okay. More
+discussion? Yes, Member Rawlins-Fernandez? >> Mahalo, Chair. I have a couple of
+Amendments to the condition. I can read them outloud now or I can post it to the
+second reading, whenever. >> Let's do it now.\r\n\r\n>> Okay. So the last sentence
+of the condition reads "applicants will not be disqualified based upon receipt of
+COVID-related grant funding from supplementary sources ." that is one >> So just to
+strike that, >> To that. >> Yes. I don't think it's necessary any more. But if our
+attorneys think it should stay, it can stay. >> Attorneys? Did you hear the
+question?\r\n\r\n>> Can you repeat it? >> I am moving to strike the last sentence of
+the condition that reads "applicants will not be disqualified based on receipt of
+COVID-related grant funding." >> That is fine. >> Okay. >> That is a motion? >> Yes.
+And for subsection b, the up to $100,000 must be for the Administration of data
+collection on the micro grants, and then Budget Director had a good suggestion
+language that was better than my language. I wrote for the life of the
+program.\r\n\r\nBut I think it was from the start. >> Director. >> Sorry. >> Thank
+you, Chair. Thank you, Council Member Rawlins-Fernandez. Yes. I think for the life
+of the program, that could also extend forward, which I don't think is your current
+intent.\r\n\r\nSo I think from the start of the program might more accurately
+capture what you are trying to do. >> That's correct. So from the start of the
+program. >> Did everybody hear that? That motion? The two Amendments? All those in
+favor, raise your hand, say aye.\r\n\r\nSeven ayes, zero nos, two excused, Johnson
+and Kama. Motion carries. Okay. So any more Amendments? >> Did we have a second on
+your motion? >> I was hoping it was friendly. >> Okay.\r\n\r\n>> Did you raise your
+hand? Okay. That was friendly -- ? Second? >> I thought we were just voting on our
+motion. >> No, we weren't. I was talking that as a separate Amendment. >> Okay. >> I
+would need a second then.\r\n\r\n>> Second. >> So for the record, let's show that
+Member Rawlins-Fernandez made the motion, seconded by Member Sinenci. And then the
+vote was -- do you want us to take it again? No? Unanimous. Seven ayes, two excused.
+Johnson and Kama.\r\n\r\nMotion carries. Now any more Amendments? Who? What does
+that mean? >> I want Moana to read whatever she has next so we're in sync. >> I have
+to take the main motion as amended. >> I'm sorry.\r\n\r\n>> You didn't accept my
+motion as a friendly Amendment, so we have to vote on my motion and now we vote on
+your motion. >> It's not that she didn't accept it, I thought it was substantive
+enough to take a separate vote. >> Okay. >> This time I will take the blame. Okay.
+The motion is main motion as amend raise your hand, say aye? >> Aye.\r\n\r\n>> Seven
+ayes, zero nos, motion carries. Two excused, Johnson and Kama, motion carries. Ms.
+Clerk. >> Thank you, Chair. The next motion to amend would also be from Vice-Chair
+Sugimura and this is for the G.E.T. fund Department of Hawaiian Homelands. >> I move
+to amend appendix a, part 2 section cc general excise tax Department of Hawaiian
+Homelands by adding a condition to read "up to $11 million must be for an
+Intergovernmental Agreement with the State of Hawai'i for the development of an
+off-site water project including 16" transmission line from the Lahaina Civic Center
+pump station to the Wahikuli tank to support broader Department of Hawaiian
+Homelands infrastructure and future housing projects." Second.\r\n\r\n>> Moved by
+Vice-Chair Sugimura, second by Member Cook, on the ASF, go ahead. >> This Amendment
+was requested by the Administration to help fund off-site water instrument with the
+State of Hawai'i supporting Department of Hawaiian Homelands housing, and
+infrastructure projects. >> Member Paltin. >> I would like to move to amend the
+motion to include the same language that we put in the other $10 million that MOA or
+MOU signed by HHFDC that it will turn over the lands to DHHL at the end of five
+years, and I will defer to Ms. Toshikiyo for the exact verbiage. >> Ms.
+Toshikiyo.\r\n\r\n>> Second, Chair. >> Okay. >> Thank you. Yes, it says the release
+of funds is conditioned upon execution of an MOU for the transfer of the land
+between the Hawai'i Housing Finance and Development Corporation and DHHL. >> Okay.
+Moved by Member Paltin, seconded by Member Rawlins-Fernandez. The verbiage as read
+by Corp.\r\n\r\nCounsel, Ms. Toshikiyo. That is the Amendment to the main motion.
+Yes? Member Cook? >> Are we in discussion? >> Yes, we are.\r\n\r\n>> Thank you. I
+for clarification this is infrastructure. So it's a pipeline through an easement to
+a tank. So would it be -- I don't know how it's tied to the property? The design and
+function is to service and utilize for the Hawaiian homes only >> Member Paltin. >>
+Like Mr. Fonda said, they are working on the MOA, but if the land isn't transferred
+over, then we would have been spending DHHL money on HHFDC, and they said that the
+tank is -- Ms.\r\n\r\nMilner said that the tank is between Kalaola and Kilohana,
+that is all HHFDC lands currently. Prior to the Fire, they were going to give it to
+DHHL, but they hadn't sealed the deal. So these improvements are on HHFDC land, and
+if HHFDC doesn't sign the MOU to turn it back over to DHHL, or turn it over to DHHL
+at the end of five years, like they promised, the entire civic gym, that they were
+going to do, then we are spending DHHL earmarked monies on HHFDC lands, which isn't
+what that money is for. It's for DHHL. >> Okay. I understand. So it's reinforcement
+of their commitment.\r\n\r\n>> Yes, because by the time five years is up, Mr. Campos
+might not be around, you and me might not be around, and Mr. Watson did say maybe we
+should get it in writing, so we kind of thought he got it in writing, but I guess
+they are still working on it. This is just added incentive to sign that MOU for both
+of their parts. >> Thank you, Chair. >> And then the testifier this morning verified
+that is what he planned to do, like they did with the first-half of the money.
+Okay.\r\n\r\nAny more discussion? On the Amendment? All those in favor of the
+Amendment, raise your hand, say aye. >> Aye. >> Seven ayes, zero nos. Two excused,
+Johnson and Kama. Motion carries.\r\n\r\nMain motion as amended. Any more
+discussion? All those in favor of the motion as amend raise your hand, say aye.
+Seven ayes, zero nos, two excused, Johnson and Kama. Motion carries. Ms.
+Clerk.\r\n\r\n>> Chair, I have down for I believe it's the last ASF for Vice-Chair.
+This is one is for the County landfills. >> I'm glad Ms. Milner is here. Move to
+move Appendix B by changing landfill disposal fee interim fee schedule for County
+landfills where there are no scales, or when scales are inoperable as follows:
+category 1 light trucks or other vehicles with gross vehicle weight of less than
+10,000 pounds, 92 dollars per truckload and category 2, medium trucks or other
+vehicles with gross vehicle weight from 10,000 to 19,999 and that would be 181.50
+per truckload and category 3, large trucks or other vehicles with gross weight from
+20,000 to 25,999 to $266 per truckload and category 5, large trucks or other
+vehicles with 12 cubic yard capacity $295 per truckload, and category 5 large trucks
+or other vehicles with a 20 cubic yard capacity $509 per truck hood and category 6
+commercial refuse hauling trucks No. 1 roll-off (not compacted) $726 per truckload.
+Roll-off compacted, $1120.50 per truckload.\r\n\r\n42 cubic yard front end loader
+$128.50 per truckload. 2020 cubic yards front end loader $605 per truckload. This
+Amendment was requested by the Administration and does not impact estimated revenues
+for the FY'26. These changed based on the free truck on a fee truckload more
+Accurately aligns the rates of County landfills where there are no scales and when
+the scales are inoperable when the 110 rate per ton for municipal solid waste
+facilities with scales. >> Second. >> Thank you. >> Moved by Member Sugimura,
+seconded by Member Rawlins-Fernandez. I wish we didn't have to have -- Director,
+deal with these complicated issues, you know?\r\n\r\nOn the floor with no context,
+no, you know, justification, nothing, you are saying trust us; right? Any questions?
+Member Cook. >> I don't have a question, but I have a comment on that Amendment. And
+basically, it enables the municipal waste to charge and not get into any arguments
+or debate whether there's not a scale. So it's logical, and I understand why they
+are doing it, but I just to comment if I was going to the dump and they did that, I
+would understand why. >> Well, nobody else would.\r\n\r\n[Laughter ] Vice-Chair
+Sugimura. >> Yes. So I just -- I don't know if that is just a typo, but under Item
+No. 2, Ms. Milner, where it's category 2 medium trucks or other vehicles with gross
+vehicle weight. >> Nobody can hear you. >> Nobody can hear me?\r\n\r\nAfter 19,999
+this is pounds or is this typographically error? 10,000 to -- >> Thank you, Chair.
+Yes, we can insert pounds there as well as part of this. >> Thank you. >> Any more
+discussion? Okay. All those in favor of the motion, raise your hand, say
+aye?\r\n\r\n>> Aye. >> Seven ayes, two excused. Johnson and Kama, motion carries. >>
+I have one more. >> You have one more. >> Yeah >> Okay, Vice-Chair Sugimura. >> So
+this is regarding it's on page 26. Department of 'Oiwi Resources.\r\n\r\nAnd Item
+No. 6 it's a duplication. It says up to -- you have to Derek Jeter up to 400,000 for
+master planning and assessments of TP kk (2)2-3-3001-03023 and this is regarding the
+Von Tempsky property and on this sheet above it says the same thing of it's a
+duplication and I thought this is maybe how I was going to get the one million to do
+the project. But I'm not. >> One million to do what project. >> It's the Von Tempsky
+property. >> The appropriation is listed twice?\r\n\r\n>> Yes, it's listed twice.
+It's just a typo. >> Member Rawlins-Fernandez. >> Mahalo, Chair. This was an
+Amendment that I was going to talk to Member Sugimura about. It sounds like master
+Planning is not going to take place. So in addition to -- >> Excuse me, so that
+everybody knows what you are talking about, master Planning for the Von Tempsky
+property.\r\n\r\n>> Yes. On page 26 of Bill 41 under 'Oiwi Resources program
+subsection 5 and 6. Member Sugimura is pointing out that these three 400,000s, two
+in subsection 5, and one 400,000 in subsection 6. So she is pointing out that it
+would need to be deleted. So I guess the subsection 6. So in addition to that, I
+understand that the master Planning is not going to happen. And that the
+archaeological study and cultural preservation would happen, and that it would cost
+about a million dollars, but all of that for $800,000 they would do. >> I have a
+comment. >> Is that a duplication that is going to turn out to be extra funds? >> I
+don't think it changes the totals.\r\n\r\nI think the conditions would have to be
+deleted. So I think Member Sugimura's motion may be to strike subsection 6 here,
+because that is the duplicate. And then she has a comment. >> Yes. >> Vice-Chair. >>
+Thank you. Thank you very much, Member Rawlins-Fernandez.\r\n\r\nSo I did speak with
+Kopponai about this and it was Managing Director who referred me to him and said ask
+him whatever. So this is where the $1 million came from. And after we did the
+deletion of cutting this down to $800,000, I did talk to the Department of Water,
+and Deputy Director said we'll work with the 'Oiwi Resources to pick up any
+deficiency, I guess. So I guess -- >> Deficit? >> I'm sorry what? >> You meant
+deficit, not deficiency? >> Yes, deficit.\r\n\r\n>> Do you want to strike subsection
+6? >> Yes. >> Subsection 6. >> Of this 'Oiwi Resource program general. >> Okay. >>
+So we're still striking it because it's a duplicate. If you want to leave it there,
+they'll have plenty of money -- just kidding. >> Chair? >> Who is talking?\r\n\r\n>>
+Richelle. >> So regarding that condition that will be left condition 5, do we need
+to alter that language based on what is being represented today to indicate that up
+to $400 -- $800,000 for archeological study and cultural preservation for Tax Map
+Key 2-2-3-100:03 and then strike the second $400,000 because master Planning is not
+being done? >> Is in a what you are intending? >> I don't know that information that
+Member Rawlins-Fernandez has and I just know what Director told me he would need to
+do the archaeological. >> Director? Thank you, Chair. If I could offer a compromise,
+perhaps?\r\n\r\nTo strike condition 6, and make condition 5 up to $800,000 must be
+for archaeological study and cultural preservation for TMK 2-2-3-001: 023 and for
+master Planning and assessment of the same property to give the Department the
+flexibility to use the $800,000 as needed instead of splitting the two 4s. >> Are
+you good, Member Rawlins-Fernandez? >> So moved. >> Okay. >> I moved to delete
+subsection 6. >> So there was a motion apparently. >> I asked if she wanted to make
+the motion, but she never did. >> So we just did. >> So I just made a motion and she
+seconded it.\r\n\r\nMember Cook seconded it, too. >> Okay. Can you repeat the
+motion? >> Sure. The motion is to strike subsection 6. And to amend subsection 5 to
+read "up to $800,000 must be for archaeological study and cultural preservation for
+Tax Map Key 2-2-3-001:023" and for master Planning and assessment of the same
+property. >> Everybody got that? Moved by Member Rawlins-Fernandez, seconded by
+Vice-Chair Sugimura.\r\n\r\nAny further discussion on that Amendment? All those in
+favor of the motion, please raise your hand? >> Discussion? >> Quick discussion. >>
+Perhaps I can add me, and that way it's not the Council requiring that a master plan
+also be done in the $800,000, because we know that an EIS cost a million dollars. So
+the master Planning would not be done. So I would like to amend friendly Amendment
+to my Amendment that may include master Planning for the same property.\r\n\r\n>>
+Everybody all right with that? >> Yes. >> Any further discussion? If not, all those
+in favor of the motion, please raise your hand, say aye? >> Aye. >> Seven ayes, zero
+twos, two excused. Johnson Kama, motion carries Ms.\r\n\r\nClerk. >> The next ASF I
+have is from Member Uu-Hodgins. >> Member Uu-Hodgins. >> Thank you, Chair, move to
+amend Bill 41 CD 1 (2025) general budget provisions as follows: insert a new
+condition to read section 10 compliance as a condition of all appropriations, County
+funds must only be used for activities conducted in lawful ways and in compliance
+with all required applicable permits, insurance requirements and written
+authorization or right-of-entry permits. And then renumber the remaining sections.
+>> Second >> Moved by Member Uu-Hodgins, second by Vice-Chair Sugimura to on the ASF
+that was just read to you. Discussion, Member Uu-Hodgins.\r\n\r\n>> Thank you,
+Chair. I brought this up some during my conversation when we were doing our District
+priorities. But I feel that this helps us protect our public safety and safety,
+reduces our liability and helps enforce compliance and accountabilities as we are
+giving money to a whole bunch of nonprofits to do the good work that they need to do
+on our County lands. This just helps in my head with liability issues that if they
+may arise. >> Okay. That's it. Thanks, Chair.\r\n\r\n>> Any further discussion in
+all those in favor of the motion, raise your hand, say aye? Seven ayes, zero nos,
+two excused, Johnson, Kama, motion carries. Ms. Clerk. >> That is all the ASFs I
+have, Chair. I see a hand raised. >> Member Rawlins-Fernandez.\r\n\r\n>> Mahalo,
+Chair. I don't have any ASFs. So this came from testimony. You will find this on
+page 3. Under Department of Agriculture. I move to amend Bill 41 CD 1 (2025)
+subsection section 1 a38. Local food purchasing initiative. To proviso $100,000 for
+the living pono project. >> Second.\r\n\r\n>> All right. Moved by Member
+Rawlins-Fernandez, seconded by member Sinenci to provide $100,000 to the living pono
+project. Discussion, Member Rawlins-Fernandez. >> Mahalo, Chair. This does not
+change the totals of the budget. This is just a proviso as you heard in testimony,
+and it's in alignment with the intention of Member Johnson's new program mahalo,
+Chair. >> Any more discussion STP if Newt in favor, raise your hand, say aye, seven
+ayes, zero nos, motion carries, two excused, Johnson Kama.\r\n\r\nMember
+Rawlins-Fernandez. >> Mahalo, Chair. On page 18 of the Budget Bill. >> Okay. Office
+of the Mayor. This is for Kahoe. I move to amend Bill 41 CD 1 (2025) Office of the
+Mayor section 12a6. To reduce $100,000 and on page 7 of the Department of
+Environmental Management, section 5f12 to add $100,000 to Kaho.\r\n\r\n>> Second. >>
+Moved by Member Rawlins-Fernandez, seconded by Member Sinenci to move $100,000 to ka
+Heo. Discussion, Member Rawlins-Fernandez. >> Mahalo, Chair. That item would now
+read up to $250,000 must be for kao Hu to manage and restore County property at Tax
+Map Key 2-3-3-001:001 and that $100,000 I reduced my proposal which started off as a
+million dollars for stewardship and maintenance of County-owned land. And then we
+reduced it to $400,000 at our Sunday meeting. And so I'm reducing it again from
+$400,000 to $300,000, and putting the $100,000 from that line to add to the
+Kaoho.\r\n\r\n>> Thank you. I have gone on tours, and I always had a thought, it's
+County land and you have these wonderful volunteers really, who are helping us, and
+I'm hoping that Michael Tengan gets paid. It's such a huge responsibility and I hope
+in the future this will appear in our budget from the Administration for greater
+than the $250,000, because they are struggling. I mean, they are -- well, he doesn't
+grumble, but just the work and the number of acreages that they have to take care
+of, and the testimony that we got that CC'd all of us was from a resident in the
+area saying please give the money, because of all of these things; right? Security
+and everything. So Leslie Milner just next year, maybe? Noted.\r\n\r\nThank you. >>
+Very good. Thank you. Member Rawlins-Fernandez. >> Mahalo, Chair. Mahalo Budget
+Director for flagging that out. I also need to increase the EPS revolving fund on
+page 10 for $100,000 for EPS and I will invite Budget Director to clarify if I
+misspoke anywhere.\r\n\r\n>> Thank you, Chair, thank you, Council Member
+Rawlins-Fernandez. Yes, this is under the Department of Finance Countywide cost
+supplemental transfer to the EPS fund that would increase by $100,000 and on the
+first page for revenues you would need to increase the interfund transfer by
+$100,000. Thank you, Chair. >> Gee, I hope you have some left for yourself. >>
+Mahalo, Chair, there's $300,000 left and it's for County-owned lands. As I stated
+during budget session, that perhaps instead of asking these groups who steward
+County owned land for funding that we should develop some kind of formula and that
+way, the work that they are doing, there will be some kind of guarantee, or you
+know, reliance, expectation on the funding instead of it being uncertainty every
+year. So that is something I'm happy to work with the Administration on. >>
+Okay.\r\n\r\nGood. Good call. So Director, you have to work with our Council Member
+here, okay? >> Thank you, Chair, I'm always happy to work with all of the Council
+Members. >> Any more discussion? All those in favor of the motions please raise your
+hand, say aye. Seven ayes, zero nos, two excused, Johnson and Kama.\r\n\r\nMotion
+carries. Ms. Clerk. >> Chair? >> Yes. >> Pardon me interruption. I know that we're
+about to move on, however, in looking at the ASFs, the ASF regarding the funds for
+the supplemental agreement to the master agreement regarding the health care
+benefits, I believe that amount was $50 million, but you had previously cut $5
+million.\r\n\r\nSo we do need to make an adjustment there and I wanted the body to
+be aware of that because we'll be doing that as we're balancing the numbers. I was
+hoping our Staff was able to do that as the Council continues on with the other
+items that are on this particular agenda. >> Well, I am hoping that the Director,
+the Budget Director can help with those kinds of things. Because she knows where all
+the money is. >> You always say that. >> Okay. Member Rawlins-Fernandez, I thought
+you raised your hand?\r\n\r\nNo? >> I did, but it wasn't -- I didn't have anything
+to do -- I just had one more Amendment. I think this is important to follow through
+on. >> So you're suggesting that our Staff, and the Director work together to
+resolve it? >> Yes, Chair. We'll be doing that -- starting to work on that as the
+body continues on the rest of the items on the agenda, but towards the end, we
+didn't want you to be surprised when there's an adjustment of approximately $5
+million there. Thank you.\r\n\r\n>> Okay. So do we have any more Amendments? >> I
+have? >> Vice-Chair Sugimura. >> This >> May be incorrect, but I thought the pot
+started with $26 million, Member Paltin did that and we cut it down to $15, which
+when Managing Director came, he said that he needed 10 for the health care. Is that
+correct? >> Director?\r\n\r\n>> Thank you, Chair. Yes, that is correct. And then the
+Chair Lee, Council Member Uu-Hodgins, Council Member Rawlins-Fernandez, Amendment
+that we took up at the beginning reduced it by another $5 million, which is why
+we're discussing whether it should be a $15 million condition or just the $10
+million? >> $10 million, yes. >> So we're short how much in that fund? $5 million
+now. >> Thank you, Chair.\r\n\r\nThis is just conditional language. So it's not a
+shortage of funds, I think the preference would just be that we not condition $15
+million when only $10 million was added for that purpose. Thank you, Chair. >> Okay.
+>> That was my condition. >> So we have to remove that condition? >> Thank you,
+Chair.\r\n\r\nWe're open to the condition, but if we could just solely condition $10
+million, $10 million instead of $15 million. >> Okay. >> Chair, may I request a
+recess? >> You want a recess? Okay. Five or ten minutes? okay the meeting is
+recessed until 4:00. [ GAVEL ]Meeting in recess.\r\n\r\n[ GAVEL ] >> Will the May
+16th, 2025 Council meeting please reconvene. It's 4:12. Ms. Clerk . >> Thank you,
+Chair, we took a brief recess to check on numbers and from Clerk's office side, we
+don't have any more amendments, but I'm not sure any of the members do. >> Yes,
+Member Rawlins-Fernandez. >> Mahalo, Chair. So the recess, I requested mahalo for
+that, was to discuss condition under the fringe benefits. And it was right
+here.\r\n\r\nAnd so the request was to make it consistent with the Amendments that
+we made here. Fringe benefits allocated for supplemental agreements must be for
+health care benefits program. And so that was intended for the supplemental
+agreements that we discussed extensively during budget session. And the request was
+to make it for $10 million, and my preference would be to leave it as $15 million.
+So to not amend it today, so it would remain $15 million allocated for the
+supplemental agreements must be for health care benefits program. >> Okay. >>
+Okay.\r\n\r\nAnd in discussing that with Budget Director, it's a policy decision,
+which if we want to make that decision today, that is our authority to do so. With
+the caveat that if there's any shortages that it could be looked at a pot of funding
+to do Budget Amendments from during the Fiscal Year FY'26. But they may not, and I
+will hold onto that may not. >> So do we have to make any more changes? >> I'm not
+going to propose any changes. >> Okay. >> But I wanted to explain my position to
+everyone, and if my colleagues, you know, if there's any disagreement, we can -- we
+can discuss now, otherwise, it would remain $15 million in fringe for that purpose.
+>> Okay.\r\n\r\nSounds good to me. Vice-Chair Sugimura. >> Sounds good to me. I
+wonder if the Clerk can go back to the motion that I made, because what I did was
+take this, and modify the fringe benefit, sorry move to amend 3.6.g under Department
+of Finance Countywide cost-benefit by adding a condition, and condition that $15 to
+be $10 million for the health care. Can you go back and look at and maybe we just
+have to withdraw this, sounds like? >> Chair? >> Yes.\r\n\r\n>> Our understanding is
+based on what was just stated on the record, that your motion would stand. So there
+would be no changes. So Staff will not be making any of those adjustments and that
+is a policy call and we're happy to leave it that way. Thank you. >> Happy to leave
+it that way am I hearing that Member Rawlins-Fernandez wants it not to be touched?
+So I can withdraw this, because the intention is to designate $10 million for the
+health benefits. >> Chair, Staff's understanding is that Council Member
+Rawlins-Fernandez is stating that she does not want to see any changes to the
+conditions that this body adopted earlier today.\r\n\r\n>> So she with draw her
+motion? >> No, everything just stays -- her comment is in response to Staff's
+indicating that we would need to make a $5 million adjustment and we're being
+instructed not to do that and leave the condition as-is. >> Very good. Thank you. >>
+Does everybody understand that? Do you have any questions, anyone? So there's no
+motion at all.\r\n\r\n>> No new motion. >> I have to say, I congratulate you,
+everyone, and especially Member Rawlins-Fernandez. Gosh, you are doing a helluva
+job. >> I'm a favorite. [Laughter ]. >> I wouldn't go that far. Yes, Member
+Rawlins-Fernandez. >> Who Chair Lee's favorite -- just kidding.\r\n\r\nIf there are
+no more Amendments, I think our OCS Staff, and the Budget Office have conferred, and
+we are short about $530,000. And then I can call on, if we want to call on Budget
+Director for the exact number. >> Budget Director, do you have the exact number? >>
+Thank you, Chair. Yes. The number that we're currently short is $536,038. >> Yes. >>
+Mahalo, Chair. >> Freudian slip, I know.\r\n\r\n>> Member Rawlins-Fernandez, you
+know what I was thinking? >> Your favorite. >> As I was calling on you, I wasn't
+really thinking your title, but to Rob Foodland or both? >> Maybe both. >> You have
+a suggestion? >> Yes. So I have three suggestions.\r\n\r\nNo. 1, Member Paltin ran
+some numbers, and if we set non-owner-occupied tier 3 at $17.15, that would generate
+$588,038 . That is option 1. Option 2 is we could take the necessary money from
+OPEB, which would bring us down to about $2 million, instead of the $2.5 that we
+were aiming for. Or option 3, we could take that amount from emergency fund, which
+we added $1.7 million to during budget session. Or option 4, we could do a little
+bit of all three, or a little bit of two, or just choose one. >> Okay. What do you
+suggest, Vice-Chair Sugimura? What is your idea?\r\n\r\n>> What were you going to
+take from? You were going to change long-term? What were you going to change the
+rate. >> Non-owner-occupied tier 3. >> So what? >> Add $0.15. >> Okay. So $14.15. Or
+is it $no, $17.15 the Mayor's one was $14. >> Okay that is one option. Member
+Cook.\r\n\r\n>> I like option 3 >> Which is what? >> Emergency. >> That would be
+from the emergency fund. All $536,000. >> Okay, and then let's hear everybody's
+ideas. Member Sinenci? >> I'm okay with option 1, Chair. >> Okay.\r\n\r\nMember
+Paltin. >> I'm okay with option 1 or 2. >> Okay. Member Uu-Hodgins? >> Thanks Chair.
+I have a fourth option and I probably you are not going to love this, I don't think
+everybody is going to love this, but I will say it anywhere. Option 4 would be
+reducing part of Bill 49 and putting that money back into this $500 some odd hundred
+thousand dollars we're missing. >> Tell us about Bill 49, I don't think the public
+knows Bill 49. >> Bill 49 is the increase of pay for OCS Staff.\r\n\r\nI kind of
+discussed this in the last budget meeting we had, where I would have preferred
+Member Cook's Amendment, which was at 10% instead of the proposed -- I want to say
+we voted on 20% plus 5. I don't know the difference, and I guess I could calculate
+it. I was just going to ask to separate this out, but since we're now making all of
+changes I figured we could have this discussion anyway. But there's that. If you
+guys want to talk story about that or do the other ones we can do whatever works
+best. >> Am I missing anybody? Somebody -- just checking for consensus. Is somebody
+ready to make a motion?\r\n\r\nWell, we have two motions now. I'm sorry? >> I will
+move to set tier 3 non-owner-occupied at $17.15 second. >> $17.15. Okay. Discussion?
+Member Rawlins-Fernandez. >> Mahalo, Chair.\r\n\r\nI would have been happy to kind
+of mix and match, but I don't like where the discussion is going so I will go with
+setting the rate, and we're just going to -- yep, take it there. Mahalo, Chair. >>
+discussion, Member Cook? >> Thank you, Chair. I really don't want to raise the
+rates, and I prefer to do an alternate for discussion, I would -- if -- so I won't
+vote for this. Thank you. >> Member Sinenci.\r\n\r\n>> Thank you, Chair. I choose
+option 1, because as policymakers, Chair, we get the opportunity to address a
+practice that has been in for a long time is that outside investments into our small
+island community, and often times it takes up our housing stock. So my reasoning for
+option 1 is almost put a halt on the practice of outside investments in our
+community, Chair. Thank you. >> Member Paltin. >> Thank you, Chair. We did hear
+Member Cook in the past in his support of Wailea 670 Honolua, this was the
+purpose.\r\n\r\nWhy vote for these luxury homes if they are not bringing in that
+revenue? And I'm perfectly fine with reducing ourselves, but I can count the votes
+for Wailea 670. And so if we're having Wailea 670, they should be paying. >> Before
+I call on you, Vice-Chair Sugimura. >> I'm opposed to raising that rate, you know,
+to the $17.15. Just because being out in the community when you are out there, a lot
+of times the people who help donate, and support different kinds of projects out
+there come from these people who are this non-owner-occupied, and whether they are
+Snowbirds or whatever that come here. So I they are already at the $17 rate with
+yours. And so I won't support the $17.15. Are you going to ask me where it should
+come from? >> Do you have an idea?\r\n\r\n>> I think that the emergency fund could
+handle it. We haven't moved that. >> Okay, well that was one of the suggestions. >>
+Yes. >> Member Cook. >> Thank you. I'm more than happy, I hear my
+colleague.\r\n\r\nI do have Representative I do feel that the second homes are a
+source of income. And I'm not opposed to charging high tax rate for them; I think if
+people run the numbers that people are paying the taxes because what we hear are a
+couple different things in the community. We pay the lowest tax rates in many areas,
+but if you look at that particular market and brackets some people say $200,000,
+$250,000 a year with taxes, and I don't have a problem with them paying that. I
+heard recently when I was at the Maui cultural arts center and some of the other
+nonprofits that the people that are their benefactors that are the ones who have
+been supporting them some are getting tired moving, et cetera. So I think we're
+reaching a separation point. Over time, increasing the rate over the last four years
+it has been increased substantially. And that is just my reason.\r\n\r\nI don't have
+a problem with taxing them and I'm agreeing and not deviating from what I have said
+in the past that market is a really good annuity for our future. I just feel that I
+would not like to put any more pressure on it. That is my rationale. Thank you. >>
+Member Paltin. >> As is our resource is getting saturated with all the resources
+being used for second empty homes. And so if they are not putting out, then I feel
+we have had enough, you know?\r\n\r\nIt's not -- when you give in the aftermath.
+Disaster, when I gave in the aftermath of a disaster, I'm not saying I'm giving this
+money so my property taxes will be lowered. I'm giving with no expectation of
+return. All of the gofundmes and stuff, there's no tax write-off. There's no, like
+lower my property taxes. I'm giving because people lost everything. And I care about
+them.\r\n\r\nAnd I can. I'm not asking, like, oh, I gave to this and this
+organization, oh, I volunteer and made some sandwiches so please lower my taxes. I
+gave because it's the right thing to do and I had the means do it. I didn't give for
+a tax return. I didn't give for lower taxes. I gave because my community was
+hurting. Luxury second homes that sit empty, luxury second homes that are visited
+every once in a while are in the over $3 million range and the only thing that they
+bring into our community is that revenue.\r\n\r\nThey are not housing local people
+that desperately need housing. They are not Members of our community that are like
+spending time living here full-time. It's not their first home. It's a second home
+that they do not occupy and if they are not going to bring in the revenue, then we
+don't need them taxing our resources. To me, it's that simple. >> Okay. Obviously,
+the honeymoon is over.\r\n\r\nSo why don't we take a break with -- not a recess, but
+a break from our discussion, it appears that Director Milner may have a suggestion.
+Is it okay with everybody? >> Yes. >> Okay. >> Thank you, Chair. I see Managing
+Director is here now. We have been text,. We only need $7.4 million with the settle
+for s and reducing that thank you, Chair.\r\n\r\n>> Is that satisfactory to
+everyone? >> Can we be friends again? >> It was so nice for a while. It was like a
+dream. Thank you so much. That is very, very helpful, and it seems to be acceptable.
+Would you like to make a motion?\r\n\r\n>> I will withdraw my motion to set the
+non-owner-occupied rate. >> Okay. And Member Sinenci will withdraw the second. Thank
+you very much. Appreciate that. Really do. >> And I will make that Amendment to
+reduce that settlement amount by $536,038. And to put that in all of the places that
+it needs to go.\r\n\r\n>> Thank you, Chair. If we could also just adjust the
+conditional language to $7.4 million, instead of $8 million. Thank you, Chair. >>
+That is my motion. >> Okay. The conditional language. Any discussion?\r\n\r\n>> I
+need a second? >> Do you have a second? Member Cook. Member Sinenci. Second
+somebody. Second, Member Cook -- I mean Member Sinenci. >> Whoever.\r\n\r\n>>
+Discussion? Member Rawlins-Fernandez. >> Mahalo, Chair. And mahalo Managing Director
+for that idea, and Budget Director for proposing that. It was surprisingly pretty
+good conversation, and you know, I think as far as the optics go, you definitely
+saved us, because what it was looking like for a moment there was saving those with
+the billionaires with multi-million dollar mansions from paying a little bit more,
+and then taking that money away from our residents, who work for us. That was not
+good optics. So I fully appreciate that.\r\n\r\nAnd appreciate all of the discussion
+before this. Mahalo, Chair. >> Thank you. Any more discussion? If not, all those in
+favor of the motion, please raise your hand, say aye? >> Aye. >> Member
+Cook?\r\n\r\n[Laughter ] Member Uu-Hodgins? Are you not voting? Roll call. >> I
+think this is -- no, I would support it if I could, but it would be a conflict, so
+I'm going to recuse myself and stay out of it. Thank you, Chair. Thank you everyone.
+>> We have six -- you don't have to.\r\n\r\nSix ayes, two excused, Johnson and Kama
+And one recused Uu-Hodgins. Motion carries. Thank you, Members. Thank you, Managing
+Director. Appreciate the help and Director Milner. Wow. Okay.\r\n\r\nMs. Clerk,
+let's go. >> Chair, so now we'll need a motion to adopt the Committee Report 25-26
+as amended and that motion to encompass the filing of County Communications
+5-6,25-8, 25-9 and 25-10. >> Chair? >> Yes. >> I believe we have a motion to adopt
+as the main motion. So we just need the filing of all of the CCs. >> Yes.\r\n\r\n>>
+So moved. >> Very good. >> Thank you. >> Second? Moved by Member Rawlins-Fernandez,
+seconded by Member Sinenci and can you repeat that? That is to -- >> That is to file
+all of the County Communications that were posted on today's agenda. >>
+Okay.\r\n\r\n>> That were associated too, with the Budget Bill. >> Assuming -- >>
+25-26. >> Assuming there are no more Amendments. Okay. All those in favor of the
+motion, raise your hand, say aye? >> Aye. >> Did you have a question, Nohe? >> I
+did, Chair.\r\n\r\nIs it just to file -- I know Member Rawlins-Fernandez just said
+it, but I just need to hear it for my sake, because there's been so many moving
+parts is it to file the County Communications or voting to pass on 25-26 and file?
+>> Ms. Clerk? >> Chair? >> Member Rawlins-Fernandez. >> Mahalo, Chair. This my
+motion right now before us is to file CC25-6,25-7, 25-8, 25-9, 25-10. >> Thank you
+so much, Member Rawlins-Fernandez.\r\n\r\nI appreciate that. >> Mahalo for the
+question to clarify. I wouldn't want -- >> So we have all ayes, which is seven aye
+two excused, Johnson and Kama, motion carries. Next motion, the main motion. This is
+the big motion. Can you call that up, Ms. Clerk.\r\n\r\n>> Chair, you would like me
+to recall cr25-26? >> 25-26. When one is that? Member Rawlins-Fernandez. >> If you
+want to ask if there's any further discussion it looks like there's no more
+Amendments, but if there's any discussion on the main motion amended multiple times
+and if there's no discussion, we can call for the role. >> I think Member Uu-Hodgins
+had a question. Did you? >> Sure. I will ask it now.\r\n\r\n>> I asked if anyone had
+any final Amendments? So Member Uu-Hodgins? >> Chair, if I may ask to separate Bill
+49 out of the voting for all of the bills in cr25-26, please. >> No objections. >>
+Any objections, Members? No objections, we'll separate Bill 49, did you say? >>
+Thank you.\r\n\r\n>> So we can take the vote now? Okay, on the main -- >> Chair? >>
+Would you like to take a vote on Bill 49 first? >> Okay. Members, do you want to
+separate 49 out now first, before we take the big vote? >> Yes. >> No
+objections.\r\n\r\nMember Uu-Hodgins. -- no? >> I think she made a motion to
+separate and there were no objections. So now >> I appreciate it. It's easier when
+you are in-person. So what it's far away, it's hard. I am thinking I'm hearing
+everything, but in case I'm not.\r\n\r\nMember Rawlins-Fernandez, sorry, yes? >> So
+I'm guessing you want to separate because you want to vote no. >> Well, I'm sorry,
+go ahead. I didn't mean to interrupt. >> I'm assuming that I know what you are going
+to do, but I don't, so I will zip. >> No, no. >> I was assuming she wanted to make a
+change.\r\n\r\nThat is what I thought. >> Thank you, Chair, I would prefer to make a
+Chair, but I wasn't sure how we were going to handle all of this. I would prefer a
+smaller increase in Bill 49, like 10% as Member Cook proposed originally. I guess
+that is my motion, if we need one. We can go into more discussion, if necessary,. >>
+That is fine. Now it's been moved by you, Member Uu-Hodgins, seconded by Member
+Sugimura. Well, you haven't made the recommendation -- the Amendment.\r\n\r\nWhat
+was your motion? >> I thought I said to increase the salaries by 10% instead of the
+20 plus, I think 5%. >> That is the motion. Moved and seconded. Any further
+discussion? >> Yes. First, let me say that I really mean no disrespect to OCS. I
+love and adore each of our OCS Staff members.\r\n\r\nThey are all amazing. We do
+have an increase now at 10%, which includes their step raises that they get
+annually. When discussing the health care as we previously gave some money to OCS is
+also included in that as well, which I think is great. But that does include some
+money. If we need to get into more discussion, I will, but I just wanted to point
+out that some of the salary increases will range from about 20, 30 up to 40% of an
+increase. And again, I can support an increase of 10%, but I would prefer if we went
+down a little, which I have said before. If further discussion is needed I'm happy
+to discuss more, Chair.\r\n\r\nThank you. >> We have discussed this before. Member
+Cook. Thank you, Chair, I would support a raise for OCS and the testimony from other
+Members who are rank-and-file, who are demoralized, hurt and didn't like it. During
+that vote I was confused and I was surprised it ended up as high as it did. My bad
+for following. So I'm glad to be able to revisit it and I'm very supportive of a
+raise, 10%, I think plus their step, whatever they are getting would be
+great.\r\n\r\nAgain, no bad blood, and it's not everybody. >> That is fine. Roll
+call. discussion? >> You want further discussion? >> Yes. I mean, >> Let's take a
+short recess, if you don't mind five minutes 4:46. [ GAVEL ] [ GAVEL ] >> Will the
+Council Meeting of May 16th, please reconvene.\r\n\r\nIt is 4:58. Thank you for the
+recess, and the main reason for the recess was for Akaku to reset, or do something.
+All right, where are we now? Ms. Clerk. >> Chair, we're on a motion to amend made by
+Member Uu-Hodgins. >> Oh, okay. All right.\r\n\r\nIf no more discussion, let's have
+roll call. >> Thank you, Chair. Council Member Pro Tempore Tasha Kama. >> Excused.
+>> Vice-Chair Yuki Lei Sugimura? >> Yes. >> Council Member Paltin?\r\n\r\n>> No. >>
+Council Member Gabe Johnson? >> Excused. >> Council Member Keani Rawlins-Fernandez?
+>> 'Ole. >> Council Member Tom Cook? >> Yes.\r\n\r\n>> Council Member Nohelani
+Uu-Hodgins. >> Yes. >> Council Member Shane Sinenci? >> No. >> And Chair Lee . no.
+>> Chair, you have three ayes, four nos, two excused. The motion fails.\r\n\r\n>>
+Okay. So now let's vote on everything. Can you call up everything? >> Chair? Real
+quick? >> Yes. >> Would you still separate Bill 49, thank you.\r\n\r\n>> We did. >>
+Yes, but when you say call up everything, everything but Bill 49, please. Thank you.
+>> Everything but Bill 49. >> Yes. >> Chair, we did not have a motion to separate
+for that. If we could get a motion to separate and second, we can vote. >>
+Okay.\r\n\r\n>> I move to separate Bill 49. >> Second. >> Moved by Member
+Uu-Hodgins, seconded by Vice-Chair Sugimura to separate Bill 49. Discussion? No
+discussion. Roll call. >> I think Chair, I believe that this one is involving --
+wait. No. That is correct.\r\n\r\nCouncil Member Pro Tempore Tasha Kama. >> Excused.
+>> Vice-Chair Yuki Lei Sugimura? >> Yes. >> Council Member Tamara Paltin? >> I'm
+sorry, what are we voting on? >> We're voting on separating out Bill 49? >> And what
+is in Bill 49? >> Bill 49 is to salary pay plan and ranges for the Office of Council
+Services.\r\n\r\n>> Kanalua. >> Council Member Keani Rawlins-Fernandez? >> Aye. >>
+I'm sorry, Council Member Gabe Johnson? >> Excused. >> Council Member Cook? >>
+Aye.\r\n\r\n>> Council Member Uu-Hodgins? >> Aye. >> Council Member Sinenci? >> Aye.
+>> Chair Lee? >> No, because I thought we voted on this already. >> The last vote
+was on the Amendment to the salaries.\r\n\r\nAnd now we're on the separation. >> The
+Amendment to the salaries. >> Right. >> Just to separate it out from the entire
+Committee Report 25-26, initially Member Uu-Hodgins seconded by Vice-Chair Sugimura
+attempted to amend Bill 49 to reduce the salaries for the OCS Staff. And that
+failed, and now the motion is to separate. >> Let me ask, what is the purpose of
+separating out the Bill? Member Uu-Hodgins?\r\n\r\n>> Okay, well one, I did request
+to separate it before I made the discussion to amend. Which at that time we had no
+objections, I'm happy to continue this vote. And 2, because I attempted to make
+Amendments and it didn't pass, that is fine. I would just like my right to reserve
+my vote as an individual. >> Okay, assuming we're going to vote on this after we
+vote on the main Bill. >> Yes. I'm happy to support all the other ones.\r\n\r\nThat
+is why. >> And we're going to vote on this again. >> We're just voting to separate
+it? >> Yes. >> All right. Continue >> Chair I was on you? >> And I said
+no.\r\n\r\n>> So you have two excused, >> We had one she passed. >> I'm ready. >>
+Yes, back to Member Paltin, I'm sorry. >> Yes. >> So we have six ayes, one no, two
+excused. Motion carries. >> Okay.\r\n\r\nProceed. >> Do I have too many people? I
+got carried away there. We have five ayes, one no, two excused. Motion carries. >>
+Yes, Member Rawlins-Fernandez. >> Mahalo, Chair.\r\n\r\nShould I make a motion to
+pass Bill 49 (2025) on first reading? >> No. >> We have separated that one out. So
+it would be appropriate for a motion. >> I don't know why you would do that at this
+point. Why don't we concentrate on the main Bill? >> Okay.\r\n\r\n>> Okay. >> The
+main Bill is the Budget Bill. >> Cr25-26. >> I'm sorry, Vice-Chair Sugimura. >>
+Thank you. If we're voting on the cr, I move to pass cr25-26. >> Chair? >>
+Vice-Chair -- I mean, Member Rawlins-Fernandez. >> Mahalo, Chair.\r\n\r\nI have no
+further discussion on all of the other bills and Resolutions that is associated with
+the Committee Report. I am ready to vote, and then after we take this vote, then we
+can -- I'm happy to make the motion for passing Bill 49 separately. >> Okay. >> I'm
+ready to vote on the main motion as amended. >> More discussion? >> I just want to
+be clear; right? Because we have already excluded 49 and I want to make sure that
+we're voting on everything, but 49 yes, everything, but 49 separated.\r\n\r\n>> That
+is what I just said, mahalo, Chair. >> Okay. We're mirroring. >> Any more discussion
+on the main budget Bill now? All right, all those in favor of the motion, raise your
+hand, say aye? >> Aye. >> Okay.\r\n\r\nWe have seven ayes, two excused. Johnson and
+Kama excused. And so motion carries. Congratulations everyone. [ APPLAUSE ] Thank
+you everybody for working hard. All our Staff and the ones in the KP Kalana working
+hard at their desks. Before I call on you, I need a five-minute recess.\r\n\r\n5:11
+recess [ GAVEL ] So Members, we already separated out Bill 49. And it appears to me
+that there is really no major to vote to pass it, okay? So I am recommending that we
+table this item for now. Any objections? we're going to table this and we're not
+going to vote on it, because if you just look at the way the set-up is, there aren't
+enough votes to pass it, yeah? So if that is the case, let's just table it. And take
+it up at a different time. Yes, Member Cook?\r\n\r\n>> So tabling it will basically
+it will be brought up at another time. >> At some point. >> It's important. Thank
+you. >> But because it's separated it's actual separate from the budget Bill. It
+doesn't -- the Budget Bill is not reliant on Bill 49. So let's resume the agenda.
+Ms.\r\n\r\nClerk. >> Thank you, Chair. I believe that we're done with the main CR.
+So we're now onto Resolutions. >> Yay. >> We have no individuals who have signed up
+to testify. Last call for anyone who would like to testify on Resolutions and the
+countdown is 3, 2, 1. Chair, there's no one indicating a desire to
+testify.\r\n\r\n>> Members, any objections to accepting written testimony on
+Resolutions, and closing public testimony on Resolutions? >> No objections. >> So
+ordered. Ms. Clerk. >> Chair, before you resolution 25-86 accepting dedication of
+Roadway Lots for Kaimana and Kehealani subdivision, Kehealani Makai, Kehealani
+mauka, large lot, subdivisions 'Iliahi at Kehealani Roadway Lot Subdivision and for
+the subdivision of site C-1/11 of Wailuku project District situated at Wailuku,
+Maui, Hawai'i pursuant to Section 3.44.3015 Maui County Code. >> Member
+Cook.\r\n\r\n>> I move to discharge. >> Second. >> Moved by Member Cook, seconded by
+Vice-Chair Sugimura to discharge the Committee of resolution 25-86. Discussion?
+Member Cook? >> This was discussed at the WAI Committee's meeting of May 12, 2025.
+Discharge is the first step before considering action on the Resolution 25-86 today.
+Thank you, Chair. >> Any more discussion?\r\n\r\nIf not, all those in favor of the
+discharge, please raise your hand and say aye? >> Aye. >> Okay seven ayes, two
+excused. Johnson and Kama. Motion carries, Member Cook. >> I move to adopt
+Resolution 25-86. >> Second. >> Chair, if there's no objections to ask the Clerk to
+recall County Communication 25-11 at this time.\r\n\r\n>> Ms. Clerk. >> Chair,
+recalling County Communication 25-11 water and infrastructure Chair transmitting a
+proposed Amendment in Resolution 25-86 entitled, "accepting dedication of Roadway
+Lots for Kaimana at Kehealani subdivision 'Iliahi at Kehealani Roadway Lot
+subdivision and for the subdivision of site C-1/11 of Wailuku Project District
+situated at Wailuku, Maui, Hawai'i pursuant to Section 23.44.015 Maui County Code.
+>> Member Cook. >> I would like to amend with the revised Amendment and file County
+Communication 25-11. >> Second. >> Moved by Member Cook, seconded by Sugimura to
+substitute the Resolution with Resolution 25-86 FD 1 version attached to CC25-11.
+Discussion, Member Cook? >> Thank you, Members.\r\n\r\nThe proposed FD 1 version
+amends the Resolution's title clarifies and updates outdated Tax Map Keys for the
+consistency and incorporated non-substantive technical revisions for clarity,
+consistency and style. I respectfully ask for Members' support of my motion. >> More
+discussion? >> No. >> All in favor, raise your hand? >> Aye. >> Chair, the vote is
+Seven ayes, two Excused.\r\n\r\nMembers Kama and Johnson. Motion carries. Now we're
+on the main motion as amended. >> Aye. >> Seven ayes, zero nos, two excused. Motion
+carries. >> Chair?\r\n\r\nI will be joining online on my phone. Sorry. Mahalo. >>
+Excuse me, Chair, I think we'll also need a motion to suspend under rule 19. >>
+Chair, I move to suspend rule 19. >> Second. >> Okay. It's been moved and seconded
+to suspend rule 19. In discussion? >> No discussion, Chair.\r\n\r\n>> All in favor,
+raise your hand, say aye. Aye. >> Seven ayes, zero nos, two excused. Johnson and
+Kama, motion carries. Next. >> So Chair, just for clarification, that was the motion
+to adopt and suspend rule 19 all-in-one. >> Yes.\r\n\r\n>> Perfect. Chair, before
+you is resolution 25-108 appointment of members to the Maui Planning Commission for
+the County of Maui. >> Member Uu-Hodgins. >> Thank you, Chair, I move to discharge
+the Government Relations, Ethics, and Transparency Committee from further
+consideration of resolution 25-108. >> Second. >> Moved by Member Uu-Hodgins and
+seconded by Vice-Chair Sugimura to discharge the Committee of this matter before us.
+Resolution 25-108. Member Uu-Hodgins, discussion? >> Thank you, Chair.\r\n\r\nGreat
+Committee met on May 13th 2025 so the Council could meet the deadline of May 20th,
+2025 for us is our deadline to approve or disapprove the nominees today. >> Okay.
+And then rule 19 is not required due to the passage, the time constraint of the
+Charter deadline. Any discussion on this motion? Member Sinenci. >> I had an
+Amendment, Chair. Move to amend the Resolution to add the cultural practitioner for
+Crichton KaLiki as well.\r\n\r\n>> Second. >> Moved by Member Sinenci and seconded
+by Member Paltin to amend the motion to add Mr. Lind as a cultural practitioner. >>
+Yes. >> Discussion? >> Thank you, Chair. This was also the discussion we had during
+the great Committee having two cultural practitioners then one would be even
+better.\r\n\r\nThank you, Chair. >> Member Uu-Hodgins. >> Thank you, Chair. I'm
+happy to support this, but I just wanted to clarify that my motion was only to
+discharge the Government Relations, Ethics, and Transparency Committee from
+consideration of this Resolution. But I'm happy to also then if that is what you
+want to move to adopt resolution 25-108. >> Second. >> Were you the original
+seconder? >> I was.\r\n\r\n>> Okay. Do you have any problem with that? >> No. >>
+Okay. So now we have the discharge, and adding Mr. Lind as a cultural practitioner.
+Right?\r\n\r\n>> Thank you, Chair, moving both names, Mr. Crichton Lind and
+Christopher Elizares for approval as a Mr. Lind as a Native Hawaiian cultural
+practitioner. >> I should have just done one motion at a time. Let's do that. The
+motion to discharge, all those in favor of that, raise your hand, say aye. >>
+Aye.\r\n\r\n>> Are you voting? Six ayes. >> I'm sorry, Chair? >> Yes. >> I know you
+are in the middle of the vote. But Is this the main motion? >> Move to
+discharge.\r\n\r\n>> Okay. >> We're going back to the discharge. All those in favor
+of the motion, raise your hand, say aye? >> Aye. >> Six. Seven ayes, two excused.
+Johnson and Kama.\r\n\r\nMotion carries. Can you do it again, Member Uu-Hodgins. >>
+Of course. I move to adopt resolution 25-108. >> Second. >> Moved by Member
+Uu-Hodgins, and seconded by Member Sugimura Vice-Chair Sugimura to adopt resolution
+25-108. Discussion, Member Uu-Hodgins? >> Thank you, Chair. I further move to amend
+resolution 25-108 by adding Native Hawaiian cultural practitioner by East Maui under
+Crichton Lind's name on exhibit a and placing his him East Native Hawaiian cultural
+practitioner and Christopher Elizares for approval.\r\n\r\nThank you, Chair.
+Vice-Chair Sugimura, discussion? Member Rawlins-Fernandez. >> Mahalo, Chair. In the
+past when we have recognized individuals to satisfy section 2.28.070a, or subsection
+b, we have acknowledged that in the be it resolved clause and if that is the
+intention, my preference would be to follow past practice to add well to strike I
+think it's the second be it resolved clause that states that individuals would be
+disproved, and to replace it with a new section 2 that would read that the persons
+listed in exhibit b as attached demonstrates expertise in Native Hawaiian
+traditional and customary practices and both individuals are designated to satisfy
+the requirement under 2.28.070a. >> Is that an Amendment? A Motion? >> So
+moved.\r\n\r\n>> Second. >> Okay. >> We can do that as a friendly Amendment, Chair
+so we don't have to take two votes. >> Is that okay with everybody? >> Yes. >> Any
+further discussion? If not, all those in favor of the motion, raise your hand, say
+aye?\r\n\r\n>> Aye. >> Seven ayes, two excused. Johnson and Kama. Motion carries.
+Okay. Next. item.\r\n\r\n>> Chair, for referral to the Government Relations, Ethics,
+and Transparency Committee is resolution 25-109 authorizing the employment of
+special Counsel mar Johns and wang LLLP in pre-litigation negotiations regarding
+allegations made by Leo Caires as a former County of Maui employee and resolution
+25-110 authorizing settlement of JMC claim 4088770 County of Maui file risk 204-006
+of Merc Coimbra and Alisa Coimbra. >> Okay. This is 25-109; right? >> And 25-110. >>
+Okay any objections to referring both items to the Great Committee? >> No objects.
+>> So ordered. >> Chair, before you is resolution 25-111, approving cost items for
+Bargaining Unit 01 non-supervisory blue-collar employees.\r\n\r\n>> Vice-Chair
+Sugimura. >> Thank you, if there are no objections may I please request the Clerk
+also call up Resolutions 25-112 and 25-1 13. >> Ms. Clerk. >> Chair, before you is
+resolution 25-112 approving cost items for employees included in Bargaining Unit 2
+Supervisory blue-collar Bargaining Unit 3 non-supervisory white-collar Bargaining
+Unit 4 Supervisory white- collar and Bargaining Unit 13 professional and scientific,
+25-113 approving cost items for employees excluded from Bargaining Unit 3
+non-supervisory white-collar, Bargaining Unit 4 Supervisory white-collar and
+Bargaining Unit 13 professional and scientific. >> Vice-Chair Sugimura. >> I move
+resolution 25-111, 112 and 113. >> Moved by Vice-Chair Sugimura and seconded by
+Member Cook to adopt the Resolutions 25-111, 112 and 113. Discussion, Vice-Chair? >>
+These Resolutions will approve the negotiated cost items for employees in Bargaining
+Units 1, 2, 3, 4 and 13 for the next four Fiscal Years.\r\n\r\nIn her transmittals
+the Director of Personnel services asked us to expedite action on this Resolution,
+so the pay adjustments can be implemented. The Budget Director has confirmed that
+about $9.9 million is in the Fiscal Year 26 budget in the appropriate Countywide and
+special fund accounts to fully cover these costs. I respectfully ask for Members'
+support of my motion. Thank you. >> Discussion? All those in favor? Member
+Paltin.\r\n\r\n>> For my discussion, I think HGEA did a horrible job on negotiating.
+As a former Member of unit 3, I don't feel like they are paying a living wage for
+what the expenses are to live in Maui, and if they continue on with this horrible
+negotiating, then there won't be people to work these jobs. And you know, all of the
+jobs that people say are so important, if we don't have the workers in unit 3
+especially to me, nothing would get done. So I'm supporting it with reservations
+because I think HGEA did a horrible job in negotiating. I don't know what their
+strategy was? I don't know if they pull in folks from the State who have the
+majority of votes? But I'm supportive of giving them money, I just think it's too
+little to what they can live on, and that we'll have a difficult time filling many
+of these positions.\r\n\r\n>> More discussion? All in favor, raise your hand. Now we
+have six ayes, three excused. Rawlins-Fernandez, Johnson, and Kama. Motion passes.
+Ms. Clerk.\r\n\r\n>> Chair, before resolution 25-114 urging the Mayor to rans mitt a
+Resolution to accept hui road f in West Maui from state of Hawai'i Judiciary. >>
+Member Paltin. >> I move to adopt resolution 25-114. >> Second. >> Moved by Member
+Paltin, seconded by Member Sinenci. To adopt resolution 25-114, discussion, Member
+Paltin. >> Thank you, Chair. This item predated by tenure and former Council Member
+Ellie Cochran had a Resolution in 2018 regarding hui f road and I believe in our
+very first term, probably in the very first Committee that you Chaired before you
+were Council Chair, you had presentation with former Director Goode about roads in
+limbo at which are time we learned that the hui roads have been given to the State
+Judiciary until such time as the appropriate entity of government comes along to
+accept that road.\r\n\r\nYou know, it's all fine and dandy to pretend we're a state,
+pretend we're legit and pretend we're a County, but if we're not going to accept the
+responsibilities that come with that Kuleana, which is accepting these roads, then
+we should stop pretending. There is no HOA for Hui f in my discussions with the
+community there, they would not vote to support a CFD. There are a part of Napili
+bay civic improvement District, which up until recently did allow short-term rentals
+as a permitted use. So they pay exorbitant amounts of Tat and they have -- they pay
+exorbitant taxes and just trying to save our own emergency vehicles and make the
+place safer. Thank you to Mr. Ueoka for the support. >> Vice-Chair.\r\n\r\n>> I have
+heard about this for years and wonder what Corp. Counsel has to say about this. >>
+Ms. Desjardins. >> Thank you, Chair. Our office has been involved in a long term
+base on the discussion around Hui f road. And if you folks were to pass this
+Resolution and it was something that the Mayor's Office intended to take up, we
+would work with the Administration to try to come to some Resolution I have the same
+basis understanding that the Judiciary is holding title to hui f road until such
+time as it is dedicated.\r\n\r\nAnd the only other thing I know is what Mr. Ueoka
+knows that it's in poor condition. Thank you. >> Member Cook. >> Thank you, Chair.
+I'm very supportive of this and I hope the Administration will accept it and embrace
+it and take the responsibility for it. There is other roads that are in limbo and
+government roads that are not owned by the Judiciary and they are not owned by
+anybody, but both the State and County will say you can't go on them, but nobody
+owns them.\r\n\r\nI'm supportive of this and I hope we can collectively working with
+the Administration to get this addressed. All those in favor of the motion raise
+your hand, say aye. Six ayes, zero nos, three excused. Rawlins-Fernandez, Johnson
+and Kama. >> Seven ayes. >> Thank you, members. >> I'm sorry.\r\n\r\nI didn't see
+Member Rawlins-Fernandez. Seven ayes, two excused. Johnson and Kama. Thank you.
+Next. >> Chair, before you is resolution 25-115, referring to the Maui Planning
+Commission and Board of Water sup Bly proposed Bill to impose interim restrictions
+on new private swimming pools in the West Maui Community Plan Area. >> You are not
+muted Member Rawlins-Fernandez.\r\n\r\n>> Member Paltin. >> Thank you. I move to
+adopt resolution 25-115. >> Second. >> Moved by Member Paltin, seconded by Member
+Sinenci to adopt resolution 25-115. Discussion, Member Paltin. >> Thank you, Chair.
+This is basically an interim measure. All the times that we have visited -- not
+visited, but gone to Commission on Water Resource Management meetings in our area,
+they are working to prioritize water uses in the last meeting we had heard that they
+are trying to do it by tiers, possibly putting public trust uses first.\r\n\r\nAnd
+the County of Maui should do the same, because especially for the Lahaina area
+aquifer sector area. You know, we have heard repeatedly that the County can't
+designate water to 100% affordable housing projects whether it's Sylvia Luke's
+project, pu Lahui and yet we have water for new private swimming pools. I did want
+it say, too, that Director Stufflebean's calculations for Napili are not the same as
+the calculations for Lahaina. They don't take into effect splash out leaks and
+backwashing and the average annual rainfall for Lahaina for the past few years has
+been 13.54" with 13.54" and annual evaporation rate of 80", for a standard 15x30'
+pool is over 50 gallons a day in just evaporation. That being said, that is ten
+pools equaling to the usage of one single-family home. And so with the situation
+we're facing in West Maui, where there's not explanation why there's such high
+chlorides in the pumped well water we're partnering with U.S.G.S. to install a deep
+monitoring well inland poco and right now we're getting a handle on our water use
+and needs and I think it's right to impose interim restrictions. There's a number of
+exemptions to this, repair and maintenance of pools is exempt.\r\n\r\nIf pools are a
+part of your CC&Rs it's exempt. It's scheduled to end December 31st, 2028. Hoping
+that CWRM will have their work done by that time, and we'll be in an area -- in
+place where we know more. So that's the proposal. >> Any more discussion? Member
+Cook. >> Thank you, Chair. I won't be supporting this.\r\n\r\nSimply because -- I
+don't agree with the interpretation of the impact. I understand the challenges of
+West Maui and I'm supportive of conservation developing source, et cetera. But my
+math and calculations and experience with swimming pools don't add up to much volume
+and there's a lot of people -- personally I wouldn't want to see everybody going to
+the beach and jumping in the ocean of it's a nice idea, but we don't need the
+coastline that crowded, and people, different people and different reasons. So I'm
+not supportive. Thank you. >> Anybody else? No more discussion.\r\n\r\nI'm kind of
+conflicted on this myself. I believe in conservation. Is this restricted to West
+Maui? >> Yes, and it's a vote to refer it to the Planning Commission and Board of
+Water supply. >> Okay. Roll call. >> Council Member Pro Tempore Tasha
+Kama.\r\n\r\n>> Excused. >> Vice-Chair Yuki Lei Sugimura? >> No. >> Council Member
+Tamara Paltin? >> Yes. >> Council Member Gabe Johnson? >> Excused.\r\n\r\n>> Council
+Member Keani Rawlins-Fernandez? >> Aye. >> Council Member Tom Cook? >> No. >>
+Council Member Nohelani Uu-Hodgins? >> Aye. >> Council Member Shane
+Sinenci?\r\n\r\n>> Aye. >> And Chair Lee? >> Aye. >> Chair, you have five ayes, two
+nos, two excused. >> Thank you, Members. >> Motion carries. >> Next.\r\n\r\n>>
+Chair, for referral to the Government Relations, Ethics, and Transparency Committee
+resolution 25-116 authorizing settlement of Fire Fire and casualty insurance of
+Hawai'i, Inc. v. County of Maui, et al. Civil File 2 CCV-24-000105. >> Any
+objections to referring this to the great Committee. >> So ordered Ms. Clerk. >>
+Resolution 25-118 authorizing the acquisition of two acres of property identified as
+Tax Map Key 2-3-8-064:018 Kahului, Maui, Hawai'i for an amount not-to-exceed $7.2
+million. >> Member Cook.\r\n\r\n>> Is it not Member Cook? >> It is, Vice-Chair? >>
+Thank you. >> Vice-Chair Sugimura. >> If there's no objections, may I request this
+Resolution be postponed until Bill 61 and 62 (2025) are called up. >> Any
+objections. >> No objections.\r\n\r\n>> So ordered. Ms. Clerk. >> Chair, for
+referral to the Kamiki 'aina Committee is resolution 25-118 organizing the Hawai'i
+Tourism Authority be held accountable to ensure a safe and welcoming work
+environment for Kanaka 'Oiwi and women. >> Any objections to referring this matter?
+>> No. >> >> Member Rawlins-Fernandez, are you okay with referring this?\r\n\r\n>>
+Mahalo, Chair. Yes. Requesting to have it referred to Ka'a Committee. >> Thank you.
+>> This will be referred. Since there's no objections >> We're in Ordinances there's
+no one currently sign up to testify on Ordinances. So this will be last call, if
+there's anyone who would like to testify in Ordinances, this is your opportunity
+countdown, Chair, there's no one indicating a desire to testify.\r\n\r\n>> Members,
+any objections to closing testimony. >> No objections, but did we vote on 25-118? >>
+Oh, she asked -- she was okay for it to be referred is to her Committee. >>
+Vice-Chair Sugimura asked that it be taken up when we take up Bill 61 and 62 table
+it for now. >> Yes. >> Okay. >> Oh, I thought you were asking about reso 25-119.
+Okay. Can you repeat what you just said?\r\n\r\nI was in the mill of saying any
+objections to closing public testimony on Ordinances? >> No objections . and
+accepting written testimony. >> No objections. >> So ordered. Ms. Clerk. >>
+Chair?\r\n\r\n>> Chair. >> Member Rawlins-Fernandez. >> Mahalo, Chair. We have
+Sunshine Law I'm in my vehicle alone. Thank you. >> Chair, for referral to the
+Budget, Finance, and Economic Development Committee is Bill 72 (2025) a Bill for an
+Ordinance authorizing the Mayor to enter into an Intergovernmental Agreement with
+the University of Hawai'i, Office of Research Services. >> Any objections to
+referring this matter to the BFED Committee?\r\n\r\n>> No objections. >> So ordered.
+Ms. Clerk. >> Chair, before you is Bill 73 (2025) a Bill for an Ordinance amending
+the Fiscal Year 2025 budget for the County of Maui Office of the Mayor, Economic
+Development Program grant and disbursements for Business Development and Technology
+West Maui Economic Development, Environmental, and Cultural Kalu initiatives. >>
+Vice-Chair Sugimura. I'm sorry, was it you?\r\n\r\n>> Member Paltin. >> I move to
+pass Bill 73 on first reading. >> Second. >> Moved by Member Paltin, seconded by
+Vice-Chair Sugimura to pass Bill 73 on first reading. Discussion, Member Paltin. >>
+Thank you, Chair. Originally earmarked this money, but the money was left in the
+account, Kail Kaiaulu is going like gang-busters and could use the money.\r\n\r\nIt
+not only supports the environment, but mental health and it can hopefully prevent
+another Fire. >> Any more discussion? >> If not, all those in favor of the motion to
+pass Bill 73 on first reading please raise your hand, say aye. >> Aye. >> Six --
+seven ayes, two excused. Members Johnson and Kama. Ms.\r\n\r\nClerk. >> Chair,
+before you is Bill 72 (2025) a Bill for an Ordinance amending the Fiscal Year 2025
+budget for the County of Maui Appendix A, part 2 Office of the Mayor, Department of
+Environmental Management, United States Department of the interior, Bureau of
+Reclamation. >> . Vice-Chair Sugimura. >> I move to pass the billion on first
+reading moved by Vice-Chair Sugimura, second by Member Cook to pass Bill 74 on
+second and final reading. Any discussion? >> Bill 74 (2025) amends the Fiscal Year
+25 budget by reallocating an appropriation from the Office of the Mayor to the
+Department of Environmental Management for a grant from the United States Department
+of the Interior, Bureau of Reclamation. Additionally the appropriation is increased
+from 1,180,224 to $16,802,237 to recognize newly available federal
+funding.\r\n\r\nIn her transmittal the Budget Director requested we take action
+today because the County can begin drawing down on these funds as soon as they are
+added to the budget. >> Any more discussion? If not, all those in favor of the
+motion, please raise your hand, say aye. >> Aye. >> Seven ayes, two excused. Johnson
+and Kama. Motion carries.\r\n\r\nMs. Clerk. >> Chair, for referral to Committee is
+Bill 75 (2025). >> Any objections to referring Bill 75 to the adept Committee. >> No
+objections. >> Ms. Clerk >> Ordinances for second and final reading Bill 57 FD 1
+(2025) a Bill for an Ordinance to amend chapter 3.34 Maui County Code to establish a
+voluntary deed restriction program. >> Member Rawlins-Fernandez.\r\n\r\n>> Mahalo,
+Chair. I move to pass Bill 357 on second and final reading. >> It's been moved by
+Member Rawlins-Fernandez, seconded by Member Sinenci to pass Bill 57 on second and
+final reading. Discussion Member Rawlins-Fernandez. >> Mahalo, Chair. No further
+discussion I'm just really excited to work with the Administration, Housing Director
+and Director Mitchell on these small incremental steps forward to prove concept of
+this program. So that we can eventually scale up, with Lana'i, I know West Maui
+voiced support for this, and we can work on those administrative rules as
+well.\r\n\r\nMahalo, Chair. >> Any more discussion? If mot, all those in favor,
+please raise your hand, say aye? >> Aye. >> Seven ayes, zero nos, two excused.
+Johnson and Kama, motion carries. Ms.\r\n\r\nClerk. >> Chair, before you is Bill 59
+(2025) a Bill for an Ordinance amending the Fiscal Year 2025 budget for the County
+of Maui estimated revenues, Capital Improvement Projects, Department of Housing West
+Maui Community Plan Area, other projects, General Fund, Komohana Hale apartments
+rebuild, and Appendix C, Department of Housing West Maudsi Community Plan Area,
+Komohana Hale apartments rebuild. >> Member -- Vice-Chair Sugimura. >> If there's no
+objections may I please request the Clerk also call up Bill 60, Bill 65, 66, 68
+(2025) through 71 (2025). >> Any objections, Members? >> No objections. >> Ms.
+Clerk.\r\n\r\n>> Chair, before you is Bill 60 (2025) a Bill for an Ordinance
+amending the Fiscal Year 2025 budget for the County of Maui estimated revenues
+Capital Improvement Projects, Department of Water Supply Countywide water fund
+restricted appendix a, part 2 general excise tax fund and Appendix C, Department of
+Management Countywide and Department of Water Supply Countywide. you want 61. >>
+Will take that later, the baseyard. >> Bill 65 (2025) a Bill for an Ordinance
+amending the Fiscal Year 25 budget for the County of Maui officer of Mayor, grant
+and disbursements for business Department and technology South Maui Economic
+Development, Environmental, and Cultural. Bill 66 (2025) a Bill for an Ordinance
+amending the Fiscal Year 2025 budget for the County of Maui Office of the Mayor,
+Economic Development Program grants and disbursements for Business Development and
+Technology, Wailuku Economic Development, Environmental, and Culture. Bill 68 (2025)
+a Bill for an Ordinance amending the Fiscal Year 2025 budget for the County of Maui
+Office of the Mayor Economic Development Program grants and disbursements for
+Business Development and Technology sport and event promotion, and grants and
+disbursement for culture and Arts and Tourism, culture and arts program. Bill 69
+(2025) a Bill for an Ordinance amending the Fiscal Year 2025 budget for the County
+of Maui, Office of the Mayor, Economic Development Program grants and disbursements
+for water and environmental resource protection Department of Management Office of
+Recovery Program. Bill 70 (2025) a Bill for an Ordinance amending the Fiscal Year
+2025 budget for the County of Maui Capital Improvement Project Department of
+Management Department of Water Supply and Appendix C Department of Management
+Department of Water supply Fire flow improvements to water System.\r\n\r\nBill 71
+(2025) a Bill for an Ordinance amending Ordinance No. 5659 Bill No. 62 CD 1 (2024)
+relating to the issuance of General Obligation Bonds of County of Maui issuance,
+sale and delivery of said bonds Department of Management and Department of Water
+Supply. >> I move to pass the bills on second and final reading. >> Moved by
+Vice-Chair Sugimura, seconded by Member Sinenci to pass the bills. On second and
+final reading. Discussion?\r\n\r\n>> No further discussion. >> Any more discussion?
+All those in favor of the motion. >> Excuse me, Chair? Bill 71 Staff would note a
+minor Amendment if the body would not -- would not mind amending Bill 71 to remove
+section 1 and renumber the subsequent sections accordingly, and to suspend rule 19.
+>> Thank you. Are those changes substantive? They can be considered
+technical?\r\n\r\n>> Chair, if the body has no objections. >> Any objections,
+Members? We have to vote on rule 19. >> I move to waive rule 19. >> Second. >> Moved
+by Vice-Chair Sugimura, seconded by Member Sinenci to waive rule 19 and to allow the
+Staff to make technical changes to the bills. All those in favor of the motion to
+waive rule 19 say aye -- okay. So we have seven ayes, zero nos, two excused. Johnson
+and Kama.\r\n\r\nMotion carries. Ms. Clerk. 61 and 62. >> Okay, Chair before you is
+Bill 61 (2025) a Bill for an Ordinance amending the Fiscal Year 2025 budget for the
+County of Maui estimated revenues Capital Improvement Projects Department of Public
+Works Countywide government facilities bond fund Countywide DPW Baseyard Facilities
+Program, and Appendix C Department of Public Works, Countywide DPW because yard
+facilities and Bill 62 (2025) a Bill for an Ordinance amending Ordinance No. 5659
+Bill 62 CD 1 (2024) relating to the issuance of General Obligation Bonds of the
+County of Maui issuance, sale, and delivery of said bonds Department of Public
+Works. And Vice-Chair, would you also like me to recall 25-118. >> 118. >> Yes.
+Chair, recalling resolution 25-118 authorizing the acquisition of two acres of
+property identified as Tax Map Key 2-3-8-065-018 for an amount not-to-exceed $7.2
+million.\r\n\r\n>> Vice-Chair Sugimura. >> I move to pass Bill 61 (2025), Bill 62
+(2025) and adopt resolution 25-113le second. >> Moved by Vice-Chair Sugimura and
+seconded by Member Sinenci to pass Bill 61, Bill 62 and discussion Resolution
+25-118. Vice-Chair Sugimura. >> These all relate to the purchase of 220 Awalau Road.
+Bill 61 amends the Fiscal Year budget to recognize an additional $4.2 in bond
+funding for the purchase while Bill 62 amends the bond Bill to recognize the funds
+finally Resolution 25-118 authorizes the purchase, as required by section 3.44.015.
+Some of the (c) Maui County Code, the Water Infrastructure Committee reviewed this
+matter under rule 7b during its meeting on May 12th. Thank you, Member Cook. I
+respectfully ask for the Members' support of my motion.\r\n\r\n>> Any more
+discussion? All those in favor of the motion please raise your hand, say aye? >>
+Aye. >> Excuse me, Chair? >> Yes. >> Apologies I believe there was an ASF from
+Council Member Cook on this. >> Member Cook.\r\n\r\ndid you pass it out? >> Member
+Cook. >> The proposed FD 1 version amends the Resolution's title and incorporates
+non-substantive and technical revisions for clarity, consistency and style. I
+respectfully ask for the Members' support of my motion. >> Second. >> Okay. It's
+been moved by Member Cook, seconded by Vice-Chair Sugimura to adopt resolution
+25-118. Discussion, Member Cook.\r\n\r\n>> Thank you, Chair. Resolution 25-118
+authorizes the acquisition of two acres lots located at 220 Awalau Street in Kahului
+for an amount up to $7.2 million. During the Wai Committee meeting May 12, 2025, we
+discussed the proposed acquisition, and received background information from the
+Department of Public Works. The site is being acquired as part of the Department's
+Countywide Baseyard Facility's facility, and supports the central South baseyard
+relocation project. Equipment stored off-site and from Wailuku baseyard will be
+secured at this proposed location, which would also alleviate space in the baseyard.
+Acquiring this parcel supports long-term infrastructure Planning, operational
+efficiency for our County baseyard functions in central and South Maui. I
+respectfully ask for the Members' support of my motion.\r\n\r\n>> The motion also
+includes the suspension of rule 19 rules of the Council to allow for final action at
+the same meeting where an Amendment is approved. >> Yes. >> Yes. >> Okay, that was
+included in your motion. All right. Any more discussion? On the adoption of the
+Resolution.\r\n\r\nAll those in favor, please raise your hand and say aye? >> Aye.
+>> Seven -- seven ayes, two excused. Johnson and Kama. Council Members. Motion
+carries. So we need to finish your motion.\r\n\r\nDid we finish your motion? >> Yes.
+>> I don't know. Ms. Clerk? >> We need to go back to the main motion, I think, we
+just had a substitution by Member Cook. >> Main motion as amended.\r\n\r\nAny more
+discussion? All those in favor, raise your hand, say aye? >> Aye. >> Seven ayes,
+zero nos. Motion carries, two excused. Johnson and Kama. Does that bring us to the
+end of the calendar?\r\n\r\n>> Oh, no, Chair. We have a couple of housekeeping
+matters, and thank you to the Deputy Director of Council Services. For resolution
+25-108, the Maui Planning Commission, we did not do a final vote on the -- the
+motion as amended. So we need to do a final vote on that. >> Let me get to that.
+Reso, which one? >> 25-108. This is Maui Planning Commission.\r\n\r\nAll those in
+favor raise your hand and say aye? >> Aye. >> On the motion as amended, main motion
+as amended. Raise your hand. >> I don't see Member Rawlins-Fernandez. >> Six ayes,
+three excused Rawlins-Fernandez, Johnson, and Kama. And what else?\r\n\r\n>> I have
+one more. >> Okay. >> In that massive list of bills that we're being moved to adopt
+by Vice-Chair Sugimura. Bill 59, 60, 65, 66, 68, 69, 70 and -- we need final vote as
+well. >> I repeated all of those numbers. >> Yes. >> Hey, that is okay, duplication
+is fine.\r\n\r\nFinal vote on bills 59, 60, 65, 66, 68, 69, 71. Raise your hand, say
+aye. Six ayes, three excused. motion carries. Excused are Rawlins-Fernandez, Johnson
+and Kama. Council Members. What else? >> Okay, let's make sure.\r\n\r\nCarla? County
+Clerk. We did. The Members didn't have any objections to tabling the item. So it
+will remain on the Clerk's desk until further notice. Are we getting notices from
+Staff? James is sending me something That is for posting tomorrow, anyway, that is
+nothing for us.\r\n\r\nOkay, Members, any final comments? If not, thank you very
+much for your cooperation today, and collaboration. We can get so much done when we
+work together, and with all of our Staff, and the Administration. Thank you
+everybody so very much. This meeting is adjourned. [ GAVEL ] Wait Member Uu-Hodgins
+is raising her hand. >> I'm sorry.\r\n\r\nUnadjourned.

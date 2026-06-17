@@ -1,0 +1,1284 @@
+MINUTES | hi-maui | County Council Meeting | 2025-03-21
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2647,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+MINUTES 
+ 
+March 21, 2025 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:04 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Pro Tempore Tasha 
+Kama 
+  √ Arrived at 9:43 a.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 8  1  
+ 
+ 
+  
+ 2 
+CEREMONIAL RESOLUTIONS 
+ 
+Reso 25 -81 "CONGRATULATING MIKAH LABUANAN OF KAMEHAMEHA 
+SCHOOLS MAUI AND JAHLIA MIGUEL OF H.P. BALDWIN HIGH SCHOOL FOR 
+HISTORIC MULTI -YEAR STATE TITLES AT THE HAWAI ʻI HIGH SCHOOL 
+ATHLETIC ASSOCIATION STATE WRESTLING CHAMPIONSHIPS"  
+ 
+ AYE NO EXC Time Deliberations Began 9:13 a.m. 
+Pro Tem Kama   √ Time Motion Made 9:13 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:19 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+Reso 25 -82 "CONGRATULATING BLAKE ABERNATHY OF KAMEHAMEHA 
+SCHOOLS MAUI AND TEATA MATAAFA GROVE, PITA TAKAFUA, AND BRYSON 
+ADRIC OF H.P. BALDWIN HIGH SCHOOL FOR WINNING STATE TITLES AT THE 
+2025 HAWAI ʻI HIGH SCHOOL ATHLETIC ASSOCIATION STATE WRESTLING 
+CHAMPIONSHIPS" 
+ 
+ AYE NO EXC Time Deliberations Began 9:19 a.m. 
+Pro Tem Kama   √ Time Motion Made 9:20 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:25 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+COMMITTEE REPORTS:  
+ 
+CR 25-9 Recommending FIRST READING of Bill 22 (2025), to amend the Fiscal 
+Year 2025 Budget, to: 1) amend Section 2, Estimated Revenues, by increasing  
+ 3 
+Carryover/Savings from the General Fund by $40,000; 2) amend Section  
+3.B.12.a.(4), Office of the Mayor, Administration Program, by increasing the  
+appropriation for Grant to Akakū: Maui Community Television by $40,000; and 
+3) adjust the totals accordingly. 
+ 
+CR 25-10 Recommending FIRST READING of Bill 24, CD1 (2025), to amend the 
+Fiscal Year 2025 Budget, to: 1) amend Section 2, Estimated Revenues, by  
+increasing Carryover/Savings from the General Fund by $300,000; 2) amend  
+Section 3.B.7.c., Department of Fire and Public Safety, Fire/Rescue  Operations 
+Program, by increasing the appropriation for Category B -Operations & 
+Equipment by $300,000; and 3) adjust the totals accordingly.  CR 25 -11 
+Recommending FIRST READING of Bill 32 (2025), to amend the Fiscal year 2025 
+Budget, Appendix A, Part I, Grants and Restricted Use Revenues - Schedule of 
+Grants and Restricted Use Revenues by Departments and  Programs for Fiscal 
+Year 2025, to add a new appropriation under the  Department of Management 
+entitled, "Community Development Block Grant - Disaster Recovery " in the 
+amount of $1,639,381,000 with conditional language to 1) allow for 
+disbursement for salaries and premium pay for up to 56.0 Limited Term 
+Appointment equivalent personnel; and 2) require a copy of the quarterly report 
+transmitted to the United States Department of Housing and Urban Development 
+to also be submitted to the Council.  
+ 
+CR 25-12 Recommending FIRST READING of Bill 34, CD1 (2025), to amend the 
+Fiscal Year 2025 Budget to amend Section 3.B.12.c.(3)(viii), Office of the Mayor, 
+Economic Development Program, by changing the appropriation’s name from 
+"Maui Film Festival" to "Maui Economic Development Board, Inc. for the Wailuku 
+Film Festival."  
+ 
+CR 25-13 Recommending FIRST READING of Bill 35, CD1 (2025), to amend the 
+Fiscal Year 2025 Budget, to: 1) amend Appendix A, Part II, Special Purpose 
+Revenues - Schedule of Revolving/Special Funds for Fiscal Year 2025, General 
+Excise Tax Fund, by a) increasing the a mount in condition 2 for design, 
+construction, and permitting of the Wildfire Permanent Disposal Site from 
+$16,000,000 to $24,000,000; and b) decreasing the amount in condition 3 for 
+operations and maintenance of the Wildfire Permanent Disposal Site from 
+$17,400,000 to $9,400,000; and 2) amend Appendix C - Capital Improvement 
+Projects, Department of Management, Countywide, Wildfire Permanent Disposal 
+Site, by increasing the appropriation from $16,000,000 to $24,000,000.  
+ 
+CR 25-14 Recommending FIRST READING of Bill 36 (2025), to amend the Fiscal 
+Year 2025 Budget, Appendix A, Part II, Special Purpose Revenues - Schedule of 
+Revolving/Special Funds for Fiscal Year 2025, Managed Retreat Revolving Fund 
+to add a new condition 3 to require up to $100,000 to be used for the removal of 
+structures, tree stumps, and other debris impacted by shoreline erosion at 
+Baldwin Beach Park.  
+ 
+ 4 
+CR 25 -15 Recommending the following: 1. FIRST READING of Bill 37, CD1 
+(2025), to amend the Fiscal Year 2025 Budget to reflect the transfer of 
+$25,000,000 from the General Excise Tax Fund to the Water Fund-Restricted for 
+the following projects: $10,000,000 for Water Supply Infrastructure Repairs and 
+Replacements in wildfire -impacted areas (GET Fund), $10,000,000 for 
+Integration of Public and Private Water Systems (GET Fund), and $5,000,000 for 
+Kamole Water Treatment Plant Filter Replacement (GET Fund); and 2 . FIRST 
+READING of Bill 38 (2024), to amend Chapter 3.100, Maui County Code, to: a. 
+Clarify that 80 percent of all funds derived from the County’s General Excise and 
+Use Tax Surcharge will be deposited into the General Excise Tax Fund and 20 
+percent will b e deposited into the General Excise Tax Fund - Department of 
+Hawaiian Home Lands; and b. Provide for funding for water-related projects from 
+either fund to be transferred to the Department of Water Supply for the duration 
+of the project and for remaining funds to be re-deposited in the appropriate fund 
+at the conclusion of the project. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+9:46 a.m. 
+Pro Tem Kama √   Time Motion Made 9:54 a.m. 
+VC Sugimura √   Motion  ADOPT CR 25-9 
+through 25-15 
+recommendations 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:54 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CR 25-16 Recommending ADOPTION of Resolution 25-21, CD1, to authorize the 
+acquisition of 1.811 acres of real property identified as a portion of tax map key 
+(2) 2-3-005:004; a waterline easement across tax map keys (2) 2 -3-004:016, (2) 
+2-3-004:020, and (2) 2-3-005:004, and an access easement across tax map keys 
+(2) 2-3-004:016 and (2) 2-3-005:004, ‘Ōma‘opio, Kula, Makawao, Maui, Hawai‘i 
+for $451,561.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+9:55 a.m. 
+Pro Tem Kama √   Time Motion Made 9:55 a.m. 
+ 5 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:58 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CR 25-17 Recommending ADOPTION of Resolution 25-50, CD1, to approve the 
+appointment of Jonathan Likeke Scheuer to the East Maui Regional Community 
+Board as the Hawaiian Homes Commission’s representative for a term expiring 
+March 31, 2030. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+9:58 a.m. 
+Pro Tem Kama √   Time Motion Made 9:58 a.m. 
+VC Sugimura  √  Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Sinenci 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:05 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+RESOLUTIONS 
+ 
+Reso 25 -79 "AUTHORIZING SETTLEMENT OF KAMALANI T. UEHARA vs. 
+COUNTY OF MAUI, DEPARTMENT OF WATER SUPPLY, ET AL.; CIVIL 2CCV-21-
+0000378"  
+10:07 a.m.: Referred to the Government Relations, Ethics, and Transparency 
+Committee. 
+ 
+ 
+ 6 
+Reso 25 -80 "AUTHORIZING THE FILING OF AN APPLICATION WITH THE 
+DEPARTMENT OF HOUSING AND URBAN DEVELOPMENT, UNITED STATES OF 
+AMERICA, FOR A GRANT UNDER THE COMMUNITY DEVELOPMENT BLOCK 
+GRANT PROGRAM" 
+10:45 a.m.: Deferred until the 4/4/2025 Council Meeting 
+ 
+ 
+ORDINANCES 
+ 
+Bill 39 (2025)  "A BILL FOR AN ORDINANCE AMENDING SECTION 3.68.030, 
+MAUI COUNTY CODE, RELATING TO FIRE HAZARD REMOVAL"  
+10:08 a.m.: Referred to the Disaster Recovery, International Affairs, and Planning 
+Committee. 
+ 
+ 
+SECOND AND FINAL READING:  
+ 
+Bill 105, CD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING SECTIONS 
+19.39.150 AND 19.500.110, MAUI COUNTY CODE, ON NONCONFORMITIES" 
+The purpose of this bill is to address nonconforming structures and uses 
+damaged, destroyed, or affected by an emergency or disaster declared by 
+proclamation of the Governor or the Mayor, respectively, under Chapter 127A, 
+Hawai‘i Revised Statutes.  
+ 
+ AYE NO EXC Time Deliberations Began 10:08 a.m. 
+Pro Tem Kama √   Time Motion Made 10:09 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:44 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Bill 17, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2025 BUDGET FOR THE COUNTY OF MAUI, GENERAL BUDGET 
+PROVISIONS, SECTION 18(A)" 
+ 
+ 7 
+Bill 31 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART II, 
+AFFORDABLE HOUSING FUND, KAIAULU O KUKUIA" 
+ 
+ AYE NO EXC Time Deliberations Began 10:16 a.m. 
+Pro Tem Kama √   Time Motion Made 10:16 a.m. 
+VC Sugimura √   Motion  PASS Bills 
+17 & 31 on 
+second and 
+final reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:18 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Bill 29 (2025)  "A BILL FOR AN ORDINANCE AMENDING SECTION 2.88.030, 
+MAUI COUNTY CODE, ON THE MAUI COUNTY CULTURAL RESOURCES 
+COMMISSION'S MEMBERSHIP"  
+ 
+ AYE NO EXC Time Deliberations Began 10:19 a.m. 
+Pro Tem Kama √   Time Motion Made 10:19 a.m. 
+VC Sugimura  √  Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson  √  Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:27 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+  
+ 8 
+Bill 30 (2025)  "A BILL FOR AN ORDINANCE AMENDING SECTION 2.41.080, 
+MAUI COUNTY CODE, ON MINIMUM ISLAND REPRESENTATION FOR BOARDS, 
+COMMISSIONS, AND COMMITTEES"  
+ 
+ AYE NO EXC Time Deliberations Began 10:19 a.m. 
+Pro Tem Kama √   Time Motion Made 10:19 a.m. 
+VC Sugimura  √  Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson  √  Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:28 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  10:47 a.m. 
+ 
+TRANSCRIPTION
+Council of the County of Maui on 2025-03-21 9:00 AM - Regular Meeting
+meeting of MARCH 21st, 2025. Maui county council regular council meeting of MARCH
+21st, 2025. [Gavel] >> will the council meeting of MARCH 21st, 2025 please come
+to order. Could you make my volume a little higher? Not used to talking so how'd.
+If you wish he to have a new greeting from botswana, in southern africa, in case
+you visit will over the week, the greeting is dumela. Dumela. Yes, dumela. More
+or less. Actually it's a little harder and I figured I would take it easy on you
+guys.\r\n\r\nMISS S clerk, roll call. >> MADAM Clerk, members participanting from
+non-public locations should state who if anyone except minors is present with
+them as part of the roub. Council member pro tempore tasha kama. >> excused for
+now. >> vice-chair yuki lei sugimura. >> dumela, and have a great meeting. >>
+thank you.\r\n\r\n>> council member tamara paltin. >> aloha kakahiaka, and
+dumelakakou and if I can send a birthday shout-out to my daughter >> happy
+birthday. Wow. wonderful. >> council member gabe johnson. >> dumela, chair,
+council members, community members there's no testifiers at the lana'I district
+office and I'm here and ready to work. Malvo, chair.\r\n\r\n>> thank you. >>
+council member keani rawlins-fernandez. >> aloha kakahiaka kagou and currently no
+testifiers at the moloka'I district office and 'ol lana to kalehua. >> council
+member tom cook. >> duyella, aloha friday. There's currently no testifiers in the
+kihei residency office and hopefully we have a great, short meeting. >> we can
+only wish.\r\n\r\n>> council mmber nohelani uu-hodgins. >> good morning, chair,
+good morning everyone. I'm at my private residence. We do have a minor here with
+me today, because it's still spring break. I didn't realize we were having
+council child-care, happy birthday to my future queen kalehua, hope she has a
+wonderful day. >> council member shane sinenci. >> aloha kakahiaka, kakou and
+dumela, chair.\r\n\r\nHappy to be here ad council chair alice lee. Happy birthday
+and dumelato everyone. >> chair, there's eight members present and one member
+excused. For the record, I'm deputy county clerk ripelle thomson and also present
+too my right is county clerk moana lieutenantee and perfect the legislative
+division staff we have joyce murashige, lauren saldana, dell yoshida, arthur
+suala and joining the meeting from the office of council services is director
+david raatz and deputy director richee sau ski and joining later from the
+department of corporation counsel will be first deputy mimi desjardins. >>
+opening remarks provided by vice-chair yuki lei sugimura. >> good morning
+everybody. First of all, we have to start off by saying happy birthday to kalehua
+paltin.\r\n\r\nHappy birth to you. Shall we sing to us, since all of us had a
+chance? (Singing happy birthday) With my opening remarks, she is watching and
+wanted to make sure she got the message we're all thinking of her. My message
+today is something very simple. I wanted to talk about check and balances as it
+relate sto what is real hi happening in the nation, where you can see the
+importance of our work, next week tuesday we received the mayor's budget, the
+administration is sending down his budget to us. 10:00 there's press conference
+we'll receive it and with all of that, and just reflecting on our role as a
+legislative branch, I wanted to just say that when we do look at budget, it will
+be the mayor's vision of what is important for maui county for the public safety,
+and health. And so therefore, our checks/balances are when we do review the
+budget, it's going to be very important that we do it legislatively, and with
+fairness, and integrity, as we take our county forward to this next phase of I
+think it's really lahaina rebuild as we did our budget last year.\r\n\r\nSo
+looking forward to working with everybody. I really appreciate the ocs staff who
+have come forward, and everybody will be focusing on our efforts to create a
+balanced and fair budget. Thank you. Checks and balances are very important,
+chair. >> and thank you very much fr that. I think it's not only the mayor's
+vision, it's going to be our vision as well. >> exactly.\r\n\r\n>> okay. And the
+community's, of course. And now, please join me in reciting the pledge of
+allegiance. I pledge allegiance to the flag of the united states of america, and
+to the republic for which it stands, one nation under GOD, indivisible, with
+liberty and justice for all. Before we proceed with today's agenda MAY I please
+request that everyone keep their microphones muted and as a reminder testimony
+must pertain to itemsing on meeting agenda. When testifying, please direct your
+remarks to the council, and not to any individual council member, or member of
+the public. Each testifier will be allowed to speak for up to three minutes on
+each item.\r\n\r\nFor individuals wishing to testify on tams please click the
+raise your hand button to be added to te testifier log. If you are calling in,
+please follow the phone prompts to be added to the log. Decorum shall be
+maintained at all times. And any person who behaves in a manner that disrupts,
+disturbs or impedes the orderly conduct of any council meeting can at the
+discretion of the presiding officer or a majority of present council members be
+ejected or banned from council meetings, or if participating remotely, muted or
+dropped from the meeting. Examples of disruptive behavior, but are not limited to
+heckling, shouting, use of profanity, threatening or slanderous remarks made to
+any member of the council, to the staff, or general public. MS. Clerk, please
+proceed.\r\n\r\n>> chair, proceeding with testimony on ceremonial resolutions, at
+this time we're only accepting testimony on the ceremonial resolutions, and there
+are two. We don't currently have anyone signed up to testify, but if there's
+anyone present who would like to, this is your opportunity. I see MR. Lau making
+his way down. >> aloha, kakou. Ho makaia to mikah labuanan, jahlia miguel, blake
+abernathy teata mataafa grove, pita takafua and bryson adric. >> thank
+you.\r\n\r\nAny more testifiers? >> chair there are not any more testifiers
+signed up. So last call. This last call for testimony on ceremonial resolutions.
+And the countdown is 3, 2, 1. Chair, there's no one indicating a desire to
+testify. >> any objections to closing public testimony on resolutions? >> no
+objections, chair.\r\n\r\n>> okay. So ordered. MS. Clerk. >> chair, before you is
+resolution 25-81 cngratulating mkah labuanan of kamehameha schools maui and
+jahlia miguel for H.P. Baldwin tool for historic multi-year state titles at the
+hawai'I high school athletic association state wrestling championships. >> member
+paltin. >> ing that you, chair I move to adopt resolution 25-81. >>
+second.\r\n\r\n>> moved by member paltin, seconded by vice-chair sugimura to
+adopt resolution 25-81. Discussion, member paltin chair, MAY I please read the
+resolution in its entirety. >> yes, of course. >> thank you. Resolution 25-81
+congratulating mikah lab yawn of kamehameha schools hui and jahlie miguel of H.P.
+Baldwin high school for himselfing multi-year state titles at hasf yao yao state
+wrestling championship whereas, mickal lab yawn of kamehameha schools maui and
+jahlia miguel of handprint baldin high school showcased exceptional skill and
+perseverance with historic victories in their respective weight classes at the
+2025 hawai'I high school athletic association state wrestling championship
+tournament held FEBRUARY 21st 22, 2025 at the neal s. Blaisdell arena in
+honolulu, hawai'I; and whereas, mikah labuanan made prep sports history with his
+championship in the boys 150-pound weight class by becoming the first boy from
+the maui interscholastic league to achieve wrestling's general motors winning
+four state wrestling titles and whereas, with a remarkable career record
+88-2including an undefeasted streak over the past two seasons mikah labuanan has
+solidified his legacy in high school wrestling; and whereas, jahlia mguel won her
+third consecutive state title with a win in the girls 170-pound weight class,
+becoming furious the fourth mil girl to defeat the field at the state wrestling
+championships and whereas, jahlia miguel compiled an impressive overall career
+record of 76-3 including a perfect record in mil competition over the past three
+seasons and whereas, mikah labuanan and jahlia miguel are both planning to
+further their student-athlete careers by becoming college wrestlers after
+graduating high school later this year; and whereas, the exceptional achievements
+of these student-athletes were made possible - through the unwavering support and
+guidance of their of their dedicated coaches, mike labuanan of kamehameha schools
+maui and bert kamaka of H.P. Baldwin high school, who have instilled in them the
+values of discipline, perseverance, and sportsmanship; and whereas, the
+extraordinary performance of these authentic student-athletes and their displays
+of dedication and spirit have brought great pride and honor to their families, is
+schools and the people of the county of maui now, therefore, be it resolved by
+the council of the county of maui: 1, that it congratulates mikah labuanan of
+kamehameha schools maui and jahlia miguel of H.P. Baldwin high school for
+historic multi-year state titles at the hawai'I high school athletic association
+state wrestling championships and 2, that certified copy of this resolution be
+transmitted to mikah labuanan; jahlia miguel, wrestling coach lance cagasan,
+ke[#350 -/] Mahele luna, kam hamm wha schools maui wrestling coach bert kamaka,
+athletic director, wade hondo, and keoni wilhelm, principle handprint bald win
+high school, joseph balangitao, JR. Executive director maui interscholastic
+league, christopher chun, executive director, hawai'I high school athletic
+association and the honorable richard t. Bissen, JR., mayor of cuomer cuom. >>
+thank you, chair, on a personal note, I gave these two seniors their past
+ceremonial resolutions, and although it's a rebuilding year for lahainaluna this
+year, I just wanted to see it through in their senior year. You know, I remember
+both of them over the years just persevering and you know, hoping that they would
+be champions their senior year, and it's really been an inspiration to me, like
+you know?\r\n\r\nWe have gone through a lot, and every year that we're able to
+give them ceremonial resolutions, it's really something that I feel blessed to
+look forward to. Jhlia miguel committed to wrestle at the university in
+pennsylvania. Her next tournaments are the women's national in spokane washington
+and fargo, north carolina and panam in par gay argentina. Mikah lab yawn is a
+three-time mil champion, first male to win four state titles from a outer island
+school. He is the only the 14th wrestler in history to win four state titles. He
+is uncommitted, but has from in california state university bakersfield and his
+next tournament is high school nationals in virginia beach. So we really look
+forward to hearing the great things that are to come with these two
+seniors.\r\n\r\n>> thank you very much. Any more discussion, members? If not, all
+those in favor of the motion to adopt the resolution, please raise your hand and
+say aye. >> aye. >> seven ayes, two excused -- eight ayes, one excused. Srry.
+Motion passes.\r\n\r\nThank you very much MS. Clerk. >> chair, do you want to
+proceed with the second ceremonial resolutions? >> should we do both and take
+pictures all together. >> do all pictures together. >> okay. Chair before you is
+resolution 25-82 congratulating blake abernathy of kamehameha schools maui and
+teata mataafa grove, pita takafua and bryson adric of H.P. Baldwin high school
+for winning state titles at the 2025 hawai'I high school athletic association
+state wrestling championships.\r\n\r\n>> vice-chair sugimura. >> chair, I move to
+adopt the resolution 25-82. >> second. >> moved by vice-chair sugimura, seconded
+by member johnson to adopt resolution 25-82, discussion vice-chair sugimura. >>
+MAY I request that the clerk read the resolution in its entirety? >> MS. Clerk.
+>> thank you.\r\n\r\nResolution 25-82 congratulating blake abernathy of
+kamehameha schools maui and teata mataafa grove, pita takafua and bryson adric of
+handprint baldin high school for winning state titles at the 2025 hs yao yao
+state wrestling championships whereas, blake abernathy o kamehameha schools maui
+and teata mataafa grove pita takafua and bryson adric of H.P. Baldwin high school
+showcased exceptional skill and perseverance by winning state titles in their
+respective weight classes at the hawai'I high school athletic association
+wrestling championships held FEBRUARY 21-22, 2025 at the neat s. Baisdell arena
+in honolulu, hawai'I; and whereas, these outstanding student-athletes earned the
+opportunity to represent maui after securing victoris at the maui interscholastic
+league tournament held at king kekaulike high school FEBRUARY 15, 2025; and
+whereas, blake abernathy a, JR. From kamehameha schools maui secured the state
+title in the boys 138-pound weight class; and whereas, teata mataafa grove a, JR.
+From H.P. Baldwin high school emerged victous in the gyres 135-pound weight class
+for the second consecutive year; and whereas, teata mataafa grove a junior from
+H.P. Point-in-tima tak aft a, JR. From H.P. Baldwin high school displayed
+meekerable strength and determination to capture over the state championship in
+the boys 285-pound weight clas; and whereas, bryson ad rick a senior from H.P.
+Baldwin high school demonstrated exceptional consistency throughout his high
+school wrestling career winning four consecutive mil championships in the boys
+157-pound weight class and capping his final season with the 2025 state
+championship title in the boys 157-pound weight classes; and whereas, the
+exceptional achievements of these state athletes were made possible through the
+unwavering support and declines of their dedicated coaches mike labuanan of
+kamehameha schools maui and bert kamaka of handprint baldin high school and who
+have instilled in them the value of discipline, perseverance and sportsmanship;
+and whereas, the extraordinary performance of these avalancheser state utilitis
+and their [Stkpra-eu/]S of dedication and spirit have brought great pride and
+honor to their families, their school and the people of the county of maui now,
+therefore, be it resolved by the council of the county of maui: 1, that did
+congratulates blake abernathy of kamehameha school maui and teata mataafa grove
+pita takafua and bryson ad risk of H.P. Baldwin high school for winning state
+tights at the 2025 hs yao state wrestling champions and 2 that certified copies
+of this resolution be transmitted to blake abernathy, teata mataafa grove, pita
+tak aft bryson ad rick wresting coach mike labuanan athlete director john vila
+and lance cagasan ke po'o mahele luna kamehameha schools mai, wrestling coach
+bert kamaka athletic director wade hondo and keoni wilhelm principal H.P. Baldwin
+high school, joseph balangitao, JR. Executive director maui interscholastic
+league, [Skhrao-euft/] Pherchun executive director, hawai'I high school athletic
+association and honorable rigid torchlight bison jury mayor, county of maui. >>
+I'm introduced this for council member pattin, a westling enthusiastic and the
+reason this definitely got my reason is kin -- kamehameha schools maui,
+congratulations blake, as well as our own saumalu mataafa, his niece is receiving
+an award and he brought his children here today. So what an honor to honor teata
+mataafa grove, and pita takafua and bryson adric of H.P. Baldwin high school,
+where I graduated from.\r\n\r\nTo me this is quite a feat of change, in just the
+whole athletic environment. So very proud. I strongly support this, and I look
+forward to my fellow members supporting this, too. Take it away, tamara. Sorry,
+chair it's your call. >> more discussion? Member paltin.\r\n\r\n>> just you know
+super proud of all of the wrestlers. I asked for the district that they represent
+to introduce it, because it's a rebuilding year for lahainaluna. Thank you. >>
+any more discussion? If not, al those in favor of the motion, please raise your
+hand and say aye? >> aye. >> we have eight ayes, zero nos, one
+excused.\r\n\r\nPro tem kama. Motion passes. ms. Clerk. >> chair, that is it for
+our ceremonial resolutions and I believe the coaches MAY have something to say.
+>> okay. Will the coaches like to make a few remarks, or any of the team
+members?\r\n\r\n>> I believe some of the students are also going to be speaking.
+>> who? >> some of the students. >> some of the students. Great. Don't be shy.
+Good morning mike.\r\n\r\nCould you introduce the group if they are going to
+speak, so we know who they are? >> so we're back. [Laughter]This time we brought
+two. [Applause] We have blake with us as well. And I don't know, we might have
+another one next year with him. It's pretty cool. A lot of mil wrestlers will be
+here next year as well.\r\n\r\n>> very good. >> just not us, mikah. We want too
+thank you gys for recognizing the maui state champions. It means a lot to them.
+Wrestling goes unnoticed lot of times it's not football or basketball, but it's
+individual wrestling and they do go unnoticed. Mahalo to tamara, of course for
+continued support even without lahaina even here. They will be here soon, for
+sure.\r\n\r\nI would lke to thank christian, doing all the hard work making sure
+somebody is coming next year. If you didn't know, he is the wrestling coach for
+lahaina. For blake, he is a little 6th grader -- was a little 6th grader, really
+little. Now he is the same size or bigger than mikah, which is pretty cool. He
+started wrestling in 6th grade, first time wrestling a middle school. We saw a
+great potential in him back then, put in a lot of work. And here he is today as a
+state championship, a junior.\r\n\r\nWe'll be back next year, two timer, pretty
+cool. Three juniors that baldwin has today they continue to work hard. They will
+be back here next year for their second one, if tamara makes it again. They will
+be back here for their second and I'm sure bringing a lot of friends with them.
+As far as mikah, he has been a blessing to watch and grow as a leader, on and off
+the mat. He has left his lgacy here for maui and the state. And also showed the
+younger kids that anything is possible.\r\n\r\nJust a little kid a dream and
+sacrificed so much time, put insomuch work to accomplish that, and it hs paid off
+a little bit -- just a little. This year is a little more special for us, as
+this is the fourth year and last time bing here. But he is recognized with two
+seniors, bryson from baldwin, who is actually competed against mikah growing up
+since they were small and became partners before the season starts, off-season,
+and he is here. He is not here, but he is recognized as another state
+championship, which is really cool for us. The three-time state champ, almost
+four-timer, jahlia is fmily to us and good friends on and off the mat. They
+travel to different tournaments, warm-up tgether sometimes and it makes it really
+special there's a special resolution for the two of them. As well as wth the bg
+resolution for all state champs.\r\n\r\nI just want to mahalo you again, and
+thank you for the recognition ad supporting the maui champions. Thank you
+[Applause] . >> thank you very much. Anybody else like to say something? Just say
+your name and what school you are from. >> good morning. I'm jahlia miguel from
+H.P. Baldwin. I would like to thank all of you guys for allowing us and
+recognizing us to come in today, this morning.\r\n\r\nI would like to thank
+everyone who played a big part in my high school career, because today is my last
+day I will be standing here in talking as being recognized. I would like to thank
+my family for the unconditional support that they give me throughout not just my
+high school career, but my whole life being a part of wrestling. I would like to
+thank mikah for being a part of my whole journey from when we were young, because
+I started wrestling at his club at msc. Also, I would just say good luck to all
+of the juniors here today being recognized and I hope that you train hard and
+stay focused and are able to win states next year, here getting recognized for
+your guys' senior year. Thank you. [Applause] >> thank you. >> aloha.\r\n\r\n>>
+aloha. >> how's if? My name is pita takafua from H.P. Baldwin first off I would
+like to thank GOD first for taking me this far, bringing me this far in life and
+I would love to thank all of you guys for taking time out of your day to
+congratulate us and everything. I would like to thank the maui county and the
+people of maui for showing love and support through the television and for the
+families that have came out to show us love and support at the tournaments. At
+every tournament, and I would like to show love and thanks to my family members
+here for coming out here, taking time out of their day to show us love. I would
+also love t show some love to my grandparents for coming out here to make it
+here, because my dad couldn't make it, busy. But yes, I would just love to thank
+all of you guys and everybody in maui county.\r\n\r\nMahalos. >> mahalo to you.
+Thank you [Applause] >> hi. Time teata mataafa grove from baldwin to all of the
+girls who came before me, including my own aunties who inspired me and the girls
+alongside of me, you know who you are and all the girls who come after me,
+especially my younger sisters. This medal means so much to me. It's my biggest
+wrestsling achievement I have done, I had a goal coming into the season and I
+worked hard for it. I want to thank the coaches who helped me improve, the girls
+who motivated me and stood b me throughout the season and my family for always
+supporting me, auntie marisa for always making these beautiful hakus for me
+throughout the season.\r\n\r\nMy dad, and his gym for getting me where I am today
+and lastly I could not have done anything of this without my biggest supporter,
+my mom. I am so grateful to have everyone all of you guys in my life, I will
+definitely be cheering harder and be back next year for the two-time state title.
+>> very good. Thank you. [Applause] >> good morning everyone. My name is blake
+abernathy and I'm from kamehameha schools maui. Ijust want to say a big thank you
+tour wrestling coaches and family and coaches, thank you for guiding us and
+teaching us to work hard every day.\r\n\r\nYour support and belief in all of us
+have helped us become better both on and off the mat. To my family and everyone
+else's families I just want to thank you guys for always being there and
+supporting all of us at urwrestling meets and just supporting each one of your
+kids make it makes everyone better. I want to say thank you to everyone here and
+hope to see you guys next year. [Applause] >> aloha kakou. >> aloha. >> my name
+is mike labuanan and grateful that you have recognized us through our hard work
+and dedication through this sport. It really does mean a lot to come here and
+being recognized, even though we MAY not always show to be recognized if means a
+hot.\r\n\r\nThe achievements really wasn't just for me, but all of maui and I
+hope I have inspired the next-generation of maui wrestlers and just to push for
+their goals even if it's impossible, because though self-belief and strong
+community anything is possible and I'm just grateful to rep maui hui everywhere I
+do and I wouldn't be who I am without my kpe and my coaches, my partners, my
+family and others. Thank you. >> [Applause] . >> wow. Do we have one more?? >>
+good morning everyone. I'm coach grant. Didn't prepare anything because the last
+time we we here as a whole team and we didn't do speeches, but I don't really ned
+to prepare anything because I know all of these kids. And all their journeys are
+different.\r\n\r\nI chased down teata takafua and always behind me helping me out
+at every function. So everybody's journey is distinct, different and I want to
+thank christian for helping with the resolutions and the recognition. Thank you
+vry much, because we know that these kids don't get recognized in this sport, as
+much as the mainstream sports, but they don't do it for the recognition. They do
+it for the opportunity that only sports and wrestling specifically can offer
+opportunities for lessons that they will carry on throughout their lives, and
+they just amaze me at what they do. Like I said, I didn't prepare a speech. But
+thank you very much. We have teata.\r\n\r\nWe hve pita. Blake. Mikah. Coach mike,
+jahlia, did I my anything? Bryson adric, who isn't here. So congratulations to
+you all and thank you. >> thank you.\r\n\r\nAnybody else? If not, can you come
+down and take a photo with the council members, please? [Applause] Chair now
+we're at the presentation of written or oral testimony. >> members, ready to go.
+Ready. Go. >> we're still on.\r\n\r\nAkaku is still rolling. >> can you call the
+next item. >> yes, so we're on the presentation of written or oral testimony. At
+this time, individuals MAY testify on an item on the meeting agenda. And chair,
+there's currently no one signed up to testify. So if there's anyone who would
+like to, this is your opportunity. This is the last call.\r\n\r\nAnd the
+countdown is 3, 2, 1. Chair, there's no one indicating a desire to testify. >>
+okay. Members, are there any objections to closing public testimony and accepting
+written testimony? >> is this on the committee reports? >> I think this was --
+>> the beginning of the meeting. >> oh, okay. So objections.\r\n\r\n>> let the
+record show we have pro tem kama at the meeting. Good morning, and dumela. >>
+aloha kakahiaka, chair and dumelato everyone here in the chambers and in akaku
+lands, hoping for an expeditious meeting today. >> okay. >> you folks ask a lot
+of us, you know? One wants a productive meeting. One wants an expeditious
+meeting.\r\n\r\nWe'll try our best. MS. Clerk. >> chair, we're onto committee
+reports and we do mothave anyone currently signed up to testify under committee
+reports. So this will be last call. If there's anyone who would like to testify
+on the committee reports this is your opportunity. >> I think archie wanted
+to.\r\n\r\n>> someone had expressed a desire to testify, and this would be the
+time to testify for anyone in the gallery that expressed an interest in
+testifying. >> anyone o the five people in the gallery? And one is a worker.
+Anybody want to testify on committee reports? If not, this is yur last chance.
+Ms. clerk.\r\n\r\n>> the countdown is 3, 2, 1. Chair, there's no one indicating a
+desire to testify. >> any objections, members, to closing public testimony, for
+committee reports and accepting written testimony? So order. MS. Clerk. >> chair,
+from the budget, finance, and economic development committee is cfr 25-9
+recommending frst reading of bill 20 (2025) To amend the fiscal year 2025 budget
+to one, amend section 2, estimated revenues by increasing carry-over/savings from
+the general fund by $40,000 and to amend section 3.B.12a4 office 9 mayor
+administration program to increasing the appropriation for grant to akaku, maui
+community television by $40,000 and 3 adjust the totals ocordingly. >> thank you,
+chair.\r\n\r\nI would like to ask the clerk to call up 25-10-15. >> no
+objections, chair. >> no objections to calling up 25-10 through 25-15. MS. Clerk
+employees call them up. >> chair before you is cr25-10 representing first reading
+of bill 24 cd 1 (2025) To amend the fiscal year 2025 budget to 1 amend section 2
+estimated revenues by increasing carry-over saves from thing golf by $300,000, 2
+amend section 3b7b department fire and public safety, fire/rescue operations
+program by increasing the aprocession for category b operations and equipment by
+$300,000 and 3, adjust the totals accordingly. Cr25-11 recommending first reading
+of bill 32 (2025) To amend the f-2520 budget appendix a, part 1, grants and
+restricted use revenues schedule of grants and restricted use revenue revenues by
+deputis and programs for fy'2025 and to add a new appropriation under the
+department of management entitled "community development block grant disaster
+recovery," in a. $1,639,381,000. With conditional language to one, allow for
+disbursement of salaries and premium pay up to 56.0 limited-term appointment
+equivalent personnel and 2, require a copy of the quarterly report transmitted to
+the united states department housing and urban development to also be submitted
+to the council. Cr25-12 recommending first reading of bill 34, c 1 (2025) To
+amend the fy'2025 budget to amend section 3b12c38 office of the mayor economic
+development program by changing the appropriation's name from "maui film [Tpa
+-eflt/]" to" maui economic development board, inc. For the wailuku film festival,
+cr25-13 recommending first reading of bill 35 cd 1 (2025) To amend the fiscal
+year 2025 budget for 1, amend appendix a part 2 special purposes revenue schedule
+of revolving/special funds for fiscal year 2025 general excise tax fund by a
+increasing the amount in condition 2 for design construction ad permitting of the
+wildfire permanent disposal site- >> cr25-14 recommending frst reading of bill 36
+(2025) To amend the fiscal year 2025 budget appendix a part ii special purpose
+revenues schedule of revolving/special funds for fiscal yar 2025 managed retreat
+revolving fund to add a new condition 3 to require up to $100,000 to be used for
+the removal of structures, tree stumps and other debris impacted by shoreline
+erosion at baldwin beach park and cr25-15 recommending the following: 1
+physireading of bill 347 cd 1 (2025) To amend the fiscal year 2025 budget to
+reflect the transfer of $25 million from the general excise tax fund to the water
+fund restricted for the following projects: $10 million for water supply
+infrastructure repairss and repayments in wildfire impacted areas G.E.T. Funds
+$10 million for integration of public and private water systems G.E.T. Fund and
+$5 million for kamole water treatment plant filter replacement for G.E.T.
+Fortunate and 23 first reading of bill 38 (2024 (To amend the chapter 3.100 maui
+county code to a, clair [#23-eu/] That [#30-e8/]% of the funds derived from the
+county's general excise tax will be deposited into the general excise tax fund
+and 20% will be deposited into the general excise tax fund department of hawai'I
+homelands and b provide for funding for water-related projects from either fund
+to be transferred to the department of water supply for of diration of project
+and remaining funds to be redeposited in the appropriate funds for the conclusion
+of the project.\r\n\r\n>> vice-chair. >> I want to thank the ocs for staff for
+these committee reports ump pumping out seven to accommodate the work done at
+bfed and these were sent last-minute to support them and get this done in the
+spirit o cooperation. That was a lot. Usually this does not happen, but in the
+meantime, I would like to ask for the mechanics' support of my motion first
+reading bill 2224, 25 and 34 through 37 are amendments to the fiscal year 26
+budget bill 38 is amendment to the maui county code. Bill 22 increases funding
+for akaku community television to give- to ensure continued coverage of our
+boards and commissions for $40,000. Bill 24 allocated $300,000al funding to the
+ferment of fire and public safety to cover firefighting costs from the JULY 24th
+crater road fire, which is in my community. Thank you very much. Bill 32 add
+tories the department of management $1.64 billion to the community development
+block grant disaster recovery funding, which is cdbg dr for wildfire recovery
+efforts.\r\n\r\nAnd this one I want to make a note this $1.6 billion you will not
+see it, members, listed in the budget because the nw budget will be allocated,
+but we hope to see it with the projects that will get done because of the use of
+$1.64 billion at cdbg dr funds. The administration committed to quarterly reports
+as they do have to report on this to hud. So I will will be having this in my
+committee to hear updates on the cdbg dr fund as it happens for the recovery of
+west maui. Bill 34 renames the maui film festival appropriation to the maee
+economic board, inc. for the walkey film federal realty investment trust and
+thank barry and stella recoveris who have been doing the maui film festival who
+is taking a break and the funding, which I think is 90 something thousand which
+being sent over to the wailuku film feha through medb that is brian cone's maui
+fix commission, I bill 35 conditions in the general excise tax fund relating to
+the wildlife permanent disposal site to reallocate $ million for operations and
+maintenance to construction t cover higher than expected construction costs. This
+is the pds site. So very important.\r\n\r\nBill 36 allocated up to $100,000 for
+the managed retreat revolving fun to remove hazardous debris at baldwin beach
+park caused by shoreline erosion. Bill 37 formerly transfers $25 million from the
+G.E.T. Fund to the water fund for wildfire recovery and infrastructure projects.
+And finally, bill 38 amends the maui county code to allow the department of
+finance to transfer G.E.T. Funds specifically for water infrastructure projects
+to the water fund, and any unused funds will be returned to the appropriate
+G.E.T. Fund. Respectfully ask for the members' support of my motion, and thank
+you very much, chair. >> any further discussion? >> excuse me. We don't have --
+we don't have a main motion on the floor.\r\n\r\n>> I'm sorry? We don't? >> we
+don't. >> all right. MAY we have a main motion? >> second. >> moved by member
+paltin, seconded by pro tem kama to pass the following bills on first reading:
+cr25 -- contained in cr25-9, let's see, through cr25-15. Any further discussion
+on any of these bills? No discussion? All those in favor of the motion to pass
+these bills on first reading raise your hand, say aye.\r\n\r\nNine ayes, zero
+nos, motion carries. Thank you, MADAM Chair. >> somebody steps away, please let
+me know, actually, nhe -- sometimes i don't see. Next item. >> chair, from the
+water and infrastructure committee is committee report 25-16 recommending
+adoption of resolution 25-21 cd 1 to authorize the acquisition of 1.811 acres of
+real property identified as a portion of the tax map key 23-2-3-005:004 a
+waterline eatm across tax map keys 2-2-3-o004-016, 2-2-3-004:020, and
+2-2-3-005:004 and an access easement across tax map keys 2-2-3-004-016 and
+-2-3-005:004 am poe kula makawao, maui, hawai'I for $451,561. >> member cook. >>
+I move to adopt the recommendations in the committee report. >> second.\r\n\r\n>>
+moved by member cook, seconded by vice-chair sugimura to approve the
+recommendations discussion member cook. >> thank you, members your water and
+infrastructure committee met on FEBRUARY 25th, 2025 to discuss resolution 25-21.
+Resolution 25-21's purpose is to authorize the county's acquisition of 1.811
+acres of real property pin oma'opio, kula, makawao, maui I'd odds tax map key
+2-2-3-005:004. For $451,56 and accept the dedication of water rhine easement and
+access easement across the property. Mentionersing the oma'opio water tank was
+constructed by the county on hale'akala ranch's property. Since then, the county
+has maintained and operated under a right-of-entry agreement. This resolution
+would formally accept te land that water tank was built on and accept essential
+water infrastructure and your committee amended resolution 25-21 by revisiting
+the resolution's title, clarifying the parcels affected by the water line and
+access easements along with each easement's size. Inserting the appraised value
+of the easement at $1,561, and the appraised value of the 1.811 acres at
+$450,000. And incorporating non-substantive revisions. Your committee voted 7-0
+to recommend adoption of resolution 25-21 cd 1, I respectfully ask for the
+members' support for my motion.\r\n\r\n>> any more discussion? If not, all those
+in favor of the motion to pass this resolution please raise your hand, say aye.
+>> aye. >> nine ayes, zero nos motion, carries. MS. Clerk. >> chair, from the
+water authority, social services, and parks committee is committee report 25-17
+recommending adoption of resolution 25-50 cd 1 to approve te appointment of
+jonathan likeke scheuer to the east maui regional community board as hawaiian
+homes commission's representative for the term expiring MARCH 31st, 2030. Moved
+by member sinenci and seconded by pro tem kama to approve te recommendation in
+cr25-17. Discussion, member sinenci.\r\n\r\n>> thank you, chair. Your water
+authority, social services, and parks committee met on FEBRUARY 25th, 2025 for
+resolution 25-50 cd 1. Chair, chapter section 819.2 requires one member of the
+east maui region community board be a representative of the hawaiian homes
+commission, and recommends -- and recommended by the department of hawaiian
+homelands. Following beneficiary input and an extensive selection process on
+JANUARY 27, 2025, the CHAIRMAN Of the hawaiian homes commission informed the
+chair of your committee that the it dhhl voted and unanimously aproved jonathan
+likeke scheuer as the representative of the east maui regional community board.
+And members, based on DR. Scheuer's expertise and endorse of the hawaiian homes
+commission and dhhl, your committee expressed support for DR. Scheuer's
+appointment and thanks him for his willingness to serve. The proposed cd 1
+version is approved as to form and legality by the department of corporation
+counsel.\r\n\r\nYour committee voted 6-2to recommend adoption of resolution
+25-50, cd 1. And finally, members, because DR. Scheuer is not a maui county
+resident to waive the residency requirement under second, 2.60.040 maui county
+code that council must adopt this resolution with a two-thirds vote. And chair, I
+do see DR. Scheuer today in the audience. I guess I see him more often on maui.
+He might as well be a maui resident. thank you for your support.\r\n\r\n>> any
+further discussion? Council member rawlins-fernandez. >> mahalo, chair. Mahalo to
+dhhl chair watson for his nomination for DR. Scheuer and lending his
+institutional knowledge and his skillingset institutionan knowledge and mahalo
+DR. Scheuer for taking that shorter initial term and your willingness to take on
+a normal term thereafter. Mahalo for continuing to represent our homesteaders,
+and dhhl's obligation to returning kanaka to 'aina.\r\n\r\nAs other districts
+including moloka'I watch how hawaii we're indeed taking notes of hopefully
+learning from them and to do the same one day. Mahalo, chair. >> any more
+discussion? I see pro tem kama, and member johnson. >> thank you, chair. I just
+wanted to mention that you know, in situations like this, when the department
+makes recommendations to us, there's a vetting process that precedes us and it's
+the beneficiaries of the trust. So know that whatever comes before us has already
+gone before them, and our constituents have already done the vetting
+process.\r\n\r\nAll they are doing is going along with the recommendation of the
+department/commission, as well as the chair. So I think a lot of times we tend to
+forget that when it comes to hawaiian homes, another group of hawaiians have
+already veted this process. So I just wanted to make mention of that; that they
+are very astute. They are well-educated and know the hawaiian homes commission
+act almost, as much as the commissioners appointed by the governor know it and
+they are truly the people who know what is best for them. So I just want to thank
+member sinenci for bringing DR. Scheuer forward. I have no idea what is going to
+happen after five years, but hopefully, more beneficiaries will be able to step
+up and be able to continue the process.\r\n\r\nThank you, chair. Thank you,
+member sins ji. >> member johnson. >> thank you, chair. I rise in full support of
+the relation. I have met DR. Scheuer many times, and -- >> scheuer.\r\n\r\n>>
+scheuer, thank you I was just saying what council member -- >> I know, I let
+that one go, but not two times. >> so I met him mny times and he even came to
+lana'I a few times and I appreciate that. Lana'I is often forgotten and to have
+someone come to my tiny community means a lot to me. This bureaucy I full of
+nails and we need a hammer. So I rise in full support for this hammer. Thank you,
+chair. >> okay.\r\n\r\nMR. Carpenter. [Laughter]MR. Cook. >> thank you, chair. I
+am supportive of DR. Scheuer for this position.\r\n\r\nI have had the opportunity
+-- he has made himself available any time that I wanted to talk with him. I have
+enjoyed the conversations. I recognize not only his cultural expertise,
+obviously, but also speaking engineering with him and the nuts and bolts and
+aspects of water and resources and sustainability, and I trust that his heart is
+in the right place and I know he knows what he is talking about what it comes to
+the engineering aspects. So I look forward to wrking with him in the future and
+supportive of this. Thank you. >> anybody else? I am going to ask for roll
+call.\r\n\r\nMember keani rawlins-fernandez. >> mahalo, chair. Member kama spoke
+to what is going to happen after five years. And it reminded me that I missed one
+point in my notes that one of the bonuses in having DR. Scheuer on the hawai'I
+mahkinau when he facilitates his meeting and shares mana'o in 'oiwi everybody
+learns a ton and our new executive director MS. Young -- gina young make an
+amazing team. So everyone wins, you know, by having them, MS.\r\n\r\nYoung and
+the board together working on behalf of the community. So mahalo, chair. >> ready
+for the vote? I just want to say that I respect MR. Scheuer and acknowledge his
+expertise. My only concern he is not a maui resident. Roll call.\r\n\r\n>> pro
+tempore tasha kama? >> yes. >> vice-chair sugimura? >> no. >> council member
+paltin? >> strong yes. >> council member johnson?\r\n\r\n>> yes. >> council
+member rawlins-fernandez? >> aye. >> council member cook? >> aye. >> council
+member uu-hodgins? >> aye.\r\n\r\n>> council member sinenci? >> aye. >> council
+chair lee? >> no. >> chair, there are seven ayes, two nos, motion carries. >>
+thank you, DR. Scheuer.\r\n\r\n[Applause] Now let's have the next item. >> thank
+you, chair, moving on to resolutions, currently we have no one signed up to
+testify on the resolutions. So if there's anyone wishing to testify, please make
+your way to the podium or raise your hand in teams. Chair, seeing none,
+countdown, 3, 23, 1. There's no one indicating that they wish to testify. >> any
+ojections to closing public testimony on resolutions, and accepting written
+testimony? Into the record? >> no objections.\r\n\r\n>> goodbye, MR. Kalepa. All
+right. Shall we bin. >> sure. Nor referral to the government relations, ethics,
+and transparency committee is resolution 25-79 authorizing settlement of kamalani
+t. Uyehara v. County of maui department of water supply et al. Civil 2
+ccv-21-0000387. >> any objections to referral of this item to the great
+committee?\r\n\r\n>> no objections ) So ordered MS. Clerk. >> chair for referral
+to the budget, finance, and economic development committee is resolution 25-80
+authorizing the filing of an application with the department of hid hud, united
+states of america, for the grant under the community development block grant
+program. >> any objections, members, to refering this all all right to the b
+medcommittee, no objections, MS. Clerk. >> we're onto ordinances and there is no
+one currently signed up to testify. Counterdown, 3, 2, 1, chair there's no one
+indicating a dire is to testify.\r\n\r\n>> any objections to closing public testi
+so ordinances and accepting written testimony. Mony >> no objections. MS. Clerk.
+>> resolutions. Resolution 25-79. -- objections to referring to the drip
+committee? >> no objections, MS.\r\n\r\nClerk. >> pair for second and final
+reading bill 1015 cd 1 (2024) A bill for an ordinance amending sections 19.39.150
+and 19.500 .11 10 maui county on non-conformings. >> member pallin. >> thank you,
+chair. Ir move to pass bill 105 on second and final read second. >> move by
+member pltin, seconded by member sinenci to pass bill 105 on segand final reading
+discussion, member [Pa -plt/] Begin. >> thank you, chair.\r\n\r\nI would like to
+thank member kama and this body for allowing me to take this up this term. And
+trough our work a number of people that have had their permits waiting with the
+department of planning will be able to move forward. A number of people who were
+waiting to even start the drafting will be able to move forward, and it will help
+our community to rebuild. Prior to this bill's passage, there was a way forward,
+but for a hot of people we had never experienced this level of devastation
+before, and you know a lot of homes wouldn't have been able to be rebuilt, a lot
+of churches especially were not conforming to the zoning standards. So when MR.
+Klepa was on the mayor's advisory committee, and at the previous cnha convention,
+that was one of his requests was that all our churches be allowed to come back,
+and so this bill will allow for that. Thank you.\r\n\r\nI respectfully ask for
+the members' support of my motion. >> any more dscussion? Vice-chair sugimura. >>
+so chair, at the first reading, members, I have a concern at the person who came
+to testify, where she has a tvr. Her structure did not get destroyed. I think she
+sent all of us an email about her situation because of the debris, she was not
+able to use her property. There was no water and infrastructure was damaged
+because of the fire, which we al know that story.\r\n\r\nBut I'm concerned that
+what we're -- the action that this is taking is impacting her as she described
+in her testimony that day. I do know the urgency that member paltin just talked
+about, because we did hear about it as we were discussing the bill and here we
+are on second and final. And I wonder if the committee would -- if the council
+would take an asf regarding this, and we can waive committee referral, you
+know-I'm sorry. We can take action -- tch do you want to make a motion? >> does
+the department have an asf to pass out? David raatz? >> thank you,
+chair.\r\n\r\nIt's being processed at the moment. >> okay, do you want to come
+back to this? >> let's take a temperature here. Why don't you make your motion
+and we know what you're going to do and we'll look at the asf, if need-be. I'm
+not sure. >> so I understand, you know, the sentiments of the body, but again,
+because there was an amendment that was made that specifically talked about tvrs,
+and that continuing, because of the fire, and this one testifier that came up
+during first, I just wanted to make sure we're okay. >> let's make the
+motion.\r\n\r\n>> so I'm waiting for the paperwork, so I can say it correctly,
+because I don't want to take away from what member cook did at first reading. So
+if I would wait? >> member rawlins-fernandez. >> mahalo, chair. I support the
+main motion on the floor. I will be voting aye. And at last council meeting, when
+bill 105 was before us for first reading member sugimura did try to make the
+motion and there was not a second.\r\n\r\nI'm fine to wait for the asf, but if
+we're going to do that we can table it and take up the other bills and that way
+there's the last ones that are stalling? >> member paltin. >> I'm okay with that
+course of action, but I just wanted to make other discussion, if I's okay? >>
+other discussion. >> you know, I was able to watch the mayor's south maui town
+hll on facebook live, and what he said rings so tue, especially for lahaina. We
+have no shortage of visitor accommodations in lahaina. We have hotels.\r\n\r\nWe
+have short-term rentals. We have b&bs. There's no shortage whatsoever. We do have
+a significant shortage of places for our residents to live, a significant
+shortage of places for our survivors to live, ad this is a policy decision that
+corp. Counsel said was ours to make. There's nothing legally incorrect, and for
+me, as a decision-maker on policies, I am willing to put the residents of this
+county, the residents of our community before an off-island speculator. That's in
+my bones to do, to put our community first.\r\n\r\nWe're not taking away this
+individual's property. She can rent it out long-term, she can move here, but we
+have more than enough visitor accommodations. We have more than enough short-term
+rentals,, in fact, the data shows we have the most short-term rentals in the
+entire state. Our housing units are in the negative, not just from the fire, but
+because of the conversion of residential units to short-term rental units. And so
+I think it is a good policy decision to stop that. Thank you. >> any more
+discussion?\r\n\r\nOkay, why don't you make your motion I'm waiting for the
+paperwork to come. So why don't you move on to the next one. >> all right,
+members, any objections to skipping this item and tabling this item for now no
+objections. >> so ordered, MS. Clerk. >> thank you, MADAM Chair before you is
+bill 17 cd 1 (2025) A bill for an ordinance amending the fiscal year 2025 budget
+for the county of maui general budget provisions, section 18 (A). >> vice-chair
+sugimura. >> if there are n objections MAY I please request the clerk to all call
+up bill 31-(2025). >> any objections.\r\n\r\nMS. Clerk, 31, and what did you say,
+30 and 31 (2023) entitled, "a bill for an ordinance 31 and17, also call up 31,
+sorry. >> MS. Clerk. >> thank you, MADAM Chairion bill 3 (2025) A land amending
+the fiscal year 2025 budget for the county of maui appendix a, part ii affordable
+housing fund kaiaulu o kuku'ia. >> vice-chair sugimura. >> I move to pass bill 17
+and 31 (2025) On second and find reading.\r\n\r\n>> second. >> moved by
+vice-chair sugimura and second by pro temyama to pass bill on second and final
+readingment discussion, vice-chair sugimura. >> no discussion. Thank you, chair.
+>> any discussion, members? Member sinenci? >> thank you, chair.\r\n\r\nI just
+wanted to speak briefly on bill 17. Amending the fiscal year budget for the
+county of maui, general budget provisions. Chair, in lght of the recent
+discussions that we have been having, and I understand what this bill is doing we
+had a presentation from the ers, and so in light of the things that are happening
+at the federal-level, we're kind of diversifying our portfolio at the ers. And
+the eutf also in the housing committee -- , as well as governor green asking we
+keep some cash on-hand. So just some discussions a we move forward into the
+budget season and also in urhousing committee other members have expressed that
+possibly using bond funding t help with infrastructure for our housing. So I know
+we're not approving a lot of bond funding, but hopefully, we can consider that
+during as you had suggested in committee, that we maybe look at more bond funding
+to input some of the infrastructure for our housing needs, especially with our
+deed restriction discussions, cair. I just wanted to say that. >> thank
+you.\r\n\r\nAny more discussion? Did you have your hand up, vice-chair sugimura?
+>> thank you very much, member sinenci. So this is the bill that will take us
+there to put the cap for bond funding from $100 million to $150 million. So we'll
+get there with the administration. Thank you very much, member sinenci. >> all
+right, so we have the two bills before us for second and final reading, all in
+favor please raise your hand say aye.\r\n\r\nI see nine ayes, zero nos, motion
+carries. >> thank you, members. >> so then we have 29 ad 30. MS. Clerk. >> chair
+before you is bll 29 (2025) A bill for an ordinance amending section 2.88.030
+maui county code on the maui county cultural resources commission's membership.
+>> member paltin bill 29, do you want to recommend passing it on second and final
+reading? >> I would, but that is member uu-hodgins's committee.\r\n\r\n>> I'm
+sorry. I have member paltin. Wrong committee then member uu-hodgins. >> thank
+you, chair. I don't have any notes for that. But I am happy. >> I'll do
+it.\r\n\r\n>> I'm happy to pass bll 29 and bill 30. >> second. >> very good, very
+good. Okay. >> chair, did you want me to call bill 30 also? >> yes, please bring
+it up. >> bill 30 (2025) A land amending section 2 had the 41.080 maui county
+corrode on minimum island representation for boards, commission and committee. >>
+member uu-hodgins.\r\n\r\n>> thank you, chair. We dd hear these items in our
+great committee the other week. These are to provide us some flexibility on how
+we staff boards and commissions. I do want to make clear our include at least my
+intention when I voted to support this is never to silence anyone, but to allow
+us a path forward. I am going to continue to be happy to support any and all
+islands to participate in our bolders and commissions including lana'I and
+moloka'I and est maui, everyone is welcome to participate. I wanted to let you
+know member johnson that our office did reach out to former liquor chair in the
+few weeks 10 days or so to stan ruiedas to ensure maui county participating and
+atlantic to make it easier for you folks to come over in face an in-person
+meeting is required. And what we can do as a county to better support our
+off-island, our neighbor island I guess version of - boards and commission
+members.\r\n\r\nSo with that, I do thank member paltin for bringing this up, so
+we can have a way to move forward. We suffer from severe shortages on boards and
+commissions and to thank her and to thank member johnson and please give you are
+love to your residents thank you. >> member paltin. And vice-chair sugimura. >> I
+just wanted to apologize to you and member uu-hodgins I did have this on my the
+agenda with my little noting and I didn't highwaying at m notes. So my apologies.
+I annotated agenda, and I was distracted.\r\n\r\nI'm sorry. But I whole heartedly
+aree with the things member uu-hodgins said. You know, we're behind the curve
+with the late start of the inb and behind the curve with so much vacancies. I
+have in other things up my sleeve to try and make these boards and commissions a
+little more manageable and hopefully, a little more chesive and efficient. Same
+thing, if this moves, spurs laniaians to get involved, then I'm not sorry. But I
+hope that is the case. I hope that you know, the anger, or upset of this move
+will spur them to take action and get involved, because we would like nothing
+better than to approve qualified candidates who are willing to show up from
+lana'I. >> thank you.\r\n\r\nActually, there's no need for an apology, we're very
+flexible here. Like bamboos, we know how to bend appropriately. Vice-chair
+sugimura. >> thank you. So I did speak with director silva from liquor about what
+was testified, and basically what he said was that members who are on commissions
+can ask for -- if they do their travel in advance they can ask for their
+reimbursement, or funding before they take the trip. So that the commissioners do
+not have to hold the weight of the cost to participate personally. So I think
+there's a method that is there, and available.\r\n\r\nI did support lana'I on
+this, because I do know that this will spark them from -- I didn't want them to
+be singled out and looked upon in that we'll work together. Thank you. >> member
+johnson. >> thank you, chair. Well, I personally reached out, as well as my
+office to the lana'I folks to come and step up and please before second reading.
+We had one person. I wanted to give a shout-out to fran, who does a lot for my
+community, but we need more than one person.\r\n\r\nI cannot be the only one who
+advocates for folks to get on these boards and commissions. The gemma family
+cannot be the only ones that sit on boardsing and commissions for lana'I. MR.
+Rudisas and there's a trend and only afew folks that are trying to sit on these
+boards and commissions. So I once again call on my community, please change the
+mindset. You do have a seat at the table. You do have a voice. You can be heard,
+if you come on these boards and commissions.\r\n\r\nI don't know if it's a
+mindset that needs to be changed, that we fel that, you know, again, the hammer,
+the nail that sticks up gets hammered down, a very japanese proverb, if w speak
+out against the company, if we speak out against the authority, then we are
+scared and you know, we need to step up. So with that being said, I understand
+where the council is coming from. We have to rebuild lahaina and lana'I seats
+cannot be the ones that are holding us back. I can't just -- try to fight for the
+folks, it's in any blood thank you, chair, roll call, if we can. >> yes, that is
+very understandable. Any more discussion? Member rawlins-fernandez.\r\n\r\n>>
+mahalo, chair. I will vote in support of the motion on the floor with the reasons
+I stated at first reading. And member uu-hodgins said she would be happy to pass
+bill 29 and bll 30. It wasn't the language o the motion, and member sugimura and
+I jokingly seconded it. For the record, member uu-hodgins did make the motion. We
+have considered it and member sugimura seconded it. Mahalo, chair. >> all
+right.\r\n\r\nMember uu-hodgins. For the record, could you restate the motion? >>
+yes. I move to pass bill 29 and 30 on second and fnal reading. >> moved by member
+uu-hodgins. And seconded by member sugimura to pass bills 29 and 30 on second and
+final reading. Any more discussion?\r\n\r\n>> so maybe member rawlins-fernandez
+can take one and I will take the other since we're sharing. >> you can have both.
+[Laughter], it's okay. Mahalo for the offer. >> all right. I already designated
+you as the seconder. Boy, folks just trying to stretch this meeting, goodbyer >>
+we just love each other so much chair.\r\n\r\nWe're just trying to be a team
+here, chair. >> yes, and anybody who believes what you just said, I have a bridge
+to sell you in nahiku. Ay more discussion? Roll call. >> council member pro
+tempore tasha kama? >> yes. >> vice-chair sugimura?\r\n\r\n>> so you are taking
+up both at once? >> yes. >> I want to support gabe and lana'I. >> let's take it
+up separately. Roll call, separately. >> okay. So I will just call for bill 29.
+Pro tempore tashayama. >> yes.\r\n\r\n>> ice-chair sugimura. >> yes. >> council
+member paltin. >> aye. >> council member johnson? >> no. >> council member
+rawlins-fernandez?\r\n\r\n>> aye. >> I think you meant no. >> no, sorry, sorry,
+gabe. >> is it okay, can se change her vote everybody? >> >> no problem. >> no
+objections. >> no objections.\r\n\r\n>> because I have a feeling. >> I thought
+she was trying to be generous in sharing, but now I see what her ploy was.
+[Laughter]. >> okay. So we have a yes. We have a no, we have a yes. We have a no
+and now member rawlins-fernandez? >> aye.\r\n\r\nTo both. >> council member cook?
+>> aye. >> council member uu-hodgins? >> aye. >> council member sinenci? >>
+aye.\r\n\r\n>> council chair lee? >> aye. >> chair, seven ayes, two nos motion
+carries, now bill 30. Council member pro tempore tasha kama. >> yes. >>
+vice-chair sugimura. >> gabe, is this -- >> I'm going to vote no for this the
+lana'I thing is what I'm trying to support. >> oh, they are?\r\n\r\n>> yes,
+ma'am. >> sorry, no. >> council member paltin? >> aye. >> council member johnson?
+>> no. >> council member rawlins-fernandez?\r\n\r\n>> aye. >> council member
+cook? >> aye. >> council member uu-hodgins? >> aye. >> council member sinenci? >>
+aye.\r\n\r\n>> council chair lee? >> aye. >> seven ayes, two nos, motion carries
+. Next item. >> going back to bill 105 cd 1. >> can you please make your motion,
+vice-chair sugimura. >> okay. I move to amend bill 105 cd 1 (2024) Subsection
+19.500.1 10g by inserting the phrase "or for which the owner received written
+confirmation from the department, before december 30, 2015 of the structure s'
+existing non-conformity ue shown in bold in reference to read as follows: do you
+want me to read the whole thing? >> no, we can see, we have got it.\r\n\r\nSo you
+need a second for that amendment. >> second. >> moved by vice-chair sugimura,
+seconded by pro tem kama, and you already heard the motion to amend bill 105. Now
+discussion. >> I also want to suspend rule 19 so we can take action today. >>
+okay. Let's deal with that separately. >> okay.\r\n\r\n>> do you have anything
+more to say? >> no. >> member paltin? >> I would just say this is a slap in the
+face to the hundreds of people that testified in support of phasing out
+non-conforming transient vacation rentals in support of residents' housing. Need
+right now is not for tvrs, but the need is for housing for our residents. We have
+hundreds of people that don't have places to life. We have the eviction
+moratorium lifted.\r\n\r\nthis is so tone deaf to the residents, and the
+community of maui and I will not support it, and everybody will know how people
+are voting. That is all I have to say. >> member rawlins-fernandez. >> mahalo,
+chair. I will be voting no. Again, we have taken this up multiple times. We have
+discussed it in committee.\r\n\r\nWe have discussed at first reading. We're
+discussing it again. I am going to support our west maui council member. She is
+the one that is on the ground listening to the community's needs there. I know
+this bill 105 doesn't only apply to west maui. It's countywide. But the area that
+is going to feel it the most first is west maui.\r\n\r\nAnd so, for a similar
+reason that we just took the vote, and votes were changed to support the lana'I
+council member, because the lana'I council member is speaking for his community
+is the same reason that I'm voting to support the west maui council member for
+those reasons that she just stated. We need to put our residents into housing. We
+need to put our residents first. Enough with prioritizing tourists. It's
+insulting to our community and they have said it in many ways many, many times,
+if you are not listening, I'm listening and those of us who are listening.
+Mammalo chair,. >> anybody else? Member cook?\r\n\r\nAnd mmber uu-hodgins the way
+it's written this apparently and people can clarify to me, this basically just
+makes it no matter where in the planet you live, I you happen to have one before,
+you can have it again, and that I'm not supportive of, because that is where my
+perspective of what we're doing with transient vacation rentals is just filtering
+out to enable homes to be available for local residents, and to enable local
+residents who have being invested in it to maintain it and we have to find the
+blance. But I'm not supportive of simply negating the fact and letting transient
+vacation rentals be accepted. So I guess that is my clarification. This is any
+transient vacation rental. Okay. Yes. So I can't support it.\r\n\r\nThank you. >>
+all right. Member uu-hodgins. >> thank you, chair. I actually have a question for
+corp. Counsel, please; if they are there. >> yes.\r\n\r\n>> okay. I just want
+their opinion on whether or not they think this is a taking? And I believe they
+had the person at least talking to us about this had a right to do so, but it was
+existing non-conforming. They did not have a permit, which is why I think maybe
+they are in this space now. But I just wanted their opinion that this isn't
+considered a "taking." corp. Counsel. >> thank you, chair.\r\n\r\nYou know, I
+don't think it would be considered a "taking," but what I'm concerned about is
+the date. I don't have enough background to understand why that particular date?
+But what the effect of this would be is that any non-conforming use that was
+given, written confirmation prior to that date would be okay countywide. And so I
+don't consider this to be really a taking issue, but it really -- I'm not sure
+what the significance of DECEMBER 15th, 2015 is? But overall, I mean, I do have
+MR. Hopper on the line. I asked him to jump on.\r\n\r\nWe have been texting. He
+believes it's legal. But if you want to get deeper into this conversation, I
+probably have to ask him to jump on and answer some of your more specific
+questions. >> can you have him jump on so we can finish this up? >> sure. >>
+chair? >> hi chair, can you hear me?\r\n\r\n>> yes. >> I'm on, I just had to get
+unmuted from the council's side. If the question is not allowing non-conforming
+uses to continue, if that is a taking? Then no. Under the current law right now
+someone discontinued their use for 12 consecutive months for any reason, they
+lose the right to do the non-conforming use, the purpose of this bill is to on
+some circumstances say you have extra time to resume your use, and then there was
+subsequent decision by council to say transient vacation rentals uses will not
+have that additional time. And then an exception to the exception was made for
+owner-occupied units. So that is where we are now.\r\n\r\nSo if the question is
+whether or not in general saying someone who discontinued ue for 12 consecutive
+months use or loses the right to do the use, I would say that is not a taking and
+that is what is in the law right now currently. Mib have a question for MR.
+Hopper while he is on the line? Member cook? Tch MR. Hopper, this is basically in
+regards to the lahaina fire 12-month issue? Right?\r\n\r\nAnybody currently if
+you stop using it for 12 months you lose the right. This particular one would , I
+think I answer my own question. Thanks. >> I think you did too. Okay. So we have
+member uu-hodgins, did you have a question for MR. Hopper?\r\n\r\n>> I think he
+answered me. Thank you very much, chair. >> all right. Pro tem kama. >> so I just
+wanted to ask the question, so she is saying that because of the fire for 12
+months she was unable to use her vacation rental because she was told she can't.
+What does that mean to us, if it says for any reason doesn't matter, but she was
+impacted by at fire like everybody else was. I think in a different way. So does
+that not mean anything to us?\r\n\r\n>> so this is a question for corp. Counsel
+or for MR. Hopper? >> MR. Hopper. >> MR. Hopper.\r\n\r\n>> well, that I think is
+the policy decision you are making with this entire bll is there are -- there
+are currently under the law, if you discontinue for 12 consecutive months or your
+structure is destroyed for any use and they are non-conforming, meaning that they
+were once legal, but under current code they are illegal. They lose either their
+non-conforming use ability, or the ability to reconstruct as it was originally
+built, they would have to company conform to the new code or zoning standards for
+them. So that the default rule whether by disaster or otherwise. This whole bill
+is to say that the reason you discontinued your use or your structure is
+destroyed was a declared disaster. You have additional time, I believe it's four
+years with some exceptions to either rebuild or resume your use. And then so that
+is the amendment. And then there was another amendment to say except for
+transient vacation rental uses, those uses you MAY not resume if they have been
+discontinued for 12 consecutive months, even if it was because of
+fire.\r\n\r\nThat was amendment that passed. And then an amendment to that
+aendment passed saying if you are owner-occupied, you still get the extra time.
+That is where you are now. I think those are policy decisions and the point you
+brought up I a policy decision, if you want to have the tvr subject to the new
+four-year period, or stay under the one-year period to resume their use? Thank
+you. >> pro tem kama, are you done? >> yes, thank you, chair.\r\n\r\n>>
+vice-chair sugimura. >> thank you. MR. Hopper we did have that discussions dring
+first reading, and it's a policy decision; right? We can make a decision, but we
+did have MS. Hailey come and testify, which she was the third, I guess, that we
+knew of that was identified that would be impacted. I just out of fairness for
+that, I wasn't trying to take away all of the long-term housing in lahaina or
+anything of that nature but it is a use that was before, and she had
+non-conforming and that date by wait way comes from a letter from the planning
+department allowing her to have this use and hr non-conforming use on what she
+was doing on the property.\r\n\r\nSo tat is all. You can take the vote. >> all
+right, member paltin. >> thank you, chair. As the planning department sated when
+we were in committee, you know, non-conforming uses are meant to be phased out,
+you know? When the law changes, there's a reason for it to change, and we hadn't
+experienced the whole entire town burning down. And so as a policy decision, we
+made decisions, you know, not everyone even with this bill is going t build back
+exactly what they wanted to because they still need to comply with building
+codes.\r\n\r\nThey still need to comply with fire codes. So not everybody even
+with this bill is getting to go back to exactly what they had before the fire. In
+some cases the fire department MAY make adjustments not in line with residential,
+but rather in line wth the stricter commercial standards. They MAY have people
+move their buildings, if there is safety concerns from fire. So not everybody is
+going back to what they had, and this isn't a taking from the individual. There's
+many other uses that she could continue to have with her structure. She could
+live in it.\r\n\r\nShe could rent it out long-term to one of the survivors, or
+residents that desperately need housing. This is a policy decision if this
+amendment passed of putting our residents behind the speculative interests of
+non-residents of maui county. This policy decision of passing this asf will put
+continental speculative interests ahead of our residents' interests and I will
+not be supporting it. >> for the last time, member sugimura. It's time to vote.
+>> I'm going to withdraw my motion. I can hear what is happening, so I will just
+withdraw.\r\n\r\nI'm glad we had the discussion, because I'm sure she was
+listening and those supporting her were listening and we can see the tempment. >>
+you are withdrawing and who is the second? So withdrawal of the second. Back to
+main motion. Do we need a roll call? >> no. >> sure?\r\n\r\nOkay. Let's have --
+can you repeat the motion, MS. Clerk and then we're just going to ask for a raise
+of hands and voice-vote. >> chair, the motion is to pass bill 105 cd 1 on second
+and final. >> aye. >> all those in favor of the motion, raise your hand, say aye.
+>> nine ayes, zero nos, motion carries are we done, MS.\r\n\r\nClerk. >> chair
+nmt yes. >> before you move on, just because I would like to discuss the cdbg
+item and we have budget coming up I wonder if we could change this and instead of
+referral, have it which one. >> resolution 25-80 about the cdbg. >> are we going
+to refer had to your committee? >> yes. So just because we have budget coming up
+what I plan to do is that if we could have this sit on the clerk's desk, and the
+mayor's office is scheduled to come before the bfed committee, all of us, on
+APRIL 1st.\r\n\r\nAnd we could take up this reso, and then hear it again if the
+members want to pass it, or whatever comes out of that discussion on APRIL 4th.
+So sit on the clerk's desk for now. I will take it up APRIL 1st and then we'll
+have a vote on it on APRIL 4th, which is the next cuncil meeting with your
+permission. >> if we -- that wuld be first reading though? >> it's a reso, so it
+only has one reading. >> members, any objections to that request? >> no
+objections.\r\n\r\n>> so the matter, MS. Clerk, will sit on the cerk's table, and
+this is resolution 25-80. >> yes. >> for the reasons mention by vice-chair
+sugimura. >> thank you. >> does that bring us now to the end of the calendar?
+Some days I really like you guys. >> every day you like us.\r\n\r\n>> pro tem
+kama. >> thank you chair. I just wanted to make an announcement at the end of our
+meetings, you usually ask and tomorrow at 9:00 in the morning, hawaiian homes is
+having annual kuhi'o days of food, music, people and all of that kind o stuff. So
+it's like if you are a kid, you used to hve the neighborhood come around and
+singsongs and talk-story and what not. Basically it's like that, but it's in the
+park. If you want to go, call the PRESIDENT And get a parking pass, because if
+not, you probably be parking on the beach rod. Ad.\r\n\r\n>> and the PRESIDENT Is
+>> kalana tals. >> and his number is? >> you want his number. >> we'll call you,
+then. I have my parking pass already. >> I have mine. You hve yours?\r\n\r\nYes.
+>> he has been working hard on this? >> oh, yes, very hard. >> good for the food.
+Thank you, chair. >> all right, any more announcements? Yes, member
+cook.\r\n\r\n>> I hope everybody has a great weekend, and thank you for this
+week's work. >> yes. >> thank you for every day tat you are here and work so
+hard. You are very much appreciated. And this meeting is now adjourned.

@@ -1,0 +1,1573 @@
+MINUTES | hi-maui | County Council Meeting | 2026-02-06
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=3816,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+February 6, 2026 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: 
+http://mauicounty.portal.civicclerk.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:16 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Kauanoe Batangan   √  
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √   Arr.: 9:27 a.m. 
+Exc.: 11:58 a.m. – 
+11:59 a.m. 
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√   Arr.: 9:17 a.m. 
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 8  1  
+ 
+ 
+  
+ 2 
+CEREMONIAL RESOLUTIONS 
+ 
+Reso 26 -43 CONGRATULATING THE KAMEHAMEHA SCHOOLS MAUI 
+FOOTBALL TEAM FOR WINNING THE 2025 FIRST HAWAIIAN BANK/HAWAII 
+HIGH SCHOOL ATHLETIC DIVISION II STATE FOOTBALL CHAMPIONSHIP" 
+ 
+ AYE NO EXC Time Deliberations Began 9:36 a.m. 
+CM Sinenci √   Time Motion Made 9:36 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 9:47 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+COUNTY COMMUNICATIONS 
+ 
+CC 26-3 COUNCILMEMBER PALTIN , transmitting a proposed amendment to 
+Bill 15, FD1 (2026), entitled "A BILL FOR AN ORDINANCE AMENDING CHAPTER 
+16.25, MAUI COUNTY CODE, ON FACTORY-BUILT HOUSING IN THE LAHAINA 
+BURN ZONE". 
+Postponed, without objection, until Bill No. 15, FD1 (2026) was called up. 
+ 
+ 
+COMMITTEE REPORTS 
+ 
+CR 26-6 BUDGET, FINANCE, AND ECONOMIC DEVELOPMENT COMMITTEE: 
+Recommending FIRST READING of Bill 2, CD1 (2026), to amend  Section 
+2.56.080, Maui County Code, on setting salaries for the Board of  Ethics' 
+Executive Director and Legal Counsel and staff positions by: 
+ 
+• Transferring authority to set the salary for the Executive Director and  
+Legal Counsel from the Council to the Board; 
+• Transferring authority to set the salaries for other Board of Ethics staff  
+positions from the Council to the Executive Director and Legal Counsel; 
+• Establishing an attorney pay scale that matches the pay scale for Deputies 
+Corporation Counsel and Deputies Prosecuting Attorney; 
+• Establishing a paralegal pay scale; and 
+• Authorizing part-time staff positions. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:03 a.m. 
+CM Sinenci √   Time Motion Made 11:04 a.m. 
+ 3 
+CM Uʻu-
+Hodgins 
+√   Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 11:05 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26-7 WATER AND INFRASTRUCTURE COMMITTEE: 
+Recommending FIRST READING of Bill 176, CD1 (2025), to authorize the Mayor 
+to enter into an intergovernmental agreement with the State of  Hawaii, 
+Department of Land and Natural Resources to delineate the State and County’s 
+respective responsibilities for the maintenance of Piiholo, Olinda, and Ala Luana 
+Roads, located in the vicinity of the Waihou Spring Forest Reserve, for an initial 
+term of 10 years. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:05 a.m. 
+CM Sinenci √   Time Motion Made 11:06 a.m. 
+CM Uʻu-
+Hodgins 
+√   Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Cook 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:08 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+RESOLUTIONS:  
+ 
+Reso 26-16 AUTHORIZING ACCEPTANCE OF A DONATION OF $5,000 FROM 
+JOHN AND FRANCINE PAXSON TO KAUNOA SENIOR SERVICES. UNDER  
+SECTION 3.56.030, MAUI COUNTY CODE 
+ 
+ AYE NO EXC Time Deliberations Began 11:08 a.m. 
+CM Sinenci √   Time Motion Made 11:08 a.m. 
+ 4 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:10 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+Reso 26 -17 AUTHORIZING ACCEPTANCE OF THE DONATION OF OLUKAI  
+FOOTWEAR TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY,  OCEAN 
+SAFETY DIVISION, UNDER SECTION 3.56.030, MAUI COUNTY CODE 
+ 
+ AYE NO EXC Time Deliberations Began 11:10 a.m. 
+CM Sinenci √   Time Motion Made 11:10 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT, as 
+amended 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:13 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Sinenci √   Time Motion Made 11:11 a.m. 
+CM Uʻu-Hodgins √   Motion  SUBSTITUTE 
+transmittal 
+letter and 
+SUSPEND 
+Rule 19 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Rawlins-
+Fernandez 
+CM Johnson √   Time Vote Taken 11:12 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+ 5 
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+Reso 26 -40 APPOINTING FAITH CHASE AS AN ALTERNATE ON THE HANA  
+ADVISORY COMMITTEE TO THE MAUI PLANNING COMMISSION 
+ 
+ AYE NO EXC Time Deliberations Began 11:13 a.m. 
+CM Sinenci √   Time Motion Made 11:13 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:15 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+Reso 26-41 APPROVING EXEMPTIONS FROM, AND MODIFICATIONS TO, THE 
+REQUIREMENTS OF CHAPTER 3.35, MAUI COUNTY CODE. FOR THE  
+KEHALANI APARTMENTS PROJECT 
+ 
+ AYE NO EXC Time Deliberations Began 11:15 a.m. 
+CM Sinenci √   Time Motion Made 11:15 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 11:24 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:16 a.m. 
+CM Sinenci √   Time Motion Made 11:17 a.m. 
+CM Uʻu-Hodgins √   Motion  AMEND via 
+distributed 
+ASF; 
+ 6 
+SUSPEND 
+Rule 19 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:24 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+Reso 26-42 APPROVING THE REDISTRIBUTION OF AFFORDABLE HOUSING  
+GRANT FUNDS FROM CATHOLIC CHARITIES HOUSING  DEVELOPMENT 
+CORPORATION TO HALE PILINA I LP, FOR THE HALE  PILINA AFFORDABLE 
+RENTAL HOUSING PROJECT. UNDER SECTION 3.35.070(A)(5), MAUI COUNTY 
+CODE. 
+ 
+ AYE NO EXC Time Deliberations Began 11:24 a.m. 
+CM Sinenci √   Time Motion Made 11:25 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 11:27 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+ORDINANCES 
+ 
+Bill 21 (2026) A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2026 
+BUDGET. INCREASING ESTIMATED  REVENUES, CARRYOVER/SAVINGS, 
+GENERAL FUND  BY $180,000, CAPITAL IMPROVEMENT PROJECTS,  
+DEPARTMENT OF THE PROSECUTING ATTORNEY,  WAILUKU-KAHULUl 
+COMMUNITY PLAN AREA,  GOVERNMENT FACILITIES, INCREASE 
+APPROPRIATION FOR 24 NORTH CHURCH STREET BUILDING RENOVATIONS 
+BY $180,000, AND APPENDIX C,  DEPARTMENT OF THE PROSECUTING 
+ATTORNEY, WAILUKU-KAHULUl COMMUNITY PLAN AREA, UPDATE PROJECT 
+DESCRIPTION AND INCREASE  APPROPRIATION FOR 24  NORTH CHURCH 
+STREET BUILDING RENOVATIONS BY $180,000 
+ 7 
+Bill 22 (2026) A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2026 
+BUDGET, INCREASING ESTIMATED  REVENUES, CARRYOVER/SAVINGS, 
+GENERAL FUND BY $314,341, DEPARTMENT OF MANAGEMENT, BOARD  OF 
+ETHICS PROGRAM, INCREASE CATEGORY A - SALARIES BY $314,341 
+ 
+BILL 26 (2026) A BILL FOR AN ORDINANCE AMENDING THE FISCAL BUDGET, 
+CARRYOVER/SAVINGS, GENERAL FUND BY $75,000, DEPARTMENT OF ‘OIWI 
+RESOURCES, INCREASE APPROPRIATION FOR CATEGORY B ~ OPERATIONS 
+& EQUIPMENT BY $75,000 
+ 
+ AYE NO EXC Time Deliberations Began 11:31 a.m. 
+CM Sinenci √   Time Motion Made 11:35 a.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bills 
+21, 22, and 
+26 on first 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:35 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 23 (2026) - A BILL FOR AN ORDINANCE AMENDING THE FISCAL  YEAR 
+2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF AGRICULTURE, STATE 
+OF HAWAII, DEPARTMENT APPROPRIATION OF $10,000,000 
+ 
+ AYE NO EXC Time Deliberations Began 11:36 a.m. 
+CM Sinenci √   Time Motion Made 11:36 a.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bill 23 
+on first 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:38 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 8 
+ 
+ 
+BILL 24 (2026)  - A BILL FOR AN ORDINANCE AMENDING THE FISCAL  
+YEAR 2026 BUDGET, APPENDIX A, PART I,  DEPARTMENT OF THE 
+PROSECUTING ATTORNEY, STATE OF HAWAI‘1, DEPARTMENT OF HEALTH – 
+OPIOID SETTLEMENT, NEW APPROPRIATION OF $886,633 
+ 
+ AYE NO EXC Time Deliberations Began 11:38 a.m. 
+CM Sinenci √   Time Motion Made 11:39 a.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bill 24 
+on first 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 11:55 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 25 (2026)  A BILL FOR AN ORDINANCE AMENDING THE FISCAL  YEAR 
+2026 BUDGET, INCREASING ESTIMATED  REVENUES, 
+CARRYOVER/SAVINGS, GENERAL FUND  BY $54,434, DEPARTMENT OF 
+CORPORATION COUNSEL, LEGAL SERVICES PROGRAM, INCREASE  
+EQUIVALENT PERSONNEL BY 1.0 AND INCREASE  CATEGORY A - SALARIES 
+BY $54,434 
+ 
+ AYE NO EXC Time Deliberations Began 11:55 a.m. 
+CM Sinenci √   Time Motion Made 11:55 a.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bill 25 
+on first 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 11:58 a.m. 
+CM Paltin   √   
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 9 
+ 
+ORDINANCES - SECOND AND FINAL READING:  
+ 
+BILL 12 (2026)  A BILL FOR AN ORDINANCE AMENDING  SECTION 3.48.410, 
+MAUI COUNTY CODE, ON DEADLINES  FOR FILING CLAIMS FOR REAL 
+PROPERTY EXEMPTIONS 
+ 
+ AYE NO EXC Time Deliberations Began 11:58 a.m. 
+CM Sinenci √   Time Motion Made 11:59 a.m. 
+CM Uʻu-Hodgins √   Motion  Pass on 
+second and 
+final reading 
+CM Cook √   Maker Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 11:59 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL NO. 15. FD1 (2026)  A BILL FOR AN ORDINANCE AMENDING CHAPTER 
+16.25, MAUI COUNTY CODE, ON FACTORY-BUILT HOUSING IN THE LAHAINA 
+BURN ZONE 
+ 
+CC 26-3 COUNCILMEMBER PALTIN. transmitting a proposed amendment 
+to Bill 15, FD1 (2026), entitled "A BILL FOR AN ORDINANCE AMENDING 
+CHAPTER 16.25, MAUI COUNTY CODE, ON FACTORY-BUILT HOUSING 
+IN THE LAHAINA BURN ZONE". 
+ 
+ AYE NO EXC Time Deliberations Began 11:59 a.m. 
+CM Sinenci √   Time Motion Made 12:00 p.m. 
+CM Uʻu-Hodgins √   Motion  Pass on 
+second and 
+final reading, 
+as amended 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 12:28 p.m. 
+CM Paltin √     
+VC Sugimura √     
+ 10 
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Sinenci √   Time Motion Made  
+CM Uʻu-Hodgins √   Motion  AMEND per 
+CC 26-3; 
+FILE CC 26-
+3 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 12:03 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Sinenci √   Time Motion Made 12:16 p.m. 
+CM Uʻu-Hodgins √   Motion  AMEND via 
+distributed 
+ASF; 
+SUSPEND 
+Rule 19 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 12:24 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 18 (2026)  A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR  TO 
+ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE OFFICE OF 
+THE AUDITOR, STATE OF HAWAII FOR AUDITING SERVICES 
+ 
+BILL NO. 19 (2026)  - A BILL FOR AN ORDINANCE AMENDING THE FISCAL  
+YEAR 2026 BUDGET, APPENDIX A, PART  I, DEPARTMENT  OF ‘OIWI 
+RESOURCES. HISTORIC PRESERVATION FUND  U.S. NATIONAL PARK 
+SERVICE). NEW APPROPRIATION OF $2,000,000 
+ 11 
+ 
+BILL 20 (2026) A BILL FOR AN ORDINANCE AMENDING THE FISCAL  YEAR 
+2026 BUDGET, APPENDIX A, PART  I. DEPARTMENT OF MANAGEMENT, U.S. 
+ENVIRONMENTAL PROTECTION  AGENCY (EPA). SEWER OVERFLOW AND 
+STORMWATER MUNICIPAL GRANT (OSG), NEW APPROPRIATION OF $750,000 
+ 
+ AYE NO EXC Time Deliberations Began 12:28 p.m. 
+CM Sinenci √   Time Motion Made 12:29 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bills 
+18, 19, and 
+20 on second 
+and final 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 12:29 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+UNFINISHED BUSINESS: 
+ 
+BILL 17 (2026) A BILL FOR AN ORDINANCE REPEALING CHAPTER 9.40 MAUI 
+COUNTY CODE, ON SOCIAL HOST LIABILITY. 
+ 
+ AYE NO EXC Time Deliberations Began 12:30 p.m. 
+CM Sinenci √   Time Motion Made 12:30 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS on first 
+reading 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 12:35 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  12:40 p.m. 
+MAUICOUNTY | 12c570b2-f000-4def-8fdf-0b0550e3f6a7
+With the council meeting of February 6th 2026. Please come to order. Aloha and good morning and welcome, everyone Ms. Clark
+thank you, Madam Chair And proceeding with Roll Call. Any members participating from non-public location should state who, if
+anyone except minors, is present with them as part of Roll Call. Councilmember you've been talking on excused Vice chair Ukulele.
+So Kimura. Good morning, Chair. And looking forward to a productive meeting Council Member tomorrow Paulton joining us later.
+Excused for now. Councilmember Gabe Johnson Morning chair. Council members. Committee members There's no testifiers here.
+Let district office and I'm alone on my and my side of the office.
+Thank you Chair. Thank you. Council Member County rollins Fernandez excused for now Council Member Tom Cook. Aloha Good
+morning. There's currently no testifiers in the key office. Council member, no Hill any Hudgins good morning, Chair. Good morning,
+everyone Morning Council member Shane Sentencing Cook. I Elko Morning and Council Chair Alice Lee aloha Co chair. There are
+six members present three currently excused a quorum is present to conduct the business of the Council for the record and the
+Deputy County Clerk Rochelle Thompson, and present to my right is County Clerk Minor Lutie. Also present from our Office of the
+County Clerk our legislative division staff choice marcia Gay, Lauren Saldana, Adel Yoshida and Arthur Sharma, assisting the
+Council with maintaining order and decorum is Council Ambassador Ryan Martins and joining the office during the meeting from
+the office of Council Services is director David rutz and Deputy Director Rochelle Kawasaki from the Department of the Corporation
+Council is First Deputy Mimi Jordan and the department's newest deputy.
+We learned goods okay thank you very much And for our opening remarks where we have Council member No here. Lani Hudgens
+thank you, Chair. My opening comments will be in honor of Mr. Alex Jacob Peretti, national youth Poet Laureate. Amanda Gorman
+composed this poem and his memory We wake with no words just whoa. And wound our own country shooting us in the back is not
+just brutality. It is jarring, betrayal not enforcement, but execution. A message. Love your people and you will die Yet our greatest
+threat is in the outsiders among us But it's those among us who never look within fear.
+Not those without paper, but those without conscience know that to care intensively, united is to carry both pain and dark horror.
+For today, and a profound daring hope for tomorrow. We can feel we have nothing to give and still build of this world waiting,
+trembling to change if we cannot find words may we find the will? If we ever lose hope, may we never lose our humanity. The only
+undying thing is mercy The courage to open ourselves Think a book, hug our neighbor and save one more bright, impossible life
+Personally I remain hopeful for a better tomorrow.
+But we must try to be better today to ensure a better tomorrow. On a positive note, I will add I hope we all have a safe and fun
+super Bowl weekend. Enjoy the bad Bunny concert sandwich between the football game. I hope we celebrate the gentlemen
+behind us. And I hope for a better tomorrow. And let's bring them some happiness. Thank you. You, Chair. You You. Thank you for
+your inspirational remarks Let the record show now that council member can hear all and Fernandez is here. Good morning I look
+like I hear good cheer. Happy to be here in person.
+There are currently no surprises among district office. Beautiful remarks Remember what it Walzer Thank you And I ask everyone
+to join me in reciting the Pledge of Allegiance and before we proceed with today's agenda, may I please request that everyone
+keep their microphone phones muted unless it's your turn to speak as a remind your testimony must pertain to items on the
+meeting agenda when testifying, please direct your remarks to the Council and not to any individual council member, or member
+of the public Each testifier will be allowed to speak for up to Three minutes on each item For individuals wishing to testify on
+teams, please click the Raise Your Hand button to be added to the testifier log If you are calling in, please follow the following
+prompts to be added to the log Present members be ejected or banned from council meetings or if participating remotely muted or
+dropped from the meeting.
+Examples of disruptive behavior include but are not limited to heckling, shouting, use of profanity i.e. threatening or slanderous
+remarks made to any member of the council staff or general public. All meeting attendees, whether online or in person are
+expected to wear clothing, which should not display profanity, obscenity or any message that could be considered discriminatory.
+Harassing or inappropriate for these proceedings. Ms.. Clerk, please continue Thank you, Madam Chair. We're going to move on to
+testimony only on this ceremonial resolution honoring coming on the school's football team If anyone wishes to testify please make
+your way to the podium where you can raise your hand in teams.
+I see J.C. Law making his way to the co. Aloha. Aha. OK Alana, Aloha I don't know how to say football in a little Hawaiian but football
+somewhere because it goes straight into ceremonial. Then OK, you can speak on anything at the beginning of the meeting or the
+oh, sorry, this is only for The ceremonial resolution only communicate presentation. OK Thank you. So, yeah, just wanted to say, oh
+my e to the Kamehameha Schools That's a good name can be happy Hawaiian bank, Hawaii High School Yeah. And you guys be
+good. I seen that one guy throwing that other guy.
+If you. If you do stuff like get in here, you don't have to deal with the chair. The next best for is Andrew Martin. If the rest so I didn't
+realize this ceremonial resolution was on agenda until I looked at it this morning, but I just wanted to share this. I had the
+privilege, an opportunity to coach Cross country as an assistant up at home schools This year where and which of course, was
+incredibly successful. And I just want to say this, I think is everyone in this room knows the only path to success is through hard
+work You cannot have success without.
+And that's something credible athletes and these incredible coaches. I got the privilege to see firsthand that these coaches and
+athletes haven't just won championships, they've built a championship culture So congratulations. And it please raise your hand.
+And Tim's chair. I actually, I have some volunteers the first is Kamal Akuma and he will be followed by Talib. One can see how
+These are volunteers on behalf of the team Principal Jesus Christ for this opportunity that he got to give us to let us become two
+times stage champions First of all, I'd like to thank All of you for just pushing us to be the best that we can I would like to thank this
+wonderful team because this sport is an individual sport It includes All 11 ten and all the young brothers.
+I wish you guys the best of luck and let's do it again. Thank you. Thank you Chair. The next testify or is Tully wink and say hello. So
+nice of you guys to volunteer Hello. Aloha Um, before I begin I just want to give thanks to our glory to God. Because without Him
+you wouldn't be where we are today or today On behalf of the team, um we couldn't be where we are today without, like learning
+how to be disciplined in what we do on on or off the field. We have to be disciplined in the classrooms Everyone that gave us this
+opportunity to enter our community.
+Thank you. You. Mahalo Chair The next testify here is Jenna Campbell Continue Good morning. Have your got just for blessing us
+with another beautiful day. And I think I should just come here to gather. I like to thank the Maui Council, Maui County Council for
+just recognizing our middle schools, my football town, which our program the top dogs. Now undefeated season. And I would like to
+thank everyone who supported us throughout this past season and this season, all our coaches, we wouldn't have done like half of
+it without Coach for being on our lines. Go aren't with us now I'd also like to thank all the community our Maui community just
+everyone who supported us, our families and thank you have a good day.
+Mahalo And don't be nervous, even though you're on television or Right. All right Aloha Who knows better Men on the field and off
+the field. It was really a full go of this football program. And I just being I says leaders on the football saw leaders off the field and
+our community and being better men Due to My we really just joined together, which led us to a great achievement that we made
+together for a Second time Oh your parents Oh, yeah, of all season we did it for everybody out there, whether you're supporting us
+or not, we did it for them So yeah.
+Thank you. Good job And chair. I just wanted to remember Walton Hello, everybody Thankful for my tardiness Streaming live in the
+area from Hilo. And I have in the room with me. Oh, my goodness. School football What an accomplishment Thank you We send
+our love and aloha to your mother. OK Chair, this is Canela knows and he's going to be followed by dean Nakagawa. OK Hello,
+everybody. Aloha so, first and foremost, I would also like to offer the field I'd like to thank our community for all the support you
+guys given us throughout the years, even though it's not like a direct impact on it, like it's not shown as a direct impact My
+community has plenty.
+Thank you Very good. Thank you Chair. The next Testifier is Dean. I could go on and he will be followed by Keeton. Yep Yeah Much
+to see. And I didn't savior Jesus Christ for bringing us here today. I'd also like to thank you guys for allowing us to come up here
+and speak I'd like to thank my coaches for always pushing me and these boys, but we wouldn't have done anything Thank you. OK,
+Thank you Chair. The last testifier before the ceremonial reso will have the coach speak after the resolution is continue up I'll keep
+it short and sweet because I think everybody ready said everything.
+Well, let's think here. Cool First thing my parents and all of our parents for supporting us through our season Thank you for all you
+guys do inviting us or share to deal with me and thank you as thank you If there's anyone I missed who would like to testify, this is
+your opportunity Always. We have one more Good morning, Chair. Good morning. Members prosecute and Martin inspired me.
+Gentlemen as athletes, your success is more than this. Good teamwork. As someone who's worked in very different careers in my
+life, I look for team members I look for people who can show So what you've learned here is more than how a Six football you've
+learned to congrats.
+Thank you. You Thank, thank you. Director Mitchell our housing director Anyone else from the ceremonial Rizzo's don't be shy All
+right, Chair. There's okay. Do you want to close or. Yeah. Any objections to closing public testimony and accepting written
+testimony on the ceremony and your resolution? No objections. So ordered, Miss. Clerk to you before you resolution 2643
+congratulating the community and schools maui football team for winning the 2020 division. I thought resolution 26 dash 43
+moved by vice Chair Sycamore seconded by member Hodgins to adopt Resolution 26 dash 43 Discussion. Understood. Give me
+one. Thank you.
+Chair. Please. Me. I requires the ball team for winning the 2025 First Hawaiian Bank, Hawaii High School Athletic Association
+Division Two State Football Championship Whereas the Kamehameha schools Maui football team won its second consecutive state
+title at the 2025 First Hawaiian Bank. Honorable Emily Lenoir who. And. Whereas the First Hawaiian Bank, Hawai'i High School
+Athletic Association Division tuesday Football Championships were held over three weekends from November 14th to November
+28th, 2020, 25. And. Whereas, the defending champion Warriors were seeded first in the six team division after winning with an
+unbeaten and where. Whereas the Warriors claimed the state championship with a dominant 48 to 24 victory over second seeded
+Waimea High School of County.
+And. Whereas Kamehameha Schools, Maui advanced to the championship game with convincing 37 to 18 win over finals campus.
+And. Whereas the semifinal round marked the first time Kamehameha Schools, Maui meant sister campus Kamehameha Schools,
+Hawai'i in a state tournament game and Whereas, the Kamehameha Schools, Maui Football team has demonstrated consistency
+and excellence by reaching the Division two Division Championship game in nine consecutive seasons and winner of the 2025
+Kamehameha Schools, Maui Championship team consists of the following players Franco Brew Lou Adams. EoE Morgan was
+commonly Komal Kumar rhymes on console, Cyrus on roddy Logan on July Kyrie's zedekiah Campbell came on to Caruso's Thunder
+call for Liam Cramer.
+Damia Fujimoto monarch Yasmine jayden Grace. Solomon kana Guzman. He Hamilcar master. John Hall Pai Botelho monaco
+Monarch Jeremiah Kono Qian. He come on Hill. I'm sorry Come on Air who kill or King Koko Davis Isaiah lunny Cope Hannah penalty
+count Hula Nosa coming Aloha linos at Ouida Cole medeiros, Eli Mossman cadence Mueller. Dana Calvert post will be okay Phillips
+coho Pena County. Reyes. Anthony Sortino Junior cuco cook. I'm so sorry ku Koa Cueva so I hope I didn't mess that up too bad.
+Spencer kahi outing Caleb's I ulema A for assistant coaches Dana borrow Franco brew communicable Burrow David Carino Lance
+de Silva Leo dilatory Alika Guerrero Kai Yamazaki Brian Harris tip Kevin O'Brien Athletic stamp Dorcas Cash Benji or hopi come man
+on color.
+Tanya Souza and Chris Tsuji don't own athletic trainers Alec Singh, Erin Barnett, Rachel Jordan and Larissa Jimenez and
+statisticians cut you while honey Spirit of the cause. My football team with the unwavering support of their parents and school
+community have brought great pride to the people of the county of Maui. Therefore be it resolved by the Council, the county of
+Maui won that it congratulate the Humane Schools. Maui Football team for winning the 2020 Vision. Two copies of this resolution
+be transmitted to the teams, players, coaches, athletics staff, athletic trainers and statisticians. Lance Carcassonne, Cape Horn,
+Mali luna, Kamehameha Schools, Maui athletic Director John Biello and Associate Athletics Director Michael Bowling Ito and kahului
+Record Commitment.
+Maui Interest Glenn High School. The Honorable Josh green, M.D., Governor, State of Hawaii, and the Honorable Richard T Bissinger
+Jr. Mayor, County of Maui Vice Chair So you were. Thank you. You. Chair. I am so proud of this day. And to see coming out my
+schools the four that the pride that the students have in their accomplishment was so evident by what they shared. They are truly
+a team that we can be proud of. And for them, winning a second year in a row here to bestowed upon them But I really appreciate
+the coaches, parents, grandma grandpas, everybody who helped get you here because that's what it takes It takes the love and
+support of many, many people for you to be sitting in your chairs today to be honored will ask a mortician.
+Remember? Ooh, Hodgins thank you, Chair. And congratulations as Maui. I want to make a quick note that these boys had an
+impressive undefeated season that is so difficult to do And so Davidson was one of our own in my he's a rising star, a freshman
+sophomore quarterback which that two is extremely impressive So I very much look forward to his long career in football. And I
+look forward to seeing you guys all here again next year to congratulate the team and the coaches and to the hard work and the
+discipline that you've developed and cultivate through your high school career that hopefully you will pursue in your adult life Our
+community needs to become gives you the opportunity and the Cooley honor to represent to all the other youth in our community.
+And together we can all move forward. And i congratulate you and admire you well as in anyone else to you. All the families and all
+the supporters of the team I know the amount of work and discipline that goes into it And as director Mitchell, who still makes each
+set and has too many and the skills that you developed as a team finding common ground, learning to lift each other up, learning
+to rely on each other and push forward When times get tough All of these are alive in friends and employees When putting
+together a team.
+And so I hope you hold on to this moment and celebrate and hold on to all of these qualities that you developed during this time
+while advancing what i want to echo what everyone was just saying but one thing that struck my mind is the young student was
+standing at the podium and said, Hi, mom That's not going to be the first time cam or the only time that they're going to do this
+Throughout their lives, these young folks are going to be in places like the chamber is being placed and they've got to be going
+places and doing things.
+And I look forward to seeing you folks continue your journey. So full support and resolution. Looking forward to seeing what your
+lives unfold following your thank you. Anyone else? The resiliency model or chair. I just like to add my congrats elations to all the
+scholar athletes I do know that you have and feel local and iMO alumni. Kayla and Koa or maui. All of thank you. Anyone else? I
+think most of the members covered everything except I just want to acknowledge the inner angels strength and acknowledging
+that you know our lives and are dependent upon God and it's important to keep that thought and that conviction throughout your
+lives Any more discussion, Members or you guys.
+Okay, we have let's see only one missing. So eight eyes, One excuse motion carries. Congratulations, young men and thank you
+for coming and keep it up We want to see you next year, okay Thank you. Team Lima, all four. And he has a few words to say to
+anyone else Any one else wants to speak. Please come to the line Aloha Hello, Madam Chair and say counsel, on behalf of carmen
+Mills, Maui, the staff and the homeowner we want to thank you for this. It's nice to because normally what I do is at at the banquet
+as we honor our seniors.
+And we tell them great memories So you guys can kind of hash it over when you guys have your reunions For the rest of you
+young guys, it's fine Thank you. Back to your support. Thank you for this for the privilege of this resolution. And we want to
+continue to build leaders and make our community proud. So thank you very much. Aloha. Thank you. You And you Your name is
+Floyd Horn. I am here from Charlotte North Carolina just got in years. Today i received a an excited call from the mayor of Salt
+Lake, North Carolina.
+And when she found out that I was going to be used, I we were accomplished finish were. But she made a point to impress upon
+me to show up and let you guys know that you are known as far away in Charlotte north carolina. And she just want me to
+weaseling gave you salute for all you accomplished. Smith Thank you Outstanding Any more speakers Oh, I see some sitting there
+to the head coach I we have no takers Chair okay. And i didn't mean for you to steer them down there, avoiding my I, I know I can
+that i see that No welcoming me I think now is a good time for to ask everybody to come down to take a photo with us Okay Where
+You are going to sit around as long you see right I I will try.
+Is staring down, and you are avoiding like i Had like 3 or 3 from yesterday, but I don't like Little people like that And then the there
+is people In the back don't pocket. It You don't get for going. So you don't like everything and I just I don't do that better than my I
+I I think that was, was it was very I do one One more time. 3, 2, one 3, 2, 1. And it was the perfect Way to a little with what I was
+going through. Yes. People ask me okay, what do you I have to Do with That was i told you make you feel you any pressure.
+But I can I keep my right and the way I think i think I'm sure. Yeah, sure. Out So that's what you have to help you will you First of
+all things my integrity Episcopal finance do they Be be here I get it. Your speech. I thank you because of the members will just take
+a ten minute break. OK Meeting and recess until oh 1008 To And The Member is counting down. Five, 4, 3, 2, one Well, the
+meeting council meeting of February six, 2026. Please come to order. And it is 1019 Ms.. Clerk. Thank you, Madam Chair.
+We're moving on to presentation of written or oral testimony on any item on today's agenda The first person to testify is learned
+on Kentucky who will be testifying on committee report 26 six and Bill 22. She will be followed by Michael Lilly Good morning, Chair
+vice chair and council members. I'm Laura and I'll keep talking. I am the executive director, legal counsel to the Maui County Board
+of Ethics and I'm here today to speak in support of Bills two and 22 bill to include revisions to Maui County Code 2.56 .080 to
+provide that, the board sets the executive director salaries.
+The Executive. The Executive Director set staff salaries authorizes additional attorney and paralegal positions with pay scales and
+permits, part time hiring with pro-rated pay for all. 22 is the budget amendment to fund these two new positions and addresses.
+The board's previously anticipated budgetary needs As you know, our office is six months old and our current staffing is not
+sufficient. Where requesting to additional staff positions to meet the workload ahead, which will include ethics trainings for all
+county employees and hopefully will include updates to our lobbyist roles. A county wide anti nepotism rule and update it gift
+rules.
+I want to thank Chair Vice chair Suki Mora and the Fed committee members for the thoughtful discussion A bill to be fed on January
+27th and for her follow up questions. Since the Fed meeting I have consulted with DPS board of Ethics Leadership Corp Council
+Management and colleagues at the State and Honolulu ethics Commissions to develop procedures for salary, a salary
+determinations within Council approved ranges Annual staff reviews evaluate action criteria documentation standards and
+consideration of performance in salary decisions I want to again express my gratitude to all of you for your dedication to uphold
+the highest ethical standards and for fostering public trust Your commitment ensures that Maui County operates with
+accountability and integrity, benefiting every member of our community.
+For these reasons, I respectfully urge you to support bills two and 22. I'm happy to be a resource. If you have any questions when
+the bills are called. Also a managing director, she has offered to be your resource. if necessary, when the bills are discussed and
+called. Thank you. You. Any questions, members? Vice chair. Sigma Sigma Thank you very much for working so hard. I whenever I
+hear all the things you're doing, I think what in the world did we ever exist without your attention to detail and making sure we do
+this all right. But, Chair.
+I just want to make sure that the members got her response to the questions we had sent. You got it. OK, good. That's all. OK. Any
+more questions ? Thank you. Thank you. Testifier. Chair. The next Testifier Is Michael Lilly testifying on Committee report 26 six
+and Bill 22. And he will be followed by Andrew Morton Mr. Lilly is to Lilly I don't think he can hear us You're unmuted on our end.
+There you go. Chair Let's look it back to business. If you don't mind. Just click. And if you don't mind. And the we have some guests
+in the audience that need to leave.
+So I just want to make sure we acknowledge them before they have to go. Vice Chair Sigma Thank you. Chair I wanted to agree.
+I'm not I'm not hearing anything on this. Mike Lilly Mr. Lilly. OK. And it Go ahead. Vice Chair Oh, I just wanted to recognize Mark
+when I'm sorry. Who's here in the audience And he has his two children, which is Save your. And Maya, when you Maury and
+they're here observing because they're working on their scout civic badge. So welcome, Mark Could you stand up so we can see ?
+Thank you.
+And good luck to you Such a nice family So thank you very much. Okay All right. Michael Thank you, Madam Chair. We can try
+Michael Lilly again. We can see that you unmuted on your end, and then it looks like you're muted again. So try to unmute there
+you go. Thank you. Good morning. I'm sorry, I. I think I was muted earlier. I want to thank you again for your support of the board
+of Ethics. And on the Bills two and 22 a. We've come a long way since Lauren took over as our executive director and legal counsel
+and we're asking for two additional staff to help handle the enormous workload that we've been facing.
+And it's actually increasing the legislature ask that all neighbor island ethics boards and commissions use the state and the ethics
+commissions as templates for more effective operations. Appreciate it. Is important for us to have exams staffers, as do the state
+and Honolulu ethics commissions, to preserve our independence to avoid conflicts of interest with other county departments and
+allow the board to recruit specialized personnel who can respond quickly to sensitive ethics issues On on something that you we
+haven't mentioned before, but the board provides oversight of Lauren's operations as our executive director of Legal Counsel And
+we're looking at implementing an annual review to grade her performance And I have a form that we used when I was vice chair of
+the whole Ethics Commission which I plan on submitting to the board for review and adoption and it would provide each board
+member to be able to grade lauren on six criteria.
+One is to provide her her providing vision and leadership To what extent did she develop effective strategic Plans program and
+policies to support the Board's mission and objectives to her work with or interface with the Ethics board members? Did she
+effectively advise and assist the board members in carrying out their functions? 3 Work, quality and quantity in major duties And
+this involves her knowledge of ethics laws and ministry of and legislative processes for is she the trusted voice and face of the
+executive, The Ethics Board. Did she build strong relationships with the Council with the administration, with other county
+agencies, community, and the community and employees and officers of the county ?
+Five is her supervision of the board announced that she created a team based cooperative work environment that allows
+professional growth and advancement. And finally six effective planning procedures and priorities that she develop an effective
+organization supported by policies and procedures with sufficient resources and funding and a strong team and case and project
+priorities And I have to say, I in the 6 or seven months that she's taken over she she's way over the top on all of these areas as far
+as I'm concerned. We are striving to maintain a strong and independent board that's fully capable of carrying out its ethics
+oversight as required by the state constitution.
+Our charter and ordinances. And I thank you again so much for your Kokua and support of the board's operations. I really
+appreciate it. Thank you Thank you. Members, any questions ? If not, and we have the next testifier for sure. The next testifier is
+prosecuting attorney Andrew Martin testifying on Bill 21 and he will be followed by a budget director, Leslie Miller Morning Chair,
+members Let me start by saying thank you very much for your continued support of the acquisition of 24 North Church Street and
+its renovation and into the future Department of the Prosecuting Attorney I'm here to respectfully request for your consideration
+for floor action on Bill 21.
+You know the planning for our initial move into the building began back in October but largely due to circumstances beyond our
+control. Our timeline has not, unfortunately, for that move in has been pushed back. We need to complete certain renovation
+before we can move in. Most importantly, that includes the upgrading of the wiring in the building to fiber optics to be able to
+handle the bandwidth of 67 additional people and the county network We have to pull wires between the offices to be able to
+provide that network access And we also have certain security upgrades which are absolutely required because of our access and
+ability to utilize criminal justice data through the FBI's aegis.
+And NCIC platforms. In order to do that we need to provide a secure environment for the offices we're going to be in We have kind
+of set things up so that we can do that in an efficient way that will survive of the additional renovations our original plan, given our
+timeline for moving in that was that we would be able to cover these expenses from cost savings things from our rent expenses
+that we weren't going to be utilizing for the rest of this year. But due to the pushback and timeline, that's not going to be possible.
+So we're asking for the additional and $80,000 to be able to cover these expenses or get our folks moved in Our plan right now is
+the beginning of June, which is a very hard deadline for us given the fiscal year and our desire to get out of our leased properties.
+I'm also here too and can be a resource on Build 24. Should you have any questions? And I appreciate the council's consideration.
+Thank you. Thank you. Members questions If not, thank you. Thank you Chair. The next testifier is Budget Director Leslie Moller
+test. And I have a question for the prosecuting attorney.
+Okay Sorry. That's okay. Member Paulson i just wanted to clarify is it only Bill 21 or also the opioid settlement, one that you're
+asking for action ? Just Bill 2,100, Okay. Thank you. You. Thanks. Milner This is Leslie Milner testifying on Bills 21 through 26. She'll
+be followed by Richard Mitchell Aloha Chair. Aloha, Council members. So I am asking for floor action on Bill 24. Actually, if you
+would consider floor action on all the bills for first reading today in light of the fact that we are barreling towards budget season I
+would really appreciate that consideration And Bill 21, I think prosecuting attorney addressed that pretty well but it's another
+180,000 for their IP.
+It will also add language to the project description to allow for construction rather than just planning and design. Bill 22, I believe.
+Director. I can talk to addressed as well. So that's another 314,341 for they're a budget to allow for coverage. As you all know,
+when the board with not the board the board was already there. But when the executive director position was established and the
+additional positions were created, that was an estimate for what those salaries were going to be and how many people they would
+need So that's why we're here today asking for the additional funding to cover those positions as well as the two additional
+positions that you're considering under Bill two.
+Bill 23. This is an amendment to Appendix A part one Department of Agriculture. This is $10 million for the Kula Agriculture park.
+We previously recognized this funding in fiscal year 24, but it was delayed and we just received the funding So as you know, under
+the general budget provision in order to proceed with using that money, the department has to provide you all with written notice
+They weren't able to do that in fiscal 24 because we didn't have the funding. So we're just asking to re recognize it this year so
+they can move forward with that work Bill 24, which we discussed a little bit, but this is funding from the state of Hawaii
+Department of Health for the opioid settlement.
+This is $886,633. Usually settlement money isn't necessarily recognized in this way, but the use is restricted to opioid remediation.
+In Maui county. So we're recognizing it in Appendix eight part one, Bill 25. This is for the Department of Corporation Counsel. It
+would add an additional EAP and $54,434, which is 25% of the salary as discussed in the transmittal letter, the CDG ADR program
+has hired an attorney and it is currently entirely funded by that program. As you know, if you're fully funded by a grant program,
+you can only work on that grant program. And as things have developed over the course of this fiscal year, it's become apparent it
+would be useful for that attorney to be able to assist on general funded work as well.
+So that's the purpose of recognizing this position and a portion of the funding to allow them to work on both, they will have to track
+their time in workday so that we are actually reporting to the Federal government how their time is spent and bill 26, this is for the
+Department of OPB Resources. This is adding another $75,000 to their bill account This is for a grant. We're not line item the grant
+because this grant was actually selected through the competitive process. But unfortunately, their fiscal sponsor was compliant.
+So the funding was awarded to another entity.
+They now do have a compliant fiscal sponsor and the Department of resources would like to support their work This is for more
+open. Okay, Maui, there's salt pan preservation and restoration So that's how those funds will be expended Thank you. Your
+questions, members Eric Paulson and then member Johnson I, I guess my first question is Miss Moana available for when the items
+come up or when she like the questions Now there's similar. Thank you Chair. I'm happy to view available when the items come up
+to be a resource i can we oh okay. Where I had questions on 24 and 25.
+OK Member Johnson you know, seeing that she's a research chair. I we her when the item comes up. And that's on page 23. OK
+Thank you. You. So you'll be with us. Yes. And by the way, you've had this conversation with the budgetary Yes. OK. All right.
+Thank you Chair. The next Testifier is housing director Richard Mitchell testifying on resolutions 2641 and 2642. He'll be followed
+by Maria Lin's good morning, Chair. Good morning, members. Good to see you again. I'm here to testify in support of resolutions
+two six dash 4126 dash 42. Both of which we're asking for floor action The first one relates to the kalani projects.
+And I don't see the project proponents jack Dowling here. He intends to be here. So that when the item comes up, if there are any
+specific questions. He can address those. But with both projects, our county housing programs administrator, Castillo that is in the
+back of the room and she will be here when the items come up for resolution 26, dash 42. And in this is error, Ms. Savannah is
+here. Our project proponent for Catholic Charities. So she is available to answer any specific questions. But on 2641 in particular,
+this is a crucial to have this passed as early as we can because it allows the developer to maintain, comply with certain low tech
+deadline.
+And in particular, the commencement construction of their project. In May 26th. And for Resolution 26 dash 42 me this is was that
+you're going to talk to about both of them right now or one at a time. I've actually discussed them both okay The members might
+have questions on the first one. OK Questions members. If not, okay. The next one. Thank you. On 26 dash 42, the challenges we
+had there related to making sure we could facilitate or reimbursement to a party that was not specifically named in the original
+grant. So we had to revise the language in that grant agreement.
+So that's about. And it relates to expenses. I believe that were incurred as early as 2000, 20 25. So those are the two resolutions
+requesting floor action on both to allow those projects to keep moving forward Thank you. And you had this conversation with
+Member hodgins OK. I've had several conversations with several members. But thank you, member Hodgins. All right. Any more.
+Any questions? Members If not, thank you. Thank you, Chair. I o member Johnson. I didn't see your hand Thank you so much,
+Director. Thank you, Chair. Just a quick question for the 2642. The lena Affordable rental housing Project, revising the name and
+putting their name on the grant How long did that process delay this process ?
+I don't have a precise timeline in my head, bye. Do know there were some what i would consider unreasonable delays in getting
+the documents revised. So we're working on trying to squeeze these out of our process. The constancy of trying to get things,
+revising how long it takes. But I know that was a challenge. And that's a concern Director And I'd love to you know, hear your
+thoughts on a different meaning, but the ping Pauline Right, the back and forth and just the fact that we know we knew where the
+money was going, but their name wasn't on a lease and that probably delayed.
+And you not hearing an actual like a month or something, but when it gets delayed on something as simple as putting your name
+on this for the year for the right for people who are going to do the project. Why it doesn't make any sense to me. So I'm glad
+you're looking at it that you can make it a little faster because what I can you know, we want to we're doing floor action in order to
+speed up the process. And if the process is delayed it from this from what you're explaining, shouldn't we revise the process in
+addition to doing floor action So those are my questions.
+Thank you, Chair Thank you. Member Johnson. And just to follow up, when I become aware of challenges like this, my practice has
+been to directly call the project proponents and get direct feedback on where the pain points are. And so I have had prior to this
+being a discussion with RMS, etc. and so on. And so I can understand exactly what the challenges are. And I've also had
+discussions with our division administrator, so we are looking at trying to improve the process. So it isn't so painful for both us, as
+well as our clients So those who help us build OK, thanks for the answer.
+Thank you, Chair Any more questions If not, thank you Chair. The next testifier is Melissa, and I'm sorry Maria Lynn's And please let
+us know which item or items you'll be testifying on. She will be followed by Denise much of our again Maria Lin's we can see her
+unmuted again. All right Aloha. I'll be testifying in support of Bill 15. Okay Do you have anything you want to add to that Yeah
+Aloha. And la hina. Surviving the fire does not always mean surviving or recovery. I'm the Lahaina program manager at Hawai'i
+Community Lending My team and I work directly with a line of families every day trying to help them rebuild.
+Today, you have the power to put one more viable solution on the table for these families, and we can tell you the options
+available right now are not enough to get everybody home because if rebuilding is too high, well be available funds is too low. And
+that gap in between is widening every single day. Here's the truth. And disaster recovery time is not neutral time either healing
+you or it's killing you. The longer it takes to rebuild the more the families are forced to spend down to rebuild money just to
+survive. They're paying mortgages. I'm destroying properties on top of outrageous rent and temporary rentals, cost of living has
+essentially doubled for them and can't get to the finish line because it keeps moving further and further away.
+And quite frankly it's killing them after the disaster, our clients, and our neighbors are literally dying, not from an illness, but from
+prolonged stress, displacement and uncertainty Every day we see families who are doing everything they were asked to do, and
+they're still falling behind. We run these numbers over and over, trying to make something out of nothing And I can tell you there's
+no magic here. If we don't lower costs and speed up timelines. Some families will not rebuild. Not because they didn't try. But
+traditional building was never designed for mass disaster It assumes stability, but after a catastrophe, nothing is stable.
+Costs are exploding. Contractors are disappearing with people's money Family are burning through what little money they have.
+The system didn't fail them overnight. It failed them slowly I know when I woke up and said, Let's fail this families. But every
+month that they were told to wait, that's what's happening. Modern factory built homes They're built with precision in a controlled
+facility, protecting materials from the elements. Inspections are done throughout the process, as they are for any other building.
+The pieces by then assembled on have permanent foundations These are real permanent homes built to the same standards and
+regulations of traditional builds.
+Real differences These homes can be built in weeks. Instead of years after housing. It's not the silver bullet. It's not going to fix
+everything but it lowers costs. It fixes one critical thing, and that's time, right now, that's something these families don't have. If
+you're not living this reality in the Hina, we understand it's hard to fully grasp. But here this clearly in action and disaster recovery
+has dire consequences at each. Our model is simple We don't say no. We say how and today, we need that same mindset from
+you. If you don't viable, tangible solutions that can be implemented, great.
+Now let's bring them to the table for this. Not please do not stand in the way of those who are trying to build them. Because for
+these families, the clock is ticking too often when I look into the eyes of my clients I'm not sure we're going to get them home in
+time Factory built housing is not perfect. We don't have the luxury of waiting for perfect solutions But let's not make perfect the
+enemy of good. It's a real tool. It's a viable solution. Time for families. It will mean the difference between getting home or not.
+Please support Go 15. Mahalo. Thank you. Questions Members did i hear you say something about families are losing money to
+contractors? Would what did you say? Because it was a handful of contractors that are taking hundreds of thousands of dollars for
+families promising rebuild and running away with money We are seeing this repeatedly Okay Thank you. Thank you. Next Testifier
+for the next testifiers Denise to testify. I'm sorry, I didn't see the metropolitan as a question Could you call the Testifier back Yes
+Maria Lind, do you on mute again ? There she is We have a question for you.
+Go ahead. Thank you for your testimony. I was wondering, too, if you knew anything about the a prefab housing that is allowed.
+I've heard that there is long delays and they kind of seem to have run away with the money as well. And not providing the housing
+either And yes, that is experience. We're seeing. And I think there's a misconception that if we don't allow this factory built
+housing, that then it raises this kind of thing. But right now there are prefab housing options available, very similar, but there are
+different. They are essentially put on jack stands and the main company here, they have incredible delays.
+I have clients who put hundreds of thousands of dollars down on that and waited over two years for those to come And if we say no
+to this option, those are all HUD certified. So they're allowed. Right now, they're developers looking at other options just like that.
+And you're going to like them less than what's available here in Hawaii. I'm Holly's boss is the one we're looking at. The other
+options are being brought in from the mainland. They look like doublewide trailers They aren't great. But they can be done right
+now. So let's provide an option for Hawaii.
+People that's made in Hawaii that actually is a permanent. Thank you Any more questions If not, thank you. Next Testifier Thank
+you, Chair. The next Testifier Is Denise Matsuyama testifying on resolution 2642 to be followed by a killer or killer line? Good
+morning, Chair. Vice Chair honourable members of the Maui County council. We just want to mahalo First of all, the Council for the
+generous support of Holly. Well, you know, with this actually it's over $11 million in grants. And what's happening with this
+resolution is it's a technical bridge because under the light tech program the projects cannot take on grants without canceling the
+tax credit.
+Equity. And it affects the eligible basis. And I don't want to go into a whole bunch of jargon, but it affects what can be covered by
+the grant. So by doing this, all it does is allow us, as the nonprofit to pay for the project. So we're almost done with the grant.
+There's about $2 million left plus the retainer, and we got to get there And we've been using the state funds right now to
+substitute. But there's only so much funds. And so by passing this resolution, we can continue to get to the finish line.
+And we look to finish about summer of 2027 right around the corner. So thank you so much for your support. My questions
+members amber Johnson Thank you, Chair and thank you for your testimony. It's going to be the same question I asked Director
+But basically this revising the name of the grant, is that slowed down the process for you guys? And can you give us like, was it a
+month? Was it two months? How long did it slow down the process of this renaming So council member johnson So I'm i'm not sure
+that we're changing the name of the grant.
+I think what it is is authorizing just the payment so that we as the grantee can make the process You know, I think it's come a long
+way. I think we've been trying to do this since last summer to get this squared away. So we're just really pleased now that the
+administration is expediting this along and we're looking for a nice outcome So since last summer, you've been working on this
+issue I believe that's about right. OK. That Yeah, see when folks are trying to get into homes and we tell them that kind of delay,
+it's concerning for me.
+And it's something internal that we as a county should look at. Thank you for your response. Thank you. You. Thank you. I just
+want to add that the progress hasn't stopped because we've we've been using state funds in the meantime. So progress we didn't
+want the general contractors, you know stopping. So no progress has been effected. So that's a good news Thank you. OK. Thanks.
+Because we really appreciate it. Thank you. Thank you Excuse me. I have a question OK The progress has stopped, but what
+exactly was the holdup So what happened was we were getting paid all along, but at some point, they discovered that you need to
+have this exemption.
+So in order for the payments to go from us to the project there needs to be a resolution. And like what was done and i think in 21,
+2021, there was a resolution passed, 2198, I think it was that allowed this kind of financing structure to occur. So what this is, is
+just covering all the bases But excuse me, but it took almost a year for somebody to draft a resolution to come to the council. I I'm
+don't believe that it took them a year but we got notified that this resolution was needed some time.
+So I think would defer to the administration at one point. That was determined. Okay. So about sometime during last summer, you
+were notified that you needed a resolution Lucian, to update the exemption to have an exemption to have. So we don't have all of
+the Maui code. OK. All right. Thank you You. To the next Testifier is Thelma torcula also testifying on resolution 2642. She'll be
+followed by Lisa D'Arcy alliance. Good morning, Madam Chair. Members of the County Council Connie, factually. Yes. Well, nice to
+see all of you. It's been a while. I also am asking for support of Resolution 2642.
+And, I do want to thank you for all of your past support, because without you, we wouldn't have this funding to proceed forward
+with Holly pinion. And you know, this is something we're trying to take care of now. So we can continue the work and we can
+continue to pay the people who are moving this project forward. And I'm so glad I'm here today asking for your support and not
+asking you for money So please give us your support. And again thank you. Thank you. Question is, if not, thank you very much.
+Turn the next just testifiers.
+Lisa D'Arcy Please let us know which item or items you'll be testifying on and she'll be followed by Akiko because Koskie and he's
+currently our last Testifier lisa d'Arcy. Good afternoon Chair. Good afternoon Council members My name is Lisa D'Arcy and I'm
+testifying on resolution 26 DoorDash 40 Excuse me, Lisa. Lisa, your your voice right. It's too soft This how I love hearing that. I
+rarely do hear that. Hi. Can you hear me better now? Very good. Very good. Thank you. Okay. Testify on resolution 26. DoorDash
+40, supporting not supporting Faith Chase as an alternate to the HANA Highway advisory Committee, I have served with nominee
+Chase and the Healing Commission for Homelessness and she was very attentive She did a lot of work outside of the committee
+made great presentations, engaged many people.
+She has made herself available to this community and to this council as we all know many times she is a very clear voice for many
+people in her community I followed the testimony last week I tried to hold. I still don't fully understand all the deviations that
+happen for all the nominations. She had four committees and her willingness to participate So I thank you very much for this
+opportunity to testify Okay, Members questions for Vice Chair Sigma. Thank you. So just clarification. Ms.. Darcy, are you saying
+you support or don't support ? I'm sorry. I missed it.
+Well well, I don't have a really good track record in having things I support going through, so I thought I would suggest not
+supporting her. I think everybody who knows the work that I do and the work that she does is really unpopular. And it's really
+uncomfortable So I thought I would I would go for not supporting her. And I think you probably know that I find her work to be
+extremely unique and extremely valuable to this community. So I support you to make your own decisions Any more comments or
+questions If not, thank you Follow volunteer Thank you, Chair.
+The next testifier is kiko Buchholz because he am sorry if I'm mispronouncing your name and testifying under 15. Perfect. Thank
+you. Good morning Chair. Council members. Akiko bukowski's on behalf of the Plumbers and Pipefitters Local 675. First of all, want
+to thank you folks for all your work in supporting as we as we support as well helping those in need on and West Maui testifying in
+support of Bill 15. We did submit written testimony and I just have a few additional comments. We've been working with various
+council members as well as various stakeholders involved local vendors that provide factory built housing.
+We've been working with various council members the administration, and we hope that we as One of your previous testifiers from
+Hawaii community Lending mention, we hope that we're able to bring some potential viable, tangible solutions to help not only
+meet the needs of those affected in West Maui, but also preserve the minimum standard and protect public health, safety, and
+welfare in the build community by building locally sourced, safe and resilient communities. As we know Hawaii is prone to natural
+disasters. And, it's our hope that we can find some kind of middle ground to continue to provide safe and resilient communities.
+So that we can hopefully mitigate and prevent future occurrences that happen Recently in Lahaina So with that said, we're
+available for any questions. And thank you again for all your folks work. Great members. Any questions? No questions Thank you
+Jose. Jaycee will make his way to the podium Please let us know which item you're testifying on Aloha. Akaka Aloha Iko. Aloha,
+Akaku Oh, gee. Love from Cool Oak I hope I'm i'm sorry if you guys missed me at the last meeting I was incarcerated Terrorist
+Yeah. I don't. That's not on the agenda so I don't have time for that one So speaking on the deal, the opening remarks by Norway,
+Lani hodgins.
+Yes. Speaking of terrorist, it was kind of a different situation from Alex Pretty, but okay. To Maui to police department. They didn't
+they didn't know. Try to kill me right away. But I did go to the hospital after four days in jail. Okay OK I'm speaking on dumb. The
+opening remarks by council member Hodgins because I don't know, she'll speak again before her birthday and she's going to be
+40 years old this year. She doesn't look at But I don't know if you guys noticed on Wednesday Trey Evans, do Moran's family was
+out there on the front lawn and he also was born the same year 1986.
+So I really appreciate, you know, learned some comments and so tying this in with the Pledge of Allegiance part to the United
+States of America flag, I know a lot of people are sensitive about that but I always go back to local party and the illegal overthrow
+of 1893 The Hawaiian word for it is Ku, which means allegiance And so I try to incorporate that. When you guys are pledging, I'm
+out there pledging in the lobby to my my government that I think is in charge And so I just want to say that i think to Puerto ricans
+have a United States flag to in their country.
+So speaking of Bad Bunny, maybe that somehow there can be a deal made out where or of Rico can share our star on the United
+States flag. So I think I'm to be concentrating more on the Maui flag. And I really appreciate your leadership For Maui County truly.
+And I save the rest of my times for the people of Hawaii. Thank you. Questions members. No questions. Currently there is no one
+else signed up to testify at the beginning of the meeting. So if anyone wishes to testify, please make your way to the podium or
+raise your hand.
+And teams to Christine and will count down. Last call 3, 2, 1, three. There's no one else to testify. And any objections? The closing
+public testimony at the beginning of the meeting. So ordered Miss Clark. Chair. We're moving on to county communications
+currently there is no one signed up to testify So we'll do last call for anyone who would like to testify in the county community
+sessions. This is your opportunity and the countdown is 3 to 1 chair. There is no one indicating and sorry to testify. Any objections
+to closing public testimony and accepting written testimony on county communications So.
+Audience Quick chair before you is County communication 26 three. Councilmember paulton transmitting a proposed amendment
+to build 1581 I'm sorry, 51 2026 and title A bill for an ordinance meeting. Chapter 16.25 Maui County Code on Factory built
+housing in the line of burn zone Member Paulton Thank you Chair. If there is no objection, the link on communication 20 6-3 be
+postponed until a bill 1551 2026 is taken up. Any objections Members So ordered. Mr. Chairman, moving on to committee reports,
+there is no one signed up to testify on committee report. So I will give last call if anyone would like to testify in committee reports.
+This is your opportunity to the countdown is 3 to 1 chair. There is no need to King Is there to testify ? Members, Any objection to
+those in public testimony on and accepting written testimony or any on committee reports So ordered as clerk, chair before you
+Committee report 26 six Budget Finance and Economic Development Committee recommending first reading a bill to cle one 2026
+to amend section 2.56.080. Maui County Code on setting salaries for the Board of Ethics Executive Director and Legal Counsel and
+Staff positions by transferring authority to set the salary for the Executive Director and Legal Counsel from the Council to the
+Board.
+Transferring authority to set the salaries for other Board of Ethics staff positions from the Council to the Executive Director and
+Legal Counsel Establishing an attorney pay skill that manages the pay scale for deputies Corporation council deputies, prosecuting
+Attorney. Establishing a paralegal pay scale and authorizing a part time stamp position. Vice chair Thank you. Thank you. I move to
+adopt the recommendations in committee Report 20 6-6 moves by vice chair, so second by a member cook to drop the committee
+report recommendations Any discussion Vice sigma build to see one Update section 2.56.080. Maui County called on how board of
+Ethics staff salaries are set and updates the pay skills The intent is to shift salaries setting of Board of Ethics staff to the executive
+director within Council approved pay scales and let the Board set the Executive Director salaries subject to the maximum set in the
+code.
+It also establishes attorney and paralegals pay scales and authorizes part time positions. I asked for the members support of my
+motion. Thank you, Chair and you. Further discussion If not all those in favor of the motion, please raise your hand and say, I i
+Eight A's one excused member Carnoy motion carries. Thank you, members. Ms.. Clerk chair, before you see our number 26 seven
+Water and infrastructure committee recommending first reading a bill one 7681 2025 to authorize the mayor to enter into an
+intergovernmental agreement. The State of Hawaii Department of Land and Natural resources to delineate the state and counties
+respective responsibilities for the maintenance of P or a linda and all of the want to roads located in the vicinity of the Y y Spring
+Forest reserve for commercial term.
+OK. I'm sorry Sorry for an initial term of ten years. Yes Cook Chair I moved to adopt the recommendations in committee report 20
+6-7 second moved by member Cook, seconded by a member Hudgins to the to approve committee report 20 6-7 Discussion
+member Cook thank you Chair. Your water and Infrastructure Committee met on January 26th, 2026, to discuss bill 176 2025. Bill
+176 authorizes the mayor to enter into an intergovernmental agreement with the state of Hawaii Department of Land and Natural
+Resources to clarify the state and counties respective responsibilities for P Holo Orlando and other law on the roads near
+Whitehorse Bring Forest Reserve for initial term of ten years.
+The department of Public Works said that without a formal agreement, the state could potentially restrict through traffic access for
+residents and the public and the lack of an agreement has hindered the county's ability to reserve and maintain these roadways.
+The agreement clarifies that deal in our will be responsive both for forestry and vegetation management adjacent to the roads
+within the forest reserve. While the county will be responsible for the roadway surface maintenance paving and related safety
+measures your committee supports Bill 176 because it helps ensure continued public access will allowing the county to proceed
+with needing needed road repairs and maintenance?
+Your committee voted eight zero to recommend passage of Bill 176 Cv1 2025 on first reading incorporating technical and non
+substantive revisions, I respectfully ask for the members support of my motion. Any more discussion If not all those in favor of the
+motion, please raise your hands. I i. Eight eyes one excused member. But I'm going Motion carries. Ms.. Clerk Thank you, Madam
+Chair. Moving on to resolutions. Currently we have no one signed up to testify So if anyone wishes to testify please raise your hand.
+And teams make your way to the podium. Chair seeing no one counting down.
+3 to 1. There's no one to testify. Any objections to closing public testimony and accepting written testimony on resolutions? No
+objections. So ordered, Miss Clark. Turn before you is resolution 2616 authorizing acceptance of a donation of $5,000 from John
+and Francine paxton to County senior Services under section 3.56.030. Maui County Code members and NC all chair moved to
+adopt Resolution 26 dash 16 moved by members to Nancy seconded by a member Oo Hudgins to adopt Resolution 26 DoorDash
+16 Discussion members. Nancy Thank you, Chair Members. John and Francine Paxson wish to donate $5,000 to color code and
+North Senior Services in remembrance of Ms..
+So knock Ogawa and Tommy Nakagawa the knuckle goes participated in Kona Senior Services program was like Meals on Wheels
+which to parks and say allowed MISO to stay home until age 96. Tom enjoyed craft activities and other Kona Senior Services get
+togethers The donation will be used to support events, activities and services for Kona Senior services Yes. Mr. Roland Perea to is
+monitoring the meeting and available to act as a resource. Should the Council have any questions And I respectfully ask for the
+member's full support of my motion Thank you. Any more discussion? Member Vice Chair So you want to thank you.
+I just want to express our appreciate Asian to the family parks and family for the generous donation funds and i'm sure that the
+Kanoa Senior services will be grateful to hear this outcome. Thank you Anyway, a discussion if not all those in favor of the motion,
+please raise your hands here. I. I it eyes zero nos one excused member The town motion carries Michael Thank you, Madam Chair.
+Before you is resolution 2617 authorizing acceptance of the donation of footwear to the Department of Fire and Public Safety
+Oceans Safety Division under Section 3.56.030. Maui County Code member Paulton Thank you, Chair and will to adopt Resolution
+26 Dash 17 Second move by member Paul to signify by saying your to adopt Resolution 2617 Discussion Member Paulton thank
+you Chair.
+I'd also like to move to substitute the existing letter that is part of the packet with letter that I see learned distributing from Article
+Four right now, as well as attach onto that a waiver of Rule 19 to take final action today Okay, move by member Paulton seconded
+by any member of Rollins Fernandez to substitute the letter that was distributed and rule 19. And so that we can take action today
+Thank you, Chair. You know, this is an annual donation and I believe they send out a standard form letter that they do with all their
+donations.
+And we usually ask for a revised letter due to the sponsorship agreement that other entities enter into. And we just i guess some
+lawyers maybe drop the ball. I don't know. But that's why we're leaning on the flag today And i'll see the rest of the discussion, I
+guess, until after this passes. Hopefully any more discussion on the motion ? All those in favor of the motion, please raise your
+hands. See, absolutely. I I see eight eyes when one excused member for Tonga and motion carries now the main motion is
+amended and discussion of revolving space.
+OK. Oh, sorry Thank you. Thank you, Chair. I just wanted to express my extreme gratitude for. Okay. And i actually Klepper, I had
+been on the receiving end of this footwear previous to this rule that I mean, and it's pretty good stuff Some of my shoes are still
+last thing. And it's a great partnership where lifeguards get shoes and slippers and Molokai looks good on them. Thank you. You.
+Thank you. you for that commercial. Any more discussion Right All those in favor of the main motion as amended. Three Jancee I. I
+and I zero nos Motion carries one excused is member Barton Gunn.
+Ms. Clark Chair, before you as resolution 24 dash 40 appointing Faith Jase as an alternate on the advisory committee to the Maui
+Planning Commission members and see all the chair moved to adopt resolution 26 DoorDash 40 moved by members and Nancy,
+seconded by member Hudgins, to adopt resolution 2640 discussion with members. And then c Thank you, Chair. A vacancy for an
+alternate seat on the uninvite committee to the Maui Planning Commission was created on April 1, 2025, and the seat remains
+unfilled because council is the sole appointing authority for this vacancy. Charter Section 13 dash two parents 20 was triggered
+and under a charter Section 13 DoorDash two, parent 20.
+On November 3, 2020 fifth of the Council sent a letter to the independent nomination board asking for a new list of nominees for
+the alternate vacancy within 75 days, the oMB did not submit a new list within the charter mandated time frame under the charter
+section 13 to parent 19. The Council now has until February 16th to nominate and approve any individual to fill the vacancy without
+consulting and be members based on the last council meeting discussion, I put forward fake chases as an alternate to the Honna
+Advisory Committee to the Maui Planning Commission for a term expiring March 31st, 2028, and members just two and rural East
+Maui has a limited volunteer year sources.
+And so and we get dedicated nominees that are willing to serve we want to lock them down. So I appreciate your appreciate your
+support of my motion. Thank you. Any further discussion if not all those in favor of the motion, please raise your hand. See, I i
+eight eyes are. And those motion carries one excused member Otunga. I'll thank you Mr. Clark. Thank you. Chair. Before you is
+resolution 2641 approving exemptions from and modifications to the required ments of Chapter 3.35 Maui County Code for the
+Kalani Apartments Project The lodges Thank you, Chair. I move to adopt resolution 26 Dash 41 second moved by a member lodges
+by member Cook to adopt a resolution 2641 Discussion Member Oh Hodgins Thank you, Chair.
+This resolution will authorize certain exemptions from and modification as to the requirements of chapter 3.35 Maui County Code
+for carolina Apartments Project. The fiscal year 2026 budget includes 3.5 million Affordable Housing fund loans for the project. The
+Housing director requested. We consider acting on this resolution today to allow the developer and home provider to meet its
+financial closing timeline and maintaining compliance with low income tax credit requirements The housing providers planning to
+commence construction on May 8th 2026, and is required to complete construction by December 31st, 2027. There are seven
+requested exemptions and modifications where outlined in Exhibit One of the resolution I do have an example that was just
+passed out.
+Thank you. Regarding a relating to one of the requested exemptions referencing my is if I moved to amend resolution 26 DoorDash
+41 to exhibit one and paragraph four by correcting the Maui County Code subsection 3.3 5070A for quote and striking the
+remaining part of this sentence, the corrected quote reads as follows if the grantee or borrow dissolves or is adjudicated bankrupt
+title to any real property that has been funded or approved by a grant or loan issued from the fund must be conveyed to the
+county or to a qualified nonprofit or community land trust as approved by the county by resolution Okay, so it's been moved and
+seconded, moved by member who had a second revised year.
+So Kimura to amend the main motion with the information that was just passed out, the amendments, a summary form Yes, please.
+Chair And are you going to also suspend rule 19? Yes At the same time, sure. So this, again amendment ensures a provision for
+which the exemption is being granted with quoted with accuracy And I also moved to suspend rule 19 of rules of the Council to
+allow final action at the same time as this meeting's amendment You already did those discussion I'm sure we'll have them in
+twice. But yeah, for the record, she did second, and thank you.
+OK any more discussion on the amendment by. I member Ron Fernandez? Her I'm looking at Exhibit one. This amendment So
+subsection four is and it says that you are correcting an a quote to read this instead. So because we don't have around zero
+version, I'm i'm assuming that it's starts with the project must not be sold exchange divested or converted or is that. So within
+both the quote that's the section that this language is intending to replace. Remember I think you. And if not, we can have
+Director Mitchell come here and solidify that answer for sure.
+Oh, that would be great. Director Mitchell was this requested by the director, which. I'm sorry. OK. Oh, yes. So we have somebody
+from housing here. Oh, okay. Whoever i just. I'm assuming that this is if was done with a very short timeline. So yeah okay.
+Because just having the Rams your version is easier to understand. So I just want to make sure that I'm understanding that where
+it's replacing is with within the quote. Could you come down the November to housing was with Emil for many years. Aloha yes.
+Sorry. Go ahead. So it would start an exemption from code subsection 3.35.
+070E for requiring that. And then it would read if the grantee or warranties are dissolved or adjudicated bankrupt, correct. OK. And
+then we're shrinking the project must not be sort exchange divested or converted to other uses etc. We're striking that I have to
+confirm I believe that is what it is But I Yeah I don't have that. Can I answer real Yes. Yes. My when I read it. We're changing on the
+quote and we are striking the remaining part of the sentence. OK And then where the quote ends, it would continue reading as this
+provision may limit the developer's ability to secure private financing Correct.
+That would remain to end the sentence No, actually my notes say that it is striking the remaining part of the sentence Okay. So it
+would end with by resolution period end quote. Yeah Okay. OK. Modify that clarification anymore questions? Yes Deputy Corp
+Counsel Thank you, Chair. And and just for clarity, then, I will continue to say as this provision and continuance so you're correct,
+new sentence and end of sentence. You're correct Period. And then so the quote is being substituted in with that language. That's
+intended on the SRF and then it will continue with as this provision may limit the developer ability that stays in.
+OK. So that is not industry that is not being stricken. Okay. Thank you. The only thing that. So what the part that starts that
+deleted is starts with the and ends with resolution That's correct. And then is being replaced with if and then correct. What was
+misquoted was the language from the code OK. And then as the provision may limit the developers ability to skip So. That's
+correct. Thank you, Madam. Okay. We got that super clear I'm ready to give up. All right. Very good. We try to make our
+customers happy Thank you. And you have Chairman She's crazy.
+All right, so did we take the vote on the amendment? Eager to Okay all those in? I'm sorry Chair staff would just point out the way
+they as if is written in. I think the intention is our staff was helping councilman move. Hodgins was to put a period at the end of the
+quote, and then strive to remain sure of the sentence, not keep that non quoted material all that was just mentioned. So I
+apologize for the confusion. Thank you, Chair Chair Yes, I have. Carolyn fernandez. So I believe member Hodgins would just need to
+amend her motion by restating until and then we wouldn't strike the rest of the sentence.
+So it would be first move to amend Resolution 26. DoorDash 41 is exhibit one at paragraph four. By correcting the Maui County
+Code subsection 3.35.0 70A for a quote to read as stated below period. And then the quote would be replaced without striking the
+remaining part of the sentence Okay. Is everybody clear on that? Okay. Thank you for that clarification All those in favor of the
+motion which is the amendment, raise your hands. See, I I look at member. And so eight eyes zero nos one excuse member but
+I'm gun and the motion carries thank you.
+Oh no. On the main motion as amended any more discussion? If not all those in favor, raise your hands. I as eight eyes zero nos
+one excused motion carries excuse is member Duncan All right Thank you, Ms.. Clerk Thank you, Chair. Before you as resolution
+26 42 approving the redistribution of affordable housing ground funds from Catholic Charities, Housing Development Corporation
+to Holly Paulina one help for the holly Clean, affordable rental housing project under section 3.35.070 85. Maui County Code
+Member oh Hodgins thank you, Chair. I moved to adopt Resolution 26 DoorDash 42 to move by a member who Hodgins, seconded
+by member Cook to adopt Resolution 2642.
+Discussion Member who? Hudgens Thank you, Chair This resolution will authorize Catholic charities Housing Development
+Corporation to transfer Affordable Housing Fund grant funds to Holly Paulina one LP for the Holly clean Affordable Rental housing
+project Rental Housing Project. The Council approved a $10 million affordable housing fund grant for this project through an
+amendment to fiscal year 2024 as budget as stated in Exhibit a of the resolution excuse me, the transfer of funds is needed to
+ensure the project's compliance with low income housing tax credit program requirements and maintain the integrity of the
+project's financing structure. The housing Director requested We consider acting on this resolution today to prevent a pause in
+construction due to financial delays.
+The funds will be used to pay down project expenses incurred in September of last year. And I respectfully ask the members
+support for my motion. Thank you. You, Chair. Any further discussion, if not all those in favor? Member Johnson thank you, Chair. I
+just want to, you know, rise in support, bye. Did. I do think we have an issue within our department our administration, the builders
+and everybody knows they need that like ten of part of the puzzle And if it's us guys, if it's the county who are delaying for
+whatever reason, we know that that money is key.
+The light at tax credits are key to making these projects go forward. We should be totally making it streamlined and faster as
+opposed to having delays and coming back and make amendments. That's my I just wanted to add that, but full support for this
+project. We need these people in the houses sooner rather than later. Thank you, Chair. Thank you Member Hudgins Thank you.
+Chair. Thank you. Member Johnson when discussing this upcoming resolution with the Housing Director, the other week, Member
+johnson, we were discussing how to fix this. So we are not in this situation time and time again.
+So we're looking into how to do that. What's difficult is that the low tech funding their due date is not at the same time as ours. So
+there's some overlapping concerns and issues we're trying to address right now, but hopefully we'll get this fixed. So we're not
+holding anything up because I don't disagree. Thank you. I i'm with you, Councilmember. Yeah, All right. Thank you. Chair Jumped
+right into that Very good. Very good. No more discussion. All those in favor of the motion, please raise your hands. I a0 nos one.
+Excuse me. Motion carries member Barton on Ms. Clark chair.
+We're moving on to ordinances and currently, there's no one signed up to testify. But I see Mr. Law making his way to the podium I
+don't know how I can everybody build 21, the 24 North Church Street renovations I appreciate Mr. Martin being here earlier, and
+person I have a letter to got to send to the prosecuting attorney's office to retrieve my evidence But I don't know where the
+prosecuting attorney's office is and no one else seems to know either. So I go back to my old standby recycling if they're going to
+be doing renovations, please ask somebody, whoever is doing that, I would talk with the eP and S office over there in the other
+building behind.
+OK I have this one here. And it's pretty tough getting them guys to talk with me about anything. But I'll keep trying So keep an eye
+on that for me. I'll talk with the ground crew out there. They're doing a pretty good job Bill. Number 22, Department of Ethics
+Management. They're going to be very busy this year. So I recommend helping them out. Going over 23. Thank Council members
+to more was the sponsor of that one looking out for the Kodak Park for $10 million. Seems like there should be some jobs created.
+I'm really glad that we're doing the food security thing that's always in the back of everybody's mind and their stomach And if they
+could cooperate with the county jobs and they're over there about the DMV to help somebody drive some kind of income.
+And so speaking of income, I'd like to get my own tax iD number with to the state people And I go over there to the state tax office
+and they i would like them to compromise a little bit with me because it says on the bottom of the tax bill number 26, on the
+bottom of the form it says are payable and you as dollars and I, I really i really have a problem with this UC thing because i've been
+trying to warn you guys for ten years about the current happenings that's going on now and what it's got to do with Department of
+OPV is because I took the B one form over to them, which was in English, and I asked them to help the state, maybe translate it
+because it is a bilingual county and their state building is in our county and it made a divide between me and the OPV Resources
+Department.
+So, you know, I would really appreciate operations equipment by $75,000 to help them translate some of those state forms into a
+little Hawaiian because of the compromise there is I really feel like I'm loyal. Galileo colony and I really I really I'm and I'm loyal to
+the county of Maui. And I want to pay my tax dollars. And I kind of like the state because of the governor right now is doing a
+pretty good job. I would like to generate some tax dollars for the people hawaii, but what is the kingdom of Hawaii get out of it.
+Thank you for your time As usual. I reserve my time for the people of the kingdom of Hawaii. Thank you Sure. There's no one else
+signed up to testify so I will give last call for testimony and ordinances and the countdown is 3 to 1 chair. There's no one indicating
+desire to testify Any objections to closing public testimony? An ordinances and accepting written testimony so ordered and is clear
+before you is Bill 21 2026 a bill for an ordinance amending the fiscal year 2026 budget increases to maintain revenues carryover
+savings general fund by $180,000. Capital improvement projects.
+Department of the Prosecuting Attorney Wailuku Kahului Community Plan Area Government facilities increase appropriate 424
+North Church Street building renovations by $100,000 and dependency department of the prosecuting Attorney Wailuku Causeway
+Community Plan area Update Project Description Increase appropriation for 24 North Church Street Building renovations by
+$180,000. Acquire shares Thank you, Mayor. Thank you, Chair. If there are no objections may I please request the clerk also call
+Bill 22, 23, 24, 25 26. All in year 20, 26. Any objections? Oh, we have a question number Paulton Yeah, I do appreciate having two
+sections. I did have two questions.
+One on 24 and one on 25. And I just was wondering when would be the appropriate time to ask it? If we do the mask, call Okay The
+24, which one? 23 and 24 did you say 24 and 25 with 24 and 25? Correct Okay. As well as 23 for my question, Chair, as earlier
+times, I miss. Clerk Could you call up 22 and 26 approve here before you is Bill 22, 2026 a bill for an ordinance amending the fiscal
+year 2026 budget, increasing estimate of revenues carryover savings general fund by $314,341. Department of Management
+board of Ethics Program Increase category eight salaries by 314,341.
+And sure you wanted Bill 26. Yes Before use Bill 26, 2026. A bill for an ordinance amending the fiscal budget Carryover Savings
+General Fund by $75,000. Department of Resources increase appropriation for Category B Operation and equipment by $75,000
+last year. So you were. Thank you so we are splitting this up. Yeah. Bill 21 as $180,000 in general fund savings for 24 North Church
+Street renovate since increasing the total appropriation since two 680,000. I think prosecuting attorney spoke about this. The
+funds will cover the extension of the at work installation of security card readers and this also related costs.
+Bill 22 as $314,341 in general funds carryover savings for Board of Ethics salaries The funds will be used for staff hired in light of
+the recent increase in equivalent personnel who skip 2325. And we are going to 26 b and 24 and 26. Bill 26 and 775,000. General
+funds, carryover savings and appropriations in the budget of Department of Resources Operations The funds will be for 75,000
+grants for here Inc for county for salt plan preservation restoration. I respectfully ask for the member's support O Chair if we could
+just get a motion in is oh, sorry Yeah.
+Okay. OK. Okay. So as we move by vice-Chair So Kimura seconded by member hodgins to under ordinances 2122 passed bills 21
+and 22 and 26. No further. This was that you discuss. Okay. Any more discussion? All those in favor of the motion, please raise
+your hands. I, I Okay, that would be eight eyes. Zero nos. Motion carries one excuse member tong Good. Okay, now we have call
+up 23. Please join by one. Sure. Chair before you is Bill 23 2026 a bill for an ordinance amending the fiscal year 2026 Budget
+Appendix c Part one Department of Agriculture State of Hawaii.
+Department of department Appropriation of $10 million. Vice-Chair thank you, Chair. I moved to pass Bill 23 2026 on first reading
+Move by Vice Chair Zimmer speaking to my member Hodgins to pass bill 23 on first reading. Yes, I discussion vice versa Thank
+you, Bill. 23 as a new $10 million grant appropriation and appendix A part one for the Department of Agriculture and the State
+Department of Agriculture for the funds will be used for the upcountry Maui Egg Park work Okay Any more discussion? Member
+Johnson you. Thank you. Chair. I'd like to call upon Director to if she could come and speak to my question Why was this money
+delayed Is director here?
+Thank you, Chair. Thank you. Councilmember Johnson Yes. As you'll recall when it was initially added in the budget under the
+mayor's proposed package 2024, it was a draft to the mayor and then it was moved to the department Agriculture director R.C.
+Reached out right away to the state to determine how to get the funds to move forward with this project. They said they sent a
+letter No one could find The letter and we asked repeatedly if they would refund the letter. It was not re sent We finally got some
+clarity on the information that they needed from us, so we were able to move where we.
+But it was just a lot of back and forth. Thank you, Chair I'm sorry that Director Millner you know, he noticed the overall theme is
+that we try to get stuff done within a yearly budget and it's involving it's a simple letter. Oh my God, that's so frustrating. $10
+million on the line. And they can't give us a letter. And then we have to go chase it down. It's very frustrating. Hopefully we can
+work with, you know, my I don't know how is that happening, But the theme for me today is our systems Our policies seem to be
+really slowing down.
+Moving movement of money on very important projects, food security the park, the affordable housing, all the lists that people say
+that we want, we keep tripping over our complaint. And so I just wanted to clarify that for the record director millner, what's
+happening with it? And I'm done with my questions. Thank you, Chair Any more questions If not all those in favor of the motion,
+please raise your hands. I, I eight i0 Nos Motion carries one excuse member, but on the next will chair for you is Bill 24, 2026 a bill
+for an ordinance amending the fiscal year 2026 Budget Appendix A Part one department of the prosecuting Attorney State of
+Hawaii Department of Health opioid Settlement New appropriation of 806 $886,633 and Vice year.
+So you were I was. Were you also going to bring. No, no, no. We just we've taken a separate. Oh, you are going to. OK So I moved
+to pass Bill 24, 20 26 on first reading, moved by Vice chair Sigma seconded by member Hodgins to pass Bill 24 on first reading and
+discussion Bill 24 as a new 866,633 grant appropriate action in Appendix A Part one for the Department of Prosecuting attorney
+from the State Department of Health. And this grant is from opioid Settlement Funds and will be used for opioid remediation in
+Maui County.
+Alton thank you, Chair. I guess maybe my own question is for director Milliner, because she said she would be available email at
+$886,633. Seems like a lot of money, but it can never replace the lives we lost due to people overprescribed opioids or other
+reasons. I guess I was wondering, is there plans like is this going to be like free Narcan distribution at bars and restaurants or like
+what? What will be done with the money to offset I guess you know, years of overprescribing, prescribing people without the the
+safeguards charge that these can become very addictive like you know people just get like one bad car crash or something, and
+then they became addicts for life or like what What are we doing with this money that has an impact on people who like
+inadvertently or anyone.
+I guess, addicted to opioids Director Miller Thank you. Chair thank you. Because I see that prosecuting attorney Barton is also
+available. So if I could ask he be allowed to contribute to this discussion on the specifics of the plans for the funding? Thank you,
+Chair. Got my information Mr.. Martin. I just need some I think the magic button. So he gets up. Oh great You see him And just
+because we're not going to committee like it, Lawrence do you see he's on and they. Are you there? Okay Hi. Good morning. I
+there's a question. We have a question for you.
+Did you hear the question I did. Okay. I did. Excellent question So this $886,000 represent since the current portion of the county
+share of the settlement. So overall course, the state trust fund on this settlement is a top of my head. If I recall, somewhere in
+excess of $36 million. Those state wide funds are already being put to use here in Maui County member Walton. And just really
+quick, I think several thousand Narcan doses have been distributed throughout the county. I think my department alone has
+helped facility about 1500 of those doses to organizations here in the county who are doing direct services with individuals who are
+suffering from opioid use disorder or there is current Lee, a program that is just kicking off that is providing not quite vending
+machines, but more like the old newspaper machines that will be routinely stocked with Narcan at state Judicial and in the very
+near future county facilities, as well as nonprofits and health care facilities that will provide people with free access to Narcan.
+And then we are the pilot for what's being called a second responder program that is starting here on Maui, will then go out to
+Molokai you know, nightly, and then finally statewide, where individuals who are suffering from overdoses are having encounters
+with first responder, such as fire EMS or police. But don't want to follow up on the overdose by going to the emergency room for a
+variety of different reasons. We'll have immediate access to doctors via video and phone access where they can immediately get
+treatment and not have to be concerned with going to the E.R. the UAH School of Medicine is assisting with this particular program.
+So all those programs are currently going on in Maui county in terms of the $886,000 will continue to work along with those
+programs and develop other plans to use that money within the confines of the national Settlement Agreement which again, just
+covers treatment prevention, things like harm reduction workforce development, diversion strategies to be able to sensibly and
+empathically spend that money to help those who are suffering from opioid use disorder and other attendance circumstances. I
+hope that answers your question Yeah. If I could have one follow up. Sure. Abso Well, yeah, I own those things that you said, even
+like the Bainbridge thing and whatnot.
+It seems like it's treating the symptom rather than the root of the cause. I mean I know that, you know, there's the streets i but
+like, is there anything being required of physicians to disclose like, in the prescribe Oxys or any of the things like about how
+addictive, they can be to certain folks, you know, like some people can take it or leave it or it doesn't make them feel good. But
+some people are really developing it as a crutch. And then, you know they were a normal functioning member of society and a
+doctor prescribed it.
+And then they can never get off. And then maybe they turn to like street alternatives or whatnot. Is there anything being done on
+that? And to like, you know, at least give heads up. Thank you. My kids are being prescribed this. And people are being prescribed
+this that it has the potential to become very addictive. That's a great question. And it's not an answer. I have off the top of my
+head. I'd have to look into it in terms of whether or not there's any beyond what the requirements of the ethical requirements of a
+physician when they prescribe any type of medication potential side effects might be if there's anything with respect to opioids
+specifically, that has to be I'd say legally information legally provided individuals.
+I'll send out some emails and figure out if I can get an answer for you that I can email you separately if that would be okay with
+that With the body, that'd be great Yeah, just seen it too much Thank you. Yeah, absolutely. OK. We may have another question
+from member on Fernandez monitor. I have an answer First and then a question. Okay. Okay. So to add to our number patterns
+question about what else is required under their agreement, under the terms of the agreement, each of the contributors to this
+settlement, except invit in their or are prohibited from promoting or marketing opioids and opioid products, making or selling any
+product that contains more than 40mg of code on per pill and are required to put in place a monitoring and reporting system for
+suspicious orders.
+Indivior agreed not to manufacture or sell opioid products for the next ten years, but will be able to continue marketing and selling
+medical and to treat opioid use disorder. OK so my. So that was to add to remember Pelton's question and so this is either for
+prosecutors or budget director. In this article that I'm reading So it says that some $20 million settlement 2.4 is to have a but the
+manufacturers involved in the settlement include Mylan. Now, part of viatris, 284,000 is in over nine years. Hickman 95,000 over 1
+to 4 years. Amneal for 71 million over ten years.
+Apotex 63 over 63 million over one year. Indivior for 38 million over four years. Some 32 million over 124 years. Allergan 818
+million over one year and Zydus 15 million over one year. So for my question is since some of them spend more than a year, will
+have continue to receive moving funding for the ones that will continue paying for more than for multiple years. Mr. Mike OK. Yes.
+So the where about 3 or 4 years into what is expected to be an 18 year period of continued distributions from the various
+defendants who are a part of this settlement.
+And there are additional settlements that are occurring that are kind of ongoing right So those funds will continue to come in over
+the next decade and a half. And as I've stated earlier year, these are not time restricted funds and so the state has been taking, I
+think, reasonable and intelligent measures to make sure that these funds remain sustainable over time. So that it isn't just
+something that's going to dissipate quickly, but that the funds that are sitting in this trust fund. Now, a good portion of them are
+earning interest. So that we can continue to sustain ability to fund and continue to help people.
+Okay. And then to my questions on this article says that. How about you receive 42.2 million in settlement funds and you said 36
+million. So are those like different cases and settlements that you're referencing? Well well, the funds are being expended to.
+Right. So projects like the ones I detailed for you earlier here on Maui are being funded as well as other projects. I mean, across
+the state So there's the money that's come in, and then there's the balance in the account. And the number I gave you was the
+balance in the account. Mahalo from Jan.
+Okay, great, great. And then in so this also says in February 2022, drug drug manufacturer Johnson Johnson and wholesalers
+AmerisourceBergen and Cardinal Health and McKesson agreed to pay 26 billion to settle thousands of lawsuits, accusing the
+companies of knowingly contributing to the national opioid crisis. As one of 46 states to sign off on the deal, Hawaii was allocated
+78 million over the 18 years of opioid opioid treatment prevention and education, as well as other abatement, different strategies.
+So this 78 million is separate from the 42.2 million. That off the top of my head, I'm not sure Remember Robbins Fernandez, you
+know what?
+One of the things I can do for you folks is I'll if the staff will leave the chat open for me, I'll pull the opioid settlement advisory
+committees, Dashboard up the public link that kind of provides all the ongoing information. I'll post that in the chat and any
+specific questions you want. I will post to the deal page and get the specific specific answers. And that particular one I'd have to go
+back and look to see whether or not funds have already been received and are part of that current $36 million balance from that
+particular incentive OK.
+Yeah, because this article is like naming the different manufacturers and the different settlements and have separated it. And so
+there's different amounts And I guess like just to keep them all clear which funding this this settlement is coming from and which
+manufacturers and the ones that are paying over time just to keep them all in order for the public to understand the funding that's
+being received would be awesome Well, then you had one more question. Oh, those are my questions. My other. I question Any
+more questions for Mr. Martin members and Nancy Marlow, Chair, director Marty, I did hear that you worked with some of the local
+nonprofits or the nonprofits that are directly working with substance abuse.
+Would they be able to apply for these funding as well? Absolutely. And any organization that would that wants to make a proposal
+to the opioid settlement advisory committee or expenditure of the funds within a framework of the national settlement There's a
+process to do that. And that process is provided for the link that I'll put in the chat Okay, great. Thank you. And my question
+member Arun Fernando, my last question, I'm pretty sure will you share with us how our portion was formulated, how it was
+determined Yes. So the of the entire settlement, 15% is a portion to the counties to use without opioid settlement advisory
+approval within the confines of the settlement itself.
+Of that 15%, Maui County receive the pro rata portion of that equivalent And I'm rounding up. It's just under 14% of that amount
+pro rata based on population size population. Okay Molly, brand clarification. Your okay any more questions? If not, thank you very
+much. All right Let's did we vote on that? Nope All those in favor of the motion, please raise your hands. High 8I0 nos one. Excuse
+member, but on. Motion carries And then we have the last one is chair before you is Bill 25 2026 a bill for an ordinance amending
+the fiscal year 2026 budget increasing estimated revenues carryover savings general fund by $54,434.
+Department of Corporation Council Legal Services Program increase in equivalent personnel by 1.0 and increase category eight
+salaries by $54,434 by Zero Sigma two I moved to pass Bill 25 2026 on First reading moved by vice Chair as you as I can
+remember, to pass Bill 25, 2026 on first reading discussion member I mean Vice Chair Seymour Bill 25 as $54,434 in general fund
+carryover savings and appropriates for salaries for the Department of Corporation Counsel, along with 1.0 equivalent personnel
+increase This This change allows a grant funded attorney to build time to both grant funded and non grant funded work.
+Any more discussion All those in favor of the motion please raise your hands. I. I either. I had a question or so member to I wanted.
+Thank you on i heard your testimony about this. But I just was wondering if you could repeat it. I didn't really understand what you
+were saying about 25 portion Office of Recovery and I just wanted to clarify what you were saying Is it that we lost Mr. Keel, but we
+gain her office of Recovery and Holly and of that were the 25% or I'm not sure i understand. So we want to get clear.
+Thank you for follow Yes, we're including 25% of the cost for one epi in corporation counsel so that any time that she charges to
+the general fund, there are funds available to cover that time. That's the purpose of the 25%. Oh, okay. And then what does it
+mean? Increase equivalent personnel by one was there was is that one. And the 25%. Thank you Chair thank you about. And so it's
+one. But you still you guys percent is the wheels of so she's learning how to use the wheelchair put your hands on the wheels she
+can hear sorry okay.
+Oh he funded at 25%. So all we need to add both the epi and the funding to allow her to charge for time to the general fund. Thank
+you. Sorry I didn't understand that. Now I thank you. Bye. Thank you You can stand up and help her. You know Yeah. Good. All right
+All those in favor of the motion that we were taking the vote. But anyway, all those in favor of the motion Raise your hands. It. I
+guess we have eight. I Seven eyes, two excused motion carries. Excuse there. Member in and member for gone right Mr. Chair.
+Into ordinances for second and final reading before you is Bill 12 2026. A bill for an ordinance amending section 3.48.410. Maui
+County Code on deadlines for filing claims for real property exemptions The rule is Fernandez mahalo to and prosecuting attorney
+Martin was trying to share with us the link. If clerks wouldn't mind opening the trunk for a quick snack while he does that OK I
+moved to pass the bill. 12 2026 on second and final reading. I did moves by Rob member Rose Fernandez because my members
+tendency to pass a bill 12 2026 on Second and final reading discussion member Rollins Fernandez mahalo to no further discussion
+and press Prosecuting Attorney Martin The chart is now open for you to share the link Any other comments or questions or
+discussion on Bill 12, if not all those in favor of the motion, please raise your hand and say, I can.
+Now we have eight eyes, zero nos. Motion carries one excused member voting going Ms.. Clerk Chair before you is Bill number
+1551 2026 a bill for an ordinance amending chapter 16.25 Maui County Code on factory built housing in the Lahaina, Burnsville
+member Paulton ordinance. The thank you and move to pass bills 1551 2026 on second and final reading second again moved by
+member Baldwin, seconded by members and Nancy to pass Bill number 1551 2026 on second and final reading Everybody in.
+Thank you. If there are no objections I would like to recall and I move to amend Bill 15 at one 2026 with my posted amendments.
+I mean, from attaching to county communication 20 6-3 and to file county communication 26 testing Okay. Moved by member
+Paulton signify member OU Hodgins to see amend cc per city 20 6-3 and file cc 20 6-3 Discussion member Baldwin thank you. This
+amendment would add an additional paragraph to read as follows. This ordinance also recognizes the obstacles unique to Hawaii's
+location in the middle of the Pacific by requiring that the factories receiving approval and certification are located within the state
+of Hawaii. This requirement is needed to serve the following objectives reduce shipping and freight costs, minimize greenhouse
+gas emissions and reduce energy dependency, maintain local building and manufacturing standards and ensure the prompt
+availability of housing, green housing products during emergencies.
+Every week. And I'm in section two. In section 16.25 .531 Parin one on page five by replacing the United states with State of Hawaii
+second move by member policies and by member sin Nancy to substitute this amendment. So I'm sorry for the discussion.
+Member Paulton Oh, thank you for this amendment. You know, I think we discussed in first reading that the bill is narrow only
+defined as the burn zone and that for manufacture from any factor to for a survival or to work with a new factor on the continent or
+the a foreign country would be extremely difficult for them to get like a one off that complies with maui County Code and they
+might have to order like, you know, up to 200 of the C1.
+And that's not feasible for the burns all and every not there's not going to be 200 i want to see one. So this will use the side wheels
+use that table. Use Yeah. So this will make more sense for the burns one and it will ease our local construction industries concerns
+as well So I you spent earlier as a member. So part of my First Amendment. I have one more coming Okay. Amendment not
+substitution Any more discussion If not all those in favor of the First Amendment regions. I so we have eight i0 nos motion carries
+one excused member on gun member Bolton.
+Thank you. I'm moved to further amend Bill 15 FD1 2026 with my amendment summary form seven. That was distributed at
+today's meeting and suspend Rule 19 of the rules of the Council to allow final action at today's meeting OK, Okay. But. But the First
+Amendment was included in your as if to write a first Amendment. This One in the bill's preamble strikes the spirit sentence It also
+removes all references to third party inspec ition agency and third party inspec manual include moving the definition of those
+terms a reference to documentation and relating to third party inspec ssion he dances in section five o 2.1 parin E the requirement
+of a letter of contract with an authorized third party inspection agency under Section 53.1 on factor u approval should it possible to
+have a five minute.
+Sure. Sure Five minutes. Everybody. No problem. Take all the time you need reasons and All the council meeting of February 6th,
+2026. Please reconvene time is 1213. So we all need to get the ready to move quickly so that we could in this. And then we can all
+go to lunch and have a wonderful weekend Yeah Thank you, Chair. Oh. Oh I'll start back at the top of my Second Amendment. OK.
+There is no confusion again. I'll read it fast I move to amend Bill 1551 2026 by in the bill's preamble striking the third sentence,
+removing all references to third party inspection agency and third party inspection manual, including the wish definitions of those
+terms The reference to documentation related to third party inspection agency using section 512.1 E, the requirement of a letter of
+contact with an authorized Third party inspection agency under five o 3.1 on factory approval Section 5O4 in its entirety.
+Item Third party Inspection Agency Certificate keeping references to factor inspections conducted by an approved third party
+inspection agency and to a third party inspection manual under Section five of 5.1. Renumbering. 254.1 and references to third
+party inspection agency insignia and information under Section five of 6.2, which is renumbered to 505.2, inserting references to
+inspections by an authorized county inspection inspector or in section five o 5.1, renumbered to 5 or 4.1 or a building official
+inspection 5 or 6.23. Number two five. Rule 5.2 inserting a reference to chapters 107 or 4 four and four for inquiry by statute and
+public improvement contractors and electrician and plumbers respectively.
+Section 53.1 incorporate being technical and non substantive revisions. And as a suspension of rule 19 of rules of the Council to
+allow final action at the same meeting as an amendment And that was seconded by four. Okay. All right Any more questions on
+this or you probably need to see the name of it seconded by, for the record. Okay. It was moved by you. Yeah, right Yes. Move by
+member Bolton on the original bill. On the original bill. OK. And the second amended. Yeah. Only on the amendment. OK. On the on
+the Second Amendment. And this and the second there was everyone.
+So so all the. Yeah. You don't remember too. Yeah. You don't remember if members Zygi were okay means correct is that what you
+have. Yes Chair okay so is there any more discussion on this itself, which amounts to the Second Amendment? You have a
+question? OK, let's go. All right. I think you've my discussion again. Oh, okay. Oh, I'm sorry. Oh, I thought you did the discussion
+member bolton. Okay. The purpose of this amendment is to shorten the preamble or remove the third party inspection
+requirement in favor of using authorized county inspectors to require a letter verifying factory bill housing compliance with
+statutory provisions and public improvement.
+Contractor and electricians and plumbers, and incorporate technical and non substantive revisions for clarity, consistency, and
+style All these amend means came about after meeting with meeting with various officials within the trade, including operating
+engineers, District Council of 50 painters and keepers. I b W electricians and plumbers and pipefitters as well as multiple
+conversations with chief darryl Oliveira, who stood in for us with me for a little while and is now currently working with p m and
+director of Public Works Trading Molina, who I'm all leading Thank you What was the last word? She said? Oh, all we they know
+okay.
+And I know. Yeah, I didn't hear what you said, all we then okay discussion Vice chair Sigma Thank you. And report and I really
+appreciate these amendments. As you know, during the first reading. I had active audit. No. And I was concerned about factory
+build housing that was not locally made. And these and amendments addressed my concerns and I'm in favor of moving this bill
+forward as amended as amended. I'm also I was also concerned because if we bring factory built homes from wherever just the
+safety of it was another big element as well as jobs for our key working people.
+So thank you. Thank you. Remember Bolton Thank you, everybody. Remember who? Hodgins. Thank you. You. Chair. Thank you.
+Remember Politan for your amendments. I appreciate them. I do have a quick question. So on page seven and sentence number 2,
+and then the continued portion on the next page for 5042, I just wanted to confirm and this can either be for you or see us that
+when the onsite inspections will occur, it will be done by Maui County inspectors I understand that when they're on Hawai'i Island
+or wherever else, I'm assuming Hawaii island, that it would be those inspectors as well.
+And then when it comes to Maui County, there will be maui County inspectors I see that the capital C was changed to a lower case
+C, So I just wanted to make sure that we were being specific and ensuring that as Maui County inspectors, Metropolitan Yes. For
+page 75O 4.2, the intention is that the county inspectors of the factory, that the island that the factory is on, would inspect at the
+factory and the county inspector is on Maui would be the inspectors for when it's assembled on Maui is the lower C in reference to
+page nine or was that also in reference to page seven, seven and eight, The capital C was changed to a lower Casey.
+I'm not necessary a grammar person, so I just was kind of curious how it changed But I just the intention is more what I think I'm
+ensuring Yeah I think the lawyers did that in accordance with language leading drafting standards sounds going to some I believe
+small c OK. Thank you very much for that confirmation and thank you Chair. That's all I have. Did anyone else? Member cook thank
+you. Chair, I think. Member Paulton for these amendments. It basically makes it's going to enable to meet the goals and objectives
+and also keep it island based for both quality and available for both the builders, and the recipients of the homes.
+Thank you for your work Anyone else Thank you for all the legwork. I'm sure it took a lot of time to do this. Thank you If not, are
+you ready for the vote? Okay, so. And the vote is on this one. This is if all those in favor of the motion, please raise your hand and
+say I nai eight eyes or excuse member tong on motion carries now the main motion as amended and as you know, we had to
+amendments. The first one had to do with the communication, which was also filed. Okay. And then this is if all those in favor of
+the main motion as amended please raise, I think, a couple guys have discussion more discussion in member Johnson.
+Do you have discussion on this motion Yes. Chair. I just wanted to thank councilmember Portland for her work on this bill and thank
+some of the members who, after hearing their discussion, they're going to vote to support it. So I that's really impressive to see us
+coming together. I want to do a point of information for the body that the state also has this discussion in their in their purview.
+And HB 17, 19 passed today out of committee in regards to our meeting by right in residential lots under urban districts factory bill
+housing. So the state is also looking into this.
+So that's not applicable here because West Maui is not an urban district, but just wanted to put that on the record. So there's
+moving parts and it's state is also working on this. So I rise in full support. Thank you, Chair. Any more discussion Have some
+discussion. Okay Member Metropolitan Oh, on the main motion is amended. I just wanted to thank everybody involved in this bill.
+You know, the this never would have gotten started without Chief Oliveira and you know that started in mediately after the fire as
+Mr. and Diane left, he stepped into that role and he's been continuing to support us in any way that he knows how, as well as you
+know, he's trying to cater to and also to all the trades unions.
+That didn't seem no, but how? Just like Hawaii community lending doesn't seem low. But how and you know, this will me be an
+option for people. It's not necessarily something that everybody wants, but it could be something that some people need You
+know, all the different tools with the magnitude of destruction is needed because, you know some of the families that are
+investigating each and every avenue, every single day and chips a little bit away from their souls And people are really tired and
+you're giving up. And to be able to give more options during this time, it's the least that we could do.
+I was even aware that my friend maria was looking into this as an option for her own community lending to assist their clients They
+have, I think their testimony said 500 something owner. I keep paying clients, 80% of whom more than 80% of whom make less
+than 100% see the AMA I the Cdbg funding is helping, but all sorts of people have all sorts of different challenges. You know, like
+sometimes I feel like if you live in what he kumia would be way easier. But even people in what he Coulier having a hard time, if
+you live up Loma Linda road if you have sewer fees and all these things you think that it would be easier for them.
+But nothing is easy when you're navigating the trauma of nothing is easy as you lose people along the way to coming home And so
+anything that we can do to give more options or make it easier is worth all the work. Thank you Any more discussion none, all
+those in favor of the main motion as amended raise? Yancey I know. And I zero nos one excuse motion carries member coming on
+excused as clerk. Thank you Chair before you as Bill 18 2026 a bill for an ordinance authorizing the mayor to enter into an
+intergovernmental agreement with the office of the Auditor State of Hawaii for Auditing services.
+Questions to you, ma'am. If there are no objections, may I Please request the clerk to also call up Bill 19 and Bill 20, 2026? The
+objections. I'm just not so ordered. Thank you, Bill. Only Bill 19, 2026. A bill for an ordinance amending the fiscal year 2026 Budget
+Appendix A Part one Department of Resource is Historic Preservation Fund. U.S. National Park Service. New Appropriate ssion of $2
+million and Bill 20 2286 A bill for an ordinance amending the fiscal year 2026 Budget Appendix A Part one Department of
+Management U.S. Environmental Protection Agency EPA Sewer Overflow and Stormwater Municipal Grant.
+OSG New Appropriation of 750,000 who seconded I just wanted to double check over my voice turns. Consumers are going the buy
+Remember all Hodgins okay. For those three items. Now discussion member I mean vice chair. So you more no discussion. Chair.
+Thank you You know, a discussion? No, no, thanks Thanks. And no discussion. Anybody ? All those in favor of the motion? Raise
+your hands Hey, I. I ate a0 nos one excuse member, but all good motion carries. I'm chair moving on to unfinished business.
+Currently we have no one signed up to testimony. The unfinished business.
+So we'll go ahead and give last call for any testimony Counting down 3, 2, 1 chair. There's no one to testify on the unfinished
+business item. Any objections? Closing public testimony on unfinished business No, no. So ordered. Miss Clark, Chair, before you as
+Bill 17, 2026, a bill for an ordinance repealing chapter 9.40, Maui county Code on social host liability. The proposal to a move to
+pass Bill 17 on first reading moved by a member Paulton seconded by member Cook to pass bill 17 on second reading discussion
+member voted thank you Chair. This repeal was requested by the chief of police in the matter was discussed with the Department
+of Police and so excuse me on first reading.
+I'm sorry to pass this on. First reading. Go ahead. The Republican chair. This matter was discussed with the Department of Police
+and prosecuting attorney during the January 20th meeting as a rule seven B discussion. We can't discuss what was discussed in
+executive session and i did read some of the testimonies. I I like the direction that Mr. Collins of Hi Fi is thinking of doing it. I think
+on whether we have this legislation on the books or not It needs to be reminded every year during the holidays, every year during
+graduation season It can't be a legislative thing that sits on the books and and we think we've solved the problem because kids
+coming up aren't aware of it.
+Parents and folks every day aren't combing the Maui calling and calling, saying, oh, I better not do that Really needs to be front of
+mind through educational awareness campaigns. There's money set aside from the liquor Commission and, you know absolutely. I
+don't think it would hurt to do a resolution every year during graduation or during the holidays evening to remind people and
+publicize that resolution because each year people people die of drunk driving and one day is one too many. One car accident is
+one too many. But this is just taking something off the books that wasn't working for the police.
+It may have been legal or not legal, but implement the bill. They didn't feel comfortable implementing it. And so I fully support
+finding other ways to keep this issue front and center and couldn't you to turn the heat up on people find alcohol for minors or
+minors trying to buy alcohol for minors, consuming alcohol and it just needs to be more than words on paper. Thank you. Anyone
+else? I share? Sigma. Thank you. You. I totally agree. The at the legislature is a bill to increase the education for fund from the
+liquor department from 20% to 30%.
+So this was put into a bill with the help of Senator Hashimoto as he knows that I've been working on underage drinking prevention
+or these kinds of programs. I'm a full supporter of what happens at graduation. And the housing and the human concerns
+department provides some funding so that we can have the courage, education or safe or safer parties. You know, the night of
+Graduate of grad night parties, I am told. So i totally support supportive of everything that Rick Collins has done for to help protect
+the underage drinking and the prevention of it. And I support also what the police department has said about this and what the
+State legisla chair is doing.
+So support. I don't know what the bill number is. So whenever it comes up, please do support that bill shirley so that we can
+increase the liquor education fund from 20 to 30%. OK Any more discussion? Members Nancy Auto Chair, I to have a conversation
+with the project director Rick Collins and I, I too wanted to extend my gratitude to the Maui Coalition for Drug Free Youth and all
+the work that they do continue to do for the safety or keiki. And so on. And I know he has got some plans to reach out to the
+community.
+So we want to work with him and with the coalition as well. So I would support it with those commitments. Chair. Thank you
+Anybody else? If not all those in favor of the motion, please raise your hands. Hey, absolutely. I 8I0 nos. When excuse member but
+gun motion carries as clerk. Anything else Members Nancy, you're getting married and I know. Oh, I just wanted to remind people
+on Monday and there was subcommittee we have two presentations from the Aloha house and we talked about substance abuse.
+So they'll share some of the information that they have as well as an update from the Maui West exposure cohort study.
+However, we are meeting at 10:00 instead of trying to accommodate some of our resources Oh, okay. Yeah. Anybody else?
+Announcements Member Why? I'm Vice Chair So you were. Yeah. Thank you. As mentioned by I think it was Thelma Kealoha,
+Chinese New Year's is coming up first Friday is having Chinese New Year celebration tonight Thank God. Nothing Thank you, Carol.
+Fujiwara, for all he's done for first Friday. But tonight is celebration of Chinese New Year's as well as music and everything else that
+they do. I hope it doesn't rain Yeah. Remember, runs for that This here on the forecast says that it's 85% chance for rain.
+So likely rain sorry, but it's going to be like later in like the daytime, and then maybe not throughout the night. We can hope for
+that. But it will rain tomorrow Sorry, everyone. Tomorrow is the Hawaii High School championship for paddling. So cheer on our
+Molokai boys. That's that they made first and Miles and then our seabury and Molokai girls ready to oh, I'm doing all the things I
+didn't mean to go into detail I'm just I'm proud of our Molokai team. But also coming home in her and Carly care will be
+representing Maui County in the championships so cheer them on.
+If it rains too hard, it will rain. Yeah the oceans wet. So it is. Oh, yeah. OK. Yeah But I bet my jacket and I expected. And I'll be
+wearing like being prepared to be wet and I'm okay with that. I've accepted it. OK. But the water is wet. And so is the rain. Yeah,
+unfortunately. But yeah. So wise words. Oh, I'm full of them. All these advisories. Yeah, but Yeah. Cheer them on tomorrow.
+Volunteer. OK All right. Anybody else? It never bothered Ever bothered. Thank you. I just been emailing back and forth with Miss
+MacArthur.
+She mentioned that I should mention for the record that the trash chapter one on seven was not in the ear Chef, but not in the bill.
+It should have been deleted from the air. Chef, when we took out the amendment to 51.2, it was any part of the plumbers union
+markup for section five of 3.1. So assuming we did not intend to include it there, just for the record, it's in the bill, but it was the if
+you didn't, you know, I'm sure you know I'm sure member Rollins Fernandez noticed that Why she didn't bring it up.
+I'm not sure because it was okay that it would be the one to ask and answer any questions because Well, I doubt if we will. OK
+Anybody else? OK. Thank you. Thank you. How's your mom, anyway? Is she okay? She's doing great OK, we. We got a regular
+wheelchair last 97 and transport wheelchair, but still trying to figure out how to use the wheels instead of like, grabbing things and
+pulling herself But just hairline fractures. 4 to 6 weeks in lost. OK. Of course, we wish her well. And why didn't you get her the
+electric one Because 4 to 6 weeks and i don't know where to get that.
+Well, we didn't have any electric ones. Oh, they do get in our house. Oh yeah. OK. Maybe someone listening will hook you up. Yeah
+like, let you borrow it for the four of the six weeks. Yeah, I hope so. And And how? Only minor or little have a year? February is a
+little heavy month. Oh, okay. So watch for any of the events relating to that and celebrating and promoting a hawaiian language.
+Okay. Very good. All right, everybody. I'm to see aloha for now. And thank you very much for a good meeting and have a
+wonderful weekend This meeting is adjourned And
