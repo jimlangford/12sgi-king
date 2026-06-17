@@ -86,6 +86,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "federal_money_kauai.html", "federal_officials.html", "audit_balance.html",
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html",
+               # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
+               "money_hawaii.html", "money_kauai.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
