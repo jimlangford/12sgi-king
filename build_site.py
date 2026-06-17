@@ -96,6 +96,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "orgs_maui.html", "orgs_honolulu.html", "orgs_hawaii.html", "orgs_kauai.html",
                # THE LOOP, ON THE RECORD — donor orgs joined to the meetings their names appear in (2,293 minutes)
                "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
+               # WHO TESTIFIES — named public testifiers from the minutes, cross-referenced to the money record
+               "testifiers_maui.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -130,6 +132,7 @@ NAV_LABEL = {
     "orgs_honolulu.html": "Organizations Behind the Money (Honolulu)",
     "orgs_hawaii.html": "Organizations Behind the Money (Hawaiʻi County)",
     "orgs_kauai.html": "Organizations Behind the Money (Kauaʻi)",
+    "testifiers_maui.html": "Who Testifies × Money (Maui)",
     "connections_maui.html": "The Loop, On the Record (Maui)",
     "connections_honolulu.html": "The Loop, On the Record (Honolulu)",
     "connections_hawaii.html": "The Loop, On the Record (Hawaiʻi County)",

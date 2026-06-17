@@ -35,6 +35,15 @@ OFFICER_RX=re.compile(r"\b(president|owner|ceo|cfo|coo|chief|vice[ -]?president|
                       r"managing|manager|chair|founder|officer|executive|proprietor|broker[ -]?in[ -]?charge|"
                       r"principal broker)\b",re.I)
 
+_OC=None
+def oc_officers(name):
+    """Registered officers (state registry via OpenCorporates) for an org, if oc_officers.py has run. Empty until."""
+    global _OC
+    if _OC is None:
+        try: _OC=json.load(open(os.path.join(ST,"oc_officers.json"),encoding="utf-8")).get("orgs",{})
+        except Exception: _OC={}
+    return (_OC.get(name) or _OC.get(name.upper()) or {}).get("officers",[])
+
 TENANTS=[("maui","Maui County","hi-maui",["Maui Council"]),
          ("honolulu","City & County of Honolulu","hi-honolulu",["Honolulu Council"]),
          ("hawaii","Hawaiʻi County","hi-hawaii",["Hawaii Council"]),
@@ -81,6 +90,11 @@ def page(slug,disp,tid,orgs,gen,mr,ao_po):
         off=o.get("officers",{})
         off_line=("<div class=ofx><b>Officers &amp; executives on the record:</b> "+
                   ", ".join("%s <span class=ti>(%s)</span>"%(esc(n),esc(t)) for n,t in sorted(off.items())[:8])+"</div>") if off else ""
+        reg=oc_officers(o["name"])
+        if reg:
+            off_line+=("<div class=ofx style='background:#eef2f7;border-color:#bacde6'>"
+                       "<b>Registered officers (state registry):</b> "+
+                       ", ".join("%s <span class=ti>(%s)</span>"%(esc(r.get('name')),esc(r.get('position') or 'officer')) for r in reg[:10])+"</div>")
         names=", ".join(esc(n) for n,_ in ppl[:6])+(" +%d more"%(len(ppl)-6) if len(ppl)>6 else "")
         rows+=("<div class=org><div class=oh><b>%s</b><span class=ot>$%s &middot; %d giver(s) &middot; %d officer(s)</span></div>"
                "%s<div class=op>givers incl.: %s</div></div>")%(esc(o["name"]),usd(o["total"]),len(o["people"]),len(off),off_line,names)
@@ -103,8 +117,9 @@ def page(slug,disp,tid,orgs,gen,mr,ao_po):
           "ranches, hotels, unions, banks &mdash; and the executives &amp; employees who give under each. Public record; "
           "a <b>question to verify</b>, never a finding. (Boards &amp; officers from the State business registry are the next trace.)</div>")
     h2="<h2>Top organizations by combined giving (%d in all)</h2>"%total_orgs
-    nav=("<p class=sub style='margin-top:1rem'><a href='realestate_%s.html'>money &times; votes (overview)</a> &middot; "
-         "<a href='tenant_%s.html'>%s overview</a> &middot; <a href='tenants_hub.html'>all governments</a></p>")%(slug,tid,esc(disp))
+    _tf=(" &middot; <a href='testifiers_%s.html'>who testifies &times; money</a>"%slug) if slug=="maui" else ""
+    nav=("<p class=sub style='margin-top:1rem'><a href='realestate_%s.html'>money &times; votes (overview)</a>%s &middot; "
+         "<a href='tenant_%s.html'>%s overview</a> &middot; <a href='tenants_hub.html'>all governments</a></p>")%(slug,_tf,tid,esc(disp))
     foot=("<div class=foot>Source: Hawaiʻi Campaign Spending Commission (hicscdata jexd-xbcg), grouped by donor-reported "
           "employer; generic/retired/government-payroll employers set aside. Public record; questions, not findings &middot; "
           "generated %s.</div></div>")%esc(gen)

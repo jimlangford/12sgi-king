@@ -31,7 +31,10 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "ram_loop.html", "onboard_readiness.html",   # real-estate loop + prosecutorial onboarding — owner-only
                  "king_message.html",                         # curse-breaker w/ held RE numbers — owner-only until RE report ships
                  "maui_re_report.html",                       # RE report PRIVATE review build (named $ + property) — owner-only until approved public
-                 "comfy_cloud.json")                          # holds the ComfyUI Cloud API key — never publish
+                 "minutes_review.html",                       # prosecutorial red-flag + missing-minutes review — owner-only, never public
+                 "private_completeness.html",
+                 "testifiers.json", "testifiers_index.txt",   # testifier×money cross-ref (prosecutor) — public PAGE only, not the join
+                 "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
 
 def _known_secrets():
     """The ACTUAL secret VALUES, read at runtime from the local key files — NEVER hard-coded here
@@ -52,6 +55,15 @@ def _known_secrets():
     try:
         import json as _json
         k = (_json.load(open(os.path.join(cfg, "comfy_cloud.json"), encoding="utf-8")).get("COMFY_API_KEY") or "").strip()
+        if len(k) >= 12 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
+    # the OpenCorporates API token (config/opencorporates.json) must never appear in the public repo
+    try:
+        import json as _json
+        d = _json.load(open(os.path.join(cfg, "opencorporates.json"), encoding="utf-8"))
+        k = (d.get("api_token") or d.get("token") or "").strip()
         if len(k) >= 12 and not k.startswith("PASTE_"):
             vals.add(k)
     except Exception:
@@ -77,6 +89,21 @@ def chk_no_leak():
     if hits:
         return "FAIL", "private/secret artifacts in publish repo: " + ", ".join(hits[:5])
     return "PASS", "no private back-end files or secret keys in the publish repo"
+
+def chk_mobile():
+    """Every built page must be readable on iPhone/iPad without zoom — the viewport meta is present everywhere.
+    The build's heal (recolor_tree + king_recolor) injects it; this verifies the heal held."""
+    site = os.path.join(REPO, "site")
+    if not os.path.isdir(site):
+        return "WARN", "site/ not built yet — skipped"
+    miss = tot = 0
+    for root, _d, files in os.walk(site):
+        for fn in files:
+            if not fn.lower().endswith((".html", ".htm")): continue
+            tot += 1
+            if "width=device-width" not in open(os.path.join(root, fn), encoding="utf-8", errors="ignore").read():
+                miss += 1
+    return ("PASS" if miss == 0 else "FAIL"), f"{tot-miss}/{tot} pages mobile-ready (no-zoom on iPhone/iPad)"
 
 def chk_links():
     """Internal links in the built site resolve the way GitHub Pages serves (%20 + /12sgi-king/)."""
@@ -163,6 +190,7 @@ def chk_bats_ascii():
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
     ("Links resolve like GitHub Pages", chk_links),
+    ("Mobile-ready everywhere (no zoom)", chk_mobile),
     ("Moon dimension is live",         chk_moon),
     ("Generators share their deps",    chk_watcher_parity),
     ("ʻŌlelo held under review",       chk_olelo),
