@@ -51,20 +51,27 @@ def page(slug,disp,tid,keys,contracts,parity,prop_status,sm,gen,mr,ao_po):
         "island: the official can <b>disclose</b> real-estate giving before a land-use or budget vote, <b>recuse</b> where "
         "the interest is direct, or <b>decide in the open</b>; the interest can <b>say plainly what it seeks</b>. Aloha is "
         "the ask — the record is the light.</div>")%(esc(mr.get("po","") or "moon"))
+    re_share=share; other=max(0.0,(raised-re_tot))
     head=("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-          "<title>%s — real estate, money &amp; the questions | govOS</title>"%esc(disp))+STYLE
+          "<title>%s — money &times; votes | govOS</title>"%esc(disp))+STYLE
     body=("<div class=wrap><div class=sub style='letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600'>"
-          "govOS &middot; %s &middot; asked in aloha</div><h1>Real estate, the money, and the questions</h1>"%esc(disp)
+          "govOS &middot; %s &middot; asked in aloha</div><h1>Money &times; votes — the money behind the council</h1>"%esc(disp)
           +moon_banner(mr,ao_po)
           +("<div class=kpis>"
-            "<div class=kp><div class=kv>$%s</div><div class=kl>real-estate money to the council</div></div>"
-            "<div class=kp><div class=kv>%s</div><div class=kl>RE contributions</div></div>"
-            "<div class=kp><div class=kv>%.0f%%</div><div class=kl>of all giving</div></div></div>")%(usd(re_tot),"{:,}".format(re_n),share)
-          +("<div class=pono>The real-estate interests that fund <b>%s</b> also build and sell land here. Set the giving "
-            "beside the votes and the contracts and read it as a <b>question</b>, never an accusation. Where land-use sits "
-            "before an office, the money is the slice to watch.</div>"%esc(disp))
-          +("<div class=e><div class=eh><h2>The property-sales loop</h2><span class=kpi>status</span></div>"
-            "<div class=q>%s</div></div>"%prop_status)
+            "<div class=kp><div class=kv>$%s</div><div class=kl>total money behind the council</div></div>"
+            "<div class=kp><div class=kv>%s</div><div class=kl>contributions</div></div>"
+            "<div class=kp><div class=kv>$%s</div><div class=kl>real-estate slice (%.0f%%)</div></div></div>")%(
+            usd(raised),"{:,}".format(_office(sm.get('by_office',[]),keys)[1]),usd(re_tot),re_share)
+          +("<div class=pono>This is <b>all</b> the money behind <b>%s</b> — <b>$%s</b> in reported contributions — set "
+            "beside its decisions. Read it as a <b>question</b>, never an accusation. <b>Real estate is the slice we have "
+            "traced deepest</b> (donor &rarr; parcel &rarr; recorded sale), but it is only <b>%.0f%%</b> of the giving; the "
+            "larger money is contractors, tourism &amp; hotels, unions, and others &mdash; those traces deepen as the "
+            "records open. Where any interest funds the seat and holds business before it, that is the pair to watch.</div>"%(
+            esc(disp),usd(raised),re_share))
+          +("<div class=e><div class=eh><h2>The real-estate slice &mdash; the deepest-traced loop</h2>"
+            "<span class=kpi>$%s &middot; %.0f%% of giving</span></div>"
+            "<div class=q>Real-estate interests gave <b>$%s</b> to this council and also build and sell land here. "
+            "%s</div></div>")%(usd(re_tot),re_share,usd(re_tot),prop_status)
           +cb
           +("<p class=sub style='margin-top:1rem'>%s &middot; <a href='realestate_maui.html'>Maui (full loop)</a> &middot; "
             "<a href='tenants_hub.html'>all governments</a></p>"%linkrow)
