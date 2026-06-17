@@ -843,6 +843,23 @@ def main():
     cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
         for fn, name, blurb in present)
+    # [orphan-heal 2026-06-17] Civic pages that are built + useful but weren't carded anywhere
+    # (calendars, fire-recovery, agenda patterns) — wire them into the hub so nothing useful is orphaned.
+    _MORE = [
+        ("meetings_calendar.html",     "Meeting Calendars",        "Upcoming public meetings across every government."),
+        ("meetings_maui.html",         "Meetings — Maui",          "Maui County meeting calendar."),
+        ("meetings_honolulu.html",     "Meetings — Honolulu",      "City &amp; County of Honolulu meeting calendar."),
+        ("meetings_hawaii.html",       "Meetings — Hawaiʻi",  "Hawaiʻi County meeting calendar."),
+        ("meetings_kauai.html",        "Meetings — Kauaʻi",   "Kauaʻi County meeting calendar."),
+        ("meetings_nyc.html",          "Meetings — New York",      "New York meeting calendar."),
+        ("rebuild_first.html",         "Who Rebuilt First",        "Lahaina/Kula fire-recovery permit line — who got permits first."),
+        ("agenda_patterns.html",       "Agenda Patterns",          "Recurring themes &amp; items across agendas over time."),
+        ("bfed_agenda_today.html",     "Budget &amp; Finance — Today",  "Today’s Budget &amp; Finance Committee agenda."),
+        ("bfed_eligibility_today.html","BFED Eligibility — Today", "Today’s budget eligibility view."),
+    ]
+    more_cards = "".join(
+        f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
+        for fn, name, blurb in _MORE if os.path.exists(os.path.join(SITE, fn)))
     index = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kilo Aupuni - Maui County / Hawaii Civic Transparency</title>
@@ -879,6 +896,13 @@ Sources are linked on every page.</div>
 </div>
 <div class="eyebrow" style="margin-top:30px">All dashboards</div>
 <div class="grid">{cards}</div>
+<div class="eyebrow" style="margin-top:30px">Calendars, recovery &amp; patterns</div>
+<div class="grid">{more_cards}</div>
+<div class="eyebrow" style="margin-top:30px">Charter, law &amp; services</div>
+<div class="grid">
+ <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><div class="t">govOS — Charter Hub</div><div class="b">The charter ⇄ law reference layer: budget, county code, state law, crosswalks, services.</div></a>
+ <a class="card" href="king/civic/templates/title19-service/Title19%20Service.html"><div class="t">Title 19 — Plain-Language Service (free)</div><div class="b">Live parcel lookup + zoning navigator. No account.</div></a>
+</div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
 <p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>

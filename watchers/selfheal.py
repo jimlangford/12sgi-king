@@ -188,9 +188,29 @@ def chk_bats_ascii():
             except UnicodeDecodeError: bad.append(rel)
     return ("PASS" if not bad else "FAIL"), ("bats pure ASCII" if not bad else "non-ASCII in: " + ", ".join(bad))
 
+def chk_orphans():
+    """No useful built surface is unreachable. Every built public page must be reachable from
+    the nav or a tenant; a built-but-unwired page is an ORPHAN (the 'check for heal' guard).
+    Also (re)writes site/orphans.html so the dashboard reflects exactly what shipped."""
+    try:
+        from orphan_check import find_orphans, main as _orphan_main
+    except Exception as e:
+        return "WARN", "orphan_check unavailable (%s) — skipped" % e
+    res = find_orphans()
+    if res is None:
+        return "WARN", "site/ not built yet (run build_site.py) — skipped"
+    try: _orphan_main()          # refresh orphans.json + site/orphans.html
+    except Exception: pass
+    orphans, reach, total = res
+    if not orphans:
+        return "PASS", "all %d navigable pages reachable (0 orphaned)" % reach
+    return "FAIL", "%d orphan(s) unreachable from nav/tenant: %s" % (
+        len(orphans), ", ".join(orphans[:6]) + (" …" if len(orphans) > 6 else ""))
+
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
     ("Links resolve like GitHub Pages", chk_links),
+    ("No orphaned surfaces (check for heal)", chk_orphans),
     ("Mobile-ready everywhere (no zoom)", chk_mobile),
     ("Moon dimension is live",         chk_moon),
     ("Generators share their deps",    chk_watcher_parity),
