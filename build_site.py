@@ -259,6 +259,41 @@ def _tenant_of(current):
     if m and treg and m.group(1) in treg: return m.group(1)
     return _HOME_TENANT
 
+_NAVMAP_JSON = None
+def _navmap_json():
+    """{tid:{name, groups:[[glabel,[[linklabel,file],...]],...]}} — drives the client-side nav re-resolve so the
+    bar follows the tenant the visitor PICKED (localStorage govos.tenant), on EVERY page, not just Maui."""
+    global _NAVMAP_JSON
+    if _NAVMAP_JSON is not None: return _NAVMAP_JSON
+    rev, byclass, treg, order = _switcher_maps()
+    m = {}
+    for tid in treg:
+        gs = []
+        for glabel, classes in NAV_GROUP_CLASSES:
+            seen = set(); links = []
+            for ck in classes:
+                for (t, _n, f) in byclass.get(ck, []):
+                    if t == tid and f and f not in seen:
+                        seen.add(f); links.append([_CLABELS.get(ck, ck), f])
+            if links: gs.append([glabel, links])
+        m[tid] = {"name": treg[tid]["name"], "groups": gs}
+    _NAVMAP_JSON = json.dumps(m, ensure_ascii=False)
+    return _NAVMAP_JSON
+
+def _nav_tenant_js():
+    """Re-resolve the nav to the visitor's PICKED tenant (persisted) on load, and persist on any government pick."""
+    return ('<script id="navmap">window.__NAV__=%s;</script>'
+        '<script>(function(){var N=window.__NAV__||{},nav=document.querySelector(".govos-nav");if(!nav)return;'
+        'var t;try{t=localStorage.getItem("govos.tenant");}catch(e){}if(!t||!N[t])t=nav.getAttribute("data-tenant");'
+        'var d=N[t];if(d){var hb=nav.querySelector(".gn-here b");if(hb)hb.textContent=d.name;'
+        'var by={};(d.groups||[]).forEach(function(g){by[g[0]]=g[1];});'
+        'nav.querySelectorAll(".gn-group[data-g]").forEach(function(grp){var gl=grp.getAttribute("data-g"),L=by[gl],p=grp.querySelector(".gn-panel");'
+        'if(L&&p){p.innerHTML=L.map(function(x){return "<a href=\\""+x[1]+"\\">"+x[0]+"</a>";}).join("");grp.style.display="";}'
+        'else{grp.style.display="none";}});}'
+        'nav.querySelectorAll("a[href^=\\"tenant_\\"]").forEach(function(a){a.addEventListener("click",function(){'
+        'var m=(this.getAttribute("href")||"").match(/tenant_(.+)\\.html/);if(m){try{localStorage.setItem("govos.tenant",m[1]);}catch(e){}}});});'
+        '})();</script>') % _navmap_json()
+
 def nav_bar(current):
     """Professional grouped top-bar, TENANT-AWARE: groups resolve to the active tenant's pages via the registry."""
     rev, byclass, treg, order = _switcher_maps()
@@ -280,8 +315,8 @@ def nav_bar(current):
                         seen.add(f)
                         links += '<a class="%s" href="%s">%s</a>' % ("cur" if f == cf else "", f, _esc(_CLABELS.get(ck, ck)))
             if links:
-                groups += ('<div class="gn-group"><button class="gn-top">%s<span class="ar">&#9662;</span></button>'
-                           '<div class="gn-panel">%s</div></div>') % (glabel.replace("&", "&amp;"), links)
+                groups += ('<div class="gn-group" data-g="%s"><button class="gn-top">%s<span class="ar">&#9662;</span></button>'
+                           '<div class="gn-panel">%s</div></div>') % (glabel, glabel.replace("&", "&amp;"), links)
     else:
         # registry unavailable — fall back to the static groups so the nav still renders
         for glabel, files in NAV_GROUPS:
@@ -292,7 +327,7 @@ def nav_bar(current):
     jc = " cur" if current == "jurisdictions.html" else ""
     ac = " cur" if current == "agendas.html" else ""
     return (NAV_CSS +
-            '<nav class="govos-nav">'
+            '<nav class="govos-nav" data-tenant="%s">' % tid +
             '<a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span>'
             '<b>govOS</b><span class="sub">Kilo Aupuni</span></a>'
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
@@ -306,7 +341,7 @@ def nav_bar(current):
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
             '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "") +
             '<a class="gn-cta" href="take_action.html">Take part</a>'
-            '</div></nav>' + NAV_JS)
+            '</div></nav>' + NAV_JS + _nav_tenant_js())
 
 COPYRIGHT = ('<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;'
              'color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">'
