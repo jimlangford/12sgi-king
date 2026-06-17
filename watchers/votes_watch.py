@@ -150,15 +150,33 @@ def _member_vote(block, tok):
     tail = block[m.end(): m.end()+18]
     if re.match(r"[\s:]*Recus", tail, re.I):  return "RECUSED"
     if re.match(r"[\s:]*(Excus|Absent)", tail, re.I): return "EXCUSED"
+    if re.match(r"[\s:]*Abstain", tail, re.I): return "ABSTAIN"
     if VOTE_MARK.search(tail[:7]):            return "AYE"
     if re.match(r"[\s:]*No\b", tail):         return "NO"
     return None   # present but mark unclear -> do NOT guess (integrity)
+
+# Dissent is also recorded as a TALLY LINE, not just a per-name mark — capture both (Jimmy 2026-06-16:
+# "see what council people vote no on and why"). e.g. "NOES: Paltin, Cook" / "Voting No — Sinenci" /
+# "ABSTAIN: Lee". We mark every roster member named in such a line, so a NAY is never silently dropped.
+NOES_BLOCK    = re.compile(r"(?:NOES?|VOTING\s+NO|NO\s+VOTES?|OPPOSED)\s*[:\-–—]\s*([A-Z][^\n.;]{0,140})", re.I)
+ABSTAIN_BLOCK = re.compile(r"(?:ABSTAIN(?:ED|ING)?|ABSTENTIONS?)\s*[:\-–—]\s*([A-Z][^\n.;]{0,140})", re.I)
+
+def _apply_tally(win, votes):
+    """Overlay explicit NOES:/ABSTAIN: tally lines onto the per-name marks (tally wins — it's explicit)."""
+    for rx, state in ((NOES_BLOCK, "NO"), (ABSTAIN_BLOCK, "ABSTAIN")):
+        for mm in rx.finditer(win):
+            names = mm.group(1)
+            for k, tok in SURNAME_TOKENS.items():
+                if re.search(tok, names):
+                    votes[k] = state
+    return votes
 
 def motions_in(txt):
     out = []
     for am in MOTION_ANCHOR.finditer(txt):
         win = txt[max(0, am.start()-850): am.end()]
         votes = {k: v for k, tok in SURNAME_TOKENS.items() if (v := _member_vote(win, tok))}
+        votes = _apply_tally(win, votes)   # overlay explicit NOES:/ABSTAIN: tally lines (dissent capture)
         if not votes: continue
         mk = MAKER_RE.search(win); sc = SECOND_RE.search(win); mt = MOTIONTXT_RE.search(win)
         it = ITEM_RE.search(txt[am.start(): am.start()+260]) or ITEM_RE.search(win[-500:])
@@ -349,7 +367,9 @@ def build_scorecard(off):
 <div class="eyebrow">12 Stones Global · Kilo Aupuni · officials scorecard · follow the money</div>
 <h1>Maui County Officials — Votes, Recusals &amp; the Money</h1>
 <p class="lead">Built only from public meeting minutes. Recusals are formal conflict-of-interest
-declarations — the cleanest paper trail of where an official has a financial or relational stake.</p>
+declarations — the cleanest paper trail of where an official has a financial or relational stake.
+&nbsp;&middot;&nbsp; See <a href="council_votes_maui.html"><b>the nay narratives</b></a> — every motion where the
+council split, with the dissenter's own recorded words; and <a href="money_behind_officials.html">the money behind the seats</a>.</p>
 <div class="disc">These are <b>documented facts and open questions</b>, not findings of wrongdoing.
 A recusal is lawful and proper — it is also a roadmap of where to look. Every line links to the
 source minutes. Verify before you assert anything about any person.</div>

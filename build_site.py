@@ -98,6 +98,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
                # WHO TESTIFIES — named public testifiers from the minutes, cross-referenced to the money record
                "testifiers_maui.html",
+               # THE NAY NARRATIVES — every council split vote + the dissenter's recorded words (who governs)
+               "council_votes_maui.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -133,6 +135,7 @@ NAV_LABEL = {
     "orgs_hawaii.html": "Organizations Behind the Money (Hawaiʻi County)",
     "orgs_kauai.html": "Organizations Behind the Money (Kauaʻi)",
     "testifiers_maui.html": "Who Testifies × Money (Maui)",
+    "council_votes_maui.html": "Council Votes — the Nay Narratives (Maui)",
     "connections_maui.html": "The Loop, On the Record (Maui)",
     "connections_honolulu.html": "The Loop, On the Record (Honolulu)",
     "connections_hawaii.html": "The Loop, On the Record (Hawaiʻi County)",
