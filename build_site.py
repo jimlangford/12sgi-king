@@ -666,8 +666,11 @@ def main():
             with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
                 f.write(html)
             present.append((flat, name, blurb))
-    # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills)
-    for rel in EXTRA_PAGES:
+    # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills).
+    # entity_*.html dossiers have dynamic names -> glob them in (+ the dossier index).
+    import glob as _glob
+    _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+    for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
             with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
