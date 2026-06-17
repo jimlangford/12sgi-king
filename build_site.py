@@ -169,6 +169,7 @@ NAV_LABEL = {
     # Full paths so the nav links resolve at site root AND on king-local (king/civic/... exists on both).
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
     "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html": "Charter ⇄ Law Crosswalk",
+    "king/civic/templates/title19-system/Title19%20System.html": "Title 19 System — through the Charter",
     "king/civic/templates/title19-service/Title19%20Service.html": "Title 19 — Plain-Language Service (free)",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
@@ -360,7 +361,7 @@ def nav_bar(current):
             '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') +
             '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="agenda_explainer.html">Explainer</a>' % (" cur" if current=="agenda_explainer.html" else "") +
-            '<a class="gn-link" href="king/civic/templates/title19-service/Title19%20Service.html">&#9878; Title 19</a>' +
+            '<a class="gn-link" href="king/civic/templates/title19-system/Title19%20System.html">&#9878; Title 19</a>' +
             '<a class="gn-link%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "") +
             '<a class="gn-link%s" href="olelo_glossary.html">ʻŌlelo</a>' % (" cur" if current=="olelo_glossary.html" else "") +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
@@ -901,6 +902,7 @@ Sources are linked on every page.</div>
 <div class="grid">{more_cards}</div>
 <div class="eyebrow" style="margin-top:30px">Charter, law &amp; services</div>
 <div class="grid">
+ <a class="card" href="king/civic/templates/title19-system/Title19%20System.html"><div class="t">Title 19 System — through the Charter</div><div class="b">One front door to every Title 19 tool + the 12 Stones Charter lens.</div></a>
  <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><div class="t">govOS — Charter Hub</div><div class="b">The charter ⇄ law reference layer: budget, county code, state law, crosswalks, services.</div></a>
  <a class="card" href="king/civic/templates/title19-service/Title19%20Service.html"><div class="t">Title 19 — Plain-Language Service (free)</div><div class="b">Live parcel lookup + zoning navigator. No account.</div></a>
  <a class="card" href="king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html"><div class="t">Title 19 — Substantial Change Procedure</div><div class="b">When a change to an approved project needs a new public hearing — with a decision aid.</div></a>
