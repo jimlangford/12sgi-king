@@ -88,6 +88,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html",
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
                "money_hawaii.html", "money_kauai.html",
+               # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
+               "realestate_maui.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -113,6 +115,7 @@ NAV_LABEL = {
     "bill9_bill9_testimony_scan.html": "Bill 9 Testimony",
     "charter_application.html": "Charter → Law → Evidence",
     "parity_check.html": "Parity — Pairs That No Longer Answer",
+    "realestate_maui.html": "Real Estate × Money (Maui)",
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
     "crosswalk_state.html": "Charter ⇄ Law (State of Hawaiʻi)",
