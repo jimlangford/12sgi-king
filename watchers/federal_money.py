@@ -305,7 +305,7 @@ window {esc(p['window']['start'])}–{esc(p['window']['end'])} &middot; generate
  <div class=kp><div class=kv>${t['maui']:,.0f}</div><div class=kl>Maui County &middot; {c['maui']} awards</div></div>
  <div class=kp><div class=kv>{p['n_recipients']}</div><div class=kl>distinct recipients</div></div>
 </div>
-{_agency_bars(p['awards'], None, "Where Hawai&#699;i’s federal money comes from — by awarding agency (share of recorded awards)")}
+{_agency_bars(p['awards'], None, "Where Hawaiʻi’s federal money comes from — by awarding agency (share of recorded awards)")}
 <div class=lnk><b>Follow it further:</b> {linkrow}</div>
 <div class=note>Federal money landing in a place is a question for oversight — who received it, who decided, who benefits — never an accusation. Every recipient links back to the public record.</div>
 <h2>Top recipients by total (HI)</h2>
