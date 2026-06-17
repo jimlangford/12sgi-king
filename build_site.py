@@ -94,6 +94,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "realestate_honolulu.html", "realestate_hawaii.html", "realestate_kauai.html", "realestate_state.html",
                # the PEOPLE/ORGANIZATIONS behind the money — grouped by donor employer (Jimmy: next trace)
                "orgs_maui.html", "orgs_honolulu.html", "orgs_hawaii.html", "orgs_kauai.html",
+               # THE LOOP, ON THE RECORD — donor orgs joined to the meetings their names appear in (2,293 minutes)
+               "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -128,6 +130,10 @@ NAV_LABEL = {
     "orgs_honolulu.html": "Organizations Behind the Money (Honolulu)",
     "orgs_hawaii.html": "Organizations Behind the Money (Hawaiʻi County)",
     "orgs_kauai.html": "Organizations Behind the Money (Kauaʻi)",
+    "connections_maui.html": "The Loop, On the Record (Maui)",
+    "connections_honolulu.html": "The Loop, On the Record (Honolulu)",
+    "connections_hawaii.html": "The Loop, On the Record (Hawaiʻi County)",
+    "connections_kauai.html": "The Loop, On the Record (Kauaʻi)",
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
     "crosswalk_state.html": "Charter ⇄ Law (State of Hawaiʻi)",
