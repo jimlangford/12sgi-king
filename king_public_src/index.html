@@ -161,13 +161,13 @@
         <sc-if value="{{ it.on }}" hint-placeholder-val="{{ false }}">
           <button onClick="{{ it.go }}" style="flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border:none; background:transparent; color:var(--accent-2,#f4c95d); font:inherit; cursor:pointer; padding:6px 2px;">
             <span style="font-size:17px;">{{ it.icon }}</span>
-            <span style="font-size:9.5px; letter-spacing:0.4px;">{{ it.short }}{{ it.lockGlyph }}</span>
+            <span style="font-size:11px; font-weight:600; letter-spacing:0.2px;">{{ it.short }}{{ it.lockGlyph }}</span>
           </button>
         </sc-if>
         <sc-if value="{{ it.off }}" hint-placeholder-val="{{ true }}">
           <button onClick="{{ it.go }}" style="flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border:none; background:transparent; color:var(--ink-dim,#b3a98f); font:inherit; cursor:pointer; padding:6px 2px;">
             <span style="font-size:17px;">{{ it.icon }}</span>
-            <span style="font-size:9.5px; letter-spacing:0.4px;">{{ it.short }}{{ it.lockGlyph }}</span>
+            <span style="font-size:11px; font-weight:600; letter-spacing:0.2px;">{{ it.short }}{{ it.lockGlyph }}</span>
           </button>
         </sc-if>
       </sc-for>
@@ -287,14 +287,16 @@ class Component extends DCLogic {
     // (The full studio surfaces live in the local owner app, not the public site.)
     const AVAIL = ['mauios', 'council', 'game'];
     const avail = id => AVAIL.indexOf(id) >= 0;
-    const navItems = ITEMS.map(it => ({
+    // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
+    // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
+    const navItems = ITEMS.filter(it => it.register === 'public' || it.href || (it.owner && unlocked)).map(it => ({
       ...it,
       // external doors (href, e.g. Studio) navigate out; everything else is an in-app surface
       go: () => it.href ? (window.location.href = it.href) : this.go(it.id),
       on: s === it.id,
       off: s !== it.id,
       locked: !it.href && !avail(it.id),
-      lockGlyph: (!it.href && !avail(it.id)) ? '🔒' : '',
+      lockGlyph: '',
     }));
     const cur = ITEMS.find(i => i.id === s) || ITEMS[0];
     const curLocked = !avail(cur.id);
