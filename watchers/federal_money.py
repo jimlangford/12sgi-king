@@ -65,6 +65,27 @@ def dispatch(tag, msg):
 
 def esc(s): return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
+# Yale-blue industry/agency % breakdown bars (Jimmy 2026-06-16: "% breakdowns of industry especially federal
+# at the top, correct yale-blue"). .ind CSS carries no literal % so it embeds safely in %-format style strings.
+_IND_CSS = (".ind{margin:.5rem 0 1.1rem}.ind .ih{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;"
+    "color:#6d7f97;font-weight:600;margin-bottom:.45rem}.ind .row{display:grid;grid-template-columns:210px 1fr 58px;"
+    "gap:10px;align-items:center;margin:.3rem 0;font-size:.86rem}.ind .nm{color:#13243d;overflow:hidden;"
+    "text-overflow:ellipsis;white-space:nowrap}.ind .tr{background:#dae5f3;border-radius:99px;height:13px;overflow:hidden}"
+    ".ind .tr i{display:block;height:13px;border-radius:99px;background:linear-gradient(90deg,#00356b,#1259a3)}"
+    ".ind .pc{font-family:Consolas,monospace;font-weight:700;color:#00356b;text-align:right}"
+    "@media(max-width:560px){.ind .row{grid-template-columns:130px 1fr 48px}}")
+def _agency_bars(awards, total, label="Where the federal money comes from — by awarding agency (share of $)"):
+    from collections import defaultdict
+    agg = defaultdict(float)
+    for a in awards:
+        agg[(a.get("agency") or "Other").strip() or "Other"] += a.get("amount", 0) or 0
+    tot = total or sum(agg.values()) or 1
+    top = sorted(agg.items(), key=lambda x: -x[1])[:8]
+    body = "".join(
+        '<div class=row><span class=nm>%s</span><span class=tr><i style="width:%.1f%%"></i></span><span class=pc>%d%%</span></div>'
+        % (esc(n), min(100.0, 100.0 * v / tot), round(100 * v / tot)) for n, v in top)
+    return '<div class=ind><div class=ih>%s</div>%s</div>' % (esc(label), body)
+
 def post(body):
     req = urllib.request.Request(API, data=json.dumps(body).encode(),
         headers={"Content-Type": "application/json", "User-Agent": "kilo-aupuni/1.0"})
@@ -129,11 +150,12 @@ def _write_county_pages(by_county, payload):
             "h1{font-size:1.5rem;margin:.3rem 0}.sub{color:#41536b;font-size:.9rem}.kpi{font-family:Consolas,monospace;color:#00356b;font-weight:700;font-size:1.1rem;margin:.6rem 0}"
             ".disc{background:#eef2f7;border:1px solid #bacde6;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0}"
             "table{border-collapse:collapse;width:100%%;font-size:.85rem}td,th{padding:.4rem .5rem;border-bottom:1px solid #e3e9f1;text-align:left;vertical-align:top}"
-            ".amt{font-family:Consolas,monospace;color:#00356b;white-space:nowrap}.ag{color:#41536b}.ds{color:#6d7f97;font-size:.8rem}a{color:#1259a3}</style>"
+            ".amt{font-family:Consolas,monospace;color:#00356b;white-space:nowrap}.ag{color:#41536b}.ds{color:#6d7f97;font-size:.8rem}a{color:#1259a3}"
+            +_IND_CSS+"</style>"
             "<h1>%s — federal dollars</h1>"
             "<div class=sub>Federal awards (contracts + grants) with place of performance in %s. "
             "Source: <a href='https://www.usaspending.gov/'>USASpending.gov</a> · window %s–%s · generated %s.</div>"
-            "<div class=kpi>$%s across %d awards</div>"
+            "<div class=kpi>$%s across %d awards</div>%s"
             "<div class=disc>Federal money landing in a place is a <b>question for oversight</b> — who received it, "
             "who decided, who benefits — never an accusation. Every recipient links back to the public record.</div>"
             "<table><thead><tr><th>amount</th><th>recipient</th><th>awarding agency</th><th>description</th></tr></thead>"
@@ -142,7 +164,9 @@ def _write_county_pages(by_county, payload):
             "<a href='federal_money.html'>Maui federal</a> · <a href='tenants_hub.html'>all governments</a></p>") % (
             esc(c["name"]), esc(c["name"]), esc(c["name"]),
             payload["window"]["start"], payload["window"]["end"], payload["generated"],
-            "{:,.0f}".format(c["total"]), c["count"], rows, COUNTY_TID.get(code, ""))
+            "{:,.0f}".format(c["total"]), c["count"],
+            _agency_bars(c["awards"], c["total"], "Where %s's federal money comes from — by awarding agency (share of $)" % esc(c["name"])),
+            rows, COUNTY_TID.get(code, ""))
         with open(os.path.join(OUT_DIR, page), "w", encoding="utf-8", newline="\n") as f:
             f.write(html)
 
@@ -255,7 +279,7 @@ h1{{font-size:1.5rem}} .sub{{color:#555}} table{{border-collapse:collapse;width:
 th,td{{border-bottom:1px solid #e3e3e3;padding:.45rem .6rem;text-align:left}} th{{background:#f4f6f8}}
 .n{{text-align:right;font-variant-numeric:tabular-nums}} .kpi{{display:flex;gap:2rem;margin:1rem 0}}
 .kpi div{{background:#f4f6f8;border-radius:10px;padding:.8rem 1.2rem}} .kpi b{{font-size:1.3rem;display:block}}
-.note{{background:#fff8e6;border-left:4px solid #e0b400;padding:.7rem 1rem;margin:1rem 0;font-size:.9rem}}</style>
+.note{{background:#fff8e6;border-left:4px solid #e0b400;padding:.7rem 1rem;margin:1rem 0;font-size:.9rem}}{_IND_CSS}</style>
 <h1>Federal Dollars into Maui &amp; the State of Hawai&#699;i</h1>
 <div class=sub>In plain words: this is federal money (contracts + grants) recorded as being spent in
 Hawai&#699;i, with the Maui County share called out. It is published so anyone can ask the oversight
@@ -267,6 +291,7 @@ Generated {esc(p['generated'])}.</div>
  <div>Maui County<b>${t['maui']:,.0f}</b>{c['maui']} awards</div>
  <div>Recipients<b>{p['n_recipients']}</b>distinct</div>
 </div>
+{_agency_bars(p['awards'], None, "Where Hawai&#699;i’s federal money comes from — by awarding agency (share of recorded awards)")}
 <div class=note>{esc(p['note'])}</div>
 <table><thead><tr><th>Recipient</th><th class=n>Total (HI)</th><th class=n>Maui</th>
 <th class=n>Awards</th><th>Top agencies</th></tr></thead><tbody>{rows}</tbody></table>
