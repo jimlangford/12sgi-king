@@ -142,10 +142,19 @@ NAV_LABEL = {
     "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html": "Hawaiʻi Law Index",
     "king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html": "Hawaiʻi County Crosswalk",
     "king/civic/templates/agenda-explainer/Agenda%20Explainer.html": "Agenda Explainer",
+    # tenant overview pages — the per-government entry points (the Governments nav group)
+    "tenant_hi-maui.html": "Maui County", "tenant_hi-honolulu.html": "Honolulu",
+    "tenant_hi-hawaii.html": "Hawaiʻi County", "tenant_hi-kauai.html": "Kauaʻi County",
+    "tenant_hi-state.html": "State of Hawaiʻi", "tenant_ny.html": "New York",
+    "jurisdictions.html": "All governments →",
 }
 # Citizen-first IA: organized around what a voting community member needs to participate —
 # know your officials, follow the money, read the record. (Testify/Take-action lead via the CTA + a Participate link.)
 NAV_GROUPS = [
+    # FIRST: pick a government. Tenant-switching is the primary nav so the reports aren't Maui-locked —
+    # from any page you can jump to any tenant's overview (Jimmy 2026-06-16: "stop the Maui-focused nav").
+    ("Governments", ["tenant_hi-maui.html", "tenant_hi-honolulu.html", "tenant_hi-hawaii.html",
+                     "tenant_hi-kauai.html", "tenant_hi-state.html", "tenant_ny.html", "jurisdictions.html"]),
     ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
@@ -650,6 +659,13 @@ Sources are linked on every page.</div>
         if os.path.exists(_cf):
             shutil.copy(_cf, os.path.join(KLOCAL, "case_files.html"))
             print("  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)")
+        # [OWNER ONLY] system status (so go.html's status link resolves PORTLESS via /king/ — the :8781 port
+        # is never shown publicly) + the real-estate loop breakdown. Private; never in SITE/EXTRA_PAGES.
+        for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
+                            (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html")):
+            if os.path.exists(_src):
+                shutil.copy(_src, os.path.join(KLOCAL, _name))
+                print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")
         # [OWNER ONLY] recusal/conflict dollar evidence (the Po behind the public eligibility questions) -
         # king-local/Tailscale ONLY; deliberately NOT in PAGES/EXTRA_PAGES/seed so it never reaches Pages.
         _re = os.path.join(MAUIOS, "recusal_evidence.html")
