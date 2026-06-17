@@ -268,36 +268,50 @@ def main():
 def _write_html(p):
     t = p["totals"]; c = p["counts"]
     rows = "".join(
-        f"<tr><td>{esc(r['recipient'])}</td><td class=n>${r['total']:,.0f}</td>"
-        f"<td class=n>${r['maui_total']:,.0f}</td><td class=n>{r['count']}</td>"
-        f"<td>{esc(', '.join(r['agencies'][:3]))}</td></tr>"
+        f'<div class=rcp><span class=rn>{esc(r["recipient"])}</span>'
+        f'<span class=ra>${r["total"]:,.0f}<span class=rd> &middot; Maui ${r["maui_total"]:,.0f} &middot; {r["count"]} awards</span></span></div>'
         for r in p["recipients"][:120])
-    html = f"""<!doctype html><meta charset=utf-8>
-<title>Federal Dollars - Maui & State of Hawaii | Kilo Aupuni</title>
-<style>body{{font-family:system-ui,Segoe UI,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#1a1a1a}}
-h1{{font-size:1.5rem}} .sub{{color:#555}} table{{border-collapse:collapse;width:100%;margin-top:1rem;font-size:.92rem}}
-th,td{{border-bottom:1px solid #e3e3e3;padding:.45rem .6rem;text-align:left}} th{{background:#f4f6f8}}
-.n{{text-align:right;font-variant-numeric:tabular-nums}} .kpi{{display:flex;gap:2rem;margin:1rem 0}}
-.kpi div{{background:#f4f6f8;border-radius:10px;padding:.8rem 1.2rem}} .kpi b{{font-size:1.3rem;display:block}}
-.note{{background:#fff8e6;border-left:4px solid #e0b400;padding:.7rem 1rem;margin:1rem 0;font-size:.9rem}}{_IND_CSS}</style>
-<h1>Federal Dollars into Maui &amp; the State of Hawai&#699;i</h1>
-<div class=sub>In plain words: this is federal money (contracts + grants) recorded as being spent in
-Hawai&#699;i, with the Maui County share called out. It is published so anyone can ask the oversight
-questions: who received it, which agency awarded it, what was it for, and did the people who decide
-local matters benefit. Source: USASpending.gov. Window {esc(p['window']['start'])} to {esc(p['window']['end'])}.
-Generated {esc(p['generated'])}.</div>
-<div class=kpi>
- <div>State of Hawai&#699;i<b>${t['hawaii']:,.0f}</b>{c['hawaii']} awards</div>
- <div>Maui County<b>${t['maui']:,.0f}</b>{c['maui']} awards</div>
- <div>Recipients<b>{p['n_recipients']}</b>distinct</div>
+    # cross-links into the money web — only the ones that exist as published Maui pages
+    _links = [("money_behind_officials.html","who funds the officials"),
+              ("contracts_x_donors.html","contracts &times; donors"),
+              ("realestate_maui.html","real estate &times; money"),
+              ("orgs_maui.html","organizations behind the money"),
+              ("connections_maui.html","the loop, on the record"),
+              ("tenant_hi-maui.html","Maui County overview")]
+    _md = os.path.dirname(HTML_F)
+    linkrow = " &middot; ".join(f'<a href="{fn}">{lbl}</a>' for fn, lbl in _links
+                                if os.path.exists(os.path.join(_md, fn)))
+    html = f"""<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#00356b">
+<title>Federal dollars — Maui &amp; the State of Hawaiʻi | govOS</title>
+<style>:root{{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b}}
+*{{box-sizing:border-box}}body{{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:900px;margin:0 auto;padding:18px 16px 44px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}}
+a{{color:var(--accent2)}}h1{{font-size:1.5rem;margin:.3rem 0}}h2{{color:var(--accent);font-size:1.05rem;margin:1.2rem 0 .4rem}}
+.sub{{color:var(--dim);font-size:.95rem;line-height:1.55}}
+.kpis{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1rem 0}}@media(max-width:560px){{.kpis{{grid-template-columns:1fr}}}}
+.kp{{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem}}.kv{{font:700 18px/1.1 'JetBrains Mono',Consolas,monospace;color:var(--accent)}}.kl{{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}}
+.note{{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid #b8860b;border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#5a4a16;line-height:1.5}}
+.lnk{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;font-size:.92rem;line-height:1.9}}
+.rcp{{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid #e3e9f1;padding:.5rem .1rem;font-size:.92rem}}
+.rcp .rn{{color:var(--ink);min-width:0;overflow-wrap:anywhere;flex:1}}.rcp .ra{{font-family:Consolas,monospace;color:var(--accent);display:flex;flex-direction:column;align-items:flex-end;text-align:right;flex-shrink:0}}.rcp .rd{{color:var(--faint);font-size:.78rem;white-space:normal}}
+{_IND_CSS}</style>
+<div class=sub style="letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600">govOS &middot; Maui County &middot; asked in aloha</div>
+<h1>Federal dollars — Maui &amp; the State of Hawaiʻi</h1>
+<div class=sub>Federal money (contracts + grants) recorded as spent in Hawaiʻi, with the Maui share called out — so anyone
+can ask the oversight questions: who received it, which agency awarded it, and did the people who decide local matters
+benefit. A question to verify, never a finding. Source: <a href="https://www.usaspending.gov/">USASpending.gov</a> &middot;
+window {esc(p['window']['start'])}–{esc(p['window']['end'])} &middot; generated {esc(p['generated'])}.</div>
+<div class=kpis>
+ <div class=kp><div class=kv>${t['hawaii']:,.0f}</div><div class=kl>State of Hawaiʻi &middot; {c['hawaii']} awards</div></div>
+ <div class=kp><div class=kv>${t['maui']:,.0f}</div><div class=kl>Maui County &middot; {c['maui']} awards</div></div>
+ <div class=kp><div class=kv>{p['n_recipients']}</div><div class=kl>distinct recipients</div></div>
 </div>
 {_agency_bars(p['awards'], None, "Where Hawai&#699;i’s federal money comes from — by awarding agency (share of recorded awards)")}
-<div class=note>{esc(p['note'])}</div>
-<table><thead><tr><th>Recipient</th><th class=n>Total (HI)</th><th class=n>Maui</th>
-<th class=n>Awards</th><th>Top agencies</th></tr></thead><tbody>{rows}</tbody></table>
-<p class=sub style=margin-top:1rem>Showing top 120 recipients by total. Full data in
-<code>federal_money_maui.json</code>. This is a records-awareness tool; lawful action
-(records requests, reporting, voting) is the endpoint.</p>"""
+<div class=lnk><b>Follow it further:</b> {linkrow}</div>
+<div class=note>Federal money landing in a place is a question for oversight — who received it, who decided, who benefits — never an accusation. Every recipient links back to the public record.</div>
+<h2>Top recipients by total (HI)</h2>
+{rows}
+<p class=sub style="margin-top:1rem">Showing top 120 recipients. Full data in <code>federal_money_maui.json</code>.
+This is a records-awareness tool; lawful action (records requests, reporting, voting) is the endpoint.</p>"""
     tmp = HTML_F + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         f.write(html)
