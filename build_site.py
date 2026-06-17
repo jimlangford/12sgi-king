@@ -170,6 +170,7 @@ NAV_LABEL = {
     "king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html": "govOS — Charter Hub",
     "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html": "Charter ⇄ Law Crosswalk",
     "king/civic/templates/title19-service/Title19%20Service.html": "Title 19 — Plain-Language Service (free)",
+    "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
     "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html": "Hawaiʻi Law Index",
@@ -902,6 +903,7 @@ Sources are linked on every page.</div>
 <div class="grid">
  <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><div class="t">govOS — Charter Hub</div><div class="b">The charter ⇄ law reference layer: budget, county code, state law, crosswalks, services.</div></a>
  <a class="card" href="king/civic/templates/title19-service/Title19%20Service.html"><div class="t">Title 19 — Plain-Language Service (free)</div><div class="b">Live parcel lookup + zoning navigator. No account.</div></a>
+ <a class="card" href="king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html"><div class="t">Title 19 — Substantial Change Procedure</div><div class="b">When a change to an approved project needs a new public hearing — with a decision aid.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
