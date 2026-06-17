@@ -729,7 +729,8 @@ Sources are linked on every page.</div>
         # [OWNER ONLY] system status (so go.html's status link resolves PORTLESS via /king/ — the :8781 port
         # is never shown publicly) + the real-estate loop breakdown. Private; never in SITE/EXTRA_PAGES.
         for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html")):
+                            (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html"),
+                            (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html")):
             if os.path.exists(_src):
                 shutil.copy(_src, os.path.join(KLOCAL, _name))
                 print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")

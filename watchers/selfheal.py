@@ -27,7 +27,9 @@ def _repo():
     return os.getcwd()
 REPO = _repo()
 
-PRIVATE_NAMES = ("prosecutor.py", "case_files.html")          # owner-only back end — must never publish
+PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  # owner-only back end — never publish
+                 "ram_loop.html", "onboard_readiness.html",   # real-estate loop + prosecutorial onboarding — owner-only
+                 "comfy_cloud.json")                          # holds the ComfyUI Cloud API key — never publish
 
 def _known_secrets():
     """The ACTUAL secret VALUES, read at runtime from the local key files — NEVER hard-coded here
@@ -44,6 +46,14 @@ def _known_secrets():
                 vals.add(v)
         except Exception:
             pass
+    # the ComfyUI Cloud API key (lives in config/comfy_cloud.json) must never appear in the public repo
+    try:
+        import json as _json
+        k = (_json.load(open(os.path.join(cfg, "comfy_cloud.json"), encoding="utf-8")).get("COMFY_API_KEY") or "").strip()
+        if len(k) >= 12 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
     return vals
 
 def chk_no_leak():
@@ -53,7 +63,7 @@ def chk_no_leak():
     for root, dirs, files in os.walk(REPO):
         if ".git" in dirs: dirs.remove(".git")
         for fn in files:
-            if fn in PRIVATE_NAMES or (fn.endswith(".txt") and "key" in fn.lower()):
+            if fn in PRIVATE_NAMES or (fn.endswith(".txt") and "key" in fn.lower()) or "dossier" in fn.lower():
                 hits.append(os.path.relpath(os.path.join(root, fn), REPO))
             elif secrets and fn.endswith((".py", ".html", ".json", ".txt", ".md")):
                 try:
@@ -115,6 +125,29 @@ def chk_olelo():
     if ok is None: return "WARN", "olelo_glossary not generated yet — run olelo_watch.py"
     return ("PASS" if ok else "FAIL"), "ʻŌlelo glossary carries the community-review notice"
 
+def chk_surface_liveness():
+    """Boot-persistence across ALL surfaces: every server/daemon/scheduled-task that should persist is up.
+    Generalized from the :8799 King + publish-watcher reboot gaps (Jimmy 2026-06-16 'consider that type of
+    problem for the other surfaces'). Runs surface_health.py (report) and reads its JSON."""
+    import subprocess, sys as _sys
+    sh = os.path.join(HERE, "surface_health.py")
+    rep = os.path.join(PROJ, "reports", "_status", "surface_health.json")
+    try:
+        subprocess.run([_sys.executable, sh], cwd=HERE, timeout=90,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+    if not os.path.exists(rep):
+        return "WARN", "surface_health not generated yet"
+    try:
+        d = json.load(open(rep, encoding="utf-8")); s = d["summary"]
+        if s["down"] == 0:
+            return "PASS", "all %d persistent surfaces up (servers/daemons/tasks)" % s["total"]
+        dn = [i["surface"] for i in d["items"] if i["ok"] is False]
+        return "FAIL", "%d surface(s) down: %s (run surface_health.py --heal)" % (s["down"], ", ".join(dn[:5]))
+    except Exception as e:
+        return "WARN", "surface_health unreadable: %s" % e
+
 def chk_bats_ascii():
     """.bat files stay pure ASCII (a stray non-ASCII byte breaks cmd parsing)."""
     bad = []
@@ -132,6 +165,7 @@ CHECKS = [
     ("Generators share their deps",    chk_watcher_parity),
     ("ʻŌlelo held under review",       chk_olelo),
     ("Batch files pure ASCII",         chk_bats_ascii),
+    ("All surfaces persist (boot)",    chk_surface_liveness),
 ]
 
 # ---------------------------------------------------------------------------
@@ -171,6 +205,74 @@ def prog_olelo_recipient():
     except Exception: rec = None
     return bool(rec), ("recipient set: " + rec) if rec else "no ʻŌiwi recipient set yet"
 
+def prog_skills_refining():
+    """Best practice: the skill set is refining cumulatively — selfheal_learn.py has watched the whole
+    thread and each area of work carries learnings drawn from recurring asks + redirections + caught faults.
+    Runs the learner (best-effort) so the count is fresh, then reads its registry. See SELFHEAL_COVENANT.md."""
+    import subprocess, sys
+    learner = os.path.join(HERE, "selfheal_learn.py")
+    reg = os.path.join(PROJ, "reports", "_status", "selfheal_skills.json")
+    try:
+        subprocess.run([sys.executable, learner], cwd=HERE, timeout=60,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+    if not os.path.exists(reg):
+        reg = os.path.join(HERE, "selfheal_skills.json")
+    try:
+        sk = json.load(open(reg, encoding="utf-8"))
+        skills = sk.get("skills", [])
+        learnings = sum(len(s.get("learnings", [])) for s in skills)
+        touches = sum(s.get("touches", 0) for s in skills)
+        return (learnings >= len(skills) and touches > 0), \
+            "%d skills refining · %d learnings from %d thread touches" % (len(skills), learnings, touches)
+    except Exception as e:
+        return False, "skills registry unreadable: %s" % e
+
+def prog_tenant_depth():
+    """Best practice: drive EVERY tenant toward Maui-deep testimony (Jimmy 2026-06-16). Runs tenant_depth.py
+    and reports how many tenants reach the Maui reference depth — the civic 'prosecutorial push until balanced'."""
+    import subprocess, sys as _sys
+    td = os.path.join(HERE, "tenant_depth.py")
+    rep = os.path.join(PROJ, "reports", "_status", "tenant_depth.json")
+    try:
+        subprocess.run([_sys.executable, td], cwd=HERE, timeout=60,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+    if not os.path.exists(rep):
+        return False, "tenant_depth not generated yet"
+    try:
+        d = json.load(open(rep, encoding="utf-8")); ref = d["maui_reference_depth"]
+        at = sum(1 for t in d["tenants"] if t["covered"] >= ref)
+        n = len(d["tenants"]); thin = len(d.get("flaws_thin", []))
+        msg = "%d/%d tenants at Maui depth (%d dims); %d thin/placeholder" % (at, n, ref, thin)
+        return (at >= n and thin == 0), msg
+    except Exception as e:
+        return False, "tenant_depth unreadable: %s" % e
+
+def prog_minutes_reachability():
+    """Best practice / curse-breaker (Jimmy 2026-06-16): keep TESTING every venue's real minutes document
+    path — never write a venue off as 'no data' from an empty API field. Runs venue_minutes.py and reports
+    how many venues' minutes are confirmed reachable. Self-healing: a venue that starts publishing flips on its own."""
+    import subprocess, sys as _sys
+    vm = os.path.join(HERE, "venue_minutes.py")
+    rep = os.path.join(PROJ, "reports", "_status", "venue_minutes.json")
+    try:
+        subprocess.run([_sys.executable, vm], cwd=HERE, timeout=180,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+    if not os.path.exists(rep):
+        return False, "venue_minutes not generated yet"
+    try:
+        d = json.load(open(rep, encoding="utf-8"))
+        nc = [r["venue"] for r in d["rows"] if r["minutes_reachable"] not in ("reachable",)]
+        return (d["reachable"] >= d["venues"]), "%d/%d venues' minutes reachable; still to break: %s" % (
+            d["reachable"], d["venues"], ", ".join(nc) or "none")
+    except Exception as e:
+        return False, "venue_minutes unreadable: %s" % e
+
 def prog_freshness():
     """Best practice: the public record is alive — key reports regenerated recently."""
     import time
@@ -188,6 +290,9 @@ PROGRESS = [
     ("Creative lane surfaced",      prog_creative_surfaced),
     ("Model canon backed up",       prog_canon_backed_up),
     ("ʻŌlelo recipient set",        prog_olelo_recipient),
+    ("Skills refining cumulatively", prog_skills_refining),
+    ("Every tenant to Maui depth",  prog_tenant_depth),
+    ("Minutes reachable per venue", prog_minutes_reachability),
     ("Record stays fresh",          prog_freshness),
 ]
 
