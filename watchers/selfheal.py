@@ -30,6 +30,7 @@ REPO = _repo()
 PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  # owner-only back end — never publish
                  "ram_loop.html", "onboard_readiness.html",   # real-estate loop + prosecutorial onboarding — owner-only
                  "king_message.html",                         # curse-breaker w/ held RE numbers — owner-only until RE report ships
+                 "maui_re_report.html",                       # RE report PRIVATE review build (named $ + property) — owner-only until approved public
                  "comfy_cloud.json")                          # holds the ComfyUI Cloud API key — never publish
 
 def _known_secrets():

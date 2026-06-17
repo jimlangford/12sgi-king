@@ -280,13 +280,15 @@ def inject_nav(html, current):
 #    link). Same class of presentation on every tenant — the productizable separation.
 _SWITCHER = None
 def _switcher_maps():
-    """(reverse {file -> (class_key, class_label, tenant_id)}, byclass {class_key -> [(tid,name,file|None)]})."""
+    """(rev {file->(class_key,class_label,tid)}, byclass {class_key->[(tid,name,file|None)]},
+        treg {tid->{name, reports:[[label,file],...]}}, order [class_key,...]) — all from the ONE registry."""
     global _SWITCHER
     if _SWITCHER is not None: return _SWITCHER
-    rev, byclass, clabels = {}, {}, {}
+    rev, byclass, treg, order = {}, {}, {}, []
     try:
         reg = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tenant_registry.json"), encoding="utf-8"))
         clabels = {c["key"]: c["label"] for c in reg.get("report_classes", [])}
+        order = [c["key"] for c in reg.get("report_classes", [])]
         for c in reg.get("report_classes", []):
             k = c["key"]; byclass[k] = []
             for t in reg.get("civic_tenants", []):
@@ -296,34 +298,68 @@ def _switcher_maps():
                 f = files[0].replace("/", "_") if files else None
                 byclass[k].append((t["id"], t["name"], f))
                 if f: rev.setdefault(f, (k, clabels.get(k, k), t["id"]))
+        for t in reg.get("civic_tenants", []):
+            reports = []
+            for k in order:
+                files = t["reports"].get(k) or []
+                if files:
+                    reports.append([clabels.get(k, k), files[0].replace("/", "_")])
+            treg[t["id"]] = {"name": t["name"], "reports": reports}
     except Exception:
         pass
-    _SWITCHER = (rev, byclass)
+    _SWITCHER = (rev, byclass, treg, order)
     return _SWITCHER
 
-_SWITCH_CSS = ("<style id=tenant-switch-css>.tenant-switch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;"
+_SWITCH_CSS = ("<style id=tenant-switch-css>.tenant-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;"
     "max-width:1100px;margin:10px auto 0;padding:9px 14px;background:#eef2f7;border:1px solid #bacde6;border-radius:11px;"
-    "font-family:'Segoe UI',system-ui,sans-serif}.ts-label{font-size:11.5px;color:#41536b;font-weight:600;margin-right:4px}"
-    ".ts-chip{font-size:12px;text-decoration:none;color:#1259a3;background:#fff;border:1px solid #bacde6;border-radius:99px;"
-    "padding:4px 11px;white-space:nowrap}.ts-chip:hover{border-color:#00356b;color:#00356b}"
-    ".ts-chip.cur{background:#00356b;color:#fff;border-color:#00356b;font-weight:600}"
-    ".ts-chip.ts-off{color:#9fb1c4;background:#f3f7fc;cursor:default}</style>")
+    "font-family:'Segoe UI',system-ui,sans-serif}.tn-grp{display:flex;align-items:center;gap:6px}"
+    ".tn-lbl{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#6d7f97;font-weight:600}"
+    ".tenant-nav select{font-family:inherit;font-size:13px;color:#00356b;background:#fff;border:1px solid #bacde6;"
+    "border-radius:8px;padding:5px 9px;cursor:pointer;max-width:230px}.tenant-nav select:hover{border-color:#00356b}"
+    ".tn-here{font-size:11px;color:#41536b}.tn-here b{color:#00356b}</style>")
 
 def inject_switcher(html, current_file):
-    rev, byclass = _switcher_maps()
-    info = rev.get((current_file or "").replace("/", "_"))
-    if not info:
-        return html                         # not a per-tenant report — leave it
-    ck, clabel, cur_tid = info
-    chips = ""
-    for tid, name, f in byclass.get(ck, []):
-        if f:
-            chips += '<a class="ts-chip%s" href="%s">%s</a>' % (" cur" if tid == cur_tid else "", f, name)
-        else:
-            chips += '<span class="ts-chip ts-off" title="this government&#39;s page is being gathered">%s</span>' % name
-    sw = (_SWITCH_CSS if "tenant-switch-css" not in html else "") + \
-         ('<div class="tenant-switch"><span class="ts-label">%s &mdash; choose a government:</span>%s</div>' % (clabel, chips))
-    m = re.search(r"</nav>", html, re.I)    # right under the top nav
+    """Inject the TENANT-AWARE pulldown nav (Jimmy 2026-06-16 #1): a 'Government' select that switches tenant —
+    staying on the SAME report class where that tenant has it — and a 'View' select that lists the CURRENT
+    tenant's lenses (repopulated client-side per government). Native <select>s: mobile-first, no popups, works
+    static (GitHub Pages) + king-local. Reusable component (the same skill ports to Studio)."""
+    rev, byclass, treg, order = _switcher_maps()
+    if not treg:
+        return html
+    cf = (current_file or "").replace("/", "_")
+    info = rev.get(cf)
+    cur_tid, cur_class = (info[2], info[0]) if info else (None, None)
+    if cur_tid is None:
+        m = re.match(r"tenant_(.+)\.html$", cf)
+        if m and m.group(1) in treg:
+            cur_tid = m.group(1)
+    tclass = {k: {t: f for t, _n, f in v if f} for k, v in byclass.items()}
+    data = json.dumps({"treg": treg, "tclass": tclass, "cur_tid": cur_tid,
+                       "cur_class": cur_class, "cur_file": cf}, ensure_ascii=False)
+    gov_opts = "".join('<option value="%s"%s>%s</option>' % (tid, " selected" if tid == cur_tid else "", treg[tid]["name"]) for tid in treg)
+    here = (('<span class="tn-here">on <b>%s</b></span>' % treg[cur_tid]["name"]) if cur_tid else
+            '<span class="tn-here">pick a government to begin</span>')
+    widget = (
+        '<div class="tenant-nav" role="navigation" aria-label="Government navigation">'
+        '<div class="tn-grp"><span class="tn-lbl">Government</span>'
+        '<select id="tnav-gov" aria-label="Choose a government">%s%s</select></div>'
+        '<div class="tn-grp"><span class="tn-lbl">View</span>'
+        '<select id="tnav-view" aria-label="Choose a report for this government"></select></div>%s</div>'
+        '<script>(function(){var D=%s;var gov=document.getElementById("tnav-gov"),'
+        'view=document.getElementById("tnav-view");'
+        'function fill(t){view.innerHTML="";var rs=(D.treg[t]||{}).reports||[];'
+        'if(!rs.length){var o=document.createElement("option");o.textContent="overview";o.value="tenant_"+t+".html";view.appendChild(o);return;}'
+        'rs.forEach(function(r){var o=document.createElement("option");o.textContent=r[0];o.value=r[1];'
+        'if(r[1]===D.cur_file)o.selected=true;view.appendChild(o);});}'
+        'if(D.cur_tid)fill(D.cur_tid);'
+        'gov.addEventListener("change",function(){var t=this.value,dest;'
+        'if(D.cur_class&&D.tclass[D.cur_class]&&D.tclass[D.cur_class][t])dest=D.tclass[D.cur_class][t];'
+        'else dest="tenant_"+t+".html";location.href=dest;});'
+        'view.addEventListener("change",function(){if(this.value)location.href=this.value;});})();</script>'
+    ) % (("" if cur_tid else '<option value="" selected disabled>Choose a government…</option>'),
+         gov_opts, here, data)
+    sw = (_SWITCH_CSS if "tenant-switch-css" not in html else "") + widget
+    m = re.search(r"</nav>", html, re.I)        # right under the top nav
     return (html[:m.end()] + "\n" + sw + html[m.end():]) if m else (sw + html)
 
 # ── Yale-blue civic recolor (2026-06-16, Option A — Jimmy: new graphics on ALL sites) ──
@@ -732,7 +768,8 @@ Sources are linked on every page.</div>
         for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
                             (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html"),
                             (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "king_message.html"), "king_message.html")):
+                            (os.path.join(PROJECT, "reports", "_status", "king_message.html"), "king_message.html"),
+                            (os.path.join(PROJECT, "reports", "_status", "maui_re_report.html"), "maui_re_report.html")):
             if os.path.exists(_src):
                 shutil.copy(_src, os.path.join(KLOCAL, _name))
                 print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")
