@@ -103,6 +103,51 @@ def amt(r):
     try: return float(r.get("Award Amount") or 0)
     except Exception: return 0.0
 
+# Hawaii county FIPS subsets — so EACH county tenant gets its real federal slice (Jimmy 2026-06-16).
+# USASpending "Place of Performance County Code" is the 3-digit within state FIPS 15.
+COUNTY_NAMES = {"001": "Hawaiʻi County", "003": "Honolulu", "007": "Kauaʻi", "009": "Maui County"}
+COUNTY_PAGE  = {"001": "federal_money_hawaii.html", "003": "federal_money_honolulu.html",
+                "007": "federal_money_kauai.html",  "009": "federal_money.html"}
+
+def _write_county_pages(by_county, payload):
+    """One dignified, sourced federal page per Hawaii county (Maui keeps federal_money.html)."""
+    for code, c in by_county.items():
+        if code == "009":      # Maui already served by the main federal_money.html
+            continue
+        page = COUNTY_PAGE.get(code)
+        if not page: continue
+        aws = sorted(c["awards"], key=lambda x: -x["amount"])[:120]
+        rows = "".join(
+            "<tr><td class=amt>$%s</td><td>%s</td><td class=ag>%s</td><td class=ds>%s</td></tr>" % (
+                "{:,.0f}".format(x["amount"]), esc(x["recipient"]), esc(x.get("agency") or ""),
+                esc((x.get("desc") or "")[:120]))
+            for x in aws) or ("<tr><td colspan=4 class=ds>No federal awards with place of performance in this "
+                              "county were found in the window. The record fills as USASpending posts them.</td></tr>")
+        html = ("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
+            "<title>%s — Federal dollars | govOS</title><style>"
+            "body{font-family:'Segoe UI',system-ui,sans-serif;max-width:1000px;margin:1.3rem auto;padding:0 1rem;color:#13243d;background:#fff}"
+            "h1{font-size:1.5rem;margin:.3rem 0}.sub{color:#41536b;font-size:.9rem}.kpi{font-family:Consolas,monospace;color:#00356b;font-weight:700;font-size:1.1rem;margin:.6rem 0}"
+            ".disc{background:#eef2f7;border:1px solid #bacde6;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0}"
+            "table{border-collapse:collapse;width:100%%;font-size:.85rem}td,th{padding:.4rem .5rem;border-bottom:1px solid #e3e9f1;text-align:left;vertical-align:top}"
+            ".amt{font-family:Consolas,monospace;color:#00356b;white-space:nowrap}.ag{color:#41536b}.ds{color:#6d7f97;font-size:.8rem}a{color:#1259a3}</style>"
+            "<h1>%s — federal dollars</h1>"
+            "<div class=sub>Federal awards (contracts + grants) with place of performance in %s. "
+            "Source: <a href='https://www.usaspending.gov/'>USASpending.gov</a> · window %s–%s · generated %s.</div>"
+            "<div class=kpi>$%s across %d awards</div>"
+            "<div class=disc>Federal money landing in a place is a <b>question for oversight</b> — who received it, "
+            "who decided, who benefits — never an accusation. Every recipient links back to the public record.</div>"
+            "<table><thead><tr><th>amount</th><th>recipient</th><th>awarding agency</th><th>description</th></tr></thead>"
+            "<tbody>%s</tbody></table>"
+            "<p class=sub style='margin-top:1rem'><a href='tenant_hi-%s.html'>← overview</a> · "
+            "<a href='federal_money.html'>Maui federal</a> · <a href='tenants_hub.html'>all governments</a></p>") % (
+            esc(c["name"]), esc(c["name"]), esc(c["name"]),
+            payload["window"]["start"], payload["window"]["end"], payload["generated"],
+            "{:,.0f}".format(c["total"]), c["count"], rows, COUNTY_TID.get(code, ""))
+        with open(os.path.join(OUT_DIR, page), "w", encoding="utf-8", newline="\n") as f:
+            f.write(html)
+
+COUNTY_TID = {"001": "hawaii", "003": "honolulu", "007": "kauai", "009": "maui"}
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     by_recipient, awards = {}, []
@@ -148,6 +193,24 @@ def main():
     for b in recips:
         b["agencies"] = sorted(a for a in b["agencies"] if a)
         b["types"] = sorted(b["types"])
+    # per-county federal slice: the per-award county field is unreliable, so query each county EXPLICITLY
+    # (same proven pattern as the Maui-009 query). Maui (009) is already captured above.
+    by_county = {"009": {"name": COUNTY_NAMES["009"], "total": totals["maui"], "count": counts["maui"],
+                         "awards": [a for a in awards if a.get("maui")]}}
+    for code in ("001", "003", "007"):
+        loc = {"country": "USA", "state": "HI", "county": code}
+        bc = by_county.setdefault(code, {"name": COUNTY_NAMES[code], "total": 0.0, "count": 0, "awards": []})
+        cseen = set()
+        for group, codes in GROUPS.items():
+            for r in fetch_group(codes, loc):
+                i = r.get("Award ID") or r.get("generated_internal_id")
+                if i and i in cseen: continue
+                if i: cseen.add(i)
+                a = amt(r)
+                bc["total"] += a; bc["count"] += 1
+                bc["awards"].append({"recipient": (r.get("Recipient Name") or "UNKNOWN").strip(),
+                                     "amount": a, "agency": r.get("Awarding Agency"),
+                                     "desc": (r.get("Description") or "")[:240]})
     payload = {
         "generated": now_hst().strftime("%Y-%m-%d %H:%M:%S HST"),
         "window": {"start": START, "end": END},
@@ -166,7 +229,12 @@ def main():
     with open(STATE_F, "w", encoding="utf-8") as f:
         json.dump({"last_run": payload["generated"], "n_awards": len(awards),
                    "maui_total": totals["maui"], "hawaii_total": totals["hawaii"]}, f, indent=1)
+    payload["by_county"] = {code: {"name": c["name"], "total": c["total"], "count": c["count"]}
+                            for code, c in by_county.items()}
     _write_html(payload)
+    _write_county_pages(by_county, payload)
+    _cty = " · ".join("%s $%s" % (c["name"], "{:,.0f}".format(c["total"])) for c in by_county.values() if c["count"])
+    print("  per-county: " + _cty)
     dispatch("SHIPPED", f"federal_money: HI ${totals['hawaii']:,.0f} ({counts['hawaii']} awards), "
                         f"Maui ${totals['maui']:,.0f} ({counts['maui']}), {len(recips)} recipients")
     print(f"federal_money: Hawaii ${totals['hawaii']:,.0f} / Maui ${totals['maui']:,.0f} "
