@@ -92,6 +92,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "realestate_maui.html",
                # per-tenant real-estate × money pages — the rest of the tenants (Jimmy: do the rest until complete)
                "realestate_honolulu.html", "realestate_hawaii.html", "realestate_kauai.html", "realestate_state.html",
+               # the PEOPLE/ORGANIZATIONS behind the money — grouped by donor employer (Jimmy: next trace)
+               "orgs_maui.html", "orgs_honolulu.html", "orgs_hawaii.html", "orgs_kauai.html",
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -122,6 +124,10 @@ NAV_LABEL = {
     "realestate_hawaii.html": "Money × Votes (Hawaiʻi County)",
     "realestate_kauai.html": "Money × Votes (Kauaʻi)",
     "realestate_state.html": "Money × Votes (State)",
+    "orgs_maui.html": "Organizations Behind the Money (Maui)",
+    "orgs_honolulu.html": "Organizations Behind the Money (Honolulu)",
+    "orgs_hawaii.html": "Organizations Behind the Money (Hawaiʻi County)",
+    "orgs_kauai.html": "Organizations Behind the Money (Kauaʻi)",
     "wildfire_recovery_watch.html": "Wildfire Recovery",
     "ka_leo_voice.html": "Ka Leo — The Louder Voice",
     "crosswalk_state.html": "Charter ⇄ Law (State of Hawaiʻi)",
