@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-16 21:19 HST",
+ "generated": "2026-06-16 22:28 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -68,7 +68,7 @@
      "federal_money.html"
     ],
     "crossref": [
-     "realestate_maui.html"
+     "contracts_x_donors.html"
     ],
     "agendas": [
      "agendas_maui.html"
