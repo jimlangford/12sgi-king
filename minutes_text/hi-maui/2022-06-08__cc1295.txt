@@ -1,0 +1,2229 @@
+MINUTES | hi-maui | County Council Meeting | 2022-06-08
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1295,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+MINUIES
+of the
+COUNCIL OF THE COUNTY OF MAUI
+June 8, 2022
+THE REGULAR MEETING OF THE COUNCIL OF THE COUNTY OF MAUI, STATE OF
+HAWAII, WAS HELD IN THE COUNCIL CHAMBER, KALANA O MAUI BUILDING,
+WAILUKU, HAWAII AND ONLINE VIA BLUEJEANS, ON WEDNESDAY, JUNE 8. 2022,
+BEGINNING AT 9:03 A.M., WITH CHAIR ALICE L LEE PRESIDING.
+COUNCIL CHAIR ALICE L. LEE: Will the Maui County Council regular Council meeting of
+June 8, 2022, please come to order. Ni hao, everyone. Great to be back in the
+Chambers.
+Madam Clerk.
+ROLL CALL
+COUNTY CLERK KATHY L. KAOHU: Chair, proceeding with roll call. Members participating
+from non-public locations should state who, if anyone, is present with them as part of
+roll call.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: Ni hao, Chair. Aloha kakahiaka kakou my Maui hikina. Hauoli
+la Po'alima. I am broadcasting today from the Hana Cultural Center with staff members
+Dawn Lono and Mavis Medeiros. Aloha.
+CHAIR LEE: Aloha.
+COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: Aloha and good morning. Madam Chair, colleagues, and
+everyone else tuning in for our Council meeting here today. Like everyone, a lot of my
+colleagues. I'm here in the Council Chambers in Wailuku. And the courtesy testifying
+site out at our district office in Paia is closed today due to staffing shortages, but should
+be opening up sometime soon. Thank you.
+CHAIR LEE: Thank you.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 2
+COUNTY CLERK: Councilmember Kelly Takaya King.
+COUNCILMEMBER KING; That’s my bad. I just talked about it with Member Rawlins-
+Fernandez. We have to remember not to, not to unmute ourselves on the computer.
+Aloha kakahiaka and ni hao, Chair. Nice to have you back in that seat, and all of us in
+the Chambers. And mahalo to our, our colleague Yuki Lei Sugimura for providing us
+all with a lei, beautiful smelling lei. As far as  Iknow, there are no testifiers in the South
+Maui District Office. And that's ail I have to report because I'm here in Chambers.
+CHAIR LEE: Very good.
+COUNCILMEMBER KING: Looking forward to a productive meeting.
+CHAIR LEE: Thank you.
+COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: Ni hao, Chair, Councilmembers, community members. I'm
+Gabe Johnson. I'm alone in my workspace on the island of Lanai and there are no
+testifiers at the district office. The birds are singing and it's a beautiful day outside and
+I'm ready for a great meeting. Mahalo Chair.
+CHAIR LEE: Mahalo.
+COUNTY CLERK: Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: Aloha kakahiaka and ni hao kakou. Broadcasting live and
+direct from the Council Chambers on the eighth floor and we have no testifiers at the
+Lahaina District Office. Thank you.
+CHAIR LEE: Thank you.
+COUNTY CLERK; Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: Ni hao, everybody. It's so wonderful to see everyone in
+the chambers this morning, so welcome. I look forward to a productive meeting and to
+honor Mana'o Radio, when we do our ceremonial resolution. So, thank you very much.
+CHAIR LEE: Thank you.
+COUNTY CLERK: Council Pro Temp Tasha Kama.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 3
+COUNCILMEMBER KAMA: Aloha kakahiaka, Chair. And ni hao to all of my fellow colleagues
+who are here in the Chambers and in Akaku land. It is really nice to see everyone. I'm
+so happy to see all of you. I love you guys so much you have no idea. But thank you,
+Chair, for, and I'm looking forward to a really great brief meeting today.
+CHAIR LEE: Thank you.
+COUNTY CLERK: Council Vice-Chair Keani Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: I knocked on wood for Pro Temp Kama. Aloha
+kakahiaka, Chair, my Maui nui a kama. I'm here at the Chambers with my fellow
+colleagues. Yeah, mahalo, Yuki for the lei and I, is it safe again? Okay. And I'm
+seeing in the chat that there are no testifiers at the Molokai District Office. And yeah,
+mahalo.
+COUNTY CLERK: Council Chair Alice L. Lee.
+CHAIR LEE: Okay, thank you, Vice-Chair. And I am Alice Lee. I'm here back in the
+Chambers for the very first time. Happy to be with all of you. There is one unhappy
+person today. My, my baby girl Koa is wondering where I am and so I'm going to have
+to call her later on. My little pocket pit bull.
+Alright, Madam Clerk.
+PRESENT: COUNCILMEMBERS SHANE M. SINENCl, MICHAEL J.
+MOLINA, KELLY T. KING, GABRIEL JOHNSON, TAMARA A.M.
+PALTIN, YUKI LEI K. SUGIMURA, NATALIE A. KAMA,
+VICE-CHAIR KEAN) N.W. RAWLINS-FERNANDEZ, AND
+CHAIR ALICE L. LEE.
+EXCUSED: NONE.
+COUNTY CLERK: Chair, there are nine Members absent, no mem. nine Member present, no
+Members absent, and no Members excused. A quorum is present to conduct the
+business of the Council.
+For the record, I am County Clerk Kathy Kaohu, and also present from the Office of the
+County Clerk are Deputy County Clerk James Krueger; and Legislative Division staff
+Joyce Murashige, Lauren Saldana, and Dell Yoshida.
+Joining the meeting from the Department of Corporation Counsel is Moana Lutey and
+First Deputy Corporation Counsel Richelle Thomson.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 4
+CHAIR LEE; Opening remarks will be provided by Council Vice-Chair Rawlins-Fernandez.
+OPENING REMARKS
+The opening remarks were offered by Council Vice-Chair Rawlins-Fernandez.
+CHAIR LEE; Thank you for those beautiful remarks.
+Members, please join me now in reciting the Pledge of Allegiance.
+PLEDGE OF ALLEGIANCE
+The Members of the Council rose and recited the Pledge of Allegiance.
+CHAIR LEE; Before we proceed with today's agenda, may I please request that everyone
+keep their microphones muted unless it is your turn to speak. Decorum shall be
+maintained at all times.
+Madam Clerk.
+COUNTY CLERK; Chair, proceeding with the presentation of testimony on the ceremonial
+resolution. . . . testify on the ceremonial. . .
+CHAIR LEE; Members, if our, there are no objections to closing public testimony on
+ceremonial resolutions. Any objections?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered.
+Madam Clerk.
+COUNTY CLERK; Chair, proceeding with ceremonial resolutions.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 5
+CEREMONIAL RESOLUTIONS
+RESOLUTION
+NO. 22-146
+CONGRATULATING MANA‘0 RADIO IN HONOR
+OF ITS 20TH ANNIVERSARY
+CHAIR LEE: Councilmember King.
+COUNCILMEMBER KING: Okay. Thank you, Chair.
+I MOVE TO ADOPT RESOLUTION 22-146.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member King, seconded by Member, Pro Temp Kama, to adopt
+Resolution 22-146.
+Discussion? Member King.
+COUNCILMEMBER KING: Thank you, Chair. May I please request to read the resolution
+myself in its entirety and ask Mr. Michael Elam to come to the podium while I read the
+resolution.
+CHAIR LEE: Of course.
+Madam Clerk.
+COUNTY CLERK: I believe Councilmember King is going to read the resolution.
+COUNCILMEMBER KING: I'll read the resolution. Thank you.
+CHAIR LEE: Alright.
+COUNCILMEMBER KING: Thank you, Chair and Members.
+(The resolution was read in its entirety.)
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 6
+CHAIR LEE: Thank you. Members, any further discussion? Oh, any discussion?
+Member King.
+COUNCILMEMBER KING: Thank you, Chair. Back in 2002, Kathy Collins and Barry
+Shannon knew they were starting something special with Mana‘o Radio. Twenty years
+later the community still looks to 91.7 FM for unique and inspiring playlists to uplift their
+day. Heralded by listener William Riley as innovative, refreshingly original, and
+creatively varietal, it's no surprise that Mana'o Radio was voted best radio station by
+MauiTime weekly radio readers. Their music reaches far beyond the shores of Maui,
+brightening the lives and celebrations of people around the world. Listening from
+Catania, Sicily, Larry Oberto wrote in thank you, to thank Mana'o Radio for helping him
+bring in the New Year right. As the world around us seems to only speed up with each
+passing day, it comes as a great luxury and comfort to know that you can still get in
+your car. crank that dial, and tune into music that makes you feel further away from
+worry and closer to shared community. I ask for the Members full support of this
+resolution.
+CHAIR LEE: Any further discussion?
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. I also want to thank Chair, sorry, Kelly King
+for bringing this resolution up. And I really have experienced the wonders of Mana'o
+Radio when I did Wailuku First Friday, and you would have a table out there and be
+part of the festivities, and for years, cause I did that for 10 years, so you were there.
+And 1 was there when Kathy kind of turned over the reins and gave her real trust to the
+other members that are part of your team. Because look at it, you're still going. I
+appreciate you so much. So, 1, I fully support this, and congratulations. Thank you.
+CHAIR LEE: Any more. Members, discussion? If not, all those in favor of the motion, please
+say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA. PALTIN, SINENCI. SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 7
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Mr. Elam?
+COUNCILMEMBER KING: Chair? Yeah, could we ask Mr. Elam if he would like to say a few
+words and then maybe take a few minutes to present the certificate?
+CHAIR LEE: Of course. Mr. Elam.
+MR. MICHAEL ELAM: Thank you. Thank you very much, Councilmembers. What an honor.
+Thank you very, very much for your support. We are 20 years old this year. And a
+little story, as you know, Kathy Collins and Barry Shannon were the original founders
+of Mana‘0 Radio. And back in 2001, the FCC licensed low power radio stations, issued
+a number of licenses to various people in the country, and Kathy and Barry were
+number 13 in their application, the 13th one in the country. There was hundreds of
+them. And they managed to find some money from friends. They managed to find
+some used equipment and had some friends help them install an antenna on the roof
+of their house. And they made their very first broadcast on March 11, 2002, at 6:00
+a.m. in the morning from their teenaged son's bedroom in their house. And we have
+come a long, long way since then.
+We are now up to about 80 volunteers, about 50 of which are DJ's.
+Councilmember King mentioned, each one of them is  apassionate curator of whatever
+style of music they tend to, they play. One of them, for example, Geronimo Valdriz,
+who I'm sure many of know, is a retired judge here in Maui County, and also an
+acclaimed Hawaiian steel guitar player. He does a show every Tuesday evening from
+5-8 called "Hawaiian Steel", where he plays some of his favorite music with, pertaining
+to Hawaiian steel guitar and Hawaiian slack key guitar. And we have many others,
+you know, in the similar vein, whether it'd be Blues, or Classical music, or Rock music,
+or Hip-Hop, or Reggae. You name it, we play it.
+And as
+And we are very, very honored to serve our Maui community. We are honored to be
+here. I am honored to be here this morning. And I thank you very, very much, each
+and every one of you for your support. And thank each and every one of you for your
+service to our great County of Maui. Thank you.
+CHAIR LEE: Thank you. And now, if we can present you with a few leis.
+Brought back memories of the old radio days when Mr. Molina and I were on KMVI
+close to you. Yes. Thank you, Mr. Elam.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 8
+MR. ELAM: Thank you.
+CHAIR LEE: Madam Clerk.
+SET THE CONSENT CALENDAR
+CHAIR LEE: Members, at this time, we will set the Consent Calendar. As a reminder the
+calendar can still be adjusted even after it is set. Are there any requested changes to
+the Consent Calendar at this time?
+COUNCILMEMBERSUGIMURA: No.
+CHAIR LEE: No?
+COUNCILMEMBER SINENCI: No objections.
+CHAIR LEE: Okay. Are there any objections to setting the Consent Calendar?
+MEBMERS VOICED NO OBJECTION.
+CHAIR LEE: So, ordered. Consent Calendar is set.
+Madam Clerk, shall we begin our testimony?
+COUNTY CLERK: Yes, Chair. Members of the public may testify in the Council Chambers,
+at courtesy testimony sites, or remotely through the information on the meeting.
+Individuals in the Chamber may sign up to testify with the staff member located at the
+desk in the 8th floor lobby. Individuals at courtesy testimony sites may sign up with
+staff at the site. Individuals participating remotely may sign up in the meeting chat. If
+you are connected to the meeting by phone, you will automatically be added to the
+testifier list.
+Individuals connected by phone are currently on mute and will be unmuted when it is
+their time to testify. Individuals connected by video conference should keep both their
+video and microphones off and should turn them on only when it is their time to testify.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 9
+Testimony is limited to the items listed on the agenda. And individuals may testify for
+up to three minutes, with up to one minute to conclude per item. When testifying,
+please state your name and the name of any organization you represent, as well as
+the items on which you will be testifying. Please also identify to the Council if you are
+a paid lobbyist.
+After your testimony has concluded, please disconnect from BlueJeans. Once the
+testimony period is closed, only the Councilmembers, staff, and designated resource
+persons will be connected to the meeting. All other individuals will be disconnected.
+And the remainder of the meeting can be viewed on Akaku Maui Community Media,
+Channel 53, or on mauicounty.legistar.com. Individuals may also be disconnected
+from the meeting at any time for breaking decorum.
+Chair, at this time, we have nobody signed up for testimony.
+CHAIR LEE: And we've checked with the district offices?
+COUNTY CLERK: Yes, Chair.
+CHAIR LEE: You have? Members, any objections to receiving written testimony into the
+record and to closing public testimony?
+MEMBERS VOICED NO OBJECTION.
+THERE BEING NO OBJECTION, WRITTEN TESTIMONY
+RECEIVED FROM THE FOLLOWING WERE MADE A PART OF
+THE RECORD OF THIS MEETING:
+1. Lynn Britton;
+Paul Gammie;
+Lora Harbo and David Liebersbach;
+Lyndon Ibele, Maalaea Village Association;
+Joe Kent, Grassroot Institute of Hawaii;
+La'akea Low; and
+Pamela Tumpap, Maui Chamber of Commerce.
+2.
+3.
+4.
+5.
+6.
+7.
+CHAIR LEE: So, ordered.
+Madam Clerk.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 10
+COUNTY CLERK: Chair, proceeding with minutes.
+MINUTES
+The minutes of the Council of the County of Maui's regular meeting of March 18, 2022, was
+presented at this time.
+CHAIR LEE: Council Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO APPROVE THE MINUTES OF MARCH 18, 2022.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Moved by Member, Vice-Chair Rawlins-Fernandez, seconded by Member
+Sugimura, to approve the minutes.
+Any discussion? If not, all those in favor of the motion, please say "aye" and raise your
+hand.
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING.
+MOLINA. PALTIN, SINENCI. SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+COUNTY CLERK: Chair, proceeding with the Consent Calendar.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 11
+ACTION ON THE CONSENT CALENDAR
+COUNTY COMMUNICATIONS
+NO. 22-130 - HELENE KAU. DIRECTOR OF WATER SUPPLY
+(dated May 23. 2022)
+Relating to the review of Chapter 14.06A, Maui County Code, relating to water
+conservation and control of water usage during a water shortage.
+- SCOTT PARKER. CHAIR. SALARY COMMISSION
+(dated May 20, 2022)
+NO. 22-131
+Relating to the salaries for the Director and Deputy Director of the Department of
+Agriculture.
+- MICHAEL P. VICTORINO. MAYOR,
+(dated May 25, 2022)
+NO. 22-132
+Informing of a vacancy on the Molokai Planning Commission due to the passing of
+Colette Machado on May 23, 2022.
+NO. 22-133 - SCOTT K. TERUYA. DIRECTOR OF FINANCE.
+(dated May 31, 2022)
+Informing of the acceptance of Sewerline Easement S-7, 412 Pualani Street,
+TMK; (2) 3-5-009:031 POR.
+NO. 22-134 - SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated May 31,2022)
+Informing of the acceptance of Sewerline Easement S-2, 754 Front Street
+TMK: (2) 4-6-009:008 POR.
+CHAIR LEE: Council Vice-Chair Rawiins-Fernandez.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 12
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO FILE ALL ITEMS ON THE CONSENT CALENDAR.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Moved by Council Vice-Chair Rawlins-Fernandez, seconded by Member
+Sugimura to file all the items on the Consent Calendar. Any discussion?
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: Yeah, thanks. I'm sure Keani Rawlins would like to also
+say something too. But I just wanted to give my condolence to Colette Machado,
+because when we file this, then she will become part of the history of what she's given
+to the State of Hawaii, and especially the County of Maui, as she retired out of OHA
+and was on our Molokai Planning Commission. And what a, what a fighter she was.
+And I just want to give her family my condolences, as we file away, and close, I guess,
+the work that she did with the Molokai Planning Commission through the passing of
+Colette Machado. Thank you for letting me say a few words.
+CHAIR LEE: Vice-Chair, did you want to add anything?
+VICE-CHAIR RAWLINS-FERNANDEZ: Sure. Mahalo, Chair. The Rules of our, the Rules of
+our Council say that we're not supposed to speak when we move to file the Consent
+Calendar. And don't worry. Member Sugimura, you'll have more time to extend your
+condolences. I'll be doing a resolution, and then we can all do that at that time. Mahalo,
+Chair.
+CHAIR LEE: Alright. All those in favor of the motion, raise your hand, say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 13
+COUNTY CLERK: Chair, proceeding with county communications.
+COUNTY COMMUNICATIONS
+NO. 22-135 - YUKI LEI K. SUGIMURA. COUNCILMEMBER
+(dated June 1, 2022)
+Transmitting a proposed amendmentto Bill 69, CD1, EDI (2022), entitled "A BILL FOR
+AN ORDINANCE RELATING TO THE OPERATING BUDGET FORTHE COUNTY OF
+MAUI FOR THE FISCAL YEAR JULY 1,2022 TO JUNE 30. 2023".
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you.
+I MOVE TO FILE COUNTY COMMUNICATION 22-135.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura, seconded by mem, Pro Temp Kama, to file County
+Communication 22-135.
+Discussion, Member Sugimura?
+COUNCILMEMBER SUGIMURA: Yeah, thank you. Thank you. Chair. At the most recent
+Infrastructure, Transportation Committee meeting, we discussed the Hoku'ula housing
+development in Haliimaile, regarding the Installation and underground, of
+undergrounding utilities, however, the item requires further discussion and review. So,
+I plan on scheduling the item again at my June 13 meeting, and I will not be proposing
+the amendment of the $950,000 to the Affordable Housing Fund at today's meeting to
+be part of our Fiscal Year '23 Budget. And I will leave it to the Mayor, if we approve it,
+to then submit a budget amendment to add this into the new fiscal year budget. So,
+thank you.
+CHAIR LEE: Anymore discission? If not, all those in favor of the motion to file, please say
+"aye", raise your hand.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 14
+AYES: COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA. PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+- YUKI LEI K. SUGIMURA. COUNCILMEMBER.NO. 22-136
+(dated June 1, 2022)
+Transmitting a proposed amendments Bill 71, CD1, FD1 (2022), entitled "A BILL FOR
+AN ORDINANCE AUTHORIZING THE ISSUANCE OF ONE HUNDRED FORTY-
+EIGHT MILLION ONE HUNDRED EIGHTY-SIX THOUSAND SEVEN HUNDRED
+NINETY-THREE DOLIV\RS ($148,186,793) AGGREGATE PRINCIPAL AMOUNT OF
+GENERAL OBLIGATION BONDS OF THE COUNTY OF MAUI FOR THE PURPOSE
+OF PROVIDING FUNDS TO PAY ALL OR A PART OF THE COST OF
+APPROPRIATIONS FOR PUBLIC IMPROVEMENTS OF AND FOR THE COUNTY
+OF MAUI; FIXING THE FORM, DENOMINATIONS AND CERTAIN OTHER
+FEATURES OF SUCH BONDS AND PROVIDING FOR THEIR SALE; AUTHORIZING
+THE DIRECTOR OF FINANCE TO DETERMINE CERTAIN DETAILS OF THE
+BONDS; AUTHORIZING THE ISSUANCE AND SALE OF A LIKE PRINCIPAL
+AMOUNT OF GENERAL OBLIGATION BOND ANTICIPATION NOTES IN
+ANTICIPATION OF THE ISSUANCE AND SALE OF SUCH BONDS; AUTHORIZING
+THE ISSUANCE OF REFUNDING GENERAL OBLIGATION BONDS OF THE
+COUNTY; AND PROVIDING FOR OTHER ACTIONS RELATED TO THE ISSUANCE,
+SALE AND DELIVERY OF SAID BONDS".
+CHAIR LEE: Councilmember Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. If there are no objections, I would like to ask
+the County Communication 22-136 be held until later in the calendar to be taken up
+with Bill 71, CD1, FD1 (2022). This is the Grit System for the Department of
+Environmental Management.
+CHAIR LEE: Any objections. Members?
+MEMBERS VOICED NO OBJECTION.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 15
+COUNCILMEMBER SUGIMURA: Thank you.
+CHAIR LEE: So, ordered.
+Madam Clerk.
+- SCOTT K. TERUYA. DIRECTOR OF FINANCENO. 22-137
+(dated May 20. 2022)
+Reporting on temporary transfers/loans from the General Fund and Department of
+Water Supply Revenue Fund to the General Obligation Bonds Series 2023 Fund as of
+April 30, 2022.
+The recommended action is that County Communication No. 22-137 be referred to the
+Budget, Finance, and Economic Development Committee.
+CHAIR LEE; Members, are there any objections to the referral?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: If not, so, ordered.
+Madam Clerk.
+COUNTY CLERK: Chair, proceeding with committee reports.
+COMMITTEE REPORTS
+COMMITTEE REPORT
+22-43NO. CLIMATE ACTION. RESILIENCE. AND ENVIRONMENT
+COMMITTEE:
+Recommending the following:
+That the Miscellaneous Communication relating to Amendment 2  to
+Contract C6706, between the County of Maui and Fukumoto Engineering, Inc.,
+for Ohukai Road Sidewalk Improvements be FILED; and
+1.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 16
+2. That the Miscellaneous Communication relating to Contract C7456, between
+the County of Maui and Bowers + Kubota Consulting, Inc., relating to the South
+Kihei Road Pavement Rehabilitation be FILED.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Chair, if it would make it go faster and no objections, could we
+also ask the Clerk to pull up 22-44?
+CHAIR LEE: Any objections. Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: If not. Madam Clerk.
+COMMITTEE REPORT
+NO. 22-44 CLIMATE ACTION. RESILIENCE. AND ENVIRONMENT
+COMMITTEE:
+Recommending the following:
+That the Miscellaneous Communication relating to Grant G5442, between the
+County of Maui and BioBamboo, Inc., dba Food Security, for the Maui Family
+Farmer Training Network for the Office of Economic Development,
+Ordinance 5217 (2022), be FILED;
+1.
+That the Miscellaneous Communication relating to Grant G5551, between the
+County of Maui and Living Pono Project, for the Community Foods Project to
+Reduce Greenhouse Gas Emissions from Imported Food and Promote Food
+Resilience, Ordinance 5217 (2022), be FILED; and
+2.
+That the Miscellaneous Communication relating to Grant G5556, between the
+County of Maui and The Permaculture Group, Inc., for the Increase Biochar
+Production to Regenerate Maui County’s Soil, Ordinance 5217 (2022), be
+FILED.
+3.
+CHAIR LEE: Member King.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 17
+COUNCILMEMBER KING: Thank you, Chair.
+I  MOVE TO ADOPT THE RECOMMENDATIONS IN
+COMMITTEE REPORTS 22-43 AND 22-44.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member King, second by Pro Temp Kama, to approve the
+recommendations in Committee Reports 22-43 and 22-44.
+Any discussion? Member King.
+COUNCILMEMBER KING: Thank you, Chair. Your CARE Committee met on May 25. 2022,
+to discuss two contracts under the Department of Public Works. Department reported
+Contract C6706 is for design work that is effectively completed.
+Engineering, Inc. will remain on contract once the work has commenced and
+throughout the construction period to provide technical oversight. The project scope
+involves Ohukai Road, from South Kihei Road to Kaiola Place.
+Fukumoto
+The Department reported that for Contract C7456, the work on the South Maui Road
+Pavement Rehabilitation is ongoing, but is anticipated to be completed in June 2023.
+However, two wastewater force main projects conflict with the projected roadwork,
+which could delay construction. The project scope involves Lipoa Street to Auhana
+Road, and Keonekai to Kilohana Drive.
+Your Committee supported continued efforts of the County to improve roadway and
+pedestrian infrastructure in South Maui. And I will also add that in discussing the
+delayed sidewalk projects we found that Department of Public Works is waiting for an
+SMA permit from Department of Planning. And so, I have sent a letter on behalf of the
+Committee asking Planning for an explanation and why they could not exempt this
+project from the SMA permit, the process. Your Committee recommended filing these
+two miscellaneous communications by 6-0 vote. Committee Member Molina was
+excused.
+And I'll go into the next committee report, Committee Report 22-44. Your CARE
+Committee met on the same day, May 25, 2022, to discuss three contracts under the
+Office of Economic Development. The Department reported the following: the goal of
+Grant G5442 is to help new farmers and ranchers navigate the process of farming
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 18
+operations, and assist with resources and logistics. Of 40 farming operation startups
+identified, the project has been able to successfully, successfully network with 25.
+Grant G5551 allows individuals to access various farm equipment to support local
+farming. Aquaponics are also being utilized for successful cultivation. On a weekly
+basis, at least 25 families are provided with about 100 eggs and 50 pounds of taro as
+a healthy, locally grown food source.
+Grant G5556 is a partnership with Ukiu Farms, with the goal of increasing biochar
+production to regenerate Maui County's topsoil. The project produces 1,000 pounds
+of biochar per month, which is sold to local nurseries and garden shops. Local farmers
+are being taught how to use green waste from invasive species to support local
+fertilization methods instead of relying on imported solutions.
+Your Committee supported the efforts of the County in promoting farming and working
+towards food security, and further supported the continued partnership with these
+organizations.
+These, the, your Committee voted filing these miscellaneous communications by a 6-0
+vote. Councilmember Molina was excused. I ask for the Members full support of your
+Committee's recommendations.
+CHAIR LEE: Anymore discission, Members? If not, all those in favor of the motion, please
+raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+COUNCILMEMBER KING: Thank you, Members.
+CHAIR LEE: Thank you. I, Members, I just want to let you know the reason why there's a
+little pause after I ask for your vote is I'm just checking on the monitor for Member
+Sinenci and Member Johnson. Don’t want to leave them out.
+Madam Clerk.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 19
+COMMITTEE REPORT
+NO. 22-45 INFRASTRUCTURE AND TRANSPORTATION COMMITTEE:
+Recommending that Bill 74, CD1 (2022), entitled "A BILL FOR AN ORDINANCE
+AMENDING SECTION 10.48.040, MAUI COUNTY CODE. RELATING TO PARKING
+PROHIBITIONS ON UAKEA ROAD, HANA, MAUI, HAWAII," be PASSED ON FIRST
+READING and be ORDERED TO PRINT.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBERSUGIMURA; Thank you.
+I  MOVE TO ADOPT THE RECOMMENDATIONS IN
+COMMITTEE REPORT 22-45.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura, seconded by Pro Temp Kama, to pass the bill in
+Committee Report 22-45 on, on first reading.
+Discussion, Member Sugimura.
+COUNCILMEMBERSUGIMURA: Thank you. Chair. Your Infrastructure and Transportation
+Committee met on May 23, 2022, to discuss Bill 74 (2022), which would amend
+Section 10.48.040, Maui County Code, to prohibit parking on both sides of Uakea
+Road, beginning at Hau'oli Road through the southern end of Uakea Road in Hana,
+Maui, Hawaii.
+At this meeting, your Committee discussed ongoing safety and access concerns by the
+Hana community relating to parking challenges along Uakea Road.
+Your Committee noted that the Department of Parks and Recreation, the Department
+of Public Works, Department of Fire and Public Safety, and the Department of Police
+all expressed full support of the bill.
+Your Committee discussed additional parking options that would be made available for
+permitted activities, and noted that restricting parking on this area would provide wider
+road access for emergency vehicles.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 20
+The Department of Public Works explained that the Department would install no
+parking signs on the makai side of the, of Uakea Road, adding five, adding the five
+existing no parking signs already installed on the mauka side of the road.
+Your Committee voted 6-0 to recommend passage of the Bill 74, CD1 (2022) on first
+reading. I respectfully ask for the Members support of my motion. And also want to
+mention that it was Shane Sinenci's request that this bill take action. Thank you very
+much, Members. I look for your support.
+CHAIR LEE: Thank you. Any more discussion?
+Member Sinenci.
+COUNCILMEMBER SINENCI: Chair, I just wanted to share my gratitude, appreciation for
+Member Sugimura and the IT Committee for bringing this up. As you know, Members,
+this is a highly crowded area, congested area. It can get congested really quickly. And
+so, passing it prior to the upcoming summer visitor season will help our community
+mitigate traffic for emergency purposes in the areas. Mahalo again.
+CHAIR LEE: Thank you, Mr. Sinenci.
+Member Sugimura, you have more?
+COUNCILMEMBER SUGIMURA: I just want to add one more thing. During Committee
+discussions, Department of Public Works Director Jordan Molina mentioned, I asked
+how long would it take to get signs up, the no parking signs on the other side of the
+street? And he said, you know, about a month. So, it'll be some time before the signs
+go up. But once this passes and the community is informed, then the signs will go up.
+So, thank you, Members, for the support.
+CHAIR LEE: Alright. Any more discussion? If not, ail those in favor of the motion, please
+raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 21
+COMMITTEE REPORT
+22-46NO. INFRASTRUCTURE AND TRANSPORTATION COMMITTEE:
+Recommending the following:
+1. That Bill 100 (2022), entitled "A BILL FOR AN ORDINANCE AMENDING
+CHAPTER 2.98, MAUI COUNTY CODE, ALLOWING PARKS AND FACILITIES
+TO BE NAMED AFTER FAMILIES," be PASSED ON FIRST READING and be
+ORDERED TO PRINT; and
+That County Communication 21-552, from Councilmember Yuki Lei K.
+Sugimura, be FILED.
+2.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you.
+I  MOVE TO ADOPT THE RECOMMENDATIONS IN
+COMMITTEE REPORT 22-46.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura. seconded by Pro Temp Kama, to approve the
+recommendations in Committee Report 22-46.
+Discussion?
+COUNCILMEMBER SUGIMURA: Thank you, Chair. Your Infrastructure, Transportation
+Committee met on May 23, 2022, to discuss a proposed bill to amend Chapter 2.98,
+Maui County Code, to add a definition for "family"; amend the definition for
+"organization" to include a reference to a family: and list the information required to
+name the County park or facility after a family.
+At this meeting, your Committee noted Section 2.98.040(C), Maui County Code,
+provides criteria for County parks and facilities to be named after an individual who has
+significant association with the park or facility, and has contributed significantly to
+programs in the region where the County park or facility is located, or has achieved
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 22
+significant recognition on the County. State, national, or international level for
+contributions to the region or to the park or facility.
+Your Committee also noted separate criteria are identified for the naming of streets
+under 2.98.040(A) and (B), and Section 2.98.040 does not currently provide for parks
+facilities or streets to be named after families.
+Finally, your Committee also noted that the Department of Parks and Recreation
+expressed full support of the proposed bill. And your Committee voted 6-0 to
+recommend passage of the revised proposed bill on first reading and filing of the
+communication.
+I'd like to also thank the Department of Public Works for their work with the
+department's commission on this. And I look fonA/ard to one day hearing the
+von Tempsky Family to be named after the Kula Community Center once this is passed
+and goes through its process. Thank you, Members.  Irespectfully ask for your support.
+CFIAIR LEE: Any more discussion? If not, all those in favor of the motion, please, yes?
+Oh, I'm sorry. I didn't see you. Member Johnson.
+COUNCILMEMBER JOFINSON: Thank you, Chair. I, I rise in full support of this first reading.
+I just want to recognize, and we all are aware of it, that a lot of the parks we named,
+are named after males and it'd be really important to name them after some prominent
+females that we have in our community, and there's a long list of them. So, just wanted
+to add that to the discussion. Mahalo Chair.
+CFIAIR LEE: Thank you. Anymore discission? If not, all those in favor of the motion, please
+say "aye", raise your hand.
+AYES: COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 23
+COUNTY CLERK: Chair, proceeding with resolutions for referral. These resolutions are
+recommended for referral to the following Committees as noted.
+RESOLUTIONS
+RESOLUTION
+NO. 22-147
+RELATING TO THE APPOINTMENT OF PATRICIA-HELEN
+KAHULUMEALANI LINDSEY MALUO-PEARSON TO THE
+MAUI COUNTY CULTURAL RESOURCES COMMISSION
+The recommended action is that Resolution No. 22-147 be referred to the Government
+Relations, Ethics, and Transparency Committee.
+RESOLUTION
+NO. 22-148
+RELATING TO THE APPOINTMENT OF EDWARD JAMES RICKORD
+TO THE BOARD OF VARIANCES AND APPEALS FOR THE COUNTY OF MAUI
+The recommended action is that Resolution No. 22-148 be referred to the Government
+Relations, Ethics, and Transparency Committee.
+RESOLUTION
+NO. 22-149
+REFERRING TO THE MAUI PLANNING
+COMMISSION PROPOSED BILLS TO AMEND
+THE KIHEI-MAKENA COMMUNITY PLAN LAND
+USE DESIGNATION TO MF MULTI-FAMILY AND
+OPEN SPACE AND CHANGE THE ZONING TO
+A-1 APARTMENT DISTRICT FOR REAL
+PROPERTY SITUATED AT KIHEl, MAUI, HAWAII,
+TAX MAP KEYS (2) 2-1-023:004,
+(2) 2-1-023:005, AND (2) 2-1-023:006
+(WAILEA POINT VILLAGE)
+The recommended action is that Resolution No. 22-149 be referred to the Planning and
+Sustainable Land Use Committee.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 24
+(Councilmember Kama was excused from the meeting at 9:49 a.m.)
+CHAIR LEE: Any objections to these referrals, Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay. Let the record show there are eight no objections. Thank you. Member^
+Pro Temp Kama is excused.
+COUNTY CLERK: Chair, proceeding with bills for referral. These bills are recommended for
+referral to the following Committees as noted.
+BILLS
+ORDINANCE NO.
+BILL NO. 97 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTERS 19.04 AND 19.08, MAUI
+COUNTY CODE, RELATING TO RESIDENTIAL DISTRICTS
+The recommended action is that Bill No. 97 (2022) be referred to the
+Sustainable Land Use Committee.
+Planning and
+ORDINANCE NO.
+BILL NO. 106 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 19.36B, MAUI COUNTY
+CODE, RELATING TO OFF-STREET PARKING AND LOADING
+The recommended action is that Bill No. 106 (2022) be referred to the Planning and
+Sustainable Land Use Committee.
+(BILL NO. 106 (2022) WAS FILED LATER IN THE MEETING.
+See page 31 for discussion and action.)
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 25
+ORDINANCE NO.
+BILL NO. 98 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE COUNTY
+OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT
+WITH THE OFFICE OF THE AUDITOR. STATE OF HAWAII, TO AUDIT THE
+SCHEDULE OF ALLOCATIONS OF THE EMPLOYEES' RETIREMENT SYSTEM
+OF THE STATE OF HAWAII TO MEET THE REPORTING REQUIREMENTS
+UNDER GOVERNMENTAL ACCOUNTING STANDARDS BOARD STATEMENT
+NUMBER 68
+The recommended action is that Bill No. 98 (2022) be referred to the Budget, Finance, and
+Economic Development Committee.
+(BILL NO. 98 (2022) WAS PASSED ON FIRST READING
+LATER IN THE MEETING. See pages 27 through 29 for
+discussion and action.)
+ORDINANCE NO.
+BILL NO. 99 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 3.48
+MAUI COUNTY CODE, RELATING TO REAL PROPERTY
+TAX EXEMPTION CLAIMS FOR COUNTY RESIDENTS
+The recommended action is that Bill No. 99 (2022) be referred to the Budget, Finance, and
+Economic Development Committee.
+ORDINANCE NO.
+BILL NO. 102 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 3.48.305(B), MAUI
+COUNTY CODE. PROHIBITING PROPERTIES WITH TRANSIENT VACATION
+RENTALS FROM RECEIVING THE HOME EXEMPTION
+The recommended action is that Bill No. 102 (2022) be referred to the Budget, Finance, and
+Economic Development Committee.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 26
+ORDINANCE NO.
+BILL NO. 101 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 16.26B.105, MAUI
+COUNTY CODE, RELATING TO FENCE HEIGHTS FOR AXIS DEER CONTROL
+The recommended action is that Bill No. 101 (2022) be referred to the Infrastructure and
+Transportation Committee.
+(BILL NO. 101 (2022) WAS REFERRED TO THE
+AGRICULTURE AND PUBLIC TRUST COMMITTEE LATER IN
+THE MEETING. See pages 58 and 59 for discussion and action.)
+ORDINANCE NO.
+BILL NO. 103 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 2.96.060, MAUI COUNTY
+CODE, RELATING TO RESIDENTIAL WORKFORCE HOUSING DEED
+RESTRICTIONS AND RESALE
+The recommended action is that Bill No. 103 (2022) be referred to the Affordable Housing
+Committee.
+ORDINANCE NO.
+BILL NO. 104 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 14.04.060, MAUI
+COUNTY CODE, RELATING TO NOTICE TO PROPERTY OWNERS AND
+LESSEES WHEN AN ACCOUNT IS IN ARREARS
+The recommended action is that Bill No. 104 (2022) be referred to the Agriculture and Public
+Trust Committee.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 27
+ORDINANCE NO.
+BILL NO. 105 (2022^
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 2.12 AND TITLE 22. MAUI
+COUNTY CODE, TO ESTABLISH POLICIES RELATED TO THE DEPARTMENT
+OF AGRICULTURE
+The recommended action is that Bill No. 105 (2022) be referred to the Agriculture and Public
+Trust Committee.
+CHAIR LEE: Any objections to these referrals? Vice-Chair, are you going to take up Bill 98?
+COUNCILMEMBER SUGIMURA: No objections.
+VICE-CHAIR RAWLINS-FERNANDEZ: Yes, Chair.
+CHAIR LEE: Okay. I'll just call on you.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO WAIVE THE REQUIREMENT OF COMMITTEE
+REFERRAL AND REPORT FOR BILL 98, IN ACCORDANCE
+WITH RULE 7.G. OF THE RULES OF THE COUNCIL.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Moved by Vice-Chair Ra\A/lins-Fernandez, seconded by Member Sugimura, to
+waive the Rules of the Council.
+Any discussion on this? If, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. This intergovernmental agreement
+would authorize funding for the Employees' Retirement System audits for Fiscal Years
+2022. 2023, 2024, and 2025.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 28
+The Department of Finance has asked us to consider Bill 98 (2022) as soon as possible
+so that the agreement can be finalized. And we did take this up in Committee. This is
+the bill that I referred to in the last BFED Committee meeting. Mahalo Chair.
+CHAIR LEE: Any more discussion on the waiver? If not, all those in favor of the motion
+please raise your hand and say "aye".
+COUNCILMEMBERS JOHNSON, KING, MOLINA,
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES:
+NOES: NONE.
+EXCUSED: COUNCILMEMBER KAMA.
+one "excused"; vice, Pro Temp Kama.CHAIR LEE: Eight "ayes", zero "noes'
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO PASS BILL 98 (2022) ON FIRST READING.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Moved by Vice-Chair Rawlins-Fernandez, seconded by Member Sugimura, to
+pass this bill on first reading.
+Discussion, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Members, at the June 1, 2022,
+Budget, Finance, and Economic Development Committee meeting, we were joined by
+the Deputy Director of Finance and the County Auditor to conduct a Rule 7.B.
+discussion on a proposed bill authorizing the Mayor to enter into an intergovernmental
+agreement with the Office of the Auditor, State of Hawaii, to audit the schedule of
+allocations of the Employees' Retirement System of the State of Hawaii to meet the
+reporting requirements under Governmental Accounting Board Statement 68.
+The County Auditor informed your Committee that this audit was necessary in order to
+complete the annual financial statements, as it is required, it is a required disclosure.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 29
+He also explained going through the State Auditor was the most efficient and cost-
+effective way to conduct this audit.
+Your Committee confirmed that this routine audit will be conducted by all the counties.
+And the audit is not conducted, and if the audit is not conducted, our Auditor would
+issue a qualified opinion because they are not able to check the ERS data.
+Representatives from the Administration are available to answer any additional
+questions the Members may have today. I respectfully ask for the Members support
+of this motion. Mahalo Chair.
+CHAIR LEE: Any more discussion? If not, all those in favor of the motion to pass Bill 98 on
+first reading, please raise your hand and say "aye".
+COUNCILMEMBERS JOHNSON, KING, MOLINA,
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES;
+NOES: NONE.
+EXCUSED: COUNCILMEMBER KAMA.
+CHAIR LEE: Eight "ayes", zero "noes", one "excused": Pro Temp Kama.
+Madam Clerk.
+Members, are there any objections to the rest of the referrals?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered.
+ORDINANCES
+ORDINANCE NO.
+BILL NO. 69. CD1, FD1 f2Q22)
+A BILL FOR AN ORDINANCE RELATING TO THE
+OPERATING BUDGET FOR THE COUNTY OF MAUI
+FOR THE FISCAL YEAR JULY 1, 2022 TO JUNE 30. 2023
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 30
+ORDINANCE NO.
+BILL NO. 70. CD1. FD1 (2022)
+A BILL FOR AN ORDINANCE RELATING TO THE
+CAPITAL PROGRAM FOR THE FISCAL YEAR ENDING JUNE 30, 2023
+ORDINANCE NO.
+BILL NO. 71. CD1. FD1 (2022^
+A BILL FOR AN ORDINANCE AUTHORIZING THE
+ISSUANCE OF ONE HUNDRED FORTY-EIGHT MILLION ONE HUNDRED
+EIGHTY-SIX THOUSAND SEVEN HUNDRED NINETY-THREE DOLLARS
+($148,186,793) AGGREGATE PRINCIPAL AMOUNT OF GENERAL OBLIGATION
+BONDS OF THE COUNTY OF MAUI FOR THE PURPOSE OF PROVIDING
+FUNDS TO PAY ALL OR A PART OF THE COST OF APPROPRIATIONS FOR
+PUBLIC IMPROVEMENTS OF AND FOR THE COUNTY OF MAUI; FIXING THE
+FORM. DENOMINATIONS AND CERTAIN OTHER FEATURES OF SUCH BONDS
+AND PROVIDING FOR THEIR SALE; AUTHORIZING THE DIRECTOR OF
+FINANCE TO DETERMINE CERTAIN DETAILS OF THE BONDS; AUTHORIZING
+THE ISSUANCE AND SALE OF A LIKE PRINCIPAL AMOUNT OF GENERAL
+OBLIGATION BOND ANTICIPATION NOTES IN ANTICIPATION OF THE
+ISSUANCE AND SALE OF SUCH BONDS;-
+CHAIR LEE: Okay. Madam Clerk, we have a hand up.
+Member Paitin.
+COUNCILMEMBER PALTIN: Sorry, Chair, I just was asking about Bill 106. I thought we
+were going to file that.
+CHAIR LEE: Okay, let’s see.
+Okay, Madam Clerk, did we miss that? Bill 106.
+COUNCILMEMBER PALTIN: PSLU No. 106(2022). And then, come back with it in the form
+of a reso.
+CHAIR LEE: I'd like to call on David Raatz.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 31
+DEPUTY DIRECTOR OF COUNCIL SERVICES DAVID RAATZ: Thank you, Chair. Office
+of Council Services staff would recommend that Bill 106 be filed. It's a proposed land
+use ordinance, and as Councilmember Paltin was referencing, we would actually need
+a resolution to be adopted to formally refer the bill to the Planning Commissions before
+the Council could consider passing it. So, we apologize for that technical error, and
+we'li have the resolution ready to, attach an identical bill in substance at an upcoming
+Council meeting. Thank you. Chair.
+DISCUSSION AND ACTION RELATING TO
+BILL NO. 106 (2022)
+COUNCILMEMBER PALTIN: Alright. I missed the, the jump in.
+MOVE TO FILE 106.
+VICE-CHAIR RAWLINS-FERNANDEZ:
+SECOND.
+CHAIR LEE: Alright, any further discussion? It's been moved by Member Paltin, seconded
+by Member Sugimura [sic], to file Bill 106.
+COUNCILMEMBER PALTIN: And my discussion would be just what Mr. Raatz said. We'll
+bring it back as a reso, and then hear it in Committee, and then transfer it to the
+Planning Commission.
+(Councilmember Kama returned to the meeting at 9:58 a.m.)
+CHAIR LEE: Alright. Any more discussion? If not, all those in favor of the motion, raise your
+hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN. SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Okay, I see nine "ayes", zero "noes"; motion carries.
+Madam Clerk, let's pick up where we left off.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 32
+COUNTY CLERK: Language for Bill 71. CD1, FD1 (2022).
+CHAIR LEE; Can you speak a little louder?
+COUNTY CLERK: Completing the language in Bill 71, CD1, FD1 (2022).
+-AUTHORIZING THE ISSUANCE OF
+REFUNDING GENERAL OBLIGATION BONDS OF THE COUNTY; AND
+PROVIDING FOR OTHER ACTIONS REU\TED TO THE ISSUANCE, SALE AND
+DELIVERY OF SAID BONDS
+CHAIR LEE: Okay. Next.
+ORDINANCE NO.
+BILL NO. 72 (2022)
+A BILL FOR AN ORDINANCE DETERMINING THAT PART OF
+THE PROCEEDS OF GENERAL OBLIGATION BONDS OF THE
+COUNTY OF MAUI HERETOFORE ISSUED IS IN EXCESS
+OF THE AMOUNTS REQUIRED FOR THE PURPOSES FOR WHICH
+SUCH BONDS WERE INITIALLY ISSUED, OR MAY OR SHOULD
+NOT BE APPLIED TO THOSE PURPOSES, AND DIRECTING
+SUCH PROCEEDS TO OTHER PUBLIC IMPROVEMENTS
+OR AUTHORIZED PURPOSES OF THE COUNTY OF MAUI
+ORDINANCE NO.
+BILL NO. 73. CD1 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR
+OF THE COUNTY OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL
+AGREEMENT FOR A LOAN FROM THE STATE OF HAWAII'S WATER
+POLLUTION CONTROL REVOLVING FUND FOR VARIOUS WASTEWATER
+PROJECTS, FISCAL YEAR 2023 BUDGET ORDINANCE
+COUNTY CLERK: Bill 89-
+CHAIR LEE: One moment. One second. We have a hand up.
+Vice-Chair Rawlins-Fernandez.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 33
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. We can take up those bills first and
+then the second batch after, if that'll be okay?
+CHAIR LEE; Okay.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair.
+I MOVE TO PASS BILL 69, CD1, FD1 (2022); BILL 70, CD1, FD1
+(2022); BILL 71, CD1, FD1 (2022); BILL 72 (2022); AND BILL 73,
+GDI (2022) ON SECOND AND FINAL READING.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE; Moved by Vice-Chair Rawlins-Fernandez, second by Pro Temp Kama, to pass
+the following bills on second and following reading: 69, 70, 71,72, and 73.
+Discussion, Vice-Chair Rawlins-Fernandez?
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. I will make additional remarks once
+we've concluded with our amendments. So, if there are no objections, I'd like to yield
+to Member Sugimura, who had her ASF agendized for her amendment.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. Chair. Thank you, Keani. I appreciate that.
+So, Members, do they all have my amendments. Has it been passed out? Okay. Well
+it was agendized.
+SO, AT THIS TIME, I'D LIKE TO MOVE TO AMEND BILL 71
+CD1, FD1 (2022), AS FOLLOWS:
+ON PAGE 1, AMEND THE BILL TITLE AND SECTION 1 TO
+INCREASE THE AMOUNT TO $152,186,793.
+AND ON PAGE 2, SECTION 2.A.1.A, ADD A NEW PROJECT
+TO READ "(2) KIHEI WASTEWATER RECLAMATION FACILITY
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 34
+GRIT SYSTEM REPLACEMENT" WITH AN APPROPRIATION
+OF $4,000,000".
+3) ON PAGE 4, AMEND TOTAL TO INCREASE THE AMOUNT
+TO $152,186,793.
+And we have attached marked-up copies for the Members and the public to see how
+this will impact the budget and where, and the, according to the pages that I just read.
+Thank you very much.
+COUNCILMEMBER KAMA;
+SECOND.
+COUNCILMEMBER SUGIMURA: Thank you.
+CHAIR LEE: Been moved by Member Sugimura, seconded by Pro Temp Kama on that
+amendment.
+And now, we have any further discussion? Discussion?
+COUNCILMEMBER SUGIMURA: Yeah.
+CHAIR LEE: You want to speak to it again?
+COUNCILMEMBER SUGIMURA: Yeah. So-
+CHAIR LEE; Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. So, this, this was discussed thoroughly by the
+Department. I want to thank Eric Nakagawa and Scott Rollins, who appeared before
+my Infrastructure Committee on. Infrastructure, Transportation Committee, on June the
+6th, and answered many of the questions that had come up during public testimony,
+as well as to explain the evolution of this grit system and the purpose.
+So, i, the purpose of it being in today's budget is to get it bonded because the
+Department is ready to put it out to bid, so that this, the grit system can be implemented
+and used at our Kihei Wastewater Treatment Plant. And I think that the Members
+heard the reasons. And Scott Rollins did a really good job, as he always does,
+explaining this. So, I look forward to having your support. Members, to approve this
+$4 million bond appropriation to be included in Fiscal Year '23 Budget. Thank you.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 35
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you, Chair. I speak against the motion. And I know the
+original reason why this came up was because the Kihei Wastewater Reclamation
+Facility Study performed by Brown and Caldwell in 2018 recommended that the County
+continue to employ status quo operations for grit removal, as this option offered the
+greatest benefits in capital and lifecycle costs.
+And we did have a discussion in the IT Committee about this. The project seems to
+have changed a bit and come down in price. The thing that wasn't addressed was that,
+as indicated by the Department of Environmental Management in their response letter
+to the Budget, Finance, and Economic Development Committee, dated April 12, 2022,
+the SRF fund originally proposed for this project was disapproved due to a failure to
+comply with Section 106, Historic Preservation; in Section 7, Wildlife, prior to breaking
+ground for construction. So, I don't recall we addressed that and what, what was done
+to, because it’s changed now to from an SRF to Bond funding. So, apparently it doesn't
+have to comply. But I think those are still concerns about this project. So, I would
+prefer to have this, have a little bit of a deeper dive in Committee before we authorize
+the Bond. Thank you. Chair.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you very much. So, in the, thank you to the Budget
+Committee. When this was brought up, one of the questions that came out, whose
+question was it? I'm looking at page number 4 of 18, Keani Rawlins-Fernandez, and
+it did ask about the SRF Loan Fund and that it did not get authorized. And that's
+because, I think it was for, this is equipment, so we're not going to be digging anything.
+We're not going to be disturbing the soil. And so, therefore, it changed from this, this
+loan fund, the State Revolving Loan Fund, and is now being bonded. So, for myself, I
+thought that the explanation from the Department, which came through the Budget
+Committee questions during budget deliberations in Committee, I think it answered
+that. And that I do really would like to request that the Members approve this Bond,
+and so that the Department can proceed with implementing and going through the RFP
+process. So, thank you. Chair.
+CHAIR LEE: More discussion?
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. I will be voting in support of the
+motion. I watched the meeting, after the meeting was completed. I wasn’t there for
+the meeting at the time that it was happening, but I thought that the explanation of how
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 36
+the project evolved from what it was before Mr. Rollins was there and what it is now
+makes sense. I, not only does it have the potential to impact and improved, improve
+morale for the manual labor, instead of doing manual labor to have a system that
+makes it easier, and faster, but having it done faster and quicker and cleaner also has
+the potential to save the County money. And, and that's something that I think we can
+all be supportive of.
+I understand Member King's comments. And i think we could have this in Committee
+again to further discuss those questions, and have a better understanding for
+ourselves, and for the public the concerns that were raised to ensure that, you know,
+because 106 didn't happen, if, you know, that no longer is applicable because of what
+Member Sugimura said. Just for everyone's comfort-level. But I'll be supporting the
+motion to include the funding in the Bond bill, and look forward to having the discussion
+in IT Committee again. Mahalo, Member Sugimura, for expediting the scheduling of
+this, and the other items in your Committee on Monday, so that we are informed
+enough to make decisions today at Council meeting. Mahalo Chair.
+CHAIR LEE: Members, I too, any more discussion? I, too, will be supporting the motion.
+Although I acknowledge that Member King has legitimate concerns, and I would ask
+that in the future, if this passes, that the Department report back to us on this, because
+it's very important.
+Any more discussion? If not, all those in favor of the motion, raise your hand and aye.
+VICE-CHAIR RAWLINS-FERNANDEZ: Oh, roll call.
+CHAIR LEE; Roll call. I'm sorry. That's right, we, at least one "no".
+Madam Clerk, may we have roll call please?
+COUNTY CLERK; Yes, Chair.
+CHAIR LEE: Madam Clerk? You want me to--
+COUNTY CLERK: Just a quick moment.
+CHAIR LEE: I have it. I have it.
+Member Sinenci.
+AYE, WITH RESERVATIONS.COUNCILMEMBER SINENCI;
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 37
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: AYE.
+CHAIR LEE: Member King.
+NO.COUNCILMEMBER KING:
+CHAIR LEE: Member Johnson.
+COUNCILMEMBER JOHNSON: NO.
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN: AYE.
+Member Sugimura.CHAIR LEE:
+COUNCILMEMBER SUGIMURA: AYE.
+CHAIR LEE: Pro Temp Kama.
+COUNCILMEMBER KAMA: YES.
+Vice-Chair Rawlins-Fernandez.CHAIR LEE:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+CHAIR LEE: And myself, Alice Lee.
+AYE.
+COUNCILMEMBERS KAMA. MOLINA. PALTIN.
+SINENCI. SUGIMURA, VICE-CHAIR RAWLINS-
+FERNANDEZ, AND CHAIR LEE.
+AYES:
+COUNCILMEMBERS JOHNSON AND KING.NOES:
+CHAIR LEE: So, I believe that's seven "ayes" and two "noes". Alright, motion carries.
+COUNCILMEMBER SUGIMURA: Thank you. Members.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 38
+COUNTY CLERK: Chair, for the record, that was County Communication No. 22-136.
+CHAIR LEE: Thank you very much.
+Next.
+COUNTY CLERK: Chair, is there going to be a disposition for filing, or for the county
+communication?
+CHAIR LEE: Okay, was that part of the motion, or should we take another motion?
+VICE-CHAIR RAWLINS-FERNANDEZ:
+I MOVE TO FILE COUNTY COMMUNICATION 22-136.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Okay, any discussion on the motion to file the county communication? No
+discussion? All those in favor of the motion for filing, raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Madam Clerk.
+COUNTY CLERK: Chair, continuing bills for second and final reading.
+VICE-CHAIR RAWLINS-FERNANDEZ: Chair?
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair. I have one more motion to amend
+and then we will need to take the vote on the main motion as amended.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 39
+CHAIR LEE: Okay.
+VICE-CHAIR RAWLINS-FERNANDEZ: Okay.
+I MOVE TO AMEND PAGES 21 THROUGH 23 OF BILL 69, CD1,
+FD1 (2022), SECTION 3.B.10.C.(6)(IX), MAUI ECONOMIC
+OPPORTUNITY AGRICULTURAL MICRO GRANT PROGRAM
+BY DELETING "WITHOUT LIMITING THE NUMBER OE
+GRANTEE VENDORS" FROM THE FIRST PARAGRAPH AND
+DELETING "AND WILL BE DISTRIBUTED ON A SLIDING
+SCALE WITH CONSIDERATIONS MADE TO THE FARM’S
+DISTRIBUTION OUTPUT TO THE COMMUNITY AND SCALE
+OF OPERATIONS" FROM THE FINAL SENTENCE.
+And Members will have received this ASF at 10:12 from the County Clerk. That's my
+motion, Chair.
+CHAIR LEE: We will receive the ASF at 10:12, did you say?
+VICE-CHAIR RAWLINS-FERNANDEZ: You have received it.
+CHAIR LEE: Oh, I have received, oh. I guess the clock is wrong. Okay.
+VICE-CHAIR RAWLINS-FERNANDEZ: I brought my crystal ball with me today.
+CHAIR LEE: Mem, Members, any questions? Everybody’s looking for the ASF? Would you
+like a five-minute break?
+COUNCILMEMBER KING: Please.
+CHAIR LEE: Alright, five-minute recess. Clock is wrong, so minus two is ten. At 10:15, let’s
+make it 10:15.
+COUNCILMEMBER KING: Chair, it's 10:13 right now.
+CHAIR LEE: Oh, 13?
+COUNCILMEMBER KING: Yeah, it’s actually faster than that clock.
+CHAIR LEE: It's, it's faster? Okay, let's make it 10:20, that's good. 10:20. Meeting in recess
+until 10:20.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 40
+COUNCILMEMBER KING; Thank you. Chair.
+(THE MEETING WAS RECESSED BY THE CHAIR AT 10:13 A.M., AND WAS
+RECONVENED AT 10:25 A.M., WITH ALL MEMBERS PRESENT.)
+CHAIR LEE: Will the Maui County Council meeting of June 8, 2022, please reconvene.
+Madam Clerk, can we resume where we were?
+COUNTY CLERK: The, the floor is with Council Vice-Chair Keani Rawlins-Fernandez.
+CHAIR LEE: Council Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair. Now that everyone has received the
+ASF, I'll repeat my motion and hope for a second.
+I MOVE TO AMEND PAGES 21 THROUGH 23 OF BILL 69, CD1.
+FD1 (2022), SECTION 3.B.10.C.(6)(IX), MAUI ECONOMIC
+OPPORTUNITY AGRICULTURAL MICRO GRANT PROGRAM
+BY DELETING "WITHOUT LIMITING THE NUMBER OF
+GRANTEE VENDORS" FROM THE FIRST PARAGRAPH AND
+DELETING 'AND WILL BE DISTRIBUTED ON A SLIDING
+SCALE WITH CONSIDERATIONS MADE TO THE FARM'S
+DISTRIBUTION OUTPUT TO THE COMMUNITY AND SCALE
+OF OPERATIONS" FROM THE FINAL SENTENCE.
+COUNCILMEMBER KING:
+SECOND.
+COUNCILMEMBER PALTIN: Second.
+CHAIR LEE: Moved by Vice-Chair Rawlins-Fernandez, seconded by Member King, to make
+those changes.
+Any discussion on this matter? Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair. After our, at first reading, I received
+an email from Ms. Cabebe at MEO asking, requesting some amendments to clarify the
+charge that we're asking them. Oh.
+CHAIR LEE: Please proceed.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 41
+COUNCILMEMBER KING: It landed face up.
+VICE-CHAIR RAWLINS-FERNANDEZ: The challenges and the fun of being in the Chambers
+together. So, Ms. Cabebe heard our discussions and requested some clarification,
+and this amendment seeks to make those clarifications. And she reiterated her
+commitment to working with the Department of Ag once that gets online to executing
+the Micro Grant Program. I hope for the Members support of this motion. Mahalo
+Chair.
+CHAIR LEE; Any more discussion?
+COUNCILMEMBER KING: Chair?
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Oh. did Kelly King want to, as the second?
+CHAIR LEE: Well, you both, your hands went up together.
+COUNCILMEMBER SUGIMURA: Oh okay. Thank you.
+CHAIR LEE: You can speak at the same time. Do you want to do a duet? Let's do a duet
+okay.
+COUNCILMEMBER KING: I was going to speak as a-
+COUNCILMEMBER SUGIMURA: Oh, that would be kind of fun. We never did that either.
+So, I just wanted to express my support of, during the recess, I did call Debbie Cabebe
+from MEO just to verify, because I think this is  avery important program. And she said
+she actually worked with Keani on this amendment, as Keani just said. So, I'm glad
+that, you know, we can again help the farmers and ranchers who may need this kind
+of support.
+And that first one, I was kind of curious about, it means that they can pay vendors. You
+know, I thought, does this mean that you only can have, as a grant, you only can have
+one grant? Or was that, it was, it was about paying vendors, which would kind of clarify
+or open up their ability to pay those people that are being mentioned in the grant to
+receive payment. And she said even during the first round, they didn't really have that
+many requests for that. So, it's efficient. Thank you.
+CHAIR LEE: Member King.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 42
+COUNCILMEMBER KING; Thank you, Chair. As the seconder of the motion, yeah, the, we
+did discuss not needing a limit on the number of grantee vendors because some of
+them, and it's not a whole lot, but some of them may have more than what they ... to.
+When I first read this, I thought it was adding that last statement, "and will be distributed
+on a sliding scale". And ! thought, oh that's really confusing, why is that in there? Then
+I realized that we're deleting it. So, you know,  Ithink that we're deleting it because it's
+so confusing. So, I, I support the motion. And mahalo, Vice-Chair Rawlins-Fernandez.
+CHAIR LEE: Did I see other hands up?
+Member Molina.
+COUNCILMEMBER MOLINA: Yeah, thank you. Madam Chair. I speak in full support of this,
+and thank Budget Chair Rawlins-Fernandez, cause you know, to me, anything we can
+do to cut the red tape, so to speak, yeah. So, and we've seen over the years with
+misunderstandings or, or things get tied up in terms of, you know, people getting
+reimbursed, or grants being doled out. So, I think this adds a lot more clarity. And
+mahalo also to MEO Director Cabebe as well for this. So, I stand in full support. Thank
+you.
+CHAIR LEE; Thank you.
+Member Johnson.
+COUNCILMEMBER JOHNSON: Thank you. Chair. I also rise in full support. I would like to
+thank Councilmember Keani Rawlins-Fernandez for making this amendment to clarify
+the language so that we can help our farmers. We,  Isay it all the time, we need,
+farmers need three things. They need land, water, and a little bit of capital. And these
+Micro Grants are a true success story to helping our farmers get into, dig into the, get
+into the earth as they say. And with the help of  alittle bit of financing, we can really
+bring that farm, farm-to-table model that we're all looking for. Mahalo, Chair.
+CHAIR LEE: Thank you. Member Johnson.
+Vice, the Pro Temp Kama. I always want to make you Vice-Chair.
+COUNCILMEMBER KAMA: No, I'm comfortable . . . Thank you.
+CHAIR LEE: Okay.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 43
+COUNCILMEMBER KAMA; Thank you, Chair. You know, I am very happy that, that some
+of our nonprofits that we're able to fund are an extension of the County. And it's a
+helping hand to us. And it's always warmed our heart when one of our grantees can
+actually call our Budget Chair and ask for some considerations or reconsiderations.
+And I'm just so happy that we can accommodate them. So, thank you, Chair. Thank
+you. Budget Chair, Vice-Chair. Thank you, Chair.
+CHAIR LEE: Okay. A lot of furniture in this place. Okay, anybody else for discussion? If
+not, all those in favor of the motion, raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Do you have more, Vice-Chair?
+VICE-CHAIR RAWLINS-FERNANDEZ; That concludes my amendments. Do any of the
+Members have any amendments? If not. I'll do my final remarks, then we can get to
+the end.
+CHAIR LEE; Alright, Vice-Chair.
+VICE-CHAIR RAWLINS-FERNANDEZ; Mahalo, Chair. This budget process and the last
+several budget session years have, by design, and the culmination of careful
+consideration . . . While we bring to an end our fourth and second budget sessions
+together as a team, I would like to point out that this past term has been especially
+unprecedented for both the Council and the Administration.
+When we began as colleagues as the Council united back in 2019, we had no idea the
+challenges we would face together in the coming years. At that time, I only knew I
+wanted to reform a long-standing budget process to ensure inclusivity and equity
+across the districts, and to lead by listening to the Committee Members and their, and
+all of our constituents to build a process that everyone felt they had equal weight,
+weighted hand in.
+Little did we know that a virus would soon send our community reeling and each of us
+would be tasked to the nine district corners to complete our work with one another from
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 44
+a safe distance. When I first took office, some of my top goals were to build capacity
+and transparency in government and to make civic engagement a main priority. If there
+are highlights to be had from the pandemic, the Maui County, for Maui County and for
+myself, those goals were achieved swiftly and without complication, at least when
+microphones were not accidental muted or not muted, whichever the case may be. In
+either scenario, those moments kept us laughing.
+Four short years later, we have successfully managed complete virtual participation,
+and now hybrid civic engagement with little to no extra expense to taxpayers. In fact,
+I think we would be remiss not to invest in a cost-savings analysis for our 2022 County
+expenditures, a proposed budget amendment that I'll make. Just kidding, just kidding.
+We had a tough job in 2020 to make extreme cuts to ClPs, and to quickly and fluidly
+adjust to our ever changing community's needs. They say hindsight is 20-20, but we
+accomplished more with than the, more with the Administration during completely
+unprecedented times in 2020 and until now, than could ever be imagined, and I think
+we can all be proud of that fact.
+Fast-forward to this session. While we continued our new normal path, we have been
+able to emerge stronger than ever and deferring important County infrastructure
+improvements the past two years, it was necessary to make significant long-term
+investments and programs, projects, and services to help our communities and
+businesses thrive. Our Budget Committee proposed adding $7 million for workforce
+housing efforts, expanded food security by doubling our investment in farmers via
+Micro Grants for $3 million, enhance County services, and added over $3 million for
+traffic safety improvement.
+The Council set property taxes to lessen the burden of long-term residents and
+moderately increased rates in classifications directly linked to tourism, an industry that
+was developed to make life better for our residents. This long projected, policy-driven
+tax scheme was set in motion in 2019, as intended to steer towards striking a balance
+between transient accommodations and quality of life for our residents.
+The Halau of ‘Oiwi Arts project, a long overdue investment, that rightfully recognizes
+that cultural significance and contributions of Hawaii's indigenous people and the heart
+and soul of our home, remains in the Bond bill. Meaning it will not increase the FY 23
+property taxes and will be strategically leveraged to secure an additional $11 million in
+Federal funding. These projects are only the highlighted tip of the iceberg for the
+several amazing projects and services funded by the Council, or proposed by the
+Administration, supported by the Council. I think we can take a collective deep breath
+and pat on the back for making it through another budget session mostly unscathed.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 45
+At the very least, we can be grateful for less of the characteristically long budget
+session nights, that we were just talking about, and the fact that we remained civil and
+friendly throughout it all. Where we lacked in the dances and stretches to the music of
+DJ Pajimola, we gained in rejuvenating sleep, a fair trade-off, for sure.
+I want to mahalo again the Mayor and his Administration for the countless hours in
+preparing the budget, the proposed budget. A special mahalo a nunui to Budget
+Director Michele Yoshimura for, again, being present for all our deliberations on first
+and second reading, answering all of our questions. Mahalo, also, to the members of
+the public that participated at every stage of the session. Your voices serve as a
+touchstone for our community feedback and helped to guide us through our decision
+making process. And of course, Akaku for ensuring that participation is accessible
+and, and broad for our community to watch and participate.
+A deep gratitude and mahalo to my solid budget team, OCS Support staff, and to all
+the Councilmembers' staff as well. There are no words sufficient enough to describe
+the volume of work and long hours each of you dedicated to making this budget
+possible. You know I am, and I'm sure my colleagues are too, extremely grateful for
+your service to our community. We're very proud to serve with you. Of course, mahalo
+to all of my Council colleagues for making it through this process, and congratulations.
+Mahalo, Chair.
+CHAIR LEE: Thank you.
+Others? Shane. Member Shane Sinenci.
+COUNCILMEMBER SINENCI: Chair, and I. too, wanted to mahalo Council Vice-Chair
+Rawlins-Fernandez for her leadership this Budget Committee process. And of course,
+to her amazing staff Ms. Pajimola, Ms. Milner, and the rest of staff. Mahalo to Budget
+Director Yoshimura for her kokua to this process, as well as the different departments.
+I'm very proud of the Fiscal Year 22-23 Operating and CIP Budget, and how it has
+represented this body's focus on community, sustainable development, and fiscal
+responsibility.
+For me, as Chair of the Agriculture and Public Trust Committee, and in holding the
+residency seat for East Maui, I'd like to take a moment to share a few highlights for the
+community. We're especially proud of promoting agriculture for more security on the
+island, including $4 million in more agriculture programs, and equipment, promotion,
+and education, apprenticeship, additional $3 million for invasive species and
+watershed management protections. For East Maui, we are grateful for the help, for
+our East Maui community, including $300,000 for community nonprofits and grants,
+$3 million in CIP projects, as well as another $3 million in continued efforts in
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 46
+conservation. So, this budget plan, we continue working towards providing community-
+driven services and programs for our residents and we are well on our way to meeting
+the challenges the new fiscal year brings. Holomua kakou. Mahalo.
+CHAIR LEE: Thank you, Mr. Sinenci. Anyone else? Members?
+Oh. Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much, Madam Chair. You know, a thank you
+to Committee Budget Chair, Vice-Chair Rawlins-Fernandez. And you know, this is my
+14th budget session, as well as it is for you, Madam Chair, and we've seen a lot of
+things. And admittedly, this, this budget session was a little bit more bumpy than I've
+seen in the past. There was a lot to consider.
+But you know, in the end, we all come together and move forward. And so that the
+public understands, well, first of all, I thought I'd never live to see the day we would
+have a one-billion-dollar budget, but it is what it is. Everything goes up in price. And
+the community members have a right to ask for certain considerations that they feel is
+needed for a better more quality County and better life for us here in Maui County. And
+this is, certainly, we live in a very beautiful and unique place.
+And you know, the Mayor has his priorities. You know, he submits his proposal to us.
+then when it gets to us. Madam Chair, there's nine of us who have our own priorities
+because, you know, especially from our districts. So, when you factor that in, that's
+why sometimes the budget is higher, yeah. Cause now you got nine additional
+individuals, representatives of our community, and we see things differently in terms of
+priority. And the Mayor certainly has the option of, if say a constituent or organization
+sees the Mayor that hey, well we would like this. The Mayor can say, well, this is not
+really a priority of mine, but go see the Council. You know, we are the gatekeepers.
+So, that is why you may see a budget that's a little bit higher than the Mayor because
+we may feel that there are more important priorities or other priorities that are important
+for the well-being of our community. So, I just wanted to mention that for the record.
+And you know, to the Mayor and his Administration, thank you for being patient with
+us. And as we have seen, we go through the late evening, and we're humans, and
+sometimes things get a little testy amongst us. But it's sort of like a hardworking family.
+There's going to be times when we're, you know, our patience is a little short. But in
+the end, we all come together, and this is the end product. So, I want to thank, you
+know, you my colleagues, and also the Administration, and the department heads and
+everyone else in the public who came out to give their mana'o as to what they feel is
+needed in our community. So, I just wanted to state that for the record, and let's move
+on. Mahalo.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 47
+CHAIR LEE: Thank you, Member Molina. Further discussion?
+Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. Yeah, today is  avery special day. It's not only
+are we all in person here, which is a, which is a special moment for me, as we are
+making our way through this pandemic. And I think  alot of the decisions that were
+made in the last budget were, were clouded by the effects of COVlD-19 during the last
+two budgets. But this time, we are. look like we're getting better, and ! think all of us in
+person here is a reflection of our community gradually coming out.
+I also want to thank our Budget Chair for taking us through this budget cycle. And it’s
+interesting, I have a comment about that also. And I do know that when I saw the one-
+billion-dollar budget, I was a little shocked. We did go through it in detail with my staff,
+who are pretty good at, with budget things, and trying to figure out how can we cut
+back, or how can we, you know, what can we do about this? But i think we're taking a
+step forward with the growth of our community, and the needs of our community, which
+were reflected in the budget.
+For my Committee, which is Infrastructure, Transportation, I look forward using this
+budget document as a basis so that we can improve more and get the Infrastructure
+Investment Jobs Act funding to be matched, which is part of the goal of what's
+happening, or what is, or what is to come with my work with Senator Brian Schatz's
+office, as well as Maui MPO, which I'm the Chair and some of us are on the Committee,
+so we can bring more Federal dollars to match this funds that are in there, in that one-
+billion-dollar budget.
+I do want to make a comment about the Halau ‘Oiwi Resource Center. And as you
+know, when we went through the budget process in Committee, it passed, right? But
+there was a bunch of us, which I will only speak for myself, which tried to break apart,
+or to separate the construction portion, which was $42 million to be in the next fiscal
+year. So, that for me, it was extending the ability to build this $54 million project and
+not putting this one lump-sum all in one fiscal year. But it is in the fiscal year.
+I do want to make it clear, because I heard over the weekend from my good friend
+Alakai Paleka, who said, eh, I heard you voted against this project and you trying to kill
+it. So, I just want to make it clear to the community that I did not try to kill this project,
+and I do support it. i love Alakai and she did say, I heard it. I'm going to ask Yuki
+directly because I know her. And I appreciate her honestly. I also want to thank Pueo
+Pata, who gave us all leis today to celebrate, I think the reason is the celebration of the
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 48
+Halau ‘Oiwi Resource Center as we will see it come to life in Wailuku Town and actual
+be there, you know, for the arts.
+And I did bring Uluwehi Guerrero to the open house that was held by Pueo Pata and
+he was impressed with it. And he was glad to be included in the discussion. So, I
+wanted to make a special note about that and clear up some of the, I don't know what
+it was, but concerns about it. If anybody wants to call me about it, please do.
+And thank you. Members, for allowing me to put in the budget a lot of my passion that
+I've been working on, which is axis deer, feral animal, and how this will also affect
+infrastructure, and also infrastructure. So, thank you very much for letting me make
+this long speech. But I wanted to clear up this Halau 'Oiwi Resource Art Center vote.
+Thank you.
+CHAIR LEE: Members, more discussion?
+I see Member Johnson.
+COUNCILMEMBER JOHNSON: Thank you, Chair. Thank you for allowing me to speak to
+this budget. You know, I want to thank Councilmember Keani Rawlins-Fernandez and
+all of the staff that's been involved in this behind the scenes. Everyone did a great job.
+You know, when I look at the, at the budget, when  Itake a step back and look at the
+budget, I think of it as like bottom-up economics instead of typical top down. I
+mentioned it before that this budget is a moral document. We, we put our money where
+our mouth is, if we talk about issues that are concerning our community.
+Some of the top priorities that we put into this budget are housing. The $58 million,
+we, we, we brought the affordable housing up to $58 million. The houselessness, all
+of the projects that we funded there, the, our kupuna, diversifying economy, the list can
+go on and on. All the priorities that ail the Councilmembers put in are very reflective of
+what our thoughts were on helping our community, helping the people who need it the
+most, as I often say.
+You know, I, I want to mention one thing that really, really speaks exactly to what I'm
+trying to say, is the, the funding of Summer PALS Program. The people who take care
+of our children, who are only getting paid 10 million, or $10 an hour. So, when the
+Mayor said he, he would support and follow our lead and increase it for the whole
+Summer PALS Program, I really thought we were on the right track, that we're trying
+help folks that are in the trenches, that aren't just a . . . they're really have their life
+experience. How can you live off of $10 an hour? So, when, when I, when, when that
+priority got pushed up and then the Mayor expanded it, I really think that shows that
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 49
+we were doing the right thing. So, mahalo to everybody who.worked hard on this. And
+mahalo to everybody who spoke up on these issues. So, thank you so much, Chair.
+CHAIR LEE: Thank you. Member Johnson.
+Now back to the Chamber, Member King.
+COUNCILMEMBER KING; Thank you, Chair. Very, it's nice to hear all of the experiences
+with this budget. This is my 6th budget session. So, I’m not in that group of, that the
+Budget Chair is talking about that started in 2019. But I want to say that the thing that
+I appreciate about the last few budgets was the opportunity to have input, because we
+were not given that opportunity in my first two terms, in my first two years on the budget.
+We were just given a budget, a Council budget after the Mayor's budget, and then we
+had to, we were told anything we wanted to put in there, we had to find somewhere,
+something to take out.
+So, the opportunity to actually get some of our priorities funded, and look at, you know,
+for me, I try to look at the big picture and fund projects that are going to affect us for a
+long time, environmental projects. I was very proud that we were all able to put the
+affordable housing monies in there, and actually address the plan that we had funded.
+We asked for a plan, and now we're marching ahead and we're actually funding that
+plan. So, you know, that makes me very happy.
+I agree with my colleague, Councilmember Molina, it was a bit bumpy at times. I felt
+like we were told contradicting things by our advisors at points. For instance, we were
+told that we don't, we don't Bond Fund countywide projects. And then, there was a
+suggestion by the Administration to Bond Fund the countywide projects. So, some of
+it was kind of confusing and contradictory.
+And we, I believe that, you know, I also had heartburn with the billion-dollar price tag
+when the budget first came out. And I believe that this year, I'm hoping that that's
+because of the fact that there's so much Federal money coming out of this, the Federal
+Administration. But I can't say that for sure, because we kept asking where was that
+money? Where, where did you put the infrastructure funds, and the ARPA funds, and
+the CARE funds? And we were not really given a clear idea of where that money went
+or how Councilmembers could actually appropriate that funding for some of our
+priorities? So, I, I think that's one area where we need to follow up with. And I'm
+hoping our Budget Chair can do that.
+But along with everyone else, I want to acknowledge all the work. I also want to
+acknowledge that this is probably, although I think we put in the same hours, maybe
+most of it on our own, but this is the first budget I've been through where we had no
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 50
+meetings that went to midnight. And we had only one meeting I think went to 10 p.m.
+And so, and I think we're, the Council is starting to get its footing on what we want, you
+know, how we want to approach the budget. So, I want to appreciate the Budget Chair,
+but also all my colleagues who helped create the budget, the budget rules when we
+started, you know, in setting parameters. And you know, we have to acknowledge the
+fact our Budget Chair let us do that, because we've never been able to do that before,
+is actually be involved in those budget rules and making changes to the parameters of
+how many projects we could propose and, you know, not having restrictions on what
+those projects are.
+So, so, you know, I have mixed feelings about it, but I think in the end, we got our
+priorities in. My, probably my biggest disappointment was that we, many of us had
+meetings with the Mayor before he finalized his budget and didn't see any of our
+priorities in his budget. So, I'm not sure what, you know, it's disappointing to have to,
+to go through those meetings for the last few years and not actually seeing the, the
+Councilmembers priorities being addressed. So, I'm not sure what the meaning of
+those meetings are. But I hope in the future that there's more collaboration, because
+I think that will also help us cut down on hours. You know, we don't work, I, I didn't like
+the fact that we have to fight for priorities that we should all be working together on, if
+we have those conversations.
+So, you know, just big mahalo to everybody who put in so many hours. I'm glad it's
+over. And it's an amazing thing to have a Council meeting for second reading that
+we're on the last page of already and it's not even noon. But I think we did all of our
+work in first reading, and with all of the amendments. So, to, to all my colleagues, and
+especially the ones who aren't here in Chambers,  Iwish you were, because it's always
+a very cathartic day to finalize the budget and then move forward. And I'm, I'm going
+to leave it there, and just thank everybody for all the organizational hard work they put
+into it. Thank the Budget Committee on our side, on the Council's side, and the work
+that the Administration put in, too. And just hoping that there's better communication
+in the future, so we can get through this quicker and be a little more aligned in our
+priorities. Thank you. Chair.
+CHAIR LEE: Thank you.
+Pro Temp Kama.
+COUNCILMEMBER KAMA: Thank you. Chair. I'm going to make this real brief, brief because
+I'm going to be leaving in a minute. But I wanted to say that what I loved about, and I
+always love about the budget process when we go through it, is that in the end, we all
+come out saying yes. And we all come out saying it's always for our local people that
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 51
+we are here to work for. And that's what makes me happy. So, thank you, Chair. And
+I need to leave. Thank you.
+(Councilmember Kama left the meeting at 10:55 a.m.)
+CHAIR LEE; Okay. Thank you.
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair. I wanted to echo all the thanks to our Budget
+Chair, my colleagues, our staff, my family for putting up with me, our community for
+participating in the process. And you know, I wanted to wait until second and final
+reading to comment on the testimony that we received throughout about, mainly from
+the visitor industry, talking about how our real property tax rates were not equitable,
+and not sustainable. And 1 think, I think that needs to be addressed, because, you
+know, for the 10-plus years before getting on the Council, that’s how I saw the visitor
+industry, as not sustainable and not equitable. And I think now we're trying to make it
+more so, you know, through diversification, through focusing on growing our own food
+and, you know, managing tourism.
+And so, you know, while we passed this biilion-dollar-plus budget, we always need to
+look to the future and realize that the lion's share of our real property tax comes from
+our coastal properties which 28 years will see one foot of sea-level rise. In, by 2100
+it'll be 3.2 is the prediction at this time. And so, you know, like our dwindling Highway
+Fund, as people wean themselves off gas, the same will be happening with our real
+property tax. And so, we have a short window of opportunity to address the problems
+that we see. And so, if it means a billion-dollar-plus budget, we need to get very serious
+in addressing the problems. Being able to move a road with less and less highway tax
+means we gotta depend on State and Federal dollars. You know, we gotta make
+decisions quickly and efficiently to get this done before all of our coastal properties'
+value drops to minus zero.
+We need to have discussions on how we will spend the TAT in its entirety, instead of
+just adding it on to the General Fund. And we need to have discussions on how we'll
+sustain our Highway Fund, because we've been told that taking money from the
+property tax lowers our bond value. So, you know, while the work is done for this Fiscal
+Year 23 Budget, it really has only just begun. And, and I acknowledge that it's not
+sustainable and equitable. And I acknowledge it hasn't been sustainable and equitable
+for a long time. And, and we do have our work cut out for us, as the decision-makers
+going forward and, and as does the leader of our County.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 52
+You know, $50 plus million in the Affordable Housing Fund. Now we need leadership
+to spend it wisely to create the projects. You know, there's only so much we can do
+from the Council end, but we need solid leadership to create the projects to spend the
+funds to get people in housing, our workforce, our kamaaina, our, just, you know, all
+the people here. Thank you.
+CHAIR LEE: Anyone else? If not, I'll just say a few words myself. Yes, I'd like to congratulate
+the Budget Chair and the entire staff. And actually, all the staff, because everybody
+pitches in, all hands on deck, and I really appreciate the work that was done.
+As far as in Committee, I believe that there were highlights and that there were low
+points. And 1 think we need to work on that in the future. It's important that Members
+prioritize, discipline ourselves. We ended up with a budget that's way too high. I think
+a good budget is a budget that is less symbolic and more realistic. And more realistic
+means a budget that can be implemented. So, if we end up with enormous
+carryover/savings, then that means we didn't get the job done. So, hopefully that
+doesn't happen. But I have a feeling that is going to happen.
+But in the future, I think we need to narrow our scope, because we're going to have
+many more challenges in the future with rising interest rates, inflation, you know,
+serious personnel shortages, supply-chain issues. So, all of these challenges will force
+us, hopefully, to get together to be more organized and more focused in the future with
+regard to the budget.
+In the meantime, you know, there are many, many good things in the budget, and many
+areas that will certainly benefit our community. And I look forward to those areas being
+addressed.
+So, Members, at this time. Member Molina.
+COUNCILMEMBER MOLINA: Yeah, thank you, Chair. This is very rare for me; I'm actually
+going to speak a second time on the motion. My colleagues who spoke before me sort
+of inspired me to say a few additional things. I want to give a real shout-out to Budget
+Director Yoshimura. I mean, she sat through this whole process with us day in and
+day out. And, you know, we made many requests of her to go check into this, check
+into that. It's not easy and, you know, we're not easy people to work with at times.
+Well, I'll just speak for myself.
+But, you know, we, we, you know, when I look at this budget, it's a reflection of our
+community and their needs. And we've done some good things that, you know, for
+example, addresses the housing crisis, adding more money into that fund. And I want
+to thank my colleagues for supporting some of my initiatives, such as the pilot program
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 53
+for the home restoration grant. You know, it just shows how all of us are thinking
+ahead. And yes, it may cost a little money, but we face challenges with the cost of
+supplies of goods and services because we're out here. So, it's all relative.
+I, I recall back on my first term on the Council, back in 2001, and maybe a little after, I
+recall a veteran Councilmember telling, oh, my god, $500 million budget, you know.
+That person told me the same thing that, you know, we're saying here today. So, it's
+just the, part of the process, things go up. And especially here in Hawaii, where we're
+so susceptible to higher costs. And if, you know, the public expects a level of service
+from our, all of our departments and us, so we have to do what we feel is best to
+address those needs. So, the cost of the labor, cost of supplies and materials, it all
+goes up. So, if we want to address the needs of our public, that's the thing we'll have
+to always take into consideration, it's going to cost more.
+But sometimes if you invest now in something, instead of waiting, then it may end up
+being a little cheaper in the long run. So, just wanted to add that to the record. And
+thank you also for the. Members, for your support of the potential purchase of Baby
+Beach up there. A lot of folks are happy up there in the North Shore.
+And so, this Council's thinking is very well-rounded and very sensitive to the needs of
+all of our districts, so you know, thank you. And thank you again to Vice-Chair Rawlins-
+Fernandez. Sometimes I know it can be like herding cats, you know, to all come
+together. But, you know, we do our best and we say what we have to say. But when
+we get to this point, it's all pau, we move forward and take on the next challenge. Thank
+you. Madam Chair.
+CHAIR LEE: Thank you, Mr. Molina.
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ; Mahalo, Chair. Oh, I'm so excited about passing
+budget on second and final reading. So, I was thinking perhaps I'd speak again on
+second and final time, so we can bring the mood back up again, because this is so
+exciting to pass our budget on second and final reading.
+We did such amazing things. And you know, I, I just want to make sure that for those
+that are listening out there, I know one billion dollars sounds like a lot of money, and it
+is a lot of money. But I think it's important to understand where the money is coming
+from and what we are trying to communicate. What we were able to achieve, like
+everyone was saying, is that we were able to provide a lot of services to our residents.
+And not just that, to provide tax relief. It's important that people understand where the
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 54
+money is coming from, so that they don't look at the one billion dollars and think that
+it's coming from them only.
+That we worked hard to create a tax, tiered tax scheme so that we're able to provide
+tax relief to our residents and those who really need it. And that, as Member Paltin
+pointed out, and testifiers pointed out during budget session, that over 80 percent of
+the funding in property taxes is coming from the tourism industry, which generations
+before us created, so that it can help to make residents' lives better, not worse. And
+so, in generating our property tax revenue, that was the philosophy that we were
+working based off of.
+And we also got a new 3 percent TAT, $60 million. And that's all this different revenue
+of Federal funds. And so it shouldn't be looked at as just one lump sum, but to really
+understand how we're generating that money and where the relief is being given, and
+the services that the community has been asking for, the housing that we're investing
+in, and the projects, the CIPs, and the Halau of ‘Oiwi Arts, which I'm so proud of that
+we're finally doing. And I hope to see more throughout the County. Mahalo, Chair.
+CHAIR LEE: Any more discussion? Which reminds me that, yeah, we have been over relying
+on the visitor industry and that's why I have been asking and trying to push forward
+economic diversification, which we haven't really done. So, hopefully, that will be our
+new challenge.
+Members, ready to vote? All those in favor of the motion, raise your hand and say
+"aye".
+COUNCILMEMBERS JOHNSON, KING, MOLINA,
+PALTIN, SINENCl, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES:
+NOES: NONE.
+COUNCILMEMBER KAMA.EXCUSED:
+CHAIR LEE: Eight "ayes", zero "noes", one "excused": Pro Temp Kama. Motion passes.
+Very good. Members.
+Madam Clerk.
+COUNTY CLERK: Proceeding with, with bills for second and final.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 55
+ORDINANCE NO.
+BILL NO. 89 (2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 2.44.015,
+MAUI COUNTY CODE. RELATING TO SALARIES OF DEPUTIES
+CORPORATION COUNSEL AND DEPUTIES PROSECUTING ATTORNEY
+CFIAIR LEE; Okay, I'd like to take this up.
+Vice-Chair Rawlins-Fernandez.
+VICE-CFIAIR RAWLINS-FERNANDEZ: Bill 89. Chair, due to a production issue, the public
+notice of final [sic] reading of Bill 89 was not run by the Maui News until June 7, 2022.
+Section 4-2, Revised Charter of the County of Maui, as amended, states "Digests of all
+bills which pass first, first reading and the votes thereon" who wrote this? Okay, I'm
+going to read this again. This is in the Charter. "Digests of all bills which pass first
+reading and the votes thereon shall be published once in a newspaper of general
+circulation in the county at least three days before final reading." As notice was, as
+notice was not published until yesterday, I ask that Bill 89 be postponed until June 21,
+2022, Council meeting. Mahalo Chair.
+CFIAIR LEE: Members, any objections? Any objections to the request?
+MEMBERS VOICED NO OBJECTION.
+CFIAIR LEE: Alright, seeing no objections. Bill 89 will be postponed until the next Council
+meeting on June 21.
+Okay, Madam Clerk.
+ORDINANCE NO.
+BILL N0._90_(2022)
+A BILL FOR AN ORDINANCE AMENDING SECTION 2.08.060, MAUI COUNTY
+CODE, RELATING TO THE PAY RANGE FOR LEGISLATIVE ATTORNEYS IN
+THE OFFICE OF COUNCIL SERVICES
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 56
+ORDINANCE NO.
+BILL NO. 94 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO OFFICE OF THE MAYOR.
+ECONOMIC DEVELOPMENT PROGRAM
+(MAUI FOOD HUB)
+ORDINANCE NO.
+BILL NO. 95 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX D - CONDITIONAL LANGUAGE,
+OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT PROGRAM
+(MAUI FOOD HUB)
+ORDINANCE NO.
+BILL NO. 96 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO ESTIMATED REVENUES;
+TOTAL OPERATING APPROPRIATIONS;
+TOTAL APPROPRIATIONS (OPERATING AND CAPITAL IMPROVEMENT PROJECTS)
+CHAIR LEE: Council Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair.
+I MOVE TO PASS BILL 90 AND BILL 94 THROUGH BILL 96 ON
+SECOND AND FINAL READING.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 57
+CHAIR LEE: Moved by Vice-Chair Rawlins-Fernandez, seconded by Member Sugimura, to
+pass Bills 90, 94. 95, and 96 on second and final reading.
+Discussion, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo Chair. Bill 90 amends Section 2.80.060,
+Maui County Code, to set pay ranges for the Office of Council Services Legislative
+Attorneys.
+Bill 94 and 95 amend the Fiscal Year 2022 Budget bill and Appendix D, Office of the
+Mayor, Economic Development Program, Grants and Disbursements for Agricultural
+Promotion, Maui Food Hub, by deleting conditional language "Grant funding for the
+Maui Food Hub to promote food resiliency and security on Maui. Funding for one-time
+purchase of the following: refrigerator truck, truck electric chiller, chiller conversion,
+half-time finance manager, and facility subsidy, and equipment."
+Bill 96 amends the Fiscal Year 2022 Budget bill to correct Estimated Revenues, Total
+Operating Appropriations, and Total Appropriations (Operating and Capital
+Improvement Projects) to incorporate the funds from Ordinance 5370, Bill 64 (2022),
+that were inadvertently omitted from subsequent bill totals. I ask for the Members
+support of the motion. Mahalo, Chair.
+CHAIR LEE: Any discussion? If not, all those in favor of the motion raise your hand and say
+"aye".
+COUNCILMEMBERS JOHNSON, KING, MOLINA.
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES;
+NOES: NONE.
+COUNCILMEMBER KAMA.EXCUSED:
+CHAIR LEE: Eight "ayes", zero "noes", one "excused". Pro Temp Kama excused. Motion
+carries.
+Members, actually, we have one more item.
+CHAIR LEE: Member Sinenci.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 58
+DISCUSSION RELATING TO
+BILL NO. 101 (2022)
+COUNCILMEMBER SINENCI: Thank you, Chair. I had, and I apologize for oversight on my
+behalf.
+I WANTED TO ASK FOR RECONSIDERATION OF THE
+REFERRAL OF BILL 101.
+CHAIR LEE: Is there a second? Reconsideration of the Bill 101 to referral to the IT
+Committee.
+COUNCILMEMBER PALTIN:
+SECOND.
+CHAIR LEE: Okay, seconded by Member Paltin.
+Discussion, Member Sinenci.
+COUNCILMEMBER SINENCI: Thank you, Chair. And Bill 101 is "A BILL FOR AN
+ORDINANCE AMENDING SECTION 16.26B.105, MAUI COUNTY CODE, REUXTING
+TO FENCE HEIGHTS FOR AXIS DEER CONTROL". We've, Chair, we've been
+working with this with the Ag Working Group. ...  Iappreciate Member Sugimura's, 1
+know this is her passion with axis deer; however, we were, we've planned to hear the
+bill on June 28, and our, our emphasis is on agriculture protection. So, if Member
+Sugimura is okay, we can call this up on June 28.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Yeah, thank you. During the recess, Member Sinenci did
+give me a call. It's fine. I will tell you that all axis deer, I mean, ail of the fence heights
+or whatever is not only ag, but it's really related to our entire community. So, I
+appreciate him hearing this. I will sit in on his Committee meeting. And for the
+community, I did already say I'm going to be hearing feral animal axis deer once the
+budget passes because there's implications or items in it that affect it. So, thank you,
+Mr. Sinenci, for the call. And I look forward to hearing what, what this bill is in your
+Committee when you bring it up.
+CHAIR LEE: Anymore discussion? If not, all those in favor of the motion, signify by saying
+"aye".
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 59
+AYES: COUNCILMEMBERS JOHNSON. KING, MOLINA,
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+NOES: NONE.
+COUNCILMEMBER KAMA.EXCUSED:
+one "excused": motion carries. So, thisCHAIR LEE: All "ayes". Eight "ayes", zero "noes'
+well, this, this was just to reconsider. So, but the idea is for this matter to be referred
+to the APT Committee, instead of the IT Committee. Okay.
+COUNCILMEMBER KING: No objections.
+CHAIR LEE: Any objections. Members.
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay, so ordered.
+So, this matter. Bill 101, will be referred to the APT Committee and not the
+IT Committee.
+And, Members, I must say, you know, this is my favorite way to end a meeting with
+cooperation and collaboration, and hopefully, this is the start of things to come in the
+future as we return back to the Chamber. Members, any last comments? Anybody
+getting married? No? Okay.
+Oh, well, we could say hello, and thank you to the Budget Director Michele Yoshimura.
+One big hand for her. Just say you're not going to change anything in the budget,
+right? Is that what you came for? Okay. Oh, you're welcome. Anybody else?
+Member King.
+COUNCILMEMBER KING: Thank you again to everybody. And Chair, I would like to make
+a special request that the budget that we, the final budget we receive has, also has a
+picture of the Council. Because I notice that's what's been missing from the budget in
+the last few sessions. So, that would be great. Thank you, Michele.
+CHAIR LEE: She said, she said, like that. Okay. Very good.
+Member Sugimura.
+Regular Meeting of the Council of the County of Maui
+June 8, 2022
+Page 60
+COUNCILMEMBER SUGIMURA: Yeah, thank you. I'm glad that Michele Yoshimura is here.
+I always say during budget she’s like the 10th member of our team, you know, and
+maybe the, probably a very important member. But every year. Chair, since you've
+been here, you would always give a little joke, like you're going to give the Budget
+Chair, Budget Director additional appropriation, and you didn't do it this year. So, I
+hope you will consider that and add something in the budget for her really dynamic
+team. That they all worked super hard upstairs as we were, you know, going through
+this budget and the prep that they did, too. So, kudos to them. And really appreciate
+Arthur and, you know, everybody upstairs.
+CHAIR LEE: Thank you. Yes, we, in past gave her a $10 raise. I mean, how about $10.50
+this year? Okay. Thank you to you and your staff. Anybody else? If not. Members,
+this meeting-
+I'm sorry. I'm sorry. Member Johnson.
+COUNCILMEMBER JOHNSON; Thank you. I guess I have an announcement, since it's
+announcement time. But I'll be traveling to Helsinki, Friday, to attend an affordable
+housing conference. And we'll be traveling with 22 members from the State of Hawaii,
+and three of our counties will be going. And what's really exciting about it is some of
+these people that are traveling in the 22 from Hawaii are, lived the experience
+homeless folks. So, it's not just your typical folks who are going to some convention.
+We're really trying to come in and have and learn what other people are doing. And
+it's the housing, the Hawaii Housing Affordability Coalition that will be traveling. So, I'll
+come back with a report and tell you all about it. And hopefully we can turn some of
+these great ideas into legislation. Mahalo, Chair.
+CHAIR LEE: Very good. Safe travels. Any other comments, questions? Anybody else?
+Alright. Members, this meeting of June 8, is now adjourned.
+ADJOURNMENT
+The regular meeting of June 8, 2022, was adjourned by the Chair at 11:18 a.m.
+KATHY KAOHU, COUNTY CLERK
+COUNTY OF MAUI, STATE OF HAWAII
+220608/lks;jm
+I>
+DJune?, 2022
+ro JU« -b 7:
+RE: MAALAEA WASEWATER RECLAMATION SYSTEM SRF FUNDING IN FY 2023 BUDGET
+JNTY
+Or 1I r;
+Aloha Council Chair Lee and Members,
+June 8 is an important day - it's the second and final reading of the FY 2023 budget. It's also the
+fifth anniversary of the Maalaea Village Association (MVA). MVA is proud to be able to carry on
+the work of our predecessor, the Maalaea Community Association, which served Maalaea since
+1988. We are also proud to report our total membership is now over 200 members.
+Mahalo for your hard work in crafting the FY 23 budget that attempts to address many of our
+county's current needs and in taking important steps toward preserving Maui's future.
+The $9.5 million for SRF funding for a modern Maalaea wastewater treating system is a major
+step toward restoring Maalaea Bay. You've heard from long term residents and testifiers
+outside of Maalaea Village on how important this is for the future health of Maalaea Bay.
+Three-mile Maalaea beach is a vital natural resource enjoyed by Maui families for its calm,
+shallow waters and easy access. Maalaea Harbor is  amajor economic engine for Maui's visitor
+industry. The Maalaea conservation corridor is home to the National Humpback Whale Marine
+Sanctuary, Kealia National Wildlife Refuge, Maui Ocean Center, the Maui Ocean Center Marine
+Institute and Pacific Whale Foundation. It is not possible to distinguish between residents and
+visitors - all have easy access and equal enjoyment of Maalaea Bay's rich natural resources.
+The SRF funding in today's budget isn't the final step toward creating this critically-needed
+infrastructure, it's just the beginning based on the most current estimates gathered from
+possible vendors for the proposed state of the art MBR system. Everyone has a part to play. All
+Maalaea property owners - condominiums. Harbor Shops and Maui Ocean Center will have to
+decommission their wells, and cover the cost to connect to the conveyance system that will
+take sewage to the plant outside of the SMA. Longtime Maalaea Bay Place owners will happily
+disconnect their cesspools and connect to such a facility if made available. They too are
+concerned about the health of the Bay and are supportive of this project.
+Federal infrastructure funds are available NOW for this and other county projects. They may
+not come again so easily. With $250,000 State Grants in Aid, MVA can hire a project manager to
+manage the next steps. MVA and the committee will keep the Council informed on our
+progress.
+Please pass the FY 23 budget on final reading including the $9.5M SRF for a critically needed
+and long overdue regional waste water facility for Maalaea.
+Mahalo for your support,
+Lynn Britton
+MVA Founder and Immediate Past President
+" n
+June?, 2022
+W1 JUN -7 p;^ 3^ 49The Honorable Alice Lee, Chair and Members
+;  j-lCL; Or Triu
+/ UNTY CLEFsK
+Maui County Council
+200 S. High Street
+Wailuku HI 96793
+RE: SUPPORTING THE $9.5M FOR MAALAEA SRF FUNDING IN FY 2023 BUDGET
+Aloha Chair Lee and Members;
+I am writing today in support of the $9.5M funding request for a critically needed and long overdue
+regional waste water facility for Maalaea in the FY2023 budget.
+As a (off and on) 60+ year resident of Maalaea, I have seen first hand how the reef and shoreline has
+changed there over the years as the area has become more and more developed. My family has had a
+residence in Maalaea since I was a very young child and I've been continuously living there for the last
+15 years. Over that time, I've seen the decline of many areas of reef and, especially recently, how the
+shoreline has eroded. Much of these declines can be attributed to the lack of proper waste water
+treatment as the nutrient overload in the waters of Maalaea Bay has grown steadily over the years.
+Once a sleepy little harbor who's largest boats were a pair of commercial tuna boats, the area now
+sports daily tourst counts of many hundreds of people who surge through harbor to enjoy the waters of
+the Bay. Once where a handful of single family homes were the only long term occupants of the area,
+now stand over a dozen large condos with hundreds of occupied rooms. Long term planning, including
+how to handle the current large amount of waste water generated daily, was not done “back in the
+day". The day of reckoning has come as fish stocks continue to decline, the lobsters are almost gone,
+the taco are no longer in abundance as they once were and sand has slowly replaced many of the areas
+once occupied by healthy reefs. The surf is still good when it comes up, but look at the reef at the
+famed spot named "Freight Trains" and you'll see the large rock ripped off the bottom during a large
+swell in late 1990's sitting in the middle of the wave line-up. This had never happened before and many
+of us who surfed there were convinced it happened due to the (already) deteriorating condition of the
+reef. Man's impact on the environment there has been obvious and detrimental.
+We now have an opportunity to address many of these problems. An opportunity is before the council
+which may never be repeated. The Federal and State funding currently available is a gift we would be
+foolhardy to walk away from. The community is supportive, local land owners are willing to help with
+land donations and the time is right to implement the planned waste water facility to return Maalaea
+Bay to a more natural condition. 1 will happily disconnect my cesspool and process my home's waste
+through such a facility if made available. I speak now only for myself, but I know my neighbors are
+concerned about the health of the Bay and are supportive of this project. Please don't let it go to waste!
+Mahalo for your time on this matter.
+Paul Gammie
+Maalaea Resident.
+Count^Clerk
+From:
+Sent:
+L Harbo <loraharbo@gmail.com>
+Tuesday, June 7, 2022 9:15 AM
+County Clerk
+Testimony for June 8 meeting in support of full Funding of Ma'alaea Wastewater
+Reclamation Plant
+To:
+Subject:
+June 7, 2022
+Please fully support the FY2023 County budget and the funding of $9.5 million to build the Ma'alaea Wastewater
+Treatment Plant. The time is now to protect Ma'alaea Bay by replacing injection wells with an environmentally friendly
+and economically affordable solution in the form of the proposed WWTP; taking advantage of any available federal
+funding programs, as well. Please maintain the current funding as it is stated in the FY2023 budget.
+Please also continue to support the purchase of the 257 acres of Ma'alaea Mauka to protect and conserve the open
+space for Maui families in perpetuity.
+Thank you for your time and consideration of these important matters.
+Best regards,
+Lora Harbo and David Liebersbach
+Ma'alaea owners, community members ,-^jt
+1  i
+■ I =J...C/
+n I
+r\o
+I I :
+y?
+OJ
+1
+Count^Clerk
+From:
+Sent:
+Maalaea Village Association <maalaGavillageassociation@gmail.com>
+Tuesday, June 7, 2022 9:23 AM
+County Clerk
+Kelly King
+Testimony for June 8 Council Meeting
+To:
+Cc:
+Subject:
+Ma'alaea Village Association wishes to thank Council members for their hard work in craftingthe FY2023
+budget. MVA is particularly pleased that Council has supported critically-needed infrastructure for the
+Ma'alaea community through its $9.5mm in funding for a modern wastewater treating system. We also thank
+and recognize you for funding the continuing efforts to acquire Ma'alea Mauka for public benefit.
+We encourage Council to pass the budget on this final reading without any changes to these items.
+Mahalo,
+Lyndon Ibele,
+MVA President
+TJ
+c ■With Warmest Aloha!
+Ma'alaea Village Association (MVA)
+P.O. 80x2122
+Wailuku, Hi 96793
+2! r' \' r**<
+V -■
+O
+rnm -o
+CMaalaeavillageAssociation@gmail.com \jn
+0i;dwww.maalaeavillaaeassociation.org
+Join us on Facebook at:
+01!frittDs://wvw>/.facebook.com/aroups/MaalaeaVillaaeAssociation/
+1
+1 "-IDI  ■
+ESIITUTE Of HAWAIJ im JUH -7 AH 9: 09
+May 26, 2022 (updated June 6, 2022)
+9 a.m.
+Maui County Council Chamber and Videoconference
+l: Lv" t i i i u
+●J^;TY CLt. r I
+To: Maui County Council
+Alice Lee, Chair
+Keani Rawlins-Fernandez, Vice-Chair
+From: Grassroot Institute of Hawaii
+Joe Kent, Executive Vice President
+RE: Bill 69 — The Fiscal Year 2023 Budget
+Comments Only
+Aloha chair, and committee members
+My name is Joe Kent, and I am the executive vice president of the Grassroot Institute of Hawaii, a 501 (c)3
+nonprofit policy research organization. We are a taxpayer watchdog group that promotes the values of
+individual liberty, economic freedom and accountable government.
+I am here today to testify about the county operating budget, as represented by Bill 69, and to give a
+broader and independent look at the budget.
+The golden rule of government budgeting is; “The government should not grow faster than the economy.'
+That’s because the government gets its revenues from the economy, so it is more sustainable in the long
+run if the economy grows faster than the government, not the other way around.
+Maui County’s fiscal 2023 county spending plan has just reached a record-high $1 billion,'' which is 38%
+higher than in fiscal 2019, before the COVID-19 lockdowns.^ The budget proposal would add 309
+employees to the county payroll, an increase of 12% over 2019.
+Most of the new employees, 63, would be for the Department of Public Works. The Department of Parks
+and Recreation would add 47, the Fire and Public Safety Department 47, the Police Department 35, and
+the Department of Finance 27.
+’ Melissa Tanji, “Nearly S1.07B county budget proposal advances.” The Maui News, April 30-May 1, 2022.
+^ Ordinance No. 4861 of 2018, “Fiscal Year 2019 Budget.’’
+The proposed budget indicates these increases would be paid for partly with $37 million in increased
+transient accommodations taxes, plus S99 million in increased property tax revenues that are mostly from
+higher tax rates on high-end real estate, hotels and short-term rentals.^
+But county lawmakers should be cautious about using the current bonanza to permanently grow the size
+of its government, especially since Maui County’s economy is still lagging.
+Maui's private sector has 2.6% fewer employed workers compared to fiscal 2019 and the jobless rate is
+still relatively high: 4.3%, compared to 2.6% in 2019.'’ That means Maui’s economy is still lagging while
+the proposed budget proposes to grow the county government by leaps and bounds.
+The good news is that Council members this month lowered property tax rates for fiscal 2023 across
+nearly all categories, including owner-occupied homes, apartments, commercial and industrial properties.®
+Unfortunately, they also hiked property tax rates substantially on short-term rentals and
+non-owner-occupied homes.
+It’s not clear how the reshuffled tax rates will affect future tax revenues, especially if the economy should
+experience another downturn. Such a scenario might see Council members once again increasing tax
+rates to support the increased level of county workers.
+If county lawmakers want to follow best practices for budgeting, they should keep the number of county
+employees at their fiscal 2019 levels and use its windfall funds to pay down debt and unfunded liabilities;
+fix up the county’s roads, bridges and parks; save for a rainy day and lower taxes even further.
+The point is to make sure Maui’s private sector is growing before allowing the county government to
+expand.
+Mahalo,
+Joe Kent
+Executive Vice President
+Grassroot Institute of Hawaii
+^ “.Selected real property statistics for budget consideration fiscal year 2019 - 2Q20.” Maui Department of
+Finance, Real Property Assessment Division, 2019, p. 3. “Selected real property statistics for budget
+consideration, fiscal year 2022 - 2023.” Maul Department of Finance, Real Property Assessment Division,
+2022, p. 3.
+'' "Monthly Economic Indicators (MEh through March 2022 was released on April 28. 2022.’’ Hawaii
+Department of Business, Economic Development and Tourism, April 28, 2022, Excel spreadsheet
+comparing labor force of 87,350 on March of 2022 with 89,700 on March of 2019, a 2.6% decrease. Also
+comparing the unemployment rate of 4.3% on March of 2022 with 2.6% on March of 2019. GDP numbers
+for Maui County are net yet available for 2022.
+® "Notice of public hearing and notice of intent to fix real property tax rates." Council of the County of Maui,
+May 13, 2022. The rates have since been fixed.
+06.07.2022 Maui County Council Meeting: Written Testimony L. Low
+-.'EDRET
+im M -3 AH 7= 43
+lune 7, 2022
+Maui County Council
+Kalana o Maui Building, 8th Floor
+200 South High St.
+Wailuku, HawaiT 96793
+-iCE Or '1 1 1'.-
+iNTY CLCKK
+RE: Wednesday, June 8, 2022 Maui Count}' Council Meeting Testimony
+● Bill 100 (2022)
+Aloha mai kakou,
+‘0 au no ‘o La‘akea Low. No ka mokupuni ‘o Maui mai au ma ka moku ‘o Hamakuapoko. Ke
+noho nei au ma ka ahupua‘a ‘o HaTku ma Koakomo i keia manawa.
+● Bill 100 (2022L "FIRST READING of Bill 100 (2022) to amend Chapter 2.98, Maui
+County Code, to: add a definition for "family"; amend the definition for "organization
+to include a reference to a family; and list the information required to name a County
+park or facility after a family"
+Writing in OPPOSITION to Bill 100 (2022).
+I am opposed to County parks and facilities being named after individuals and/or
+families. Current events from around the world are filled with the toppling of statues that honor
+individuals and families who have proven to be colonial/imperial-minded in their deeds and
+tasks. While Hawaii is incorrectly, naively, and/or arrogantly viewed as a cultural melting pot
+full of sunsets and rainbows, Kanaka Maoli - who suffer under the boot of oppression,
+dispossession, and occupation by settler-colonial aims of Manifest Destiny - continue to struggle
+in our own homeland. I challenge each Council member to name a Maui County park or facility
+named after ourMo‘1. Where is Kalakaua Park, LiIi‘uokalani Community Center, Kauikeaouli
+Field?
+Meanwhile, settlers have numerous parks, community centers, and fields named after
+them. It is my belief that the County of Maui should refrain from the troublesome and
+disrespectful nature of assigning settler names to parks and facilities. Instead, if the County of
+Maui continues to neglect the storied histories and legacies of Kanaka Maoli kupuna, then it is
+imperative that we honor the original place names of the areas where our parks and facilities now
+stand.
+‘Olelo HawaiT place names are constantly replaced, mispronounced, and willfully
+ignored by settlers who refuse to embrace Hawai‘1 and its aboriginal people. Even when land is
+supposedly donated by so-called benevolent settler families, their claim to title of these lands
+must be challenged. As Kanaka often cite - "if no more the seal, it ain't real" - meaning that if the
+Page 1 of2
+Maui County Council Meeting: Written Testimony L. Low06.07.2022
+seal of the Hawaiian Kingdom is absent on a claim of title to land in Hawai‘i, it is likely to be
+illegally-occupied lands.
+Please, just keep it simple and use traditional place names for County parks and facilities.
+In doing so, we honor our kupuna, the reasons why an ‘Olelo Hawai‘i name was assigned in the
+first place, and commit to embracing Kanaka Maoli culture. Besides, we have enough schools,
+parks, and facilites named after pilau settlers. We would hate to have to tear down more
+monuments to individuals and families who have benefitted from the oppression of our people.
+Me ka ‘oia‘i‘o,
+La'akea Low
+Koakomo, Ha‘iku, Maui
+Page 2 of2
+n t
+MAUIi
+20?? JUN -8 AM It: 36
+;-;c£
+NTY CLERK
+F  J ill...
+1'CHAMBER OF COMMERCE .  u
+Bill 69
+Second & Final Reading of the FY23 Budget
+Wednesday, June 8, 2022
+Aloha Chair Lee, Vice Chair Rawlins-Fernandez, and
+Members of the Maui County Council,
+We want to thank you for all your hard work on this FY23 Budget and see the tremendous effort put
+into to reviewing our revenue, expenses, County priorities and programs, and input from the
+administration, departments, and our community.
+There are many things we support in this budget as previously shared. We applaud the priority of
+affordable housing and rentals and appreciate the efforts to create safe zones to protect the
+homeless, continued support of agriculture and feral animal control, and the investment in the new
+Halau of ‘Oiwi Arts. We feel it is important to continue to support our visitor industry and better
+manage tourism, which our community has relied upon for decades and continues to help shore up
+our economic health. We wish more funds were put toward this effort as it is one of the
+community's top priorities and we hope to see additional funds put toward this effort in the future.
+In this new fiscal year, we would like to see an emphasis on developing strong economic
+diversification and sustainability plans, expanding investments in existing programs that deliver
+significant returns on investments (ROI), as well as looking at new opportunities than can do the
+same, leverage our unique assets and create rewarding job opportunities.
+As new projects, programs and directions are put forth by the administration and council, it is
+critically important for research to be conducted and a cost-benefit analysis completed for each in
+advance for full transparency and public education. This information should be shared with the
+public at the beginning of the budget process for review and consideration. Further, we feel it is
+important to review the cost and size of our government, which taxpayers directly pay for, and look
+for areas that can be streamlined or outsourced for cost savings. With such an analysis, taxpayers
+can better understand and ring in on new projects and programs, continued funding of existing
+efforts and shifts in the way the county does business. There are some areas of the FY23 budget
+where an analysis on the fiscal impacts and ROI would have been extremely valuable and we hope
+to have reasoning and clarity provided moving forward.
+We appreciate the opportunity to share our thoughts on the FY23 Budget and want to thank you
+again for the many and long hours put into creating it.
+Sincerely,
+Pamela Tumpap
+President To advance and promote a healthy economic environment
+for business, advocating for a responsive government and
+quality education, while preserving Maui’s unique community
+characteristics.
+808-244-0081 legislation@MauiChamber.eom MauiChamber.com62 North Market Street, Suite 302, Wailuku, Hawaii 96793

@@ -1,0 +1,3484 @@
+MINUTES | hi-maui | County Council Meeting | 2022-01-21
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1145,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+MlNyiiS
+of the
+COUNCIL OF THE COUNTY OF MAUI
+January 21, 2022
+THE REGULAR MEETING OF THE COUNCIL OF THE COUNTY OF MAUI, STATE OF
+HAWAII. WAS HELD ONLINE ONLY VIA BLUEJEANS, ON FRIDAY, JANUARY 21, 2022,
+BEGINNING AT 9:03 A.M., WITH CHAIR ALICE L. LEE PRESIDING.
+COUNCIL CHAIR ALICE L. LEE: Will the Maui County Council regular Council meeting of
+January 21, 2022, please come to order.
+Good morning, Members and everyone. As you can see, the morning greeting is
+selamat siang.
+So, Mr. Clerk, can we have roll call?
+DEPUTY COUNTY CLERK JAMES G.M. KRUEGER: Chair, proceeding with roll call.
+Members should state who, if anyone, is present with them as part of roll call.
+ROLL CALL
+DEPUTY COUNTY CLERK: Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: Selamat slang. Chair and fellow Councilmembers. And aloha
+Po'alima kakou my Maui hikina. For the record, we are broadcasting today from the
+Hana Cultural Center with my EA Dawn Lono. Aloha.
+CHAIR LEE: Good morning.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: Aloha and selamat siang. Madam Chair, my colleagues, and
+everyone else joining us for today's Council meeting. For the record, I am transmitting
+from my residence In Makawao. And my wife is also in the house, in a room 25 feet
+away. Mahalo.
+CHAIR LEE: Good morning.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 2
+DEPUTY COUNTY CLERK: Councilmember Kelly Takaya King.
+CHAIR LEE: Excused for now.
+DEPUTY COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: Good morning, Chair. Selamat to you and selamat to my
+fellow Councilmembers. I am home alone on the beautiful island of Lanai, and it's a
+little bit chilly today.
+CHAIR LEE: Good morning.
+DEPUTY COUNTY CLERK: Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: Selamat siang and aloha kakahiaka kakou. Broadcasting live
+and direct from sunny Lahaina Town at the Old Lahaina Center at our District Office.
+We're excited to greet any future testifiers as courtesy site. And I'm more than six feet
+away from my EA Angela.
+CHAIR LEE: Good morning.
+COUNCILMEMBER PALTIN: Good morning.
+DEPUTY COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: Selamat siang. Good morning, everybody. I'm here in
+Kula this morning. And I must tell you that I'm working on getting my connectivity better.
+We're going to be installing a router at, on the first floor of our house for me and my
+office. And I look forward to a very productive meeting. And my router is coming next
+week, but we're getting there.
+CHAIR LEE: Very good. Very good.
+(Councilmember King arrived at the meeting at 9:06 a.m.)
+COUNCILMEMBER SUGIMURA: Yes.
+CHAIR LEE: And I see Member King is here.
+COUNCILMEMBER KING: Aloha. Aloha, everybody. So, sorry about this. I'm just having
+these connectivity issues. I, I decided to try to come back into the office again and it's
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 3
+not working. After my, but I wanted to get on to do this resolution, so good morning
+aloha kakahiaka everyone. I'm looking for the greeting of the day.
+CHAIR LEE: Selamat siang.
+COUNCILMEMBER KING: Selamat. Selamat? That's an easy one. And I'm, I'm, so I'm in
+the District Office this morning, and I've got my other two staff members, Daniel
+Kanahele and Ellen McKinley more than six feet away. But they're, they are in the
+office, so we'll try to get. keep the, keep muted as much as possible . . .
+CHAIR LEE: Good to see you. Good morning.
+COUNCILMEMBER KING: Good morning.
+DEPUTY COUNTY CLERK: Presiding Officer Pro Tempore Tasha Kama.
+COUNCILMEMBER KAMA: Aloha kakahiaka. Chair. Aloha Po'alima my colleagues. And
+selamat siang to everyone in our Akaku land. I am in my workspace in my home, and
+I am alone. Thank you, Chair.
+CHAIR LEE: Good morning.
+DEPUTY COUNTY CLERK: Council Vice-Chair Keani Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Aloha kakahiaka, Chair, my Molokai nui ahina. I am
+here at the Molokai District Office alone on my side of the office. Selamat siang.
+CHAIR LEE: Selamat to you, Vice-Chair.
+DEPUTY COUNTY CLERK: And Council Chair Alice L. Lee.
+CHAIR LEE: Selamat siang, everyone. And I am here in my workspace, alone with my
+pocket-pitbull. And her name is Koa Lei Lee. And looking forward to having a
+wonderful short meeting today. Okay, I don't want to jinx it. I take that back.
+Mr. Clerk, proceed.
+PRESENT: COUNCILMEMBERS SHANE M. SINENCI. MICHAEL J.
+MOLINA, GABRIEL JOHNSON. KELLY T. KING. TAMARA A.M.
+PALTIN, YUKI LEI K. SUGIMURA, NATALIE A. KAMA,
+VICE-CHAIR KEANI N.W. RAWLINS-FERNANDEZ, AND
+CHAIR ALICE L. LEE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 4
+DEPUTY COUNTY CLERK: Chair, there are nine Members present. A quorum is present to
+conduct the business of the Council.
+For the record, I am Deputy County Clerk James Krueger. Also present from the Office
+of the County Clerk are County Clerk Kathy Kaohu; and Legislative Division staff Joyce
+Murashige, Lauren Saldana, and Dell Yoshida.
+Joining the meeting from the Department of the Corporation Counsel is Corporation
+Counsel Moana Lutey and First Deputy Corporation Counsel Richelle Thomson.
+CHAIR LEE: And opening remarks will be provided by our Council Vice-Chair Keani Rawlins-
+Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+OPENING REMARKS
+The opening remarks were offered by Council Vice-Chair Keani Rawlins-Fernandez.
+CHAIR LEE: Thank you, Vice-Chair, for those beautiful words.
+Mr. Clerk. Maybe it's my turn. Please join me in the Pledge of Allegiance.
+PLEDGE OF ALLEGIANCE
+The Members of the Council rose and recited the Pledge of Allegiance.
+CHAIR LEE: Before we proceed with today's agenda, may I please request that everyone
+keep their microphones muted unless it is your time to speak. Decorum shall be
+maintained at all times.
+Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, proceeding with the presentation of testimony on the
+ceremonial resolution. The first individual we have signed up to testify on the
+ceremonial resolution is Lucienne de Naie. To be followed by Charlene Schulenburg.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 5
+CHAIR LEE; Good morning, Ms. de Naie.
+PRESENTATION OF ORAL TESTIMONY
+MS. LUCIENNE DE NAIE:
+Good morning. I'm having a little bit of internet connection blips this year, so I'm sorry,
+you're just going to hear my voice. But mahalo to all for putting forth this ceremonial
+resolution honoring our wetlands.
+As we all know, our wetlands provide invaluable services to protect our nearshore
+waters from pollutants. They are like the kidneys of our whole ecosystem, and they
+are extremely undervalued. I was speaking to a couple people the other day about the
+importance of the wetlands in the Kihei area. And one person said, oh, I didn't know
+there were any wetlands except the ones at Azeka, or maybe that one by the church.
+But of course, Kihei is full of wetlands. There are wetlands in West Maui. There are
+wetlands in other parts of Maui as well. And they're all performing a invaluable function.
+So, mahalo for honoring this, this special day, looking at focusing awareness on our
+wetlands. They are going to be more important than ever as we move forward and
+have to adjust to differences in sea level temperature and levels. Because when the
+sea levels change, it's not like we all of a sudden realize our parking lots unden/vater,
+but the sea level underground starts moving inward as well. And this will affect the
+wetland areas, which have a connection to usually tidal flows as well as freshwater
+flows. And that's why historically, they function, they have a particular type of soil and
+plants that indicate that those flows are present.
+So, I hope this is the year that we can pass some bills to make sure that the great
+provisions in our Maui Island Plan and our community plans that protect wetlands
+actually have some sort of implementation where we set them aside for protection, and
+don't just give lip service and say, well, you can fill in half and don't fill in the other and
+that'll be good enough. We're going to need every area of functioning wetland along
+our coast that we can take care of. And we should be providing for that in our future
+planning. So, mahalo.
+CHAIR LEE: Thank you. Are there any questions. Members? If not, thank you very much.
+Mr. Clerk.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 6
+DEPUTY COUNTY CLERK: The last individual we have signed up to testify on the ceremonial
+resolution is Charlene Schulenburg.
+MS. CHARLENE SCHULENBURG, SOUTH MAUI SAVE THE WETLANDS HUI:
+Hi. Can you hear me?
+CHAIR LEE: Yes, we can.
+MS. SCHULENBURG: Hi. It won't let my video on. Do you guys want to let me in?
+CHAIR LEE: Please proceed though.
+MS. SCHULENBURG: Okay. So, I'm speaking on behalf of the Save the Wetlands South
+Maui, Save the Wetlands Hui. Usually, I just talk off of the top of my head. But the Hui
+has a nice little piece that I would like to read please.
+Aloha, Chair Lee and esteemed Councilmembers. On behalf of the Save the Wetlands
+Hui, I wish to express our appreciation for your resolution "RECOGNIZING
+FEBRUARY 2, 2022, AS WORLD WETLANDS DAY IN THE COUNTY OF MAUI". Per
+this resolution, Maui County joins a global movement to value, manage, restore, and
+love our wetlands. Indeed, Maui County is a leader in this movement with this Council
+and the Mayor's Office of Economic Development, having provided support for
+wetlands conservation and restoration projects in Maui County.
+The Save the Wetlands Hui is the receipt, excuse me. Wetlands Hui is the recipient of
+a grant from Maui County, and we truly appreciate the leadership of Councilmember
+Kelly King and the support of this Council in providing that grant.
+While many are aware of the larger beautiful wetlands on Maui, such as Kealia Pond,
+Kanaha Sanctuary, and the Waihee Refuge that are under active restoration and
+conservation management programs, many are unaware of the extent of the wetlands
+throughout Maui County that need such protection. The grants of Save the Wetlands
+Hui entails creating an inventory and mapping of the wetlands in the Waiohuli-Keokea
+corridor of Kulakai in South Maui, conducting restoration at Laie Mauka Wetlands, and
+providing public education and outreach to raise awareness of the cultural, economic,
+environmental, and recreational aspects of our wetlands here in Maui County.
+What we have learned through our work is that the great value of these wetlands to our
+community in providing protection of ocean water quality: mitigation of flooding; carbon
+. . . to counter climate change; opportunities for cultural practice; and a place for rest.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 7
+respite, and recreation, even in the midst of busy Kihei town. We have seen the ohana
+of Maui County truly love our wetlands and will show up ready to do the work of
+restoration, being willing to get their hands dirty in these efforts. We have seen the
+excitement of our people learning about where the wetlands are and how they work.
+We have seen reverence in great eagerness to learn about the history and cultural
+treasures of these wahi pana.
+We invite you and the public to join us at our workday at Laie Mauka, tomorrow,
+January 22. Our celebration of World Wetlands Day is on February 22 at Kalama Park.
+You may join us there too. We would be happy to arrange visits for this Council or any
+other groups wishing to come see the restoration at Laie Mauka, Laie Mauka, excuse
+me, and learn about our work. Mahalo nui !oa for supporting our work and your
+recognition of World Wetlands Day. And we have actual plantings, we actually have
+native plantings, which is super exciting, for tomorrow’s workday. Thank you very
+much.
+CHAIR LEE: Thank you, Ms. Schulenburg. Members, are there any questions?
+Member, Pro Temp Kama.
+COUNCILMEMBER KAMA; Thank you. Thank you for yourtestimony, Ms. Schulenburg. So,
+my question is, you mention that the Waiohuli-Keokea corridor, is that a wetlands
+corridor? And what geographical location does that cover?
+MS. SCHULENBURG: Okay. So, yes, it is a wetlands corridor. In fact, most of South Kihei,
+especially the SMA areas, are all kind of wetlands. And then, the corridors are really
+located in and surrounding each of the major gulches. So, you know, ours is the
+Keokea Gulch that actually feeds into Laie. But that is in the, the corridor that you just
+mentioned. So, it would be great if I could show you on a map.
+And what was your second question, Councilperson Tasha Kama?
+COUNCILMEMBER KAMA; And my second question was, is it a wetland, and I asked about
+the geographical locations of it.
+MS. SCHULENBURG: Yeah. Yeah.
+COUNCILMEMBER KAMA: Because when I think about Waiohuli-Keokea, I usually think
+about the mauka side, from the mountain to the sea. But you're actually talking about
+the area within the South Maui, Kihei area, correct?
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 8
+MS. SCHULENBURG: Correct. Yes. absolutely.
+COUNCILMEMBER KAMA: Okay.
+MS. SCHULENBURG: Yup. Right in the middle of town, quite frankly.
+COUNCILMEMBER KAMA: Yes.
+MS. SCHULENBURG: And it does include, it does include the Azeka's wetland. There's lots
+of wetlands that we've identified that we're hoping to save that are undeveloped lots.
+COUNCILMEMBER KAMA: Yes.
+MS. SCHULENBURG: But they're, they're such a wholesale on property right now. We're
+very, very concerned. So, please keep that in mind as we bring this information to your
+attention.
+COUNCILMEMBER KAMA: Thank you.
+MS. SCHULENBURG: Because we're, we're really needing to keep those as open spaces.
+COUNCILMEMBER KAMA: Thank you. Thank you. Chair.
+CHAIR LEE: Anymore questions? If not, thank you very much, Ms. Schulenburg.
+MS. SCHULENBURG: Mahalo.
+CHAIR LEE: Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, there are no other individuals signed up to testify on the
+ceremonial resolution.
+CHAIR LEE: Members, any objections to closing testimony on ceremonial resolutions?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objection. So, ordered.
+Mr. Clerk.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 9
+DEPUTY COUNTY CLERK; Chair, proceeding with the ceremonial resolution.
+CEREMONIAL RESOLUTIONS
+RESOLUTION
+NO. 22-7
+RECOGNIZING FEBRUARY 2, 2022, AS WORLD
+WETLANDS DAY IN THE COUNTY OF MAUI
+CHAIR LEE; Councilmember Kelly King.
+COUNCILMEMBER KING; Thank you, Chair.
+I  MOVE TO ADOPT THE PROPOSED RESOLUTION
+ENTITLED "RECOGNIZING FEBRUARY 2. 2022, AS WORLD
+WETLANDS DAY IN THE COUNTY OF MAUI".
+There's a lot of2’s; 2, 2. 2022.
+COUNCILMEMBER JOHNSON;
+SECOND.
+CHAIR LEE; Moved by Member King, seconded by Member Johnson to adopt this Resolution
+22-7.
+Discussion, Member King?
+COUNCILMEMBER KING; Thank you, Chair. I just wanted to point out too, and acknowledge
+Robin Knox, who would have been here and was scheduled to speak, but she had
+something that came up that she couldn't get out of. It was exactly at 9;00. So, if your,
+if you got your TV on out there, Robin, we're, we’re thinking of you as well.
+And I would request the Clerk please read the resolution in its entirety.
+CHAIR LEE; Mr. Clerk.
+(The resolution was read in its entirety.)
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 10
+CHAIR LEE: Any discussion, Member King?
+COUNCILMEMBER KING: Thank you, Chair. And thank you, Mr. Deputy Clerk, for reading
+that resolution. I would just offer to, maybe we can make a friendly amendment and
+add Charlene Schulenburg to the list of recipients, if there are no objections?
+CHAIR LEE: Any objections. Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay, so ordered.
+COUNCILMEMBER KING: Thank you. Members. I do have some discussion. Wetlands
+constitute critically important ecosystems worldwide, including in Maui County. Among
+their benefits, local wetlands provide food protection, flood protection; shoreline
+erosion control; natural water quality improvement for streams and the ocean; habitat
+for biodiverse species, including endangered birds; carbon sequestration; and
+economic resources for the Native Hawaiian community. The vast majority of wetlands
+worldwide have been lost or degraded. Recognizing World Wetlands Day on
+February 2 will contribute to the awareness of the vital role of wetlands at a time when
+they are threatened with continued disappearance and degradation.
+Please consider joining the Save the Wetlands Facebook group to find a local wetlands
+event. The next workday for Maui is tomorrow at Laie Mauka, January 22 from 8 a.m.
+to noon. And if you go there. Members, I've, I've done a couple of these workdays, it
+is hard work, but you don't have to stay the whole four hours. So, any, any amount of
+work you can do will help bring awareness and get some work done. It's, it's actually
+a really great project. Meet at Medispa Maui at 1145 South Kihei Road at 8 a.m., and
+you can help with the planting of native plants. This is very exciting because the earlier
+work that we had done there has been removing unwanted species and weeds. And
+so, now you'll get to, you'll get to actually plant.
+Thank you to Robin Knox and South Maui Save the Wetlands Hui, as well as Char
+Schulenburg for her undying advocacy. And for all their work to preserve, protect, and
+restore our precious wetlands. I ask for the Members full support of my resolution.
+CHAIR LEE: Anymore discussion. Members?
+Member Molina.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 11
+COUNCILMEMBER MOLINA: Yeah, thank you very much, Madam Chair. I want to thank
+Councilmember King for this very, very good resolution that recognizes the importance
+of our wetlands. And also, for the testimony of Ms. de Naie and Ms. Schulenburg. And
+I'm hoping that all of the environmental organizations, and everyone else for that
+matter, can do, increase their outreach into our schools, to educate our young about
+the importance of the wetlands and its importance to our local culture as well.
+And, you know, for me as a classroom teacher, it's, seeing this resolution today has
+given me ideas about doing some wetlands lesson plans, cause it's a topic that can
+touch four of our major core curriculum subjects, such as math, science, social studies,
+and English. So, one can get a little creative with developing lessons related to the
+wetlands.
+And Madam Chair, I don't know about you, but when  Iwas growing up, I didn't receive
+much education or discussion about wetlands, the importance of it. So, I think the more
+we can do a lot of outreach for our future generations about wetlands, this can possibly
+contribute towards reducing the degradation of our wetlands. So, anyway, but mahalo
+Member King for this reso. Thank you, Madam Chair.
+CHAIR LEE: Excellent idea. Any more discussion? If not, all those in favor of the motion to
+adopt the resolution, please raise your hand. Oh, I'm sorry, I think we need roll call. I
+know it, we have this issue of what's unanimous and what's not. Let's just have roll
+call, Mr. Clerk, for every vote.
+DEPUTY COUNTY CLERK: Proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: AYE.
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK:
+COUNCILMEMBER KING: AYE.
+DEPUTY COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21.2022
+Page 12
+DEPUTY COUNTY CLERK; Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK;
+COUNCILMEMBER SUGIMURA: AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK;
+COUNCILMEMBER KAMA; YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA, PALTIN. SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ. AND
+CHAIR LEE.
+AYES:
+NOES: NONE.
+DEPUTY COUNTY CLERK; Chair, there are nine "ayes"; motion carries.
+CHAIR LEE: Thank you. Thank you, everybody. The,  1just want to let you know that unless
+unanimous, we, we need to take a roll call. But how would I know if a vote is going to
+be unanimous? So, why don't we just take a roll call, okay?
+Mr. Clerk. Let's see.
+COUNCILMEMBER KING: Chair?
+CHAIR LEE: Yes? Member King.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 13
+COUNCILMEMBER KING: Just, can I just invite Ms. Schulenburg, if she has any additional
+thoughts, no\N that v\/e've passed the resolution, just to say a few words? Robin Knox
+was going to be here to do that, but as I said earlier, she was not able to be here. And
+so, just wanted to give her a chance to fill in. And also, I will personally remind any
+Councilmembers and anybody out there who decides to come and help out tomorrow,
+to wear your not, non, to wear your mineral-based sunscreen when you come out.
+CHAIR LEE: Very good.
+Ms. Schulenburg, are you there?
+MS. SCHULENBURG: Oh, my goodness. Yes. Oh, my goodness. Thank you so much. I
+was not expecting to be added to this. I am so honored and so grateful. This work
+has been eye-opening for me. It has been, it, it's a gift to work in the land and to work
+around the wetlands. And it's been, you know, as a, as a haole girl being raised here,
+it feels like the island hugs me, and it feels like the Hawaiians hug me when I work on,
+on the land. It feels like it's doing the right thing.
+And, and 1 invite everybody to join us. The education has been astronomically
+amazing, especially with the help of Robin Knox and, and Scott Fisher. And although
+I didn't study this in school, if I could go back to school, I probably now would become
+some sort of wetland environmental specialist or something. I know way more than I
+probably should, but clearly not enough to call myself an expert. So, I'm, I'm playing a
+de facto expert just because I get my hands dirty.
+I would love to talk about this all day, but I don't want to take up your time. If there are
+specific questions, please feel free to reach out to me through Councilperson Kelly
+King. And I'd be happy to show you the Laie Wetlands, especially, because I live
+immediately adjacent to it. So, everything that happens in that wetlands, I am
+personally, you know, responding to, I am personally witnessing. And so, I feel it in my
+bones when it's hurting, and I feel it when it's healthy. And it can be so healthy at
+times. And it, it, it's joyful. So, thank you so very much. I'm actually just so
+overwhelmed. Thank you.
+CHAIR LEE: Thank you. Ms. Schulenburg, was your father Lee Schulenburg?
+MS. SCHULENBURG: Yes. Yup, that's the faddah. We called him .. .
+CHAIR LEE: So, you are a, you are a local girl.
+MS. SCHULENBURG: Oh, yeah. I, I am OKG, original Kihei girl.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 14
+CHAIR LEE: We have a question for you from Pro Temp Kama.
+MS. SCHULENBURG: Yes. Yes.
+COUNCILMEMBER KAMA: Thank you, Charlene, for your comments that you just uttered.
+And I am very much moved by what you're actually feeling from the land. And I
+certainly do appreciate that. And I know we don't have time now to have a deeper
+discussion, but if you don't mind, I'd like my staff to reach out to you and maybe have
+an opportunity to have a deeper discussion regarding this, if it's okay?
+MS. SCHULENBERG: Absolutely. I have, 1 have chicken-skin all over. And I am open to
+any and all discussion and would be happy again to continue that, that conversation
+and or, you know, invite you down to our, our worksite at the mauka site, as well as
+our close area here at the makai site.
+COUNCILMEMBER KAMA: Thank you. Thank you. Chair.
+CHAIR LEE: Thank you. Any more questions. Members? If not, thank you again
+Ms. Schulenburg. And thank you. Member King, for proposing this resolution.
+MS. SCHULENBURG: Mahalo.
+SET THE CONSENT CALENDAR
+CHAIR LEE: Members, at this time we will set the Consent Calendar. As a reminder the
+calendar can still be adjusted even after it is set. Are there any requested changes to
+the Consent Calendar at this time?
+Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. The removal of 22-17 and 22-18
+please.
+CHAIR LEE: 22-17 and 18. Okay, any objections to setting the consent cal-
+Oh, we have one more. Member Sugimura.
+COUNCILMEMBER SUGIMURA: 22, excuse me, 22-16, please.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 15
+CHAIR LEE: Okay. Anyone else? Are there any objections to setting the Consent Calendar?
+If there are no objections, the Consent Calendar is set.
+Mr. Clerk, please proceed with testimony.
+DEPUTY COUNTY CLERK: Chair, proceeding with the presentation of testimony on agenda
+items. Members of the public may testify by connecting to the Council's online meeting
+by phone or video conference through the information posted on today's agenda.
+Individuals connected by phone are currently on mute and will be unmuted when it is
+their time to testify. Individuals connected by video conference should keep both their
+video and microphones off and should turn them on only when it is their time to testify.
+Testimony is limited to the items listed on the agenda. Individuals may testify for three
+minutes per item. When testifying, please state your name and the name of any
+organization you represent, as well as the items on which you will be testifying. Please
+also identify to the Council if you are a paid lobbyist.
+After your testimony has concluded, please disconnect from BlueJeans. Once the
+testimony period is closed, all the, only the Councilmembers, staff, and designated
+resource persons will be connected to the meeting. Ail other individuals will be
+disconnected. The remainder of the meeting can be viewed on Akaku Maui Community
+Media or on mauicounty.iegistar.com. Individuals may also be disconnected from the
+meeting at any time for breaking decorum.
+Chair, the first individual we have signed up to testify is Mike Moran. To be followed
+by Lucienne de Naie.
+PRESENTATION OF ORAL TESTIMONY
+MR. MIKE MORAN. KIHEI COMMUNITY ASSOCIATION ftestifvina on Committee Report
+Nos. 22-5 and 22-13: and Bill No. 21 (202211:
+Good morning, Chair Lee and Councilmembers. Mike Moran for the Kihei Community
+Association. As always, we'll try to be brief. We're testifying on 22-5 and 22-13, and
+we have testified on these before, so we won't be verbose about them. But we
+appreciate you moving them both forward for Daniel Kanahele for the Advisory and for
+Mike Williams for the Charter. And we seethe Charter does have a meeting next week,
+so I don't know if we can get him on that quick. But you've done it as quickly as you
+possibly can and we, we just want to express our appreciation for that.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 16
+And then, the one other item is Bill 21, for the lights with the seabirds. And we see this
+as something that's long, long overdue. I mean, people have discussed this for years.
+And when 1 mentioned this to our, our Board that this was up and we were going to
+testify, a couple of them said I thought that was already done. And unfortunately, that's
+what happens sometimes. It's discussed and people make an assumption. But you
+guys are taking action on it, so Councilmember from South Maui Kelly King, thank you
+for pushing this forward. And we think this is much needed to support the natural life
+and may, maybe slightly inconveniencing us humans and we have to do more of that
+for the natural species. Thank you very much for the opportunity to testify. Aloha.
+CHAIR LEE; Aloha, Mike. Are there any questions? If not, have a great weekend.
+MR. MORAN: Thank you. You guys too.
+DEPUTY COUNTY CLERK: The next individual we have signed up to testify is Lucienne
+de Naie. To be followed by Richard Wainscoat.
+MS. LUCIENNE DE NAIE ftestifvinq on General Communication Nos. 22-1 and 22-2:
+Committee Report Nos. 22 2 and 22-5: Resolution No. 22-13: and Bill Nos. 17 (2022),
+21 (2022), 23 (2022), and 24 (2022)1:
+Aloha again. It's Lucienne de Naie and I'm going to try my video.
+CHAIR LEE: It, it's working. We can, we can see you.
+MS. DE NAIE: Yes, so far so good. Thank you all for being here this morning. I'd like to
+testify on behalf of Sierra Club Maui on GC 22-1 and dash 2. These are compliance
+reports that are usually just filed. But I don't know if folks have time to read them, but
+they don't tell the whole story.
+On the 22-1, Makena Resort compliance, for instance Condition 10 requires pedestrian
+and, and bikeway plans. Well, the plan that's submitted is 11-years old. There are
+already zoned, rezoned parcels that were along the shoreline that have had permits
+applied for and yet there's no updated plan.
+And we recently had reports of a section of the Old Makena Road that goes in front of
+the old Maui Prince that was reduced to a trail, you can't drive on it, being blocked.
+And pedestrian access to be, to it being blocked. And it's a major way that people kind
+of walk along the shoreline. So, I don't know if the Council has anyway of really looking
+into what's said in this report and what really happens. But there, there should be a
+way, because it shouldn't just be up to citizen's filing requests for service.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 17
+Also, Condition 12, a pro rata share of the Piilani Highway upgrade. This is a big deal.
+The highway is supposed to be four-lanes ail the way to Wailea before additional
+growth of any significance in Wailea and Makena and Wailea 670 happens. And
+instead, we're getting these backroom deals that are negotiated with the Hawaii
+Department of Transportation that provide little piecemeal parts of things rather than
+sitting everybody down and saying you've all got to contribute it to a bond and build
+this thing at once, which is what the EA for the project said would happen. So, the, this
+approach has never been examined in an environmental assessment, and yet
+everyone's holding up and said, hey, the environmental assessments done. But they're
+not doing what the assessment said was going to be done. In fact, this approach was
+never considered and never analyzed.
+Also, on Condition 19, the monitoring programs for the marine life have really taken a
+step up. I have to say that, you know. Sierra Club and others did a settlement. And
+one part of the settlement was to get a new consultant to do these reports. And they're
+showing impairment in the waters. But the condition is written that the, the Department
+of Health has to request that additional studies would be done if impairments are
+shown. A quick fact, they never do. So, if this Council could, you know, write to the
+Mayor's Office and say, can, can we get something going so that these conditions start
+getting improved in our, our nearshore waters, so they're not, they're not experiencing
+loads of nitrogen and phosphorous and so forth in these studies.
+And then, the last thing is the dust control and erosion during the recent storms, that's
+Condition 20. I was sent pictures of water from a pipe from the Makena Resort lands
+running right up the ... . Thank you. Anyway, lots to say here. These compliance
+reports are not kind of a proforma that the box should just be checked off on.
+Moving onto the 22-2, the H-2 compliance report. Condition 10 provides, once again,
+for this pedestrian bicycle access. Report doesn't mention that the new sidewalk it's
+going to build along Makena Alanui, as it's designed now, could actually wipe out one
+of the most important historic sites we have in Makena, the 'Aupuni Wall built by
+Kamehameha III. We need County cooperation. The landowners are willing to
+cooperate. We need County cooperation, and it should have been mentioned in this
+report, to make sure that the sidewalks widths are adjusted so that wall can remain.
+Also, their Condition 17 and 18, having to do with historic preservation. Inadequate
+testing is being done on the H-2 site. And no new testing is being done in the lava flow
+areas. And yet, at least three burials were discovered immediately across the street in
+a parcel that, that was used to be under the same ownership and connects to this same
+land. It just, there’s the Old Makena Road in between it. So, I, we're not going to be
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 18
+surprised if there's quote unquote inadvertent burials,
+inadvertent burials, there should be adequate testing.
+But there shouldn't be
+And also, the condition mentions that the preservation plan only needs to be approved
+before grading starts. That's a little late to start changing your construction plans if
+your preservation plans shifts, you know, after you get your SMA permit, it's hard to go
+back and amend that permit. So. even though that's the condition, the intent, if it is to
+preserve significant cultural sites, and this land although it's small, has some amazing
+and very significant cultural sites. There were several ceremonial used sites.
+And then, lastly, water is not mentioned in any of the conditions. That this project plans
+to use 2,000 gallons per day, per unit for potable water, not even for landscape
+irrigation. That's a separate system for potable water. I just want to point out, if that
+much water was appropriated for Central Maui use, 265 affordable units could be
+utilizing that same amount of water instead of 53 luxury units in, in Makena.
+I'm going to move onto Council Resolution 22-2. This is the first reading of the Water
+Use and Development Plan. And I'm testifying on behalf of the Haiku Community
+Association, as its president. Our association and our community does thank the
+Council and the staff of both the Water Department and the County Council support
+staff for putting in many long hours to try to improve the plan, try to update information,
+try to make some of the strategies really reflect our community values. This, this has
+been worthwhile work.
+We are very disappointed at, that the provisions that are in our Haiku-Paia Community
+Plan, they're the same ones in the Hana Community Plan, did not pass an amendment
+vote to be added to the strategies. And we, we applaud those Councilmembers who
+were brave enough to think that the Water Department maybe was stepping over the
+line a bit to say that the plan would be pulled if that language was in. There's no conflict
+between the two community plans for South Maui and Haiku-Paia.
+Haiku-Paia Community Plan does not say no water can be used in South Maui. The
+South Maui plan says we need to get water from other areas, such as East Maui. All
+the community plan says is that you need to serve the, the needs of these residents
+who live here first. No one in Haiku can propose an affordable housing project because
+you cannot get a water meter. They can drill a well, but that makes it a little expensive
+to have an affordable project, that you have to invest a million dollars to drill your own
+well, test your own well, and permit your own well.
+So, we, we are very sad that this has not been seen in its true light. We are going to
+have to go the Water Commission. We're not going to bother you guys with 100 people
+testifying today. That doesn't seem to serve any purpose. We will go to the Water
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 19
+Commission and make our case, because there are solutions so that everyone can
+have water. But this plan does not reflect them. Thank you for your consideration.
+As a private individual, I would like to testify in support of Resolution 22-5 and 22-13,
+appointing two worthwhile people to serve on County boards and commissions.
+Mr. Kanahele is very knowledgeable about South Maui and its history and cultural
+matters, and will make a exemplary contribution to the South Maui Advisory
+Committee. Mr. Williams, who I know from the Stand Up Maui Board is, is a work horse
+on that board, and donates his time to many other worthwhile activities in the
+community and will be a very, very good addition to the Charter Commission, which
+requires members to do a lot of work.
+Moving onto Bill 17. This is a bill to amend the Code to prohibit private restrictions on
+small scale agricultural uses and keeping of animals. This is something that comes up
+all the time where folks do ag subdivisions because they're cheap to do, they sell land
+to people with a variety of interests. Some people want to keep horses and want to
+keep chickens or want to keep sheep, and others think that they've brought, you know,
+a suburban piece of property that they can tell everybody not to have animals in their
+CC&R's. And that just isn't right. If it's ag land, ag activities should be allowed. So,
+thank you for making this clear in the Code. There, there are a number of conflicts.
+And it's, it's silly, you know, to start getting involved in these he said she said and taking
+up time that the Planning Commission and other places. Let's just make it clear and
+pass Bill 17.
+Also, speaking in support on behalf of the Sierra Club for Bill 21 on amending the
+outdoor lighting ordinance, to make it clear that there are protections for seabirds. We
+would actually urge the Council to consider taking a further step. Sierra Club proposed
+as conditions of settlement for the Wailea 670 project, which has quite a bit of wildlife
+flying over it and wildlife living within it, that the Dark Sky Ordinance that was
+promulgated by the international electrical engineering brotherhood be adopted in
+several areas that are adjacent to preserves. And the reason for this being is the Dark
+Sky requirements set a light budget.
+Simply shielding lights is okay, but if there's just a lot of shielded lights, there's still this
+big ambient light thing that can be seen. It's not in the birds' eyes and it's not, you
+know, directly affecting perhaps the, you know, the light that's being emitted skyward.
+But it is creating a vast sea of light. And most of our newer buildings do shield their
+lights, and still there's a lot of light escaping. So, the Dark Sky Ordinance actually
+saves energy. And it just, it mandates lighting be appropriate levels for what is needed
+for health and safety. So, that's maybe something that could be discussed in the future.
+And it's being adopted by many progressive communities, especially ones that have
+telescopes.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 20
+And then, moving onto Bill 23. This is a very useful bill to set benchmarks for energy
+and water use performance standards for public buildings. As we know we are the
+largest customer, the County of Maui is the largest customer for electricity. I believe
+that's still the case. It was when i worked as a Council aide. And anything that we can
+do to make our buildings more efficient in water and energy, saves the taxpayer money
+and certainly allows these resources to be used elsewhere and serve more people, the
+same amount of resources to serve more users. So, this is a good start. If we don't
+know how we're doing, it's a little difficult to improve.
+And then, last but not least, Bill 24, which amends Title 19, having to do with standards
+in the B-2 Community Business District, and B-3, and P-1 and P-2 Public/Quasi-Public
+Districts. This 90-foot height level limit in the B-2 District. You know, many B-2 districts
+are right in the middle of urban areas. But in Makena, right next door to where the old
+Maui Prince grounds were, not the hotel itself but the north end of the grounds, is a B-2
+district. And this district was, you know, put into place in the 1970's. And this is not an
+urban area. It's really quite a rural and, you know, laid back sort of area.
+And to think that this would then allow buildings, you know, 90-feet tall. There are
+restrictions in the zoning, in the rezoning request for Makena Resort for B-2 areas. But
+this B-2 area is not subject to that rezoning. And I, I'm very concerned that without
+some assurances, that plans could change if this is passed and much more massive
+and large buildings with no setbacks from property lines etc., could just go into that tiny
+little, I think it's 12-acre B-2 district. So, I understand that this is really geared towards
+urban areas, but it could affect non-urban areas as well. Thank you.
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Chair. Thank you, Ms. de Naie, for your extensive
+testimony. I don't know if maybe we need to make  apress release on the new format.
+Some of those bills were not up for first reading, exactly. But that's for another time. I
+was wondering, I did not see written testimony on GC 22-1 and 22-2, and I was
+wondering if at ail possible if you could send the comments that you made to, to me or,
+or because I believe these two are coming to my Committee. So, if, if you can send
+the comments that you made for written testimony to me, I can try and follow up before
+we get a chance to hear it in Committee on some of your concerns.
+MS. DE NAIE: Thank you very much. And I probably will testify, and probably others will, at
+that time cause there's other folks tracking this. Do you have any idea when it will be
+coming to your Committee?
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 21
+COUNCILMEMBER PALTIN; It'll come to my Committee today. But it probably won't get
+heard till after Budget. But if you can send your testimony in writing to me, we can try
+follow up before it gets heard in Committee. So, maybe we can have some more
+information--
+MS. DE NAIE; Yes. Back and forth.
+COUNCILMEMBER PALTIN: Yeah.
+MS. DE NAIE: Very good. Thank you very much for that opportunity.
+COUNCILMEMBER PALTIN: Thank you. And then, the other question I had was your
+comments on Bill 17. What we're actually doing today is referring it to Member
+Sinenci's Committee for more research, outreach, and discussion. And I'd love if you
+could be a part of that because it was kind of my proposal and we just weren't able to
+pass it out of my Committee to first reading yet, because there was request for more
+outreach and whatnot. So, I would love it if you could be part of that taskforce per say.
+MS. DE NAIE: I, I would. Haiku is an area that has many of these people who feel that they
+shouldn't live next door to chickens and so forth. So, yeah, I, I would be happy to be
+part of that.
+COUNCILMEMBER PALTIN: Awesome. Thank you. Thank you, Ms. de Naie. Thank you
+Chair.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you, Chair. Member Paltin covered a couple of my
+questions. I just was going to talk about those two items being referred. And also, on,
+on the, the Bill 21, Lucienne, the seabird lighting, I wonder if you would be willing to
+work, because those will be coming to my Committee sometime next month, and if you
+could maybe work with Axel in my office, and Jay Penniman, to possibly work on an
+amendment that might include the Dark Sky issue?
+MS. DE NAIE: I, I, I will send over the ordinance. And we, we try, wheneverwe do settlement
+agreements, to try to get that in, you know, with private landowners, because, you
+know, these large landowners can make a big difference when they, they have lands
+near the coast in the SMA district.
+COUNCILMEMBER KING: Right. And we wouldn't be addressing the conditions of anything,
+any specific permit. But we could look at it in a general sense and maybe add some
+language.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 22
+MS. DE NAIE; Well, it's very important that the Code could reflect that, because otherwise
+even terms of settlement agreements, folks can say, well, we can't go against the
+County Code, so sorry, Charlie, you know, we're not going to do this. So, if, if it could
+be compatible that would be great.
+COUNCILMEMBER KING; Okay. Great. Thank you for bringing that up. I really appreciate
+it.
+MS. DE NAIE: Mahalo.
+CHAIR LEE: Anymore questions, Members? If not, thank you, Ms. de Naie, for your input
+and testimony. Have a great weekend.
+MS. DE NAIE; You too. Thank you, guys.
+DEPUTY COUNTY CLERK: Chair, the next person we have signed up to testify-
+CHAIR LEE: I'm sorry. I missed, ! think Member Sinenci has a question.
+COUNCILMEMBER SINENCI: No questions. Chair.
+CHAIR LEE: Oh, sorry. Okay. Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, the next individual we have signed up to testify is Richard
+Wainscoat. To be followed by Barbara Barry.
+MR. RICHARD WAINSCOAT [testifying on Bill No. 21 (2022)1:
+Aloha, Councilmembers. My name is Richard Wainscoat. I am an astronomer at the
+University of Hawaii, testifying on behalf of myself today. I use the Pan-STARRS
+telescopes atop Haleakala to search for, search the sky for dangerous asteroids, when
+they hit earth at some point in the future. The,  Ijust wanted to testify in strong support
+of, of Bill 21 and encourage you to, to go a little further because I think as it's written it
+actually doesn't go far enough.
+So, astronomy and the work that I do of searching the sky for, for dangerous objects,
+when they hit the earth, is strongly affected by the sky becoming bright. And as we
+look at, if you go to the top of Haleakala and look at the night sky, you'll see that the
+northwestern half of the sky is kind of much brighter than the southeastern sky. So,
+the population of, of, well, the population areas of Maui and the lighting associated with
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 23
+it, have degraded the night sky as seen from Haleakala. Fortunately, the requirements
+for astronomy to protect the night sky and for the protection of endangered birds are
+very, very closely aligned. So, astronomy is, is hurt by blue light and it's hurt by a lot
+of light.
+And so, i wanted to just highlight a couple of inadequacies in the, in the present lighting
+ordinance. The present lighting ordinance does not control blue light, basically at all,
+in existing lights. And it has a giant loophole, the metal halide lights. So, metal halide
+is just about as bad as mercury lights for birds and for astronomy. And it’s, they, they
+are not presently required to be properly shielded. And basically, some, some
+businesses on Maui have just chosen to use metal halide lamps for lighting, because
+they, they're not restrictive. And I think this is a major problem for astronomy and for
+birds. And I'm happy to answer any questions. I'm going to kind of keep it short, cause
+I know you're on a tight agenda. Thank you.
+CHAIR LEE; Thank you, Mr. Wainscoat.
+Member King.
+COUNCILMEMBER KING; Thank you. Chair. Thank you for being here, Mr. Wainscoat. I
+really appreciate the input. And wanted to ask you if you were collaborating at all with
+Jay Penniman from the Seabird Restoration or.. .
+MR. WAINSCOAT; Yeah, we are talking to each other very, very frequently. Our strategies
+for trying to deal with the lighting are very, very closely aligned. I've actually written a
+paper in the Scientific Journal about Maui's lighting, and I'd be happy to send that paper
+to you. It may be a little technical for the present discussion, but we, we've looked at
+this--
+COUNCILMEMBER KING; Yeah, I would love to have that paper. And then, I would also
+love to be able to maybe bring you into that discussion as a resource when we get to
+that, when we schedule the item.
+MR. WAINSCOAT; Thank you.
+COUNCILMEMBER KING; Alright, thank you for being here. Thank you. Chair.
+CHAIR LEE; Anymore questions for Mr. Wainscoat?
+Member Kama.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 24
+COUNCILMEMBER KAMA: Thank you, Chair. Thank you very much, Mr. Wainscoat, for
+your testimony. It v\/as, wo\a/, i just learned something today. So, so your testimony, if
+I understood it, almost seems as if, that the lighting that we have or that we are using
+whether it's a business or a residential area or some sort, that that particular lighting is
+not conducive to your studying of our skies, because the lighting is bad? Or it's not
+good? Or can you help me understand that please?
+MR. WAINSCOAT: I can help you a little bit, but it might take a little bit too long for the, explain
+it in detail. So, one of the things that happened is, is in this rush to switch to LED
+lighting, the initially the very energy efficient LED lights had a lot of blue light in them.
+And a lot of places installed these blue rich LED lights. And those things kind of drive
+both the birds and the astronomers crazy. So, now, technology has moved on and,
+and we have energy efficient LED lighting that is not rich in blue light. So, that's one
+of the problems.
+And I think compared to, so Haleakala may be the second best nighttime astronomy
+site in the world, behind Mauna Kea. But one of the things, one of the differences
+between Haleakala and Mauna Kea is that Maui is a smaller island and people live
+closer to the observatory. So, it's a, it's a fact of life basically, that the lights are going
+to affect the observatory a little bit more on Maui than they are on the Big Island.
+CHAIR LEE: And then-
+COUNCILMEMBER KAMA: So-
+CHAIR LEE: Member, Member Kama?
+COUNCILMEMBER KAMA: Yes?
+CHAIR LEE: We're going to, this matter will be referred to Committee, so.
+COUNCILMEMBER KAMA: Oh, okay. Okay, Chair. Thank you.
+CHAIR LEE: . . . at that time.
+COUNCILMEMBER KAMA: Thank you. Chair.
+CHAIR LEE: Do you have any more clarification questions?
+COUNCILMEMBER KAMA: No, I think I'll wait till it goes to the Committee. Thank you. Chair.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 25
+CHAIR LEE: Thank you.
+MR. WAINSCOAT: Thank you.
+CHAIR LEE: Any more questions, Members? If not, thank you very much, Mr. Westcoat [sic].
+MR. WAINSCOAT: Thank you.
+CHAIR LEE: Wainscoat. Sorry, for butchering your name.
+But Mr. Clerk, next testifier please.
+DEPUTY COUNTY CLERK: Chair, the next individual we have signed up is Barbara Barry.
+To be followed by Lisa Darcy.
+MS. BARBARA BARRY (testifying on Committee Report No. 22-2):
+Aloha, Chair and Councilmembers. How's everyone today. Happy Aloha Friday. I'm
+here with my grandson, I'm on tutu duty today and he's going to cooperate with me
+while I give my small testimony. My name is Barbara Barry. I have a small organic
+farm here in Haiku and I'm not a lobbyist. I'd like to testify on Resolution [sic] 22-2.
+First of all, I want to thank the Agriculture and Public Trust Committee staff for all their
+hard work. I, I do appreciate that much of the language in the strategy section was
+really improved. The language in the Kula sector about the Haiku Well Strategy is what
+I'm concerned about because it's basically saying that we have studies to do, but then
+this is our plan for the future, water supply In Central and South Maui.
+What a plan like this really should say is that we have studies that we need to do to
+find out if this could be a major water supply. And if it doesn't prove feasible, then we
+need to have other options to look at. So, it looks like folks like me are concerned that
+this is the main plan that the County water plan is offering and that we'll need to take
+our concerns to the State Water Commission. We don't have assurances that the
+necessary fact finding will be comprehensive enough to fully understand the aquifer,
+how the aquifer in Haiku area gets recharged and how long that actually takes. Without
+having accurate rainfall data and climate change modeling, many crucial factors will be
+missing.
+I believe a comprehensive study of all of our perennial and seasonal streams in Huelo
+and Haiku need to be fully understood with streamflow standard observations. And
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 26
+yeah, I'm just really concerned that we don't have the kind of guarantees that we need
+to make sure that the water is not being diverted without our knowledge. So, I really
+appreciate the opportunity to testify on the Zoom today. It makes my life a lot easier.
+And I mahalo you all for your time today. Thank you.
+CHAIR LEE: Thank you, Ms. Barry. Questions, Members? If not, thank you very much.
+MS. BARRY: Mahalo.
+DEPUTY COUNTY CLERK: Chair, the next individual we have signed up to testify is Lisa
+Darcy. To be followed by Vera Sredanovic.
+CHAIR LEE: Good morning.
+MS. LISA DARCY. SHARE YOUR MANA (testifying on Committee Report No. 22-6):
+Nice to see everyone. My name is Lisa Darcy. I'm the founder of Share Your Mana.
+I'm a commissioner on Healing Solutions for Homelessness and I'm still trying to get
+that coveted lobby position. It hasn't come yet. So, until then, it was really beautiful to
+hear the testimony for the saving the wetlands. I've been following them and its a, it's
+wonderful to hear how we're starting to put the pieces together that really serve the
+land. And one of the pieces that I've always tried to bring to this, this Council is howto
+also, with the same dignity and respect and oneness, that we need the land healthy.
+We need all of our community members healthy as well.
+So, I would like to testify on CR 22-6, relating to the alcohol prohibition in certain parks
+and recreational facilities, I think specifically historic districts in Lahaina. In last week's
+testimony, I recall, I believe the bill was initiated to try to deter disorderly conduct. And
+I'm not a fan of disorderly conduct myself. But I try to really look at it through the lens
+of why it's happening and what is the best way to manage things like this and what is
+most cost effective. So, after reviewing this and if I'm not up to speed on this, I will look
+forward to more conversation. But it seems to unfairly put unhoused residents and
+those in poverty at a higher risk of penalties and fines.
+I've been in the court system a lot in the last couple of months, and really over the last
+year, trying to help people navigate the system when they get fines. It's brutal. It's
+brutal. I actually want to drink afterwards. And  Ihave to tell you that if we are not
+aware of how this will disproportionately affect that community and the cost it's
+associated with, then I believe this needs to be tabled and reexamined.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 27
+People with finances can go home and pop a beautiful bottle of wine, sit back, drink
+until their blitzed, scream at their family, hit each other. And that's completely legal
+because they're in their house. And I just want to make sure that people who are
+unhoused have the same protections or the same abilities that, that housed people
+have.
+And more importantly, I'd like to see that this energy be put towards proactive solutions
+and not reactive solutions. And I think that just by identifying certain areas, that right
+there, I think I would be more behind it if it was for everywhere, but not just certain
+areas, again. And again, I understand the thinking behind it. But again, I want to
+address the root causes, and this certainly does not seem to provide any energy or
+supports to the root causes. I think bottom line, it's just going to compound the financial
+issues for individuals and the tax and our taxpayers.
+So, i would urge you to put this, and the estimated money, has anyone estimated how
+much money this will bring in? I'd love to see that put into proactive alcohol reduction
+programs. So, thank you.
+CHAIR LEE; Thank you, Ms. Darcy. Are, do we have any questions for the testifier? If not
+thank you very much. Good seeing you.
+MS. DARCY: Thanks.
+DEPUTY COUNTY CLERK: Next individual we have signed up to testify is Vera Sredanovic.
+To be followed by Robin Knox. Chair, Robin Knox is the last individual we have signed
+up to testify. If there are any other individuals connected to the meeting who have not
+testified but wish to do so, please let us know in the meeting chat now. Thank you.
+MS. VERA SREDANOVIC [testifying on Bill No. 1 (2022)1:
+Council, thank you so much for spending so much time on this so unimportant issue
+when compared to all the other big issues that you have to face.
+CHAIR LEE: Can you please state your name? Please state your name.
+MS. SREDANOVIC: Oh, sorry, sorry. My name is Vera Sredanovic and I'm testifying on
+Bill 1 (2022). The only reason for my testimony today, because you really did
+everything you, you had in your power, is just to provide you with more information,
+and I guess express my disappointment that none of the violations were documented.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 28
+So, you, you ser, you've seen the proofs, the neighborhood testimonies, and you also
+heard Dragon Fruit Farm owners claiming that they did nothing wrong. Unfortunately,
+Planning Department believed them. So, these owners have a long history of
+misrepresenting facts. And to me. the most outrageous one is the claim on their permit
+application to you stating that they have 15 acres, while in fact they never had more
+than 5. Currently, they only have 2.5, which out of 27.5 acres land is, you know,
+extremely small. And that already violates bill section, this bill section 2, condition 5,
+which could result in revocation of this conditional permit, according to Maui County
+Code, Section 19.40.08.
+So, most recently. Crystal stated to County Council that they now only have six kids
+living at the farm at the cottage. Well, we found out and I heard unfortunately, by being
+awoken at one a.m. in the morning, that they have at least 10 in the cottage and more
+of them live in the gift shop and vans on the property. It's difficult to say how many
+exactly they have now, but I'd say it's at least 15. Bright lights can be seen at, at night,
+every night after the farm hours, at the gift shop, and at the cottage too. And that, of
+course, disrupts the dark sky. And that's on top of the December 2 wedding, when
+they had extremely bright lights also that they used. That was after our last meeting,
+when they knew, well, they knew that they can't use them, but they still do.
+So . . . hours, these kids are making a lot of noise. Just this Wednesday, two nights
+ago, I was awoken at one a.m. by screaming coming from the farm. And I had to call
+the police again, which I hate doing. So, Dragon Farm gets new unpaid kids on a
+regular basis. And just this past week, they had  anew bunch come up. They're young
+and want to party, so it's not their fault. I understand that they have, you know, strong
+hormones. And police calls will not slow this problem. There's new kids coming all the
+time. They're not aware. I don't blame them. I blame these landowners who are
+enabling this unsupervised overcrowding of kids on their property.
+Crystal also stated that kids staying at the cottage will now get paid small wages and
+sign subsidized leases. But these kids stay at a farm much less than one year. And
+that also is considered TVR violation. On top of those weddings that they conduct at
+their, at the cottage. As of today, I did not see .. .at the property.
+CHAIR LEE: Can you please conclude your testimony please?
+MS. SREDANOVIC: Yes. So, 1 said, I didn't see any cameras installed, like you guys
+requested. So, that. I'm going to stop now. I know you guys are busy. So, thank you
+so much.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 29
+CHAIR LEE: Thank you. Members, questions?
+Member King.
+COUNCILMEMBER KING: Thank you, Chair, i was going to ask about the cameras. But!
+also think because, when we get to this issue, we've all gotten new information on this
+property. If we could, if we could ask our testifier to be a resource when we get to that,
+if there's no objections.
+COUNCILMEMBER PALTIN: I object. This matter was discussed in Committee. If you want
+to recommit it, that's one thing. But it was thoroughly discussed in Committee.
+COUNCILMEMBER KING: Right. But we have new information that the, the items that we
+had talked about were not happening. So, I don't know if that's a ... or.
+COUNCILMEMBER PALTIN: It's a testimony. If you read the last testimony, there's evidence
+of the cameras being installed.
+COUNCILMEMBER KING: Yeah, I didn't see that one. I'm okay. I'm, I'm probably not going
+to support this going forward based on not knowing exactly what's happening.
+CHAIR LEE: Okay.
+COUNCILMEMBER KING: Thank you.
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair. For our testifier, Ms. Sredanovic.
+On these latest rounds of concerns, did you call, besides the police, did you try to
+contact someone from the Planning Department? And if you did get a response, can
+you tell us what you received from them?
+MS. SREDANOVIC: I did contact Planning Department, because I didn't want to bug you
+guys. You spent already so much time. So, I emailed Michele McLean with the video
+proofs. And I also included Tamara, because I know she, she's the one bringing it from
+the Planning Commission. I have not heard of anything. I did hear from Michele that,
+only on one item, and ! sent the proofs on multiple from conditional use permit. Only
+on one item she responded that they didn't violate that one. But I know that they didn't
+have any written support, I mean, any written violations presented to you. And you
+depend on them and on their advice. So, that, that was a concern to me, because then
+this request for service process seems to be futile. And that's what I heard from a lot
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 30
+of people in the community. They don't want to use it, because they feel nothing comes
+out of it, so the people just give up.
+COUNCILMEMBER MOLINA: Okay. Alright. Thank you very much for your responses.
+Thank you, Madam Chair.
+MS. SREDANOVIC: Oh, thank you.
+CHAIR LEE: Anymore clarifying questions? If not, thank you very much for your testimony.
+Mr. Clerk.
+MS. SREDANOVIC: Thank you.
+DEPUTY COUNTY CLERK: Chair, the next person we have signed up to testify is Robin
+Knox. To be followed by Faith Chase,
+MS. ROBIN KNOX [testifying on Committee Report No. 22-5: and Bill Nos. 1 (2022) and
+21 (2022)1:
+Aloha. My name is Robin Knox. And I'm sorry, my camera is networking. And also,
+apologize that I couldn't join you earlier for the wetland resolution. I want to testify on
+CR22-5, Bill 1. and Bill 21.
+On CR 22-5, I just want to say that I support Daniel Kanahele being appointed. And
+that in addition to everything that it says in the resolution that Mr. Kanahele, when I
+was watershed coordinator for the southwest Maui watershed 2009-2011, he was a
+very faithful member of the watershed advisory committee, steering committee,
+advisory group steering committee. He showed up for the many, many meetings. We
+had over 100 people attend 40 meetings over two years to develop that plan. And so,
+you know, given what's happened in South Maui recently with so much flooding that
+are related to the watershed condition, that's one additional value of having Daniel in
+that position.
+With regard to Bill 1 with the Maui Dragon Fruit,  Ireally support the idea of agricultural,
+you know, entities, being able to have the kinds of activities that they have proposed.
+I also could really appreciate the comments of the previous testifier and the need for
+special use permits to, you know, be adhered to and to be well thought out. I would, if
+it is true that having woofers or people, young people who want to come farm, therefore,
+short terms, if that is indeed a violation of County Code, that that be looked into and
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 31
+that be resolved. Because there's great value to our County to having young people
+be able to go on the farms, help the farmers, and learn to be farmers themselves.
+With regard to Bill 21, on the lighting. I strongly support this, as well as support the
+kind of improvements that Mr. Wainscoat was talking about. I'm not an expert on the
+lighting, but I do trust in what he said. And I want to point out that especially out in
+Makena and further out at. . . and out at La Perouse, I have noticed a great increase
+in what 1 consider obnoxious lighting in, in the past year. And it bothers me and makes
+it where I can't see the stars as an amateur star watcher. And I feel certain that this,
+you know, is a problem for the birds as well. And after, you know, reading what this
+bill would require, I think some of that lighting would not comply. So, I do support
+moving forward to reducing the light pollution in our County to protect birds and other
+values that the community has. Thank you for allowing me to testify.
+CHAIR LEE: Thank you. Members, any questions? If not, thank you very much, Ms. Knox.
+DEPUTY COUNTY CLERK; The last person we have signed up to testify is Faith Chase.
+MS. FAITH CHASE (testifying on Committee Report Nos. 22-2. 22-5. & 22-6 and Resolution
+No. 22-7):
+Good morning. Chair Lee. Good morning, Council. First of all, I guess 1 just, if I had a
+logo, it would probably look like a broken record. But I'm going to speak on 22-2 on
+the WUDP. I'm going to say it again, while I appreciate this clarity because the lines
+of communication with the Mayor's Administration seem to be shaky on many issues,
+I really appreciate the fortitude of this Council putting fonward that correspondence and
+going, and making that reach to BLNR Suzanne Case, DLNR, all that. At the end of
+the day, you will find that it is in fact your water to, to hold in perpetuity for the people.
+Over time. I'm not going to go nana nana boo boo  Itold you so, but it's going to happen.
+So, 1 just need that to be on public record. The County is there to protect the water,
+the lands around the water sources, the delivery system, all of it. At the top of the end
+of their lease, A&B, which is now Mahi Pono, which has been ridiculed as Mahi Poho.
+At the top, at the end of their lease, that is when Maui County should have stepped in,
+because those lands were left, those are crown lands to be used for the government
+to the service of the people, and that is you guys. Thank goodness we have counties
+to do that. So, I just need that to be on record. And when, if you have any difficulty
+with a response from BLNR, it won't incite a riot, but it will, it will incite huge amounts
+of support from your people to back you up in, in clarifying all that. So, that's that.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 32
+! need to say something about the 22-6. You know, I've been following the lead of the
+founder, owner, operator of the nonprofit Share Your Mana Lisa Darcy. I'm amazed at
+her skillset, her experience. And I'm going to have to follow suit, even though like I've
+mentioned before in Committee, I was the student of SADD, which is Students Against
+Drunk Driving in high school. I followed MADD, Mothers Against Drunk Driving when
+Mrs. Stodd ran it for years. I have gone to the Liquor Commission to shut down new
+bars near schools. I've done all of that. I'm a,  Iwas there when they wanted to raise
+the, to lower the drinking age. I've been a participant in Liquor Commission many,
+many times. All that being said, you need to step very carefully with just giving tickets
+and citing people. If that's going to happen, then those people are not, have secure
+places to sleep. Then it's imperative that the Liquor Commissions try to create some
+sort of mechanism where they can get advice to the Police Department about
+community policing and step carefully in this area. I'd just like to get that on the record.
+I'm super excited about the wetlands 22, is that dash one, dash seven. You know,
+equal to the Wetlands Day, 1 guess it would be par for the course for us to start
+celebrating mangroves. Mangroves help to mitigate the effects of climate change and
+extreme weather events. And all of my teachers, and farmers, and biologists that I've,
+all the kumu I've had for the last 10 years have never, have been so adamant in, in
+expressing that, how important mangroves are. And also, kalo, loi kalo, they're the
+kidneys of the watershed. So, those two things.
+1 want to speak in favor of 22-5 for Mr. Daniel Kanahele. How lucky are we that we
+have such great stewards and grounded community give back people? I'm super
+excited to see him on the South Maui Advisory Committee. Thank you.
+CHAIR LEE: Questions? Member Paltin?
+COUNCILMEMBER PALTIN: Thank you. Chair. And I share your support of mangroves. But
+I'm sure you meant in the right place at the right time, right? Cause it's like one of our
+biggest threats to our ioko ia.
+MS. CHASE: Yeah, it's a delicate balance. You know, I think this continental, continental if
+we were part of the United States, mangroves have actually bigger, different kind of
+needs. But yes, I see what you're saying.
+COUNCILMEMBER PALTIN: Okay, cool. Thanks.
+CHAIR LEE: Other questions? If not, thank you, Ms. Chase.
+MS. CHASE: A hui hou.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 33
+DEPUTY COUNTY CLERK: Chair, the next person signed up to testify is Crystal Schmitt.
+CHAIR LEE: Ms. Schmitt?
+MS. CRYSTAL SCHMITT [testifying on Bill No. 1 (2022):
+Aloha. Can you see me?
+CHAIR LEE: Yes.
+MS. SCHMITT: Okay. Thank you, Councilmembers and Chair. 1 just want to say that first of
+all, we all, withdraw our permits for the sake of peace. Second, camera has been
+installed. We forwarded the pictures to Tamara, so that was done. Third, when people
+talk about police report, please read the actual report. It's nothing, you know, done.
+Also, as far as the request for service. Planning Department has come inspected.
+Building department has been inspected. Everybody, electrical is inspected, plumbing
+is inspected, everybody came inspected us. At this point, we have zero violations,
+everything is permitted, everything is done, all the RV out of there. So, I just want to
+thank everybody for your support.
+A lot of things are not factual. I'll give one example. I'm not going to go through the
+details, because the request for the service is three pages long. For example, one item
+mentioned that we intruded her property. Turns out after, what happen is used to be a
+fence clearly marked the boundary. But the fence was burned down in the fire. So,
+maybe the property owner was not aware of that fence before, so he make the claim.
+When my neighbor, my dear neighbor Ms. Vera, lovely lady, finally hired a professional
+surveyor to do the survey, turns not only we never intruded . . . inches of her property,
+some of her coconut trees planted by the landscapers, actually on our side. We really
+don't want to go there. We want, you know, to be  agood neighbor with our neighbors.
+And then the kids are very, very helpful. They're so timid. 1 mean, they, they're not
+rowdy. We make very clear no noise after 10 p.m. So, I just want here to say that we,
+we try our best. We continue to work hard. We continue to expand our farm and do a
+better job. And we just want to make sure you guys know that we have all intention to
+do our best as a good neighbor, good farmer. Thank you.
+CHAIR LEE: Thank you. Members, questions? If not, thank you very much.
+Mr. Clerk. Oh, do you have a question. Member Paltin?
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 34
+COUNCILMEMBER PALTIN: Yes. please.
+CHAIR LEE: Oh okay. Crystal, are you still there?
+MS. SCHMITT: Yes.
+CHAIR LEE: Ms. Schmitt? Okay.
+COUNCILMEMBER PALTIN: Thank you. I did receive the video surveillance information and
+I submitted it as written testimony. It's the last item. I just wanted to verify that the
+audio also works.
+MS. SCHMITT: Yes, it does. Both of them. And we can read them from our phone.
+COUNCILMEMBER PALTIN: Okay.
+MS. SCHMITT: Its motion sensor detected. The ones that have the motion, it shows up on
+your phone immediately.
+COUNCILMEMBER PALTIN: Okay. Thank you.
+CHAIR LEE: Anymore questions, Members? If not, thank you very much, Ms. Schmitt.
+Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, there are no other testifiers signed up. If an individual
+connected to the meeting who has not testified, but wishes to do so, please let us know
+now. You can. you can unmute and identify yourself. This is our last call for testifiers.
+If anybody who has not testified would like to do so, please inform us now. Chair, no
+one else has indicated that they wish to testify, and we have received written testimony.
+CHAIR LEE: Members, are there any objects to receiving the written testimony into the record
+and to closing public testimony?
+MEMBERS VOICED NO OBJECTION.
+THERE BEING NO OBJECTION, WRITTEN TESTIMONY
+RECEIVED FROM THE FOLLOWING WERE MADE A PART OF
+THE RECORD OF THIS MEETING:
+1. Vera Sredanovic;
+Crystal and Larry Schmitt;2.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 35
+Jeff Anderson;
+Shauna Buckner; and
+Lisa Jarrell.
+3.
+4.
+5.
+CHAIR LEE: No objections? So, ordered.
+Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, proceeding with minutes.
+MINUTES
+The minutes of the Council of the County of Maui's regular meeting of Novembers, 2021 was
+presented at this time.
+CHAIR LEE: Council Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+1 MOVE TO APPROVE THE MINUTES READ BY THE CLERK.
+COUNCILMEMBER SINENCI:
+SECOND.
+CHAIR LEE: Second? Okay, moved by Vice-Chair Rawlins-Fernandez, seconded by
+Member Sinenci, to approve the regular minutes of November, 2021.
+Any discussion? If not, roil call.
+DEPUTY COUNTY CLERK: Proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+Councilmember Mike Molina.DEPUTY COUNTY CLERK:
+COUNCILMEMBER MOLINA: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 36
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK:
+AYE.COUNCILMEMBER KING;
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK;
+COUNCILMEMBER SUGIMURA: AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK;
+CHAIR LEE: AYE.
+AYES; COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+Regular Meeting of the Council of the County of Maui
+January 21.2022
+Page 37
+CHAIR LEE: Thank you. Shall we proceed to county communications? Oh, the, action on
+the Consent Calendar. Sorry.
+DEPUTY COUNTY CLERK: Yes, Chair, proceeding with the Consent Calendar.
+ACTION ON THE CONSENT CALENDAR
+COUNTY COMMUNICATIONS
+- SCOTT K. TERUYA, DIRECTOR OF FINANCE
+(dated January 10, 2022)
+NO. 22-19
+Relating to the reallocation of a Purchasing Specialist II to Purchasing Specialist IV in
+the Department of Finance.
+- SCOTT K. TERUYA. DIRECTOR OF FINANCE
+(dated January 12, 2022)
+NO. 22-20
+Transmitting the annual report of all acquisitions made, and conveyances accepted
+for calendar year 2021.
+- ROWENA DAGDAG-ANDAYA. DIRECTOR OF PUBLIC WORKSNO. 22-21
+(dated January 10, 2022)
+Transmitting a copy of the Cost Sharing Agreement for the construction of a traffic
+roundabout for the intersection of Maui Lani Parkway and Kamehameha Avenue, along
+with a copy of the check received from Maui Lani Partners for the agreed upon pro rata
+share contribution of $610,340.
+NO. 22-22 - LORI TSUHAKO. DIRECTOR OF HOUSING AND HUMAN CONCERNS
+(dated January 3, 2022)
+Transmitting a copy of the notice of grant award from the State of Hawaii, Executive
+Office on Aging for the Nutrition Services Incentive Program in the amount of $23,484.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 38
+- ANDREW H. MARTIN. PROSECUTING ATTORNEYNO. 22-23
+(dated January 5, 2022)
+Transmitting a copy of the grant agreement from the State of Hawaii, Department of
+Transportation for the Maui Prosecutor's Office Impaired Driving program in the
+amount of $63,413.50.
+CHAIR LEE: Alright. Shall we go back to 22-16 or, or take the motion on the Consent
+Calendar now? Mr. Clerk?
+DEPUTY COUNTY CLERK: Chair, 1 believe the body would deal with the Consent Calendar
+first, and then afterwards, we can return to those items that were removed from the
+Consent Calendar.
+CHAIR LEE: Okay. Vice-Chair Rawlins-Fernandez for the motion.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I  MOVE TO FILE ALL THE ITEMS ON THE CONSENT
+CALENDAR.
+And I, 1 doubt there will be any objections to that.
+CHAIR LEE: Okay.
+COUNCILMEMBER KING:
+SECOND THE MOTION IF WE COULD FOLLOW IT WITH OUR
+MORNING BREAK.
+CHAIR LEE: Alright, Mr. Clerk, roll call. Let's finish that, since she had a second. Moved by
+Member Vice-Chair Rawlins-Fernandez, seconded by Member King, to accept the
+entire Consent Calendar.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call. The motion is to file all items
+on the Consent Calendar.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 39
+Councilmember Mike Molina.DEPUTY COUNTY CLERK;
+COUNCILMEMBER MOLINA: AYE.
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK;
+COUNCILMEMBER KING: AYE.
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK:
+COUNCILMEMBER SUGIMURA: AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+AYE.VICE-CHAIR RAWLINS-FERNANDEZ:
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE; AYE.
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 40
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+CHAIR LEE: Okay, very good. Members, should we take a break now and let's see, return
+at 10:50? Okay? Any objections?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: So ordered.
+(THE MEETING WAS RECESSED BY THE CHAIR AT 10:35 A.M. ,AND WAS
+RECONVENED AT 10:52 A.M., WITH ALL MEMBERS PRESENT.)
+CHAIR LEE: Will the Council meeting of January 21.2022, please reconvene.
+Mr. Clerk, let's resume where we left off.
+DEPUTY COUNTY CLERK: Yes, Chair. Proceeding with county communications.
+COUNTY COMMUNICATIONS
+- JEFFREY T. PEARSON. DIRECTOR OF WATER SUPPLY.NO. 22-16
+(dated January 7, 2022)
+Transmitting the Department of Water Supply's Monthly Source and Groundwater Use
+Reports for the month ending December 2021.
+CHAIR LEE: Member Sugimura. You're muted. You're muted.
+COUNCILMEMBER SUGIMURA: Apologies. So, I'd like to ask that this be referred to my IT
+Committee please.
+CHAIR LEE: Any objections, Members? Okay.
+Yes, Member Molina?
+COUNCILMEMBER MOLINA: Madam Chair, sorry, I didn't get the audio portion of it. What
+what item was that again from Member Sugimura?
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 41
+CHAIR LEE: 22-16.
+COUNCILMEMBER MOLINA: Oh, okay. No objection.
+CHAIR LEE: County Communication 22-16. Okay. We don't have to take a roll call because
+she's done this before and you've never objected. So, if there are no objections, we
+will refer this matter to the IT Committee.
+COUNCILMEMBER SUGIMURA: Thank you.
+CHAIR LEE: Okay. Any objections? Okay, so ordered.
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Mr. Clerk.
+NO. 22-17 - SCOTT K. TERUYA, DIRECTOR OF FINANCE,
+(dated December 20, 2021)
+Reporting on temporary transfers/loans from the General Fund and Department of
+Water Supply Revenue Fund to the General Obligation Bonds Series 2022 Fund as of
+November 30, 2021.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. May  Irequest CC 22-17 and 22-18
+be referred to BFED? 22-18 hasn't been called up by the Clerk yet.
+CHAIR LEE: Okay. Clerk, can you call up 22-18?
+DEPUTY COUNTY CLERK: Yes.
+- MICHELE M. YOSHIMURA. BUDGET DIRECTOR,
+(dated January 6, 2022)
+NO. 22-18
+Transmitting a list of approved unbudgeted equipment requests for Fiscal Year 2022
+from October 1, 2021, to December 31, 2021.
+CHAIR LEE: So, any objections referring this, these two items to the BFED Committee?
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 42
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE; So, ordered. Thank you.
+Mr. Clerk.
+- YUKI LEI K. SUGIMURA. CHAIR. INFRASTRUCTURE AND
+TRANSPORTATION COMMITTEE, (dated January 14. 2022)
+NO. 22-24
+Transmitting a proposed amendment to the proposed resolution entitled
+"AUTHORIZING A GRANT OF EASEMENT FOR ACCESS AND UTILITY PURPOSES
+TO WAILELE RIDGE OF MAUI, LLC, AND THE ACCEPTANCE OF GRANTS OF
+EASEMENTS FOR ACCESS FROM WAILELE RIDGE OF MAUI, LLC AND MAUI
+LAND AND PINEAPPLE COMPANY. INC.".
+CHAIR LEE: Alright. So, Member Sugimura. Yes.
+COUNCILMEMBER SUGIMURA: Thank you. I'd like to request to file this communication
+please.
+CHAIR LEE: Second? Is that a motion?
+COUNCILMEMBER SUGIMURA: Yeah.
+I MOVE TO, YEAH, FILE THIS COMMUNICATION.
+It's amended.
+CHAIR LEE: Okay. Second?
+COUNCILMEMBER SUGIMURA: I need a second.
+CHAIR LEE: So, we can get a discussion.
+COUNCILMEMBER PALTIN:
+SECOND.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 43
+CHAIR LEE; Seconded by Member Paltin.
+Discussion, Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. Yeah, thank you. So, I have Corp. Counsel
+standing by to explain, but it was determined that this amendment is not needed and
+the resolution that you'll see further in our discussions under 22-24 stands. It's correct.
+There's no amendment needed.
+CHAIR LEE: Okay. Maybe you'll just want to say what was the amendment about, just so
+people know.
+COUNCILMEMBER SUGIMURA: Oh, it was changing the square footage-
+CHAIRLEE: Okay.
+COUNCILMEMBER SUGIMURA: -in the tax map key. So, it was determined that it's correct.
+It's not needed to make that change of square footage.
+CHAIR LEE: Any more discussion or questions. Members? If not, all those in favor of the
+mo-
+Roll call.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+Councilmember Mike Molina.DEPUTY COUNTY CLERK:
+AYE.COUNCILMEMBER MOLINA:
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK:
+COUNCILMEMBER KING: AYE.
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK;
+COUNCILMEMBER JOHNSON: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 44
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK:
+COUNCILMEMBER SUGIMURA: AYE.
+Council Vice-Chair, oh, apologies.DEPUTY COUNTY CLERK:
+Presiding Officer Pro Tempore Tasha
+Kama.
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA, PALTIN. SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+CHAIR LEE: Thank you.
+COUNCILMEMBER SUGIMURA: Thank you, Members.
+CHAIR LEE: Mr. Clerk.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 45
+- MICHAEL J. MOLINA. CHAIR. GOVERNMENT RELATIONS
+ETHICS. AND TRANSPARENCY COMMITTEE,
+(dated January 14, 2022)
+NO. 22-25
+Transmitting a proposed amendment to the proposed resolution entitled "RELATING
+TO THE APPOINTMENT OF JOAQUIN FREITAS, JR. TO THE PUBLIC WORKS
+COMMISSION FOR THE COUNTY OF MAUI".
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Yeah, thank you very much, Madam Chair. If there are no
+objections, can we have County Communication 22-25 taken up at the same time as
+GREAT Committee Report 22-4?
+CHAIR LEE: Certainly. Any objections, Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay. Take it up then.
+COUNCILMEMBER MOLINA: Thank you.
+(See pages 55 through 59 for discussion and action.)
+CHAIR LEE: Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, proceeding with county communications and general
+communications for referral. The following county communications and general
+communications are recommended for referral to your Planning and Sustainable Land
+Use Committee.
+NO. 22-26 - MICHELE CHOUTEAU MCLEAN. PLANNING DIRECTOR
+(dated January 7, 2022)
+Transmitting the 2021 Annual Status Report on the Implementation of the Countywide
+Policy and Maui Island Plans.
+The recommended action is that County Communication No. 22-26 be referred to the
+Planning and Sustainable Land Use Committee.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 46
+NO. 22-27 - MICHELE CHOUTEAU MCLEAN. PLANNING DIRECTOR
+(dated January 7, 2022)
+Transmitting the 2021 Annual Status Report on the Implementation of the Maui County
+Community Plans.
+The recommended action is that County Communication No. 22-27 be referred to the
+Planning and Sustainable Land Use Committee.
+GENERAL COMMUNICATIONS
+NO. 22-1 - BRYAN ESMERALDA. SENIOR ASSOCIATE. MUNEKIYO HIRAGA
+(dated January 5, 2022)
+Submitting a document entitled "ANNUAL COMPLIANCE REPORT. CHANGE IN
+ZONING CONDITIONS FOR MAKENA RESORT AREA", on behalf of Makena Golf &
+Beach Club Owners, in accordance with Condition 22 of Ordinance 3613.
+The recommended action is that General Communication No. 22-1 be referred to the Planning
+and Sustainable Land Use Committee.
+NO. 22-2 - YUKINO UCHIYAMA, SENIOR ASSOCIATE. MUNEKIYO HIRAGA.
+(dated January 5, 2022)
+Submitting a document entitled "CHANGE IN ZONING ANNUAL COMPLIANCE
+REPORT FOR PARCEL H-2 (LOT 19) (TMK NO. (2) 2-1-005:085)", on behalf of
+H2R, LLC, in accordance with Condition 22 of Ordinance 3613.
+The recommended action is that General Communication No. 22-2 be referred to the Planning
+and Sustainable Land Use Committee.
+CHAIR LEE: Members, any objections to the referrals as read by the Clerk?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: Okay. So, ordered.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 47
+DEPUTY COUNTY CLERK: Chair, proceeding with committee reports.
+COMMITTEE REPORTS
+COMMITTEE REPORT
+NO. AGRICULTURE AND PUBLIC TRUST COMMITTEE;22-2
+Recommending the following:
+1. That Bill 14 (2022), entitled "A BILL FOR AN ORDINANCE ADOPTING AN
+UPDATE TO THE WATER USE AND DEVELOPMENT PLAN FOR THE
+ISL7\ND OF MAUI." be PASSED ON FIRST READING and be ORDERED TO
+PRINT;
+2. That County Communication 19-162, from the Director of Water Supply, be
+FILED;
+That Committee Report 20-128, from the Water, Infrastructure, and
+Transportation Committee, be FILED; and
+3.
+That the Miscellaneous Communication, from the County Clerk, referring the
+matter relating to the Water Use and Development Plan for the island of Maui.
+4.
+CHAIR LEE: Member Sinenci.
+COUNCILMEMBER SINENCI: Mahalo Chair.
+I MOVE TO PASS BILL 14 ON FIRST READING, FILE THE
+COMMUNICATIONS, AND FILE COMMITTEE REPORT 20-128.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Second? Moved by Member Sinenci, seconded by Member Sugimura, to
+approve the recommendations in Committee Report 22-2.
+Discussion, Member Sinenci.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 48
+COUNCILMEMBER SiNENCI: Mahalo, Chair. Your APT Committee met 15 times this term
+to discuss adopting an update to the Maui County Water Use and Development Plan.
+In previous terms, the Council's Water and Infrastructure Committee; Water,
+Infrastructure, and Transportation Committee; the Environmental, Agriculture, and
+Cultural Preservation Committee met on the proposed update as well.
+In Section 174C-31 of the Hawaii Revised Statutes, requires each County to prepare
+a water use and development plan, adopt the plan by ordinance, and update the plan
+as necessary.
+Section 13-170-32(b)(3), under Hawaii's Administrative Rules state: "Each water use
+and development plan shall consider a twenty-year projection period for analysis
+purposes."
+Committee noted that the Council adopted the Maui County Water Use and
+Development Plan by Ordinance 1948 (1990), which was subsequently approved by
+CWRM as part of the Hawaii Water Plan. Your Committee further noted that Maui
+Island has not approved a Water Use and Development Plan since that time.
+By Ordinance 3804 of 2010, the Council proposed an update to the Water Use and
+Development Plan for part of Maui, but the update was not approved by CWRM.
+This Draft Maui Island Water Use and Development Plan update was initiated by the
+Department of Water Supply in 2015, after years of drafting, revising, community input,
+workshops, presentations, outside consultation, and Board of Water Supply review.
+The initial draft was transmitted to the Council in March of 2019.
+The original deadline for the Council to pass the Maui Island Water Use Plan, Water
+Use and Development Plan Update was September 18, 2019. But as provided in
+Section 14.02.040, Maui County Code, the Council extended the time to pass the
+proposed update five times after receiving continuous and extensive public testimony
+requesting more thorough reviews and revisions to the proposed update.
+Through this process, the Committee was able to incorporate major revisions, including
+incorporating the "Addendums" section throughout the corresponding areas of the
+document; adding information on Native Hawaiian water and cultural rights, including
+information on Public Trust Doctrine, riparian rights, correlative rights, kuleana rights,
+konohiki rights, the duty of State agencies to protect Native Hawaiian traditional and
+customary rights were included in the "Ka Pa'akai Analysis" section and a new section,
+entitled "Historical and Cultural Context of the Regulatory System," according to input
+from the ‘Aha Moku Councils. We also added the Consent Decree and the Board of
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 49
+Water Supply TIG Report, dated October 17, 2019, as amended, and approved on
+December 19, 2019, regarding the feasibility of purchasing and maintaining the EMI
+Water Delivery System to the appendices. Members, vje also added strategies to each
+aquifer sector area, Part II: Water Resource Adequacy, Island Wide Strategies &
+Recommendations to address the concerns of the various community groups.
+Your Committee also discussed additional strategies which were not incorporated into
+the Plan, including requiring that all water needs are met in the Ko'olau Aquifer Sector
+Area prior to allowing water to leave the region.
+The Department of Water Supply said removing long-term directions for water source
+to any region would create a gap in the Plan which, if left unfilled, could cause CWRM
+to deem the Plan incomplete and reject the Council's proposal.
+Your Committee supported the update to the Water Use and Development Plan for
+Maui Island and acknowledged the collaborative efforts from the public. Administration,
+State agencies throughout the review process.
+Chair, you Committee voted 7-0 to recommend passage of the revised proposed bill,
+approved as to form and legality by the Department of Corporation Counsel,
+incorporating your Committee's recommended revisions and nonsubstantive revisions.
+Attached to the revised proposed bill is the revised document entitled "Maui Island
+Water Use Development Plan DRAFT". So, Members, I ask for your full support on
+my motion.
+CHAIR LEE: Very good. What an ambitious plan.
+Members, questions? Comments? If not, Member Paltin and then Member Johnson.
+COUNCILMEMBER PALTIN: Thank you, Chair. I just wanted to express my appreciation for
+Member Sinenci. I know it's not second reading but, you know, famous quote says,
+"whiskey's for drinking and water's for fighting". And you know, we sure did duke it out
+over some of those motions in the Water Use Development Plan. And just, you know,
+what a monumental feat. I know it sometimes been compared to the West Maui
+Community Plan, but our book was this big and his book was like this big. So, just
+wanted to give props to Member Sinenci on such a controversial issue, especially here
+in Hawaii nei. Excellent job.
+CHAIR LEE: Member Johnson.
+COUNCILMEMBER JOHNSON: Thank you, Chair. I'd like to ditto Councilmember Paltin's
+points she made there. You know, 15 times, we met. And it wasn't with, without
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 50
+Counciimember Sinenci's leadership and his willing to work with the community. He
+spearheaded a great ambitious plan, i stand in strong support of this, so thank you so
+much. Aloha, Chair.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you, Chair. I don't know what else I could add, but I'll just
+echo Member Paltin, Member Johnson's comments that this was a huge effort. And I
+appreciate the diligence of Counciimember Sinenci and the way he went about it. And
+also, making sure that everybody's voice was heard in, in addressing some of the
+issues that have not previously been addressed in the Water Use Development Plan.
+And especially looking at the potential for the County taking over the EMI lease and
+putting that, that issue into the Water Development Plan, because I think, to me, that's
+one of the biggest issues and you addressed it where it hasn't been addressed before.
+So, thank you for your leadership, Counciimember Sinenci. And I stand in full support
+of the plan.
+CHAIR LEE: Any more comments or questions?
+Member Sugimura. You're muted again.
+So, yeah, I wanted to extend my appreciation to
+Mr. Sinenci for taking this through. I think it started off with Alice, and then turned over
+to my Committee, and then to yours. And I, I will tell you that in my experience when I
+was trying to pass this plan out, we were not successful in being able to reach groups
+that you were, so appreciate you doing that and bringing their voice forward and
+including that in the discussion. So, thank you very much.
+COUNCILMEMBER SUGIMURA:
+CHAIR LEE: Well said.
+Member Kama.
+COUNCILMEMBER KAMA: Thank you. Chair. And I too would like to give my comments to
+the APT Committee Chair. I am not a voting member of that Committee, although I am
+a member of the Committee, but a non-voting. But  Ijust wanted to share that, you
+know, in my early days when I was living in Waimanalo, the whole issue back then was
+the Waiohuli, Waiahole water that was going on, on that side of our island and for
+years, and years, and years, and years of fighting for that.
+And so, when I got onto this Council and I realized what the water and how we had
+transferred from you, to Yuki, to, to Shane, and all the great strides that have been
+made in a short amount of time. This is a short amount of time to develop what this
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 51
+Council has done in the past three years. And I'm really so proud to be a Member of
+this Council in terms of acknowledging, you know, where we are in terms of water as
+a public trust, and where we are in moving forward in terms of controlling our own
+destiny for our future. So, props, kudos, mahalos to you. Member Sinenci. And
+holomua. Thank you. Chair.
+CHAIR LEE; Vice-Chair Rawiins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. And  Iwill join my colleagues and
+echo all their sentiments. You know, Pro Temp Kama is absolutely correct, this is
+groundbreaking. And it, it really is due to your leadership in incorporating so many
+voices that have fell silent, to make sure that, you know, that their manao, their ike is
+evident throughout the plan. E ola ika wai. Mahalo, Member Sinenci. Mahalo, Chair.
+CHAIR LEE: Very good.
+Member Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair. Well, I, I want to join my colleagues
+in this morning's lovefest of Mr. Sinenci and his chairmanship of this Committee and
+taking on such a very, very difficult topic. And as Member Paltin's saying goes, it
+certainly holds true for all communities. What was that "whiskey is for drinking and
+water is forfighting?" Although it sounds somewhat humorous, but it is true. And thank
+you, Mr. Sinenci, for being very patient with the public and hearing from all sides, and
+making sure all the dies, "i's" are dotted, and "t's" are crossed and what have you. So,
+great job. I stand in full support. Thank you. Madam Chair.
+CHAIR LEE: Thank you. And of course, I support everything that has been said about you
+and all the work you've done, Mr. Sinenci. Therefore, everybody ready for the vote?
+All those in favor of the motion, well, sorry, roll call.
+COUNCILMEMBER MOLINA: Roll call.
+DEPUTY COUNTY CLERK; Chair, proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA; AYE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 52
+DEPUTY COUNTY CLERK: Councilmember Kelly Takaya King.
+COUNCILMEMBER KING: AYE.
+DEPUTY COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: AYE.
+DEPUTY COUNTY CLERK: Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: AYE.
+DEPUTY COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: AYE.
+DEPUTY COUNTY CLERK: Presiding Officer Pro Tempore Tasha
+Kama.
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+COUNCILMEMBER SINENCl: Thank you. Members.
+Regular Meeting of the Council of the County of Maui
+January 21. 2022
+Page 53
+COMMITTEE REPORT
+NO. GOVERNMENT RELATIONS. ETHICS. AND TRANSPARENCY
+COMMITTEE:
+22-3
+Recommending that Resolution 22-8 . entitled "RELATING TO THE APPOINTMENT
+OF KAPONO KAMAUNU TO THE MAUI COUNTY CULTURAL RESOURCES
+COMMISSION," be ADOPTED.
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair.
+I MOVE TO ADOPT RESOLUTION 22-8.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: 22-8? Okay. Discussion. Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much. Madam Chair. Your GREAT
+Committee met on January 4. 2022, to discuss a proposed resolution relating to the
+Mayor's nomination of Kapono Kamaunu to the Maui County Cultural Resources
+Commission, for a term expiring on March 31, 2022, due to the resignation of Tanya-
+Lee Greig.
+The Council has until January 22 to approve or disapprove the nomination, otherwise
+the nomination will be deemed approved.
+Your Committee interviewed Mr. Kamaunu. And Mr. Kamaunu is a hula entertainer
+employed with Na Hoaloha ‘Ekolu, and the owner of Na Kani O Hula LLC. He was
+also a hula teacher at Haleakala Waldorf School and a part-time naturalist with the
+Maui Ocean Center. So, based on his background and experience in cultural
+preservation, your Committee voted 8-0 to recommend the nomination be approved.
+Thank you, Madam Chair.
+CHAIR LEE: Anymore discussion? Roll call.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 54
+Councilmember Mike Molina.DEPUTY COUNTY CLERK:
+COUNCILMEMBER MOLINA; AYE.
+DEPUTY COUNTY CLERK; Councilmember Kelly Takaya King.
+COUNCILMEMBER KING: AYE.
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK:
+COUNCILMEMBER SUGIMURA; AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ; AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+AYES: COUNCILMEMBERS JOHNSON. KAMA. KING.
+MOLINA. PALTIN, SINENCI. SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES; NONE.
+Regular Meeting of the Council of the County of Maui
+January 21.2022
+Page 55
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+CHAIR LEE; Very good.
+DEPUTY COUNTY CLERK: Chair--
+CHAIR LEE; Proceed.
+COMMITTEE REPORT
+NO. GOVERNMENT RELATIONS, ETHICS. AND TRANSPARENCY
+COMMITTEE:
+22-4
+Recommending that Resolution 22-9 . entitled "RELATING TO THE APPOINTMENT
+OF JOAQUIN FREITAS. JR. TO THE PUBLIC WORKS COMMISSION FOR THE
+COUNTY OF MAUI." be ADOPTED.
+DEPUTY COUNTY CLERK: Chair, County Communication 22-25 is also before the body at
+this time.
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you. Madam Chair.
+MOVE TO ADOPT RESOLUTION 22-9.
+CHAIR LEE: Second?
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Molina, seconded by Member Kama, to adopt Resolution
+dash, 22-9.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair. Your Governance/s/c7 Relations,
+Ethics, and Transparency Committee met on January 4, 2022, to discuss a proposed
+resolution relating to the Mayor's nomination of Joaquin Freitas, Jr. to the Public Works
+Commission for a term expiring on March 31, 2024, due to the resignation of John
+Blanchard.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 56
+Council has until February 13, 2022, to approve or disapprove this nomination.
+And your Committee interviewed Mr. Freitas. And he is a self-employed business
+owner who has a great understanding of County operations having previously served
+on the Cost of Government Commission, Public Works Commission, and Fire and
+Public Safety Commission. Your Committee voted 8-0 to recommend the nomination
+be approved.
+And Madam Chair, when you deem it appropriate, I have an amendment to propose.
+Thank you.
+CHAIR LEE; Thank you. Any more discussion? Member Molina.
+COUNCILMEMBER MOLINA; Okay, thank you very much. Madam Chair.
+MOVE TO AMEND THE PROPOSED RESOLUTION WITH THE
+REVISIONS NOTED IN THE AMENDMENT SUMMARY FORM
+ATTACHED TO COUNTY COMMUNICATION 22-25.
+CHAIR LEE; Second?
+VICE-CHAIR RAWLINS-FERNANDEZ;
+SECOND.
+CHAIR LEE: Moved by Member Molina, seconded by Vice-Chair Rawlins-Fernandez, to
+adopt the recommendation in County Communication 22-25.
+Member Molina.
+COUNCILMEMBER MOLINA: Yes, thank you very much. Madam Chair.
+AND ALSO, I'D LIKE TO INCLUDE IN THE MOTION THE
+FILING OF COUNTY COMMUNICATION 22-25.
+AMENDMENT THAT I'M PROPOSING WILL OCCUR IN THE
+"BE IT RESOLVED" CLAUSE TO READ: "THAT IT APPROVES
+THE APPOINTMENT OF JOAQUIN FREITAS, JR. TO SERVE
+AS AN ALTERNATE ON THE PUBLIC WORKS COMMISSION
+FOR THE COUNTY OF MAUI FOR A TERM EXPIRING ON
+MARCH 31, 2024".
+THE
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 57
+And the reason for this is John Blanchard, the individual who resigned, he was an
+Alternate member on the Public Works Commission. And as his replacement, Joaquin
+Freitas, Jr. should fill an Alternate seat on the Public Works Commission. Thank you.
+CHAIR LEE: Okay. More discussion? Any questions, discussion? If not, all those in favor
+of the motion to amend the main motion, raise. Oh. Roll call.
+COUNCILMEMBER MOLINA: Roll call.
+CHAIR LEE: Geez, keep forgetting. Roll call.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call vote on the amendment.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: AYE.
+DEPUTY COUNTY CLERK: Councilmember Kelly Takaya King.
+Oh, apologies. Councilmember King?
+COUNCILMEMBER KING: Can you hear me?
+AYE.
+But I, I wish we could just do a voice vote on some of these.
+DEPUTY COUNTY CLERK: Sorry about that.
+Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 58
+DEPUTY COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: AYE.
+DEPUTY COUNTY CLERK: Presiding Officer Pro Tempore Tasha
+Kama.
+COUNCILMEMBER KAMA: YES.
+DEPUTY COUNTY CLERK: Council Vice-Chair Keani Rawlins-
+Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+CHAIR LEE: Okay. The main motion.
+DEPUTY COUNTY CLERK: Oh, yes. Chair. Should I proceed with a roll call vote on the
+main motion as amended, or?
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahaio, Chair. All nine of us are here and I don’t, I
+don’t think there's any objection to, to this. Can we just take a voice vote?
+CHAIR LEE: Members, any objections to not having to take a roll call for some of these
+votes?
+MEMBERS VOICED NO OBJECTION.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 59
+CHAIR LEE: Mr. Clerk, we lost your visual. Okay. Did you hear that?
+DEPUTY COUNTY CLERK: Yes, Chair.
+CHAIR LEE: Rather than taking a roll call.
+VICE-CHAIR RAWLINS-FERNANDEZ: Call for the question.
+DEPUTY COUNTY CLERK: Yes. Chair.
+CHAIR LEE: Okay, all those in favor of the motion, signify by saying "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ. AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Okay, all "ayes", zero "noes"; motion carries. The main motion as amended.
+Okay.
+COMMITTEE REPORT
+GOVERNMENT RELATIONS. ETHICS. AND TRANSPARENCYNO. 22-5
+COMMITTEE:
+entitled "APPOINTMENT OF DANIEL22-10Recommending that Resolution
+KANAHELE TO THE SOUTH MAUI ADVISORY COMMITTEE TO THE MAUI
+PU\NN1NG COMMISSION FOR THE COUNTY OF MAUI." be ADOPTED.
+CHAIR LEE: Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair.
+MOVE TO ADOPT RESOLUTION 22-10.
+VICE-CHAIR RAWLINS-FERNANDEZ:
+SECOND.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 60
+CHAIR LEE: Okay, moved by Member Molina, seconded by Vice-Chair Rawlins-Fernandez
+to adopt Resolution 22-10.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA; Thank you. Madam Chair. Your GREAT Committee met on
+January 4, 2022, to discuss a proposed resolution relating to the Council's nomination
+of Daniel Kanahele as a member of the South Maui Advisory Committee, for a
+staggered term of three or five years, as selected by lot, and to fulfill the membership
+requirement for an individual with demonstrated expertise in Native Hawaiian
+traditional and customary practices, in accordance with Sections 2.28.050 and
+2.28.070 of the Maui County Code, respectively.
+Your Committee interviewed Mr. Kanahele and he is  aformer Director of, on the Kihei
+Community Association, a board member on a County advisory committee for South
+Maui and a board member on the County's Cultural Resources Commission.
+He is currently a member of the Council's South Maui District Office staff. And
+Mr. Kanahele is also a founding member of Aha Moku O Honua'ula Council and
+believes in historical and cultural preservation and a "sense of place".
+And according to Charter Section 13-2.7, it allows for employees and officers of the
+County to serve on boards and commissions, provided such services does not result
+in a conflict of interest. And your Committee recommended to Mr. Kanahele that he
+seek an opinion from the County Board of Ethics, which he has agreed to.
+And your Committee voted 9-0 to recommend that his nomination be approved. Thank
+you, Madam Chair.
+CHAIR LEE: Okay. Any more discussion?
+Member King.
+COUNCILMEMBER KING: Thank you. Chair. I think everything's been talked about. And
+certainly there's been so much support from the community. I just wanted to express
+my mahalo to Mr. Kanahele. He's been a great addition to the South Maui District
+Office. But he also, you know, stepped up for this open position and resigned from the
+Cultural Resources Commission, which is, which was sad for them, but I'm happy for
+the South Maui Advisory Committee.
+And, and you know, I was, as his employer, I didn't want to influence either way, but
+he, it was his decision to step up and offer himself for this position. So, really pleased
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 61
+that he will be here, and I think he'll be a great addition to the Committee. So, mahalo
+Daniel, in the other room.
+CHAIR LEE: Okay, anymore discussion? All those in favor of the motion, raise your hand
+and say "aye".
+COUNCILMEMBERS JOHNSON. KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+AYES;
+CHAIR LEE: Ail "aye".Any opposed, say "no", just in case.
+NOES: NONE.
+CHAIR LEE: All "ayes", zero "noes"; motion carries.
+COMMITTEE REPORT
+NO. HUMAN CONCERNS AND PARKS COMMITTEE:22-6
+Recommending the following:
+(2022), entitled "A BILL FOR AN ORDINANCE AMENDING1. That Bill
+SECTION 13.04A.080, MAUI COUNTY CODE, RELATING TO THE ALCOHOL
+PROHIBITION FOR CERTAIN PARKS AND RECREATIONAL FACILITIES,"
+be PASSED ON FIRST READING and be ORDERED TO PRINT; and
+15
+That County Communication 21-549, from the Director of Parks and Recreation
+be FILED.
+2.
+CHAIR LEE: Presiding Officer Pro Tempore Kama.
+COUNCILMEMBER KAMA: Thank you. Chair.
+I MOVE TO ADOPT THE RECOMMENDATION IN COMMITTEE
+REPORT 22-6.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 62
+CHAIR LEE: Okay, moved by Member Kama, seconded by Member Sugimura, to approve
+the recommendation in Committee Report 22-6.
+Discussion, Member Kama.
+COUNCILMEMBER KAMA: Thank you, Chair. Your Human Concerns and Parks Committee
+met on January 6, 2022, and makes reference to County Communication 21-549, from
+the Director of Parks and Recreation, transmitting a proposed bill entitled 'A BILL FOR
+AN ORDINANCE AMENDING SECTION 13.04A.080, MAUI COUNTY CODE,
+RELATING TO THE ALCOHOL PROHIBITION FOR CERTAIN PARKS AND
+RECREATIONAL FACILITIES".
+The purpose of the proposed bill is to align Section 13.04A.080, Maui County Code,
+with Section 19.52.090, Maui County Code, relating to the alcohol prohibition for
+certain parks and recreational facilities within the Historic Districts 1 and 2 in Lahaina.
+Your Committee notes that in accordance with Section 19.52.090(F), Maui County
+Code, it is unlawful to consume intoxicating liquor in any public street, park, or open
+space that is owned or maintained by a governmental agency, without the express
+approval of the responsible government commission [sic] an6 the Cultural Resources
+Commission.
+Your Committee discussed further amending the Subsection B of the bill to explicitly
+list the seven parks in Historic Districts 1 and  2that prohibit alcohol consumption. Your
+Committee voted 5-0 to recommend passage of the revised proposed bill on first
+reading and filing of the communication. And I ask for our Members full support.
+CHAIR LEE: Anymore discussion?
+Member Paltin, then Member King.
+COUNCILMEMBER PALTIN: Thank you, Chair. I just wanted to say I'm in support. I
+introduced the original change in the Title 19 section based on recommendation from
+our Lahaina Clean and Safe contractor Lawrence Kauhaahaa. And you know if we're
+hiring somebody or we're contracting to somebody to help create a clean and safe
+environment, then we should listen to them.
+But regardless, this doesn't change anything. The, the law is already in effect. What
+it does is align the Parks section of the Code with Chapter 19 section of the Code. So,
+it's already in existence. It doesn't add a $500 fine for, like, say the Cove, or Charley
+Young, or Honokowai, or anything like that. That was a little bit of a confusion for me,
+but it was cleared up in Committee.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 63
+And the last point that I wanted to make was thank you to the Chair and the
+Departments for listing out all the parks under the Department's jurisdiction within the
+Lahaina Historic Districts. As you can see in the bill, all of those locations, you know,
+date back to Kingdom times for their historical significance. And I'm not for people who
+are unsheltered having a drink, just not in these areas, which are kind of, you know,
+important to our, our history, our people and, and whatnot. You know, if they want to
+have a drink unsheltered, just have some respect for these specific historic district
+areas. Thank you.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Actually, Chair, thank you. f, I had, the questions that! was going
+to ask were answered by Member Paltin's--
+CHAIRLEE: Okay.
+COUNCILMEMBER KING: The information she just gave us. So, I'm satisfied. I know it was
+specific to these areas as well. But, you know, just wanted to clarify that what we're
+doing here is something that's already in law, in the State law. so thank you.
+CHAIR LEE: Anyone else?
+Member Johnson.
+COUNCILMEMBER JOHNSON: Yeah, this was hard for me. I don't really agree with this.
+Members. I, I appreciate what, what Lisa Darcy was mentioning, how we should be
+more proactive instead of reactive. And solutions in, where it comes to drinking and
+alcohol abuse, that should be funded in ways instead of just putting fines on people.
+You know, I live in, when I use to live in Iwiole low-income housing, they, they were
+going to stop drinking out in Hulopoe. And everybody was going to come, okay, then
+I'm going to go drink and have a party at my house. And then, we're going to go drink
+in residentials, in residential areas. I didn't really think, I don't, I think that would have
+unintended consequence as well. So, that, we can go at the end, you know, watch a
+sunset and have a beer and, you know, take it easy. That's fine. And when we come,
+I don't have a problem with that. In fact, I think that's what a lot of people do as it
+stands now.
+But when it comes to fining people, there is unintended consequences with that one
+as well. And the homeless people, we don’t want them, to fine them for being, you
+know, we don't want to criminalize homeless, poverty and everything, so fines is a, is
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 64
+a bit of a stickler for me. But yeah, !, I think there's better ways, better solutions to fix
+any kind of alcohol abuse than fines and banning this and that, so I, I don't support it
+as it stands now. Thank you. Chair.
+CHAIR LEE; Anyone else?
+Member, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. I’m, so I'm not a voting member of
+the Committee. And like Member King, I had similar questions that Member Paltin
+proactively addressed. And it sounds like, in Committee, that, sorry, that, that balance
+was discussed. And, and it sounds like by listing out the specific historically significant
+and culturally sacred places were, were named, so that it gets that protection. Because
+it, I guess, you know, for western or American society, you know, it'd be similar to, you
+know, drinking on the lawn of a, of a church, maybe. !, and, and so, you know, just
+trying to find that balance.
+My question, though, after Member Johnson's comments are, is, was the discussion
+on removing the $500 fine had in Committee? And, and was that something that was
+proposed but didn't receive the majority vote?
+CHAIR LEE: Member Kama.
+COUNCILMEMBER KAMA: The issue that we discussed wasn't really about removing or
+decreasing fines. It was about aligning the two sections in our Code so that they don't,
+they're not contrary to each other, but that they are aligned. If Section 19 said it's
+illegal, then we should follow up with all the other Codes that say we need to align it.
+And I, and I'm, I think that if, that all, anybody wanted to take a look at those fines that
+that could be done in probably a different Committee. But this Committee's work was
+just to be able to align the two sections so that it's consistent and we're not talking out
+of two sides of our mouth.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Committee Chair Kama. So, in section, or
+Title 19, it also includes a $500 fines?
+COUNCILMEMBER KAMA: Yes.
+VICE-CHAIR RAWLINS-FERNANDEZ: The two $500 fines? So, if, if for Member Johnson
+and members of our community, that fine is an issue as the sticking point, it would, it
+would need to be addressed in both sections and removed there?
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 65
+COUNCILMEMBER KAMA: Correct. And so that would be something that would probably
+come up in another Committee, correct? Because it's a budgetary issue, or it could be
+Finance, or it could be a GREAT issue, right? I'm not sure if that's something that
+would come up in Human Concerns and Parks, but there's nothing to say that we
+couldn't, I think. That's my whole sense of it.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Member-
+COUNCILMEMBER KAMA: To address Member Johnson's concern.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo. Mahalo for that responses and responding
+to my question. Mahalo, Chair, for that leeway.
+CHAIR LEE: Member King.
+COUNCILMEMBER KING: Thank you. Chair. Just one more thought and Member, maybe
+you can answer this for me, Member Kama. In, in Committee, did, was there
+discussion, because this goes into effect immediately, was there a discussion of a
+grace period or trying to educate people who might be in that, you know, in those areas
+that are homeless that might not, you know. I know, I know what we're doing is aligning
+with another section of the Code, but they might not know about that-
+COUNCILMEMBER KAMA: Yes.
+COUNCILMEMBER KING: -section either. So, I don't know if there was a discussion of
+what-
+COUNCILMEMBER KAMA: The educational component that Member Paltin had wanted to
+ensure was that the seven parks that are mentioned within the Lahaina District 1 and 2
+were clearly stated so that people would know these are the parks that you can't drink
+in. But to my understanding, that was the only type of education that the Committee
+worked on.
+COUNCILMEMBER KING: So, there'll be, the Department will be putting signs up in those
+areas just to make it very clear. . .
+COUNCILMEMBER KAMA: Supposedly.
+COUNCILMEMBER KING: Okay.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 66
+COUNCILMEMBER KAMA: Yeah.
+COUNCILMEMBER KING: Okay.
+COUNCILMEMBER KAMA: And getting back to what Member--
+COUNCILMEMBER KING: That's my concern, because when it goes into effect immediately,
+that's, you know, people can immediately get these fines without maybe having that
+notice.
+COUNCILMEMBER KAMA: Right.
+COUNCILMEMBER KING: And I think that’s real important.
+COUNCILMEMBER KAMA: But no. it's very clear and that is why in a previous Committee
+we talked about the community court system that when they get to that place, then the
+court would help them to address not just that issue or to waive that, but to be able to
+help them to get into some other types of services that might be able to help them to
+move beyond where they're at currently. So, so I'm comfortable in what these sections
+are saying. And I'm comfortable that that our people are not going to be punished for
+something that may be not even of their own accord. So, thank you.
+COUNCILMEMBER KING: Thank you.
+CHAIR LEE: Any, anymore?
+Yes, Mr. Molina.
+COUNCILMEMBER MOLINA: Yeah, thank you. Madam Chair. Although I'm not a member
+of the Committee, I just have a, just quick question either for Member Kama or maybe
+if Corp. Counsel wanted to, I guess, refresh my memory and maybe others. As far as
+the, if someone gets hit with a fine, regardless of their social or economic status, who
+do they go to, to appeal the fine?
+COUNCILMEMBER KAMA: I'd like to see if Corp. Counsel could get that for us, Member
+Molina.
+CHAIR LEE: Sure.
+COUNCILMEMBER MOLINA: Thank you.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 67
+CHAIR LEE: Corp. Counsel, are you on the line? Richelle Thomson? Moana?
+FIRST DEPUTY CORPORATION COUNSEL RICHELLE THOMSON: Hi. Thank you, Chair.
+So, this is, it is a petty misdemeanor, so it would be with the Circuit Court.
+COUNCILMEMBER MOLINA: Okay, thank you.
+CHAIR LEE: Any more questions? If not. Member Sugimura.
+COUNCILMEMBER SUGIMURA: Going back in-
+CHAIR LEE: You're, you're muted.
+COUNCILMEMBER SUGIMURA: Going back in, you know, years, I don't know what year it
+was. I remember when Halloween was going gangbusters in Lahaina Town and there
+were uproar from the, from members of the community in this historic district. And I
+think that Lawrence Kauhaahaa, who's help with the Safe and Clean Program, he kind
+of brought it all together and brought focus to why. And it wasn't necessarily to target,
+you know, disadvantage or people who may want to hang out in these parks. But it
+was really for the safety of all the, all of the residents.
+And, and I do remember that during Halloween, the Halloween festivities in Lahaina
+Town, it got pretty loud and a lot of activities going on, you know, under the Banyan
+Tree at one time. And that's what brought this uproar. So, I really support this, this
+measure going forward. And I don't think it has any intentions of trying to, you know,
+go after people who may be, you know, don't have  ahome or, you know, those kinds
+of things, i think it's just an overall safety issue.
+And I, I was going to bring up, and I'm glad Tasha did, or Member Kama did, about the
+community court that is in process with the Prosecuting Attorney's Office and the courts
+to bring this forward. So, that if anybody who does get, you know, have a ticket, or
+have any kind of violations against them and if they, you know, it would be a court
+system that will come to them with wrap around services, get your driver's license back.
+I mean, there's a lot of benefits. And that whole ball is in motion too, which will really
+help the people that we're concerned about. So, thank you. I support this. Thank you.
+Member Kama.
+CHAIR LEE: Sorry. I was coughing, so I turned my mic off.
+Mr. Clerk. Roll call.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 68
+DEPUTY COUNTY CLERK: Yes, Chair. Proceeding with  aroll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: AYE.
+DEPUTY COUNTY CLERK: Councilmember Kelly Takaya King.
+COUNCILMEMBER KING: AYE.
+DEPUTY COUNTY CLERK: Councilmember Gabe Johnson.
+COUNCILMEMBER JOHNSON: NO.
+DEPUTY COUNTY CLERK: Councilmember Tamara Paltin.
+COUNCILMEMBER PALTIN: AYE.
+DEPUTY COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA: AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+COUNCILMEMBER KAMA: YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 69
+COUNCILMEMBERS KAMA, KING, MOLINA,
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES:
+NOES: COUNCILMEMBER JOHNSON.
+DEPUTY COUNTY CLERK: Chair, there are eight "ayes", one "no"; motion carries.
+CHAIR LEE: Okay. Thank you. Proceed.
+COMMITTEE REPORT
+NO. 22-7 INFRASTRUCTURE AND TRANSPORTATION COMMITTEE:
+Recommending that Resolution
+EASEMENT FOR ACCESS AND UTILITY PURPOSES TO WAILELE RIDGE OF
+MAUI. LLC, AND THE ACCEPTANCE OF GRANTS OF EASEMENTS FOR ACCESS
+FROM WAILELE RIDGE OF MAUI, LLC AND MAUI LAND AND PINEAPPLE
+COMPANY, INC.," be ADOPTED.
+22-11 entitled "AUTHORIZING A GRANT OF
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you. Chair.
+I  MOVE TO ADOPT THE RECOMMENDATIONS IN
+COMMITTEE REPORT 22-7.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Sugimura, seconded by Member Kama, to approve the
+recommendation in Committee Report 22-7.
+Discussion, Member Sugimura.
+COUNCILMEMBER SUGIMURA: Thank you, Chair. Your Infrastructure, Transportation
+Committee met on January 3, 2022, discuss a, to discuss a proposed resolution to
+authorize a grant of easement for access and utility purposes to Wailele Ridge of
+Maui, LLC, and the acceptance of grants of easement for access from Wailele Ridge
+of Maui, LLC and Maui Land and Pineapple Company, Inc.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 70
+At this meeting, your Committee noted that the project has been stalled due to the
+passing of the lead developer, and approval of the amendments will allow the project
+to move forward.
+Your Committee also discussed the misalignment of the Hui Road "A" pavement to the
+roadway lot in certain areas, particularly around the project. The Department of Public
+Works informed your Committee that it will seek alternative options to ensure that legal
+access through and around the project are available.
+Your Committee voted 6-0 to recommend adoption of the proposed res, proposed
+resolution. And I respectfully ask for the Members support.
+CHAIR LEE: Any discussion. Members?
+Member Paltin.
+COUNCILMEMBER PALTIN: Thankyou. I just want to repeat, as I did in Committee, mention
+my begrudging support for this item. You know, this piece of property was dangled as
+a carrot for the Kapalua-Mauka development as a potential affordable housing location.
+For like the past ten years, it's been in an unfinished state with a big ol' sign that says,
+"luxury apartments coming soon". And so, you know, just to get this done and
+completed and not be an eyesore in our community. I’ll support it. But the whole thing
+stinks. That's all I've got to say.
+CHAIR LEE: Any other comments or questions?
+Okay, Mr. Clerk, roll call.
+DEPUTY COUNTY CLERK: Yes, Chair. Proceeding with  aroll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+DEPUTY COUNTY CLERK: Councilmember Mike Molina.
+COUNCILMEMBER MOLINA: AYE.
+DEPUTY COUNTY CLERK: Councilmember Kelly Takaya King.
+COUNCILMEMBER KING: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 71
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+AYE, WITH RESERVATIONS.COUNCILMEMBER PALTIN:
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK:
+Oh, apologies. I didn’t hear you Councilmember Sugimura.
+SORRY, AYE.COUNCILMEMBER SUGIMURA:
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+YES.COUNCILMEMBER KAMA:
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+AYE, WITH RESERVATIONS.VICE-CHAIR RAWLINS-FERNANDEZ:
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+AYE.CHAIR LEE:
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 72
+COMMITTEE REPORT
+PLANNING AND SUSTAINABLE LAUD USE COMMITTEE:NO. 22-8
+Recommending the following:
+That Bill 16 (2022), entitled "A BILL FOR AN ORDINANCE AMENDING
+CHAPTER 19.29, MAUI COUNTY CODE, TO PROHIBIT INSTRUMENTS OF
+CONVEYANCE FROM RESTRICTING THE GROWING AND HARVESTING
+OF ANY AGRICULTURAL CROP OR PRODUCT," be REFERRED to the
+Agriculture and Public Trust Committee;
+1.
+That the Miscellaneous Communication, from the County Clerk, transmitting a
+copy of Resolution 21-113, referring to the Planning Commissions a proposed
+bill entitled "A BILL FOR AN ORDINANCE AMENDING CHAPTER 19.29, MAUI
+COUNTY CODE, TO PROHIBIT INSTRUMENTS OF CONVEYANCE FROM
+RESTRICTING THE GROWING AND HARVESTING OF ANY
+AGRICULTURAL CROP OR PRODUCT," be FILED; and
+2.
+That County Communication 21-371, from Councilmember Tamara Paltin, be
+FILED.
+3.
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN:
+I  MOVE TO ADOPT THE RECOMMENDATIONS IN
+COMMITTEE REPORT 22-8.
+COUNCILMEMBER SINENCI:
+SECOND.
+CHAIR LEE: Moved by Member Paltin, seconded by Member Sinenci, to approve the
+COUNCILMEMBER PALTIN: Thank you, Chair.
+CHAIR LEE: -to approve Committee Report 22-8 and its recommendations.
+Discussion?
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 73
+COUNCILMEMBER PALTIN; Thank you, Chair. Your Planning and Sustainable Land Use
+Committee met on January 6, 2022, discussing a proposed bill entitled "A BILL FOR
+AN ORDINANCE AMENDING CHAPTER 19.29, MAUI COUTNY CODE, TO
+PROHIBIT INSTRUMENTS OF CONVEYANCE FROM RESTRICTING THE
+GROWING AND HARVESTING OF ANY AGRICULTURAL CROP OR PRODUCT".
+Planning Commissions met and reviewed the proposed bill in October of 2021.
+However, you know, COVID staff shortages and whatnot, a report of the Commission's
+findings and recommendations was not received by the Council within 120 days in
+accordance with Section 8-8.6 of the Charter.
+Your Committee discussed clarifying the proposed bills applicability to both owners
+and lessors of a property.
+Your Committee also supported creating a definition for small-scale agriculture
+provided there are regulatory and enforcement standards in place.
+Your Committee further supported additional outreach efforts to farming organizations
+to receive input and ensure their concerns are addressed.
+The Planning Department also recommended amendments to the proposed bill.
+Your Committee agreed the bill requires further discussion and voted 7-0 to
+recommend referral to your Agricultural and Public Trust Committee and filing of the
+communications. Respectfully ask for the Members support of my motion.
+CHAIR LEE: Any further discussion? All those in favor of the motion, say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA. PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, proceeding with resolutions.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 74
+RESOLUTIONS
+RESOLUTION
+NO. 22-12
+APPROVING THE APPOINTMENT OF
+KEONI SHIROTA AS PERSONNEL SPECIALIST
+IN THE OFFICE OF COUNCIL SERVICES
+CHAIR LEE: Vice-Chair Rawiins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+I MOVE TO ADOPT RESOLUTION 22-12.
+CHAIR LEE; Second? Second somebody.
+COUNCILMEMBER KING:
+SECOND.
+CHAIR LEE: Moved by Vice-Chair Rawlins-Fernandez, seconded by Member King, to adopt
+the resolution in resolution 22, to adopt Resolution 22-12.
+Discussion? Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Mr. Shirota received his Bachelors
+of Arts Degree in Business Administration from the University of Hawaii, West Oahu.
+He is currently employed as a Committee Secretary in the Office of Council Services.
+He is also a licensed independent insurance agent with Primamerica.
+Mr. Shirota is a quick learner, diligent worker, and an excellent OCS employee. His
+OCS background will allow him to smoothly and quickly transition to personnel
+services. I'll also add that he is a pleasure to work with. And I look forward to him
+being in this new position and ask the Members for their support in adopting this
+resolution for Mr. Shirota.
+CHAIR LEE: Anymore discussion?
+Member Johnson, then Member Sugimura.
+COUNCILMEMBER JOHNSON: Thank you. I, I, thank you, Chair. I had the pleasure of
+working with Mr. Shirota on my first year as a Councilmember. And I say whoever,
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 75
+wherever he's going, they're going to be really lucky to have him. He's a great worker,
+support him fully 100 percent, little bit jealous. Alright, thank you. That's all I have to
+say. Thank you, Chair.
+CHAIR LEE: Okay, Member Sugimura.
+COUNCILMEMBER SUGIMURA: Yeah, I too fully support this. And 1,1 had a discussion with
+him about this change. And I have to tell you that he’s excited. And he says his
+educational background will, you know, help fulfill this, this next role that he's taking
+on. But I will tell you that even before he joined us, I heard glowing reports about his
+enthusiasm, willingness to always help when he was on the Clerk's side. And yeah, 1
+100 percent support him and I want to see him rise even higher. So, congratulations.
+CHAIR LEE: Okay, anybody else? All those in favor of adopting this resolution, raise your
+hand and say "aye".
+COUNCILMEMBERS JOHNSON. KAMA. KING.
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+AYES:
+NOES: NONE.
+CHAIR LEE: All "ayes". zero "noes"; motion carries.Nine "ayes'
+Mr. Clerk.
+RESOLUTION
+NO. 22-13
+NOMINATION OF MICHAEL L. WILLIAMS TO THE
+CHARTER COMMISSION FOR THE COUNTY OF MAUI
+CHAIR LEE: Let's see, Mr. Molina?
+COUNCILMEMBER MOLINA: Thank you. Madam Chair.
+MOVE TO WAIVE THE REQUIREMENT OF COMMITTEE
+REFERRAL AND REPORT IN ACCORDANCE WITH RULE 7.G.
+OF THE RULES OF THE COUNCIL.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 76
+CHAIR LEE; Second?
+COUNCILMEMBER KING:
+SECOND.
+CHAIR LEE: Moved by Member Sinen, moved by Member Molina, seconded by Member
+King, to waive the Rules of the Council.
+Any discussion on, on this, Member Molina?
+COUNCILMEMBER MOLINA: Yes, thank you very much, Madam Chair. Approval of my
+motion by a two-thirds vote of the entire membership of the Council will enable the
+Council to consider the proposed resolution today. Thank you.
+CHAIR LEE: Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ; Mahalo, Chair. And  Iknow this will get unanimous
+vote, but I just wanted to add about the time sensitivity that he's filling a vacancy on
+the Charter Commission. And Charter Commission has very tight timeline to get a
+report to us, so that's why we're waiving the Rule in order to take action on this today.
+Mahalo, Chair.
+CHAIR LEE: Anybody else? Discussion? On, this is on the Rule. All those in favor of the
+motion, raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES; NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Back to you, Mr. Molina.
+COUNCILMEMBER MOLINA: Thank you very much, Madam Chair.
+MOVE TO ADOPT RESOLUTION 22-13.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 77
+COUNCILMEMBER KING:
+SECOND.
+VICE-CHAIR RAWLINS-FERNANDEZ: Second.
+CHAIR LEE: Moved by Member Molina, seconded by Member King, to adopt the resolution.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much. Madam Chair.
+Committee met on January 18, 2022, to interview Mr. Williams and for consideration
+to the Charter Commission for a term expiring on July 1, 2022, due to the resignation
+of Lance D. Collins on December 16, 2021.
+Your GREAT
+In accordance with Charter Section 14-3, of the 11 members appointed by the Council,
+each Councilmember may nominate one of the nine members and the Mayor appoints
+the remaining two members. Because Mr. Collins was my nominee, I was able to
+nominate an individual to fill this vacancy. Mr. Williams applied for the Charter
+Commission back in February 2021. And he's also a trial attorney, or was I should
+say, trial attorney in Oregon until 2014, who managed his own law firm, before retiring,
+then relocating to Maui.
+And according to Mr. Williams' application, he is the current Chair of the County's Cost
+of Government Commission, President of the Maui Tomorrow Foundation, Treasurer
+and board member of Stand Up Maui, and is also a board member of the Kula
+Community Association. He certainly has a great working knowledge of County
+government laws and operations and has indicated he will prioritize his time for the
+Charter Commission if he is appointed. I ask for the Members full support. Thank you.
+Madam Chair.
+CHAIR LEE: Any more discussion?
+If not, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. I, I fully echo the GREAT Committee
+Chair's remarks and comments, and fully support Mr. Williams filling the vacancy on
+the Charter Commission. And am fully confident in his qualifications and passion,
+heart, and ability to get the job done for the people of Maui County.
+I just wanted to clarify for the record, that the Charter does not mandate each, or specify
+that each Councilmember would appoint a representative on the Charter Commission.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 78
+That it, it, it's the work, the appointment process is the collective Council, and we as a
+Council determine that each Councilmember would do that. So, it's just a matter of
+practice and it's not really specified in the Charter. I just wanted to clarify that for the
+record. Mahalo, Chair.
+CHAIR LEE: Any more comments?
+Member King.
+COUNCILMEMBER KING: Thank you. Chair. Yeah, I fully support Mr. Williams. I think we
+couldn’t have found a more qualified person to replace Mr. Collins. And I just wanted
+to clarify for the record that, because I've had people ask me that, you know, we've
+had other people that couldn’t, that couldn't serve on two commissions. But because
+the Charter Commission is not a standing commission, that this was possible for
+Mr. Williams to continue as Cost of Government Commission Chair and also serve on
+the Charter Commission.
+CHAIR LEE: Okay, thank you.
+Member Sinenci.
+COUNCILMEMBER SINENCI: Chair, real quick. I just wanted to share the sentiments of my
+fellow Counciimembers. Happy to support. Thank you.
+CHAIR LEE: Member Sugimura.
+COUNCILMEMBER SUGIMURA: 1.1 just wanted to express my support for Mr. Williams also,
+as I've seen him through the Kula Community Association and, and what he does for
+us here Upcountry. And I just want to always, also want to thank the Counciimembers
+cause now we have three members from Upcountry who are on the Charter
+Commission. Thank you.
+CHAIR LEE: Okay, rub it in. Anyone else? All those in favor of the motion, oh.
+Member Paltin.
+COUNCILMEMBER PALTIN: I just wanted to reiterate my suggestion that they look into the
+bike tour issue since they got a majority of Kula members.
+CHAIR LEE: That's all we need is proposal number 86.
+All those in favor of the motion, raise your hand and say "aye".
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 79
+AYES; COUNCILMEMBERS JOHNSON, KAMA. KING.
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES; NONE.
+CHAIR LEE; All "ayes", zero "noes"; motion carries.
+Mr. Clerk.
+DEPUTY COUNTY CLERK; Chair, proceeding with resolutions for referral. The following
+resolutions are recommended for referral to the following Committees as noted;
+RESOLUTION
+NO. 22-14
+RELATING TO THE APPOINTMENT OF EDWIN LINDSEY
+TO THE BOARD OF WATER SUPPLY FOR THE COUNTY OF MAUI
+The recommended action is that Resolution No. 22-14 be referred to the Government
+Relations, Ethics, and Transparency Committee.
+RESOLUTION
+NO. 22-15
+AUTHORIZING ACCEPTANCE OF THE FRIENDS OF THE CHILDREN'S
+JUSTICE CENTER OF MAUI'S DONATION OF PAINT, PAINTING, CARPET,
+INSTALLATION, CABINETRY AND COUNTERTOPS TO THE COUNTY OF MAUI,
+PURSUANT TO CHAPTER 3.56, MAUI COUNTY CODE
+The recommended action is that Resolution No. 22-15 be referred to the Government
+Relations, Ethics, and Transparency Committee.
+(RESOLUTION NO. 22-15 WAS ADOPTED U\TER IN THE
+MEETING. See pages 80 through 82 for discussion and action.)
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 80
+RESOLUTION
+NO. 22-16
+REFERRING TO THE LANA‘1, MAUI, AND MOLOKA‘1 PUXNNING
+COMMISSIONS A PROPOSED BILL AMENDING CHAPTERS 19.18 AND
+19.20, MAUI COUNTY CODE, RELATING TO TRANSIENT VACATION
+RENTALS IN BUSINESS DISTRICTS
+The recommended action is that Resolution No. 22-16 be referred to the Planning and
+Sustainable Land Use Committee.
+CHAIR LEE: Members, are there any objections to the referrals as read by the Clerk?
+Member Molina.
+DISCUSSION RELATING TO
+RESOLUTION NO. 22-15
+COUNCILMEMBER MOLINA: Yeah, thank you, Madam Chair.
+I'D LIKE TO MAKE A CONSIDERATION FOR RES0 22-15AND
+MAKE A MOTION TO WAIVE THE REQUIREMENT OF
+COMMITTEE REFERRAL AND REPORT IN ACCORDANCE
+WITH RULE 7.G. OF THE RULES OF THE COUNCIL.
+COUNCILMEMBER SUGIMURA:
+SECOND.
+CHAIR LEE: Second? Moved by Member Molina, seconded by Member Sugimura, to waive
+the Rules of the Council regarding Resolution 22-15.
+Discussion, Member Molina.
+COUNCILMEMBER MOLINA: Thank you very much, Madam Chair. Approval of my motion
+by a two-thirds vote of the entire Council will enable the Council to consider the
+proposed resolution today. Thank you.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 81
+CHAIR LEE: Any more discussion? All those in favor of the motion to waive the Council
+Rule, raise your hand and say "aye".
+AYES: COUNCILMEMBERS JOHNSON, KAMA, KING,
+MOLINA. PALTIN, SINENCl, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries.
+Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair.
+1 MOVE TO ADOPT RESOLUTION 22-15.
+CHAIR LEE: Second?
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Molina, seconded by Member Kama, to adopt Resolution
+22-15.
+Discussion? Member Molina.
+COUNCILMEMBER MOLINA: Thank you, Madam Chair. The Department of the Prosecuting
+Attorney wishes to accept a donation and installation of carpeting, paint, cabinetry, file
+cabinets and countertops from the Friends of the Children's Justice Center of Maui in
+the amount of $37,042.64. The donation will be used towards the Children's Justice
+Center of Maui located at 2103 Wells Street in Wailuku. Thank you, Madam Chair.
+CHAIR LEE: Any more discussion? If not, all those in favor of the motion, raise your hand
+and say "aye".
+Member Paltin, are you "aye"? Are you an "aye"?
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 82
+AYES: COUNCILMEMBERS JOHNSON, KAMA. KING,
+MOLINA. PALTIN, SINENCI, SUGIMURA,
+ViCE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+NOES: NONE.
+CHAIR LEE: Nine "ayes", zero "noes"; motion carries. Okay, thank you.
+Mr. Clerk, the next resolution.
+DEPUTY COUNTY CLERK: Chair, are, are there any other objections to the referrals as read
+by the Clerk?
+CHAIR LEE: We have a question. Member Paltin.
+COUNCILMEMBER PALTIN: Oh, I just was wondering on Resolution 22-14. It was meant
+to add a III in be, in behind the name, right? Edwin Lindsey the III?
+CHAIR LEE: Oh.
+COUNCILMEMBER KAMA: I think you're right. Cause, yeah.
+CHAIR LEE: Okay, Mr. Clerk.
+COUNCILMEMBER KAMA: It's not on it.
+DEPUTY COUNTY CLERK: Yes, Chair.
+CHAIR LEE: Member Paltin mentioned in Resolution 22-14, is it 14, to add the III, like Edwin
+Lindsey the III.
+DEPUTY COUNTY CLERK: Okay. Chair, the resolution that we received did not have that,
+that, the third in there, in the title. But the body can add it and amend it in Committee,
+something along those lines, to make that correction.
+CHAIR LEE: Is that okay with you. Member Paltin?
+COUNCILMEMBER PALTIN: Yeah. Just we need a living person is all.
+COUNCILMEMBER KAMA: Thank you. Yes.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 83
+CHAIR LEE: Okay. Alright. So, we were on 22-16, I believe.
+DEPUTY COUNTY CLERK: Chair, so, yes, I, that was is recommended for referral to the
+Planning and Sustainable Land Use Committee. So-
+CHAIR LEE: Any objections to referring these 22-14 and 22-16 to the referrals as read by
+the Clerk?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections? Okay, no objections. So, ordered.
+DEPUTY COUNTY CLERK: Chair, proceeding with ordinances.
+ORDINANCES
+ORDINANCE NO.
+BILL NO. 1 (2022)
+A BILL FOR AN ORDINANCE AMENDING ORDINANCE 4295 AND GRANTING
+MAUI DRAGON FRUIT FARM LLC A CONDITIONAL PERMIT TO OPERATE A
+GIFT SHOP AND CONDUCT SPECIAL EVENTS AT 833 PUNAKEA LOOP,
+U\HA1NA, MAUI, HAWAi‘1
+CHAIR LEE: Member Paltin.
+COUNCILMEMBER PALTIN:
+I MOVE TO PASS BILL 1 (2022) ON SECOND AND FINAL
+READING.
+COUNCILMEMBER KAMA:
+SECOND.
+CHAIR LEE: Moved by Member Paltin, second by Member Kama, to pass Bill 1 on second
+and final reading.
+Discussion, Member Paltin.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 84
+COUNCILMEMBER PALTIN; Your Committee previously reported on this matter through
+Committee Report 21-85 at its meeting of September 17, 2021. The Council
+postponed consideration of CR 21-85 pending an investigation into the use of
+recreational vehicles on the property as housing for farm workers.
+At its meeting of November 5, 2021, the Council recommitted the matter to the Planning
+and Sustainable Land Use Committee.
+By correspondence dated November 17, 2021, the owners of Maui Dragon Fruit
+Farm LLC requested an extension to their conditional permit, specifically to phase out
+special events after July 12, 2022.
+Your Committee prohibited any rescheduling or substitutions of events should one
+cancel.
+Your Committee also discussed concerns of excessive noise, and aquaball, and zipline
+operations, especially after hours.
+To allay these concerns, your Committee added conditions to limit hours of operation
+and mandate that cameras with visual and audio livestreaming capability be installed
+on the property. Drums and amplified sound were also prohibited.
+With the conditions, your Committee voted 9-0 to recommend passage of the revised
+proposed bill on first reading and filing of the communication.
+And further, I just wanted to address some comments that arose in the testimony. The
+very last written testimony in our packet is pictures of where the cameras have been
+installed. Ms. Schmitt verified that audio can come from it. And the pictures coming
+from the camera on the phone were also submitted.
+I called Director McLean at the start of this meeting to see if she had verified it And
+she said that until these are conditions of a conditional permit, that they wouldn't go on
+site and verify it. So, that's the report from the Director.
+As far as the allegations from the neighbor, this, to clarify that this is not a farm labor
+dwelling that they're on. It's a farm dwelling and they have different allowances. And
+also, I think that's about it for my first discussion. Thank you.
+CHAIR LEE; Any more discussion?
+Member King.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 85
+COUNCILMEMBER KING: Thank you, Chair. Just wanted to ask Member Paltin if you could
+clarify what you mean by farm labor versus farm dwelling?
+COUNCILMEMBER PALTIN; Sure. I'm not a planning worker. But a farm dwelling is, you
+know, each agricultural lot can have two farm dwellings. The second farm dwelling
+can't be more than 1,000 square feet. A farm labor dwelling is, as Ms. Sredanovic
+explained in her email testimony, about you having to have a income threshold of like
+35,000 per person living in the farm labor dwelling. So, those are two different things,
+according to the Code.
+Also, to clarify her testimony that these laborers may stay less than six months. In
+Committee, Director McLean also said if the work, part of the compensation for working
+is the place to stay, then it doesn't matter if it's less than six months based on the
+definition. So, those are things that Director McLean clarified for us in Committee that
+apparently Ms. Sredanovic keeps bringing up in her testimony, which maybe she can
+clarify with her lawyer possibly.
+COUNCILMEMBER KING: Okay. Thank you for that explanation.
+CHAIR LEE: Any more comments. Members? Okay, if not, this one, roll call.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI; AYE.
+Councilmember Mike Molina.DEPUTY COUNTY CLERK:
+COUNCILMEMBER MOLINA: AYE.
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK;
+COUNCILMEMBER KING: NO.
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 86
+DEPUTY COUNTY CLERK: Councilmember Yuki Lei Sugimura.
+COUNCILMEMBER SUGIMURA; AYE.
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK;
+COUNCILMEMBER KAMA; YES.
+Council Vice-Chair Keani Rawlins-
+Fernandez.
+DEPUTY COUNTY CLERK:
+Oh, apologies, Vice-Chair, I didn't hear you.
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+And Council Chair Alice L. Lee.DEPUTY COUNTY CLERK:
+CHAIR LEE: AYE.
+COUNCILMEMBERS JOHNSON, KAMA, MOLINA,
+PALTIN, SINENCI, SUGIMURA, VICE-CHAIR
+RAWLINS-FERNANDEZ, AND CHAIR LEE.
+AYES;
+COUNCILMEMBER KING.NOES:
+DEPUTY COUNTY CLERK: Chair, there are eight "ayes", one "no"; motion carries.
+CHAIR LEE: Proceed.
+ORDINANCE NO.
+BILL NO. 5 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO ESTIMATED REVENUES;
+DEPARTMENT OF PUBLIC WORKS,
+COUNTYWIDE, GOVERNMENT FACILITIES, BOND FUND,
+COUNTYWIDE FACILITIES MAINTENANCE PROGRAM;
+TOTAL CAPITAL IMPROVEMENTS PROJECT APPROPRIATIONS;
+TOTAL APPROPRIATIONS (OPERATING AND CAPITAL IMPROVEMENT PROJECTS)
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 87
+CHAIR LEE; Vice-Chair, Vice-Chair Rawiins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. May  Irequest the Clerk to also call
+up Bill 6, Bill 7, Bill 11, and Bill 12?
+CHAIR LEE: Mr. Clerk.
+ORDINANCE NO.
+BILL NO. 6 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX C - CAPITAL IMPROVEMENT PROJECTS,
+DEPARTMENT OF PUBLIC WORKS,
+{COUNTYWIDE FACILITIES MAINTENANCE PROGRAM,
+COUNTYWIDE TRAFFIC AND SAFETY PROGRAM)
+ORDINANCE NO.
+BILL NO. 7 (2022)
+A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 5219,
+BILL NO. 48 (2021), RELATING TO THE ISSUANCE OF GENERAL
+OBLIGATION BONDS OF THE COUNTY OF MAUI
+ISSUANCE, SALE AND DELIVERY OF SAID BONDS
+(DEPARTMENT OF PUBLIC WORKS - COUNTYWIDE FACILITIES
+MAINTENANCE PROGRAM)
+ORDINANCE NO.
+BILL NO. 11 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX A, PART I,
+GRANTS AND RESTRICTED USE REVENUES - SCHEDULE OF GRANTS AND
+RESTRICTED USE REVENUES BY DEPARTMENTS AND PROGRAMS,
+DEPARTMENT OF HOUSING AND HUMAN CONCERNS,
+(STATE OF HAWAII - HOMEOWNER ASSISTANCE FUND)
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 88
+ORDINANCE NO.
+BILL NO. 12 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX D - CONDITIONAL LANGUAGE
+DEPARTMENT OF HOUSING AND HUMAN CONCERNS,
+(STATE OF HAWAII - HOMEOWNER ASSISTANCE FUND)
+CHAIR LEE: Vice-Chair.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair.
+1 MOVE TO PASS BILLS 5 THROUGH 7, BILL 11 AND BILL 12
+ON SECOND AND FINAL READING.
+CHAIR LEE: Second?
+COUNCILMEMBER JOHNSON:
+SECOND.
+CHAIR LEE: Member, moved by Vice-Chair Rawlins-Fernandez, seconded by Member
+Johnson, to pass Bills 5, 6, 7, 11 and 12 on-
+VICE-CHAIR RAWLINS-FERNANDEZ: Second and final.
+CHAIR LEE: Second and, second and final reading.
+Discussion? Discussion, Vice-Chair Rawlins-Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: Mahalo, Chair. Bills 5 through 7 amend the Fiscal
+Year 2022 Budget bill, the Appendix C bill, and the Bond Authorization bill to add
+funding and a project description on the Department of Public Works, County,
+Countywide Facilities Maintenance Program, in the amount of $800,000.
+Bills 11 and 12 amend the Fiscal Year 2022 Budget Appendix A, Part I, and
+Appendix D, to add an appropriation entitled "State of Hawaii - Homeowner Assistance
+Fund", in the amount of $8,060,550, along with conditional language limiting salaries
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 89
+and premium pay to 1.0 limited term appointment.  1ask for the Members continued
+support of these items. Mahalo, Chair.
+CHAIR LEE: Okay, any discussion? Okay. Roll call.
+DEPUTY COUNTY CLERK: Chair-
+CHAIRLEE: Mr. Clerk.
+DEPUTY COUNTY CLERK: -proceeding with the, oh, apologies.
+CHAIR LEE: Roll call.
+DEPUTY COUNTY CLERK: Chair, proceeding with a roll call vote.
+Councilmember Shane Sinenci.
+COUNCILMEMBER SINENCI: AYE.
+Councilmember Mike Molina.DEPUTY COUNTY CLERK:
+COUNCILMEMBER MOLINA: AYE.
+Councilmember Kelly Takaya King.DEPUTY COUNTY CLERK:
+COUNCILMEMBER KING: AYE.
+Councilmember Gabe Johnson.DEPUTY COUNTY CLERK:
+COUNCILMEMBER JOHNSON: AYE.
+Councilmember Tamara Paltin.DEPUTY COUNTY CLERK:
+COUNCILMEMBER PALTIN: AYE.
+Councilmember Yuki Lei Sugimura.DEPUTY COUNTY CLERK:
+COUNCILMEMBER SUGIMURA: AYE.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 90
+Presiding Officer Pro Tempore Tasha
+Kama.
+DEPUTY COUNTY CLERK:
+COUNCILMEMBER KAMA: YES.
+DEPUTY COUNTY CLERK: Council Vice-Chair Keani Rawlins-
+Fernandez.
+VICE-CHAIR RAWLINS-FERNANDEZ: AYE.
+DEPUTY COUNTY CLERK: And Council Chair Alice L. Lee.
+CHAIR LEE: AYE.
+COUNCILMEMBERS JOHNSON. KAMA, KING.
+MOLINA, PALTIN, SINENCI, SUGIMURA,
+VICE-CHAIR RAWLINS-FERNANDEZ, AND
+CHAIR LEE.
+AYES:
+NOES: None.
+DEPUTY COUNTY CLERK: Chair, there are nine "ayes", no "noes"; motion carries.
+CHAIR LEE: Heading down the homestretch.
+DEPUTY COUNTY CLERK: Chair, proceeding with bills for referral. The following bills are
+recommended for referral to the following Committees as noted:
+ORDINANCE NO.
+BILL NO. 17 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 19.29,
+MAUI COUNTY CODE, TO PROHIBIT PRIVATE RESTRICTIONS
+ON SMALL-SCALE AGRICULTURAL USES AND THE
+KEEPING OF ANIMALS IN ANY RURAL DISTRICT
+The recommended action is that Bill No. 17 (2022) be referred to the Agriculture and Public
+Trust Committee.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 91
+ORDINANCE NO.
+BILL NO. 18 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO ESTIMATED REVENUES;
+OFFICE OF THE COUNTY COUNCIL.
+WAILUKU -KAHULUl COMMUNITY PLAN AREA,
+GOVERNMENT FACILITIES, BOND FUND,
+OFFICE OF COUNCIL SERVICES OFFICE RENOVATIONS;
+TOTAL CAPITAL IMPROVEMENTS PROJECT APPROPRIATIONS;
+TOTAL APPROPRIATIONS (OPERATING AND CAPITAL IMPROVEMENT PROJECTS)
+The recommended action is that Bill No. 18 (2022) be referred to the Budget, Finance and
+Economic Development Committee.
+ORDINANCE NO.
+BILL NO. 19 (2022)
+A BILL FOR AN ORDINANCE AMENDING
+THE FISCAL YEAR 2022 BUDGET FOR THE COUNTY OF MAUI
+AS IT PERTAINS TO APPENDIX C - CAPITAL IMPROVEMENT PROJECTS.
+OFFICE OF THE COUNTY COUNCIL.
+WAILUKU-KAHULUl COMMUNITY PLAN AREA.
+OFFICE OF COUNCIL SERVICES OFFICE RENOVATIONS
+The recommended action is that Bill No. 19 (2022) be referred to the Budget, Finance and
+Economic Development Committee.
+ORDINANCE NO.
+BILL NO. 20 (2022)
+A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 5219,
+BILL NO. 48 (2021), RELATING TO THE ISSUANCE OF GENERAL
+OBLIGATION BONDS OF THE COUNTY OF MAUI
+ISSUANCE, SALE AND DELIVERY OF SAID BONDS
+(OFFICE OF COUNTY COUNCIL - OFFICE OF COUNCIL
+SERVICES OFFICE RENOVATIONS)
+The recommended action is that Bill No. 20 (2022) be referred to the Budget. Finance and
+Economic Development Committee.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 92
+ORDINANCE NO.
+BILL NO. 21 (2022)
+A BILL FOR AN ORDINANCE AMENDING CHAPTER 20.35, MAUI COUNTY
+CODE. RELATING TO OUTDOOR LIGHTING FOR PROTECTION OF SEABIRDS
+The recommended action is that Bill No. 21 (2022) be referred to the Climate Action
+Resilience, and Environment Committee.
+ORDINANCE NO.
+BILL NO. 22 (2022)
+A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE
+COUNTY OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT
+WITH THE STATE OF HAWAII JUDICIARY FOR A FOUR-YEAR AND ELEVEN
+MONTH LEASE OF 2,070 SQUARE FEET OF OFFICE SPACE AT 2103 WELLS
+STREET, WAILUKU, MAUI, HAWAII 96793
+The recommended action is that Bill No. 22 (2022) be referred to the Government Relations
+Ethics, and Transparency Committee.
+ORDINANCE NO.
+BILL NO. 23 (2022)
+A BILL FOR AN ORDINANCE AMENDING THE BUILDING CODE RELATING TO
+ENERGY AND WATER USE PERFORMANCE BENCHMARKING
+The recommended action is that Bill No. 23 (2022) be referred to the Infrastructure and
+Transportation Committee.
+(BILL NO. 23 (2022) WAS LATER REFERRED TO THE
+CLIMATE ACTION, RESILIENCE, AND ENVIRONMENT
+COMMITTEE LATER IN THE MEETING. See pages 93 and 94
+for discussion.)
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 93
+ORDINANCE NO.
+BILL NO. 24 (2022)
+A BILL FOR AN ORDINANCE AMENDING TITLE 19. MAUI COUNTY
+CODE. RELATING TO THE COMPREHENSIVE ZONING
+ORDINANCE'S DEVELOPMENT STANDARDS IN THE B-2
+COMMUNITY BUSINESS DISTRICT, B-3 CENTRAL BUSINESS DISTRICT
+AND P-1 AND P-2 PUBLIC/QUASI-PUBLIC DISTRICTS
+The recommended action is that Bill No. 23 (2022) be referred to the Planning and
+Sustainable Land Use Committee.
+CHAIR LEE: Are there any objections to the referrals as read by the Clerk?
+Oh, Member King.
+COUNCILMEMBER KAMA: No objections.
+CHAIR LEE: Member King.
+DISCUSSION RELATING TO
+BILL NO. 23 (2022)
+COUNCILMEMBER KING: Chair, I'd like to request Bill No. 23 be referred to the CARE
+Committee, as this is foundational to implementing the recommendations of
+forthcoming climate action plans. So, we're working with the, the Mayor's Office and
+the State Office of Climate Change, Climate Action.
+CHAIR LEE: Okay. Any, any, any objections. Members?
+MEMBERS VOICED NO OBJECTION.
+CHAIR LEE: No objections? Okay, so, ordered.
+And the rest of the referrals as read by the Clerk, any objections?
+MEMBERS VOICED NO OBJECTION.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 94
+CHAIR LEE: Okay, so ordered.
+Mr. Clerk.
+DEPUTY COUNTY CLERK: Chair, there is no further business before the Council.
+CHAIR LEE: Oh, I'm so sad. Members, do you have any parting thoughts or comments?
+Nice kind, nice comments, Members?
+Member King.
+COUNCILMEMBER KING: Just a request for Members. I sent an email out to find out which
+of the Councilmembers would be available for the installation of the new mineral
+sunscreen dispensers in South Maui. And if you can, I got two answers from two of
+you.
+CHAIR LEE: Mhm. Okay, anybody want to respond now? Anybody want to respond to
+Member King?
+Member Sinenci, are you going?
+COUNCILMEMBER SINENCI: Yeah, I did send a request.
+COUNCILMEMBER KING: Oh, great. Okay. Thank you. Yeah, we're limited because of
+COVID to how many people we can have. So, I'm trying to get, get names up front so
+we can plug in the other names.
+CHAIR LEE: Any other, you know, special announcements? Anybody getting married over
+the weekend or, you know, anything like that?
+COUNCILMEMBER SUGIMURA: Having a baby?
+CHAIR LEE: Now, that's going a little far. Yeah.
+Member Molina.
+COUNCILMEMBER MOLINA: Yeah, thank you, Madam Chair. No, I'm not getting married
+over the weekend. But just a reminder, not a total full off week for us next week. I
+believe Monday we have two Committee meetings, if I'm correct, PSLU and Affordable
+Housing, if I'm correct. FYI for the public.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 95
+CHAIR LEE: Very good. Thank you.
+Member Paltin.
+COUNCILMEMBER PALTIN: Thank you, Member Molina, for reminding us what a busy week
+we have next week. So, PSLU, 9 a.m. sharp, we'll be having a wonderful presentation
+from Department of Hawaiian Home Lands and hoping to conclude with Kahana
+Sunset in the after, the second half of the meeting.
+And then, Tuesday, your own virtual site tour of Lumeria. Nobody show up to Lumeria,
+because it will be a virtual one because of the Omicron surge. I don't want to cause
+any illness or injury to anyone. And then decision-making to follow after lunch. So,
+looking forward to a busy week and getting the last two Charter deadline items that
+have been on for years, and years, and years off my Committee master agenda. So,
+with your help and God willing, next week will be  ahuge week for PSLU.
+CHAIR LEE: What about Affordable Housing?
+COUNCILMEMBER JOHNSON: Thank you, Chair. Yeah, we'll be talking about the
+expanding the usages of the Affordable Housing Fund, so that we can open up all the
+nob, nozzles so that we can find, find our way out of this crisis that we all recognize. !
+just, social media is going off on the price of houses. I'm sure you guys have noticed
+it. So, this is timely as it ever was. I really,  Ireally, I really hope that we all kind of can
+put our heads together and come out with some really good legislation that can solve
+this crisis. So, look forward to all your participation on Monday after PSLU, LU. Thank
+you. Chair.
+CHAIR LEE: Other Committee Chairs want to chime in?
+Member King.
+COUNCILMEMBER KING: No, actually, I just, what I wanted to ask you. Chair, was today's
+agenda was a little bit better than last time. But it still is hard for the public to read, to
+figure out what, what on this agenda is for referral and what is likely to be acted upon.
+So, if, because the referrals generally used to be under county communications, and
+now they're all the way through the agenda. So, if there's some way to flag items that
+are likely to be referred? And, I just want to, you don't have to answer me right now,
+but I just wanted to put that out there. It's hard for the public to read this and to know
+what items are being referred.
+Regular Meeting of the Council of the County of Maui
+January 21,2022
+Page 96
+CHAIR LEE: Okay. Yeah. Let, let me work with staff to see if, if we can, whether things can
+be color-coded or there be a legend of some kind to make it easier for people to
+understand the agenda.
+COUNCILMEMBER KING: Yeah, and then that way, I think the, the, the testimony may be a
+little bit shorter if people know that this is going to Committee, if something's going to
+Committee, there'll be a fuller discussion.
+CHAIR LEE: Okay. Good idea.
+COUNCILMEMBER KING: Thank you. Thank you.
+CHAIR LEE: Any other Committee Chair's want to say anything?
+Member Sinenci, and then Member Sugimura.
+COUNCILMEMBER SINENCI: So, I believe Member Sugimura was going to go ahead and
+answer my-
+COUNCILMEMBER SUGIMURA: Okay, go ahead.
+COUNCILMEMBER SINENCI: It was about IT.
+COUNCILMEMBER SUGIMURA: Oh. Yes, I'm going to say something about IT. You're
+you're letting me go first, is that what you're saying? So-
+CHAIR LEE: Okay, guys, hurry up. It's lunch time.
+COUNCILMEMBER SUGIMURA: Yeah, hurry up. So, Senator Schatz on, thank you.
+Thursday at 9:00. And appreciate all your questions that you may have that you were
+going to send to IT Committee so we could forward it to him. And Ed Sniffen and
+whatever departments want to show up, you know, we are working on that. So, thank
+you.
+CHAIR LEE: Oh, and Member Sugimura, we want to wish your son safe travels back to
+COUNCILMEMBER SUGIMURA: Oh, yes.
+CHAIR LEE: -Chicago.
+COUNCILMEMBER SUGIMURA: Yeah, thank you.
+Regular Meeting of the Council of the County of Maui
+January 21, 2022
+Page 97
+CHAIR LEE: I'm sure you're going to miss him and enjoying every moment that you spent
+with you and your husband.
+COUNCILMEMBER SUGIMURA: Every moment. And he has reconfigured my office here
+at home. That's why I'm getting the router. He was scolding us for thinking that this
+was going to end. Next week, next week, we'll be fine and still here, so.
+CHAIR LEE: Okay.
+COUNCILMEMBER SUGIMURA: We are becoming . . .
+CHAIR LEE: Next time when he comes, let us know so he can, he can check everybody's
+office.
+COUNCILMEMBER SUGIMURA: Yeah. He's like a Keani, yeah. He's really good.
+CHAIR LEE: Okay. Mr. Sinenci. Oh, you were just referring to.
+COUNCILMEMBER SINENCI: Yeah.
+CHAIR LEE: Or did you, oh okay. Okay. Alright. Okay, that brings us to the end of the
+calendar. Any last words?
+COUNCILMEMBER SUGIMURA: Thank you.
+CHAIR LEE: If not, everybody, please, please stay safe. Stay away from crowds. Take care.
+This meeting is adjourned.
+ADJOURNMENT
+The regular meeting of January 21, 2022 was adjourned by the Chair at 12:16 p.m.
+KATHY KAOHU, DEPUTY COUNTY CLERK
+COUNTY OF MAUI, STATE OF HAWAII
+211203/!ks:jm
+Count^£lerk
+vera sreda <verasreda@gmail.com>
+Wednesday, January 19, 2022 6:46 PM
+County Clerk
+Bill 1 (2022) Please Deny
+Jorgenson -Cheshire - written testimony for PSLU-17.pdf
+From:
+Sent:
+To:
+Subject:
+Attachments:
+IYou don't often get email from verasreda@gmail.com. Learn why this is important
+Please include attached 2 documents to my testimony regarding denying Maui Dragon Fruit Farm extensions on CUP due
+to multiple and repeated violations.
+slf_MDFF-written testimony 1-21-2022.docx
+Mahalo, Vera Sredanovic
+es»o V. J
+O' » 73 f
+c m3a-
+--0H OhOm o-<
+O Sa¬ri zz
+mm
+Jj X o7^ m 'O
+1
+Dear Maui Council Members. I wanted to provided facts and supporting evidence that majority of CUP
+conditions have been violated. Planning department did not acknowledge any of these violations. MDFF
+owners have a long history of conducting weddings without permits and later violating CUP conditions.
+They also have a history of misrepresenting the facts to the authorities and neighbors.
+MDFF has been conduction commercial weddings for years without permit, in this google satellite image
+from 2014 you can see a large white wedding tent years before they even asked for wedding permits:
+9  V
+✓
+I
+a
+■T:
+Google Earth
+Here you can see a picture from their website with large wedding set up dated 8/15/2014 (they
+obtained CUP in 2016):
+S' i i
+Neighbors complained about the noise from those weddings are required the restrictions be put in place
+on these activities. That forced MDFF owners to request a permit to conduct weddings. They were given
+a chance to conduct this add on activity so "supplement" their dragon fruit farm business. This was
+given to them regardless of the fact that they conducted the same activities illegally.
+On the original as well as most recent CUP extension application owners stated that they have 15 acres
+of land planted (page 10 of Crystal Schmidt application -also attached to county meeting documents) :
+c  '●) H
+MM PM0M nurr Fiwwv
+1● IS acres
+● DIversJfled USDA certified organic farm
+● Largest USOA certified organic dragon fruit (arm In the U.S.
+● 16 varieties of dragon fruits
+● over 2500 dragon fruit plants
+● other tropical crops like organic pineapple, bananas, papaya,
+sugarcane, recently added sour sop and cacao
+10
+CUP was obtained with this understanding that 15 acres or over 50% of 27.5 acres land is planted. MDFF
+had less than 4.6 acres planted at any time (on Google image from 2014 you can see 4.6 acres planted-
+that was a year when they had most planted and obtained building permit-presumably based on
+statement of 15 acres planted). Currently as of today they only have 2.5 acres which is less than 10% of
+the land. To obtain any permits on ag lands minimum of 51% use for ag is required. This is clear proof
+that applicant mislead the county in order to obtain this CUP permit. All CUP are also required to
+maintain the stated level of ag. As of today their ag activity is even less than at the time of the
+application.
+MDFF was illegally housing unpaid transient ag exchange kids in RVs, tents and gift shop. Once this was
+discovered MDFF retracted their TVR application as they needed to house those kids there. They wanted
+to slide in TVR along with this CUP and circumvent standard TVR process.
+ZAED didn't investigate any CUP violations or RFS. ZAED investigation focused only into illegal housing
+and illegal structures. ZAED found that no RVs remained on the property, but as you can see there was a
+van still on the property as of 11/17/21 and it is used to accommodate some of those 10-15 unpaid
+workers. 9-12-21 Image:
+DJI 0043
+.4
+10-28-21 Image 1 RV and 1 VAN with couch and table in front of the white van still on the property:
+11-17-21 same white van now can be seen tucked between 2 structures (which indicates that there is
+still violation of unpermitted housing going on):
+11-17-21 photo shows the area where white van was moved from, this is one of the 3 areas where
+transient kids party at night.
+Some of those kids now live at the cottage while others live in the van tucked in at the back of the
+property and some live at the Gift Shop. We still had to call police since some kids moved into the
+cottage as they keep partying deep into the night. They close the gate at night to stop the police from
+coming in.
+Most recently Crystal stated to county council that they now only have 6 kids living at the farm, while in
+fact they have 10 living in the cottage alone and more of them in a gift shop and a van. They receive new
+unpaid kids on a regular basis and just this past week they had new group of kids. Crystal stated that
+those 6 staying at the cottage would get paid small wages and sign subsidized leases. These kids stay at
+the farm much less than one year and those leases would be considered as not permitted TVR. This is on
+top of prior TVR violations: since weddings are conducted at the cottage and some guests stayed
+overnight.
+This image was taken after 6 pm 1/7/22 (after MDFF was closed for public) and it shows 12 kids at the
+property
+DJI 0100
+000nm;!
+^ CHaa ?a ▻ ^
+Here are images (extracted from video files) proving that the CUP conditions were violated. Due to large
+size of the video files images are presented but videos are also available. I limited the dates to
+September as that was sufficient data to show that CUP conditions are being violated.
+FOLLOWING CUP CONDITIONS ARE BEING VIOLATED;
+5. That Maui Dragon Fruit Farm LLC [shall] must develop and use the property in substantial
+compliance with the representations made to the Maui County Council in obtaining the
+Conditional Permit. Failure to [so] develop the property accordingly may result in the revocation
+of the Conditional Permit [pursuant to] under Section 19.40.080, Maui County Code.
+Original CUP presentation given by Crystal Schmidt misrepresented the percentage of the
+land planted, by reducing the actual plot lines to make it appear like over 50% is planted:
+This is image from her presentation dated 2/23/2107 page 2:
+2
+Also page 10 provided above states 15 acres planted, only 2.5 is planted currently (they lost
+2 acres in 2018 fire and never replanted it). It takes only 9 months from the seed to fruit for
+dragon fruit, owners still claim fire burned their dragon fruits and did nothing to replant
+them-but they did -during pandemic-build large concrete platform they call Maui
+Mountain cafe (possibly with farmers pandemic funds).
+These County of Maui Historical Pictometry images show actual property lines and show
+less than 3 acres planted (that is also visible from Google Earth historical Images):
+●OUMIY 01
+r/faiA'Aii
+Pictometry
+*
+f
+' t.
+♦-*F
+v/V
+■; jocn \
+Per Google earth largest area planted was in August 2014-less than 5 acres, you will also
+see large white wedding tent-long before 2017 CUP allowing weddings:● « 0 ■ n ■ ● B a ●« g ● '  * t . ● .0»T●●●L0Vdg●gS■■^'● « A
+Land is being developed for more tourist attractions like Maui Mountain Cafe large
+concrete pad built in 2020:
+t 1*i
+t-
+No crops that were lost due to 2018 fire were replanted, as per October 2020 image there
+was less than 2,5 acres planted but new cafe pad was built (possibly with pandemic farmer
+loans): ● > l« II u . D A D ● ■ . O ■ ^c^rnQmmmwma^■ ● II I
+6. That the gift shop [shall] must open no earlier than 9:00 a.m. and [shall] must close by 8:00
+p.m.
+Gift shop lights stay lit long into the night, transient unpaid workers party and sleep at the
+gift shop.
+7. That special events [shall] must be limited to fift yguests and be limited to two times per
+calendar month except that one special local agriculture event may be held once a year with
+traffic and safety measures as recommended by the Maui Police Department to be provided.
+You can see on this picture that tent larger than 700 sf was used and more than 50 guests:
+DJI 0030
+8. That amplified sound is prohibited.
+Amplified sound is used at every wedding-video was provided to planning
+9. That an owner of Maui Dragon Fruit Farm LLC or  aprofessional event planner must be
+required to be present during all events and same-day event cleanup. If a professional planner is
+used, then an owner of Maui Dragon Fruit Farm LLC [shall] must be accessible during all
+events. Being accessible means being able to answer the telephone at all times, and being able to
+be physically present at the property within one hour following a request by a guest, neighbor, or
+County agency.
+Owners are not available and professional planner info is never provided to neighbors.
+Events are set up day before and cleaned up day after-so tents are usually there for 3 days.
+10. That all special events must be concluded by 8:00 p.m., except a special local agriculture
+event may begin no earlier than 9:00 a.m.and must be concluded by 5:00 p.m.
+Weddings always go past 8 pm-vidcos provided to planning.
+11. That event clean-up must be concluded and all exterior lighting must be shut off by 8:30 p.m.
+Never happens, lights stay on the gift shop and Cottage throughout the night.
+12. That all exterior lighting [shall] must be downward shielded. Video of unshielded lights as
+recent as Dec 2"“ ’21 provided to Michelle Me Lean and Tamara Paltin.
+As you can see on this picture they are not down shielded:
+13. That all parking related to the gift shop and events[shall] must be onsite; no street parking is
+allowed.
+In the picture above you can see street parking.
+Also on this picture you can see that cottage was used for wedding guests, some stayed
+overnight. This short-term use is considered TVR (without permit).
+16. That Maui Dragon Fruit Farm LLC [shall] must provide an information sheet providing
+neighbors with a contact telephone number and a copy of the Conditional Permit listing permit
+conditions.
+None of the neighbors received a CUP, I requested it from Crystal but she refused to
+provide the information, instead she claimed in her text that she can have unlimited picnics
+and 12 weddings per quarter (that would be twice as many as permitted in CUP). Here is a
+text from her claiming this: □  XPl^o» ● Oyvtel Trrt 12 event* per quarte>;pe9
+^ Edit Create ^ Sh#re (§)®  ^ n<K+ Add to
+VZW Wl-Fi ^ 6:31 PM
+0CfysUI Maui Or>9on FfiBt FAcm
+I do not think we have another one
+earlier. There is a ceremony earlier
+I. I
+The one prior suppose to be a
+picnic. We can have unlimited
+amount picnic
+Wedding reception 12 per quarter
+I am trying not to do much reception
+after dark. Less than 6 per quarter
+So far we only had one. If that picnic
+lady actually did a reception as you
+described, I will totally bring up the
+issue with her since that was not
+suDPOse to.
+o13 &
+O ® O O ® *
+■ s g] *□ ^
+18. That all State of Hawaii Department of Health applicable requirements [shall] must be met.
+(Compliance [shall] will be determined by the Department of Health.)
+Violation of unsanitary workers housing
+19. That review and approval are required by the Fire Prevention Bureau for events open to the
+public with fifty or more people in attendance, or when temporary tents or canopies in excess
+of 700 square feet in size are utilized, or when open flames, such as lanterns or bonfires or
+other potential fire hazards will be used.
+You can see the pictures show tents significantly larger than 700 sf and Fire Prevention
+Bureau was never engaged in approving those. Michelle McLean stated in an e-mail that
+even though tents were larger than 700 sf since it was not public event that there is no
+violation. Language here says or “or when temporary tents or canopies in excess of 700
+square feet in size are utilized”-so any event with larger than 700 sf tents needs this
+approval (regardless if they are private or public events).
+21. That upon renewal of this Conditional Permit, Maui Dragon Fruit Farm LLC must submit
+list of all events including the dates, times, type, and number of attendees."
+We don’t see this report, there was only one in the past but there should be another one
+prior to this approval. Clearly more weddings were conducted than allowed. That is why
+there is no report.
+a
+Additional violations for ZIP line operations: Video and photos of ZIP line running past 5pm
+were provided to planning-we have not seen any acknowledgment of these violations from
+planning.
+The CUP application states that parcel in question is 3 acres-but that is incorrect as the master
+parcel is 27.5 acres, especially because alleged agricultural activity is the necessary condition
+for 3 acres CPR-ed permit -as an add on activity to the ag activity. But frankly based on the
+miniscule amount planted, the main activity is not ag it is just an excuse to obtain all of those
+other permits and conduct non-ag activities.
+TOTAL OF 6 WEDDINGS JUST IN SEPTEMBER 2021 (only  2are allowed per month):
+9-7-21 wedding at unpermitted TVR:
+9  n
+9-10-21 wedding (you can see large outside patio for Maui Mountain Cafe as well as RVs:
+mrooi4
+9-11-21 96 chairs set up and tent exceeding 700 sf (exceeds 50 allowed guests and fire department
+approval not obtained), tents set up day before, taken down day after the event:
+nr'ir
+■f.-H
+r
+DJI 0030
+tjfl)
+9-12-21 OVER 50 GUESTS IN ATTENDANCE:
+9-17-21 WEDDING:
+sr
+DJI 0046 r-K‘*'
+^ ^>M »
+9-17-21 WEDDING AT THE COTTAGE-UNPERMITTED TVR USE AND STREET PARKING:
+^  (S
+9-7-21 White van as additional sleeping accommodation (see white van between 2 RVs):
+9-17-21 WEDDING ATTVR (COUPLE FRO CALIFORNIA STAYED ATTHE COTTAGE OWERNIGHT) PAST 9
+PM, UNSHIELDED LIGHTS, AMPLIFIED MUSIC):
+f1
+IMG-4686
+if ca^ ’-do) 9 O10 >  'S’
+9-18-21 WEDDING AT THE CEREMONY PAD:
+IMG-4698'
+»«<0
+^ Cm / -●(0 n
+9-19-21 WEDDING SET UP:
+DJI 0050
+10-1-21 Wedding at the unpermitted TVR:
+(»*^^
+-..?S -
+,-JI
+I
+„,^. -a»- ●●'■
+<  ' ^ A ●*
+1
+as
+You can see that theses owners are constantly lying and ridiculing the county and the community, while
+they are laughing their way to the bank. They are obtaining permits for lucrative non-ag activities on ag
+land claiming that they cannot make enough money from farming. Based on only 10% of their land being
+used for ag activities it is clear that agriculture is just used to game the system and obtain permits that
+they should have not obtained otherwise.
+Anthony P. Takitani
+Gilbert S.C, Keith-Agaran
+David M. Jorgensen
+Joseph L. Wildman
+24 North Church Street, Suite 409
+WAILUKU, MAUI, HI 96793-2222
+(808) 242-4049 ● FAX (808) 244-4021
+da ve@tonytlaw. com
+TAKITANI, AGARAN, JORGENSEN
+& WILDMANA Limited Liability Law Partnership
+December 1, 2021
+VIA E-WIAIL (countv.clerk(Q)mauicountv.us:
+tamara.paltin(S)maulcountv.us)
+TAMARA PALTIN, CHAIR
+Planning and Sustainable Land Use Committee
+Maui County Council
+200 S. High Street, Eighth Floor
+Wailuku, Maui, Hawaii 96793
+Re: PSLU-17 - Maui Dragon Fruit Farm LLC
+Dear Chair Paltin and Members of the PSLU Committee:
+As you may recall, I represent Vera Sredanovic and Winston Cheshire, who are neighbors of the
+Maui Dragon Fruit Farm (the “Farm”). I apologize but I was unaware that I was “asked” to provide an
+update about my clients' issues with the Farm for tomorrow's Planning and Sustainable Land Use
+Committee. I understand that you have closed public testimony so 1 assume written testimony is
+acceptable. In any event, 1 have a conflict tomorrow morning at 9:00 so I'm hoping this letter will
+suffice. However, if you do need any additional information, my clients and I are willing to provide it
+at a later date.
+Here is an update on the situation out at the Farm:
+1. My clients respectfully request that the ZIP line be shut down immediately, due to continuing
+violations of the “permitted” 9:00 am to noon, Monday through Friday, operations. For your
+information, this past Saturday they ran the ZIP line at 6:00 pm and then, after that, they had a very
+loud party at the cottage until midnight. You may recall at the last meeting that Ms. Schmitt even
+admitted to running a ZIP line for “sunset dinners/tours”, despite the restrictions. My clients also ask
+that the County deny any further ZIP line permit to the Farm. Again, their lot is less than 50 acres, it
+is causing serious negative impacts on the community, and there is an extensive history of
+violations. The Farm is not being a good neighbor.
+2. Ms. Schmitt, the owner of the Farm, stated on the record that, instead of the illegal RV
+accommodations she had been providing to the youth working on the Farm, she is now going to use
+the 2 bedroom with a loft, 2 bath residential dwelling on property to house six of the youth on the
+property and that all the rest of the youth workers live “somewhere else” that she has no information
+about. My clients ask that her lease with the youth be provided to the County with the names of the
+tenants to ensure that no substitutions or rotating of tenants or workers be allowed. If switching out
+of tenants does occur in violation of the short-term tenancy laws of the County and the State, we
+request that the dwelling be found in violation of the TVR rules, with ail enforcement and fines being
+imposed immediately. Regarding the commercial structures and van currently onsite, we ask that the
+County enforce the restriction that they may not be used in any way as living quarters.
+We also ask that house rules be placed at the entrance of the property, and that each tenant be
+provided a copy to read and sign. As you know, such house rules are intended to ensure peace for
+the neighborhood and should clearly spell out 9:00 pm to 8:00 am quiet hours and prohibit
+screaming and amplified sound. We also ask that they be required to turn off the "gift shop” lights
+when the business is closed to the public and that no parties may be held there. As you'll recall, Ms.
+TAMARA PALTIN, CHAIR
+Planning and Sustainable Land Use Committee
+Page 2
+December 1,2021
+Schmitt agreed at the hearing that the tenants should respect the neighbors, and she insisted that
+they were not having any late-night parties, but she refused to police them or impose on their rights
+to privacy and she could not refute my clients’ evidence of improper conduct. Ms, Schmitt also
+admitted that she is an absentee owner who lives in Haiku and has no idea what goes on at night on
+the Farm, and that she takes her tenants word for it when they say they are not partying late into the
+night or bothering the neighbors. All of that is simply untrue, as my clients have confirmed.
+3. Ms, Schmitt agreed on the record to withdraw her request for a wedding permit and promised to
+only conduct 11 the weddings she has already scheduled between now and July, 2022, and to hold
+no other group events except for farm tours. My clients request that Ms. Schmitt confirm in writing
+that no additional events will be allowed beyond those 11 weddings, and that no group events will be
+held on the property after the July deadline. To avoid any doubt, we ask that the Ms. Schmitt and the
+Farm specifically acknowledge in writing that they are relinquishing their rights to conduct weddings
+after July, 2022, that they will not apply again in the future to hold weddings at 833 Punakea Loop,
+and that no other group events except for farm tours will be held there. My clients also request that
+a calendar of all scheduled events be provided, that no substitutions or rescheduling be allowed if
+there are any cancellations, and that if any violations occur, all remaining events shall be cancelled.
+My clients truly want to be good neighbors but Ms. Schmitt and the Farm have simply not
+reciprocated or cooperated. Her statements at the hearing only served to confirm that she has no
+intention of controlling the youth that are living and working on her property, or to respect her
+neighbors’ rights to peaceably enjoy their properties and the agriculatural nature of the area. Simply
+growing some fruit does not excuse all of the other offensive and illegal activities that are taking
+place on the Farm. We hope that you will hold Ms. Schmitt and the Farm accountable for their
+actions.
+My clients and I thank you for your hard work on this matter and your consideration of their position.
+Sincerely,
+DAVID M. JORGENSEN
+Clienls/Uetters/Cheshire/ramara Paltin
+Client (via e-mail)c:
+Count^CleHc
+RECCIVEDFrom:
+Sent:
+Tamara A. Paltin
+Thursday, January 20, 2022 8:50 PM
+County Clerk
+Fwd: Security Cameras
+merasystem.jpg; cameraviews.jpg; ziplinecamera.jp5,\camej;aclo^^up4R9;,
+entrancecamera.jpq '.^rrlGE Of
+COUNTY CLER
+ca If
+K
+im.M2\ AH 7: 47
+-
+To:
+Subject:
+Attachments:
+Get Outlook for iOS
+From: Larry Schmitt <larry@mauidragonfruit.com>
+Sent: Thursday, January 20, 2022 8:48:06 PM
+To: Tamara A. Paltin <Tamara.Paltin@mauicounty.us>
+Subject: Security Cameras
+[You don't often get email from larry@mauidragonfruit.com. Learn why this is important at
+http://aka.ms/LearnAboutSenderldentification.1
+Aloha Tamara,
+We installed two Blink security cameras to monitor the zipline and farm
+entrance.
+Attached please find photos showing the system box, the camera pointing
+at the zipline and the camera pointing at the events area, as well as a
+screenshot of the camera views on a phone.
+Thank you.
+Crystal and Larry Schmitt
+1
+
+r VVs. 3.
+● i K .1-
+mr>
+'V
+7 .
+».■O ■ Si
+> 'vr
+7<?It
+f_
+I
+G8T1 -GHOO-1306-EHGV ♦
+r
+f
+
+
+
+Count^Clerk
+m JAN 19 AH 7= N8From:
+Sent;
+Jeff and Sue Anderson <smander@pacbell.net>
+Tuesday, January 18, 2022 5;04 PM
+County Clerk
+Testimony re Bill 1 (2022)
+To:
+OFFICE Or THE
+COUNTY clerk
+Subject:
+Council Members,
+I'm writing regarding agenda item for final reading of Bill 1 (2022) pertaining to the conditional use permit extension for
+Maui Dragon Fruit Farm.
+Please pass the bill as written. I understand this bill will extend the conditional use permit to July 12, 2022. It will only
+permit 11 previously booked special events prior to expiration. This is a great solution as it enables the event operation
+to be gradually shut down while honoring customers with wedding venue commitments. Thank you for valuing neighbor
+input in the permit evaluation process and for coming up with a workable solution.
+Jeff Anderson
+1
+Count^Getj< Rrcr:\;cDFrom:
+Sent:
+Shauna Buckner <sbuck315@yahoo.com>
+Thursday, January 20, 2022 1:23 PM
+County Clerk
+Bill 1 (2022) Please DENY
+ZOZ? JAN 20 PH 2- 04
+To:
+Subject: OFFICE OF TH
+COUNTY CLERK
+c
+You don't often get email from sbuck315@yahoo.com. Learn why this is important
+Aloha County Council, and mahalo for your consideration.
+Please deny Bill 1 (2022). As I've previously provided feedback on, the noise from the Maui Dragon
+Fruit Farm is not acceptable. We are a quiet, agricultural neighborhood. It is loud and beyond the
+hours that they are supposed to operate. Not to mention the bright lights from what sounds and looks
+to be big events/parties. Also, they did not replant their farm after the big fire, so they are not using
+the land for agricultural use as it's intended - and I don't think they even had the acreage planted
+before the fire that was required either. From my new understanding of the CUPs they've previously
+obtained, they are not following most, if not all, of the requirements. It is blatant disregard. I've heard
+from many neighbors about this 'in your face' disregard for the appropriate use of this land, and of
+course the breaking of the CUP requirements, has been going on a long time. As someone who uses
+our own land as expected and required, I don't appreciate them not being held to the same standards
+as the rest of us that are being good stewards.
+Best regards
+Shauna Buckner
+Punakea Loop
+Full-time Resident
+1
+Count^CeHc
+RECtiV'bD
+mi M 20 AH 49
+From:
+Sent:
+Lisa Wear <lisajarrell@icloud.com>
+Wednesday, January 19, 2022 7:47 PM
+County Clerk
+Deny Bill 1 (2022)
+To:
+Subject:
+OFFICE OF THE
+COUNTY CLERK
+[You don't often get email from lisajarrell@icloud.com. Learn why this is important at
+http://aka.ms/LearnAboutSenderldentification.]
+Dear Council and Chair,
+i am in the process of closing on a property close to MDFF. In the process I have driven up many times and on occasion I
+saw young adults hitchhiking to MDFF. I picked some of them up and they told me they come to work as farm workers in
+exchange for lodging, Most recently I picked a girl last week heading to the farm. I was curious since I am moving to this
+neighborhood, so 1 wanted to know what is going on at the farm. I went over and spoke to a girl at the farm.I noticed
+that kids are running the ZIP lines, and conducting tours, but could not see much ag activity there.  Iasked them about
+the farm and what is cottage used for. They told me that 10 of them live at the cottage. I also noticed that they had only
+a small patch of land planted with Dragon Fruits -right between the ZIP line. I also noticed that a lot of people were ZIP
+lining. I took some brochures with me and 1 can see that they are advertising 27 acres of Dragon Fruit Farm-that is very
+overstated as it looked to me they only have a couple of acres. I heard from neighbors that MDFF conducted a lot of
+events that violated conditions of this CUP. Please deny this CUP to stop this behavior in the future.
+Mahalo,
+Lisa Jarrell
+714-307-0069
+1

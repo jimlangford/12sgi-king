@@ -1,0 +1,410 @@
+MINUTES | hi-maui | County Council Meeting | 2025-11-21
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=2759,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+November 21, 2025 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:04 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+  √  
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 7  1  
+ 
+ 
+CEREMONIAL RESOLUTIONS  
+ 
+Reso 25 -212 "EXTENDING CONDOLENCES TO THE FAMILY OF THE LATE 
+NATALIE 'TASHA' KAMA" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+9:18 a.m. 
+    Time Motion Made 9:18 a.m. 
+ 2 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 9:57 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+COMMITTEE REPORTS 
+ 
+CR 25 -79 Recommending the following: 1. FIRST READING of Bill 136, 
+CD1 (2025), to amend the Fiscal Year 2026 Budget, by: 1) increasing Estimated 
+Revenues for Bond/Lapsed Bond by $1,100,000; 2) adding a new Capital 
+Improvement Project appropriation, entitled “60 South Church Street Building 
+Renovations,” in the amount of $1,100,000; 3) adding the project and description 
+to Appendix C; and 4) adjusting the totals accordingly; and 2. FIRST READING 
+of Bill 137, CD1 (2025), to amend the Fiscal Year 2026 general obligation bond 
+authorization ordinance by adding an appropriation for the Department of 
+Management, Wailuku-Kahului Community Plan Area, Government Facilities, 
+entitled “60 South Church Street Building Renovations,” in the amount of 
+$1,100,000.  
+ 
+CR 25 -80 Recommending FIRST READING of Bill 152 (2025), to amend the 
+Fiscal Year 2026 Budget, Appendix A, Part I, to: 1) delete the appropriation for 
+Community Development Block Grant Program; and 2) increase the 
+appropriation for County -owned Senior Affordable Re ntal Housing, Project: Nā 
+Hale Kupuna Operations, by $51,151.  
+ 
+CR 25 -81 Recommending the following: 1. FIRST READING of Bill 150, 
+CD1 (2025), to amend the Fiscal Year 2026 Budget, by: 1) increasing Estimated 
+Revenues for Other Intergovernmental by $64,469,830; 2) adding a new Capital 
+Improvement Project appropriation, entitled “Countywide Wildfire Disaster Relief 
+Projects,” in the amount  of $64,469,830; 3) adding the project and description 
+to Appendix C; and 4) adjusting the totals accordingly; and 2. FIRST READING 
+of Bill 151 (2025), to authorize the Mayor to enter into an intergovernmental 
+agreement for a loan from the State of Hawaiʻi’s Drinking Water State Revolving 
+Fund, not to exceed $64,469,830, to finance Countywide Wildfire Disaster Relief 
+Projects. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:52 a.m. 
+    Time Motion Made 10:54 a.m. 
+ 3 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+in CR 25-79, 
+25-80, and 25-81 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 10:57 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+RESOLUTIONS:  
+ 
+Reso 25 -204 "APPOINTMENT OF A MEMBER TO THE COMMISSION ON 
+CHILDREN AND YOUTH FOR THE COUNTY OF MAUI"  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:58 a.m. 
+    Time Motion Made 10:58 a.m. 
+VC Sugimura √   Motion  DISCHARGE 
+from GREAT 
+Committee 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 10:59 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:59 a.m. 
+    Time Motion Made 10:59 a.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Cook 
+ 4 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:00 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ AYE NO EXC   
+    Time Motion Made 10:59 a.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:00 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+Reso 25 -211 "APPROVING AN EXEMPTION FROM A REQUIREMENT OF 
+SUBSECTION 3.35.070(B), MAUI COUNTY CODE, FOR THE KAIĀULU O LĀNAʻI 
+AFFORDABLE HOUSING PROJECT" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:00 a.m. 
+    Time Motion Made 11:01 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Johnson 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:02 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+  
+ 5 
+ORDINANCES 
+ 
+Bill 172 (2025) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, MOLOKAI ECONOMIC DEVELOPMENT, ENVIRONMENTAL, AND 
+CULTURAL PROGRAMS, DELETING KA HALE HOAKA LLC, AND INSERTING 
+HUI O KUAPĀ" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:02 a.m. 
+    Time Motion Made 11:03 a.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:04 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+Bill 173 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, UPDATING THE CONDITIONAL LANGUAGE FOR THE MAKAWAO 
+RODEO PARADE AND MAKAWAO HALLOWEEN EVENT TO MAKAWAO RODEO 
+PARADE AND MAKAWAO HOLIDAY 2025 LIGHT THE TOWN EVENT"  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:04 a.m. 
+    Time Motion Made 11:04 a.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:05 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 6 
+ 
+Bill 174 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, ECONOMIC DIVERSIFICATION AND DEVELOPMENT INITIATIVE, 
+UPDATING THE CONDITIONAL LANGUAGE FOR THE RISING FROM THE 
+ASHES LLC FOR FILM PRODUCTION TO MANA MAOLI - LĀHAINĀ RISING FOR 
+FILM PRODUCTION" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:05 a.m. 
+    Time Motion Made 11:06 a.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:10 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+ORDINANCES – SECOND AND FINAL READING 
+ 
+Bill 110, CD1, FD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING 
+SECTION 16.25.201, MAUI COUNTY CODE, RELATING TO IMPROVEMENTS TO 
+PUBLIC STREET"  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:10 a.m. 
+    Time Motion Made 11:10 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:11 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 7 
+Bill 131, CD1 (2025) "A BILL FOR AN ORDINANCE TO CHANGE ZONING FROM 
+R-1 RESIDENTIAL DISTRICT TO B -2 COMMUNITY BUSINESS DISTRICT 
+(CONDITIONAL ZONING) FOR 14,467 SQUARE FEET AT 1448 FRONT STREET, 
+LAHAINA, HAWAIʻI, TAX MAP KEY (2) 4-5-013:012 (MOKU ROOTS)"  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:12 a.m. 
+    Time Motion Made 11:12 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:13 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+Bill 147, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING 
+SECTION 3.48.565, MAUI COUNTY CODE, TO SIMPLIFY THE PROCESS FOR 
+ADOPTING REAL PROPERTY TAX RATES AND TIERS"  
+ 
+Bill 166 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, INCREASING ESTIMATED REVENUES, 
+LICENSES/PERMITS/OTHERS, BY $350,000, CAPITAL IMPROVEMENT 
+PROJECTS, DEPARTMENT OF WATER SUPPLY, MAKAWAO -PUKALANI-KULA 
+COMMUNITY PLAN AREA, APPENDIX A, PART II, GENERAL EXCISE TAX FUND, 
+AND APPENDIX C, DEPARTMENT OF WATER SUPPLY, MAKAWAO-PUKALANI-
+KULA COMMUNITY PLAN AREA, INCREASING THE APPROPRIATION FOR 
+UPPER KULA TRANSMISSION IMPROVEMENTS BY $350,000"  
+ 
+Bill 167 (2025)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, DELETING THE APPROPRIATION FOR THE PROFESSIONAL 
+GOLFERS’ ASSOCIATION FOR THE SENTRY TOURNAMENT IN THE AMOUNT 
+OF $100,000, AND DEPARTMENT OF HUMAN CONCERNS, HUMAN 
+CONCERNS PROGRAM, GRANTS AND D ISBURSEMENTS FOR SUBSTANCE 
+ABUSE PREVENTION AND TREATMENT, NEW APPROPRIATION FOR ALOHA 
+HOUSE DORMITORY OF $100,000" 
+ 
+ 8 
+ AYE NO EXC Time Deliberations 
+Began 
+11:13 a.m. 
+    Time Motion Made 11:15 a.m. 
+VC Sugimura √   Motion  PASS Bills 
+147, CD1; 
+166 and 167 
+on second 
+and final 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:16 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+Bill 156, CD1 (2025)  "A BILL FOR AN ORDINANCE AMENDING CHAPTER 
+12.52, MAUI COUNTY CODE, RELATING TO ENCROACHMENTS ON PUBLIC 
+RIGHTS-OF-WAY"  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:16 a.m. 
+    Time Motion Made 11:16 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 11:17 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  1 MOTION PASSED  
+ 
+ 
+  
+ 9 
+UNFINISHED BUSINESS  
+ 
+CR 25 -72 Recommending the following: 1. ADOPTION of Resolution 25 -193, 
+CD1, to authorize the Mayor to request that the Governor designate the proposed 
+Nāpili Enterprise Zone on Maui Island for a 20-year period; and 2. ADOPTION of 
+Resolution 25-194, CD1, to authori ze the Mayor to request that the Governor 
+redesignate the Greater Maui Enterprise Zone on Maui Island, with proposed 
+adjustments, for a 20-year period. 
+ *Resolution 25-194, CD1, was adopted at the 11/7/2025 Council Meeting. 
+ 
+11:18 a.m.: Postponed until 12/5/2025 Council Meeting. 
+ 
+ 
+TIME MEETING ADJOURNED:  11:21 a.m. 

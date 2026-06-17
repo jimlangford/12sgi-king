@@ -1,0 +1,2612 @@
+MINUTES | hi-maui | County Council Meeting | 2024-12-23
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1486,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+December 23, 2024 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:05 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Pro Tempore Tasha 
+Kama 
+√   Exc: 11:04 a.m. –  
+11:22 a.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin   √ Arr. 11:19 a.m.   
+Exc. 11:28 – end of meeting 
+CM Gabe Johnson    √  
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 7  2  
+ 
+ 
+  
+ 2 
+CEREMONIAL RESOLUTIONS 
+ 
+Reso 24-204 "CONGRATULATING THE DEPARTMENT OF FIRE AND PUBLIC 
+SAFETY ON ITS 100TH ANNIVERSARY OF DEDICATED SERVICE TO THE 
+PEOPLE OF MAUI COUNTY" 
+ 
+ AYE NO EXC Time Deliberations Began 9:21 a.m. 
+Pro Tem Kama √   Time Motion Made 9:21 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:29 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+COMMUNICATIONS 
+ 
+CC 24-34 COUNCILMEMBER PALTIN, transmitting a proposed amendment to 
+Resolution 23-189, entitled "URGING THE STATE OF HAWAII TO CREATE AND 
+SUPPORT A TASK FORCE TO ADDRESS THE URGENT PROBLEM OF MISSING 
+PERSONS IN HAWAII". 
+Postponed, without objection, until Resolution 23-189 was called up. 
+ 
+ 
+COMMITTEE REPORTS 
+ 
+CR 24-121 Recommending REFERRAL of bills to the Council Chair for the term 
+beginning January 2, 2025, relating to: (1) amending Title 3, Maui County Code, 
+on monetary donations during an emergency; and (2) amending Chapter 3.97, 
+Maui County Code, on use of the Managed Retreat Revolving Fund.  
+ 
+ 
+CR 24-122 Recommending FIRST READING of Bill 170, CD1 (2024), to amend 
+the Fiscal Year 2025 Budget, by: 1) amending Section 2, Estimated Revenues, 
+by increasing Carryover/Savings, General Fund, by $1,500,000; 2) amending 
+Section 4.C.3.a.(1).(i), Department of Manag ement, Wailuku -Kahului 
+Community Plan Area, Government Facilities, General Fund, by increasing the 
+appropriation for the 60 South Church Street Building Renovations in the 
+amount of $1,500,000; 3) adjusting the totals accordingly; and 4) amending 
+Appendix C - Capital Improvement Projects, Department of Management, 
+ 3 
+Wailuku-Kahului Community Plan Area, by increasing the appropriation for the 
+60 South Church Street Building Renovations by $1,500,000.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:27 a.m. 
+Pro Tem Kama √   Time Motion Made 10:28 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+in CR 24-121 
+and 24-122 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:29 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-123 Recommending REFERRAL of resolutions to the Council Chair for 
+the term beginning, January 2, 2025, relating to: (1) parking for electric vehicles; 
+(2) initiating updates to the West Maui Community Plan in alignment with West 
+Maui’s infrastructure plans in  the aftermath of the August 2023 wildfires; and 
+(3) providing for the establishment of the West Maui Hospital and Medical Center 
+through the guarantee of State Special Purpose Revenue Bond issuance.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:30 a.m. 
+Pro Tem Kama √   Time Motion Made 10:30 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:31 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 4 
+CR 24-124 Recommending the following: 1. FIRST READING of Bill 21, CD1 
+(2023), to: 1) allow after-hours emergency airstrip operations at Kapalua Airport 
+by amending the Conditions of Zoning under Section 19.510.050, Maui County 
+Code; and 2) correct the tax map keys , property description, and acreage for 
+Kapalua Airport; and 2. RECORDATION of the Unilateral Agreement.  
+ 
+ AYE NO EXC Time Deliberations Began 10:31 a.m. 
+Pro Tem Kama √   Time Motion Made 10:31 a.m. 
+VC Sugimura √   Motion  REFER bill 
+to Council 
+Chair for 
+term 2025-
+2027 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:33 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-125 Recommending REFERRAL of bills to the Council Chair for the term 
+beginning January 2, 2025, relating to: (1) amending Chapter 20.08.031, Maui 
+County Code, relating to cultural resource protection; and (2) amending Chapter 
+1.16, Maui County Code, relating to public inspection of administrative rules. 
+ 
+CR 24 -126 Recommending FIRST READING of Bill 127, CD1 (2024), to 
+implement Charter Section 13-17 requiring the County to operate as a bilingual 
+government and to publish official meeting agendas in English and ʻōlelo 
+Hawaiʻi.  
+ 
+CR 24-127 Recommending FIRST READING of Bill 117, CD1 (2022), to authorize 
+the Mayor to enter into an intergovernmental agreement with the University of 
+Hawai‘i to provide Hawaiian language and Hawaiian studies workshops through 
+UH Maui College for County employees.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:33 a.m. 
+Pro Tem Kama √   Time Motion Made 10:34 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+in CRs 24-125, 
+ 5 
+24-126 and 24-
+127 
+CM Paltin   √ Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:38 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-128 Recommending REFERRAL of bills to the Council Chair for the term 
+beginning January 2, 2025, relating to: (1) amending Subsection 2.96.060(B), 
+Maui County Code, to amend the residential workforce housing deed restrictions 
+to increase the time period for all restrictions; (2) amending Chapter 3.35, Maui 
+County Code, to provide a stable and continuing source of funding to be used 
+for planning, administering, and constructing affordable and workforce housing 
+projects and to provide a policy for the use of the funding; (3) establishing an 
+ordinance that restarts the deed -restricted period when a residential workforce 
+housing unit is sold during the deed-restricted period; (4) amending the eligibility 
+criteria for rental residential workforce housing units to exp and eligibility to 
+individuals or families displaced by an emergency under Chapter 127A, Hawai‘i 
+Revised Statutes or who are income and asset qualified but held a disqualifying 
+interest in real property within the last three years; (5) a Change the Zoning, with 
+conditions, of properties related to Lanai Project District 2 (Koele), at Lānaʻi City, 
+Lānaʻi, Hawaii, and an amendment to Chapter 19.71, Maui County Code, 
+relating to Lanai Project District 2 (Koele); (6) increasing the deed -restriction 
+period for residential workforce housing ownership units and expediting the 
+County's purchase of residential w orkforce housing units when offered to the 
+County; (7) increasing the allowable density in the R-1, R-2, and R-3 Residential 
+Zoning Districts to provide additional housing opportunities in Maui County; (8) 
+providing lower -cost opportunities for more autonomous living areas in a 
+dwelling unit by allowing for kitchenettes in dwelling units in the Residential and 
+Rural Districts on Maui and Lana ʻi and requiring a dwelling unit with a 
+kitchenette to be occupied on a long -term residential basis; and (9) addressing 
+nonconforming structures and uses damaged, destroyed, or affected by an 
+emergency or disaster declared by proclamation of the Governor to  constitute a 
+state of emergency under Chapter 127A, Hawai‘i Revised Statutes.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:38 a.m. 
+ 6 
+Pro Tem Kama √   Time Motion Made 10:41 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin   √ Maker Kama 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:42 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-129 Recommending REFERRAL of bills to the Council Chair for the term 
+beginning January 2, 2025, relating to: (1) amending Chapter 3.75, Maui County 
+Code, relating to Community Facilities Districts; (2) amending Section 
+18.20.140, Maui County Code, relating to utility lines and facilities; (3) amending 
+Section 16.25.201, Maui County Code, relating to improvements to public 
+streets; and (4) amending Chapter 2.60, Maui County Code, on reports of civil 
+fines. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:42 a.m. 
+Pro Tem Kama √   Time Motion Made 10:42 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin   √ Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:43 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-130 Recommending FIRST READING of Bill 146, CD1 (2024), to require 
+the Department of Water Supply to estimate domestic water demand and assess 
+development impact fees based on projected gallons per day usage rather than 
+water fixture counts.  
+ 
+ 7 
+ AYE NO EXC Time Deliberations 
+Began 
+10:43 a.m. 
+Pro Tem Kama √   Time Motion Made 10:44 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin   √ Maker Cook 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:45 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-131 Recommending FIRST READING of Bill 180, CD1 (2024), to allow the 
+use of private water catchment collection and storage tank systems of up to 
+30,000 gallons in Agricultural, Residential, and Rural Districts.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:45 a.m. 
+Pro Tem Kama √   Time Motion Made 10:45 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin   √ Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:47 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 24-132 Recommending REFERRAL of bills to the Council Chair for the term 
+beginning January 2, 2025, relating to: (1) establishing a new Chapter 3.85, 
+Maui County Code, creating the feral animal management fund; (2) amending 
+the traffic code by expanding the volun teer parking enforcement program; (3) 
+requiring certain business to maintain naloxone on their premises; and (4) 
+amending Chapter 13.04A, Maui County Code, to authorize a community 
+recreational gardens program.  
+ 8 
+ 
+CR 24-133 Recommending REFERRAL of Bill 111 (2024), relating to amending 
+Title 9, Maui County Code, to: 1) establish procedures for the compassionate 
+removal and storage of personal property in public places; and 2) recognize a 
+human right to shelter, including offering access to services to stabilize one’s life 
+and transition into supportive or permanent housing, to the Council Chair for 
+the term beginning January 2, 2025.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:48 a.m. 
+Pro Tem Kama √   Time Motion Made 10:49 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+in CR 24-132 
+and 24-133 
+CM Paltin   √ Maker Sinenci 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:51 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+RESOLUTIONS:  
+ 
+Reso 23-189 "URGING THE STATE OF HAWAI ʻI TO CREATE AND SUPPORT A 
+TASK FORCE TO ADDRESS THE URGENT PROBLEM OF MISSING PERSONS IN 
+HAWAIʻI"  
+ 
+CC 24 -34 COUNCILMEMBER PALTIN, transmitting a proposed 
+amendment to Resolution 23 -189, entitled "URGING THE STATE OF 
+HAWAII TO CREATE AND SUPPORT A TASK FORCE TO ADDRESS THE 
+URGENT PROBLEM OF MISSING PERSONS IN HAWAII". 
+ 
+ AYE NO EXC Time Deliberations Began 10:51 a.m. 
+Pro Tem Kama √   Time Motion Made 10:52 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+5E 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+ 9 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:52 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 10:52 a.m. 
+Pro Tem Kama √   Time Motion Made 10:52 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:00 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 10:53 a.m. 
+VC Sugimura √   Motion  SUBSTITUTE 
+with FD1 
+version 
+attached to 
+CC 24-34; 
+FILE CC 24-
+34 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:58 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 10:54 a.m. 
+ 10 
+VC Sugimura √   Motion  AMEND 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:57 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began  
+Pro Tem Kama √   Time Motion Made 10:57 a.m. 
+VC Sugimura √   Motion  SUSPEND 
+Rule 19C 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:58 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Reso 24-195 "AUTHORIZING ACCEPTANCE OF THE DONATION OF OLUKAI 
+FOOTWEAR TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY, OCEAN 
+SAFETY DIVISION, PURSUANT TO CHAPTER 3.56, MAUI COUNTY CODE"  
+ 
+ AYE NO EXC Time Deliberations Began 11:00 a.m. 
+Pro Tem Kama √   Time Motion Made 11:00 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:01 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 11 
+ AYE NO EXC Time Deliberations Began 11:01 a.m. 
+Pro Tem Kama √   Time Motion Made 11:01 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:02 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Reso 24-196 "APPOINTMENT OF A MEMBER TO THE AFFIRMATIVE ACTION 
+ADVISORY COUNCIL FOR THE COUNTY OF MAUI" 
+ 
+ AYE NO EXC Time Deliberations Began 11:02 a.m. 
+Pro Tem Kama √   Time Motion Made 11:02 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:03 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:03 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:03 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:09 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 12 
+ AYE NO EXC   
+Pro Tem Kama   √ Time Motion Made 11:03 a.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:05 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+Reso 24-197 "AUTHORIZING THE ACQUISITION OF REAL PROPERTY 
+CONSISTING OF 272.956 ACRES IDENTIFIED AS TAX MAP KEY NO. (2) 2 -3-
+001:023 SITUATED AT KULA, MAUI, HAWAII, FOR AN AMOUNT NOT TO 
+EXCEED $14,000,000.00"  
+ 
+ AYE NO EXC Time Deliberations Began 11:05 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:05 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:06 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:06 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:06 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:08 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 13 
+Reso 24 -198 "AUTHORIZING A GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE" (160 KEONEKAI ROAD, UNIT 13 -
+101, KIHEI)  
+ 
+Reso 24 -199 "AUTHORIZING A GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE" (3750 L. HONOAPIILANI ROAD, 
+UNIT 304, LAHAINA) 
+ 
+Reso 24 -200 "AUTHORIZING A GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE" (3740 L. HONOAPIILANI HIGHWAY, 
+UNIT B202, LAHAINA)  
+ 
+Reso 24 -201 "AUTHORIZING A GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE" (3740 L. HONOAPIILANI HIGHWAY, 
+UNIT C206, LAHAINA)  
+ 
+Reso 24 -202 "AUTHORIZING A GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE" (3740 L. HONOAPIILANI HIGHWAY, 
+UNIT D105, LAHAINA)  
+  
+ AYE NO EXC Time Deliberations Began 11:10 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:11 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:12 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:12 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:12 a.m. 
+VC Sugimura √   Motion  ADOPT 
+Resolutions 
+24-198 
+through 24-
+202 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:17 a.m. 
+ 14 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+Reso 24-203 "URGING THE HAWAI ʻI STATE LEGISLATURE TO ESTABLISH A 
+UNIVERSAL FREE SCHOOL MEALS PROGRAM FOR STUDENTS AT PUBLIC 
+SCHOOLS"  
+ 
+ AYE NO EXC Time Deliberations Began 11:17 a.m. 
+Pro Tem Kama   √ Time Motion Made 11:17 a.m. 
+VC Sugimura  √  Motion  ADOPT 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:21 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6 1 2 MOTION PASSED  
+ 
+ 
+ORDINANCES - SECOND AND FINAL READING:  
+ 
+Bill 156, CD1 (2024) "A BILL FOR AN ORDINANCE AMENDING TITLE 8, MAUI 
+COUNTY CODE, TO PROHIBIT RETAILERS FROM SELLING OR MARKETING 
+FLAVORED TOBACCO PRODUCTS AND MISLABELING PRODUCTS AS 
+NICOTINE-FREE"  
+ 
+ AYE NO EXC Time Deliberations Began 11:23 a.m. 
+Pro Tem Kama √   Time Motion Made 11:23 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Sinenci 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:27 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 15 
+ORDINANCES:  
+ 
+Bill 158 (2024) "A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR TO 
+ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE COUNTY OF 
+KAUAI FOR FORENSIC TESTING SERVICES BETWEEN THE KAUAI POLICE 
+DEPARTMENT AND THE MAUI POLICE DEPARTMENT"  
+ 
+ AYE NO EXC Time Deliberations Began 11:52 a.m. 
+Pro Tem Kama √   Time Motion Made 11:53 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+5E 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:53 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:53 a.m. 
+Pro Tem Kama √   Time Motion Made 11:53 a.m. 
+VC Sugimura √   Motion  REFER bill 
+to Council 
+Chair for 
+term 2025-
+2027 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:54 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 187 (2024)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART II, 
+HOMEOWNER PROGRAMS REVOLVING FUND, ʻOHANA ASSISTANCE 
+PROGRAM" 
+ 
+ 16 
+Bill 189 (2024)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART I, 
+DEPARTMENT OF FIRE AND PUBLIC SAFETY, STATE OF HAWAII 
+DEPARTMENT OF TRANSPORTATION HIGHWAY SAFETY GRANTS" 
+ 
+ AYE NO EXC Time Deliberations Began 11:54 a.m. 
+Pro Tem Kama √   Time Motion Made 11:55 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:56 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:56 a.m. 
+Pro Tem Kama √   Time Motion Made 11:56 a.m. 
+VC Sugimura √   Motion  PASS Bills 
+187 and 189 
+on first 
+reading 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:57 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 188 (2024)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART II, MANAGED 
+RETREAT REVOLVING FUND, PAIA MANTOKUJI MISSION"  
+ 
+ AYE NO EXC Time Deliberations Began 11:57 a.m. 
+Pro Tem Kama √   Time Motion Made 11:57 a.m. 
+VC Sugimura √   Motion  WAIVE Rule 
+7G 
+ 17 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:58 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:58 a.m. 
+Pro Tem Kama √   Time Motion Made 11:58 a.m. 
+VC Sugimura √   Motion  PASS bill on 
+first reading 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:09 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 12:07 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:07 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+  
+ 18 
+ORDINANCES - SECOND AND FINAL READING:  
+ 
+Bill 69, CD1 (2023)  "A BILL FOR AN ORDINANCE AMENDING SECTIONS 
+3.44.015 AND 3.88.070, MAUI COUNTY CODE, RELATING TO ACCEPTANCE 
+OF CONSERVATION EASEMENTS"  
+ 
+Bill 166, CD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2025 BUDGET FOR THE COUNTY OF MAUI, ESTIMATED REVENUES; 
+DEPARTMENT OF MANAGEMENT, OFFICE OF RECOVERY PROGRAM; 
+CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT OF MANAGEMENT; AND 
+APPENDIX C, DEPARTMENT OF MANAGEMENT"  
+ 
+Bill 167, CD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING ORDINANCE 
+NO. 5659, BILL NO. 62, CD1 (2024), RELATING TO THE ISSUANCE OF 
+GENERAL OBLIGATION BONDS OF THE COUNTY OF MAUI ISSUANCE, SALE 
+AND DELIVERY OF SAID BONDS (DEPARTMENT OF MANAGEMENT)"  
+ 
+Bill 183, FD1 (2024) "A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR 
+OF THE COUNTY OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL 
+AGREEMENT WITH THE OFFICE OF THE AUDITOR, STATE OF HAWAII, TO 
+AUDIT THE SCHEDULE OF ALLOCATIONS OF THE EMPLOYEESʻ RETIREMENT 
+SYSTEM OF THE STATE OF HAWAII TO MEET THE REPORTING 
+REQUIREMENTS UNDER GOVERNMENTAL ACCOUNTING STANDARDS 
+BOARD STATEMENT NUMBER 68"  
+ 
+Bill 186 (2024 ) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, DEPARTMENT OF 
+ENVIRONMENTAL MANAGEMENT, ENVIRONMENTAL PROTECTION AND 
+SUSTAINABILITY PROGRAM - ENVIRONMENTAL PROTECTION AND 
+SUSTAINABILITY FUND, ENVIRONMENTAL PROTECTION GRANTS, PILI KOKO" 
+ 
+ AYE NO EXC Time Deliberations Began 12:09 p.m. 
+Pro Tem Kama √   Time Motion Made 12:11 p.m. 
+VC Sugimura √   Motion  PASS Bills 
+69, CD1; 
+166, CD1; 
+167, CD1; 
+183, FD1; 
+and 186 on 
+second and 
+final reading 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:12 p.m. 
+ 19 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 29, CD1 (2024) "A BILL FOR AN ORDINANCE TO AMEND THE STATE LAND 
+USE DISTRICT CLASSIFICATION FROM AGRICULTURAL DISTRICT TO URBAN 
+DISTRICT (CONDITIONAL DISTRICT BOUNDARY AMENDMENT) FOR 
+PROPERTY SITUATED AT KĪHEI, MAUI, HAWAI ʻI, PORTION OF TAX MAP KEY 
+(2) 3-9-001:034"  
+ 
+Bill 30, CD1, FD1 (2024)  "A BILL FOR AN ORDINANCE TO CHANGE ZONING 
+FROM COUNTY RURAL DISTRICT TO M -1 LIGHT INDUSTRIAL DISTRICT 
+(CONDITIONAL ZONING) FOR PROPERTY SITUATED AT KĪHEI, MAUI, HAWAIʻI, 
+PORTION OF TAX MAP KEY (2) 3-9-001:034"  
+ 
+ AYE NO EXC Time Deliberations Began 12:12 p.m. 
+Pro Tem Kama √   Time Motion Made 12:13 p.m. 
+VC Sugimura √   Motion  PASS Bills 
+29, CD1 and 
+30, CD1 on 
+second and 
+final reading 
+CM Paltin   √ Maker Kama 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:14 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 135, CD1 (2024) "A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR 
+TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE UNITED 
+STATES ARMY CORPS OF ENGINEERS FOR TECHNICAL SERVICES"  
+ 
+ AYE NO EXC Time Deliberations Began 12:14 p.m. 
+Pro Tem Kama √   Time Motion Made 12:14 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+ 20 
+CM Paltin   √ Maker Cook 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:15 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 136, CD1, FD1 (2024) "A BILL FOR AN ORDINANCE AMENDING TITLE 20, 
+MAUI COUNTY CODE, ESTABLISHING A CLIMATE ACTION AND RESILIENCY 
+PLAN FOR THE COUNTY OF MAUI"  
+ 
+ AYE NO EXC Time Deliberations Began 12:15 p.m. 
+Pro Tem Kama √   Time Motion Made 12:15 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin   √ Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:18 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 12:17 p.m. 
+VC Sugimura √   Motion  AMEND; 
+SUSPEND 
+Rule 19C 
+CM Paltin   √ Maker Rawlins-
+Fernandez 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:18 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 21 
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 154 (2024)  "A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 
+5334 (2021), THE WEST MAUI COMMUNITY PLAN, RELATING TO THE AREA 
+BETWEEN FRONT STREET AND HONOAPI ʻILANI HIGHWAY FROM KAHOMA 
+STREAM TO KENUI STREET"  
+ 
+ AYE NO EXC Time Deliberations Began 12:18 p.m. 
+Pro Tem Kama √   Time Motion Made 12:19 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:20 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 157, CD1 (2024) "A BILL FOR AN ORDINANCE AMENDING TITLE 14, MAUI 
+COUNTY CODE, TO ESTABLISH REGULATIONS ON STORMWATER 
+DISCHARGE AND POLLUTION CONTROLS"  
+ 
+ AYE NO EXC Time Deliberations Began 12:20 p.m. 
+Pro Tem Kama √   Time Motion Made 12:20 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin   √ Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:21 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+ 22 
+Bill 184 (2024) "A BILL FOR AN ORDINANCE AMENDING CHAPTER 3.36, MAUI 
+COUNTY CODE, RELATING TO GRANTS"  
+ 
+ AYE NO EXC Time Deliberations Began 12:21 p.m. 
+Pro Tem Kama √   Time Motion Made 12:21 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:25 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 12:23 p.m. 
+VC Sugimura √   Motion  SUBSTITUTE 
+with FD1 
+version 
+attached ASF 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:24 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 12:25 p.m. 
+VC Sugimura √   Motion  SUSPEND 
+Rule 19C 
+CM Paltin   √ Maker Sugimura 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:25 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+ 23 
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+Bill 185, FD1 (2024)  "A BILL FOR AN ORDINANCE ADOPTING THE HAWAI'I 
+STATE FIRE CODE, WITH CERTAIN AMENDMENTS"  
+ 
+ AYE NO EXC Time Deliberations Began 12:26 p.m. 
+Pro Tem Kama √   Time Motion Made 12:26 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin   √ Maker Uʻu-Hodgins 
+CM Johnson   √ Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:27 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  12:29 p.m. 
+ 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+TRANSCRIPTION
+Council of the County of Maui  on 2024-12-23 9:00 AM - Regular Meeting
+[ GAVEL ] >> WILL THE COUNCIL MEETING OF DECEMBER 23RD, 2024, PLEASE COME TO ORDER. IT 
+IS 9:04 IN THE MORNING. BEFORE WE BEGIN ROLL CALL, LET'S CHECK WHERE THE CHICKADEES 
+ARE. I KNOW COUNCIL MEMBER KAMA IS ONLINE, BECAUSE SHE HAS A BAD COLD. MEMBER 
+PALTIN IS IN DISNEYLAND WITH HER FAMILY. I'M NOT SURE WHERE MEMBER JOHNSON IS? 
+ANYBODY SEE HIM ONLINE? \r\n\r\nFISHING? OKAY. OKAY. ALL RIGHT. ANYBODY ELSE MISSING? 
+NO? OKAY.\r\n\r\nLET'S HAVE ROLL CALL, MS. CLERK. >> THANK YOU, MADAM CHAIR, PROCEEDING 
+WITH ROLL CALL, MEMBERS PARTICIPATING FROM NON-PUBLIC LOCATIONS SHOULD STATE WHO 
+IF ANYONE EXCEPT MINORS IS PRESENT WITH THEM AS PART OF ROLL CALL. COUNCIL MEMBER 
+PRO TEMPORE TASHA KAMA FIRST ALL, EVERYBODY, MELE KALIKIMAKA, AND FELIZ NAVIDAD. 
+PRO TEM KAMA IS ON LINE. >> I'M HERE, CHAIR. MELE KALIKIMAKA AND FELIZ NAVIDAD.\r\n\r\n>> 
+VICE-CHAIR YUKI LEI SUGIMURA. >> GOOD MORNING EVERYBODY. NICE TO SEE EVERYBODY IN 
+THE CHAMBERS. FELIZ NAVIDAD AND LOOKING FORWARD TO A VERY PRODUCTIVE MEETING. >> 
+COUNCIL MEMBER TAMARA PALTIN. >> EXCUSED. >> COUNCIL MEMBER GABE JOHNSON?\r\n\r\n>> 
+EXCUSED. >> COUNCIL MEMBER KEANI RAWLINS-FERNANDEZ? >> ALOHA KAKAHIAKA AND MELE 
+KALIKIMAKA. THERE ARE CURRENTLY -- NO THERE IS ONE TESTIFIER AT THE MOLOKA'I DISTRICT 
+OFFICE, ON THE CEREMONIAL RESOLUTION. AND APOLOGIES, MY COMPUTER IS HAVING QUITE A 
+MONDAY. >> COUNCIL MEMBER TOM COOK. >> MELE KALIKIMAKA, FELIZ NAVIDAD AND THERE'S 
+NOBODY CURRENTLY IN THE KIHEI OFFICE TO GIVE TESTIMONY, BUT STANDING BY.\r\n\r\n>> 
+THANK YOU. >> COUNCIL MEMBER NOHELANI UU-HODGINS. >> GOOD MORNING EVERYONE, MELE 
+KALIKIMAKA. >> COUNCIL MEMBER SHANE SINENCI? >> ALOHA KAKAHIAKA, AND MELE 
+KALIKIMAKA. >> COUNCIL CHAIR ALICE LEE. >> I'M HERE.\r\n\r\n>> CHAIR, THERE ARE NINE -- 
+SEVEN MEMBERS PRESENT, TWO EXCUSED. A QUORUM IS PRESENT TO CONDUCT THE BUSINESS OF  
+THE COUNCIL. FOR THE RECORD, I'M DEPUTY COUNTY CLERK RICHELLE THOMSON AND ALSO 
+PRESENT FROM THE OFFICE OF THE COUNTY CLERK IS COUNTY CLERK MOANA LUTEY, AND 
+LEGISLATIVE DIVISION STAFF JOYCE MURASHIGE, DELL YOSHIDA, ARTHUR SUYAMA AND LAUREN 
+SALDANA. AND JOINING THE FROM THE OFFICE COUNCIL SERVICES, JOINING THE MEETING FROM 
+THE OFFICE OF COUNCIL SERVICE IS DIRECTOR DAVID RAATZ AND DEPUTY DIRECTOR KAWASAKI 
+AND BACK TO YOU, CHAIR. >> THANK YOU. I DO WANT TO ASK, MEMBER SINENCI, DO WE HAVE 
+ANYBODY IN THE HANA OFFICE? >> NO TESTIFIERS, CHAIR.\r\n\r\n>> THANK YOU. >> AND NOW 
+OPENING REMARKS WILL BE PRESENTED BY PRO TEM KAMA. PRO TEM KAMA. >> THANK YOU, 
+CHAIR. EVERY YEAR DURING THIS SEASON, HOUSEHOLDS AROUND THE WORLD CELEBRATE THE 
+BIRTH OF AN INFANT, GOD'S GIFT TO MANKIND. A CELEBRATION OF HIS BIRTH FORETOLD 
+CENTURIES BEFORE HIS BIRTH. IT IS SAID FOR UNTO US A CHILD IS BORN, TO US A SON IS 
+GIVEN.\r\n\r\nAND THE GOVERNMENT SHALL BE UPON HIS SHOULDER, AND HAS NAME SHALL BE 
+CALLED WONDERFUL COUNCILOR MIGHTY GOD, EVERLASTING FATHER, PRINCE OF PEACE. AND 
+LUKE SAID, AND SHE BROUGHT FORTH HER FIRST BORN SON, WRAPPED HIM IN SWADDLING 
+CLOTHES AND LAID HIM IN A MANAGER, BECAUSE THERE WAS NO ROOM FOR THEM IN THE INN. IN  
+THE SAME COUNTRY SHEPHERDS IN THE FIELD KEEPING WATCH OVER THEIR FLOCK BY NIGHT 
+AND LO, THE ANGELS CAME UPON THEM AND THE GLORY OF LORD SHONE AROUND THEM AND 
+THEY WERE SO AFRAID. THE EACH OTHERS SAID UNTO THEM, FEAR NOT, BECAUSE I BRING YOU 
+TIDINGS OF GREAT JOY TO ALL PEOPLE, FOR UNTO YOU BOTHER IN DAY A SAVIOR, WHICH IS 
+CHRIST THE LORD AND THIS SHALL BE A SIGN UNTEE YOU TO FIND THE BABE WRAPPED IN 
+SWADDLING CLOTHS LAYING IN A MANAGER. SUDDENLY THERE WAS THE ANGEL A MULTITUDE 
+OF HEAVENLY HOSTS PRAISING GOD AND SAYING, GLORY TO GOD IN THE HIGHEST ON EARTH 
+PEACE, GOODWILL TOWARD MEN. AND IT CAME TO PASS AS THE AINGE OELS WERE GONE AWAY 
+FROM THEM INTO HEAVEN, THE SHEPHERDS SAID TO ONE ANOTHER, LET US GO UNTO BETHLEHEM  
+AND SEE THIS THING THAT HAS PASSED WHICH THE LORD MAY KNOWN UNTO US AND THEY CAME  
+WITH HASTE AND FOUND MARY AND JOSEPH AND THE BABE LAYING IN THE MANAGER. WHEN 
+THEY SEE IT, THEY MADE THEM CONCERNING THIS CHILD.\r\n\r\nAND ALL DAY THAT WONDERED 
+AT THOSE THINGS WHICH WERE TOLD THEM BY THE SHEPHERDS. MARY KEPT ALL THESE THINGS 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+AND PONDERED THEM IN HER HEART AND THE SHEPHERDS RETURNED GLORIFYING AND PRAISING  
+GOD FOR ALL OF THINGS THAT THEY HAD HEARD AND SEEN TOLD UNTO THEM. MEMBERS, JESUS 
+CHRIST CAME TO GIVE US PEACE AND OFFER REDEMPTION, A SALVATION FOR THOSE WHO 
+BELIEVE AND GOD'S PLAN FOR SALVATION, BUT IT'S OUR GOD-GIVEN RIGHT TO CHOOSE AND 
+MEMBERS I PRAY GOD BLESS YOU AN D YOURS CURING THIS SEASON OF PEACE, JOY AND LOVE. 
+THANK YOU, CHAIR. >> THANK YOU, PRO TEM KAMA. WE FEEL BLESSED. NOW, FRIENDS, PLEDGE 
+OF ALLEGIANCE.\r\n\r\nI PLEDGE ALLEGIANCE TO THE FLAG OF THE UNITED STATES OF AMERICA, 
+AND TO THE REPUBLIC FOR WHICH IT STANDS, ONE NATION UNDER GOD, INDIVISIBLE, WITH 
+LIBERTY AND JUSTICE FOR ALL. >> BEFORE WE PROCEED TODAY, WITH THE AGENDA, MAY I 
+PLEASE REQUEST THAT EVERYONE KEEP THEIR MICROPHONES MUTED IN THE IT'S YOUR TURN TO 
+SPEAK. AS A REMINDER TESTIMONY MUST PERTAIN TO ITEMS ON THE MEETING AGENDA. WHEN 
+TESTIFYING PLEASE DIRECT YOUR REMARKS TO THE COUNCIL, AND NOT TO ANY INDIVIDUAL 
+COUNCIL MEMBER, OR MEMBER OF THE PUBLIC. EACH TESTIFIER WILL BE ALLOWED TO SPEAK UP 
+TO THREE MINUTES ON EACH ITEM. FOR INDIVIDUALS WISHING TO TESTIFY ON TEAMS, PLEASE 
+CLICK THE RAISE YOUR HAND BUTTON TO BE ADDED TO THE TESTIFIER LOG. IF YOU ARE CALLING  
+IN, PLEASE FOLLOW THE PHONE PROMPTS TO BE ADDED TO THE LOG.\r\n\r\nDECORUM SHALL BE 
+MAINTAINED AT ALL TIMES. ANY PERSON WHO BEHAVES IN A MANNER THAT DISRUPTS, DISTURBS  
+OR IMPEDES THE ORDERLY CONDUCT OF ANY COUNCIL MEETING CAN AT THE DISCRETION OF THE  
+PRESIDING OFFICER OR A MAJORITY OF PRESENT COUNCIL MEMBERS BE EJECTED, OR BANNED 
+FROM COUNCIL MEETINGS, OR IF PARTICIPATING REMOTELY, BE MUTED OR DROPPED FROM THE 
+MEETING. EXAMPLES OF DISRUPTIVE BEHAVIOR INCLUDE, BUT NOT LIMITED TO HECKLING, 
+SHOUTING, USE OF PROFANITY, THREATENING OR SLANDEROUS REMARKS MADE TO THE STAFF 
+OR ANY MEMBER OF THE GENERAL PUBLIC. ADMINISTRATE CLERK, PLEASE PROCEED. >> 
+TESTIMONY ON CEREMONIAL RESOLUTIONS CURRENTLY THERE'S NO ONE SIGNED UP TO 
+TESTIMONY ON THE CEREMONY RESOLUTION. I SEE J.C. LAU MAKING HIS WAY DOWN. MAI KAI, 100 
+IN HAWAIIAN IS -- SPEAKING HAWAIIAN.\r\n\r\nTHANK YOU TO MY HAWAIIAN AMBASSADOR. >> 
+ANY MORE TESTIFIERS? >> CHAIR, I DON'T SEE ANYONE -- HANG ON. THERE'S SOMEONE RAISING 
+THEIR HAND, CALLING IN FROM PHONE NUMBER ENDING IN 8047. IF YOU WOULD LIKE TO TESTIFY 
+ON THE CEREMONIAL RESOLUTION, PLEASE, GO AHEAD. >> HELLO? >> CAN I TESTIFY NOW? >> 
+YES, PLEASE PROCEED.\r\n\r\n>> I CAN TESTIFY? >> YES. >> OKAY. MY NAME IS KANANI, AND I HAD 
+TESTIFIED LAST WEEK AS WELL. BUT -- >> KANANI? HELLO, MS. HIGBY, THIS IS -- WE'RE TAKING 
+TESTIMONY ON CEREMONIAL RESOLUTIONS RIGHT NOW.\r\n\r\nSO MAYBE A LITTLE LATER, YOU 
+CAN JUST FOLLOW OUR AGENDA, AND YOU CAN COME AND TESTIFY, OR TESTIFY ONLINE. EITHER 
+AT THE BEGINNING OF THE MEETING, AFTER THE CEREMONIAL RESOLUTIONS, OR WHEN THE ITEM 
+COMES UP, OKAY? SO CAN YOU WAIT A LITTLE WHILE? >> OKAY. I CAN'T SEE ANYTHING. I'M JUST 
+ON THE PHONE. YEAH, JUST LET ME KNOW WHEN IT'S TIME FOR ME TO TESTIFY.\r\n\r\n>> OKAY, I 
+WILL. THANK YOU MS. CLERK. >> THANK YOU. >> MADAM CHAIR, I SEE ZHANTELL LINDO. GO 
+AHEAD. WE CAN'T HEAR YOU.\r\n\r\n>> YOU'RE MUTED. IT'S A NEW EXPERIENCE FOR YOU, BUT 
+YOU'RE MUTED. NO, YOU STILL ARE MUTED, ZHANTELL. SOMETHING WRONG WITH -- -- CAN YOU 
+HEAR US? ZHANTELL, CAN YOU HEAR US? NO, YOU CAN? OKAY.\r\n\r\nYOU CAN HEAR ME? OKAY. 
+WE CANNOT HEAR YOU. WE CAN SEE YOU. UNLESS YOU WANT TO TURN YOUR VIDEO OFF AND TRY 
+JUST -- THAT IS NOT GOING TO WORK? WHAT DO YOU THINK IS GOING TO WORK, MEMBER 
+RAWLINS-FERNANDEZ? DO YOU WANT TO JUST CALL US?\r\n\r\nWE'LL GIVE HER A MOMENT TO 
+DIAL. IS IT YOUR OFFICE? OR WHAT IS THE PROBLEM? >> SOMETIMES IF YOU USE DIFFERENT 
+VIDEOCONFERENCING SOFTWARE, LIKE ZOOM AND TEAMS, IF YOU DON'T RESTART, IT DOESN'T 
+COOPERATE. >> OKAY. >> SOMETIMES THAT COULD BE THE PROBLEM. >> OKAY.\r\n\r\n>> SO IF SHE 
+WANTS TO TURN HER VIDEO ON AND CALL BY PHONE AND PROVIDE AUDIO TESTIMONY WITH HER 
+VIDEO, THAT COULD WORK. >> SHE IS 2988047? >> I THINK THAT WAS MS. HIGBY. LAUREN, ARE 
+YOU SPEAKING TO HER? WE'RE GOING TO HAVE TO PROCEED. GIVE HER ANOTHER MINUTE. >> 
+HELLO?\r\n\r\nHELLO? >> KANANI, WE'RE NOT READY FOR YOU YET. >> OH, I THOUGHT I HEARD MY  
+NAME. OKAY WE CAN US HAVE HER TESTIFY AFTER. RIGHT NOW WE HAVE TO MOVE THIS TRAIN 
+FORWARD. >> ARE YOU ABLE TO HEAR ME NOW? TESTING, 1, 2, 3. >> OH, YES, OKAY.\r\n\r\n>> >> OH,  
+MY GOODNESS, SOMEBODY DIDN'T WANT ME TO TESTIFY. THANK YOU SO MUCH FOR WAITING. IT'S  
+SO IMPORTANT. MAHALO, MERR Y CHRISTMAS, COUNCIL MEMBERS AND MAHALO FOR THE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+OPPORTUNITY TO TESTIFY ON THIS CEREMONIAL RESOLUTION. CONGRATULATING THE MAUI 
+COUNTY FIRE DEPARTMENT ON 100 YEARS. I JUST WANT TO SAY THAT PERSONALLY AND 
+PROFESSIONALLY I HAVE BEEN BLESSED WITH ORGANIZATION THAT HAS CONTINUED TO BRING 
+OUR COMMUNITY NOT JUST PROTECTION AND SAFETY, BUT ALSO EDUCATION, AND HAS 
+CONTINUED TO BE THE THING THAT FOSTERS GREAT MEN AND WOMEN TO BECOME PRODUCTIVE 
+CITIZENS OF OUR COUNTY I'M SO APPRECIATIVE OF THE MEN AND WOMEN WHO GIVE THEIR LIVES  
+TO SUPPORT OUR FAMILIES, AND AS SOMEBODY WHO WAS RAISED BY A GRANDFATHER, WHO 
+WAS A FIRE CAPTAIN WHEN THERE WAS A FIREHOUSE ON MOLOKA'I, AND THEN UNCLES AND 
+COUSINS AND HUSBANDS, THAT GAVE 30-PLUS YEARS OF THEIR LIVES TO SERVE OUR COUNTY. I'M  
+SO PROUD OF THE LEGACY THAT THEY HAVE ESTABLISHED, AND I'M SO PROUD OF THE WAY THE 
+FIRE DEPARTMENT HAS MORPHED AND ADJUSTED TO THE CHANGING TIMES.\r\n\r\nIT'S NOT EASY 
+TO BE TO BE A PARAMILITARY ORGANIZATION WITH ITS STRUCTURES, AND RULES AND DUTIES, 
+AND HAVE TO NAVIGATE THROUGH THE DIFFERENT KINDS OF POLITICAL CLIMATES, AND SOCIAL 
+STRUCTURES AND CHANGES. BUT OUR FIRE DEPARTMENT HAS REMAINED PROFESSIONAL, 
+ALWAYS ATTENTIVE, HAS DONE THE BEST THEY COULD FOR OUR ISLANDS AND ESPECIALLY 
+THROUGH DEVASTATION LIKE THE LAHAINA AND KULA FIRES AND DIFFERENT THINGS THAT 
+PERSONALLY AND PROFESSIONALLY HAVE AFFECTED THE DEPARTMENT IN THE LAST 100 YEARS. 
+THAT BROTHERHOOD, THAT SISTERHOOD IS SO SOLID. AND SO I JUST WANT TO THANK YOU, 
+COUNCIL MEMBERS, THE COUNCIL MEMBERS, AND MAYORS BEFORE YOU, OUR CITIZENS AND OUR  
+PEOPLE FOR SUPPORTING OUR DEPARTMENT. AND I WANT TO THANK THE ADMINISTRATION AND 
+THE FIRE DEPARTMENT AND ADMINISTRATION AND MEN AND WOMEN FOR THEIR TIRELESS 
+EFFORTS AND DEDICATION TO MAKING OUR COMMUNITY A BETTER AND SAFER PLACE. I WANT TO  
+MAHALO THE WIVES, AND LOVED ONES AND CHILDREN, WHO END UP BEING RAISED WITHOUT 
+THEIR MOMMIES AND DADDIES AT HOME, SO THE REST OF US CAN SLEEP SAFELY AT NIGHT. 
+MAHALO.\r\n\r\n>> THANK YOU. VERY BEAUTIFUL. WORTH WAITING FOR. OKAY. ANYBO DY ELSE 
+WANTING TO TESTIFY? >> LOOKS LIKE MS. LINDO WAS THE LAST TO TESTIFY.\r\n\r\nSO I WILL GO 
+AHEAD AND GIVE -- I SEE MIKE FOLEY GO AHEAD AND UNMUTE, IF YOU ARE GOING TO BE 
+TESTIFYING ON THE CEREMONIAL RESOLUTION. OTHERWISE, WE'LL ADD YOUR NAME LATER. 
+OKAY. MR. FOLEY WE'LL ADD YOUR NAME TO THE GENERAL TESTIMONY AFTER THE CEREMONIAL  
+RESOLUTION. MADAM CHAIR, GO AHEAD AND COUNTDOWN, 3, 2, 1, THERE'S NO ONE ELSE TO 
+TESTIFY ON THE CEREMONIAL RESOLUTION. >> MEMBERS, ANY OBJECTIONS TO CLOSING PUBLIC 
+TESTIMONY ON CEREMONIAL RESOLUTIONS NO OBJECTIONS.\r\n\r\n>> AND ACCEPTING WRITTEN 
+TESTIMONY. SO ORDERED. MS. CLERK. >> THANK YOU, MADAM CHAIR. BEFORE YOU IS 
+RESOLUTION 24-204 CONGRATULATING THE DEPARTMENT OF FIRE AND PUBLIC SAFETY ON ITS 
+100TH ANNIVERSARY OF DEDICATED SERVICE TO THE PEOPLE OF MAUI COUNTY MEMBER UU-
+HODGINS. >> THANK YOU, CHAIR.\r\n\r\nI MOVE TO ADOPT RESOLUTION 24-204. >> SECOND. >> 
+MOVED BY MEMBER UU-HODGINS, SECONDED BY VICE-CHAIR SUGIMURA TO ADOPT RESOLUTION 
+24-204, DISCUSSION, MEMBER UU-HODGINS? >> THANK YOU AGAIN, CLERK. MAY I PLEASE -- CHAIR,  
+MAY I PLEASE ASK THE CLERK TO READ THE RESOLUTION IN ITS ENTIRETY. THANK YOU IN 
+ADVANCE. >> MS. CLERK.\r\n\r\n>> THANK YOU, MADAM CHAIR AND MEMBER UU-HODGINS. 
+CONGRATULATING THE DEPARTMENT OF FIRE AND PUBLIC SAFETY ON ITS 100TH ANNIVERSARY 
+OF DEDICATED SERVICE TO THE PEOPLE OF MAK WHEREAS, THE WAILUKU FIRE DEPARTMENT 
+WAS ESTABLISHED ON JULY 1ST, 1924 BY COUNTY BOARD OF SUPERVISORS IN RESPONSE TO THE 
+NEED FOR INCREASED FIRE PROTECTION AFTER SEVERAL SIGNIFICANT FIRES ON MAUI; AND 
+WHEREAS, OVER THE PAST CENTURY, THE DEPARTMENTS HAD GROWN TO INCLUDE 10 FIRE 
+STATIONS ON MAUI, TWO FIRE STATIONS AND SATELLITE STATION ON MOLOKA'I AND ONE FIRE 
+STATION ON LANA'I; AND WHEREAS, ANOTHER EXPANSION CAME IN 2012 AFTER THE CHARTER 
+AMENDMENT MOVED OCEAN SAFETY FROM THE DEPARTMENT OF PARKS AND RECREATION TO 
+THE MAUI FIRE DEPARTMENT; AND WHEREAS, OCEAN SAFETY OFFICERS, OR LIFEGUARDS STAFF 
+TEN TOWERS AT EIGHT COUNTY BEACH PARKS INCLUDING 12 GRANT-FUNDED PERSONNEL AT 
+MAKENA STATE PARK, WHO COLLECTIVELY PLAY A VITAL ROLE IN ENSURING THE WELFARE OF 
+RESIDENTS AND VISITORS IN AND AROUND THE WATERS OF MAUI COUNTY; AND WHEREAS, IN 2016 
+THE DEPARTMENT WAS RENAMED TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY TO 
+ENCOMPASS THE MISSION TO PROTECT AND PRESERVE LIFE, ENVIRONMENT AND PROPERTY ON 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+MAUI, MOLOKA'I, LANA'I, KAHO'OLAWE AND MOLOKINI; AND WHEREAS, THE DEPARTMENT IS 
+TRAINED TO RESPOND AND MITIGATE A WIDE VARIETY OF EMERGENCY SITUATIONS USING 
+ENGINE LADDER, RESCUE, AND HAZARDOUS MATERIAL COMPANIES, TANKERS, MINI PUMPERS, 
+HELICOPTERS, RESCUE BOATS, PERSONAL WATERCRAFT, AND UTILITY VEHICLES; AND WHEREAS, 
+AS OF SEPTEMBER 2024 THE DEPARTMENT PROUDLY EMPLOYS 472 DEDICATED PERSONNEL 
+ACROSS MAUI COUNTY WHO BELIEVE IN THE CORE VALUES OF PROFESSIONAL EXCELLENCE, 
+COMMUNITY SERVICE AND INVOLVEMENT, INTEGRITY, EFFECTIVE COMMUNICATION, HEALTH 
+AND SAFETY, TEAM AND SHARED LEADERSHIP AND INNOVATION; AND WHEREAS, THE 
+DEPARTMENT HAS CONSISTENTLY EXHIBITED AND EMBODIED EXCELLENCE THROUGH ITS 
+ADMINISTRATION AND MAINTENANCE PROGRAM FIRE AND RESCUE OPERATIONS AND FIRE 
+PREVENTION BUREAU, TRAINING AND HEALTH AND SAFETY BUREAUS, OCEAN SAFETY BUREAU 
+ALL OF WHICH CONTRIBUTE TO A SAFER, MORE RESILIENT COMMUNITY; AND WHEREAS, THE 
+DEPARTMENT'S TEAM OF FIREFIGHTERS AND OCEAN SAFETY OFFICERS HAVE RESPONDED TO THE 
+CALL OF DUTY WITH STEADFAST COMMITMENT, PROFESSIONALISM AND COURAGE, SERVING AS A 
+SOURCE OF PRIDE AND SECURITY FOR THE PEOPLE OF MAUI COUNTY. NOW, THERETO BE IT 
+RESOLVED BY THE COUNCIL OF THE COUNTY OF MAUI: 1, THAT IT CONGRATULATES THE 
+DEPARTMENT OF FIRE AND PUBLIC SAFETY ON ITS 100TH ANNIVERSARY OF DEDICATED SERVICE 
+TO THE PEOPLE OF MAUI COUNTY; 2 THAT IT RECOGNIZES AND COMMENDS THE DEPARTMENT FOR  
+ITS EXTRAORDINARY CONTRIBUTIONS TO SAFETY AND WELL-BEING OF THE COMMUNITY; 3, THAT 
+IT CONVEYS ITS DEEPEST APPRECIATION AND GRATITUDE TO THE DEPARTMENT'S PAST AND 
+PRESENT EMPLOYEES WHOSE DEDICATION, SACRIFICE, SKILL AND BRAVERY HAVE BEEN 
+PROFOUNDLY CRUCIAL TO SAFEGUARDING THE LIVES AND PROPERTY OF THE PEOPLE OF MAUI 
+COUNTY ; AND NO. 4, THAT CERTIFIED COPIES OF THIS RESOLUTION BE TRANSMITTED TO 
+BRADFORD VENTURA, CHIEF DEPARTMENT OF FIRE AND PUBLIC SAFETY; GORDON GILLIS, CHAIR, 
+FIRE AND PUBLIC SAFETY COMMISSIONER; THE HONORABLE RICHARD T. BISSEN, JR. MAYOR, 
+COUNTY OF MAUI; AND THE HONORABLE JOSH GREEN, M.D., GOVERNOR, STATE OF HAWAI'I. >> 
+MEMBER UU-HODGINS >> THANK YOU, CHAIR. MEMBERS, I WOULD LIKE TO ASK YOUR SUPPORT 
+OF THE RESOLUTION IT'S A GREAT HONOR TO RECOGNIZE THE OUTSTANDING ACHIEVEMENTS OF 
+CHIEF VENTURA AND THE PAST AND PRESENT EMPLOYEES OF THE DEPARTMENT OF FIRE AND 
+PUBLIC SAFETY, SERVING OUR COMMUNITY FOR THE PAST 100 YEARS. I ASK FOR THE MEMBERS' 
+SUPPORT OF MY MOTION.\r\n\r\nTHANK YOU, CHAIR. >> THANK YOU. ANY MORE DISCUSSION? DID 
+YOU WANT TO SAY SOMETHING IN >> YES. THANK YOU. >> VICE-CHAIR SUGIMURA. >> THANK 
+YOU, CHAIR.\r\n\r\nI'M SURE ALL OF US KNOW THAT THE FIRE DEPARTMENT HAS GIVEN, BESIDES 
+100 YEARS AND THE MANY, MANY DEDICATED EMPLOYEES HAS CONTRIBUTED TO THE SAFETY OF 
+OUR CITIZENS, OF COURSE, ESPECIALLY DURING THE WILDFIRE IN MY COMMUNITY UP COUNTRY, 
+AS WELL AS WEST MAUI AND ALL AROUND. BUT I WANTED TO EXTEND A SPECIAL THANKS TO 
+THEM FOR THE SACRIFICES THEY MADE FOR THE SAFETY OF OUR PEOPLE. I JUST ALSO WANT TO 
+SAY THAT ALL THE HUSTLE AND BUSTLE THAT WENT INTO PASSING THE CONTINUING 
+RESOLUTION WITH THE PROVISION FOR THE CONTINUED SOCIAL SECURITY PROVISIONS FOR FIRE, 
+AND POLICE. SO THAT THEY CAN LOOK FORWARDS MORE FUNDING IN THEIR RETIREMENT. I'M 
+GLAD THAT HAPPENED. THANK YOU VERY MUCH. I SUPPORT THIS.\r\n\r\nTHANK YOU VERY MUCH, 
+MEMBER UU-HODGINS, FOR BRINGING THIS UP. >> ANY MORE DISCUSSION? MEMBER RAWLINS-
+FERNANDEZ? >> MAHALO, CHAIR. I WILL JOIN IN THE CONGRATULATIONS ON THE CENTENNIAL 
+ANNIVERSARY OF THE DEPARTMENT. I HAD THE PRIVILEGE OF JOINING THEM AT THEIR 
+COMMUNITY FAMILY DAY WHEN THEY ALL CELEBRATED WITH THEIR FAMILIES, AND IT WAS 
+REALLY THEY HAD A DISPLAY OF THE 100 YEARS AND I GOT TO SEE SOME OF THE PAST CHIEFS, 
+AND SAY HI, AND SEE THE DIFFERENT EQUIPMENT THAT THEY HAVE USED IN THE PAST 100 YEARS.  
+IT WAS QU ITE EDUCATIONAL, AND IT WAS A REALLY NICE FAMILY DAY.\r\n\r\nGREAT FOOD THAT 
+THEY PREPARED THEMSELVES. AND MAHALO FOR YOUR CONTINUED SERVICE TO ALL 
+FIREFIGHTERS, EVEN WHEN WE'RE PADDLING ON MOLOKA'I, AND I GUESS IT WOULD BE 
+EMBARRASSING IF I SHARED THIS STORY. BUT I WAS SO IMPRESSED WHEN I CALLED AFTER THE 
+SUN WENT DOWN AND THEY RESPONDED LIKE THAT. I HAVE NEVER DONE THAT BEFORE. I 
+HOPEFULLY WILL NEVER HAVE TO DO THAT AGAIN. BUT I THINK THEIR RESPONSE TO OUR 
+COMMUNITY IS ALWAYS SO IMPRESSIVE, AND I'M REALLY GRATEFUL. MAHALO, CHAIR.\r\n\r\n>> 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+ARE YOU SAYING THAT THEY HAD TO RESCUE YOU? >> >> NOT ME. THERE WAS AN EQUIPMENT 
+MALFUNCTION, AND YOU KNOW, WE ALL COME IN AT THE SAME TIME. WHEN WE'RE NOT ALL 
+THERE, AND ACCOUNTED FOR, THEN YOU KNOW, THE OCEAN KANILOA CAN BE SCARY. SO WE 
+ULTIMATELY DID FIND THE PADDLER. HE PADDLED IN SOMEWHERE ELSE, BUT THE ONE THAT WAS  
+PADDLING WITH US WAS A PAST CAPTAIN. SO HE WAS REALLY EMBARRASSED I 
+CALLED.\r\n\r\n[LAUGHTER ] HE PROBABLY IS HATING ME RIGHT NOW FOR SHARING THIS STORY. 
+>> BRAD, WERE YOU THERE? OKAY. ANYBODY ELSE? YES, MEMBER SINENCI? >> MAHALO, CHAIR. 
+I TOO, WANTED TO CONGRATULATE THE FIREMEN ON THEIR 100-YEAR ANNIVERSARY.\r\n\r\nOUR 
+FIREMEN, OUR LIFEGUARDS, ARE A BIG PART OF OUR COMMUNITIES, AND THIS WE WERE 
+REMINDED HOW THAT WE LIVE ON AN ISLAND COMMUNITY. AND SO FOR SAFETY, FOR OUR 
+RESIDENTS, AS WELL AS FOR OUR VISITORS, THEY PLAY AN IMPORTANT ROLE IN KEEPING 
+EVERYONE SAFE, ESPECIALLY ALONG THE SHORELINE. SO MAHALO FOR YOUR SERVICE AND 
+YOUR DEDICATION. THANK YOU. >> ALL RIGHT. READY TO VOTE? ALL THOSE IN FAVOR OF THE 
+MOTION, PLEASE RAISE YOUR HAND, SAY AYE?\r\n\r\n>> AYE. >> OKAY, I SEE TWO, THREE, FOUR, 
+FIVE SIX AND SEVEN AYES, TWO EXCUSED. MOTION CARRIES CONGRATULATIONS TO OUR 
+FIREFIGHTERS AND THEIR FAMILIES! [ APPLAUSE ] CHIEF, WOULD YOU LIKE TO COME DOWN AND 
+SAY A FEW WORDS? AND THEN WE'RE GOING TO TAKE PICTURES, OKAY, EVERYBODY? HOW LONG 
+HAVE YOU BEEN OF THE 100 YEARS, HOW LONG HAVE YOU BEEN THERE? >> ONLY 22ISH >> QUITE 
+A BIT.\r\n\r\n>> GOOD MORNING. MAHALO. SHE S AID IF I WANT TO TALK -- [LAUGHTER ]I DON'T 
+KNOW ABOUT THAT, BUT I WILL. FIRST I WANT TO MAHALO ALL OF YOU, MAHALO CHAIR, 
+COUNCIL MEMBER UU-HODGINS FOR BRINGING THIS CEREMONIAL RESOLUTION, AND ALL OF YOU 
+COUNCIL MEMBERS FOR SUPPORTING OUR DEPARTMENT, WHICH SERVES OUR COMMUNITY EVERY  
+SINGLE DAY. YOU KNOW, BEING 100 YEARS OLD, AND ALL OF THE ACCOMPLISHMENTS OUR 
+DEPARTMENT HAS HAD IT'S CONSTANTLY CHANGING. EVERYTHING WE DO WE NEED TO LOOK ON 
+THE HORIZON, STAY AHEAD OF EVOLVING -- DIFFERENT TECHNOLOGIES, DIFFERENT CHALLENGES 
+AND JUST STAY IN FRONT OF ALL OF THE CHALLENGES THAT OUR COMMUNITY FACES LET ALONE 
+OUR DEPARTMENT. FOR US TO REALLY UNDERSTAND WHERE WE ARE TODAY 100 YEARS, WE 
+REALLY NEED TO RECOGNIZED EVERYBODY WHO CAME BEFORE US.\r\n\r\nTHOSE OF US WHAT ARE 
+SITTING WITH YOU TODAY, THOSE OF US THAT ARE IN THE DEPARTMENT NOW, ARE ONLY HERE 
+FOR A LITTLE PERIOD OF TIME. AND YOU KNOW, WE SAY LITTLE, BUT 25 YEARS, MAYBE 30, IS 
+REALLY A LITTLE PERIOD OF TIME. THE DEPARTMENT IS 100 YEARS OLD AND HAS MANY, MANY 
+MORE YEARS AHEAD OF US. WE'RE GRATEFUL FOR ALL OF THOSE WHO HAVE COME BEFORE US 
+AND IT'S OUR RESPONSIBILITY, THOSE OF US WHO ARE HERE NOW, TO MAKE SURE WE PREPARE 
+THE NEXT-GENERATION AND THE NEXT LEADERS IN OUR COMMUNITY AND OUR DEPARTMENT TO 
+MAKE SURE THAT WE CAN CONTINUE CARRYING FORWARD OUR MISSION. WE RECRUITED OCEAN 
+SAFETY GRADUATION LAST WEEK THURSDAY AND FIRE GRADUATION ON FRIDAY, AND THOSE 
+ARE VERY REINVIGORATING DAYS FOR OUR DEPARTMENT AND REMINDS US ONE, THAT WE'RE 
+ALL REPLACEABLE AND THE NEXT GENERATION COMES BEHIND US AND THE SECOND THING 
+THAT WE CONTINUE TO EXIST AND WE CONTINUE TO DO WHAT WE'RE DOING ONLY BECAUSE OF 
+OUR COMMUNITY. WE'RE HERE TO SERVE OUR COMMUNITY AND IF OUR COMMUNITY IS NOT HERE,  
+WE HAVE NOBODY TO SERVE, AND WE'RE NOT NEEDED. SO WE NEED TO MAKE SURE WE TAKE 
+CARE OF OUR COMMUNITY, BOTH AT HOME, AND PROFESSIONALLY, SO THAT WE CAN CONTINUE 
+TO SERVE THEM.\r\n\r\nIN OUR RECRUIT CLASS I SHARED WITH THEM IN SMALL SESSIONS AND 
+ALSO SHARED WITH THEM IN GRADUATION THAT A MOTHER WILL TRUST Y OU A FIREFIGHTER AS 
+A COMPLETE STRANGER, AND GIVE YOU MAYBE THEIR CHILD, OR A FAMILY MEMBER WHO IS 
+INJURED AND POTENTIALLY EVEN DYING, WITHOUT EVEN KNOWING YOU. THE REASON THEY DO 
+THAT IS BECAUSE ALL OF THE FIREFIGHTERS THAT CAME BEFORE US AND ALL OF THE GOOD 
+WORK DONE BEFORE US, AND WITHOUT ALL OF THAT LEGACY, AND THAT LEADERSHIP, AND THAT  
+DOING FOR OUR COMMUNITY, PEOPLE WOULD NOT TRUST US. AND I GO ON TO TELL THEM THAT 
+WHEN YOU HAVE A SMALL CHILD AND YOU ARE PICKING A PEDIATRICIAN OR DENTIST, YOU 
+WON'T PICK THAT DENTIST OR PEDIATRICIAN WITHOUT ASKING YOUR FRIEND WHO IS A GOOD 
+DENTIST? THEY GO ON YELP AND MAKE SURE THEY ARE TAKING THEIR CHILD TO THE RIGHT 
+PERSON. IF YOUR CHILD IS IN SOME SORT OF TROUBLE AND THE FIRE DEPARTMENT SHOWS UP, 
+THEY DON'T ASK ANY QUESTIONS, THEY JUST HAND YOU THEIR CHILD. THAT IS AN HONOR AND 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THAT IS SOMETHING THAT ONLY COMES BECAUSE OF THOSE WHO CAME BEFORE US. SO WE NEED 
+TO RECOGNIZE AND MAHALO THEM FOR ALL OF THE WORK THAT THEY HAVE DONE, ALL OF THE 
+PAST FIREFIGHTERS, CHIEFS, OCEAN SAFETY OFFICERS IN OUR DEPARTMENT AND THE FUTURE 
+ONES AHEAD OF US.\r\n\r\nLASTLY, I JUST WANT TO SHARE THAT OUR DEPARTMENT PROMISES TO 
+ALWAYS BE HERE FOR OUR COMMUNITY, ALWAYS STRIVE TO BE BETTER, AND EVOLVE WITH THE 
+EVER CHANGING GOVERNMENT AND ENVIRONMENT THAT WE LIVE IN. THAT IS THE ONE 
+GUARANTEE WE WILL ALWAYS HAVE CHANGE WHERE WE WORK, WHERE WE ARE, WHO WE SERVE.  
+AND SO WE AS THE DEPARTMENT JUST NEED TO BE MINDFUL OF THAT AND WORK WITH OUR 
+COMMUNITY TO MAKE SURE THAT WE SERVICE THEIR NEEDS. SO MAHALO TO ALL OF YOU, 
+MERRY CHRISTMAS, FELIZ NAVIDAD, GOD BLESS YOU ALL. >> SAME TO YOU. >> THANK YOU. [ 
+APPLAUSE ] >> THANK YOU VERY MUCH.\r\n\r\nCAN YOU ALL COME DOWN AND TAKE A QUICK 
+PICTURE, PLEASE? >> THAT IS ALL OF YOU UP THERE IN BLUE AND WHITE. [ APPLAUSE ] >> 
+MEMBERS, WE'RE GOING TO HAVE TO TAKE A 5-MINUTE RECESS. [ GAVEL ] WE'RE HAVING SOME 
+TECHNICAL DIFFICULTIES, THAT IS WHY. [ GAVEL ] >> WILL THE COUNCIL MEETING OF DECEMBER 
+23RD, 2024 PLEASE RECONVENE. MS. CLERK.\r\n\r\n>> THANK YOU, MADAM CHAIR. MOV ING ON TO 
+PRESENTATION OF WRITTEN OR ORAL TESTIMONY AT THE BEGINNING OF THE MEETING. AT THIS 
+TIME, INDIVIDUALS MAY TESTIFY ON ANY ITEM ON THE MEETING AGENDA TO BE ADDED TO THE 
+TESTIFIER LOG ONLINE, RAISE YOUR HAND IN TEAMS. ONCE YOU HAVE BEEN ADDED TO THE LOG, 
+STAFF WILL LOWER YOUR HAND. IF YOU ARE CALLING IN MY PHONE, FOLLOW THE PHONE 
+PROMPTS TO BE ADDED TO THE TESTIFIER LOG. TESTIFIERS ARE LISTED IN THE ORDER OF SIGN-UP.  
+YOU CAN CHECK YOUR PLACE IN LINE CLUCKING ON THE TESTIFIER LOG.\r\n\r\nWHEN YOUR NAME 
+IS CALLED, PLEASE IDENTIFY THE ITEM NUMBER YOU ARE TESTIFYING ON AND IF YOU WISH TO 
+TESTIFY LATER AT THE TIME THE ITEM IS CALLED, PLEASE LET US KNOW AND WE'LL MOVE YOUR 
+NAME TO THAT SECTION. THE FIRST PERSON TO TESTIFY IS TESTIFYING ON BILL 156 TO BE 
+FOLLOWED BY JEREMIAH DESANTOS. >> HI. ALOHA CHAIR, VICE-CHAIR AND MEMBERS OF THE 
+COUNCIL. MY NAME IS DILLON SUMI, AND I'M A HIGH SCHOOL STUDENT ATTENDING MAUI HIGH. I 
+SERVE AS A MEMBER OF THE YOUTH COUNCIL FOR THE COALITION FOR TOBACCO FREE HAWAI'I. 
+I'M IN STRONG SUPPORT FOR BILL 156. AS A STUDENT, IT'S HARD TO IGNORE WHEN PEOPLE THINK 
+VAPING IS JUST A HARMLESS TREND, BUT IT IS NOT. I HAVE SEEN HARMFUL VAPES ARE 
+MARKETED DIRECTLY TO PEOPLE LIKE ME, FRUIT, CANDY AND MINT AND THESE FLAVORS MAKE 
+DEVELOPING A SEEM HARMLESS ALMOST LIKE A FUN TREAT, BUT THEY ARE NOT.\r\n\r\nFLAVORED 
+VAPES ARE DANGEROUS FOR YOUNG PEOPLE TO GET HOOKED ON NICOTINE AND IT'S EASIER TO 
+IGNORE THE DANGERS WHAT THE PRODUCTS TASTE LIKE CANDY OR FRUIT. I PERSONALLY PLAY A  
+SPORT AND FOR THOSE OF US WHO PLAY SPORTS VAPING CAN HAVE A GREATER IMPACT. 
+NICOTINE AND OTHER CHEMICALS FOUND IN VAPES CAN HARM LUNG FUNCTION MAKING IT 
+HARDER TO BREATHE DURING PHYSICAL ACTIVITY AND MEANS REDUCED STAMINA AND LESS 
+ENDURANCE, THAT REALLY HOLDS US BACK IN SPORT. THE CHEMISTS ALSO MESS WITH OUR 
+BRAINS AFFECTING FOCUS, COORDINATION AND REACTION TIME. CRITICAL THINGS THAT YOU 
+NEED IN SPORTS. IT'S REALLY TROUBLING WHEN I SEE YOUNGER STUDENTS GETTING INVOLVED, 
+WHEN THEY THINK IT'S COOL OR SAFE, AND NOT ONLY THAT, BUT W HEN THERE'S YOUTH FOUND 
+VAPING IN BATHROOMS, IT'S HARD TO CATCH THEM AND THEY WILL CONTINUE TO MAKE IT A 
+HABIT UNTIL THEY CAN'T GET OUT OF IT BY THEMSELVES. THANK FOR ALLOWING ME TO TESTIFY 
+FOR THE SUPPORT OF THE YOUTH AND THE FUTURE.\r\n\r\n>> THANK YOU. IS YOUR UNCLE TOMMY 
+A ZUMI? >> YES. >> HE IS A GOLFER. ANY QUESTIONS? IF NOT, THANK YOU VERY MUCH. >> THANK 
+YOU.\r\n\r\n>> CHAIR, THE NEXT TESTIFIER IS JEREMIAH DESANTOS, TESTIFYING ON BILL 156, 
+FOLLOWED BY LISA GARO. >> ALOHA CHAIR, VICE-CHAIR, AND MEMBERS OF COUNCIL. I'M A HIGH 
+SCHOOL STUDENT ATTENDING H.P. BALDWIN HIGH SCHOOL. I SERVE AS A MEMBER OF THE YOUTH  
+COUNCIL FOR THE COALITION OF TOBACCO FREE HAWAI'I AND I'M IN STRONG SUPPORT FOR BILL 
+156. WHICH SEEKS TO PROTECT YOUTH FROM THE TOBACCO INDUSTRY'S PREDATORY MARKETING 
+PRACTICES. I WITNESSED FIRSTHAND THE DEVASTATING EFFECTS OF VAPING. A CLOSE FRIEND OF 
+MINE THAT I GREW UP AND CARE DEEPLY ABOUT TURNED TO VAPING AS AN ESCAPE DURING A 
+DIFFICULT TIME IN HER LIFE. IT QUICKLY BECAME APPARENT THAT VAPING OFFERED NO SOLACE 
+AND INSTEAD, IT WORSENED THE STRUGGLES.\r\n\r\nTRAGICALLY, THIS FRIEND ULTIMATELY 
+SUCCUMBED TO THE MENTAL HEALTH CHALLENGES THEY WERE FACING LEADING TO THEIR 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+SUICIDE. THIS HEARTBREAK HAS LEFT AN INCREDIBLE MARK ON ME AND REINFORCED THE 
+URGENT NEED TO ADDRESS VAPING AMONG THE YOUTH BEYOND THE PERSONAL TOLL, VAPING 
+HAS SEVERELY DISRUPTED OUR SCHOOLS. THIS ISSUE IS NOT ONLY DISTRACTING, BUT ALSO A 
+CREATING TO THE LEARNING ENVIRONMENT AND WELL-BEING OF STUDENTS. BILL 156 IS 
+ESSENTIAL FOR PROTECTING STUDENTS LIKE ME, AND OTHERS ACROSS MAUI COUNTY. BY 
+RESTRICTING THE ABILITY OF THE TOBACCO INDUSTRY TO MARKET AND PREY ON YOUNG 
+IMPRESSIONABLE MINDS TO TAKE CRITICAL STEPS TO SAFEGUARDING OUR HEALTH AND FUTURE 
+THE PASSING THIS BILL SENDS A CLEAR MESSAGE THAT OUR COMMUNITY PRIORITIZING THE 
+WELL-BEING OF ITS YOUTH OVER THE CORPORATE PROFITS AND URGE YOU TO STAND WITH US 
+AND PASS BILL 156 FOR THE SAKE OF MY PEERS, FOR THE MEMORY OF MY FRIENDS AND THE 
+HEALTH AND SAFETY FOR GENERATIONS TO COME. MAHALO NUI LO A AND MERRY CHRISTMAS. >>  
+THANK YOU.\r\n\r\nMERRY CHRISTMAS >> THE NEXT TESTIFIER IS LESLIE GARO, FOLLOWED BY 
+ERIC MOJO. >> GOOD MORNING, CHAIR AND MEMBERS OF THE COUNCIL. MY NAME IS LESLIE 
+GARO, PRESIDENT OF THE HAWAI'I PUBLIC HEALTH INSTITUTE AS THE MAUI COUNTY TOBACCO- 
+FREE COORDINATOR. I STAND ON MY WRITTEN TESTIMONY IN STRONG SUPPORT OF BILL 156. 
+MAHALO, AND MERRY CHRISTMAS. >> THANK YOU. MEMBER, QUESTIONS? IF NOT, THANK 
+YOU.\r\n\r\n>> CHAIR, THE NEXT TESTIFIER IS ERIC, TESTIFYING ON BILL 188, FOLLOWED BY 
+KANANI HIGBY. ALOHA CHAIR, COUNCIL MEMBERS I'M THE PRESIDENT OF THE [SPEAKER NOT 
+UNDERSTOOD] I'M HERE THIS MORNING REPRESENTING IN SUPPORT OF BILL 188. IS LOCATED IN 
+PA'IA AT THE HANA HIGHWAY ALONG THE SHORES OF THE BAY. WE'RE BUDDHIST TEMPLES 
+ESTABLISHED OVER 118 YEARS AGO IN 1906 BY A COMMUNITY OF FIRST GENERATION JAPANESE 
+IMMIGRANTS. THE MISSION IS TO BE A PLACE OF COMPASSION, RESPECT AND KINDNESS FOR ALL 
+WHO SEEK TRUDGE THROUGH THE TEACHERS OF BUD HAD A AND PRACTICE OF ZEN MEDITATION 
+AND OUR TEMPLE MEMBERS. OUR SHORT-TERM VISION IS TO STAY IN PLACE IN PA'IA AS A 
+VIBRANT AND RELEVANT BUDDHIST MISSION. LOCATED ON 4.2-ACRE SITE OUR TEMPLE AND BELL 
+STRUCTURES THAT ARE PART OF THE HISTORIC HAWAI'I FOUNDATION LIST OF HISTORIC 
+PROPERTIES ON ALSO A LARGE CEMETERY WHICH ARE THE RESTING PLACES FOR HUNDREDS OF 
+FAMILY MEMBERS, SPANNING THREE GENERATIONS. OUR CALENDAR OF EVENTS INCLUDING 
+RELIGIOUS SERVICES IN JAPANESE CULTURAL EVENTS AND ACTIVITY OURS ANNUAL FUNDRAISER 
+IN MARCH AND FESTIVITIES IN JULY DRAW HUNDREDS OF PEOPLE FROM MAUI AND 
+ABROAD.\r\n\r\nTHE BEACHFRONT AND BAY ARE A FAVORITE SPOT FOR LOCAL FISHERMEN AND 
+DIVERS AND THERE ARE SOMETIMES DOZENS OF TURTLES ON ANY GIVEN DAY SEEKING A SUNNY 
+PLACE TO COME ASHORE AND REST. LOCALS AND VISITORS COME TO THE BAY TO ENJOY THE 
+VIEW. OVER THE LAST GO DECADES IT HAS WITNESSED AND BEEN CHALLENGED BY THE 
+INCREASING INTENSITY AND OCCURRENCES OF LARGE WAVE EVENTS CAUSED BY CLIMATE 
+CHANGE. THE LOSS OF OVER TWO ACRES OF SHORELINE PROPERTY AND THREAT OF LOSS AND 
+DAMAGE TO OUR TEMPLE STRUCTURE AND CEMETERY PROMPTED US TO TAKE ACTION. WE HIRED  
+EXPERTS IN THE FIELDS OF COASTAL ENGINEERING, ARCHITECTURE, ARCHAEOLOGY AND 
+CONSTRUCTION, AND WORKED DILIGENTLY WITH STATE AND COUNTY AGENCIES AND OFFICIALS 
+TO ENSURE ALL OF THE PROPER PERMITTING, TESTING AND REPORTING PROCEDURES WERE 
+COMPLETED IN ORDER TO INSTALL A TEMPORARY SANDBAG STRUCTURE NOW IN PLACE ON OUR 
+SHORELINE. IN COLLABORATION WITH OUR CONSULTING TEAM WE HAVE PLANS FOR THE FUTURE 
+OF THE BAY AND FOR ENHANCED ROUT REACH AND COMMUNICATION WITH OUR NEIGHBORS, 
+AND THE SURROUNDING PA'IA COMMUNITY. THIS PAST YEAR THIS COUNCIL HAS DONE THE GOOD 
+WORK OF PROVIDING RELIEF AND RESOURCES TO THE LAHAINA AND KULA COMMUNITIES, AND 
+NOW OUR PA'IA SHORELINE COMMUNITY ASKED FOR YOUR KOKUA.\r\n\r\nWE NEED HELP TO 
+ADDRESS THE CHALLENGES OF SHORELINE EROSION, AND TO MITIGATE ANY HAZARDS TO OUR 
+TEMPLE MEMBERS AND OUR COMMUNITY VISITORS. WE HOPE THAT WITH YOUR SUPPORT, OUR 
+GOOD FAITH BY THE BOOK EFFORTS CAN SERVE AS A POSITIVE ROLE-MODEL FOR OTHER 
+SHORELINE PROPERTIES DEALING WITH BEACH EROSION, AND SO AGAIN, WE HUMBLY ASK FOR 
+YOUR SUPPORT BY VOTING IN FAVOR OF BILL 188. MAHALO FOR YOUR TIME. >> THANK YOU. 
+MEMBERS, QUESTIONS? IF NOT, THANK YOU VERY MUCH. >> THANK YOU. >> CHAIR, THE NEXT 
+TESTIFIER IS KANANI HIGBY, FOLLOWED BY LESLEY MILNER.\r\n\r\n>> KANANI, ARE YOU THERE? 
+>> YES. >> YOUR TURN. >> MY NAME IS KANANI HIGBY TESTIFYING ON RESOLUTION 23-189, 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+URGING THE STATE OF HAWAI'I TO CREATE AND SUPPORT A TASK FORCE TO ADDRESS THE 
+URGENT PROBLEM OF MISSING PERSONS IN HAWAI'I. AS I STATED BEFORE, MY BROTHER IS A 
+MISSING PERSON, KANAL YU HIGBY, BEEN MISSING FOR OVER TWO YEARS. AND HE HAS THREE 
+CHILDREN, A WIFE, AND A HUGE FAMILY THAT CARES ABOUT HIM. I KNOW THERE'S A COLD CASE 
+UNIT OF TWO DETECTIVES ON MAUI. BUT THAT IS NOT EFFICIENT IN ORDER FOR THEM TO SOLVE 
+CASES.\r\n\r\nTHEY DON'T HAVE THE PROPER TRAINING, AND WHEN I INQUIRE WITH LOS ANGELES 
+POLICE, HONOLULU POLICE, THEY DO SUGGEST THAT WE SHOULD HAVE A TASK FORCE MADE UP 
+OF FEDERAL, STATE AND COUNTY AGEN CIES SO THEY CAN PULL THEIR RESOURCES, AND WORK 
+TOGETHER IN ORDER TO ADDRESS THE OVER 40 MISSING PERSON CASES IN MAUI, JUST IN MAUI. 
+ALSO THERE'S HUNDREDS ACROSS THE STATE. THIS IS DEFINITELY AN EPIDEMIC, AND EVERYONE 
+SHOULD CARE THAT THERE'S PEOPLE MISSING ON MAUI AND THE FAMILIES DON'T KNOW WHAT 
+HAPPENED TO THEM. IT DEFINITELY HAS DEVASTATED MY FAMILY. THE WORSE THING TO EVER 
+HAPPEN TO US. AND I JUST FEEL THAT IT WOULD HELP SOLVE THE CASES, GIVE FAMILIES 
+ANSWERS, CLOSURES, AS THEY ARE ABLE TO HAVE A MISSING TASK FORCE. I DO LIKE KEANI 
+RAWLINS-FERNANDEZ' SUGGESTION THERE SHOULD BE A WORKING GROUP.\r\n\r\nI WOULD LIKE TO  
+BE ON THE WORKING GROUP, THAT WAY WE CAN MAKE SURE THE TASK FORCE IS DILIGENT WITH 
+MEETING OUR NEEDS AS FAMILIES OF MISSING PEOPLE. I JUST HOPE THAT THIS HAPPENS BECAUSE 
+THIS HAS DEVASTATED MY FAMILY. I SPEAK TO MANY OTHER FAMILIES OF MISSING PEOPLE, AND 
+THEY ARE VERY FRUSTRATED WITH HAVING THEIR FAMILY MEMBERS MISSING FOR YEARS AND 
+YEARS. THEY STILL DON'T KNOW WHAT HAPPENED TO THEIR FAMILY MEMBER. THE FAMILY 
+MEMBERS WHO THEY WERE VERY CLOSE TO, AND IT WAS LIKE THEY VANISHED OFF THE FACE OF 
+THE EARTH. THIS IS MY SECOND FAMILY MEMBER TO HAVE GONE MISSING. AND MY FIRST FAMILY  
+MEMBER TO HAVE GONE MISSING WAS MY BROTHER.\r\n\r\n>> TIME. >> HE WAS LIKE THE ONLY 
+PERSON WHO SURVIVED HIS CAPTORS. >> KANANI, CAN YOU CONCLUDE? >> YES. SO JUST 
+WRAPPING UP, I WAS SAYING THAT IT'S NOT LIKE THESE PEOPLE ARE JUST MISSING WHEN YOU 
+LOOK AT MY BROTHER-IN-LAW'S CASE, WHERE HE WAS A MISSING PERSON, HE ACTUALLY 
+SURVIVED ATTEMPTED MURDER, WHERE THEY HAD GUNS AND SHOVELS IN THEIR CAR AND 
+KIDNAPPED HIM AFTER WORK USING THE RUSE AS A POLICE OFFICER. THEY TRANSPORTED HIM TO  
+A REMOTE AREA OF THE ISLAND READY TO MURDER HIM. THE ONLY WAY HE PASSED HIMSELF 
+OUT WAS OFFERING THEM MORE MONEY THAN WHAT THEY WERE BEING PAID AND THAT IS WHAT  
+IT'S LIKE.\r\n\r\nIT'S IMPORTANT FOR PEOPLE TO REALIZE THESE PEOPLE AREN'T JUST MISSING, 
+LIKELY, AND IT'S REALLY SAD. THERE MAY BE SEVERAL CASES WHERE THE BODIS ARE BURIED 
+HERE ON MAUI AND THE FAMILIES DESERVE CLOSURE JUST LIKE ANYONE ELSE WOULD WANT 
+CLOSURE. THEY SHOULD BE ABLE TO LAY THEIR FAMILY DOWN TO REST WHERE THEY FEEL IT'S, 
+YOU KNOW, RIGHT FOR THEIR FAMILY. BUT PLEASE, I ASK THAT YOU PASS THIS MISSING PERSON 
+TASK FORCE, AND ALSO ATTACH A WORKING GROUP MADE UP OF PEOPLE WHO LOST THEIR 
+LOVED ONES ON MAUI AND THEIR FAMILY MEMBERS ARE MISSING. THANK YOU. >> THANK YOU. 
+MEMBERS, ANY QUESTIONS?\r\n\r\nIF NOT, THANK YOU KANANI. >> CHAIR, NEXT TESTIFIER IS 
+LESLEY MILNER TESTIFYING ON BILLS 177, 1898, AND 189, FOLLOWED BY TINA WILDBERGER. >> 
+ALOHA, CHAIR, COUNCIL MEMBERS. THREE BUDGET AMENDMENTS UNDER CONSIDERATION UP 
+FOR FIRST READING BILL 187 IS REAPPROPRIATING FUNDS FOR THE OHANA ASSISTANCE 
+PROGRAM. WE BRIEFLY TOUCHED ON THIS IN THE BFED MEETING THE OTHER DAY. THOSE FUNDS 
+NEED TO BE DISENCUMBERED AND NEED TO BE REENCUMBERED TO GET THE GRANTS MOVING AS 
+QUICKLY AS POB. BILL 188 AS ALREADY DISCUSSED, $500,000 FOR THE MISSION FROM THE 
+MANAGED RETREAT FUND FOR WORK RELATED TO FUEL TANK HAZARD MITIGATION AT THE 
+BAY.\r\n\r\nWE HAVE SUBMITTED A PROPOSED AMENDMENT THAT IS JUST TO CORRECT THE NAME. 
+AND FINALLY BILL 189, THE DEPARTMENT OF FIRE AND PUBLIC SAFETY HAS RECEIVED AN 
+ADDITIONAL $91,780 FROM THE STATE DEPARTMENT OF TRANSPORTATION HIGHWAY SAFETY 
+GRANT FUND AND THESE FUNDS WILL BE USE FOR BATTERY POWERED EM TRACTION TOOLS AT 
+FIRE STATIONS THROUGHOUT THE COUNTY. JUST ASK YOUR CONSIDERATION OF THOSE TODAY 
+AND MELE KALIKIMAKA AND HAU'OLI MAKAHIKI HOU. >> VERY GOOD. THANK YOU. ANY 
+QUESTIONS? IF NOT, THANK YOU.\r\n\r\n>> CHAIR, NEST TESTIFIER IS TINA WILDBERGER 
+TESTIFYING ON BILL 156, SHE WILL BE FOLLOWED BY KIMER LIN SCOTT. >> MERRY CHRISTMAS, 
+CHAIR AND COUNCIL MEMBERS. THANK YOU FOR YOUR TIME TODAY. I'M HERE TO STAND 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+SUBMITTED WRITTEN TESTIMONY FOR THE AMERICAN LUNG ASSOCIATION HAWAI'I FOR BILL 156 
+HD 1. THANK YOU VERY MUCH, IN STRONG SUPPORT. >> THANK YOU, TINA. ANY QUESTIONS? IF 
+NOT, MERRY CHRISTMAS.\r\n\r\n>> CHAIR, NEXT TESTIFIER IS KIMBER LYNN SCOTT TESTIFYING ON 
+RESOLUTION 23-189, AND SHE WILL BE FOLLOWED BY THE PERSON CALLING IN WITH THE LAST 
+FOUR DIGITS 4552. >> ALOHA COUNCIL MEMBERS. MY NAME IS KIMBERLIN SCOTT AND TESTIFYING  
+IN STRONG SUPPORT OF RESO 23-189, AND AGAIN REQUESTING THAT COUNCIL SUGGESTION IN 
+RESOLUTION 23189 THAT I BE MADE A MEMBER OF PROPOSED TASK FORCE. MY QUESTION IS 
+PREDICATED ON PERSONAL EXPERIENCE AND KNOWLEDGE, AS WELL AS VOLUNTEER ADVOCACY 
+WITH THE FAMILIES MISSING FOR THE PAST TEN YEARS. THIS RESOLUTION'S GOAL IS TO ADDRESS 
+THE CRITICAL NEED FOR MORE STRUCTURED SYSTEMATIC AND STREAMLINED DATA COLLECTION 
+BETWEEN GOVERNMENT AGENCIES. ONE OF THE MANY REASONS THIS IS A CRITICAL NEED 
+SITUATION IS BECAUSE PER CAPITA HAWAI'I NOW RANKS NO. 2 FOR MISSING PEOPLE IN THE 
+UNITED STATES WHICH HOLDS TRUE THOUGH OUR RECORDED NUMBERS ARE LOWER THAN WHAT 
+THEY REALLY ARE. WHICH SHOULD BE VERY CONCERNING TO ALL.\r\n\r\nTHE NUMERICAL 
+DISCREPANCIES BETWEEN THE TRUTH AND THE NAMUS AND HAWAI'I POLICE DEPARTMENTS ARE 
+MAKING PUBLIC IS MISLEADING TO OUR COMMUNITIES. IN THE SIMPLEST TERMS IF OUR 
+COMMUNITIES ARE UNAWARE OF THE SERIOUSNESS OF THE ISSUES, THEY CANNOT PROTECT 
+THEMSELVES. ACCORDING TO NAMUS, THERE ARE 42 MISSING PEOPLE IN OUR COUNTY AND 
+COMPARED TO 45 MISSING ON THE MISSING PERSON PAGE THE OTHER MAUI COUNTY MISSING 
+PAGE LISTS 43 MISSING THE TRUE NUMBER IS 61 ACCORDING TO MY INFORMATION. NAMUS IS 
+MISSING CASES THAT ARE TEN YEARS OLD AND OLDER LIKE THE LAURA VOGEL AND GREG 
+PRESCOTT CASES WITH OTHER CASES WHO HAVE BEEN DECLARED DECEASED, BUT THE REMAINS 
+ARE NOT FOUND, BUT CHARLIE SCOTT DECLARED DECEASED IS NOT LISTED ALTHOUGH HER BODY  
+HAS NOT BEEN FOUND EITHER. MPD HAS EDWARD WHITE LISTED, BUT HE WAS FOUND DECEASED 
+AND IDENTIFIED GO YEARS AGO. THE CASE OF WINSTON -- NOT ONLY WAS NOT ONLY 
+INVESTIGATED, BUT HIS CASE WAS LITERALLY LOST UNTIL HIS MOTHER AND I CONVINCED MPD 
+HE WAS OFFICIALLY MISSING. EDWARD WENT WAS REPORTED MISSING IN 1992 BUT REMAINS 
+LISTED ON THE MAUI COUNTY AND NAMUS POLICES.\r\n\r\nOUR CURRENT CHIEF OF POLICE HAS 
+UPGRADED TECHNOLOGY AND CREATED THE COLD CASE TASK FORCE, THESE ADJUSTMEN TS ARE 
+NOT ENOUGH, WHICH IS EVIDENCED BY THE LONG-TERM INCORRECT DATA ON MPD, THE 
+COUNTY'S WEBSITE AND NAMUS, FAMILIES CAN'T UPLOAD THEIR OWN CASES TO NAMUS WITHOUT  
+THE SUPPORT OF POLICE DEPARTMENTS, WHICH AGAIN IS EVIDENCED BY THE LARGE 
+DISCREPANCY IN TOTAL MISSING CASES. THESE ARE JUST EXAMPLES OF INCORRECT DATA. IT'S 
+THE FIRST STEP TOWARDS GETTING THE CORRECT DATA TO ALLOW HAWAI'I TO APPLY FOR 
+FUNDING TO HELP OUR POLICE FORCE AND THE FAMILIES OF THE MISSING, MAHALO FOR YOUR 
+TIME. >> THANK YOU DEVELOP >> THE NET TESTIFIER IS TESTIFYING ON RESOLUTION 23-189 TO BE  
+FOLLOWED BY JILL TAMA SHIRO. CAN YOU NOT HEAR ME? >> WE CAN HEAR YOU KNOW. >> THIS 
+IS KAREN, A SISTER OF KEVIN WINTERS AND I'M CALLING IN TO TESTIFY ON RESO 23-189. AND SO 
+MY BROTHER KEVIN HAS BEEN MISSING SINCE SEPTEMBER 3, 2021. HE DISAPPEARED, HE USED TO 
+WORK AND LIVE AT THE NORTH SHORE HOSTILE IN WAILUKU.\r\n\r\nIT'S NOW CALLED THE HOUSE 
+AT HOSTEL. MY MOTHER WOULD SPEAK TO HIM TWICE A DAY AND HE WAS ALLEGEDLY LET GO 
+FOR STEALING CO-WORKER'S PHONE, WHICH IS NOT TRUE. THE LAST KNOWN PROOF OF LIFE WAS 
+DEPOSITING MONEY BY THE MAUI BUOY COMPANY AT THE HAWAIIAN ATM, I FORGET THE NAME 
+OF THE BANK. I THINK IT'S FIRST HAWAIIAN SAVINGS OR SOMETHING. HE HAD VANISHED AFTER 
+THAT. I HAVE SPENT THE LAST THREE YEARS BEING HIS ADVOCATE AND HIS VOICE, BECAUSE HE 
+DOES NOT HAVE ONE. I CANNOT BEGIN TO TELL YOU THE ROADBLOCKS I HAVE ENCOUNTERED 
+THE RABBIT HOLES, THE FACT THAT I FLEW THERE, HAD TO GET A GO FUND ME AND TURNED 
+AROUND, NEVER GOT TO MEET WITH THE DETECTIVES.\r\n\r\nI DON'T EVEN KNOW WHERE THE 
+DETECTIVE WENT THAT WAS ASSIGNED TO THE CASE. I WORKED -- THIS IS MY PART-TIME JOB 
+AND I'M JUST TRYING TO GET SOME CLOSURE TO FIND OUT WHAT HAPPENED. I'M NOT SEEKING 
+REVENGE, I'M JUST LITERALLY TRYING TO FIGURE OUT HE DESERVES JUSTICE. HE DOESN'T JUST 
+DISAPPEAR, HE WAS MADE TO DISAPPEAR. I'M CONFIDENT AFTER MY OWN INVESTIGATION THAT 
+IS WHAT HAPPENED. MY PARENTS THEY DESERVE CLOSURE. THEIR HEALTH IS FAILING AND THEY 
+ARE ELDERLY AND COMING HOME HOPEFULLY IN A DAY.\r\n\r\nI  WOULD LOVE NOTHING MORE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THAN TO MY MOM EVERY DAY ASKING ME IF I HEARD ANYTHING ABOUT KEVIN, TO TELL HER 
+SOMEBODY IS WORKING ON THAT. SO I PLEASE URGE YOU THIS TASK FORCE IS A GREAT IDEA, BUT 
+I ALSO BECAUSE I'M IN CONTACT WITH A LOT OF THE FAMILIES, URGE YOU TO ALSO REACH OUT 
+TO US TO FIND OUT -- I WOULD BE GLAD FROM 4,000 MILES AWAY TO HELP WHERE WERE I CAN, 
+BECAUSE I HAVE LEARNED A LOT. AND I REALLY JUST URGE YOU TO JOIN- OR HAVE THIS TASK 
+FORCE, AND WITH THE COOPERATION NOT LEAVE A STONE UNTURNED. TO SOLVE MY BROTHER'S 
+CASE ALONG WITH THE OTHER MISSING CASES. I KNOW WHICH CHIEF PELLETIER THE YEAR THAT 
+MY BROTHER WENT MISSING, HE HAD MENTIONED IN ONE THE MAUI NEWS OR SOMETHING ABOUT  
+FUNDING FOR THIS TASK FORCE, OR FOR THE COLD CASE UNIT. WE HAVE A COLD CASE UNIT AND I  
+HAVE A DIFFERENT DETECTIVE. I'M JUST WONDERING, I KNOW BILLBOARDS ARE ILLEGAL, BUT 
+LIFE-SIZED POSTERS TO GET THE COMMUNITY INVOLVED?\r\n\r\nTHEY DON'T KNOW IF THEY HAVE 
+BEEN FOUND OR NOT FOUND? >> TIME. >> I WILL WRAP IT UP. I KNOW I ONLY HAVE THREE 
+MINUTES. KEVIN SHOULD BE HOME SPENDING CHRISTMAS WITH HIS FAMILY. HE HAS NO VOICE 
+BECAUSE NO DISTANCE WILL SEPARATE THE LOVE I HAVE FOR HIM. MERRY CHRISTMAS AND GOD 
+BLESS YOU ALL.\r\n\r\n>> THANK YOU VERY MUCH. MEMBERS, ANY QUESTIONS? IF NOT, THANK 
+YOU AGAIN. >> CHAIR, THE NEXT TESTIFIER IS JILL TAMASHIRO TESTIFYING ON BILL 156, 
+FOLLOWED BY MIKE FOLEY. >> GOOD MORNING, CHAIR, AND MEMBERS OF THE COUNCIL, JILL 
+TAMASHIRO TESTIFYING ON BEHALF OF THE HAWAI'I DEPARTMENT OF HEALTH. WE STAND ON 
+OUR TESTIMONY IN SUPPORT OF BILL 156, CD 1. WE THANK THE COUNCIL FOR THEIR INITIATIVE IN 
+BRINGING THIS MEASURE FORWARD. THANK YOU.\r\n\r\n>> THANK YOU. MEMBERS, QUESTIONS? IF 
+NOT, THANK YOU VERY MUCH. MAY WE HAVE THE NEXT TESTIFIER? >> CHAIR, CURRENTLY THE 
+LAST TESTIFIER SIGNED UP IS MIKE FOLEY, TESTIFYING ON BILL 188. MIKE FOLEY. >> ALOHA. 
+CHAIR, VICE-CHAIR, MEMBERS THE OF COUNCIL, MIKE FOLEY HERE.\r\n\r\nI AM A COASTAL 
+ENGINEER WORKING WITH THE MANTOKUJI MISSION SINCE 2018. TESTIFYING IN STRONG SUPPORT 
+OF BILL 188. OF COURSE, AS YOU HAVE HEARD FROM ERIC MOTO OF THE MISSION, THEY ARE 
+FACING CHALLENGES WITH EROSION FOR DECADES NOW AT THE MISSION AT THIS IMPORTANT 
+COMMUNITY RESOURCE IN PA'IA. SINCE WORKING WITH THEM, I HAVE EXPERIENCED, OR I HAVE 
+OBSERVED AN EROSION RATE OF 3' PER YEAR IN SPOTS OF THE BAY. THIS EROSION HAS BEEN 
+CRUMBLING THE COASTAL BLUFF INTO THE OCEAN. IT'S TAKING WITH IT GRAVES, THE DIVERS 
+WHO USE THIS BAY FREQUENTLY CAN TELL YOU THIS ARE TOMBSTONES, HEADSTONES, 
+SCATTERED ALONG THE OCEAN FLOOR IN THIS AREA FROM THE GRAVEYARD. AND OF COURSE, 
+THE EROSION THREATENS THIS COMMUNITY RESOURCE. IT'S THREATENING THE INTEGRITY OF 
+THE HISTORIC TEMPLE, THE COMMUNITY KITCHEN WHERE THEY COOK UP THE CHAO FUN THAT IS 
+FAMOUS. IT'S THREATENING THE MINISTER'S HOME, THE REVEREND AS HOUSE WHERE THEY 
+PROVIDE THEIR SERVICE TO THIS COMMUNITY AND OTHER STRUCTURES.\r\n\r\nSINCE THE 1930S, 
+MAUI COUNTY HAS BEEN -- OR BEGINNING IN THE 1930S, MAUI COUNTY STARTED TO MINE SAND 
+FROM MANTOKUJI BAY FOR THE USE TO MAKE CONCRETE FOR PUBLIC INFRASTRUCTURE. THE 
+LOSS OF SAND IS A MAJOR FACTOR, SIGNIFICANT REASON WHY WE'RE EXPERIENCING ALL OF THIS  
+EROSION. SANDY BEACHES PROVIDE A BUFFER TO THE SOIL THAT IS LANDWARD AND WITHOUT 
+THAT SAND WE'RE SEEING SAND CRUMBLE QUICKLY. UNFORTUNATELY THE EROSION HAS 
+EXPOSED AN OLD FUEL PIPE. THIS FUEL PIPE POWERED CREMATORIUM THAT ONCE TOOK CARE OF 
+THE REMAINS FOR THE CONGREGATION. THE CREMATORIUM HAS SINCE CRUMBLED INTO THE 
+OCEAN AND BRICKS SCATTERED ALONG THE BEACH AND BAY, BUT THE FUEL PIPE REMAINS AND 
+BEHIND THAT SOMEPLACE IS A FUEL TANK. SO THIS IMPORTANT MEASURE PROVIDES FUNDING 
+FOR MANTOKUJI MISSION FOR THIS RISK AND URGENT ACTION IS NEEDED.\r\n\r\nI URGE YOU TO 
+PLEASE PASS THIS MEASURE TODAY, SO THEY CAN GET TO WORK. YOU'VE PROBABLY ALL KNOW 
+THAT WE HAD A MASSIVE SWELL EVENT THIS WEEKEND AND MANTOKUJI BAY SUSTAINED 
+DAMAGE. TIME IS DEFINITELY RUNNING OUT. THANK YOU FOR YOUR TIME AND ALOHA. >> THANK  
+YOU. MEMBERS, QUESTIONS? IF NOT, THANK YOU VERY MUCH.\r\n\r\n>> CHAIR, MR. FOLEY WAS -- 
+>> EXCUSE ME, MS. CLERK , MEMBER UU-HODGINS HAS A QUESTION. >> I'M SORRY. >> I HAVE A 
+QUESTION FOR YOU. WHEN THIS ITEM COMES UP ON THE AGENDA, CAN WE CALL MR. FOLEY, IF HE  
+IS AVAILABLE?\r\n\r\n>> TO BE A RESOURCE PERSON >> YES. >> I'M SURE YOU ARE ALL FAMILIAR 
+WITH HIS EXPERTISE. WE'LL CALL HIM. >> THANK YOU, CHAIR. >> MS. CLERK. >> CHAIR, THERE'S 
+NO ONE ELSE CURRENTLY SIGNED UP TO TESTIFY AT THE BEGINNING OF THE MEETING.\r\n\r\nIF 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THERE IS ANYONE, THIS IS YOUR OPPORTUNITY AND THIS IS LAST CALL. COUNTDOWN IS 3, 2, 1. 
+CHAIR, THERE'S NO ONE INDICATING A DESIRE TO TESTIFY AT THIS TIME. >> MEMBERS, ANY 
+OBJECTIONS TO CLOSING PUBLIC TESTIMONY FOR TESTIMONY AT THE BEGINNING OF THE 
+MEETING? AND ACCEPTING WRITTEN TESTIMONY? THANK YOU. SO ORDERED. MS.\r\n\r\nCLERK. >> 
+CHAIR, THERE NO BUSINESS FOR THE COUNCIL ON H OR I ON THE AGENDA. SO MOVING TO J, 
+COMMUNICATION. WE HAVE NO ONE SIGNED UP CURRENTLY TO TESTIFY. IF THERE'S ANYONE 
+THAT WOULD LIKE TO TESTIFY ON COMMUNICATIONS, THIS IS YOUR OPPORTUNITY, AND THIS IS 
+LAST CALL. THE COUNTDOWN IS 3, 2, 1. CHAIR, THERE'S NO ONE INDICATING A DESIRE TO TESTIFY 
+ON COMMUNICATIONS. >> MEMBERS, ANY OBJECTIONS TO CLOSING PUBLIC TESTIMONY AND 
+ACCEPTING WRITTEN TESTIMONY.\r\n\r\n>> NO OBJECTIONS, I HAVE A QUESTION. >> YES, VICE-
+CHAIR. >> BECAUSE WE HAVE SO MANY STUDENTS HERE REGARDING BILL 156 AT THE 
+APPROPRIATE TIME CAN YOU MOVE IT UP? SO THAT THEY CAN GO BACK TO CLASS? >> SURE. >> 
+THEY ARE ON BREAK. >> OH, THEY WANT TO STAY WITH US DAY.\r\n\r\n>> NO, NOT ALL DAY. 
+[LAUGHTER ] >> CHAIR, WE'RE ON COMMUNICATIONS. CHAIR, BEFORE YOU IS COUNTY 
+COMMUNICATION 24-34 COUNCIL MEMBER PALTIN TRANSMITTING A PROPOSED AMENDMENT TO 
+RESOLUTION 23-19 ENTITLED, "URGING THE STATE OF HAWAI'I TO CREATE AND SUPPORT A TASK 
+FORCE TO ADDRESS THE URGENT PROBLEM OF MISSING PERSONS IN HAWAI'I" MEMBER UU-
+HODGINS. >> THANK YOU, CHAIR. IF THERE'S NO OBJECTIONS TO REQUEST THAT THIS BE 
+POSTPONED TO LATER IN THE AGENDA WHEN WE CONSIDER 23-189. >> NO OBJECTIONS. >> ANY 
+OBJECTIONS. WE'LL MOVE THAT TO LATER.\r\n\r\n>> THANK YOU WE'LL TAKE IT UP LATER I MEAN. 
+MS. CLERK. >> K, COMMITTEE REPORTS THERE'S CURRENTLY NO ONE TESTIFIED, BUT I SEE MR. 
+LAU MAKING HIS WAY TO THE PODIUM. >> ALOHA KAKAHIAKA. ALOHA KAKOU.\r\n\r\nALOHA 
+AKAKU. HAWAIIAN WORD OF THE DAY [SPEAKER NOT UNDERSTOOD] MEANS TO SET UP, MAKE 
+STAND AND ESTABLISH AS A SOCIETY. ALSO IT MEANS TO BRACE A CANOE WITH PADDLE WHILE 
+SAILING OR COASTING OVER WAVES IN ORDER TO STEER OR STEADY THE CANOE. I WOULD LIKE 
+TO THANK THE CHAIR OF THE EFFICIENCY SOLUTIONS AND CIRCULAR SYSTEMS COMMITTEE, THE 
+ONLY WORD I CAN TRANSLATE IS POI POI SO FAR FOR COMMITTEE REPORT 24-125. 126 AND 127. 
+THIS IS LONG TIME COMING. IT'S BECOME A 100 YEARS. ESPECIALLY INTERESTING TO ME IS THE 
+PART WHERE IT SAYS RELATING TO PUBLIC INSPECTION OF ADMINISTRATION RULES. SO I WILL BE 
+SEEING YOU GUYS SOON ON THAT ONE.\r\n\r\nTHANK YOU VERY MUCH. >> MORE TESTIFIERS? >> 
+NO, CHAIR, THERE'S NOT. THIS IS LAST CALL. AND THE COUNTDOWN IS 3, 2, 1. CHAIR, THERE'S NO 
+ONE INDICATING A DESIRE TO TESTIFY. >> ON COMMITTEE REPORTS? >> CORRECT.\r\n\r\n>> ANY 
+OBJECTIONS TO CLOSING PUBLIC TESTIMONY ON COMMITTEE REPORTS AND ACCEPTING WRITTEN 
+TESTIMONY? >> NO OBJECTIONS. >> SO ORDERED. MS. CLERK. >> CHAIR, FROM THE BUDGET, 
+FINANCE, AND ECONOMIC DEVELOPMENT COMMITTEE IS CR24-12 RECOMMENDING REFERRAL OF 
+BILLS TO THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025 RELATING TO: 1, 
+AMENDING TITLE 3, MAUI COUNTY CODE, MONETARY DONATIONS DURING EMERGENCY; AND 2, 
+AMENDING CHAPTER 3.97 MAUI COUNTY CODE ON USE OF MANAGED RETREAT REVOLVING FUND. 
+>> VICE-CHAIR SUGIMURA.\r\n\r\n>> IF THERE'S NO OBJECTIONS TO PLEASE REQUEST THE CLERK TO  
+CALL CR24-122. >> NO OBJECTIONS, MEMBERS. CR-122. MS. CLERK. >> CHAIR, BEFORE YOU IS 24-123 
+RECOMMENDING FIRST READING OF THE BILL 170 CD 1 (2024) TO AMEND THE FISCAL YEAR 2025 
+BUDGET BY ONE, AMENDING SECTION 2 ESTIMATED REVENUES BY INCREASING CARRY-OVER 
+SAVINGS GENERAL FUND BY $1.5 MILLION, 2 AMENDING SECTION 4.C.3A (I DEPARTMENT OF 
+MANAGEMENT WAILUKU-KAHULUI COMMUNITY PLAN AREA, GOVERNMENT FACILITIES GENERAL 
+FUND BY INCREASING THE APPROPRIATIO N FOR THE 00 SOUTH CHURCH STREET BUILDING 
+RENOVATIONS IN THE AMOUNT OF L1.5 MUNICIPAL. 3 ADJUSTING THE TOTALS ACCORDINGLY AND 
+4, AMENDING APPENDIX C CAPITAL IMPROVEMENTS PROJECTS DEPARTMENT OF MANAGEMENT 
+WAILUKU-KAHULUI COMMUNITY PLAN AREA BY INCREASING THE APPROPRIATION FOR 60 SOUTH 
+CHURCH STREET BUILDING RENOVATIONS BY $1.5 MILLION. >> VICE-CHAIR. >> THANK YOU.\r\n\r\nI 
+MOVE TO ADOPT RECOMMENDATIONS IN CR122-AND 121. >> MOVED BY VICE-CHAIR SUGIMURA 
+AND SECONDED BY MEMBER UU-HODGINS TO RECOMMEND APPROVAL OF COMMITTEE REPORTS 
+24-121 AND 24-122. DISCUSSION VICE-CHAIR SUGIMURA. >> MEMBERS CR121 RECOMMENDS REVEL 
+OF BILLS TO THE COUNCIL CHAIR FOR NEXT TERM ALLOWING NEXT YEAR'S COUNCIL TO 
+DELIBERATE ON THESE MATTERS. CR24-122 BILL 170 CD 1 (2024) TO RECOGNIZE $1.5 MILLION IN 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+CARRY-OVER SAVINGS FROM THE GENERAL FUND FOR THE 60 SOUTH CHURCH RENOVATIONS 
+PROJECT TO ACCOUNT FOR CHANGE ORDERS AS WELL AS ADDITIONAL CHARGES RESULTING 
+FROM DELAYS. I RESPECTFULLY ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. >> MY MORE 
+DISCUSSION? IF MOT, ALL THOSE IN FAVOR OF THE MOTION, PLEASE RAISE YOUR HAND, SAY AYE?  
+>> AYE.\r\n\r\n>> I SEE SEVEN AYES, TWO EXCUSED. MOTION CARRIES MS. CLERK. >> THANK YOU, 
+MEMBERS. >> THANK YOU, MADAM CHAIR, FROM THE DISASTER, RESILIENCE, INTERNATIONAL 
+AFFAIRS, AND PLANNING COMMITTEE IS COMMITTEE REPORT 24-123 RECOMMENDING REFERRAL 
+OF RESOLUTIONS TO THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025 RELATING 
+TO 1, PARKING FOR ELECTRIC VEHICLES; 2, INTEGRATING UPDATES TO THE WEST MAUI 
+COMMUNITY PLAN IN ALIGNMENT WITH WEST MAUI INFRASTRUCTURE PLAN IN THE A MATH OF 
+THE AUGUST 2023 WILDFIRES, AND 3, PROVIDING THE ESTABLISHMENT OF WEST MAUI HOSPITAL 
+AND MEDICAL CENTER THROUGH THE GUARANTY OF THE STATE SPECIAL PURPOSE REVENUE 
+BOND ISSUANCE. >> MEMBER UU-HODGINS. >> THANK YOU, I MOVE TO ADOPT THE 
+RECOMMENDATIONS IN CR24-123. >> SECOND.\r\n\r\n>> IT'S BEEN MOVED BY MEMBER UU-HODGINS 
+AND SECONDED BY MEMBER SINENCI TO APPROVE THE RECOMMENDATIONS IN COMMITTEE 
+REPORT 24-123. DISCUSSION, MEMBER UU-HODGINS. >> THANK YOU . RULES OF THE COUNCIL 
+PROVIDES FOR END OF TERM FILING FOR REFERRAL OF BILLING AND RESOLUTIONS PENDING 
+BEFORE COMMITTEES. AT ITS MEETING OF DECEMBER 4TH YOUR NEXT QUESTION DRIP 
+COMMITTEE MET AND VOTED 5-0 THAT THIS COMMITTEE REPORT BE REFERRED TO COUNCIL 
+CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025. I RESPECTFULLY ASK FOR MEMBERS' FULL 
+SUPPORT OF MY MOTION. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN FAVOR THE MOTION? 
+PLEASE RAISE YOUR HAND, SAY AYE.\r\n\r\nSEVEN AYES TWO EXCUSED, MOTION CARRIES. MS. 
+CLERK. >> THANK YOU, MADAM CHAIR BEFORE YOU IS COMMITTEE REPORT 24-124 REPRESENTING 
+THE FOLLOWING: 1, FIRST READING OF BILL 21 CD 1 (2023) TO ONE, ALLOW A HOURS EMERGENCY 
+AIRSTRIP OPERATIONS AT KAPALUA AIRPORT BY AMENDING THE CONDITIONS OF ZONING UNDER 
+SECTION 19.510.050 MAUI COUNTY CODE; AND 2, CORRECT THE TAX MAP KEYS AND PROPERTY 
+DESCRIPTION AND ACREAGE FOR KAPALUA AIRPORT AND 2 RECORDATION OF UNILATERAL 
+AGREEMENT. >> MEMBER UU-HODGINS. >> TO RECOMMEND TO THE COUNCIL TERM OF JANUARY 
+2, 2025. >> SECOND. >> MOVED BY MEMBER UU-HODGINS AND SECONDED BY MEMBER COOK TO 
+APPROVE COMMITTEE REPORT 24-124 WAS IT?\r\n\r\nYES. 124. ANY MORE DISCUSSION? OH, 
+STARTING TO SOUND A LIKE. MY MISTAKE. CORRECT THE SECONDER TO BE MEMBER SINENCI. 
+ANY MORE DISCUSSION? >> YES.\r\n\r\nTHANK YOU, CHAIR. COMMITTEE STAFF WAS NOTIFIED BY 
+STATE DEPARTMENT OF TRANSPORTATION VIA PHONE THAT THEY ARE UNABLE TO SIGN AND 
+EXECUTE THE UNILATERAL AGREEMENT ATTACHED TO BILL AT THIS TIME. THE DEPARTMENT 
+NOTED THAT FURTHER CLARIFICATION IS NEEDED TO DETERMINE WHETHER EMERGENCY 
+AIRSTRIP OPERATIONS A KAPALUA AIRPORT ARE AUTHORIZED UNDER THE GOVERNOR'S 
+EMERGENCY PROCLAMATION OR MAYOR'S EMERGENCY PROCLAMATION REFERRAL OF BILL 21-CD  
+1 ENSURES THAT WE DO NOT LOSE PROGRESS MADE DURING THIS COUNCIL TERM AND AT THIS 
+TIME, AGAIN, I ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. THANK YOU, CHAIR. >> ANY 
+MORE DISCUSSION? NO? ALL THOSE IN FAVOR OF THE MOTION, PLEASE RAISE YOUR HAND, SAY 
+AYE?\r\n\r\n>> AYE. >> SEVEN AYES, TWO EXCUSED. MOTION CARRIES. >> CHAIR, FROM THE 
+EFFICIENCY SOLUTIONS AND CIRCULAR SYSTEMS COMMITTEE CR24-125 RECOMMENDING 
+REFERRAL OF BILLS TO THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025 
+RELATING TO 1, AMENDING CHAPTER 20.08.03 1 MAUI COUNTY CODE RELATION TO CULTURAL 
+RESOURCE, ET CETERA. >> MEMBER RAWLINS-FERNANDEZ. >> MAHALO, CHAIR, I THINK I CAN DO 
+ALL THREE IN ONE MOTION, IF THERE'S NO OBJECTIONS. >> ANY OBJECTIONS, MEMBERS?\r\n\r\n>> 
+MAHALO FOR READING MY MIND. I WILL CALL COMMITTEE REPORT 24-126 RECOMMENDING FIRST 
+READING OF BILL 127 CD 1 (2024) TO IMPLEMENT CHARTER SECTION 13-17 REQUIRING COUNTY TO 
+OPERATE AS A BILINGUAL GOVERNMENT AND TO PUBLISH OFFICIAL MEETING AGENDAS IN 
+ENGLISH AND 'OLELO HAWAI'I AND COMMITTEE REPORT 24-127 RECOMMENDING FIRST READING 
+OF BILL 117 CD 1 (2022) TO AUTHORIZE THE MAYOR TO ENTER INTO AN IA Y WITH THE UNIVERSITY 
+OF HAWAI'I TO PROVIDE HAWAIIAN LANGUAGE AND HAWAIIAN STUDIES WORKSHOPS THROUGH 
+UH MAUI COLLEGE FOR COUNTY EMPLOYEES. >> MEMBER RAWLINS-FERNANDEZ. >> MAHALO, 
+CHAIR. I MOVE TO ADOPT THE RECOMMENDATIONS IN COMMITTEE REPORTS 24-125, 24-126 AND 24-
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+127. >> SECOND. >> MOVED BY MEMBER RAWLINS-FERNANDEZ. SECONDED BY MEMBER SINENCI 
+TO APPROVE THE RECOMMENDATIONS IN COMMITTEE REPORTS 24-125, 126 AND 127. DISCUSSION, 
+MEMBER RAWLINS-FERNANDEZ?\r\n\r\n>> MAHALO, CHAIR FOR COMMITTEE REPORT 24-125, RULE 
+22 OF THE RULES OF COUNCIL PROVIDES THAT THE END OF TERM FILING FOR REFERRAL OF BILL 
+AND RESOLUTIONS PENNING BEFORE COMMITTEE AT ITS DECEMBER 4TH MEETING YOUR 
+EFFICIENCY SOLUTION AND CIRCULAR SYSTEM COMMITTEE VOTED 5-0 TO RECOMMEND THE 
+BILLS LISTED ON EXHIBIT A OF THE COMMITTEE REPORT REFERRED TO THE COUNCIL CHAIR FOR 
+THE BEGINNING TERM FOR THE TERM BEGINNING JANUARY 2, 2025. FOR COMMITTEE REPORT 24-
+126, YOUR EFFICIENCY SOLUTIONS AND CIRCULAR SYSTEMS COMMITTEE MET DECEMBER 4TH, 2024 
+TO DISCUSS BILL 127 (2024) THE FIRST STEP TOWARDS IMPLEMENTING CHARTER SECTION 13.17 
+REQUIRING THAT THE COUNTY OPERATE AS A BILINGUAL GOVERNMENT IN THE OFFICIAL 
+MEETING AGENDAS OF THE COUNTY BE PROVIDED IN ENGLISH AND 'OLELO HAWAI'I. 24-127 
+REQUIRES THAT THE OFFICIAL ITEMS PREPARED IN BOTH OFFICIAL STATE LANGUAGES HAWAIIAN 
+AND ENGLISH AS DETERMINE BY ORDINANCE. IT WAS DESIGNATED AS CHARTER DECISION 
+PROPOSAL 2 AND APPROVE BY THE ELECTORATE AT THE 2022 ELECTION. IT HAS BEING 
+PUBLISHING ITS COMMITTEE MEETING AGENDAS SINCE JULY 1ST, 2024 IN 'OLELO AND YOUR 
+COMMITTEE REVISED BILL 127'S, EFFECTIVE DATE TO SEPTEMBER 1ST, 2025. TO ALLOW TIME FOR 
+THE HIRING OF PERSONNEL AND STANDARDIZING AGENDA FORMATS AND THEY ARE WELCOME TO  
+DO IT BEFORE THAT DATE, OF COURSE. YOUR COMMITTEE VOTED 6-0 TO RECOMMEND PASSAGE 
+OF BILL 127 CD 1 (2024) ON FIRST READING AND THE BILL WAS SIGNED BY CORPORATION COUNSEL.  
+AND FINALLY, COMMITTEE REPORT 24-127 YOUR ESEC COMMITTEE MET DECEMBER 4, 2024 TO 
+DISCUSS BILL 117, (2022) TO AUTHORIZE THE MAYOR TO ENTER INTO AN INTERGOVERNMENTAL 
+AGREEMENT WITH THE UNIVERSITY OF HAWAI'I TO PROVIDE HAWAIIAN LANGUAGE AND 
+HAWAIIAN STUDIES WORKSHOP FOR COUNTY EMPLOYEES THROUGH UH MAUI COLLEGE. BILL 127 
+(2022) PROPOSED BY A PRIOR ADMINISTRATION THE MANAGING DIRECTOR AND THE DIRECTOR 
+AND DEPUTY DIRECTOR OF 'OIWI RESOURCES SAID THAT THE CURRENT ADMINISTRATION 
+SUPPORTS THE BILL AND THESE OPERATION -- SORRY, THESE ONAL CLASSES FOR COUNTY 
+EMPLOYEES WILL BE GEARED TOWARDS BUILDING A BETTER CULTURAL UNDERSTANDING AND 
+MORE INCLUSIVE AND COMPLETE HISTORY OF MAUI THROUGH HAWAIIAN LENS. AND IT WAS 
+NOTED THAT BOTH THE EXECUTIVE BRANCH AND THE LEGISLATIVE BRANCH, THE COUNCIL, AND 
+OCS, MAY ALSO ATTEND THESE OPTIONAL CLASSES, IF THEY WOULD LIKE TO.\r\n\r\nYOUR 
+COMMITTEE AGREED TO REVISE BILL 117 AND THE MEMORANDUM ATTACHED AS EXHIBIT ONE, 
+INCORPORATING NON-SUBSTANTIVE FOR CLARIFY AND STYLE. VOTED 5-0 TO RECOMMEND 
+PASSAGE OF THE BILL ON FIRST READING, THE BILL WAS SIGNED BY CORP. COUNSEL. I ASK FOR 
+MEMBERS' CONTINUED SUPPORT OF THESE ITEMS. MAHALO, CHAIR. >> ANY MORE DISCUSSION? IF 
+NOT, ALL THOSE IN FAVOR OF THE MOTION, PLEASE RAISE YOUR HAND, SAY AYE?\r\n\r\n>> AYE. >>  
+SEVEN AYES, TWO EXCUSED. MOTION CARRIES. MS. CLERK. >> THANK YOU, MADAM CHAIR FROM 
+THE HOUSING AND LAND USE C OMMITTEE IS COMMITTEE REPORT 24-128 RECOMMENDING 
+REFERRAL OF BILLS TO THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025 
+RELATING TO 1, AMENDING SUBSECTION 2.96.606B MAUI COUNTY CODE TO AMEND THE 
+RESIDENTIAL WORKFORCE HOUSING DEED RESTRICTION TO INCREASE THE TIME PERIOD FOR ALL 
+RESTRICTIONS, 2 AMENDING CHAPTER 3.35 MAUI COUNTY CODE TO PROVIDE A STABLE AND 
+CONTINUING SOURCE OF FUNDING TO BE USED FOR PLANNING, ADMINISTERING AND 
+CONSTRUCTION OF AFFORDABLE HOUSING AND WORKFORCE HOUSING PROJECTS AND 3, 
+ESTABLISHING A ORDINANCE THAT RESTARTS THE DWEED RESTRICTED PERIOD WHEN A 
+RESIDENTIAL WORKFORCE HOUSING UNIT IS SOLD DURING THE DEED RESTRICTED PERIOD. 4 
+AMENDING THE ELIGIBILITY CITE FOR INDIVIDUALS AND FAMILIES DISPLACED BY EMERGENCY 
+UNDER CHAPTER 127A HAWAI'I REVISED STATUTES, OR WHO ARE INCOME AND ASSET QUALIFIED, 
+BUT HELD A DISQUALIFYING INTEREST IN REAL PROPERTY IN THE LAST YEARS.\r\n\r\n5, A CHANGE 
+IN ZONING WITH CONDITIONS OF PROPERTIES RELATED TO THE LANA'I PROJECT DISTRICT AT 
+LANA'I CITY, LANA'I, HAWAI'I AND AMENDMENT TO CHAPTER 19.71 MAUI COUNTY CODE RELATING 
+TO LANA'I PROJECT DISTRICT; 6, INCREASING THE DEED RESTRICTION PERIOD FOR RESIDENTIAL 
+WORKFORCE HOUSING OWNERSHIP UNITS AND TRANSMITTING THE COUNTY'S PURCHASE OF 
+RESIDENTIAL WORKFORCE HOUSING UNIT WHENS OFFERED TO THE COUNTY; 7, INCREASING THE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+ALLOWABLE DENSITY IN THE R-1, R-2 AND R-3 RESIDENTIAL ZONING DISTRICTS TO PROVIDE 
+ADDITIONAL HOUSING OPPORTUNITIES FOR MAUI COUNTY 8 PROVIDING LOWER COST 
+OPPORTUNITIES FOR MORE AUTONOMOUS LIVING AREAS IN THE DWELLING UNIT BY ALLOWING 
+KITCHENETTE IN DWELLING UNITS IN THE RESIDENTIAL AND RURAL DISTRICTS ON MAUI; 9, 
+ADDRESSING NON-CONFORMING STRUCTURES OR USED DAMAGED, DESTROYED OR EMERGENCY 
+OR DISASTER DELIVERED BY THE PROCLAMATION OF THE GOVERNOR TO CONSTITUTE A STATE OF  
+EMERGENCY UNDER CHAPTER 127A HAWAI'I REVISED STATUTES PRO TEM KAMA. >> THANK YOU, 
+CHAIR. >> THIS IS CR24-128. COMMITTEE REPORT. >> I'M SORRY, CHAIR, I HAD MY NOTES, BUT I 
+HAVE TO GET THEM AGAIN. >> WE CAN SKIP OVER AND COME BACK TO IT. DO YOU WANT US TO 
+DO THAT? >> I THINK I GOT IT.\r\n\r\nSORRY. I MOVE TO ADOPT THE RECOMMENDATION IN CR24-
+128. >> SECOND. >> MOVED BY PRO TEM KAMA, SECONDED BY VICE-CHAIR SUGIMURA TO 
+APPROVE THE RECOMMENDATIONS IN COMMITTEE REPORT 24-128. DISCUSSION, PRO TEM KAMA. 
+>> MEMBERS, THE HOUSING AND LAND USE MET ON DECEMBER 2ND, 2024 TO CONSIDER THE LIST 
+EVER BILLS FOR REFERRAL TO THE CHAIR FOR THE TERM BEGINNING JANUARY 2ND, 2025. THE 
+LIST IS ATTACHED TO THE COMMITTEE REPORT AS EXHIBIT A. YOUR COMMITTEE CONSIDERED 
+THE LIST AND THEN VOTED 7-0 TO RECOMMEND THE BILLS NOTED ON EXHIBIT 1 BE REFERRED TO 
+THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2ND, 2025. COMMITTEE REMEMBERS 
+JOHNSON AND RAWLINS-FERNANDEZ WERE EXCUSED. YOUR HOUSING AND LAND USE COMMITTEE  
+RECOMMENDS THAT THE BILLS NOTE OPD EXHIBIT A BE REFERRED TO THE COUNCIL FOR THE 
+TERM BEGINNING JANUARY 2ND, 2025. I ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. >> ANY 
+MORE DISCUSSION? IF NOT, ALL THOSE IN FAIR THE MOTION, RAISE YOUR HAND, SAY AYE?
+\r\n\r\nSEVEN AYES, TWO EXCUSED, MOTION CARRIES MS. CLERK. >> CHAIR, RECOMMENDING 
+REFERRAL OF BILLS TO THE COUNCIL CHAIR FOR TERM BEGINNING JANUARY 2ND, 2025 RELATING 
+TO: 1, AMENDING CHAPTER 3.75 MAUI COUNTY CODE RELATING TO COMMUNITY FACILITIES 
+DISTRICTS; 2, AMENDING SECTION 18.20.140 MAUI COUNTY CODE RELATING TO UTILITY LINES; AND  
+3, AMENDING SECTION 16.25.201 MAUI COUNTY CODE RELATING TO IMPROVEMENTS IN THE PUBLIC 
+STREETS; AND 4, AMENDING CHAPTER 2.60 MAUI COUNTY CODE ON REPORTS OF CIVIL FINES. >> 
+MEMBER COOK. >> I MOVE TO ADOPTED RECOMMENDATIONS IN COMMITTEE REPORT 24-129. >> 
+SECOND. >> IT'S BEEN MOVED BY MEMBER COOK, SECONDED BY VICE-CHAIR SUGIMURA TO 
+APPROVE THE RECOMMENDATIONS IN COMMITTEE REPORT 24-129 DISCUSSION, MEMBER COOK? >>  
+THANK YOU, CHAIR.\r\n\r\nRULE 22 OF THE RULES OF THE COUNCIL PROVIDES FOR END OF TERM 
+FILING, OR REFERRAL OF BILLS AND RESOLUTIONS PENDING BEFORE THE COMMITTEES. YOUR 
+COMMITTEE MET ON DECEMBER 5TH, 2024 AND VOTED 7-0 TO RECOMMEND THE BILLS ATTACHED 
+TO THE COMMITTEE REPORT TO BE REFERRED TO THE COUNCIL C HAIR FOR THE TERM BEGINNING 
+JANUARY 2ND, 2025. I RESPECTFULLY ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. >> ANY 
+MORE DISCUSSION? IF NOT, ALL IN FAVOR, SAY AYE, RAISE YOUR HAND. SEVEN AYES, TWO 
+EXCUSED MOTION CARRIES MS. CLERK. >> BEFORE YOU IS RECOMMENDING FIRST READING OF 
+BILL 146 CD 1 (2024) TO REDEVELOPMENT THE DEPARTMENT OF WATER SUPPLY TO ESTIMATE 
+DOMESTIC WATER DEMAND AND ASSESS DEVELOPMENT IMPACT FEES BASED ON PROJECTED 
+GALLONS PER DAY USAGE RATHER THAN WATER FIXTURE COUNTS.\r\n\r\n>> MR. COOK. >> I MOVE 
+RECOMMENDATION. >> MOVED BY MEMBER COOK, SECOND BY MEMBER UU-HODGINS TO 
+APPROVE THE RECOMMENDATIONS IN COMMITTEE REPORT 24-130. DISCUSSION, MEMBER COOK? 
+>> THANK YOU, CHAIR. YOUR COMMITTEE MET DECEMBER 5TH, 2024 TO DISCUSS BILL 146. BILL 146 
+WILL REQUIRE THE DEPARTMENT OF WATER SUPPLY TO ESTIMATE THE DOMESTIC WATER 
+DEMAND AND ASSESS DEVELOPMENT IMPACT FEES BASED ON PROJECT GALLONS PER DAY USAGE 
+RATHER THAN THE WATER FIXTURE COUNTS. THIS BILL AIMS TO TRANSITION THE DEPARTMENT 
+AWAY FROM USING THE HUNTERS CURVE METHOD WHICH OVERESTIMATES PEAK WATER 
+DEMAND AND HELP TO MODERNIZE OUR COUNTY'S WATER CODE.\r\n\r\nYOUR COMMITTEE 
+AMENDED THIS BILL BY REPLACING THE WORD "CAP" WITH MAXIMUM CAPACITY OF," REQUIRING 
+THE DIRECTOR TO PROVIDE WRITTEN QUARTERLY REPORTS, UNTIL DECEMBER 31ST, 2025," AND 
+CHANGING THE BILLS A'S EFFECTIVE DAY TO JANUARY 1ST, 2026. YOUR COMMITTEE VOTED 8-0 TO 
+RECOMMEND PASSAGE OF BILL 146 CD 1 ON FIRST READING AND RESPECTFULLY ASK FOR 
+MEMBERS' SUPPORT. >> ANY MORE? IF NOT, ALL IN FAVOR, RAISE YOUR HAND, SAY AYE. SEVEN 
+AYES, TWO EXCUSED MOTION CARRIED. >> CR24-131 RECOMMENDING FIRST READING OF BILL 180 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+CD 1 (2024) TO ALLOW THE USE OF PRIVATE WATER CATCHMENT COLLECTION AND STORAGE 
+TANK SYSTEMS UP TO 30,000 GALLONS IN AGRICULTURE, RESIDENTIAL AND RURAL DISTRICTS >> 
+MEMBER COOK. >> I MOVE TO ADOPT THE RECOMMENDATIONS IN COMMITTEE REPORT 24-131. >> 
+SECOND. >> MOVED BY MEMBER COOK, SECONDED BY VICE-CHAIR SUGIMURA TO PASS -- TO 
+APPROVE COMMITTEE REPORT 24-131. DISCUSSION, MEMBER COOK?\r\n\r\n>> THANK YOU , CHAIR. 
+YOUR COMMITTEE MET ON DECEMBER 5TH, 2024 TO DISCUSS BILL 180. BILL 180 WOULD ALLOW 
+THE USE OF PRIVATE WATER CATCHMENT COLLECTION AND STORAGE TANK SYSTEMS UP TO 
+30,000 GALLONS IN AGRICULTURAL, RURAL DISTRICTS. YOUR COMMITTEE AMENDED BILL 180 BY 
+ONE, ESTABLISHING A NEW SECTION UNDER CHAPTER 14.01 FOR PRIVATE WATER CAPITAL THE 
+SYSTEMS, 2, REVISING THE DEFINITION OF "PRIVATE WATER CATCHMENT SYSTEM." 3, ALLOWING 
+THE USE OF PRIVATE WATER CATCHMENT SYSTEMS IN RESIDENTIAL DISTRICTS, AND 4, DELETING 
+SUBSECTION 14.05.020F RELATING TO THE APPLICABILITY OF SUBDIVISION AND AGRICULTURAL OR  
+RURAL DISTRICTS THAT PROPOSE TO RELY ON A PRIVATE WATER CATCHMENT SYSTEM. THE 
+DEPARTMENT OF WATER SUPPLY SUPPORTED BILL 180 AS IT WILL HELP TO REDUCE PEAK WATER 
+DEMANDS IN THE SUMMER, AND REDUCE THE STRAIN ON COUNTY'S WATER SUPPLY YEAR-ROUND.  
+FURTHER, THE USE OF THESE CATCHMENT SYSTEMS WILL SERVE AS A DAILY WATER SOURCE FOR 
+RANCHERS, FARMERS AND RANCHERS IN THE COUNTY'S AGRICULTURAL, RESIDENTIAL AND 
+RURAL DISTRICTS. YOUR COMMITTEE VOTED 6-0 TO RECOMMEND PASSAGE OF BILL 180 CD 1 ON 
+FIRST READING I RESPECTFULLY ASK FOR MEMBERS' SUPPORT OF MY MOTION. >> ANY MORE 
+DISCUSSION?\r\n\r\nYES, VICE-CHAIR SUGIMURA. >> I WANTED TO THANK MEMBER COOK FOR 
+ACTUALLY LAST TWO BILLS. BUT THIS BILL 180, INCREASING THE CATCHMENT TO 30,000 GALLONS 
+IS REALLY GOING TO BE A GAME-CHANGER FOR UP COUNTRY, AND OUR FARMERS, AND WE 
+APPRECIATE YOUR HARD WORK. THANK YOU. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN 
+FAVOR OF THE MOTION, PLEASE RAISE YOUR HAND, SAY AYE. SEVEN AYES, ZERO NOS, TWO 
+EXCUSED MOTION CARRYS.\r\n\r\nIS. >> CHAIR, FROM THE WATER AUTHORITY, SOCIAL SERVICES, 
+AND PARKS COMMITTEE IS CR4-132 RECOMMENDING REFERRAL OF BILLS TO THE COUNCIL CHAIR 
+FOR THE TERM BEGINNING JANUARY 2, 2025 RELATING TO: 1, ESTABLISHING A NEW CHAPTER 3.85 
+MAUI COUNTY CODE CREATING THE FERAL ANIMAL MANAGEMENT; 2, AMENDING THE TRAFFIC 
+CODE BY EXPANDING THE VOLUNTEER PARKING ENFORCEMENT PROGRAM; 3, REQUIRING 
+CERTAIN BUSINESSES TO MAINTAIN NALOXONE ON THEIR PREMISES; AND 4, AMEND ING CHAPTER 
+13.04A MAUI COUNTY CODE TO AUTHORIZE A COMMUNITY RECREATIONAL GARDENS PROGRAM. 
+>> MEMBER SINENCI. >> THANK YOU, CHAIR. MAY I ALSO REQUEST THAT CC 24-IS 33 ABOUTS BE 
+CALLED YOU UP. MS. CLERK >> RECOMMENDING REFERRAL OF BILL 111 (2024) RELATING TO 
+AMENDING TITLE 9 MAUI COUNTY CODE TO ONE, ESTABLISH PROCEDURES FOR THE 
+COMPASSIONATE REMOVAL AND STORAGE OF PERSONAL PROPERTY IN PUBLIC PLACE AND 2 
+RECOGNIZE THE HUMAN RIGHT TO SHELTER, INCLUDING OFFERING ACCESS TO SERVICES TO 
+STABILIZE ONE'S LIFE AND TRANSITION INTO SUPPORTIVE OR PERMANENT HOUSING TO THE 
+COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2, 2025. >> MEMBER SINENCI.\r\n\r\n>> 
+MAHALO, CHAIR. MOVE TO ADOPT THE RECOMMENDATIONS IN CR24-132, AND CR24-133. >> 
+SECOND. >> MOVED BY MEMBER SINENCI, SECONDED BY VICE-CHAIR SUGIMURA TO APPROVE 
+COMMITTEE REPORTS 24-132 AND 24-133. DISCUSSION, MEMBER SINENCI? >> THANK YOU, CHAIR. 
+FOR CR24-132, RULE 22 OF THE RULES OF THE COUNCIL PROVIDES FOR THE END OF TERM FILING 
+FOR REFERRAL OF BILLS AND RESOLUTIONS PENDING BEFORE THE COMMITTEES. YOUR WATER 
+AUTHORITY, SOCIAL SERVICES, AND PARKS COMMITTEE MET ON DECEMBER 2ND, 2024. AND 
+VOTED 5-0 TO RECOMMEND THE BILLS ATTACHED TO EXHIBIT A OF THE COMMITTEE REPORT BE 
+REFERRED TO THE COUNCIL CHAIR FOR TERM BEGINNING JANUARY 2ND, 2025. AND CR24-133, 
+YOUR WATER AUTHORITY, SOCIAL SERVICES, AND PARKS COMMITTEE MET ON OCTOBER 24TH, 
+AND DECEMBER 2ND, 2024 TO DISCUSS BILL 111 (2024) BY CORRESPONDENCE DATED OCTOBER 
+22ND, 2024, THE MANAGING DIRECTOR TRANSMITTED PROPOSED AMENDMENTS TO BILL 111. YOUR 
+COMMITTEE RECEIVED ORAL AND WRITTEN TESTIMONY REQUESTING MORE TIME TO REVIEW BILL  
+111 AND THE MANAGING DIRECTOR'S AMENDMENTS. YOUR COMMITTEE AGREED FURTHER REVIEW  
+AND DISCUSSION WAS NEEDED BETWEEN COMMITTEE AGENCIES AND ORGANIZATIONS WORKING 
+WITH HOUSELESS INDIVIDUALS.\r\n\r\nYOUR COMMITTEE VOTED 6-0 TO RECOMMEND BILL 111 
+(2024) BE REFERRED TO THE COUNCIL CHAIR FOR THE TERM BEGINNING JANUARY 2ND, 2025. 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+CHAIR, THE WORK OF THE COMMITTEE COMPLETED, INCLUDING THE PROPOSED CD 1 VERSION OF 
+BILL 111 WITH AMENDMENTS AND YOUR COMMITTEE AGREED UPON WILL BE TRANSMITTED WITH 
+BILL 111 (2024) TO THE COMMITTEE THAT RECEIVES THIS ITEM NEXT TERM. I HUMBLY ASK FOR 
+THE MEMBERS' FULL SUPPORT OF MY MOTION. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN 
+FAVOR OF THE MOTION, PLEASE RAISE YOUR HAND, SAY AYE? >> AYE. >> SEVEN AYES, TWO 
+EXCUSED. MOTION CARRIES.\r\n\r\nMS. CLERK THANK YOU, MAD CHAIR, MOVING TO RESOLUTIONS 
+IF ANYONE WISHES TO TESTIFY ON RESOLUTIONS IN SECTION L, PLEASE RAISE YOUR HAND IN 
+TEAMS OR MAKE YOUR WAY TO THE PODIUM. CHAIR, SEEING NO ONE DOING EITHER, GO AHEAD 
+AND COUNTDOWN. 3, 2, 1. THERE'S NO ONE TO TESTIFY ON RESOLUTIONS. >> MEMBERS, ANY 
+OBJECTIONS TO CLOSING PUBLIC TESTIMONY ON RESOLUTIONS, AND ACCEPTING WRITTEN 
+TESTIMONY? >> NO OBJECTIONS. >> SO ORDERED.\r\n\r\nMS. CLERK. >> THANK YOU, MADAM 
+CHAIR. BEFORE YOU IS RESOLUTION 24-19 URGING THE STATE OF HAWAI'I TO CREATE AND 
+SUPPORT A TASK FORCE TO ADDRESS THE URGENT PROBLEM OF MISSING PERSONS IN HAWAI'I. >> 
+MEMBER UU-HODGINS. >> THANK YOU. I MOVE TO DISCHARGE THE DISASTER, RESILIENCE, 
+INTERNATIONAL AFFAIRS, AND PLANNING COMMITTEE FROM FURTHER CONSIDERATION OF 
+RESOLUTION 23-189 UNDER RULE 5E OF RULES OF THE COUNCIL. >> SECOND.\r\n\r\n>> MOVED BY 
+MEMBER UU-HODGINS, SECONDED BY MEMBER RAWLINS-FERNANDEZ TO DISCHARGE THE 
+COMMITTEE OF THIS ITEM. DISCUSSION UNDER THE RULE? >> THIS RESOLUTION WAS DISCUSSED 
+AT THE DRIP COMMITTEE'S MEETING ON DECEMBER 18, 2024 DISCHARGE IS THE FIRST STEP WE 
+MUST TAKE BEFORE WE CAN CONSIDER ACTION ON THIS RESOLUTION TODAY. THANK YOU, CHAIR.  
+>> ANY MORE DISCUSSION ON THAT? ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, 
+SAY AYE. SEVEN AYES, TWO EXCUSED MOTION CARRIES MS.\r\n\r\nCLERK I'M SORRY MEMBER UU-
+HODGINS. >> THANK YOU. I MOVE TO ADOPT RESOLUTION 23-19. >> SECOND. >> IT'S BEEN MOVED 
+BY MEMBER UU-HODGINS, SECONDED BY MEMBER RAWLINS-FERNANDEZ TO ADOPT RESOLUTION 
+23-189. DISCUSSION, MEMBER UU-HODGINS? >> THANK YOU, CHAIR. AT THIS TIME MAY I PLEASE 
+ALSO ASK THE CLERK TO RECALL COUNTY COMMUNICATION 24-34. >> ANY OBJECTIONS, 
+MEMBERS? >> MS.\r\n\r\nCLERK. >> THANK YOU, MADAM CHAIR, RECALLING COUNTY 
+COMMUNICATION 24-34 FROM COUNCIL MEMBER PALTIN TRANSMITTING A PROPOSED 
+AMENDMENT TO RESOLUTION 23-189 ENTITLED, "URGING STATE OF HAWAI'I TO CREATE AND 
+SUPPORT A TASK FORCE TO ADDRESS THE URGENT PROBLEM OF MISSING PERSONS IN HAWAI'I." 
+MEMBER UU-HODGINS. >> THANK YOU, I MOVE TO SUBSTITUTE RESOLUTION 23-189 AND TO FILE 
+THE COMMUNICATION. >> SECOND. >> MOVED BY MEMBER UU-HODGINS, SECOND BY MEMBER 
+RAWLINS-FERNANDEZ. ANY DISCUSSION ON THE MOTION? >> YES.\r\n\r\nTHE FD 1 VERSION 
+AMENDS RESOLUTION 23-189 BY UPDATING BY ONE, UPDATING THE NUMBER OF OPEN MISSING 
+PERSONS CASES, INSERTING A SECOND AND THIRD BE IT RESOLVED CLAUSE TO DELINEATE THE 
+TASK FORCE'S RESPONSIBILITY AND SPECIFY THE TASK FORCE COMPOSITION. 3, AMENDING 
+SEVERAL RECIPIENTS UNDER THE NEW FOURTH BE IT RESOLVED CLAUSE AND 4, INCORPORATING 
+OTHER NON-SUBSTANTIVE REVISIONS AND THE FD 1 VERSION OF 24-189 BY DELETING 258 OPEN 
+CASES OF MISSING PERSONS IN ITS THIRD WHEREAS-CLAUSE AND INSERTING 260 OPEN CASES OF 
+MISSING PERSONS AS OF DECEMBER 18TH, 2024 IN ITS PLACE. >> ARE YOU GOING TO INCLUDE 
+RULE 19 IN YOUR MOTION OR MAKE A MOTION LATER? >> THAT ONE IS TO COME, CHAIR. >> OKAY.  
+>> THANK YOU. >> ANY DISCUSSION?\r\n\r\nMEMBER RAWLINS-FERNANDEZ? >> MAHALO, CHAIR. 
+FIRST, I WANTED TO THANK OUR EXTRAORDINARY CLERKS FOR GETTING THE ITEM UP ON 
+GRANICUS, IF ANYONE TRIED TO ACCESS CC 24-34 EARLIER, THE DOCUMENT WASN'T ATTACHED, 
+BUT THEY QUICKLY GOT IT ATTACHED. SECOND, ARE WE GOING TO GET THE FD 1 DISTRIBUTED? I 
+DON'T NEED AN FD 1. I JUST AM ASKING IF THERE WAS GOING TO BE ONE? >> IT WAS ATTACHED 
+TO THE COUNTY COMMUNICATION 24-34 AND THEN IT WAS A FURTHER MOTION TO AMEND THE 
+NUMBER OF MISSING PERSONS. IF I COULD, CHAIR, I DIDN'T CATCH WHO THE SECONDER WAS?
+\r\n\r\n>> IT WAS ME. >> THANK YOU. >> DO YOU NEED MORE INFORMATION BESIDES THAT? DOES 
+ANYONE NEED A COPY? APPARENTLY NOT. >> I'M OKAY WITH NOT -- >> NO ONE ELSE IS ASKING, 
+THAT IS WHY. PROCEED, MEMBER UU-HODGINS.\r\n\r\n>> THANK YOU, CHAIR. THIS AMENDMENT 
+WOULD PROVIDE A MORE ACCURATE NUMBER OF MISSING PERSONS IN THE STATE, SINCE THE ASF  
+WAS POSTED. THANK YOU CHAIR. >> ANY MORE DISCUSSION? ALL RIGHT, THIS IS ON THE 
+SUBSTITUTION; RIGHT? MEMBER UU-HODGINS? >> >> TCH THE AMENDMENT TO THE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+SUBSTITUTION.\r\n\r\n>> THE AMENDMENT TO THE SUBSTITUTION. WAS THAT AMENDING THE FD 1 
+VERSION? >> YES, TO CORRECT THE NUMBER >> TO THE CORRECT NUMBER. ANY MORE 
+DISCUSSION? IF NOT, ALL THOSE IN FAVOR OF THE MOTION RAISE YOUR HAND AND SAY AYE. >> 
+SEVEN AYES, TWO EXCUSED. MOTION CARRIES.\r\n\r\nMEMBER UU-HODGINS. >> THANK YOU, 
+CHAIR. THE DRIP COMMITTEE DISCUSSED RESOLUTION 23-189 AND AT ITS MEETING AT DECEMBER 
+18, 2024 RESOLUTION 23-189 WOULD URGE THE STATE TO ESTABLISH A TASK FORCE ON MISSING 
+PERSONS COMPRISED OF COUNTY, STATE AND FEDERAL AGENCIES, AS WELL AS MEMBERS OF THE 
+PUBLIC. THE DEPARTMENT OF POLICE HAD MONTH OBJECTIONS TO THE ESTABLISHMENT OF THIS 
+PROPOSED TASK FORCE. MS. KIMER LYNN SCOTT PARTICIPATED IN THE COMMITTEE'S DISCUSSION 
+AND ADDRESSED THE IMPORTANCES OF CREATING THIS TASK FORCE AND AT THIS TIME, IF I 
+COULD ALSO MOVE TO SUSPEND RULE 19C OF RULES OF THE COUNCIL. >> SECOND.\r\n\r\n>> 
+MOVED BY MEMBER UU-HODGINS, SECONDED BY MEMBER RAWLINS-FERNANDEZ TO SUSPEND 
+RULE 19C OF THE RULES OF THE COUNCIL. DISCUSSION, MEMBER UU-HODGINS. >> THANK YOU, 
+CHAIR. SUSPENDING RULE 19C WILL ALLOW US TO ADOPT THE PROPOSED VERSION OF 
+RESOLUTION 23-189 TODAY. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN FAVOR, RAISE YOUR  
+HAND, SAY AYE? >> AYE.\r\n\r\n>> SEVEN AYES, TWO EXCUSED. MOTION CARRIES. >> CHAIR, 
+COULD WE GO BACK TO -- SO WE APPROVED -- YOU FOLKS APPROVED CORRECTING THE NUMBER 
+OF MISSING PERSONS, BUT WE NEED TO VOTE ON THE SUBSTITUTION. >> OKAY. ALL THOSE IN 
+FAVOR OF THE SUBSTITUTION, RAISE YOUR HAND, SAY AYE? >> AYE SEVEN AYES, TWO EXCUSED, 
+MOTION CARRIES. >> AND THE MAIN MOTION AS SUBSTITUTED.\r\n\r\n>> AS SUBSTITUTED, 
+AMENDED. ON THE MAIN MOTION. YES, MEMBER RAWLINS-FERNANDEZ? >> FURTHER DISCUSSION,  
+MAHALO CHAIR. I JUST WANTED TO DO ACKNOWLEDGE OUR TESTIFIERS, AND MS. SCOTT'S 
+REQUEST TO BE RECOMMENDED TO SERVE ON THIS TASK FORCE CREATED BY THE STATE FOR THE  
+PURPOSES OF CREATING OR URGING THE STATE TO CONSIDER CREATING THE TASK FORCE WOULD  
+BE ONE ACTION, AND THEN RECOMMENDATION FOR MS. SCOTT TO SERVE ON THIS TASK FORCE 
+SHOULD THEY CREATE IT, COULD BE ON A SEPARATE RESOLUTION, BECAUSE THAT WOULD BE A 
+DIFFERENT TITLE AND A DIFFERENT DISCUSSION.\r\n\r\nSO I'M HAPPY TO PURSUE THAT. THE OTHER  
+THING WAS THAT WE DISCUSSED TAKING ACTIONS AT COUNTY-LEVEL, LIKE WE DID IN 
+COMMITTEE. I THINK THE COMMITTEE MEMBERS DID A GOOD JOB DURING DELIBERATIONS IN 
+FIGURING OUT SOME POTENTIAL SOLUTIONS ALREADY. I THINK WE CAN MODEL HOW THESE 
+CHANGES CAN LOOK FOR THE STATE WHEN THEY CONSIDER CREATING THIS TASK FORCE. 
+MAHALO, CHAIR. >> THANK YOU. ANYONE ELSE TO ADD ANYTHING?\r\n\r\nDISCUSSION? IF NOT, 
+WE'RE VOTING ON THE MAIN MOTION. ALL THOSE IN FAVOR, RAISE YOUR HAND, SAY AYE. SEVEN 
+AYES, ZERO NOS. TWO EXCUSED. MOTION CARRIES. MS.\r\n\r\nCLERK. >> THANK YOU, MADAM 
+CHAIR BEFORE YOU IS RESOLUTION 24-195 AUTHORIZING ACCEPTANCE OF THE DONATION OF 
+OLUKAI FOOTWEAR TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY OCEAN SAFETY DIVISION 
+PURSUANT TO CHAPTER 3.56 MAUI COUNTY CODE. >> MEMBER UU-HODGINS. >> THANK YOU. I 
+APOLOGIZE IN ADVANCE, BECAUSE YOU ARE GOING TO HEAR ME A LOT TODAY. I MOVE TO WAIVE  
+THE REQUIREMENT OF COMMITTEE REFERRAL AND REPORT FOR RESOLUTION 24-195 UNDER RULE 
+7G OF THE RULES OF THE COUNCIL. >> SECOND.\r\n\r\n>> MOVED BY MEMBER UU-HODGINS AND 
+SECONDED BY VICE-CHAIR SUGIMURA TO APPROVE THE RESOLUTION 24-195. >> 7G MOTION, 
+CHAIR. >> 7G I'M SORRY. THIS IS ON THE WAIVER. >> YES. >> ANY DISCUSSION, MEMBER UU-
+HODGINS? >> THANK YOU. THIS RESOLUTION APPROVES THE DONATION TO THE DEPARTMENT OF 
+FIRE AND PUBLIC SAFETY AND COMMITTEE DISCUSSION AND REFERRAL MAY NOT BE 
+NECESSARY.\r\n\r\n>> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN FAVOR OF THE WAIVER, RAISE  
+YOUR HAND, SAY AYE. SEVEN AYES, TWO EXCUSED. MOTION CARRIES. MEMBER UU-HODGINS 
+AGAIN. >> THANK YOU, CHAIR. I MOVE TO ADOPT RESOLUTION 24-195. >> MOVED BY MEMBER UU-
+HODGINS, SECONDED BY MEMBER COOK TO ADOPT RESOLUTION 24-195. DISCUSSION, MEMBER UU-
+HODGINS?\r\n\r\n>> THANK YOU. MEMBERS THIS RESOLUTION AUTHORIZES THE ACCEPTANCE OF 
+294 PAIRS OF OLUKAI FOOTWEAR TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY'S OCEAN 
+SAFETY OFFICERS TOTALING $42,680. OLUKAI HAS REPEATEDLY EXPRESSED THEIR GOODWILL TO 
+THE COUNTY BY DONATING OVER THE YEARS. ING THAT YOU, CHAIR. >> ANY MORE DISCUSSION? 
+ALL IN FAVOR, RAISE YOUR HAND, SAY AYE? >> AYE. >> SEVEN AYES, TWO EXCUSED, MOTION 
+CARRIES.\r\n\r\nMS. CLERK. >> THANK YOU, MADAM CHAIR. BEFORE YOU IS RESOLUTION 24-196 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+APPOINTMENT OF A MEMBER TO THE AFFIRMATIVE ACTION ADVISORY COUNCIL FOR THE COUNTY  
+OF MAUI. >> MEMBER UU-HODGINS. >> THANK YOU, AGAIN, CHAIR. I MOVE TO WAIVE THE 
+REQUIREMENT OF COMMITTEE REFERRAL AND REPORT TO RESOLUTION 24-196 UNDER RULE 7G OF 
+THE RULES OF THE COUNCIL.\r\n\r\n>> SECOND. >> MOVED BY MEMBER UU-HODGINS, SECONDED 
+BY MEMBER VICE-CHAIR SUGIMURA TO WAIVE RULE 7G. DISCUSSION, MEMBER UU-HODGINS. >> 
+THANK YOU, CHAIR. APPROVAL OF MY MOTION WILL ENABLE US TO CONSIDER THIS RESOLUTION 
+TODAY SO WE CAN EXPEDITIOUSLY FILL THE BOARD, COMMITTEE SEAT. >> ANY MORE 
+DISCUSSION? ALL IN FAVOR RAISE YOUR HAND, SAY AYE. CERTAIN AYES, TWO 
+EXCUSED.\r\n\r\nMOTION CARRIES, MEMBER UU-HODGINS THANK YOU, CHAIR, I MOVE TO ADOPT 
+RESOLUTION 24-196. >> MOVED BY MEMBER UU-HODGINS, SECONDED BY VICE-CHAIR SUGIMURA 
+TO ADOPT RESOLUTION 24-196. DISCUSSION, MEMBER UU-HODGINS. >> THANK YOU AGAIN, CHAIR. 
+MOVE TO AMEND RESOLUTION 24-196 BY PLACING GABRIELA RODRIGUEZ ON EXHIBIT B FOR 
+APPROVAL TO THE AFFIRMATIVE ACTION ADVISORY COUNCIL. >> ANY MORE -- SECOND BY 
+MEMBER COOK. DISCUSSION, MEMBER UU-HODGINS. >> THANK YOU, MS. RODRIGUEZ IS A 
+PASSIONATE ADVOCATE FOR THE RIGHTS AND WELL-BEING OF INDIVIDUALS.\r\n\r\nSHE HAS 
+WORKED IN PROGRAM -- SHE WORKS AS A PROGRAM COORDINATOR AT WHAT MAKES YOU FEEL 
+BEAUTIFUL, AN ORGANIZATION CHP STRIVES TO FOSTER SELF-LOVE AND EMPOWERMENT FOR 
+GIRLS AND WOMEN FROM ECONOMICALLY MARGINALIZED BACKGROUNDS IN THE COUNTY. IN 
+HER APPLICATION, MS. RODRIGUEZ CITED HER EXPERIENCE IN PUBLIC SPEAKING CHILD 
+DEVELOPMENT AND LEGAL WRITING COULD PROVIDE A VERSATILE SKILLSET, WHICH WILL BE A 
+VALUABLE ASSET TO THE ADVISORY COUNCIL. I WOULD LIKE TO THANK MS. RODRIGUEZ FOR HER 
+WILLINGNESS TO SERVE AND HER INTEREST TO SERVE ON THIS PARTICULAR BOARD. AT THIS TIME  
+I ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. >> WHAT AN INTERESTING 
+OCCUPATION.\r\n\r\n>> RIGHT. >> ANY MORE DISCUSSION? ALL THOSE IN FAVOR OF THE MOTION, 
+RAISE YOUR HAND, SAY AYE. SEVEN AYES, TWO EXCUSED, MOTION CARRYS. IS. >> CHAIR, WE'RE 
+NOT ABLE TO SEE MEMBER KAMA. >> I'M SORRY.\r\n\r\nMEMBER KAMA? ARE YOU ONLINE? OKAY, 
+LET'S TAKE THAT VOTE AGAIN. ALL THOSE IN FAVOR OF THE MOTION RAISE YOUR HAND AND SAY  
+AYE. SIX AYES, THREE EXCUSED. MOTION CARRIES. MS.\r\n\r\nCLERK. >> CHAIR, BEFORE YOU IS 
+RESOLUTION 24-197 AUTHORIZING THE ACQUISITION OF REAL PROPERTY CONSISTING OF 272.956 
+ACRES IDENTIFIED AS TAX MAP KEY NO. 2-3-001:023 SITUATED AT KULA, MAUI, HAWAI'I FOR AN 
+AMOUNT NOT-TO-EXCEED $14 MILLION. >> VICE-CHAIR SUGIMURA. >> THANK YOU, CHAIR. I MOVE  
+TO WAIVE THE REQUIREMENT OF COMMITTEE REFERRAL AND REPORT UNDER RULE 7G OF THE 
+RULES OF THE COUNCIL, AS IT RELATES TO RESOLUTION 24-197. >> MOVED BY MEMBER -- VICE-
+CHAIR SUGIMURA, SECONDED BY MEMBER COOK TO WAIVE RULE 7G. DISCUSSION, VICE-CHAIR 
+SUGIMURA. >> THANK YOU.\r\n\r\nTHIS RESOLUTION RELATED TO BILLS 166 CD 1 AND 167 CD 1 (2024)  
+HOSTED FOR SECOND AND FINAL READING ON TODAY'S AGENDA. BECAUSE WE WILL BE 
+CONSIDERING THOSE TODAY, WE SHOULD CONSIDER THIS AS WELL. THIS IS REGARDING THE VONT  
+TEMPSKI PROPERTY AND I MOVE TO ADOPT RESOLUTION 24-197. >> I THINK WE'RE ON THE 
+WAIVER. DID WE DO THE WAIVER YET? >> THIS IS ON THE WAIVER. >> JUST ON THE WAIVER. >> 
+YES.\r\n\r\n>> ANY MORE DISCUSSION ON THAT? ALL THOSE IN FAVOR OF THAT RAISE YOUR HAND, 
+SAY AYE. SO LOOKS LIKE WE HAVE SIX AYES, THREE EXCUSED. MOTION CARRIES. VICE-CHAIR 
+SUGIMURA. >> I THINK I READ FOR THE MOTION. ANYWAY, I READ THAT PART.\r\n\r\nSO I MOVE TO 
+ADOPT RESOLUTION 24-197. >> MOVED BY VICE-CHAIR SUGIMURA. SECONDED BY MEMBE R UU-
+HODGINS TO ADOPT RESOLUTION 24-197. DISCUSSION, VICE-CHAIR SUGIMURA. >> MEMBERS THIS 
+RESOLUTION AUTHORIZES THE MAYOR TO ACQUIRE THE VON TEMPSKY PROPERTY AND TO 
+RECOGNIZE IN THE FISCAL YEAR 25 BUDGET THROUGH THE TWO BILL I MENTIONED EARLIER. THE 
+MANAGING DIRECTOR PROVIDED AN APPRAISAL REPORT WITH THE RESOLUTION, WHICH CAN BE 
+VIEWED WITH THE TRANSMITTAL ON GRANICUS. I RESPECTFULLY ASK FOR THE MEMBERS' 
+SUPPORT OF MY MOTION. GOOD JOB, ADMINISTRATION. >> YOU KNOW I WAS GOING TO ASK A 
+QUESTION, VICE-CHAIR SUGIMURA.\r\n\r\nWHERE IS THIS $14 MILLION COMING FROM AGAIN? >> I 
+DON'T KNOW IF IT'S CARRY-OVER SAVINGS. >> WE SEEM TO HAVE THE MOST CARRY-OVER 
+SAVINGS IN THE WHOLE WORLD. >> WE CAN ASK MS. MILNER. >> WE NEED TO ASK MS. MILNER, 
+BECAUSE FUNNY, WE ALWAYS HAVE CARRY-OVER SAVINGS.\r\n\r\n>> THAT IS WHY WE NEED TO 
+LOOK AT THE A ACCOUNT. >> IT'S AMAZING, TOTALLY, TOTALLY AMAZING. YOU FOLKS REALIZE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+WHEN THEY SAY CARRY-OVER SAVINGS THAT SOMETHING ELSE IS NOT BEING PAID? OH, OKAY. 
+SO EVERYBODY GETS THAT. >> OR THE BUDGET IS OVERESTIMATED. >> COME ON.\r\n\r\nI DOUBT IT  
+VERY MUCH. WE HAVE HAD HOW MANY BILLS COME THROUGH? >> A LOT. >> A LOT OF BILLS 
+COME THROUGH TO PAY FROM CARRY-OVER SAVINGS. IT'S AN INCREDIBLE AMOUNT. >> I COULD 
+BE WRONG ON THAT. >> ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY 
+AYE.\r\n\r\nSIX AYES, THREE EXCUSED. MOTION CARRIES. >> CHAIR, IF WE COULD GO BACK. I'M SO 
+SORRY. WE NEED TO CLEAN UP THE VOTE ON RESOLUTION, I THINK WE NEED TO GO BACK TO THE 
+MAIN MOTION. I DON'T HAVE IT TIME YET AND NEITHER DOES MY STAFF AS BEING VOTED ON. >> 
+OLUKAI?\r\n\r\n>> I THOUGHT WE DID, BECAUSE I MENTIONED WHAT AN INTERESTING 
+OCCUPATION. THIS IS ON THE NOMINEE? >> YES. >> OKAY. SO YOU WANT US TO VOTE ON THE 
+MAIN MOTION AGAIN? >> YES, PLEASE. >> OKAY.\r\n\r\nALL THOSE IN FAVOR OF THE MOTION 
+REGARDING RESOLUTION 24-196, THE APPROVAL OF THE RESOLUTION 24-196 RAISE YOUR HAND, 
+SAY AYE. >> AYE. >> SO SIX AYES, THREE EXCUSED MOTION CARRIED. >> I HAVE THE MAKER AS 
+MEMBER UU-HODGINS AND THE SECONDER IS MEMBER RAWLINS-FERN ANDEZ. IS THAT RIGHT? >> 
+SOUNDS GOOD. >> SURE I WILL TAKE IT.\r\n\r\n>> THANK YOU. >> SHE WAS MAKING A LOT OF THE 
+SECONDS, BUT I DON'T RECALL ACTUALLY IF SHE DID THAT TIME. >> I VOTED IN FAVOR, AND I 
+APPRECIATE HER SERVING THE COUNTY IN THIS WAY. >> CHAIR, BEFORE YOU IS RESOLUTION 24-
+198 AUTHORIZING GRANITE OF LEASE OF COUNTY REAL PROPERTY TO NA HALE KUPUNA LESS 
+YES, 160 KEONEKAI ROAD UNIT 13-101 1 KIHEI. >> VICE-CHAIR SUGIMURA. >> CHAIR, IF THERE ARE 
+NO OBJECTIONS MAY I PLEASE REQUEST THE CLERK TO ALSO CALL RESOLUTIONS 24-199, 
+THROUGH 24-202. >> FIVE TOTAL >> 24-202. >> YES. THANK YOU.\r\n\r\n>> NO OBJECTIONS, 
+MEMBERS? NO OBJECTIONS: ALL RIGHT. MS. CLERK. >> CHAIR, BEFORE YOU IS RESOLUTION 24-19 
+AUTHORIZING GRANITE OF LEASE OF COUNTY REAL PROPERTY TO NA HALE KUPUNA LESSEE, 3750 
+HONOAPI'ILANI ROAD UNIT O304 LAHAINA AND RESOLUTION 24-200 AUTHORIZING A GRANT OF 
+LEASE OF COUNTY REAL PROPERTY TO NA HALE KUPUNA LESSEE 3740 HONOAPI'ILANI HIGHWAY 
+UNIT B202 LAHAINA, RESOLUTION 24-201 AUTHORIZING GRANT OF LEASE OF COUNTY REAL 
+PROPERTY TO NA HALE KUPUNA LESSEE. RESOLUTION 24-202 AUTHORIZING A GRANT OF LEASE OF 
+COUNTY REAL PROPERTY TO NA HALE KUPUNA LESSEE 3740 LOWER HONOAPI'ILANI HIGHWAY 
+UNIT D105 LAHAINA. >> I MOVE TO WAIVE THE RULES OF THE COUNCIL AS IT RELATES TO 
+RESOLUTIONS 24-198 THROUGH 24-202. >> MOVED BY VICE-CHAIR SUGIMURA, SECONDED BY 
+MEMBER UU-HODGINS TO WAIVE RULE 7G FOR RESOLUTIONS 198 THROUGH 202. >> YES.\r\n\r\n>> 
+DISCUSSION? VICE-CHAIR SUGIMURA. >> FOR THIS MOTION, PEOPLE ARE PREPARING TO MOVE 
+INTO THE UNITS REFERENCED IN THESE RESOLUTIONS. >> ON THE RULE? >> ON THE MOTION. YES. 
+>> OKAY.\r\n\r\n>> 7G. >> ACTION TODAY WILL ALLOW THESE PEOPLE TO MOVE IN SOONER. THANK 
+YOU, CHAIR. >> ANY MORE DISCUSSION? ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR 
+HAND, SAY AYE. THIS IS ONLY ON THE WAIVER. SO SIX AYES, THREE EXCUSED. MOTION 
+CARRIES.\r\n\r\nMS. CLERK, I DON'T HAVE -- YOU ARE KEEPING TRACK OF THE EXCUSED? >> YES, 
+CHAIR. >> ALL RIGHT. VICE-CHAIR SUGIMURA. >> I MOVE -- >> MAIN MOTION. >> I MOVE TO 
+ADOPT RESOLUTIONS 24-198 THROUGH 24-202. >> MOVE BY VICE-CHAIR SUGIMURA AND 
+SECONDED BY MEMBER UU-HODGINS TO ADOPT THE RESOLUTIONS.\r\n\r\nDISCUSSION, VICE-CHAIR  
+SUGIMURA. >> THANK YOU, CHAIR. MEMBERS, THESE FIVE RESOLUTIONS AUTHORIZE LEASES OF 
+PROPERTIES PURCHASED BY CDBG FOR ITS NA HALE KUPUNA. WE APPROVED SEVERAL OF THESE 
+UNITS DURING THE LAST TERM AND ONCE THESE RESOLUTIONS ARE ADOPTED FIVE OF THESE 
+UNITS WILL BE FINALLY OCCUPIED. CDBG HOPES TO FILL THE REMAINING UNITS IN THE COMING 
+MONTHS. I RESPECTFULLY ASK FOR THE MEMBERS' SUPPORT OF THIS MOUSING MOTION. >> MY 
+MORE DISCUSSION?\r\n\r\nMEMBER RAWLINS-FERNANDEZ MAHALO, CHAIR. I RISE IN FULL SUPPORT  
+OF THE MOTION TO ADOPT THE FIVE RESOLUTIONS, AND I JUST WANT TO THANK CDBG AND MS. 
+KULA FOR GETTING THESE TO US AS QUICKLY AS POSSIBLE. MAHALO, CHAIR. >> ANY MORE 
+DISCUSSION? VICE-CHAIR SUGIMURA. >> SO I DO.\r\n\r\nI REALLY WANT CORPORATION COUNSEL 
+MAYBE TO EXPLAIN WHY WE'RE TAKING UP THESE LEASES THE WAY THAT WE ARE? I THINK AS A 
+BODY, WE OFTEN DO THESE KINDS OF DOCUMENTS NOT ONES OR TWOS, BUT AN ORGANIZATION 
+LIKE THE CAMERON CENTER OR LIKE NA HALE MAUI OR WHOEVER. COULD I ASK CORPORATION 
+COUNSEL. >> CORPORATION COUNSEL. >> THANK YOU, CHAIR. YES. SO MAUI COUNTY CODE 3.36090 
+REQUIRES COUNCIL APPROVAL OF ANY LEASING OF ANYTHING OWNED BY THE COUNTY.\r\n\r\nAS 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THESE PROJECTS DEVELOP, IF MORE OF THESE UNITS ARE PURCHASED BY THE COUNTY, THERE 
+MIGHT BE SOME MOMENT HOPEFULLY TO MAKE SOME PROVISION IN THE ORDINANCE, OR THAT 
+DOESN'T REQUIRE THIS FOR RESIDENTIAL UNITS. BUT THAT WOULD BE UP TO THE WILL OF THIS 
+BODY, WHETHER OR NOT YOU WOULD WANT TO REVIEW ALL OF THESE OR NOT? BUT THAT'S 
+ESSENTIALLY WHY THEY ARE HERE TODAY. THANK YOU. THANK YOU, CHAIR. >> THANK YOU. I 
+HAVE ONE MORE.\r\n\r\nSO IN THE TRANSMITTAL LETTER THAT WE DID GET FROM THE MAYOR'S 
+OFFICE IT STATES FOR EACH ONE OF THEM IN THE INTEREST OF TIME, RESOLUTIONS ARE 
+ATTACHED FOR YOUR REVIEW, ADDITIONAL PROGRAM DETAILS WILL BE PROVIDED AT COUNCIL 
+CHAMBERS. SO WHAT COULD THAT BE? >> ARE YOU ASKING CORPORATION COUNSEL? >> THE 
+LETTER CAME FROM THE MAYOR AND IT'S CDBG. THIS LETTER IS FROM CDBG. >> CHAIR? >> 
+YES.\r\n\r\n>> SHE IS PRESENT IF ANY MEMBERS HAVE QUESTIONS. SHE IS HERE TODAY TO ANSWER  
+ANY QUESTIONS. >> DO YOU WANT HER TO ANSWER THAT QUESTION. >> IT SOUNDS LIKE THEY 
+WANT TO TELL US MORE. IF THEY WANT TO TELL US MORE, I WANTED TO DO IT BEFORE WE 
+VOTED. >> MEMBER RAWLINS-FERNANDEZ. >> MAHALO, CHAIR.\r\n\r\nIN THE RESO IS THE ENTIRE 
+LEASE AGREEMENT AND ALL OF THE DETAILS OF THE PROGRAM WITH THE LEASE ITSELF WITH 
+THE LESSEE. WITH THE NAMES, AND THE RENT REDACTED. SO THAT IT'S NOT MADE PUBLIC. SO I 
+THINK THIS IS A LOT OF DETAILS. I DON'T NEED ANY ADDITIONAL DETAILS. >> OKAY. >> AS LONG 
+AS THE MEMBERS ARE OKAY, BECAUSE OF WHAT THE LETTER SAID, I THOUGHT WE SHOULD GET 
+WHAT WE NEED TO GET, BUT WE'RE FINE.\r\n\r\n>> CHAIR? >> YES. >> SO THE FIRST QUESTION, IT'S 
+BECAUSE THE COUNTY IS LEASING DIRECTLY INSTEAD OF GRANTING, OR WORKING WITH A 
+NONPROFIT AND THE NON-PROFIT DOING THE LEASES ON BEHALF OF THE COUNTY. SO THAT IS 
+WHY WE'RE TAKING UP ONIES, TWOIES. >> DO YOU WANT TO ADD ANYTHING? >> OKAY. WE'RE 
+FINE.\r\n\r\nI THOUGHT THEY HAD MAYBE MORE TO SHARE. >> ALL RIGHT. WE'RE IN THE MIDDLE 
+OF VOTING; RIGHT? >> YES. >> ALL THOSE IN FAVOR, RAISE YOUR HAND, SAY AYE. >> AYE. >> SIX 
+AYES, THREE EXCUSED MOTION CARRIES 24-203. >> YES.\r\n\r\n>> CHAIR, BEFORE YOU IS 
+RESOLUTION 24-203 URGING THE HAWAI'I STATE LEGISLATURE TO ESTABLISH UNIVERSAL FREE 
+SCHOOL MEALS PROGRAM FOR STUDENTS AT PUBLIC SCHOOLS. >> MEMBER RAWLINS-
+FERNANDEZ. >> MAHALO, CHAIR. I MOVE TO ADOPT RESOLUTION 24-203. >> SECOND. >> MOVED 
+BY MEMBER RAWLINS-FERNANDEZ, SECONDED BY MEMBER COOK TO ADOPT RESOLUTION 24-203. 
+DISCUSSION, MEMBER RAWLINS-FERNANDEZ? >> MAHALO, CHAIR. I BELIEVE THIS RESOLUTION IS 
+A NO-BRAINER.\r\n\r\nTHIS INITIATIVE ADDRESSES THE CRITICAL ISSUE OF FOOD INSECURITY, 
+ENSURES ALL STUDENTS ACCESS TO HEALTHY MEALS AND BOOSTS ACADEMIC PERFORMANCE, 
+AND WELL-BEING FOR CHILDREN IN MAUI COUNTY, AND HAWAI'I. I ASK FOR THE MEMBERS' FULL 
+SUPPORT OF THIS. MAHALO, CHAIR. >> ANY FURTHER DISC USSION? IF NOT -- >> THANK YOU. I 
+APPRECIATE THE INTENT OF THIS RESOLUTION. AND I'M GOING TO BE VOTING NO, BECAUSE THE 
+DOE SYSTEM, I DID RESEARCH ON THIS AND THE DOE SYSTEM HAS FREE AND REDUCED LUNCH 
+PROGRAMS AND DESIGNATED SCHOOLS THAT ARE ELIGIBLE. AND APPLICATION FORMS SO THAT 
+ANY PERSON CAN APPLY FOR IT.\r\n\r\nSO I DON'T BELIEVE THIS IS NEEDED. I DO KNOW THAT 
+DURING COVID, WE DID HAVE FREE LUNCH FOR EVERYBODY, BUT IT WAS BECAUSE OF THE 
+UNIQUE SITUATION. IN THIS CASE, BECAUSE IT'S PROVIDES -- FUNDING IS PROVIDED THROUGH 
+FEDERAL FUNDING THROUGH THE STATE TO PROVIDE MEALS, I THINK IT'S NOT NEEDED. I'M GOING  
+TO BE VOTING NO. >> MEMBER RAWLINS-FERNANDEZ. >> MAHALO, CHAIR AND EVERYONE IS 
+ENTITLED TO THEIR OPINION. SINCE RESEARCH HAD BEEN DONE, IT SOUNDS LIKE SOME OF THE 
+RESEARCH THAT WASN'T INCLUDED IS SOME OF THE INFORMATION THAT I RECEIVED AT THE 
+TRANSFORMING FOOD SYSTEMS SUMMIT THAT I ATTENDED LAST WEEK.\r\n\r\nWHERE A HIGH 
+SCHOOL STUDENT SHARED WITH US THE STORY OF HOW HER CLASSMATE ATTENDS -- I WON'T 
+SAY WHAT SCHOOL IT IS. BUT THEY DO THE PRACTICE OF BASICALLY SHAMING STUDENTS FOR 
+HAVING AN UNPAID BILL FOR FOOD. AND THAT KIND OF THING HAPPENS IN OUR STATE. I DIDN'T 
+THINK IT DID, BUT THERE WAS A HIGH SCHOOL STUDENT SHARING THAT IT WAS. AND I BELIEVE 
+THAT IF WE'RE GOING TO BE SUPPORTING OUR KEIKI AND OUR OPIO, THAT FOOD IS THE MINIMUM 
+THAT WE CAN PROVIDE FOR ALL STUDENTS, AND NOT JUST THOSE THAT MAY INDICATE THAT 
+THERE'S A FINANCIAL NEED FOR IT. BECAUSE OF THE PRACTICE THAT AFFECTS THESE STUDENTS, I  
+THINK IT'S WRONG. BUT YOU KNOW, THE D.O.E. ALLOWS THAT TO HAPPEN.\r\n\r\nAND SO THAT'S 
+ONE OF THE REASONS THAT I INTRODUCED THIS RESOLUTION. MAHALO, CHAIR. >> ALL RIGHT. 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+FOR MY DISCUSSION, I DO HAVE SOME RESERVATIONS ABOUT THE COST OF THIS, BUT I KNOW 
+THAT THE INTENT IS GOOD. AND JUST WORRY ABOUT THE COSTS. EVERYBODY READY TO VOTE? 
+ROLL CALL.\r\n\r\n>> MEMBER PALTIN RAISED HER HAND. >> CHAIR, MEMBER PALTIN IS ON THE 
+SCREEN. >> HI HEY, IT'S A SMALL WORLD AFTER ALL. [LAUGHTER ]. >> HELLO, MEMBER PALTIN. >>  
+LOOK AT THAT, WHAT ARE YOU STANDING IN? >> ARE YOU GOING TO VOTE ON THIS ONE? IS THAT  
+WHY YOU JUMPED ON?\r\n\r\n>> I WOULD LIKE TO VOTE YES FOR THE KIDS. >> OKAY. >> THERE IS 
+HER KIDS. >> VERY GOOD. AND THEN LET'S HAVE THE REST OF THE ROLL CALL. >> COUNCIL 
+MEMBER PRO TEMPORE TASHA KAMA. >> EXCUSED.\r\n\r\n>> VICE-CHAIR SUGIMURA? >> NO. >> 
+COUNCIL MEMBER PALTIN? >> SHE SAID YES >> YES PLEASE. >> WAIT -- SAY YES AGAIN, PLEASE? 
+CAN YOU SAY YES AGAIN? >> YES!\r\n\r\n>> OKAY. THANK YOU. >> COUNCIL MEMBER JOHNSON? 
+>> EXCUSED. >> COUNCIL MEMBER RAWLINS-FERNANDEZ? >> AYE FOR OUR KEIKI. >> COUNCIL 
+MEMBER COOK?\r\n\r\n>> AYE. >> COUNCIL MEMBER UU-HODGINS? >> AYE. >> COUNCIL MEMBER 
+SINENCI? >> AYE. >> COUNCIL CHAIR LEE? >> AYE.\r\n\r\n>> CHAIR, THERE ARE SIX AYES, ONE NO, 
+TWO EXCUSED. MOTION CARRIES. >> THANK YOU. SO ARE YOU GOING TO STAY WITH US, MEMBER 
+PALTIN, THE REST OF THE WAY? >> I GUESS UNTIL IT'S TIME TO TAKE A RIDE. [LAUGHTER ] >> 
+OKAY. PRIORITIES.\r\n\r\nLET'S TAKE THE ORDINANCES, ARE WE DONE WITH RESOS? >> YES. >> 
+LET'S TAKE ORDINANCES AND THEN SKIP OVER TO WHERE IS THE VAPING ONE? BILL 156. OH, THAT  
+IS SECOND AND FINAL. WE CAN STILL SKIP OVER TO THE ORDINANCES ARE ALL ORDINANCES. MS. 
+CLERK.\r\n\r\n>> THANK YOU, MADAM CHAIR, CURRENTLY WE HAVE NO ONE SIGNED UP TO TESTIFY 
+ON ORDINANCES IN SECTION M, SO WE'LL GO AHEAD AND GIVE LAST CALL. IF YOU WISH TO 
+TESTIFY, PLEASE RAISE YOUR HAND IN TEAMS OR MAKE YOUR WAY TO THE PODIUM. CHAIR, 
+COUNTDOWN, 3, 2, 1, THERE'S NO ONE TO TESTIFY ON ORDINANCES. >> ANY OBJECTIONS TO 
+CLOSING PUBLIC TESTIMONY AND SEPARATING WRITTEN TESTIMONY. >> NO OBJECTIONS. >> ANY 
+OBJECTIONS TO TAKING UP BILL 156? >> NO OBJECTIONS. >> MS.\r\n\r\nCLERK. >> THANK YOU, 
+CHAIR. BEFORE YOU IS BILL 156, CD 1 (2024) A BILL FOR AN ORDINANCE AMENDING TITLE 8 MAUI 
+COUNTY CODE TO PROHIBIT -RETAILERS FROM SELLING OR MARKETING FLAVORED-TOBACCO 
+PRODUCTS AS NICOTINE-FREE. >> MR. SINENCI. >> THANK YOU, CHAIR, I MOVE TO PASS BILL 156 
+CD 1 (2024) ON SECOND AND FINAL READING. >> MOVED BY MEMBER SINENCI, SECONDED BY 
+MEMBER COOK TO PAS S BILL 156 CD 1 (2024) ON SECOND AND FINAL READING.\r\n\r\nDISCUSSION, 
+MR. SINENCI. >> THANK YOU CHAIR. >> BILL 156 WILL BAN FLAVORED-TOBACCO PRODUCTS AND 
+TAKE EFFECT 42 DAYS AFTER SECTION 32HJ.115B OF HAWAI'I REVISED STATUTES OR ANY OTHER 
+STATE STATUTE PREEMPTING COUNTY ORDINANCES ON THE SALE OF TOBACCO PRODUCTS IS 
+REPEALED. MEMBERS, THE COUNTY OF HAWAI'I AND THE CITY AND COUNTY OF HONOLULU HAVE 
+ALREADY INTRODUCED SIMILAR LEGISLATION IN RESPONSE TO THE YOUTH VAPING EPIDEMIC. 
+CHAIR, MAHALO TO ALL OF THE TESTIFIERS, AND TESTIMONY IN SUPPORT OF THIS BILL. AND I 
+RESPECTFULLY ASK FOR THE MEMBERS' SUPPORT OF MY MOTION.\r\n\r\n>> THANK YOU. ANY 
+MORE DISCUSSION? IF NOT -- MEMBER COOK? >> THANK YOU, CHAIR. AFTER THIS WAS BROUGHT 
+UP, I WENT TO TWO OR THREE DIFFERENT SERVICE STATIONS, AND CONVENIENCE STORES, AND I 
+WAS SHOCKED, BECAUSE I NORMALLY DON'T PAY ATTENTION TO IT EXACTLY HOW INTENSE AND 
+BROAD THE ADVERTISING FOR THESE PRODUCTS ARE, AND HOW I HEAR ALL THE TESTIFIERS, 
+ESPECIALLY THE YOUTH, AND THIS IS AN OPPORTUNITY FOR US TO LET THEM KNOW THEIR 
+VOICES ARE HEARD, AND WE'RE GOING TO ACT ON IT. THANK YOU. >> THANK YOU.\r\n\r\nANY 
+MORE DISCUSSION? MEMBER RAWLINS-FERNANDEZ? >> MAHALO, CHAIR. I WILL BE VOTING AYE 
+AGAIN IN FULL SUPPORT OF THIS RESOLUTION, AND I WANTED TO MAHALO THE STUDENTS, AND 
+THE REPRESENTATIVE THAT IS WITH US TODAY, AND FOR STAYING WITH US AND HOPEFULLY, IT 
+WAS A GOOD LESSON IN CIVIC EDUCATION. IT'S IMPORTANT TO MAKE SURE THAT YOUR VOICES 
+ARE INCLUDED TO EDUCATE US ON THESE TYPES OF PRODUCTS THAT ARE HARMFUL TO YOUR 
+CLASSMATES, AND TO NEXT-GENERATIONS. AND ALSO, YOU KNOW, IF MATTERS, LIKE HAVING 
+FREE SCHOOL LUNCH IS IMPORTANT TO ENSURE THAT YOUR VOICES ARE INCLUDED THEN, 
+BECAUSE AS YOU SEE, NOT ALL POLICYMAKERS MAY AGREE WITH THAT POSITION. MAHALO, 
+CHAIR.\r\n\r\n>> THANK YOU. VICE-CHAIR SUGIMURA. >> THANK YOU. I WANT TO MAHALO 
+MEMBER SINENCI FOR BRINGING THIS UP, BECAUSE IT KIND OF CAME UP REALLY FAST AS WE 
+WERE AT THE ENDING OF OUR COMMITTEE MEETINGS AND THE PLANNING COMMITTEE SPACE. 
+THANK YOU VERY MUCH, AND THANKS, LESLEY, WITH ALL YOUR FORCE AND INTEREST TO BRING 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THIS FORWARD. THANK YOU. >> ANY MORE DISCUSSION?\r\n\r\nHOW ABOUT YOU, MEMBER 
+PALTIN? >> ANYTHING FOR THE KIDS. >> ALL IN FAVOR, RAISE YOUR HAND, SAY AYE? >> AYE. >> 
+WE HAVE SEVEN AYES, TWO EXCUSED. OH, NO, NO. SIX AYES, OH, EIGHT AYES,. WE SEE YOUR 
+HAND PRO TEM KAMA.\r\n\r\nNO, WE'RE STILL MISSING MEMBER JOHNSON. EIGHT AYES, ONE 
+EXCUSED. MEMBER JOHNSON. AND MOTION CARRIES. THANK YOU. >> THANK YOU. >> VERY 
+GOOD.\r\n\r\n[ APPLAUSE ] >> GOOD JOB, STUDENTS, WE GOOD. YOU DID AN EXCELLENT JOB OF 
+ADVOCACY. THANK YOU. SO NOW WE'RE GOING TO TAKE A SHORT BREAK AND COME BACK. >> 
+CAN WE JUST FINISH IT OR WILL IT TAKE TOO LONG? >> WE HAVE ONE ASKING FOR A BREAK AND 
+ONE ASKING NOT. >> OKAY.\r\n\r\n>> I WANT A BREAK, TOO. >> OKAY, TEN MINUTES. 11:36 AND 
+WE'LL COME BACK AND GO RIGHT THROUGH REST OF IT. MEETING IN RECESS. [ GAVEL ] [ GAVEL ] 
+>> WILL THE MEETING OF DECEMBER 23RD, 2024, MAUI COUNTY COUNCIL, PLEASE RECONVENE. 
+MS. CLERK.\r\n\r\n>> THANK YOU, MADAM CHAIR. RETURNING TO ORDINANCES FOR FIRST 
+READING, BEFORE YOU IS BILL 158 (2024) A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR 
+TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE COUNTY OF KAUA'I FOR 
+FORENSIC TESTING SERVICES BETWEEN THE KAUA'I POLICE DEPARTMENT AND THE MAUI POLICE 
+DEPARTMENT. >> MEMBER UU-HODGINS. >> THANK YOU, CHAIR. I MOVE TO DISCHARGE THE 
+DISASTER, RESILIENCE, INTERNATIONAL AFFAIRS, AND PLANNING COMMITTEE FROM FURTHER 
+CONSIDERATION OF BILL 158 (2024) UNDER RULE 5E OF RULES OF THE COUNCIL. >> SECOND. 
+MOVED BY MEMBER UU-HODGINS, SECONDED BY MEMBER SINENCI TO DISCHARGE THE DRIP 
+COMMITTEE UNDER RULE 5 AND REFER TO THE NEXT TERM.\r\n\r\nDISCUSSION, MEMBER UU-
+HODGINS? >> THANK YOU, CHAIR. THE DEPARTMENT OF POLICE NOTIFIED COMMITTEE STAFF THIS 
+MATTER IS NOT TIME-SENSITIVE. IF MY MOTION IS APPROVED I WOULD RECOMMEND 
+CONSIDERATION OF REFERRAL TO NEXT COUNCIL TERM. >> ANY MORE DISCUSSION? IF NOT ALL 
+THOSE IN FAVOR OF THE DISCHARGE, RAISE YOUR HAN, SAY AYE. >> AYE.\r\n\r\n>> IS MEMBER 
+PALTIN STILL ON? OKAY, NOW WE HAVE SEVEN AYES, TWO EXCUSED. AND MOTION CARRIES. 
+MEMBER UU-HODGINS. >> THANK YOU, I MOVE TO REFER BILL 158 (2024) TO THE COUNCIL CHAIR 
+FOR THE TERM BEGINNING JANUARY 2ND, 2025. >> SECOND. >> MOVED BY MEMBER UU-HODGINS, 
+SECONDED BY MEMBER SINENCI TO REFER THIS ITEM TO THE NEXT TERM. COUNCIL CHAIR -- AND 
+DISCUSSION.\r\n\r\nMEMBER UU-HODGINS. >> THANK YOU, CHAIR. I HAVE NO FURTHER 
+DISCUSSION, I ASK FOR THE MEMBERS' SUPPORT OF MY MOTION. THANK YOU. >> ANY MORE 
+DISCUSSION? IF NOT, ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAN, SAY AYE. SEVEN 
+AYES, TWO EXCUSED.\r\n\r\nMOTION CARRIES MS. CLERK. >> THANK YOU, MADAM CHAIR, BILL 187 
+(2024) A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2025 BUDGET FOR THE COUNTY OF  
+MAUI APPENDIX A, PART II HOMEOWNER PROGRAMS REVOLVING FUND 'OHANA ASSISTANCE 
+PROGRAM. >> VICE-CHAIR SUGIMURA. >> THANK YOU. IF THERE'S NO OBJECTIONS TO PLEASE 
+REQUEST THE CLERK CALL THE BILL. >> ANY OBJECTIONS, SO ORDERED.\r\n\r\n>> THANK YOU, 
+MADAM CHAIR, BILL 189 (2024) A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2025 
+BUDGET FOR THE COUNTY OF MAUI APPENDIX A, PART 1 DEPARTMENT OF FIRE AND PUBLIC 
+SAFETY, STATE OF HAWAI'I, DEPARTMENT OF TRANSPORTATION, HIGHWAY SAFETY GRANT. >> 
+VICE-CHAIR SUGIMURA. >> I MOVE TO WAIVE THE REQUIREMENT FOR COMMITTEE REFERRAL AND  
+REPORT UNDER RULES OF THE COUNCIL AS IT RELATES TO BILL 187 AND 189 (2024). >> MOVED BY 
+VICE-CHAIR SUGIMURA, SECONDED BY MEMBER UU-HODGINS TO WAIVE THE RULE OF THE 
+COUNCIL. 7G. WITH REGARD TO BILL 187, AND 189. DISCUSSION, VICE-CHAIR SUGIMURA. >> WE 
+ALREADY DISCUSSED BILL 187 IN BFED COMMITTEE LAST WEEK AND 189 CONCERNS A GRANTS 
+ALREADY INCLUDED IN THE FISCAL YEAR 25 BUDGET. THEREFORE, WE MAY NOT NEED TO WAIT 
+UNTIL NEXT TERM TO ACT ON THESE ITEMS. THANK YOU, CHAIR.\r\n\r\n>> ANY MORE DISCUSSION? 
+SO OKAY. I THINK WE DID TAKE ACTION ON THE WAIVER. >> OKAY. DID WE? NOT YET? ALL THOSE  
+IN FAVOR OF THE WAIVER, RAISE YOUR HAND, SAY AYE?\r\n\r\nSEVEN AYES, TWO EXCUSED. 
+MOTION CARRIES. VICE-CHAIR SUGIMURA. >> I MOVE TO PASS BILLS 187 (202 4) AND 189 (2024) ON 
+FIRST READING. >> OKAY. MOVED BY VICE-CHAIR SUGIMURA, SECONDED BY MEMBER COOK TO 
+PASS BILLS 187 AND 189 ON FIRST READING. DISCUSSION VICE-CHAIR SUGIMURA.\r\n\r\n>> AS 
+DISCUSSED IN THE BFED COMMITTEE LAST WEEK TO APPROPRIATE FUND FOR THE 'OHANA 
+ASSISTANCE PROGRAM, AND BILL 189 WILL INCREASE THE APPROPRIATIONS FOR THE 
+DEPARTMENT OF FIRE AND PUBLIC SAFETY OF HAWAI'I DEPARTMENT OF TRANSPORTATION 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+HIGHWAY SAFETY GRANTS BY $81,798 AND THE NEW TOTAL IS $201,798. I RESPECTFULLY ASK FOR 
+THE MEMBERS' SUPPORT OF THIS MOTION. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN 
+FAVOR OF THE MOTION RAISE YOUR HAND, SAY AYE? SEVEN AYES, TWO EXCUSED. MOTION 
+CARRIES. >> THANK YOU, MEMBERS. >> MS.\r\n\r\nCLERK. >> CHAIR BEFORE YOU IS BILL 188 (2024) A  
+BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2025 BUDGET FOR THE COUNTY OF MAUI 
+APPENDIX A PART II MANAGED RETREAT REVOLVING FUND PA'IA MANTOKUJI MISSION. >> 
+MEMBER UU-HODGINS. >> THANK YOU, CHAIR, MOVE TO WAIVE THE REQUIREMENT OF 
+COMMITTEE REFERRAL AND REPORT FOR BILL 188 (2024) ON RULE 7G OF THE RULES OF COUNCIL. 
+>> SECOND. >> MOVED BY MEMBER UU-HODGINS, SECONDED BY VICE-CHAIR SUGIMURA TO 
+WAIVE RULE 7G WITH REGARD TO THIS ITEM. MEMBER UU-HODGINS, DISCUSSION?\r\n\r\n>> THANK 
+YOU, CHAIR. THANK YOU ALL SHORELINE EROSION HAS EXPOSED A FUEL PIPE IN MANTOKUJI BAY 
+AND IS AT-RISK OF RUPTURING, AND POTENTIALLY POLLUTING THE OCEAN, REQUIRING 
+EXPEDITIOUS ACT. THE WAIVER WILL ALLOW US TO TAKE ACTION TODAY. THANK YOU, CHAIR. >> 
+ANY MORE DISCUSSION? I JUST HAVE A QUESTION. WHO OWNS THE FUEL PIPE?\r\n\r\n>> THE 
+CHURCH. >> THE CHURCH? >> YES. >> OH, OKAY. VICE-CHAIR SUGIMURA. >> CAN I ASK A SIMILAR 
+QUESTION? >> SURE, GO AHEAD.\r\n\r\n>> IS IT AN ACTIVE FUEL PIPE? >> I DON'T BELIEVE THEY DO 
+ANY CREMATIONS ANY MORE, BUT IT'S AN OLDER ONE ATTACHED TO A FUEL TANK AS WELL. >> 
+WOW. >> OKAY. ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY AYE? >> AYE. >> 
+SEVEN AYES, TWO EXCUSED, MOTION CARRIES.\r\n\r\nMEMBER UU-HODGINS. >> THANK YOU, 
+CHAIR. I MOVE TO PASS BILL 188 (2024) ON FIRST RE ADING. >> SECOND MOVED BY MEMBER UU-
+HODGINS, SECONDED BY MEMBER SINENCI TO PASS BILL 184, DID YOU SAY? >> 188. >> 188 ON 
+FIRST READING. ANY MORE DISCUSSION? WE DO HAVE MR.\r\n\r\nFOLEY ON THE LINE AS WELL. MR.  
+COOK? >> CHAIR, THAT WAS MY QUESTION, WHETHER DURING DISCUSSION WE COULD ASK MR. 
+FOLEY QUESTIONS? >> YES. >> DR.\r\n\r\nFOLEY, WHAT IS THE -- WHAT IS THE LONG-TERM 
+PROGNOSIS FROM YOUR STUDY? WHAT DOES -- WHAT IS ENVISIONED FOR THAT AREA WITH THE 
+EXTENT OF THE EROSION? >> ALOHA, COUNCIL MEMBER COOK THANK YOU FOR THE QUESTION. 
+MIKE FOLEY, COASTAL ENGINEER WITH OCEAN NET AND I IS BEEN WORKING WITH MANTOKUJI 
+SINCE 2018 LOOKING AT SHORELINE EROSION HAZARDS, AND ADAPTATION OPTIONS. WE STUDIED 
+A BUNCH OF DIFFERENT OPTIONS, AND INCLUDING RETREAT, AND BEACH RESTORATION, 
+SHORELINE ARMORING AS ALTERNATIVES. WHAT WE'RE CURRENTLY PURSUING WITH THE 
+MISSION IS CURRENTLY PURSUING IS ECOSYSTEM RESTORATION. LIVING SHORELINES BASICALLY 
+DESIGNED BY NATURE, RESTORING A LOT OF BEACH SAND THAT HAS BEEN MINED SINCE 1930S. IN 
+ADDITION TO LOOK AT THE FEASIBILITY OF RESTORING THE REEF ITSELF AS A CRITICAL 
+COMPONENT OF THE COASTAL PROTECTION.\r\n\r\nTHESE ARE AMBITIOUS PROJECTS, TAKE TIME TO  
+PERMIT, AND EXECUTE IN TERMS OF REGULATORY PROCESS, AND THE MULTIPLE ISSUES. SO 
+LONG-TERM PROGNOSIS IS YEAH, WE CAN RESTORE THIS ENVIRONMENT. THIS IS A NICE COVE 
+FORMATION WITHIN PA'IA, WITHIN ITS GEOLOGY. THERE IS REALLY NO BENEFIT TO JUST 
+ALLOWING THE EROSION TO GO UNCONTROLLED. SOIL CONTINUES TO FALL IN THE OCEAN ALONG  
+WITH CULTURAL RESOURCES, AND THAT IS ALL POLLUTING THE REEF, AND POLLUTING THE 
+ENVIRONMENT FOR THE TURTLES THAT ENJOY THIS BAY ON A DAILY BASIS. BUT YOU KNOW, 
+BECAUSE IT DOES TAKE TIME, THAT IS WHY THIS MEASURE IS SO IMPORTANT TO PASS TODAY. 
+BECAUSE YOU KNOW, THERE'S A RISK OF THIS FUEL PIPE RUPTURING, AND DRAINING WHATEVER 
+RESIDUAL FUEL IS LEFTOVER INTO THE SENSITIVE ENVIRONMENT.\r\n\r\nWE DID HAVE 
+SIGNIFICANT WAVES THIS PAST WEEK, WHICH OVERTOPPED THE SHORELINE, AND CAUSED 
+DAMAGE ACTUALLY FLOODED THE PROPERTY, AND LEFT A BUNCH OF DEBRIS RIGHT AT THE 
+ENTRANCE TO THE CHURCH. SO IT IS A VERY ACTIVE SITUATION, AND PENDING DISASTER 
+WAITING TO HAPPEN. I HOPE THAT ANSWERED YOUR QUESTION. I'M HAPPY TO PROVIDE ANY 
+MORE INFORMATION. >> MR. COOK. >> I'M CURIOUS AS FAR AS THE REVITALIZATION OF THE REEF,  
+WOULD THAT BASICALLY HELP MITIGATE THE EROSION?\r\n\r\n>> YES, IT WOULD, ABSOLUTELY. 
+YOU KNOW, THE FRINGING REEF SYSTEM IS OUR FIRST LINE OF DEFENSE IN HAWAI'I AGAINST 
+COASTAL FORCES. AND YOU KNOW, AS THE WATER QUALITY HAS DECLINED IN RECENT DECADES, 
+AND WE'VE EXPERIENCED NUTRIENT RUN-OFF FROM THE SUGARCANE FIELDS JUST MAUKA OF 
+MANTOKUJI, LED TO A LOT OF NUTRIENTS A LOT OF ALGAE BLOOMS, WHICH CAUSES AN 
+IMBALANCE IN THE ECOSYSTEM AND LEADS TO CORAL DECLINE. THAT WATER QUALITY ISSUE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+COMBINED WITH THE FORCES DEGRADES THE REEF STRUCTURE ITSELF, WHICH IN TIME LEAVES 
+TO BIGGER SHORE BREAKS IMPACTING THE BAY AND CAUSING FURTHER EROSION AND LOSS OF 
+SOILS. SO IT IS AN EMERGING FIELD IN TERMS OF COASTAL ENGINEERING THAT WE CAN RESTORE 
+THESE REEF ECOSYSTEMS THROUGH STRUCTURE ITSELF ADDING BACK STRUCTURE. SO THAT IS 
+WHAT WE'RE LOOKING TO DEVELOP AN ENVIRONMENTAL DOCUMENT FOR AND CONSTRUCTION 
+PLANS FOR IN THE FUTURE. SO WE'RE CURRENTLY WORKING ON FUNDING, AND LEADERSHIP 
+STRATEGIES FOR THAT TYPE OF MITIGATION IN THIS BAY.\r\n\r\nIT'S DEFINITELY AN ACTIVE ISSUE. 
+>> THANK YOU VERY MUCH FOR YOUR ISSUE. THANK YOU, CHAIR. I WON'T TALK ABOUT IT ALL 
+DAY. WE'LL TALK ABOUT IT LATER. THANK YOU. >> WHY IS MEMBER RAWLINS-FERNANDEZ 
+GIVING YOU THE EVIL EYE?\r\n\r\n[LAUGHTER ] . MEMBER RAWLINS-FERNANDEZ. >> THANK YOU, 
+CHAIR. I'M GLAD YOU NOTICED THE EVIL EYE, I HAVE TO GO TO THE AIRPORT -- JUST KIDDING 
+THERE IS NO EVIL EYE. THANK YOU FOR SERVING AS A RESOURCE FOR THE COUNTY. TO FLAG THE  
+WAY YOU FRAME ABOUT NATURE IS THE MAN V. NATURE TYPE OF FRAMING AND THE WORD 
+"SELECTION." I GUESS FOR ME, LIKE IT FRAMES IT AS NATURE OF THE PROBLEM, BUT REALLY IT'S 
+HUMANS THAT ARE THE PROBLEM. AND EMBRACING NATURE, AND BEING ONE, YOU KNOW, WITH 
+OUR ENVIRONMENT, INSTEAD OF FIGHTING IT, IT'S PR OBABLY WE WOULD BE BETTER OFF DOING. 
+MAHALO, CHAIR.\r\n\r\n>> WORDS OF WISDOM. >> I TRY. >> OKAY. DID I SEE YOUR HAND UP? 
+MEMBER UU-HODGINS? >> THANK YOU. I JUST WANTED TO PROVIDE SOME CLARITY ON WHAT 
+WE'RE DISCUSSING TODAY, AND THIS BILL.\r\n\r\nSO THE PA'IA MANTOKUJI MISSION IS WITHING 
+FUNDING TO PLAN, PERMIT AND CONSTRUCT A FUEL HAZARD TANK MITIGATION PROJECT DUE TO 
+SHORELINE EROSION' CREMATORIUM WAS DESCRIBED METAL FUEL PIPE PART OF THE STRUCTURE 
+IS NOW EXPOSED. THE BILL CONDITIONS $500,000 UNDER THE MANAGED RETREAT REVOLVING 
+FUND FOR SITE INVESTIGATIONS, DOCUMENT PREPARATION AND CONSTRUCTION. PLEASE NOTE 
+THAT THE MANAGE THE RETREAT REVOLVING FUNDS AUTHORIZES FUNDING FOR SHORELINE 
+SAFETY IMPROVEMENTS INCLUDING MITIGATION OR REMOVAL OF HAZARDOUS CONDITIONS DUE 
+TO SHORELINE REORGANIZATION, AS WELL AS RELOCATION OF STRUCTURES OR 
+INFRASTRUCTURE THAT POSES A THREAT TO PUBLIC SAFETY OR THE SAFETY OF THE 
+ENVIRONMENT. I DO HAVE AN AMENDMENT THAT I WILL DISCUSS LATER. I PERSONALLY I WANT 
+TO SAY THAT THE COUNTY USED TO MINE SAND FROM THE BEACH AND I DON'T DISAGREE 
+MEMBER RAWLINS-FERNANDEZ, IT'S NOT MAN V. NATURE. BUT WHEN MAN TOOK FROM NATURE, 
+EXPOSING ALL OF WHAT IS NOW EXPOSED, I THINK WE HAVE A DUTY TO TRY TO FIX WHAT WE 
+RUINED A LITTLE BIT. PA'IA BAY, BAT BAY RATHER WAS BEAUTIFUL AND HUGE.\r\n\r\nI SAW 
+PHOTOS OF IT, AND OF COURSE, IT'S IN MY BACKYARD. BUT WHAT WE SEE NOW IS NO LONGER. 
+THERE'S NO SAND. AS OF YESTERDAY, THE WAVES WERE CRASHING INTO GRAVES, HUNDREDS OF 
+GRAVES. SO I ASK, AND I BEG FOR TO YOU SUPPORT THIS PROJECT AND I WILL CONTINUE TO ASK 
+FOR IN ADVANCE. THANK YOU. >> MEMBER RAWLINS-FERNANDEZ.\r\n\r\n>> MAHALO, CHAIR AND 
+MAHALO MEMBER UU-HODGINS. I HOPE THAT WE TAKE NOTE OF THIS SITUATION, AND 
+RECOGNIZE THIS AS WE REBUILD OTHER AREAS ALONG THE SHORELINE. THAT THE SHORELINE 
+SHOULD NOT BE BUILT RIGHT UP AGAINST. MAHALO, CHAIR. >> JUST QUICK QUESTION TO 
+MEMBER UU-HODGINS. IS THIS THE ONE RIGHT ACROSS PA'IA COMMUNITY CENTER? >> IT IS, 
+CHAIR.\r\n\r\n>> OKAY. ARE YOU READY TO VOTE EVERYBODY? >> BEFORE WE DO THOUGH AT 
+THIS TIME, CAN I MOVE TO AMEND BILL 188 BY DELETING PA'IA MANTOKUJI MISSION AND 
+INSERTING MANTOKUJI MISSION OF PA'IA, MAUI, IN ITS PLACE. >> SECOND. >> ALL THIS TALKING. 
+>> THE SEPARATION OF CHURCH AND STATE. >> WE TOOK THE VOTE ON THE WAIVER.\r\n\r\n>> 
+YES, WE DID. >> AND THEN YOU NEED TO DO THE FIRST MOTION. DID YOU DO THAT? >> YES, WE 
+DID. >> NOW WE'RE ADDING AN AMENDMENT. >> YES. >> EVERYBODY READY?\r\n\r\nANY 
+DISCUSSION ON THE AMENDMENT? ALL THOSE IN FAVOR OF THE AMENDMENT, RAISE YOUR HAND  
+SAY AYE. >> AYE. >> THANK YOU. SEVEN AYES, TWO EXCUSED. MOTION CARRIES. NOW MEMBER 
+UU-HODGINS.\r\n\r\n>> I JUST WOULD LIKE TO THANK YOU FOR YOUR SUPPORT AND HOPEFULLY, 
+YOUR CONTINUED SUPPORT REGARDING THIS CHURCH AND PA'IA TOWN. THANK YOU. >> YES, 
+VICE-CHAIR SUGIMURA. >> I WOULD LIKE TO STRONGLY SUPPORT THIS. THANK YOU VERY MUCH, 
+MEMBER UU-HODGINS, FOR DOING IT. I KNOW FAMILY MEMBERS THAT LIVE ALONG THIS BAY, 
+YOU KNOW? PAST THE MANTOKUJI MISSION TEMPLE, BUT IT IS A VERY BAD PROBLEM, THAT I 
+GREW UP THAT LIVE ALONG THE BAY NOW IS REALLY CLOSE TO THEIR HOUSE.\r\n\r\nTHE EDGE OF 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+THE BAY IS REALLY CLOSE TO THEIR HOUSE. THIS IS LIKE A GROWING PROBLEM. I DO KNOW THAT  
+-- WHAT THE BIG ASK IS $15 MILLION THEY WERE HOPING TO GET FROM FEMA FUNDS, BUT IT'S 
+NOT ON THE PRIORITY FOR RIGHT NOW, BECAUSE IT'S FOR WEST MAUI. BUT WE DO HAVE A BIG 
+ASK FOR THEM, BECAUSE IT'S IMPACTING RESIDENTS, BESIDES PA'IA MANTOKUJI. I DIDN'T REALIZE  
+THE GAS TANK SITUATION THAT SOUNDS VERY SERIOUS. THANK YOU VERY MUCH, MEMBER UU-
+HODGINS AND THANK YOU, DR. FOLEY FOR HANGING OUT WITH US AND ALWAYS BEING 
+THERE.\r\n\r\nTHANK YOU. >> ANYBODY ELSE? SO THE MAIN MOTION AS AMENDED. ARE WE AT 
+THAT STAGE? >> YES. >> DO YOU HAVE DISCUSSION -- TO VOTE, OKAY. ALL RIGHT.\r\n\r\nALL 
+THOSE IN FAVOR, SAY AYE. >> AYE. >> SEVEN AYES, TWO EXCUSED. MOTION CARRIES VERY GOOD.  
+MS. CLERK. >> THANK YOU, MALL CHAIR, MOVING BACK TO THE ORDINANCES FOR SECOND AND 
+FINAL READING, BEFORE YOU IS BILL 69 CD 1 (2023) A BILL FOR AN ORDINANCE AMENDING 
+SECTIONS 3.44.015 AND 3.88.070 MAUI COUNTY CODE RELATING TO ACCEPTANCE OF 
+CONSERVATION EASEMENTS.\r\n\r\n>> VICE-CHAIR SUGIMURA. >> IF THERE ARE NO OBJECTIONS 
+MAY I PLEASE REQUEST THE CLERK ALSO CALL BILLS 166 CD 1, BILL 167 CD 1, BILL 183 FD 1 AND 
+BILL 186 (2024). >> ANY OBJECTIONS? >> NO OBJECTIONS. >> ALL RIGHT. >> BILL 166 CD 1 A BILL 
+FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2025 BUDGET FOR THE COUNTY OF MAUI 
+ESTIMATED REVENUES, DEPARTMENT OF MANAGEMENT OFFICE RECOVERY PROGRAM CAPITAL 
+IMPROVEMENT PROJECTS DEPARTMENT OF MANAGEMENT AND APPENDIX C, DEPARTMENT OF 
+MANAGEMENT. BILL 167 CD 1 (2024) A BILL FOR AN ORDINANCE AMENDING ORDINANCE NO. 5659 
+BILL NO.\r\n\r\n62 CD 1 (2024) RELATING TO THE ISSUANCE OF GENERAL OBLIGATION BONDS IN THE 
+COUNTY OF MAUI ISSUANCE, SALE, AND DELIVERY OF SAID BONDS. DEPARTMENT OF 
+MANAGEMENT. BILL 183 FD 1 (2024) A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR OF THE 
+COUNTY OF MAUI TO ENTER INTO AN INTERGOVERNMENTAL AGREEMENT WITH THE OFFICER OF 
+THE AUDITOR, STATE OF HAWAI'I TO AUDIT THE SCHEDULE OF ALLOCATIONS OF THE EMPLOYEES' 
+RETIREMENT SYSTEM OF THE STATE OF HAWAI'I TO MEET THE REPORTING REQUIREMENTS UNDER  
+GOVERNMENTAL ACCOUNTING STANDARDS BOARD STATEMENT NO. 68 AND BILL 186 (2024) A BILL 
+FOR AN ORDINANCE AMENDING THE FISCAL YEAR 2025 BUDGET FOR THE COUNTY OF MAUI 
+DEPARTMENT OF ENVIRONMENTAL MANAGEMENT, ENVIRONMENTAL PROTECTION AND 
+SUSTAINABILITY PROGRAM ENVIRONMENTAL PROTECTION AND SUSTAINABILITY FUND, 
+ENVIRONMENTAL PROTECTION GRANTS PILI KOKO. >> VICE-CHAIR SUGIMURA. >> I MOVE TO PASS  
+BILLS 69 CD 1 (2023) BILL 166 CD 1 (2024), BILL 167 CD 1 (2024), BILL 183 FD 1 (2024) AND BILL 186 (2024)  
+ON SECOND AND FINAL READING. >> MOVED BY VICE-CHAIR SUGIMURA, SECONDED BY MEMBER 
+UU-HODGINS TO PASS THOSE BILLS ON SECOND AND FINAL READING.\r\n\r\nDISCUSSION, VICE-
+CHAIR SUGIMURA. >> I GUESS THAT IS MY DISCUSSION. THERE'S BASICALLY YOU READ ALL THE 
+BILLS. I MOVE TO PASS. WE ALREADY DISCUSSED SECOND AND TIME, SO TAKE THE VOTE. >> ANY 
+MORE DISCUSSION IN ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY AYE. SEVEN 
+AYES, TWO EXCUSED.\r\n\r\nMOTION CARRIES. MS. CLERK. >> CHAIR BEFORE YOU IS BILL 29 CD 1 
+(2024) A BILL FOR AN ORDINANCE TO AMEND THE STATE LAND USE DISTRICT CLASSIFICATION 
+FROM AGRICULTURAL DISTRICT TO URBAN DISTRICT CONDITIONAL DISTRICT BOUNDARY 
+AMENDMENT FOR PROPERTIES SITUATED AT KIHEI, MAUI, HAWAI'I PORTION OF TAX MAP KEY 2-3-
+9-001:034. >> PRO TEM KAMA. >> MAY YOU ASK THE CLERK TO CALL UP BILL 30, CD FD 1 (2024). >> 
+MS. CLERK, COULD YOU CALL UP BILL 30 CD 1, FD 1 (2024). >> YES, CHAIR. BILL 30 CD 1, FD 1 (2024) A  
+BILL FOR AN ORDINANCE TO CHANGE ZONING FROM COUNTY EULER DISTRICT TO M-1 LIGHT 
+INDUSTRIAL DISTRICT CONDITIONAL ZONING FOR PROPERTY SITUATED AT KIHEI, MAUI, HAWAI'I 
+PORTION OF TAX MAP KEY 2-3-9-001:034. >> PRO TEM KAMA.\r\n\r\n>> I MOVE TO PASS THE BILLS ON  
+SECOND AND FINAL READING. >> SECOND. >> MOVED BY PRO TEM KAMA, SECONDED BY MEMBER 
+COOK TO PASS BILLS 29 CD 1 (2024), AND BILL 30 CD 1, FD 1 (2024) ON SECOND AND FINAL READING. 
+DISCUSSION, PRO TEM KAMA? >> MEMBERS, THESE TWO BILLS WILL ALLOW FOR DEVELOPMENT 
+OF THE OLD KAI LIGHT INDUSTRIAL PARK TO PROCEED. THE COUNTY CLERK'S OFFICE HAS 
+CONFIRMED THAT THE UNILATERAL AGREEMENT HAS BEEN RECORDED. I ASK FOR YOUR SUPPORT  
+ON MY MOTION.\r\n\r\nTHANK YOU, CHAIR. >> ANY MORE DISCUSSION, FOLKS? MEMBER COOK? >> 
+THIS IS GOING TO AFFECT THE SOUTH MAUI COMMUNITY IN A VERY POSITIVE WAY, AND TO 
+CREATE LIGHT INDUSTRIAL AREA, AND THE TRAFFIC IS CURRENTLY COMING FROM THE CENTRAL 
+VALLEY. SO I ASK FOR AND ENCOURAGE OUR MEMBERS' SUPPORT. >> ANY MORE DISCUSSION? 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY AYE?\r\n\r\n>> AYE. >> PRO TEM 
+KAMA? SEVEN AYES, TWO EXCUSED. MOTION CARRIES. MS. CLERK. >> CHAIR, BEFORE YOU IS BILL 
+135 CD 1 (2024) A BILL FOR AN ORDINANCE AUTHORIZING THE MAYOR TO ENTER INTO AN 
+INTERGOVERNMENTAL AGREEMENT WITH THE UNITED STATES ARMY CORPS OF ENGINEERS FOR 
+TECHNICAL SERVICES.\r\n\r\n>> MEMBER COOK? >> I MOVE IT PASS BILL 135 CD 1 (2024) ON SECOND 
+AND FINAL READING. >> SECOND. >> MOVED BY MEMBER COOK, SECONDED BY MEMBER UU-
+HODGINS TO PASS BILL 135 CD 1 (2024 ) ON SECOND AND FINAL READING. DISCUSSION, MEMBER 
+COOK? >> THANK YOU, CHAIR. THIS AGREEMENT WILL GRANT THE DEPARTMENT OF PUBLIC 
+WORKS ACCESS TO THE UNITED STATES ARMY CORPS OF ENGINEERS' INTERAGENCY AND 
+INTERNATIONAL SERVICES PROGRAM.\r\n\r\nTHAT WOULD FAST-TRACK FEDERALLY SPONSORED 
+CIVIL CONSTRUCTION PROJECTS. I RESPECTFULLY ASK FOR THE MEMBERS' SUPPORT OF MY 
+MOTION. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR 
+HAND, SAY AYE? >> AYE. >> SEVEN AYES, ZERO NOS. TWO EXCUSED.\r\n\r\nMOTION CARRIES MS. 
+CLERK. >> CHAIR BEFORE YOU IS BILL 136 CD 1 FD IS (2024) A BILL FOR AN ORDINANCE AMENDING 
+TITLE 20 MAUI COUNTY CODE ESTABLISHING A CLIMATE ACTION AND RESILIENCY PLAN FOR THE 
+COUNTY OF MAUI. >> MEMBER RAWLINS-FERNANDEZ. >> MAHALO, CHAIR. I MOVE TO PASS BILL 
+136 CD 1, FD 1 ON SECOND AND FINAL READING. >> SECOND.\r\n\r\n>> MOVED BY MEMBER 
+RAWLINS-FERNANDEZ, SECOND INTRODUCED BY MEMBER SINENCI TO PASS THE BILL ON SECOND 
+AND FINAL READING. DISCUSSION, MEMBER RAWLINS-FERNANDEZ? >> MAHALO, CHAIR. BILL 136 
+ESTABLISHES THE CLIMATE ACTION AND RESILIENCY PLAN THAT WE AFFECTIONALLY CALL CARP.  
+THE CARP IS THE FIRST COMPREHENSIVE STRATEGIC STRATEGY FOR MITIGATING AND ADAPTING 
+TO CLIMATE CHANGE IN MAUI COUNTY AND IDENTIFIES MITT GAUGE AND RESILIENCY 
+STRATEGIES AND SUPPORTING ACTIONS TO PREPARE FOR, AND STRENGTHEN RESILIENCE TO 
+POTENTIAL CLIMATE EFFECTS. COUNCIL MEMBER PALTIN IN THE PREVIOUS DURING FIRST 
+READING ASKED ABOUT THE PORTIONS THAT WERE TRANSLATED 'OLELO HAWAI'I AND THE 
+EXHIBIT THAT WAS IN THE FIRST READING AND TODAY BOTH HAVE THOSE PORTIONS, AND IT'S 
+THE EXECUTIVE SUMMARY AND THE GUIDING PRINCIPLES THAT YOU WILL SEE IN 'OLELO HAWAI'I.  
+AND I MOVE TO AMEND SECTION 20.44.050D BY STRIKE THE WORD "MONTHLY," AND REPLACING 
+WITH "QUARTERLY." SO IT WILL READ: PLAN IMPLEMENTATION UPDATES ONLINE DASHBOARD 
+AND REPORTING D AND ONLINE -- BOARD MUST TRACK THE PROGRESS OF THE PLAN'S SPECIFIC 
+RECOMMENDATIONS BY DECEMBER 31ST, 2025. THE ONLINE DASHBOARD MUST BE ACCESSIBLE 
+FROM THE COUNTY'S WEBSITE UPON APPROVAL  OF THE PLAN, AND MUST BE UPDATED ON A 
+QUARTERLY BASIS. AND TO SUSPEND RULE 19C OF THE RULES OF THE COUNCIL, SO WE CAN TAKE 
+ACTION TODAY.\r\n\r\n>> OKAY. >> I NEED A SECOND. >> MOVED BY MEMBER RAWLINS-
+FERNANDEZ. SECONDED BY MEMBER UU-HODGINS TO AMEND THE WORDING FROM "MONTHLY" 
+TO "QUARTERLY," IS IT TO WAIVE? >> SUSPEND. >> SUSPEND 19C. DISCUSSION ANYONE? MEMBER 
+RAWLINS-FERNANDEZ?\r\n\r\n>> THIS SECTION WAS AMENDED ON THE FLOOR BY MYSELF. AND I 
+INVITED THE ADMINISTRATION TO REVIEW, CONFER AND ADVISE ME ON ANY EDITS THAT THEY 
+WOULD LIKE. THOSE AMENDMENTS ON FIRST READING. THE ONLY AMENDMENT THEY REQUESTED  
+WAS THIS ONING CHANGING MONTHLY TO QUARTERLY. MAHALO, CHAIR. >> ANY MORE 
+DISCUSSION? ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY AYE?\r\n\r\n>> AYE. >>  
+SEVEN AYES, TWO EXCUSED. MOTION CARRIES. MOTION AS AMENDED. ANY MORE DISCUSSION? 
+ANYONE? ALL THOSE IN FAVOR, RAISE YOUR HAND, SAY AYE?\r\n\r\n>> AYE. >> SEVEN AYES, TWO 
+EXCUSED. MOTION CARRIES. MS. CLERK. >> CHAIR, BEFORE YOU IS BILL 154 (2024) A BILL FOR AN 
+ORDINANCE AMENDING ORDINANCE NO. 5334 (2021) THE WET MAUI COMMUNITY PLAN RELATING 
+TO THE AREA BETWEEN FRONT STREET AND HONOAPI'ILANI HIGHWAY FROM KAHOMA STREAM TO  
+KENUI STREET.\r\n\r\n>> PRO TEM KAMA. >> I THINK THIS IS MEMBER PALTIN'S BILL. >> OH, OKAY. 
+MEMBER PALTIN IS NOT HERE. SO WHO WANTS TO DO IT? ANYBODY? >> I DON'T HAVE THIS IN MY 
+NOTES, BUT I CAN SAY I MOVE TO PASS BILL 154 ON SECOND AND FINAL READING.\r\n\r\n>> 
+SECOND. >> MOVED BY MEMBER UU-HODGINS. SECONDED BY VICE-CHAIR SUGIMURA TO PASS 
+BILL 154 ON SECOND AND FINAL READING. MEMBER UU-HODGINS FOR DISCUSSION. >> THANK 
+YOU, ALL. THAT IS MY DISCUSSION. >> OKAY.\r\n\r\nVERY GOOD. ANYBODY ELSE? ALL THOSE IN 
+FAVOR -- DISCUSSION? >> YES. >> VICE-CHAIR. >> I JUST WANT TO THANK THE CLERK'S OFFICE 
+FOR HAVING THE COMMUNITY MEETING IN WEST MAUI. THEY GOT ALL SET UP FROM 2:00 IN THE 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+AFTERNOON, AND IT WAS RESOUNDING SUPPORT, I GUESS, BY ONLY HAVING TWO 
+TESTIFIERS.\r\n\r\nONE WAS TALKING ABOUT THE SMA AND THE OTHER, I DON'T REMEMBER -- 
+COULDN'T HEAR, BEC AUSE IT WAS ONLINE WAS VERY QUIET OR VERY SOFT. THANK YOU VERY 
+MUCH. I GUESS THAT MEANS THE COMMUNITY SUPPORTS THIS AMENDMENT TO THE WEST MAUI 
+COMMUNITY PLAN. >> ANYBODY ELSE? ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND,  
+SAY AYE. SEVEN AYES, TWO EXCUSED. MOTION CARRIES.\r\n\r\n>> YAY. >> MS. CLERK. >> CHAIR 
+BEFORE YOU IS BILL 157 CD 1 (2024) A BILL FOR AN ORDINANCE AMENDING TITLE 14 MAUI COUNTY  
+CODE TO ESTABLISH REGULATIONS ON STORMWATER DISCHARGE AND POLLUTION CONTROLS. >> 
+MEMBER COOK. >> I MOVE TO PASS BILL 157 CD 1 (2024) ON SECOND AND FINAL READING. >> 
+MOVED BY MEMBER COOK, SECONDED BY VICE-CHAIR SUGIMURA TO PASS BILL 157, CD 1 (2024) 
+ON SECOND AND FINAL READING.\r\n\r\nDISCUSSION, MEMBER COOK? >> THANK YOU, CHAIR. THIS 
+BILL WILL PROHIBIT ACTIVITIES THAT MAY POLLUTE STORMWATER DISCHARGES, AND HELP TO 
+PROTECT RECEIVING WATER BODIS FROM UNTREATED DISCHARGES. I RESPECTFULLY ASK FOR 
+MEMBERS' SUPPORT OF MY MOTION. >> ANY MORE DISCUSSION? IF NOT, ALL THOSE IN FAVOR OF 
+THE MOTION, PLEASE RAISE YOUR HAND, SAY AYE. >> AYE.\r\n\r\n>> SEVEN AYES, TWO EXCUSED. 
+MOTION CARRIES. ALL RIGHT. MS. CLERK. >> CHAIR, BEFORE YOU IS BILL 184 (2024) A BILL FOR AN 
+ORDINANCE AMENDING CHAPTER 3.36 MAUI COUNTY CODE RELATING TO GRANTS. >> VICE-CHAIR 
+SUGIMURA.\r\n\r\n>> I MOVE TO PASS BILL 184 (2024) ON SECOND AND FINAL READING. >> MOVED 
+BY VICE-CHAIR SUGIMURA. SECONDED BY MEMBER COOK TO PASS BILL 184 ON SECOND AND 
+FINAL READING. DISCUSSION, VICE-CHAIR SUGIMURA. >> WE DISCUSSED THIS BILL AT THE LAST 
+OUR LAST WEEK'S BFED MEETING WHERE WE RECEIVED FURTHER INFORMATION FROM THE 
+DEPARTMENT OF HOUSING ON THE NEED FOR THIS BILL. I DO HAVE AN ASF, WHICH YOU ALL JUST 
+RECEIVED. REFERENCING -- I FIRST MOVE TO SUBSTITUTE BILL 184 (2024) WITH THE PROPOSED FD 1 
+VERSION ATTACHED TO MY ASF.\r\n\r\n>> SECOND? >> I KNOW. SECOND. MOVED BY VICE-CHAIR 
+SUGIMURA AND SECONDED BY MEMBER UU-HODGINS TO PASS BILL 184 ON SECOND AND FINAL 
+READING. DISCUSSION. >> WITH THE ASF. >> THAT IS WHERE YOU COME IN.\r\n\r\nFOR THE 
+AMENDMENT. >> WHO IS ONLINE IS REMI, DIRECT OR MITCHELL. I'M TOLD HE IS BACK FROM 
+VACATION AND IF WE HAVE QUESTIONS, MEMBERS, YOU CAN ASK HIM. THE PROPOSED FD 1 
+VERSION CLARIFIES THAT GRANTS UNDER CHAPTER 3.34 MAUI COUNTY CODE WILL BE EXEMPT 
+FROM ALL REQUIREMENTS. >> YOU NEED TO MAKE A MOTION. >> I FIRST MOVE TO SUBSTITUTE -- 
+>> SHE NEEDS A SECOND. >> I THOUGHT NOHE DID.\r\n\r\n>> FIRST WE NEEDED A MAIN MOTION. >> 
+YES. >> SO THE FIRST MOTION YOU MADE SECONDED BY, I THOUGHT MEMBER UU-HODGINS. >> 
+YES. >> OKAY. THAT WAS THE MAIN MOTION. >> YES.\r\n\r\n>> THEN YOU HAVE TO MAKE ANOTHER  
+MOTION TO ADD THE ASF. >> OKAY. >> AMENDMENT. >> OKAY. SO I DO HAVE AN ASF, WHICH YOU  
+GOT. I FIRST MOVE TO SUBSTITUTE BILL 184 (2024) WITH THE PROPOSED 1 VERSION AND THANK 
+YOU, NOHE. >> MOVED BY MEMBER UU-HODGINS -- I MEAN, VICE-CHAIR SUGIMURA TO MAKE THIS  
+AMENDMENT, WHICH WAS JUST PASSED OUT.\r\n\r\n>> YES. >> THE ASF. AND SECONDED BY 
+MEMBER UU-HODGINS. OKAY. NOW DISCUSSION. NOW YOU CAN EXPLAIN YOUR ASF. >> THE 
+PROPOSED FD 1 VERSION CLARIFIES THAT GRANTS UNDER CHAPTER 3.34 MAUI COUNTY CODE WILL  
+BE EXEMPT FROM ALL REQUIREMENTS OF CHAPTER 3.36 MAUI COUNTY CODE; AND ALSO 
+CORRECTS BILL SECTION NUMBERS AND MAKES OTHER TECHNICAL AND GRAMMATICALLY 
+REVISIONS.\r\n\r\nTHANK YOU VERY MUCH. AS I SAID, NOT DR. -- DIRECTOR MITCHELL IS 
+AVAILABLE, IF YOU HAVE QUESTIONS. >> OKAY, BUT WE ALREADY HEARD THIS IN YOUR 
+COMMITTEE. >> YES. >> ALL RIGHT. SO ANY MORE DISCUSSION ON THIS ASF?\r\n\r\nTHIS IS AN 
+AMENDMENT TO THE MAIN MOTION. ALL THOSE IN FAVOR OF THE AMENDMENT, RAISE YOUR 
+HAND, SAY AYE? >> AYE. >> SEVEN AYES, TWO EXCUSED. MOTION CARRIES. NOW WE'RE GOING TO  
+DO THE MAIN MOTION AS AMENDED. ANY MORE DISCUSSION?\r\n\r\n>> NO MORE DISCUSSION. >> 
+ALL THOSE IN FAVOR OF THE MAIN MOTION AS AMENDED, RAISE YOUR HAND, SAY AYE. >> AYE. 
+>> SO SEVEN AYES, ZERO NOS, TWO EXCUSED, MOTION CARRIES. NOW YOU CAN MAKE THE 
+MOTION ON THE OTHER ITEM, 19C TO SUSPEND RULE 19C. >> I MONTH TO SUSPEND RULE 19C AS IT 
+RELATES TO ITEMS TO ALLOW FINAL ACTION AT THE SAME MEETING. >> WE NEED A SECOND. 
+SECONDED BY MEMBER UU-HODGIN S.\r\n\r\nNOW YOU CAN EXPLAIN DISCUSSION. >> RULE 
+SUSPENSION IS NECESSARY FOR US TO ACT ON THIS BILL TODAY. THANK YOU, CHAIR. >> ANY 
+MORE DISCUSSION? ALL THOSE IN FAVOR OF THE MOTION, RAISE YOUR HAND, SAY AYE. PRO TEM 
+file:///P|/OCC/LEG/Minutes/2024/241223/Transcription.txt[12/24/2024 10:34:45 AM]
+KAMA, SEVEN AYES, ZERO NOS, TWO EXCUSED. MOTION CARRIES >> THAT IS YOUR LAST 
+BILL.\r\n\r\n>> IT'S ONLY A YEAR-AND-A-HALF LATER. WE'LL SEE. DO YOU REALIZED THERE WAS 
+OVER 400 CALLS ON THIS? 400 WE GOT SOME OF THEM. >> OKAY. MS. CLERK.\r\n\r\n>> CHAIR, 
+BEFORE YOU IS BILL 185 FD 1 (2024) A BILL FOR AN ORDINANCE ADOPTING THE HAWAI'I STATE 
+FIRE CODE WITH CERTAIN AMENDMENTS. >> MEMBER UU-HODGINS. >> THANK YOU, CHAIR. MOVE 
+TO PASS BILL 185 FD 1 (2024) ON SECOND AND FINAL READING. >> SECOND. >> MOVED BY MEMBER 
+UU-HODGINS. SECONDED BY MEMBER RAWLINS-FERNANDEZ TO PASS BILL 185 FD 1 (2024) ON 
+SECOND AND FINAL READING.\r\n\r\nDISCUSSION, MEMBER UU-HODGINS. >> THANK YOU, CHAIR. 
+BILL 185 FD 1 (2024) ADOPTS STATE FIRE CODE WITH CERTAIN AMENDMENTS THAT WILL PERTAIN 
+TO OUR COUNTY BASED ON THE DRIP COMMITTEE'S DISCUSSION AND ITS MEETING -- AT ITS 
+MEETING OF DECEMBER 4TH, 2024, DRIP COMMITTEE CHAIR PALTIN SEPARATE A FOLLOW-UP 
+LETTER TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY REQUEST PUBLIC OUTREACH 
+CAMPAIGN TO EDUCATE THE COMMUNITY ON THE NEW COUNTY FIRE CODE, INCLUDING 
+VEGETATION MANAGEMENT, TRANSMITTED A RESPONSE DATED DECEMBER 189TH, 2024 AND 
+CONFIRMED THAT BROCHURES AND OTHER PUBLIC MEETINGS WILL BE PUBLISHED ONCE THE BILL  
+IS ENACTED. I ASK FOR SUPPORT OF MY MOTION. THANK YOU, CHAIR. >> ALL THOSE IN FAVOR OF 
+THE MOTION, RAISE YOUR HAND, SAY AYE. >> AYE.\r\n\r\n>> SEVEN AYES, SEVEN NOS, MOTION 
+CARRIES. I WAS LOOKING AT THE MANAGING DIRECTOR WAS SHOWING SOMEBODY AROUND. NO, 
+MAYBE IT WAS THE DR GUY, YOU KNOW? SO WE HAVE TO BE ON OUR BEST BEHAVIOR. 
+[LAUGHTER ] ALL RIGHT, MEMBERS, THAT BRINGS US TO THE END OF THE CALENDAR. I HOPE ALL 
+OF YOU STAY SAFE, AND HAVE A WONDERFUL TIME WITH YOUR FAMILY AND FRIENDS FOR THE 
+HOLIDAYS. THANK YOU.\r\n\r\nVICE-CHAIR SUGIMURA. >> I HAVE A CORRECTION. SO THE VON 
+TEMPSKY PROPERTY THE FUNDING IS COMING FROM BOND FUNDING. I THINK I SAID MY FIRST 
+THOUGHT. >> YOU SAID CARRY-OVER SAVINGS. >> IT'S BOND, BOND FUNDING. >> YES.\r\n\r\nSTILL, 
+I'M CONCERNED ABOUT THAT. >> ME TOO. >> ANYWAY, WHAT WAS I GOING TO SAY? MERRY 
+CHRISTMAS. >> HAPPY HOLIDAYS! ONE LAST THING, I'M THINKING, YOU KNOW THE CHRISTMAS 
+PARTY WE NEVER HAD? AND THE SHOWERS WE NEVER HAD?\r\n\r\nTHE SURPRISE SHOWERS WE'RE 
+LOOKING AT JANUARY 17TH, JUST IN CASE, OKAY? HUH? IT'S A SURPRISE THING AND WE KEEP 
+MOVING IT. WHO KNOWS? IT MIGHT BE EASTER. WE'RE LOOKING AT THE 17TH, ALL RIGHT 
+EVERYBODY? THIS MEETING IS ADJOURNED.\r\n\r\n[ GAVEL ]

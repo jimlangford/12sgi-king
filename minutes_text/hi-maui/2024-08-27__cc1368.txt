@@ -1,0 +1,1509 @@
+MINUTES | hi-maui | County Council Meeting | 2024-08-27
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1368,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+ 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+August 27, 2024 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: www.mauicounty.legistar.com 
+ 
+TIME MEETING CALLED TO ORDER:  9:04 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Pro Tempore Tasha 
+Kama 
+√   Arrived - 9:18 a.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 9    
+ 
+ 
+  
+ 2 
+CEREMONIAL RESOLUTIONS  
+ 
+Reso 24 -156 "RECOGNIZING CAPTAIN RILEY E. COON AND THE TRILOGY 
+EXCURSIONS ʻOHANA FOR THEIR HEROIC EFFORTS DURING THE AUGUST 
+8, 2023, WILDFIRES" 
+ 
+ AYE NO EXC Time Deliberations Began 9:17 a.m. 
+Pro Tem Kama √   Time Motion Made 9:17 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 9:29 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+COMMITTEE REPORTS 
+ 
+CR 24-79 Recommending FIRST READING of Bill 23, CD1 (2024), to grant a 
+Community Plan Amendment for 268.349 acres of real property identified as tax 
+map keys (2) 4-9-001:021, 024, 030; (2) 4-9-002:001 (por.), 061 (pors.); (2) 4-9-
+018:002 (pors.), 003 (pors.), 005; and (2) 4 -9-021:009, located in Lāna ʻi City, 
+Lānaʻi, Hawaiʻi, by adding acreage, removing existing acreage, and adjusting the 
+specific land uses within the Lānaʻi Community Plan designation. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:27 a.m. 
+Pro Tem Kama √   Time Motion Made 10:28 a.m. 
+VC Sugimura √   Motion  ADOPT 
+recommendations 
+CM Paltin √   Maker Kama 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 10:39 a.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8 1  MOTION PASSED  
+ 
+ 3 
+RESOLUTIONS 
+ 
+Reso 24-143 "REFERRING TO THE LĀNA ʻI, MAUI, AND MOLOKAI PLANNING 
+COMMISSIONS A PROPOSED BILL AMENDING SECTION 19.35.050, MAUI 
+COUNTY CODE, RELATING TO THE NUMBER OF ACCESSORY DWELLINGS 
+PER LOT"  
+10:50 a.m.: Referred to the Housing and Land Use Committee 
+ 
+ 
+Reso 24 -144 "APPOINTMENT OF MEMBERS TO THE BOARD OF WATER 
+SUPPLY FOR THE COUNTY OF MAUI"  
+ 
+Reso 24-146 "APPOINTMENT OF MEMBERS TO THE COST OF GOVERNMENT 
+COMMISSION FOR THE COUNTY OF MAUI"  
+ 
+Reso 24 -147 "APPOINTMENT OF MEMBERS TO THE FIRE AND PUBLIC 
+SAFETY COMMISSION FOR THE COUNTY OF MAUI"  
+ 
+Reso 24 -149 "APPOINTMENT OF A MEMBER TO THE MAUI PLANNING 
+COMMISSION FOR THE COUNTY OF MAUI"  
+ 
+Reso 24-150 "APPOINTMENT OF A MEMBER TO THE MAUI REDEVELOPMENT 
+AGENCY FOR THE COUNTY OF MAUI"  
+ 
+Reso 24-152 "APPOINTMENT OF MEMBERS TO PUBLIC WORKS COMMISSION 
+FOR THE COUNTY OF MAUI"  
+10:53 a.m.: Re solutions 24 -144, 24 -146, 24 -147, 24 -149, 24 -150, and 24 -152 
+were referred to the Government Relations, Ethics, and Transparency Committee 
+ 
+ 
+Reso 24 -145 "APPOINTMENT OF MEMBERS TO THE CONSERVATION 
+PLANNING COMMITTEE FOR THE COUNTY OF MAUI"  
+ 
+Reso 24 -148 "APPOINTMENT OF MEMBERS TO THE MAUI COUNTY 
+CULTURAL RESOURCES COMMISSION"  
+ 
+Reso 24 -151 "APPOINTMENT OF MEMBERS TO THE MOLOKAI PLANNING 
+COMMISSION FOR THE COUNTY OF MAUI"  
+ 
+Reso 24-153 "APPOINTMENT OF MEMBERS TO THE URBAN DESIGN REVIEW 
+BOARD FOR THE COUNTY OF MAUI"  
+ 
+ AYE NO EXC Time Deliberations Began 10:55 a.m. 
+Pro Tem Kama √   Time Motion Made 10:56 a.m. 
+ 4 
+VC Sugimura √   Motion  WAIVE 
+Rule 7G 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 10:58 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 10:58 a.m. 
+VC Sugimura √   Motion  ADOPT 
+Resos 
+24-145, 
+24-148, 
+24-151 and 
+24-153 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:06 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama √   Time Motion Made 11:04 a.m. 
+VC Sugimura √   Motion  AMEND; 
+WAIVE 
+Rule 19C 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:05 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 5 
+ 
+Reso 24-154 "URGING THE ADMINISTRATION TO CONSIDER CREATING AN 
+ARSON AND FIRE HAZARD REDUCTION UNIT WITHIN THE COUNTY OF MAUI"  
+ 
+ AYE NO EXC Time Deliberations Began 11:06 a.m. 
+Pro Tem Kama √   Time Motion Made 11:06 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:12 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Reso 24-155 "AUTHORIZING THE COUNCIL CHAIR TO ISSUE A REQUEST FOR 
+PROPOSALS FOR A FEASIBILITY STUDY OF A COUNTY DEPARTMENT OF 
+GRANTS MANAGEMENT" 
+11:12 a.m.: Referred to the Efficiency Solutions and Circular Systems Committee 
+ 
+ 
+ORDINANCES  
+ 
+Bill 124 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, REVENUES; DEPARTMENT OF 
+MANAGEMENT, MANAGEMENT PROGRAM; CAPITAL IMPROVEMENT 
+PROJECTS, DEPARTMENT OF MANAGEMENT, WAILUKU -KAHULUI 
+COMMUNITY PLAN AREA; AND APPENDIX C, DEPA RTMENT OF 
+MANAGEMENT, WAILUKU-KAHULUI COMMUNITY PLAN AREA"  
+11:24 a.m.: Referred to the Budget, Finance, and Economic Development 
+Committee 
+ 
+ 
+Bill 125 (2024)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, REVENUES AND OFFICE OF THE 
+MAYOR, ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND 
+DISBURSEMENTS FOR WATER AND ENVIRONMENTAL RESOURCE 
+PROTECTION"  
+11:24 a.m.: Referred to the Budget, Finance, and Economic Development 
+Committee 
+ 
+ 
+ 6 
+ 
+Bill 126 (2024) "A BILL FOR AN ORDINANCE ESTABLISHING CHAPTER 10.79, 
+MAUI COUNTY CODE, RELATING TO ELECTRIC VEHICLE INFRASTRUCTURE"  
+11:25 a.m.: Referred to the Disaster, Resilience, International Affairs, and 
+Planning Committee 
+ 
+ 
+Bill 127 (2024)  "A BILL FOR AN ORDINANCE TO IMPLEMENT CHARTER 
+SECTION 13 -17 REQUIRING THE COUNTY TO OPERATE AS A BILINGUAL 
+GOVERNMENT AND TO PUBLISH OFFICIAL MEETING AGENDAS IN ENGLISH 
+AND ʻŌLELO HAWAIʻI"  
+11:25 a.m.: Referred to the Efficiency Solutions and Circular Systems Committee 
+ 
+ 
+Bill 128 (2024) "A BILL FOR AN ORDINANCE AMENDING CHAPTER 3.97, MAUI 
+COUNTY CODE, ON USE OF THE MANAGED RETREAT REVOLVING FUND"  
+11:25 a.m.: Referred to the Budget, Finance, and Economic Development 
+Committee 
+ 
+ 
+ORDINANCES - SECOND AND FINAL READING  
+ 
+Bill 17 (2022) "A BILL FOR AN ORDINANCE AMENDING CHAPTER 19.29, MAUI 
+COUNTY CODE, TO PROHIBIT PRIVATE RESTRICTIONS ON SMALL -SCALE 
+AGRICULTURAL USES AND THE KEEPING OF ANIMALS IN ANY RURAL 
+DISTRICT"  
+ 
+ AYE NO EXC Time Deliberations Began 11:25 a.m. 
+Pro Tem Kama √   Time Motion Made 11:26 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Johnson 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:27 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+  
+ 7 
+ 
+Bill 28, CD1 (2024) "A BILL FOR AN ORDINANCE TO AMEND THE STATE LAND 
+USE DISTRICT CLASSIFICATION FROM AGRICULTURAL DISTRICT TO URBAN 
+DISTRICT (CONDITIONAL DISTRICT BOUNDARY AMENDMENT) FOR 
+PROPERTY SITUATED AT WAILUKU, MAUI, HAWAII, PORTION OF TAX MAP 
+KEY (2) 3-3-001:106"  
+ 
+ AYE NO EXC Time Deliberations Began 11:27 a.m. 
+Pro Tem Kama √   Time Motion Made 11:28 a.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin  √  Maker Kama 
+CM Johnson  √  Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 12:08 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee √     
+TOTAL VOTES 5 4  MOTION PASSED  
+ 
+ AYE NO EXC   
+Pro Tem Kama  √  Time Motion Made 12:01 p.m. 
+VC Sugimura  √  Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:07 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci √     
+Chair Lee  √    
+TOTAL VOTES 4 5  MOTION FAILED  
+ 
+ 
+Bill 67, CD1 (2024) "A BILL FOR AN ORDINANCE TO CHANGE THE WAILUKU-
+KAHULUI COMMUNITY PLAN LAND USE DESIGNATION FROM HEAVY 
+INDUSTRIAL TO BUSINESS/COMMERCIAL FOR 6.842 ACRES IN KAHULUI, 
+MAUI, HAWAIʻI, IDENTIFIED AS TAX MAP KEYS (2) 3-7-002:020 (POR.) AND (2) 
+3-7-002:027 (QUEEN KAʻAHUMANU CENTER), AND TO AMEND THE TEXT OF 
+THE WAILUKU-KAHULUI COMMUNITY PLAN (2002), AS AMENDED"  
+ 
+ 8 
+Bill 68, CD1, FD1 (2024)  "A BILL FOR AN ORDINANCE TO CHANGE ZONING 
+FROM M -2 HEAVY INDUSTRIAL DISTRICT TO B -3 CENTRAL BUSINESS 
+DISTRICT (CONDITIONAL ZONING) FOR 33.764 ACRES IN KAHULUI, MAUI, 
+HAWAIʻI, IDENTIFIED AS TAX MAP KEYS (2) 3 -7-002:020, (2) 3-7-002:021, (2) 
+3-7-002:023, (2) 3 -7-002:025, AND (2) 3 -7-002:027 (QUEEN KA ʻAHUMANU 
+CENTER)"  
+ 
+ AYE NO EXC Time Deliberations Began 12:09 p.m. 
+Pro Tem Kama √   Time Motion Made 12:11 p.m. 
+VC Sugimura √   Motion  PASS Bills 
+67 & 68 on 
+second and 
+final reading 
+CM Paltin √   Maker Kama 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:11 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Bill 69, CD1 (2024) "A BILL FOR AN ORDINANCE TO CHANGE ZONING FROM 
+URBAN RESERVE DISTRICT TO B -CT COUNTRY TOWN BUSINESS DISTRICT 
+(CONDITIONAL ZONING) FOR 21,711 SQUARE FEET IN HĀNA, MAUI, HAWAIʻI, 
+IDENTIFIED AS TAX MAP KEY (2) 1 -4-013:001 (HĀNA STORE STORAGE 
+BUILDING)"  
+ 
+ AYE NO EXC Time Deliberations Began 12:11 p.m. 
+Pro Tem Kama √   Time Motion Made 12:12 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Kama 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:12 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 9 
+ 
+Bill 100, CD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING SECTION 
+19.30A.050, MAUI COUNTY CODE, RELATING TO COMPOSTING IN THE 
+AGRICULTURAL DISTRICT"  
+ 
+ AYE NO EXC Time Deliberations Began 12:12 p.m. 
+Pro Tem Kama √   Time Motion Made 12:13 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Johnson 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:14 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Bill 112 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX B, DEPARTMENT OF 
+PUBLIC WORKS, GENERAL FUND, FLOOD DEVELOPMENT PERMITS"  
+ 
+Bill 113, FD1 (2024)  "A BILL FOR AN ORDINANCE AMENDING CHAPTER 
+16.29, MAUI COUNTY CODE, RELATING TO FLOOD HAZARD AREAS"  
+ 
+Bill 119 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART I, 
+DEPARTMENT OF THE PROSECUTING ATTORNEY, EDWARD BYRNE 
+MEMORIAL JUSTICE ASSISTANCE GRANT PROGRAM"  
+ 
+Bill 120 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ECONOMIC DEVELOPMENT PROGRAM, GRANTS AND DISBURSEMENTS FOR 
+BUSINESS DEVELOPMENT AND TECHNOLOGY, MAKAWAO -PĀʻIA-HAʻIKŪ, 
+PUKALANI-KULA-ʻULUPALAKUA, AND SOUTH MAUI ECONOMIC 
+DEVELOPMENT, ENVIRONMENTAL, AND CULTURAL PROGRAMS"  
+ 
+Bill 121 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX B, DEPARTMENT OF 
+ENVIRONMENTAL MANAGEMENT, SEWER FUND, CHARGES FOR CURRENT 
+SERVICES, FEES - SEWER COLLECTION, MONTHLY USE CHARGE - NON-
+RESIDENTIAL"  
+ 10 
+ 
+Bill 123 (2024) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2025 BUDGET FOR THE COUNTY OF MAUI, APPENDIX A, PART II, 
+AFFORDABLE HOUSING FUND, 258 KUPUOHI STREET, LĀHAINĀ, MAUI, 
+HAWAIʻI" 
+ 
+ AYE NO EXC Time Deliberations Began 12:14 p.m. 
+Pro Tem Kama √   Time Motion Made 12:15 p.m. 
+VC Sugimura √   Motion  PASS Bills 
+112, 113, 
+119, 120, 
+121 & 123 
+on second 
+and final 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Kama 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:17 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Bill 114, FD1 (2024) "A BILL FOR AN ORDINANCE TO CHANGE ZONING FROM 
+R-3 RESIDENTIAL DISTRICT TO P -1 PUBLIC/QUASI -PUBLIC DISTRICT 
+(CONDITIONAL ZONING) FOR APPROXIMATELY 0.75 ACRES LOCATED AT 
+LAHAINA, MAUI, HAWAI ʻI, TAX MAP KEY (2) 4 -5-014:054 (GRACE BAPTIST 
+CHURCH)"  
+12:17 p.m.: Postponed until the 9/13/2024 Council Meeting 
+ 
+TIME MEETING ADJOURNED:  12:21 p.m. 
+ 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+TRANSCRIPTION
+Council of the County of Maui  on 2024-08-27 9:00 AM - Regular Meeting
+of AUGUST 27, 2024. Maui county council regular council meeting of AUGUST 27th, 2024. [Gavel] Will the council 
+meeting of AUGUST 27th, 2024, please come to order. The time is 9:04 A.M. Members, first of all, welcome back to 
+the chambers. Welcome back everyone back to the chambers . If you wish to say a different greeting which is salam, 
+something that we node need more in this world that means "peace." MAY we have roll call. >> chair, proceeding 
+with roll call, council member pro tempore tasha kama. >> excused. >> vice-chair yuki lei sugimura. >> 
+coming.\r\n\r\n>> council member tamara paltin. [Inaudible] >> council member gabe johnson. >> aloha council 
+members,  --  [Inaudible] >> council member keani rawlins-fernandez. >> aloha kakahiaka. [Inaudible] And peace be 
+with you. >> thank you. I think member [ Inaudible] >> good morning.\r\n\r\n----  [Inaudible] council member 
+nohelani uu-hodgins. >> salam. >> aloha, chair. Thank you. >> council member noelani uu-hodgins? >> good 
+morning everyone. Happy aloha tuesday, salam.\r\n\r\n>> council member shane sinenci. >> aloha, and salle yam 
+chair, no testifiers in hana. >> and circle back to vice-chair sugimura. >> good morning everybody. It's really good to 
+be back home and I suggested to the clerk to buy their own building so they can do their elections and not displace us, 
+chair. Good morning everybody. >> and council chair alice lee?\r\n\r\n>> salam everyone. Good morning and 
+welcome back and welcome to our guests in the audience. It's so great to be back. >> chair, you have eight members 
+present, which means that have you a quorum to conduct the business of the council, for the record, I'm county clerk 
+moana lutey and deputy county clerk richelle thomson and from our staff, from legislative division, we have got joyce 
+murashige, lauren saldana, dell yoshida and arthur sauyama and joining the meeting from the office of council services  
+is director david raatz and legislative attorney megan moniz. >> I will b doing the opening remarks this morning. It 
+should take all of 45 seconds. Gracious and almighty lord creator of heaven and earth, thank you for the opportunity 
+and privilege to serve our community, as council members.\r\n\r\nAs we begin our council meeting today, we humbly 
+ask for your guidance, MAY the holy spirit enlighten our minds, give us knowledge and wisdom to make this meeting 
+successful. Let your love be upon us. And please, send your angels to keep us safe always. We ask all of these things 
+through jesus christ, amen. And now the pledge of allegiance. I pledge allegiance to the flag of the united state s of 
+america, and to the republic for which it stands, one nation under GOD, indivisible, with liberty and justice for all. 
+MAY I please request that everyone keep their microphones muted unless it's your turn to speak.\r\n\r\nAs a reminder, 
+testimony must pertain to items on the agenda and when testifying please direct your remarks to the council and not to 
+any individual council member or member of the public. Each testifier will be allowed to speak for up to three minutes 
+on each item. For individuals wishing to testify on teams, please click the raise your hand button to be added t the 
+testifier log. If you are calling in, please follow the phone prompts to be added to the log. Decorum shall be 
+maintained at all times. Any person who behaves in a manner that disrupts, disturbs or impedes the orderly conduct of 
+any council meeting can, at the discretion of the presiding officer or majority of present council member business 
+ejected or banned from council meetings, or if participating remotely muted or dropped from the , meeting in recess. 
+Will council meeting of AUGUST 27th, please reconvene.\r\n\r\nIt's 9:15. MS. Clerk chair, we'll begin with testimony 
+on ceremonial resolutions under section d on the agenda. If there's anyone who would like to testify solely on the 
+ceremonial resolution, this is your opportunity. Chair, we don't have anyone currently signed up, but if there's anyone 
+in the gallery. >> here comes MR. Lau. >> J.C. Lau, captain riley coon and triangle excursions 'ohana.\r\n\r\n>> thank 
+you. MS. Clerk. >> chair, there's no one else currently signed up. If there's anyone online, you can raise your hand in 
+teams. If you are in the chambers, you can just stand up and let us know. The countdown is 3, 2, 1. Chair, there's no 
+one who has indicated -- oh, wait, hold on, we have a hand up from lemor czeisler.\r\n\r\nThis is for ceremonial 
+resolutions. >> this is only to if I'm needed, as a resource for bill 67-68. So apologies. >> thank you, chair, there's no 
+one who indicated wishing to testify. >> members, any objections to closing testimony and accepting written 
+testimony. >> no objections. >> so ordered,s me clerk. Thank you, MADAM Chair, proceeding with the ceremonial 
+resolution 24-156, recognizing captain riley e. Coon and the triangle drawserings 'ohana for their heroic efforts during 
+the AUGUST 8, 2023 wildfires.\r\n\r\n>> vice-chair sugimura closer. >> I move to adopt resolution no. 24-156. >> 
+second. >> thank you. >> moved by vice-chair sugimura, seconded by member tamara paltin to pass -- to adopt 
+resolution 24-156. Discussion, vice-chair sugimura. >> thank you. MAY I please ask the clerk to read the resolution in 
+its entirety.\r\n\r\n>> MS. Clerk. >> thank yu, MADAM Chair. Recognizing captain riley e. Coon and the triangle 
+excursions 'ohana for their heroic per quarters during the AUGUST 8, 2023 wildfires, whereas, on AUGUST 8,2023 
+first fierce wind driven wildfires safageding maui causing devastating destruction to lahaina town and other parts of the  
+island and resulted in the tragic loss of over 100 lives during the most severe natural disaster in the state assists history;  
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+and whereas, triangle excursions a maui-based family-owned business that provides ocean tours for visitor and locals 
+on sailing cat mostly sunnis with expressed commitments to perpetuate the hawaiian culvert and protect the marine 
+environments and whereas, captains riley e. Coon, denver coon, kuki'I falahee-walker, gabe lucy, robert lechner, travis  
+dewater and nick shaw and crewmembers maurice bajon led triangle excursions' response to the coast guard's call for 
+mariner's help and performed ocean-based life-saving missions during the evening of AUGUST 8 and well into 
+mement morning; and whereas, captain riley and his team bravely sailed a triangle excursions passenger vessel in a 
+complete darkness through 80 miles per hour wind and itense heat and smoke to prepare the vessel to serves a triage 
+and transport platform for fire survivors saving countless people, including children who hadland separated from their 
+parents and guardians as the disaster unfolded; and whereas, captain travis jumped into the water, amidst flames and 
+smoldering debris and helped fire survivors who were trapped onshore to reach the vessel; and whereas, triangle 
+excursions' heroism extended to the land, where captain gabe gave his truck to a family to help them escape the fires 
+before he ran back to the enflamed docks to fry and to save more lives and whereas, captain riley was selected as a 
+single act heroism honoree by the congressional [Phra-eld/] Of honor society on behalf of the tam and fellow triangle 
+excursions staff for their valiant efforts and whereas, captain riley and triangle excursions 'ohana displayed steadfast 
+courage and perseverance despite life-threatening conditions during a desperate time of need for the maui community; 
+and whereas, even after the fires triangle excursions continued to help the community, including by providing inter-
+island transportation for hawaiian electric personnel, delivering supplis to west maui and raising oer $900,000 to 
+support immediate recovery eforts for lahaina residents and local small businesss and whereas, the heroic response ad 
+actions of captain riley and the triangle excursions 'ohana demonstrate the utmost dedication to community and service  
+and have brought pride and honor to the people of the county of maui you anow, therefore, be it resolid by the council 
+of the county of kaua'I no. 1 it recognizes captain riley e. Coon and the triangle excursions 'ohana for their heroic 
+efforts during the AUGUST 8, 2023 wildfires and, that certified copies of this resolution be transmitted to bmc carlo 
+patrizio, officer in charge station huhi u&fp commercial-general captain aja kirksey sector commander section 
+honolulu united states coast guard, britt sablinski PRESIDENT Board of directors congressional medal of honor sciety,  
+chad graham executive director congressional medal of honor society the honorable joseph biden, JR. PRESIDENT Of 
+the united states and honorable brian schatz united states senator the honorable ma zi k. Hirono, united states senate, the  
+honorable jill tokuda member of the congress. The honorable ed case, member of congress, the honorable josh green, 
+M.D., governor, state of hawai'I the honorable richard t. Bissen jury mayor, county of maui, stephen bennett 
+PRESIDENT Triangle corporation and captain riley e. Coon triangle excursions.\r\n\r\n>> vice-chair sug sukamura. 
+>> I would like to add some comments when you fly on an airplane, and you have somebody next to you, that you 
+don't know, that happened to me and that is how imet jim coon, that we were on our way to o'ahu and he sat next to m.  
+The thing that I within the to share, which I'm glad he and his wife are here, along with their family members and their  
+top notch crew that he shared stories with me about his mother. It was such a beautiful 20-minute ride to o'ahu that he 
+shared the legacy of his the triangle, of their family, and i would imagine if his mother was here today, she would be 
+so proud of what this organization has become, because it has her heart and soul from -- I remember that discussion. It 
+was such a special plane ride to o'ahu. The video that I saw of the kem commemoration done for the national awards 
+that this organization received was just heartwarming. You can see the strength of the organization come together, they  
+pulled together to save lives, save the community, and I didn't realize until this, when I look at it, he that they also 
+raised $900,000. So heart and soul and spirit and I'm sure they reached out to all their networks to help lahaina, west 
+maui in ways that we would never understand unless they were there. So members, I hope to receive your support for 
+this resolution and I want to thank the coon family, especially grandma and grandpa coon for the legacy that you have 
+left.\r\n\r\nthank you. >> thank you. And let the record show that pro tem kama is here. Good morning, and salam. >> 
+aloha kakahiaka, chair and salam to everyone here, and pardon me for my tardiness. Thank you, chair. >> member 
+paltin.\r\n\r\nThank you, chair. I just wanted to lend my support. Prior to  -- in my previous role as PRESIDENT Of 
+save honolulu coalition, I had the opportunity to work with riley coon on some fundraising activities. Besides that, I 
+just wanted to say that folks that aren't familiar with the ocean, I just wanted to explain to launch the boat in the types 
+of wind and conditions that we had on AUGUST 8th is no small feat. I think they really put themselves a little bit in 
+harm's way to help the community, because to be on the ocean in those kind of conditions is really treacherous, and 
+that they did it without being asked to, to help save lives, speaks volumes. thank you. >> thank you.\r\n\r\nMember 
+johnson. >> thank you, chair. I rise in full support of the resolution and thank council member sugimura for 
+introducing it. I was lucky enough to work with the coons, and their family during -- during my time on the boats. 
+Excellent captains, and all around excellent company. When I first saw riley this morning, I said, captain, how you 
+been? How is things and first he is telling me how his children are and showing me the kind of man he 
+is.\r\n\r\nDuring disasters, it's easy to focus on the negatives. Bt today, we get to focus on the doers, and these folks 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+over here, they are the doers. I really appreciate all of the things that they did during that time. In a sense, this comes 
+as no surprise to me, because the coons have been leaders in our community on lana'I, they have been leaders in the 
+community in maui. And again, it comes to no surprise that you guys got this. Ma'alo mahalo for all that you did. 
+Thank you.\r\n\r\nThank you, chair. Anyone else? Member rawlins-fernandez. >> mahalo, chair. I want to join my 
+colleagues in extending my gratitude to the 'ohana, the trilogy 'ohana and captain coons and my classmate denver. As 
+my colleagues have said, to whom much is given, much is required. And during the fires, they could have just, you 
+know, saved themselves, saved their property, and not look back, but they didn't. They risked themselves to help the 
+community, help everyone they could.\r\n\r\nAt the pa'ia community center during budget session, we heard from a 
+testifier about how things used to be with businesses and companies that used to be part of the community. That 
+demonstrate their commitment to the people here . Their aloha, and oneness. And triology and trilogy is one of those 
+companies that continue to be steadfast in their commitment to community and they have demonstrated that even 
+before the fires. From moloka'I, they donated their time to bring over bikes. They partnered with moose to donate the 
+bikes to the kids of moloka'I and during thanksgiving they take over turkeys to the lana'I community. And you know, 
+they pay forward the blessings that they receive to the rest of our community and like I said, this reso is even more 
+special, because I get to also recognize my law shool classmate denver. So mahalo, member sugimura for introducing 
+this resolution, so we culd recognize and thank the trilogy 'ohana.\r\n\r\nMahalo, chair. >> thank you. Anyone else? If 
+not, all those in favor of the motion, please raise your hand and say aye? >> aye. >> nine ayes, zero nos. Motion 
+carries.\r\n\r\nIt's unanimous. Now, shall we invite the group to come up? Would you like to come u, please, and 
+receive the resolution. >> thank you >> thank you. Would you like to say a few words sure, go ahead. >> first of all, 
+jut want to thank the council so much for this recognition. The words are hard to come by right now, but a year-ago 
+when we were doing this recognition, or awards, rewards o whatever for doing this was the furthest from our 
+mind.\r\n\r\nWe were just trying to do whatever we could do in that moment. I'm never going to forget it, like you said,  
+thank you for putting out the dangers of the ocean, that was a day you don't want to be on the water. You want to tie it 
+up and be in your warm house and safe from that. The winds were so extreme during the day. When it call for help 
+came and decided to do this, it was a lot to think about, a lot of us hav e young families, and kids at home and our own 
+families to worry about. In kihei, her home in lahaina, she found out on the way, actually driving past it when the 
+whole town was on fire and she found out her house was lost during this moment. For everybody on the boat that 
+night, we had my cousin, captain denver over here and our fleet manager on the vessel with us.\r\n\r\nEverybody put 
+their own personal safety and their own lives and security to the side as we joined together to try to do whatever it is 
+we could do to help the coast guard that night. For me personally, I'm extremely grateful that I got the opportunity to 
+do it, just to be out there. Born and raised lahaina and getting to see our town, even if its worst moment was still a 
+special moment for me and I will never forget it and grateful for it. When the sun came up in the morning and got a 
+view of the absolute destruction and horrendous view, there was the beauty that only lahaina has even through the 
+ashes. I'm so hopeful and looking forward to our town returning soon and getting it done and I encourage anybody in 
+decision-making to just work with each other, and do whatever it takes. Somebody mentioned earlier local business, 
+we're a local business, third generation family owned-and-operated business. For me, that is what keeps maui so 
+special is all our mom-and-pop shops.\r\n\r\nRight now I'm thinking about next to food land that is probably not going 
+to come back. That is a big loss and there's countless others. As you consider what it will take to rebuild lahaina, 
+consider the local businesses that have been a pig big part of the fabric of our town. If we don't consider helping them, 
+we're going to lose that and who is going to lose that which is time and money on their side, pain land and foreign 
+interests. So I really encourage everybody to have that forward vision of what we want our town to be like and we 
+with an to be working there, and you know, giving all of that back. Thank you so much for this amazing recognition 
+and honor. It's a bit humbling.\r\n\r\nMahalo. >> thank you for those beautiful words. Anybody else want to say 
+something? >> thank you. >> okay. Could you come forward and we all can take a picture. >> maybe mom and dad 
+will come, too.\r\n\r\n>> the whole family. >> and your sister is here. Let's proceed. >> chair, moving on to for, the 
+civil war we have no business before the council, so moving to g, presentation of written or oral testimony. At this 
+time, individuals MAY testify on any item on the meeting agenda. And chair, we currently have four people signed up 
+to testify. The first is MR.\r\n\r\nBrian sarson, testing on bill 38, cd 1 (2024) And followed by lemor czeisler. >> good 
+morning, council chair, council members. >> good morning. >> again, it's frustrating for us in the community to be 
+here sitting on second reading on meo. And it's, you know the issues. I was really frustrated at the last meeting we had 
+when public testimony was closed really early, and you jumped through a whole bunch of resolutions that okay, we're 
+not going to do this now. We're going to put this off later and then we had testifiers come in, and they weren't allowed 
+to testify.\r\n\r\nI'm sorry, that is wrong. Plain out wrong. My interpretation is that it was no way the council wanted to 
+hear additional testimony so we wanted to close this off to the local people. Last I checked, the local people are the 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+people that need to testify. Period. And you know, I can go on and on and on, but you know, the community has been 
+against this from day one. Very first meeting with meo we had and you know, we only had one meeting.\r\n\r\nOne 
+meeting. And that was it. There was no reaching out to the community after that. And it's like, my opinion is the 
+community doesn't matter, because they don't get listened to. We're an old community. We have a lot of kupuna out 
+there. They come up to us and ask us, why?\r\n\r\nWhy don't you come and testify? Well, you know, the culture, and 
+you know, we don't want to come out and testify. So they leave it to a few of us that act ually do come out and testify, 
+because we care. Now I have been inwayhy since 1978 and not born and raised here, but took my grandson to school 
+every day and traffic is still a nightmare and it's going to be a worse nightmare and never mind the other communities 
+that will be built in the future and going to the bridge, another bottleneck. And you know, we have heard, I have heard 
+and I'm sure you have heard, too, that the longer this project gets delayed, if it does get approved, it's going to be more 
+costly. So who pays for that? Te county pays for that?\r\n\r\nWhich means that the taxpayers pay for that? Which 
+means I pay for that. I mean, this is not right. Period. And I don't know what else to say. I'm not somebody that cn 
+speak eloquently, I'm sorry, I can't. But just be aware that you know, I'm speaking for alot of people, I'm vice 
+PRESIDENT Of the wai h hai community and why I'm there because nobody wants to step up to the plate and take our  
+place. So rather than just let the association drop out, and not have a voice, we're still here.\r\n\r\nEorge peresa right 
+now is 80 years old, I'm 71. And it's very frustrating and this project I'm sorry has not been dealt correctly from day 
+one. I don't know what else to say, except very, very frustrated, and disgusted. Thank you, and I hope you make the 
+decision to not go through with it today. Thank you. >> are there ay questions? Member rawlins-fernandez. >> 
+mahalo, chair.\r\n\r\nMahalo for your testimony, and for being here this morning. My apologies that at the last meeting  
+others that came and testified weren't able to testify. My question for you today is the one meeting that you referenced 
+in your testimony, do you recall what year that was? >> that was the last meeting that we had on the first reading. I 
+believe it was, what, the 6th floor? It was on the first reading. And all of this went down, and it was jumped through a 
+whole bunch, a lot of it was just, you know, put off to later, and public testimony was closed.\r\n\r\nThen a bunch of 
+people came in to testify, and public testimony was closed. >> mahalo. For the community meeting that you 
+referenced, that I think meo hosted. >> yes. >> do you recall what year that was? >> it was a long time ago. It was in 
+the very beginning.\r\n\r\nI don't remember exactly what year it was. We had a meeting, I believe it was at tasty crust 
+in their conference room. >> mahalo. >> thank you. >> mahalo, chair. >> anyone else? If not, thank you.\r\n\r\n>> 
+thank you. >> chair the next testifier is lemor czeisler, followed by tom blackburn-rodriguez. >> online? >> yes. It 
+appears -- I still see her on. MS. Czeisler, this is our opportunity to testify.\r\n\r\nChair, apparently MS. Czeisler is 
+going to be a resource. >> offered to be. >> yes, offered. >> okay. >> she said she can't unmute. Moving on to tom 
+blackburn-rodriguez, testifying oresolution 24-155, followed by joyce lynn costa.\r\n\r\nMR. Blackburn-rodriguez, it's 
+your opportunity to testify. Moving to joyce lynn costa. >> good morning, council members. >> good morning. . For 
+the rcord, I think meo as an organization is a good one, but I feel there has been some miscommunications with 
+probably their authority within that organization that MAY prevent them from doing the right thing. So so far as the 
+idea of what they are presenting is a good thing.\r\n\r\nWe want people in homes. However, I it poses some type of a 
+liability, or stress on the community, I think it is your duty to make sure that the due diligence is done. I gave you a 
+bunch of papers a while back. I just want to read a portion of what I had submitted. And what I'm going to read to 
+you, I hope I can do it in my limited time. It is a case about his death and what had happened, you actually his father, 
+what had happened his father inherited the property. If you listen to the testimony the last time when the attorneys, and  
+the representations fom meo came up, eventually they said from how they received the property, and it eded up with 
+the name lunalilo.\r\n\r\nSo at the death of his father, the trustees came back f or a particular land, which was held by 
+wailuku sugar. And so this case is an 178. The defends interstate conveyed apiece of land in fee in which he had only 
+a life estate. The deed contained a conveyance to execute to the purchaser which was wailuku sugar all such further 
+assurance as should be reasonably required. Further down, the bill for specific performance setting forth that the 
+plaintiff in 1876 purchased from charles kaaina, a certain parcel of land in wailuku. Island of maui, taking for him a 
+warranty deed, which also contained a conveyance for further assurance in the following terms: now we go further 
+down. It I made to appear in evidence that at the date of the purchase from kanani, the plaintiff held the land under a 
+lease, which has not yet expired from the william lun lillo. Further down, what the court had -- did I mark it?\r\n\r\n>>  
+time. >> can I >> can you summarize? >> sure. >> thank you. >> so what had happened was this case was the 
+wailuku sugar brought to against te administrators of the trust that they cannot come and the land back to them, 
+because they purchased it -- the court found that was true, but because it was a life et estate and it reverts back to 
+lunalilo. So ay other purchase, if they paid the trustees would have been okay, but they exhausted $25,000, that is also 
+in your packet. So I'm not quite sure how they would hold this land lawfully.\r\n\r\nYou would now be part of the 
+illegalities of allowing them to now produce something on this land that is in question. I would strongly urge the 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+council if you do pass this measure, that it comes with a condition that to make sure that they clear the title. Because it 
+is not clear as far as I have been reading. And so it's not my opinion, but it's of the court documents. Mahalo. >> thank  
+you. Question, member paltin?\r\n\r\n>> thank you, cair. I just wanted to clarify how you would do that? Clear the 
+title? >> they would have to call  --  actually, because the there is specifically for the trustees, but on behalf of the 
+kanaka maoli, the people of hawai'I. The people also can come forward. He left it for his people in his will. And so 
+they would have to go to court. It's not for us to go to court.\r\n\r\nWe already know what we have. They're claiming 
+what they have. So when the families went back, and was unlawfully removed, because ithink all of those cases of 
+being removed was dropped. It has to beg the question, yeah? Exactly what is going on. I'm not against development 
+as far as helping the people. I'm not against meo.\r\n\r\nI'm very concerned when land is just nilly-willy rubber-
+stamped and given approval to be used when --  I'm showing you that there's some clarity that needs to be done. Your 
+job is to approve housing, then do that. Do that. With a condition that what you are doing is very clear. And for me, 
+what I'm presenting to you is a cloud. Thank you. >> thank you; >> any other questions?\r\n\r\n>> thank you. 
+Compare, there's currently no one else signed up to testify at the beginninging of the meeting. If there's anyone else 
+who would like to testify? >> looks like the gentleman up there. >> good morning, chair. >> good morning. >> 
+members.\r\n\r\nMy name is bobby kanaha and this is the issue from wailuku all the way to kukui'ula. I do a survey 
+and park my truck on foot, walk all the way through there, and lahaina is on fire. When I'm walking, my uncle alfred 
+had a piggery in the middle. I walked all the way down, we already knew the issue in wailuku. If you talk about fire, 
+GOD forbid, we get a fire in wailuku. My grandkids go to the school and I traverse through there and look at the 
+brush, and hawaiian homes, all through there, the rivers, the brush, I look through there. The thing is how are you 
+going to do this whole thing?\r\n\r\nWhen I talked about evacuation out, there was on two ways to the loop where the 
+bridge and the disposal, and another way, the old construction. >> excuse me, bobby. What we're talking about right 
+now ask the piahana project or are you talk about the fire prevention, which one? >> both. >> both, okay. >> both, 
+fire prevention. What is fire prevention?\r\n\r\nYou got to get rid of all of the hazards. Pretty simple. That is what you 
+have to do, get rid of all of the hazards, man made/natural. Piahana, I talked to abandoned vehicles desk about how we 
+mitigate? Forget if it looks like rubbish, just get rid of them. We have to do it fast. We were supposed to have done 
+this as soon as the line of fire, we should have had the fire breaks 100' both sides.\r\n\r\nWe're not going to evacuate 
+our people, because if we don't do the fire breaks on all of the roads, our people are going to die. So it's how it rests on 
+you folks, hpefully, that everybody do the right thing. So I ask if they got to get rid of all of the hazards. That is the 
+only way we're going to do them. The cars, all the man-made, all the natural, we have to do them. We have to work to 
+get that squad, I would like to be on them. I would like to run that squad.\r\n\r\nLike the firemen take care of the fire 
+and we'll take care of everything else. If we get a fire, we'll call them. But to get rid of all of this, I want to run them. I  
+have done this, I have done this work. I worked for kole real estate rabee and sent us to the school to mitigate 
+hazardous materials. So I ask you folks, please lets all work together to get rid of all of the hazards and all of the cars 
+of we have to get rid of them. It's only two ways to evacuate piahana.\r\n\r\nTriple 'ohana condominiums it's nuts my 
+street is so dense, people don't care how they park. They don't care for the people. You know? You put in houses, now 
+the old street gets dense, the road gets dents, they park any kind. >> okay, bobby. Anybody have questions for the 
+testifier? We hve one.\r\n\r\nPro tem kama. >> good morning. >> good morning. >> could you leave your name and 
+your number with the clerk's office? I would like to be ad to talk to you and continue this discussion. >> yes. >> I am 
+having the same discussion with the pakala homestead and their PRESIDENT, too.\r\n\r\nI would like to have that 
+discussion. Thank you. Thank you, chair. >> thank you any more questions? If not, thank you very much. >> chair, 
+there's no one else currently signed up to testify. I see MR.\r\n\r\nLau making his way to the podium. MR. Lau, if you 
+could just let us know what item you will be testifying on, please. >> bill 28, the same one that current topic that the 
+previous testifiers. So I was at that meeting the last council meeting, and it was in the 6th floor conference room in the 
+personnel department. The guy, I don't see him him today. I think his name is henry, the old hawaiian guy.\r\n\r\nHe 
+got there a couple of minutes late and didn't get to testify. I don't see him here today. So I appreciate you guys putting 
+a little footnote on this bill relates to the hale mahaolu ke kahua affordable housing project and I go to meetings all the  
+time this. Is one of my -- one of the things I'm interested in. It almost got by m again today until though guys showed 
+up. So I appreciate them. So I would ask you, I vote no on this one.\r\n\r\nAnd I would ask you guys to wait until after 
+the elections for one thing, to vote on this one, and for the other thing is if you have to vote to let them go ahead and 
+do it, and give that guy his 50% shot, whoever these guys are and make it part of the agreement that they must work 
+with these guys and not just run them off the land. Thank for your time. >> ny questions for the testifier? If not, thank 
+you. >> chair, there's -- it looks like we mike might have one more testifier heading down. >> aloha mai kakou. Thank 
+you for the time.\r\n\r\nThank you for giving the tile to testify. I wanted to be here and it's important to me, only 
+because it's to do with the 'ohana and not just my 'ohana, but the ancestors. So I come here and bring my ancestors 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+with me as well. With this case, we know this case has been going on for white quite a while and you heard from the 
+other testimonies, there's an issue. The biggest issue is the land issue as auntie joslin mentioned earlier, and testified 
+about it, and the same goes for me, with the research we have done and the understanding, hopefully, you can 
+understand that as well; that it is a land issue. You know, there's no clear title. So to be able to build upon something 
+like that, it's not going to be pono, not just for all of you, but also for the people that will be involved.\r\n\r\nThe 
+people that will be living there, who you know, if it eer does go through, from experiences that we have seen, and that 
+has occured that the development for waiahai heights, and the terrace in those areas is all sand dunes and the stories 
+that you don't know about and I understand, but we do, because we're from that place. People have struggled, and 
+because of the I wibeing this ad for those who don't behave believe in the super natural, it does occur. What we have 
+learned through your days when we were young about that place and that is why we typic as family to protect and 
+preserve that place as it is, because of our tutu man, who did have the kuleana to protect the iwi that was there. And so 
+I plead with you as you think about this issue, that there is no clear title, because the people of that place still reside 
+there. They're still there and the ones that are alive live in that ahupua'a. I hope that you will think about these issues 
+especially with the clear title that it's not going to be pono. It's very simple. It's not pono.\r\n\r\nTo build something 
+there, and develop something there, and it's not yours, it's very simple to understand, it's not yours to even have a 
+decision. >> time. >> to do something like that. So I'm trying to keep this as simple as possible. And I don't have 
+anything written down. I ran from my job. So I am here in humility as well that you think hard about this, and know 
+that our 'ohana really hope that you make the right decisions.\r\n\r\nMahalo. >> thank you. Could we have your name 
+for the record? >> that's right. My name is auntie la la la la johnson. >> member rawlins-fernandez. >> mahalo, chair, 
+thank you for your testimony this morning.\r\n\r\nI wanted to clarify the part of your testimony that you said this area 
+is part of your ancestral 'aina, because we have heard folks say that this is not part of the area that was part of your 
+'ohana's 'aina. So it is part of your 'ohana's 'aina? >> yes. I think you all know and understand I was part of that case 
+that went through. Of course, they had possessory title, and that is because they couldn't --  they couldn't get a clear 
+title. And that is the reason for it. That is because I didn't -- which is very unfair and that is what judiciary is 
+about.\r\n\r\nI couldn't give my exhibits, all of the exhibits that could have been able to clarify that. So that was the 
+unfairness, because I had to go to alaska and all of those things. Of course, we were forced, and there was time-
+consuming and I was eight place my hands were tied and couldn't put in my exhibits in time. So to that question, yes. 
+>> to clarify, folks have said your ancestral aina is more makai. >> we have our family that lived in the makai area, 
+and that is part of it. So the boundaries; right?\r\n\r\nBoundaries never change. And so that is the reason why I needed 
+to put that whole document into the exhibit to show it's not just the makai area. There's a whole -- it's a whole parcel, 
+which is part of that ahupua'a. So that was what was to be  -- there's a mo'olelo to it as well for the fraudulent 
+exchange of land had occurred. All of that, we still have that. And we are --  it's not the end. That is all I can say. It's 
+not the end to all of this.\r\n\r\n>> mahalo. Mahalo, chair. >> mahalo. >> any more questions? If not, thank you. >> 
+mahalo. >> chair, this is last call for testimony on any item at the beginning of the meeting.\r\n\r\nIf there's anyone 
+that would like to testify, it looks like we have a taker. >> good morning, chair, members of the council. >> good 
+morning. >> my name is henry meyer. I'm testifying on the parcel meo parcel along the highway. And I haven't been 
+to costco on that particular property, but that property is on my deed of 139.14 acre s, and I'm in court now with the 
+county on the parcel in mahalia. What I'm trying to say I have a superior title to the whole 139.14 acres, and been to 
+court five times, and I don't seem to get this thing done.\r\n\r\nBecause maybe i didn't have a lawyer, and then not 
+putting in the right verbiage or whatever you want to call it. So right now I'm in a case, again, for the parcel in 
+maluhia that the county is claiming that they own, 337100th of an acre. I already talked to debbie cabebe, and I told 
+her that the ke kahua project I owned the ke kahua project and she said, oh, you are going to have to take us to court. 
+So I went in there, and I opened the gate and went in there, planted some coconut trees, some banana trees and 
+somehow te security came over there and said, hey, what are you guys doing here? I said, it's my property. He said, no, 
+this is county property. I am going to call the police.\r\n\r\nI told him, go call the police. He said, oh, you are leaving? 
+I said, we're leaving. So I told him, you know what? Report me to meo, ad he said, okay. What is your name? I gave 
+him my name and everything.\r\n\r\nI don't know what happened, but three weeks later, somebody pulled out 
+everything that we planted in there. So I didn't go back in there, because now the county, I guess the county put their 
+own lock on there again. But I have been to court for the last 20 years on that same parcel, lot 4, 139.14 acres. >> time.  
+>> and right now, I have to send in my report to judge hammond, where she just gave them partial summary judgment  
+to section known as maluhia. 3371/100th of an acre. Like I said, I told debe cabebe, unless you have a superior title 
+than I got, take me to court.\r\n\r\nSo that is what is happening now. So for the past 20 years, I have been in court, and 
+this last MAY 30th was the 5th time I went to court, and judge christine hammond was the judge. And then the 
+lawyers from honolulu came up, and then testified. So christine hammond says the picture doesn't show exactly where 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+the boundaries are, but t hen she let it go, and she passed it, like partial summary judgment. So right now I'm still 
+turning into papers to the court under the rule and I --  they haven't signed the order, even though the judge had signed  
+-- told them that, okay, she was going to grant partial summary judgment. But I haven't seen the order yet. So I guess I 
+still got time to file some more papers, and I just hope this is the last time I go to court, because I have been to court 
+for 20 years.\r\n\r\nFive judges. And they still couldn't  -- they still couldn't settle this thing, because I got a superior 
+deed than anybody else. Meo, or anybody. I even showed my deed to the mayor, when we had a conference with the 
+mayor. And I don't know what is happening, but I guess I'm just going to have to keep on fighting until something 
+happens in my favor anyway. that is all I have to say. Thank you.\r\n\r\n>> are there any questions? Member paltin? 
+>> thank you, chair. Thank you, MR. Mayo. Just clarifying you are speaking in opposition of ke kahua project, is that 
+correct? >> yes, I'm in opposition of the ke kahua project.\r\n\r\n>> thank you. Thank you, chair. >> MR. Henry, did 
+you say that the maluhia project is connected to this project? >> te maluhia project and meo project, it's part of the 139 
+-- it's all within that 139.14 acres lot 4 of land commission award 386, my grandfather. >> okay. >> I got the deed to 
+that 139.14 acres.\r\n\r\n>> I remember -- we met, remember? He showed me all the maps right. >> I wish we could 
+help you, but this seems to be a legal issue. >> right. That is what I'm saying. I'm in court right now for the fifth time. 
+So I don't know what is going to happen, but I just got to wait and see whatever judge hammond decides.\r\n\r\n>> 
+any more questions? Member sinenci. >> thank you, chair. Mahalo, MR. Mayo for your testimony. I was just curious, 
+you said you have been pursuing this property for 30 years. 20 years, sorry.\r\n\r\nWho, prior to meo, were you -- was 
+there a previous owner? >> yes. North shore at wai ho. That i s the first people that took me to court. >> okay. And 
+that was prior to meo? >> right.\r\n\r\n>> okay. >> meo is -- I didn't go against meo. My cousin went against meo. 
+The project that meo is on, is on my deed. >> isaw your paperwork, too. Thank you. . Thank you, chair.\r\n\r\n>> any 
+more questions? If not, thank you very much. Good seeing you. >> chair, there's no one else currently signed up to 
+testify. If anyone would like to testify, and are in chambers, you can make your way to the podium. If you are online, 
+you can raise your hand. This is last call.\r\n\r\nAnd the countdown is 3, 2, 1. Chair, there's no one else who has 
+expressed an interest to testify. >> I'm going to take a five-minute recess, I have a problem with my computer. Recess 
+until 10:16. >> will the council meeting please reconvene. MS. Clerk. >> chair, we were moving towards last call. My 
+understanding there was someone trying to get in online.\r\n\r\nWe do not have that person online currently. However, 
+if there's anyone that would like to testify online, you can raise your happen, if you are in chambers, make your way to 
+the podium. Again, this is last call. And the countdown is 3, 2, 1. Chair, there's no one who has indicated a desire to 
+testify. >> members, any objections? Yes, member rawlins-fernandez. >> mahalo, chair.\r\n\r\nNo objections to 
+closing public testimony at this time, but a reminder for folks that we'll open testimony again with the different agenda  
+categories. So if the individual who is trying to sign on, and not able to get o before we start the agenda, there's still an 
+opportunity to testify before the category comes up to testify. Mahalo, clair. >> thank you for that clarification 
+members, any objections to closing public testimony and accepting written testimony into the record for the beginning 
+of the meeting so ordered. >> chair, items h, I, j, no matters before the council. We've month to k, committee report 
+and proceed with testimony on committee reports. There is currently no one signed up to testify.\r\n\r\nIf there's 
+anyone this is your opportunity to testify on committee reports. And this is last call. The countdown is 3 2, 1. Chair, 
+there's no one who indicated a desire to testify. >> thank you. Members, any objections to closing public testimony on 
+committee reports? >> no objections. >> and accepting written testimony into the record.\r\n\r\nThis place is haunted. 
+Okay. All right, MS. Clerk. >> chair, perfect the housing and land use committee is cr24-79 recommending first 
+reading of bill 23, cd 1 [#1240 -eu789/] To grant community plan amendment for 267.349 acres of real property 
+identified as tax map keys, 2-4-9-001:021, 04, 0030, 2-4-9-002:001 portion, 061 portion, 2-4-9-018:002 portion 003 
+portion, 005, and-4-9-0 1:009 located in lana'I city, lana'I how high by adding acreage, removing existing acreage and 
+adjusting to the specific land uses within the lana'I community plan designation. >> I move to adopt therection nations 
+in cr24-79. >> second. >> moved by pro tem kama and seconded by council member cook.\r\n\r\ndiscussion, pro tem 
+kama. >> thank you, chair. Members, the housing and land use committee met on AUGUST 7th 2024 to discuss bill 23 
+(2024) 24 and 25 (2024) And grant a community plan amendment and change in zoning respectively for property in 
+lana'I city, relating lana'I project district 2. Bill 25 is a maui county code amendment relating to lana'I project district 2. 
+At our meeting we received a presentation from the applicant's representatives including an overview and history of 
+the subject property, and the applicant's intended ues for the property according to the requested land use designations. 
+And applicant's representative explained that the requested changes to golf course and result residential acreages, 
+increase hotel acres and increase park and open spaces will result in an overall acreage reduction from 6 32. 5 to 582 in  
+the project district. Your committee posted the change in zoning and code amendment bills for discussion only, and 
+did not act on them because the applicant required a  state land boundary amendment with the state land use 
+commission first before can authorize requested change in zoning, to obtain the district bounty amendment, the 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+applicant requires the requested community plan amendment. Your committee received from corporation counsel the 
+cd 1 version of bill 23 that identifies the relevant properties acreages, incorporates updated property descriptions, and 
+includes other technical and non-substantive revisions. Your committee voted 8-0 to recommend passage of bill 23, cd 
+1 (2023) On first reading.\r\n\r\nCommittee chair kama, cook, and council members voted aye, council member 
+rawlins-fernandez was excused. I ask for the members' support of my motion. >> any more discussion? Member 
+paltin. >> thank you, chair. I'm supportive of this item. I just wanted to convey that some folks had reached out to 
+examine a plan that will preserve in place the two richardson homes and the properties on which they 
+stand.\r\n\r\nThey just say for many of us, they provide a sense of steadfastness, and constant, a sense of calm in an 
+ever changing environment. So jst putting that out there. Thank you. >> member rawlins-fernandez. >> mahalo, chair. 
+During committee, we received testimony from MISS Preza, asking as council member paltin shared a plan to 
+preserve the two homes in place. And I understand that it's not the original location of those homes that it was moved 
+from kemoku, but I wanted -- I think everyone received this, and I know we encourage folks to come out and testify, 
+but folks aren't always able to take off from work.\r\n\r\nAnd they vote us in to be their voice. So I would like to 
+provide the voice of kupa 'aina of lana'I right now. so that everyone can hear it, and feel this as I felt it. During the 
+housing and land use committee hearing on AUGUST 7, 2024 dia preza brought up two homes remain at coele that will  
+be affected by the expansion of resort and spa in, operated by four seasons lana'I. These homes were identified as te 
+richardson homes and moved to their crrent location  in the late 1900s, from their previous location. These two homes 
+were part of the ranch community that was established in the early 1900s. One of the homes served as the home of the 
+ranch manager, including its most famous occupant MR. George monroe. Monroe resided there during his tenure as 
+ranch manager of the lana'I ranch company.\r\n\r\nIt stood under the iconic norfolk pine tree gifted in 1875 to walter 
+murray gibson by king david the other house served as the ranch office, store and post office, and probably the last 
+child that was blessed with memories of the original ranch establishment. My papa and tutu richardson are not by 
+biologic parents, but our genealogies are connected. Born [Speaker not understood] He moved in 1926 to work a 
+cowboy for lana'I ranch. My mom shares the story one day after work, when she went to pick me up from my tutu's 
+house, my tutu emerged in tears. She told my mom, they, the lana'I company lied they promised we could stay until we  
+die. Now they say we're going to knock down my house, the bulldozers are coming I'm going to chain myself to the 
+bulldozer. This sentiment from my tutu rocked my mom to my core and became entitled for sensible growth and came 
+to settlement terms with the lana'I company that allows tutu and papa and brother and sister, kahus to 
+remain.\r\n\r\nThe settlement included moving to the two homes to property at which they now stand. North of where 
+the resort now stands. The rest of my early childhood was spent where the two homes still stand today. These homes 
+and richardson 'ohana provided love, shelter, food, laughter and many fond memories of many kupa 'aina of lana'I. It 
+was the unofficial headquarters of the lana'I horse owner's association to whom papa ernest passed on his knowledge 
+of horsemanship and saddle making. They didn't have much, but what they had they freely gave, aloha to each other 
+and their steadfastness providing for those of us that are blessed to have known them, and the kuelli culture during 
+their lifestyle. This testimony is from MS.  Evans, and I thought it was important to read in its entirety to understand 
+the promises made and the promises broken and the promises that are inherited by others that are then broken and 
+becomes impossible, sometimes, to enforce, because people die, and institutions don't. and as government, government  
+doesn't die.\r\n\r\nSo government is responsible to ensure that these promises made to the people are kept. And I cannot  
+support this, and I won't vote for it, because they refuse to work with the community to provide this one thing that they  
+are asking for. So unless they work with the community to -- this is just crumbs. This is not even a real big thing, to 
+them, but to the community it is. And they cannot even work with them to just leave these hale in place, because so 
+much, so many memories were ripped away already. Anyway, ill be voting against this motion. Mahalo, 
+chair.\r\n\r\n>> member johnson. >> thank you, chair. You know, the richardson's houses to me are a symbol of kind 
+of where our community stands right now. There is systematic problems that we have on lana'I going from one 
+wealthy individual on to the next on to the next and so on and so on. the problem I see, our community always seems 
+to be the last to be included. We live in houses we don't own. We walk on roads that aren't ours.\r\n\r\nWe get water 
+delivered to us that is delivered privately. We need permission to do a lot of things. I think that is a systematic problem  
+that we face. I think the idea of a lighter footprint makes a lighter footprint of the resort is kind of the consideration 
+that I'm looking at is the idea of ending resort creep, where it just expands and expands and by reducing the actual land  
+that the resort will be using, is something I considered in my decision. I just think that the big-picture we should 
+consider, and the big-picture is the systematic problem that we have o large landowners owning islands privately. 
+Thank you, chair. >> are there any other comments or questions?\r\n\r\nOkay. Rady to vote? Roll call. >> council 
+member pro tempore tasha cama? >> yes. >> vice-chair yuki lei sugimura? >> aye.\r\n\r\n>> council member tamara 
+paltin? >> >> >> aye. >> council member gabe johnson? >> aye with reservations. >> council member kane ine 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+rawlins-fernandez? >> no. >> council member tom cook?\r\n\r\n>> aye. Council member nohelani uu-hodgins? >> 
+aye. >> council member shane sinenci? >> aye. >> and chair lee? >> aye.\r\n\r\n>> chair, you have eight ayes, one 
+no. Motion carries >> thank you. Next. >> thank you, MADAM Chair, we're moving on to testimony for section l, 
+resolutions. At this time, individuals MAY sign up to testify on the resolutions in section l. Currently we have no one 
+signed up to testify. So we'll go ahead and give last call. If you are in the chambers, go ahead and make your way to 
+the podium, or raise your hand, if you are online in teams.\r\n\r\nChair, there's no one indicating that they wish to 
+testify. >> members, any objects to closing public testimony and accepting written testimony on resolutions? >> no 
+objections. >> so ordered MS. Clerk. >> chair, before you is resolution 24-143 revenuing to the lana'I, maui, and 
+moloka'I planning commissions a proposed bill aimeding section 19.35.050 mui county cde relating to the number of 
+accessory dwellings per lot. >> pro tem kama.\r\n\r\nYour microphone. >> okay. Thank you, chair. I move to adopt 
+resolution 24-143. >> second. >> moved by member kama, pro tem kama, seconded by vice-chair sugimura to adopt 
+resolution 24-143. Discussion, pro tem kama. >> this last legislative session, the state legislature passed act 39, 
+requiring counties to enact ordinances to permit at least two accessory dwellings on residential lots. This resolution 
+refers to the planning commissions for their review, a proposed bill to amend the code as required by act 39. Thank 
+you, chair.\r\n\r\n>> any more discussion? Yes, member paltin. >> was this your resolution? >> yes, it's only to send 
+to the commissions for review before we work on it >> I guess I just had one question, is that wit h no restriction? 
+Because you know, been working in the mill camp area, some of those lots are less than 300 square feet and there's 
+some issue about the frontages, and the road widths, and things like that. And I just was wondering is it without any 
+exception, because some of those lot and the size of house that they are building, I don't know where you would put 
+the other two, unless it's connected, and like separate entrance, or, like, I just was wondering just a little bit of 
+information. I mean, I'm not opposed to it.\r\n\r\n>> I understand. No, we didn't do anything on it. It is straight from 
+the state statute tat was passed. But if you feel more comfortable, we can send it to committee first. >> can I ask one 
+more question before to make sure? >> yes. >> is it -- that language that is proposed in this bill is straight language 
+from the state statute?\r\n\r\n>> yes. >> and we got to do that, because that is what the law is? >> well, we have to 
+come up with enabling legislation, but can't be any stricter than what state provides. >> or looser? >> I don't think so. 
+>> just stricter. >> is it possible, because sometimes when we send stuff to the planning commissions, to ask about the  
+discussion?\r\n\r\nAnd I don't --  I don't want to hold it up or anything, but I just would like the planning commission 
+to consider substandard sized lots, parking, and places where there's substandard roadways, evacuation routes, and 
+things like that, if we can ask add a little thing when we accepted send it over? Because that is the things that are going  
+through my mind in relation to what happened last AUGUST. So if those are things that they would consider in their 
+consideration? >> so we could, we could hold back sending it to them, or we could send it to them, knowing that they 
+nt going to take it up right away and we could do 7Bs, or however the chair of the hlu could hve a couple of meetings 
+so that we could go over some of the issues that we might want to cnsider recommending, but not passing, but just, 
+you know, just ha ving the commissions consider. >> I kind of like member paltin's idea about why don't we just pass 
+it and send a note over to the planning commissions, that this is where our thoughts are at, if they could jst consider 
+these things? Because if they second it back to us and they didn't do, we could do it; right? >> I'm top of that, my 
+community is anxious about bill 105. So I wouldn't want this legislation to prevent bill 105 from being heard 
+sooner.\r\n\r\nIs I guess my concern. I can always also ask my staff to put it on the calendar. So I testify? That is 
+allowed; right? I can testify during commission. >> of course. >> I think I will try to do that, and just draft the 
+testimony for the planning commissions already, and have it on hold for when they put it on the agenda.\r\n\r\n>> 
+okay. Member rawlins-fernandez. >> mahalo, chair. I have a question for corp. Counsel. The question is regarding the  
+timeline that they would need to be passed. I think it's like a couple of yars that the counties have to pass enabling 
+legislation, but I don't remember the exact year.\r\n\r\n>> thank you, chair. I believe it's a couple of years, but i would 
+have to look specifically at this. But just generally speaking I think it's better to have a firmer understanding of what is  
+being sent to them -- my humble opinion is refer to committee and get it cleaned up. If you want it to be stricter, go 
+through the process of doing that rather than sending it as it is and maybe make more substantive changes later, you 
+have to send it backment you could end up delaying it more than referring to committee. >> mahalo, first deputy corp. 
+Counsel and my second question is regarding what the -- what happens if we don't pass enabling legislation? >> thank  
+you.\r\n\r\nI don't -- I would have to get again look specifically at what the statute provides. But I don't necessarily 
+think that if you don't pass enabling legislation that you have just crippled yourself from moving forward, just based on 
+the H.R.S., but I would have to look at the wording. I apologize, i don't have that in front of me at this time in tis 
+specific instance. >> mahalo for that response. Chair, I would support snding this to --  referring this to committee for 
+further discussion. So that as recommended by corp. Counsel, that it's not disjointed in its fort, effort and we have time  
+a couple of years at least before this legislation needs to be passed.\r\n\r\nSo there's really not a super rush. So that we 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+can take our time to clarify this. I understand it's in reaction to the state statute that was passed this past session. 
+Mahalo, chair. >> I I this the rush is more lahaina, because they could take advantage of this, if they had the 
+opportunity to. Members, do you want t send it to the commissions or send to committee first? Vice-chair 
+sugimura.\r\n\r\n>> based on the conversation, I think it makes sense as far as also with corp. Counsel's final input, I 
+would rather it go to member kama's committee and what we sent it the planning commissions is what we really want 
+them to look at. >> okay. >> and not do it backwards. >> so we have two people, any other thoughts? Looks like this 
+side of the room is pretty flexible, you know? Flexible.\r\n\r\nMore this side of the room. Member paltin. >> I agree 
+with member sugimura. I think there is circumstances where you culd have two accessory dwellings already on maui. 
+So I think it would be be prudent to do it right way the first time, instead of, you know-I know they like to have the 
+committee report, and like that, and sometimes I try to rush it, but I don't know that this is one of those times, because 
+there is an avenue for two accessory dwellings on maui already. >> yes. >> so I would like to understand it a little bit 
+more, and be able to formally provide my input.\r\n\r\n>> okay. I believe the motion was really done on my behalf. so 
+pro tem kama, would you mind. >> so we'll take it to committee. But probably not going to hear them until 
+NOVEMBER. >> is that your motion? >> yes.\r\n\r\n>> we'll do that right now. >> my request is bill 105 bef ore this 
+one. >> okay. >> thank you. >> so we're withdrawing that motion, and the seconder, I think member paltin was the 
+seconder. Who was the seconder? >> vice-chair sugimura.\r\n\r\n>> vice-chair sugimura. Okay. So now we're back to 
+te item itself. You want to recommend referring this to committee? , to your committee? >> no objections. >> any 
+objections, members . No objections.\r\n\r\n>> so ordered. MS. Clerk. >> thank you, MADAM Chair, to referral to the  
+government relations, ethics, and transparency committee is resolution 24-144 appoint of members to the board of 
+water supply for the county of maui. >> member uu-hodgins. Giving you a new name. >> thank you.\r\n\r\nIt's 
+definitely a combination of my existing name, which is usually how people assign me email addresses 
+[Laughter]Thank you, chair. It is very efficient. It's just not my name, but it's somebody's elses. If there's no objections 
+to please ask the clerk to please call up resolution 24-148, 4-151 and 4-153. >> any objections, necks, members? 
+Member paltin. Just checking that is in addition to reso 24-144 or 24-145? >> thank you, member paltin, 24-144, we 
+haven't had the opportunity to interview everyone. So I'm hoping that one will be sent to committee to the 
+others.\r\n\r\n>> I just wanted to point out that 24-106 one of the applications is missing a signature. So if that could 
+be resolved before we take a vote. >> you found that? Terrific. >> on 146 >> yes, 146. >> thank you. >> all right. So 
+member uu-hodgins, you would like the clerk to call up the numbers you just mentions for referral?\r\n\r\n>> yes. So 
+in my -- I need to ask  -- s we're on 144, which I'm hoping is going to be referred. But you called me, so I figured I 
+would answer. And then 145, 148, 151 and 153, I'm hoping that we can discuss today and the other resos I hope we 
+can send to the great committee for further discussion. I wll explain why. >> MS. Cerk, could you bring up the other 
+resolutions for referral?\r\n\r\n>> okay. Thank you. And member uu-hodgins, please let me know i f I MISS. >> a little  
+louder. >> calling up resolution 24 -146 appoint of members to the cost 6 government commission for the consider 
+county of maui. 147 appointment of members to the fire and public safety commission for the county of maui. 149 is 
+appointment of a member to the maui planning commission for the county of maui:resolution 24-150 is appoint of a 
+member to the maui redevelopment agency for the county of maui.\r\n\r\nAnd resolution 24-152. >> is that correct? 
+Yes. >> to be sent ocommittee. >> members, any objections to referring the resos as read by deputy county clerk and 
+for the record, deputy 24-152 is appointment of members to the public works commission for the county of maui. >> 
+any objections? Member rawlins-fernandez. >> mahalo, chair.\r\n\r\nI had requested the list of the boards ad 
+commissions vacancies and membership from ocs, but they are finalizing the list before they send it to me. So my 
+question for our great committee chair is if any of these that we're sending to committee are lacking quorum -- oh, 
+member paltins that. Okay. Mahalo. >> how did only you get it? >> that is from JULY 9, 2024. >> oh, the old one. >>  
+okay.\r\n\r\n>> all right. >> mahalo, member paltin. Where was I? Okay. For any of the boards and commissions that 
+we'll b referring are they able to meet because they have quorum? >> to my knowledge, yes. But that is a great 
+question. >> okay.\r\n\r\nBecause just, I don't want to hold up any of the boards or commissions meetings if we can 
+take up any of them today? Then that way they can meet. If they have quorum. I support referral. >> thank you. We 
+didn't explicitly discuss that, but that is something we usually discuss, if that is the case. But we are going to approve 
+the ones that we have met before in committee, and this will allow us some time to meet with the other s ) Mahalo, 
+member uu-hodgins.\r\n\r\nJust sending the message that the healing solutions commission is lacking quorum and they  
+haven't met for months now. Mahalo. >> okay so no objections to referring the se as listed to the committee? >> no 
+objections. >> great committee. MS. Clerk.\r\n\r\n>> thank you, MADAM Chair, before you is resolution 24-145 
+appointment of members to the conservation planning committee for the county of maui. And I will proceed to go 
+ahead and call 24-148, that is appointment of members to the maui county cultural resolutions commission. Resolution 
+24-151, appointment of members to the moloka'I planning commission for the county of maui. And resolution 24-153, 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+appointment of members to the urban design review board for the county of maui. >> any objections to the clerk 
+calling these up? >> no objections. >> go ahead.\r\n\r\n>> thank you, chair. I move to waive the requirement of 
+committee referral and report for resolutions 24-145, 24-148 -- thank you. 24-151 and 24-153 under rule 7g of rules of  
+the council. >> second. >> moved by member uu-hodgins, seconded by pro tem kama to waive rule 7g on resos 4-148, 
+24-151 and 24-153. >> yes. >> discussion. Member uu-hodgins.\r\n\r\n>> thank you, chair. Members, these 
+resolutions contain te names of applicants we already vetted and recommended by the council as replacement 
+nominees for any disapproved members via resolution 24-109, cd 1, fd 1 approval my motion will enable us to cnsider 
+these resolutions today so we can expeditiously fill these boards and commission seats. Thank you, chair. >> any more  
+discussion on the waiver? Member rawlins-fernandez mahalo, chair. I support the mtion on the floor. I just need to 
+make an amendment to the moloka'I planning commission resolution.\r\n\r\nI move to --  >> this is only on the waiver.  
+>> shoot, yes. Yes, I support. >> all those in favor? You guys, I think you need a lunch break or something. >> too 
+much caffeine, sorry. >> caffeine, I will take back the cookie I gave you guys, too much sugar inside.\r\n\r\nAll those 
+in favor of waiving 7 general fund raise your hand, say aye. >> aye. >> nine ayes, zero nos, motion carries. Member 
+uu-hodgins on your next motion. >> thank you, chair. I move to adopt resolu tions 24-145, 24-148, 4-151 and 24-153. 
+>> second. >> >> mofed by member uu-hodgins, seconded by member sinenci to adopt the resolution as mentioned by 
+member uu-hodgins.\r\n\r\nDiscussion, member uu-hodgins. >> thank you, chair. These resolutions make the 
+following appointments one, charlan [Stkao -u/] Yetta to the conservation planning committee, rot guesses to the 
+cultural resources, [Speaker not understood] Can you say it for me sagaro, and to the moloka'I planning commission 
+and brendan hammerman kennedy to the design review board. We'll correct the spelling o MS. Willis' neaand we have 
+reviewed these nominees earlier this year for the members' information was referred to committee today and I pan to 
+take up the manning nominations at the SEPTEMBER 10th great committee meeting so we can interview the 
+nomnines take action on them before our deadline of SEPTEMBER 18th. Thank you, chair and thank you members for  
+your support of this motion. >> member rawlins-fernandez.\r\n\r\n>> mahalo, chair. Mahalo, member uu-hodgins for 
+expediting these. I support the motion on the floor. I just have to make an amendment, because MS. Willis the 
+nominee for the moloka'I planning commission, she had to move off the moloka'I. So I know, we really wanted her to 
+serve on the moloka'I planning commission, but so therefore, I'm going to hve to move to amend the motion to place 
+MS. Willis' name on the disapproval list. >> second.\r\n\r\n>> any more discussion? Member rawlins-fernandez? >> 
+mahalo, chair. I just wanted to thank MS. Willis for her willingness to serve on the moloka'I planning commission. We  
+were really looking forward to having her experience serving the community, and this is not on the merits. We really 
+wanted to support her, but it's just that she doesn't live on moloka'I any more.\r\n\r\nMahalo, chair. >> oh, she left? >> 
+yes, she moved here. >> oh, okay. >> to maui. >> I was going to say we didn't really have an official resignation, or 
+withdrawal. Member uu-hodgins.\r\n\r\nThat is okay. >> yes. I mean, she is no longer qualified. So we with work on 
+that documentation, and then work with work can kasie on that. >> a motion about removing the name from the 
+molina moloka'I planning commission this is an amendment to the main motion. All those in favor of the amendment, 
+raise your hand, say aye nine ayes, zero nos, motion carries member uu-hodgins. >> thank you, chair.\r\n\r\nI 
+appreciate everybody's support as we navigate our way through filling all of the boards and commissions and we'll 
+continue do so. I think at this point it's the main mtion as amended. Thank you, chair. >> we're going to need a short 
+break for the clerk's office. But member paltsin, do you have something related to this? >> I previously disclosed the 
+last time this went through. I received the ride when we were hitchhiking on kaua'I from the urban design and review 
+board nominee.\r\n\r\nAnd it wasn't a quid pro quo situation [Laughter]I had no idea he applied to the urban design 
+review board. And on top of that, the independent nomination bard meets thursday, check out their agenda. It's 
+interesting. And maybe you would consider testifying because we have choke vacancies. Thank you. >> okay. Since 
+you brought it up, why were you walking on the side of the street where you would need a ride?\r\n\r\n>> it was from 
+the airport. >> oh, from the airport. >> just approached random guy s. >> just ask any stranger, can I have a ride? Oh, 
+vry good. Member rawlins-fernandez. >> mahalo, chair. Okay, if member paltin is disclosing that, I was also on kaua'I 
+asking random people for a ride to the conference with member paltin saving the taxpayer dollars, and they were 
+wonderful gentlemen that took us to the conference.\r\n\r\n>> okay. Next time you are in that situation I would be glad  
+to loan you $20. What if somebody kidnapped you, then what? >> I don't think anybody wants me. I think they would 
+pay others it take me [Laughter] We were going to take a lyft, or an uber, but it was like $90. So we were just could  -
+- we could not pay that amounts of money, because that is the cost of representing renting a car for a day and a hlf. 
+That is why we hitchhiked. >> okay, hitchhiked. Member paltin.\r\n\r\n>> I concur. [Laughter]. >> okay, that is all we 
+need. Because of this conversation, we no longer need a recess. Member uu-hodgins. >> thank you, chair. Yes, that 
+was a very productive session. I got clarification from the clerks and would like to clarify, because I said "approved" 
+and "disapprove." but really to say exhibit b and c, for clarification, I'm not sure if we need to revote on anything, 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+except we'll take the vote for the main motion.\r\n\r\nThese resolutions will make the following appointments, MS. 
+Konohia to the exhibit b of conservation planning committee, MR. Rodrigues to the maui county cultural resources 
+committee move to exhibit b k kepuapuono sagoo to b, MS. Willis to c, which is disapproval list, because 
+unfortunately she moved and MR. Kennedy to exhibit b for the urban design review board. >> >> second. >> and 
+when we're done with this, we need a 19c waiver.\r\n\r\n>> okay. Do you want to add that to the motion move to add 
+the 19c waiver. >> second. >> thank you. Any discussion on the motions? And the other corrections she made. >> we 
+had to move from the nominated to the appropriate exhibit.\r\n\r\n>> yes. >> b and c. Approval and disapproval. >> 
+and chair, just for the record, the reason we're doing this is there will be an fd 1 version of this bill and keeps the 
+record clean it's a motion to amend. Thank you. >> thank you. >> okay. Any more discussion in if not, all those in 
+favor of the motion, raise your hand, say aye nining ayes, zero nos, motion carries.\r\n\r\nNow do we have the motion 
+as amended or do we have - more amendments? >> no more amendments, but 19, rule 19. >> we included that in the 
+motion. >> great. Expeditious. Thank you. >> all right. The min motion amended.\r\n\r\nAny more discussion? If not, 
+all those in favor, raise your hand, say aye a. Nine ayes, zoe nos, motion carries MS. Clerk. >> thank you, mad chair 
+before su resolution 24-154 urging the administration to consider createding an ason and fire hazard reduction unit 
+within the county of maui. >> vice-chair sugimura. >> thank you. I move to adopt resolution 24-154. >> 
+second.\r\n\r\n>> been moved by vice-chair sugimura, seconded by pro tem kama to adopt resolution 24-154. 
+Discussion, vice-chair sug chair. >> this is your resolution. And it urges the administration to create an arson and fire 
+hazard reduction reduction unit within the county of maui. Arson is an increasing dangerous and serious crime because  
+of climate change and it's altering fire behavior, resulting in more severe wildfires. As I am making this motion on 
+your behalf, chair, I wonder if you would like to say a few words and comments? >> oh, I think this is self-evident, 
+you know? Why we're doing this, all of us have been receiving many, many, many calls from the community, every 
+single community about the wildfires, and te arsons, and the arsonists and so forth.\r\n\r\nThis is presenting a real 
+danger to all of us, not only to life, but to property. And I foresee parts of the discussion ending up in almost every 
+one of your committees. It's not just one committee. The main committee on this would be drip, but there are pieces of 
+it that will end up in all of your committees. Member paltin. >> I will support this. I just wanted to share with the 
+members that chair lee and myself met with chief ventura, assistant chief otobu and captain perry yesterday and this is 
+just the start of the conversation.\r\n\r\nAnd we will be meeting with chief pelletier as well, and continuing on the 
+dialogue. Thank you. >> any more discussion? Member rawlins-fernandez. >> mahalo, chair. Okay. So I wanted to 
+look up arson under hawai'I law and I found arson in the 4th degree that is 708-8254 arson in fourth degree the person 
+commits arson in the fourth diagnose if intentionally knowingly or recklessly sets fire or causes to be burned property 
+and thereby damages the property of another without the other's consent.\r\n\r\nSo we have heard con cerns from the 
+community that if someone is cooking or something, and open fire and something happens because they are cooking, 
+like would that be considered arson? I know that we have been experiencing a lot of stolen vehicles being set on fire, 
+and that is part of the work that the county has been doing to try to prevent these vehicles being set afire to spreading 
+from the fuel load around the dry brush, and then creating a larger fire. I just wanted to put on record that we are 
+aware of those that MAY be cooking and that we're mindful of that, and I just don't want us targeting individuals that 
+have no other way to cook their food. Mahalo, chair. >> this is not targeting anybody. We're just trying to prevent the 
+destruction of any more towns. >> absolutely.\r\n\r\nI fully support that. And I think part of it is targeting those that are  
+setting the cars on fire, because they stole the car and they set it on fre, and if it's in the bush, then you know, that is 
+very reckless in ceating a larger fire that could spread, and cause far more damage and could burn down another town, 
+which we're working really hard to prevent. But I just want the community to know that we're not targeting those that 
+MAY be cooking. Mahalo. >> we're not targeting cmp fires, but since you brought up burning abandoned vehicles, I 
+think wailuku piahana areas have way more than their share of abandoned vehicles, and it's just totally dangerous, and 
+we have to d something about it. Member kama is anxious to get going on tis, too, because she has a multiple o 
+complaints from the businesses there kahului. % so again, and then member sugimura up country fires, the weekly 
+occurrence of these fires are very frightening.\r\n\r\nThank you, members. All those in favor of the motion, please raise  
+your hand and say aye? >> aye. >> nine ayes, zero nos, motion carries. MS. Clerk. >> chair, for referral to the 
+efficiency solutions and circular systems committee is resolution 24-155 authorizing the council chair to issue a request  
+for proposals for feasibility study of a county department of grants majority.\r\n\r\n>> any objections to refering this to  
+the committee? >> no objections. >> good. Thank you. >> thank you very much. ms. Clerk.\r\n\r\n>> chair, moving on 
+to ordinances under section m. At this time individuals MAY testify on any of the bills listed in section m. We 
+currently have two testifiers signed up, the first is kaniloa, testifying on bill 28, cd 1 (2024) To be followed by J.C. 
+Lau. >> MR. Kanamu, this is your opportunity to testify. >> okay. Aloha mai kakou I am opposed to the rezoning. 
+You know, waiohai and this area have remained mostly in ag. We do have our residential aeas.\r\n\r\nI know that this 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+area for many years now has been targeted to growth, and this project, I think threatens kind of the last area of our 
+island that really is close to town, but still, yet, an ag area. I don't see the purpose of this rezoning. It says for the maui 
+economic opportunity, who actually was given this property to actually do ag, which they never did. Ad then now also 
+with the concerns that there are natives who have a claim to it, and so the question of their title to their property even 
+though they claim to have been adjudicated in court, that court does not have jurisdiction to determine title. It was 
+about the act of trespassing. S it had nothing to do with title and of course, the judge ruled that meo had to settlement 
+with each claimant of that property, each individual for that property. So with the pursuant to rezone is very 
+inappropriate, because they haven't done their due diligence to say that they actually have title.\r\n\r\nThey need to go 
+to the land court to make that claim, and to dismiss all other claims. They haven't done that. For the county of maui to 
+-- or even this council, or the committee to actually go through with this rezoning is, I think, a blatant hit against the 
+taxpayers of maui, who pay their taxes for legitimate projects, which this one has not legitimatized itself and the thing 
+is the justification of our native people retur ning to their lands is being prohibited and for the county to take such an 
+action shows prejudice against the concerns. >> time. >> that you are responsible for as part of the state and the 
+federal government's trust exploitations to kanaka maoli. Thank you. >> thank you.\r\n\r\nAny questions, members? If 
+not, thank you very much. Next testifier chair, the next testifier is testifying on bill 127 (2024) He is currently the last 
+person signed up to testify. >> J.C. Lau. Back in the chambers. >> xcuse me, what are you testifying on? >> 127. >> 
+okay.\r\n\r\n>> I will figure out how to say that in 'olelo later. The pule this morning, chair lee, that was good. >> 
+thank you. >> aloha,-I think I got that right. I think you ought to have theme music, chair lee, the song from crosby 
+stills gnash and wrong and I appreciate the ambassador helping with this is called "long time gone." well this bill 127 
+is a long time doing. Coming. In 1896 'olelo was banned by the white dgs of america and passage of this bill will bo 
+go a long way to improving the health of kanaka maoli, queen lili'uokalani would appreciate it for her birthday 
+SEPTEMBER [#2 -7b/]. >> thank you.\r\n\r\nMembers, questions? >> chair, it looks like we MAY have another 
+testifier. MS. Costa. >> my name is jocelyn costa and I'm testifying on bill 127. Also all other ordinances that instead 
+of me reading them all, that contain tax map keys, the first one is 127. A bill for an ordinance to implement chapter 
+13-17 requiring the county to operate as I bilingual government. And to publish official meeting agendas in english 
+and 'olelo hawai'I. My understanding and correct me if I'm wrong is that is a requirement already. It's our first 
+language.\r\n\r\nSo I'm not sure if this is kind of redundant, or if you folks are in non-compliance of your requirements  
+in office already? So I encourage that to happen. Maybe it will push me to learn and speak my language, because I was  
+--  I'm a product of kmehameha schools that taught me to be a good american first and foremost and I found out that I 
+needed to come back to my roots that was prevented from the time of my kupuna they were silenced and therefore, if 
+you look at my name registered, I have no hawaiian name, because I was told that you'll have a better future not 
+knowing --  people not knowinging you're hawaiian. Better to let them know you are japanese and filipino. You will 
+probably get a better job, you will get a better future that way. So I encourage for you to be in compliance of your 
+requirements to be able to --  if someone was to come up right now and do their testimony in full 'olelo hawai'I you are  
+required to understand that, and not need anyone to translate it. Because it's first language.\r\n\r\nNo different if I was 
+to come up here and speak english. Someone of non-english-speaking would still be required to understand me if they 
+were standing here. So I encourage that very much, but more so being in compliance. For me other testimony, with 
+any of the ordinances that is referring to aned a condo identification of property through tax map key I would 
+encourage you to go to the law library and called out the book called "boundaries and lnd disputes of hawai'I." it talks 
+about attorneys or any property bing represented by a tax map key it only poses confusion. A boundary that is set 
+originally cannot move. So the county of maui can now take someone's boundary, impose on it a tax map key number, 
+and assume authority over it. Right now anyone can in the county, if they so [Kphao-z/] To move a tax map key onto 
+your lot, m they have have kind of authority.\r\n\r\nTax map keys change all the time, numbers change all the time, 
+boundaries never move. And the original boundaries are still there. I spoke to the late bruce lee, he was a surveyor. 
+And I went to him and I talked to him about propertis in waiohai and say we have land commission awards and he 
+said yes, it's still there. You gt all these lines. He goes we cannot change the boundaries, all we're doing is identifying 
+lots. If you look up a tax map key, it says it's not a legal document, nor does it confirm ownership.\r\n\r\nSo I would 
+request that specific boundaries and titles be included in the language so that we know it not just identification of 
+somethinging that isn't even legal. Because that is what the tax map key books say. This is not a legal document, nor 
+does it confirm ownership. Thank you. >> any questions, members? If not, thank you. MS.\r\n\r\nClerk. >> chair 
+there's no one else currently signed up to testify. This is last call. If you would like to testify online, please raise your 
+hand. If you are in chambers, make your way to the podium. Countdown is 3, 2, 1. Chair, there's no one indicating a 
+desire to testify. >> members, any objections to closing public testimony and accepting written testimony into the 
+record?\r\n\r\nSo ordered. MS. Clerk. >> chair for referral to the budget, finance, and economic development 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+committee is bill 124 (2024) A bill for an ordinance amending the fiscal year 2025 budget for the county of maui 
+revenues, department of management, management program capital improvement projects department of management, 
+wailuku-kahului community plan area, and appendix c, department of management, wailuku-kahului community plan 
+area. Bill 125 (2024) A bill for an ordinance amending the fiscal year 2025 budget for the county of maui revenues and  
+office of the mayor, economic development program, grants and disburts for water and environmental resource 
+protection. >> members, are there any objections to referral of these bills to bfed? >> no objections.\r\n\r\n>> so order,  
+MS. Clerk. Chair for the disaster, resilience, international affairs, ad planning committee is bill 126 (2024) A bill for an  
+ordinance establishing chapter 10.79 maui county code relating to educational polices infrastructure. >> any objections  
+to referring this matter to the drip committee? So ordered q. Pt chair for referral to the bill 127 (2024) A bill for an 
+ordinance to implement charter section 13-17 requiring the county to operate as a bilingual government and to publish  
+official meeting agendas in english and 'olelo hawai'I. >> members, any objections to referring this matter to the ess 
+committee? So ordered. Chair for referral to the government relations, ethics, and transparency committee bill 128 
+[#1240 -eu789/] A bill for an ordinance amending chapter 3.97 maui county code on use of the managed retreat 
+revolving fun.\r\n\r\n>> any objections to refering this matter to the bfed committee? >> so ordered. >> chair, moving 
+on to ordinances for second and final reading before you is bill 17 (2022) A bill for an ordinance amending chapter 
+19.29 maui county code to prohibit private restrictions on small-scale agricultural uses and keeping of animals in any 
+rural district. >> member johnson. >> thank you, chair, I move to pass bill 17 (2022 (On second and final reading. >> 
+second. >> moved by member joanson, seconded by member sinenci to pass the built on celeband final reading 
+discussion, member palatin?\r\n\r\nMember johnson first. >> sure. Big 17 amends chapter 19.29 maui county code to 
+pro[H-euts/] Instruments of conveyance from restricting small-scale agriculture uses and keeping of animals in any 
+county rural zoning district. The director of agriculture states the bill would help preserve and maintain rural lifestyles 
+sma support small farms and diversified economy and allowing  -- in short we're trying to keep the country country 
+and with that being said, I would defer to council member paltin. >> member paltin. >> thank you, chair. I just for my 
+discussion wanted to mention that so this bill is from 2022, and it's based on another bill that I wrote in 2022. So two 
+years isn't that long to pass bills, and never say die.\r\n\r\nThank you. >> any more discussion? If not, all those in favor  
+the motion, please raise your hand and say aye nine ayes, zeros no, motion carries MS. Clerk. >> thank you, MADAM  
+Chair, before you is bill 28, cd 1 (2024) A bill for an ordinance to amend the state land use classification from 
+agricultural district to urban district conditional district boundary amendment for properties situated at wailuku, maui, 
+hawai'I a portion of tax map key 2-43-3-001:106. >> pro tem kama. >> thank you, chair. It is my understanding that 
+the unilateral agreement has been recorded with the bureau of conveyances and move to pass this on second and final 
+reading.\r\n\r\n>> second. >> moved by pro tem kama, seconded by vice-chair sugimura to pass bill 28 cd 1 (2024) On  
+second and final reading. Discussion? >> no further discussion, chair. >> all those in favor of the motion, please raise 
+your hand? >> question? >> oh, I'm srry, I didn't see your hand.\r\n\r\nMember rawlins-fernandez. >> mahalo, chair. I  
+speak in opposition to the motion. I will read for the record again, in the --  court order, the findings of fact, and 
+conclusions of law records presented by meo to assert poetry interest however ae not sufficient to entitle meo to a 
+quiet title against the potential claimants even if they had been named as parties. Which is why I introduced the 
+condition to add the developer must provide a final judgment not subject to appending appeal from the second circuit 
+court in a quiet title action adjute kating with finaliality the parcel as to all claimants and owners so that it's consistent 
+with what we heard in testimony today, and what is in the court order that I just read. As I mentioned earlier, 
+institutions with outlive those who possess superior title. They can outlive so many tat have the memories associated 
+so ancestral 'aina.\r\n\r\nWe heard from a testifier, who has represented himself against high paid attorneys to assert his  
+claim to the 'aina. Systems that are meant to serve people, to serve our people can undermine the rights, which is why 
+the justice system is sometimes referred to as the injustice system, when it fails to render decisions to community 
+members for decades. The land boundaries that we see today such as roads and infrastructure, bridges, in our minds, it 
+looks as though it's natural boundaries. Disconnecting landss that were once contiguous. And so wen we see it today, 
+it's not the land boundaries that were used by kanaka 'oiwi during times of kalaiaina, it was natural markers that were 
+used to divide lands so that it was cared for by the stewards appropriately. In proposing the condition to recommend 
+that a final judgment be provided to me it shows that we care about our communities' interest in their ancestral 'aina. 
+That we are nt perpetuating the erasure a people, the customer culture and the claims that they had to 'aina that is of 
+their ancestors kuleana.\r\n\r\nI for one refuse to perpetuate the continued erasure of our people and that our testifier 
+shared she didn't have an hawaiian name and it was illegal to have an hawaiian first name. So laws often cannot be 
+used as a measure of morality. That it's with us and our representation of the people. We are are the ones that should 
+ensure that our compass is due north and that we are doing right by our people. I don't think voting for this motion is 
+doing right by or people. So I will be voting against this motion. Mahalo, chair.\r\n\r\n>> member johnson, and then 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+member paltin. >> thank you, chair. I think the testifiers said it all. And if that didn't move your needle, I don't know 
+what I can say to help change that? The gentleman who has been fighting for these lands for years, I don't know what 
+else needs to be said? Quiet title is not the way to go for helping our communities with affordable housing. We have 
+tried to work with meo in past through some amendments that the council members have proposed.\r\n\r\nThe land 
+swap that was proposed a while back. So I just think that if the community is speaking loud and we're willing to listen, 
+I think we should vote against this. Just a point of information, members, I don't sit on the board of meo any more. So 
+I will be voting no and not recusing myself. Thank you, chair. >> member pallin. >> thank you, I won't be able to 
+support this bill either.\r\n\r\nThe family has coming up again and again for this 'aina and every time we get technical 
+issues, this item com es up. But I just I don't think I have the words to say what needs to be said except that these kind 
+of generational hurts happen when an initial wrong happens, and it's not corrected. And then other things happen all 
+around, and you know, I know that former PRESIDENT Bill clinton signed the apology bill, that is a resolution of 
+congress, but I can't understand hw one resolution of congress can steal a nation and another resolution of congress just  
+simply says sorry with no remediation, or adjustment for that initial wrong, because you know, you can put lipstick on 
+a pill, pig, but you can't on a treaty of annexation so I just think it's wrong because they know where they are fro from 
+and where their iwi kupuna is from and I think this is so divisive and I think saying yes will make it worse. Thank 
+you. >> member sinenci. >> thank you, chair. , I too, voted for the land swap very early in the process.\r\n\r\nHaving 
+this project located near wrap-around services and in walking distance to stores, and public services would have 
+helped residents in the 30 and below ami category. Just to be clear, my vote does not reflect any opposition to the great  
+works that meo does in our individual communities. However, there are continued concerns about this particular site. 
+Waiohai residents have testified that the site was never part of the originalning of housing projects in waiohu. MR. 
+Sarson's with thewayi community and his concerns about traffic and larger housing projects being currently proposed 
+in this area and also MS. Legislative a la la and MR.\r\n\r\nMayo, both lineal descendants who still claim historical 
+ties to this site. So at this point I cannot support this. Thank you, chair. >> thank you. Anybody else? I just have to 
+make a few comments. Everybody feels badly about voting for this project and against this project.\r\n\r\nBut I do 
+have to clear the record on something that was said earlier, I was the housing director around the time that meo got this  
+property. And my recollection is that it was a piece of pro perty that was donated to meo by stanford carr. Stanford carr 
+at that time had acquired the piahana project district. And that project district goes from where the piahana village is 
+and further in, across wailuku country estates. So I would assume that property was connected to this meo property 
+when he stanford carr acquired it. At that time my recollection is gadys baisa told me she was going to develop 
+housing at that time. But for one reason or another, it never transpired.\r\n\r\nAnd so decades ago, no one objected to 
+the plans for housing. So I'm not sure what happened between then and now, but obviously, a lot of misunderstanding. 
+So because of my recollection of there not being any question about ownership at that time, just recently did this 
+occur, I feel that I will support this project, because it has --  it will provide a lot of benefits to our lower income 
+families and we are, of course, desperate for housing, and we're not in a situation where we can just turn dwn housing 
+because we were short, you know, we're in a crisis for housing. And that is the reason why I am going to have to stay 
+with my original support for meo. Any more discussion? Member rawlins-fernandez. >> mahalo, chair.\r\n\r\nAnd and  
+mahalo for always been a champion for affordable housing. I know that -- I know your heart and I know you want to 
+do good by the community. I was thinking that since we have some of the 'ohana here, since you kind of --  in your 
+comments you mentioned not knowing why earlier there wasn't any assertions to the claim of that land, I was thinking 
+perhaps we could call the 'ohana up, and perhaps they can provide that answer, or at least an explanation as to when 
+you were housing director and this 'aina was being transferred to meo's stewardship, that there wasn't any objections. 
+Since we're wondering outloud and they are here. >> any objections to asking that question? Would a member of the 
+family like to come down and joslyn, do you want to answer tat question, or somebody else? You don't have 
+to.\r\n\r\nYou don't have to answer. >> no pressure, too. Snce the 'ohana is here. I figured just give them an 
+opportunity, and that way, an explanation can we shared, if they know?X thank you for coming down. >> aloha. Once 
+again, thank you for the space to be able to discuss something like this. It's very important that we kuku kuku; right?
+\r\n\r\nAnd giving us the space to do that and having that question validates what you are thinking at this time. So to 
+my best, because actually, I'm kind of the younger cousin. So he is the oldest cousin. He was been fighting for many 
+years, many years from when I was little. At the time I remember I did do research, and I did read that letter that you 
+just mentioned about you being in that position. So with that, just think about that as well. I have been 
+colonized.\r\n\r\nThat is the truth. I only now have been through my own children, who 'olelo hawai'I who have been 
+educated has been able to educate me as a mother, as a kanaka, who I really am. So as far as back then, I was kind of 
+like not in that state of mind. So MAY I say that my mindset at the time, I know gladys through meo and bless her 
+heart and understanding her and wish we had that conversation, but we didn't. At that time, when you were in that 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+position, my mindset was not at this point. So I can say for myself, t be able to come up to something like this was not 
+only now in this time and age where I'm aging now, and because, I think my cousin was crazy. You know? Because I 
+was, like, brah, you can't be doing that, but he was.\r\n\r\nBecause of that example, and he  -- he was very steadfast. 
+And I got curious. So there was one point in my life I got curious, and that is when I started to do the research. So it 
+wasn't at that time when you mentioned. It was maybe another 15, 10-15 years that I start to research the land, and 
+what he was talking about. I thought he was crazy, actually, he was right. Everything that he talked about, I did 
+research on it, and I was like holy moly, I'm the crazy that didn't do that research t o know he is not actually 
+crazy.\r\n\r\nSo my respect to him as kupuna in our family, as the oldest. So he is the oldest living cousin at this time. 
+So because of that, we, my cousin and I, have kuleana to follow in his footsteps, because I know in my heart h is 
+worried because he doesn't have much time. So with everything that he is saying is truth. With my children being 
+educated now, my son is going to get his ph.D. In SEPTEMBER, the middle part of SEPTEMBER, who is now more 
+into this research, and finding out answers that his mom, not crazy, because at one time, he did. You know, he said, 
+mom, I get it know. I get what uncle is saying.\r\n\r\nHe calls him uncle. I get it. I know what he is saying is truth; that 
+we have that kuleana. That kuleana lands. And so I'm saying as far as the question to what you are saying that we 
+didn't come forth is because that wasn't the time for me. I have that right as a human being that I was colonizeed d at 
+that time and ask forgiveness to my ancestors and my kupuna, my kupuna iwi for not having that mindset at that time 
+to know what this guy is talking about that it's actually truth, and because doing the research, your letter, I know 
+exactly what word -- I hve it in my computer. I know who you are talking to, which is stanford carr, who gave the -- it  
+wasn't even a quiet title.\r\n\r\nIt was just a -- it wasn't even a title to begin with that is valid now that we look at it. So  
+that is my, from me and my cousin here in our age. I'm now 60 years old and he is in his 80s. So that is 20 years apart, 
+yeah? So that is why I wasn't ready for it to bring forth all of this information, and to go to even  -- even to go to 
+court, and even to occupy that was not my mindset at the time. >> thank you. >> mahalo [Inaudible] Members, I'm 
+making this exception. >> he just needed help in understanding what your question was.\r\n\r\n>> letting you know 
+members, this is not something we normally do. But I'm making this exception, because it's a hard decision for all of 
+us. you know, I don't w ant you folks to think if we vote yes on the motion, it's not because we don't feel for you. We 
+just have a different point of view. So MR. Mayo. Henry.\r\n\r\nYou want to just add a little bit to what your cousin 
+just said? >> earlier in the meeting, I don't know what you are talking about, but I was in a meeting, I would have 
+brought it up. I don't even know if I was in a meeting when that was discussed. >> chair? >> yes member rawlins-
+fernandez. >> to follow-up on that comment, was there a meeting? Like we're having this?\r\n\r\n>> no. >> oh, okay. 
+Because MR. Mayo said that he was in court for the past 20-plus years, and so he was in that venue asserting his 
+claim, but I guess I there wasn't a forum like this for him to know about to be able to come and share his 'ohana's 
+connection to this 'aina, then I'm not super sure how he would have at that time? Or do you know how he would have 
+shared that? >> MR. Stanford carr donated the land to meo.\r\n\r\nAll right? >> was there no paper? >> I don't know. 
+What I'm saying it wasn't -- the county was not involved with it. Okay? At that time. But as far as public notice, 
+shortly after they received the land, they started developing it in the beginning for ag use for the best program, for the 
+prisoners, and after that they were going to build housing.\r\n\r\nThat was the plan. So it wasn't a situation where they 
+left it unused for many years. No, they used it all right. But the housing did not come forward until now as many 
+projects, as you know, many housing projects take a long time. Like, kai aloani which MR. Stanford carr was involved 
+in also, took 25 years to develop and it's still syl not finished. That is housing on maui, it takes forever huh?\r\n\r\nBut 
+what henry's situation from when you explained to me, henry, in my office, that was a portion of what he claimed to 
+be their family land and this is only a small pece of all of the waiohu heights. So waiohu heights must have been 
+developed the mid to late 70s. So that would have been a good time to take this to court at the beginning. This is like at  
+the tail-end. This is the last piece. Member kama. >> so I just want to add that most of waiohu is all ceded lands. That  
+is why there was a big beef between the state and a lot of protesters.\r\n\r\nI remember auntie from lahaina, I forgot 
+her japanese last name was always protesting, auntie patty was protesting the height and terrace and all of that because 
+it was ceded lands, but the state was still going to go ahead and do development on that. So that was all happening in 
+the '70s; right? And then all of that development went on in the '80s like that. So you want to go back, you could figure  
+out -- you don't have to go way back to the '60s. >> that was part of their land? >> how did it become ceded lands? >>  
+we don't know. >> we don't know about history of all of the lands, because this issue we're talking about isn't just here 
+with kai kahua and talks about who really owns the land, when you really get down to that that is the issue that we 
+never can resolve here, but we're going to have these issues coming up all the time because of that.\r\n\r\nBecause the 
+real issue that needs to be resolved is the kingdom of hawai'I still existent? And until you answer that question, we'll 
+have this all the time. As a native hawaiian, I just have to take care of the hawaiians with no more place to live. That is  
+my focus and I ran on that campaign and that is still my campaign, because I have to think about those no more, as 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+opposed to those wo get. Thank you, chair. >> chair, it sounds like what member kama just said is that they were 
+asserting their rights to that 'aina? >> not that piece.\r\n\r\n>> that area? That whole area? >> well, we're talking about  
+waiohu heights is over the mountain can I mention something? >> yes I have done research on that. So his father, 
+when that was happening, if you look into the report that charles maxwell had done, and it's there, if you look into it. It 
+does say that his father's name is in there. And it says how he told them not to build.\r\n\r\n So it also says that they 
+never listened to him. >> right. >> so the effort was there, if anything to do with the family, and his -- you know, it's 
+his name. His name is the same of as a father's name and it's stated in his report, that he said, not to build in these 
+lands, because he knows that the caves that were there, because of his tutu man that showed it to him. >> my point, I'm  
+not say whoiing saying who is right and who is wrong, but this is not the place to litigate that. That is in the courses. 
+Ours is with land use, because we're way down ladder in authority.\r\n\r\nIf you want to continue this opposition, it 
+will probably be best to do it in court, not over here. >> yes, that is correct. So my question, I respect, because it's still 
+in the courts, because even he has the court -- what he is doing right now does cover also that area. So because it's in 
+the courts, do we still make a decision such as this? You know what I mean? As far as --  because I don't know how 
+you operate in your system here, so you can help me to also understand that part. That if there's a continual  -- you 
+know, if it's still in the court, do you still make such a decision?\r\n\r\n>> well, we're in a position where we're going 
+to have to make a decision, yes or no. And for some, some as you heard agree with you, and some don't. And I cannot 
+speak for everybody, but just myself, based on my history with this property, and the fact that you've tried in the courts  
+for, like you say, over 20 years. And if it hasn't changed, you know? We cannot -- we cannot abandon those who need 
+housing. You know? As this continues to go on, because we have no idea how it's going to end. >> correct.\r\n\r\nThen  
+once again, I'm still displeased. I was on that 'aina. And hearing what you're saying is that yu are for kanaka, and 
+because you know who I am, and you know the story that happened, that I got swept off my land. Does that count as a 
+kanaka, if you want to give us a place, or you are saying that, then I'm having mixed thoughts on this. Becaus e I'm that 
+person, because I got swept. I got swept off the 'aina, my whole family. >> hair?\r\n\r\n>> do you want to respond if 
+you don't mind, I would like to have a conversation with you later. I don't think this is the place to have these 
+conversations at this time when we still have a lot of work to be done. I would like to understand more of what she is 
+saying and to have a conversation, if that is okay? Because I think as, like you mentioned earlier; right? That 20 years 
+ago, you were in one frame of mind and another 20 years go by you will be in a different state of mind because of all 
+the wisdom you will learn along your journey in liver. So we have a tendency to learn and grow and learn and grow. 
+That is part of the process of living; right?\r\n\r\nSo that is where we're all at. We're all a different places of our lives 
+liveburg sill learning and still growing. We have to finish our process. >> I understand. Thank you for giving us the 
+space to answer the questions. I understand that. Mahalo.\r\n\r\n>> thank you for being brave enough to come down 
+and face us again. Thank you. Members, member paltin. >> thank you, chair for my second and final. You know, I 
+really wish that we could have done the land swap, because through the denationalization and americanization, so 
+much of us we're in the same mindset of what MS. Johnson jst mentioned in her answer. You know, I encountered a 
+kid one time that said they had to go to college to learn the real history of hawai'I, because they don't want you to learn  
+it, because of all of these problems that come up when you do learn it.\r\n\r\nAnd you know, to say that this is an issue 
+that belongs in court, which isn't wrong, meanwhile, while we as a body go forward, and change zoning, go forward 
+and allocate affordable housing funds, when it could have easily been moved to a different location that wouldn't be so  
+problematic is what is difficult to swallow. I mean, there's so many continental folks that have excess of lands and 
+houses that they can live their one body in, but we don't go and take their lands from them to build housing on, and we 
+know what the situation was like, you know? For anyone that was born prior to like AUGUST 1959, we weren't living 
+in america. For anyone that was here prior to 1893, you know? So I mean, I think that is why they have that 'olelo to 
+go forward, you have to look at the past, and this is one of those cases where the trajectory from point a to point b is in  
+the a good line and in good conscious, I have to ask for a roll-call vote. >> okay. Member rawlins-
+fernandez.\r\n\r\n>> mahalo, chair. I agree with your earlier comments that this is -- that chambers, our council 
+chambers is not the right forum to make a decision of land title. So I'm going to move again to give us an opportunity 
+to send this to the right forum, and that is the courts. I move to amend to add condition 6 the developer must provide a  
+final judgment not subject to a pending appeal from the second circuit city in a quiet title action adjudicating with 
+finality of the legal title of the parcel as to all claimants and owners. >> second. >> any more discussion on that 
+motion? Member rawlins-fernandez?\r\n\r\n>> mahalo, chair, mahalo again to MS. Johnson for sharing what can 
+often be very vulnerable that  --  admitting to the colonization iposed on many community members and it wasn't our 
+choice to be colonized and I want to acknowledge the strength it took to decolonize's one's mind, because the 
+colonization and as you heard, having hawaiian names being illegal, prohibiting the use of 'olelo hawai'I, like these are 
+all systematically imposed upon our lahui to decolonize and out of the need to survive that the generations then, you 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+know, wanted the best for their next -- for their keiki and their mau puna to have a successful life. I understand level 
+of instinct of survival, and wanting success for your next-generations, and so that was the trauma response at the time. 
+So looking at the power dynamicks and acknowledging that for our lahui, the population which was decimated, an d 
+then with the weapons that the U.S. Brought to overthrow our kingdom, and then forcibly remove us from 'aina, and 
+imprison our queen, and all these things, all of the trauma, and then for us to still take action to dispossess our people 
+from their ancestral 'aina is just wrong upon wrong upon wrong. Just hitting one group of kanaka in order to house 
+other kanaka is just not justifiable. One development goal should not be pursued at the detriment of other community 
+goal and should not be pursued at the detriment of one group of people and not sever connection of one kanaka in 
+order to house another kanaka. It's just unjustfiable, chair.\r\n\r\nMahalo. >> thank you. Members, we're ready to vote 
+on -- unless there's more discussion? Yes. >> thank you. Member rawlins-fernandez, I have a clarifying question for 
+my understanding. With or without this condition, the 'ohana can still take anybody they so choose to court if they feel 
+they need to?\r\n\r\nWhich I'm --  I cannot speak for them, so hence if they think so with our without this condition? I 
+just wanted to understand. >> mahalo for the question, member uu-hodgins. The 'ohana has the right to take meo and 
+others to court to assert their claim to their ancestral 'aina. However, as a governmental body, by approving this D.B.A.  
+Today and continuing to approve funding for this project, we are complicit in the theft of the aina and severing and 
+allowing construction of housing on top of the 'aina it permanent severs their assertion because the courts aren't going 
+to say after a couple of decades, we now you decided you are right and this is your 'ohana 'aina and have the 
+apartments on top of them, that is not going to happen. Again and again throughout history we have seen as long as 
+you can build it halfway, the courts are going look at the feasibility of granting a decision and granting another. 
+Because they are going to say oh, you already built the rail halfway, oh, you built h3 halfway and we'll just grant it and  
+say I kow we were wrong, but to let you go, and  that will happen here.\r\n\r\nYou know what? You do have rightful 
+claim, but oh, get these apartments. So we cannot give you right of access, we cannot say, like this is your 'aina, 
+because it now has buildings on it. Mahalo, chair. >> thank you, member rawlins-fernandez for that clarification. 
+Thank you, chair. >> that would apply to everything that we approve.\r\n\r\nOkay. So members, we're going to take a 
+roll call on this motion to amend. All right? Roll call. >> pro tempore tasha kama? >> no. >> vice-chair sugimura?
+\r\n\r\n>> no. >> council member paltin? >> aye. >> council member johnson? >> aye. >> council member rawlins-
+fernandez? >> aye.\r\n\r\n>> council member cook? >> no. >> council member uu-hodgins? >> no. >> council 
+member sinenci? >> aye. >> council chair lee?\r\n\r\n>> no. >> chair, four ayes, five nos, motion fails. >> main 
+motion again. Member sinenci. >> thank you, chair. For my final comments, part of me voting against it as well is 
+with the lineal ties, and MR. Mayo, talking about his tutu and having this as possible burial sites and why I cannot 
+support it at this time.\r\n\r\nThe desecration of any cultural site that the family claims that there are there, and so I'm 
+just concerned about the laws and the rights as MR. Kaniloa brought up about burials and those are some of the 
+reasons that I'm not voting in support, chair. Thank you. >> anyone else? If not, roll call. >> thank you, MADAM 
+Chair. Pro tempore tasha kama?\r\n\r\n>> yes. >> aye, did you say? >> yes. >> something is wrong with your mic, I 
+think. >> vice-chair sugimura? >> aye. >> council member paltin?\r\n\r\n>> no. >> council member johnson? >> no. 
+>> council member rawlins-fernandez? >> >> >> council member cook? >> aye. >> council member uu-hodgins?
+\r\n\r\n>> aye. >> cuncil member sinenci? >> no. >> council chair lee? >> aye. >> chair, five ayes, four nos, item 
+passes theft? ) S item item bilge 68 cd 1 (2024) A bill for an ordinance to change the wailuku-kahului community plan  
+land use -- reading item.\r\n\r\n>> pro tem kama.  >> thank you, chair. Chair, my ask you to ask the clerk to call bill 6 
+cd 4 (2024) MS. Clerk, thank you, chair, bill 68 cd 1, fd 1 (2024) A bill for an ordinance to change zoning from m-2 
+heavy industrial district to b-3 circle business district conditional zoning for 33.76 4 acres in kahului, maui, hawai'I 
+identified as tmk k 2-3-7-002:00, 2-3-700 it [#2 -/]:02 1, 2-3-7-o002-023, -3-7-o002-025, and 2-3-7-00:4027 queen 
+ka'ahumanu center. >> pro tem kama. >> unitser lapter agreement associated with this bill has been recorded with the 
+bureau of conveyances and therefore, I morph to pass bill 68 cd 1 (2024) And bill 68 cd 1 (2024) On second and final 
+reading. >> so moved.\r\n\r\n>> MADAM Chair, MAY I just confirm that it is bill 68 cd 1 cd 1 version. >> yes -- fd 1 
+investor relations. >> yes, sorry >> moved and seconded. On second and final reading. Yes. Any further discussion? 
+>> no, chair.\r\n\r\n>> all those navarre of the municipal code raise your hand, say aye? >> aye. >> nine ayes, zero 
+nos, motion carries. >> thank you, chair, before you is bill 69 cd 1 (2024) A bill for an ordinance to change zoning 
+from urban reserve district to b-ct country town business district conditional zning for 21,711 square foot in hana, 
+maui, hawai'I identified as tax map key 2-1-4-013:001 hana storage building. >> pro tem kama. >> thank you, chair. 
+My understanding is that the uran lateral agreement associated with this bill has been recorded with the bureau of 
+conveyances and therefore, I move to pass bill 69 cd 1 (2024) On second and final reading.\r\n\r\n>> second. >> 
+moved by pro tem kama, second by member sinenci to pass this bill on second and final reading. Any discussion? >> 
+no, chair. >> all those in favor of the motion, raise your hand, say aye. >> aye. >> thank you.\r\n\r\n>> nine ayes, 
+file:///P|/OCC/LEG/Minutes/2024/240827/transcription.txt[8/30/2024 10:45:46 AM]
+zeros no, motion carries. MS. Clerk compare before you is bill 100 cd 1 (2024) A [Pwhrao -pbld/] Amending section 
+19.30a.050 maui county code relating to composting in the agriculturan district. >> member [Skpwo-pb/]Son. >> 
+thank you, chair. I move to pass bill 100 cd 1 (2024) On second and final reading. >> second.\r\n\r\n>> moved by 
+member johnson, seconded by member cook to pass bill 100 cd 1 (2024) On second and final reading. Member 
+johnson, discussion. >> thank you, chair. Bill 100 cd 1 (2024) Permits composting and co-composting operations as a 
+principle use in the county's agricultural district subject to restrictions of hawai'I revised statutes. The adept committee 
+received 314 signatures attach toad written testimony supporting bill 100. Growing soil is farming. The bill improves 
+access to healthy soil promotion circular economy, lowers costs to farmers and minimizes risk of transporting invasive 
+species such as the coconut rhinoceros beetle and I ask for members' full support. >> any more discussion?
+\r\n\r\nMember palt begin. >> let's get composting. >> all those in favorite motion, raise your hand, say aye? >> aye. 
+>> nine ayes, zero nos, motion carries. MS. Clerk.\r\n\r\n>> chair before you is bill 112 (2024) A bill for an ordinance 
+amending the fiscal year 2025 budget for the cunty of maui appendix b, department of public works, general fund flood  
+development permits. >> vice-chair sugimura. >> thank you, chair. If there are no objections MAY I please request the  
+clerk to call 1113, 119, 1 bill 120, bill 121 and bill 123 no objections. >> a bill for an ordinance amending chapter 
+16.29 maui county code relating to flood hazard areas. Bill 119 (2024) A bill for an ordinance amending the fiscal year  
+2025 budget for the county of maui appendix a, part b department of the prosecuting attorney, edward j. Byrne 
+memorial justice assistance grant program. Bill 120 (2024) And bill for an ordinance amending the fiscal year 2025 
+budget for the county of maui officer of te mayor economic development program grants and disbursements for 
+business development and technology makawao pa'ia-ha'iku pukalani-kula-'ulupalakua and south maui economic 
+development, environmental and cultural programs.\r\n\r\nBill 121 (2024) A bill for an ordinance endin g the fiscal year 
+2025 budget for the county of maui appendix b, department of environmental management, sewer fund, charges for 
+current services fees, sewer collection, monthly use charge, non-residential. And bill 123 (2024) A bill for an 
+ordinance amending the fiscal year 2025 budget for the county of maui appendix a, part ii, affordable housing fund 258 
+kupuohi street lahaina, maui, hawai'I. >> vice-chair sugimura. >> thank you. I move to pass bills 112 (2024), bill 113, 
+bill 119, bill 120, bill 121, and bill 123 (2024) On second and find realing. >> second. >> moved by vice-chair 
+sugimura and seconded by pro tem kama to pass the bills as stated on second and final reading. Vice-chair sugimura, 
+discussion?\r\n\r\n>> no more discussion. >> any discussion? Member paltin? >> I'm particularly interested in bill 
+123. We have MR. Bigley in the audience. He is going to hand walk it up to the other floors and MR. Fischer is not 
+stopping the concrete pour and we have 89 residents ready to move back into their homes . That's it.\r\n\r\nThank you. 
+>> oh, finally something to cheer about. Vice-chair sugimura. >> during the break, I took a picture with MR. Bigley. 
+>> oh, you did? >> yes, I'm going to post it as soon as this gets passed.\r\n\r\n>> okay. You did it all by yourself, all 
+right, very good. >> no, no, that is no what I'm say all those in favor of the motion, raise your hand, say aye? Nine 
+ayes, zeros no, motion carries. Hallelujah, good luck, doug. With you more bill. >> bill 114 fd 1 (2024) A bill for an 
+ordinance to change zoning from r-3 residential district to p-1 public/quasi-public conditional zoning for 
+proximately.75 acres located at lahaina, maui, hawai'I tax map key 2-4-5-014:054 grace baptist children.\r\n\r\n>> 
+reverend paltin. >> thank you, chair. At this time, I would like to ask all of the members to dig deep in their thoughts, 
+prayers and intentions, because the unilateral agreement for this item hs not yet been recorded with the bureau of 
+conveyances. I ask members to keep pastor brown in their  thoughts, and prayers, and pray for grace baptist church that 
+when this item gets postponed to the council's next meeting on SEPTEMBER 13th, 2024, that everything will be 
+recorded, and legit, and the members of grace baptist church will have something to celebrate. I ran into one member 
+this past member at the lunchbox and they were all excited. I told them, just hang title and we'll get it done 
+eventualsually. Thank you.\r\n\r\n>> any objections to postponing this item and laying it on the clerk's table. Let's 
+hope and pray. >> and thoughts ad prayers for pastor brown, with a little setback and hoping he pulls through. >> our 
+best wishes and aloha goes to pastor brown. We have reached at end of the calendar. Members, any final comments? 
+Announcements?\r\n\r\nYes, okay. Member rawlins-fernandez. >> mahalo, chair. I have good news to share. Our 
+office will be expanding by one little one. And the same due date as member paltin's. >> are you talking about 
+children? [Laughter] >> you always ask if anyone is giving birth?\r\n\r\n>> I have been waiting for weeks so you 
+could ask the question and you could share the GOD news with you and everyone I'm not giving birth, my ea. >> I'm 
+not giving birth either. Zhantell? >> they are both due JANUARY 1st. >> you are kidding me? >> one of each. >> 
+wow.\r\n\r\n>> joining member sinenci's birthday. >> all right! . So JANUARY 1st as well. Okay. Wonderful. We're 
+going to be aunties. >> glad its not me >>>glad it's not you.\r\n\r\n[Laughter]Oh, come on now. All right, members, 
+let's end on the good news, and have a -- doug, would you like it take a picture with us? Okay, we have no 
+photographer, but you know? That is okay. All right, this meeting is adjourned
