@@ -1,0 +1,887 @@
+MINUTES | hi-maui | County Council Meeting | 2026-05-15
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5888,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+May 15, 2026 
+10:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 
+8th Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: http://mauicounty.portal.civicclerk.com 
+ 
+TIME MEETING CALLED TO ORDER: 10:06 a.m. 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Kauanoe Batangan √   Exc: 2:58 p.m. – 4:22 p.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson    √ Arr: 11:31 a.m.; 
+Exc: 1:07 p.m. – 1:09 p.m.; 
+3:15 p.m. – 4:25 p.m. 
+CM Keani Rawlins-
+Fernandez 
+√   Exc: 3:15 p.m. – 4:25 p.m. 
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √   Exc: 12:26 p.m. – 
+12:29 p.m. 
+Chair Alice L. Lee √    
+TOTAL PRESENT 8  1  
+ 
+ 
+COUNTY COMMUNICATIONS: 
+ 
+CC 26-6 COUNCILMEMBER BATANGAN, transmitting a proposed amendment 
+to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+ 2 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26-7 COUNCILMEMBER JOHNSON, transmitting a proposed amendment to 
+Bill 55, CD1 (2026), entitled " A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26-8 COUNCIL CHAIR LEE, transmitting a proposed amendment to Bill 55, 
+CD1 (2026), entitled " A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26-9 COUNCILMEMBER JOHNSON, transmitting a proposed amendment to 
+Bill 55, CD1 (2026), entitled " A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL YEAR 
+JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26 -10 COUNCILMEMBER U ʻU-HODGINS, transmitting a proposed 
+amendment to Bill  55, CD1 (2026), entitled " A BILL FOR AN ORDINANCE 
+RELATING TO THE OPERATING BUDGET FOR THE COUNTY OF MAUI FOR 
+THE FISCAL YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26-11 COUNCILMEMBER JOHNSON, transmitting a proposed amendment 
+to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 
+CC 26 -12 BUDGET, FINANCE, AND ECONOMIC DEVELOPMENT CHAIR 
+SUGIMURA, transmitting a proposed amendment to Bill 56, CD1 (2026), entitled 
+"A BILL FOR AN ORDINANCE RELATING TO THE CAPITAL PROGRAM FOR THE 
+FISCAL YEAR ENDING JUNE 30, 2027". 
+Postponed, without objection, until CR 26-25 was called up. 
+ 
+ 3 
+CC 26-13 COUNCILMEMBER BATANGAN, transmitting a proposed amendment 
+to Resolution 26 -69, FD1,  entitled " ADOPTING THE REAL PROPERTY TAX 
+RATES FOR THE COUNTY OF MAUI, EFFECTIVE JULY 1, 2026". 
+Postponed, without objection, until Resolution 26-69, FD1 was called up. 
+ 
+ 
+BUDGET, FINANCE, AND ECONOMIC DEVELOPMENT COMMITTEE: 
+ 
+CR NO. 26-25 Recommending the following: 
+ 
+1. FIRST READING of Bill 55, CD1 (2026), to appropriate estimated revenues 
+for the operating and capital improvement budget for the Fiscal Year July 1, 
+2026, to June 30, 2027.  Incorporated within Bill 55, CD1 are Appendix A, which 
+lists Grants and Restricted Use Revenues and Special Purpose Revenues; 
+Appendix B, which is the Schedule of Revenues – Fees, Rates, Assessments and 
+Taxes; Appendix B-1, which lists the County’s concessions, leases, and licenses 
+by department; and Appendix C, which provides titles and descriptions of Capital 
+Improvement Projects ("Budget bill"); 
+ 
+2. FIRST READING of Bill 56, CD1 (2026), to set the Capital Program for 
+Fiscal Years 2027 through 2032.  Incorporated within Bill 56, CD1 are Appendix 
+A-1, a report entitled “COUNTY OF MAUI, CAPITAL IMPROVEMENT PROJECTS 
+REPORT, AS OF DECEMBER 31, 2025,” which lists all pe nding capital 
+improvement projects and appropriations, except for Water Fund projects, as of 
+December 31, 2025; Appendix A -2, a report entitled “County of Maui, Capital 
+Improvement Program by District Job and Index, Fiscal Year Ending 6/30/2026 
+– as of 12/31/2025,” which includes pending Water Fund capital improvement 
+projects and appropriations as of December 31, 2025; and Appendix B, which is 
+the proposed Capital Program for Fiscal Years 2027 through 2032 ("Capital 
+Program bill");  
+ 
+3. FIRST READING  of Bill 57, CD1 (2026), to authorize the issuance of 
+$193,453,400 in general obligation bonds for various capital improvement 
+projects ("Bond Authorization bill"); 
+ 
+4. FIRST READING  of Bill 58, CD1 (2026), to reauthorize the use of 
+$6,000,000 in lapsed bond proceeds for the Department of the Prosecuting 
+Attorney, Wailuku-Kahului Community Plan Area, Government Facilities, for 24 
+North Church Street Building Renovations ("Lapsed Bond bill"); 
+ 
+5. FIRST READING of Bill 59, CD1 (2026), to authorize the Mayor to enter 
+into an intergovernmental agreement to finance the Kīhei Wastewater Pump 
+Station No. 7 Relocation, with funds not to exceed $2,500,000; 
+ 
+6. FIRST READING of Bill 60, CD1 (2026), to authorize the Mayor to enter 
+into an intergovernmental agreement to finance Countywide Facility 
+Improvements project, with funds not to exceed $10,000,000; 
+ 4 
+ 
+7. FIRST READING  of Bill 62, CD1  (2026), to:  (1) allow the Solid Waste 
+Management Fund to be used for recycling programs and remove recycling 
+programs as an authorized use of the Environmental Protection and 
+Sustainability Fund; and (2) expand the uses of the Solid Waste Management 
+Fund; 
+8. FIRST READING of Bill 63, CD1 (2026), to rename the Hawaiian Cultural 
+Restoration Revolving Fund to the Lahaina Royal Complex Restoration Fund and 
+authorize the Fund to be used for preservation and restoration throughout the 
+Lahaina Royal Complex area; 
+ 
+9. FIRST READING of Bill 64, CD1  (2026), to establish a fee for the use of 
+County-owned electric vehicle charging stations to offset the cost of electricity 
+consumed through the stations; 
+ 
+10. FIRST READING  of Bill 76, CD1  (2026), to amend the Water System 
+Development Fee by basing the fee on projected average daily water use instead 
+of water meter size and count; 
+ 
+11. ADOPTION of Resolution 26-63, to adopt the fuel tax rates for the County 
+of Maui, effective July 1, 2026, in accordance with Section  243-5, Hawai‘i 
+Revised Statutes, and Section 3.20.010, Maui County Code; 
+ 
+12. REFERRAL of Bill 61 (2026), to establish a Fiscal Reserve Fund that the 
+County may use as a temporary funding source during financial hardship to help 
+reduce the need for tax increases or service cuts, to your Budget, Finance, and 
+Economic Development Committee; 
+ 
+13. REFERRAL of Bill 66 (2026), to establish the Climate Action and 
+Resiliency Revolving Fund, which would support the implementation of the 
+Climate Action and Resiliency Plan adopted under Code Chapter 20.44, with at 
+least 20 percent of the Maui County Transient Accommodations Tax collected  to 
+be deposited into the Fund, to your Agriculture, Diversification, Environment, 
+and Public Transportation Committee; and 
+ 
+14. REFERRAL of Bill 67 (2026), to enhance stewardship of the County’s 
+natural, cultural, and agricultural resources by requiring that 20  percent of 
+Maui County Transient Accommodations Tax revenues be deposited into the 
+Environmental Protection and Sustainability Fun d and that specified 
+consultations occur before annual expenditures of those revenues, to your 
+Agriculture, Diversification, Environment, and Public Transportation 
+Committee. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:40 a.m. 
+CM Batangan √   Time Motion Made 11:45 a.m 
+ 5 
+VC Sugimura √   Motion  ADOPT 
+recommendations, 
+as amended 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 4:27 p.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CC 26 -7 COUNCILMEMBER JOHNSON, transmitting a proposed 
+amendment to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE 
+RELATING TO THE OPERATING BUDGET FOR THE COUNTY OF MAUI 
+FOR THE FISCAL YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 12:28 p.m. 
+CM Batangan √   Time Motion Made 12:29 p.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-7 
+CM Paltin √   Maker Johnson 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:31 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CC 26 -9 COUNCILMEMBER JOHNSON, transmitting a proposed 
+amendment to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE 
+RELATING TO THE OPERATING BUDGET FOR THE COUNTY OF MAUI 
+FOR THE FISCAL YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 12:32 p.m. 
+CM Batangan √   Time Motion Made 12:32 p.m. 
+VC Sugimura √   Motion  FILE  
+CC 26-9 
+CM Paltin √   Maker Johnson 
+ 6 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:32 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CC 26 -11 COUNCILMEMBER JOHNSON , transmitting a proposed 
+amendment to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE 
+RELATING TO THE OPERATING BUDGET FOR THE COUNTY OF MAUI 
+FOR THE FISCAL YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 12:33 p.m. 
+CM Batangan √   Time Motion Made 12:33 p.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-11 
+CM Paltin √   Maker Johnson 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+ √  Time Vote Taken 12:44 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins √     
+CM Sinenci  √    
+Chair Lee  √    
+TOTAL VOTES 5 4  MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+12:47 p.m. 
+CM Batangan   Recused Time Motion Made 12:47 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:52 p.m. 
+CM Cook √     
+CM Uʻu-
+Hodgins 
+√     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 7 
+ AYE NO EXC Time Deliberations Began 12:52 p.m. 
+CM Batangan  √  Time Motion Made 12:53 p.m. 
+VC Sugimura  √  Motion  AMEND 
+CM Paltin  √  Maker Rawlins-
+Fernandez 
+CM Johnson √   Seconder Johnson 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:04 p.m. 
+CM Cook  √    
+CM Uʻu-Hodgins  √    
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 4 5  MOTION FAILED  
+ 
+ 
+CC 26-8 COUNCIL CHAIR LEE, transmitting a proposed amendment to Bill 55, 
+CD1 (2026), entitled " A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 1:05 p.m. 
+CM Batangan √   Time Motion Made 1:05 p.m. 
+VC Sugimura √   Motion  FILE 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:06 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:07 p.m. 
+CM Batangan √   Time Motion Made 1:07 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:08 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 8 
+CC 26-6 COUNCILMEMBER BATANGAN, transmitting a proposed amendment 
+to Bill 55, CD1 (2026), entitled "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 1:09 p.m. 
+CM Batangan √   Time Motion Made 1:09 p.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-6 
+CM Paltin √   Maker Batangan 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:10 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:10 p.m. 
+CM Batangan √   Time Motion Made 1:10 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Batangan 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:11 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:11 p.m. 
+CM Batangan √   Time Motion Made 1:11 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Batangan 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:12 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 9 
+CC 26 -10 COUNCILMEMBER U ʻU-HODGINS, transmitting a proposed 
+amendment to Bill  55, CD1 (2026), entitled " A BILL FOR AN ORDINANCE 
+RELATING TO THE OPERATING BUDGET FOR THE COUNTY OF MAUI FOR 
+THE FISCAL YEAR JULY 1, 2026, TO JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 1:14 p.m. 
+CM Batangan √   Time Motion Made 1:14 p.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-10 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:17 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+CC 26 -12 BUDGET, FINANCE, AND ECONOMIC DEVELOPMENT CHAIR 
+SUGIMURA, transmitting a proposed amendment to Bill 56, CD1 (2026), entitled 
+"A BILL FOR AN ORDINANCE RELATING TO THE CAPITAL PROGRAM FOR THE 
+FISCAL YEAR ENDING JUNE 30, 2027". 
+ 
+ AYE NO EXC Time Deliberations Began 1:17 p.m. 
+CM Batangan √   Time Motion Made 1:18 p.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-12 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:18 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:19 p.m. 
+CM Batangan √   Time Motion Made 1:19 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Uʻu-Hodgins 
+ 10 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:20 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:21 p.m. 
+CM Batangan √   Time Motion Made 1:24 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:25 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:25 p.m. 
+CM Batangan √   Time Motion Made 1:26 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Cook 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:27 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:27 p.m. 
+CM Batangan √   Time Motion Made 1:27 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Batangan 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:28 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+ 11 
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:28 p.m. 
+CM Batangan √   Time Motion Made 1:29 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Uʻu-Hodgins 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 1:31 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 1:31 p.m. 
+CM Batangan √   Time Motion Made 2:18 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √   Seconder Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:32 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 2:58 p.m. 
+CM Batangan   √ Time Motion Made 2:58 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 2:59 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 12 
+ AYE NO EXC Time Deliberations Began 3:01 p.m. 
+CM Batangan   √ Time Motion Made 3:01 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:01 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:01 p.m. 
+CM Batangan   √ Time Motion Made 3:02 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Paltin 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:03 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:03 p.m. 
+CM Batangan   √ Time Motion Made 3:04 p.m. 
+VC Sugimura √   Motion  AMEND  
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:05 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:05 p.m. 
+CM Batangan   √ Time Motion Made 3:06 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Sinenci 
+ 13 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:07 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:07 p.m. 
+CM Batangan   √ Time Motion Made 3:08 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:09 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:10 p.m. 
+CM Batangan   √ Time Motion Made 3:10 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 3:14 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:15 p.m. 
+CM Batangan   √ Time Motion Made 3:25 p.m. 
+VC Sugimura √   Motion  AMEND 
+CM Paltin √   Maker Paltin 
+CM Johnson √  √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√  √ Time Vote Taken 3:26 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+ 14 
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+3:30 p.m. 
+CM Batangan   √ Time Motion Made 3:37 p.m. 
+VC Sugimura √   Motion  RECONSIDER 
+CM Paltin √   Maker Paltin 
+CM Johnson √  √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√  √ Time Vote Taken 3:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC   
+CM Batangan   √ Time Motion Made 3:37 p.m. 
+VC Sugimura √   Motion  WITHDRAW 
+CM Paltin √   Maker Paltin 
+CM Johnson √  √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√  √ Time Vote Taken 3:37 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+RESOLUTIONS 
+ 
+Resolution 26-69, FD1  "ADOPTING THE REAL PROPERTY TAX  RATES FOR 
+THE COUNTY OF MAUI, EFFECTIVE JULY 1, 2026" 
+ 
+CC 26 -13 COUNCILMEMBER BATANGAN , transmitting a proposed 
+amendment to Resolution 26 -69, FD1,  entitled " ADOPTING THE REAL 
+PROPERTY TAX RATES FOR THE COUNTY OF MAUI, EFFECTIVE JULY 1, 
+2026". 
+ 
+ AYE NO EXC Time Deliberations Began 11:50 a.m. 
+CM Batangan √   Time Motion Made 11:51 a.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+ 15 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Batangan 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:57 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 11:51 a.m. 
+CM Batangan √   Time Motion Made 11:52 a.m. 
+VC Sugimura √   Motion  AMEND with 
+CC 26-13 
+CM Paltin √   Maker Batangan 
+CM Johnson √   Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:55 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+Resolution 26-90 "AUTHORIZING THE ACCEPTANCE OF GOODFELLOW 
+BROS. LLC DONATION OF LABOR FOR IMPROVING KELAWEA MAUKA PARK, 
+UNDER CHAPTER 3.56, MAUI COUNTY CODE" 
+ 
+ AYE NO EXC Time Deliberations Began 3:40 p.m. 
+CM Batangan   √ Time Motion Made 3:40 p.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:41 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+ 16 
+Resolution 26-91 "AUTHORIZING THE ISSUANCE OF A  PERMIT WITH 
+GREATER DURATION THAN FIVE CONSECUTIVE DAYS FORTHE 2026 MAUI 
+AGFEST & 4-H LIVESTOCK FAIR, UNDER SECTION13.04A.100, MAUI COUNTY 
+CODE" 
+ 
+ AYE NO EXC Time Deliberations Began 3:41 p.m. 
+CM Batangan   √ Time Motion Made 3:41 p.m. 
+VC Sugimura √   Motion  ADOPT, as 
+amended 
+CM Paltin √   Maker Sinenci 
+CM Johnson   √ Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:44 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 3:42 p.m. 
+CM Batangan   √ Time Motion Made 3:42 p.m. 
+VC Sugimura √   Motion  AMEND/ 
+SUSPEND 
+Rule 19 
+CM Paltin √   Maker Paltin 
+CM Johnson   √ Seconder Sinenci 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:43 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+Resolution 26-92 "AUTHORIZING THE FILING OF AN APPLICATION WITH THE 
+DEPARTMENT OF HOUSING AND URBAN DEVELOPMENT, OF THE UNITED 
+STATES OF AMERICA, FOR A GRANT UNDER THE COMMUNITY 
+DEVELOPMENT BLOCK GRANT PROGRAM" 
+ 
+ AYE NO EXC  11:57 a.m. 
+CM Batangan √   Time Motion Made 11:57 a.m. 
+VC Sugimura √   Motion  ADOPT 
+CM Paltin √   Maker Sugimura 
+ 17 
+CM Johnson √   Seconder Cook 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 11:59 a.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+ORDINANCES 
+ 
+BILL 86 (2026) "A BILL FOR AN ORDINANCE AMENDING SUBSECTIONS 
+2.97.150(A) AND 16.25.109.2, MAUI COUNTY CODE, ON FEE WAIVERS" 
+ 
+ AYE NO EXC Time Deliberations Began 12:00 p.m. 
+CM Batangan √   Time Motion Made 12:00 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson √   Seconder Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Time Vote Taken 12:27 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 87 (2026 ) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART II, HIGHWAY BEAUTIFICATION,  
+ABANDONED VEHICLE, AND  TOURISM-RELATED TRAFFIC CONGESTION  
+REVOLVING FUND, INCREASE  DISBURSEMENT FOR SALARIES AND  
+PREMIUM PAY BY $50,000, DECREASE  DISBURSEMENT FOR OPERATIONS  
+OR SERVICES BY $50,000, VEHICLE DISPOSAL FEE  FUND, INCREASE  
+DISBURSEMENT FOR SALARIES AND PREMIUM PAY BY $14,607, DECREASE 
+DISBURSEMENT FOR OPERATIONS OR SERVICES BY $14,607" 
+ 
+ AYE NO EXC Time Deliberations Began 3:44 p.m. 
+CM Batangan   √ Time Motion Made 3:45 p.m. 
+VC Sugimura √   Motion  PASS on first 
+reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+ 18 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:46 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+ORDINANCES SECOND AND FINAL READING:  
+ 
+BILL 79 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF AGRICULTURE, 
+NEW APPROPRIATION FROM THE STATE OF HAWAI ʻI, DEPARTMENT OF 
+HEALTH IN THE AMOUNT OF $10,000" 
+ 
+ AYE NO EXC Time Deliberations Began 3:46 p.m. 
+CM Batangan   √ Time Motion Made 3:46 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+CM Paltin √   Maker Sugimura 
+CM Johnson   √ Seconder Cook 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:47 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+ 
+BILL NO. 82 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT 
+PROGRAM, GRANTS AND DISBURSEMENTS FOR BUSINESS DEVELOPMENT 
+AND TECHNOLOGY, SOUTH MAUI ECONOMIC DEVELOPMENT, 
+ENVIRONMENTAL, AND CULTURAL PROGRAMS, NEW CO NDITIONAL 
+LANGUAGE FOR MAUI ECONOMIC DEVELOPMENT BOARD, INC. FOR 
+STEMWORKS AFTERSCHOOL PROGRAM FOR KAMALI ʻI ELEMENTARY 
+SCHOOL IN THE AMOUNT OF $10,000" 
+ 
+ AYE NO EXC Time Deliberations Began 3:47 p.m. 
+CM Batangan   √ Time Motion Made 3:47 p.m. 
+VC Sugimura √   Motion  PASS on 
+second and 
+final reading 
+ 19 
+CM Paltin √   Maker Cook 
+CM Johnson   √ Seconder Sugimura 
+CM Rawlins-
+Fernandez 
+  √ Time Vote Taken 3:48 p.m. 
+CM Cook √     
+CM Uʻu-Hodgins √     
+CM Sinenci √     
+Chair Lee √     
+TOTAL VOTES 6  3 MOTION PASSED  
+ 
+TIME MEETING ADJOURNED:  4:29 p.m. 
+ 
