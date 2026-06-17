@@ -579,8 +579,9 @@ def main():
 </style></head><body><div class="wrap">
 <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS civic transparency</div>
 <h1>Kilo Aupuni — Knowing Our Government</h1>
-<p class="lead">Public-record civic intelligence for Maui County and the State of Hawaii: council &amp;
-legislative votes, campaign money, procurement, permits, and the patterns between them.</p>
+<p class="lead">Your government&rsquo;s public record, made plain &mdash; for the people of Maui and Hawai&#699;i.
+Who represents you, who funds them, who the government pays, and what&rsquo;s being decided next &mdash;
+gathered with care so any neighbor can follow along.</p>
 <div class="disc">Everything here is built from public records and presented as <b>documented facts and
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
