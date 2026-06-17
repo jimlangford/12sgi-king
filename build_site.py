@@ -267,6 +267,60 @@ def inject_nav(html, current):
         html = (html[:i] + COPYRIGHT + html[i:]) if i != -1 else (html + COPYRIGHT)
     return html
 
+
+# ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
+#    tenant_registry). On any report that exists per-tenant, surface a "choose a government" row so you can
+#    select a different tenant FROM THE SAME REPORT. Reads the ONE registry (tenant_registry.json) — no
+#    hardcoded tenant list. A tenant without that report yet shows a calm "building" chip (honest, not a dead
+#    link). Same class of presentation on every tenant — the productizable separation.
+_SWITCHER = None
+def _switcher_maps():
+    """(reverse {file -> (class_key, class_label, tenant_id)}, byclass {class_key -> [(tid,name,file|None)]})."""
+    global _SWITCHER
+    if _SWITCHER is not None: return _SWITCHER
+    rev, byclass, clabels = {}, {}, {}
+    try:
+        reg = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tenant_registry.json"), encoding="utf-8"))
+        clabels = {c["key"]: c["label"] for c in reg.get("report_classes", [])}
+        for c in reg.get("report_classes", []):
+            k = c["key"]; byclass[k] = []
+            for t in reg.get("civic_tenants", []):
+                files = t["reports"].get(k) or []
+                # build_site flattens published subdir paths ("lege/x.html" -> "lege_x.html"); match that
+                # so the switcher chips never 404 (the seed-drift/flatten gotcha).
+                f = files[0].replace("/", "_") if files else None
+                byclass[k].append((t["id"], t["name"], f))
+                if f: rev.setdefault(f, (k, clabels.get(k, k), t["id"]))
+    except Exception:
+        pass
+    _SWITCHER = (rev, byclass)
+    return _SWITCHER
+
+_SWITCH_CSS = ("<style id=tenant-switch-css>.tenant-switch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;"
+    "max-width:1100px;margin:10px auto 0;padding:9px 14px;background:#eef2f7;border:1px solid #bacde6;border-radius:11px;"
+    "font-family:'Segoe UI',system-ui,sans-serif}.ts-label{font-size:11.5px;color:#41536b;font-weight:600;margin-right:4px}"
+    ".ts-chip{font-size:12px;text-decoration:none;color:#1259a3;background:#fff;border:1px solid #bacde6;border-radius:99px;"
+    "padding:4px 11px;white-space:nowrap}.ts-chip:hover{border-color:#00356b;color:#00356b}"
+    ".ts-chip.cur{background:#00356b;color:#fff;border-color:#00356b;font-weight:600}"
+    ".ts-chip.ts-off{color:#9fb1c4;background:#f3f7fc;cursor:default}</style>")
+
+def inject_switcher(html, current_file):
+    rev, byclass = _switcher_maps()
+    info = rev.get((current_file or "").replace("/", "_"))
+    if not info:
+        return html                         # not a per-tenant report — leave it
+    ck, clabel, cur_tid = info
+    chips = ""
+    for tid, name, f in byclass.get(ck, []):
+        if f:
+            chips += '<a class="ts-chip%s" href="%s">%s</a>' % (" cur" if tid == cur_tid else "", f, name)
+        else:
+            chips += '<span class="ts-chip ts-off" title="this government&#39;s page is being gathered">%s</span>' % name
+    sw = (_SWITCH_CSS if "tenant-switch-css" not in html else "") + \
+         ('<div class="tenant-switch"><span class="ts-label">%s &mdash; choose a government:</span>%s</div>' % (clabel, chips))
+    m = re.search(r"</nav>", html, re.I)    # right under the top nav
+    return (html[:m.end()] + "\n" + sw + html[m.end():]) if m else (sw + html)
+
 # ── Yale-blue civic recolor (2026-06-16, Option A — Jimmy: new graphics on ALL sites) ──
 # COLOR-ONLY skin remap: the old warm-dark / green-gold chrome hexes -> the new light
 # Yale-blue civic palette (matches go.html's 12sgi-design 2026-06-16 export). Applied as a
@@ -438,6 +492,7 @@ def main():
             flat = rel.replace("/", "_")
             html = open(src, encoding="utf-8", errors="replace").read()
             html = inject_nav(html, flat)          # govOS top nav on every civic page
+            html = inject_switcher(html, flat)     # per-tenant report: choose a government (same report, any tenant)
             html = add_narrative(html, flat)       # plain-words door-in for the everyday person
             html = add_records_cta(html, flat)     # request-the-record banner where data is thin/pending
             html = add_olelo_notice(html)          # visible ʻŌlelo community-review posture
@@ -450,6 +505,7 @@ def main():
         if os.path.exists(src):
             with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
                 _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
+                _h = inject_switcher(_h, rel)      # per-tenant report: choose a government switcher
                 _h = add_narrative(_h, rel)
                 _h = add_records_cta(_h, rel)
                 _h = add_olelo_notice(_h)

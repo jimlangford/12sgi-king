@@ -1,0 +1,316 @@
+{
+ "generated": "2026-06-16 19:02 HST",
+ "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
+ "report_classes": [
+  {
+   "key": "govern",
+   "label": "Who governs",
+   "desc": "officials / representatives + their voting record"
+  },
+  {
+   "key": "money",
+   "label": "Money behind them",
+   "desc": "campaign finance — who funds the officials"
+  },
+  {
+   "key": "contracts",
+   "label": "Contracts & spending",
+   "desc": "who the government pays"
+  },
+  {
+   "key": "federal",
+   "label": "Federal dollars",
+   "desc": "federal money flowing into the jurisdiction"
+  },
+  {
+   "key": "crossref",
+   "label": "Money × votes",
+   "desc": "contracts crossed with donors / parity — the pattern"
+  },
+  {
+   "key": "agendas",
+   "label": "Upcoming agendas",
+   "desc": "what is being decided next"
+  },
+  {
+   "key": "minutes",
+   "label": "Meeting minutes",
+   "desc": "the official record — who moved, who voted, what carried"
+  },
+  {
+   "key": "charter",
+   "label": "Charter ↔ Law",
+   "desc": "the governing rules, crosswalked to real law"
+  },
+  {
+   "key": "audit",
+   "label": "Audit balance",
+   "desc": "the money×votes equation scorecard"
+  }
+ ],
+ "civic_tenants": [
+  {
+   "id": "hi-maui",
+   "name": "Maui County",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [
+     "officials_scorecard.html"
+    ],
+    "money": [
+     "money_behind_officials.html"
+    ],
+    "contracts": [
+     "maui_contract_awards.html"
+    ],
+    "federal": [
+     "federal_money.html"
+    ],
+    "crossref": [
+     "contracts_x_donors.html"
+    ],
+    "agendas": [
+     "agendas_maui.html"
+    ],
+    "minutes": [
+     "minutes_hi-maui.html"
+    ],
+    "charter": [
+     "crosswalk_maui.html"
+    ],
+    "audit": [
+     "audit_balance.html"
+    ]
+   },
+   "report_classes_filled": 9,
+   "report_classes_total": 9
+  },
+  {
+   "id": "hi-state",
+   "name": "State of Hawaiʻi",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [
+     "lege/legislator_scorecard.html"
+    ],
+    "money": [
+     "statewide_money_patterns.html"
+    ],
+    "contracts": [
+     "contracts_state.html"
+    ],
+    "federal": [
+     "federal_money.html"
+    ],
+    "crossref": [
+     "parity_state.html"
+    ],
+    "agendas": [
+     "agendas_state.html"
+    ],
+    "minutes": [],
+    "charter": [
+     "crosswalk_state.html"
+    ],
+    "audit": [
+     "audit_balance.html"
+    ]
+   },
+   "report_classes_filled": 8,
+   "report_classes_total": 9
+  },
+  {
+   "id": "hi-hawaii",
+   "name": "Hawaiʻi County",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [
+     "statewide_money_patterns.html"
+    ],
+    "contracts": [
+     "contracts_hawaii.html"
+    ],
+    "federal": [
+     "federal_money_hawaii.html"
+    ],
+    "crossref": [],
+    "agendas": [
+     "agendas_hawaii.html"
+    ],
+    "minutes": [
+     "minutes_hi-hawaii.html"
+    ],
+    "charter": [
+     "crosswalk_hawaii.html"
+    ],
+    "audit": [
+     "audit_balance.html"
+    ]
+   },
+   "report_classes_filled": 7,
+   "report_classes_total": 9
+  },
+  {
+   "id": "hi-kauai",
+   "name": "Kauaʻi County",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [
+     "statewide_money_patterns.html"
+    ],
+    "contracts": [
+     "contracts_kauai.html"
+    ],
+    "federal": [
+     "federal_money_kauai.html"
+    ],
+    "crossref": [],
+    "agendas": [
+     "agendas_kauai.html"
+    ],
+    "minutes": [
+     "minutes_hi-kauai.html"
+    ],
+    "charter": [
+     "crosswalk_kauai.html"
+    ],
+    "audit": [
+     "audit_balance.html"
+    ]
+   },
+   "report_classes_filled": 7,
+   "report_classes_total": 9
+  },
+  {
+   "id": "hi-honolulu",
+   "name": "Honolulu",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [
+     "statewide_money_patterns.html"
+    ],
+    "contracts": [
+     "contracts_honolulu.html"
+    ],
+    "federal": [
+     "federal_money_honolulu.html"
+    ],
+    "crossref": [
+     "parity_honolulu.html"
+    ],
+    "agendas": [
+     "agendas_honolulu.html"
+    ],
+    "minutes": [
+     "minutes_hi-honolulu.html"
+    ],
+    "charter": [
+     "crosswalk_honolulu.html"
+    ],
+    "audit": [
+     "audit_balance.html"
+    ]
+   },
+   "report_classes_filled": 8,
+   "report_classes_total": 9
+  },
+  {
+   "id": "ny",
+   "name": "New York",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [
+     "money_nyc.html"
+    ],
+    "contracts": [
+     "contracts_nyc.html"
+    ],
+    "federal": [],
+    "crossref": [
+     "parity_nyc.html"
+    ],
+    "agendas": [
+     "agendas_nyc.html"
+    ],
+    "minutes": [],
+    "charter": [],
+    "audit": []
+   },
+   "report_classes_filled": 4,
+   "report_classes_total": 9
+  }
+ ],
+ "creative_tenants": [
+  {
+   "id": "film_12stones",
+   "name": "12 STONES: The Aloha Code",
+   "kind": "film",
+   "quadrant": "film",
+   "render_register": "photoreal",
+   "status": "in_production"
+  },
+  {
+   "id": "film_mokuula",
+   "name": "MOKUʻULA: The Awakening",
+   "kind": "film",
+   "quadrant": "film",
+   "render_register": "photoreal",
+   "status": "script_rebuilt"
+  },
+  {
+   "id": "film_luna",
+   "name": "LUNA Chronicles",
+   "kind": "film",
+   "quadrant": "film",
+   "render_register": "cartoon-3d",
+   "status": "trailer_only"
+  },
+  {
+   "id": "film_keys",
+   "name": "KEYS OF THE STARFORGE",
+   "kind": "film",
+   "quadrant": "film",
+   "render_register": "photoreal",
+   "status": "script_partial"
+  },
+  {
+   "id": "film_seventh_stone",
+   "name": "Seventh Stone",
+   "kind": "film",
+   "quadrant": "film",
+   "render_register": "photoreal",
+   "status": "greenlit_treatment"
+  },
+  {
+   "id": "game_sage",
+   "name": "Sage Game",
+   "kind": "game",
+   "quadrant": "game",
+   "render_register": "cartoon-3d",
+   "status": "in_production"
+  },
+  {
+   "id": "mv_catalog",
+   "name": "elementLOTUS music videos",
+   "kind": "music_video",
+   "quadrant": "music_video",
+   "render_register": "photoreal",
+   "status": "in_production"
+  }
+ ],
+ "counts": {
+  "civic": 6,
+  "creative": 7,
+  "report_classes": 9
+ }
+}
