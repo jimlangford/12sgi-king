@@ -37,13 +37,36 @@
  .tier3{border:1px dashed var(--accent);border-radius:10px;background:rgba(0,53,107,.04);padding:11px 14px;margin-top:10px;font-size:13px;color:var(--ink-dim)}
  .note{font-size:12.5px;color:var(--ink-faint);font-style:italic;margin:6px 0}
  svg{max-width:100%;height:auto} a{color:var(--accent2)}
+ .tool{border:1px solid var(--accent);border-radius:12px;background:rgba(0,53,107,.04);padding:14px 16px;margin:10px 0}
+ .tool .r{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 4px}
+ .tool input{flex:1;min-width:170px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+ .tool button{font:inherit;font-size:14px;font-weight:700;padding:10px 18px;border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;min-height:44px}
+ .tool button:disabled{opacity:.5}
+ .res{margin-top:8px} .res dl{display:grid;grid-template-columns:max-content 1fr;gap:5px 14px;margin:0;font-size:14px}
+ .res dt{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);padding-top:2px}
+ .res dd{margin:0;font-weight:600;color:var(--ink)}
+ .res .out{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+ .res .out a{font-family:Consolas,monospace;font-size:12px;border:1px solid var(--line);border-radius:7px;padding:6px 10px;text-decoration:none}
+ .live{display:inline-block;font-family:Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ok);border:1px solid var(--ok);border-radius:9px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+ .model{border:1px dashed var(--warn);border-radius:10px;background:rgba(176,125,26,.06);padding:6px 12px;font-size:12.5px;color:var(--ink-dim);margin:7px 0}
+ .model b{color:var(--warn)}
+ .tr{display:inline-block;width:30px;text-align:center;font-family:Consolas,monospace;font-weight:700;color:#fff;border-radius:5px;padding:1px 0;font-size:12px}
+ .answers td{white-space:normal}
  footer{font-family:Consolas,monospace;font-size:10.5px;color:var(--ink-faint);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
- @media(max-width:430px){ h1{font-size:23px} .wrap{padding:14px 12px 70px} }
+ @media(max-width:430px){ h1{font-size:23px} .wrap{padding:14px 12px 70px} .res dl{grid-template-columns:1fr} .res dt{padding-top:8px} }
 </style></head><body><div class="wrap">
  <div class="top"><a href="../../../../index.html">← govOS home</a><a href="../title19-crosswalk/Title19%20Crosswalk.html">Charter ⇄ Law Crosswalk</a><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Maui County Code (Municode) ↗</a></div>
  <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS · public service</div>
  <h1>Title 19 — Plain-Language Service <span class="free">Free · no account</span></h1>
- <p class="lead">A plain-language navigator to <b>Maui County Code Title 19 (Zoning)</b>: how the process works, what it costs and who pays, your community plan, agriculture, the use table, and who decides. Every section links to the authoritative code on Municode. <b>This is a first version — sections marked <span class="exp">expanding</span> are being filled in; nothing here is legal advice.</b></p>
+ <p class="lead">A plain-language navigator to <b>Maui County Code Title 19 (Zoning)</b>: a <b>live parcel lookup</b>, how the process works, what it costs and who pays, your community plan, agriculture, the use table, who decides — plus a <b>form-based code crosswalk</b> modeling the County's rewrite. Every section links to the authoritative source. <b>This is a first version — sections marked <span class="exp">expanding</span> are being filled in; nothing here is legal advice.</b></p>
+
+ <h2>★ Parcel lookup <span class="live">live data</span></h2>
+ <p class="note">Enter a Maui County <b>TMK</b> (tax map key) to see all of its designations — county zoning, community-plan land use, state land-use district, SMA, and Important Ag Lands — pulled live from the Hawaiʻi Statewide GIS. For <b>entitlements, conditions, and permit history</b> (which are not in GIS), the result links you to MAPPS and the real-property record.</p>
+ <div class="tool">
+  <div class="r"><input id="tmk" type="text" inputmode="numeric" placeholder="TMK digits — e.g. 211001001" aria-label="Tax Map Key"><button id="plk" onclick="lookupTMK()">Look up</button></div>
+  <div class="res" id="pres"><p class="note">Tip: type the digits of your TMK (zone-section-plat-parcel). Don't know it? Open the <a href="https://experience.arcgis.com/experience/d91bec49db3a4ef9b52f497a136562e6" target="_blank" rel="noopener">State Land Use Viewer ↗</a> to find it on a map.</p></div>
+ </div>
+ <p class="src">Live designations: <a href="https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer" target="_blank" rel="noopener">Hawaiʻi Statewide GIS — Parcels &amp; Zoning (MapServer)</a> (Maui Parcels L30, County Zoning L33, Community Plan Boundaries L10, State Land Use L20, SMA L21, Important Ag Lands L4). Permits/entitlements via Maui County <b>MAPPS</b>. No parcel data is stored or fabricated — every field is fetched live. <span class="exp">expanding: address search; conditions overlay</span></p>
 
  <h2>1 · Plain-language process navigator</h2>
  <p class="note">The general path a zoning/permit matter takes under Title 19. Each step notes typical conditions, the expense, and who bears it today.</p>
@@ -126,7 +149,86 @@
  </svg>
  <p class="note">⚖️ The middle bar is where James's position applies: requirements the County imposes should be County-borne. <span class="exp">expanding: charted fee schedule from the code</span></p>
 
- <div class="tier3"><b>Coming — Tier 3 (verified tools):</b> personalized parcel lookups, saved applications, and submission helpers will be <b>verification-gated</b> (identity-verified). <b>No live billing is enabled.</b> Tiers 1 (this page) &amp; 2 are free and need no account.</div>
+ <h2>8 · Form-based code crosswalk <span class="exp">proposed model</span></h2>
+ <div class="model"><b>PROPOSED MODEL — demonstration, not adopted law.</b> This is <i>our</i> working model of the rewrite the County is pursuing: a translation of today's <b>use-based</b> Title 19 (which separates by use) into a <b>form-based</b> code (organized by physical form, context, and the rural-to-urban <b>transect</b> — building form &amp; frontage rather than use-separation). It illustrates the County's stated goal of a cohesive, modernized, well-designed-community code. Maui has not adopted a form-based code.</div>
+ <table><thead><tr><th>Transect / form category</th><th>Today's Title 19 districts (use-based)</th><th>Form &amp; frontage emphasis</th></tr></thead><tbody>
+  <tr><td><span class="tr" style="background:#1f8a5b">T1</span> Natural</td><td>Conservation; open space</td><td>Preserve; minimal building; no urban frontage</td></tr>
+  <tr><td><span class="tr" style="background:#3f7d4e">T2</span> Rural</td><td>Agricultural (Ch. 19.30A); Rural (Ch. 19.29)</td><td>Farm/ranch buildings; deep setbacks; working lands</td></tr>
+  <tr><td><span class="tr" style="background:#b07d1a">T3</span> Sub-urban</td><td>Lower-density residential / country</td><td>Detached homes; yards; porches; low lot coverage</td></tr>
+  <tr><td><span class="tr" style="background:#c0682c">T4</span> General urban</td><td>Medium residential; duplex; light apartment</td><td>Mixed housing types; shallower setbacks; stoops/porches</td></tr>
+  <tr><td><span class="tr" style="background:#1259a3">T5</span> Urban center</td><td>Business / commercial; town centers (Wailuku, Kahului, Lāhainā town)</td><td>Mixed-use; storefront frontage; build-to line; walkable</td></tr>
+  <tr><td><span class="tr" style="background:#00356b">T6</span> Urban core</td><td>Highest-intensity mixed-use core <span class="exp">if designated</span></td><td>Dense mixed-use; continuous frontage; civic anchors</td></tr>
+  <tr><td><span class="tr" style="background:#6d7f97">SD</span> Special</td><td>Industrial; airport; special districts</td><td>Function-specific; outside the transect</td></tr>
+ </tbody></table>
+ <p class="src">Model framework: the <a href="https://formbasedcodes.org/definitions/" target="_blank" rel="noopener">Form-Based Codes Institute</a> transect definitions, mapped against current <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Maui County Code Title 19</a> districts and the Maui County General Plan / Maui Island Plan. District-to-transect assignments are <b>our proposed demonstration</b>, not County designations. <span class="exp">expanding: building-form &amp; frontage standards per transect</span></p>
 
- <footer>govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code Title 19 (Municode) · first version 2026-06-17, expanding · not legal advice · public records only</footer>
-</div></body></html>
+ <h2>9 · Answering the County's rewrite goals</h2>
+ <p class="note">How this service already embodies the audit findings the Title 19 rewrite is fixing and the goals it is pursuing (as presented by the County). Labeled mapping — our features beside the County's stated aims.</p>
+ <table class="answers"><thead><tr><th>County finding / rewrite goal</th><th>How this service answers it</th></tr></thead><tbody>
+  <tr><td>Code is hard to read / not user-friendly</td><td>Plain-language navigator (§1) + this whole page in everyday language</td></tr>
+  <tr><td>Processes not clear or transparent</td><td>Step-by-step process flow with <b>who pays</b> at each step (§1 + charts §7)</td></tr>
+  <tr><td>"Incorporate a Table of Uses"</td><td>Table of Uses (§4) — starter now, expanding to all districts</td></tr>
+  <tr><td>"Convey concepts with quality illustrations &amp; tables"</td><td>Process-flow + who-pays charts (§7); transect table (§8)</td></tr>
+  <tr><td>Agricultural zoning practices aren't working</td><td>First-class Agriculture module (§3), tied to food security</td></tr>
+  <tr><td>Lacks flexibility; use-separation; interim/stacked zoning</td><td>Form-based code crosswalk (§8) — a flexible, form-first model</td></tr>
+  <tr><td>Text/maps hard to access</td><td>Live parcel lookup (★) — your designations on demand, free</td></tr>
+  <tr><td>Implement General Plan; well-designed communities; placemaking</td><td>Transect model (§8) organizes by context &amp; form; "focus the plans" analysis (§6)</td></tr>
+  <tr><td>Historic buildings / housing affordability / STR burden</td><td><span class="exp">expanding modules</span> — flagged for the next layer</td></tr>
+ </tbody></table>
+ <p class="src">County findings &amp; goals as presented in the Maui County <b>Title 19 Comprehensive Zoning Code rewrite</b> (audit findings &amp; rewrite goals). See the <a href="https://www.mauicounty.gov/121/Planning-Department" target="_blank" rel="noopener">Maui County Planning Department</a>. Mapping is our own. <span class="exp">expanding: historic, housing &amp; short-term-rental modules</span></p>
+
+ <div class="tier3"><b>Free now (no account):</b> this page, the live parcel lookup, and the navigator are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> saved applications, submission helpers, and personalized tracking will be <b>verification-gated</b> (identity-verified). <b>No live billing is enabled.</b></div>
+
+ <footer>govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code Title 19 (Municode) + Hawaiʻi Statewide GIS (live parcel data) · first version 2026-06-17, expanding · not legal advice · public records only</footer>
+</div>
+<script>
+(function(){
+ var BASE="https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer", SR=102202;
+ var LUV="https://experience.arcgis.com/experience/d91bec49db3a4ef9b52f497a136562e6";
+ var MAPPS="https://mapps2.co.maui.hi.us/EnerGov_Prod/SelfService";
+ var MUNI="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances";
+ var SLU={U:"Urban",A:"Agricultural",R:"Rural",C:"Conservation"};
+ function J(u){return fetch(u).then(function(r){return r.json();});}
+ function esc(s){return (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+ function chapterFor(zd,zc){var s=((zd||"")+" "+(zc||"")).toLowerCase();
+  if(s.indexOf("agric")>-1)return "Ch. 19.30A (Agricultural)";
+  if(s.indexOf("rural")>-1)return "Ch. 19.29 (Rural)";
+  return "Title 19 — see the district chapter on Municode";}
+ function ptQ(id,x,y,out){var g=encodeURIComponent(JSON.stringify({x:x,y:y,spatialReference:{wkid:SR}}));
+  return J(BASE+"/"+id+"/query?geometry="+g+"&geometryType=esriGeometryPoint&inSR="+SR+"&spatialRel=esriSpatialRelIntersects&outFields="+out+"&returnGeometry=false&f=json")
+   .then(function(d){return (d&&d.features&&d.features[0])?d.features[0].attributes:null;}).catch(function(){return null;});}
+ window.lookupTMK=function(){
+  var raw=((document.getElementById("tmk").value)||"").replace(/\D/g,"");
+  var box=document.getElementById("pres"), btn=document.getElementById("plk");
+  if(raw.length<7){box.innerHTML='<p class="note">Enter your full TMK digits (e.g. 211001001).</p>';return;}
+  btn.disabled=true; box.innerHTML='<p class="note">Looking up parcel '+esc(raw)+' in the Hawaiʻi Statewide GIS…</p>';
+  J(BASE+"/30/query?where="+encodeURIComponent("tmk_txt='"+raw+"'")+"&outFields=tmk_txt,qpub_link,taxacres&returnGeometry=true&f=json").then(function(d){
+   var f=d&&d.features&&d.features[0];
+   if(!f){box.innerHTML='<p class="note">No parcel matched <b>'+esc(raw)+'</b>. Check the digits, or find it on the <a href="'+LUV+'" target="_blank" rel="noopener">State Land Use Viewer ↗</a>.</p>';btn.disabled=false;return;}
+   var a=f.attributes, ring=f.geometry.rings[0], sx=0, sy=0, i;
+   for(i=0;i<ring.length;i++){sx+=ring[i][0];sy+=ring[i][1];}
+   var x=sx/ring.length, y=sy/ring.length;
+   Promise.all([ptQ(33,x,y,"zone_code,zone_dist,cp_area"),ptQ(10,x,y,"designations,cp_year"),ptQ(20,x,y,"ludcode"),ptQ(21,x,y,"smarea"),ptQ(4,x,y,"docket_no")]).then(function(r){
+    var z=r[0]||{},c=r[1]||{},slu=r[2]||{},sma=r[3],ial=r[4], qp=a.qpub_link||"";
+    box.innerHTML='<dl>'+
+     '<dt>TMK</dt><dd>'+esc(a.tmk_txt)+'</dd>'+
+     '<dt>County zoning</dt><dd>'+esc(z.zone_dist||"—")+(z.zone_code?' <span class="src" style="border:0">['+esc(z.zone_code)+']</span>':'')+'</dd>'+
+     '<dt>Title 19 chapter</dt><dd>'+esc(chapterFor(z.zone_dist,z.zone_code))+'</dd>'+
+     '<dt>Community plan</dt><dd>'+esc(c.designations||z.cp_area||"—")+(c.cp_year?' ('+esc(c.cp_year)+')':'')+'</dd>'+
+     '<dt>State land use</dt><dd>'+esc(SLU[slu.ludcode]||slu.ludcode||"—")+'</dd>'+
+     '<dt>SMA</dt><dd>'+(sma?'Within a Special Management Area':'Not in mapped SMA')+'</dd>'+
+     '<dt>Important Ag Land</dt><dd>'+(ial?('Yes — docket '+esc(ial.docket_no)):'Not mapped as IAL')+'</dd>'+
+     '<dt>Parcel size</dt><dd>'+esc(a.taxacres!=null?(a.taxacres+" ac (tax)"):"—")+'</dd>'+
+     '</dl><div class="out">'+
+      (qp?'<a href="'+esc(qp)+'" target="_blank" rel="noopener">Real-property record (qPublic) ↗</a>':'')+
+      '<a href="'+MAPPS+'" target="_blank" rel="noopener">Permits &amp; entitlements (MAPPS) ↗</a>'+
+      '<a href="'+MUNI+'" target="_blank" rel="noopener">Title 19 chapter (Municode) ↗</a>'+
+     '</div><p class="note">Designations are live from the Hawaiʻi Statewide GIS (Parcels &amp; Zoning). <b>Entitlements, conditions, and permit history are not in GIS</b> — use the MAPPS link for this parcel\'s permits. Designations are at the parcel\'s approximate center; confirm boundary-edge cases with the County.</p>';
+    btn.disabled=false;
+   });
+  }).catch(function(){box.innerHTML='<p class="note">GIS lookup is unavailable right now. Open the <a href="'+LUV+'" target="_blank" rel="noopener">State Land Use Viewer ↗</a> or <a href="'+MAPPS+'" target="_blank" rel="noopener">MAPPS ↗</a>.</p>';btn.disabled=false;});
+ };
+ var t=document.getElementById("tmk"); if(t){t.addEventListener("keydown",function(e){if(e.key==="Enter")window.lookupTMK();});}
+})();
+</script>
+</body></html>
