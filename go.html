@@ -62,6 +62,12 @@
  .chip:hover{border-color:var(--accent)} .chip .cn{font-size:13px;font-weight:600}
  .chip .cl{font-size:10px;letter-spacing:.5px;color:var(--ink-faint);margin-top:2px;font-family:'JetBrains Mono',Consolas,monospace}
  .foot{font-size:11px;color:var(--ink-faint);margin-top:18px;line-height:1.6;text-align:center}
+ /* follow-the-money tenant selector (active-tenant, not Maui-centric) */
+ .ftm-head{display:flex;align-items:center;gap:9px;margin:0 2px 10px}
+ .ftm-lbl{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+ .ftm-head select{flex:1;font-family:inherit;font-size:13.5px;color:var(--accent);background:#fff;border:1px solid var(--line);
+   border-radius:9px;padding:8px 11px;cursor:pointer;max-width:300px}.ftm-head select:hover{border-color:var(--accent)}
+ #ftm-cards .b .none{color:var(--ink-faint);font-style:italic}
  a{color:var(--accent-2)}
 </style></head><body><div class="wrap">
 
@@ -107,15 +113,13 @@
     <div class="qb">Civic transparency — votes · money · permits · patterns, across 8 tenants. <span class="tag mir">public</span></div>
   </a>
 
-  <!-- ══ govOS — the public substance (every dashboard + correlation preserved) ══ -->
+  <!-- ══ govOS — follow the money, for the ACTIVE tenant (Jimmy 2026-06-16: not Maui-centric).
+       The Government select drives the money trail; cards are rebuilt from the tenant registry
+       (window.__FTM__, injected by build_site). Sticky via localStorage. ══ -->
   <div class="sect">govOS · follow the money</div>
   <a class="card" href="reports.html"><span class="tag mir">govOS</span><div class="t">govOS — home</div><div class="b">The civic transparency system — votes · money · permits · patterns · contracts · scorecards</div></a>
-  <a class="card" href="county_dashboard.html"><span class="tag mir">govOS</span><div class="t">Maui County dashboard</div><div class="b">The home tenant — council, money, votes, contracts in one view</div></a>
-  <a class="card" href="money_behind_officials.html"><span class="tag mir">govOS</span><div class="t">Money behind officials</div><div class="b">Who funds each decider — public campaign-finance record</div></a>
-  <a class="card" href="ka_leo_voice.html"><span class="tag mir">govOS</span><div class="t">Ka Leo — the louder voice</div><div class="b">How much louder a donation makes a voice, asked as a question</div></a>
-  <a class="card" href="parity_check.html"><span class="tag mir">govOS</span><div class="t">Parity — pairs that no longer answer</div><div class="b">The Kumulipo broken-pair scan across money × votes</div></a>
-  <a class="card" href="contracts_x_donors.html"><span class="tag mir">govOS</span><div class="t">Contracts × donors</div><div class="b">Public-records join: who wins work and also gives</div></a>
-  <a class="card" href="patterns_money_x_votes.html"><span class="tag mir">govOS</span><div class="t">Money × votes</div><div class="b">Patterns where giving and deciding line up — framed as questions</div></a>
+  <div class="ftm-head"><span class="ftm-lbl">Government</span><select id="ftm-gov" aria-label="Follow the money for which government"></select></div>
+  <div id="ftm-cards"></div>
 
   <!-- ══ TENANTS — one tap each (all eight preserved) ══ -->
   <div class="sect">Tenants · jump straight in</div>
@@ -176,6 +180,21 @@
        if(p)p.textContent=m[q]+'%'; if(b)b.style.width=m[q]+'%';
      });
    }).catch(function(){});
+ })();
+ // FOLLOW THE MONEY — for the ACTIVE tenant (Jimmy: not Maui-centric). window.__FTM__ is injected by
+ // build_site from the tenant registry: {order:[tid...], tenants:{tid:{name, trail:[[label,file,blurb]...]}}}.
+ (function(){
+   var F=window.__FTM__; var sel=document.getElementById('ftm-gov'), box=document.getElementById('ftm-cards');
+   if(!F||!sel||!box){return;}
+   var order=F.order||Object.keys(F.tenants||{});
+   sel.innerHTML=order.map(function(t){return '<option value="'+t+'">'+(F.tenants[t]||{}).name+'</option>';}).join('');
+   function render(t){ var d=F.tenants[t]||{}; var trail=d.trail||[]; box.innerHTML='';
+     if(!trail.length){box.innerHTML='<a class="card" href="tenant_'+t+'.html"><span class="tag mir">govOS</span><div class="t">'+(d.name||t)+' — overview</div><div class="b"><span class="none">money pages fill in as this government’s records are ingested</span></div></a>';return;}
+     trail.forEach(function(r){ var a=document.createElement('a'); a.className='card'; a.href=r[1];
+       a.innerHTML='<span class="tag mir">govOS</span><div class="t">'+r[0]+'</div><div class="b">'+(r[2]||'')+'</div>'; box.appendChild(a); }); }
+   var saved; try{saved=localStorage.getItem('govos.tenant');}catch(e){}
+   var cur=(saved&&F.tenants[saved])?saved:(order[0]||'hi-maui'); sel.value=cur; render(cur);
+   sel.addEventListener('change',function(){var t=this.value; try{localStorage.setItem('govos.tenant',t);}catch(e){} render(t);});
  })();
 </script>
 </body></html>

@@ -362,6 +362,27 @@ def inject_switcher(html, current_file):
     m = re.search(r"</nav>", html, re.I)        # right under the top nav
     return (html[:m.end()] + "\n" + sw + html[m.end():]) if m else (sw + html)
 
+# ── "Follow the money" for the ACTIVE tenant (Jimmy 2026-06-16: not Maui-centric). go.html's money
+#    section is rebuilt client-side from this registry-driven map, per the government you pick. ──
+_FTM_CLASSES = [("money", "Money behind them", "Who funds each decider — public campaign-finance record"),
+                ("contracts", "Contracts &amp; spending", "Who this government pays — contract awards"),
+                ("crossref", "Money &times; votes", "Where giving and deciding line up — framed as questions"),
+                ("federal", "Federal dollars", "Federal money flowing into the jurisdiction"),
+                ("audit", "Audit balance", "The money&times;votes equation scorecard")]
+def _ftm_script(prefix=""):
+    """<script>window.__FTM__=…</script> — per-tenant money trail from the ONE registry. prefix='../' for
+    the /king/ copy so links resolve up a level there; '' for the root front door."""
+    _rev, byclass, treg, _order = _switcher_maps()
+    tenants, torder = {}, []
+    for tid in treg:
+        torder.append(tid); trail = []
+        for ck, lbl, blurb in _FTM_CLASSES:
+            for (t, _n, f) in byclass.get(ck, []):
+                if t == tid and f:
+                    trail.append([lbl, prefix + f, blurb]); break
+        tenants[tid] = {"name": treg[tid]["name"], "trail": trail}
+    return '<script id="ftm-data">window.__FTM__=%s;</script>' % json.dumps({"order": torder, "tenants": tenants}, ensure_ascii=False)
+
 # ── Yale-blue civic recolor (2026-06-16, Option A — Jimmy: new graphics on ALL sites) ──
 # COLOR-ONLY skin remap: the old warm-dark / green-gold chrome hexes -> the new light
 # Yale-blue civic palette (matches go.html's 12sgi-design 2026-06-16 export). Applied as a
@@ -613,7 +634,11 @@ def main():
         print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
     _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
     if os.path.exists(_go):
-        shutil.copy(_go, os.path.join(SITE, "go.html"))
+        _goraw = open(_go, encoding="utf-8").read()
+        # inject the active-tenant "follow the money" map (root paths) before writing the root launcher
+        _goroot = _goraw.replace("</head>", _ftm_script("") + "</head>", 1) if "ftm-data" not in _goraw else _goraw
+        with open(os.path.join(SITE, "go.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(_goroot)
         # also under king/ so the King shell's "Studio ->" door (href="go.html") resolves.
         # The root go.html is root-relative to the site (govOS dashboards live at root: e.g.
         # jurisdictions.html, county_dashboard.html, ./ = govOS home, king/ = the King app).
@@ -632,7 +657,9 @@ def main():
                 if h in ("./", "."):
                     return 'href="../"'
                 return 'href="../%s"' % h    # root-level govOS page -> up one from /king/
-            _kgo = re.sub(r'href="([^"]*)"', _king_href, open(_go, encoding="utf-8").read())
+            _kgo = re.sub(r'href="([^"]*)"', _king_href, _goraw)
+            # /king/ copy: money-trail links resolve up one level (the civic pages live at site root)
+            _kgo = _kgo.replace("</head>", _ftm_script("../") + "</head>", 1) if "ftm-data" not in _kgo else _kgo
             with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(_kgo)
         print("  + go.html: live/mirror failover launcher (root + king/)")
@@ -725,10 +752,10 @@ Sources are linked on every page.</div>
     # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
     # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
     # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
-    _go_src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
-    if os.path.exists(_go_src):
-        shutil.copy(_go_src, os.path.join(SITE, "index.html"))
-        print("  + index.html = go.html (Quad-OS launcher is the front door; civic hub preserved at reports.html)")
+    _go_built = os.path.join(SITE, "go.html")   # the already-built root launcher (FTM map injected)
+    if os.path.exists(_go_built):
+        shutil.copy(_go_built, os.path.join(SITE, "index.html"))
+        print("  + index.html = go.html (Quad-OS launcher front door, active-tenant money map; civic hub at reports.html)")
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
     # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
