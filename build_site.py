@@ -200,6 +200,7 @@ NAV_CSS = ("<style>"
     ".gn-brand .mk{color:#d9b24c;font-size:17px;line-height:1}"
     ".gn-brand b{color:#efe9da;font-weight:600;font-size:15px;letter-spacing:.2px}"
     ".gn-brand .sub{color:#8a8674;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;border-left:1px solid #34301f;padding-left:9px}"
+    ".gn-here{font-size:11px;color:#8a8674;margin-right:12px;white-space:nowrap;align-self:center}.gn-here b{color:#d9b24c}"
     ".gn-menu{display:flex;align-items:center;gap:1px;flex:1}"
     ".gn-group{position:relative}"
     ".gn-top{display:flex;align-items:center;gap:6px;background:none;border:0;color:#cfc9b6;font:inherit;font-size:13px;padding:8px 12px;border-radius:7px;cursor:pointer}"
@@ -238,15 +239,56 @@ NAV_JS = ("<script>(function(){var n=document.querySelector('.govos-nav');if(!n)
     "document.addEventListener('click',function(e){if(!n.contains(e.target))"
     "n.querySelectorAll('.gn-group').forEach(function(x){x.classList.remove('open');});});})();</script>")
 
+# Tenant-aware nav: the dropdown groups follow the ACTIVE tenant (Jimmy 2026-06-16: "pick a tenant and adjust"
+# — the nav was Maui-centric). Each group is a set of REPORT CLASSES; nav_bar resolves them to the current
+# tenant's files from the ONE registry. Pick a different government (the Governments group / the pulldown) and
+# you land on its page, where the nav re-resolves to that tenant. Non-tenant pages default to the home tenant.
+def _esc(s): return str(s if s is not None else "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+NAV_GROUP_CLASSES = [
+    ("Your Officials", ["govern", "money"]),
+    ("Follow the Money", ["money", "contracts", "crossref", "federal", "audit"]),
+    ("The Record", ["minutes", "agendas", "charter"]),
+]
+_HOME_TENANT = "hi-maui"
+def _tenant_of(current):
+    """Which tenant a flat filename belongs to (registry rev map or tenant_<id>.html); home tenant otherwise."""
+    rev, byclass, treg, order = _switcher_maps()
+    cf = (current or "").replace("/", "_")
+    if cf in rev: return rev[cf][2]
+    m = re.match(r"tenant_(.+)\.html$", cf)
+    if m and treg and m.group(1) in treg: return m.group(1)
+    return _HOME_TENANT
+
 def nav_bar(current):
-    """Professional grouped top-bar for `current` (a flat filename, '' for the hub)."""
+    """Professional grouped top-bar, TENANT-AWARE: groups resolve to the active tenant's pages via the registry."""
+    rev, byclass, treg, order = _switcher_maps()
+    cf = (current or "").replace("/", "_")
+    tid = _tenant_of(current)
+    tname = (treg.get(tid, {}) or {}).get("name", "Maui County") if treg else "Maui County"
     groups = ""
-    for glabel, files in NAV_GROUPS:
-        active = " active" if current in files else ""
-        links = "".join('<a class="%s" href="%s">%s</a>' % ("cur" if f == current else "", f, NAV_LABEL.get(f, f))
-                        for f in files)
-        groups += ('<div class="gn-group"><button class="gn-top%s">%s<span class="ar">&#9662;</span></button>'
-                   '<div class="gn-panel">%s</div></div>') % (active, glabel.replace("&", "&amp;"), links)
+    if treg:
+        # Governments — the tenant picker (lands you on a tenant; nav then re-resolves to it)
+        gv = "".join('<a class="%s" href="tenant_%s.html">%s</a>' % ("cur" if cf == ("tenant_%s.html" % t) else "", t, _esc(treg[t]["name"])) for t in treg)
+        gv += '<a href="jurisdictions.html">All governments &rarr;</a>'
+        groups += '<div class="gn-group"><button class="gn-top">Governments<span class="ar">&#9662;</span></button><div class="gn-panel">%s</div></div>' % gv
+        # tenant-aware groups, resolved from the registry for THIS tenant
+        for glabel, classes in NAV_GROUP_CLASSES:
+            seen = set(); links = ""
+            for ck in classes:
+                for (t, _name, f) in byclass.get(ck, []):
+                    if t == tid and f and f not in seen:
+                        seen.add(f)
+                        links += '<a class="%s" href="%s">%s</a>' % ("cur" if f == cf else "", f, _esc(_CLABELS.get(ck, ck)))
+            if links:
+                groups += ('<div class="gn-group"><button class="gn-top">%s<span class="ar">&#9662;</span></button>'
+                           '<div class="gn-panel">%s</div></div>') % (glabel.replace("&", "&amp;"), links)
+    else:
+        # registry unavailable — fall back to the static groups so the nav still renders
+        for glabel, files in NAV_GROUPS:
+            links = "".join('<a class="%s" href="%s">%s</a>' % ("cur" if f == current else "", f, NAV_LABEL.get(f, f)) for f in files)
+            groups += ('<div class="gn-group"><button class="gn-top">%s<span class="ar">&#9662;</span></button>'
+                       '<div class="gn-panel">%s</div></div>') % (glabel.replace("&", "&amp;"), links)
+    here = '<span class="gn-here">viewing: <b>%s</b></span>' % _esc(tname)
     jc = " cur" if current == "jurisdictions.html" else ""
     ac = " cur" if current == "agendas.html" else ""
     return (NAV_CSS +
@@ -255,6 +297,7 @@ def nav_bar(current):
             '<b>govOS</b><span class="sub">Kilo Aupuni</span></a>'
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
             '<div class="gn-menu">'
+            + here +
             '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') + groups +
             '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
             '<a class="gn-link%s" href="agenda_explainer.html">Explainer</a>' % (" cur" if current=="agenda_explainer.html" else "") +
@@ -288,15 +331,17 @@ def inject_nav(html, current):
 #    hardcoded tenant list. A tenant without that report yet shows a calm "building" chip (honest, not a dead
 #    link). Same class of presentation on every tenant — the productizable separation.
 _SWITCHER = None
+_CLABELS = {}     # class_key -> human label (populated by _switcher_maps; used by the tenant-aware nav)
 def _switcher_maps():
     """(rev {file->(class_key,class_label,tid)}, byclass {class_key->[(tid,name,file|None)]},
         treg {tid->{name, reports:[[label,file],...]}}, order [class_key,...]) — all from the ONE registry."""
-    global _SWITCHER
+    global _SWITCHER, _CLABELS
     if _SWITCHER is not None: return _SWITCHER
     rev, byclass, treg, order = {}, {}, {}, []
     try:
         reg = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tenant_registry.json"), encoding="utf-8"))
         clabels = {c["key"]: c["label"] for c in reg.get("report_classes", [])}
+        _CLABELS = clabels
         order = [c["key"] for c in reg.get("report_classes", [])]
         for c in reg.get("report_classes", []):
             k = c["key"]; byclass[k] = []
