@@ -583,7 +583,6 @@ legislative votes, campaign money, procurement, permits, and the patterns betwee
 <div class="disc">Everything here is built from public records and presented as <b>documented facts and
 open questions</b> — not findings of wrongdoing. Correlations are leads to verify, not accusations.
 Sources are linked on every page.</div>
-<p style="margin:16px 0;display:flex;gap:12px;flex-wrap:wrap"><a href="take_action.html" style="display:inline-block;background:#d9b24c;color:#0c100e;font-weight:700;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#9878; Request the records &mdash; a UIPA request, in aloha &amp; join in &rarr;</a><a href="king/" style="display:inline-block;background:rgba(217,178,76,.12);border:1px solid #d9b24c;color:#f4c95d;font-family:Consolas,monospace;font-size:13px;letter-spacing:.5px;padding:12px 22px;border-radius:10px;text-decoration:none">&#10022; Open the govOS app &rarr;</a></p>
 <div class="eyebrow" style="margin-top:26px">Choose a government</div>
 <p class="lead">One civic engine, many governments. Pick a tenant to enter its own pages — Maui is the deepest; the others fill as their watchers run.</p>
 <div class="grid">
