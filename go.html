@@ -189,7 +189,9 @@
    var order=F.order||Object.keys(F.tenants||{});
    sel.innerHTML=order.map(function(t){return '<option value="'+t+'">'+(F.tenants[t]||{}).name+'</option>';}).join('');
    function render(t){ var d=F.tenants[t]||{}; var trail=d.trail||[]; box.innerHTML='';
-     if(!trail.length){box.innerHTML='<a class="card" href="tenant_'+t+'.html"><span class="tag mir">govOS</span><div class="t">'+(d.name||t)+' — overview</div><div class="b"><span class="none">money pages fill in as this government’s records are ingested</span></div></a>';return;}
+     if(!trail.length){ var o=document.createElement('a'); o.className='card'; o.setAttribute('href','tenant_'+t+'.html');
+       o.innerHTML='<span class="tag mir">govOS</span><div class="t">'+(d.name||t)+' — overview</div><div class="b"><span class="none">money pages fill in as this government’s records are ingested</span></div>';
+       box.appendChild(o); return; }
      trail.forEach(function(r){ var a=document.createElement('a'); a.className='card'; a.href=r[1];
        a.innerHTML='<span class="tag mir">govOS</span><div class="t">'+r[0]+'</div><div class="b">'+(r[2]||'')+'</div>'; box.appendChild(a); }); }
    var saved; try{saved=localStorage.getItem('govos.tenant');}catch(e){}
