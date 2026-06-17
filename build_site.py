@@ -5,7 +5,7 @@
 #
 #   python build_site.py            # -> ./site
 #   KA_SITE=/path python build_site.py
-import os, re, shutil, json
+import os, re, shutil, json, sys
 from datetime import datetime, timezone, timedelta
 
 HOME    = os.path.expanduser("~")
@@ -921,6 +921,16 @@ Sources are linked on every page.</div>
         if os.path.exists(_re):
             shutil.copy(_re, os.path.join(KLOCAL, "recusal_evidence.html"))
             print("  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)")
+        # [king-recolor] private pages + King-app .dc components bypass the site recolor above; re-flip any that
+        # land in king-local dark (king-extract is volatile). Keeps the private server 100% Yale-blue every build.
+        _kr = os.path.join(PROJECT, "tools", "kilo-aupuni", "king_recolor.py")
+        if os.path.exists(_kr):
+            import subprocess as _sp
+            try:
+                _sp.run([sys.executable, _kr], timeout=60, stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
+                print("  + king_recolor: private/.dc pages kept Yale-blue (0 dark)")
+            except Exception:
+                pass
     return 0
 
 if __name__ == "__main__":
