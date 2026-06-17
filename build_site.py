@@ -604,6 +604,15 @@ Sources are linked on every page.</div>
         f.write(index)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
+    # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
+    # reports/_status by quadrant_selfheal). Publish it so those links resolve (was 2 broken of 7721);
+    # it's leak-clean and gets recolored by the pass below.
+    for _qpn in ("quadrant_progress.html", "quadrant_progress_log.html"):
+        _qp = os.path.join(PROJECT, "reports", "_status", _qpn)
+        if os.path.exists(_qp):
+            shutil.copy(_qp, os.path.join(SITE, _qpn))
+            print(f"  + {_qpn}: published (resolves go.html / progress links)")
+
     # [recolor] Yale-blue civic skin across EVERY emitted page + tenant (color-only; logic untouched).
     # Runs before the king-local mirror so the private superset inherits the same new palette.
     _rc = recolor_tree(SITE)
