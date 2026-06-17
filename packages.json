@@ -1,0 +1,54 @@
+{
+  "_note": "The productized Quad-OS platform — subscription packages + multi-tenant onboarding. Presentation layer only; NO billing/credentials here. Drives platform.html. Public-safe: describes the OFFERINGS, never the private tools/data behind them (the grants library, prosecutorial back end, etc. stay owner-only).",
+  "platform": "Quad-OS",
+  "tagline": "One civic + creative operating system. Many tenants. Built on Maui, under the aloha of Christ.",
+  "foundation": "Four pillars — Food · Education · Truth · Charter — served as one system.",
+  "quadrants": [
+    {"icon": "🏛", "name": "govOS", "what": "Public-record civic transparency for any government — officials, money, votes, contracts, agendas, charter-to-law.", "audience": "counties · states · cities"},
+    {"icon": "🎬", "name": "Music Video", "what": "AI music-video production with the artist's true likeness — one photo + a song becomes a finished video.", "audience": "artists"},
+    {"icon": "🎞", "name": "Film", "what": "Feature films built shot-by-shot from a written script, the cast face-locked across every scene.", "audience": "storytellers"},
+    {"icon": "🎮", "name": "Game · Sage", "what": "The 54-node Sage Game — a playable journey across the Hawaiian lineages and the sovereignty scrolls.", "audience": "players · learners"}
+  ],
+  "multi_tenant": {
+    "headline": "Every government, every artist, every mission is a tenant.",
+    "body": "Each tenant is tracked separately — its own data, its own reports, its own surfaces — so the work never bleeds between them. Onboarding a new county, a new state, or a new creator is the same repeatable step: register the tenant, point it at its sources, and its pages fill themselves.",
+    "examples": ["A county wanting its own transparency portal", "A state legislature money/votes lens", "An artist's full music-video + film pipeline", "A mission needing the grant engine"]
+  },
+  "subscriptions": [
+    {
+      "id": "grants",
+      "icon": "✎",
+      "name": "Grant Writing",
+      "tagline": "We write the grants that fund the work.",
+      "status": "available",
+      "body": "A library of authored grants + AI drafting turns your mission into ready applications — food security, housing, culture, education. Eligibility-gated, source-grounded, never boilerplate.",
+      "tiers": [
+        {"name": "Seed", "price": "by mission", "for": "one application, end to end"},
+        {"name": "Sustained", "price": "subscription", "for": "an ongoing pipeline of applications + deadlines watched"}
+      ]
+    },
+    {
+      "id": "sage",
+      "icon": "🎮",
+      "name": "Sage Gameplay",
+      "tagline": "Play the journey across the 54 nodes.",
+      "status": "available",
+      "body": "The Sage Game — Mauka to Makai, the lineages and the scrolls, the override and the synergy. A subscription to play, learn, and carry the cosmology.",
+      "tiers": [
+        {"name": "Player", "price": "subscription", "for": "full access to the 54-node journey"},
+        {"name": "Ohana", "price": "subscription", "for": "shared play for a family or classroom"}
+      ]
+    },
+    {
+      "id": "newsletter",
+      "icon": "✉",
+      "name": "The Dispatch",
+      "tagline": "The work, sent to you — civic findings, the films, the harvest.",
+      "status": "coming",
+      "body": "A newsletter from inside the system: what the audits surfaced (asked in aloha-truth), the films as they render, the Sage cards as they land. Not yet invented — shaped with the first subscribers.",
+      "tiers": [
+        {"name": "Reader", "price": "free + paid tier", "for": "the dispatch in your inbox"}
+      ]
+    }
+  ]
+}

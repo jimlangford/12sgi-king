@@ -507,6 +507,13 @@ def main():
             print("  + king/index.html: clean static landing (global system + live progress); old shell -> king/app.html")
     # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
     # when the laptop is up, else falls back to this GitHub mirror.
+    # Quad-OS platform/packages page (productized: quadrants + subscriptions + multi-tenant onboarding).
+    for _pf in ("platform.html", "packages.json"):
+        _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), _pf)
+        if os.path.exists(_p):
+            shutil.copy(_p, os.path.join(SITE, _pf))
+    if os.path.exists(os.path.join(SITE, "platform.html")):
+        print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
     _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
     if os.path.exists(_go):
         shutil.copy(_go, os.path.join(SITE, "go.html"))
