@@ -1,0 +1,539 @@
+MINUTES | hi-maui | County Council Meeting | 2026-03-20
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5845,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+March 20, 2026 
+9:00 AM 
+ 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 
+8th Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: 
+http://mauicounty.portal.civicclerk.com 
+ 
+TIME MEETING CALLED TO ORDER: 9:08 a.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Kauanoe Batangan √    
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√   Exc.: 10:30 a.m. – 
+10:55 a.m. 
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+  √  
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 8  1  
+  
+ 2 
+CEREMONIAL RESOLUTIONS 
+ 
+ITEM CANCELLED: CLERK WILL NOT CALL UP THIS ITEM 
+Reso 26 -50 "CELEBRATING THE 50TH ANNIVERSARY OF THE PROTECT  
+KAHOʻOLAWE ʻOHANA" 
+ 
+ 
+COMMITTEE REPORTS 
+ 
+CR 26-17 Recommending FIRST READING of Bill 30, CD1 (2026), to amend the 
+Fiscal Year 2026 Budget by:  1) increasing General Fund Carryover/Savings and 
+the appropriation for transfer to the General Excise Tax Fund by $3.5  million, 
+and 2) increasing the conditioned amount and related Appendix C appropriation 
+for the Central Maui Regional Wastewater Reclamation Facility in Waikapū from 
+$10.5 million to $14 million. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:21 a.m. 
+CM Sinenci √   Time Motion Made 10:22 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Batangan 
+CM Johnson √   Time Vote Taken 10:23 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26 -18 Recommending ADOPTION of Resolution 26 -38, to approve the  
+Mayor’s appointment of Jacalyn M.C. Takakura as the Planning Director effective 
+February 1, 2026. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:23 a.m. 
+CM Sinenci √   Time Motion Made 10:23 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Batangan 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 10:24 a.m. 
+ 3 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26-19 Recommending ADOPTION of Resolution 26-39, CD1, to approve the 
+Mayor’s appointment of Margaret Y. Willis as the Director of Human Concerns 
+effective March 1, 2026. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:25 a.m. 
+CM Sinenci √   Time Motion Made 10:25 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Lee 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 10:29 a.m. 
+CM Paltin √     
+VC Sugimura  √    
+CM Batangan  √    
+Chair Lee √     
+TOTAL VOTES 6 2 1 MOTION PASSED  
+ 
+ 
+CR 26-20 Recommending FIRST READING of Bill 142, CD1 (2025), to adjust the 
+home exemption filing deadlines so claimants who file by December 31 or  
+June 30 receive the exemption on their next tax payment. 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:39 a.m. 
+CM Sinenci √   Time Motion Made 11:39 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:41 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 4 
+ 
+ 
+CR 26-21 Recommending REFERRAL of Bill 37 (2026), which would create a 
+Real Property Tax exemption for developers of qualified Residential Workforce 
+Housing developments, to the Housing and Land Use Committee.  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:42 a.m. 
+CM Sinenci √   Time Motion Made 11:42 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT 
+recommendations 
+CM Cook √   Maker Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 11:43 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+RESOLUTIONS:  
+ 
+Reso 26-60 "ACCEPTING THE DONATION OF TWO HOWE & HOWE BIG DOG  
+FIRE TRUCKS FROM THE DANIEL R. SAYRE MEMORIAL FOUNDATION, INC.  
+TO THE DEPARTMENT OF FIRE AND PUBLIC SAFETY UNDER 
+SECTION 3.56.030, MAUI COUNTY CODE" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+10:32 a.m. 
+CM Sinenci √   Time Motion Made 10:32 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  ADOPT, as 
+amended 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+  √ Seconder Sugimura 
+CM Johnson √   Time Vote Taken 10:44 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 5 
+ AYE NO EXC Time Deliberations Began 10:32 a.m. 
+CM Sinenci √   Time Motion Made 10:32 a.m. 
+CM Uʻu-Hodgins   √ Motion  AMEND 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+  √ Seconder Batangan 
+CM Johnson √   Time Vote Taken 10:44 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+ORDINANCES 
+ 
+BILL 48 (2026) "A BILL FOR AN ORDINANCE AMENDING TITLES 2, 12, 14, 16, 
+18, AND 20, MAUI COUNTY CODE, ON FEE WAIVERS FOR AFFORDABLE  
+HOUSING" 
+ 
+ AYE NO EXC Time Deliberations Began 10:46 a.m. 
+CM Sinenci √   Time Motion Made 10:46 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on first 
+reading, as 
+amended 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 10:57 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 10:47 a.m. 
+CM Sinenci √   Time Motion Made 10:47 a.m. 
+CM Uʻu-Hodgins   √ Motion  AMEND 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 10:56 a.m. 
+CM Paltin √     
+VC Sugimura √     
+ 6 
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 49 (2026) "A BILL FOR AN ORDINANCE AMENDING SECTION 10.48.040, 
+MAUI COUNTY CODE, ON PARKING PROHIBITIONS FOR CERTAIN STREETS  
+AND HIGHWAYS" 
+11:21 a.m.: Referred to the Water and Infrastructure Committee. 
+ 
+ 
+BILL 50 (2026) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, DEPARTMENT OF HUMAN CONCERNS, HUMAN 
+CONCERNS PROGRAM, GRANTS AND DISBURSEMENTS FOR HEALTH, 
+HUMAN SERVICES,  AND EDUCATION, DELETE THE CONDITIONAL 
+LANGUAGE FOR MAUI  RESCUE MISSION INC. FOR $200,000, REDUCE 
+HOUSELESS PROGRAMS BY THE SAME AMOUNT, INCREASE APPROPRIATION 
+FOR MAUI ADULT DAY CARE CENTERS BY $50,000 AND ADD CONDITIONAL 
+LANGUAGE FOR THE  HALE HULU MAMO SENIOR CENTER HANA FOR 
+$50,000, ADD NEW  APPROPRIATIONS FOR OHANA MAKAMAE, INC. FOR 
+$50,000 AND PROJECT  VISION HAWAII FOR $50,000, AND GRANTS AND 
+DISBURSEMENTS FOR  YOUTH CENTERS AND PROGRAMS, INCREASE 
+APPROPRIATION FOR HANA YOUTH CENTER, INC. BY $50,000" 
+ 
+ AYE NO EXC Time Deliberations Began 11:22 a.m. 
+CM Sinenci √   Time Motion Made 11:23 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on first 
+reading 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:24 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 51 (2026) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT  
+PROGRAM, GRANTS AND DISBURSEMENTS FOR BUSINESS DEVELOPMENT  
+AND TECHNOLOGY, DECREASE TECHNOLOGY IN BUSINESS PROMOTION BY 
+$180,000; DEPARTMENT OF HUMAN CONCERNS, HUMAN CONCERNS  
+PROGRAM, GRANTS AND DISBURSEMENTS FOR YOUTH CENTERS AND  
+ 7 
+PROGRAMS, INCREASE BOYS & GIRLS CLUBS OF MAUI, INC., LOCATED ON  
+MOLOKAI BY $180,000" 
+ 
+ AYE NO EXC Time Deliberations Began 11:25 a.m. 
+CM Sinenci √   Time Motion Made 11:26 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on first 
+reading 
+CM Cook √   Maker Rawlins-
+Fernandez 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 11:35 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 52 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT  
+PROGRAM, GRANTS AND DISBURSEMENTS FOR BUSINESS DEVELOPMENT  
+AND TECHNOLOGY, KAHULUI ECONOMIC DEVELOPMENT,  
+ENVIRONMENTAL, AND CULTURAL PROGRAMS, UPDATING THE  
+CONDITIONAL LANGUAGE FOR FRIENDS OF MAUI WAENA INTERMEDIATE  
+SCHOOL FOR THE FALCON ENTERTAINMENT & ENGINEERING PROGRAM TO 
+MAUI A.I.D.S. FOUNDATION, AND WAILUKU ECONOMIC DEVELOPMENT,  
+ENVIRONMENTAL AND CULTURAL PROGRAMS, UPDATING THE  
+CONDITIONAL LANGUAGE FOR THE CLEAN -UP AND MONTHLY  
+MAINTENANCE OF THE OLD WAILUKU CEMETERY TO MAUI A.I.D.S.  
+FOUNDATION" 
+ 
+ AYE NO EXC Time Deliberations Began 11:36 a.m. 
+CM Sinenci √   Time Motion Made 11:36 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on first 
+reading 
+CM Cook √   Maker Batangan 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:39 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 8 
+ORDINANCES - SECOND AND FINAL READING: 
+ 
+BILL 116, CD1 , FD1 (2 024) "A BILL FOR AN ORDINANCE AMENDING  
+CHAPTERS 3.36, MAUI COUNTY CODE, TO EXEMPT CERTAIN BELOW - 
+MARKET LEASES FOR AFFORDABLE HOUSING OR RESIDENTIAL  
+WORKFORCE HOUSING PROGRAMS, AND CHAPTER  3.40, MAUI COUNTY  
+CODE, ON BIDDING REQUIREMENTS, AND TO REQUIRE ADDITIONAL  
+FINANCIAL REPORTING FOR LEASED PROPERTY" 
+ 
+BILL 39 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF HOUSING, 
+HOME AMERICAN RESCUE PLAN (HOME -ARP) PROGRAM, NEW 
+APPROPRIATION OF $139,416" 
+ 
+BILL 40 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF POLICE, 
+POSITIVELY KAI FOUNDATION - PEERS SUPPORT GROUP, NEW 
+APPROPRIATION OF $35,000" 
+ 
+BILL 41 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, DEPARTMENT OF MANAGEMENT, OFFICE OF 
+RECOVERY, DECREASE CATEGORY B - OPERATIONS & EQUIPMENT BY 
+$497,500, EMERGENCY MANAGEMENT AGENCY, EMERGENCY 
+MANAGEMENT PROGRAM, INCREASE APPROPRIATION FOR CATEGORY A - 
+SALARIES BY  $100,000, AND INCREASE THE APPROPRIATION FOR 
+CATEGORY B – OPERATIONS & EQUIPMENT BY $397,500" 
+ 
+BILL 42 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX C, DEPARTMENT OF PARKS AND 
+RECREATION, WAILUKU-KAHULUl COMMUNITY PLAN AREA, UPDATE THE 
+APPROPRIATION FOR WAR MEMORIAL GYM BUILDING IMPROVEMENTS BY 
+$800,000" 
+ 
+BILL 44 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF HUMAN 
+CONCERNS, U.S. DEPARTMENT OF HOUSING AND URBAN DEVELOPMENT – 
+EMERGENCY SOLUTIONS GRANT (ESG), NEW APPROPRIATION OF $185,496" 
+ 
+BILL 45 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, INCREASING CARRYOVER/SAVINGS, GENERAL FUND 
+BY $550,000, DEPARTMENT OF PARKS AND RECREATION, PARKS PROGRAM, 
+INCREASE APPROPRIATION FOR CATEGORY B – OPERATIONS & EQUIPMENT 
+BY $550,000" 
+ 
+ 9 
+BILL 46 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, APPENDIX A, PART I, DEPARTMENT OF HOUSING,  
+COMMUNITY DEVELOPMENT BLOCK GRANT (CDBG) PROGRAM, NEW  
+APPROPRIATIONS FOR COUNTY OF MAUI, PROJECT: SENIOR HOUSING  
+ACQUISITION IN THE AMOUNT OF $1,505,092 AND KAUPO COMMUNITY  
+ASSOCIATION, PROJECT: KAUPO DIGITAL HUB INITIATIVE IN THE AMOUNT  
+OF $63,782" 
+ 
+ AYE NO EXC Time Deliberations Began 11:44 a.m. 
+CM Sinenci √   Time Motion Made 11:46 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS Bills 
+116 CD1 
+FD1, 39, 40, 
+41, 42, 44, 
+45 and 46 on 
+second and 
+final reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Batangan 
+CM Johnson √   Time Vote Taken 11:47 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 14 (2026) "A BILL FOR AN ORDINANCE AMENDING  
+SUBSECTION 2.96.090(D), MAUI COUNTY CODE, ON THE SELECTION  
+PRIORITY FOR RESIDENTIAL WORKFORCE HOUSING OWNERSHIP UNITS" 
+ 
+ AYE NO EXC Time Deliberations Began 11:47 a.m. 
+CM Sinenci √   Time Motion Made 11:47 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on 
+second and 
+final reading 
+CM Cook √   Maker Batangan 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:48 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 10 
+BILL 27, CD1  (2026) "A BILL FOR AN ORDINANCE AMENDING  
+CHAPTER 19.35, MAUI COUNTY CODE, ON THE SIZE OF ACCESSORY  
+DWELLINGS" 
+ 
+ AYE NO EXC Time Deliberations Began 11:48 a.m. 
+CM Sinenci √   Time Motion Made 11:48 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on 
+second and 
+final reading 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 11:49 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 38, FD1  (2026) "A BILL FOR AN ORDINANCE AMENDING 
+CHAPTER 2.80B, MAUI COUNTY CODE, ON THE GENERAL PLAN AND 
+COMMUNITY PLANS" 
+ 
+ AYE NO EXC Time Deliberations Began 11:49 a.m. 
+CM Sinenci √   Time Motion Made 11:49 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on 
+second and 
+final reading 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 11:50 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+BILL 43 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, OFFICE OF THE MAYOR, ECONOMIC DEVELOPMENT  
+PROGRAM, GRANTS AND DISBURSEMENTS FOR BUSINESS DEVELOPMENT  
+AND TECHNOLOGY, SOUTH MAUI ECONOMIC DEVELOPMENT,  
+ENVIRONMENTAL, AND CULTURAL PROGRAMS, NEW CONDITIONAL 
+ 11 
+LANGUAGE FOR WILBERT WAH ITU HU TOM VETERANS OF FOREIGN WARS  
+POST 3850, IN THE AMOUNT OF $25,000" 
+ 
+ AYE NO EXC Time Deliberations Began 11:51 a.m. 
+CM Sinenci √   Time Motion Made 11:51 a.m. 
+CM Uʻu-Hodgins   √ Motion  PASS on 
+second and 
+final reading 
+CM Cook √   Maker Cook 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:53 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+11:51 a.m. 
+CM Sinenci √   Time Motion Made 11:51 a.m. 
+CM Uʻu-
+Hodgins 
+  √ Motion  AMEND/SUSPEND 
+Rule19 
+CM Cook √   Maker Cook 
+CM Rawlins-
+Fernandez 
+√   Seconder Batangan 
+CM Johnson √   Time Vote Taken 11:53 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL 
+VOTES 
+8  1 MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  11:55 a.m. 

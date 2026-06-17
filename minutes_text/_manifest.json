@@ -1,8 +1,8 @@
 {
  "generated": "2026-06-16 21:42",
- "records": 160,
- "with_text": 85,
- "pending": 75,
+ "records": 103,
+ "with_text": 98,
+ "pending": 5,
  "manifest": [
   {
    "tenant": "hi-hawaii",
@@ -817,632 +817,119 @@
   {
    "tenant": "hi-maui",
    "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   "body": "County Council Meeting",
+   "chars": 26001,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-05-15__cc5888.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5888,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1377/files/minutes/5889"
+   "body": "Notice of Public Hearing - Budget FY2027",
+   "chars": 1236,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-05-15__cc5889.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5889,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1372/files/minutes/5891"
+   "body": "Notice of Public Hearing - Weight Tax",
+   "chars": 989,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-05-15__cc5891.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5891,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1373/files/minutes/5890"
+   "body": "Notice of Public Hearing - Fuel Tax",
+   "chars": 1036,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-05-15__cc5890.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5890,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-05-01",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   "body": "County Council Meeting",
+   "chars": 11692,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-05-01__cc5880.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5880,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-04-21",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1369/files/minutes/5860"
+   "body": "Council Public Meeting",
+   "chars": 1041,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-04-21__cc5860.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5860,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-04-17",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1367/files/minutes/5859"
+   "body": "County Council Meeting",
+   "chars": 14913,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-04-17__cc5859.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5859,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-04-16",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1366/files/minutes/5858"
+   "body": "Council Public Hearing",
+   "chars": 1203,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-04-16__cc5858.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5858,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-04-02",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   "body": "County Council Meeting",
+   "chars": 13183,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-04-02__cc5844.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5844,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1363/files/minutes/5845"
+   "body": "County Council Meeting",
+   "chars": 14741,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-03-20__cc5845.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5845,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1364/files/minutes/5846"
+   "body": "Emergency Meeting",
+   "chars": 4200,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-03-20__cc5846.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5846,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-03-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1360/files/minutes/5835"
+   "body": "County Council Meeting",
+   "chars": 18976,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-03-06__cc5835.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5835,plainText=false)"
   },
   {
    "tenant": "hi-maui",
    "date": "2026-02-18",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1359/files/minutes/4818"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1377/files/minutes/5889"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1372/files/minutes/5891"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1373/files/minutes/5890"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-01",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-21",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1369/files/minutes/5860"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-17",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1367/files/minutes/5859"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-16",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1366/files/minutes/5858"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-02",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1363/files/minutes/5845"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1364/files/minutes/5846"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1360/files/minutes/5835"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-18",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1359/files/minutes/4818"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1377/files/minutes/5889"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1372/files/minutes/5891"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1373/files/minutes/5890"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-01",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-21",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1369/files/minutes/5860"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-17",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1367/files/minutes/5859"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-16",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1366/files/minutes/5858"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-02",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1363/files/minutes/5845"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1364/files/minutes/5846"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1360/files/minutes/5835"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-18",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1359/files/minutes/4818"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1377/files/minutes/5889"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1372/files/minutes/5891"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1373/files/minutes/5890"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-01",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-21",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1369/files/minutes/5860"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-17",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1367/files/minutes/5859"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-16",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1366/files/minutes/5858"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-02",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1363/files/minutes/5845"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1364/files/minutes/5846"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1360/files/minutes/5835"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-18",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1359/files/minutes/4818"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1377/files/minutes/5889"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1372/files/minutes/5891"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-15",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1373/files/minutes/5890"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-05-01",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-21",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1369/files/minutes/5860"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-17",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1367/files/minutes/5859"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-16",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1366/files/minutes/5858"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-04-02",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1363/files/minutes/5845"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-20",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1364/files/minutes/5846"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-03-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1360/files/minutes/5835"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-18",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1359/files/minutes/4818"
-  },
-  {
-   "tenant": "hi-maui",
-   "date": "2026-02-06",
-   "body": "Council meeting",
-   "chars": 0,
-   "status": "portal-pending",
-   "file": null,
-   "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   "body": "County Council Meeting",
+   "chars": 164934,
+   "status": "civicclerk-pdf",
+   "file": "hi-maui/2026-02-18__cc4818.txt",
+   "url": "https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=4818,plainText=false)"
   }
  ]
 }

@@ -1,0 +1,56 @@
+MINUTES | hi-maui | Council Public Hearing | 2026-04-16
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5858,plainText=false)
+STATUS: civicclerk-pdf
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+PUBLIC HEARING 
+MINUTES 
+ 
+April 16, 2026 
+6:00 PM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 8th 
+Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: http://mauicounty.portal.civicclerk.com 
+ 
+TIME MEETING CALLED TO ORDER:  6:04 p.m. 
+ 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Kauanoe Batangan √    
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√    
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√    
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 9    
+ 
+BILL 55 (2026) "A BILL FOR AN ORDINANCE RELATING TO THE 
+OPERATING BUDGET FOR  THE COUNTY OF MAUI FOR THE FISCAL 
+YEAR JULY 1, 2026 TO JUNE 30, 2027" 
+ 
+BILL 56 (2026) "A BILL FOR AN ORDINANCE RELATING TO THE CAPITAL 
+PROGRAM FOR THE FISCAL YEAR ENDING JUNE 30, 2027" 
+ 
+No legislative action was taken. 
+ 
+TIME MEETING ADJOURNED: 7:55 p.m. 
