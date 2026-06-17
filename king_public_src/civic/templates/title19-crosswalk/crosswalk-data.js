@@ -396,9 +396,42 @@
       desc: "Documented donor↔Bill 9 correlation surfaced as a question. Entry now DEAD on the council feed — closed.", source: "donor-watch", date: "2026-06-11" },
   ];
 
+  // ============================================================
+  // Title 19 ingest (AG-first) — rules-vs-code mapping. [r1]
+  // Added 2026-06-17. Reflects the ingested Title 19 corpus
+  // (Ch. 19.30A Agricultural + Ch. 19.530 Enforcement) and which
+  // provisions are CODE vs. delegated to administrative RULES.
+  // codeStatus/ruleStatus: "ingested" = verbatim section text
+  // captured + cited; "expanding" = identified, not yet ingested.
+  // codifyCandidate -> analysis/rules_to_code_candidates.md in the
+  // title19-service template (labeled analysis, not law).
+  // ============================================================
+  const RULES_TO_CODE = [
+    { topic: "AG district standards & uses", code: "MCC 19.30A.010–.120", codeStatus: "ingested",
+      rule: "Planning Dept admin rules MC-12, Subtitle 01 (Ch. 19.30A amendments)", ruleStatus: "expanding",
+      codifyCandidate: "A2, B4–B6", src: "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.30AAGDI" },
+    { topic: "Commercial agricultural structures", code: "MCC 19.30A.072", codeStatus: "ingested",
+      rule: "delegated by 19.30A.072(J)", ruleStatus: "expanding",
+      codifyCandidate: "A1", src: "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.30AAGDI" },
+    { topic: "Civil fines / enforcement procedure", code: "MCC 19.530.030", codeStatus: "ingested",
+      rule: "Rules for Administrative Procedures and Civil Fines for Violations of Ch. 16.13 and Title 19", ruleStatus: "expanding",
+      codifyCandidate: "A3, C7", src: "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN" },
+    { topic: "Farm plan contents", code: "referenced in MCC 19.30A.050/.072", codeStatus: "ingested",
+      rule: "department practice / AG Declaration form", ruleStatus: "expanding",
+      codifyCandidate: "B4", src: "https://www.mauicounty.gov/2017/Planning-Regulations" },
+    { topic: "Rural district standards & uses", code: "MCC 19.29.010–.060", codeStatus: "ingested",
+      rule: "director may adopt rules to implement (19.29.060)", ruleStatus: "expanding",
+      codifyCandidate: "—", src: "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.29RUDI" },
+    { topic: "SMA / shoreline enforcement (independent of county-ordinance warnings)", code: "HRS 205A-32 (civil fine ≤$100,000; ≤$10,000/day)", codeStatus: "ingested",
+      rule: "SMA Rules §12-202-23(d)(1), §12-202-25 (≤$10,000/violation + ≤$1,000/day); Shoreline Rules §12-5-15 → 205A-32; contrast HRS 46-1.5(24)(A) county-ordinance warnings", ruleStatus: "ingested",
+      note: "Per 2003 Corp. Counsel opinion: NO warning required before NOV+fine under HRS 205A/SMA/Shoreline (cf. county ordinance/rule, which expects reasonable notice). DATED OPINION — may be superseded.",
+      codifyCandidate: "enforcement-corpus (opinion, not codification)", src: "https://www.mauicounty.gov/ArchiveCenter/ViewFile/Item/288" },
+  ];
+
   window.CROSSWALK = {
     meta: {
       snapshot: "2026-06-12",
+      title19Ingest: { date: "2026-06-17", scope: "AG-first + expanding: Ch. 19.30A (Agricultural) + Ch. 19.29 (Rural) + Ch. 19.530 (Enforcement) ingested/cited; SMA/shoreline enforcement (HRS 205A) + 2003 CC warnings opinion ingested; other districts + admin-rule text expanding", refreshPolicy: "Re-pull each Municode node; compare ordinance trailer; mark stale; re-ingest. Cross-ref County Title 19 Rewrite draft TOC." },
       charterPrimary: "v5 / MauiOS_CountyAudit map (28 articles)",
       versionGap: "The V2-04082025 master charter orders these 28 numerals differently — e.g. Art.XI is \u201cLand Use & Zoning\u201d here but \u201cSpirit Contract & Creator's Oath\u201d in V2. Each row shows its V2 label. v5 is canon for govOS surfaces; V2 is historical.",
       feed: "../_feed/agendas.json",
@@ -407,5 +440,6 @@
     articles: ARTICLES,
     clearances: CLEAR,
     conflicts: CONFLICTS,
+    rulesToCode: RULES_TO_CODE,
   };
 })();

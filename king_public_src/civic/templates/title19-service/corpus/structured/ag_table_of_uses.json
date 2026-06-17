@@ -1,0 +1,111 @@
+{
+  "service": "title19-service",
+  "dataset": "table_of_uses",
+  "district": "AG",
+  "district_name": "Agricultural District",
+  "chapter": "19.30A",
+  "jurisdiction": "County of Maui, Hawaiʻi",
+  "source": {
+    "type": "law",
+    "canonical": "Maui County Code, Title 19 (Zoning), Chapter 19.30A",
+    "url": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.30AAGDI",
+    "retrieved": "2026-06-17",
+    "currency_note": "Includes amendments through Ord. No. 5839 (2025) and Ord. No. 5834 (2025). Verify against Municode before relying on for a permit."
+  },
+  "disclaimer": "This is a structured restatement of cited law for navigation/search. It is NOT legal advice. The controlling text is the Maui County Code. Every row carries a section pin-cite; confirm at the source.",
+  "categories": {
+    "permitted_principal": {
+      "label": "Permitted principal uses (by right)",
+      "cite": "MCC 19.30A.050(A)",
+      "uses": [
+        {"use": "Agriculture", "cite": "19.30A.050(A)(1)"},
+        {"use": "Agricultural land conservation", "cite": "19.30A.050(A)(2)"},
+        {"use": "Agricultural parks (per HRS ch. 171)", "cite": "19.30A.050(A)(3)"},
+        {"use": "Animal and livestock raising, incl. animal feed lots and sales yards", "cite": "19.30A.050(A)(4)"},
+        {"use": "Private agricultural parks", "cite": "19.30A.050(A)(5)"},
+        {"use": "Minor utility facilities (as defined in 19.04.040)", "cite": "19.30A.050(A)(6)"},
+        {"use": "Retention/restoration/rehabilitation/improvement of buildings, sites, or cultural landscapes of historical or archaeological significance (excludes commercial zipline/canopy/bungee, which need a conditional permit under ch. 19.40)", "cite": "19.30A.050(A)(7)"},
+        {"use": "Solar energy facilities <15 acres, ≤35% of lot, compatible with existing ag uses (compatibility waived on LSB class D/E soils)", "cite": "19.30A.050(A)(8)"},
+        {"use": "Composting and co-composting operations (subject to HRS ch. 205)", "cite": "19.30A.050(A)(9)"}
+      ]
+    },
+    "permitted_accessory": {
+      "label": "Permitted accessory uses (incidental/subordinate to a permitted principal use)",
+      "cite": "MCC 19.30A.050(B)",
+      "uses": [
+        {"use": "Farm dwellings — Maui/Lānaʻi: 2 per lot (one ≤1,500 sf developable area); Molokai: 2 per lot (one ≤1,000 sf)", "cite": "19.30A.050(B)(1)"},
+        {"use": "Farm labor dwelling — 1 per 5 acres; Maui requires meeting 2 of 3 criteria (≥$35,000 gross ag sales/yr for 2 yrs per dwelling; ag water rate certification; or approved farm plan). Molokai/Lānaʻi require both (a) and (b).", "cite": "19.30A.050(B)(2)"},
+        {"use": "Commercial agricultural structures — max 2 per lot (subject to ch. 19.36B parking)", "cite": "19.30A.050(B)(3); standards at 19.30A.072"},
+        {"use": "Storage, wholesale and distribution (barns, greenhouses, ag supply/product/irrigation-water storage, farmers' cooperatives, similar)", "cite": "19.30A.050(B)(4)"},
+        {"use": "Processing of agricultural products (majority grown in the County)", "cite": "19.30A.050(B)(5)"},
+        {"use": "Energy systems, small-scale", "cite": "19.30A.050(B)(6)"},
+        {"use": "Small-scale animal-keeping", "cite": "19.30A.050(B)(7)"},
+        {"use": "Animal hospitals and animal board facilities (Molokai: Molokai planning commission approval)", "cite": "19.30A.050(B)(8)"},
+        {"use": "Riding academies (Molokai: planning commission approval)", "cite": "19.30A.050(B)(9)"},
+        {"use": "Open land recreation (enumerated list: hiking, noncommercial camping, fishing, hunting, equestrian, rodeo arenas, arboretums, greenways, botanical gardens, guided ag/plantation tours, petting zoos, garden tours, hang gliding, paragliding, mountain biking, accessory restrooms). Uses not specifically permitted here, in 19.30A.060(A)(7), or ch. 19.40 are PROHIBITED.", "cite": "19.30A.050(B)(10)"},
+        {"use": "Bed and breakfast homes (ch. 19.64; not on Molokai) — qualifying via bona fide ag operation ($35,000 gross sales/2 yrs), or small-lot/farm-plan criteria, or listed historic site", "cite": "19.30A.050(B)(11)"},
+        {"use": "Short-term rental homes (ch. 19.65) with fully implemented farm plan consistent with HRS ch. 205", "cite": "19.30A.050(B)(12)"},
+        {"use": "Parks for public use (no golf courses; no commercial uses unless gov-supervised)", "cite": "19.30A.050(B)(13)"},
+        {"use": "Family child care homes (HRS 46-15.35(b); registered per HRS ch. 346) in a legally permitted farm dwelling", "cite": "19.30A.050(B)(14)"},
+        {"use": "Agricultural tourism on a farm (registration with Planning required; 8am–6pm; must not interfere with principal farming; not on Molokai)", "cite": "19.30A.050(B)(15)"},
+        {"use": "Other uses primarily supporting a permitted principal use (planning commission must find conforming to intent)", "cite": "19.30A.050(B)(16)"}
+      ]
+    },
+    "special_use_permit": {
+      "label": "Special uses (allowed only with a special use permit under 19.510.070; state special permit may also apply under HRS ch. 205 for parcels ≤15 acres)",
+      "cite": "MCC 19.30A.060(A)",
+      "uses": [
+        {"use": "Additional farm dwellings beyond 19.30A.050(B)(1)", "cite": "19.30A.060(A)(1)"},
+        {"use": "Farm labor dwellings that do not meet 19.30A.050(B)(2) criteria", "cite": "19.30A.060(A)(2)"},
+        {"use": "Commercial agricultural structures not meeting chapter standards", "cite": "19.30A.060(A)(3)"},
+        {"use": "Public/quasi-public institutions necessary for agricultural practices", "cite": "19.30A.060(A)(4)"},
+        {"use": "Major utility facilities (as defined in 19.04.040)", "cite": "19.30A.060(A)(5)"},
+        {"use": "Telecommunications and broadcasting antenna", "cite": "19.30A.060(A)(6)"},
+        {"use": "Open land recreation not meeting 19.30A.050(B)(10) (e.g., commercial camping, gun/firing ranges, archery, skeet, paintball, skateboarding, rollerblading, playing fields, rappelling — not within 500 ft of a waterfall)", "cite": "19.30A.060(A)(7)"},
+        {"use": "Cemeteries, crematories, and mausoleums", "cite": "19.30A.060(A)(8)"},
+        {"use": "Churches and religious institutions", "cite": "19.30A.060(A)(9)"},
+        {"use": "Mining and resource extraction", "cite": "19.30A.060(A)(10)"},
+        {"use": "Landfills", "cite": "19.30A.060(A)(11)"},
+        {"use": "Solar energy facilities greater than 15 acres", "cite": "19.30A.060(A)(12)"}
+      ]
+    },
+    "state_special_permit": {
+      "label": "Home businesses",
+      "cite": "MCC 19.30A.060(B)",
+      "uses": [
+        {"use": "Home businesses — permitted with a State special permit (HRS 205-6); must comply with ch. 19.67 and obtain a County special use permit when ch. 19.67 requires", "cite": "19.30A.060(B)"}
+      ]
+    },
+    "prohibited": {
+      "label": "Prohibited uses",
+      "cite": "MCC 19.30A.060(A)(7); 19.30A.050(B)(10)",
+      "uses": [
+        {"use": "Airports, heliports, drive-in theaters, country clubs, drag strips, motor sports facilities, golf courses, golf driving ranges", "cite": "19.30A.060(A)(7)"},
+        {"use": "On Molokai: commercial zipline, canopy, rappelling, and bungee jumping", "cite": "19.30A.060(A)(7)"},
+        {"use": "Open land recreation uses/structures not specifically permitted by 19.30A.050(B)(10), 19.30A.060(A)(7), or ch. 19.40 (default-prohibited)", "cite": "19.30A.050(B)(10)"}
+      ]
+    }
+  },
+  "district_standards": {
+    "cite": "MCC 19.30A.030",
+    "min_lot_area": "2 acres",
+    "min_lot_width": "200 feet",
+    "min_yard_setbacks": {"front": "25 feet", "side_rear": "15 feet"},
+    "max_developable_area": "10% of total lot area (applies to farm dwellings; not to ag-support structures e.g. storage, barns, silos, greenhouses, farm labor dwellings, stables, or permitted utility facilities)",
+    "max_height": "Dwelling 30 ft (vent pipes/fans/chimneys/antennae/solar on roofs ≤40 ft). Nondwelling structures (barn/silo) over 35 ft must set back 1 additional ft per ft of height.",
+    "max_wall_height": "4 ft within yard setback (one utility wall per lot ≤7 ft H x 7 ft W; director of public works may allow greater for retaining earth/water for health/safety)",
+    "subdivision": "Maximum number of lots is keyed to gross lot acreage per the 19.30A.030(G) table; see also resubdivision limits at 19.30A.040."
+  },
+  "related_provisions": [
+    {"topic": "Purpose & intent", "cite": "19.30A.010"},
+    {"topic": "Definitions (active ag operation, ag food establishment, ag products stand, ag retail structure, commercial ag structure, farmer's market, producer, value-added)", "cite": "19.30A.015"},
+    {"topic": "District criteria (ALISH etc.)", "cite": "19.30A.020"},
+    {"topic": "Private agricultural parks", "cite": "19.30A.070"},
+    {"topic": "Commercial agricultural structures (requirements, registration, size thresholds for special use permit)", "cite": "19.30A.072"},
+    {"topic": "Agricultural leases", "cite": "19.30A.080"},
+    {"topic": "Substandard agricultural lots", "cite": "19.30A.090"},
+    {"topic": "Exemptions pursuant to State law (kuleana; affordable housing per HRS ch. 201E)", "cite": "19.30A.100"},
+    {"topic": "Permits issued prior to enactment", "cite": "19.30A.110"},
+    {"topic": "Rule-making authority (planning director + DPW director)", "cite": "19.30A.120"}
+  ]
+}
