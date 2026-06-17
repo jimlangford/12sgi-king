@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-16 21:15 HST",
+ "generated": "2026-06-16 21:19 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -105,7 +105,7 @@
      "federal_money.html"
     ],
     "crossref": [
-     "parity_state.html"
+     "realestate_state.html"
     ],
     "agendas": [
      "agendas_state.html"
@@ -139,7 +139,9 @@
     "federal": [
      "federal_money_hawaii.html"
     ],
-    "crossref": [],
+    "crossref": [
+     "realestate_hawaii.html"
+    ],
     "agendas": [
      "agendas_hawaii.html"
     ],
@@ -153,7 +155,7 @@
      "audit_balance.html"
     ]
    },
-   "report_classes_filled": 8,
+   "report_classes_filled": 9,
    "report_classes_total": 9
   },
   {
@@ -174,7 +176,9 @@
     "federal": [
      "federal_money_kauai.html"
     ],
-    "crossref": [],
+    "crossref": [
+     "realestate_kauai.html"
+    ],
     "agendas": [
      "agendas_kauai.html"
     ],
@@ -188,7 +192,7 @@
      "audit_balance.html"
     ]
    },
-   "report_classes_filled": 8,
+   "report_classes_filled": 9,
    "report_classes_total": 9
   },
   {
@@ -210,7 +214,7 @@
      "federal_money_honolulu.html"
     ],
     "crossref": [
-     "parity_honolulu.html"
+     "realestate_honolulu.html"
     ],
     "agendas": [
      "agendas_honolulu.html"
