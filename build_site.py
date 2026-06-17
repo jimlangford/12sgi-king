@@ -91,6 +91,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
+        "daily_aloha.json",   # public-safe daily moon offering per tenant (king_message.py) — pure aloha, no figures
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json"]
 
@@ -730,7 +731,8 @@ Sources are linked on every page.</div>
         # is never shown publicly) + the real-estate loop breakdown. Private; never in SITE/EXTRA_PAGES.
         for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
                             (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html")):
+                            (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html"),
+                            (os.path.join(PROJECT, "reports", "_status", "king_message.html"), "king_message.html")):
             if os.path.exists(_src):
                 shutil.copy(_src, os.path.join(KLOCAL, _name))
                 print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")
