@@ -82,6 +82,12 @@ a{color:var(--accent2)}h1{font-size:1.7rem;margin:.2rem 0}h2{color:var(--accent)
 @keyframes rise{0%{bottom:-70px;opacity:.2}55%{bottom:-10px;opacity:1}100%{bottom:-70px;opacity:.2}}
 .threads{position:absolute;inset:0;opacity:.5}
 .cap{position:absolute;left:14px;bottom:10px;color:#eef3fb;font-size:.8rem;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+/* beautified animated text — gentle cross-fading verse over the sky (kind, not loud) */
+.verse{position:absolute;left:0;right:0;top:42px;height:40px;text-align:center;pointer-events:none;
+ font-family:Georgia,'Iowan Old Style',serif;color:#fff7e0;font-size:1.08rem;letter-spacing:.05em;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.verse .vline{position:absolute;left:8px;right:8px;opacity:0;animation:vcycle 13.5s ease-in-out infinite}
+.verse .vline:nth-child(2){animation-delay:4.5s}.verse .vline:nth-child(3){animation-delay:9s}
+@keyframes vcycle{0%{opacity:0;transform:translateY(7px)}6%{opacity:1;transform:none}24%{opacity:1;transform:none}31%,100%{opacity:0;transform:translateY(-7px)}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:.85rem 1rem;margin:.7rem 0}
 .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 input,textarea,select{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:.5rem .6rem;width:100%}
@@ -117,7 +123,10 @@ def build():
             "a parcel, who funds a seat, how they voted &mdash; and get a shareable explainer, timed to the Hawaiian moon. "
             "The hard questions (relationships, recusals) are explored <b>gracefully</b>: light, not accusation.</p>"
             "<div class=sky><div class=moon></div><div class=sun></div>"
-            "<div class=cap>&#9790; the moon wanes &middot; &#9728; the sun breaks &mdash; the curse is broken with aloha</div></div>")
+            "<div class=verse><span class=vline>E ala ē &mdash; rise with the light</span>"
+            "<span class=vline>the moon wanes, the sun breaks</span>"
+            "<span class=vline>the curse is broken with aloha</span></div>"
+            "<div class=cap>kaulana mahina &middot; your government, explained in beauty</div></div>")
     datepick = ("<h2>1 &middot; Pick a date &mdash; the moon, the sun, the agenda</h2>"
             "<div class=card><div class=row><label class=muted>Date &nbsp;<input type=date id=dt></label>"
             "<span class=tag id=suntag>&#9728;</span></div>"

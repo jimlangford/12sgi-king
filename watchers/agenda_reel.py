@@ -387,9 +387,9 @@ def build_reel(sb, hold=4.2, fade=0.5, fps=30):
             script = _narration_script(sb)
             if script:
                 nw = os.path.join(d_draft, "narration.wav")
-                # Jimmy's WARM cloned voice (XTTS) when enabled + ready; else fast SAPI. Gated so the default
-                # reel never triggers the ~1.8GB model download — premium fulfillment sets CIVIC_WARM_VOICE=1.
-                warm = (os.environ.get("CIVIC_WARM_VOICE") and hasattr(_olelo, "clone")
+                # the KIND voiceover (Jimmy 2026-06-18): default to the WARM cloned voice whenever the model
+                # is ready (cached); opt out with CIVIC_WARM_VOICE=0 for a fast SAPI pass. Graceful fallback either way.
+                warm = (os.environ.get("CIVIC_WARM_VOICE", "1") != "0" and hasattr(_olelo, "clone")
                         and getattr(_olelo, "clone_available", lambda: False)())
                 if warm and _olelo.clone(script, nw):
                     narr_wav = nw
