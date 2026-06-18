@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "id": "title05",
+    "codeTitle": 5,
+    "name": "Business Licenses & Regulations",
+    "department": "Finance / departments (general business) + Department of Liquor Control (liquor)",
+    "templateName": "Title 5 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 5 (Business Licenses & Regulations) — how to get a business license, liquor licensing, short-term-rental cross-references, and who pays. Sourced to Municode + County of Maui; hands off to MAPPS / Liquor Control. First version, expanding.",
+    "pageTitle": "Title 5 — Business Licenses & Regulations · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 5 — Business Licenses &amp; Regulations <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title5 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "↔ Title 18 — Subdivisions", "href": "../title18-service/Title18%20Service.html"},
+    {"label": "↔ Title 3 — Property Tax", "href": "../title03-service/Title3%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "Title 5 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 5 (Business Licenses &amp; Regulations)</b>: how to get a business license, how <b>liquor licensing</b> works (a separate Department of Liquor Control track), the <b>short-term-rental</b> cross-references you can't skip, and who pays. General business licenses go through <b>MAPPS</b>; liquor through <b>Liquor Control</b> — this service explains the law and <b>hands you off to the official systems</b>. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in from the ingestion corpus; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://mapps.mauicounty.gov/160/Business-Licenses",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE",
+    "permitLinkLabel": "Business licenses (MAPPS) ↗",
+    "codeLinkLabel": "Title 5 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Running a business from a property? Your <b>zoning district decides whether the use is even allowed</b> there before any license matters — a home business (Title 19, ch. 19.67) and a short-term rental (ch. 19.65) each have zoning rules on top of the Title 5 license. Enter a Maui County <b>TMK</b> to see the parcel's zoning and designations, live from the Hawaiʻi Statewide GIS.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Business licenses via Maui County <b>MAPPS</b>. No parcel data is stored or fabricated — fetched live.", "expanding": "use-allowed overlay for home business / STR"}
+    },
+    {
+      "type": "process",
+      "title": "1 · Get a business license",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "General County business licenses go through MAPPS (which replaced the legacy KivaNet system).",
+      "steps": [
+        {"name": "Confirm the use is allowed", "what": "Check your <b>zoning</b> first (Title 19) — a license doesn't override zoning. Home businesses (ch. 19.67) and short-term rentals (ch. 19.65) have separate zoning requirements.", "pay": "Expense: free to check · paid by: you (time)"},
+        {"name": "Create a MAPPS account &amp; apply", "what": "Register for <b>MAPPS Customer Self-Service</b>, open the <b>Business Licenses</b> module, complete the steps and upload the required documents.", "pay": "Expense: license fee · paid by: applicant"},
+        {"name": "Review &amp; issuance", "what": "The County reviews the application against Title 5 requirements and issues the license; some regulated activities route to additional review.", "pay": "Expense: County review · paid by: County (+ applicant fee)"},
+        {"name": "Renew &amp; comply", "what": "Keep the license current and comply with the conditions for your activity (and any state license, e.g. GET, separately).", "pay": "Expense: renewal · paid by: licensee"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "A business license should be a <b>low-friction registration</b> that lets a resident earn a living, not a revenue barrier. Where the County requires a license, the process should be <b>fast, online, and cheap</b> — the burden of compliance shouldn't fall hardest on the smallest operator."}
+      },
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/64/Business\" target=\"_blank\" rel=\"noopener\">For Business</a> + <a href=\"https://mapps.mauicounty.gov/160/Business-Licenses\" target=\"_blank\" rel=\"noopener\">MAPPS — Business Licenses</a> (replaced KivaNet). MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE\" target=\"_blank\" rel=\"noopener\">Title 5</a>.", "expanding": "per-license-type checklists & fees"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Which license or regulation?",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Title 5 covers general business licensing and several regulated activities; liquor is a separate department.",
+      "columns": ["Activity", "Track", "Where"],
+      "rows": [
+        [{"v": "General business license"}, {"v": "Title 5 — Business Licenses"}, {"html": "<a href=\"https://mapps.mauicounty.gov/160/Business-Licenses\" target=\"_blank\" rel=\"noopener\">MAPPS ↗</a>"}],
+        [{"v": "Sell / serve alcohol"}, {"v": "Liquor license — Dept. of Liquor Control", "cls": "c"}, {"html": "<a href=\"https://www.mauicounty.gov/667/Liquor-Control\" target=\"_blank\" rel=\"noopener\">Liquor Control ↗</a>"}],
+        [{"v": "Short-term / vacation rental"}, {"v": "Title 19 zoning (ch. 19.65) + Title 3 tax class", "cls": "c"}, {"html": "<a href=\"../title19-service/Title19%20Service.html\">Title 19 ↗</a>"}],
+        [{"v": "Peddler / solicitor / regulated trades"}, {"v": "Title 5 — see chapter"}, {"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE\" target=\"_blank\" rel=\"noopener\">Title 5 ↗</a>"}]
+      ],
+      "source": {"html": "MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE\" target=\"_blank\" rel=\"noopener\">Title 5 (§§5.06–5.26)</a> + County <a href=\"https://www.mauicounty.gov/667/Liquor-Control\" target=\"_blank\" rel=\"noopener\">Liquor Control</a>.", "expanding": "full chapter list (peddlers, specific regulated trades)"}
+    },
+    {
+      "type": "table",
+      "title": "3 · Liquor license classes",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Liquor is regulated by the <b>Department of Liquor Control</b> (its own rules, MC-08), not the general business-license track. Classes include:",
+      "columns": ["Class", "Use"],
+      "rows": [
+        [{"v": "Manufacturer"}, {"v": "Make alcoholic beverages"}],
+        [{"v": "Wholesale dealer"}, {"v": "Sell to retailers"}],
+        [{"v": "Retail dealer"}, {"v": "Sell packaged for off-premises"}],
+        [{"v": "Dispenser"}, {"v": "Sell/serve for on-premises consumption"}],
+        [{"v": "Restaurant"}, {"v": "Serve with meals"}],
+        [{"v": "Club"}, {"v": "Members' club service"}],
+        [{"v": "Special"}, {"v": "Events / limited-term"}]
+      ],
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/667/Liquor-Control\" target=\"_blank\" rel=\"noopener\">Department of Liquor Control</a> + <a href=\"https://www.mauicounty.gov/186/Liquor-Control-Commission\" target=\"_blank\" rel=\"noopener\">Liquor Control Commission</a>; rules Title MC-08. Apply via the DLC (separate from MAPPS).", "expanding": "verbatim MC-08 class definitions & fees"}
+    },
+    {
+      "type": "prose",
+      "title": "4 · Short-term rentals — the cross-reference you can't skip",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "An STR is the classic trap: a business license alone is not enough.",
+      "html": "<p style=\"font-size:14.5px\">Operating a <b>short-term / vacation rental</b> on Maui touches three titles at once: <b>Title 19 zoning</b> decides whether it's even allowed and on what permit (short-term rental homes, ch. 19.65; B&amp;Bs ch. 19.64), <b>Title 3</b> places it in the <b>TVR-STRH tax class</b> (a higher rate), and <b>Title 5</b> business licensing applies to the operation. Clear all three before advertising — see the <a href=\"../title19-service/Title19%20Service.html\">Title 19</a> and <a href=\"../title03-service/Title3%20Service.html\">Title 3</a> services.</p>",
+      "source": {"html": "MCC Title 5 (STR/TVR licensing cross-refs, per the MCC inventory) + <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances\" target=\"_blank\" rel=\"noopener\">Title 19 ch. 19.65</a> + Title 3 classification (TVR-STRH).", "expanding": "STR registry + enforcement coordination"}
+    },
+    {
+      "type": "prose",
+      "title": "5 · Enforcement",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "How an unlicensed or non-compliant business is addressed. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 5 carries its own licensing requirements and remedies, backed by the County's <b>general penalty</b> provisions (Title 1) for code violations; <b>liquor</b> violations are enforced separately by the <b>Department of Liquor Control</b> (license suspension/revocation + fines under its rules). <i>Note:</i> the Title 19 enforcement chapter (§19.530.030) reaches MCC titles 8, 12, 14, 16, 18, 19 and 20 — it does <b>not</b> list Title 5, so business-license enforcement runs on Title 5 / Title 1 / Liquor-Control tracks, not the zoning-enforcement engine.</p>",
+      "source": {"html": "MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE\" target=\"_blank\" rel=\"noopener\">Title 5</a> + Title 1 (general penalty) + <a href=\"https://www.mauicounty.gov/667/Liquor-Control\" target=\"_blank\" rel=\"noopener\">Liquor Control</a>. Specific Title 5 penalty sections <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "charter-lens",
+      "title": "6 · Who pays — the charter lens",
+      "note": "Labeled analysis — licensing read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the County licenses and regulates businesses through Finance/departments, with the <b>Department of Liquor Control</b> a dedicated regulator; license <b>fees are set by ordinance / rule</b>. The Charter frames licensing as a regulatory and revenue function delegated to the administration.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the right to <b>earn an honest living</b> is foundational; a license is the County's permission to exercise a pre-existing right. The lens reads licensing as something that should be <b>minimal, fast, and cheap</b> for residents — with regulation focused where there is real public risk (alcohol, STR housing impact), not used as a general toll on small enterprise.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Regulate where there's genuine public risk — alcohol, short-term-rental pressure on housing — and make everything else a <b>two-minute online registration</b>. The fee should recover processing cost, not gate the resident out of their own livelihood. Same license, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "7 · Rules → Code: candidates for codification",
+      "intro": "Provisions that, in our assessment, should be <b>codified / streamlined in Title 5</b> so the binding standard and cost are readable from the Code. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Single published fee schedule.</b> License fees are spread across rules and practice. → Codify a <b>one-page Title 5 fee schedule</b> so any operator can read their cost up front. <span class=\"exp\">expanding</span>",
+        "<b>STR cross-title coordination.</b> An STR clears Title 19 + Title 3 + Title 5 separately, with no single front door. → Codify a <b>unified STR registration</b> that confirms zoning, tax class, and license together.",
+        "<b>Small-operator on-ramp.</b> The smallest businesses bear the same process as the largest. → Codify a <b>simplified track</b> (low-risk activities) so licensing doesn't deter resident enterprise."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT5BULIRE\" target=\"_blank\" rel=\"noopener\">Title 5</a> + the County business &amp; liquor licensing framework; contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the licensing navigator, and the license/liquor-class tables are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a license-readiness checklist, an STR cross-title checker, and an <b>AI licensing assistant</b> will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); the actual license application happens on MAPPS or with Liquor Control."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 5 (Business Licenses &amp; Regulations)</b> via Municode + County of Maui <b>For Business / MAPPS</b> + <b>Department of Liquor Control</b> (Title MC-08) + Hawaiʻi Statewide GIS · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · STR cross-refs to Title 19 (ch. 19.64/19.65) + Title 3 (TVR-STRH class) · not legal advice · public records only · hands off to MAPPS / Liquor Control for the official record."
+}

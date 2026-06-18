@@ -172,6 +172,9 @@ NAV_LABEL = {
     "king/civic/templates/title19-system/Title19%20System.html": "Title 19 System — through the Charter",
     "king/civic/templates/title19-service/Title19%20Service.html": "Title 19 — Plain-Language Service (free)",
     "king/civic/templates/title16-service/Title16%20Service.html": "Title 16 — Buildings & Permits (free)",
+    "king/civic/templates/title18-service/Title18%20Service.html": "Title 18 — Subdivisions (free)",
+    "king/civic/templates/title03-service/Title3%20Service.html": "Title 3 — Real Property Tax (free)",
+    "king/civic/templates/title05-service/Title5%20Service.html": "Title 5 — Business Licenses (free)",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -208,7 +211,10 @@ NAV_GROUPS = [
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
                        "king/civic/templates/agenda-explainer/Agenda%20Explainer.html",
                        "king/civic/templates/title19-service/Title19%20Service.html",
-                       "king/civic/templates/title16-service/Title16%20Service.html"]),
+                       "king/civic/templates/title16-service/Title16%20Service.html",
+                       "king/civic/templates/title18-service/Title18%20Service.html",
+                       "king/civic/templates/title03-service/Title3%20Service.html",
+                       "king/civic/templates/title05-service/Title5%20Service.html"]),
     # world financial-center cities — same SSC charter, each city's real charter/code + national law,
     # up the shared apex to the Holy See. "Act local, think global."
     ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",
@@ -908,6 +914,10 @@ Sources are linked on every page.</div>
  <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><div class="t">govOS — Charter Hub</div><div class="b">The charter ⇄ law reference layer: budget, county code, state law, crosswalks, services.</div></a>
  <a class="card" href="king/civic/templates/title19-service/Title19%20Service.html"><div class="t">Title 19 — Plain-Language Service (free)</div><div class="b">Live parcel lookup + zoning navigator. No account.</div></a>
  <a class="card" href="king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html"><div class="t">Title 19 — Substantial Change Procedure</div><div class="b">When a change to an approved project needs a new public hearing — with a decision aid.</div></a>
+ <a class="card" href="king/civic/templates/title16-service/Title16%20Service.html"><div class="t">Title 16 — Buildings &amp; Permits (free)</div><div class="b">Building/electrical/plumbing permits, codes, enforcement, disaster-recovery track.</div></a>
+ <a class="card" href="king/civic/templates/title18-service/Title18%20Service.html"><div class="t">Title 18 — Subdivisions (free)</div><div class="b">Preliminary &amp; final plat process, fees, how it ties to zoning, enforcement.</div></a>
+ <a class="card" href="king/civic/templates/title03-service/Title3%20Service.html"><div class="t">Title 3 — Real Property Tax (free)</div><div class="b">Assessment, classes, exemptions, appeals — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title05-service/Title5%20Service.html"><div class="t">Title 5 — Business Licenses (free)</div><div class="b">County business licensing &amp; permits, plain language.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>

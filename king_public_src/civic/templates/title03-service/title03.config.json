@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "id": "title03",
+    "codeTitle": 3,
+    "name": "Real Property Tax",
+    "department": "Finance — Real Property Assessment Division (assessment) + Treasury (collection)",
+    "templateName": "Title 3 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 3, Ch. 3.48 (Real Property Tax) — the tax year, key dates, the $300,000 home exemption, classifications, appeals, and who pays. Sourced to Municode + County Finance; hands off to mauipropertytax.com / qPublic. First version, expanding.",
+    "pageTitle": "Title 3 — Real Property Tax · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 3 — Real Property Tax <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title3 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "↔ Title 18 — Subdivisions", "href": "../title18-service/Title18%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Ch. 3.48 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 3, Ch. 3.48 (Real Property Tax)</b>: a <b>live parcel lookup</b>, the tax-year calendar, the <b>$300,000 home exemption</b>, how property is classified, how to appeal your assessment, and who pays. Assessment is by the <b>Real Property Assessment Division (Finance)</b>; you <b>pay at mauipropertytax.com</b> — this service explains the law and <b>hands you off to the official systems</b>, it does not replace them. <b>Rates change every year; figures marked <span class=\"exp\">expanding</span> are being filled in. Nothing here is legal or tax advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://www.mauipropertytax.com",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA",
+    "permitLinkLabel": "Pay / view tax (mauipropertytax.com) ↗",
+    "codeLinkLabel": "Ch. 3.48 — Real Property Tax (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Your tax starts with the parcel. Enter a Maui County <b>TMK</b> to see its designations from the Hawaiʻi Statewide GIS. For the parcel's <b>assessed value, classification, exemptions, and tax bill</b> (held by the Real Property Assessment Division, not GIS), the result links you to the <b>qPublic assessment record</b> and the <b>mauipropertytax.com</b> payment portal.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Assessment record: <a href=\"https://qpublic.net/hi/maui/\" target=\"_blank\" rel=\"noopener\">qPublic — Maui Real Property Assessment</a>; pay at <a href=\"https://www.mauipropertytax.com\" target=\"_blank\" rel=\"noopener\">mauipropertytax.com</a>. No parcel or tax data is stored or fabricated — fetched live / linked to source.", "expanding": "assessed-value overlay"}
+    },
+    {
+      "type": "process",
+      "title": "1 · The property-tax year",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The annual cycle under Ch. 3.48 — assessment, appeal, then two payment installments.",
+      "steps": [
+        {"name": "Assessment notice — by March 15", "what": "The Real Property Assessment Division mails your annual <b>assessment notice by March 15</b>, showing assessed value and classification for the coming tax year.", "pay": "Expense: none to receive · the County assesses"},
+        {"name": "Appeal window — by April 9", "what": "If you disagree, file an appeal with the <b>Board of Review by April 9</b>, with a <b>$75 fee per appeal</b>. You must still pay your taxes on time while the appeal is pending.", "pay": "Expense: $75 appeal fee · paid by: owner"},
+        {"name": "1st installment — due August 20", "what": "The first-half bill is mailed July 20 and is <b>due August 20</b>.", "pay": "Expense: half the year's tax · paid by: owner"},
+        {"name": "2nd installment — due February 20", "what": "The second-half bill is mailed January 20 and is <b>due February 20</b>.", "pay": "Expense: half the year's tax · paid by: owner"},
+        {"name": "Late: 10% + 1%/month", "what": "Miss a due date and a one-time <b>10% penalty</b> plus <b>1% monthly interest</b> accrues on the unpaid balance until paid.", "pay": "Expense: penalty + interest · paid by: owner"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Real property tax is the County taxing a resident's own home and land. The <b>home exemption and owner-occupied class</b> exist to protect the homestead — reform (the Council's active RPT-reform work) should keep <b>lightening the owner-occupant</b> relative to investor, STR, and resort classes, not the reverse."}
+      },
+      "source": {"html": "County of Maui Finance — <a href=\"https://www.mauicounty.gov/577/Real-Property-Tax-Payments\" target=\"_blank\" rel=\"noopener\">Real Property Tax Payments</a> + <a href=\"https://www.mauicounty.gov/1109/Appeals\" target=\"_blank\" rel=\"noopener\">Appeals</a>; dates per County notices (assessments by Mar 15, appeal by Apr 9). MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA\" target=\"_blank\" rel=\"noopener\">Ch. 3.48</a>."}
+    },
+    {
+      "type": "table",
+      "title": "2 · Key dates &amp; amounts",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The fixed dates and amounts of the RPT year. Tax RATES (per $1,000 of value, by class) are set by the Council annually — see the County rates page.",
+      "columns": ["What", "When / how much", "Notes"],
+      "rows": [
+        [{"v": "Assessment notices mailed"}, {"v": "by March 15"}, {"v": "value + classification for the year"}],
+        [{"v": "Appeal deadline (Board of Review)"}, {"v": "April 9", "cls": "c"}, {"v": "$75 fee per appeal; cannot be appealed late"}],
+        [{"v": "Home-exemption claim deadline"}, {"v": "December 31", "cls": "c"}, {"v": "for the following assessment year; missing it cannot be appealed"}],
+        [{"v": "1st installment due"}, {"v": "August 20"}, {"v": "mailed July 20"}],
+        [{"v": "2nd installment due"}, {"v": "February 20"}, {"v": "mailed January 20"}],
+        [{"v": "Home exemption"}, {"v": "$300,000 off value", "cls": "y"}, {"v": "+ reclassifies to Owner-occupied"}],
+        [{"v": "Late penalty"}, {"v": "10% + 1%/month", "cls": "n"}, {"v": "on unpaid balance"}],
+        [{"v": "Tax rates (per $1,000, by class)"}, {"v": "set annually by Council"}, {"v": "see rates page — expanding"}]
+      ],
+      "source": {"html": "County of Maui Finance — <a href=\"https://www.mauicounty.gov/577/Real-Property-Tax-Payments\" target=\"_blank\" rel=\"noopener\">RPT Payments</a>, <a href=\"https://www.mauicounty.gov/755/Real-Property-Tax-Rates\" target=\"_blank\" rel=\"noopener\">Tax Rates</a>, <a href=\"https://www.mauicounty.gov/faq.aspx?TID=94\" target=\"_blank\" rel=\"noopener\">Exemptions FAQ</a>. Amounts as published; confirm the current year with Finance.", "expanding": "current per-class rate table"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · The home exemption — $300,000 off",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The single biggest break for resident homeowners. File once; it carries forward while you qualify.",
+      "html": "<p style=\"font-size:14.5px\">The <b>home exemption</b> reduces your taxable assessed value by <b>$300,000</b> and reclassifies the property into the lower-taxed <b>Owner-occupied</b> class. To qualify you must: <b>occupy the home more than 270 days</b> of each calendar year; <b>not rent the entire premises</b> for any part of the year; and <b>file a Hawaiʻi resident income-tax return</b> with a Maui County address for the prior year. <b>File your claim by December 31</b> for it to apply to the following assessment year — and note that <b>missing the December 31 deadline cannot be appealed</b>.</p>",
+      "source": {"html": "Maui County Code Ch. 3.48, Art. IX (Exemptions) — <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA_ARTIXEX_3.48.455EX\" target=\"_blank\" rel=\"noopener\">§3.48.455</a> + County <a href=\"https://www.mauicounty.gov/faq.aspx?TID=94\" target=\"_blank\" rel=\"noopener\">Exemptions FAQ</a>.", "expanding": "additional exemptions (long-term rental, disability, age) "}
+    },
+    {
+      "type": "table",
+      "title": "4 · Tax classifications",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Your classification (not just your value) drives your rate. The Council sets a separate rate for each class.",
+      "columns": ["Class", "What it is"],
+      "rows": [
+        [{"v": "Owner-occupied"}, {"v": "Principal home with a granted home exemption (lowest tier)"}],
+        [{"v": "Non-owner-occupied"}, {"v": "Dwelling that isn't owner-occupied or another specific class"}],
+        [{"v": "Long-term rental"}, {"v": "Leased 12+ months (reduced rate to encourage resident housing)"}],
+        [{"v": "TVR-STRH"}, {"v": "Transient vacation rental / short-term rental home"}],
+        [{"v": "Hotel & resort"}, {"v": "Visitor accommodation"}],
+        [{"v": "Time share"}, {"v": "Time-share units"}],
+        [{"v": "Commercial / Industrial"}, {"v": "Business-use property"}],
+        [{"v": "Commercialized residential"}, {"v": "Residential used commercially"}],
+        [{"v": "Agricultural / Conservation"}, {"v": "Ag-use and conservation lands"}]
+      ],
+      "source": {"html": "County of Maui — <a href=\"https://www.mauicounty.gov/755/Classification-for-Tax-Rate-Purposes\" target=\"_blank\" rel=\"noopener\">Classification for Tax-Rate Purposes</a> + MCC Ch. 3.48 Art. IX (<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA_ARTIXEX_3.48.410CLILRE\" target=\"_blank\" rel=\"noopener\">§3.48.410</a>).", "expanding": "full class list + the year's per-class rates"}
+    },
+    {
+      "type": "prose",
+      "title": "5 · Appeals",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "If your assessed value is wrong, you can challenge it — but on the County's clock. Not tax advice.",
+      "html": "<p style=\"font-size:14.5px\">File an appeal with the <b>Board of Review by April 9</b> (the next business day if it falls on a weekend/holiday), with a <b>$75 fee per appeal</b>. Common grounds: the assessment exceeds market value, lacks uniformity with comparable properties, or the classification/exemption is wrong. <b>You must keep paying your taxes by the Aug 20 / Feb 20 due dates while the appeal is pending</b> — an appeal does not pause the bill, and unpaid amounts still draw the 10% + 1%/month penalty.</p>",
+      "source": {"html": "County of Maui — <a href=\"https://www.mauicounty.gov/1109/Appeals\" target=\"_blank\" rel=\"noopener\">Appeals</a> + <a href=\"https://www.mauicounty.gov/DocumentCenter/View/8716/Appeal-Instructions-and-Form\" target=\"_blank\" rel=\"noopener\">Appeal Instructions &amp; Form</a>.", "expanding": "Board of Review vs. Tax Appeal Court track"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "6 · Who pays — the charter lens",
+      "note": "Labeled analysis — the tax read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Council <b>sets real-property tax rates by class</b> each year and Finance assesses and collects; RPT is the County's primary own-source revenue funding county services. The Charter frames RPT as the Council's central fiscal lever — and the active <b>Real Property Tax Reform (RPTR)</b> committee is where class definitions and rates are being reconsidered.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, a recurring tax on one's own homestead is the heaviest ongoing claim the County makes on a resident. The <b>home exemption and owner-occupied class</b> are the homestead protections; the lens reads reform as a duty to <b>shift the load toward investor / STR / resort classes</b> and away from the resident owner-occupant and long-term-rental housing.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Classification is the moral core of RPT: it decides who carries the County. The reform question — read through both charters — is whether each new rate <b>lightens the resident homeowner and long-term housing</b>, or quietly leans on them. Same tax, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "7 · Reform &amp; codification candidates",
+      "intro": "Provisions that, in our assessment, the Council's RPT-reform work should <b>codify or index into Ch. 3.48</b> so they don't drift with administration or inflation. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Index the home exemption.</b> The $300,000 exemption is a fixed dollar amount that erodes as values rise. → Codify an <b>inflation index</b> so the homestead protection holds its real value. <span class=\"exp\">expanding</span>",
+        "<b>Codify classification criteria.</b> Class placement (e.g. long-term-rental vs non-owner-occupied) drives the bill but turns on administrative definitions. → Tighten the <b>in-Code criteria</b> so classification is predictable and appealable.",
+        "<b>Rate-setting transparency.</b> Per-class rates are set annually. → Require a published, plain-language <b>who-pays-what table</b> with each rate ordinance so residents can see the shift between classes year over year."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT3REFI_CH3.48REPRTA\" target=\"_blank\" rel=\"noopener\">Ch. 3.48</a> + the County's <a href=\"https://www.mauicounty.gov/755/Classification-for-Tax-Rate-Purposes\" target=\"_blank\" rel=\"noopener\">classification</a> framework; reform context = the Council's Real Property Tax Reform committee."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the tax-year calendar, the dates/amounts table, and the classification list are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a home-exemption eligibility checker, an appeal-prep helper, and an <b>AI property-tax assistant</b> will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); the actual tax payment always happens on the County's own portal, mauipropertytax.com."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 3, Ch. 3.48 (Real Property Tax)</b> via Municode + County of Maui <b>Finance / Real Property Assessment Division</b> + <b>qPublic</b> (assessment) + <b>mauipropertytax.com</b> (official payment) + Hawaiʻi Statewide GIS · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · annual rates set by Council — figures verify against Finance · not legal or tax advice · public records only · hands off to the County's own systems for assessment &amp; payment."
+}
