@@ -15,3 +15,6 @@ _probe*.py
 
 # never publish the raw heavy archives by accident
 watchers/*_state.json
+
+# internal cross-thread coordination bus — never publish (not leak-scanned; keep private)
+.dispatch_log.jsonl

@@ -114,7 +114,7 @@ def main():
       ".row{border-bottom:1px solid #dbe5f1;padding:.4rem 0}.row:last-child{border-bottom:0}.dt{font-family:Consolas,monospace;color:var(--accent2);font-size:.78rem;margin-right:.5rem}.sr{font-family:Consolas,monospace;color:var(--faint);font-size:.76rem}"
       ".ev{color:var(--ink);font-size:.9rem;margin-top:.15rem}.mt{color:var(--faint);font-style:italic;font-size:.88rem}.bk{padding:.3rem 0;font-size:.92rem;color:var(--dim);border-bottom:1px solid #dbe5f1}"
       ".foot{margin-top:1.4rem;border-top:1px solid var(--line);padding-top:.6rem;color:var(--faint);font-size:.76rem}</style>"
-      "<div class=eyebrow>govOS &middot; owner-only &middot; never published</div><h1>Daily Brief &mdash; current across all threads</h1>"
+      "<div class=eyebrow>govOS &middot; Naga (owner-only) &middot; never published</div><h1>Daily Brief &mdash; current across all threads</h1>"
       "<p class=sub>What&rsquo;s open and what&rsquo;s been missed, from the cross-thread dispatch log (last 10 days, %d events) + the carried backlog. Generated %s.</p>"
       "%s%s%s<div class=sec><h2>&#128203; Carried backlog <span class=ct>%d</span></h2>%s</div>"
       "<div class=sec><h2>&#129525; Thread activity (10d)</h2>%s</div>"

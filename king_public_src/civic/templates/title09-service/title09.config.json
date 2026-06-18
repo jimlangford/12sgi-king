@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "id": "title09",
+    "codeTitle": 9,
+    "name": "Public Peace, Morals & Welfare",
+    "department": "Police Department (enforcement)",
+    "templateName": "Title 9 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 9 (Public Peace, Morals & Welfare) — trespassing, curfew, and public-conduct offenses, and how they're enforced. Sourced to Municode; first version, structural; expanding.",
+    "pageTitle": "Title 9 — Public Peace, Morals & Welfare · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 9 — Public Peace, Morals &amp; Welfare <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title9 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 10 — Vehicles & Traffic", "href": "../title10-service/Title10%20Service.html"},
+    {"label": "↔ Title 13 — Parks", "href": "../title13-service/Title13%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 9 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT9PUPEMOWE", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 9 (Public Peace, Morals &amp; Welfare)</b> — the County's <b>public-conduct</b> ordinances, including <b>trespassing</b> (Ch. 9.04) and the <b>minors' curfew</b> (Ch. 9.24). This title is mostly <b>prohibitions enforced by the Police</b>, not a permit service. <b>Structural first version; sections marked <span class=\"exp\">expanding</span> are being sourced verbatim; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "title": "1 · What Title 9 covers",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "A structural overview of the public-conduct title. We name only what is in the Code's own structure.",
+      "html": "<p style=\"font-size:14.5px\">Title 9 (<b>Public Peace, Morals &amp; Welfare</b>, §§9.04.010–9.36.050) is the County's public-conduct title. It includes <b>Chapter 9.04 (Trespassing)</b> and <b>Chapter 9.24 (Curfew)</b> — which makes it unlawful for minors to be in public places during specified late-night hours — among other public-order provisions. Unlike permit titles, Title 9 is enforced directly by the <b>Police Department</b> and the courts; there's nothing to apply for. Chapter-level detail is <span class=\"exp\">expanding</span> as the corpus is sourced.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT9PUPEMOWE\" target=\"_blank\" rel=\"noopener\">Title 9</a>; <a href=\"http://mauico-hi.elaws.us/code/coor_title9_ch9.04_sec9.04.020\" target=\"_blank\" rel=\"noopener\">Ch. 9.04 (Trespassing)</a>, <a href=\"http://mauico-hi.elaws.us/code/coor_title9_ch9.24_sec9.24.020\" target=\"_blank\" rel=\"noopener\">Ch. 9.24 (Curfew)</a>.", "expanding": "full chapter list + each offense's elements"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Key chapters",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The provisions residents ask about most. Always read the chapter for the exact rule.",
+      "columns": ["Chapter", "Subject", "In plain terms"],
+      "rows": [
+        [{"v": "9.04"}, {"v": "Trespassing"}, {"v": "Entering or staying on property without right or permission"}],
+        [{"v": "9.24"}, {"v": "Curfew (minors)"}, {"v": "Minors not in public places during specified late-night hours"}],
+        [{"v": "others"}, {"v": "Public peace & welfare", "cls": "c"}, {"v": "additional public-order offenses — expanding"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT9PUPEMOWE\" target=\"_blank\" rel=\"noopener\">Title 9 (§§9.04–9.36)</a>.", "expanding": "complete chapter inventory"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "How Title 9 is enforced. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 9 offenses are enforced by the <b>Police Department</b> and prosecuted through the courts, layered over State criminal law. <i>Note:</i> the zoning-enforcement chapter §19.530.030 reaches MCC titles 8, 12, 14, 16, 18, 19 and 20 — it does <b>not</b> list Title 9, and the §15-2/MC-15 fine schedule is specific to Titles 16·18·19. So Title 9 runs on its own penalty provisions and State law, not the civil code-enforcement engine.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT9PUPEMOWE\" target=\"_blank\" rel=\"noopener\">Title 9</a> + State criminal law. Specific penalties <span class=\"exp\">expanding</span>."}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · The lens — order vs. liberty",
+      "note": "Labeled analysis — public-conduct law read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Council may legislate for public peace, health, and welfare, and the Police enforce it. The Charter frames these ordinances as protecting the <b>community's shared order and safety</b>.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, every person carries inherent dignity and freedom of movement; public-order rules are legitimate only where they protect others from real harm. The lens reads measures like a curfew as a <b>narrow, last-resort</b> tool, and insists enforcement be even-handed and non-discriminatory.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Protect the peace, but keep public-conduct law <b>narrow, clear, and evenly enforced</b> — order in service of liberty, not the other way around. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this whole page is <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a plain-language \"know your rights/obligations\" assistant for Title 9 will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only). This service is informational and does not provide legal advice."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 9 (Public Peace, Morals &amp; Welfare)</b> via Municode · first version 2026-06-18, structural; expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforced by Police; not reached by §19.530.030 · not legal advice · public records only."
+}

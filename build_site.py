@@ -181,6 +181,14 @@ NAV_LABEL = {
     "king/civic/templates/title10-service/Title10%20Service.html": "Title 10 — Vehicles & Traffic (free)",
     "king/civic/templates/title12-service/Title12%20Service.html": "Title 12 — Streets & Sidewalks (free)",
     "king/civic/templates/title20-service/Title20%20Service.html": "Title 20 — Environmental Protection (free)",
+    "king/civic/templates/title06-service/Title6%20Service.html": "Title 6 — Animals (free)",
+    "king/civic/templates/title08-service/Title8%20Service.html": "Title 8 — Health & Safety (free)",
+    "king/civic/templates/title09-service/Title9%20Service.html": "Title 9 — Public Peace & Welfare (free)",
+    "king/civic/templates/title11-service/Title11%20Service.html": "Title 11 — Public Transit (free)",
+    "king/civic/templates/title13-service/Title13%20Service.html": "Title 13 — Parks & Recreation (free)",
+    "king/civic/templates/title22-service/Title22%20Service.html": "Title 22 — Department of Agriculture (free)",
+    "king/civic/templates/title01-service/Title1%20Service.html": "Title 1 — General Provisions (free)",
+    "king/civic/templates/title02-service/Title2%20Service.html": "Title 2 — Administration & Personnel (free)",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -224,7 +232,15 @@ NAV_GROUPS = [
                        "king/civic/templates/title14-service/Title14%20Service.html",
                        "king/civic/templates/title10-service/Title10%20Service.html",
                        "king/civic/templates/title12-service/Title12%20Service.html",
-                       "king/civic/templates/title20-service/Title20%20Service.html"]),
+                       "king/civic/templates/title20-service/Title20%20Service.html",
+                       "king/civic/templates/title06-service/Title6%20Service.html",
+                       "king/civic/templates/title08-service/Title8%20Service.html",
+                       "king/civic/templates/title09-service/Title9%20Service.html",
+                       "king/civic/templates/title11-service/Title11%20Service.html",
+                       "king/civic/templates/title13-service/Title13%20Service.html",
+                       "king/civic/templates/title22-service/Title22%20Service.html",
+                       "king/civic/templates/title01-service/Title1%20Service.html",
+                       "king/civic/templates/title02-service/Title2%20Service.html"]),
     # world financial-center cities — same SSC charter, each city's real charter/code + national law,
     # up the shared apex to the Holy See. "Act local, think global."
     ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",
@@ -932,6 +948,14 @@ Sources are linked on every page.</div>
  <a class="card" href="king/civic/templates/title10-service/Title10%20Service.html"><div class="t">Title 10 — Vehicles &amp; Traffic (free)</div><div class="b">Traffic code, parking, vehicles — plain language.</div></a>
  <a class="card" href="king/civic/templates/title12-service/Title12%20Service.html"><div class="t">Title 12 — Streets &amp; Sidewalks (free)</div><div class="b">Streets, sidewalks, public ways &amp; encroachments — plain language.</div></a>
  <a class="card" href="king/civic/templates/title20-service/Title20%20Service.html"><div class="t">Title 20 — Environmental Protection (free)</div><div class="b">Environmental protection, recycling, water quality — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title06-service/Title6%20Service.html"><div class="t">Title 6 — Animals (free)</div><div class="b">Animal control, licensing &amp; welfare — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title08-service/Title8%20Service.html"><div class="t">Title 8 — Health &amp; Safety (free)</div><div class="b">Public health &amp; safety code — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title09-service/Title9%20Service.html"><div class="t">Title 9 — Public Peace &amp; Welfare (free)</div><div class="b">Public peace, morals &amp; welfare — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title11-service/Title11%20Service.html"><div class="t">Title 11 — Public Transit (free)</div><div class="b">County public transit &amp; transportation — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title13-service/Title13%20Service.html"><div class="t">Title 13 — Parks &amp; Recreation (free)</div><div class="b">County parks, beaches &amp; recreation — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title22-service/Title22%20Service.html"><div class="t">Title 22 — Department of Agriculture (free)</div><div class="b">County Department of Agriculture — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title01-service/Title1%20Service.html"><div class="t">Title 1 — General Provisions (free)</div><div class="b">How the Code is organized &amp; applied — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title02-service/Title2%20Service.html"><div class="t">Title 2 — Administration &amp; Personnel (free)</div><div class="b">County administration, boards &amp; commissions — plain language.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>

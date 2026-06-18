@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "id": "title11",
+    "codeTitle": 11,
+    "name": "Public Transit",
+    "department": "Department of Transportation (Maui Bus)",
+    "templateName": "Title 11 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 11 (Public Transit) — the Maui Bus system, fares, and ADA paratransit. Sourced to Municode + County Transportation; first version, expanding.",
+    "pageTitle": "Title 11 — Public Transit · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 11 — Public Transit <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Maui Bus · Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title11 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 10 — Vehicles & Traffic", "href": "../title10-service/Title10%20Service.html"},
+    {"label": "↔ Title 12 — Streets", "href": "../title12-service/Title12%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 11 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT11PUTR", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 11 (Public Transit)</b> — the <b>Maui Bus</b> system: fixed routes, fares, and <b>ADA paratransit</b>. Run by the County <b>Department of Transportation</b> (operated under contract). <b>Fares and routes change — figures marked <span class=\"exp\">expanding</span> are being verified against the County's current schedule; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "title": "1 · The Maui Bus",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "How public transit works on Maui under Title 11.",
+      "html": "<p style=\"font-size:14.5px\">The <b>Maui Bus</b> is the County's fixed-route public transit system — <b>12 routes operated 7 days a week</b> (including holidays) across Central, South, West, Upcountry, Kula, and Haʻikū communities, run for the County by a contracted operator. The County has introduced a <b>fixed-route fare-free transit program</b>; check the current fare status and schedules on the County's Bus Service page before you ride.</p>",
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/609/Maui-Bus-Public-Transit-System\" target=\"_blank\" rel=\"noopener\">Maui Bus Public Transit System</a> + <a href=\"https://www.mauicounty.gov/605/Bus-Service-Schedule-Information\" target=\"_blank\" rel=\"noopener\">Bus Service &amp; Schedules</a>; Dept. of Transportation (808) 270-7511.", "expanding": "current fare-free status + live route map"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Service &amp; fares",
+      "badge": {"kind": "exp", "text": "verify current"},
+      "note": "Historical fares shown for reference — a fare-free fixed-route program has been introduced, so confirm the current fare on the County page before relying on these.",
+      "columns": ["Service", "Fare (historical — verify)", "Notes"],
+      "rows": [
+        [{"v": "Fixed-route single boarding"}, {"v": "$2 (or fare-free program)", "cls": "c"}, {"v": "12 routes, 7 days/week"}],
+        [{"v": "Daily pass"}, {"v": "$4"}, {"v": "unlimited that day"}],
+        [{"v": "Monthly commuter pass"}, {"v": "$45"}, {"v": "commuter service"}],
+        [{"v": "ADA paratransit — one-way"}, {"v": "$2.00"}, {"v": "advance reservation, curb-to-curb"}],
+        [{"v": "ADA paratransit — ticket book"}, {"v": "$20 (12 one-way trips)"}, {"v": "for eligible riders"}]
+      ],
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/605/Bus-Service-Schedule-Information\" target=\"_blank\" rel=\"noopener\">Bus Service Information</a> + <a href=\"https://www.mauicounty.gov/607/Maui-Bus-ADA-Paratransit-Service-Program\" target=\"_blank\" rel=\"noopener\">ADA Paratransit Program</a>. Fares as previously published; the fixed-route fare-free program may supersede.", "expanding": "confirmed current fare table"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · ADA paratransit",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Door-to-door service for riders who can't use the fixed route.",
+      "html": "<p style=\"font-size:14.5px\">The County offers <b>ADA paratransit</b> — an <b>advance-reservation, curb-to-curb</b> service for persons with disabilities who are unable to use the regular fixed-route bus. Eligibility and reservations are handled by the Department of Transportation; the historical fare is <b>$2.00 one-way</b> (ticket books $20 for 12 trips).</p>",
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/607/Maui-Bus-ADA-Paratransit-Service-Program\" target=\"_blank\" rel=\"noopener\">Maui Bus ADA Paratransit Service Program</a>.", "expanding": "eligibility application + reservation portal"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · Who pays — the charter lens",
+      "note": "Labeled analysis — public transit read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Department of Transportation operates public transit as a County service, funded by fares plus County and federal subsidy; service levels and fares are policy choices of the administration and Council.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, mobility is a precondition for participating in community life — work, school, ʻohana, civic duty. The lens reads the move toward <b>fare-free transit</b> as restoring access as a shared right, especially for elders, youth, and low-income residents who depend on the bus.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Transit is access, and access is dignity. <b>Fare-free, frequent service</b> pays the community back many times over — the fixed-route fare-free program is the right direction. Same service, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page and the transit guide are <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a paratransit-eligibility helper and an <b>AI transit assistant</b> will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 11 (Public Transit)</b> via Municode + County of Maui <b>Department of Transportation / Maui Bus</b> · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · fares change — verify current fare-free status with the County · not legal advice · public records only."
+}
