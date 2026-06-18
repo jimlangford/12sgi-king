@@ -928,6 +928,10 @@ Sources are linked on every page.</div>
  <a class="card" href="king/civic/templates/title18-service/Title18%20Service.html"><div class="t">Title 18 — Subdivisions (free)</div><div class="b">Preliminary &amp; final plat process, fees, how it ties to zoning, enforcement.</div></a>
  <a class="card" href="king/civic/templates/title03-service/Title3%20Service.html"><div class="t">Title 3 — Real Property Tax (free)</div><div class="b">Assessment, classes, exemptions, appeals — plain language.</div></a>
  <a class="card" href="king/civic/templates/title05-service/Title5%20Service.html"><div class="t">Title 5 — Business Licenses (free)</div><div class="b">County business licensing &amp; permits, plain language.</div></a>
+ <a class="card" href="king/civic/templates/title14-service/Title14%20Service.html"><div class="t">Title 14 — Water / Public Services (free)</div><div class="b">Water service, rates, meters, public utilities — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title10-service/Title10%20Service.html"><div class="t">Title 10 — Vehicles &amp; Traffic (free)</div><div class="b">Traffic code, parking, vehicles — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title12-service/Title12%20Service.html"><div class="t">Title 12 — Streets &amp; Sidewalks (free)</div><div class="b">Streets, sidewalks, public ways &amp; encroachments — plain language.</div></a>
+ <a class="card" href="king/civic/templates/title20-service/Title20%20Service.html"><div class="t">Title 20 — Environmental Protection (free)</div><div class="b">Environmental protection, recycling, water quality — plain language.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
