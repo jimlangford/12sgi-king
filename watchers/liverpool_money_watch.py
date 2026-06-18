@@ -111,7 +111,8 @@ def page(recips, types, grand_total, grand_n, n_recips):
  .m{{display:grid;grid-template-columns:150px 70px 1fr;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}}
  .m .a{{font-family:Consolas,monospace;font-size:12.5px;color:#d9b24c;text-align:right}}
  .m .n{{font-family:Consolas,monospace;font-size:12px;color:#9a957f;text-align:right}}
- .m .c{{font-size:12.5px;color:#bdb8a4}}
+ .m .c{{font-size:12.5px;color:#bdb8a4;min-width:0;overflow-wrap:anywhere}}
+ @media(max-width:430px){{.m{{grid-template-columns:130px 60px 1fr;gap:8px}}}}
  a{{color:#d9b24c}} footer{{margin-top:34px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}}
 </style></head><body><div class="wrap">
 <div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; Liverpool, NY / Onondaga County &middot; where the money goes</div>
