@@ -37,7 +37,7 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "nay_narratives.json",                       # dissent-vote spine (prosecutor) — public PAGE only, not the JSON
                  "daily_brief.html", "DAILY_BRIEF.md", "TODO_BACKLOG.md",  # owner-only cross-thread current-state — never public
                  "beta.json", "stripe.json", "verified_sessions.json",  # beta config + Stripe keys + verified-status store — never public
-                 "comfy_cloud.json", "opencorporates.json", "stripe.json")  # API keys (ComfyUI Cloud, OpenCorporates, Stripe) — never publish
+                 "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
 
 def _known_secrets():
     """The ACTUAL secret VALUES, read at runtime from the local key files — NEVER hard-coded here

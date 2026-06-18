@@ -9,7 +9,9 @@ from datetime import datetime, timedelta, timezone
 HST=timezone(timedelta(hours=-10))
 HOME=os.path.expanduser("~"); PROJ=os.path.join(HOME,"Documents","Claude","Projects","Video System elementLOTUS")
 LOG=os.path.join(PROJ,".dispatch_log.jsonl"); DOCS=os.path.join(PROJ,"docs")
-BRIEF_MD=os.path.join(DOCS,"DAILY_BRIEF.md"); BACKLOG_MD=os.path.join(DOCS,"TODO_BACKLOG.md")
+BRIEF_MD=os.path.join(DOCS,"DAILY_BRIEF.md")
+# the consolidated WORKFLOW.md is now the to-do source (supersedes TODO_BACKLOG.md); fall back if absent
+BACKLOG_MD=os.path.join(DOCS,"WORKFLOW.md") if os.path.exists(os.path.join(DOCS,"WORKFLOW.md")) else os.path.join(DOCS,"TODO_BACKLOG.md")
 KING=[os.path.join(HOME,"AppData","Local","king-extract","deploy","king-local"),os.path.join(PROJ,"king-local")]
 def esc(s): return str(s if s is not None else "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 
@@ -53,7 +55,7 @@ def _scan():
     return blockers,handoffs,openw,bythread,len(evs)
 
 def _backlog():
-    """Carried backlog (persists day to day). Seeded on first run with the known current gaps; hand-edit freely."""
+    """Workflow — open items (persists day to day). Seeded on first run with the known current gaps; hand-edit freely."""
     if not os.path.exists(BACKLOG_MD):
         os.makedirs(DOCS,exist_ok=True)
         seed=("# TODO Backlog — carried across days (hand-curated + daily_brief seed)\n\n"
@@ -80,7 +82,7 @@ def main():
         "## ⛔ Open blockers (%d)\n%s\n\n"
         "## 🤝 Handoffs awaiting pickup (%d)\n%s\n\n"
         "## 🔧 Open / missed work surfaced across threads (%d)\n%s\n\n"
-        "## 📋 Carried backlog (%d open)\n%s\n\n"
+        "## 📋 Workflow — open items (%d open)\n%s\n\n"
         "## 🧵 Thread activity (last 10 days)\n%s\n\n"
         "## ✅ Recently closed in backlog\n%s\n")%(
         today,n,
@@ -116,7 +118,7 @@ def main():
       ".foot{margin-top:1.4rem;border-top:1px solid var(--line);padding-top:.6rem;color:var(--faint);font-size:.76rem}</style>"
       "<div class=eyebrow>govOS &middot; Naga (owner-only) &middot; never published</div><h1>Daily Brief &mdash; current across all threads</h1>"
       "<p class=sub>What&rsquo;s open and what&rsquo;s been missed, from the cross-thread dispatch log (last 10 days, %d events) + the carried backlog. Generated %s.</p>"
-      "%s%s%s<div class=sec><h2>&#128203; Carried backlog <span class=ct>%d</span></h2>%s</div>"
+      "%s%s%s<div class=sec><h2>&#128203; Workflow — open items <span class=ct>%d</span></h2>%s</div>"
       "<div class=sec><h2>&#129525; Thread activity (10d)</h2>%s</div>"
       "<div class=foot>daily_brief.py &middot; edit docs/TODO_BACKLOG.md to add/close items &middot; PRIVATE</div>")%(
       n,esc(gen),blk,hnd,opn,len(open_items),bl,th)
