@@ -36,8 +36,8 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "testifiers.json", "testifiers_index.txt",   # testifier×money cross-ref (prosecutor) — public PAGE only, not the join
                  "nay_narratives.json",                       # dissent-vote spine (prosecutor) — public PAGE only, not the JSON
                  "daily_brief.html", "DAILY_BRIEF.md", "TODO_BACKLOG.md",  # owner-only cross-thread current-state — never public
-                 "beta.json",                                 # beta portal links config (public-safe links, but keep out of repo)
-                 "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
+                 "beta.json", "stripe.json", "verified_sessions.json",  # beta config + Stripe keys + verified-status store — never public
+                 "comfy_cloud.json", "opencorporates.json", "stripe.json")  # API keys (ComfyUI Cloud, OpenCorporates, Stripe) — never publish
 
 def _known_secrets():
     """The ACTUAL secret VALUES, read at runtime from the local key files — NEVER hard-coded here
@@ -69,6 +69,17 @@ def _known_secrets():
         k = (d.get("api_token") or d.get("token") or "").strip()
         if len(k) >= 12 and not k.startswith("PASTE_"):
             vals.add(k)
+    except Exception:
+        pass
+    # the Stripe SECRET / restricted key (config/stripe.json) must NEVER appear in the public repo. The publishable
+    # key (pk_) is safe to expose and is intentionally NOT scanned; only sk_/rk_/whsec_ are treated as secret.
+    try:
+        import json as _json
+        d = _json.load(open(os.path.join(cfg, "stripe.json"), encoding="utf-8"))
+        for fld in ("secret_key", "restricted_key", "webhook_secret"):
+            k = (d.get(fld) or "").strip()
+            if len(k) >= 12 and not k.startswith("PASTE_"):
+                vals.add(k)
     except Exception:
         pass
     return vals

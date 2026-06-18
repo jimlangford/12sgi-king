@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "id": "title02",
+    "codeTitle": 2,
+    "name": "Administration & Personnel",
+    "department": "Office of the Managing Director / all departments",
+    "templateName": "Title 2 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 2 (Administration & Personnel) — county departments, boards & commissions, the Planning Commission, the General Plan, and how the government is organized. Sourced to Municode; first version, expanding.",
+    "pageTitle": "Title 2 — Administration & Personnel · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 2 — Administration &amp; Personnel <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title2 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 1 — General Provisions", "href": "../title01-service/Title1%20Service.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 2 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT2ADPE", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 2 (Administration &amp; Personnel)</b> — how County government is <b>organized</b>: the departments, the <b>boards and commissions</b> (including the <b>Planning Commission</b>, Ch. 2.28), the <b>General Plan</b> framework (Ch. 2.80B) that guides community plans, and personnel rules. This is the title that turns the Charter into a working administration. For the full charter-to-department mapping, see the <a href=\"../mauios-gov/MauiOS%20Government%20OS.html\">govOS Charter Hub</a>. <b>Sections marked <span class=\"exp\">expanding</span> are being sourced verbatim; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "title": "1 · How the County is organized",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The administrative backbone every service runs on.",
+      "html": "<p style=\"font-size:14.5px\">Title 2 (<b>Administration &amp; Personnel</b>) sets up County government: the <b>departments</b> (Planning, Public Works, Finance, Water Supply, Environmental Management, Parks &amp; Recreation, Transportation, Agriculture, and more), the <b>boards and commissions</b> that decide and advise, and the <b>personnel/civil-service</b> rules for County employees. It's where the Charter's structure becomes the agencies you actually deal with in every other title's service.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT2ADPE\" target=\"_blank\" rel=\"noopener\">Title 2 (Administration &amp; Personnel)</a>.", "expanding": "full department & commission chapter list"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Key chapters",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The parts of Title 2 residents meet most often.",
+      "columns": ["Chapter", "Subject", "Why it matters to you"],
+      "rows": [
+        [{"v": "2.28"}, {"v": "Planning Commission(s)"}, {"v": "Decides zoning permits, plan amendments, SMA (the body behind Title 19)"}],
+        [{"v": "2.80B"}, {"v": "General Plan / community plans"}, {"v": "The long-range framework that guides community-plan land use"}],
+        [{"v": "Boards & commissions"}, {"v": "Variances & Appeals, Liquor, Ethics, etc.", "cls": "c"}, {"v": "Where you appeal or testify"}],
+        [{"v": "Departments & personnel"}, {"v": "Department powers; civil service"}, {"v": "Who administers each service"}]
+      ],
+      "source": {"html": "Maui County Code Title 2 — <b>Ch. 2.28 (Planning Commission)</b>, <b>Ch. 2.80B (General Plan)</b>, board/commission and personnel chapters, <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT2ADPE\" target=\"_blank\" rel=\"noopener\">Municode</a>.", "expanding": "per-board membership & duties"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "3 · The lens — the Charter made administration",
+      "note": "Labeled analysis — county organization read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Charter creates the offices and the broad structure, and <b>Title 2 implements it</b> — establishing departments, vesting powers, and setting up the boards and commissions. Title 2 is the Charter's structure turned into a running administration accountable to the Council and mayor.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, government is a trust held for the people; every department and commission exists to <b>serve, not to rule</b>. The lens reads Title 2 as the place to test whether the administration's structure actually delivers <b>aloha in action</b> — accessible boards, accountable departments, and decisions made in the open.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "The org chart is a moral document: it decides who answers to the people. Title 2 should keep departments <b>accountable and commissions accessible</b> — the structure exists to serve residents, full stop. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this whole page is <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a \"which department / which board\" router and an <b>AI administration assistant</b> will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only). This completes the plain-language navigators for all 17 Maui County Code titles."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 2 (Administration &amp; Personnel)</b> via Municode · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · pairs with the govOS Charter Hub (departments ↔ 28-article charter) · <b>completes the 17-title MCC digital twin</b> · not legal advice · public records only."
+}

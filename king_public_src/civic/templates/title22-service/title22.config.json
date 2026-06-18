@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "id": "title22",
+    "codeTitle": 22,
+    "name": "Department of Agriculture",
+    "department": "Department of Agriculture",
+    "templateName": "Title 22 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 22 (Department of Agriculture) — the voter-established department, its food-security mission, agricultural parks, and ties to ag zoning. Sourced to Municode + County; first version, expanding.",
+    "pageTitle": "Title 22 — Department of Agriculture · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 22 — Department of Agriculture <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title22 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning (Ag district)", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 18 — Subdivisions", "href": "../title18-service/Title18%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 22 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT22DEAG", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 22 (Department of Agriculture)</b> — the department <b>Maui voters established in November 2020</b> to build a sustainable local food system. This title covers the department's mission and the County's <b>agricultural parks</b> (e.g. Kula). It pairs with the <b>Title 19 Agricultural district (Ch. 19.30A)</b>, which is where ag land use is regulated. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "title": "1 · The Department of Agriculture",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Why the department exists and what it's charged to do.",
+      "html": "<p style=\"font-size:14.5px\"><b>Maui County voters approved the Department of Agriculture in November 2020</b> (a charter amendment), making Maui one of the few counties with a dedicated ag department. Its charge: <b>develop a sustainable regional agricultural system</b>, build the <b>economic resiliency</b> of farming communities, and strengthen <b>resident health and food security</b> through access to locally grown products. The department <b>reports annually to the mayor and Council</b> on the County's progress and on barriers that could be fixed by ordinance.</p>",
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/2473/Department-of-Agriculture\" target=\"_blank\" rel=\"noopener\">Department of Agriculture</a> + MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT22DEAG\" target=\"_blank\" rel=\"noopener\">Title 22</a>.", "expanding": "department programs, grants & current initiatives"}
+    },
+    {
+      "type": "prose",
+      "title": "2 · Agricultural parks (e.g. Kula)",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "How the County puts land directly into farmers' hands.",
+      "html": "<p style=\"font-size:14.5px\">Title 22 includes the County's <b>agricultural parks</b> program (e.g. <b>Kula Agricultural Park</b>, Ch. 22.04A). Its purpose is to <b>promote diversified agriculture</b> by offering <b>appropriately sized ag lots at reasonable rent with long-term tenure</b> — lowering the biggest barrier for working farmers: secure, affordable access to land. This is the County acting directly to grow local food, complementing the zoning rules in Title 19.</p>",
+      "source": {"html": "Maui County Code Title 22, <b>Ch. 22.04A (Kula Agricultural Park)</b>, <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT22DEAG\" target=\"_blank\" rel=\"noopener\">Municode</a>.", "expanding": "park lot availability, rent schedule & application"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · How it connects to ag zoning (Title 19)",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Title 22 is the department & land; Title 19 is the land-use rule.",
+      "html": "<p style=\"font-size:14.5px\">Farming on Maui touches two titles: <b>Title 22</b> (this one) is the <b>Department of Agriculture and its parks</b>, while <b>Title 19's Agricultural district (Ch. 19.30A)</b> sets what you can build and do on ag land — permitted and special uses, farm dwellings, the <b>farm-plan</b> requirements, and the 2-acre minimum lot. If you farm, read both: the <a href=\"../title19-service/Title19%20Service.html\">Title 19 service</a> covers the ag use rules in detail.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.30AAGDI\" target=\"_blank\" rel=\"noopener\">Ch. 19.30A (Agricultural district)</a> (sourced in the Title 19 service) + Title 22.", "expanding": "farm-plan ↔ department coordination"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · The lens — food sovereignty",
+      "note": "Labeled analysis — agriculture read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b> (as amended by the 2020 vote), the Department of Agriculture is charged with building a sustainable regional food system and reporting annually on progress and barriers. The Charter frames agriculture as an <b>economic-development and food-security</b> function of County government.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the ability to <b>feed one's people from one's own land</b> is the root of sovereignty — ʻāina momona (abundant land). The lens reads the department and its ag parks as restoring <b>food sovereignty</b>: land to farmers, local food to residents, and resilience against import dependence.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Land in farmers' hands and food on residents' tables is sovereignty made real. The department's job is to <b>remove barriers</b> — secure tenure, affordable land, fewer permit hurdles — so Maui can feed Maui. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this whole page is <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> an ag-park interest helper and an <b>AI agriculture assistant</b> (linking Title 22 programs with Title 19 farm-plan rules) will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 22 (Department of Agriculture)</b> via Municode + County of Maui <b>Department of Agriculture</b> (voter-established 2020) · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · pairs with Title 19 Ch. 19.30A (ag zoning) · not legal advice · public records only."
+}

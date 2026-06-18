@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "id": "title13",
+    "codeTitle": 13,
+    "name": "Parks & Recreation",
+    "department": "Department of Parks & Recreation",
+    "templateName": "Title 13 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 13 (Parks & Recreation) — park permits, camping, facility reservations, and park rules. Sourced to Municode + County Parks & Recreation; first version, expanding.",
+    "pageTitle": "Title 13 — Parks & Recreation · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 13 — Parks &amp; Recreation <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title13 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 9 — Public Peace", "href": "../title09-service/Title9%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 13 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT13PARE", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 13 (Parks &amp; Recreation)</b> — Chapter 13.04A Parks &amp; Recreational Facilities: how to get a <b>park permit</b>, the rules for <b>camping</b> and <b>pavilion/facility use</b>, and the general park prohibitions. Administered by the <b>Department of Parks &amp; Recreation</b>. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://www.mauicounty.gov/410/Park-Permits",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT13PARE",
+    "permitLinkLabel": "Park permits & reservations ↗",
+    "codeLinkLabel": "Title 13 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Optional context — enter a Maui County <b>TMK</b> to see designations from the Hawaiʻi Statewide GIS. For an actual <b>park permit or facility reservation</b>, use the County's Park Permits page (linked in the result).",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Park permits: <a href=\"https://www.mauicounty.gov/410/Park-Permits\" target=\"_blank\" rel=\"noopener\">County Park Permits</a>. No data is stored or fabricated.", "expanding": "park-boundary overlay"}
+    },
+    {
+      "type": "process",
+      "title": "1 · Get a park permit",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Any activity, event, class, or program in a County park or facility needs a permit from the department first (Ch. 13.04A, Art. III).",
+      "steps": [
+        {"name": "Pick your permit type", "what": "Choose the right permit for your activity (camping, event, class, commercial ocean recreation, general use — see the table below).", "pay": "Expense: none to choose · paid by: you (time)"},
+        {"name": "Apply to Parks & Recreation", "what": "Submit the written application to the Department of Parks &amp; Recreation before the activity; camping applicants must be <b>18 or older</b>.", "pay": "Expense: permit fee · paid by: applicant"},
+        {"name": "Carry your permit", "what": "Keep a copy of the approved permit with you during the activity (required while camping).", "pay": "Expense: comply with conditions · paid by: permit holder"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Parks are the people's shared ʻāina. Permits should <b>protect access and the land</b>, not ration it — keep resident, cultural, and family use <b>easy and low-cost</b>, and reserve fees and limits for commercial or high-impact uses."}
+      },
+      "source": {"html": "Maui County Code <a href=\"http://www.mauico-hi.elaws.us/code/coor_title13_ch13.04a_artiii_sec13.04a.090\" target=\"_blank\" rel=\"noopener\">Ch. 13.04A, Art. III (Permits)</a> + County <a href=\"https://www.mauicounty.gov/410/Park-Permits\" target=\"_blank\" rel=\"noopener\">Park Permits</a>.", "expanding": "online reservation portal + fee schedule"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Park permit types",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The permits authorized under Ch. 13.04A.",
+      "columns": ["Permit", "For", "Note"],
+      "rows": [
+        [{"v": "Camping permit"}, {"v": "Overnight camping at a designated park"}, {"v": "18+; max 4 consecutive days per site"}],
+        [{"v": "Special events permit"}, {"v": "Events in a park/facility"}, {"v": "apply in advance"}],
+        [{"v": "Community class permit"}, {"v": "Classes/programs"}, {"v": "recurring use"}],
+        [{"v": "General use permit"}, {"v": "Other organized use"}, {"v": "—"}],
+        [{"v": "Commercial ocean recreational activity"}, {"v": "Commercial ocean operators", "cls": "c"}, {"v": "regulated"}],
+        [{"v": "Government permit"}, {"v": "Government activities"}, {"v": "—"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"http://mauico-hi.elaws.us/code/coor_title13_ch13.04a\" target=\"_blank\" rel=\"noopener\">Ch. 13.04A (Parks &amp; Recreational Facilities)</a>: camping §13.04A.200/.210, permits Art. III, prohibitions §13.04A.070.", "expanding": "per-permit fees + reservation windows"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "3 · Who pays — the charter lens",
+      "note": "Labeled analysis — parks read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Department of Parks &amp; Recreation maintains parks and facilities and permits their use; fees offset maintenance and limit conflicts between uses. The Charter frames parks as <b>public assets</b> the department stewards.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the parks, shoreline, and gathering places are <b>communal ʻāina</b> held for all generations; access for residents, cultural practice, and ʻohana is a birthright. The lens favors <b>free or low-cost resident access</b> and pricing the burden onto <b>commercial</b> users who profit from the commons.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Keep the parks open and cheap for the people; charge the <b>commercial operators</b> who monetize them. Permits should guard the ʻāina and resolve conflicts, not gate residents out of their own commons. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the parcel lookup, the permit navigator, and the permit-type table are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a permit-readiness checklist and an <b>AI parks assistant</b> will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only); any permit payment happens on the County's own system."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 13 (Parks &amp; Recreation), Ch. 13.04A</b> via Municode + County of Maui <b>Department of Parks &amp; Recreation</b> + Hawaiʻi Statewide GIS · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · not legal advice · public records only · hands off to the County's permit system."
+}
