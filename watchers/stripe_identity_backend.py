@@ -18,8 +18,8 @@ ENDPOINTS (all JSON; CORS limited to ALLOWED_ORIGIN env, default '*' for dev):
   POST /webhook        (Stripe signed)                -> {ok}        (records verified-status only)
 
 DEPLOY (any of): a Cloudflare-tunnel'd box, Render/Railway/Fly, or your Naga server. Steps:
-  1) set env STRIPE_RESTRICTED_KEY=<your restricted key>  (Identity: Write scope, account Identity ENABLED)
-  2) set env STRIPE_WEBHOOK_SECRET=<your webhook secret>   (from the Stripe webhook you point at /webhook)
+  1) set env STRIPE_RESTRICTED_KEY=rk_live_...  (Identity: Write scope, account Identity ENABLED)
+  2) set env STRIPE_WEBHOOK_SECRET=whsec_...     (from the Stripe webhook you point at /webhook)
   3) set env ALLOWED_ORIGIN=https://jimlangford.github.io   (lock CORS to the portal)
   4) run:  python stripe_identity_backend.py --serve 8810
   5) put the public base URL into config/beta.json -> "verify_api_base", rerun beta_portal.py
@@ -122,6 +122,58 @@ def verify_webhook(payload, sig_header):
     expected = hmac.new(secret.encode(), signed, hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, v1)
 
+# --- paid premium-render checkout (the agenda-generator monetization) ---
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import civic_quote as _cq
+except Exception:
+    _cq = None
+ORDERS = os.path.join(PROJ, "reports", "_status", "paid_orders.jsonl")       # PRIVATE order ledger (no PII)
+RENDER_QUEUE = os.path.join(PROJ, "reports", "_status", "render_jobs")        # fulfillment queue (phase 2 renders these)
+
+def create_checkout(aspect, tier="premium_reel", seconds=20, success_url=None, cancel_url=None,
+                    tenant="hi-maui", priority="standard"):
+    """Quote the requested explainer, then open a Stripe Checkout Session for the price. SAFE GATES:
+    free tier → no charge; provisional pricing (rate not yet calibrated) → no charge, returns the quote."""
+    if not _cq:
+        return 0, {"error": "quote engine unavailable"}
+    q = _cq.quote(aspect, tier, int(seconds or 20), tenant or "hi-maui", priority or "standard")
+    if q["price_usd"] <= 0:
+        return 200, {"free": True, "quote": q}
+    if q.get("provisional"):
+        return 200, {"provisional": True, "quote": q,
+                     "message": "pricing not yet calibrated — set token_usd_rate + rate_confirmed in config/civic_pricing.json before charging"}
+    cents = int(round(q["price_usd"] * 100))
+    su = success_url or os.environ.get("CHECKOUT_SUCCESS_URL", "https://jimlangford.github.io/12sgi-king/beta_requests.html?paid=1")
+    cu = cancel_url or os.environ.get("CHECKOUT_CANCEL_URL", "https://jimlangford.github.io/12sgi-king/beta_requests.html")
+    form = {
+        "mode": "payment", "success_url": su, "cancel_url": cu,
+        "line_items[0][quantity]": "1",
+        "line_items[0][price_data][currency]": q.get("currency", "usd"),
+        "line_items[0][price_data][unit_amount]": str(cents),
+        "line_items[0][price_data][product_data][name]": ("%s — %s" % (q["tier_label"], q["aspect"]))[:250],
+        "metadata[quote_id]": q["quote_id"], "metadata[tier]": tier, "metadata[aspect]": q["aspect"][:120],
+        "payment_intent_data[metadata][quote_id]": q["quote_id"],
+    }
+    st, j = _stripe("POST", "checkout/sessions", form)
+    if st == 200:
+        return 200, {"quote": q, "id": j.get("id"), "checkout_url": j.get("url")}
+    return st, {"error": (j.get("error") or {}).get("message", "checkout create failed"), "quote": q}
+
+def _record_order(session):
+    """On paid checkout: log the order (no PII) + enqueue a fulfillment render job. Phase-2 worker renders it."""
+    md = session.get("metadata") or {}
+    rec = {"session": session.get("id"), "quote_id": md.get("quote_id"), "aspect": md.get("aspect"),
+           "tier": md.get("tier"), "amount_total": session.get("amount_total"),
+           "payment_status": session.get("payment_status"), "ts": int(time.time())}
+    os.makedirs(os.path.dirname(ORDERS), exist_ok=True)
+    with open(ORDERS, "a", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    os.makedirs(RENDER_QUEUE, exist_ok=True)
+    with open(os.path.join(RENDER_QUEUE, "%s.json" % (rec["quote_id"] or session.get("id"))), "w", encoding="utf-8") as f:
+        json.dump(rec, f, ensure_ascii=False, indent=1)
+    return rec
+
 class H(BaseHTTPRequestHandler):
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", ALLOWED_ORIGIN)
@@ -141,7 +193,14 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/verify/status":
             vid = up.parse_qs(u.query).get("id", [""])[0]
             c, j = session_status(vid); return self._json(c if c in (200,400) else 200, j)
-        if u.path in ("/", "/health"): return self._json(200, {"ok": True, "key_configured": bool(_key())})
+        if u.path == "/quote":
+            qs = up.parse_qs(u.query)
+            if not _cq: return self._json(200, {"error": "quote engine unavailable"})
+            q = _cq.quote(qs.get("aspect", [""])[0], qs.get("tier", ["premium_reel"])[0],
+                          int(qs.get("seconds", ["20"])[0] or 20), qs.get("tenant", ["hi-maui"])[0],
+                          qs.get("priority", ["standard"])[0])
+            return self._json(200, q)                       # non-financial: just the price quote
+        if u.path in ("/", "/health"): return self._json(200, {"ok": True, "key_configured": bool(_key()), "quote_engine": bool(_cq)})
         self._json(404, {"error": "not found"})
     def do_POST(self):
         ln = int(self.headers.get("Content-Length") or 0)
@@ -151,13 +210,22 @@ class H(BaseHTTPRequestHandler):
             except Exception: body = {}
             c, j = create_session(body.get("district"), body.get("return_url"))
             return self._json(200 if c == 200 else 502, j)
+        if self.path == "/checkout/start":
+            try: body = json.loads(raw or b"{}")
+            except Exception: body = {}
+            c, j = create_checkout(body.get("aspect", ""), body.get("tier", "premium_reel"),
+                                   body.get("seconds", 20), body.get("return_url"), None,
+                                   body.get("tenant", "hi-maui"), body.get("priority", "standard"))
+            return self._json(200 if c == 200 else 502, j)
         if self.path == "/webhook":
             if not verify_webhook(raw, self.headers.get("Stripe-Signature")):
                 return self._json(400, {"error": "bad signature"})
             try: ev = json.loads(raw)
             except Exception: ev = {}
             obj = (ev.get("data") or {}).get("object") or {}
-            if obj.get("id", "").startswith("vs_"):
+            if ev.get("type") == "checkout.session.completed":
+                _record_order(obj)                          # paid → log + enqueue the render
+            elif obj.get("id", "").startswith("vs_"):
                 _record(obj["id"], obj.get("status"))
             return self._json(200, {"ok": True})
         self._json(404, {"error": "not found"})

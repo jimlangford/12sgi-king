@@ -162,6 +162,14 @@ def main():
     except Exception as e:
         dispatch("FINDING", f"audit_cycle daily_brief failed: {e}")
 
+    # 5e) AGENDA CADENCE: Sunshine-Law timed agenda posts (T-6/T-3/T-1/day-of) staged private per
+    #     config/agenda_post_policy.json — one of the two allowed public lanes (with the daily moon message).
+    try:
+        import agenda_cadence; importlib.reload(agenda_cadence); agenda_cadence.run()
+        print("  + agenda cadence (Sunshine-Law timed posts staged)")
+    except Exception as e:
+        dispatch("FINDING", f"audit_cycle agenda_cadence failed: {e}")
+
     # report verdict
     try:
         bal = json.load(open(os.path.join(PROJECT, "reports", "mauios", "audit_balance.json"), encoding="utf-8"))
