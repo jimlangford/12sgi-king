@@ -171,6 +171,7 @@ NAV_LABEL = {
     "king/civic/templates/title19-crosswalk/Title19%20Crosswalk.html": "Charter ⇄ Law Crosswalk",
     "king/civic/templates/title19-system/Title19%20System.html": "Title 19 System — through the Charter",
     "king/civic/templates/title19-service/Title19%20Service.html": "Title 19 — Plain-Language Service (free)",
+    "king/civic/templates/title16-service/Title16%20Service.html": "Title 16 — Buildings & Permits (free)",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -206,7 +207,8 @@ NAV_GROUPS = [
                        # unique non-crosswalk reference pages (real budget data + the publish loop)
                        "king/civic/templates/budget-transparency/Budget%20Transparency.html",
                        "king/civic/templates/agenda-explainer/Agenda%20Explainer.html",
-                       "king/civic/templates/title19-service/Title19%20Service.html"]),
+                       "king/civic/templates/title19-service/Title19%20Service.html",
+                       "king/civic/templates/title16-service/Title16%20Service.html"]),
     # world financial-center cities — same SSC charter, each city's real charter/code + national law,
     # up the shared apex to the Holy See. "Act local, think global."
     ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",
