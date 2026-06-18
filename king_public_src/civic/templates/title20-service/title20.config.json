@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "id": "title20",
+    "codeTitle": 20,
+    "name": "Environmental Protection",
+    "department": "Department of Environmental Management",
+    "templateName": "Title 20 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 20 (Environmental Protection) — what it covers, civil fines, enforcement, and who pays. Sourced to Municode + County Environmental Management. First version, intentionally thin where the corpus is still being ingested; expanding.",
+    "pageTitle": "Title 20 — Environmental Protection · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 20 — Environmental Protection <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title20 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "↔ Title 14 — Water", "href": "../title14-service/Title14%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 20 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT20ENPR", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 20 (Environmental Protection)</b> — the County's environmental rules (soil erosion and sediment control, pollution and nuisance protections, and related programs), how violations are fined, and who pays. Administered by the <b>Department of Environmental Management</b>. <b>This module is intentionally a structural first version — much of Title 20 is <span class=\"exp\">expanding</span> as the ingestion corpus is sourced verbatim; nothing here is legal advice, and we assert only what is cited.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://mapps.mauicounty.gov/163/Permits",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT20ENPR",
+    "permitLinkLabel": "Environmental / grading permits (MAPPS) ↗",
+    "codeLinkLabel": "Title 20 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Environmental rules often turn on the land itself. Enter a Maui County <b>TMK</b> to see the parcel's designations from the Hawaiʻi Statewide GIS — including whether it's in a <b>Special Management Area (SMA)</b> or on <b>Important Ag Land</b>, both of which raise environmental review on grading and development.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Environmental programs: <a href=\"https://www.mauicounty.gov/67/Government\" target=\"_blank\" rel=\"noopener\">Dept. of Environmental Management</a>. No parcel data is stored or fabricated — fetched live.", "expanding": "environmental-overlay layers"}
+    },
+    {
+      "type": "prose",
+      "title": "1 · What Title 20 covers",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "A structural overview while the corpus is sourced verbatim. We name only what is in the Code's own structure.",
+      "html": "<p style=\"font-size:14.5px\">Title 20 (<b>Environmental Protection</b>, §§20.01.010–20.38.060) is the County's environmental-rules title, administered by the <b>Department of Environmental Management</b>. It carries the County's soil-erosion and sediment-control program and related environmental protections. The full chapter-by-chapter content — definitions, programs, and standards — is <span class=\"exp\">expanding</span> as the ingestion session sources each chapter verbatim from Municode; until then, use the Municode link for authority and we assert only the cited items below.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT20ENPR\" target=\"_blank\" rel=\"noopener\">Title 20 (Environmental Protection)</a>, §§20.01.010–20.38.060.", "expanding": "per-chapter content (definitions, programs, standards) pending corpus ingest"}
+    },
+    {
+      "type": "prose",
+      "title": "2 · Civil fines &amp; enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "How a Title 20 violation is penalized. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of MCC <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits — so an environmental violation under Title 20 can draw a <b>notice of violation and order</b> with civil fines, final after 30 days unless appealed to the <b>Board of Variances and Appeals</b>. Title 20 also supplies one of the fine measures the enforcement chapter uses: a fine of up to <b>1% of the project cost</b> (<b>§20.08.260(E)(2)</b>) — relevant to larger environmental/grading violations.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530</a> (§19.530.030 reach) + Title 20 <b>§20.08.260(E)(2)</b> (1%-of-project-cost fine), both sourced in the Title 19 service.", "expanding": "full Title 20 penalty provisions"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "3 · Who pays — the charter lens",
+      "note": "Labeled analysis — environmental protection read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Department of Environmental Management administers environmental programs and the County sets protective standards and fines by ordinance. The Charter frames environmental rules as the County's <b>regulatory stewardship</b> of land, water, and waste.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the ʻāina is held in trust across generations — environmental protection is a <b>kuleana (sacred duty)</b>, not just a regulatory program. The lens reads strong protection as legitimate and necessary, while insisting that the cost of <b>remediation fall on those who cause harm</b>, not on the community that inherits a degraded resource.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Protect the ʻāina firmly, and make the <b>polluter</b> — not the public — pay for the damage and its cleanup. The 1%-of-project-cost fine is a step toward sizing penalties to the harm. Same title, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "4 · Rules → Code: candidates for codification",
+      "intro": "Provisions that, in our assessment, Title 20 should make <b>clearer or stronger</b> as the corpus is filled in. Citations are verbatim-checked; the recommendation is a stance beside the rule, and several items await verbatim ingest.",
+      "items": [
+        "<b>Plain-language penalty schedule.</b> Environmental fines are spread across chapters and rules. → Codify a single readable <b>penalty + remediation table</b> sized to harm. <span class=\"exp\">expanding</span>",
+        "<b>Polluter-pays remediation.</b> → Codify that the <b>responsible party funds cleanup and monitoring</b>, not the County's general fund.",
+        "<b>One environmental front door.</b> Programs split across departments confuse residents. → Document a <b>single intake</b> for reporting environmental harm and applying for environmental permits. <span class=\"exp\">expanding</span>"
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT20ENPR\" target=\"_blank\" rel=\"noopener\">Title 20</a> + §20.08.260; most contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, and the structural overview are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> an environmental-permit-readiness checklist and an <b>AI Title-20 assistant</b> will arrive as the corpus is sourced, and will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); any permit application happens on MAPPS."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 20 (Environmental Protection)</b> via Municode + County of Maui <b>Department of Environmental Management</b> + Hawaiʻi Statewide GIS · first version 2026-06-18, intentionally thin where corpus ingest is pending; expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforcement reach per §19.530.030; §20.08.260 1%-of-project-cost fine cited · not legal advice · public records only."
+}
