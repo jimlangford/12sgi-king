@@ -104,8 +104,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
-               "partner.html"]
+               "partner.html",
+               "feature_board.html"]   # "Build Our Government Software" — public request + vote board (free tier)
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
+        "feature_board.json",   # the AI-sorted public request board data the page renders
         "daily_aloha.json",   # public-safe daily moon offering per tenant (king_message.py) — pure aloha, no figures
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json"]
@@ -130,6 +132,7 @@ DATASET_META = {
 #    (wordmark + dropdown menus + CTA; responsive with a mobile menu). ──
 NAV_LABEL = {
     "datasets.html": "Open Data",
+    "feature_board.html": "Build the Software",
     "county_dashboard.html": "Maui County Dashboard",
     "patterns_money_x_votes.html": "Money × Votes",
     "money_behind_officials.html": "Money Behind Officials",
@@ -232,7 +235,7 @@ NAV_GROUPS = [
                           "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
     ("The Record", ["n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
-                    "charter_application.html", "lege_legislator_scorecard.html", "datasets.html"]),
+                    "charter_application.html", "lege_legislator_scorecard.html", "datasets.html", "feature_board.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
     # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
     # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).
@@ -970,6 +973,7 @@ def main():
         ("bfed_agenda_today.html",     "Budget &amp; Finance — Today",  "Today’s Budget &amp; Finance Committee agenda."),
         ("bfed_eligibility_today.html","BFED Eligibility — Today", "Today’s budget eligibility view."),
         ("datasets.html",              "Open Data",                "The raw public records behind every dashboard — downloadable JSON + a DCAT catalog. Don’t take our word for it."),
+        ("feature_board.html",         "Build the Software",       "Request how the county’s software should work and vote on others’ ideas — sorted by department &amp; agenda priority. Free signup; county-private tier too."),
     ]
     more_cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
