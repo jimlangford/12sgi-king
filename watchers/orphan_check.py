@@ -35,7 +35,7 @@ SEEDS = ["index.html", "reports.html", "go.html", "jurisdictions.html", "reports
          "king/index.html", "king/app.html", "take_action.html", "testify.html"]
 
 # Built html that is intentionally NOT a navigable destination — never an orphan.
-EXEMPT_EXACT = {"404.html", "go.html", "selfheal.html", "orphans.html", "navmap.html"}
+EXEMPT_EXACT = {"404.html", "go.html", "selfheal.html", "orphans.html", "navmap.html", "external_links.html"}
 # Whole subtrees that are data/feed/embed partials, not pages.
 EXEMPT_PREFIX = ("king/civic/templates/_feed/",)
 # Suffixes that mark a fragment/component, not a standalone page:

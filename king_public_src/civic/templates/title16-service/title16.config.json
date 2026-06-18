@@ -95,7 +95,7 @@
       "note": "After the August 2023 wildfire, the County stood up a dedicated disaster-recovery building-permit track in MAPPS for West Maui / Lāhainā rebuilds.",
       "cards": [
         {"title": "🌺 Disaster Recovery Building Permit", "body": "The MAPPS track for rebuilding fire-affected structures — start here if you are rebuilding in Lāhainā / West Maui.", "href": "https://mapps.mauicounty.gov/320/DSA-Disaster-Recovery-Building-Permit", "lahaina": true, "flag": "expedited"},
-        {"title": "Lāhainā Community Plan", "body": "The community plan guiding West Maui / Lāhainā recovery (ties to the Title 19 service's Lāhainā module).", "href": "https://www.mauicounty.gov/2065/Lahaina-Community-Plan"},
+        {"title": "Lāhainā Community Plan", "body": "The community plan guiding West Maui / Lāhainā recovery (ties to the Title 19 service's Lāhainā module).", "href": "https://www.mauirecovers.org/lahaina"},
         {"title": "DSA — Development Services", "body": "The Public Works division that administers building, electrical, plumbing & grading permits.", "href": "https://www.mauicounty.gov/558/Development-Services-Administration"}
       ],
       "source": {"html": "County of Maui <a href=\"https://mapps.mauicounty.gov/320/DSA-Disaster-Recovery-Building-Permit\" target=\"_blank\" rel=\"noopener\">MAPPS — DSA Disaster Recovery Building Permit</a>.", "expanding": "recovery fee waivers & expedited-review criteria"}
