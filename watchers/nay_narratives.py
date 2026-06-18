@@ -43,14 +43,46 @@ def _members(seg):
         if tt not in out: out.append(tt)
     return out
 
+# former Maui councilmembers who appear in the historical record but aren't on the current roster (no money profile)
+_FORMER={"hokama":"Hokama","kama":"Kama","molina":"Molina","king":"King","carroll":"Carroll","crivello":"Crivello",
+         "white":"White","guzman":"Guzman","cochran":"Cochran","atay":"Atay","victorino":"Victorino","hokama":"Hokama"}
+def _short(full): return full.split(" - ")[0].strip()
 def _disp(sur):
-    """short name (First Last) from the current roster if known, else Title-cased surname (former members)."""
-    def short(full): return full.split(" - ")[0].strip()
+    """Canonical short name (First Last) — roster + former-member + OCR-tolerant, so 'Fernandez'/'Sinenc' don't
+    split into phantom members. Falls back to Title-cased surname for anyone unrecognized."""
+    s=sur.lower().replace("'","").replace("’","").replace("ʻ","")
+    ss=s.replace("-","")
+    if "fernandez" in s or s.startswith("rawlins"): return _short(ROSTER.get("Rawlins-Fernandez","Rawlins-Fernandez"))
+    if "hodgins" in s: return _short(ROSTER.get("Uu-Hodgins","Uʻu-Hodgins"))
     for k,full in ROSTER.items():
-        if k.replace("-","").replace("ʻ","").lower()==sur.replace("-","").replace("'","").lower(): return short(full)
-    if sur.lower().startswith("rawlins"): return short(ROSTER.get("Rawlins-Fernandez",sur.title()))
-    if "hodgins" in sur.lower(): return short(ROSTER.get("Uu-Hodgins",sur.title()))
+        kk=k.lower().replace("-","").replace("ʻ","")
+        if ss==kk or (len(ss)>=4 and kk.startswith(ss)) or (len(ss)>=5 and ss in kk): return _short(full)
+    for fk,fv in _FORMER.items():
+        if s==fk or (len(s)>=4 and s.startswith(fk[:4]) and fk.startswith(s[:4])): return fv
     return sur.title()
+
+_PROFILES=None
+def _profiles():
+    """surname_lower -> {total, top, label} from donor_profiles.json (the money behind each current seat)."""
+    global _PROFILES
+    if _PROFILES is not None: return _PROFILES
+    _PROFILES={}
+    try:
+        for p in json.load(open(os.path.join(M,"donor_profiles.json"),encoding="utf-8")):
+            td=p.get("top_donors") or []
+            _PROFILES[p["key"].lower()]={"total":p.get("total",0),
+                "top":(td[0]["name"] if td else None),"label":p.get("label","")}
+    except Exception: pass
+    return _PROFILES
+def _money_for(display):
+    """campaign-money profile for a member display name (last-token surname, OCR/roster-tolerant)."""
+    profs=_profiles(); sur=display.lower().split()[-1].replace("ʻ","").replace("'","")
+    if "fernandez" in sur or "rawlins" in display.lower(): sur="rawlins-fernandez"
+    if "hodgins" in sur: sur="uu-hodgins"
+    if sur in profs: return profs[sur]
+    for pk,v in profs.items():
+        if sur==pk or (len(sur)>=4 and pk.startswith(sur)) or (len(sur)>=5 and sur in pk): return v
+    return None
 
 def _meta(path):
     head="".join(open(path,encoding="utf-8",errors="replace").readlines()[:3])
@@ -123,8 +155,19 @@ def page(events,gen,mr,ao_po):
     for e in events:
         for n in e["noes"]: by[n]=by.get(n,0)+1
     members=sorted(by.items(),key=lambda kv:-kv[1])
-    mrows="".join("<div class=mrow><span class=mn>%s</span><span class=mc>%d dissent vote(s)</span></div>"%(esc(n),c)
-                  for n,c in members)
+    def mrow(n,c):
+        mp=_money_for(n)
+        money=""
+        if mp:
+            top=(" &middot; top giver %s"%esc(mp["top"])) if mp.get("top") else ""
+            money=("<div class=mm>raised $%s in campaign money%s &middot; "
+                   "<a href='money_behind_officials.html'>who funds this seat &rarr;</a></div>")%(
+                   "{:,.0f}".format(mp.get("total") or 0),top)
+        else:
+            money="<div class=mm class2=former>former member — outside the current campaign-finance profile set</div>"
+        return ("<div class=mrow><div class=mh><span class=mn>%s</span><span class=mc>%d dissent vote(s)</span></div>%s</div>")%(
+                esc(n),c,money)
+    mrows="".join(mrow(n,c) for n,c in members)
     def card(e):
         noes="".join("<span class=no>%s</span>"%esc(n) for n in e["noes"])
         q="".join("<div class=qt><b>%s:</b> &ldquo;%s&hellip;&rdquo;</div>"%(esc(nm),esc(t)) for nm,t in e["quotes"])
@@ -144,7 +187,9 @@ def page(events,gen,mr,ao_po):
          ".dv .qt{background:#fbf6ea;border:1px solid #e6d8a8;border-radius:8px;padding:.4rem .7rem;margin:.35rem 0;font-size:.88rem;color:#5a4a16;line-height:1.5}"
          ".dv .nar{color:var(--dim);font-size:.82rem;line-height:1.5;margin:.35rem 0;font-style:italic;border-top:1px dashed var(--line);padding-top:.35rem}"
          ".dv .sub2{font-size:.78rem;color:var(--faint);margin-top:.2rem}"
-         ".mrow{display:flex;justify-content:space-between;border-bottom:1px solid #e3e9f1;padding:.4rem .1rem;font-size:.92rem}.mn{color:var(--ink)}.mc{font-family:Consolas,monospace;color:#9a242c;font-size:.82rem;white-space:nowrap}</style>")
+         ".mrow{border-bottom:1px solid #e3e9f1;padding:.5rem .1rem}.mrow .mh{display:flex;justify-content:space-between;gap:8px;align-items:baseline}"
+         ".mn{color:var(--ink);font-weight:600}.mc{font-family:Consolas,monospace;color:#9a242c;font-size:.82rem;white-space:nowrap}"
+         ".mrow .mm{font-size:.82rem;color:var(--dim);margin-top:.2rem}.mrow .mm a{white-space:nowrap}</style>")
     cb=("<div class=cb>&#9790;&#9728; <b>Curse-breaker.</b> A NO vote is not obstruction &mdash; it is the record of "
         "conscience, the moment a representative tells the public <i>why</i> they could not agree. Under tonight&rsquo;s "
         "%s, this page honors the dissent and asks only the open question it raises: what did the majority approve, what "
@@ -161,7 +206,10 @@ def page(events,gen,mr,ao_po):
           "minutes &mdash; never a finding. <a href='officials_scorecard.html'>&larr; officials scorecard</a> &middot; "
           "<a href='money_behind_officials.html'>money behind the seats</a>.</div>")%len(events)
     h2a="<h2>Where the council split (most-documented first, top %d)</h2>"%min(80,len(events))
-    h2b="<h2>Dissent by member &mdash; who says no, and how often</h2>"
+    h2b=("<h2>Dissent by member &mdash; who says no, and who funds the seat</h2>"
+         "<div class=pono style='margin:.2rem 0 .6rem'>Each current member&rsquo;s dissent count beside the campaign money "
+         "behind their seat &mdash; so the open question is visible: does the money track with where a member stands, or "
+         "against it? A <b>question to verify</b>, never a finding. Former members predate this finance profile set.</div>")
     nav=("<p class=sub style='margin-top:1rem'><a href='officials_scorecard.html'>officials scorecard</a> &middot; "
          "<a href='money_behind_officials.html'>money behind officials</a> &middot; <a href='testifiers_maui.html'>who testifies</a> "
          "&middot; <a href='tenant_hi-maui.html'>Maui overview</a> &middot; <a href='tenants_hub.html'>all governments</a></p>")
