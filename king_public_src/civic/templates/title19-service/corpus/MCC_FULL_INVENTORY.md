@@ -33,8 +33,9 @@
 | SMA Rules — Lānaʻi | Ch. 402 | PULLED ✓ (§§12-402-23/-24/-27; ≤$100,000 + ≤$10,000/day) |
 | Shoreline Rules — Molokaʻi | Ch. 304 | PULLED ✓ (§12-304-14; ≤$100,000 + ≤$10,000/day) |
 | Shoreline Setback Rules — Lānaʻi | Ch. 403 | PULLED ✓ (§§12-403-20/-23; ≤$10,000 + ≤$1,000/day) |
-| Rules for Admin Procedures & Civil Fines (Ch. 16.13 & Title 19) | 119602 | **BLOCKED — OCR/scanned**, needs PDF drop |
-| Maui SMA Rules (Ch. 202) + Maui Shoreline Rules (§12-5) | — | TO FIND (cited in 2003 CC opinion) |
+| Civil-Fines rule — **Rule §15-2** (Admin Procedures & Civil Fines for Violations of Titles 16, 18 & 19) | MC-15 Ch. 2 | **INGESTED ✓** (sourced via View/149499, text; full fine schedule §15-2-9; eff. 1993; Imp MCC §19.530.030. Supersedes OCR-blocked View/119602). Cross-tagged Titles 16/18/19. |
+| Maui SMA Rules — **Ch. 202** | MC-12 Ch. 202 | **INGESTED ✓** (View/8413; §12-202-23/-25 am&comp 08/25/2024: ≤$100,000 + ≤$10,000/day; partly supersedes 2003 CC opinion) |
+| Maui Shoreline Rules (§12-5) | — | TO FIND (older set; cited in 2003 CC opinion) |
 
 ## ArchiveCenter categories (legal opinions & boards) — AMID index
 Corporation Counsel Legal Opinions **AMID=173** · Maui Planning Commission 85 · Molokaʻi PC 87 · Lānaʻi PC 74 · Board of Variances & Appeals 42 · Board of Code Appeals 40 · Board of Ethics 41 · Departmental Public Hearings 191 · (138 categories total; Council Land Use cmte 78/77/76/75/188/197/210/219/237; Planning cmte 94/93/92/91/184/198/211/223/238). Item 288 (2003 SMA-warnings opinion) ingested ✓.
