@@ -110,9 +110,26 @@ DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity
         "lege/legislators.json", "twin_metrics.json",
         "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json"]
 
+# OPEN DATA — the raw public records behind every dashboard, indexed as a downloadable catalog (defeats
+# "you made it up"). Metadata for the DCAT/data.json catalog + datasets.html front door. Keyed by basename.
+# SOURCED public records only — never the private prosecutorial back end. (Civic-app best practice, 2026-06-18.)
+DATASET_META = {
+    "statewide_money.json":  ("Statewide campaign money", "Contributions across Hawaiʻi races, by office and giver — from the public Campaign Spending Commission record.", ["campaign-finance", "money"], "HI Campaign Spending Commission (hicscdata)"),
+    "donor_profiles.json":   ("Donor profiles", "Per-donor giving aggregated from public campaign-finance filings.", ["campaign-finance", "donors"], "HI Campaign Spending Commission"),
+    "officials.json":        ("Officials roster", "Elected officials by tenant — who governs, sourced from each government's roster.", ["officials", "roster"], "County/State official rosters"),
+    "parity_check.json":     ("Tenant parity check", "Coverage-parity audit across tenants — which data dimensions are present per government.", ["transparency", "audit"], "govOS self-audit"),
+    "daily_aloha.json":      ("Daily aloha / moon offering", "The public daily kaulana-mahina offering per tenant — pure aloha, no figures.", ["culture", "moon"], "moon_calendar (kaulana mahina)"),
+    "legislators.json":      ("Legislators", "State legislators with district + identifiers.", ["legislature", "officials"], "HI State Legislature open data"),
+    "twin_metrics.json":     ("Twin metrics", "Dashboard summary metrics powering the civic overview tiles.", ["metrics"], "govOS dashboards"),
+    "hands_maui_awards.json":("Maui contract awards", "County contract awards (HANDS public awards API) used in the contracts × donors join.", ["contracts", "spending"], "Maui County HANDS awards API"),
+    "vendor_donor_join.json":("Contracts × donors join", "Public-records join of county contract awards to campaign donors — framed as a question, not a verdict.", ["contracts", "money", "join"], "HANDS awards × CSC donors (public records)"),
+    "sage_bridge.json":      ("Sage bridge", "The Sage/Kumulipo node bridge linking agenda dates to cultural offerings.", ["culture", "sage"], "Sage node system"),
+}
+
 # ── govOS top navigation: a professional grouped top-bar injected into every civic page
 #    (wordmark + dropdown menus + CTA; responsive with a mobile menu). ──
 NAV_LABEL = {
+    "datasets.html": "Open Data",
     "county_dashboard.html": "Maui County Dashboard",
     "patterns_money_x_votes.html": "Money × Votes",
     "money_behind_officials.html": "Money Behind Officials",
@@ -215,7 +232,7 @@ NAV_GROUPS = [
                           "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
     ("The Record", ["n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
-                    "charter_application.html", "lege_legislator_scorecard.html"]),
+                    "charter_application.html", "lege_legislator_scorecard.html", "datasets.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
     # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
     # the King-civic charter/budget/code/law reference pages follow (full paths, resolve on both servers).
@@ -751,10 +768,69 @@ def main():
                 _h = add_records_cta(_h, rel)
                 _h = add_olelo_notice(_h)
                 f.write(_h)
+    _present_data = []
     for rel in DATA:
         src = os.path.join(MAUIOS, rel)
         if os.path.exists(src):
             shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
+            _present_data.append((os.path.basename(rel), src))
+
+    # [open-data] DCAT catalog (data.json) + a human Open Data front door (datasets.html). Indexes ONLY
+    # the public DATA files above — the raw records behind every dashboard, downloadable. Defeats the
+    # "you made it up" critique; matches Socrata/Project-Open-Data norms. Private back end is never listed.
+    try:
+        import time as _t
+        _dcat = {"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+                 "@type": "dcat:Catalog",
+                 "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+                 "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+                 "dataset": []}
+        _rows = []
+        for _base, _src in _present_data:
+            _meta = DATASET_META.get(_base, (_base.replace(".json", "").replace("_", " ").title(),
+                                             "Public civic dataset behind the govOS dashboards.", ["civic"], "govOS"))
+            _title, _desc, _kw, _source = _meta
+            _mod = _t.strftime("%Y-%m-%d", _t.localtime(os.path.getmtime(_src)))
+            _dcat["dataset"].append({
+                "@type": "dcat:Dataset", "title": _title, "description": _desc,
+                "identifier": "govos/" + _base, "modified": _mod, "accessLevel": "public",
+                "keyword": _kw, "license": "https://creativecommons.org/licenses/by/4.0/",
+                "publisher": {"@type": "org:Organization", "name": "12 Stones Global / govOS"},
+                "distribution": [{"@type": "dcat:Distribution", "downloadURL": "data/" + _base,
+                                  "mediaType": "application/json", "format": "JSON"}]})
+            _rows.append('<div class="ds"><div class="dst">' + _esc(_title) +
+                         ' <a class="dl" href="data/' + _base + '" download>↓ JSON</a></div>'
+                         '<div class="dsd">' + _esc(_desc) + '</div>'
+                         '<div class="dsm">source: ' + _esc(_source) + ' · updated ' + _mod +
+                         ' · CC BY 4.0</div></div>')
+        with open(os.path.join(SITE, "data.json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump(_dcat, f, ensure_ascii=False, indent=1)
+        _ds_body = (
+            '<div style="max-width:860px;margin:0 auto;padding:1.2rem 1rem">'
+            '<h1 style="color:#0e4a84">Open Data</h1>'
+            '<p class="lead">The raw public records behind every dashboard — downloadable, sourced, and machine-readable. '
+            'We publish the data so you never have to take our word for it. Money and votes are offered as questions, '
+            'never verdicts; every figure traces to a public filing.</p>'
+            '<p class="lead">Machine catalog (DCAT / Project Open Data): '
+            '<a class="dl" href="data.json" download>data.json</a> — point any open-data tool at it.</p>'
+            '<style>.ds{border:1px solid #d6e2f0;border-radius:10px;padding:.7rem .9rem;margin:.6rem 0;background:#fff}'
+            '.dst{font-weight:700;color:#0e4a84}.dsd{font-size:.92rem;margin:.25rem 0}'
+            '.dsm{font-size:.78rem;color:#5a6b7b}.dl{font-size:.82rem;color:#0e4a84;text-decoration:none;'
+            'border:1px solid #0e4a84;border-radius:6px;padding:.05rem .4rem;margin-left:.4rem}</style>'
+            + "".join(_rows) +
+            '<h2 style="color:#0e4a84;margin-top:1.4rem">Accessibility & sourcing</h2>'
+            '<p class="lead">We build mobile-first, aim for WCAG 2.1 AA (high-contrast text, keyboard-navigable, '
+            'labeled links), and source civic content only — we link to the record and never invent law or figures. '
+            'Found a barrier or an error? Use Request Records to tell us and we will fix it.</p></div>')
+        _ds_html = "<!doctype html><html lang=en><head><meta charset=utf-8>" \
+                   "<meta name=viewport content=\"width=device-width,initial-scale=1\">" \
+                   "<title>Open Data — govOS</title></head><body>" + _ds_body + "</body></html>"
+        _ds_html = add_olelo_notice(inject_nav(_ds_html, "datasets.html"))
+        with open(os.path.join(SITE, "datasets.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(_ds_html)
+        print("  + datasets.html + data.json (DCAT): %d public datasets indexed" % len(_rows))
+    except Exception as _e:
+        print("  ! open-data catalog skipped: %s" % str(_e)[:120])
 
     # [links] copy linked supporting folders so per-official "full profile" pages resolve
     for sub in ("donors",):
@@ -893,6 +969,7 @@ def main():
         ("agenda_patterns.html",       "Agenda Patterns",          "Recurring themes &amp; items across agendas over time."),
         ("bfed_agenda_today.html",     "Budget &amp; Finance — Today",  "Today’s Budget &amp; Finance Committee agenda."),
         ("bfed_eligibility_today.html","BFED Eligibility — Today", "Today’s budget eligibility view."),
+        ("datasets.html",              "Open Data",                "The raw public records behind every dashboard — downloadable JSON + a DCAT catalog. Don’t take our word for it."),
     ]
     more_cards = "".join(
         f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
