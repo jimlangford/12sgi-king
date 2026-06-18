@@ -207,9 +207,44 @@ def chk_orphans():
     return "FAIL", "%d orphan(s) unreachable from nav/tenant: %s" % (
         len(orphans), ", ".join(orphans[:6]) + (" …" if len(orphans) > 6 else ""))
 
+def chk_no_studio_route():
+    """A PUBLIC page must NEVER route a visitor to the private studio. Catches the three real
+    capture/redirect vectors (James 2026-06-17: a FB-opened public page showed the studio):
+      1. <link rel="manifest"> on a public page — would install a PWA that captures civic links.
+      2. service-worker registration — would intercept navigations on the public origin.
+      3. a LOAD-TIME hard redirect (location.replace/href/assign or meta-refresh) to the studio
+         (ts.net / :8770 / tail760750).
+    go.html's live probe is a no-cors *fetch* that only toggles card styling (no navigation) and
+    its owner cards are tap-only links — neither trips this; only an automatic route does."""
+    site = os.path.join(REPO, "site")
+    if not os.path.isdir(site):
+        return "WARN", "site/ not built yet — skipped"
+    man = re.compile(r'rel=["\']?manifest', re.I)
+    sw  = re.compile(r'serviceWorker\.register|navigator\.serviceWorker', re.I)
+    redir = re.compile(r'(?:location\.(?:replace|assign|href)\s*=?\s*\(?|http-equiv=["\']refresh["\'][^>]*url=)'
+                       r'["\']?[^"\'>\s]*(?:tail760750|\.ts\.net|:8770)', re.I)
+    hits = []
+    for root, _d, files in os.walk(site):
+        for fn in files:
+            if not fn.lower().endswith((".html", ".htm")):
+                continue
+            try:
+                t = open(os.path.join(root, fn), encoding="utf-8", errors="ignore").read()
+            except Exception:
+                continue
+            rel = os.path.relpath(os.path.join(root, fn), site).replace("\\", "/")
+            if man.search(t):   hits.append(rel + "::manifest")
+            if sw.search(t):    hits.append(rel + "::service-worker")
+            if redir.search(t): hits.append(rel + "::studio-redirect")
+    if hits:
+        return "FAIL", "%d public page(s) could route to the private studio: %s" % (
+            len(hits), ", ".join(hits[:8]))
+    return "PASS", "no public page installs a PWA or routes to the studio"
+
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
     ("Links resolve like GitHub Pages", chk_links),
+    ("No public page routes to studio", chk_no_studio_route),
     ("No orphaned surfaces (check for heal)", chk_orphans),
     ("Mobile-ready everywhere (no zoom)", chk_mobile),
     ("Moon dimension is live",         chk_moon),
