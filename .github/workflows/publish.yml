@@ -130,8 +130,11 @@ jobs:
       - name: Self-check the built site (integrity page reflects exactly what ships)
         run: |
           P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          # OUTBOUND link verification first (writes site/external_links.html + the json selfheal reads).
+          # Transient-tolerant: gov rate-limits/bot-blocks are 'recheck', never a deploy failure.
+          if [ -f "$P/external_links.py" ]; then python "$P/external_links.py" || true; fi
           if [ -f "$P/selfheal.py" ]; then
-            python "$P/selfheal.py" || true   # validates: no leak, links resolve, moon live, deps mirrored, olelo under review, bats ascii
+            python "$P/selfheal.py" || true   # validates: no leak, links resolve, no studio route, externals, orphans, mobile, moon, deps, olelo, bats
             cp "$HOME/Documents/Claude/Projects/Video System elementLOTUS/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
           fi
 

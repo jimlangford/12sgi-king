@@ -241,10 +241,30 @@ def chk_no_studio_route():
             len(hits), ", ".join(hits[:8]))
     return "PASS", "no public page installs a PWA or routes to the studio"
 
+def chk_external_links():
+    """Outbound civic links (county .gov, Municode, Hawaiʻi GIS, MAPPS, mauirecovers, …) resolve.
+    Reads the last external_links.py run — does NOT re-fetch here (that's the periodic job's work).
+    Transient (403/429/5xx/timeout) are 'recheck', not broken, and never fail. A genuinely dead
+    link (404/410 after retry) WARNs (never FAIL — externals are outside our control + flaky)."""
+    try:
+        from external_links import status_summary
+    except Exception as e:
+        return "WARN", "external_links unavailable (%s) — skipped" % e
+    s = status_summary()
+    if s is None:
+        return "WARN", "external_links not run yet (run external_links.py)"
+    confirmed, recheck, broken, healable, total = s
+    if broken == 0:
+        return "PASS", "%d civic outbound links: %d confirmed, %d recheck (transient), 0 broken" % (
+            total, confirmed, recheck)
+    return "WARN", "%d broken outbound link(s) of %d (%d auto-healable) — see external_links.html" % (
+        broken, total, healable)
+
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
     ("Links resolve like GitHub Pages", chk_links),
     ("No public page routes to studio", chk_no_studio_route),
+    ("External civic links resolve", chk_external_links),
     ("No orphaned surfaces (check for heal)", chk_orphans),
     ("Mobile-ready everywhere (no zoom)", chk_mobile),
     ("Moon dimension is live",         chk_moon),
