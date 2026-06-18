@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "id": "title14",
+    "codeTitle": 14,
+    "name": "Public Services — Water",
+    "department": "Department of Water Supply (DWS) + Board of Water Supply",
+    "templateName": "Title 14 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 14 (Public Services), Article 1 Water — getting water service, meters, charges, paying your bill, and who pays. Sourced to Municode + Dept. of Water Supply; hands off to the County's billing portal. First version, expanding.",
+    "pageTitle": "Title 14 — Public Services (Water) · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 14 — Public Services <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Water · Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title14 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "↔ Title 3 — Property Tax", "href": "../title03-service/Title3%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 14 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT14PUSE", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 14 (Public Services), Article 1 — Water</b>: how to get water service, how metering and charges work, how to pay your bill, and who pays. Run by the <b>Department of Water Supply (DWS)</b>; you manage and pay your account on the County's billing portal — this service explains the law and <b>hands you off to the official system</b>. <b>Usage rates change with the annual budget; figures marked <span class=\"exp\">expanding</span> are being filled in. Nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://www.mauicounty.gov/82/Pay-Your-Water-Bill",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT14PUSE_ART1WA_CH14.04WASE",
+    "permitLinkLabel": "Pay / manage water bill ↗",
+    "codeLinkLabel": "Title 14 Water (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Water service depends on your location. Enter a Maui County <b>TMK</b> to see the parcel's designations from the Hawaiʻi Statewide GIS. Whether DWS can serve a parcel turns on being <b>within service limits and adjacent to a distributing main</b> with adequate supply — confirm a specific parcel's water availability with DWS Customer Service (270-7730).",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Water service & billing: <a href=\"https://www.mauicounty.gov/126/Department-of-Water-Supply\" target=\"_blank\" rel=\"noopener\">Dept. of Water Supply</a>. No parcel data is stored or fabricated — fetched live.", "expanding": "water service-area overlay"}
+    },
+    {
+      "type": "process",
+      "title": "1 · Get water service",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "How a new or transferred water account works under Ch. 14.04.",
+      "steps": [
+        {"name": "Check availability", "what": "DWS may provide service where the premises are <b>within service limits, adjacent to a distributing main</b>, pressure permits, and there is <b>sufficient developed supply</b> for domestic, irrigation, and fire protection without detriment to existing customers.", "pay": "Expense: free to ask · paid by: you (time)"},
+        {"name": "Apply / open an account", "what": "Call DWS Customer Service (<b>270-7730</b>, 1888 Wili Pa Loop, Wailuku) to open an account, start/stop service, or change address, and agree to abide by the County water code.", "pay": "Expense: account setup · paid by: applicant"},
+        {"name": "Meter &amp; connection", "what": "All water is <b>metered in gallons</b> (a flat rate may apply where metering is impractical). DWS sets the <b>location and size</b> of meters and service connections; connections become DWS property for operation and maintenance.", "pay": "Expense: meter/connection fees · paid by: applicant"},
+        {"name": "System improvements (if needed)", "what": "Where system improvements aren't yet installed, the applicant must <b>install and pay for</b> the required storage tanks, appurtenances, and pipeline from the storage tank to the premises (Ch. 14.05).", "pay": "Expense: storage + pipeline · paid by: applicant"},
+        {"name": "Get billed &amp; pay", "what": "You receive a monthly bill (meter service charge + usage). Pay online, by phone, or via Automatic Bill Payment.", "pay": "Expense: monthly water/sewer · paid by: customer"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Water is life — a public trust resource. Where the County requires an applicant to <b>build public water infrastructure</b> (storage, mains) to get served, that cost-shift should be <b>weighed against the County's duty to provide clean, plentiful water</b>; the burden of extending the public system shouldn't fall entirely on the last resident to connect."}
+      },
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT14PUSE_ART1WA_CH14.04WASE_14.04.060REEQ\" target=\"_blank\" rel=\"noopener\">Ch. 14.04 (Water Service)</a> incl. §14.04.060; Ch. 14.05 (improvements). County <a href=\"https://www.mauicounty.gov/126/Department-of-Water-Supply\" target=\"_blank\" rel=\"noopener\">Department of Water Supply</a>.", "expanding": "new-meter & source-development fee schedule"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Water charges",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Your bill has two parts: a monthly meter Water Service Charge (to read/maintain/replace your meter) plus usage. Usage rates are set in the County's annual budget ordinance.",
+      "columns": ["Charge", "Amount", "Notes"],
+      "rows": [
+        [{"v": "Monthly Water Service Charge — 5/8\" meter"}, {"v": "$9.25"}, {"v": "smallest residential meter"}],
+        [{"v": "Monthly Water Service Charge — 8\" meter"}, {"v": "$650.00"}, {"v": "largest listed"}],
+        [{"v": "Water usage (per unit)"}, {"v": "set in annual budget", "cls": "c"}, {"v": "tiered; verify current year"}],
+        [{"v": "Source development / improvements"}, {"v": "varies", "cls": "c"}, {"v": "applicant-installed where needed (Ch. 14.05)"}]
+      ],
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/216/Water-Charges\" target=\"_blank\" rel=\"noopener\">Water Charges</a>; meter service charges $9.25 (5/8\") to $650 (8\"); usage per the <a href=\"https://www.mauicounty.gov/DocumentCenter/View/152088/Water---FY-2026-Proposed-Rates--Fees\" target=\"_blank\" rel=\"noopener\">annual rates &amp; fees</a> ordinance.", "expanding": "current tiered usage-rate table"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Pay your water bill",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Manage and pay your DWS account online.",
+      "html": "<p style=\"font-size:14.5px\">Create an account to <b>view bills, see account info, and go paperless</b>. Pay <b>online or by phone</b> with credit card, debit card, electronic check, Apple Pay, or Google Pay; or set up <b>Automatic Bill Payment (ABP)</b> so your bank pays the water/sewer bill automatically on the due date. Questions, start/stop service, or address changes: DWS Customer Service <b>270-7730</b> (Mon–Fri, 8am–4pm).</p>",
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/82/Pay-Your-Water-Bill\" target=\"_blank\" rel=\"noopener\">Pay Your Water Bill</a> + <a href=\"https://www.mauicounty.gov/215/Fiscal-Division\" target=\"_blank\" rel=\"noopener\">Fiscal/Customer Service Division</a>."}
+    },
+    {
+      "type": "prose",
+      "title": "4 · Enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Water-code violations are reachable through the County enforcement engine. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of MCC <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits — so a Title 14 water violation (e.g. unauthorized connection or cross-connection) can draw a <b>notice of violation and order</b> with civil fines, with one carve-out the code itself names: unpaid civil fines may be added to County taxes or charges <b>except residential water/sewer</b>. DWS also enforces its own service rules directly.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530</a> (§19.530.030 reach + the residential water/sewer carve-out, sourced in the Title 19 service) + DWS service rules.", "expanding": "Title 14-specific penalty provisions"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "5 · Who pays — the charter lens",
+      "note": "Labeled analysis — water service read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the <b>Department of Water Supply</b> (a semi-autonomous department with its own Board) provides water as a self-supporting utility — rates and fees are set to cover operation, maintenance, and capital, with the Charter directing the County to provide <b>clean, healthful, and plentiful water</b>.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, water is a <b>public-trust resource</b>, not merely a commodity; the resident's claim to domestic water is a foundational right. The lens reads cost-recovery as legitimate for <b>use</b>, but treats forcing the last-connecting resident to fund the <b>public main itself</b> as the County offloading a public duty.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Charge fairly for the water a household <b>uses</b>; treat the <b>backbone system</b> (mains, source, storage) as the County's public duty under its own charge to provide plentiful water. Same service, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "6 · Rules → Code: candidates for codification",
+      "intro": "Provisions that, in our assessment, should be <b>codified or made transparent in Title 14</b> so cost and duty are readable from the Code. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Publish the usage-rate table in-Code.</b> Usage rates live in the annual budget ordinance and shift yearly. → Require a plain-language <b>tiered-rate table</b> published with each rate change so residents can see the trend. <span class=\"exp\">expanding</span>",
+        "<b>Source-development cost sharing.</b> Whether the applicant or the County funds new mains/storage is decided case-by-case. → Codify a <b>cost-share rule</b> so extending the public system isn't fully downloaded onto the newest connection.",
+        "<b>Protect the residential water/sewer carve-out.</b> The Code already shields residential water/sewer from tax-lien collection of fines — keep and clarify that protection in Title 14 itself."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT14PUSE\" target=\"_blank\" rel=\"noopener\">Title 14</a> + the County water rates framework; contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the service navigator, and the charges table are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a water-service-availability checker and an <b>AI water-account assistant</b> will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); the actual water payment happens on the County's own billing portal."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 14 (Public Services), Art. 1 Water</b> via Municode + County of Maui <b>Department of Water Supply</b> + Hawaiʻi Statewide GIS · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · usage rates set annually — verify with DWS · enforcement reach per MCC §19.530.030 (residential water/sewer carve-out noted) · not legal advice · public records only · hands off to the County's billing portal."
+}

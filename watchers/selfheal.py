@@ -35,6 +35,8 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "private_completeness.html",
                  "testifiers.json", "testifiers_index.txt",   # testifier×money cross-ref (prosecutor) — public PAGE only, not the join
                  "nay_narratives.json",                       # dissent-vote spine (prosecutor) — public PAGE only, not the JSON
+                 "daily_brief.html", "DAILY_BRIEF.md", "TODO_BACKLOG.md",  # owner-only cross-thread current-state — never public
+                 "beta.json",                                 # beta portal links config (public-safe links, but keep out of repo)
                  "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
 
 def _known_secrets():
@@ -71,6 +73,7 @@ def _known_secrets():
         pass
     return vals
 
+_STRIPE_SECRET = re.compile(r"\b(sk|rk)_(live|test)_[A-Za-z0-9]{8,}|\bwhsec_[A-Za-z0-9]{8,}")  # Stripe secret/restricted/webhook keys — never public
 def chk_no_leak():
     """No private back-end file or secret key may exist anywhere in the publish repo tree."""
     hits = []
@@ -80,11 +83,13 @@ def chk_no_leak():
         for fn in files:
             if fn in PRIVATE_NAMES or (fn.endswith(".txt") and "key" in fn.lower()) or "dossier" in fn.lower():
                 hits.append(os.path.relpath(os.path.join(root, fn), REPO))
-            elif secrets and fn.endswith((".py", ".html", ".json", ".txt", ".md")):
+            elif fn.endswith((".py", ".html", ".json", ".txt", ".md", ".js")):
                 try:
                     body = open(os.path.join(root, fn), encoding="utf-8", errors="ignore").read()
-                    if any(s in body for s in secrets):
+                    if secrets and any(s in body for s in secrets):
                         hits.append(os.path.relpath(os.path.join(root, fn), REPO) + " (secret value)")
+                    if _STRIPE_SECRET.search(body):
+                        hits.append(os.path.relpath(os.path.join(root, fn), REPO) + " (Stripe secret key)")
                 except Exception:
                     pass
     if hits:

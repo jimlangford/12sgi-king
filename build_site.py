@@ -26,6 +26,10 @@ PAGES = [
     ("statewide_money_patterns.html",    "Statewide Money (2008+)",      "Campaign money across all 4 counties + State; the donor network."),
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
+    ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
+    ("testifiers_maui.html",             "Who Testifies x Money",        "Named public testifiers from the minutes, cross-referenced to campaign donors and the real-estate record. Public records, framed as questions."),
+    ("federal_money.html",               "Federal Dollars - Maui & State","Federal contracts + grants landing in Hawai&#699;i, the Maui share called out, broken down by awarding agency. Public records, framed as questions."),
+    ("beta_requests.html",               "govOS Beta - Build It With Your Council","Maui Council members request features (Stripe Identity - free, no charge), guided by constituents who sign up by district. Shapes the software; the public record stays public."),
     ("lege/legislator_scorecard.html",   "HI Legislator Scorecard",      "Per-member roll-call votes, 2010+ (LegiScan)."),
     ("charter_application.html",         "Charter -> Law -> Evidence",   "12 Stones Charter bound to existing enforceable law + live data."),
     ("commission_antitrust.html",        "Commission Antitrust Thread",  "NAR/Sitzer-Burnett timeline + estimated commission load."),
@@ -82,7 +86,8 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "tenants_hub.html",
                "tenant_hi-state.html", "tenant_hi-maui.html", "tenant_hi-hawaii.html",
                "tenant_hi-kauai.html", "tenant_hi-honolulu.html", "tenant_ny.html",
-               "federal_money.html", "federal_money_hawaii.html", "federal_money_honolulu.html",
+               # federal_money.html (the Maui+State front page) is now a carded dashboard in PAGES; county sub-pages stay here
+               "federal_money_hawaii.html", "federal_money_honolulu.html",
                "federal_money_kauai.html", "federal_officials.html", "audit_balance.html",
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html",
@@ -96,10 +101,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "orgs_maui.html", "orgs_honolulu.html", "orgs_hawaii.html", "orgs_kauai.html",
                # THE LOOP, ON THE RECORD — donor orgs joined to the meetings their names appear in (2,293 minutes)
                "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
-               # WHO TESTIFIES — named public testifiers from the minutes, cross-referenced to the money record
-               "testifiers_maui.html",
-               # THE NAY NARRATIVES — every council split vote + the dissenter's recorded words (who governs)
-               "council_votes_maui.html",
+               # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
@@ -175,6 +177,10 @@ NAV_LABEL = {
     "king/civic/templates/title18-service/Title18%20Service.html": "Title 18 — Subdivisions (free)",
     "king/civic/templates/title03-service/Title3%20Service.html": "Title 3 — Real Property Tax (free)",
     "king/civic/templates/title05-service/Title5%20Service.html": "Title 5 — Business Licenses (free)",
+    "king/civic/templates/title14-service/Title14%20Service.html": "Title 14 — Water / Public Services (free)",
+    "king/civic/templates/title10-service/Title10%20Service.html": "Title 10 — Vehicles & Traffic (free)",
+    "king/civic/templates/title12-service/Title12%20Service.html": "Title 12 — Streets & Sidewalks (free)",
+    "king/civic/templates/title20-service/Title20%20Service.html": "Title 20 — Environmental Protection (free)",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -214,7 +220,11 @@ NAV_GROUPS = [
                        "king/civic/templates/title16-service/Title16%20Service.html",
                        "king/civic/templates/title18-service/Title18%20Service.html",
                        "king/civic/templates/title03-service/Title3%20Service.html",
-                       "king/civic/templates/title05-service/Title5%20Service.html"]),
+                       "king/civic/templates/title05-service/Title5%20Service.html",
+                       "king/civic/templates/title14-service/Title14%20Service.html",
+                       "king/civic/templates/title10-service/Title10%20Service.html",
+                       "king/civic/templates/title12-service/Title12%20Service.html",
+                       "king/civic/templates/title20-service/Title20%20Service.html"]),
     # world financial-center cities — same SSC charter, each city's real charter/code + national law,
     # up the shared apex to the Holy See. "Act local, think global."
     ("World Centers", ["crosswalk_london.html", "crosswalk_tokyo.html", "crosswalk_hongkong.html",

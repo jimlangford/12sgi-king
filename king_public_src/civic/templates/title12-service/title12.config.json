@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "id": "title12",
+    "codeTitle": 12,
+    "name": "Streets, Sidewalks & Public Places",
+    "department": "Public Works & Waste Management",
+    "templateName": "Title 12 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 12 (Streets, Sidewalks & Public Places) — right-of-way work, excavation and driveway permits, encroachment, and who pays. Sourced to Municode + County Public Works; hands off to MAPPS. First version, expanding.",
+    "pageTitle": "Title 12 — Streets, Sidewalks & Public Places · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 12 — Streets, Sidewalks &amp; Public Places <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title12 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "↔ Title 18 — Subdivisions", "href": "../title18-service/Title18%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 12 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 12 (Streets, Sidewalks &amp; Public Places)</b>: when you need a permit to work in the <b>public right-of-way</b> (excavating a street, cutting a curb, building a driveway, placing anything in a public place), how the process works, and who pays. Administered by <b>Public Works &amp; Waste Management</b>; permits go through <b>MAPPS</b>. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://mapps.mauicounty.gov/163/Permits",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL",
+    "permitLinkLabel": "Right-of-way / driveway permits (MAPPS) ↗",
+    "codeLinkLabel": "Title 12 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Planning work that touches the street, curb, or sidewalk in front of your property? Enter a Maui County <b>TMK</b> to see the parcel and its frontage context from the Hawaiʻi Statewide GIS. The road right-of-way itself is County-owned — most work in it needs a Title 12 permit, applied through MAPPS.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. Right-of-way permits via Maui County <b>MAPPS</b> (Public Works). No parcel data is stored or fabricated — fetched live.", "expanding": "County ROW / road-ownership overlay"}
+    },
+    {
+      "type": "process",
+      "title": "1 · Work in the public right-of-way",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The general path for permitted work in a County street, sidewalk, or public place under Title 12.",
+      "steps": [
+        {"name": "Get a written permit first", "what": "No one may <b>break up, dig up, disturb, undermine, or dig under</b> any County highway, street, alley, sidewalk, or other public place <b>without a written permit</b> from Public Works &amp; Waste Management.", "pay": "Expense: permit fee · paid by: applicant"},
+        {"name": "Driveways &amp; curb cuts", "what": "No one may <b>construct, reconstruct, or repair a driveway</b>, or <b>cut or lower a curb</b> on a County right-of-way, without a written permit from the director (Ch. 12.08).", "pay": "Expense: permit fee + construction · paid by: applicant"},
+        {"name": "Work safely &amp; protect the public", "what": "The permit holder must use <b>barricades, lights, and watchmen</b> as needed for safety, and may not leave debris, materials, or equipment that creates a hazard.", "pay": "Expense: safety measures · paid by: permit holder"},
+        {"name": "Restore the right-of-way", "what": "On completion, the permit holder must <b>restore the government right-of-way to good condition</b>; indemnification applies (§12.08.140).", "pay": "Expense: restoration · paid by: permit holder"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "The right-of-way is shared public space. Requiring a resident to <b>restore what they disturb</b> is fair. But where the County uses a frontage permit to require a resident to build <b>public improvements that benefit everyone</b> (a new sidewalk, drainage), the cost of the public benefit should be <b>County-borne</b>, not exacted from the one property owner."}
+      },
+      "source": {"html": "Maui County Code Title 12 — excavation permit requirement + <a href=\"http://mauico-hi.elaws.us/code/coor_title12_ch12.08_sec12.08.140\" target=\"_blank\" rel=\"noopener\">Ch. 12.08 (Driveways), §12.08.140</a>; apply via <a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS — Permits ↗</a>.", "expanding": "ROW restoration standards & bonding"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Which Title 12 permit?",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Common right-of-way activities and where to apply.",
+      "columns": ["Work", "Permit", "Where"],
+      "rows": [
+        [{"v": "Excavate / cut a County street or sidewalk"}, {"v": "Excavation / street-opening permit"}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS ↗</a>"}],
+        [{"v": "Build / repair a driveway, cut a curb"}, {"v": "Driveway permit — Ch. 12.08"}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS ↗</a>"}],
+        [{"v": "Place objects / encroach into a public place"}, {"v": "Encroachment — Title 12", "cls": "c"}, {"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL\" target=\"_blank\" rel=\"noopener\">Title 12 ↗</a>"}],
+        [{"v": "Sidewalk in a special improvement area"}, {"v": "see Ch. 12.42", "cls": "c"}, {"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL_CH12.42SIWAPUHI\" target=\"_blank\" rel=\"noopener\">Ch. 12.42 ↗</a>"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL\" target=\"_blank\" rel=\"noopener\">Title 12 (§§12.02–12.54)</a>; permits via MAPPS / Public Works.", "expanding": "full permit-type list + fees"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Right-of-way violations are reachable through the County enforcement engine. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of MCC <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits — so unpermitted work in the right-of-way (an unauthorized excavation, driveway, or encroachment under Title 12) can draw a <b>notice of violation and order</b> requiring removal/restoration and/or civil fines, final after 30 days unless appealed to the <b>Board of Variances and Appeals</b>.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530</a> (§19.530.030 reach, sourced in the Title 19 service) + Title 12 permit conditions.", "expanding": "Title 12-specific penalty provisions"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · Who pays — the charter lens",
+      "note": "Labeled analysis — the right-of-way read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, Public Works manages and maintains the County's streets, sidewalks, and public places and permits work within them; permit fees and restoration requirements protect the public asset. The Charter frames the ROW as a <b>public infrastructure</b> the department stewards.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the street and sidewalk are a <b>commons</b> held in trust for all. Permitting is legitimate to protect that commons; the lens distinguishes <b>restoring what you disturb</b> (the resident's duty) from <b>building new public infrastructure</b> as a permit condition (the County's duty), and resists shifting the latter onto a single owner.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Restore what you break — fair. Fund the public sidewalk the whole neighborhood uses — that's the County's job, not a toll on whoever happens to pull a frontage permit. Same right-of-way, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "5 · Rules → Code: candidates for codification",
+      "intro": "Provisions that, in our assessment, Title 12 should make <b>clearer or fairer</b> so residents know their cost and duty. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Publish ROW permit fees + restoration standards.</b> → Codify a single readable <b>fee + restoration-spec table</b> so an applicant can price the work up front. <span class=\"exp\">expanding</span>",
+        "<b>Separate restore-vs-improve.</b> Distinguish <b>restoration</b> (applicant) from <b>new public improvements</b> (County) so frontage permits aren't used to download public infrastructure onto residents.",
+        "<b>Encroachment clarity.</b> Codify clear, plain-language rules for what may and may not occupy a public place, so enforcement is predictable."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT12STSIPUPL\" target=\"_blank\" rel=\"noopener\">Title 12</a>; contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the ROW navigator, and the permit table are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a right-of-way permit-readiness checklist and an <b>AI Title-12 assistant</b> will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); the actual permit application happens on MAPPS."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 12 (Streets, Sidewalks &amp; Public Places)</b> via Municode + County of Maui <b>Public Works &amp; Waste Management</b> + <b>MAPPS</b> (official permitting) + Hawaiʻi Statewide GIS · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforcement reach per MCC §19.530.030 · not legal advice · public records only · hands off to MAPPS for the official record."
+}
