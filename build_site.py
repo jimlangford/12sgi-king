@@ -30,6 +30,7 @@ PAGES = [
     ("testifiers_maui.html",             "Who Testifies x Money",        "Named public testifiers from the minutes, cross-referenced to campaign donors and the real-estate record. Public records, framed as questions."),
     ("federal_money.html",               "Federal Dollars - Maui & State","Federal contracts + grants landing in Hawai&#699;i, the Maui share called out, broken down by awarding agency. Public records, framed as questions."),
     ("beta_requests.html",               "govOS Beta - Build It With Your Council","Maui Council members request features (Stripe Identity - free, no charge), guided by constituents who sign up by district. Shapes the software; the public record stays public."),
+    ("explainer.html",                   "Explain Your Government","Pick a date - the Hawaiian moon + sun + the agenda - then ask our AI to explain any part of Maui County government (Title 19, permits, parcels, the money) as a shareable reel. Relationships + recusals explored gracefully, in aloha."),
     ("lege/legislator_scorecard.html",   "HI Legislator Scorecard",      "Per-member roll-call votes, 2010+ (LegiScan)."),
     ("charter_application.html",         "Charter -> Law -> Evidence",   "12 Stones Charter bound to existing enforceable law + live data."),
     ("commission_antitrust.html",        "Commission Antitrust Thread",  "NAR/Sitzer-Burnett timeline + estimated commission load."),
