@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "id": "title16",
+    "codeTitle": 16,
+    "name": "Buildings & Construction",
+    "department": "Public Works — Development Services Administration (DSA)",
+    "templateName": "Title 16 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 16 (Buildings & Construction) — building/electrical/plumbing/energy permits, how the process works, what it costs and who pays, enforcement, disaster-recovery permits. Sourced to Municode + County DSA; hands off to MAPPS. First version, expanding.",
+    "pageTitle": "Title 16 — Buildings & Construction · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 16 — Buildings &amp; Construction <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-17",
+    "outFile": "Title16 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning (service)", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "Charter ⇄ Law Crosswalk", "href": "../title19-crosswalk/Title19%20Crosswalk.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 16 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 16 (Buildings &amp; Construction)</b>: a <b>live parcel lookup</b>, how the building-permit process works, which permit you need, the codes that apply, enforcement, and the disaster-recovery track for Lāhainā. The County's official application, payment, and inspection system is <b>MAPPS</b> — this service explains the law and <b>hands you off to MAPPS</b> at the application step; it does not replace the County's record. <b>This is a first version — sections marked <span class=\"exp\">expanding</span> are being filled in from the ingestion corpus; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://mapps.mauicounty.gov/222/DSA-Building-Permit",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO",
+    "permitLinkLabel": "Building permits &amp; inspections (MAPPS) ↗",
+    "codeLinkLabel": "Title 16 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Before you build, check the parcel. Enter a Maui County <b>TMK</b> (tax map key) to see its designations — county zoning, community plan, state land-use district, and especially whether it sits in a <b>Special Management Area (SMA)</b> or on <b>Important Ag Land</b>, both of which add review to a building permit. Pulled live from the Hawaiʻi Statewide GIS. For this parcel's actual <b>permit and inspection history</b> (not in GIS), the result links you to MAPPS.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS — Parcels &amp; Zoning</a>. Permits/inspections via Maui County <b>MAPPS</b> (Development Services Administration). No parcel data is stored or fabricated — every field is fetched live.", "expanding": "address search; SMA building-review overlay"}
+    },
+    {
+      "type": "process",
+      "title": "1 · How a building permit works",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The general path a building permit takes under Title 16, administered by <b>Public Works — Development Services Administration (DSA)</b>. Each step notes the expense and who bears it today. Applications are online-only through MAPPS.",
+      "steps": [
+        {"name": "Create a MAPPS account", "what": "You must have a <b>MAPPS Customer Self-Service (CSS)</b> account to apply online. Free to register.", "pay": "Expense: free · paid by: you (time)"},
+        {"name": "Prepare stamped plans", "what": "Construction plans must be prepared and stamped by a <b>design professional licensed in the State of Hawaiʻi</b> (for work that requires it).", "pay": "Expense: design fees · paid by: applicant"},
+        {"name": "Apply &amp; upload in MAPPS", "what": "Complete every step in MAPPS CSS, then upload the required documents and plans for your application (building, electrical, plumbing, grading, driveway, or demolition).", "pay": "Expense: application + plan-review fees · paid by: applicant"},
+        {"name": "Plan review &amp; agency routing", "what": "Your submittal is routed to the <b>Building Plans Review Section</b> and any approving agencies — <b>Planning, Fire, Water</b>, and others depending on scope and location (SMA parcels get extra review).", "pay": "Expense: County staff review · paid by: County (+ applicant fees)"},
+        {"name": "Permit issued → build → inspections", "what": "Once approved, the permit issues. Request inspections in MAPPS CSS (My Work → Request Inspections) at each required stage.", "pay": "Expense: inspection fees · paid by: applicant"},
+        {"name": "Certificate of Occupancy", "what": "For applicable projects, a Certificate of Occupancy is issued after final approval — the building may then be lawfully occupied.", "pay": "Expense: final approval · paid by: applicant"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Where the County <b>imposes a requirement</b> on a building applicant (an upgrade, a study, an off-site improvement as a condition of permit), the <b>County should bear the cost</b> of the requirement it imposes — not download it onto the homeowner or small builder."}
+      },
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/1208/Building-Permit\" target=\"_blank\" rel=\"noopener\">Building Permit</a> &amp; <a href=\"https://www.mauicounty.gov/558/Development-Services-Administration\" target=\"_blank\" rel=\"noopener\">Development Services Administration (DSA)</a>; apply via <a href=\"https://mapps.mauicounty.gov/222/DSA-Building-Permit\" target=\"_blank\" rel=\"noopener\">MAPPS — DSA Building Permit ↗</a>. Process summarized in plain language; exact requirements &amp; fees are with DSA / in the cited chapters.", "expanding": "per-permit fee schedule"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Which permit do you need?",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "DSA administers the County's building, electrical, plumbing, grading, driveway and related construction permits. Start each from MAPPS.",
+      "columns": ["Work", "Permit / code", "Where to apply"],
+      "rows": [
+        [{"v": "New building, addition, alteration, repair, moving, demolition, change of use"}, {"v": "Building permit — Ch. 16.26B"}, {"html": "<a href=\"https://mapps.mauicounty.gov/222/DSA-Building-Permit\" target=\"_blank\" rel=\"noopener\">MAPPS — DSA Building ↗</a>"}],
+        [{"v": "Electrical work"}, {"v": "Electrical permit — Ch. 16.18B"}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS — Permits ↗</a>"}],
+        [{"v": "Plumbing work"}, {"v": "Plumbing permit — Ch. 16.20C"}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS — Permits ↗</a>"}],
+        [{"v": "Grading, grubbing, stockpiling"}, {"v": "Grading permit — Title 16", "cls": ""}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS — Permits ↗</a>"}],
+        [{"v": "Driveway / access onto a County road"}, {"v": "Driveway permit — Title 16"}, {"html": "<a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS — Permits ↗</a>"}],
+        [{"v": "Rebuild after the Lāhainā wildfire"}, {"v": "Disaster Recovery Building Permit", "cls": "c"}, {"html": "<a href=\"https://mapps.mauicounty.gov/320/DSA-Disaster-Recovery-Building-Permit\" target=\"_blank\" rel=\"noopener\">MAPPS — Disaster Recovery ↗</a>"}]
+      ],
+      "source": {"html": "Permit types from County of Maui <a href=\"https://www.mauicounty.gov/558/Development-Services-Administration\" target=\"_blank\" rel=\"noopener\">DSA</a> (administers building, electrical, plumbing, grading &amp; related ordinances) + <a href=\"https://mapps.mauicounty.gov/163/Permits\" target=\"_blank\" rel=\"noopener\">MAPPS Permits</a>. Confirm the exact application type in MAPPS.", "expanding": "per-permit document checklists"}
+    },
+    {
+      "type": "table",
+      "title": "3 · Title 16 chapters — the codes that apply",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Maui adopts model codes (with County amendments) inside Title 16. Building-permit applications submitted <b>on or after October 28, 2023</b> must comply with the editions below. Verify the exact section on Municode before relying on it.",
+      "columns": ["Chapter", "Code", "Notes"],
+      "rows": [
+        [{"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO_CH16.26BBUCO\" target=\"_blank\" rel=\"noopener\">16.26B</a>"}, {"v": "Building Code"}, {"v": "2018 International Building Code + County amendments"}],
+        [{"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO_CH16.18BELCO\" target=\"_blank\" rel=\"noopener\">16.18B</a>"}, {"v": "Electrical Code"}, {"v": "County electrical code"}],
+        [{"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO_CH16.20CPLCO\" target=\"_blank\" rel=\"noopener\">16.20C</a>"}, {"v": "Plumbing Code"}, {"v": "County plumbing code"}],
+        [{"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO_CH16.16CENCO\" target=\"_blank\" rel=\"noopener\">16.16C</a>"}, {"v": "Energy Code"}, {"v": "County energy conservation code"}],
+        [{"v": "16.13"}, {"v": "Admin Procedures & Civil Fines"}, {"v": "Rules for administrative procedures & civil fines (cross-ref; see §5)"}]
+      ],
+      "source": {"html": "Maui County Code <b>Title 16 (Buildings &amp; Construction)</b>, <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO\" target=\"_blank\" rel=\"noopener\">Municode</a> · code editions &amp; Oct 28 2023 effective date per County <a href=\"https://www.mauicounty.gov/1308/Building-Plans-Review-Section\" target=\"_blank\" rel=\"noopener\">Building Plans Review Section</a>. Title 16 spans §§16.04B.010–16.28.040.", "expanding": "full chapter list + per-chapter amendments from the ingestion corpus"}
+    },
+    {
+      "type": "cards",
+      "title": "4 · Lāhainā &amp; disaster recovery",
+      "badge": {"kind": "exp", "text": "recovery track"},
+      "note": "After the August 2023 wildfire, the County stood up a dedicated disaster-recovery building-permit track in MAPPS for West Maui / Lāhainā rebuilds.",
+      "cards": [
+        {"title": "🌺 Disaster Recovery Building Permit", "body": "The MAPPS track for rebuilding fire-affected structures — start here if you are rebuilding in Lāhainā / West Maui.", "href": "https://mapps.mauicounty.gov/320/DSA-Disaster-Recovery-Building-Permit", "lahaina": true, "flag": "expedited"},
+        {"title": "Lāhainā Community Plan", "body": "The community plan guiding West Maui / Lāhainā recovery (ties to the Title 19 service's Lāhainā module).", "href": "https://www.mauicounty.gov/2065/Lahaina-Community-Plan"},
+        {"title": "DSA — Development Services", "body": "The Public Works division that administers building, electrical, plumbing & grading permits.", "href": "https://www.mauicounty.gov/558/Development-Services-Administration"}
+      ],
+      "source": {"html": "County of Maui <a href=\"https://mapps.mauicounty.gov/320/DSA-Disaster-Recovery-Building-Permit\" target=\"_blank\" rel=\"noopener\">MAPPS — DSA Disaster Recovery Building Permit</a>.", "expanding": "recovery fee waivers & expedited-review criteria"}
+    },
+    {
+      "type": "prose",
+      "title": "5 · Enforcement &amp; civil fines",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Building violations under Title 16 are reachable through the same County enforcement engine as zoning. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of Maui County Code <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits. So a Title 16 building violation can be pursued by a director through a <b>notice of violation and order</b> that may require cease-and-desist, correction by a date, and/or administrative civil fines, with the order becoming <b>final after 30 days</b> unless appealed to the <b>Board of Variances and Appeals</b> (an appeal does not stay the order). Title 16's own <b>Ch. 16.13</b> carries the <b>administrative procedures &amp; civil-fines</b> framework specific to building matters.</p><p style=\"font-size:14px\" class=\"note\">The verbatim Ch. 16.13 civil-fine schedule (default amounts, escalation) is in scanned administrative rules that the ingestion session has flagged as OCR-blocked — <span class=\"exp\">expanding</span> pending a text-extractable drop. Caps and mechanics: confirm at the source.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530 (Enforcement)</a> — §19.530.030 reach (sourced in the Title 19 service) + Title 16 <b>Ch. 16.13</b> (Admin Procedures &amp; Civil Fines).", "expanding": "verbatim 16.13 fine schedule (OCR-blocked in corpus)"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "6 · Who pays — the charter lens",
+      "note": "Labeled analysis — the same provision read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Department of Public Works (DSA) is charged with administering the building code and issuing permits; permit and plan-review <b>fees are set by ordinance / Council</b>. The Charter frames building regulation as a delegated administrative duty funded substantially by applicant fees.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, a permit is the County <b>granting back</b> a use of the resident's own property. Where the County conditions that grant on a <b>requirement it imposes</b> (an upgrade, an off-site improvement), the cost of that requirement should be <b>County-borne</b> — the resident should not be charged to satisfy the County's own condition.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Building fees that recover the <b>cost of review</b> are fair; <b>imposed conditions</b> (the County requiring something beyond the applicant's own project) are where the cost should shift to the County. Same rule, read two ways — so residents can see the choice."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "7 · Rules → Code: candidates for codification",
+      "intro": "Provisions that currently live in the building <b>administrative rules</b> that, in our assessment, should be <b>codified into Title 16</b> — so the binding standard is council-adopted and publicly noticed, not only in agency rules. The Code citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Civil-fine schedule (Ch. 16.13).</b> Title 16 routes building civil-fine mechanics to administrative rules. → Codify a single readable <b>penalty schedule</b> (default amounts, mitigation, escalation) so a builder can read their exposure from the Code itself. <span class=\"exp\">rule text OCR-blocked — expanding</span>",
+        "<b>Plan-review timelines.</b> Review turnaround lives in practice, not the Code. → Codify a <b>plan-review SLA</b> so applicants have an enforceable expectation. <span class=\"exp\">expanding</span>",
+        "<b>Disaster-recovery expedite criteria.</b> The Lāhainā recovery track's fee treatment and expedited-review rules are administrative. → Codify the recovery standard so it survives past any one administration. <span class=\"exp\">expanding</span>"
+      ],
+      "source": {"html": "Analysis grounded in <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT16BUCO\" target=\"_blank\" rel=\"noopener\">MCC Title 16</a> + <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530</a>; admin-rule contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the process navigator, and the permit/chapter tables are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a saved permit-readiness checklist, document-package helpers, and an <b>AI permit assistant</b> for Title 16 will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 16 (Buildings &amp; Construction)</b> via Municode + County of Maui <b>DSA</b> + <b>MAPPS</b> (official permitting) + Hawaiʻi Statewide GIS (live parcel data) · first version 2026-06-17, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforcement reach per MCC §19.530.030; building civil-fine schedule (Ch. 16.13) OCR-blocked in corpus, expanding · not legal advice · public records only · hands off to MAPPS for the official record."
+}
