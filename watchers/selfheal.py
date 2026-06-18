@@ -278,8 +278,31 @@ def chk_external_links():
     return "WARN", "%d broken outbound link(s) of %d (%d auto-healable) — see external_links.html" % (
         broken, total, healable)
 
+def chk_seed_parity():
+    """The public floor (seed_reports/mauios) carries the current data. Pages are generated
+    into the project's reports/mauios, but CI's push builds (the `publish` verb) only see the
+    committed seed — watchers run on cron only. So a page missing from seed, or a stale seed
+    page, silently fails to reach the people on a push deploy (the feature_board lesson). This
+    is a WARN, never FAIL: a stale floor is a 'carry it over' nudge (publish_audit.py --sync),
+    not a reason to block the build. Private reports/_status is never touched. selfheal.html is
+    exempt (CI regenerates it every build). Solution-side framing: pages waiting to serve."""
+    try:
+        import sys, importlib
+        if HERE not in sys.path:
+            sys.path.insert(0, HERE)
+        import publish_audit; importlib.reload(publish_audit)
+        r = publish_audit.audit()
+    except Exception as e:
+        return "WARN", "publish_audit unavailable (%s) — seed parity unverified" % e
+    if r["clean"]:
+        return "PASS", "%d page(s) current on the public floor; %d resting (moon/timestamp only)" % (
+            r["ok"], len(r["cosmetic"]))
+    return "WARN", "%d page(s) waiting to reach the public floor (%d missing, %d stale) — heal: publish_audit.py --sync" % (
+        r["gap_count"], len(r["missing"]), len(r["drift"]))
+
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
+    ("Seed mirror is current",        chk_seed_parity),
     ("Links resolve like GitHub Pages", chk_links),
     ("No public page routes to studio", chk_no_studio_route),
     ("External civic links resolve", chk_external_links),

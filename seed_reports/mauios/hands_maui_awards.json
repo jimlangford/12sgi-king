@@ -1,10 +1,10 @@
 {
- "generated": "2026-06-14T05:29:45.243959-10:00",
+ "generated": "2026-06-15T23:04:39.440074-10:00",
  "source": "HANDS hands.ehawaii.gov",
- "statewide_total": 10609,
- "maui_awards": 271,
+ "statewide_total": 10624,
+ "maui_awards": 273,
  "maui_vendors": 74,
- "maui_dollars": 118644164.81,
+ "maui_dollars": 120120796.36,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -223,9 +223,17 @@
   },
   {
    "vendor": "BROWN AND CALDWELL & Subs",
-   "total": 14197556.0,
-   "count": 10,
+   "total": 14765621.0,
+   "count": 11,
    "awards": [
+    {
+     "amount": 568065.0,
+     "date": "05/20/2026",
+     "title": "FY26 Desalination Feasibility Study Update",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
     {
      "amount": 199742.0,
      "date": "06/26/2025",
@@ -1230,9 +1238,17 @@
   },
   {
    "vendor": "CAROLLO ENGINEERS, INC.",
-   "total": 2843064.79,
-   "count": 5,
+   "total": 3751631.3400000003,
+   "count": 6,
    "awards": [
+    {
+     "amount": 908566.55,
+     "date": "05/20/2026",
+     "title": "Olinda Water Treatment Plant - Nano-filtration Pilot Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
     {
      "amount": 447829.4,
      "date": "12/18/2025",
