@@ -79,6 +79,14 @@
     <div class="pct" id="overallPct">61%</div>
   </a>
 
+  <!-- Renders to review — PRIVATE go page surface. Data fetched at runtime from the studio review queue
+       (Tailscale / -> :8770). Fails CLOSED: the whole section stays hidden on the public mirror where the
+       queue is unreachable, so no render labels/links are ever baked into the static (leak-safe). -->
+  <div id="reviewSect" style="display:none">
+    <div class="sect">🔔 Renders to review</div>
+    <div id="reviewQueue"></div>
+  </div>
+
   <div class="sect">The four quadrants</div>
   <a class="quad ghost" id="qMV" href="https://12sgianonymous.tail760750.ts.net/" data-q="music_video">
     <div class="qtop"><span class="qi">🎬</span><span class="qn">Music Video</span><span class="qpct" data-pct>71%</span></div>
@@ -126,6 +134,7 @@
   <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
   <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
   <a class="card dim" id="liveStatus" href="https://12sgianonymous.tail760750.ts.net/king/system_status.html"><span class="tag live">live</span><div class="t">System status — hardware &amp; software</div><div class="b">Real-time self-heal — GPU/CPU/VRAM, training, locks, every surface. Auto-refresh.</div></a>
+  <a class="card dim" id="liveBoard" href="https://12sgianonymous.tail760750.ts.net/board"><span class="tag live">live</span><div class="t">Work Board · Command Center</div><div class="b">One pane over all four quadrants — roadmap by lane, dispatch feed, renders to review, message Claude.</div></a>
 
   <div class="foot">Live = your server via Tailscale (private). Mirror = GitHub Pages (public, read-only).<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</div>
 </div>
@@ -134,7 +143,7 @@
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
-     ['liveStudio','liveKing','liveStatus','qMV','qFilm','qGame','dashLink'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
    } else { dot.className='dot down'; st.textContent='live system offline (server/Tailscale off) — civic mirror is always on'; }
  }
  (function(){ var done=false, ctl=new AbortController();
@@ -168,6 +177,40 @@
    var saved; try{saved=localStorage.getItem('govos.tenant');}catch(e){}
    var cur=(saved&&F.tenants[saved])?saved:(order[0]||''); sel.value=cur; render(cur);
    sel.addEventListener('change',function(){var t=this.value; try{localStorage.setItem('govos.tenant',t);}catch(e){} render(t);});
+ })();
+ (function(){
+   var sect=document.getElementById('reviewSect'), el=document.getElementById('reviewQueue');
+   if(!sect||!el) return;
+   // newest-first; row = tap-through to owner_link (Tailscale reviewboard, full control for Jimmy).
+   // Source from the King origin: this page is served at ts.net/king/go.html (-> :8799), and the
+   // studio's own /api/* is shadowed by the /api -> :8810 backend route over Tailscale. So fetch the
+   // King's re-served queue (relative 'api/review-queue' -> /king/api/review-queue). On the public
+   // GitHub Pages mirror that 404s -> fetch fails -> the whole section stays hidden (leak-safe).
+   var SRC=['api/review-queue','/king/api/review-queue'];
+   var vcol={pass:'var(--ok)',redo:'var(--warn)',pending:'var(--ink-faint)'};
+   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+   function render(rq){
+     var items=(rq&&rq.items)||[];
+     items=items.slice().sort(function(a,b){return (b.ts||0)-(a.ts||0);});
+     if(!items.length) return;                       // fail closed — leave hidden on the public mirror
+     var rows=items.slice(0,12).map(function(o){
+       var c=vcol[o.verdict]||'var(--ink-faint)';
+       var href=o.owner_link||o.client_link||'#';
+       return '<a class="card" style="border-left:3px solid '+c+';display:flex;align-items:center;gap:10px" href="'+esc(href)+'" target="_blank" rel="noopener">'
+         +'<span class="tag mir" style="float:none">'+(o.kind==='mv'?'MV':'SB')+'</span>'
+         +'<span class="t" style="flex:1">'+esc(o.label)+'</span>'
+         +(o.auto==='flag'?'<span style="font-size:11px;color:var(--warn)">⚠ flag</span>':'')
+         +'<span class="b" style="margin:0">'+esc(o.rendered_at||'')+'</span>'
+         +'<span style="font-size:12px;color:var(--accent-2);white-space:nowrap">review →</span></a>';
+     }).join('');
+     el.innerHTML='<div class="sub" style="margin:4px 0 9px">'+(rq.count!=null?rq.count:items.length)
+       +' in queue · newest first <span style="color:var(--ink-faint)">(tap to open the review board)</span></div>'+rows;
+     sect.style.display='block';
+   }
+   function tryNext(i){ if(i>=SRC.length) return;
+     fetch(SRC[i],{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(render).catch(function(){tryNext(i+1);});
+   }
+   tryNext(0);
  })();
 </script>
 </body></html>
