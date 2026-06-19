@@ -1062,10 +1062,14 @@ Sources are linked on every page.</div>
     # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
     # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
     # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
-    _go_built = os.path.join(SITE, "go.html")   # the already-built root launcher (FTM map injected)
-    if os.path.exists(_go_built):
-        shutil.copy(_go_built, os.path.join(SITE, "index.html"))
-        print("  + index.html = go.html (Quad-OS launcher front door, active-tenant money map; civic hub at reports.html)")
+    # 12sgi.com HOMEPAGE = the govOS CLIENT signup landing (Jimmy 2026-06-19: "the home page of 12sgi.com
+    # = what a govOS client would see to sign up"). go.html stays the PRIVATE launcher at /go.html.
+    _landing = os.path.join(SITE, "king", "govos_signup.html")
+    _go_built = os.path.join(SITE, "go.html")   # the internal Quad-OS launcher (FTM map injected) — stays at /go.html
+    _idx_src = _landing if os.path.exists(_landing) else _go_built
+    if os.path.exists(_idx_src):
+        shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
+        print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
     # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
     # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
     # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).

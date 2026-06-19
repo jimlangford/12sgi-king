@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>govOS — your government, in the open | 12 Stones Global</title>
+<style>
+ :root{--bg:#ffffff;--panel:#e7eef8;--panel2:#dae5f3;--line:#bacde6;--ink:#13243d;--ink-dim:#41536b;
+   --ink-faint:#5b6e86;--accent:#00356b;--accent2:#1259a3;--gold:#b8860b;--ok:#1f8a5b;
+   --mono:'JetBrains Mono',Consolas,monospace}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+ a{color:var(--accent2);text-decoration:none}
+ .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+ .top{display:flex;align-items:center;gap:11px;padding:16px 0}
+ .seal{width:38px;height:38px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;flex:none}
+ .brand{font-weight:800;font-size:18px}.brand span{color:var(--ink-faint);font-weight:600;font-size:12px;font-family:var(--mono)}
+ .hero{text-align:center;padding:54px 20px 40px;background:radial-gradient(900px 380px at 50% -10%,rgba(0,53,107,.07),transparent 60%)}
+ .kick{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);font-weight:600;margin:0 0 14px}
+ h1{font-size:clamp(32px,6vw,56px);font-weight:800;letter-spacing:-1.5px;margin:0;line-height:1.05}
+ .sub{font-size:clamp(15px,2.3vw,19px);color:var(--ink-dim);max-width:620px;margin:18px auto 0}
+ .cta{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+ .btn{font-weight:650;font-size:15px;padding:13px 26px;border-radius:11px;display:inline-block}
+ .btn.p{background:var(--accent);color:#fff}.btn.s{background:#fff;color:var(--accent);border:1px solid var(--line)}
+ .promise{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:34px auto;max-width:760px;text-align:center;font-size:14.5px;color:var(--ink-dim)}
+ .promise b{color:var(--ink)}
+ .sect{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin:46px 0 22px;font-weight:600}
+ .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+ .tier{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column}
+ .tier.feat{border-color:var(--accent);box-shadow:0 8px 30px rgba(0,53,107,.08)}
+ .tn{font-size:16px;font-weight:750}.tp{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent);margin:6px 0 2px}.tp small{font-size:13px;color:var(--ink-faint);font-weight:600}
+ .tier ul{list-style:none;padding:0;margin:12px 0 18px;font-size:13.5px;color:var(--ink-dim);flex:1}
+ .tier li{padding:4px 0 4px 20px;position:relative}.tier li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+ .tbtn{text-align:center;font-weight:650;font-size:14px;padding:11px;border-radius:10px;background:var(--panel2);color:var(--accent);border:1px solid var(--line)}
+ .tier.feat .tbtn{background:var(--accent);color:#fff;border:0}
+ .badge{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);background:var(--panel);border-radius:8px;padding:2px 8px;margin-left:6px}
+ .foot{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:center;border-top:1px solid var(--line);padding:26px 20px 40px;margin-top:48px;line-height:1.8}
+</style></head>
+<body>
+<div class="wrap top"><div class="seal">⚖</div><div><div class="brand">govOS</div><div class="brand"><span>by 12 Stones Global · transparent government, any jurisdiction</span></div></div></div>
+
+<header class="hero">
+  <p class="kick">money × votes · agendas · the public record</p>
+  <h1>Your government, in the open.</h1>
+  <p class="sub">govOS turns your county's own public records — campaign money, roll-call votes, contracts, agendas — into clear answers anyone can check. Free to read. Powerful tools when you're ready to dig.</p>
+  <div class="cta">
+    <a class="btn p" href="take_action.html">Start free</a>
+    <a class="btn s" href="reports.html">See the live dashboards →</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="promise">🔓 <b>The public record is always free.</b> You only ever pay for private tools — AI, your own dashboards, building your systems — <b>never for access to your government's data.</b> Every figure is sourced and framed as a question, never a verdict, never fabricated.</div>
+
+  <p class="sect">Choose how you engage</p>
+  <div class="tiers">
+    <div class="tier">
+      <div class="tn">Free</div><div class="tp">$0</div>
+      <ul><li>Read every public dashboard + open-data catalog</li><li>Vote on requests (one verified person, one vote)</li><li>Submit public feature / oversight requests</li></ul>
+      <a class="tbtn" href="take_action.html">Start free</a>
+    </div>
+    <div class="tier feat">
+      <div class="tn">Ask AI <span class="badge">popular</span></div><div class="tp">$29<small>/mo</small></div>
+      <ul><li>Ask the AI anything about the public data — sourced</li><li>Sunshine-Law deadline + testimony calculators</li><li>Draft bills / charter amendments + inquiry packets</li><li>Message the system directly</li></ul>
+      <a class="tbtn" href="take_action.html">Subscribe</a>
+    </div>
+    <div class="tier">
+      <div class="tn">Private Dashboards</div><div class="tp">$99<small>/mo</small></div>
+      <ul><li>Everything in Ask AI</li><li>Build your OWN private dashboards with AI</li><li>Custom oversight reporting (money by office, vendors)</li><li>Connect your accounts to post your civic content</li></ul>
+      <a class="tbtn" href="take_action.html">Subscribe</a>
+    </div>
+    <div class="tier">
+      <div class="tn">County Data + Design</div><div class="tp">$999<small>/mo</small></div>
+      <ul><li>Everything above</li><li>Full county data + design modules</li><li>Build your jurisdiction's own systems on govOS</li><li>Concierge onboarding</li></ul>
+      <a class="tbtn" href="take_action.html">Talk to us</a>
+    </div>
+  </div>
+
+  <p class="sect">See it before you sign up</p>
+  <div class="tiers">
+    <a class="tier" href="reports.html"><div class="tn">⚖ The dashboards</div><div class="tp" style="font-size:14px">money × votes</div><ul><li>Every figure behind the transparency engine</li></ul></a>
+    <a class="tier" href="jurisdictions.html"><div class="tn">🏛 Your government</div><div class="tp" style="font-size:14px">pick a jurisdiction</div><ul><li>Maui · Hawaiʻi · Honolulu · Kauaʻi · State · NY</li></ul></a>
+    <a class="tier" href="datasets.html"><div class="tn">📊 Open data</div><div class="tp" style="font-size:14px">download it</div><ul><li>Don't take our word for it — the raw records</li></ul></a>
+    <a class="tier" href="testify.html"><div class="tn">🗣 Testify</div><div class="tp" style="font-size:14px">be heard</div><ul><li>Write testimony → your clerk + the public record</li></ul></a>
+  </div>
+</div>
+
+<footer class="foot">
+  govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>
+  &copy; 2026 James RCS Langford · all rights reserved
+</footer>
+</body></html>
