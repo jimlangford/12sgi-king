@@ -1,10 +1,10 @@
 {
- "generated": "2026-06-14 15:19:00",
+ "generated": "2026-06-18 19:22:25",
  "source": "reports/mauios/vendor_donor_join.json (CSC donors x HANDS awards, public records)",
  "method": "Kumulipo parity: a pair that does not answer = output (award) shadowed by private input (donation). leverage = award/contrib. Correlations as QUESTIONS, never accusations; names a broken pair, not a guilty person.",
  "hewa": {
   "n_broken_pairs": 9,
-  "vendors_scanned": 74,
+  "vendors_scanned": 75,
   "total_award_in_broken_pairs": 8350426.2,
   "total_contrib_in_broken_pairs": 9813.52,
   "aggregate_leverage": 850.9,

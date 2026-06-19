@@ -1,10 +1,10 @@
 {
- "generated": "2026-06-15T23:04:39.440074-10:00",
+ "generated": "2026-06-18T19:21:23.546921-10:00",
  "source": "HANDS hands.ehawaii.gov",
- "statewide_total": 10624,
- "maui_awards": 273,
- "maui_vendors": 74,
- "maui_dollars": 120120796.36,
+ "statewide_total": 10664,
+ "maui_awards": 275,
+ "maui_vendors": 75,
+ "maui_dollars": 120707670.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -499,6 +499,93 @@
    ]
   },
   {
+   "vendor": "GROUP 70 INTERNATIONAL, INC.",
+   "total": 8387940.91,
+   "count": 10,
+   "awards": [
+    {
+     "amount": 419776.38,
+     "date": "05/29/2026",
+     "title": "Office of Council Services Kalana O Maui Office Consolidation and Kitchenette Renovations",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 245874.68,
+     "date": "01/27/2026",
+     "title": "24 North Church Street Building Renovations",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 400000.0,
+     "date": "10/23/2025",
+     "title": "Architectural Services to Various Facilities",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1250000.0,
+     "date": "09/02/2025",
+     "title": "Lahaina Community Center and Field House",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 3247400.0,
+     "date": "08/14/2025",
+     "title": "New County Service Center, Phase II",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 414832.3,
+     "date": "04/30/2025",
+     "title": "Kahoma Stream Flood Control Modification Study",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 1000000.0,
+     "date": "04/10/2025",
+     "title": "Lahaina Royal Complex Master Plan",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 582512.38,
+     "date": "11/15/2024",
+     "title": "Holomua Road Nighttime Safety and Fire Mitigation",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 708054.17,
+     "date": "03/27/2024",
+     "title": "Design Services for Hazard Materials Abatement & Interior/Exterior Repairs for Old County Courthouse",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 119491.0,
+     "date": "03/30/2023",
+     "title": "New Ceilings & Fire Sprinklers for Kalana O Maui Restrooms - Design Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
    "vendor": "HDR ENGINEERING, INC.",
    "total": 8343633.0,
    "count": 13,
@@ -603,85 +690,6 @@
      "amount": 1237370.0,
      "date": "04/08/2020",
      "title": "Planning and Design Services for Waikakoi and South Wailua Bridge Replacement",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    }
-   ]
-  },
-  {
-   "vendor": "GROUP 70 INTERNATIONAL, INC.",
-   "total": 7968164.529999999,
-   "count": 9,
-   "awards": [
-    {
-     "amount": 245874.68,
-     "date": "01/27/2026",
-     "title": "24 North Church Street Building Renovations",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 400000.0,
-     "date": "10/23/2025",
-     "title": "Architectural Services to Various Facilities",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 1250000.0,
-     "date": "09/02/2025",
-     "title": "Lahaina Community Center and Field House",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 3247400.0,
-     "date": "08/14/2025",
-     "title": "New County Service Center, Phase II",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 414832.3,
-     "date": "04/30/2025",
-     "title": "Kahoma Stream Flood Control Modification Study",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 1000000.0,
-     "date": "04/10/2025",
-     "title": "Lahaina Royal Complex Master Plan",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 582512.38,
-     "date": "11/15/2024",
-     "title": "Holomua Road Nighttime Safety and Fire Mitigation",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 708054.17,
-     "date": "03/27/2024",
-     "title": "Design Services for Hazard Materials Abatement & Interior/Exterior Repairs for Old County Courthouse",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 119491.0,
-     "date": "03/30/2023",
-     "title": "New Ceilings & Fire Sprinklers for Kalana O Maui Restrooms - Design Services",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
@@ -2394,6 +2402,21 @@
    ]
   },
   {
+   "vendor": "MOFFATT & NICHOL",
+   "total": 163276.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 163276.0,
+     "date": "04/22/2026",
+     "title": "CBS-4586 Wailuku-Kahului WWRF Shoreline Erosion Protection",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
    "vendor": "Paul Y Morioka",
    "total": 150000.0,
    "count": 1,
@@ -2664,17 +2687,17 @@
    ]
   },
   {
-   "vendor": "HEALTHCARE STAFFING PROFESSIONALS, INC., EMPLOYERS OPTIONS, LLC",
-   "total": 20000.0,
+   "vendor": "Janice C Marsters",
+   "total": 23822.0,
    "count": 1,
    "awards": [
     {
-     "amount": 20000.0,
-     "date": "06/17/2024",
-     "title": "RFP for Temporary Staffing Services for the Primary and General Elections",
-     "dept": "Maui County - Office of Council Services",
-     "category": "Goods & Services",
-     "sol": "RFP 24-02-OCC"
+     "amount": 23822.0,
+     "date": "05/27/2026",
+     "title": "Implementation of Act 281 Stormwater Management Systems",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
     }
    ]
   },
