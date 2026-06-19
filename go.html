@@ -130,6 +130,18 @@
   <a class="card" href="take_action.html"><span class="tag mir">join</span><div class="t">Request the records</div><div class="b">A public-records request for the contract logs, offered in aloha · join in</div></a>
   <a class="card" href="partner.html"><span class="tag mir">partner</span><div class="t">Partner with us — 501(c)(3) sponsor</div><div class="b">Seeking an aligned 501(c)(3) to fiscal-sponsor our food, housing, culture &amp; education work</div></a>
 
+  <div class="sect">Stay in the loop</div>
+  <div class="card" style="cursor:default">
+    <div class="t">Civic newsletter — the weekly watch</div>
+    <div class="b" style="margin-bottom:9px">Money &amp; votes, agendas, and what we filed — to your inbox. Aloha, no spam, unsubscribe anytime.</div>
+    <form id="nlForm" style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="nlEmail" type="email" required placeholder="you@email.com" autocomplete="email"
+             style="flex:1;min-width:170px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
+      <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 18px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Subscribe</button>
+    </form>
+    <div id="nlMsg" style="font-size:12px;color:var(--ink-dim);margin-top:8px;min-height:16px"></div>
+  </div>
+
   <div class="sect">Live system · private (your server, via Tailscale)</div>
   <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
   <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
@@ -211,6 +223,27 @@
      fetch(SRC[i],{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(render).catch(function(){tryNext(i+1);});
    }
    tryNext(0);
+ })();
+ (function(){
+   // Civic newsletter opt-in -> public charging/signup backend over Tailscale Funnel (:8443 -> :8810).
+   // Absolute URL because go.html is served from king (:8799) and the public Pages mirror, not the backend origin.
+   var f=document.getElementById('nlForm'), em=document.getElementById('nlEmail'), msg=document.getElementById('nlMsg');
+   if(!f) return;
+   var EP='https://12sgianonymous.tail760750.ts.net:8443/newsletter/signup';
+   f.addEventListener('submit',function(e){
+     e.preventDefault();
+     var v=(em.value||'').trim();
+     if(v.indexOf('@')<0){msg.style.color='var(--err)';msg.textContent='Enter a valid email.';return;}
+     msg.style.color='var(--ink-dim)';msg.textContent='Subscribing…';
+     var t=''; try{t=localStorage.getItem('govos.tenant')||'';}catch(_e){}
+     fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},
+               body:JSON.stringify({email:v,tenant:t,source:'go.html'})})
+       .then(function(r){return r.json();})
+       .then(function(d){ if(d&&d.ok){msg.style.color='var(--ok)';
+           msg.textContent=d.already?'You’re already on the list — mahalo.':'Subscribed — mahalo. Watch your inbox.'; f.reset();}
+         else {msg.style.color='var(--err)';msg.textContent=(d&&d.error)||'Could not subscribe — try again.';} })
+       .catch(function(){msg.style.color='var(--err)';msg.textContent='Could not reach the server — try again later.';});
+   });
  })();
 </script>
 </body></html>
