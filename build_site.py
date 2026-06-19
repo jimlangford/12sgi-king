@@ -422,6 +422,7 @@ def nav_bar(current):
             '<a class="gn-link%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "") +
             '<a class="gn-link%s" href="olelo_glossary.html">ʻŌlelo</a>' % (" cur" if current=="olelo_glossary.html" else "") +
             '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
+            '<a class="gn-link%s" href="datasets.html">Open data</a>' % (" cur" if current == "datasets.html" else "") +
             '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "") +
             '<a class="gn-cta" href="take_action.html">Take part</a>'
             '</div></nav>' + NAV_JS + _nav_tenant_js())
@@ -485,7 +486,7 @@ def _switcher_maps():
 _SWITCH_CSS = ("<style id=tenant-switch-css>.tenant-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;"
     "max-width:1100px;margin:10px auto 0;padding:9px 14px;background:#eef2f7;border:1px solid #bacde6;border-radius:11px;"
     "font-family:'Segoe UI',system-ui,sans-serif}.tn-grp{display:flex;align-items:center;gap:6px}"
-    ".tn-lbl{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#6d7f97;font-weight:600}"
+    ".tn-lbl{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#5b6e86;font-weight:600}"
     ".tenant-nav select{font-family:inherit;font-size:13px;color:#00356b;background:#fff;border:1px solid #bacde6;"
     "border-radius:8px;padding:5px 9px;cursor:pointer;max-width:230px}.tenant-nav select:hover{border-color:#00356b}"
     ".tn-here{font-size:11px;color:#41536b}.tn-here b{color:#00356b}</style>")
@@ -592,6 +593,9 @@ _RECOLOR = [
     ("#e06a4a", "#c0322c"), ("#e5736b", "#c0322c"),
     # stray accents the scan caught on jurisdictions (green/orange) -> ok-green / gold
     ("#43d39e", "#1f8a5b"), ("#e0863a", "#b8860b"),
+    # a11y: faint small-text was ~4.0:1 on white -> darken to clear WCAG AA 4.5:1 (runs LAST so it
+    # also catches the #6d7f97 produced by the ink pairs above). UI/UX audit item 13.
+    ("#6d7f97", "#5b6e86"),
     # rgba tints (keep the alpha; swap the color): gold/teal -> navy/green
     ("rgba(217,178,76", "rgba(0,53,107"), ("rgba(227,173,51", "rgba(0,53,107"),
     ("rgba(159,217,191", "rgba(31,138,91"), ("rgba(67,211,158", "rgba(31,138,91"),
