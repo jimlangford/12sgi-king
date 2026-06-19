@@ -105,7 +105,9 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
-               "feature_board.html"]   # "Build Our Government Software" — public request + vote board (free tier)
+               "feature_board.html",   # "Build Our Government Software" — public request + vote board (free tier)
+               # commerce/consumer-protection legal pages (required before charging — FTC/ROSCA + Stripe)
+               "terms.html", "privacy.html", "refunds.html"]
 DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity_check.json",
         "feature_board.json",   # the AI-sorted public request board data the page renders
         "daily_aloha.json",   # public-safe daily moon offering per tenant (king_message.py) — pure aloha, no figures
