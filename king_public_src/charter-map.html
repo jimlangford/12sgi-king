@@ -6,11 +6,12 @@
 <title>12 Stones Sovereign Charter · 28 Articles · Alignment Map</title>
 <style>
   :root {
-    --teal:   #18a89a; --teal-d: #0e7a6f; --teal-l: #2dd4bf;
-    --gold:   #e8a840; --gold-d: #c08020;
-    --red:    #e84060; --green: #28c76f; --purple: #9b6dff;
-    --bg:     #050f1a; --panel: #0a1e2e; --panel2: #0d2840;
-    --border: #1a3a5a; --text:  #d0e8f8; --muted: #6a9ab8; --white: #eef6ff;
+    /* Yale-blue civic palette (12sgi-design) — flipped from the retired dark-teal theme 2026-06-18 */
+    --teal:   #00356b; --teal-d: #00264d; --teal-l: #1259a3;
+    --gold:   #b8860b; --gold-d: #8a6508;
+    --red:    #c0322c; --green: #1f8a5b; --purple: #6d3fb0;
+    --bg:     #ffffff; --panel: #e7eef8; --panel2: #dae5f3;
+    --border: #bacde6; --text:  #13243d; --muted: #41536b; --white: #00356b;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
@@ -28,7 +29,7 @@
   .title-block p  { font-size:.78rem; color:var(--muted); margin-top:3px; }
   .header-badges { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .badge { padding:4px 10px; border-radius:12px; font-size:.68rem; font-weight:700; letter-spacing:.04em; border:1px solid; }
-  .badge-teal   { background:rgba(24,168,154,.12); color:var(--teal-l); border-color:rgba(24,168,154,.3); }
+  .badge-teal   { background:rgba(18,89,163,.12); color:var(--teal-l); border-color:rgba(18,89,163,.3); }
   .badge-gold   { background:rgba(232,168,64,.12);  color:#f5c870;      border-color:rgba(232,168,64,.3); }
   .badge-purple { background:rgba(155,109,255,.12); color:#c0a0ff;      border-color:rgba(155,109,255,.3); }
 
@@ -61,7 +62,7 @@
   .article-card:hover {
     transform:translateY(-3px);
     border-color:var(--teal);
-    box-shadow:0 8px 32px rgba(24,168,154,.15);
+    box-shadow:0 8px 32px rgba(18,89,163,.15);
   }
   .article-card.expanded { border-color:var(--teal); }
 
@@ -98,7 +99,7 @@
     font-size:.6rem; padding:2px 7px; border-radius:8px; font-weight:600; letter-spacing:.04em;
     border:1px solid;
   }
-  .tag-mcc    { background:rgba(24,168,154,.1);  color:var(--teal-l);   border-color:rgba(24,168,154,.25); }
+  .tag-mcc    { background:rgba(18,89,163,.1);  color:var(--teal-l);   border-color:rgba(18,89,163,.25); }
   .tag-fy26   { background:rgba(232,168,64,.1);  color:#f5c870;         border-color:rgba(232,168,64,.25); }
   .tag-game   { background:rgba(155,109,255,.1); color:#c0a0ff;         border-color:rgba(155,109,255,.25); }
   .tag-rais   { background:rgba(56,189,248,.1);  color:#7dd3fc;         border-color:rgba(56,189,248,.25); }
@@ -158,6 +159,7 @@
 <canvas id="bg-canvas"></canvas>
 <div class="wrapper">
 
+<a href="index.html" style="display:inline-block;margin:14px 0 4px;color:var(--teal-l);text-decoration:none;font-size:14px;font-weight:600">&larr; govOS</a>
 <header>
   <div class="header-top">
     <div class="title-block">
@@ -232,7 +234,7 @@ let W,H;
 function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight;}
 resize();window.addEventListener('resize',resize);
 const waves=[
-  {y:.45,amp:22,freq:.006,sp:.3,ph:0,color:'#18a89a',a:.1},
+  {y:.45,amp:22,freq:.006,sp:.3,ph:0,color:'#1259a3',a:.1},
   {y:.6, amp:16,freq:.009,sp:.45,ph:1,color:'#e8a840',a:.07},
   {y:.75,amp:12,freq:.012,sp:.6, ph:2,color:'#2dd4bf',a:.08},
 ];
