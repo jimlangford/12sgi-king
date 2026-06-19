@@ -87,6 +87,25 @@
     <div id="reviewQueue"></div>
   </div>
 
+  <!-- Command Center — the Work Board MERGED into the go page (Jimmy: "1 & 3 need to be one"). Fetches
+       the board over Tailscale (/board -> :8782). Fails CLOSED: hidden on the public mirror / when the
+       board is unreachable, so no private board data is ever baked into the static. -->
+  <div id="ccSect" style="display:none">
+    <div class="sect">🛠 Command Center</div>
+    <div id="ccLanes" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
+    <div class="card" style="cursor:default">
+      <div class="t">Message Claude</div>
+      <div class="b" style="margin-bottom:8px">Send a request straight to the executor — it queues on the board and gets acted on.</div>
+      <form id="ccMsgForm" style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="ccMsg" type="text" required placeholder="e.g. add an STR-permit tracker to my dashboard" aria-label="Message Claude"
+               style="flex:1;min-width:180px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
+        <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 16px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Send</button>
+      </form>
+      <div id="ccMsgNote" class="b" style="margin-top:6px"></div>
+    </div>
+    <div id="ccFeed" style="margin-top:10px"></div>
+  </div>
+
   <div class="sect">The four quadrants</div>
   <a class="quad ghost" id="qMV" href="https://12sgianonymous.tail760750.ts.net/" data-q="music_video">
     <div class="qtop"><span class="qi">🎬</span><span class="qn">Music Video</span><span class="qpct" data-pct>71%</span></div>
@@ -243,6 +262,32 @@
            msg.textContent=d.already?'You’re already on the list — mahalo.':'Subscribed — mahalo. Watch your inbox.'; f.reset();}
          else {msg.style.color='var(--err)';msg.textContent=(d&&d.error)||'Could not subscribe — try again.';} })
        .catch(function(){msg.style.color='var(--err)';msg.textContent='Could not reach the server — try again later.';});
+   });
+ })();
+ (function(){
+   // Command Center — pull the Work Board into the go page (Tailscale /board -> :8782). Same-origin on the
+   // tailnet host; 404s on the public mirror -> the whole section stays hidden (fail closed, no data baked).
+   var sect=document.getElementById('ccSect'); if(!sect) return;
+   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+   var laneCol={SERVER:'#1f8a5b',CIVIC:'#1259a3',AUDIT:'#b07d1a',STUDIO:'#7a3fb0',SYSTEM:'#6d7f97'};
+   fetch('/board/api/all',{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
+     var rm=(d.roadmap||[]).filter(function(x){return x.user && !x.done;});
+     var counts={}; rm.forEach(function(x){var s=(x.system||'SYSTEM');counts[s]=(counts[s]||0)+1;});
+     document.getElementById('ccLanes').innerHTML=['SERVER','CIVIC','AUDIT','STUDIO','SYSTEM'].map(function(s){
+       return '<span style="font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--line);color:'+(laneCol[s]||'var(--ink-dim)')+'">'+s.charAt(0)+s.slice(1).toLowerCase()+' <b>'+(counts[s]||0)+'</b></span>';
+     }).join('')+'<a href="/board" target="_blank" style="font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none">open board →</a>';
+     var f=(d.feed||[]).slice(0,6);
+     document.getElementById('ccFeed').innerHTML=f.length?'<div class="b" style="margin:2px 0 4px;color:var(--ink-faint)">recent activity</div>'+f.map(function(e){
+       return '<div class="b" style="border-left:2px solid var(--line);padding:2px 0 2px 8px;margin:3px 0"><b>'+esc(e.source||'')+'</b> '+esc((e.text||'').slice(0,90))+'</div>';}).join(''):'';
+     sect.style.display='block';
+   }).catch(function(){});
+   var form=document.getElementById('ccMsgForm');
+   if(form) form.addEventListener('submit',function(ev){ev.preventDefault();
+     var v=(document.getElementById('ccMsg').value||'').trim(); if(!v)return;
+     var note=document.getElementById('ccMsgNote'); note.style.color='var(--ink-dim)'; note.textContent='Sending…';
+     fetch('/board/api/message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:v})})
+       .then(function(r){return r.json();}).then(function(){note.style.color='var(--ok)';note.textContent='Sent — queued to the executor.';document.getElementById('ccMsg').value='';})
+       .catch(function(){note.style.color='var(--err)';note.textContent='Could not reach the board (works on your private network only).';});
    });
  })();
 </script>

@@ -1066,6 +1066,11 @@ Sources are linked on every page.</div>
     if os.path.exists(_go_built):
         shutil.copy(_go_built, os.path.join(SITE, "index.html"))
         print("  + index.html = go.html (Quad-OS launcher front door, active-tenant money map; civic hub at reports.html)")
+    # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
+    # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
+    # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).
+    open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8").write("12sgi.com\n")
+    print("  + CNAME = 12sgi.com (GitHub Pages custom domain for govOS)")
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
     # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
