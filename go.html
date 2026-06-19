@@ -269,11 +269,11 @@
    // tailnet host; 404s on the public mirror -> the whole section stays hidden (fail closed, no data baked).
    var sect=document.getElementById('ccSect'); if(!sect) return;
    function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-   var laneCol={SERVER:'#1f8a5b',CIVIC:'#1259a3',AUDIT:'#b07d1a',STUDIO:'#7a3fb0',SYSTEM:'#6d7f97'};
+   var laneCol={WORKBOARD:'#a23fb0',SERVER:'#1f8a5b',CIVIC:'#1259a3',AUDIT:'#b07d1a',STUDIO:'#7a3fb0',SYSTEM:'#6d7f97'};
    fetch('/board/api/all',{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
      var rm=(d.roadmap||[]).filter(function(x){return x.user && !x.done;});
      var counts={}; rm.forEach(function(x){var s=(x.system||'SYSTEM');counts[s]=(counts[s]||0)+1;});
-     document.getElementById('ccLanes').innerHTML=['SERVER','CIVIC','AUDIT','STUDIO','SYSTEM'].map(function(s){
+     document.getElementById('ccLanes').innerHTML=['WORKBOARD','SERVER','CIVIC','AUDIT','STUDIO','SYSTEM'].map(function(s){
        return '<span style="font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--line);color:'+(laneCol[s]||'var(--ink-dim)')+'">'+s.charAt(0)+s.slice(1).toLowerCase()+' <b>'+(counts[s]||0)+'</b></span>';
      }).join('')+'<a href="/board" target="_blank" style="font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none">open board →</a>';
      var f=(d.feed||[]).slice(0,6);
