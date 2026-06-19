@@ -590,6 +590,8 @@ _RECOLOR = [
     # status: keep semantics
     ("#6abf86", "#1f8a5b"), ("#56c08a", "#1f8a5b"), ("#d29922", "#b07d1a"),
     ("#e06a4a", "#c0322c"), ("#e5736b", "#c0322c"),
+    # stray accents the scan caught on jurisdictions (green/orange) -> ok-green / gold
+    ("#43d39e", "#1f8a5b"), ("#e0863a", "#b8860b"),
     # rgba tints (keep the alpha; swap the color): gold/teal -> navy/green
     ("rgba(217,178,76", "rgba(0,53,107"), ("rgba(227,173,51", "rgba(0,53,107"),
     ("rgba(159,217,191", "rgba(31,138,91"), ("rgba(67,211,158", "rgba(31,138,91"),
