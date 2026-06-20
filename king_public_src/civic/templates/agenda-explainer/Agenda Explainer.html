@@ -32,7 +32,7 @@
   .tagline { font-family: var(--font-serif-display); font-style: italic; color: var(--mauios-mut); font-size: 14.5px; margin: 4px 0 24px; max-width: 84ch; }
 
   .layout { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
-  @media (max-width: 940px) { .layout { grid-template-columns: 1fr; } }
+  @media (max-width: 940px) { .layout { grid-template-columns: 1fr; } .queue { position: static; } }
 
   /* Forecast queue */
   .queue { border: 1px solid var(--mauios-line); border-radius: 14px; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); overflow: hidden; position: sticky; top: 14px; }
