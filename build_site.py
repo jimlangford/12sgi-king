@@ -1162,6 +1162,38 @@ Sources are linked on every page.</div>
                 print("  + king_recolor: private/.dc pages kept Yale-blue (0 dark)")
             except Exception:
                 pass
+
+    # [build-aware API base] The generator bakes VBASE="/api" (same-origin = the PRIVATE King mirror on the
+    # tailnet; king-local was mirrored ABOVE with /api intact). Here we rewrite ONLY the public site/ copies
+    # to verify_api_base_public from config/beta.json (default "" = 'opening soon', clean + leak-safe). When
+    # the Cloudflare Tunnel is up, setting that one field to https://api.12sgi.com wires public clients
+    # both-ways - a single-line activation. Runs on CI too (KLOCAL absent there).
+    try:
+        _bp = json.load(open(os.path.join(PROJECT, "config", "beta.json"), encoding="utf-8")).get("verify_api_base_public", "")
+    except Exception:
+        _bp = ""
+    _pub = ("" if (_bp or "").startswith("PASTE_") else (_bp or "")).rstrip("/")
+    # [PUBLIC leak-sanitize] strip the PRIVATE tailnet host from PUBLIC site/ copies (king-local, mirrored
+    # ABOVE, keeps the real ts.net for the owner). The :8443 funnel -> the public API base (or '#' until live);
+    # the bare host -> 12sgi.com (the public King at /king exists there). Closes the go.html ts.net leak the
+    # king/-only leak-gate didn't catch. NEVER touches king-local (private).
+    _TSNET = "12sgianonymous.tail760750.ts.net"
+    import glob as _glob
+    _n = 0
+    for _h in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
+        try:
+            _t = open(_h, encoding="utf-8").read()
+            _o = _t
+            _t = _t.replace('VBASE="/api"', 'VBASE="%s"' % _pub)
+            _t = _t.replace("https://%s:8443" % _TSNET, (_pub or "#"))
+            _t = _t.replace("https://%s" % _TSNET, "https://12sgi.com").replace(_TSNET, "12sgi.com")
+            if _t != _o:
+                open(_h, "w", encoding="utf-8").write(_t); _n += 1
+        except Exception:
+            pass
+    if _n:
+        print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
+              % (_pub or "(opening-soon)", _n))
     return 0
 
 if __name__ == "__main__":
