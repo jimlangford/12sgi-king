@@ -90,7 +90,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # ⚖ public oversight pages — prosecutor-prepared, JRCSL-audited (sourced/question-framed),
                # made public with aloha (aloha_oversight.py). The private case files NEVER publish; only what clears.
                "oversight_hi-state.html", "oversight_hi-maui.html", "oversight_hi-hawaii.html",
-               "oversight_hi-kauai.html", "oversight_hi-honolulu.html",
+               "oversight_hi-kauai.html", "oversight_hi-honolulu.html", "oversight_help.html",
                # federal_money.html (the Maui+State front page) is now a carded dashboard in PAGES; county sub-pages stay here
                "federal_money_hawaii.html", "federal_money_honolulu.html",
                "federal_money_kauai.html", "federal_officials.html", "audit_balance.html",
