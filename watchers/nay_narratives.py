@@ -145,8 +145,8 @@ def extract():
             events.append({"date":date,"body":body,"url":url,"item":item,"motion_narrative":narr,
                            "ayes":[_disp(a) for a in ayes],"noes":[_disp(n) for n in noes],
                            "tally":tally,"quotes":quotes,"file":fn})
-    # richest first (has item + has a quote), then by date desc
-    events.sort(key=lambda e:(bool(e["quotes"]),bool(e["item"]),e["date"] or ""),reverse=True)
+    # newest first by date (Jimmy 2026-06-19 "sort recent to latest"); richer (has quote/item) breaks date ties
+    events.sort(key=lambda e:(e["date"] or "",bool(e["quotes"]),bool(e["item"])),reverse=True)
     return events
 
 def page(events,gen,mr,ao_po):
@@ -172,13 +172,41 @@ def page(events,gen,mr,ao_po):
         noes="".join("<span class=no>%s</span>"%esc(n) for n in e["noes"])
         q="".join("<div class=qt><b>%s:</b> &ldquo;%s&hellip;&rdquo;</div>"%(esc(nm),esc(t)) for nm,t in e["quotes"])
         src=(" &middot; <a href='%s'>source minutes</a>"%esc(e["url"])) if e["url"] else ""
-        return ("<div class=dv><div class=dh><b>%s</b><span class=dd>%s &middot; %s</span></div>"
+        rich=(2 if e["quotes"] else 0)+(1 if e["item"] else 0)+min(len(e["noes"]),3)
+        return ("<div class=\"dv\" data-date=\"%s\" data-rich=\"%d\"><div class=dh><b>%s</b><span class=dd>%s &middot; %s</span></div>"
                 "<div class=spl>NO: %s <span class=tl>(%s)</span></div>%s"
                 "<div class=nar>%s</div><div class=sub2>%s%s</div></div>")%(
+                esc(e["date"] or ""),rich,
                 esc(e["item"] or "Motion (item not parsed — read source)"),esc(e["body"] or "Council"),esc(e["date"]),
                 noes or "&mdash;",esc(e["tally"]),q,esc(e["motion_narrative"] or ""),
                 ("%s"%esc(e["body"])) if not e["url"] else "",src)
     cards="".join(card(e) for e in events[:80]) or "<div class=dv><div class=nar>No split votes parsed yet.</div></div>"
+    # search + sort toolbar (Jimmy 2026-06-19: "add sort to navigation" + "add search feature") —
+    # newest-first default, richness option, live text filter. Client-side; no data leaves the page.
+    sortbar=("<div class=sortbar>"
+             "<input id=votesearch type=search placeholder='Search votes, members, items…' "
+             "aria-label='Search split votes' oninput='filterVotes(this.value)'>"
+             "<span class=sortlbl>Sort</span>"
+             "<select id=votesort aria-label='Sort split votes' onchange='sortVotes(this.value)'>"
+             "<option value=new>Newest first</option>"
+             "<option value=old>Oldest first</option>"
+             "<option value=rich>Most detail first</option></select>"
+             "<span class=sortn id=sortn></span></div>")
+    sortjs=("<script>(function(){var box=document.getElementById('votecards');if(!box)return;"
+            "var cards=[].slice.call(box.children);cards.forEach(function(c){c.__t=(c.textContent||'').toLowerCase();});"
+            "var q='';var nEl=document.getElementById('sortn');"
+            "function apply(){var shown=0;cards.forEach(function(c){var ok=!q||c.__t.indexOf(q)>-1;"
+            "c.style.display=ok?'':'none';if(ok)shown++;});"
+            "if(nEl)nEl.textContent=shown+(q?' of '+cards.length:'')+' split votes';}"
+            "window.filterVotes=function(v){q=(v||'').trim().toLowerCase();apply();};"
+            "window.sortVotes=function(m){var a=cards.slice();a.sort(function(x,y){"
+            "var dx=x.getAttribute('data-date')||'',dy=y.getAttribute('data-date')||'',"
+            "rx=+(x.getAttribute('data-rich')||0),ry=+(y.getAttribute('data-rich')||0);"
+            "if(m==='old')return dx<dy?-1:dx>dy?1:ry-rx;"
+            "if(m==='rich')return (ry-rx)||(dx<dy?1:dx>dy?-1:0);"
+            "return dx<dy?1:dx>dy?-1:ry-rx;});"
+            "a.forEach(function(c){box.appendChild(c);});apply();};"
+            "apply();})();</script>")
     sup=("<style>.dv{border:1px solid var(--line);border-left:3px solid #b4242c;border-radius:11px;padding:.7rem 1rem;margin:.6rem 0;background:var(--panel)}"
          ".dv .dh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}"
          ".dv .dh b{color:var(--accent);font-size:1.0rem}.dv .dd{font:600 12px/1 'JetBrains Mono',Consolas,monospace;color:var(--accent2);white-space:nowrap}"
@@ -189,7 +217,13 @@ def page(events,gen,mr,ao_po):
          ".dv .sub2{font-size:.78rem;color:var(--faint);margin-top:.2rem}"
          ".mrow{border-bottom:1px solid #e3e9f1;padding:.5rem .1rem}.mrow .mh{display:flex;justify-content:space-between;gap:8px;align-items:baseline}"
          ".mn{color:var(--ink);font-weight:600}.mc{font-family:Consolas,monospace;color:#9a242c;font-size:.82rem;white-space:nowrap}"
-         ".mrow .mm{font-size:.82rem;color:var(--dim);margin-top:.2rem}.mrow .mm a{white-space:nowrap}</style>")
+         ".mrow .mm{font-size:.82rem;color:var(--dim);margin-top:.2rem}.mrow .mm a{white-space:nowrap}"
+         ".sortbar{display:flex;align-items:center;gap:9px;margin:.7rem 0 .3rem;flex-wrap:wrap}"
+         ".sortbar input[type=search]{flex:1 1 220px;min-width:160px;font:inherit;font-size:.92rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:.45rem .7rem}"
+         ".sortbar input[type=search]:focus{outline:0;border-color:var(--accent2);box-shadow:0 0 0 3px rgba(18,89,163,.12)}"
+         ".sortbar .sortlbl{font-family:'JetBrains Mono',Consolas,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--faint)}"
+         ".sortbar select{font:inherit;font-size:.9rem;color:var(--accent);background:#fff;border:1px solid var(--line);border-radius:8px;padding:.4rem .6rem}"
+         ".sortbar .sortn{font-family:'JetBrains Mono',Consolas,monospace;font-size:11px;color:var(--faint);white-space:nowrap}</style>")
     cb=("<div class=cb>&#9790;&#9728; <b>Curse-breaker.</b> A NO vote is not obstruction &mdash; it is the record of "
         "conscience, the moment a representative tells the public <i>why</i> they could not agree. Under tonight&rsquo;s "
         "%s, this page honors the dissent and asks only the open question it raises: what did the majority approve, what "
@@ -205,7 +239,7 @@ def page(events,gen,mr,ao_po):
           "Unanimous votes are not listed; <b>%d</b> split votes are. A <b>question to verify</b> against the source "
           "minutes &mdash; never a finding. <a href='officials_scorecard.html'>&larr; officials scorecard</a> &middot; "
           "<a href='money_behind_officials.html'>money behind the seats</a>.</div>")%len(events)
-    h2a="<h2>Where the council split (most-documented first, top %d)</h2>"%min(80,len(events))
+    h2a="<h2>Where the council split &mdash; newest first (top %d)</h2>"%min(80,len(events))
     h2b=("<h2>Dissent by member &mdash; who says no, and who funds the seat</h2>"
          "<div class=pono style='margin:.2rem 0 .6rem'>Each current member&rsquo;s dissent count beside the campaign money "
          "behind their seat &mdash; so the open question is visible: does the money track with where a member stands, or "
@@ -215,7 +249,7 @@ def page(events,gen,mr,ao_po):
          "&middot; <a href='tenant_hi-maui.html'>Maui overview</a> &middot; <a href='tenants_hub.html'>all governments</a></p>")
     foot=("<div class=foot>Source: official Maui County Council/committee minutes (CivicClerk/Granicus), parsed for "
           "recorded roll-call dissent. Public record; questions, not findings &middot; generated %s.</div></div>")%esc(gen)
-    html=head+STYLE+sup+intro+moon_banner(mr,ao_po)+pono+h2a+cards+("<div class=cb2></div>")+h2b+mrows+cb+nav+foot
+    html=head+STYLE+sup+intro+moon_banner(mr,ao_po)+pono+h2a+sortbar+"<div id=votecards>"+cards+"</div>"+sortjs+("<div class=cb2></div>")+h2b+mrows+cb+nav+foot
     open(os.path.join(M,"council_votes_maui.html"),"w",encoding="utf-8",newline="\n").write(html)
     return "council_votes_maui.html",len(members)
 
