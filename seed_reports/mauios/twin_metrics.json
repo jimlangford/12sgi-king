@@ -1,7 +1,7 @@
 {
  "module": "kilo-aupuni",
  "version": "1.1",
- "run_iso": "2026-06-18 09:38:23 HST",
+ "run_iso": "2026-06-19 21:16:59 HST",
  "watchers_live": [
   "civicclerk",
   "donors",
@@ -31,8 +31,8 @@
   "agendas_ingested": 40,
   "agenda_span": "2026-01-05 .. 2026-06-19",
   "bids_tracked": 7516,
-  "permits_tracked": 961,
-  "permits_recovery_flagged": 149,
+  "permits_tracked": 1007,
+  "permits_recovery_flagged": 161,
   "officials_tracked": 9,
   "recusals_tracked": 1,
   "campaign_realestate_total": 344787.83,
@@ -56,12 +56,12 @@
    "Title 19 / Land use": 73
   },
   "lens_activity_permits": {
-   "Title 19 / Land use": 851,
-   "Water / Kane-Kanaloa": 240,
-   "Commercial / Build": 87,
-   "Housing / Hale": 194,
-   "Aina / Agriculture": 120,
-   "Recovery / Lahaina": 149
+   "Title 19 / Land use": 895,
+   "Water / Kane-Kanaloa": 260,
+   "Commercial / Build": 90,
+   "Housing / Hale": 209,
+   "Aina / Agriculture": 126,
+   "Recovery / Lahaina": 161
   }
  }
 }
