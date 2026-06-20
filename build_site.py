@@ -612,6 +612,24 @@ def recolor(text):
             text = text.replace(old, new)
     return text
 
+# Typography unify (Jimmy 2026-06-19: "make the site like the home page"). The flat civic report pages were
+# authored in Georgia serif; the canonical home page (index.html) is Segoe UI Variable SANS with JetBrains Mono
+# for machine values. Swap ONLY the literal serif BODY stack -> the home-page sans stack. The explicit
+# Consolas/JetBrains mono declarations (machine values) are untouched, so the brand's "mono for every machine
+# value" rule holds. Applied ONLY in the flat-civic-page loops below — NOT in recolor_tree — so the King
+# ceremonial register (--font-serif-display in styles.css) keeps its serif. Value-only, never markup/JS/data.
+_FONT_SANS = "'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif"
+_FONT_SWAPS = [
+    ("Georgia,'Iowan Old Style',serif", _FONT_SANS),
+    ("Georgia, 'Iowan Old Style', serif", _FONT_SANS),
+    ("Georgia,serif", _FONT_SANS),
+    ("Georgia, serif", _FONT_SANS),
+]
+def unify_font(html):
+    for old, new in _FONT_SWAPS:
+        html = html.replace(old, new)
+    return html
+
 _VIEWPORT = ('<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
              '<meta name="theme-color" content="#00356b">')
 # the no-zoom heal: keep wide content (tables/images/pre) inside the viewport so the PAGE never overflows on a
@@ -648,6 +666,8 @@ def recolor_tree(root):
                 r = recolor(t)
                 if ext == "html":
                     r = ensure_mobile(r)
+                    if os.path.relpath(p, root).split(os.sep)[0] != "king":
+                        r = unify_font(r)   # match the home page: flat civic pages -> Segoe sans (King ceremonial register keeps its serif)
                 if r != t:
                     open(p, "w", encoding="utf-8", newline="\n").write(r)
                     n += 1
