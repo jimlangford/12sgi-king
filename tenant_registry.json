@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-16 22:28 HST",
+ "generated": "2026-06-20 20:58 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -253,10 +253,201 @@
      "agendas_nyc.html"
     ],
     "minutes": [],
-    "charter": [],
+    "charter": [
+     "crosswalk_nyc.html"
+    ],
     "audit": []
    },
-   "report_classes_filled": 4,
+   "report_classes_filled": 5,
+   "report_classes_total": 9
+  },
+  {
+   "id": "london",
+   "name": "London",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_london.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "tokyo",
+   "name": "Tokyo",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_tokyo.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "hongkong",
+   "name": "Hong Kong SAR",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_hongkong.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "singapore",
+   "name": "Singapore",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_singapore.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "zurich",
+   "name": "Zürich",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_zurich.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "frankfurt",
+   "name": "Frankfurt am Main",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_frankfurt.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "paris",
+   "name": "Paris",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_paris.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "dubai",
+   "name": "Dubai",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_dubai.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
+   "report_classes_total": 9
+  },
+  {
+   "id": "liverpool",
+   "name": "Liverpool",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [],
+    "contracts": [],
+    "federal": [],
+    "crossref": [],
+    "agendas": [],
+    "minutes": [],
+    "charter": [
+     "crosswalk_liverpool.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 1,
    "report_classes_total": 9
   }
  ],
@@ -319,7 +510,7 @@
   }
  ],
  "counts": {
-  "civic": 6,
+  "civic": 15,
   "creative": 7,
   "report_classes": 9
  }
