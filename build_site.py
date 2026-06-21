@@ -12,6 +12,14 @@ HOME    = os.path.expanduser("~")
 PROJECT = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS")
 MAUIOS  = os.path.join(PROJECT, "reports", "mauios")
 COUNCIL = os.path.join(PROJECT, "reports", "council")
+
+# civic_shell = the unified home-page chrome (single source = tools/kilo-aupuni/civic_shell.py). CI-safe:
+# falls back to None if the project tree isn't present, so the build never breaks on a runner.
+sys.path.insert(0, os.path.join(PROJECT, "tools", "kilo-aupuni"))
+try:
+    import civic_shell as _civic_shell
+except Exception:
+    _civic_shell = None
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
 
@@ -669,6 +677,29 @@ def ensure_mobile(html):
             return html[:m.end()] + add + html[m.end():]
     return add + html
 
+def ensure_civic_chrome(html):
+    """Unify look to the home page (Jimmy 2026-06-20 'wire civic shell — unify look, KEEP the nav'):
+    inject civic_shell's home-page design TOKENS + the shared FOOTER. Deliberately does NOT add the
+    cs- header — the page's existing gn- govos-nav stays the only navbar (no double-nav). Idempotent
+    (skips if already shelled); markup/color only, never touches data or scripts. Single source = civic_shell.py."""
+    if not _civic_shell or "cs-foot" in html:
+        return html
+    sb = _civic_shell.style_block()                       # :root --cs-* tokens + namespaced cs- chrome CSS
+    m = re.search(r"</head>", html, re.I)
+    if m:
+        html = html[:m.start()] + sb + html[m.start():]
+    else:
+        mb = re.search(r"<body[^>]*>", html, re.I)
+        if mb:
+            html = html[:mb.end()] + sb + html[mb.end():]
+    foot = _civic_shell.footer_html()                     # the shared "govOS · 12 Stones Global" footer
+    mb = re.search(r"</body>", html, re.I)
+    if mb:
+        html = html[:mb.start()] + foot + html[mb.start():]
+    else:
+        html = html + foot
+    return html
+
 def recolor_tree(root):
     """The ONE heal pass over a built tree: recolor to Yale-blue AND ensure mobile-viewport, in place, every
     .html (+ .css recolor). Skips .js/.json (no logic touched). Same pass for public site/ and (via king_recolor)
@@ -687,6 +718,7 @@ def recolor_tree(root):
                     r = ensure_mobile(r)
                     if os.path.relpath(p, root).split(os.sep)[0] != "king":
                         r = unify_font(r)   # match the home page: flat civic pages -> Segoe sans (King ceremonial register keeps its serif)
+                        r = ensure_civic_chrome(r)   # unify look to the home page: civic_shell tokens + shared footer (gn- nav stays)
                 if r != t:
                     open(p, "w", encoding="utf-8", newline="\n").write(r)
                     n += 1
@@ -1173,6 +1205,13 @@ Sources are linked on every page.</div>
         if os.path.exists(_re):
             shutil.copy(_re, os.path.join(KLOCAL, "recusal_evidence.html"))
             print("  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)")
+        # [OWNER ONLY] corporate-quad-os private packet (12SGI data room + cap table + deck PDFs) — king-local/Tailscale
+        # ONLY; the WHOLE king_private_src/ tree, deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE so
+        # it never reaches public Pages. Add private pages/docs by dropping them in king_private_src/.
+        _priv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_private_src")
+        if os.path.isdir(_priv):
+            shutil.copytree(_priv, KLOCAL, dirs_exist_ok=True)
+            print("  + king-local OWNER-ONLY: king_private_src/* (12SGI corporate data room + cap table + docs — never public)")
         # [king-recolor] private pages + King-app .dc components bypass the site recolor above; re-flip any that
         # land in king-local dark (king-extract is volatile). Keeps the private server 100% Yale-blue every build.
         _kr = os.path.join(PROJECT, "tools", "kilo-aupuni", "king_recolor.py")
