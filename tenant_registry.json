@@ -1,5 +1,5 @@
 {
- "generated": "2026-06-20 20:58 HST",
+ "generated": "2026-06-20 21:12 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -233,8 +233,8 @@
    "report_classes_total": 9
   },
   {
-   "id": "ny",
-   "name": "New York",
+   "id": "nyc",
+   "name": "New York City",
    "kind": "civic",
    "quadrant": "govos",
    "reports": {
@@ -255,6 +255,35 @@
     "minutes": [],
     "charter": [
      "crosswalk_nyc.html"
+    ],
+    "audit": []
+   },
+   "report_classes_filled": 5,
+   "report_classes_total": 9
+  },
+  {
+   "id": "nys",
+   "name": "New York State",
+   "kind": "civic",
+   "quadrant": "govos",
+   "reports": {
+    "govern": [],
+    "money": [
+     "money_nys.html"
+    ],
+    "contracts": [
+     "contracts_nys.html"
+    ],
+    "federal": [],
+    "crossref": [
+     "parity_nys.html"
+    ],
+    "agendas": [
+     "agendas_nys.html"
+    ],
+    "minutes": [],
+    "charter": [
+     "crosswalk_nys.html"
     ],
     "audit": []
    },
@@ -510,7 +539,7 @@
   }
  ],
  "counts": {
-  "civic": 15,
+  "civic": 16,
   "creative": 7,
   "report_classes": 9
  }
