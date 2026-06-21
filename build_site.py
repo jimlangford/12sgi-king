@@ -87,6 +87,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "tenants_hub.html",
                "tenant_hi-state.html", "tenant_hi-maui.html", "tenant_hi-hawaii.html",
                "tenant_hi-kauai.html", "tenant_hi-honolulu.html", "tenant_ny.html",
+               # World-center tenants onboarded 2026-06-20 (charter-crosswalk sourced; rest honest-building)
+               "tenant_london.html", "tenant_tokyo.html", "tenant_hongkong.html", "tenant_singapore.html",
+               "tenant_zurich.html", "tenant_frankfurt.html", "tenant_paris.html", "tenant_dubai.html",
+               "tenant_liverpool.html",
                # ⚖ public oversight pages — prosecutor-prepared, JRCSL-audited (sourced/question-framed),
                # made public with aloha (aloha_oversight.py). The private case files NEVER publish; only what clears.
                "oversight_hi-state.html", "oversight_hi-maui.html", "oversight_hi-hawaii.html",
