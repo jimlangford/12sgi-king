@@ -17,9 +17,10 @@ COUNCIL = os.path.join(PROJECT, "reports", "council")
 # falls back to None if the project tree isn't present, so the build never breaks on a runner.
 sys.path.insert(0, os.path.join(PROJECT, "tools", "kilo-aupuni"))
 try:
-    import civic_shell as _civic_shell
+    import civic_shell as _civic_shell   # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
 except Exception:
     _civic_shell = None
+# build rev: 2026-06-21 civic_shell chrome live on public (CI rebuild trigger)
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
 
