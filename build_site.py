@@ -86,7 +86,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # SIMPLIFIED LANDING (tenant picker) + per-tenant index pages + the federal/audit lenses (2026-06-15)
                "tenants_hub.html",
                "tenant_hi-state.html", "tenant_hi-maui.html", "tenant_hi-hawaii.html",
-               "tenant_hi-kauai.html", "tenant_hi-honolulu.html", "tenant_ny.html",
+               "tenant_hi-kauai.html", "tenant_hi-honolulu.html", "tenant_nyc.html", "tenant_nys.html",
                # World-center tenants onboarded 2026-06-20 (charter-crosswalk sourced; rest honest-building)
                "tenant_london.html", "tenant_tokyo.html", "tenant_hongkong.html", "tenant_singapore.html",
                "tenant_zurich.html", "tenant_frankfurt.html", "tenant_paris.html", "tenant_dubai.html",
@@ -231,7 +231,7 @@ NAV_LABEL = {
     "tenant_12stonescharter.html": "⚖ 12 Stones Charter",
     "tenant_hi-maui.html": "Maui County", "tenant_hi-honolulu.html": "Honolulu",
     "tenant_hi-hawaii.html": "Hawaiʻi County", "tenant_hi-kauai.html": "Kauaʻi County",
-    "tenant_hi-state.html": "State of Hawaiʻi", "tenant_ny.html": "New York",
+    "tenant_hi-state.html": "State of Hawaiʻi", "tenant_nyc.html": "New York City", "tenant_nys.html": "New York State",
     "jurisdictions.html": "All governments →",
 }
 # Citizen-first IA: organized around what a voting community member needs to participate —
@@ -240,7 +240,7 @@ NAV_GROUPS = [
     # FIRST: pick a government. Tenant-switching is the primary nav so the reports aren't Maui-locked —
     # from any page you can jump to any tenant's overview (Jimmy 2026-06-16: "stop the Maui-focused nav").
     ("Governments", ["tenant_12stonescharter.html", "tenant_hi-maui.html", "tenant_hi-honolulu.html", "tenant_hi-hawaii.html",
-                     "tenant_hi-kauai.html", "tenant_hi-state.html", "tenant_ny.html", "jurisdictions.html"]),
+                     "tenant_hi-kauai.html", "tenant_hi-state.html", "tenant_nyc.html", "tenant_nys.html", "jurisdictions.html"]),
     ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
@@ -1058,7 +1058,8 @@ Sources are linked on every page.</div>
  <a class="card" href="tenant_hi-hawaii.html"><div class="t">Hawai&#699;i County</div><div class="b">Agendas &middot; campaign money (county slice)</div></a>
  <a class="card" href="tenant_hi-kauai.html"><div class="t">Kaua&#699;i County</div><div class="b">Agendas &middot; campaign money (county slice)</div></a>
  <a class="card" href="tenant_hi-honolulu.html"><div class="t">City &amp; County of Honolulu</div><div class="b">Agendas &middot; campaign money (county slice)</div></a>
- <a class="card" href="tenant_ny.html"><div class="t">New York</div><div class="b">Agendas (NYC + NY State) &middot; experimental</div></a>
+ <a class="card" href="tenant_nyc.html"><div class="t">New York City</div><div class="b">Money &middot; contracts &middot; agendas &middot; money&times;votes</div></a>
+ <a class="card" href="tenant_nys.html"><div class="t">New York State</div><div class="b">Money &middot; contracts &middot; agendas &middot; money&times;votes</div></a>
 </div>
 <div class="eyebrow" style="margin-top:30px">All dashboards</div>
 <div class="grid">{cards}</div>
