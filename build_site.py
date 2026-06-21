@@ -420,19 +420,23 @@ def nav_bar(current):
             '<button class="gn-burger" aria-label="Menu">&#9776;</button>'
             '<div class="gn-menu">'
             + here +
-            # ONE tenant nav = the Government/View pulldown below (inject_switcher). The top bar is now GLOBAL
-            # actions only — the grouped per-tenant dropdowns were redundant with the pulldown (Jimmy: nav
-            # frustration / "complete logic rework"). 'groups' kept built for the client navmap label only.
-            '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '') +
-            '<a class="gn-link%s" href="agendas.html">Agendas</a>' % ac +
-            '<a class="gn-link%s" href="agenda_explainer.html">Explainer</a>' % (" cur" if current=="agenda_explainer.html" else "") +
-            '<a class="gn-link" href="king/civic/templates/title19-system/Title19%20System.html">&#9878; Title 19</a>' +
-            '<a class="gn-link%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "") +
-            '<a class="gn-link%s" href="olelo_glossary.html">ʻŌlelo</a>' % (" cur" if current=="olelo_glossary.html" else "") +
-            '<a class="gn-link%s" href="jurisdictions.html">Jurisdictions</a>' % jc +
-            '<a class="gn-link%s" href="datasets.html">Open data</a>' % (" cur" if current == "datasets.html" else "") +
-            '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "") +
-            '<a class="gn-cta" href="take_action.html">Take part</a>'
+            # TENANT-BY-TENANT LOGIC (Jimmy 2026-06-20 — nav frustration): the top bar carries ONLY
+            # platform-wide pages + universal actions, so nothing here is tenant-specific and it can't be
+            # wrong about "viewing <tenant>". The CURRENT tenant's own reports (Agendas, Title 19, Officials,
+            # Money, Minutes, Oversight…) are the Government/View pulldown (inject_switcher) — the single
+            # tenant nav, which re-resolves to whichever tenant you're viewing. Title 19 here is the generic
+            # cross-tenant SYSTEM page; each tenant's own calculators live on its govOS page via the pulldown.
+            '<div class="gn-group"><button class="gn-top">Across govOS<span class="ar">&#9662;</span></button><div class="gn-panel">'
+            + '<a class="%s" href="jurisdictions.html">Jurisdictions — all governments</a>' % jc
+            + '<a class="%s" href="datasets.html">Open data</a>' % (" cur" if current == "datasets.html" else "")
+            + '<a class="%s" href="agenda_explainer.html">Agenda explainer</a>' % (" cur" if current=="agenda_explainer.html" else "")
+            + '<a class="%s" href="sage_bridge.html">Sage</a>' % (" cur" if current=="sage_bridge.html" else "")
+            + '<a class="%s" href="olelo_glossary.html">&#699;&#332;lelo</a>' % (" cur" if current=="olelo_glossary.html" else "")
+            + '<a href="king/civic/templates/title19-system/Title19%20System.html">Title 19 system</a>'
+            + '</div></div>'
+            + '<a class="gn-lead%s" href="testify.html">&#9878; Testify</a>' % (' cur' if current == 'testify.html' else '')
+            + '<a class="gn-link%s" href="request_records.html">Request Records</a>' % (" cur" if current == "request_records.html" else "")
+            + '<a class="gn-cta" href="take_action.html">Take part</a>'
             '</div></nav>' + NAV_JS + _nav_tenant_js())
 
 COPYRIGHT = ('<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;'
