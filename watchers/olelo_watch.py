@@ -73,6 +73,10 @@ def _scan_usage():
     for fn in os.listdir(MAUIOS):
         if not fn.lower().endswith((".html", ".htm")):
             continue
+        # LEAK-GATE: never index owner-private pages into the PUBLIC glossary's where-used list
+        # (case_files/recusal/prosecutor are king-local-only; their names must not appear publicly).
+        if any(k in fn.lower() for k in ("case_file", "recusal", "prosecutor", "jrcsl_lead", "_charter_vertical")):
+            continue
         try:
             txt = open(os.path.join(MAUIOS, fn), encoding="utf-8", errors="ignore").read().lower()
         except Exception:
