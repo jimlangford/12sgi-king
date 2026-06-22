@@ -1,10 +1,11 @@
 {
- "generated": "2026-06-20T23:15:38.988962-10:00",
+ "generated": "2026-06-21T19:33:43.792200-10:00",
  "source": "HANDS hands.ehawaii.gov",
- "statewide_total": 10669,
- "maui_awards": 275,
- "maui_vendors": 75,
- "maui_dollars": 120707670.74,
+ "tenant": "maui",
+ "statewide_total": 10668,
+ "awards": 275,
+ "vendors_n": 75,
+ "dollars": 120707670.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -2731,5 +2732,8 @@
     }
    ]
   }
- ]
+ ],
+ "maui_awards": 275,
+ "maui_vendors": 75,
+ "maui_dollars": 120707670.74
 }
