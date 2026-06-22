@@ -49,6 +49,7 @@ PAGES = [
     ("lobby_money_watch.html",           "Lobby + Money",                "Entities that BOTH register to lobby the State and donate to tracked Maui officials - a double channel of influence. Led by Lanai Resorts (5 council members). Public records, framed as questions."),
     ("jurisdictions.html",               "govOS Jurisdictions",          "Every govOS tenant - the Hawaii counties + State, and the New York tenants (NYC, NY State, Liverpool) - with the contract record loaded for each. One civic engine, many governments."),
     ("ka_leo_voice.html",                "Ka Leo - The Louder Voice",    "How much louder money makes some voices, per official - rigor in the numbers, aloha in the asking; an invitation to return each pair to pono. Public records, framed as questions."),
+    ("sunshine_maui.html",              "Sunshine Law Compliance Watch", "HRS §92-7: did the county post meeting notices 6+ calendar days in advance? Factual record of every Maui Council committee meeting — notice period computed from the Legistar publication timestamp. Flagged entries cited by source; not legal determinations."),
 ]
 # extra civic pages copied + nav-injected but NOT shown as their own nav pill (reached via the hub)
 EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kauai.html", "contracts_hawaii.html",
@@ -104,6 +105,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # made public with aloha (aloha_oversight.py). The private case files NEVER publish; only what clears.
                "oversight_hi-state.html", "oversight_hi-maui.html", "oversight_hi-hawaii.html",
                "oversight_hi-kauai.html", "oversight_hi-honolulu.html", "oversight_help.html",
+               # govOS Audit — the per-tenant combined view (funders -> votes/recusals -> contracts -> the questions),
+               # one page (govos_audit.py). Maui sourced; others honest-empty until their officials are sourced.
+               "govos_audit_hi-state.html", "govos_audit_hi-maui.html", "govos_audit_hi-hawaii.html",
+               "govos_audit_hi-kauai.html", "govos_audit_hi-honolulu.html", "govos_audit_ny.html",
                "title19.html",  # Maui submission-calculator hub (onboarding estimate, all departments)
                # federal_money.html (the Maui+State front page) is now a carded dashboard in PAGES; county sub-pages stay here
                "federal_money_hawaii.html", "federal_money_honolulu.html",
