@@ -116,7 +116,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html",
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
-               "money_hawaii.html", "money_kauai.html",
+               "money_hawaii.html", "money_kauai.html", "money_maui.html",
                # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
                "realestate_maui.html",
                # per-tenant real-estate × money pages — the rest of the tenants (Jimmy: do the rest until complete)
@@ -1003,7 +1003,7 @@ def main():
         if os.path.isdir(os.path.join(SITE, "king")):
             def _king_href(m):
                 h = m.group(1)
-                if h.startswith(("http", "#", "../", "mailto:")):
+                if h.startswith(("http", "#", "../", "mailto:", "/")):
                     return 'href="%s"' % h
                 if h == "king/":
                     return 'href="./"'
@@ -1170,7 +1170,17 @@ Sources are linked on every page.</div>
     _go_built = os.path.join(SITE, "go.html")   # the internal Quad-OS launcher (FTM map injected) — stays at /go.html
     _idx_src = _landing if os.path.exists(_landing) else _go_built
     if os.path.exists(_idx_src):
-        shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
+        _idx_html = open(_idx_src, encoding="utf-8", errors="ignore").read()
+        # govos_signup.html is authored for king/ context (uses ../ for root-level paths).
+        # When deployed to site/index.html (root), strip the leading ../ so links resolve correctly.
+        def _root_href(m):
+            h = m.group(1)
+            if h.startswith('../'):
+                return 'href="%s"' % h[3:]
+            return 'href="%s"' % h
+        _idx_html = re.sub(r'href="([^"]*)"', _root_href, _idx_html)
+        with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
+            f.write(_idx_html)
         print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
     # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
     # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
