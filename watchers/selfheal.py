@@ -84,11 +84,78 @@ def _known_secrets():
                 vals.add(k)
     except Exception:
         pass
+    # Dropbox long-lived token (config/dropbox_creds.json -> "token")
+    try:
+        import json as _json
+        k = (_json.load(open(os.path.join(cfg, "dropbox_creds.json"), encoding="utf-8")).get("token") or "").strip()
+        if len(k) >= 12 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
+    # Supabase private keys (config/supabase.json -> jwt_secret + service_role_key)
+    try:
+        import json as _json
+        d = _json.load(open(os.path.join(cfg, "supabase.json"), encoding="utf-8"))
+        for fld in ("jwt_secret", "service_role_key"):
+            k = (d.get(fld) or "").strip()
+            if len(k) >= 12 and not k.startswith("PASTE_") and not k.startswith("sb_publishable"):
+                vals.add(k)
+    except Exception:
+        pass
+    # Facebook app_secret (config/facebook.secret.json -> "app_secret")
+    try:
+        import json as _json
+        k = (_json.load(open(os.path.join(cfg, "facebook.secret.json"), encoding="utf-8")).get("app_secret") or "").strip()
+        if len(k) >= 12 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
+    # Cloudflare scoped API token (config/cloudflare_credentials.json -> "api_token")
+    try:
+        import json as _json
+        k = (_json.load(open(os.path.join(cfg, "cloudflare_credentials.json"), encoding="utf-8")).get("api_token") or "").strip()
+        if len(k) >= 12 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
+    # WordPress application password (config/wordpress_credentials.json -> "app_password")
+    try:
+        import json as _json
+        k = (_json.load(open(os.path.join(cfg, "wordpress_credentials.json"), encoding="utf-8")).get("app_password") or "").strip()
+        if len(k) >= 8 and not k.startswith("PASTE_"):
+            vals.add(k)
+    except Exception:
+        pass
+    # .env file values — scan all VAR=VALUE lines for any non-trivial value
+    try:
+        env_path = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS", ".env")
+        for line in open(env_path, encoding="utf-8", errors="ignore"):
+            line = line.strip()
+            if line.startswith("#") or "=" not in line:
+                continue
+            v = line.split("=", 1)[1].strip().strip('"').strip("'")
+            if len(v) >= 16 and not v.startswith("PASTE_") and not v.startswith("http"):
+                vals.add(v)
+    except Exception:
+        pass
     return vals
 
-_STRIPE_SECRET = re.compile(r"\b(sk|rk)_(live|test)_[A-Za-z0-9]{8,}|\bwhsec_[A-Za-z0-9]{8,}")  # Stripe secret/restricted/webhook keys — never public
+# Pattern-based secret detection (catches secrets even without config file access)
+_STRIPE_SECRET   = re.compile(r"\b(sk|rk)_(live|test)_[A-Za-z0-9]{8,}|\bwhsec_[A-Za-z0-9]{8,}")  # Stripe secret/restricted/webhook keys — never public
+_DROPBOX_SECRET  = re.compile(r"\bsl\.u\.[A-Za-z0-9_-]{20,}")                                      # Dropbox long-lived user token
+_SUPABASE_SECRET = re.compile(r"\bsb_secret_[A-Za-z0-9_]{8,}")                                     # Supabase JWT secret prefix
+_FACEBOOK_SECRET = re.compile(r"\bFACEBOOK_APP_SECRET\s*[=:]\s*[0-9a-f]{30,}")                     # FB app_secret in env/config
+_CLOUDFLARE_TOK  = re.compile(r"\bcfat_[A-Za-z0-9]{20,}")                                          # Cloudflare scoped API token
+_GOOGLE_OAUTH    = re.compile(r"\bGOCSPX-[A-Za-z0-9_-]{10,}")                                      # Google OAuth client secret
+# Note: WordPress app-passwords (6x4 groups) are guarded via runtime value scan from
+# wordpress_credentials.json — a structural regex would generate false positives against
+# civic minutes text that has similar-looking short-word sequences.
+_ALL_PATTERNS    = [_STRIPE_SECRET, _DROPBOX_SECRET, _SUPABASE_SECRET, _FACEBOOK_SECRET,
+                    _CLOUDFLARE_TOK, _GOOGLE_OAUTH]
 def chk_no_leak():
-    """No private back-end file or secret key may exist anywhere in the publish repo tree."""
+    """No private back-end file or secret key may exist anywhere in the publish repo tree.
+    Scans both known runtime values (read from config files at check time) AND structural
+    patterns for Stripe, Dropbox, Supabase, Facebook, Cloudflare, Google OAuth, WordPress."""
     hits = []
     secrets = _known_secrets()
     for root, dirs, files in os.walk(REPO):
@@ -96,13 +163,16 @@ def chk_no_leak():
         for fn in files:
             if fn in PRIVATE_NAMES or (fn.endswith(".txt") and "key" in fn.lower()) or "dossier" in fn.lower():
                 hits.append(os.path.relpath(os.path.join(root, fn), REPO))
-            elif fn.endswith((".py", ".html", ".json", ".txt", ".md", ".js")):
+            elif fn.endswith((".py", ".html", ".json", ".txt", ".md", ".js", ".env", ".sh")):
                 try:
                     body = open(os.path.join(root, fn), encoding="utf-8", errors="ignore").read()
                     if secrets and any(s in body for s in secrets):
                         hits.append(os.path.relpath(os.path.join(root, fn), REPO) + " (secret value)")
-                    if _STRIPE_SECRET.search(body):
-                        hits.append(os.path.relpath(os.path.join(root, fn), REPO) + " (Stripe secret key)")
+                    for pat in _ALL_PATTERNS:
+                        if pat.search(body):
+                            hits.append(os.path.relpath(os.path.join(root, fn), REPO) +
+                                        " (secret pattern: %s)" % pat.pattern[:30])
+                            break  # one hit per file per pattern group is enough to flag
                 except Exception:
                     pass
     if hits:
