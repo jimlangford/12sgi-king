@@ -275,7 +275,7 @@
      var counts={}; rm.forEach(function(x){var s=(x.system||'SYSTEM');counts[s]=(counts[s]||0)+1;});
      document.getElementById('ccLanes').innerHTML=['WORKBOARD','SERVER','CIVIC','AUDIT','STUDIO','SYSTEM'].map(function(s){
        return '<span style="font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--line);color:'+(laneCol[s]||'var(--ink-dim)')+'">'+s.charAt(0)+s.slice(1).toLowerCase()+' <b>'+(counts[s]||0)+'</b></span>';
-     }).join('')+'<a href="/board" target="_blank" style="font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none">open board →</a>';
+     }).join('')+'<a href="https://12sgianonymous.tail760750.ts.net/board" target="_blank" style="font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none">open board →</a>';
      var f=(d.feed||[]).slice(0,6);
      document.getElementById('ccFeed').innerHTML=f.length?'<div class="b" style="margin:2px 0 4px;color:var(--ink-faint)">recent activity</div>'+f.map(function(e){
        return '<div class="b" style="border-left:2px solid var(--line);padding:2px 0 2px 8px;margin:3px 0"><b>'+esc(e.source||'')+'</b> '+esc((e.text||'').slice(0,90))+'</div>';}).join(''):'';
