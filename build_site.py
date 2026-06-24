@@ -1283,6 +1283,19 @@ Sources are linked on every page.</div>
     if _n:
         print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
               % (_pub or "(opening-soon)", _n))
+    # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
+    try:
+        import subprocess as _sp, sys as _sys
+        _rp = os.path.join(os.path.dirname(__file__), "tools", "reconcile.py")
+        if os.path.isfile(_rp):
+            _r = _sp.run([_sys.executable, _rp, "--scan", SITE, "html", "--route-only"],
+                         capture_output=True, text=True, encoding="utf-8", errors="replace")
+            if _r.stdout.strip() and "clean" not in _r.stdout:
+                print("[reconcile] WARN (dev only — CI gate blocks on seed_reports):")
+                for _ln in _r.stdout.strip().splitlines():
+                    print("  " + _ln)
+    except Exception:
+        pass
     return 0
 
 if __name__ == "__main__":
