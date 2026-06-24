@@ -246,6 +246,12 @@ NAV_LABEL = {
     "tenant_hi-maui.html": "Maui County", "tenant_hi-honolulu.html": "Honolulu",
     "tenant_hi-hawaii.html": "Hawaiʻi County", "tenant_hi-kauai.html": "Kauaʻi County",
     "tenant_hi-state.html": "State of Hawaiʻi", "tenant_nyc.html": "New York City", "tenant_nys.html": "New York State",
+    # world-center city tenants (Jimmy 2026-06-23: going global — keep + link all)
+    "tenant_london.html": "London", "tenant_tokyo.html": "Tokyo",
+    "tenant_hongkong.html": "Hong Kong SAR", "tenant_singapore.html": "Singapore",
+    "tenant_zurich.html": "Zürich", "tenant_frankfurt.html": "Frankfurt",
+    "tenant_paris.html": "Paris", "tenant_dubai.html": "Dubai",
+    "tenant_liverpool.html": "Liverpool",
     "jurisdictions.html": "All governments →",
 }
 # Citizen-first IA: organized around what a voting community member needs to participate —
@@ -253,8 +259,12 @@ NAV_LABEL = {
 NAV_GROUPS = [
     # FIRST: pick a government. Tenant-switching is the primary nav so the reports aren't Maui-locked —
     # from any page you can jump to any tenant's overview (Jimmy 2026-06-16: "stop the Maui-focused nav").
+    # World-center tenants added 2026-06-23 (Jimmy: going global — keep + link all).
     ("Governments", ["tenant_12stonescharter.html", "tenant_hi-maui.html", "tenant_hi-honolulu.html", "tenant_hi-hawaii.html",
-                     "tenant_hi-kauai.html", "tenant_hi-state.html", "tenant_nyc.html", "tenant_nys.html", "jurisdictions.html"]),
+                     "tenant_hi-kauai.html", "tenant_hi-state.html", "tenant_nyc.html", "tenant_nys.html",
+                     "tenant_london.html", "tenant_tokyo.html", "tenant_hongkong.html", "tenant_singapore.html",
+                     "tenant_zurich.html", "tenant_frankfurt.html", "tenant_paris.html", "tenant_dubai.html",
+                     "tenant_liverpool.html", "jurisdictions.html"]),
     ("Your Officials", ["officials_scorecard.html", "money_behind_officials.html", "ka_leo_voice.html"]),
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
@@ -1098,6 +1108,19 @@ Sources are linked on every page.</div>
  <a class="card" href="tenant_hi-honolulu.html"><div class="t">City &amp; County of Honolulu</div><div class="b">Agendas &middot; campaign money (county slice)</div></a>
  <a class="card" href="tenant_nyc.html"><div class="t">New York City</div><div class="b">Money &middot; contracts &middot; agendas &middot; money&times;votes</div></a>
  <a class="card" href="tenant_nys.html"><div class="t">New York State</div><div class="b">Money &middot; contracts &middot; agendas &middot; money&times;votes</div></a>
+</div>
+<div class="eyebrow" style="margin-top:26px">World centers — charter &amp; transparency</div>
+<p class="lead">The same govOS lens applied to the world&rsquo;s financial-center cities — each under its own law, all under the shared 12 Stones apex. Charter crosswalks live; more records fill as the engine grows.</p>
+<div class="grid">
+ <a class="card" href="tenant_london.html"><div class="t">London</div><div class="b">City of London / GLA &middot; charter &#8644; UK law</div></a>
+ <a class="card" href="tenant_tokyo.html"><div class="t">Tokyo</div><div class="b">Tokyo Metropolis &middot; charter &#8644; Japanese law</div></a>
+ <a class="card" href="tenant_hongkong.html"><div class="t">Hong Kong SAR</div><div class="b">HKSAR &middot; charter &#8644; Basic Law</div></a>
+ <a class="card" href="tenant_singapore.html"><div class="t">Singapore</div><div class="b">Republic of Singapore &middot; charter &#8644; law</div></a>
+ <a class="card" href="tenant_zurich.html"><div class="t">Z&uuml;rich</div><div class="b">Z&uuml;rich &middot; charter &#8644; Swiss law</div></a>
+ <a class="card" href="tenant_frankfurt.html"><div class="t">Frankfurt</div><div class="b">Frankfurt am Main (ECB seat) &middot; charter &#8644; German law</div></a>
+ <a class="card" href="tenant_paris.html"><div class="t">Paris</div><div class="b">Paris &middot; charter &#8644; French law</div></a>
+ <a class="card" href="tenant_dubai.html"><div class="t">Dubai</div><div class="b">Dubai + DIFC &middot; charter &#8644; UAE law</div></a>
+ <a class="card" href="tenant_liverpool.html"><div class="t">Liverpool</div><div class="b">Village of Liverpool, NY &middot; charter &#8644; law</div></a>
 </div>
 <div class="eyebrow" style="margin-top:30px">All dashboards</div>
 <div class="grid">{cards}</div>
