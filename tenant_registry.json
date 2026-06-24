@@ -252,13 +252,17 @@
     "agendas": [
      "agendas_nyc.html"
     ],
-    "minutes": [],
+    "minutes": [
+     "minutes_ny.html"
+    ],
     "charter": [
      "crosswalk_nyc.html"
     ],
-    "audit": []
+    "audit": [
+     "govos_audit_ny.html"
+    ]
    },
-   "report_classes_filled": 5,
+   "report_classes_filled": 7,
    "report_classes_total": 9
   },
   {
