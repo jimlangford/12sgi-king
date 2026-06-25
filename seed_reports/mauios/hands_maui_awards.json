@@ -1,11 +1,11 @@
 {
- "generated": "2026-06-24T22:14:22.985625-10:00",
+ "generated": "2026-06-25T00:17:01.034076-10:00",
  "source": "HANDS hands.ehawaii.gov",
  "tenant": "maui",
- "statewide_total": 10726,
- "awards": 275,
+ "statewide_total": 10720,
+ "awards": 274,
  "vendors_n": 75,
- "dollars": 120707670.74,
+ "dollars": 120690870.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -866,8 +866,8 @@
   },
   {
    "vendor": "FUKUMOTO ENGINEERING, INC.",
-   "total": 4723680.0,
-   "count": 22,
+   "total": 4706880.0,
+   "count": 21,
    "awards": [
     {
      "amount": 14000.0,
@@ -945,14 +945,6 @@
      "amount": 182200.0,
      "date": "06/06/2025",
      "title": "Kaanapali Beach (Pu'u Keka'a) - Lifeguard Tower Planning, Design, and Permits",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 16800.0,
-     "date": "03/25/2025",
-     "title": "Von Tempsky Waterline Easement",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
@@ -2733,7 +2725,7 @@
    ]
   }
  ],
- "maui_awards": 275,
+ "maui_awards": 274,
  "maui_vendors": 75,
- "maui_dollars": 120707670.74
+ "maui_dollars": 120690870.74
 }
