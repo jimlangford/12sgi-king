@@ -62,7 +62,10 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                # item-2 gaps (workflow 2): lobby crosses for HI State / Honolulu / NY State
                "lobby_state.html", "lobby_honolulu.html", "lobby_nys.html",
                # workflow 3: matrix close + subcontractor chains + Ka Leo fan-out (ka_leo_nyc withheld - failed verify)
-               "money_liverpool.html", "subcontractors_nyc.html",
+               "money_liverpool.html", "parity_liverpool.html",
+               "money_dubai.html", "money_frankfurt.html", "money_hongkong.html", "money_london.html",
+               "money_paris.html", "money_singapore.html", "money_tokyo.html", "money_zurich.html",
+               "subcontractors_nyc.html",
                "ka_leo_state.html", "ka_leo_honolulu.html", "ka_leo_nys.html",
                "ka_leo_nyc.html",   # rebuilt on real CFB aggregates (no fabricated donors) - no longer withheld
                # per-tenant Charter <-> Law crosswalk (12 Stones SSC v5 up through the Holy See); State = the proof tenant
@@ -81,11 +84,11 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "agendas_london.html", "agendas_tokyo.html", "agendas_hongkong.html", "agendas_singapore.html",
                "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html",
                # minutes watch — the people's record per tenant (dignified, sourced; private evidence stays in _status)
-               "meetings_calendar.html", "meetings_maui.html", "meetings_honolulu.html", "meetings_hawaii.html", "meetings_kauai.html", "meetings_nyc.html", "bfed_agenda_today.html", "bfed_eligibility_today.html", "minutes_hi-maui.html", "minutes_hi-state.html", "minutes_hi-hawaii.html",
+               "meetings_calendar.html", "meetings_maui.html", "meetings_honolulu.html", "meetings_hawaii.html", "meetings_kauai.html", "meetings_nyc.html", "bfed_agenda_today.html", "bfed_eligibility_today.html", "minutes_hi-maui.html", "minutes_hi-hawaii.html",
                "minutes_hi-kauai.html", "minutes_hi-honolulu.html", "minutes_ny.html",
                # N53 integrity engine — past minutes / supplemental materials / roll-call corpus
                "n53_engine.html", "archive.html", "testimony_money.html", "testimony_record.html",
-               "archive_state.html", "archive_maui.html", "archive_honolulu.html", "archive_hawaii.html", "archive_kauai.html",
+               "archive_state.html", "archive_hi-state.html", "archive_maui.html", "archive_honolulu.html", "archive_hawaii.html", "archive_kauai.html",
                "archive_nyc.html", "archive_nys.html", "archive_liverpool.html",
                "archive_london.html", "archive_tokyo.html", "archive_hongkong.html", "archive_singapore.html",
                "archive_zurich.html", "archive_frankfurt.html", "archive_paris.html", "archive_dubai.html",
@@ -112,9 +115,12 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "title19.html",  # Maui submission-calculator hub (onboarding estimate, all departments)
                # federal_money.html (the Maui+State front page) is now a carded dashboard in PAGES; county sub-pages stay here
                "federal_money_hawaii.html", "federal_money_honolulu.html",
-               "federal_money_kauai.html", "federal_officials.html", "audit_balance.html",
+               "federal_money_kauai.html", "federal_money_nyc.html", "federal_officials.html", "audit_balance.html",
+               "audit_balance_dubai.html", "audit_balance_frankfurt.html", "audit_balance_hongkong.html",
+               "audit_balance_liverpool.html", "audit_balance_london.html",
+               "audit_balance_paris.html", "audit_balance_singapore.html", "audit_balance_tokyo.html", "audit_balance_zurich.html",
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
-               "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html",
+               "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html", "officials_nyc.html",
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
                "money_hawaii.html", "money_kauai.html", "money_maui.html",
                # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
