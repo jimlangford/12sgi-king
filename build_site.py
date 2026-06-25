@@ -213,7 +213,7 @@ NAV_LABEL = {
     "crosswalk_kauai.html": "Charter ⇄ Law (Kauaʻi County)",
     "crosswalk_nys.html": "Charter ⇄ Law (New York State)",
     "crosswalk_nyc.html": "Charter ⇄ Law (New York City)",
-    "crosswalk_liverpool.html": "Charter ⇄ Law (Liverpool, England — UK)",
+    "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool, NY)",
     "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
     "money_holysee.html": "Holy See Finances",
     "rebuild_first.html": "Who Rebuilt First (Lahaina/Kula)",
