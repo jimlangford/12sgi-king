@@ -235,6 +235,8 @@ NAV_LABEL = {
     "king/civic/templates/title22-service/Title22%20Service.html": "Title 22 — Department of Agriculture (free)",
     "king/civic/templates/title01-service/Title1%20Service.html": "Title 1 — General Provisions (free)",
     "king/civic/templates/title02-service/Title2%20Service.html": "Title 2 — Administration & Personnel (free)",
+    "king/civic/templates/blessings/Night%20Tends%20the%20Day.html": "Blessing — The Night Tends the Day",
+    "king/civic/templates/blessings/Every%20Hand%20Knows%20Its%20Work.html": "Blessing — Every Hand Knows Its Work",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -1148,6 +1150,11 @@ Sources are linked on every page.</div>
  <a class="card" href="king/civic/templates/title22-service/Title22%20Service.html"><div class="t">Title 22 — Department of Agriculture (free)</div><div class="b">County Department of Agriculture — plain language.</div></a>
  <a class="card" href="king/civic/templates/title01-service/Title1%20Service.html"><div class="t">Title 1 — General Provisions (free)</div><div class="b">How the Code is organized &amp; applied — plain language.</div></a>
  <a class="card" href="king/civic/templates/title02-service/Title2%20Service.html"><div class="t">Title 2 — Administration &amp; Personnel (free)</div><div class="b">County administration, boards &amp; commissions — plain language.</div></a>
+</div>
+<div class="eyebrow" style="margin-top:30px">Blessings as we go</div>
+<div class="grid">
+ <a class="card" href="king/civic/templates/blessings/Night%20Tends%20the%20Day.html"><div class="t">The Night Tends the Day</div><div class="b">The Kumulipo rhythm — Pō tends the day's work and dreams the next day forward.</div></a>
+ <a class="card" href="king/civic/templates/blessings/Every%20Hand%20Knows%20Its%20Work.html"><div class="t">Every Hand Knows Its Work</div><div class="b">Kuleana — each lane of the house knowing and tending its own work.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
