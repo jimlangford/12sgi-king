@@ -40,7 +40,14 @@
     try{
       var file=fileSync(ex);                                  // SYNC — gesture still alive
       if(navigator.canShare&&navigator.canShare({files:[file]})){
-        navigator.share({files:[file],title:ttl,text:cap}).catch(function(){});   // native share sheet pops (iOS/Android)
+        navigator.share({files:[file],title:ttl,text:cap}).catch(function(e){
+          if(e&&e.name==='AbortError')return;                    // user dismissed — expected
+          // share rejected for another reason — fall back to download + clipboard
+          var u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=fname(ex);
+          document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},4000);
+          if(navigator.clipboard)navigator.clipboard.writeText(cap+' '+url);
+          sh.textContent='⬇ Saved .png + caption copied';setTimeout(function(){sh.textContent=o;},2600);
+        });   // native share sheet pops (iOS/Android); fallback on non-AbortError
       } else {                                                 // desktop / no file-share: download + copy caption
         var u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=fname(ex);
         document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},4000);
