@@ -182,7 +182,7 @@ votes, and their disclosures &mdash; that is where the question gets answered.</
 <h2>Both lobbying &amp; donating &mdash; by donation size</h2>
 {rows or empty}
 <p style="margin-top:22px"><a href="lobby_money_watch.html">Maui lobby &times; money</a>
-&middot; <a href="{('money_honolulu.html' if jur=='honolulu' else 'statewide_money.html')}">who funds {scope_label}</a>
+&middot; <a href="{('money_honolulu.html' if jur=='honolulu' else 'statewide_money_patterns.html')}">who funds {scope_label}</a>
 &middot; <a href="jurisdictions.html">all govOS jurisdictions</a></p>
 <footer>generated {g} &middot; lobby-hi v1 &middot; source: opendata.hawaii.gov (HSEC lobbyist registrations) + hicscdata.hawaii.gov (CSC jexd-xbcg) &middot; Kilo Aupuni &middot; govOS</footer>
 </div></body></html>"""
