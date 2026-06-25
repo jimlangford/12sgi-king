@@ -1,20 +1,20 @@
 {
- "generated": "2026-06-24 06:38:30",
+ "generated": "2026-06-25 00:22:06",
  "source": "reports/mauios/vendor_donor_join.json (CSC donors x HANDS awards, public records)",
  "method": "Kumulipo parity: a pair that does not answer = output (award) shadowed by private input (donation). leverage = award/contrib. Correlations as QUESTIONS, never accusations; names a broken pair, not a guilty person.",
  "hewa": {
   "n_broken_pairs": 9,
   "vendors_scanned": null,
-  "total_award_in_broken_pairs": 8350426.2,
+  "total_award_in_broken_pairs": 8333626.2,
   "total_contrib_in_broken_pairs": 9813.52,
-  "aggregate_leverage": 850.9,
+  "aggregate_leverage": 849.2,
   "pairs": [
    {
     "vendor": "FUKUMOTO ENGINEERING, INC.",
-    "award_total": 4723680.0,
-    "award_count": 22,
+    "award_total": 4706880.0,
+    "award_count": 21,
     "contrib_total": 1750.0,
-    "leverage": 2699.2,
+    "leverage": 2689.6,
     "officials": [
      "Batangan",
      "Sugimura"
@@ -45,7 +45,7 @@
       "basis": "individual"
      }
     ],
-    "question": "Does FUKUMOTO ENGINEERING, INC.'s $4,723,680 in county awards answer the public, or the $1,750 given to Batangan, Sugimura who decide them? (public records - a correlation to verify, not a finding)",
+    "question": "Does FUKUMOTO ENGINEERING, INC.'s $4,706,880 in county awards answer the public, or the $1,750 given to Batangan, Sugimura who decide them? (public records - a correlation to verify, not a finding)",
     "status": "PAIR_DOES_NOT_ANSWER"
    },
    {
@@ -271,7 +271,7 @@
  "by_official": {
   "Sugimura": {
    "label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
-   "award_shadowed": 7595983.03,
+   "award_shadowed": 7579183.03,
    "contrib_received": 4000.0,
    "vendors": [
     "FUKUMOTO ENGINEERING, INC.",
@@ -284,7 +284,7 @@
   },
   "Batangan": {
    "label": "Kauanoe Batangan - Councilmember, Kahului",
-   "award_shadowed": 4723680.0,
+   "award_shadowed": 4706880.0,
    "contrib_received": 700.0,
    "vendors": [
     "FUKUMOTO ENGINEERING, INC."
@@ -334,7 +334,7 @@
   "node": 53,
   "name": "Ka Luna Kiaʻi (the Overseer Joker)",
   "broken_pairs": 9,
-  "charge": "9 pairs no longer answer ($8,350,426 in awards shadowed by $9,814 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
+  "charge": "9 pairs no longer answer ($8,333,626 in awards shadowed by $9,814 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
  },
  "pono_restoration": "Each award answers the public record, voiced as its pair. The remedy is disclosure sung, not accusation."
 }
