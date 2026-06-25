@@ -26,7 +26,7 @@ DEPLOY (any of): a Cloudflare-tunnel'd box, Render/Railway/Fly, or your Naga ser
 Guardrails: never logs/returns the key; stores only status (no PII); CPU/stdlib only; no GPU/secrets-on-disk.
 Self-test (no session created): python stripe_identity_backend.py --selftest
 """
-import os, sys, json, time, hmac, hashlib, urllib.request, urllib.error
+import os, sys, json, time, hmac, hashlib, urllib.request, urllib.error, threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 HOME = os.path.expanduser("~")
@@ -159,6 +159,7 @@ try:
 except Exception:
     _ta = None
 ORDERS = os.path.join(PROJ, "reports", "_status", "paid_orders.jsonl")       # PRIVATE order ledger (no PII)
+_ORDERS_LOCK = threading.Lock()   # serialize concurrent webhook appends (ThreadingHTTPServer)
 
 # ── PAID CAPABILITY DELIVERY — the served features behind the tiers (Jimmy 2026-06-18: "make it
 # real — wire + deploy"). Each invokes the already-built tool; lazy-imported + guarded so a tool
@@ -308,7 +309,7 @@ def _record_order(session):
            "amount_total": amount,
            "payment_status": session.get("payment_status") or "paid", "ts": int(time.time())}
     os.makedirs(os.path.dirname(ORDERS), exist_ok=True)
-    with open(ORDERS, "a", encoding="utf-8", newline="\n") as f:
+    with _ORDERS_LOCK, open(ORDERS, "a", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
     # Only a one-off RENDER order (has a quote_id) enqueues a fulfillment job. A subscription
     # (member/builder/oversight) grants ACCESS via the orders ledger — it is not a render to queue.

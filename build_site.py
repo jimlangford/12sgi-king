@@ -113,6 +113,16 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "govos_audit_hi-state.html", "govos_audit_hi-maui.html", "govos_audit_hi-hawaii.html",
                "govos_audit_hi-kauai.html", "govos_audit_hi-honolulu.html", "govos_audit_ny.html",
                "title19.html",  # Maui submission-calculator hub (onboarding estimate, all departments)
+               # govOS DEPARTMENT-AS-FUNCTION layer (dept_pages.py) — each of Maui's 18 departments as a page
+               # with its people-first function + serve/record/audit + its subject-matched county contracts.
+               # Reached from tenant_hi-maui.html's department cards ("full department view") + the index.
+               "departments_maui.html",
+               "dept_council_maui.html", "dept_mayor_maui.html", "dept_management_maui.html",
+               "dept_finance_maui.html", "dept_public_works_maui.html", "dept_water_maui.html",
+               "dept_planning_maui.html", "dept_environmental_maui.html", "dept_fire_maui.html",
+               "dept_police_maui.html", "dept_prosecutor_maui.html", "dept_parks_maui.html",
+               "dept_housing_maui.html", "dept_agriculture_maui.html", "dept_transportation_maui.html",
+               "dept_liquor_maui.html", "dept_personnel_maui.html", "dept_corp_counsel_maui.html",
                # federal_money.html (the Maui+State front page) is now a carded dashboard in PAGES; county sub-pages stay here
                "federal_money_hawaii.html", "federal_money_honolulu.html",
                "federal_money_kauai.html", "federal_money_nyc.html", "federal_officials.html", "audit_balance.html",
@@ -203,7 +213,7 @@ NAV_LABEL = {
     "crosswalk_kauai.html": "Charter ⇄ Law (Kauaʻi County)",
     "crosswalk_nys.html": "Charter ⇄ Law (New York State)",
     "crosswalk_nyc.html": "Charter ⇄ Law (New York City)",
-    "crosswalk_liverpool.html": "Charter ⇄ Law (Village of Liverpool)",
+    "crosswalk_liverpool.html": "Charter ⇄ Law (Liverpool, England — UK)",
     "crosswalk_holysee.html": "Charter ⇄ Law (Holy See ✦ apex)",
     "money_holysee.html": "Holy See Finances",
     "rebuild_first.html": "Who Rebuilt First (Lahaina/Kula)",
@@ -1233,7 +1243,13 @@ Sources are linked on every page.</div>
             s = os.path.join(SITE, sub)
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
-        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ -> served first via Tailscale")
+        # king_serve strips the /king/ prefix and serves the civic templates from KLOCAL/civic (NOT KLOCAL/king/civic),
+        # so mirror the civic tree to the ROOT civic dir too — else nav links like king/civic/templates/title16-service/...
+        # 404 on the private server even though the page exists under king/ (Jimmy 2026-06-25, "broken links NEVER AGAIN").
+        _civ = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src", "civic")
+        if os.path.isdir(_civ):
+            shutil.copytree(_civ, os.path.join(KLOCAL, "civic"), dirs_exist_ok=True)
+        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ + civic/ -> served first via Tailscale")
         # [OWNER ONLY] the prosecutorial back end — copied to king-local (private/Tailscale) ONLY.
         # Deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE, so it can never reach
         # public GitHub Pages. Front end stays Aloha + factual; this rigor is owner-private.
