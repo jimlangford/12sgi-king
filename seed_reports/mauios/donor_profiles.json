@@ -92,6 +92,7 @@
   },
   "out_of_state_pct": 9,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Fielding, Alex",
@@ -247,6 +248,7 @@
   },
   "out_of_state_pct": 1,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Sugimura, Takashi",
@@ -401,6 +403,7 @@
   },
   "out_of_state_pct": 4,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Chotzen Goodfellow, Tamar",
@@ -554,6 +557,7 @@
   },
   "out_of_state_pct": 2,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Lanai Resorts, LLC",
@@ -654,6 +658,7 @@
   },
   "out_of_state_pct": 7,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "IWAMOTO, KIM COCO",
@@ -795,6 +800,7 @@
   },
   "out_of_state_pct": 4,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Operating Engineers Local Union No. 3 District 17",
@@ -895,6 +901,7 @@
   },
   "out_of_state_pct": 7,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Cumming, Donald",
@@ -975,6 +982,7 @@
   },
   "out_of_state_pct": 1,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Love, Linda",
@@ -1128,6 +1136,7 @@
   },
   "out_of_state_pct": 5,
   "recusals": [],
+  "candidate_note": "",
   "top_donors": [
    {
     "name": "Fergus, Michael",
@@ -1189,24 +1198,98 @@
  },
  {
   "key": "Batangan",
-  "label": "Kauanoe Batangan - Councilmember, Kahului",
-  "rows": 44,
-  "total": 19940.0,
+  "label": "Natalie ‘Tasha’ Kama — Kahului Council seat (appointed: Kauanoe Batangan, Feb 2024)",
+  "rows": 250,
+  "total": 185259.23,
   "candidate_names": [
-   "Batangan, Kelson"
+   "Kama, Natalie"
   ],
   "by_type": {
-   "Individual": 14380.0,
-   "Immediate Family": 2250.0,
-   "Other Entity": 1110.0,
-   "Noncandidate Committee": 2200.0
+   "Individual": 70899.08,
+   "Other Entity": 107617.0,
+   "Immediate Family": 5477.46,
+   "Noncandidate Committee": 645.6899999999999,
+   "Candidate": 620.0
   },
   "realestate": {
-   "count": 0,
-   "total": 0,
-   "donors": []
+   "count": 37,
+   "total": 32117.0,
+   "donors": [
+    {
+     "name": "Ledcor Development LP",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Lanai Resorts",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Hawaii Realtors Political Action Committee",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Goodfellow, Steve",
+     "amount": 4000.0,
+     "employer": "Goodfellow Bros. LLC",
+     "occupation": "Contractor"
+    },
+    {
+     "name": "Wailea Resort Development",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Hawaii Hotel Alliance",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Goodfellow, Chad",
+     "amount": 2000.0,
+     "employer": "Goodfellow Bros.",
+     "occupation": "Contractor"
+    },
+    {
+     "name": "Hilton Resorts Corp",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "General Contractors Ass. of HI, Political Action",
+     "amount": 1250.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Kihune, Howard Sr.",
+     "amount": 700.0,
+     "employer": "Self-Employed",
+     "occupation": "Developer"
+    },
+    {
+     "name": "Flaherty, Christopher",
+     "amount": 500.0,
+     "employer": "",
+     "occupation": "Housing Developer"
+    },
+    {
+     "name": "Churchill, Ryan",
+     "amount": 500.0,
+     "employer": "",
+     "occupation": "President Pacific Rim Land"
+    }
+   ]
   },
-  "out_of_state_pct": 18,
+  "out_of_state_pct": 7,
   "recusals": [
    {
     "date": "2026-05-15",
@@ -1246,60 +1329,61 @@
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
    }
   ],
+  "candidate_note": "Kauanoe Batangan was appointed to fill this Kahului seat in February 2024 after Councilmember Natalie ‘Tasha’ Kama’s death. He has no campaign finance filings of his own. All figures shown are for Natalie ‘Tasha’ Kama (CSC reg CC11414), the elected person who raised this money — her donors are the relevant money×votes signal for this seat.",
   "top_donors": [
    {
-    "name": "Batangan, Elsie C.",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Kuakini Medical Center",
-    "occupation": "Echo Sonographer"
+    "name": "Dowling, Everett",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "Dowling Company, Inc.",
+    "occupation": "Owner"
    },
    {
-    "name": "Friends Of Joseph Souki",
-    "amount": 2000.0,
-    "n": 1,
+    "name": "Goodfellow, Tamar",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "None",
+    "occupation": "Not Applicable"
+   },
+   {
+    "name": "Hawaii Regional Council of Carpenters PAC",
+    "amount": 6000.0,
+    "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Awai, Jennifer",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Kamehameha Schools",
-    "occupation": "Administrative Coordinator"
-   },
-   {
-    "name": "Eldredge, Lyla",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Kamehameha Schools",
-    "occupation": "Teacher"
-   },
-   {
-    "name": "Eldredge, Ema-Jule",
-    "amount": 1000.0,
-    "n": 1,
-    "employer": "Catlin Gabel School",
-    "occupation": "Teacher"
-   },
-   {
-    "name": "Eldredge, Julia C.",
-    "amount": 1000.0,
-    "n": 1,
-    "employer": "Retired",
-    "occupation": "Retired"
-   },
-   {
-    "name": "Perry, Glenn R.",
-    "amount": 700.0,
-    "n": 1,
+    "name": "Plumbers and Fitters Local 675 United Association",
+    "amount": 5000.0,
+    "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Matsui, Leon",
-    "amount": 600.0,
-    "n": 1,
+    "name": "Operating Engineers Local Union #3 Dist 17 PAC",
+    "amount": 5000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Ledcor Development LP",
+    "amount": 4000.0,
+    "n": 2,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Lanai Resorts",
+    "amount": 4000.0,
+    "n": 2,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "MTP Operating Company LLC dba Maui Tropical Plant.",
+    "amount": 4000.0,
+    "n": 2,
     "employer": "",
     "occupation": ""
    }
