@@ -1,11 +1,11 @@
 {
- "generated": "2026-06-25T00:17:01.034076-10:00",
+ "generated": "2026-06-25T19:22:46.149724-10:00",
  "source": "HANDS hands.ehawaii.gov",
  "tenant": "maui",
- "statewide_total": 10720,
- "awards": 274,
+ "statewide_total": 10753,
+ "awards": 275,
  "vendors_n": 75,
- "dollars": 120690870.74,
+ "dollars": 121407303.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -1714,6 +1714,45 @@
    ]
   },
   {
+   "vendor": "HALEY & ALDRICH, INC.",
+   "total": 935218.09,
+   "count": 4,
+   "awards": [
+    {
+     "amount": 716433.0,
+     "date": "06/19/2026",
+     "title": "For the Furnishing and Delivery of MS4 Program Management Consulting Services for Dept. of Public Works, Highways Division",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 29794.0,
+     "date": "02/20/2026",
+     "title": "CML Gulch Crossing Environmental Permitting Support ",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 89118.09,
+     "date": "08/14/2025",
+     "title": "Mangrove Removal at Kaunakakai Stream",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 99873.0,
+     "date": "09/09/2021",
+     "title": "Systemwide Improvement Framework for the Iao Stream Flood Control Project",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
    "vendor": "WARREN S. UNEMORI ENGINEERING, INC.",
    "total": 805885.0,
    "count": 4,
@@ -2319,37 +2358,6 @@
    ]
   },
   {
-   "vendor": "HALEY & ALDRICH, INC.",
-   "total": 218785.09,
-   "count": 3,
-   "awards": [
-    {
-     "amount": 29794.0,
-     "date": "02/20/2026",
-     "title": "CML Gulch Crossing Environmental Permitting Support ",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 89118.09,
-     "date": "08/14/2025",
-     "title": "Mangrove Removal at Kaunakakai Stream",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 99873.0,
-     "date": "09/09/2021",
-     "title": "Systemwide Improvement Framework for the Iao Stream Flood Control Project",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    }
-   ]
-  },
-  {
    "vendor": "R. M. TOWILL CORPORATION",
    "total": 211733.0,
    "count": 1,
@@ -2725,7 +2733,7 @@
    ]
   }
  ],
- "maui_awards": 274,
+ "maui_awards": 275,
  "maui_vendors": 75,
- "maui_dollars": 120690870.74
+ "maui_dollars": 121407303.74
 }
