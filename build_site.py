@@ -253,6 +253,7 @@ NAV_LABEL = {
     "king/civic/templates/title02-service/Title2%20Service.html": "Title 2 — Administration & Personnel (free)",
     "king/civic/templates/blessings/Night%20Tends%20the%20Day.html": "Blessing — The Night Tends the Day",
     "king/civic/templates/blessings/Every%20Hand%20Knows%20Its%20Work.html": "Blessing — Every Hand Knows Its Work",
+    "king/civic/templates/blessings/Each%20Voice%20True%20None%20in%20Discord.html": "Blessing — Each Voice True, None in Discord",
     "king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html": "Title 19 — Substantial Change Procedure",
     "king/civic/templates/budget-transparency/Budget%20Transparency.html": "Budget — Every Dollar",
     "king/civic/templates/county-code/Maui%20County%20Code%20%26%20Rules.html": "Maui County Code",
@@ -1171,6 +1172,7 @@ Sources are linked on every page.</div>
 <div class="grid">
  <a class="card" href="king/civic/templates/blessings/Night%20Tends%20the%20Day.html"><div class="t">The Night Tends the Day</div><div class="b">The Kumulipo rhythm — Pō tends the day's work and dreams the next day forward.</div></a>
  <a class="card" href="king/civic/templates/blessings/Every%20Hand%20Knows%20Its%20Work.html"><div class="t">Every Hand Knows Its Work</div><div class="b">Kuleana — each lane of the house knowing and tending its own work.</div></a>
+ <a class="card" href="king/civic/templates/blessings/Each%20Voice%20True%20None%20in%20Discord.html"><div class="t">Each Voice True, None in Discord</div><div class="b">Harmony — the house grew to many lanes, and every voice was checked and rang true.</div></a>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
