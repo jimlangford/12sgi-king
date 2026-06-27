@@ -131,6 +131,7 @@ EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kau
                "audit_balance_paris.html", "audit_balance_singapore.html", "audit_balance_tokyo.html", "audit_balance_zurich.html",
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html", "officials_nyc.html",
+               "officials_maui.html", "officials_nys.html",
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
                "money_hawaii.html", "money_kauai.html", "money_maui.html",
                # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
