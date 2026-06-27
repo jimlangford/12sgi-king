@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-elphase="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aupuni Constellation · 12 Stones Global</title>
+<meta name="description" content="The Aupuni constellation — every govOS tenant on the living globe, each tending its work by day and healing at pau hana. Powered by elementLOTUS.">
+<style>
+:root{--el-bg:#0c0b09;--el-ink:#efe9da;--el-accent:#e3ad33;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--el-bg);color:var(--el-ink);font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;transition:background-color 3s linear,color 3s linear;min-height:100vh}
+a{color:var(--el-accent);text-decoration:none}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid #34301f;background:#0c0b09;position:sticky;top:0;z-index:50}
+.topbar .brand{font-weight:800;letter-spacing:-.3px;color:#efe9da;font-size:15px}
+.topbar .brand small{display:block;color:#756b56;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.topbar nav a{font-size:13px;color:#f4c95d;margin-left:16px}
+.topbar nav a:hover{color:#e3ad33}
+#aupuni{--bg:#0c0b09;--panel:#16140f;--line:#34301f;--ink:#efe9da;--dim:#b3a98f;--faint:#756b56;--gold:#e3ad33;--gold2:#f4c95d;--moon:#9fc0e8;background:radial-gradient(1000px 460px at 50% -14%,rgba(227,173,51,.10),transparent 60%),radial-gradient(760px 400px at 96% 118%,rgba(116,168,216,.06),transparent 55%);padding:26px 18px 50px;max-width:1100px;margin:0 auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lani{text-align:center;letter-spacing:.34em;font-size:10px;text-transform:uppercase;color:var(--gold);opacity:.85}
+.honua{text-align:center;letter-spacing:.34em;font-size:10px;text-transform:uppercase;color:var(--moon);opacity:.8;margin-top:16px}
+.title{text-align:center;margin:8px 0 6px}.title b{font-size:17px;letter-spacing:.04em;color:var(--ink);font-weight:400}
+.title .sub{font-size:11px;color:var(--dim);margin-top:4px}
+#lc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:16px}
+.foot{border-top:1px solid var(--line);margin-top:16px;padding-top:13px;text-align:center;font-size:11px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="brand">12 Stones Global<small>Aupuni · Kilo Aupuni</small></div>
+<nav><a href="https://elementlotus.com/">elementLOTUS ›</a><a href="https://elementlotus.com/aupuni/">studio aupuni ›</a><a href="index.html">civic home ›</a></nav></div>
+<div id="aupuni">
+  <h1 class="sr-only">Aupuni constellation — every 12 Stones Global govOS tenant on a live 3-D globe, each lit by day and healing at pau hana, by its own location and sun. Powered by elementLOTUS.</h1>
+  <div class="lani">ka lani · the heavens above</div>
+  <div class="title"><b>Aupuni constellation</b><div class="sub">the sun crosses the living globe · 16 tenants tend their work by day, heal at <span style="color:var(--gold2)">pau hana</span> — one moon for all</div></div>
+  <div id="lc-stage" style="position:relative;min-height:140px">
+    <div id="lc-load" style="text-align:center;color:var(--faint);font-size:12px;padding:48px 0">&#9788; summoning the globe&hellip;</div>
+    <div id="lc-globe" style="width:100%;display:none"></div>
+    <div id="lc-moon" style="position:absolute;top:12px;right:12px;display:flex;gap:9px;align-items:center;background:rgba(12,11,9,.6);border:1px solid var(--line);border-radius:12px;padding:8px 12px"></div>
+    <svg id="lc-map" viewBox="0 0 960 430" style="width:100%;height:auto;display:none" role="img" aria-label="flat world map fallback"></svg>
+  </div>
+  <div id="lc-grid"></div>
+  <div class="honua">ka honua · the earth below</div>
+  <div class="foot"><span style="color:var(--gold)">&#10022;</span> Christ-aloha, solution-side — balancing sun and moon across the globe<br>
+  <span style="color:var(--faint)">Ua ola loko i ke aloha · love gives life within</span><br>
+  <span style="color:var(--faint)">powered by <a href="https://elementlotus.com/">elementLOTUS</a></span></div>
+</div>
+<script>
+(function(){
+  var T=[
+    {code:"000",name:"State of Hawaiʻi",tz:"Pacific/Honolulu",lat:21.31,lon:-157.86,accent:"#e3ad33",work:"Statewide Sunshine-Law watch"},
+    {code:"001",name:"Maui County",tz:"Pacific/Honolulu",lat:20.80,lon:-156.33,accent:"#fbbf24",work:"Council agendas · moon message"},
+    {code:"002",name:"Hawaiʻi County",tz:"Pacific/Honolulu",lat:19.60,lon:-155.50,accent:"#e0734a",work:"County agenda watch"},
+    {code:"003",name:"Kauaʻi County",tz:"Pacific/Honolulu",lat:22.08,lon:-159.50,accent:"#38bdf8",work:"County agenda watch"},
+    {code:"004",name:"Honolulu",tz:"Pacific/Honolulu",lat:21.31,lon:-157.86,accent:"#4ade80",work:"City & County watch"},
+    {code:"NYC",name:"New York City",tz:"America/New_York",lat:40.71,lon:-74.01,accent:"#9b8cf0",work:"govOS civic watch"},
+    {code:"NYS",name:"New York State",tz:"America/New_York",lat:42.65,lon:-73.76,accent:"#b48cf0",work:"govOS civic watch"},
+    {code:"LIV",name:"Liverpool, NY",tz:"America/New_York",lat:43.11,lon:-76.22,accent:"#7fd4c0",work:"Village govOS · Onondaga Co."},
+    {code:"LON",name:"London",tz:"Europe/London",lat:51.51,lon:-0.13,accent:"#6ab0ff",work:"govOS civic watch · forming"},
+    {code:"PAR",name:"Paris",tz:"Europe/Paris",lat:48.85,lon:2.35,accent:"#e58fb0",work:"govOS civic watch · forming"},
+    {code:"ZUR",name:"Zürich",tz:"Europe/Zurich",lat:47.37,lon:8.54,accent:"#d98c5f",work:"govOS civic watch · forming"},
+    {code:"FRA",name:"Frankfurt am Main",tz:"Europe/Berlin",lat:50.11,lon:8.68,accent:"#c2a35a",work:"govOS civic watch · forming"},
+    {code:"DXB",name:"Dubai",tz:"Asia/Dubai",lat:25.20,lon:55.27,accent:"#d9b24c",work:"govOS civic watch · forming"},
+    {code:"SIN",name:"Singapore",tz:"Asia/Singapore",lat:1.35,lon:103.82,accent:"#5fc0d8",work:"govOS civic watch · forming"},
+    {code:"HKG",name:"Hong Kong SAR",tz:"Asia/Hong_Kong",lat:22.32,lon:114.17,accent:"#ef6f6f",work:"govOS civic watch · forming"},
+    {code:"TYO",name:"Tokyo",tz:"Asia/Tokyo",lat:35.68,lon:139.69,accent:"#f48fb1",work:"govOS civic watch · forming"}
+  ];
+  var PINS=[
+    {name:"Hawaiʻi · 000–004",lat:20.6,lon:-157,accent:"#e3ad33"},
+    {name:"New York",lat:40.9,lon:-74.2,accent:"#9b8cf0"},
+    {name:"Liverpool NY",lat:43.5,lon:-76.4,accent:"#7fd4c0"},
+    {name:"London",lat:51.5,lon:-0.13,accent:"#6ab0ff"},
+    {name:"Paris",lat:48.85,lon:2.35,accent:"#e58fb0"},
+    {name:"Zürich",lat:47.37,lon:8.54,accent:"#d98c5f"},
+    {name:"Frankfurt",lat:50.11,lon:8.68,accent:"#c2a35a"},
+    {name:"Dubai",lat:25.2,lon:55.27,accent:"#d9b24c"},
+    {name:"Singapore",lat:1.35,lon:103.82,accent:"#5fc0d8"},
+    {name:"Hong Kong",lat:22.32,lon:114.17,accent:"#ef6f6f"},
+    {name:"Tokyo",lat:35.68,lon:139.69,accent:"#f48fb1"}
+  ];
+  function z(n){return(n<10?"0":"")+n;}
+  function parts(tz){var p=new Intl.DateTimeFormat("en-US",{timeZone:tz,hour12:false,hour:"2-digit",minute:"2-digit",second:"2-digit"}).formatToParts(new Date());var o={};p.forEach(function(x){o[x.type]=x.value;});return {h:(parseInt(o.hour,10)||0)%24,m:parseInt(o.minute,10)||0,s:parseInt(o.second,10)||0};}
+  function subsolar(){var d=new Date();var u=d.getUTCHours()+d.getUTCMinutes()/60+d.getUTCSeconds()/3600;var l=180-u*15;while(l>180)l-=360;while(l<-180)l+=360;return l;}
+  function declination(){var d=new Date();var start=Date.UTC(d.getUTCFullYear(),0,0);var doy=(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-start)/86400000;return 23.44*Math.sin(2*Math.PI*(doy-80)/365.24);}
+
+  var grid=document.getElementById("lc-grid");
+  if(grid){
+    grid.innerHTML=T.map(function(t){
+      return '<div data-tz="'+t.tz+'" style="background:var(--panel);border:1px solid var(--line);border-left:3px solid '+t.accent+';border-radius:11px;padding:12px 13px">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:10px;letter-spacing:.14em;color:var(--faint)">TENANT '+t.code+'</span>'
+        +'<span class="lc-pill" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)">·</span></div>'
+        +'<div style="font-size:14px;color:var(--ink);margin-bottom:9px">'+t.name+'</div>'
+        +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><span class="lc-orb" style="font-size:22px;line-height:1">☀</span>'
+        +'<span class="lc-clock" style="font-size:19px;font-variant-numeric:tabular-nums;color:var(--ink)">--:--:--</span></div>'
+        +'<div style="font-size:11px;color:var(--dim);line-height:1.4">'+t.work+'</div></div>';
+    }).join("");
+  }
+  function tickCards(){
+    if(!grid)return;
+    grid.querySelectorAll("[data-tz]").forEach(function(c){
+      var p=parts(c.getAttribute("data-tz"));var dec=p.h+p.m/60+p.s/3600;var day=(dec>=6&&dec<16.5);
+      var clk=c.querySelector(".lc-clock"),orb=c.querySelector(".lc-orb"),pill=c.querySelector(".lc-pill");
+      if(clk)clk.textContent=z(p.h)+":"+z(p.m)+":"+z(p.s);
+      if(orb){orb.textContent=day?"☀":"☾";orb.style.color=day?"#f4c95d":"#bcd4ef";}
+      if(pill){if(day){pill.textContent="hana · day";pill.style.color="#f4c95d";pill.style.borderColor="#5a481f";}else{pill.textContent="pau hana · heal";pill.style.color="#9fc0e8";pill.style.borderColor="#2c3a4c";}}
+    });
+  }
+  tickCards();setInterval(tickCards,1000);
+
+  function moon(){
+    var SYN=29.530588853;var jd=Date.now()/86400000+2440587.5;var age=((jd-2451550.1)%SYN+SYN)%SYN;
+    var illum=Math.round((1-Math.cos(2*Math.PI*age/SYN))/2*100);var waxing=age<SYN/2;var glyph,name;
+    if(age<1.5){glyph="🌑";name="new · Hilo/Muku";}
+    else if(age<6.5){glyph=waxing?"🌒":"🌘";name="waxing crescent";}
+    else if(age<9.5){glyph="🌓";name="first quarter";}
+    else if(age<13.5){glyph="🌔";name="waxing gibbous";}
+    else if(age<16.5){glyph="🌕";name="full · Māhealani";}
+    else if(age<20.5){glyph="🌖";name="waning gibbous";}
+    else if(age<23.5){glyph="🌗";name="last quarter";}
+    else{glyph="🌘";name="waning crescent";}
+    return {glyph:glyph,name:name,illum:illum};
+  }
+  function paintMoon(){var el=document.getElementById("lc-moon");if(!el)return;var m=moon();
+    el.innerHTML='<span style="font-size:26px;line-height:1">'+m.glyph+'</span>'
+      +'<div style="text-align:right"><div style="font-size:11px;color:#cdd8ea;letter-spacing:.04em">'+m.name+'</div>'
+      +'<div style="font-size:10px;color:#7f8aa0">'+m.illum+'% lit · one moon for all 16</div></div>';}
+  paintMoon();setInterval(paintMoon,60000);
+
+  function hideLoad(){var L=document.getElementById("lc-load");if(L)L.style.display="none";}
+  function buildSVG(){
+    hideLoad();var NS="http://www.w3.org/2000/svg";var map=document.getElementById("lc-map");if(!map)return;map.style.display="block";
+    var W=960,H=430,padX=44,padTop=54,padBot=62,LATMAX=80,LATMIN=-58;
+    function X(lon){return padX+(lon+180)/360*(W-2*padX);}function Y(lat){return padTop+(LATMAX-lat)/(LATMAX-LATMIN)*(H-padTop-padBot);}
+    function E(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+    map.appendChild(E("rect",{x:padX,y:padTop,width:W-2*padX,height:H-padTop-padBot,rx:10,fill:"#0a0f17",stroke:"#22304a","stroke-width":1}));
+    var dayG=E("g",{});map.appendChild(dayG);
+    var grat=E("g",{stroke:"#1b2740","stroke-width":0.6,opacity:0.55});
+    for(var lo=-150;lo<=150;lo+=30)grat.appendChild(E("line",{x1:X(lo),y1:padTop,x2:X(lo),y2:H-padBot}));
+    for(var la=-30;la<=60;la+=30)grat.appendChild(E("line",{x1:padX,y1:Y(la),x2:W-padX,y2:Y(la)}));
+    map.appendChild(grat);var dyn=E("g",{});map.appendChild(dyn);
+    PINS.forEach(function(p){map.appendChild(E("circle",{cx:X(p.lon),cy:Y(p.lat),r:4,fill:p.accent}));});
+    function redraw(){while(dayG.firstChild)dayG.removeChild(dayG.firstChild);while(dyn.firstChild)dyn.removeChild(dyn.firstChild);
+      var s=subsolar(),lo=s-90,hi=s+90,segs=[];
+      if(lo<-180){segs.push([-180,hi]);segs.push([lo+360,180]);}else if(hi>180){segs.push([lo,180]);segs.push([-180,hi-360]);}else segs.push([lo,hi]);
+      segs.forEach(function(g){dayG.appendChild(E("rect",{x:X(g[0]),y:padTop,width:Math.max(0,X(g[1])-X(g[0])),height:H-padTop-padBot,fill:"rgba(227,173,51,0.10)"}));});
+      var sun=E("text",{x:X(s),y:padTop-20,fill:"#f4c95d","font-size":22,"text-anchor":"middle"});sun.textContent="☀";dyn.appendChild(sun);}
+    redraw();setInterval(redraw,20000);
+  }
+
+  var world=null;
+  function buildGlobe(){
+    var host=document.getElementById("lc-globe");
+    if(!host||typeof Globe==="undefined"){buildSVG();return;}
+    try{
+      host.innerHTML="";hideLoad();
+      world=Globe()(host)
+        .backgroundColor("rgba(0,0,0,0)")
+        .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
+        .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
+        .showAtmosphere(true).atmosphereColor("#e3ad33").atmosphereAltitude(0.16)
+        .pointsData(PINS).pointLat("lat").pointLng("lon").pointColor("accent").pointAltitude(0.012).pointRadius(0.45)
+        .labelsData(PINS).labelLat("lat").labelLng("lon").labelText("name").labelColor("accent").labelSize(1.05).labelDotRadius(0.4).labelResolution(2);
+      host.style.display="block";
+      function size(){var w=host.clientWidth||720;world.width(w).height(Math.min(540,Math.max(380,w*0.62)));}
+      size();window.addEventListener("resize",size);
+      world.pointOfView({lat:18,lng:-100,altitude:2.5},0);
+      try{var ctr=world.controls();if(ctr){ctr.autoRotate=true;ctr.autoRotateSpeed=0.22;ctr.enableZoom=true;}}catch(e){}
+      /* night-side city lights — applied AFTER first render, so a failure can never blank the globe */
+      try{
+        var mat=world.globeMaterial();
+        if(mat){
+          if(window.THREE){
+            var tl=new window.THREE.TextureLoader();tl.crossOrigin="anonymous";
+            tl.load("//unpkg.com/three-globe/example/img/earth-night.jpg",function(tex){
+              try{mat.emissiveMap=tex;mat.emissive=new window.THREE.Color(0xffffff);mat.emissiveIntensity=0.62;mat.needsUpdate=true;}catch(e){}
+            },null,function(){try{mat.emissiveIntensity=0;}catch(e){}});
+          }
+        }
+      }catch(e){}
+      function sun(){try{
+        var c=world.getCoords(declination(),subsolar(),2);var ls=world.lights();
+        var dir=ls.filter(function(l){return /Direction/i.test(l.type);})[0];
+        var amb=ls.filter(function(l){return /Ambient/i.test(l.type);})[0];
+        if(dir){dir.position.set(c.x,c.y,c.z);dir.intensity=1.15;}
+        if(amb){amb.intensity=0.26;}
+        world.lights(ls);
+      }catch(e){}}
+      setTimeout(sun,500);setInterval(sun,30000);
+    }catch(e){buildSVG();}
+  }
+  function inject(src,cb,err){var s=document.createElement("script");s.src=src;s.onload=cb;s.onerror=err;(document.head||document.body).appendChild(s);}
+  function loadGlobe(){
+    var done=false;var t=setTimeout(function(){if(!done){done=true;buildSVG();}},13000);
+    function go(){if(done)return;done=true;clearTimeout(t);buildGlobe();}
+    function fail(){if(done)return;done=true;clearTimeout(t);buildSVG();}
+    inject("//unpkg.com/three@0.149.0/build/three.min.js",function(){inject("//unpkg.com/globe.gl",go,fail);},function(){inject("//unpkg.com/globe.gl",go,fail);});
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",loadGlobe);else loadGlobe();
+})();
+
+</script>
+<script>
+/* elementLOTUS day-cycle — radiates the palette through the FIVE Hawaiian day-parts, by EACH PERSON'S
+   own location/sun: Kakahiaka -> Awakea -> ʻAuinalā -> Ahiahi -> Pō. Pau hana (end-of-work) is the
+   ʻauinalā->ahiahi hinge: a logged-in person's own el_pauhana preference, else 16:30 (Hawaiʻi default).
+   Sourced ʻōlelo (KHON2 Aloha Authentic / oleloonline). No geo prompt (browser timezone). (Jimmy 2026-06-26) */
+(function(){
+  if(window.__elDayCycle)return; window.__elDayCycle=1;
+  var TZ={'Pacific/Honolulu':[21.3,-157.9],'America/Anchorage':[61.2,-149.9],'America/Los_Angeles':[34.0,-118.2],
+    'America/Vancouver':[49.3,-123.1],'America/Denver':[39.7,-105.0],'America/Phoenix':[33.4,-112.1],
+    'America/Chicago':[41.9,-87.6],'America/New_York':[40.7,-74.0],'America/Toronto':[43.7,-79.4],
+    'America/Sao_Paulo':[-23.5,-46.6],'America/Mexico_City':[19.4,-99.1],'Europe/London':[51.5,-0.1],
+    'Europe/Dublin':[53.3,-6.2],'Europe/Paris':[48.9,2.3],'Europe/Berlin':[52.5,13.4],'Europe/Zurich':[47.4,8.5],
+    'Europe/Madrid':[40.4,-3.7],'Europe/Rome':[41.9,12.5],'Europe/Moscow':[55.8,37.6],'Africa/Cairo':[30.0,31.2],
+    'Africa/Johannesburg':[-26.2,28.0],'Asia/Dubai':[25.2,55.3],'Asia/Karachi':[24.9,67.0],'Asia/Kolkata':[19.1,72.9],
+    'Asia/Singapore':[1.35,103.8],'Asia/Hong_Kong':[22.3,114.2],'Asia/Shanghai':[31.2,121.5],'Asia/Tokyo':[35.7,139.7],
+    'Asia/Seoul':[37.6,126.9],'Australia/Sydney':[-33.9,151.2],'Pacific/Auckland':[-36.9,174.8]};
+  function loc(){
+    var z=''; try{z=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+    if(TZ[z])return {lat:TZ[z][0],lon:TZ[z][1]};
+    var off=-(new Date().getTimezoneOffset())/60;
+    return {lat:(off>=-1&&off<=3)?50:(Math.abs(off)>=8?25:38), lon:off*15};
+  }
+  function sun(L){
+    var d=new Date(),s=Date.UTC(d.getUTCFullYear(),0,0),N=Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-s)/86400000);
+    var g=2*Math.PI/365*(N-1+0.5),r=Math.PI/180;
+    var eq=229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+    var dec=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+    var cosH=(Math.cos(90.833*r)-Math.sin(L.lat*r)*Math.sin(dec))/(Math.cos(L.lat*r)*Math.cos(dec));
+    cosH=Math.max(-1,Math.min(1,cosH));
+    var ha=Math.acos(cosH)/r, off=-(new Date().getTimezoneOffset());
+    var sr=((720-4*(L.lon+ha)-eq)+off)%1440, ss=((720-4*(L.lon-ha)-eq)+off)%1440;
+    return {sr:(sr+1440)%1440, ss:(ss+1440)%1440};
+  }
+  function nowLocal(){var d=new Date();return d.getHours()*60+d.getMinutes();}
+  function pau(){ /* logged-in / device preference, else Hawaiʻi 16:30 */
+    try{var p=localStorage.getItem('el_pauhana'); if(p&&/^\d{1,2}:\d{2}$/.test(p)){var a=p.split(':');return (+a[0])*60+(+a[1]);}}catch(e){}
+    return 16*60+30;
+  }
+  function Lp(a,b,t){return Math.round(a+(b-a)*t);}
+  function mix(c1,c2,t){return 'rgb('+Lp(c1[0],c2[0],t)+','+Lp(c1[1],c2[1],t)+','+Lp(c1[2],c2[2],t)+')';}
+  /* the 5 sourced Hawaiian day-part palettes [bg,ink,acc] (config/hawaiian_day_parts.json) */
+  var KAK={bg:[239,226,200],ink:[74,54,24], acc:[201,138,42]};  /* Kakahiaka — morning */
+  var AWA={bg:[247,236,213],ink:[42,29,4],  acc:[184,121,31]};  /* Awakea — midday */
+  var AUI={bg:[233,201,143],ink:[58,36,16], acc:[168,99,31]};   /* ʻAuinalā — afternoon */
+  var AHI={bg:[122,55,20], ink:[247,227,179],acc:[244,201,93]}; /* Ahiahi — evening */
+  var PO ={bg:[12,11,9],   ink:[239,233,218],acc:[227,173,51]}; /* Pō — night */
+  function seg(t,a,b,A,B){var k=Math.min(1,Math.max(0,(t-a)/Math.max(1,b-a)));return [mix(A.bg,B.bg,k),mix(A.ink,B.ink,k),mix(A.acc,B.acc,k)];}
+  function apply(){
+    var L=loc(),s=sun(L),t=nowLocal(),P=pau();
+    var noon=Math.round((s.sr+s.ss)/2), awEnd=Math.min(noon+120,P-30), c, ph;
+    if(t<s.sr||t>=s.ss){ c=['rgb(12,11,9)','rgb(239,233,218)','rgb(227,173,51)']; ph='po'; }
+    else if(t<noon){  c=seg(t,s.sr,noon,KAK,AWA); ph='kakahiaka'; }
+    else if(t<awEnd){ c=seg(t,noon,awEnd,AWA,AUI); ph='awakea'; }
+    else if(t<P){     c=seg(t,awEnd,P,AUI,AHI);   ph='auinala'; }
+    else {            c=seg(t,P,s.ss,AHI,PO);     ph='ahiahi'; }
+    var st=document.documentElement.style;
+    st.setProperty('--el-bg',c[0]);st.setProperty('--el-ink',c[1]);st.setProperty('--el-accent',c[2]);
+    document.documentElement.setAttribute('data-elphase',ph);
+  }
+  apply(); setInterval(apply,60000);
+})();
+
+</script>
+</body>
+</html>
