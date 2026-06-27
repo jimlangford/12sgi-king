@@ -261,5 +261,58 @@ a{color:var(--el-accent);text-decoration:none}
 })();
 
 </script>
+<script>
+/* Celestial reading enhancer — adds the kaulana mahina moon night atop each tenant clock,
+   and a TAP-to-fade celestial reading. PUBLIC layer only (moon night + illumination + sourced
+   blessing). The deeper per-ZONE Hina reading + membership-tier depth are HELD for the kumu —
+   structured slots here, never invented (la-po-108 rule). (Jimmy 2026-06-26) */
+(function(){
+  var NIGHTS=["Hilo","Hoaka","Kūkahi","Kūlua","Kūkolu","Kūpau","ʻOlekūkahi","ʻOlekūlua","ʻOlekūkolu","ʻOlepau",
+    "Huna","Mōhalu","Hua","Akua","Hoku","Māhealani","Kulu","Lāʻaukūkahi","Lāʻaukūlua","Lāʻaupau",
+    "ʻOlekūkahi","ʻOlekūlua","ʻOlepau","Kāloakūkahi","Kāloakūlua","Kāloapau","Kāne","Lono","Mauli","Muku"];
+  var BLESS=["The moon keeps the count the sun cannot — navigate by what is steady.",
+    "Pō holds what Lā builds; nothing true is lost in the night.",
+    "By tide and moon the canoe finds shore — the service returns, the way is kept.",
+    "Christ-aloha: the light that serves people, held through the night until morning."];
+  function moon(){var SYN=29.530588853,jd=Date.now()/86400000+2440587.5,age=((jd-2451550.1)%SYN+SYN)%SYN;
+    return {night:NIGHTS[Math.min(29,Math.floor(age))], illum:Math.round((1-Math.cos(2*Math.PI*age/SYN))/2*100), n:Math.floor(age)+1, age:age};}
+  function tierNote(){ /* membership tier from a logged-in preference; public default */
+    var t='public'; try{t=localStorage.getItem('el_tier')||'public';}catch(e){}
+    return t==='public' ? 'deeper zone reading — held for the kumu · unlocks by membership tier'
+                        : 'zone reading ('+t+') — held slot, awaiting the kumu’s sacred text';
+  }
+  function enhance(){
+    var grid=document.getElementById('lc-grid'); if(!grid)return false;
+    var cards=grid.querySelectorAll('[data-tz]'); if(!cards.length)return false;
+    var m=moon();
+    cards.forEach(function(c){
+      if(c.__hina)return; c.__hina=1;
+      var nameEl=c.querySelector('div[style*="font-size:14px"]')||c.querySelectorAll('div')[1];
+      var tname=nameEl?nameEl.textContent.trim():'this place';
+      var orb=c.querySelector('.lc-orb'); var clkrow=orb?orb.parentNode:null;
+      var cel=document.createElement('div');
+      cel.style.cssText='font-size:10px;color:#9fc0e8;letter-spacing:.04em;margin:-2px 0 7px;cursor:pointer;user-select:none';
+      cel.innerHTML='🌙 '+m.night+' · '+m.illum+'% <span style="color:#756b56">· tap for reading</span>';
+      if(clkrow&&clkrow.parentNode)clkrow.parentNode.insertBefore(cel,clkrow);
+      var read=document.createElement('div');
+      read.style.cssText='font-size:11px;color:#cdbf9a;line-height:1.55;margin-top:7px;border-top:1px solid #34301f;padding-top:7px;opacity:0;max-height:0;overflow:hidden;transition:opacity .6s ease,max-height .6s ease';
+      read.innerHTML='<b style="color:#9fc0e8">Hina reading · '+tname+'</b><br>'
+        +'🌙 '+m.night+' (night '+m.n+') · '+m.illum+'% lit<br>'
+        +'<span style="font-style:italic;color:#b3a98f">'+BLESS[m.n%BLESS.length]+'</span><br>'
+        +'<span style="color:#756b56;font-size:10px">'+tierNote()+'</span>';
+      c.appendChild(read);
+      cel.addEventListener('click',function(e){
+        e.stopPropagation();
+        var open=read.style.opacity==='1';
+        read.style.opacity=open?'0':'1';
+        read.style.maxHeight=open?'0':'200px';
+      });
+    });
+    return true;
+  }
+  var tries=0, iv=setInterval(function(){ if(enhance()||++tries>40)clearInterval(iv); },500);
+})();
+
+</script>
 </body>
 </html>
