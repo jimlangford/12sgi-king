@@ -26,6 +26,7 @@ HST     = timezone(timedelta(hours=-10))
 
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
+    ("civic_daily.html",                 "Today's Civic Agenda",         "Today's Maui meetings before they happen - HST times, agenda items, what to ask, how to testify - bracketed by the night's moon prayers. Refreshed each sunrise. Public records (Legistar)."),
     ("county_dashboard.html",            "Maui County Dashboard",        "Coverage map + lens activity + money trail across every watcher."),
     ("accountability_record.html",       "Accountability Record",        "Public record: corruption rankings, federal convictions (Stant/Choy/English/Cullen), reforms recommended vs enacted."),
     ("sole_source_watch.html",           "Sole-Source Watch",            "Sole-source/exemption awards (the Stant mechanism) + the executive-branch gap + the lawful records path."),
@@ -184,6 +185,7 @@ NAV_LABEL = {
     "lobby_money_watch.html": "Lobby + Money",
     "officials_scorecard.html": "Officials Scorecard",
     "lege_legislator_scorecard.html": "Legislator Scorecard",
+    "civic_daily.html": "Today's Civic Agenda",
     "accountability_record.html": "Accountability Record",
     "sole_source_watch.html": "Sole-Source Watch",
     "commission_antitrust.html": "Antitrust Thread",
@@ -289,7 +291,7 @@ NAV_GROUPS = [
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
                           "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
-    ("The Record", ["n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
+    ("The Record", ["civic_daily.html", "n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
                     "charter_application.html", "lege_legislator_scorecard.html", "datasets.html", "feature_board.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
