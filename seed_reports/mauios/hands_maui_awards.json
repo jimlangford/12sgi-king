@@ -1,11 +1,11 @@
 {
- "generated": "2026-06-27T19:51:07.736775-10:00",
+ "generated": "2026-06-28T19:53:11.391493-10:00",
  "source": "HANDS hands.ehawaii.gov",
  "tenant": "maui",
- "statewide_total": 10762,
- "awards": 275,
- "vendors_n": 75,
- "dollars": 121407303.74,
+ "statewide_total": 10749,
+ "awards": 274,
+ "vendors_n": 74,
+ "dollars": 121207303.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -2388,21 +2388,6 @@
    ]
   },
   {
-   "vendor": "HUAYRA LLC",
-   "total": 200000.0,
-   "count": 1,
-   "awards": [
-    {
-     "amount": 200000.0,
-     "date": "02/27/2025",
-     "title": "Hana Ranch North Water System Acquisition",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    }
-   ]
-  },
-  {
    "vendor": "MOFFATT & NICHOL",
    "total": 163276.0,
    "count": 1,
@@ -2733,7 +2718,7 @@
    ]
   }
  ],
- "maui_awards": 275,
- "maui_vendors": 75,
- "maui_dollars": 121407303.74
+ "maui_awards": 274,
+ "maui_vendors": 74,
+ "maui_dollars": 121207303.74
 }
