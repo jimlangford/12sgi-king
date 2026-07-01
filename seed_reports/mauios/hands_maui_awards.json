@@ -1,11 +1,82 @@
 {
- "generated": "2026-06-28T19:53:11.391493-10:00",
+ "generated": "2026-06-30T19:52:18.119917-10:00",
  "source": "HANDS hands.ehawaii.gov",
  "tenant": "maui",
- "statewide_total": 10749,
- "awards": 274,
- "vendors_n": 74,
- "dollars": 121207303.74,
+ "statewide_total": 9885,
+ "awards": 269,
+ "vendors_n": 73,
+ "dollars": 118346946.74,
+ "corrections": [
+  {
+   "run": "2026-06-30T19:52:18.119917-10:00",
+   "prior_run": "2026-06-28T19:53:11.391493-10:00",
+   "source": "HANDS hands.ehawaii.gov",
+   "note": "HANDS database refreshed 2026-06-30. Records below were present in the prior pull (2026-06-28) and absent in this pull — removed or corrected at the source. Net change: 5 vendors adjusted or removed, 1 vendor added; $2,860,357 net reduction in tracked dollars. Statewide total also changed at source (10,749 → 9,885). These are sourced corrections, not editorial decisions.",
+   "removed": [
+    {
+     "vendor": "HDR ENGINEERING, INC.",
+     "amount": 563257.0,
+     "date": "02/07/2023",
+     "title": "CBS-1119 WK WWRF Solids Building Piping Rehab",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    },
+    {
+     "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
+     "amount": 347100.0,
+     "date": "11/30/2022",
+     "title": "Safety Improvements at Various Locations",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    },
+    {
+     "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
+     "amount": 800000.0,
+     "date": "11/29/2022",
+     "title": "County of Maui Traffic Calming Program",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    },
+    {
+     "vendor": "RANDOLPH H. MURAYAMA & ASSOCIATES, INC.",
+     "amount": 650000.0,
+     "date": "08/28/2023",
+     "title": "Lahaina Police Station Air Conditioning Improvements",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    },
+    {
+     "vendor": "N&K CPAs, INC.",
+     "amount": 350000.0,
+     "date": "10/31/2023",
+     "title": "Request for Proposals: Financial Audit of the County of Maui",
+     "dept": "Maui County - Office of Council Services",
+     "category": "Services",
+     "sol": "RFP No. 24-01oca"
+    },
+    {
+     "vendor": "Lynn Surayan",
+     "amount": 300000.0,
+     "date": "04/26/2024",
+     "title": "Project Management, Organizational Change Management and Management Consulting Services",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    }
+   ],
+   "added": [
+    {
+     "vendor": "BERLIEN CONSULTING LLC",
+     "amount": 150000.0,
+     "date": "06/15/2026",
+     "title": "Crime Lab Renovation for Wailuku Police Station",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services"
+    }
+   ],
+   "delta_dollars": -2860357.0,
+   "delta_awards": -5
+  }
+ ],
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -588,8 +659,8 @@
   },
   {
    "vendor": "HDR ENGINEERING, INC.",
-   "total": 8343633.0,
-   "count": 13,
+   "total": 7780376.0,
+   "count": 12,
    "awards": [
     {
      "amount": 200000.0,
@@ -664,14 +735,6 @@
      "sol": null
     },
     {
-     "amount": 563257.0,
-     "date": "02/07/2023",
-     "title": "CBS-1119 WK WWRF Solids Building Piping Rehab",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
      "amount": 604438.0,
      "date": "01/19/2023",
      "title": "Pukalani Terrace Subdivision Pavement Reconstruction (FY 2023)",
@@ -699,8 +762,8 @@
   },
   {
    "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
-   "total": 7536200.0,
-   "count": 20,
+   "total": 6389100.0,
+   "count": 18,
    "awards": [
     {
      "amount": 66600.0,
@@ -818,22 +881,6 @@
      "amount": 143144.0,
      "date": "12/12/2022",
      "title": "Planning and Design Services for Pauwela Bridge Replacement",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 347100.0,
-     "date": "11/30/2022",
-     "title": "Safety Improvements at Various Locations",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 800000.0,
-     "date": "11/29/2022",
-     "title": "County of Maui Traffic Calming Program",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
@@ -1551,37 +1598,6 @@
    ]
   },
   {
-   "vendor": "RANDOLPH H. MURAYAMA & ASSOCIATES, INC.",
-   "total": 1159784.0,
-   "count": 3,
-   "awards": [
-    {
-     "amount": 145201.0,
-     "date": "08/28/2024",
-     "title": "Design Services for Above-Ground Fuel Storage Tank",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 364583.0,
-     "date": "06/28/2024",
-     "title": "Design Services for A/C Repairs for Various County Buildings",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 650000.0,
-     "date": "08/28/2023",
-     "title": "Lahaina Police Station Air Conditioning Improvements",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    }
-   ]
-  },
-  {
    "vendor": "WILSON OKAMOTO CORPORATION",
    "total": 1118785.2,
    "count": 3,
@@ -1946,6 +1962,29 @@
    ]
   },
   {
+   "vendor": "RANDOLPH H. MURAYAMA & ASSOCIATES, INC.",
+   "total": 509784.0,
+   "count": 2,
+   "awards": [
+    {
+     "amount": 145201.0,
+     "date": "08/28/2024",
+     "title": "Design Services for Above-Ground Fuel Storage Tank",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    },
+    {
+     "amount": 364583.0,
+     "date": "06/28/2024",
+     "title": "Design Services for A/C Repairs for Various County Buildings",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
    "vendor": "NISHIKAWA ARCHITECTS, INC.",
    "total": 464330.0,
    "count": 3,
@@ -2106,21 +2145,6 @@
    ]
   },
   {
-   "vendor": "N&K CPAs, INC.",
-   "total": 350000.0,
-   "count": 1,
-   "awards": [
-    {
-     "amount": 350000.0,
-     "date": "10/31/2023",
-     "title": "Request for Proposals:  Financial Audit of the County of Maui",
-     "dept": "Maui County - Office of Council Services",
-     "category": "Services",
-     "sol": "RFP No. 24-01oca"
-    }
-   ]
-  },
-  {
    "vendor": "HAWAIIAN BREEZE SOLUTIONS CORP.",
    "total": 349290.0,
    "count": 2,
@@ -2200,21 +2224,6 @@
      "title": "Agenda and meeting management; legislative tracking",
      "dept": "Maui County - Office of Council Services",
      "category": "Goods & Services",
-     "sol": null
-    }
-   ]
-  },
-  {
-   "vendor": "Lynn Surayan",
-   "total": 300000.0,
-   "count": 1,
-   "awards": [
-    {
-     "amount": 300000.0,
-     "date": "04/26/2024",
-     "title": "Project Management, Organizational Change Management and Management Consulting Services",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
      "sol": null
     }
    ]
@@ -2396,6 +2405,21 @@
      "amount": 163276.0,
      "date": "04/22/2026",
      "title": "CBS-4586 Wailuku-Kahului WWRF Shoreline Erosion Protection",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "BERLIEN CONSULTING LLC",
+   "total": 150000.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 150000.0,
+     "date": "06/15/2026",
+     "title": "Crime Lab Renovation for Wailuku Police Station",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
@@ -2718,7 +2742,7 @@
    ]
   }
  ],
- "maui_awards": 274,
- "maui_vendors": 74,
- "maui_dollars": 121207303.74
+ "maui_awards": 269,
+ "maui_vendors": 73,
+ "maui_dollars": 118346946.74
 }

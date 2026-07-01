@@ -1,8 +1,8 @@
 {
- "generated": "2026-06-25T00:22:06.982385-10:00",
+ "generated": "2026-06-30T20:15:56.464668-10:00",
  "method": "mechanical name match on distinctive entity tokens; every hit is a QUESTION to verify, not proof",
- "vendors_scanned": 75,
- "matches": 9,
+ "vendors_scanned": 73,
+ "matches": 10,
  "matched": [
   {
    "vendor": "FUKUMOTO ENGINEERING, INC.",
@@ -166,6 +166,69 @@
      "amount": 500.0,
      "n": 1,
      "basis": "firm"
+    }
+   ]
+  },
+  {
+   "vendor": "BERLIEN CONSULTING LLC",
+   "award_total": 150000.0,
+   "award_count": 1,
+   "contrib_total": 4450.0,
+   "officials": [
+    "Bissen",
+    "Cook",
+    "Lee",
+    "Sugimura",
+    "Uu-Hodgins"
+   ],
+   "hits": [
+    {
+     "official": "Bissen",
+     "official_label": "Richard Bissen - Mayor",
+     "contributor": "Berlien, Taylor",
+     "amount": 2000.0,
+     "n": 1,
+     "basis": "individual"
+    },
+    {
+     "official": "Cook",
+     "official_label": "Tom Cook - Councilmember, South Maui",
+     "contributor": "Berlien Consulting, LLC",
+     "amount": 1050.0,
+     "n": 3,
+     "basis": "firm"
+    },
+    {
+     "official": "Bissen",
+     "official_label": "Richard Bissen - Mayor",
+     "contributor": "Berlien Consulting LLC",
+     "amount": 500.0,
+     "n": 1,
+     "basis": "firm"
+    },
+    {
+     "official": "Sugimura",
+     "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+     "contributor": "Berlien, Taylor",
+     "amount": 300.0,
+     "n": 1,
+     "basis": "individual"
+    },
+    {
+     "official": "Lee",
+     "official_label": "Alice L. Lee - Council Chair",
+     "contributor": "Berlien, Taylor",
+     "amount": 300.0,
+     "n": 1,
+     "basis": "individual"
+    },
+    {
+     "official": "Uu-Hodgins",
+     "official_label": "Nohelani Uu-Hodgins - Councilmember",
+     "contributor": "Berlien, Taylor",
+     "amount": 300.0,
+     "n": 1,
+     "basis": "individual"
     }
    ]
   },

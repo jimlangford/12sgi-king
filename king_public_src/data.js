@@ -90,14 +90,14 @@ window.KING_DATA = (() => {
     version: "v4.1.0", dispatch: "3.3.0-mission-control",
     nodes, songs, catalogExtras,
     zoneHex: {Mauka:"#4ade80", Kula:"#fbbf24", Makai:"#38bdf8", Universal:"#ffffff"},
-    kpis: {songsCatalog:193, lyricsDone:193, deckComplete:54, clips:3562, clipsDescribed:0,
+    kpis: {songsCatalog:211, lyricsDone:193, deckComplete:54, clips:3806, clipsDescribed:0,
            nodesMapped:70, pendingNodeMaps:1, loraAnchors:20, loraTarget:20},
     services: [],
     finals: [],
     dispatchLog: [],
     pending: [],
     game3d: {
-      asOf: "2026-06-12",
+      asOf: "2026-07-01",
       sync: { state: "54 / 54 nodes mapped", detail: "Every node has a card, a zone, and a song — the deck is complete." },
       baseline: "A 54-card playable deck of the Sage Game — each node a living system of its zone, built in-house.",
       pipeline: [
@@ -111,7 +111,7 @@ window.KING_DATA = (() => {
     },
     zoneLora: {},
     kilo: {
-      asOf: "2026-06-12",
+      asOf: "2026-07-01",
       watchers: [
         { name: "council-watch",   src: "CivicClerk agendas", n: "38 agendas YTD · FY27 ordinance text FLAGGED 06-11", stat: "live" },
         { name: "votes-watch",     src: "council minutes",    n: "14 minutes sets · 9 officials · 1 recusal (CC 26-11)", stat: "live" },
@@ -133,7 +133,7 @@ window.KING_DATA = (() => {
       integrity: "Facts + source links only. Recusals and donor→vote proximity are framed as questions for further reporting — never accusations.",
     },
     council: {
-      asOf: "2026-06-12",
+      asOf: "2026-07-01",
       sunshine: "HRS §92-7 · agendas post ≥6 days before a meeting",
       ytd: 38, recusals: 1, recusalCite: "CC 26-11 · via votes-watch",
       forecast: [

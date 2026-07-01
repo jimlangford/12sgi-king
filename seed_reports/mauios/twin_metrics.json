@@ -1,7 +1,7 @@
 {
  "module": "kilo-aupuni",
  "version": "1.1",
- "run_iso": "2026-06-27 17:31:20 HST",
+ "run_iso": "2026-06-29 19:44:56 HST",
  "watchers_live": [
   "civicclerk",
   "donors",
@@ -30,9 +30,9 @@
  "metrics": {
   "agendas_ingested": 40,
   "agenda_span": "2026-01-05 .. 2026-06-19",
-  "bids_tracked": 7518,
-  "permits_tracked": 1129,
-  "permits_recovery_flagged": 186,
+  "bids_tracked": 7520,
+  "permits_tracked": 1158,
+  "permits_recovery_flagged": 193,
   "officials_tracked": 9,
   "recusals_tracked": 5,
   "campaign_realestate_total": 376904.83,
@@ -46,22 +46,22 @@
    "Charter · Governance": 18
   },
   "lens_activity_bids": {
-   "Water / Kane-Kanaloa": 7518,
-   "Housing / Hale": 7516,
-   "Recovery / Lahaina": 7516,
-   "Infrastructure": 7516,
+   "Water / Kane-Kanaloa": 7520,
+   "Housing / Hale": 7518,
+   "Recovery / Lahaina": 7518,
+   "Infrastructure": 7518,
    "Services / Consultants": 1145,
    "Aina / Agriculture": 272,
    "Art.X / Budget": 399,
    "Title 19 / Land use": 73
   },
   "lens_activity_permits": {
-   "Title 19 / Land use": 1004,
-   "Water / Kane-Kanaloa": 286,
-   "Commercial / Build": 108,
-   "Housing / Hale": 225,
-   "Aina / Agriculture": 150,
-   "Recovery / Lahaina": 186
+   "Title 19 / Land use": 1031,
+   "Water / Kane-Kanaloa": 293,
+   "Commercial / Build": 112,
+   "Housing / Hale": 232,
+   "Aina / Agriculture": 155,
+   "Recovery / Lahaina": 193
   }
  }
 }
