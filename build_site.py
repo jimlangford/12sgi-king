@@ -966,6 +966,17 @@ def main():
     except Exception as _e:
         print("  ! open-data catalog skipped: %s" % str(_e)[:120])
 
+    # [tenant-coverage] HIDDEN-DATA DASHBOARD (Jimmy 2026-07-01): renders the tenant_registry.json
+    # coverage matrix (already public, already embedded in every tenant switcher) as an actual heatmap.
+    try:
+        import subprocess as _sp
+        _tch = os.path.join(os.path.dirname(os.path.abspath(__file__)), "watchers", "tenant_coverage_heatmap.py")
+        if os.path.exists(_tch):
+            _r = _sp.run([sys.executable, _tch], capture_output=True, text=True, timeout=30)
+            print("  " + (_r.stdout.strip() or "! tenant_coverage_heatmap produced no output"))
+    except Exception as _e:
+        print("  ! tenant coverage heatmap skipped: %s" % str(_e)[:120])
+
     # [blog] public Aloha blog — studio notes, creative methodology, production dispatches.
     # blog_engine.py writes to king-local; here we also render to site/ for GitHub Pages.
     if _blog_engine is not None:
@@ -1283,6 +1294,25 @@ Sources are linked on every page.</div>
             # SINGLE SOURCE: local root == public root (the civic landing front door).
             # The King System app lives at /king/ on BOTH (one tap from the landing).
             shutil.copy(h, os.path.join(KLOCAL, b))
+        # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
+        # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
+        # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no
+        # blog_engine import, confirmed by trace), so those relative links resolve WRONG under the
+        # private /king/blog (no .html) URL shape (e.g. href="king/" -> /king/king/, a 404). Re-render
+        # the PRIVATE (static=False, absolute /king/... nav + dynamic ?post= links) version directly
+        # into KLOCAL right here so this build pass is self-consistent and never depends on some other
+        # process re-running blog_engine.generate() afterward to undo the clobber.
+        if _blog_engine is not None and "_blog_pub" in dir():
+            try:
+                with open(os.path.join(KLOCAL, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
+                    f.write(_blog_engine.render_list_page(_blog_pub))
+                for _bp in _blog_pub:
+                    _slug = _bp.get("slug", _bp.get("id", ""))
+                    with open(os.path.join(KLOCAL, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
+                        f.write(_blog_engine.render_post_page(_bp))
+                print("  + king-local blog: re-rendered PRIVATE nav (static=False) over the public mirror copy")
+            except Exception as _kbe:
+                print("  ! king-local blog re-render skipped: %s" % str(_kbe)[:120])
         for sub in ("data", "donors", "king"):   # +king: civic/templates tree so go.html resolves on the private server (true superset)
             s = os.path.join(SITE, sub)
             if os.path.isdir(s):
