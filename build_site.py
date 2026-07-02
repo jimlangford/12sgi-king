@@ -38,6 +38,7 @@ PAGES = [
     ("patterns_money_x_votes.html",      "Patterns: Money x Votes",      "RE/developer money received vs. lens-bill dissents; cross-jurisdiction donor web."),
     ("contracts_x_donors.html",          "Contracts x Donors",           "Maui county contract awardees (HANDS) name-matched to campaign donors of tracked officials. Public records, framed as questions."),
     ("testimony_effect_map.html",        "Testimony Effect Map",         "Where real-estate-industry donor-entities hold recorded Maui parcels, alongside the fact that industry testified on Bill 9. In-house SVG map, real parcel geometry (Hawai'i statewide GIS)."),
+    ("great_mahele_overlay.html",        "The Great Mahele on the Map",  "The 1848 land division overlaid on the modern ahupua'a map: real Land Commission Award entries from the 1929 territorial index for four Maui districts, alongside real ahupua'a geometry."),
     ("maui_contract_awards.html",        "Maui Contract Awards",         "Every public Notice of Award to a Maui County jurisdiction (HANDS) - the vendor side of the money."),
     ("statewide_money_patterns.html",    "Statewide Money (2008+)",      "Campaign money across all 4 counties + State; the donor network."),
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
@@ -188,6 +189,7 @@ NAV_LABEL = {
     "statewide_money_patterns.html": "Statewide Money",
     "contracts_x_donors.html": "Contracts × Donors",
     "testimony_effect_map.html": "Testimony Effect Map",
+    "great_mahele_overlay.html": "The Great Mahele on the Map",
     "maui_contract_awards.html": "Contract Awards",
     "lobby_money_watch.html": "Lobby + Money",
     "officials_scorecard.html": "Officials Scorecard",
@@ -301,6 +303,7 @@ NAV_GROUPS = [
                           "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
     ("The Record", ["civic_daily.html", "n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
+                    "great_mahele_overlay.html",
                     "charter_application.html", "lege_legislator_scorecard.html", "datasets.html", "feature_board.html"]),
     # The 12 Stones Sovereign Charter crosswalked to each tenant's full legal hierarchy up
     # through the Holy See. Leads with the new per-tenant crosswalk engine (crosswalk_<id>.html);
