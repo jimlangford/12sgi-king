@@ -28,10 +28,19 @@
 <script src="https://unpkg.com/esri-leaflet@3.0.14/dist/esri-leaflet.js"></script>
 <script id="ovdata" type="application/json">{"money": {"_label": "FACT / SOURCED — federal award amounts are the public record; cited.", "_source": "USASpending.gov /api/v2/search/spending_by_award/ (place of performance = Hawaii)", "_geo_note": "Federal place-of-performance is COUNTY-LEVEL. Town bubbles reflect awards whose text names a town; the rest is shown as one 'Countywide' mass — which is itself the concentration: the money lands in a few large county-level awards, not distributed across the towns where people live.", "maui_total": 8244593930.0, "top10_share": 0.8809, "top10_share_pct": 88.1, "top_recipients": [{"recipient": "MULTIPLE RECIPIENTS", "maui_total": 3826345457.63}, {"recipient": "COUNTY OF MAUI", "maui_total": 1820723316.67}, {"recipient": "ECC CONSTRUCTORS LLC", "maui_total": 600023812.48}, {"recipient": "THE STATE OF HAWAII DEPARTMENT OF TRANSPORTATION", "maui_total": 227971978.14}, {"recipient": "HUI HULIAU TECHNOLOGY SERVICES LLC", "maui_total": 223275753.31}, {"recipient": "LIMA CHARLIE, INC", "maui_total": 188592767.14}, {"recipient": "GALAPAGOS FEDERAL SYSTEMS LLC", "maui_total": 118580190.6}, {"recipient": "AKTARIUS LLC", "maui_total": 95323281.0}], "points": [{"place": "Maui County — federal (place of performance)", "lat": 20.83, "lon": -156.33, "amount": 8244593930.0, "count": 600, "county_level": true}], "generated": "2026-07-02"}, "wealth": {"_label": "OUR MODEL / PROJECTION — the 12 Stones generational-wealth distribution. NOT current fact, NOT the county's numbers, NOT law.", "_basis": "12 Stones Global distributive model: value reaches every community on the island (even reach), the deliberate inverse of concentration. Illustrative even weighting across Maui towns.", "points": [{"place": "Wailuku", "lat": 20.8893, "lon": -156.504, "reach": 1.0}, {"place": "Kahului", "lat": 20.8893, "lon": -156.4729, "reach": 1.0}, {"place": "Lahaina", "lat": 20.8783, "lon": -156.6825, "reach": 1.0}, {"place": "Kihei", "lat": 20.7644, "lon": -156.445, "reach": 1.0}, {"place": "Makawao", "lat": 20.857, "lon": -156.312, "reach": 1.0}, {"place": "Hana", "lat": 20.758, "lon": -156.014, "reach": 1.0}, {"place": "Kula", "lat": 20.75, "lon": -156.33, "reach": 1.0}, {"place": "Paia", "lat": 20.903, "lon": -156.373, "reach": 1.0}, {"place": "Wailea", "lat": 20.69, "lon": -156.442, "reach": 1.0}, {"place": "Pukalani", "lat": 20.838, "lon": -156.339, "reach": 1.0}, {"place": "Napili", "lat": 20.994, "lon": -156.666, "reach": 1.0}, {"place": "Haiku", "lat": 20.916, "lon": -156.321, "reach": 1.0}], "generated": "2026-07-02"}, "cost": {"_label": "OUR MODEL / LIVE QUOTE — 12 Stones govOS pricing applied to the county's actual upcoming workload. NOT the county's official budget, NOT law. Rates are OUR published tiers (shown).", "_assumptions": {"rate_card": {"council_pro_dept_month": 999.0, "per_seat_month": 29.0, "per_agenda_item_processed": 12.0}, "departments_modeled": 12, "seats_modeled": 60, "note": "Departments/seats are modeled assumptions — refine from the county org chart. Agenda-item volume is SOURCED from agenda_intel_maui.json."}, "fiscal_year": {"start": "2026-07-01", "end": "2027-06-30", "months_remaining": 11, "as_of": "2026-07-02"}, "upcoming_agenda_items_sourced": 3, "monthly_quote": 13764.0, "fiscal_year_quote": 151404.0, "breakdown": {"departments": 11988.0, "seats": 1740.0, "agenda_items_month": 36.0}, "generated": "2026-07-02"}}</script>
 <script>
+// GRACEFUL FALLBACK — never a dead/blank frame if a cross-origin resource (CDN / tiles / GIS) is down.
+function showMapFallback(msg){var m=document.getElementById('map');if(!m)return;while(m.firstChild)m.removeChild(m.firstChild);
+  var b=document.createElement('div');b.style.cssText='height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#0e1512;color:#cfd6cc;font-family:system-ui,sans-serif';
+  var i=document.createElement('div');var h=document.createElement('div');h.style.cssText='font-size:1rem;font-weight:700;color:#d9b24c;margin-bottom:.4rem';h.textContent='Map briefly unavailable';
+  var p=document.createElement('div');p.style.cssText='font-size:.85rem;max-width:38ch;line-height:1.5';p.textContent=msg||'The live public mapping service isn’t responding right now. Please refresh in a moment.';
+  i.appendChild(h);i.appendChild(p);b.appendChild(i);m.appendChild(b);}
+if(typeof L==='undefined'||!(window.L&&L.esri)){showMapFallback('The map library could not load (network/CDN). Please refresh in a moment.');}
+else{try{
 var SVC="https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer";
 var map=L.map('map',{scrollWheelZoom:true}).setView([20.80,-156.33],10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+  {maxZoom:19,attribution:'&copy; OpenStreetMap',
+   errorTileUrl:'data:image/gif;base64,R0lGODlhAQABAIAAAOXl5QAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='}).addTo(map);
 // live parcels + zoning + SMA overlay from the state GIS (CORS echoes origin)
 L.esri.dynamicMapLayer({url:SVC,opacity:0.5,layers:[21,33,30]}).addTo(map);
 
@@ -156,5 +165,7 @@ if(OV.cost){                                    // OUR MODEL live quote to the f
     L.DomEvent.disableClickPropagation(d); return d;};
   Cost.addTo(map);
 }
+window._mapReady=true;
+}catch(_e){showMapFallback('The map could not initialize. Please refresh in a moment.');}}
 </script>
 </body></html>
