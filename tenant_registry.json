@@ -1,550 +1,552 @@
 {
- "generated": "2026-06-20 21:12 HST",
- "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
- "report_classes": [
-  {
-   "key": "govern",
-   "label": "Who governs",
-   "desc": "officials / representatives + their voting record"
-  },
-  {
-   "key": "money",
-   "label": "Money behind them",
-   "desc": "campaign finance — who funds the officials"
-  },
-  {
-   "key": "contracts",
-   "label": "Contracts & spending",
-   "desc": "who the government pays"
-  },
-  {
-   "key": "federal",
-   "label": "Federal dollars",
-   "desc": "federal money flowing into the jurisdiction"
-  },
-  {
-   "key": "crossref",
-   "label": "Money × votes",
-   "desc": "contracts crossed with donors / parity — the pattern"
-  },
-  {
-   "key": "agendas",
-   "label": "Upcoming agendas",
-   "desc": "what is being decided next"
-  },
-  {
-   "key": "minutes",
-   "label": "Meeting minutes",
-   "desc": "the official record — who moved, who voted, what carried"
-  },
-  {
-   "key": "charter",
-   "label": "Charter ↔ Law",
-   "desc": "the governing rules, crosswalked to real law"
-  },
-  {
-   "key": "audit",
-   "label": "Audit balance",
-   "desc": "the money×votes equation scorecard"
+  "generated": "2026-06-20 21:12 HST",
+  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
+  "report_classes": [
+    {
+      "key": "govern",
+      "label": "Who governs",
+      "desc": "officials / representatives + their voting record"
+    },
+    {
+      "key": "money",
+      "label": "Money behind them",
+      "desc": "campaign finance — who funds the officials"
+    },
+    {
+      "key": "contracts",
+      "label": "Contracts & spending",
+      "desc": "who the government pays"
+    },
+    {
+      "key": "federal",
+      "label": "Federal dollars",
+      "desc": "federal money flowing into the jurisdiction"
+    },
+    {
+      "key": "crossref",
+      "label": "Money × votes",
+      "desc": "contracts crossed with donors / parity — the pattern"
+    },
+    {
+      "key": "agendas",
+      "label": "Upcoming agendas",
+      "desc": "what is being decided next"
+    },
+    {
+      "key": "minutes",
+      "label": "Meeting minutes",
+      "desc": "the official record — who moved, who voted, what carried"
+    },
+    {
+      "key": "charter",
+      "label": "Charter ↔ Law",
+      "desc": "the governing rules, crosswalked to real law"
+    },
+    {
+      "key": "audit",
+      "label": "Audit balance",
+      "desc": "the money×votes equation scorecard"
+    }
+  ],
+  "civic_tenants": [
+    {
+      "id": "hi-maui",
+      "name": "Maui County",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "officials_scorecard.html"
+        ],
+        "money": [
+          "money_behind_officials.html"
+        ],
+        "contracts": [
+          "maui_contract_awards.html"
+        ],
+        "federal": [
+          "federal_money.html"
+        ],
+        "crossref": [
+          "contracts_x_donors.html"
+        ],
+        "agendas": [
+          "agendas_maui.html"
+        ],
+        "minutes": [
+          "minutes_hi-maui.html"
+        ],
+        "charter": [
+          "crosswalk_maui.html"
+        ],
+        "audit": [
+          "audit_balance.html"
+        ]
+      },
+      "report_classes_filled": 9,
+      "report_classes_total": 9
+    },
+    {
+      "id": "hi-state",
+      "name": "State of Hawaiʻi",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "lege/legislator_scorecard.html"
+        ],
+        "money": [
+          "statewide_money_patterns.html"
+        ],
+        "contracts": [
+          "contracts_state.html"
+        ],
+        "federal": [
+          "federal_money.html"
+        ],
+        "crossref": [
+          "realestate_state.html"
+        ],
+        "agendas": [
+          "agendas_state.html"
+        ],
+        "minutes": [],
+        "charter": [
+          "crosswalk_state.html"
+        ],
+        "audit": [
+          "audit_balance.html"
+        ]
+      },
+      "report_classes_filled": 8,
+      "report_classes_total": 9
+    },
+    {
+      "id": "hi-hawaii",
+      "name": "Hawaiʻi County",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "officials_hawaii.html"
+        ],
+        "money": [
+          "money_hawaii.html"
+        ],
+        "contracts": [
+          "contracts_hawaii.html"
+        ],
+        "federal": [
+          "federal_money_hawaii.html"
+        ],
+        "crossref": [
+          "realestate_hawaii.html"
+        ],
+        "agendas": [
+          "agendas_hawaii.html"
+        ],
+        "minutes": [
+          "minutes_hi-hawaii.html"
+        ],
+        "charter": [
+          "crosswalk_hawaii.html"
+        ],
+        "audit": [
+          "audit_balance.html"
+        ]
+      },
+      "report_classes_filled": 9,
+      "report_classes_total": 9
+    },
+    {
+      "id": "hi-kauai",
+      "name": "Kauaʻi County",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "officials_kauai.html"
+        ],
+        "money": [
+          "money_kauai.html"
+        ],
+        "contracts": [
+          "contracts_kauai.html"
+        ],
+        "federal": [
+          "federal_money_kauai.html"
+        ],
+        "crossref": [
+          "realestate_kauai.html"
+        ],
+        "agendas": [
+          "agendas_kauai.html"
+        ],
+        "minutes": [
+          "minutes_hi-kauai.html"
+        ],
+        "charter": [
+          "crosswalk_kauai.html"
+        ],
+        "audit": [
+          "audit_balance.html"
+        ]
+      },
+      "report_classes_filled": 9,
+      "report_classes_total": 9
+    },
+    {
+      "id": "hi-honolulu",
+      "name": "Honolulu",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "officials_honolulu.html"
+        ],
+        "money": [
+          "statewide_money_patterns.html"
+        ],
+        "contracts": [
+          "contracts_honolulu.html"
+        ],
+        "federal": [
+          "federal_money_honolulu.html"
+        ],
+        "crossref": [
+          "realestate_honolulu.html"
+        ],
+        "agendas": [
+          "agendas_honolulu.html"
+        ],
+        "minutes": [
+          "minutes_hi-honolulu.html"
+        ],
+        "charter": [
+          "crosswalk_honolulu.html"
+        ],
+        "audit": [
+          "audit_balance.html"
+        ]
+      },
+      "report_classes_filled": 9,
+      "report_classes_total": 9
+    },
+    {
+      "id": "nyc",
+      "name": "New York City",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [
+          "money_nyc.html"
+        ],
+        "contracts": [
+          "contracts_nyc.html"
+        ],
+        "federal": [],
+        "crossref": [
+          "parity_nyc.html"
+        ],
+        "agendas": [
+          "agendas_nyc.html"
+        ],
+        "minutes": [
+          "minutes_ny.html"
+        ],
+        "charter": [
+          "crosswalk_nyc.html"
+        ],
+        "audit": [
+          "govos_audit_ny.html"
+        ]
+      },
+      "report_classes_filled": 7,
+      "report_classes_total": 9
+    },
+    {
+      "id": "nys",
+      "name": "New York State",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [
+          "officials_nys.html"
+        ],
+        "money": [
+          "money_nys.html"
+        ],
+        "contracts": [
+          "contracts_nys.html"
+        ],
+        "federal": [],
+        "crossref": [
+          "parity_nys.html"
+        ],
+        "agendas": [
+          "agendas_nys.html"
+        ],
+        "minutes": [],
+        "charter": [
+          "crosswalk_nys.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 5,
+      "report_classes_total": 9
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_london.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_tokyo.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "hongkong",
+      "name": "Hong Kong SAR",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_hongkong.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_singapore.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "zurich",
+      "name": "Zürich",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_zurich.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "frankfurt",
+      "name": "Frankfurt am Main",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_frankfurt.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_paris.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_dubai.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    },
+    {
+      "id": "liverpool",
+      "name": "Liverpool",
+      "kind": "civic",
+      "quadrant": "govos",
+      "reports": {
+        "govern": [],
+        "money": [],
+        "contracts": [],
+        "federal": [],
+        "crossref": [],
+        "agendas": [],
+        "minutes": [],
+        "charter": [
+          "crosswalk_liverpool.html"
+        ],
+        "audit": []
+      },
+      "report_classes_filled": 1,
+      "report_classes_total": 9
+    }
+  ],
+  "creative_tenants": [
+    {
+      "id": "film_12stones",
+      "name": "12 STONES: The Aloha Code",
+      "kind": "film",
+      "quadrant": "film",
+      "render_register": "photoreal",
+      "status": "in_production"
+    },
+    {
+      "id": "film_mokuula",
+      "name": "MOKUʻULA: The Awakening",
+      "kind": "film",
+      "quadrant": "film",
+      "render_register": "photoreal",
+      "status": "script_rebuilt"
+    },
+    {
+      "id": "film_luna",
+      "name": "LUNA Chronicles",
+      "kind": "film",
+      "quadrant": "film",
+      "render_register": "cartoon-3d",
+      "status": "trailer_only"
+    },
+    {
+      "id": "film_keys",
+      "name": "KEYS OF THE STARFORGE",
+      "kind": "film",
+      "quadrant": "film",
+      "render_register": "photoreal",
+      "status": "script_partial"
+    },
+    {
+      "id": "film_seventh_stone",
+      "name": "Seventh Stone",
+      "kind": "film",
+      "quadrant": "film",
+      "render_register": "photoreal",
+      "status": "greenlit_treatment"
+    },
+    {
+      "id": "game_sage",
+      "name": "Sage Game",
+      "kind": "game",
+      "quadrant": "game",
+      "render_register": "cartoon-3d",
+      "status": "in_production"
+    },
+    {
+      "id": "mv_catalog",
+      "name": "elementLOTUS music videos",
+      "kind": "music_video",
+      "quadrant": "music_video",
+      "render_register": "photoreal",
+      "status": "in_production"
+    }
+  ],
+  "counts": {
+    "civic": 16,
+    "creative": 7,
+    "report_classes": 9
   }
- ],
- "civic_tenants": [
-  {
-   "id": "hi-maui",
-   "name": "Maui County",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [
-     "officials_scorecard.html"
-    ],
-    "money": [
-     "money_behind_officials.html"
-    ],
-    "contracts": [
-     "maui_contract_awards.html"
-    ],
-    "federal": [
-     "federal_money.html"
-    ],
-    "crossref": [
-     "contracts_x_donors.html"
-    ],
-    "agendas": [
-     "agendas_maui.html"
-    ],
-    "minutes": [
-     "minutes_hi-maui.html"
-    ],
-    "charter": [
-     "crosswalk_maui.html"
-    ],
-    "audit": [
-     "audit_balance.html"
-    ]
-   },
-   "report_classes_filled": 9,
-   "report_classes_total": 9
-  },
-  {
-   "id": "hi-state",
-   "name": "State of Hawaiʻi",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [
-     "lege/legislator_scorecard.html"
-    ],
-    "money": [
-     "statewide_money_patterns.html"
-    ],
-    "contracts": [
-     "contracts_state.html"
-    ],
-    "federal": [
-     "federal_money.html"
-    ],
-    "crossref": [
-     "realestate_state.html"
-    ],
-    "agendas": [
-     "agendas_state.html"
-    ],
-    "minutes": [],
-    "charter": [
-     "crosswalk_state.html"
-    ],
-    "audit": [
-     "audit_balance.html"
-    ]
-   },
-   "report_classes_filled": 8,
-   "report_classes_total": 9
-  },
-  {
-   "id": "hi-hawaii",
-   "name": "Hawaiʻi County",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [
-     "officials_hawaii.html"
-    ],
-    "money": [
-     "money_hawaii.html"
-    ],
-    "contracts": [
-     "contracts_hawaii.html"
-    ],
-    "federal": [
-     "federal_money_hawaii.html"
-    ],
-    "crossref": [
-     "realestate_hawaii.html"
-    ],
-    "agendas": [
-     "agendas_hawaii.html"
-    ],
-    "minutes": [
-     "minutes_hi-hawaii.html"
-    ],
-    "charter": [
-     "crosswalk_hawaii.html"
-    ],
-    "audit": [
-     "audit_balance.html"
-    ]
-   },
-   "report_classes_filled": 9,
-   "report_classes_total": 9
-  },
-  {
-   "id": "hi-kauai",
-   "name": "Kauaʻi County",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [
-     "officials_kauai.html"
-    ],
-    "money": [
-     "money_kauai.html"
-    ],
-    "contracts": [
-     "contracts_kauai.html"
-    ],
-    "federal": [
-     "federal_money_kauai.html"
-    ],
-    "crossref": [
-     "realestate_kauai.html"
-    ],
-    "agendas": [
-     "agendas_kauai.html"
-    ],
-    "minutes": [
-     "minutes_hi-kauai.html"
-    ],
-    "charter": [
-     "crosswalk_kauai.html"
-    ],
-    "audit": [
-     "audit_balance.html"
-    ]
-   },
-   "report_classes_filled": 9,
-   "report_classes_total": 9
-  },
-  {
-   "id": "hi-honolulu",
-   "name": "Honolulu",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [
-     "officials_honolulu.html"
-    ],
-    "money": [
-     "statewide_money_patterns.html"
-    ],
-    "contracts": [
-     "contracts_honolulu.html"
-    ],
-    "federal": [
-     "federal_money_honolulu.html"
-    ],
-    "crossref": [
-     "realestate_honolulu.html"
-    ],
-    "agendas": [
-     "agendas_honolulu.html"
-    ],
-    "minutes": [
-     "minutes_hi-honolulu.html"
-    ],
-    "charter": [
-     "crosswalk_honolulu.html"
-    ],
-    "audit": [
-     "audit_balance.html"
-    ]
-   },
-   "report_classes_filled": 9,
-   "report_classes_total": 9
-  },
-  {
-   "id": "nyc",
-   "name": "New York City",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [
-     "money_nyc.html"
-    ],
-    "contracts": [
-     "contracts_nyc.html"
-    ],
-    "federal": [],
-    "crossref": [
-     "parity_nyc.html"
-    ],
-    "agendas": [
-     "agendas_nyc.html"
-    ],
-    "minutes": [
-     "minutes_ny.html"
-    ],
-    "charter": [
-     "crosswalk_nyc.html"
-    ],
-    "audit": [
-     "govos_audit_ny.html"
-    ]
-   },
-   "report_classes_filled": 7,
-   "report_classes_total": 9
-  },
-  {
-   "id": "nys",
-   "name": "New York State",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [
-     "money_nys.html"
-    ],
-    "contracts": [
-     "contracts_nys.html"
-    ],
-    "federal": [],
-    "crossref": [
-     "parity_nys.html"
-    ],
-    "agendas": [
-     "agendas_nys.html"
-    ],
-    "minutes": [],
-    "charter": [
-     "crosswalk_nys.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 5,
-   "report_classes_total": 9
-  },
-  {
-   "id": "london",
-   "name": "London",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_london.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "tokyo",
-   "name": "Tokyo",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_tokyo.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "hongkong",
-   "name": "Hong Kong SAR",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_hongkong.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "singapore",
-   "name": "Singapore",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_singapore.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "zurich",
-   "name": "Zürich",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_zurich.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "frankfurt",
-   "name": "Frankfurt am Main",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_frankfurt.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "paris",
-   "name": "Paris",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_paris.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "dubai",
-   "name": "Dubai",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_dubai.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  },
-  {
-   "id": "liverpool",
-   "name": "Liverpool",
-   "kind": "civic",
-   "quadrant": "govos",
-   "reports": {
-    "govern": [],
-    "money": [],
-    "contracts": [],
-    "federal": [],
-    "crossref": [],
-    "agendas": [],
-    "minutes": [],
-    "charter": [
-     "crosswalk_liverpool.html"
-    ],
-    "audit": []
-   },
-   "report_classes_filled": 1,
-   "report_classes_total": 9
-  }
- ],
- "creative_tenants": [
-  {
-   "id": "film_12stones",
-   "name": "12 STONES: The Aloha Code",
-   "kind": "film",
-   "quadrant": "film",
-   "render_register": "photoreal",
-   "status": "in_production"
-  },
-  {
-   "id": "film_mokuula",
-   "name": "MOKUʻULA: The Awakening",
-   "kind": "film",
-   "quadrant": "film",
-   "render_register": "photoreal",
-   "status": "script_rebuilt"
-  },
-  {
-   "id": "film_luna",
-   "name": "LUNA Chronicles",
-   "kind": "film",
-   "quadrant": "film",
-   "render_register": "cartoon-3d",
-   "status": "trailer_only"
-  },
-  {
-   "id": "film_keys",
-   "name": "KEYS OF THE STARFORGE",
-   "kind": "film",
-   "quadrant": "film",
-   "render_register": "photoreal",
-   "status": "script_partial"
-  },
-  {
-   "id": "film_seventh_stone",
-   "name": "Seventh Stone",
-   "kind": "film",
-   "quadrant": "film",
-   "render_register": "photoreal",
-   "status": "greenlit_treatment"
-  },
-  {
-   "id": "game_sage",
-   "name": "Sage Game",
-   "kind": "game",
-   "quadrant": "game",
-   "render_register": "cartoon-3d",
-   "status": "in_production"
-  },
-  {
-   "id": "mv_catalog",
-   "name": "elementLOTUS music videos",
-   "kind": "music_video",
-   "quadrant": "music_video",
-   "render_register": "photoreal",
-   "status": "in_production"
-  }
- ],
- "counts": {
-  "civic": 16,
-  "creative": 7,
-  "report_classes": 9
- }
 }
