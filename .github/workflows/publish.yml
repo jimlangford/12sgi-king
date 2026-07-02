@@ -157,14 +157,26 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # Private notify (Jimmy 2026-07-01 "go"). Both steps below no-op entirely until the
-      # TAILSCALE_AUTH_KEY repo secret is added (Settings -> Secrets and variables -> Actions
-      # -> New repository secret), so merging this is safe before the key exists. Generate an
-      # ephemeral+reusable key at https://login.tailscale.com/admin/settings/keys once (any tag
-      # is fine, or none). continue-on-error on both: a failed private notify NEVER fails the
-      # public deploy, which already succeeded in the step above.
+      # Private notify (Jimmy 2026-07-01 "go"). HEAL-FORWARD (2026-07-02): the original if:
+      # referenced `secrets.TAILSCALE_AUTH_KEY` directly in a job-level if: condition, which
+      # GitHub Actions rejects at workflow-validation time (0 jobs ever created -- broke the
+      # ENTIRE publish pipeline, not just this step). Secrets are readable in `run:`/`with:` but
+      # not as a bare if: expression -- resolve presence in a run: step's own shell first, then
+      # gate on that step's output instead. Both notify steps still no-op harmlessly until the
+      # TAILSCALE_AUTH_KEY repo secret is added (Settings -> Secrets and variables -> Actions ->
+      # New repository secret). continue-on-error on both: a failed private notify NEVER fails
+      # the public deploy, which already succeeded in the step above.
+      - name: Check for Tailscale key
+        id: tskey
+        run: |
+          if [ -n "${{ secrets.TAILSCALE_AUTH_KEY }}" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Connect to Tailscale (best-effort, private notify only)
-        if: ${{ success() && secrets.TAILSCALE_AUTH_KEY != '' }}
+        if: ${{ success() && steps.tskey.outputs.present == 'true' }}
         continue-on-error: true
         uses: tailscale/github-action@v3
         with:
@@ -172,7 +184,7 @@ jobs:
           hostname: ci-runner
 
       - name: Notify private King on success
-        if: ${{ success() && secrets.TAILSCALE_AUTH_KEY != '' }}
+        if: ${{ success() && steps.tskey.outputs.present == 'true' }}
         continue-on-error: true
         run: |
           curl -s -m 15 -X POST http://100.124.152.3:8799/api/dispatch/log \
