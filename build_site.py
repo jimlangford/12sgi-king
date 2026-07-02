@@ -20,7 +20,12 @@ try:
     import civic_shell as _civic_shell   # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
 except Exception:
     _civic_shell = None
-# build rev: 2026-06-21 civic_shell chrome live on public (CI rebuild trigger)
+sys.path.insert(0, os.path.join(PROJECT, "tools", "ops"))
+try:
+    import blog_engine as _blog_engine
+except Exception:
+    _blog_engine = None
+# build rev: 2026-07-01 blog pages wired into public site/ output
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
 
@@ -960,6 +965,23 @@ def main():
         print("  + datasets.html + data.json (DCAT): %d public datasets indexed" % len(_rows))
     except Exception as _e:
         print("  ! open-data catalog skipped: %s" % str(_e)[:120])
+
+    # [blog] public Aloha blog — studio notes, creative methodology, production dispatches.
+    # blog_engine.py writes to king-local; here we also render to site/ for GitHub Pages.
+    if _blog_engine is not None:
+        try:
+            _blog_posts = _blog_engine.load_posts()
+            _blog_pub = sorted([p for p in _blog_posts if p.get("status") == "published"],
+                               key=lambda p: p.get("date", ""), reverse=True)
+            with open(os.path.join(SITE, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_blog_engine.render_list_page(_blog_pub))
+            for _bp in _blog_pub:
+                _slug = _bp.get("slug", _bp.get("id", ""))
+                with open(os.path.join(SITE, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
+                    f.write(_blog_engine.render_post_page(_bp))
+            print("  + blog.html + %d post pages (Aloha blog -> public site/)" % len(_blog_pub))
+        except Exception as _be:
+            print("  ! blog skipped: %s" % str(_be)[:120])
 
     # [links] copy linked supporting folders so per-official "full profile" pages resolve
     for sub in ("donors",):
