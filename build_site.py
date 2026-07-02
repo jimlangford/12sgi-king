@@ -1086,6 +1086,11 @@ def main():
         with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
             f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
         print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
+    # [grants] community grants library — public preview page (paywall for full access)
+    _gr = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grants.html")
+    if os.path.exists(_gr):
+        shutil.copy(_gr, os.path.join(SITE, "grants.html"))
+        print("  + grants.html: community grants library preview (97 grants, paywall gated)")
     # request_records.html is now GENERATED (request_records.py, tenant-aware) + flows through EXTRA_PAGES.
     # [redundancy] production status (public-safe) from the local 15-min publisher
     _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
