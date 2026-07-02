@@ -188,7 +188,11 @@ establish why anyone voted as they did. Verify before asserting anything about a
 {cross_html or '<div class="m"><span class="c">none</span></div>'}
 <footer>generated {g} · patterns v2 · sources: CivicClerk council minutes (county votes/recusals) + LegiScan (state votes 2010+) + HI Campaign Spending Commission (money 2008+) · public record · govOS</footer>
 </div></body></html>"""
-    with open(OUT_F,"w",encoding="utf-8") as f: f.write(html)
+    # ATOMIC WRITE (Jimmy 2026-07-02 heal-forward): same torn-write class as contracts_x_donors.html --
+    # tmp+os.replace so a reader (incl. the seed-sync copy step) never sees a partial/mid-render file.
+    _tmp = OUT_F + ".tmp"
+    with open(_tmp,"w",encoding="utf-8") as f: f.write(html)
+    os.replace(_tmp, OUT_F)
     matched=sum(1 for r in rowsA if r["re"]>0)
     dispatch("SHIPPED", f"patterns money x votes v2: {len(county)} Maui County officials + {len(rowsA)} legislators "
              f"({matched} w/ RE money matched) + {len(crossd)} cross-jurisdiction donors -> reports/mauios/patterns_money_x_votes.html")

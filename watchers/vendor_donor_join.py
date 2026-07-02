@@ -153,9 +153,19 @@ def main():
            "method": "mechanical name match on distinctive entity tokens; every hit is a QUESTION to verify, not proof",
            "maui_vendors_scanned": len(vendors), "matches": len(matches),
            "matched": matches}
-    json.dump(out, open(OUT_JSON, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    with open(OUT_HTML, "w", encoding="utf-8") as f:
+    # ATOMIC WRITE (Jimmy 2026-07-02 heal-forward): reports/mauios/contracts_x_donors.html deployed
+    # STALE twice in one session -- a manual run's fully-rendered output (incl. the svg_network chart)
+    # got clobbered by a concurrent process writing the same path before the seed-sync copy happened.
+    # Writing to a temp file then os.replace() makes every write instantaneous+atomic from any reader's
+    # view (never a half-written or "whoever-finished-last-wins mid-render" state); doesn't eliminate a
+    # genuinely concurrent SECOND full run racing this one, but removes the torn-write failure mode.
+    tmp_json = OUT_JSON + ".tmp"
+    json.dump(out, open(tmp_json, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    os.replace(tmp_json, OUT_JSON)
+    tmp_html = OUT_HTML + ".tmp"
+    with open(tmp_html, "w", encoding="utf-8") as f:
         f.write(build_page(matches, len(vendors)))
+    os.replace(tmp_html, OUT_HTML)
     dispatch("SHIPPED", f"vendor-donor join: {len(matches)} of {len(vendors)} Maui vendors name-match a "
              f"campaign donor to a tracked official (public records, framed as questions) "
              f"-> reports/mauios/contracts_x_donors.html")
