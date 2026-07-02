@@ -973,12 +973,15 @@ def main():
             _blog_posts = _blog_engine.load_posts()
             _blog_pub = sorted([p for p in _blog_posts if p.get("status") == "published"],
                                key=lambda p: p.get("date", ""), reverse=True)
+            # static=True (Jimmy 2026-07-01 heal-forward): the public site has no server to resolve
+            # /king/blog?post=X, so every mirrored post orphaned itself the moment it published --
+            # render real blog_post_<slug>.html / blog.html relative links here instead.
             with open(os.path.join(SITE, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
-                f.write(_blog_engine.render_list_page(_blog_pub))
+                f.write(_blog_engine.render_list_page(_blog_pub, static=True))
             for _bp in _blog_pub:
                 _slug = _bp.get("slug", _bp.get("id", ""))
                 with open(os.path.join(SITE, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
-                    f.write(_blog_engine.render_post_page(_bp))
+                    f.write(_blog_engine.render_post_page(_bp, static=True))
             print("  + blog.html + %d post pages (Aloha blog -> public site/)" % len(_blog_pub))
         except Exception as _be:
             print("  ! blog skipped: %s" % str(_be)[:120])
