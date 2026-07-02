@@ -156,3 +156,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Private notify (Jimmy 2026-07-01 "go"). Both steps below no-op entirely until the
+      # TAILSCALE_AUTH_KEY repo secret is added (Settings -> Secrets and variables -> Actions
+      # -> New repository secret), so merging this is safe before the key exists. Generate an
+      # ephemeral+reusable key at https://login.tailscale.com/admin/settings/keys once (any tag
+      # is fine, or none). continue-on-error on both: a failed private notify NEVER fails the
+      # public deploy, which already succeeded in the step above.
+      - name: Connect to Tailscale (best-effort, private notify only)
+        if: ${{ success() && secrets.TAILSCALE_AUTH_KEY != '' }}
+        continue-on-error: true
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+          hostname: ci-runner
+
+      - name: Notify private King on success
+        if: ${{ success() && secrets.TAILSCALE_AUTH_KEY != '' }}
+        continue-on-error: true
+        run: |
+          curl -s -m 15 -X POST http://100.124.152.3:8799/api/dispatch/log \
+            -H 'Content-Type: application/json' \
+            -d '{"message":"SHIPPED: CI build+deploy complete (kilo-aupuni publish, GitHub Pages live)","source":"kilo-aupuni"}' \
+            || echo "private notify failed (non-fatal) -- public deploy already succeeded"
