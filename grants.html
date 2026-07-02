@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Community Grants Library — govOS</title>
+<style>
+:root{--bg:#0e1217;--surf:#161b24;--surf2:#1d2430;--gold:#e3ad33;--text:#e8edf4;--muted:#8a9ab0;--border:rgba(255,255,255,.08);--grn:#3a8a60;--yale:#0f4d92}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:52px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+nav{position:fixed;top:0;left:0;right:0;height:52px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:4px;z-index:100;font-size:13px}
+nav .brand{color:var(--gold);font-weight:700;letter-spacing:.06em;margin-right:12px;font-size:14px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover,nav a.active{color:var(--text);background:rgba(255,255,255,.06)}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px 100px}
+/* hero */
+.hero{text-align:center;padding:60px 0 48px}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(227,173,51,.35);border-radius:20px;padding:4px 14px;margin-bottom:20px}
+.hero h1{font-size:38px;font-weight:700;line-height:1.2;margin-bottom:14px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:17px;color:var(--muted);max-width:540px;margin:0 auto 32px;line-height:1.7}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:.15s}
+.btn-gold{background:var(--gold);color:#0a0c10}
+.btn-gold:hover{opacity:.9;text-decoration:none}
+.btn-outline{border:1px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+/* stats row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:0 0 56px}
+.stat{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:22px 20px;text-align:center}
+.stat-n{font-size:36px;font-weight:700;color:var(--gold)}
+.stat-l{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+/* program grid */
+.section-head{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:56px}
+.prog-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+.prog-name{font-size:13px;font-weight:600;color:var(--text)}
+.prog-funder{font-size:11px;color:var(--muted);margin-top:2px}
+.prog-n{font-size:22px;font-weight:700;color:var(--gold)}
+/* sample */
+.sample-head{margin-bottom:24px}
+.sample-cards{display:grid;gap:20px;margin-bottom:56px}
+.sample-card{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:28px;position:relative;overflow:hidden}
+.sample-card::after{content:'SAMPLE';position:absolute;top:14px;right:14px;font-size:9px;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(227,173,51,.4);border-radius:4px;padding:2px 7px}
+.sc-program{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sc-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+.sc-funder{font-size:13px;color:var(--muted);margin-bottom:16px}
+.sc-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.sc-field label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.sc-field p{font-size:13px;color:var(--text);margin-top:2px}
+.sc-tenets{margin-top:14px;font-size:13px;color:var(--muted);border-left:2px solid var(--gold);padding-left:12px;font-style:italic}
+/* paywall gate */
+.gate{background:linear-gradient(180deg,transparent,var(--bg) 60%);position:absolute;bottom:0;left:0;right:0;height:140px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:24px}
+.locked-sample{position:relative;max-height:160px;overflow:hidden}
+/* how it works */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:56px}
+.how-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px}
+.how-n{font-size:28px;font-weight:700;color:var(--gold);margin-bottom:8px}
+.how-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.6}
+/* signup */
+.signup-box{background:var(--surf);border:1px solid rgba(227,173,51,.25);border-radius:12px;padding:40px;text-align:center;margin-bottom:56px}
+.signup-box h2{font-size:26px;font-weight:700;margin-bottom:10px}
+.signup-box p{color:var(--muted);font-size:15px;max-width:480px;margin:0 auto 24px;line-height:1.65}
+.signup-free{font-size:12px;color:var(--muted);margin-top:14px}
+/* lock icon */
+.lock{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 10px}
+/* divider */
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+</style>
+</head>
+<body>
+<nav>
+  <span class="brand">govOS</span>
+  <a href="go.html">Home</a>
+  <a href="grants.html" class="active">Grants</a>
+  <a href="take_action.html">Take Action</a>
+  <a href="request_records.html">Records</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Community Grants Library</div>
+    <h1>Funding your community<br><span>should not be this hard.</span></h1>
+    <p>We've authored 97 grant applications across USDA, FEMA, HUD, NOAA and more — for Lahaina, Maui, and Hawaiʻi. The methodology is yours to learn from. The library is yours to use.</p>
+    <div class="cta-row">
+      <a href="#signup" class="btn btn-gold">Get free access →</a>
+      <a href="#samples" class="btn btn-outline">See sample grants</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-n">97</div><div class="stat-l">authored grants</div></div>
+    <div class="stat"><div class="stat-n">16</div><div class="stat-l">funding programs</div></div>
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">jurisdictions</div></div>
+    <div class="stat"><div class="stat-n">$0</div><div class="stat-l">to get started</div></div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <div class="section-head">Programs covered</div>
+  <div class="prog-grid">
+    <div class="prog-card"><div><div class="prog-name">USDA</div><div class="prog-funder">USDA Rural Development + VAPG</div></div><div class="prog-n">38</div></div>
+    <div class="prog-card"><div><div class="prog-name">FEMA</div><div class="prog-funder">BRIC · HMGP · Hazard Mitigation</div></div><div class="prog-n">10</div></div>
+    <div class="prog-card"><div><div class="prog-name">MRFC</div><div class="prog-funder">Maui Recovery Funders Collaborative</div></div><div class="prog-n">10</div></div>
+    <div class="prog-card"><div><div class="prog-name">HUD / CDBG</div><div class="prog-funder">CDBG · CDBG-DR disaster recovery</div></div><div class="prog-n">11</div></div>
+    <div class="prog-card"><div><div class="prog-name">NOAA</div><div class="prog-funder">Coastal resilience + ocean data</div></div><div class="prog-n">2</div></div>
+    <div class="prog-card"><div><div class="prog-name">Other</div><div class="prog-funder">HCF · NAREIT · REAP + more</div></div><div class="prog-n">16</div></div>
+  </div>
+
+  <!-- SAMPLES -->
+  <a name="samples"></a>
+  <div class="section-head">Sample applications — see the methodology</div>
+  <div class="sample-cards">
+
+    <div class="sample-card">
+      <div class="sc-program">CDBG-DR · HUD</div>
+      <div class="sc-title">Disaster Recovery Housing &amp; Infrastructure</div>
+      <div class="sc-funder">Funder: U.S. Department of Housing and Urban Development</div>
+      <div class="sc-fields">
+        <div class="sc-field"><label>Jurisdiction</label><p>Lahaina, Maui (post-fire rebuild)</p></div>
+        <div class="sc-field"><label>Entity</label><p>12 Stones Global</p></div>
+        <div class="sc-field"><label>Program year</label><p>2026 (active)</p></div>
+        <div class="sc-field"><label>Benefit test</label><p>Low-to-moderate income (LMI)</p></div>
+      </div>
+      <div class="sc-tenets">Narrative ties disaster-recovery housing construction to the unmet-need data from the FEMA Individual Assistance dashboard. LMI benefit is demonstrated through census tract income data. Infrastructure ask is scoped to storm drain + road repair in LMI census tracts.</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="sc-program">FEMA-BRIC · Pre-Disaster Hazard Mitigation</div>
+      <div class="sc-title">Resilient Infrastructure &amp; Community Hardening</div>
+      <div class="sc-funder">Funder: Federal Emergency Management Agency</div>
+      <div class="sc-fields">
+        <div class="sc-field"><label>Jurisdiction</label><p>Maui County (statewide eligible)</p></div>
+        <div class="sc-field"><label>Entity</label><p>12 Stones Global / MARN 2026</p></div>
+        <div class="sc-field"><label>Key requirement</label><p>Benefit-cost ratio ≥ 1.0</p></div>
+        <div class="sc-field"><label>Focus</label><p>Pre-disaster, not reactive</p></div>
+      </div>
+      <div class="sc-tenets">BRIC demands a rigorous Benefit-Cost Analysis. The application connects the investment to avoided future losses using FEMA's BCA Tool, anchored to historical loss data from prior Maui wildfire + flood events. Infrastructure hardening is framed as measurable risk reduction, not improvement.</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="sc-program">USDA-VAPG · Value-Added Producer Grant</div>
+      <div class="sc-title">HuaLani Farm Box — Local Food Value Chain</div>
+      <div class="sc-funder">Funder: USDA Rural Business-Cooperative Service</div>
+      <div class="sc-fields">
+        <div class="sc-field"><label>Jurisdiction</label><p>Maui County / Upcountry Kula</p></div>
+        <div class="sc-field"><label>Entity</label><p>HuaLani (producer cooperative)</p></div>
+        <div class="sc-field"><label>Grant type</label><p>Working capital (not planning)</p></div>
+        <div class="sc-field"><label>Focus</label><p>Farm-to-market processing + distribution</p></div>
+      </div>
+      <div class="sc-tenets">VAPG requires the applicant to be an agricultural producer adding value to their own raw product. The application demonstrates the processing step (farm-box packaging + cold chain), documents the expanded market (institutional + subscription buyers), and provides a 2-year revenue projection tied to market letters of intent.</div>
+    </div>
+
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section-head">How the methodology works</div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-n">01</div>
+      <div class="how-title">Match</div>
+      <div class="how-desc">Your project is compared against 16 active programs. The right program is determined by project type, jurisdiction, and eligibility — not just keyword matching.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">02</div>
+      <div class="how-title">Frame</div>
+      <div class="how-desc">Every funder has a funding lens — LMI benefit, benefit-cost ratio, unmet need, value-added product. We match your project's actual outcomes to the lens the reviewer uses to score.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">03</div>
+      <div class="how-title">Source</div>
+      <div class="how-desc">Applications are grounded in real public data — census tracts, FEMA loss history, HANDS contract awards, USDA farm data — not generic boilerplate.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">04</div>
+      <div class="how-title">Draft</div>
+      <div class="how-desc">AI-assisted drafting pulls from 97 authored applications to produce a narrative that matches the program's voice, score sheet, and required sections.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">05</div>
+      <div class="how-title">Review</div>
+      <div class="how-desc">You review the draft. We refine. The final submission stays under your organization's name and signing authority. You own the work product.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">06</div>
+      <div class="how-title">Submit</div>
+      <div class="how-desc">Grants.gov, Grants.hawaii.gov, or the funder's portal — we walk you through submission. One click, one PDF, deadline tracked.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SIGNUP -->
+  <a name="signup"></a>
+  <div class="signup-box">
+    <h2>Get access to the library</h2>
+    <p>Your first grant draft is free — limited to one application, one funder, using your organization's data. No credit card required to start. Sign up with email; upgrade to full access with a Stripe account when you're ready to go further.</p>
+    <div class="cta-row">
+      <a href="mailto:grants@elementlotus.com?subject=Grants%20Library%20Access&body=Organization%3A%0AProject%20type%3A%0AJurisdiction%3A%0A" class="btn btn-gold">Email to get started →</a>
+    </div>
+    <div class="signup-free">Free tier: 1 draft · 1 program · your data · no billing until you scale</div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div style="font-size:12px;color:var(--muted);text-align:center;padding-top:20px">
+    This library was built to serve Maui, Lahaina, and Hawaiʻi communities. The methodology is based on real applications filed by 12 Stones Global. Grant eligibility and award decisions are determined solely by the funding agency — not by this system.
+  </div>
+
+</div>
+</body>
+</html>
