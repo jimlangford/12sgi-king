@@ -67,6 +67,32 @@ def cross_jurisdiction_donors():
     return [{"name":r.get("contributor_name"),"offices":int(float(r.get("offices",0))),
              "cands":int(float(r.get("cands",0))),"total":fnum(r.get("total"))} for r in rows if r.get("contributor_name")]
 
+def svg_bar_chart(rows, label_fn, value_fn, color="#d9b24c", max_items=10, unit_fn=None):
+    """HIDDEN-DATA REDESIGN (Jimmy 2026-07-01): inline SVG, no CDN/JS dependency (leak-gate/offline-safe
+    on the public govOS site) -- the underlying money figures already existed as flat table rows; this
+    renders the same public-safe numbers as an actual bar chart above the table, not instead of it."""
+    top = rows[:max_items]
+    if not top:
+        return ""
+    maxv = max((value_fn(r) or 0) for r in top) or 1
+    bar_h, gap, label_w, chart_w = 18, 8, 190, 420
+    lines = []
+    for i, r in enumerate(top):
+        v = value_fn(r) or 0
+        w = round((v / maxv) * chart_w)
+        y = i * (bar_h + gap)
+        lbl = esc(label_fn(r))[:26]
+        val_txt = esc(unit_fn(v)) if unit_fn else esc(str(v))
+        lines.append(
+            f'<text x="0" y="{y+bar_h-5}" font-size="11" fill="#bdb8a4" font-family="Consolas,monospace">{lbl}</text>'
+            f'<rect x="{label_w}" y="{y}" width="{w}" height="{bar_h}" rx="3" fill="{color}"/>'
+            f'<text x="{label_w+w+6}" y="{y+bar_h-5}" font-size="11" fill="{color}" font-family="Consolas,monospace">{val_txt}</text>'
+        )
+    total_h = len(top) * (bar_h + gap)
+    return (f'<svg viewBox="0 0 {label_w+chart_w+90} {total_h}" width="100%" height="{total_h}" '
+            f'style="margin:10px 0" role="img" aria-label="bar chart">{"".join(lines)}</svg>')
+
+
 def county_money_votes():
     """Maui County: join each official's campaign money (donor-watch) to their
     council votes/recusals (votes-watch). Money + recusals are QUESTIONS, never proof."""
@@ -122,6 +148,9 @@ def main():
                 f'<span class="d">{r["recused"]}</span>'
                 f'<span class="c">{esc(r["name"])} &mdash; {vote}{donors}</span></div>')
     county_html="".join(rowCo(r) for r in county)
+    county_chart = svg_bar_chart(sorted(county, key=lambda r: -r["re"]), lambda r: r["name"], lambda r: r["re"], "#d9b24c", unit_fn=usd)
+    legis_chart = svg_bar_chart(rowsA, lambda r: r["name"], lambda r: r["re"], "#e06a4a", unit_fn=usd)
+    cross_chart = svg_bar_chart(crossd, lambda r: r["name"], lambda r: r["total"], "#6a9ad9", unit_fn=usd)
     g=now_hst().strftime("%Y-%m-%d %H:%M HST")
     html=f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,12 +175,15 @@ def main():
 (county) or dissents (state) on housing/STR/RE/water/budget matters shows where to look; it does not
 establish why anyone voted as they did. Verify before asserting anything about anyone.</div>
 <h2>A. Maui County — campaign money received vs. recusals &amp; council votes</h2>
+{county_chart}
 <div class="hd"><span style="text-align:right">RE/dev $ (2008+)</span><span style="text-align:center">recusals</span><span>county official (votes from the minutes)</span></div>
 {county_html or '<div class="m"><span class="c">no data yet</span></div>'}
 <h2>B. Hawai&#699;i Legislature — real-estate/developer money received vs. lens-bill dissents</h2>
+{legis_chart}
 <div class="hd"><span style="text-align:right">RE $ (2008+)</span><span style="text-align:center">dissents</span><span>legislator (2010-2026 votes)</span></div>
 {a_html or '<div class="m"><span class="c">no matches</span></div>'}
 <h2>C. Cross-jurisdiction donors — funding the most distinct office-types</h2>
+{cross_chart}
 <div class="hd"><span style="text-align:right">total</span><span style="text-align:center">offices</span><span>donor (the influence web)</span></div>
 {cross_html or '<div class="m"><span class="c">none</span></div>'}
 <footer>generated {g} · patterns v2 · sources: CivicClerk council minutes (county votes/recusals) + LegiScan (state votes 2010+) + HI Campaign Spending Commission (money 2008+) · public record · govOS</footer>

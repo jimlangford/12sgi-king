@@ -161,8 +161,53 @@ def main():
              f"-> reports/mauios/contracts_x_donors.html")
     return 0
 
+def svg_network(matches, max_vendors=12):
+    """HIDDEN-DATA REDESIGN (Jimmy 2026-07-01): a bipartite vendor<->official diagram, inline SVG, no
+    CDN/JS dependency. The richest 'money network' data in the system had zero graph visualization --
+    it was a flat card list. Vendors on the left, officials on the right, line weight = $ given."""
+    top = matches[:max_vendors]
+    if not top:
+        return ""
+    officials = []
+    for m in top:
+        for o in m["officials"]:
+            if o not in officials:
+                officials.append(o)
+    v_n, o_n = len(top), len(officials)
+    row_h, width, left_x, right_x = 34, 640, 170, 470
+    height = max(v_n, o_n) * row_h + 20
+    max_award = max((m["award_total"] or 0) for m in top) or 1
+    lines = []
+    v_y = {m["vendor"]: 10 + i * row_h + row_h / 2 for i, m in enumerate(top)}
+    o_y = {o: 10 + i * row_h + row_h / 2 for i, o in enumerate(officials)}
+    for m in top:
+        for o in m["officials"]:
+            oy = o_y.get(o)
+            vy = v_y[m["vendor"]]
+            if oy is None:
+                continue
+            w = 1 + min(6, (m["contrib_total"] or 0) / 2000)
+            lines.append(f'<line x1="{left_x}" y1="{vy}" x2="{right_x}" y2="{oy}" stroke="#e06a4a" stroke-width="{w:.1f}" opacity="0.55"/>')
+    for m in top:
+        y = v_y[m["vendor"]]
+        r = 4 + min(10, (m["award_total"] or 0) / max_award * 10)
+        lines.append(f'<circle cx="{left_x}" cy="{y}" r="{r:.1f}" fill="#d9b24c"/>')
+        lines.append(f'<text x="{left_x-10}" y="{y+4}" font-size="11" fill="#bdb8a4" text-anchor="end" font-family="Consolas,monospace">{esc(m["vendor"])[:28]}</text>')
+    for o in officials:
+        y = o_y[o]
+        lines.append(f'<circle cx="{right_x}" cy="{y}" r="6" fill="#6a9ad9"/>')
+        lines.append(f'<text x="{right_x+12}" y="{y+4}" font-size="11" fill="#bdb8a4" font-family="Consolas,monospace">{esc(o)[:30]}</text>')
+    return (f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}" style="margin:12px 0" '
+            f'role="img" aria-label="vendor to official money network">{"".join(lines)}</svg>'
+            f'<div style="font-size:11px;color:#9a957f;font-family:Consolas,monospace">'
+            f'<span style="color:#d9b24c">&#9679;</span> vendor (size = award $) &nbsp; '
+            f'<span style="color:#6a9ad9">&#9679;</span> official &nbsp; '
+            f'<span style="color:#e06a4a">&mdash;</span> line weight = $ contributed</div>')
+
+
 def build_page(matches, nv):
     g = now_hst().strftime("%Y-%m-%d %H:%M HST")
+    network = svg_network(matches)
     rows = ""
     for m in matches:
         who = ", ".join(m["officials"])
@@ -205,6 +250,7 @@ from public records, no information request required.</p>
 Winning county contracts and donating to campaigns are both lawful and ordinary. Verify each identity
 before relying on it. Correlations are questions, never accusations &mdash; the 12 Stones integrity rule.</div>
 <p class="lead" style="font-family:Consolas,monospace;font-size:12px;color:#9a957f">{len(matches)} of {nv} Maui vendors name-match a donor to a tracked official.</p>
+{network}
 {body}
 <footer>generated {g} &middot; vendor-donor-join v1 &middot; sources: HANDS award notices + HI Campaign Spending Commission &middot; public records &middot; questions, not accusations &middot; govOS</footer>
 </div></body></html>"""

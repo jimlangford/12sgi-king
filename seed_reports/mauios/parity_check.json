@@ -1,13 +1,13 @@
 {
- "generated": "2026-06-25 00:22:06",
+ "generated": "2026-07-01 18:54:37",
  "source": "reports/mauios/vendor_donor_join.json (CSC donors x HANDS awards, public records)",
  "method": "Kumulipo parity: a pair that does not answer = output (award) shadowed by private input (donation). leverage = award/contrib. Correlations as QUESTIONS, never accusations; names a broken pair, not a guilty person.",
  "hewa": {
-  "n_broken_pairs": 9,
+  "n_broken_pairs": 10,
   "vendors_scanned": null,
-  "total_award_in_broken_pairs": 8333626.2,
-  "total_contrib_in_broken_pairs": 9813.52,
-  "aggregate_leverage": 849.2,
+  "total_award_in_broken_pairs": 8483626.2,
+  "total_contrib_in_broken_pairs": 14263.52,
+  "aggregate_leverage": 594.8,
   "pairs": [
    {
     "vendor": "FUKUMOTO ENGINEERING, INC.",
@@ -265,22 +265,89 @@
     ],
     "question": "Does HAWAII OFF-GRID LLC's $64,293 in county awards answer the public, or the $1,039 given to Cook who decide them? (public records - a correlation to verify, not a finding)",
     "status": "PAIR_DOES_NOT_ANSWER"
+   },
+   {
+    "vendor": "BERLIEN CONSULTING LLC",
+    "award_total": 150000.0,
+    "award_count": 1,
+    "contrib_total": 4450.0,
+    "leverage": 33.7,
+    "officials": [
+     "Bissen",
+     "Cook",
+     "Lee",
+     "Sugimura",
+     "Uu-Hodgins"
+    ],
+    "hits": [
+     {
+      "official": "Bissen",
+      "official_label": "Richard Bissen - Mayor",
+      "contributor": "Berlien, Taylor",
+      "amount": 2000.0,
+      "n": 1,
+      "basis": "individual"
+     },
+     {
+      "official": "Cook",
+      "official_label": "Tom Cook - Councilmember, South Maui",
+      "contributor": "Berlien Consulting, LLC",
+      "amount": 1050.0,
+      "n": 3,
+      "basis": "firm"
+     },
+     {
+      "official": "Bissen",
+      "official_label": "Richard Bissen - Mayor",
+      "contributor": "Berlien Consulting LLC",
+      "amount": 500.0,
+      "n": 1,
+      "basis": "firm"
+     },
+     {
+      "official": "Sugimura",
+      "official_label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
+      "contributor": "Berlien, Taylor",
+      "amount": 300.0,
+      "n": 1,
+      "basis": "individual"
+     },
+     {
+      "official": "Lee",
+      "official_label": "Alice L. Lee - Council Chair",
+      "contributor": "Berlien, Taylor",
+      "amount": 300.0,
+      "n": 1,
+      "basis": "individual"
+     },
+     {
+      "official": "Uu-Hodgins",
+      "official_label": "Nohelani Uu-Hodgins - Councilmember",
+      "contributor": "Berlien, Taylor",
+      "amount": 300.0,
+      "n": 1,
+      "basis": "individual"
+     }
+    ],
+    "question": "Does BERLIEN CONSULTING LLC's $150,000 in county awards answer the public, or the $4,450 given to Bissen, Cook, Lee, Sugimura, Uu-Hodgins who decide them? (public records - a correlation to verify, not a finding)",
+    "status": "PAIR_DOES_NOT_ANSWER"
    }
   ]
  },
  "by_official": {
   "Sugimura": {
    "label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair",
-   "award_shadowed": 7579183.03,
-   "contrib_received": 4000.0,
+   "award_shadowed": 7729183.03,
+   "contrib_received": 4300.0,
    "vendors": [
+    "BERLIEN CONSULTING LLC",
     "FUKUMOTO ENGINEERING, INC.",
     "MICHAEL WRIGHT & ASSOCIATES, INC.",
     "NISHIKAWA ARCHITECTS, INC.",
     "OTOMO ENGINEERING, INC.",
     "R. T. TANAKA ENGINEERS, INC."
    ],
-   "n_vendors": 5
+   "n_vendors": 6
   },
   "Batangan": {
    "label": "Kauanoe Batangan - Councilmember, Kahului",
@@ -293,32 +360,44 @@
   },
   "Lee": {
    "label": "Alice L. Lee - Council Chair",
-   "award_shadowed": 1316727.03,
-   "contrib_received": 2275.0,
+   "award_shadowed": 1466727.03,
+   "contrib_received": 2575.0,
    "vendors": [
+    "BERLIEN CONSULTING LLC",
     "R. T. TANAKA ENGINEERS, INC."
    ],
-   "n_vendors": 1
+   "n_vendors": 2
   },
   "Bissen": {
    "label": "Richard Bissen - Mayor",
-   "award_shadowed": 1316727.03,
-   "contrib_received": 750.0,
+   "award_shadowed": 1466727.03,
+   "contrib_received": 3250.0,
    "vendors": [
+    "BERLIEN CONSULTING LLC",
     "R. T. TANAKA ENGINEERS, INC."
    ],
-   "n_vendors": 1
+   "n_vendors": 2
   },
   "Cook": {
    "label": "Tom Cook - Councilmember, South Maui",
-   "award_shadowed": 704443.17,
-   "contrib_received": 2038.52,
+   "award_shadowed": 854443.17,
+   "contrib_received": 3088.52,
    "vendors": [
     "Allana Buick & Bers, Inc.",
+    "BERLIEN CONSULTING LLC",
     "CDF ENGINEERING",
     "HAWAII OFF-GRID LLC"
    ],
-   "n_vendors": 3
+   "n_vendors": 4
+  },
+  "Uu-Hodgins": {
+   "label": "Nohelani Uu-Hodgins - Councilmember",
+   "award_shadowed": 150000.0,
+   "contrib_received": 300.0,
+   "vendors": [
+    "BERLIEN CONSULTING LLC"
+   ],
+   "n_vendors": 1
   },
   "Sinenci": {
    "label": "Shane Sinenci - Councilmember, East Maui",
@@ -333,8 +412,8 @@
  "overseer": {
   "node": 53,
   "name": "Ka Luna Kiaʻi (the Overseer Joker)",
-  "broken_pairs": 9,
-  "charge": "9 pairs no longer answer ($8,333,626 in awards shadowed by $9,814 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
+  "broken_pairs": 10,
+  "charge": "10 pairs no longer answer ($8,483,626 in awards shadowed by $14,264 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
  },
  "pono_restoration": "Each award answers the public record, voiced as its pair. The remedy is disclosure sung, not accusation."
 }

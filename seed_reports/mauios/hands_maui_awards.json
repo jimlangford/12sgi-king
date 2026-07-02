@@ -1,82 +1,11 @@
 {
- "generated": "2026-06-30T19:52:18.119917-10:00",
+ "generated": "2026-07-01T19:29:17.309858-10:00",
  "source": "HANDS hands.ehawaii.gov",
  "tenant": "maui",
- "statewide_total": 9885,
+ "statewide_total": 9873,
  "awards": 269,
  "vendors_n": 73,
  "dollars": 118346946.74,
- "corrections": [
-  {
-   "run": "2026-06-30T19:52:18.119917-10:00",
-   "prior_run": "2026-06-28T19:53:11.391493-10:00",
-   "source": "HANDS hands.ehawaii.gov",
-   "note": "HANDS database refreshed 2026-06-30. Records below were present in the prior pull (2026-06-28) and absent in this pull — removed or corrected at the source. Net change: 5 vendors adjusted or removed, 1 vendor added; $2,860,357 net reduction in tracked dollars. Statewide total also changed at source (10,749 → 9,885). These are sourced corrections, not editorial decisions.",
-   "removed": [
-    {
-     "vendor": "HDR ENGINEERING, INC.",
-     "amount": 563257.0,
-     "date": "02/07/2023",
-     "title": "CBS-1119 WK WWRF Solids Building Piping Rehab",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    },
-    {
-     "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
-     "amount": 347100.0,
-     "date": "11/30/2022",
-     "title": "Safety Improvements at Various Locations",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    },
-    {
-     "vendor": "AUSTIN, TSUTSUMI & ASSOCIATES, INC.",
-     "amount": 800000.0,
-     "date": "11/29/2022",
-     "title": "County of Maui Traffic Calming Program",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    },
-    {
-     "vendor": "RANDOLPH H. MURAYAMA & ASSOCIATES, INC.",
-     "amount": 650000.0,
-     "date": "08/28/2023",
-     "title": "Lahaina Police Station Air Conditioning Improvements",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    },
-    {
-     "vendor": "N&K CPAs, INC.",
-     "amount": 350000.0,
-     "date": "10/31/2023",
-     "title": "Request for Proposals: Financial Audit of the County of Maui",
-     "dept": "Maui County - Office of Council Services",
-     "category": "Services",
-     "sol": "RFP No. 24-01oca"
-    },
-    {
-     "vendor": "Lynn Surayan",
-     "amount": 300000.0,
-     "date": "04/26/2024",
-     "title": "Project Management, Organizational Change Management and Management Consulting Services",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    }
-   ],
-   "added": [
-    {
-     "vendor": "BERLIEN CONSULTING LLC",
-     "amount": 150000.0,
-     "date": "06/15/2026",
-     "title": "Crime Lab Renovation for Wailuku Police Station",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services"
-    }
-   ],
-   "delta_dollars": -2860357.0,
-   "delta_awards": -5
-  }
- ],
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
