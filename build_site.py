@@ -60,7 +60,9 @@ PAGES = [
     ("sunshine_maui.html",              "Sunshine Law Compliance Watch", "HRS §92-7: did the county post meeting notices 6+ calendar days in advance? Factual record of every Maui Council committee meeting — notice period computed from the Legistar publication timestamp. Flagged entries cited by source; not legal determinations."),
 ]
 # extra civic pages copied + nav-injected but NOT shown as their own nav pill (reached via the hub)
-EXTRA_PAGES = ["contracts_state.html", "contracts_honolulu.html", "contracts_kauai.html", "contracts_hawaii.html",
+EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embedded on the Maui tenant landing
+               "maui_parcel_map.html",
+               "contracts_state.html", "contracts_honolulu.html", "contracts_kauai.html", "contracts_hawaii.html",
                "contracts_nyc.html", "contracts_nys.html", "contracts_liverpool.html",
                # item 2: money / lobby / parity dimensions per tenant (built + verified by the workflow)
                "money_nyc.html", "lobby_nyc.html", "parity_nyc.html",

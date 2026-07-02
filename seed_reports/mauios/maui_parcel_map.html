@@ -1,0 +1,137 @@
+<!doctype html><html lang=en><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Maui Parcel &amp; Zoning Map — live Hawaiʻi Statewide GIS | govOS</title>
+<link rel=stylesheet href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+ html,body{margin:0;height:100%;font-family:system-ui,'Segoe UI',sans-serif;color:#15212e}
+ #bar{padding:.5rem .9rem;background:#0b0f0d;color:#e8ecef;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+ #bar b{color:#d9b24c}
+ #bar .new{background:#1f9d55;color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:.16rem .5rem;border-radius:99px}
+ #bar input{flex:1;min-width:150px;padding:.35rem .5rem;border-radius:7px;border:1px solid #33414d;background:#111820;color:#e8ecef;font-size:.85rem}
+ #bar button{padding:.35rem .7rem;border-radius:7px;border:0;background:#0b6bcb;color:#fff;font-weight:600;cursor:pointer;font-size:.85rem}
+ #map{height:calc(100% - 84px);width:100%}
+ #hint{font-size:.72rem;color:#6b7a89;padding:.3rem .9rem;background:#f6f8fa}
+ .lp b{color:#0b6bcb}.lp a{color:#0b6bcb}
+</style></head><body>
+<div id=bar>
+  <span class=new>NEW</span>
+  <b>Maui Parcel &amp; Zoning Map</b>
+  <span style="font-size:.78rem;color:#9aa6b1">click any parcel — or search a TMK</span>
+  <input id=tmk placeholder="TMK e.g. 211001001" inputmode=numeric>
+  <button id=go>Find</button>
+</div>
+<div id=map></div>
+<div id=hint>Live data: Hawaiʻi Statewide GIS Program — ParcelsZoning (parcels · county zoning · SMA · community plan · state land use).
+ Designations only; entitlements/permits link out to Maui MAPPS + qPublic. Sourced, never fabricated.</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.14/dist/esri-leaflet.js"></script>
+<script id="ovdata" type="application/json">{"money": {"_label": "FACT / SOURCED — federal award amounts are the public record; cited.", "_source": "USASpending.gov /api/v2/search/spending_by_award/ (place of performance = Hawaii)", "_geo_note": "Federal place-of-performance is COUNTY-LEVEL. Town bubbles reflect awards whose text names a town; the rest is shown as one 'Countywide' mass — which is itself the concentration: the money lands in a few large county-level awards, not distributed across the towns where people live.", "maui_total": 8244593930.0, "top10_share": 0.8809, "top10_share_pct": 88.1, "top_recipients": [{"recipient": "MULTIPLE RECIPIENTS", "maui_total": 3826345457.63}, {"recipient": "COUNTY OF MAUI", "maui_total": 1820723316.67}, {"recipient": "ECC CONSTRUCTORS LLC", "maui_total": 600023812.48}, {"recipient": "THE STATE OF HAWAII DEPARTMENT OF TRANSPORTATION", "maui_total": 227971978.14}, {"recipient": "HUI HULIAU TECHNOLOGY SERVICES LLC", "maui_total": 223275753.31}, {"recipient": "LIMA CHARLIE, INC", "maui_total": 188592767.14}, {"recipient": "GALAPAGOS FEDERAL SYSTEMS LLC", "maui_total": 118580190.6}, {"recipient": "AKTARIUS LLC", "maui_total": 95323281.0}], "points": [{"place": "Maui County — federal (place of performance)", "lat": 20.83, "lon": -156.33, "amount": 8244593930.0, "count": 600, "county_level": true}], "generated": "2026-07-02"}, "wealth": {"_label": "OUR MODEL / PROJECTION — the 12 Stones generational-wealth distribution. NOT current fact, NOT the county's numbers, NOT law.", "_basis": "12 Stones Global distributive model: value reaches every community on the island (even reach), the deliberate inverse of concentration. Illustrative even weighting across Maui towns.", "points": [{"place": "Wailuku", "lat": 20.8893, "lon": -156.504, "reach": 1.0}, {"place": "Kahului", "lat": 20.8893, "lon": -156.4729, "reach": 1.0}, {"place": "Lahaina", "lat": 20.8783, "lon": -156.6825, "reach": 1.0}, {"place": "Kihei", "lat": 20.7644, "lon": -156.445, "reach": 1.0}, {"place": "Makawao", "lat": 20.857, "lon": -156.312, "reach": 1.0}, {"place": "Hana", "lat": 20.758, "lon": -156.014, "reach": 1.0}, {"place": "Kula", "lat": 20.75, "lon": -156.33, "reach": 1.0}, {"place": "Paia", "lat": 20.903, "lon": -156.373, "reach": 1.0}, {"place": "Wailea", "lat": 20.69, "lon": -156.442, "reach": 1.0}, {"place": "Pukalani", "lat": 20.838, "lon": -156.339, "reach": 1.0}, {"place": "Napili", "lat": 20.994, "lon": -156.666, "reach": 1.0}, {"place": "Haiku", "lat": 20.916, "lon": -156.321, "reach": 1.0}], "generated": "2026-07-02"}, "cost": {"_label": "OUR MODEL / LIVE QUOTE — 12 Stones govOS pricing applied to the county's actual upcoming workload. NOT the county's official budget, NOT law. Rates are OUR published tiers (shown).", "_assumptions": {"rate_card": {"council_pro_dept_month": 999.0, "per_seat_month": 29.0, "per_agenda_item_processed": 12.0}, "departments_modeled": 12, "seats_modeled": 60, "note": "Departments/seats are modeled assumptions — refine from the county org chart. Agenda-item volume is SOURCED from agenda_intel_maui.json."}, "fiscal_year": {"start": "2026-07-01", "end": "2027-06-30", "months_remaining": 11, "as_of": "2026-07-02"}, "upcoming_agenda_items_sourced": 3, "monthly_quote": 13764.0, "fiscal_year_quote": 151404.0, "breakdown": {"departments": 11988.0, "seats": 1740.0, "agenda_items_month": 36.0}, "generated": "2026-07-02"}}</script>
+<script>
+var SVC="https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer";
+var map=L.map('map',{scrollWheelZoom:true}).setView([20.80,-156.33],10);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+// live parcels + zoning + SMA overlay from the state GIS (CORS echoes origin)
+L.esri.dynamicMapLayer({url:SVC,opacity:0.5,layers:[21,33,30]}).addTo(map);
+
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+// point-intersect each layer directly (inSR=4326; the service reprojects) — robust, no map-extent dependency
+function pointQuery(layer,fields,lat,lng){
+  var u=SVC+'/'+layer+'/query?geometry='+lng+','+lat+'&geometryType=esriGeometryPoint&inSR=4326'
+       +'&spatialRel=esriSpatialRelIntersects&outFields='+fields+'&returnGeometry=false&f=json';
+  return fetch(u).then(function(r){return r.json();})
+    .then(function(d){return (d.features&&d.features[0])?d.features[0].attributes:{};})
+    .catch(function(){return {};});
+}
+function popupHtml(p,z,sma,cp,slu){
+  var tmk=p.tmk_txt||'';var rows='';
+  if(tmk) rows+='<div><b>TMK</b> '+esc(tmk)+(p.taxacres?(' &middot; '+esc(p.taxacres)+' ac'):'')+'</div>';
+  if(z.zone_code||z.zone_dist) rows+='<div><b>County zoning</b> '+esc(z.zone_code||'')+' '+esc(z.zone_dist||'')+'</div>';
+  if(sma.smarea) rows+='<div><b>SMA</b> '+esc(sma.smarea)+'</div>';
+  if(cp.cp_area) rows+='<div><b>Community plan</b> '+esc(cp.cp_area)+(cp.designations?(' — '+esc(cp.designations)):'')+'</div>';
+  if(slu.ludcode) rows+='<div><b>State land use</b> '+esc(slu.ludcode)+'</div>';
+  if(!rows) return '<div class=lp style="font-size:.85rem">No parcel here — click inside a parcel boundary.</div>';
+  var links='<div style="margin-top:.4rem;font-size:.8rem">'
+    +'<a target=_blank rel=noopener href="https://qpublic.schneidercorp.com/Application.aspx?AppID=1147&LayerID=26330&PageTypeID=2&KeyValue='+encodeURIComponent(tmk)+'">qPublic real property &#8599;</a> &middot; '
+    +'<a target=_blank rel=noopener href="https://mapps2.co.maui.hi.us/EnerGov_Prod/SelfService#/search">Maui MAPPS permits &#8599;</a></div>';
+  return '<div class=lp style="font-size:.85rem;line-height:1.5">'+rows+links
+    +'<div style="margin-top:.4rem;font-size:.68rem;color:#6b7a89">Hawaiʻi Statewide GIS — designations only</div></div>';
+}
+map.on('click',function(e){
+  var ll=e.latlng;
+  L.popup().setLatLng(ll).setContent('Loading parcel…').openOn(map);
+  Promise.all([pointQuery(30,'tmk_txt,taxacres',ll.lat,ll.lng),pointQuery(33,'zone_code,zone_dist',ll.lat,ll.lng),
+    pointQuery(21,'smarea',ll.lat,ll.lng),pointQuery(10,'cp_area,designations',ll.lat,ll.lng),
+    pointQuery(20,'ludcode',ll.lat,ll.lng)])
+   .then(function(a){L.popup({maxWidth:300}).setLatLng(ll).setContent(popupHtml(a[0],a[1],a[2],a[3],a[4])).openOn(map);})
+   .catch(function(){L.popup().setLatLng(ll).setContent('GIS lookup unavailable — try again.').openOn(map);});
+});
+function findTMK(){
+  var v=(document.getElementById('tmk').value||'').replace(/\D/g,'');
+  if(!v)return;
+  L.esri.query({url:SVC+'/30'}).where("tmk_txt='"+v+"'").run(function(err,fc){
+    if(err||!fc||!fc.features.length){alert('TMK '+v+' not found in Maui parcels.');return;}
+    var lyr=L.geoJSON(fc,{style:{color:'#e0662b',weight:3,fillOpacity:.1}}).addTo(map);
+    try{map.fitBounds(lyr.getBounds(),{maxZoom:17});}catch(_){}
+    var c=lyr.getBounds().getCenter();
+    map.fire('click',{latlng:c});
+  });
+}
+document.getElementById('go').onclick=findTMK;
+document.getElementById('tmk').addEventListener('keydown',function(e){if(e.key==='Enter')findTMK();});
+
+// ===== TOGGLEABLE OVERLAYS on the island canvas (James 2026-07-02) =====
+var OV={}; try{OV=JSON.parse(document.getElementById('ovdata').textContent);}catch(e){}
+function money(v){try{return '$'+Math.round(v).toLocaleString();}catch(_){return '$'+v;}}
+function mk(tag,css,txt){var el=document.createElement(tag);if(css)el.style.cssText=css;if(txt!=null)el.textContent=txt;return el;} // textContent = XSS-safe
+
+function popupNode(rows,tagText,tagCss){var d=document.createElement('div');d.style.cssText='font-size:.85rem;line-height:1.5';
+  rows.forEach(function(r){d.appendChild(mk('div',null,r));});d.appendChild(mk('div',tagCss||'font-size:.68rem;color:#6b7a89;margin-top:.3rem',tagText));return d;}
+
+var moneyLayer=L.layerGroup();                 // OVERLAY: county money — SOURCED
+if(OV.money && OV.money.points){
+  var mx=Math.max.apply(null,OV.money.points.map(function(p){return p.amount;}).concat([1]));
+  OV.money.points.forEach(function(p){
+    var r=9+36*Math.sqrt(p.amount/mx);
+    var rows=[p.place, money(p.amount)+' · '+p.count+' awards'];
+    if(p.county_level) rows.push('county-level (place of performance = Maui County)');
+    L.circleMarker([p.lat,p.lon],{radius:r,color:'#7a1a12',weight:1,fillColor:'#e0662b',fillOpacity:.5})
+     .bindPopup(popupNode(rows,'FACT · USAspending')).addTo(moneyLayer);
+  });
+}
+var wealthLayer=L.layerGroup();                 // OVERLAY: 12 Stones wealth — OUR MODEL
+if(OV.wealth && OV.wealth.points){
+  OV.wealth.points.forEach(function(p){
+    L.circleMarker([p.lat,p.lon],{radius:15,color:'#14663a',weight:1,fillColor:'#1f9d55',fillOpacity:.42})
+     .bindPopup(popupNode([p.place,'even reach to every community'],'OUR MODEL · projection, not current fact')).addTo(wealthLayer);
+  });
+}
+L.control.layers(null,{
+  '🟥 County money — where it lands (SOURCED)':moneyLayer,
+  '🟩 12 Stones wealth — reaching everybody (OUR MODEL)':wealthLayer
+},{collapsed:false}).addTo(map);
+
+if(OV.money){                                   // sourced concentration headline
+  var Conc=L.control({position:'topright'});
+  Conc.onAdd=function(){var d=L.DomUtil.create('div');
+    d.style.cssText='background:#1a0f0f;color:#f0d9d2;padding:.4rem .6rem;border-radius:8px;font-size:.72rem;max-width:210px;line-height:1.35';
+    var l1=mk('div'); l1.appendChild(document.createTextNode('Top 10 recipients hold '));
+    l1.appendChild(mk('b',null,OV.money.top10_share_pct+'%'));
+    l1.appendChild(document.createTextNode(' of '+money(OV.money.maui_total)+' federal to Maui.'));
+    d.appendChild(l1); d.appendChild(mk('div','font-size:.62rem;color:#c9a','FACT · USAspending')); return d;};
+  Conc.addTo(map);
+}
+if(OV.cost){                                    // OUR MODEL live quote to the fiscal calendar
+  var cq=OV.cost,Cost=L.control({position:'bottomleft'});
+  Cost.onAdd=function(){var d=L.DomUtil.create('div');
+    d.style.cssText='background:#fff;padding:.5rem .7rem;border-radius:9px;box-shadow:0 1px 5px rgba(0,0,0,.3);font-size:.74rem;max-width:236px;line-height:1.4';
+    d.appendChild(mk('div','font-weight:700;color:#0b6bcb','Live quote — run this county on govOS'));
+    d.appendChild(mk('div',null,money(cq.monthly_quote)+'/mo · '+money(cq.fiscal_year_quote)+' to FY end ('+cq.fiscal_year.end+')'));
+    d.appendChild(mk('div','color:#6b7a89',cq.upcoming_agenda_items_sourced+' upcoming agenda items (sourced) · '+cq.fiscal_year.months_remaining+' mo left in FY'));
+    d.appendChild(mk('div','font-size:.65rem;color:#9aa6b1;margin-top:.25rem',"OUR MODEL — our published rates on the county's actual workload. Not the county's budget, not law."));
+    L.DomEvent.disableClickPropagation(d); return d;};
+  Cost.addTo(map);
+}
+</script>
+</body></html>
