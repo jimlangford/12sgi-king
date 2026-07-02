@@ -18,3 +18,6 @@ watchers/*_state.json
 
 # internal cross-thread coordination bus — never publish (not leak-scanned; keep private)
 .dispatch_log.jsonl
+
+# SECURITY (Jimmy 2026-06-26 harden): private corporate data room / cap table / investor / charter - NEVER in the public repo
+king_private_src/
