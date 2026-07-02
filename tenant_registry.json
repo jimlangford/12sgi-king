@@ -46,6 +46,21 @@
       "key": "audit",
       "label": "Audit balance",
       "desc": "the money×votes equation scorecard"
+    },
+    {
+      "key": "departments",
+      "label": "Departments",
+      "desc": "every department as a function you can see into — what it does, contracts attributed by subject"
+    },
+    {
+      "key": "oversight",
+      "label": "Questions for oversight",
+      "desc": "sourced questions for oversight, drawn from the public record — never accusations"
+    },
+    {
+      "key": "govos_audit",
+      "label": "govOS Audit",
+      "desc": "one page: funders, votes, and contracts crossed — the whole oversight picture per tenant"
     }
   ],
   "civic_tenants": [
@@ -81,10 +96,19 @@
         ],
         "audit": [
           "audit_balance.html"
+        ],
+        "departments": [
+          "departments_maui.html"
+        ],
+        "oversight": [
+          "oversight_hi-maui.html"
+        ],
+        "govos_audit": [
+          "govos_audit_hi-maui.html"
         ]
       },
-      "report_classes_filled": 9,
-      "report_classes_total": 9
+      "report_classes_filled": 12,
+      "report_classes_total": 12
     },
     {
       "id": "hi-state",
@@ -110,16 +134,24 @@
         "agendas": [
           "agendas_state.html"
         ],
-        "minutes": [],
+        "minutes": [
+          "archive_hi-state.html"
+        ],
         "charter": [
           "crosswalk_state.html"
         ],
         "audit": [
           "audit_balance.html"
+        ],
+        "oversight": [
+          "oversight_hi-state.html"
+        ],
+        "govos_audit": [
+          "govos_audit_hi-state.html"
         ]
       },
-      "report_classes_filled": 8,
-      "report_classes_total": 9
+      "report_classes_filled": 11,
+      "report_classes_total": 12
     },
     {
       "id": "hi-hawaii",
@@ -153,10 +185,16 @@
         ],
         "audit": [
           "audit_balance.html"
+        ],
+        "oversight": [
+          "oversight_hi-hawaii.html"
+        ],
+        "govos_audit": [
+          "govos_audit_hi-hawaii.html"
         ]
       },
-      "report_classes_filled": 9,
-      "report_classes_total": 9
+      "report_classes_filled": 11,
+      "report_classes_total": 12
     },
     {
       "id": "hi-kauai",
@@ -190,10 +228,16 @@
         ],
         "audit": [
           "audit_balance.html"
+        ],
+        "oversight": [
+          "oversight_hi-kauai.html"
+        ],
+        "govos_audit": [
+          "govos_audit_hi-kauai.html"
         ]
       },
-      "report_classes_filled": 9,
-      "report_classes_total": 9
+      "report_classes_filled": 11,
+      "report_classes_total": 12
     },
     {
       "id": "hi-honolulu",
@@ -227,10 +271,16 @@
         ],
         "audit": [
           "audit_balance.html"
+        ],
+        "oversight": [
+          "oversight_hi-honolulu.html"
+        ],
+        "govos_audit": [
+          "govos_audit_hi-honolulu.html"
         ]
       },
-      "report_classes_filled": 9,
-      "report_classes_total": 9
+      "report_classes_filled": 11,
+      "report_classes_total": 12
     },
     {
       "id": "nyc",
@@ -238,14 +288,18 @@
       "kind": "civic",
       "quadrant": "govos",
       "reports": {
-        "govern": [],
+        "govern": [
+          "officials_nyc.html"
+        ],
         "money": [
           "money_nyc.html"
         ],
         "contracts": [
           "contracts_nyc.html"
         ],
-        "federal": [],
+        "federal": [
+          "federal_money_nyc.html"
+        ],
         "crossref": [
           "parity_nyc.html"
         ],
@@ -262,8 +316,8 @@
           "govos_audit_ny.html"
         ]
       },
-      "report_classes_filled": 7,
-      "report_classes_total": 9
+      "report_classes_filled": 9,
+      "report_classes_total": 12
     },
     {
       "id": "nys",
@@ -294,7 +348,7 @@
         "audit": []
       },
       "report_classes_filled": 5,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "london",
@@ -315,7 +369,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "tokyo",
@@ -336,7 +390,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "hongkong",
@@ -357,7 +411,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "singapore",
@@ -378,7 +432,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "zurich",
@@ -399,7 +453,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "frankfurt",
@@ -420,7 +474,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "paris",
@@ -441,7 +495,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "dubai",
@@ -462,7 +516,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     },
     {
       "id": "liverpool",
@@ -483,7 +537,7 @@
         "audit": []
       },
       "report_classes_filled": 1,
-      "report_classes_total": 9
+      "report_classes_total": 12
     }
   ],
   "creative_tenants": [
@@ -547,6 +601,6 @@
   "counts": {
     "civic": 16,
     "creative": 7,
-    "report_classes": 9
+    "report_classes": 12
   }
 }
