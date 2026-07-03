@@ -1303,6 +1303,20 @@ Sources are linked on every page.</div>
     # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).
     open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8").write("12sgi.com\n")
     print("  + CNAME = 12sgi.com (GitHub Pages custom domain for govOS)")
+    # BUILD MARKER for git-awareness (Jimmy 2026-07-03): stamp the deployed commit into the
+    # artifact so the state-based sense-organ can read the LIVE sha directly (one curl of
+    # /buildinfo.json) and reconcile live-vs-committed -- instead of ASSUMING the push worked.
+    try:
+        import subprocess as _sp
+        _sha = os.environ.get("GITHUB_SHA") or _sp.run(
+            ["git", "rev-parse", "HEAD"], cwd=os.path.dirname(os.path.abspath(__file__)),
+            capture_output=True, text=True).stdout.strip()
+        json.dump({"sha": _sha, "sha_short": (_sha or "")[:7],
+                   "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+                  open(os.path.join(SITE, "buildinfo.json"), "w", encoding="utf-8"))
+        print("  + buildinfo.json = %s (git-awareness live-deploy marker)" % (_sha or "")[:7])
+    except Exception as _e:
+        print("  ! buildinfo.json skipped: %s" % _e)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
     # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
