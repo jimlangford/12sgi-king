@@ -398,13 +398,36 @@ NAV_GROUP_CLASSES = [
     ("The Record", ["minutes", "agendas", "charter"]),
 ]
 _HOME_TENANT = "hi-maui"
+def _tenant_from_filename(cf, treg):
+    """Resolve a tenant from a filename TOKEN (Jimmy 2026-07-03 'fix the pick-a-government render gate so the
+    real vote data displays'): e.g. council_votes_maui / dept_council_maui / agendas_nys -> the matching
+    registry tenant. SOURCED-not-fabricated: matches the registry tenant's own id-suffix (hi-maui->maui,
+    ny->ny) or the first word of its name, on whole '_/-/.' token boundaries so 'ny' can't match 'any'.
+    Returns a tid or None (None only when no registry tenant token is in the filename)."""
+    if not treg:
+        return None
+    toks = set(t for t in re.split(r"[_\-.]", (cf or "").lower()) if t)
+    for tid in treg:
+        idtok = tid.split("-")[-1].lower()
+        nametok = re.split(r"[\s,]", (treg[tid].get("name") or "").lower())[0]
+        for t in toks:
+            # exact token match, OR a short-id prefix (idtok 'ny' matches 'nys'/'nyc' but not 'nylon' —
+            # bounded to +2 chars so it stays a deliberate tenant token, never a coincidental substring)
+            if t == idtok or t == nametok or (len(idtok) >= 2 and t.startswith(idtok) and len(t) - len(idtok) <= 2):
+                return tid
+    return None
+
+
 def _tenant_of(current):
-    """Which tenant a flat filename belongs to (registry rev map or tenant_<id>.html); home tenant otherwise."""
+    """Which tenant a flat filename belongs to (registry rev map, tenant_<id>.html, or filename token);
+    home tenant otherwise."""
     rev, byclass, treg, order = _switcher_maps()
     cf = (current or "").replace("/", "_")
     if cf in rev: return rev[cf][2]
     m = re.match(r"tenant_(.+)\.html$", cf)
     if m and treg and m.group(1) in treg: return m.group(1)
+    ft = _tenant_from_filename(cf, treg)
+    if ft: return ft
     return _HOME_TENANT
 
 _NAVMAP_JSON = None
@@ -581,6 +604,13 @@ def inject_switcher(html, current_file):
         m = re.match(r"tenant_(.+)\.html$", cf)
         if m and m.group(1) in treg:
             cur_tid = m.group(1)
+    if cur_tid is None:
+        # FILENAME-TOKEN fallback (Jimmy 2026-07-03 'fix the pick-a-government render gate'): council_votes_maui
+        # / dept_council_maui / agendas_nys carry the tenant in the name -> resolve it so the bar shows "on
+        # Maui County" (with the real vote data) instead of "pick a government to begin". Deliberately does NOT
+        # home-default here: a page whose filename names a NON-registry place (agendas_london/paris) must NOT
+        # be mislabeled "Maui" — that would be fabrication. No token -> stays the honest picker.
+        cur_tid = _tenant_from_filename(cf, treg)
     tclass = {k: {t: f for t, _n, f in v if f} for k, v in byclass.items()}
     data = json.dumps({"treg": treg, "tclass": tclass, "cur_tid": cur_tid,
                        "cur_class": cur_class, "cur_file": cf}, ensure_ascii=False)
