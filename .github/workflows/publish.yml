@@ -142,7 +142,7 @@ jobs:
           fi
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -155,7 +155,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       # Private notify (Jimmy 2026-07-01 "go"). HEAL-FORWARD (2026-07-02): the original if:
       # referenced `secrets.TAILSCALE_AUTH_KEY` directly in a job-level if: condition, which
