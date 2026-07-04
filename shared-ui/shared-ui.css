@@ -1,0 +1,118 @@
+/* ============================================================
+   /shared-ui — ONE reusable design layer for elementLOTUS + 12sgi
+   (Jimmy Langford 2026-07-03 · greenlit liquid-cinematic upgrade)
+
+   Build once, import twice:
+     • elementlotus.com  -> default (full "liquid cinematic")
+     • 12sgi.com         -> <html data-skin="civic">  (calmer "civic glass")
+
+   Jimmy's tokens are VERBATIM below and are the source of truth.
+   Import: <link rel="stylesheet" href="/shared-ui/shared-ui.css?v=20260703">
+   ============================================================ */
+
+:root{
+  /* ---- Jimmy's tokens (verbatim, do not alter) ---- */
+  --glass-bg: rgba(255,255,255,.08);
+  --glass-border: rgba(255,255,255,.18);
+  --glow-cyan: rgba(0,229,255,.35);
+  --glow-violet: rgba(123,97,255,.35);
+  --deep-bg: #05070d;
+
+  /* ---- system extensions (derived, named) ---- */
+  --cyan:#00e5ff; --violet:#7b61ff;
+  --gold:#e3ad33;                       /* signature ember — brand continuity, used sparingly */
+  --ink:#eef2fb; --ink-dim:#aab4c8; --ink-faint:#6b7793;
+  --glass-hi: rgba(255,255,255,.25);    /* top inner-highlight of a glass edge */
+  --panel-2: rgba(255,255,255,.045);
+
+  --r-lg:20px; --r-md:14px; --r-sm:9px; --r-pill:999px;
+  --f:"Segoe UI Variable Display","Segoe UI",-apple-system,system-ui,Inter,sans-serif;
+  --f-mono:"JetBrains Mono","Cascadia Code",Consolas,monospace;
+
+  --blur: 22px;                         /* glass blur — civic skin lowers this */
+  --glass-shadow: 0 24px 60px -24px rgba(0,0,0,.85), inset 0 1px 0 var(--glass-hi);
+  --glow-mix: 0 0 40px -6px var(--glow-cyan), 0 0 60px -10px var(--glow-violet);
+  --accent-grad: linear-gradient(120deg,var(--cyan),var(--violet));
+}
+
+/* ============================================================
+   CIVIC SKIN — 12sgi.com inherits the polish, NOT the chaos.
+   Same glass system, dialed for trust + legibility:
+   calmer glows, tighter blur, more-opaque + readable panels,
+   a governmental blue anchor. Applied via <html data-skin="civic">.
+   ============================================================ */
+:root[data-skin="civic"]{
+  --deep-bg:#0a0f16;                    /* slightly lifted, less void */
+  --glass-bg: rgba(255,255,255,.06);
+  --glass-border: rgba(255,255,255,.14);
+  --glow-cyan: rgba(0,229,255,.14);     /* half-strength glow — calmer */
+  --glow-violet: rgba(123,97,255,.12);
+  --civic:#5b93cf;                      /* trustworthy blue — the civic anchor accent */
+  --accent-grad: linear-gradient(120deg,var(--civic),#3a6ea5);
+  --blur: 12px;                         /* less blur => more legible data */
+  --ink:#eaf1f8; --ink-dim:#a7b6c8;
+  --glow-mix: 0 0 24px -10px var(--glow-cyan);   /* whisper, not a bloom */
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--deep-bg);color:var(--ink);font-family:var(--f);
+  -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.ui-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:6px}
+
+/* ---------- AURORA background (drifting) ---------- */
+.aurora{position:fixed;inset:-20% -10% -10% -10%;z-index:-2;filter:blur(60px) saturate(140%);opacity:.9;pointer-events:none}
+.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen;animation:ui-drift 26s ease-in-out infinite}
+.aurora i:nth-child(1){width:52vw;height:52vw;left:-8vw;top:-14vw;background:radial-gradient(circle,var(--glow-violet),transparent 62%)}
+.aurora i:nth-child(2){width:46vw;height:46vw;right:-8vw;top:-6vw;background:radial-gradient(circle,var(--glow-cyan),transparent 62%);animation-delay:-8s}
+.aurora i:nth-child(3){width:40vw;height:40vw;left:22vw;top:36vw;background:radial-gradient(circle,var(--glow-cyan),transparent 60%);animation-delay:-14s;opacity:.6}
+.aurora i:nth-child(4){width:34vw;height:34vw;right:6vw;top:52vw;background:radial-gradient(circle,var(--glow-violet),transparent 60%);animation-delay:-4s}
+@keyframes ui-drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6vw,4vw) scale(1.12)}66%{transform:translate(-4vw,2vw) scale(.94)}}
+
+/* ---------- GLASS primitive ---------- */
+.glass{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);
+  box-shadow:var(--glass-shadow);
+  backdrop-filter:blur(var(--blur)) saturate(160%);-webkit-backdrop-filter:blur(var(--blur)) saturate(160%)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:10px 18px;
+  border-radius:var(--r-pill);border:1px solid var(--glass-border);color:#fff;cursor:pointer;background:var(--panel-2)}
+.btn.primary{border-color:transparent;color:#04121a;background:var(--accent-grad);box-shadow:var(--glow-mix)}
+.btn.primary:hover{filter:brightness(1.08)}
+
+/* ---------- nav ---------- */
+.ui-nav{position:sticky;top:14px;z-index:20;margin:14px auto 0;max-width:1180px}
+.ui-nav .bar{display:flex;align-items:center;gap:22px;padding:11px 20px;border-radius:var(--r-pill)}
+.brand{font-weight:700;letter-spacing:.02em;font-size:16px;display:flex;align-items:center;gap:10px}
+.brand .orb{width:16px;height:16px;border-radius:50%;
+  background:conic-gradient(from 210deg,var(--cyan),var(--violet),var(--gold),var(--cyan));box-shadow:var(--glow-mix)}
+.ui-nav .links{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.ui-nav .links a{font-size:13px;color:var(--ink-dim);padding:7px 13px;border-radius:var(--r-pill)}
+.ui-nav .links a:hover{color:#fff;background:var(--panel-2)}
+
+/* ---------- content card (expressive) ---------- */
+.ui-card{padding:22px;position:relative;transition:transform .3s ease, box-shadow .3s ease}
+.ui-card:hover{transform:translateY(-6px);box-shadow:var(--glass-shadow),var(--glow-mix)}
+.ui-card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--glow-cyan),var(--glow-violet));border:1px solid var(--glass-border)}
+
+/* ---------- DATA CARD (civic — the calm, legible module) ---------- */
+.data-card{padding:16px 18px;border-radius:var(--r-md)}
+.data-card .label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint)}
+.data-card .value{font-family:var(--f-mono);font-size:1.6rem;font-variant-numeric:tabular-nums;margin-top:4px}
+.data-card .src{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-faint);margin-top:8px}
+:root[data-skin="civic"] .ui-card:hover{transform:none;box-shadow:var(--glass-shadow)}  /* civic: no showy lift */
+
+/* ---------- typography scale ---------- */
+.display{font-size:clamp(2.4rem,6vw,5rem);line-height:1.03;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.grad-text{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+:root[data-skin="civic"] .eyebrow{color:var(--civic)}
+.lede{color:var(--ink-dim);font-size:clamp(1rem,1.6vw,1.2rem);max-width:62ch}
+
+@media(prefers-reduced-motion:reduce){.aurora i{animation:none}.ui-card{transition:none}}
+@media(max-width:860px){.ui-nav .links{display:none}}
