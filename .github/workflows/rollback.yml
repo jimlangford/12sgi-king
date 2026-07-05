@@ -1,0 +1,50 @@
+name: Rollback deployed release on remote server
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_release:
+        description: 'Release folder name from releases/ (e.g., 123-20260705083000) or leave blank to pick previous'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    env:
+      POST_ROLLBACK_HOOK: ${{ secrets.POST_ROLLBACK_HOOK }}
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Determine target release
+        id: target
+        run: |
+          if [ -n "${{ github.event.inputs.target_release }}" ]; then
+            echo "target=${{ github.event.inputs.target_release }}" >> $GITHUB_OUTPUT
+          else
+            # compute previous release on remote
+            PREV=$(ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "ls -1t ${{ secrets.DEPLOY_PATH }}/releases | sed -n '2p' || true")
+            if [ -z "$PREV" ]; then
+              echo "error=No previous release found" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+            echo "target=$PREV" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run remote rollback
+        run: |
+          TARGET=${{ steps.target.outputs.target }}
+          echo "Rolling back to $TARGET"
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "if [ -d ${{ secrets.DEPLOY_PATH }}/releases/$TARGET ]; then ln -sfn ${{ secrets.DEPLOY_PATH }}/releases/$TARGET ${{ secrets.DEPLOY_PATH }}/current && echo $TARGET > ${{ secrets.DEPLOY_PATH }}/CURRENT_RELEASE && echo 'Rollback complete'; else echo 'Target release not found' && exit 1; fi"
+
+      - name: Optional post-rollback hook
+        if: ${{ env.POST_ROLLBACK_HOOK == 'true' }}
+        run: |
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd ${{ secrets.DEPLOY_PATH }}/current && if [ -f ./post-rollback.sh ]; then bash ./post-rollback.sh; fi"

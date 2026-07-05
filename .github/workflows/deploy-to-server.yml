@@ -1,0 +1,57 @@
+name: Deploy to elementlotus server (releases + atomic symlink)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      POST_DEPLOY_BUILD: ${{ secrets.POST_DEPLOY_BUILD }}
+      POST_DEPLOY_HEALTHCHECK_URL: ${{ secrets.POST_DEPLOY_HEALTHCHECK_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set release identifier
+        run: echo "RELEASE_ID=${GITHUB_RUN_ID}-$(date -u +%Y%m%d%H%M%S)" >> "$GITHUB_ENV"
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create release directory on remote
+        run: |
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p ${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }} && mkdir -p ${{ secrets.DEPLOY_PATH }}/shared"
+
+      - name: Rsync to remote release directory
+        run: |
+          rsync -avz --delete --exclude '.git/' --exclude '.github/' -e "ssh -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=yes" ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }}/
+
+      - name: Run remote build steps (if any)
+        if: ${{ env.POST_DEPLOY_BUILD == 'true' }}
+        run: |
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd ${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }} && if [ -f ./deploy-build.sh ]; then bash ./deploy-build.sh; fi"
+
+      - name: Update 'current' symlink atomically to new release
+        run: |
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "ln -sfn ${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }} ${{ secrets.DEPLOY_PATH }}/current && echo ${{ env.RELEASE_ID }} > ${{ secrets.DEPLOY_PATH }}/CURRENT_RELEASE"
+
+      - name: Cleanup old releases (keep last 3)
+        run: |
+          ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd ${{ secrets.DEPLOY_PATH }}/releases && ls -1t | tail -n +4 | xargs -r rm -rf --"
+
+      - name: Post-deploy health check (optional)
+        if: ${{ env.POST_DEPLOY_HEALTHCHECK_URL != '' }}
+        run: |
+          echo "Running configured post-deploy health check"
+          curl -fsS --max-time 10 "$POST_DEPLOY_HEALTHCHECK_URL"
