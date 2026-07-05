@@ -1,107 +1,127 @@
-name: Label PRs by changed paths
+name: Label PR by changed paths
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: 'If true, do not create or add labels (dry run)'
-        required: false
-        default: 'false'
       pr_number:
-        description: 'For manual runs: the PR number to test against'
+        description: 'Optional PR number to label (for manual runs)'
         required: false
-        default: ''
+      dry_run:
+        description: 'If true, do not actually add labels; just print what would happen'
+        required: false
+        default: 'true'
 
 permissions:
+  contents: read
   issues: write
   pull-requests: write
 
 jobs:
   label-by-path:
+    name: label-by-path
     runs-on: ubuntu-latest
-    env:
-      # For manual dispatch runs, you can provide pr_number and dry_run inputs.
-      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
-      MANUAL_PR_NUMBER: ${{ github.event.inputs.pr_number || '' }}
     steps:
-      - name: Label PR based on touched files
-        uses: actions/github-script@v8
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine PR number
+        id: pr
+        run: |
+          if [ -n "${{ github.event.pull_request.number || '' }}" ]; then
+            echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          elif [ -n "${{ github.event.inputs.pr_number || '' }}" ]; then
+            echo "pr_number=${{ github.event.inputs.pr_number }}" >> $GITHUB_OUTPUT
+          else
+            echo "No PR number available; exiting" >&2
+            echo "pr_number=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Label PR by path (safe, fail-soft)
+        uses: actions/github-script@v6
         with:
           script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const DRY_RUN = process.env.DRY_RUN === 'true';
-            let prNumber = null;
+            const core = require('@actions/core')
+            const github = require('@actions/github')
 
-            if (context.payload && context.payload.pull_request && context.payload.pull_request.number) {
-              prNumber = context.payload.pull_request.number;
-            } else if (process.env.MANUAL_PR_NUMBER) {
-              prNumber = parseInt(process.env.MANUAL_PR_NUMBER, 10);
+            const prNumber = parseInt(process.env.PR_NUMBER || '0', 10)
+            const dryRun = (process.env.DRY_RUN || 'true') === 'true'
+
+            if (!prNumber || prNumber === 0) {
+              core.info('No PR number provided; skipping labeling.')
+              return
             }
 
-            if (!prNumber) {
-              console.log('No PR number available. For manual runs set the pr_number input.');
-              return;
-            }
+            core.info(`Labeling PR #${prNumber} (dry_run=${dryRun})`)
 
-            // Fetch list of changed files in the PR
-            const files = await github.paginate(github.rest.pulls.listFiles, {
-              owner, repo, pull_number: prNumber
-            });
-            const paths = files.map(f => f.filename);
-
-            // Patterns -> label mapping (prefix / exact matching)
+            // simple path -> label mapping (edit as needed)
             const mapping = [
-              { match: p => p.startsWith('docs/'), label: 'area:docs' },
-              { match: p => p.startsWith('king_public_src/'), label: 'area:public-src' },
-              { match: p => p.startsWith('shared-ui/'), label: 'area:ui' },
-              { match: p => p.startsWith('watchers/'), label: 'area:watchers' },
-              { match: p => p.startsWith('seed_reports/'), label: 'area:seed' },
-              { match: p => p.startsWith('tools/'), label: 'area:site' },
-              { match: p => p.startsWith('staging/'), label: 'area:staging' },
-              { match: p => p === 'build_site.py' || p === 'narratives.json' || p === 'packages.json', label: 'area:site' }
-            ];
+              { pattern: '^apps/govos/', label: 'area:govos' },
+              { pattern: '^apps/tenant/', label: 'area:tenant' },
+              { pattern: '^apps/civic-signal/', label: 'area:civic-signal' },
+              { pattern: '^apps/admin/', label: 'area:admin' },
+              { pattern: '^services/auth/', label: 'area:auth' },
+              { pattern: '^services/ai/', label: 'area:ai' },
+              { pattern: '^services/documents/', label: 'area:documents' },
+              { pattern: '^services/storage/', label: 'area:storage' },
+              { pattern: '^services/health/', label: 'area:health' },
+              { pattern: '^docs/', label: 'area:docs' },
+            ]
 
-            const labelsToAdd = new Set();
+            async function run() {
+              const { data: files } = await github.rest.pulls.listFiles({
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                pull_number: prNumber,
+                per_page: 250,
+              })
 
-            for (const p of paths) {
-              for (const m of mapping) {
-                try {
-                  if (m.match(p)) labelsToAdd.add(m.label);
-                } catch (e) {
-                  // ignore
+              const paths = files.map(f => f.filename)
+              core.info(`Changed files: ${paths.join(', ')}`)
+
+              const labelsToAdd = new Set()
+              for (const p of paths) {
+                for (const m of mapping) {
+                  const re = new RegExp(m.pattern)
+                  if (re.test(p)) labelsToAdd.add(m.label)
                 }
               }
-            }
 
-            if (labelsToAdd.size === 0) {
-              console.log('No area labels matched for PR #' + prNumber);
-              return;
-            }
+              if (labelsToAdd.size === 0) {
+                core.info('No matching labels for changed files.')
+                return
+              }
 
-            const labelsArray = Array.from(labelsToAdd);
+              const labels = Array.from(labelsToAdd)
+              core.info(`Would add labels: ${labels.join(', ')}`)
 
-            if (DRY_RUN) {
-              console.log(`Dry run: matched labels ${labelsArray.join(', ')} for PR #${prNumber}`);
-              return;
-            }
+              if (dryRun) {
+                core.info('Dry run enabled; not adding labels.')
+                return
+              }
 
-            // Ensure labels exist; create them if missing
-            for (const lbl of labelsArray) {
               try {
-                await github.rest.issues.getLabel({ owner, repo, name: lbl });
+                await github.rest.issues.addLabels({
+                  owner: github.context.repo.owner,
+                  repo: github.context.repo.repo,
+                  issue_number: prNumber,
+                  labels: labels,
+                })
+                core.info('Labels added successfully')
               } catch (err) {
-                if (err.status === 404) {
-                  await github.rest.issues.createLabel({ owner, repo, name: lbl, color: 'ededed', description: 'Auto-created area label' });
+                if (err.status === 403) {
+                  core.warning('Permission denied when adding labels (403). This job will not fail the workflow.')
+                  core.info('Ensure the workflow has issues: write and pull-requests: write permissions if you want auto-labeling to run.')
                 } else {
-                  throw err;
+                  // For other errors, surface them but do not fail the entire CI run
+                  core.warning(`Failed to add labels: ${err.message || String(err)}`)
                 }
               }
             }
 
-            // Add labels to the PR (PR is an issue for labels API)
-            await github.rest.issues.addLabels({ owner, repo, issue_number: prNumber, labels: labelsArray });
+            run()
 
-            console.log('Added labels ' + labelsArray.join(', ') + ' to PR #' + prNumber);
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'true' }}
