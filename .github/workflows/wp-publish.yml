@@ -1,0 +1,58 @@
+name: Publish release post to WordPress
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine release notes
+        id: notes
+        run: |
+          # Produce a minimal changelog from the latest commit(s)
+          TITLE="Release: $(date -u +%Y-%m-%d)"
+          BODY="Changelog:\n\n$(git log -n 10 --pretty=format:'%h %s (%an)')"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Publish to WordPress (App Password)
+        if: secrets.WP_URL && secrets.WP_USER && secrets.WP_APP_PASSWORD
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          TITLE: ${{ steps.notes.outputs.title }}
+          BODY: ${{ steps.notes.outputs.body }}
+        run: |
+          echo "Posting to WordPress at $WP_URL"
+          AUTH=$(printf "%s:%s" "$WP_USER" "$WP_APP_PASSWORD" | base64)
+          curl -s -X POST "$WP_URL/wp-json/wp/v2/posts" \
+            -H "Authorization: Basic $AUTH" \
+            -H "Content-Type: application/json" \
+            -d "{\"title\": \"$TITLE\", \"content\": \"$BODY\", \"status\": \"publish\" }"
+
+      - name: Publish via Jetpack (fallback)
+        if: secrets.JETPACK_TOKEN && ( !secrets.WP_URL || !secrets.WP_USER || !secrets.WP_APP_PASSWORD )
+        env:
+          JETPACK_TOKEN: ${{ secrets.JETPACK_TOKEN }}
+          TITLE: ${{ steps.notes.outputs.title }}
+          BODY: ${{ steps.notes.outputs.body }}
+        run: |
+          echo "Posting via Jetpack to WordPress.com (token-based). Ensure site is connected to Jetpack."
+          # This assumes a WP.com/Jetpack site; Jetpack REST endpoints vary. This is a basic example using WP.com REST API.
+          curl -s -X POST "https://public-api.wordpress.com/rest/v1.1/sites/${{ secrets.JETPACK_SITE_ID }}/posts/new" \
+            -H "Authorization: Bearer $JETPACK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"title\": \"$TITLE\", \"content\": \"$BODY\", \"status\": \"publish\" }"

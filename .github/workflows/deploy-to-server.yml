@@ -1,0 +1,46 @@
+name: Deploy to elementlotus server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Add host to known_hosts to avoid prompt
+          ssh-keyscan -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Rsync deploy to server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_SSH_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+        run: |
+          echo "Starting rsync deploy to $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
+          rsync -avz --delete --exclude '.git/' --exclude '.github/' -e "ssh -p $DEPLOY_SSH_PORT -o StrictHostKeyChecking=yes" ./ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+
+      - name: Post-deploy: optional remote build
+        if: ${{ secrets.POST_DEPLOY_BUILD == 'true' }}
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          echo "Running remote build script on host"
+          ssh -p $DEPLOY_SSH_PORT $DEPLOY_USER@${{ secrets.DEPLOY_HOST }} "cd $DEPLOY_PATH && if [ -f ./deploy-build.sh ]; then bash ./deploy-build.sh; fi"
