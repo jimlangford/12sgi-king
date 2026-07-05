@@ -3,6 +3,16 @@ name: Label PRs by changed paths
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'If true, do not create or add labels (dry run)'
+        required: false
+        default: 'false'
+      pr_number:
+        description: 'For manual runs: the PR number to test against'
+        required: false
+        default: ''
 
 permissions:
   issues: write
@@ -11,6 +21,10 @@ permissions:
 jobs:
   label-by-path:
     runs-on: ubuntu-latest
+    env:
+      # For manual dispatch runs, you can provide pr_number and dry_run inputs.
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      MANUAL_PR_NUMBER: ${{ github.event.inputs.pr_number || '' }}
     steps:
       - name: Label PR based on touched files
         uses: actions/github-script@v6
@@ -18,7 +32,19 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const prNumber = context.payload.pull_request.number;
+            const DRY_RUN = process.env.DRY_RUN === 'true';
+            let prNumber = null;
+
+            if (context.payload && context.payload.pull_request && context.payload.pull_request.number) {
+              prNumber = context.payload.pull_request.number;
+            } else if (process.env.MANUAL_PR_NUMBER) {
+              prNumber = parseInt(process.env.MANUAL_PR_NUMBER, 10);
+            }
+
+            if (!prNumber) {
+              console.log('No PR number available. For manual runs set the pr_number input.');
+              return;
+            }
 
             // Fetch list of changed files in the PR
             const files = await github.paginate(github.rest.pulls.listFiles, {
@@ -56,6 +82,11 @@ jobs:
             }
 
             const labelsArray = Array.from(labelsToAdd);
+
+            if (DRY_RUN) {
+              console.log(`Dry run: matched labels ${labelsArray.join(', ')} for PR #${prNumber}`);
+              return;
+            }
 
             // Ensure labels exist; create them if missing
             for (const lbl of labelsArray) {

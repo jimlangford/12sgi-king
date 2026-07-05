@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # create_project.sh
-# Usage: ./create_project.sh <owner> <repo> [project-name]
+# Usage: bash .github/project_setup/create_project.sh <owner> <repo> [project-name]
 # NOTE: You must have gh CLI installed and be authenticated (gh auth login).
 # Also ensure the authenticated account has permission to create Projects (v2) for the repository/org.
 
@@ -16,6 +16,12 @@ if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
 fi
 
 echo "Creating Project v2 '$PROJECT_NAME' in $OWNER/$REPO"
+
+echo "Run this script from the repository root, for example:"
+echo "  bash .github/project_setup/create_project.sh $OWNER $REPO \"$PROJECT_NAME\""
+
+echo "Ensure gh CLI is authenticated (gh auth login) and the account has project/repo permissions."
+echo "Required scopes: repo (or public_repo for public repos) and project scope for Projects v2 creation."
 
 # Get the repository's GraphQL node id via REST API (node_id is acceptable as ownerId)
 NODE_ID=$(gh api repos/$OWNER/$REPO --jq .node_id)
@@ -63,6 +69,6 @@ If you prefer this fully automated via GraphQL, you can extend this script with 
 
 To run this script:
   gh auth login
-  ./create_project.sh <owner> <repo> "Engineering Board"
+  bash .github/project_setup/create_project.sh <owner> <repo> "Engineering Board"
 
 EOF
