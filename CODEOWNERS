@@ -1,0 +1,19 @@
+# CODEOWNERS
+
+# Top-level owner
+* @jimlangford
+
+# Docs
+/docs/ @jimlangford
+
+# Workflows
+.github/workflows/ @jimlangford
+
+# Apps
+/apps/ @jimlangford
+
+# Services
+/services/ @jimlangford
+
+# Infrastructure
+/infrastructure/ @jimlangford
