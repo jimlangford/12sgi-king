@@ -4,6 +4,10 @@ Project automation test checklist
    - The labeler workflow (.github/workflows/label-by-path.yml) runs and adds the label `area:docs` to the PR.
    - The label appears on the PR page under Labels.
 
+   Tip: To run the labeler workflow in dry-run mode (no labels created/added) for an existing PR, go to the Actions tab -> "Label PRs by changed paths" -> Run workflow, and set:
+     - pr_number: <the PR number>
+     - dry_run: true
+
 2) (After creating the Project v2 and enabling rules)
    - In Projects v2: Add automation rule: "When label `area:docs` is added -> Move card to In Progress (or Docs column)".
    - Open the PR from step 1 and verify the Project card moved accordingly.
