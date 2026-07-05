@@ -1,0 +1,9 @@
+name: CI - lint placeholder
+on:
+  workflow_dispatch: {}
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "This workflow is a lint placeholder. Add linter steps here."

@@ -1,0 +1,9 @@
+name: CI - accessibility placeholder
+on:
+  workflow_dispatch: {}
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "This workflow is an accessibility test placeholder. Add axe or pa11y steps here."

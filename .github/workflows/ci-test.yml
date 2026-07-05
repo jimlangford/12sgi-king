@@ -1,0 +1,9 @@
+name: CI - test placeholder
+on:
+  workflow_dispatch: {}
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "This workflow is a test placeholder. Add test steps here."
