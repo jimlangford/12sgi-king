@@ -1,0 +1,13 @@
+# GraphQL mutation to create a Project v2 (use with gh api graphql)
+# Example usage (from create_project.sh):
+# gh api graphql -f ownerId='<NODE_ID>' -f title='Engineering Board' -F query=@create_project.graphql
+
+mutation ($ownerId: ID!, $title: String!) {
+  createProjectV2(input: { ownerId: $ownerId, title: $title }) {
+    projectV2 {
+      id
+      url
+      title
+    }
+  }
+}
