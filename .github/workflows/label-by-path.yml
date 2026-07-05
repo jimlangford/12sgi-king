@@ -1,0 +1,107 @@
+name: Label PRs by changed paths
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'If true, do not create or add labels (dry run)'
+        required: false
+        default: 'false'
+      pr_number:
+        description: 'For manual runs: the PR number to test against'
+        required: false
+        default: ''
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  label-by-path:
+    runs-on: ubuntu-latest
+    env:
+      # For manual dispatch runs, you can provide pr_number and dry_run inputs.
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      MANUAL_PR_NUMBER: ${{ github.event.inputs.pr_number || '' }}
+    steps:
+      - name: Label PR based on touched files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const DRY_RUN = process.env.DRY_RUN === 'true';
+            let prNumber = null;
+
+            if (context.payload && context.payload.pull_request && context.payload.pull_request.number) {
+              prNumber = context.payload.pull_request.number;
+            } else if (process.env.MANUAL_PR_NUMBER) {
+              prNumber = parseInt(process.env.MANUAL_PR_NUMBER, 10);
+            }
+
+            if (!prNumber) {
+              console.log('No PR number available. For manual runs set the pr_number input.');
+              return;
+            }
+
+            // Fetch list of changed files in the PR
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner, repo, pull_number: prNumber
+            });
+            const paths = files.map(f => f.filename);
+
+            // Patterns -> label mapping (prefix / exact matching)
+            const mapping = [
+              { match: p => p.startsWith('docs/'), label: 'area:docs' },
+              { match: p => p.startsWith('king_public_src/'), label: 'area:public-src' },
+              { match: p => p.startsWith('shared-ui/'), label: 'area:ui' },
+              { match: p => p.startsWith('watchers/'), label: 'area:watchers' },
+              { match: p => p.startsWith('seed_reports/'), label: 'area:seed' },
+              { match: p => p.startsWith('tools/'), label: 'area:site' },
+              { match: p => p.startsWith('staging/'), label: 'area:staging' },
+              { match: p => p === 'build_site.py' || p === 'narratives.json' || p === 'packages.json', label: 'area:site' }
+            ];
+
+            const labelsToAdd = new Set();
+
+            for (const p of paths) {
+              for (const m of mapping) {
+                try {
+                  if (m.match(p)) labelsToAdd.add(m.label);
+                } catch (e) {
+                  // ignore
+                }
+              }
+            }
+
+            if (labelsToAdd.size === 0) {
+              console.log('No area labels matched for PR #' + prNumber);
+              return;
+            }
+
+            const labelsArray = Array.from(labelsToAdd);
+
+            if (DRY_RUN) {
+              console.log(`Dry run: matched labels ${labelsArray.join(', ')} for PR #${prNumber}`);
+              return;
+            }
+
+            // Ensure labels exist; create them if missing
+            for (const lbl of labelsArray) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name: lbl });
+              } catch (err) {
+                if (err.status === 404) {
+                  await github.rest.issues.createLabel({ owner, repo, name: lbl, color: 'ededed', description: 'Auto-created area label' });
+                } else {
+                  throw err;
+                }
+              }
+            }
+
+            // Add labels to the PR (PR is an issue for labels API)
+            await github.rest.issues.addLabels({ owner, repo, issue_number: prNumber, labels: labelsArray });
+
+            console.log('Added labels ' + labelsArray.join(', ') + ' to PR #' + prNumber);
