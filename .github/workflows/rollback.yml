@@ -13,6 +13,8 @@ permissions:
 jobs:
   rollback:
     runs-on: ubuntu-latest
+    env:
+      POST_ROLLBACK_HOOK: ${{ secrets.POST_ROLLBACK_HOOK }}
     steps:
       - name: Set up SSH
         run: |
@@ -43,6 +45,6 @@ jobs:
           ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "if [ -d ${{ secrets.DEPLOY_PATH }}/releases/$TARGET ]; then ln -sfn ${{ secrets.DEPLOY_PATH }}/releases/$TARGET ${{ secrets.DEPLOY_PATH }}/current && echo $TARGET > ${{ secrets.DEPLOY_PATH }}/CURRENT_RELEASE && echo 'Rollback complete'; else echo 'Target release not found' && exit 1; fi"
 
       - name: Optional post-rollback hook
-        if: ${{ secrets.POST_ROLLBACK_HOOK == 'true' }}
+        if: ${{ env.POST_ROLLBACK_HOOK == 'true' }}
         run: |
           ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd ${{ secrets.DEPLOY_PATH }}/current && if [ -f ./post-rollback.sh ]; then bash ./post-rollback.sh; fi"
