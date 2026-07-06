@@ -24,4 +24,5 @@ uvicorn app.main:app --app-dir services/storage --host 0.0.0.0 --port 8104
 
 Notes
 
-- Local implementation registers objects in memory and returns placeholder download URLs.
+- Object metadata is persisted in SQLite (`STORAGE_DB_PATH`, default `/tmp/govos_v2_storage.db`).
+- Business endpoints require bearer auth sessions validated by auth introspection.

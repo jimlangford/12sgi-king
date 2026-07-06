@@ -15,6 +15,7 @@ API
 - `/api/v2/health`
 - `/api/v2/auth/session`
 - `/api/v2/auth/jwks`
+- `/api/v2/auth/introspect` (internal service-to-service token verification)
 
 Run locally
 
@@ -24,5 +25,6 @@ uvicorn app.main:app --app-dir services/auth --host 0.0.0.0 --port 8101
 
 Notes
 
-- Uses an in-memory session placeholder for local integration.
+- Sessions are persisted in SQLite (`AUTH_DB_PATH`, default `/tmp/govos_v2_auth.db`).
+- Service-to-service auth trust uses `INTERNAL_SERVICE_TOKEN`.
 - Do not commit secrets or real signing keys.

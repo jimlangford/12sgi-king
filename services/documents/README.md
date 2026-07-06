@@ -24,4 +24,6 @@ uvicorn app.main:app --app-dir services/documents --host 0.0.0.0 --port 8103
 
 Notes
 
-- Local implementation stores generated document metadata in memory.
+- Generated metadata is persisted in SQLite (`DOCUMENTS_DB_PATH`, default `/tmp/govos_v2_documents.db`).
+- Auth sessions are required for business endpoints.
+- Case references are validated against the tenant service.
