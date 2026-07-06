@@ -11,8 +11,9 @@
 **Each node is a spherical environment — energy, observed by an observer (the character card / player)
 who carries a set of skills. The environment's *values* act on the character; the character must draw a
 *balance from the existing source*. That act of balancing IS the crosswalk from logic to creative
-expression (with logic). Sun↔moon (Ao↔Pō) is the overlapping rhythm both the civic lane and the
-creative lane ride.**
+expression (with logic). The cycle: Ao (day) is where choices are made — game play and civic action;
+Pō (night) is where HINA uses the Creative system to balance the equation those choices created.
+Sun→moon (Ao→Pō→Ao) is the overlapping rhythm both the civic lane and the creative lane ride.**
 
 Everything below is that sentence, made concrete against the real data files.
 
@@ -93,19 +94,26 @@ Neither side invents the balance — both **derive it from the source** (lineage
 
 ## 6. Sun ↔ Moon overlapping logic (civic AND creative)
 
-- **Pō (moon / night)** → the *civic* lane: kaulana mahina pō-night → offering (testify / listen /
-  rest / harvest-spirit). The 30 pō in 3 anahulu. (`moon_calendar.reading`)
-- **Ao (sun / day)** → the *creative* lane: the card's `wa_phase` Ao archetypes → which sphere's
-  energy is "in light" to express. The akua presiding (Pele=fire, Kāne=fresh-water/life,
-  Lono=harvest/peace, Kanaloa=ocean) keys the creative palette.
-- **The overlap** = both lanes read the **same date** through the **same source**. A date is at once a
-  pō-night (civic offering) and an Ao/Pō key into a sphere's creative energy. `creative_offering(date)`
-  returns the node/akua/wā/particles whose moon + phase best match the day — so the studio knows *which
-  cut-scene / card energy* answers the same moment the civic agenda does.
+The rhythm is a **cycle, not a one-way map**. The correct direction:
+
+- **Ao (sun / day)** → choices are made. The player acts in the node environment (game lane); the
+  council votes, testifies, and awards (civic lane). Ao is the active, choosing, consequence-generating
+  side. The card's `wa_phase` Ao archetypes tell which sphere's energy is "in light" to act within.
+- **Pō (moon / night) — HINA** → HINA receives those daytime choices and runs them through the
+  **Creative system to balance the equation**. Kaulana mahina pō-night → offering (testify / listen /
+  rest / harvest-spirit); the 30 pō in 3 anahulu. (`moon_calendar.reading`). The Creative system reads
+  the same node/akua/wā/particles against what Ao chose — so the cut-scene, the card energy, the civic
+  offering all answer the *imbalance the day created*. (`moon_calendar.creative_offering`)
+- **The cycle closes** — Pō's balance seeds the next Ao's choice. A date is at once a pō-night (HINA's
+  balancing work) and the Ao frame the player/civic actor stands in. `creative_offering(date)` returns
+  the node/akua/wā/particles whose moon + phase best answer what was done in the day.
+
+**Key direction:** Ao acts → Pō (HINA) balances. The Creative system at night is the *response*, not
+the trigger. Both lanes — game and civic — ride this same cycle from the same source.
 
 This is the requested **inclusion of the creative lane in the overlapping sun-to-moon logic**: the
-deckbuilder and (down the line) the farming engine pull their "what to grow / render now" from the
-exact rhythm govOS uses to say "what to testify on now."
+deckbuilder and (down the line) the farming engine pull their "what to balance / restore now" from the
+exact rhythm govOS uses to say "what the day's choices now require."
 
 ---
 
