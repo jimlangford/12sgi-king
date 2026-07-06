@@ -57,6 +57,56 @@
     <div style="font-size:14px;color:var(--ink-dim);line-height:1.7;max-width:820px">In 1971, ALOHAnet at the University of Hawai'i showed that islands could share the air, exchange packets, recover from collisions, and keep communicating. govOS carries that lesson forward: public records stay public, private tools stay protected, and every bridge exists to create access, care, trust, and shared safety.</div>
   </div>
 
+  <p class="sect">Hawaiʻi — the land, the record</p>
+  <div style="background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:36px">
+    <div style="padding:18px 22px 14px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:4px">PUBLIC RECORDS · HAWAIIAN-HELD &amp; TRUST LANDS</div>
+        <div style="font-size:17px;font-weight:750;color:var(--ink);line-height:1.2">Crown &amp; government lands — on the map.</div>
+        <div style="font-size:13px;color:var(--ink-dim);margin-top:4px;max-width:600px">Hawaiian Home Lands (DHHL) and ceded former-crown/government lands (Public Land Trust), drawn directly from the Hawaiʻi Statewide GIS. Toggle the overlay on. Click any parcel.</div>
+      </div>
+      <a href="../king/seed_reports/mauios/maui_parcel_map.html" style="font-size:12.5px;font-weight:650;color:var(--accent2);white-space:nowrap;padding:6px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel)">Open full map ↗</a>
+    </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <div id="crown-map" style="height:340px;width:100%;background:#dde8f0"></div>
+    <div style="padding:10px 22px 14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);border-top:1px solid var(--line)">
+      Sources: Hawaiʻi Statewide GIS Program — DHHL Official (layer 8) · Government Lands/Public Land Trust (layer 23) · OpenStreetMap basemap.
+      Formal land-status records only. Does not indicate private owner ethnicity — that is private and not knowable from public data.
+    </div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/esri-leaflet@3.0.14/dist/esri-leaflet.js"></script>
+  <script>
+  (function(){
+    var el=document.getElementById('crown-map');
+    function fallback(msg){el.style.cssText='height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#dde8f0;color:#41536b;font-family:system-ui,sans-serif';
+      el.innerHTML='<div><div style="font-size:.95rem;font-weight:700;color:#00356b;margin-bottom:.3rem">Map briefly unavailable</div><div style="font-size:.82rem;max-width:34ch;line-height:1.5">'+(msg||'The live GIS service is not responding. Please refresh.')+'</div></div>';}
+    if(typeof L==='undefined'||!L.esri){fallback('Map library could not load.');return;}
+    try{
+      var SVC='https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer';
+      // Centre on the Hawaiian Islands chain — shows all major islands
+      var map=L.map('crown-map',{scrollWheelZoom:false,zoomControl:true}).setView([20.5,-157.5],7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {maxZoom:19,attribution:'&copy; OpenStreetMap',
+         errorTileUrl:'data:image/gif;base64,R0lGODlhAQABAIAAAOXl5QAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='}).addTo(map);
+      // Base parcels layer for context
+      L.esri.dynamicMapLayer({url:SVC,opacity:0.35,layers:[21]}).addTo(map);
+      // Hawaiian-held & trust lands overlay — on by default
+      var hawaiianLayer=L.esri.dynamicMapLayer({url:SVC,layers:[8,23],opacity:0.6});
+      hawaiianLayer.addTo(map);
+      L.control.layers(null,{'🟫 Hawaiian-held & Hawaiian-trust lands (public records)':hawaiianLayer},{collapsed:false}).addTo(map);
+      // Respect note (always visible — overlay is on by default)
+      var note=L.control({position:'bottomright'});
+      note.onAdd=function(){
+        var d=L.DomUtil.create('div');
+        d.style.cssText='background:rgba(27,20,12,.88);color:#e8dcc9;padding:.35rem .55rem;border-radius:7px;font-size:.63rem;max-width:210px;line-height:1.35;backdrop-filter:blur(2px)';
+        d.innerHTML='<b style="color:#d9b24c">Hawaiian-held &amp; trust lands — public records</b><br>Formal land status only. Does NOT reflect private owner ethnicity.';
+        return d;};
+      note.addTo(map);
+    }catch(e){fallback();}
+  })();
+  </script>
+
   <p class="sect">New: running commentary</p>
   <div style="background:#fff;border:2px solid var(--accent);border-radius:16px;padding:28px 28px 24px;margin-bottom:36px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:18px">
