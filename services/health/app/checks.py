@@ -26,9 +26,12 @@ def load_surfaces_from_env():
                 entries[name.strip()] = hostport.strip()
     return entries
 
+SURFACES_HEALTH_PATH = os.environ.get('SURFACES_HEALTH_PATH', '/api/v2/ready')
+
 # Single surface check
 def check_surface_sync(name, hostport):
-    url = f'http://{hostport}/'
+    path = SURFACES_HEALTH_PATH if SURFACES_HEALTH_PATH.startswith('/') else f'/{SURFACES_HEALTH_PATH}'
+    url = f'http://{hostport}{path}'
     try:
         r = requests.get(url, timeout=5)
         if r.status_code == 200:

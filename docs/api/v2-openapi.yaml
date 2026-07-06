@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: govOS v2 API
+  version: 2.0.0
+  description: Shared contract for auth, tenant, documents, storage, and AI services.
+servers:
+  - url: http://localhost
+paths:
+  /api/v2/live:
+    get:
+      summary: Liveness probe
+      responses:
+        '200':
+          description: Service is alive
+  /api/v2/ready:
+    get:
+      summary: Readiness probe
+      responses:
+        '200':
+          description: Service is ready
+  /api/v2/health:
+    get:
+      summary: Health probe
+      responses:
+        '200':
+          description: Health details
+  /api/v2/auth/session:
+    post:
+      summary: Create auth session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSessionRequest'
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSessionResponse'
+  /api/v2/auth/jwks:
+    get:
+      summary: Public signing keys
+      responses:
+        '200':
+          description: JWKS payload
+  /api/v2/cases:
+    get:
+      summary: List tenant cases
+      responses:
+        '200':
+          description: Cases list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseListResponse'
+    post:
+      summary: Create case
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseCreateRequest'
+      responses:
+        '201':
+          description: Case created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+  /api/v2/cases/{case_id}:
+    get:
+      summary: Get case
+      parameters:
+        - in: path
+          name: case_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Case details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/documents/generate:
+    post:
+      summary: Generate document from template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentGenerateRequest'
+      responses:
+        '201':
+          description: Document generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+  /api/v2/documents/{document_id}:
+    get:
+      summary: Get document metadata
+      parameters:
+        - in: path
+          name: document_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/storage/objects:
+    post:
+      summary: Register object metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorageObjectCreateRequest'
+      responses:
+        '201':
+          description: Object registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageObjectResponse'
+    get:
+      summary: List objects
+      responses:
+        '200':
+          description: Objects list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageObjectListResponse'
+  /api/v2/storage/objects/{object_id}:
+    get:
+      summary: Get object metadata
+      parameters:
+        - in: path
+          name: object_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Object metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageObjectResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/ai/assist:
+    post:
+      summary: Generate assistant guidance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiAssistRequest'
+      responses:
+        '200':
+          description: Guidance response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiAssistResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+    AuthSessionRequest:
+      type: object
+      required: [provider, subject]
+      properties:
+        provider:
+          type: string
+          enum: [passkey, google, apple, microsoft, magic_link]
+        subject:
+          type: string
+        email:
+          type: string
+          format: email
+    AuthSessionResponse:
+      type: object
+      required: [access_token, token_type, expires_in, user]
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Unix timestamp for expiration
+        user:
+          type: object
+          required: [id, provider]
+          properties:
+            id:
+              type: string
+            provider:
+              type: string
+            email:
+              type: string
+    CaseCreateRequest:
+      type: object
+      required: [tenant_id, title]
+      properties:
+        tenant_id:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+          default: open
+        notes:
+          type: string
+    CaseResponse:
+      type: object
+      required: [id, tenant_id, title, status, created_at]
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    CaseListResponse:
+      type: object
+      required: [cases]
+      properties:
+        cases:
+          type: array
+          items:
+            $ref: '#/components/schemas/CaseResponse'
+    DocumentGenerateRequest:
+      type: object
+      required: [template_id, case_id, output_format]
+      properties:
+        template_id:
+          type: string
+        case_id:
+          type: string
+        output_format:
+          type: string
+          enum: [pdf, docx, html]
+        fields:
+          type: object
+          additionalProperties: true
+    DocumentResponse:
+      type: object
+      required: [id, template_id, case_id, output_format, status, created_at]
+      properties:
+        id:
+          type: string
+        template_id:
+          type: string
+        case_id:
+          type: string
+        output_format:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    StorageObjectCreateRequest:
+      type: object
+      required: [name, content_type]
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
+        size_bytes:
+          type: integer
+          minimum: 0
+    StorageObjectResponse:
+      type: object
+      required: [id, name, content_type, created_at]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        content_type:
+          type: string
+        size_bytes:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+    StorageObjectListResponse:
+      type: object
+      required: [objects]
+      properties:
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageObjectResponse'
+    AiAssistRequest:
+      type: object
+      required: [case_id, prompt]
+      properties:
+        case_id:
+          type: string
+        prompt:
+          type: string
+        context:
+          type: object
+          additionalProperties: true
+    AiAssistResponse:
+      type: object
+      required: [case_id, summary, actions]
+      properties:
+        case_id:
+          type: string
+        summary:
+          type: string
+        actions:
+          type: array
+          items:
+            type: string

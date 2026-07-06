@@ -2,13 +2,25 @@
 
 Purpose
 
-Services supporting retrieval, embeddings, inference, and orchestration of AI capabilities behind the Tenant Assistant and govOS experiences.
+Tenant assistant guidance API for govOS v2.
 
-Ownership
+Owner
 
 - AI engineering
 
-Next steps
+API
 
-- Design RAG pipelines, embedding stores, model selection strategy
-- Provide secure interfaces for local and hosted models
+- `/api/v2/live`
+- `/api/v2/ready`
+- `/api/v2/health`
+- `/api/v2/ai/assist`
+
+Run locally
+
+```bash
+uvicorn app.main:app --app-dir services/ai --host 0.0.0.0 --port 8105
+```
+
+Notes
+
+- Local response is deterministic placeholder guidance for frontend integration.

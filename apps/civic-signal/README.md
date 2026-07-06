@@ -2,12 +2,14 @@
 
 Purpose
 
-Public-facing analytics and civic interaction interfaces for Civic Signal features.
+Public-facing v2 civic metrics scaffold.
 
-Ownership
+Current implementation
 
-- Primary: Civic product team
+- `public/index.html`: simple metrics trigger
+- `public/app.js`: combines case count and backend health snapshot
 
-Next steps
+Configuration
 
-- Scaffold app; integrate with APIs in /services
+- `TENANT_SERVICE_URL`
+- `HEALTH_SERVICE_URL`

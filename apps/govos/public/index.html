@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>govOS v2 App</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; max-width: 900px; }
+      section { border: 1px solid #ddd; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+      input, textarea, select, button { width: 100%; margin-top: 0.25rem; margin-bottom: 0.75rem; padding: 0.5rem; }
+      pre { background: #f5f5f5; padding: 1rem; overflow: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>govOS v2 frontend (integration scaffold)</h1>
+
+    <section>
+      <h2>Auth session</h2>
+      <label>Provider</label>
+      <select id="provider"><option>passkey</option><option>google</option><option>apple</option><option>microsoft</option><option>magic_link</option></select>
+      <label>Subject</label><input id="subject" value="user-123" />
+      <label>Email</label><input id="email" value="user@example.com" />
+      <button id="createSession">Create session</button>
+    </section>
+
+    <section>
+      <h2>Create case</h2>
+      <label>Tenant ID</label><input id="tenantId" value="tenant-001" />
+      <label>Title</label><input id="caseTitle" value="Repair request" />
+      <button id="createCase">Create case</button>
+    </section>
+
+    <section>
+      <h2>Generate document</h2>
+      <label>Case ID</label><input id="docCaseId" />
+      <label>Template ID</label><input id="templateId" value="notice-template" />
+      <label>Format</label><select id="docFormat"><option>pdf</option><option>docx</option><option>html</option></select>
+      <button id="generateDoc">Generate</button>
+    </section>
+
+    <section>
+      <h2>AI guidance</h2>
+      <label>Case ID</label><input id="aiCaseId" />
+      <label>Prompt</label><textarea id="aiPrompt">What should I do next for this tenant case?</textarea>
+      <button id="askAi">Ask assistant</button>
+    </section>
+
+    <pre id="output">Ready.</pre>
+    <script src="./app.js"></script>
+  </body>
+</html>
