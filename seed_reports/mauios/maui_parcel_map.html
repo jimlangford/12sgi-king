@@ -120,29 +120,55 @@ if(OV.wealth && OV.wealth.points){
   });
 }
 // OVERLAY: Hawaiian-held & Hawaiian-trust lands — FACT / public records (never an ethnicity inference).
-// Server-rendered (dynamicMapLayer) so the large DHHL/Government multipolygons draw reliably. DHHL (8) =
-// Hawaiian Home Lands trust; Government Lands (23) = Public Land Trust (ceded former crown/government lands).
-// The parcel-click identifies the precise category; the legend + respect note carry the labels.
-var hawaiianLayer=L.esri.dynamicMapLayer({url:SVC, layers:[8,23], opacity:0.55});
+// DHHL (8) = Hawaiian Home Lands trust; Government Lands (23) = Public Land Trust (ceded former crown/gov lands).
+// Strategy: load snapshotted GeoJSON from king_public_src/gis/ (our own server, no ArcGIS dependency).
+// If snapshot files are absent (pre-download), fall back to live dynamicMapLayer.
+// Run watchers/gis_snapshot.py once to populate king_public_src/gis/ and commit the files.
+var GEO_DHHL='king/gis/hawaii_dhhl.geojson';
+var GEO_GOV ='king/gis/hawaii_govlands.geojson';
+var HI_STYLE={color:'#5c3d11',weight:1,fillColor:'#8a5a2b',fillOpacity:0.55};
+var hawaiianLayers=[];  // filled after fetch (may be 1 live layer or 2 geojson layers)
 
-L.control.layers(null,{
-  '🟥 County money — where it lands (SOURCED)':moneyLayer,
-  '🟩 12 Stones wealth — reaching everybody (OUR MODEL)':wealthLayer,
-  '🟫 Hawaiian-held & Hawaiian-trust lands (public records)':hawaiianLayer
-},{collapsed:false}).addTo(map);
-
-// respect + source note for the Hawaiian-lands overlay (shown when the layer is on)
+// respect + source note (shown when any Hawaiian layer is on)
 var HNote=L.control({position:'bottomright'});
 HNote.onAdd=function(){var d=L.DomUtil.create('div');
   d.style.cssText='background:#1b140c;color:#e8dcc9;padding:.4rem .6rem;border-radius:8px;font-size:.66rem;max-width:220px;line-height:1.35;display:none';
   d._show=function(on){d.style.display=on?'block':'none';};
   d.appendChild(mk('div','font-weight:700;color:#d9b24c','Hawaiian-held & trust lands — public records'));
   d.appendChild(mk('div',null,'Formal Hawaiian-held/trust land only. Does NOT indicate any private owner’s ethnicity — that is private and not knowable from public data.'));
-  d.appendChild(mk('div','color:#9a8f78;margin-top:.2rem','Sources: DHHL Official · Government Lands (Hawaiʻi Statewide GIS). Pending (no clean public layer): OHA · aliʻi-trust (Kamehameha Schools) · kuleana.'));
+  d.appendChild(mk('div','color:#9a8f78;margin-top:.2rem','Sources: DHHL Official · Government Lands (Hawaiʿi Statewide GIS). Pending (no clean public layer): OHA · aliʿi-trust (Kamehameha Schools) · kuleana.'));
   return d;};
 HNote.addTo(map);
-map.on('overlayadd',function(e){if(e.layer===hawaiianLayer&&HNote._container){HNote._container._show(true);}});
-map.on('overlayremove',function(e){if(e.layer===hawaiianLayer&&HNote._container){HNote._container._show(false);}});
+
+var overlayCtrl=L.control.layers(null,{
+  '🟥 County money — where it lands (SOURCED)':moneyLayer,
+  '🟩 12 Stones wealth — reaching everybody (OUR MODEL)':wealthLayer
+},{collapsed:false}).addTo(map);
+
+map.on('overlayadd',function(e){if(hawaiianLayers.indexOf(e.layer)>=0&&HNote._container){HNote._container._show(true);}});
+map.on('overlayremove',function(e){if(hawaiianLayers.indexOf(e.layer)>=0&&HNote._container){HNote._container._show(false);}});
+
+var liveAdded=false;
+function addLiveFallback(){
+  if(liveAdded)return; liveAdded=true;
+  var lyr=L.esri.dynamicMapLayer({url:SVC,layers:[8,23],opacity:0.55});
+  hawaiianLayers.push(lyr);
+  overlayCtrl.addOverlay(lyr,'🟫 Hawaiian-held & Hawaiian-trust lands (live GIS)');
+  lyr.addTo(map);
+}
+function loadGeoLayer(url,label){
+  fetch(url,{cache:'no-cache'}).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(fc){
+    var lyr=L.geoJSON(fc,{style:function(){return HI_STYLE;}});
+    hawaiianLayers.push(lyr);
+    overlayCtrl.addOverlay(lyr,'🟫 '+label+' (snapshot)');
+    lyr.addTo(map);
+  }).catch(function(){addLiveFallback();});
+}
+loadGeoLayer(GEO_DHHL,'Hawaiian Home Lands (DHHL)');
+loadGeoLayer(GEO_GOV, 'Government / Public Land Trust');
 
 if(OV.money){                                   // sourced concentration headline
   var Conc=L.control({position:'topright'});

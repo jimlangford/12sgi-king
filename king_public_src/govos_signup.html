@@ -79,9 +79,9 @@
   <script>
   (function(){
     var el=document.getElementById('crown-map');
-    function fallback(msg){el.style.cssText='height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#dde8f0;color:#41536b;font-family:system-ui,sans-serif';
+    function showFallback(msg){el.style.cssText='height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#dde8f0;color:#41536b;font-family:system-ui,sans-serif';
       el.innerHTML='<div><div style="font-size:.95rem;font-weight:700;color:#00356b;margin-bottom:.3rem">Map briefly unavailable</div><div style="font-size:.82rem;max-width:34ch;line-height:1.5">'+(msg||'The live GIS service is not responding. Please refresh.')+'</div></div>';}
-    if(typeof L==='undefined'||!L.esri){fallback('Map library could not load.');return;}
+    if(typeof L==='undefined'||!L.esri){showFallback('Map library could not load.');return;}
     try{
       var SVC='https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer';
       // Centre on the Hawaiian Islands chain — shows all major islands
@@ -89,13 +89,9 @@
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         {maxZoom:19,attribution:'&copy; OpenStreetMap',
          errorTileUrl:'data:image/gif;base64,R0lGODlhAQABAIAAAOXl5QAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='}).addTo(map);
-      // Base parcels layer for context
+      // Base parcels layer for context (always live — low-risk tiles)
       L.esri.dynamicMapLayer({url:SVC,opacity:0.35,layers:[21]}).addTo(map);
-      // Hawaiian-held & trust lands overlay — on by default
-      var hawaiianLayer=L.esri.dynamicMapLayer({url:SVC,layers:[8,23],opacity:0.6});
-      hawaiianLayer.addTo(map);
-      L.control.layers(null,{'🟫 Hawaiian-held & Hawaiian-trust lands (public records)':hawaiianLayer},{collapsed:false}).addTo(map);
-      // Respect note (always visible — overlay is on by default)
+      // Respect note
       var note=L.control({position:'bottomright'});
       note.onAdd=function(){
         var d=L.DomUtil.create('div');
@@ -103,7 +99,36 @@
         d.innerHTML='<b style="color:#d9b24c">Hawaiian-held &amp; trust lands — public records</b><br>Formal land status only. Does NOT reflect private owner ethnicity.';
         return d;};
       note.addTo(map);
-    }catch(e){fallback();}
+      var ctrl=L.control.layers(null,{},{collapsed:false});
+      ctrl.addTo(map);
+      // Hawaiian-held & trust lands overlay.
+      // Strategy: load our own snapshotted GeoJSON first (king_public_src/gis/ — served from this
+      // same origin so no CORS friction). If absent (pre-first-download), fall back to the live
+      // ArcGIS dynamicMapLayer so the map is never silently broken.
+      var GEO_DHHL='gis/hawaii_dhhl.geojson';
+      var GEO_GOV ='gis/hawaii_govlands.geojson';
+      var STYLE_HI={color:'#5c3d11',weight:1,fillColor:'#8a5a2b',fillOpacity:0.55};
+      function addLocalLayer(url,label,onFail){
+        fetch(url,{cache:'no-cache'}).then(function(r){
+          if(!r.ok)throw new Error('HTTP '+r.status);
+          return r.json();
+        }).then(function(fc){
+          var lyr=L.geoJSON(fc,{style:function(){return STYLE_HI;}});
+          ctrl.addOverlay(lyr,'🟫 '+label+' (local snapshot)');
+          lyr.addTo(map);
+        }).catch(function(){onFail();});
+      }
+      // Try DHHL local; on failure fall back to combined live dynamicMapLayer
+      var liveAdded=false;
+      function addLiveFallback(){
+        if(liveAdded)return; liveAdded=true;
+        var lyr=L.esri.dynamicMapLayer({url:SVC,layers:[8,23],opacity:0.6});
+        ctrl.addOverlay(lyr,'🟫 Hawaiian-held & Hawaiian-trust lands (live GIS)');
+        lyr.addTo(map);
+      }
+      addLocalLayer(GEO_DHHL,'Hawaiian Home Lands (DHHL)',addLiveFallback);
+      addLocalLayer(GEO_GOV, 'Government / Public Land Trust',addLiveFallback);
+    }catch(e){showFallback();}
   })();
   </script>
 
