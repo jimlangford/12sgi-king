@@ -5,7 +5,7 @@
 #
 #   python build_site.py            # -> ./site
 #   KA_SITE=/path python build_site.py
-import os, re, shutil, json, sys
+import os, re, shutil, json, sys, time
 from datetime import datetime, timezone, timedelta
 
 HOME    = os.path.expanduser("~")
@@ -907,283 +907,323 @@ def add_records_cta(html, current=""):
 
 def now_hst(): return datetime.now(HST)
 
+# ── Lane harness (Jimmy 2026-07-05: 'break the build into ~30 lanes to reduce build
+# errors with the heal system') ────────────────────────────────────────────────────
+# Each build step below is registered as an independent, named "lane" instead of running
+# inline. A broken lane can NEVER take down the whole build (mirrors the same philosophy
+# already proven in .github/workflows/publish.yml's `run() { timeout 240 ... || true }`
+# watcher wrapper) -- it's caught, timed, logged with a consistent "[lane] name: ..." line,
+# and recorded into buildinfo.json's "lanes" array so the heal system (selfheal.py / any
+# future CI check) can see EXACTLY which lane failed on a given build, instead of scanning
+# raw scrollback for a stray "skipped: ..." line buried in 500+ lines of output.
+import contextlib
+
+_LANE_REPORT = []
+
+@contextlib.contextmanager
+def _lane(name):
+    t0 = time.time()
+    try:
+        yield
+        dt = time.time() - t0
+        _LANE_REPORT.append({"lane": name, "ok": True, "seconds": round(dt, 2)})
+        print("  [lane] %s: ok (%.2fs)" % (name, dt))
+    except Exception as e:
+        dt = time.time() - t0
+        _LANE_REPORT.append({"lane": name, "ok": False, "seconds": round(dt, 2), "error": str(e)[:200]})
+        print("  [lane] %s: FAILED (%.2fs) -- %s" % (name, dt, str(e)[:200]))
+
 def main():
+    _LANE_REPORT.clear()
     if os.path.isdir(SITE):
         shutil.rmtree(SITE)
     os.makedirs(SITE, exist_ok=True)
     os.makedirs(os.path.join(SITE, "data"), exist_ok=True)
-    present = []
-    for rel, name, blurb in PAGES:
-        src = os.path.join(MAUIOS, rel)
-        if os.path.exists(src):
-            flat = rel.replace("/", "_")
-            html = open(src, encoding="utf-8", errors="replace").read()
-            html = inject_nav(html, flat)          # govOS top nav on every civic page
-            html = inject_switcher(html, flat)     # per-tenant report: choose a government (same report, any tenant)
-            html = add_narrative(html, flat)       # plain-words door-in for the everyday person
-            html = add_records_cta(html, flat)     # request-the-record banner where data is thin/pending
-            html = add_olelo_notice(html)          # visible ʻŌlelo community-review posture
-            with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
-                f.write(html)
-            present.append((flat, name, blurb))
-    # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills).
-    # entity_*.html dossiers have dynamic names -> glob them in (+ the dossier index).
-    import glob as _glob
-    _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
-    for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
-        src = os.path.join(MAUIOS, rel)
-        if os.path.exists(src):
-            with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
-                _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
-                _h = inject_switcher(_h, rel)      # per-tenant report: choose a government switcher
-                _h = add_narrative(_h, rel)
-                _h = add_records_cta(_h, rel)
-                _h = add_olelo_notice(_h)
-                f.write(_h)
-    _present_data = []
-    for rel in DATA:
-        src = os.path.join(MAUIOS, rel)
-        if os.path.exists(src):
-            shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
-            _present_data.append((os.path.basename(rel), src))
+    with _lane("dashboards"):
+        present = []
+        for rel, name, blurb in PAGES:
+            src = os.path.join(MAUIOS, rel)
+            if os.path.exists(src):
+                flat = rel.replace("/", "_")
+                html = open(src, encoding="utf-8", errors="replace").read()
+                html = inject_nav(html, flat)          # govOS top nav on every civic page
+                html = inject_switcher(html, flat)     # per-tenant report: choose a government (same report, any tenant)
+                html = add_narrative(html, flat)       # plain-words door-in for the everyday person
+                html = add_records_cta(html, flat)     # request-the-record banner where data is thin/pending
+                html = add_olelo_notice(html)          # visible ʻŌlelo community-review posture
+                with open(os.path.join(SITE, flat), "w", encoding="utf-8", newline="\n") as f:
+                    f.write(html)
+                present.append((flat, name, blurb))
+    with _lane("extra_pages"):
+        # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills).
+        # entity_*.html dossiers have dynamic names -> glob them in (+ the dossier index).
+        import glob as _glob
+        _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+        for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
+            src = os.path.join(MAUIOS, rel)
+            if os.path.exists(src):
+                with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
+                    _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
+                    _h = inject_switcher(_h, rel)      # per-tenant report: choose a government switcher
+                    _h = add_narrative(_h, rel)
+                    _h = add_records_cta(_h, rel)
+                    _h = add_olelo_notice(_h)
+                    f.write(_h)
+    with _lane("data_files"):
+        _present_data = []
+        for rel in DATA:
+            src = os.path.join(MAUIOS, rel)
+            if os.path.exists(src):
+                shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
+                _present_data.append((os.path.basename(rel), src))
 
-    # [open-data] DCAT catalog (data.json) + a human Open Data front door (datasets.html). Indexes ONLY
-    # the public DATA files above — the raw records behind every dashboard, downloadable. Defeats the
-    # "you made it up" critique; matches Socrata/Project-Open-Data norms. Private back end is never listed.
-    try:
-        import time as _t
-        _dcat = {"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
-                 "@type": "dcat:Catalog",
-                 "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
-                 "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
-                 "dataset": []}
-        _rows = []
-        for _base, _src in _present_data:
-            _meta = DATASET_META.get(_base, (_base.replace(".json", "").replace("_", " ").title(),
-                                             "Public civic dataset behind the govOS dashboards.", ["civic"], "govOS"))
-            _title, _desc, _kw, _source = _meta
-            _mod = _t.strftime("%Y-%m-%d", _t.localtime(os.path.getmtime(_src)))
-            _dcat["dataset"].append({
-                "@type": "dcat:Dataset", "title": _title, "description": _desc,
-                "identifier": "govos/" + _base, "modified": _mod, "accessLevel": "public",
-                "keyword": _kw, "license": "https://creativecommons.org/licenses/by/4.0/",
-                "publisher": {"@type": "org:Organization", "name": "12 Stones Global / govOS"},
-                "distribution": [{"@type": "dcat:Distribution", "downloadURL": "data/" + _base,
-                                  "mediaType": "application/json", "format": "JSON"}]})
-            _rows.append('<div class="ds"><div class="dst">' + _esc(_title) +
-                         ' <a class="dl" href="data/' + _base + '" download>↓ JSON</a></div>'
-                         '<div class="dsd">' + _esc(_desc) + '</div>'
-                         '<div class="dsm">source: ' + _esc(_source) + ' · updated ' + _mod +
-                         ' · CC BY 4.0</div></div>')
-        with open(os.path.join(SITE, "data.json"), "w", encoding="utf-8", newline="\n") as f:
-            json.dump(_dcat, f, ensure_ascii=False, indent=1)
-        _ds_body = (
-            '<div style="max-width:860px;margin:0 auto;padding:1.2rem 1rem">'
-            '<h1 style="color:#0e4a84">Open Data</h1>'
-            '<p class="lead">The raw public records behind every dashboard — downloadable, sourced, and machine-readable. '
-            'We publish the data so you never have to take our word for it. Money and votes are offered as questions, '
-            'never verdicts; every figure traces to a public filing.</p>'
-            '<p class="lead">Machine catalog (DCAT / Project Open Data): '
-            '<a class="dl" href="data.json" download>data.json</a> — point any open-data tool at it.</p>'
-            '<style>.ds{border:1px solid #d6e2f0;border-radius:10px;padding:.7rem .9rem;margin:.6rem 0;background:#fff}'
-            '.dst{font-weight:700;color:#0e4a84}.dsd{font-size:.92rem;margin:.25rem 0}'
-            '.dsm{font-size:.78rem;color:#5a6b7b}.dl{font-size:.82rem;color:#0e4a84;text-decoration:none;'
-            'border:1px solid #0e4a84;border-radius:6px;padding:.05rem .4rem;margin-left:.4rem}</style>'
-            + "".join(_rows) +
-            '<h2 style="color:#0e4a84;margin-top:1.4rem">Accessibility & sourcing</h2>'
-            '<p class="lead">We build mobile-first, aim for WCAG 2.1 AA (high-contrast text, keyboard-navigable, '
-            'labeled links), and source civic content only — we link to the record and never invent law or figures. '
-            'Found a barrier or an error? Use Request Records to tell us and we will fix it.</p></div>')
-        _ds_html = "<!doctype html><html lang=en><head><meta charset=utf-8>" \
-                   "<meta name=viewport content=\"width=device-width,initial-scale=1\">" \
-                   "<title>Open Data — govOS</title></head><body>" + _ds_body + "</body></html>"
-        _ds_html = add_olelo_notice(inject_nav(_ds_html, "datasets.html"))
-        with open(os.path.join(SITE, "datasets.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(_ds_html)
-        print("  + datasets.html + data.json (DCAT): %d public datasets indexed" % len(_rows))
-    except Exception as _e:
-        print("  ! open-data catalog skipped: %s" % str(_e)[:120])
-
-    # [tenant-coverage] HIDDEN-DATA DASHBOARD (Jimmy 2026-07-01): renders the tenant_registry.json
-    # coverage matrix (already public, already embedded in every tenant switcher) as an actual heatmap.
-    try:
-        import subprocess as _sp
-        _tch = os.path.join(os.path.dirname(os.path.abspath(__file__)), "watchers", "tenant_coverage_heatmap.py")
-        if os.path.exists(_tch):
-            _r = _sp.run([sys.executable, _tch], capture_output=True, text=True, timeout=30)
-            print("  " + (_r.stdout.strip() or "! tenant_coverage_heatmap produced no output"))
-    except Exception as _e:
-        print("  ! tenant coverage heatmap skipped: %s" % str(_e)[:120])
-
-    # [blog] public Aloha blog — studio notes, creative methodology, production dispatches.
-    # blog_engine.py writes to king-local; here we also render to site/ for GitHub Pages.
-    if _blog_engine is not None:
+    with _lane("open_data_catalog"):
+        # [open-data] DCAT catalog (data.json) + a human Open Data front door (datasets.html). Indexes ONLY
+        # the public DATA files above — the raw records behind every dashboard, downloadable. Defeats the
+        # "you made it up" critique; matches Socrata/Project-Open-Data norms. Private back end is never listed.
         try:
-            _blog_posts = _blog_engine.load_posts()
-            _blog_pub = sorted([p for p in _blog_posts if p.get("status") == "published"],
-                               key=lambda p: p.get("date", ""), reverse=True)
-            # static=True (Jimmy 2026-07-01 heal-forward): the public site has no server to resolve
-            # /king/blog?post=X, so every mirrored post orphaned itself the moment it published --
-            # render real blog_post_<slug>.html / blog.html relative links here instead.
-            with open(os.path.join(SITE, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
-                f.write(_blog_engine.render_list_page(_blog_pub, static=True))
-            for _bp in _blog_pub:
-                _slug = _bp.get("slug", _bp.get("id", ""))
-                with open(os.path.join(SITE, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
-                    f.write(_blog_engine.render_post_page(_bp, static=True))
-            print("  + blog.html + %d post pages (Aloha blog -> public site/)" % len(_blog_pub))
-        except Exception as _be:
-            print("  ! blog skipped: %s" % str(_be)[:120])
+            import time as _t
+            _dcat = {"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+                     "@type": "dcat:Catalog",
+                     "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+                     "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+                     "dataset": []}
+            _rows = []
+            for _base, _src in _present_data:
+                _meta = DATASET_META.get(_base, (_base.replace(".json", "").replace("_", " ").title(),
+                                                 "Public civic dataset behind the govOS dashboards.", ["civic"], "govOS"))
+                _title, _desc, _kw, _source = _meta
+                _mod = _t.strftime("%Y-%m-%d", _t.localtime(os.path.getmtime(_src)))
+                _dcat["dataset"].append({
+                    "@type": "dcat:Dataset", "title": _title, "description": _desc,
+                    "identifier": "govos/" + _base, "modified": _mod, "accessLevel": "public",
+                    "keyword": _kw, "license": "https://creativecommons.org/licenses/by/4.0/",
+                    "publisher": {"@type": "org:Organization", "name": "12 Stones Global / govOS"},
+                    "distribution": [{"@type": "dcat:Distribution", "downloadURL": "data/" + _base,
+                                      "mediaType": "application/json", "format": "JSON"}]})
+                _rows.append('<div class="ds"><div class="dst">' + _esc(_title) +
+                             ' <a class="dl" href="data/' + _base + '" download>↓ JSON</a></div>'
+                             '<div class="dsd">' + _esc(_desc) + '</div>'
+                             '<div class="dsm">source: ' + _esc(_source) + ' · updated ' + _mod +
+                             ' · CC BY 4.0</div></div>')
+            with open(os.path.join(SITE, "data.json"), "w", encoding="utf-8", newline="\n") as f:
+                json.dump(_dcat, f, ensure_ascii=False, indent=1)
+            _ds_body = (
+                '<div style="max-width:860px;margin:0 auto;padding:1.2rem 1rem">'
+                '<h1 style="color:#0e4a84">Open Data</h1>'
+                '<p class="lead">The raw public records behind every dashboard — downloadable, sourced, and machine-readable. '
+                'We publish the data so you never have to take our word for it. Money and votes are offered as questions, '
+                'never verdicts; every figure traces to a public filing.</p>'
+                '<p class="lead">Machine catalog (DCAT / Project Open Data): '
+                '<a class="dl" href="data.json" download>data.json</a> — point any open-data tool at it.</p>'
+                '<style>.ds{border:1px solid #d6e2f0;border-radius:10px;padding:.7rem .9rem;margin:.6rem 0;background:#fff}'
+                '.dst{font-weight:700;color:#0e4a84}.dsd{font-size:.92rem;margin:.25rem 0}'
+                '.dsm{font-size:.78rem;color:#5a6b7b}.dl{font-size:.82rem;color:#0e4a84;text-decoration:none;'
+                'border:1px solid #0e4a84;border-radius:6px;padding:.05rem .4rem;margin-left:.4rem}</style>'
+                + "".join(_rows) +
+                '<h2 style="color:#0e4a84;margin-top:1.4rem">Accessibility & sourcing</h2>'
+                '<p class="lead">We build mobile-first, aim for WCAG 2.1 AA (high-contrast text, keyboard-navigable, '
+                'labeled links), and source civic content only — we link to the record and never invent law or figures. '
+                'Found a barrier or an error? Use Request Records to tell us and we will fix it.</p></div>')
+            _ds_html = "<!doctype html><html lang=en><head><meta charset=utf-8>" \
+                       "<meta name=viewport content=\"width=device-width,initial-scale=1\">" \
+                       "<title>Open Data — govOS</title></head><body>" + _ds_body + "</body></html>"
+            _ds_html = add_olelo_notice(inject_nav(_ds_html, "datasets.html"))
+            with open(os.path.join(SITE, "datasets.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_ds_html)
+            print("  + datasets.html + data.json (DCAT): %d public datasets indexed" % len(_rows))
+        except Exception as _e:
+            print("  ! open-data catalog skipped: %s" % str(_e)[:120])
 
-    # [links] copy linked supporting folders so per-official "full profile" pages resolve
-    for sub in ("donors",):
-        s = os.path.join(MAUIOS, sub)
-        if os.path.isdir(s):
-            shutil.copytree(s, os.path.join(SITE, sub))
-            print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
-
-    # [king-system] publish the public King System shell at /king/
-    _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
-    if os.path.isdir(_ksrc):
-        _kdst = os.path.join(SITE, "king")
-        shutil.copytree(_ksrc, _kdst)
-        # [king-system] LEAK GATE: refuse to publish if any internal/infra marker slipped
-        # into the public King build (durable re-leak guard for the cowork snapshot).
-        # infra markers in their real leak form (loopback-prefixed ports, not bare
-        # numbers) so legit content like a budget "val:8000000" doesn't false-trip.
-        _markers = ("ngrok", "uvicorn", "RAIS_API_KEYS", "127.0.0.1:8765", "127.0.0.1:8780",
-                    "127.0.0.1:8000", "localhost:87", "render_pause",
-                    "roster_loop", "tunnel_keepalive", "kohya", "sdxl_train",
-                    "sage_node_system", "GPU handoff", "Google login")
-        _hits = []
-        for _root, _dirs, _files in os.walk(_kdst):
-            for _fn in _files:
-                if _fn.rsplit(".", 1)[-1].lower() not in ("html", "js", "css", "json"):
-                    continue
-                try:
-                    _txt = open(os.path.join(_root, _fn), encoding="utf-8", errors="ignore").read()
-                except Exception:
-                    continue
-                for _m in _markers:
-                    if _m in _txt:
-                        _hits.append("%s::%s" % (_fn, _m))
-        if _hits:
-            shutil.rmtree(_kdst, ignore_errors=True)
-            raise SystemExit("LEAK GATE tripped — internal markers in public King build, refusing to publish: " + "; ".join(_hits[:20]))
-        print("  + king/: public King System (leak-gate clean)")
-        # [king-landing] The old Vue shell renders {{ template }} literals on static hosting and
-        # says nothing of the 16-tenant global work. Replace the /king/ landing with a clean static
-        # page that reflects the live global system (the owner Vue app is preserved at king/app.html).
-        _kl = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_landing.html")
-        if os.path.exists(_kl):
-            _kidx = os.path.join(_kdst, "index.html")
-            if os.path.exists(_kidx):
-                shutil.copy(_kidx, os.path.join(_kdst, "app.html"))   # keep the owner shell, reachable
-            shutil.copy(_kl, _kidx)
-            print("  + king/index.html: clean static landing (global system + live progress); old shell -> king/app.html")
-    # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
-    # when the laptop is up, else falls back to this GitHub mirror.
-    # Quad-OS platform/packages page (productized: quadrants + subscriptions + multi-tenant onboarding).
-    for _pf in ("platform.html", "packages.json"):
-        _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), _pf)
-        if os.path.exists(_p):
-            shutil.copy(_p, os.path.join(SITE, _pf))
-    if os.path.exists(os.path.join(SITE, "platform.html")):
-        print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
-    _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
-    if os.path.exists(_go):
-        _goraw = open(_go, encoding="utf-8").read()
-        # inject the active-tenant "follow the money" map (root paths) before writing the root launcher
-        _goroot = _goraw.replace("</head>", _ftm_script("") + "</head>", 1) if "ftm-data" not in _goraw else _goraw
-        with open(os.path.join(SITE, "go.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(_goroot)
-        # also under king/ so the King shell's "Studio ->" door (href="go.html") resolves.
-        # The root go.html is root-relative to the site (govOS dashboards live at root: e.g.
-        # jurisdictions.html, county_dashboard.html, ./ = govOS home, king/ = the King app).
-        # When the SAME file is served at /king/go.html, every root-relative link must go up
-        # one level. Generic rule (no per-link maintenance): keep absolute/anchor links as-is;
-        #   king/  -> ./    (the King shell IS this dir)
-        #   ./     -> ../   (govOS home lives at site root, one up)
-        #   X.html -> ../X.html  (all govOS dashboards/tenant pages live at site root)
-        if os.path.isdir(os.path.join(SITE, "king")):
-            def _king_href(m):
-                h = m.group(1)
-                if h.startswith(("http", "#", "../", "mailto:", "/")):
-                    return 'href="%s"' % h
-                if h == "king/":
-                    return 'href="./"'
-                if h in ("./", "."):
-                    return 'href="../"'
-                return 'href="../%s"' % h    # root-level govOS page -> up one from /king/
-            _kgo = re.sub(r'href="([^"]*)"', _king_href, _goraw)
-            # /king/ copy: money-trail links resolve up one level (the civic pages live at site root)
-            _kgo = _kgo.replace("</head>", _ftm_script("../") + "</head>", 1) if "ftm-data" not in _kgo else _kgo
-            with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
-                f.write(_kgo)
-        print("  + go.html: live/mirror failover launcher (root + king/)")
-    # [no-access] friendly 404 — GitHub Pages serves /404.html for any missing OR owner-only path
-    # (e.g. case_files.html), explaining it's a private surface by design instead of a bare 404.
-    _404 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "404.html")
-    if os.path.exists(_404):
-        shutil.copy(_404, os.path.join(SITE, "404.html"))
-        print("  + 404.html: 'no access — private surface' explanation (served by GitHub Pages on any 404)")
-    _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
-    if os.path.exists(_ta):
-        _tah = inject_nav(open(_ta, encoding="utf-8", errors="replace").read(), "take_action.html")
-        with open(os.path.join(SITE, "take_action.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(_tah)
-        print("  + take_action.html: demand-the-records + supporter signup (+nav)")
-    _tf = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testify.html")
-    if os.path.exists(_tf):
-        with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
-        print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
-    # [grants] community grants library — public preview page (paywall for full access)
-    _gr = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grants.html")
-    if os.path.exists(_gr):
-        shutil.copy(_gr, os.path.join(SITE, "grants.html"))
-        print("  + grants.html: community grants library preview (97 grants, paywall gated)")
-    # request_records.html is now GENERATED (request_records.py, tenant-aware) + flows through EXTRA_PAGES.
-    # [redundancy] production status (public-safe) from the local 15-min publisher
-    _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
-    prod = ""
-    if os.path.exists(_ps):
-        shutil.copy(_ps, os.path.join(SITE, "data", "production_status.json"))
+    with _lane("tenant_coverage"):
+        # [tenant-coverage] HIDDEN-DATA DASHBOARD (Jimmy 2026-07-01): renders the tenant_registry.json
+        # coverage matrix (already public, already embedded in every tenant switcher) as an actual heatmap.
         try:
-            _p = json.load(open(_ps, encoding="utf-8"))
-            _latest = ", ".join((_p.get("latest_films") or [])[:5])
-            prod = ('<div class="eyebrow" style="margin-top:30px">Production</div>'
-                    f'<p class="lead">{_p.get("films_produced", 0)} films produced'
-                    + (f' · latest: {_latest}' if _latest else "")
-                    + (f' · {_p["youtube_uploaded"]} on YouTube' if _p.get("youtube_uploaded") else "")
-                    + f' <span style="color:#9a957f;font-size:11px">(updated {_p.get("updated", "")})</span></p>')
-            print("  + production_status.json")
-        except Exception:
-            pass
-    g = now_hst().strftime("%Y-%m-%d %H:%M HST")
-    cards = "".join(
-        f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
-        for fn, name, blurb in present)
-    # [orphan-heal 2026-06-17] Civic pages that are built + useful but weren't carded anywhere
-    # (calendars, fire-recovery, agenda patterns) — wire them into the hub so nothing useful is orphaned.
-    _MORE = [
-        ("meetings_calendar.html",     "Meeting Calendars",        "Upcoming public meetings across every government."),
-        ("meetings_maui.html",         "Meetings — Maui",          "Maui County meeting calendar."),
-        ("meetings_honolulu.html",     "Meetings — Honolulu",      "City &amp; County of Honolulu meeting calendar."),
-        ("meetings_hawaii.html",       "Meetings — Hawaiʻi",  "Hawaiʻi County meeting calendar."),
-        ("meetings_kauai.html",        "Meetings — Kauaʻi",   "Kauaʻi County meeting calendar."),
-        ("meetings_nyc.html",          "Meetings — New York",      "New York meeting calendar."),
-        ("rebuild_first.html",         "Who Rebuilt First",        "Lahaina/Kula fire-recovery permit line — who got permits first."),
-        ("agenda_patterns.html",       "Agenda Patterns",          "Recurring themes &amp; items across agendas over time."),
-        ("bfed_agenda_today.html",     "Budget &amp; Finance — Today",  "Today’s Budget &amp; Finance Committee agenda."),
-        ("bfed_eligibility_today.html","BFED Eligibility — Today", "Today’s budget eligibility view."),
-        ("datasets.html",              "Open Data",                "The raw public records behind every dashboard — downloadable JSON + a DCAT catalog. Don’t take our word for it."),
-        ("feature_board.html",         "Build the Software",       "Request how the county’s software should work and vote on others’ ideas — sorted by department &amp; agenda priority. Free signup; county-private tier too."),
-    ]
-    more_cards = "".join(
-        f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
-        for fn, name, blurb in _MORE if os.path.exists(os.path.join(SITE, fn)))
-    index = f"""<!DOCTYPE html>
+            import subprocess as _sp
+            _tch = os.path.join(os.path.dirname(os.path.abspath(__file__)), "watchers", "tenant_coverage_heatmap.py")
+            if os.path.exists(_tch):
+                _r = _sp.run([sys.executable, _tch], capture_output=True, text=True, timeout=30)
+                print("  " + (_r.stdout.strip() or "! tenant_coverage_heatmap produced no output"))
+        except Exception as _e:
+            print("  ! tenant coverage heatmap skipped: %s" % str(_e)[:120])
+
+    with _lane("blog"):
+        # [blog] public Aloha blog — studio notes, creative methodology, production dispatches.
+        # blog_engine.py writes to king-local; here we also render to site/ for GitHub Pages.
+        if _blog_engine is not None:
+            try:
+                _blog_posts = _blog_engine.load_posts()
+                _blog_pub = sorted([p for p in _blog_posts if p.get("status") == "published"],
+                                   key=lambda p: p.get("date", ""), reverse=True)
+                # static=True (Jimmy 2026-07-01 heal-forward): the public site has no server to resolve
+                # /king/blog?post=X, so every mirrored post orphaned itself the moment it published --
+                # render real blog_post_<slug>.html / blog.html relative links here instead.
+                with open(os.path.join(SITE, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
+                    f.write(_blog_engine.render_list_page(_blog_pub, static=True))
+                for _bp in _blog_pub:
+                    _slug = _bp.get("slug", _bp.get("id", ""))
+                    with open(os.path.join(SITE, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
+                        f.write(_blog_engine.render_post_page(_bp, static=True))
+                print("  + blog.html + %d post pages (Aloha blog -> public site/)" % len(_blog_pub))
+            except Exception as _be:
+                print("  ! blog skipped: %s" % str(_be)[:120])
+
+    with _lane("links_copy"):
+        # [links] copy linked supporting folders so per-official "full profile" pages resolve
+        for sub in ("donors",):
+            s = os.path.join(MAUIOS, sub)
+            if os.path.isdir(s):
+                shutil.copytree(s, os.path.join(SITE, sub))
+                print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
+
+    with _lane("king_public_system"):
+        # [king-system] publish the public King System shell at /king/
+        _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
+        if os.path.isdir(_ksrc):
+            _kdst = os.path.join(SITE, "king")
+            shutil.copytree(_ksrc, _kdst)
+            # [king-system] LEAK GATE: refuse to publish if any internal/infra marker slipped
+            # into the public King build (durable re-leak guard for the cowork snapshot).
+            # infra markers in their real leak form (loopback-prefixed ports, not bare
+            # numbers) so legit content like a budget "val:8000000" doesn't false-trip.
+            _markers = ("ngrok", "uvicorn", "RAIS_API_KEYS", "127.0.0.1:8765", "127.0.0.1:8780",
+                        "127.0.0.1:8000", "localhost:87", "render_pause",
+                        "roster_loop", "tunnel_keepalive", "kohya", "sdxl_train",
+                        "sage_node_system", "GPU handoff", "Google login")
+            _hits = []
+            for _root, _dirs, _files in os.walk(_kdst):
+                for _fn in _files:
+                    if _fn.rsplit(".", 1)[-1].lower() not in ("html", "js", "css", "json"):
+                        continue
+                    try:
+                        _txt = open(os.path.join(_root, _fn), encoding="utf-8", errors="ignore").read()
+                    except Exception:
+                        continue
+                    for _m in _markers:
+                        if _m in _txt:
+                            _hits.append("%s::%s" % (_fn, _m))
+            if _hits:
+                shutil.rmtree(_kdst, ignore_errors=True)
+                raise SystemExit("LEAK GATE tripped — internal markers in public King build, refusing to publish: " + "; ".join(_hits[:20]))
+            print("  + king/: public King System (leak-gate clean)")
+            # [king-landing] The old Vue shell renders {{ template }} literals on static hosting and
+            # says nothing of the 16-tenant global work. Replace the /king/ landing with a clean static
+            # page that reflects the live global system (the owner Vue app is preserved at king/app.html).
+            _kl = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_landing.html")
+            if os.path.exists(_kl):
+                _kidx = os.path.join(_kdst, "index.html")
+                if os.path.exists(_kidx):
+                    shutil.copy(_kidx, os.path.join(_kdst, "app.html"))   # keep the owner shell, reachable
+                shutil.copy(_kl, _kidx)
+                print("  + king/index.html: clean static landing (global system + live progress); old shell -> king/app.html")
+    with _lane("platform_packages"):
+        # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
+        # when the laptop is up, else falls back to this GitHub mirror.
+        # Quad-OS platform/packages page (productized: quadrants + subscriptions + multi-tenant onboarding).
+        for _pf in ("platform.html", "packages.json"):
+            _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), _pf)
+            if os.path.exists(_p):
+                shutil.copy(_p, os.path.join(SITE, _pf))
+        if os.path.exists(os.path.join(SITE, "platform.html")):
+            print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
+        _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
+        if os.path.exists(_go):
+            _goraw = open(_go, encoding="utf-8").read()
+            # inject the active-tenant "follow the money" map (root paths) before writing the root launcher
+            _goroot = _goraw.replace("</head>", _ftm_script("") + "</head>", 1) if "ftm-data" not in _goraw else _goraw
+            with open(os.path.join(SITE, "go.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_goroot)
+            # also under king/ so the King shell's "Studio ->" door (href="go.html") resolves.
+            # The root go.html is root-relative to the site (govOS dashboards live at root: e.g.
+            # jurisdictions.html, county_dashboard.html, ./ = govOS home, king/ = the King app).
+            # When the SAME file is served at /king/go.html, every root-relative link must go up
+            # one level. Generic rule (no per-link maintenance): keep absolute/anchor links as-is;
+            #   king/  -> ./    (the King shell IS this dir)
+            #   ./     -> ../   (govOS home lives at site root, one up)
+            #   X.html -> ../X.html  (all govOS dashboards/tenant pages live at site root)
+            if os.path.isdir(os.path.join(SITE, "king")):
+                def _king_href(m):
+                    h = m.group(1)
+                    if h.startswith(("http", "#", "../", "mailto:", "/")):
+                        return 'href="%s"' % h
+                    if h == "king/":
+                        return 'href="./"'
+                    if h in ("./", "."):
+                        return 'href="../"'
+                    return 'href="../%s"' % h    # root-level govOS page -> up one from /king/
+                _kgo = re.sub(r'href="([^"]*)"', _king_href, _goraw)
+                # /king/ copy: money-trail links resolve up one level (the civic pages live at site root)
+                _kgo = _kgo.replace("</head>", _ftm_script("../") + "</head>", 1) if "ftm-data" not in _kgo else _kgo
+                with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
+                    f.write(_kgo)
+            print("  + go.html: live/mirror failover launcher (root + king/)")
+    with _lane("static_pages"):
+        # [no-access] friendly 404 — GitHub Pages serves /404.html for any missing OR owner-only path
+        # (e.g. case_files.html), explaining it's a private surface by design instead of a bare 404.
+        _404 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "404.html")
+        if os.path.exists(_404):
+            shutil.copy(_404, os.path.join(SITE, "404.html"))
+            print("  + 404.html: 'no access — private surface' explanation (served by GitHub Pages on any 404)")
+        _ta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "take_action.html")
+        if os.path.exists(_ta):
+            _tah = inject_nav(open(_ta, encoding="utf-8", errors="replace").read(), "take_action.html")
+            with open(os.path.join(SITE, "take_action.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_tah)
+            print("  + take_action.html: demand-the-records + supporter signup (+nav)")
+        _tf = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testify.html")
+        if os.path.exists(_tf):
+            with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
+            print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
+    with _lane("grants"):
+        # [grants] community grants library — public preview page (paywall for full access)
+        _gr = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grants.html")
+        if os.path.exists(_gr):
+            shutil.copy(_gr, os.path.join(SITE, "grants.html"))
+            print("  + grants.html: community grants library preview (97 grants, paywall gated)")
+        # request_records.html is now GENERATED (request_records.py, tenant-aware) + flows through EXTRA_PAGES.
+    with _lane("production_status"):
+        # [redundancy] production status (public-safe) from the local 15-min publisher
+        _ps = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_status.json")
+        prod = ""
+        if os.path.exists(_ps):
+            shutil.copy(_ps, os.path.join(SITE, "data", "production_status.json"))
+            try:
+                _p = json.load(open(_ps, encoding="utf-8"))
+                _latest = ", ".join((_p.get("latest_films") or [])[:5])
+                prod = ('<div class="eyebrow" style="margin-top:30px">Production</div>'
+                        f'<p class="lead">{_p.get("films_produced", 0)} films produced'
+                        + (f' · latest: {_latest}' if _latest else "")
+                        + (f' · {_p["youtube_uploaded"]} on YouTube' if _p.get("youtube_uploaded") else "")
+                        + f' <span style="color:#9a957f;font-size:11px">(updated {_p.get("updated", "")})</span></p>')
+                print("  + production_status.json")
+            except Exception:
+                pass
+    with _lane("build_index_html"):
+        g = now_hst().strftime("%Y-%m-%d %H:%M HST")
+        cards = "".join(
+            f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
+            for fn, name, blurb in present)
+        # [orphan-heal 2026-06-17] Civic pages that are built + useful but weren't carded anywhere
+        # (calendars, fire-recovery, agenda patterns) — wire them into the hub so nothing useful is orphaned.
+        _MORE = [
+            ("meetings_calendar.html",     "Meeting Calendars",        "Upcoming public meetings across every government."),
+            ("meetings_maui.html",         "Meetings — Maui",          "Maui County meeting calendar."),
+            ("meetings_honolulu.html",     "Meetings — Honolulu",      "City &amp; County of Honolulu meeting calendar."),
+            ("meetings_hawaii.html",       "Meetings — Hawaiʻi",  "Hawaiʻi County meeting calendar."),
+            ("meetings_kauai.html",        "Meetings — Kauaʻi",   "Kauaʻi County meeting calendar."),
+            ("meetings_nyc.html",          "Meetings — New York",      "New York meeting calendar."),
+            ("rebuild_first.html",         "Who Rebuilt First",        "Lahaina/Kula fire-recovery permit line — who got permits first."),
+            ("agenda_patterns.html",       "Agenda Patterns",          "Recurring themes &amp; items across agendas over time."),
+            ("bfed_agenda_today.html",     "Budget &amp; Finance — Today",  "Today’s Budget &amp; Finance Committee agenda."),
+            ("bfed_eligibility_today.html","BFED Eligibility — Today", "Today’s budget eligibility view."),
+            ("datasets.html",              "Open Data",                "The raw public records behind every dashboard — downloadable JSON + a DCAT catalog. Don’t take our word for it."),
+            ("feature_board.html",         "Build the Software",       "Request how the county’s software should work and vote on others’ ideas — sorted by department &amp; agenda priority. Free signup; county-private tier too."),
+        ]
+        more_cards = "".join(
+            f'<a class="card" href="{fn}"><div class="t">{name}</div><div class="b">{blurb}</div></a>'
+            for fn, name, blurb in _MORE if os.path.exists(os.path.join(SITE, fn)))
+        index = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kilo Aupuni - Maui County / Hawaii Civic Transparency</title>
 <style>
@@ -1236,29 +1276,6 @@ Sources are linked on every page.</div>
 <div class="grid">{cards}</div>
 <div class="eyebrow" style="margin-top:30px">Calendars, recovery &amp; patterns</div>
 <div class="grid">{more_cards}</div>
-<div class="eyebrow" style="margin-top:30px">Charter, law &amp; services</div>
-<div class="grid">
- <a class="card" href="king/civic/templates/title19-system/Title19%20System.html"><div class="t">Title 19 System — through the Charter</div><div class="b">One front door to every Title 19 tool + the 12 Stones Charter lens.</div></a>
- <a class="card" href="king/civic/templates/mauios-gov/MauiOS%20Government%20OS.html"><div class="t">govOS — Charter Hub</div><div class="b">The charter ⇄ law reference layer: budget, county code, state law, crosswalks, services.</div></a>
- <a class="card" href="king/civic/templates/title19-service/Title19%20Service.html"><div class="t">Title 19 — Plain-Language Service (free)</div><div class="b">Live parcel lookup + zoning navigator. No account.</div></a>
- <a class="card" href="king/civic/templates/title19-substantial-change/Title19%20Substantial%20Change.html"><div class="t">Title 19 — Substantial Change Procedure</div><div class="b">When a change to an approved project needs a new public hearing — with a decision aid.</div></a>
- <a class="card" href="king/civic/templates/title16-service/Title16%20Service.html"><div class="t">Title 16 — Buildings &amp; Permits (free)</div><div class="b">Building/electrical/plumbing permits, codes, enforcement, disaster-recovery track.</div></a>
- <a class="card" href="king/civic/templates/title18-service/Title18%20Service.html"><div class="t">Title 18 — Subdivisions (free)</div><div class="b">Preliminary &amp; final plat process, fees, how it ties to zoning, enforcement.</div></a>
- <a class="card" href="king/civic/templates/title03-service/Title3%20Service.html"><div class="t">Title 3 — Real Property Tax (free)</div><div class="b">Assessment, classes, exemptions, appeals — plain language.</div></a>
- <a class="card" href="king/civic/templates/title05-service/Title5%20Service.html"><div class="t">Title 5 — Business Licenses (free)</div><div class="b">County business licensing &amp; permits, plain language.</div></a>
- <a class="card" href="king/civic/templates/title14-service/Title14%20Service.html"><div class="t">Title 14 — Water / Public Services (free)</div><div class="b">Water service, rates, meters, public utilities — plain language.</div></a>
- <a class="card" href="king/civic/templates/title10-service/Title10%20Service.html"><div class="t">Title 10 — Vehicles &amp; Traffic (free)</div><div class="b">Traffic code, parking, vehicles — plain language.</div></a>
- <a class="card" href="king/civic/templates/title12-service/Title12%20Service.html"><div class="t">Title 12 — Streets &amp; Sidewalks (free)</div><div class="b">Streets, sidewalks, public ways &amp; encroachments — plain language.</div></a>
- <a class="card" href="king/civic/templates/title20-service/Title20%20Service.html"><div class="t">Title 20 — Environmental Protection (free)</div><div class="b">Environmental protection, recycling, water quality — plain language.</div></a>
- <a class="card" href="king/civic/templates/title06-service/Title6%20Service.html"><div class="t">Title 6 — Animals (free)</div><div class="b">Animal control, licensing &amp; welfare — plain language.</div></a>
- <a class="card" href="king/civic/templates/title08-service/Title8%20Service.html"><div class="t">Title 8 — Health &amp; Safety (free)</div><div class="b">Public health &amp; safety code — plain language.</div></a>
- <a class="card" href="king/civic/templates/title09-service/Title9%20Service.html"><div class="t">Title 9 — Public Peace &amp; Welfare (free)</div><div class="b">Public peace, morals &amp; welfare — plain language.</div></a>
- <a class="card" href="king/civic/templates/title11-service/Title11%20Service.html"><div class="t">Title 11 — Public Transit (free)</div><div class="b">County public transit &amp; transportation — plain language.</div></a>
- <a class="card" href="king/civic/templates/title13-service/Title13%20Service.html"><div class="t">Title 13 — Parks &amp; Recreation (free)</div><div class="b">County parks, beaches &amp; recreation — plain language.</div></a>
- <a class="card" href="king/civic/templates/title22-service/Title22%20Service.html"><div class="t">Title 22 — Department of Agriculture (free)</div><div class="b">County Department of Agriculture — plain language.</div></a>
- <a class="card" href="king/civic/templates/title01-service/Title1%20Service.html"><div class="t">Title 1 — General Provisions (free)</div><div class="b">How the Code is organized &amp; applied — plain language.</div></a>
- <a class="card" href="king/civic/templates/title02-service/Title2%20Service.html"><div class="t">Title 2 — Administration &amp; Personnel (free)</div><div class="b">County administration, boards &amp; commissions — plain language.</div></a>
-</div>
 <div class="eyebrow" style="margin-top:30px">Blessings as we go</div>
 <div class="grid">
  <a class="card" href="king/civic/templates/blessings/Night%20Tends%20the%20Day.html"><div class="t">The Night Tends the Day</div><div class="b">The Kumulipo rhythm — Pō tends the day's work and dreams the next day forward.</div></a>
@@ -1270,197 +1287,217 @@ Sources are linked on every page.</div>
 <p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>
 <footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</footer>
 </div></body></html>"""
-    index = inject_nav(index, "")     # nav on the hub too (home pill highlights nothing)
-    with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
-        f.write(index)
-    # the nav's "🌺 govOS" home points at reports.html — make it the named hub in BOTH
-    # contexts (public site root + king-local, where index.html is the King shell).
-    with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
-        f.write(index)
-    # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
-    # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
-    # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
-    # 12sgi.com HOMEPAGE = the govOS CLIENT signup landing (Jimmy 2026-06-19: "the home page of 12sgi.com
-    # = what a govOS client would see to sign up"). go.html stays the PRIVATE launcher at /go.html.
-    _landing = os.path.join(SITE, "king", "govos_signup.html")
-    _go_built = os.path.join(SITE, "go.html")   # the internal Quad-OS launcher (FTM map injected) — stays at /go.html
-    _idx_src = _landing if os.path.exists(_landing) else _go_built
-    if os.path.exists(_idx_src):
-        _idx_html = open(_idx_src, encoding="utf-8", errors="ignore").read()
-        # govos_signup.html is authored for king/ context (uses ../ for root-level paths).
-        # When deployed to site/index.html (root), strip the leading ../ so links resolve correctly.
-        def _root_href(m):
-            h = m.group(1)
-            if h.startswith('../'):
-                return 'href="%s"' % h[3:]
-            return 'href="%s"' % h
-        _idx_html = re.sub(r'href="([^"]*)"', _root_href, _idx_html)
+        index = inject_nav(index, "")     # nav on the hub too (home pill highlights nothing)
         with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
-            f.write(_idx_html)
-        print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
-    # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
-    # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
-    # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).
-    open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8").write("12sgi.com\n")
-    print("  + CNAME = 12sgi.com (GitHub Pages custom domain for govOS)")
-    # BUILD MARKER for git-awareness (Jimmy 2026-07-03): stamp the deployed commit into the
-    # artifact so the state-based sense-organ can read the LIVE sha directly (one curl of
-    # /buildinfo.json) and reconcile live-vs-committed -- instead of ASSUMING the push worked.
-    try:
-        import subprocess as _sp
-        _sha = os.environ.get("GITHUB_SHA") or _sp.run(
-            ["git", "rev-parse", "HEAD"], cwd=os.path.dirname(os.path.abspath(__file__)),
-            capture_output=True, text=True).stdout.strip()
-        json.dump({"sha": _sha, "sha_short": (_sha or "")[:7],
-                   "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
-                  open(os.path.join(SITE, "buildinfo.json"), "w", encoding="utf-8"))
-        print("  + buildinfo.json = %s (git-awareness live-deploy marker)" % (_sha or "")[:7])
-    except Exception as _e:
-        print("  ! buildinfo.json skipped: %s" % _e)
+            f.write(index)
+        # the nav's "🌺 govOS" home points at reports.html — make it the named hub in BOTH
+        # contexts (public site root + king-local, where index.html is the King shell).
+        with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
+            f.write(index)
+    with _lane("govos_signup_landing"):
+        # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
+        # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
+        # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
+        # 12sgi.com HOMEPAGE = the govOS CLIENT signup landing (Jimmy 2026-06-19: "the home page of 12sgi.com
+        # = what a govOS client would see to sign up"). go.html stays the PRIVATE launcher at /go.html.
+        _landing = os.path.join(SITE, "king", "govos_signup.html")
+        _go_built = os.path.join(SITE, "go.html")   # the internal Quad-OS launcher (FTM map injected) — stays at /go.html
+        _idx_src = _landing if os.path.exists(_landing) else _go_built
+        if os.path.exists(_idx_src):
+            _idx_html = open(_idx_src, encoding="utf-8", errors="ignore").read()
+            # govos_signup.html is authored for king/ context (uses ../ for root-level paths).
+            # When deployed to site/index.html (root), strip the leading ../ so links resolve correctly.
+            def _root_href(m):
+                h = m.group(1)
+                if h.startswith('../'):
+                    return 'href="%s"' % h[3:]
+                return 'href="%s"' % h
+            _idx_html = re.sub(r'href="([^"]*)"', _root_href, _idx_html)
+            with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
+                f.write(_idx_html)
+            print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
+    with _lane("cname"):
+        # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
+        # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
+        # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).
+        open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8").write("12sgi.com\n")
+        print("  + CNAME = 12sgi.com (GitHub Pages custom domain for govOS)")
+    with _lane("buildinfo_json"):
+        # BUILD MARKER for git-awareness (Jimmy 2026-07-03): stamp the deployed commit into the
+        # artifact so the state-based sense-organ can read the LIVE sha directly (one curl of
+        # /buildinfo.json) and reconcile live-vs-committed -- instead of ASSUMING the push worked.
+        try:
+            import subprocess as _sp
+            _sha = os.environ.get("GITHUB_SHA") or _sp.run(
+                ["git", "rev-parse", "HEAD"], cwd=os.path.dirname(os.path.abspath(__file__)),
+                capture_output=True, text=True).stdout.strip()
+            json.dump({"sha": _sha, "sha_short": (_sha or "")[:7],
+                       "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+                      open(os.path.join(SITE, "buildinfo.json"), "w", encoding="utf-8"))
+            print("  + buildinfo.json = %s (git-awareness live-deploy marker)" % (_sha or "")[:7])
+        except Exception as _e:
+            print("  ! buildinfo.json skipped: %s" % _e)
     print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
 
-    # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
-    # reports/_status by quadrant_selfheal). Publish it so those links resolve (was 2 broken of 7721);
-    # it's leak-clean and gets recolored by the pass below.
-    for _qpn in ("quadrant_progress.html", "quadrant_progress_log.html"):
-        _qp = os.path.join(PROJECT, "reports", "_status", _qpn)
-        if os.path.exists(_qp):
-            shutil.copy(_qp, os.path.join(SITE, _qpn))
-            print(f"  + {_qpn}: published (resolves go.html / progress links)")
+    with _lane("quadrant_progress"):
+        # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to
+        # reports/_status by quadrant_selfheal). Publish it so those links resolve (was 2 broken of 7721);
+        # it's leak-clean and gets recolored by the pass below.
+        for _qpn in ("quadrant_progress.html", "quadrant_progress_log.html"):
+            _qp = os.path.join(PROJECT, "reports", "_status", _qpn)
+            if os.path.exists(_qp):
+                shutil.copy(_qp, os.path.join(SITE, _qpn))
+                print(f"  + {_qpn}: published (resolves go.html / progress links)")
 
-    # [recolor] Yale-blue civic skin across EVERY emitted page + tenant (color-only; logic untouched).
-    # Runs before the king-local mirror so the private superset inherits the same new palette.
-    _rc = recolor_tree(SITE)
-    print(f"  + recolor: Yale-blue civic palette applied to {_rc} html/css files (all tenants; data/JS untouched)")
+    with _lane("recolor_site"):
+        # [recolor] Yale-blue civic skin across EVERY emitted page + tenant (color-only; logic untouched).
+        # Runs before the king-local mirror so the private superset inherits the same new palette.
+        _rc = recolor_tree(SITE)
+        print(f"  + recolor: Yale-blue civic palette applied to {_rc} html/css files (all tenants; data/JS untouched)")
 
-    # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
-    # of the public build — same civic dashboards + data, plus the owner-only surfaces it
-    # already has. We mirror the public artifacts into it so PRIVATE serves the same
-    # information, and (running locally) it updates BEFORE the git push reaches GitHub
-    # Pages — "private first, public mirror." On CI this dir is absent, so it no-ops.
-    KLOCAL = os.path.expanduser(os.path.join("~", "AppData", "Local", "king-extract", "deploy", "king-local"))
-    if os.path.isdir(KLOCAL):
-        import glob
-        for h in glob.glob(os.path.join(SITE, "*.html")):
-            b = os.path.basename(h)
-            # SINGLE SOURCE: local root == public root (the civic landing front door).
-            # The King System app lives at /king/ on BOTH (one tap from the landing).
-            shutil.copy(h, os.path.join(KLOCAL, b))
-        # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
-        # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
-        # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no
-        # blog_engine import, confirmed by trace), so those relative links resolve WRONG under the
-        # private /king/blog (no .html) URL shape (e.g. href="king/" -> /king/king/, a 404). Re-render
-        # the PRIVATE (static=False, absolute /king/... nav + dynamic ?post= links) version directly
-        # into KLOCAL right here so this build pass is self-consistent and never depends on some other
-        # process re-running blog_engine.generate() afterward to undo the clobber.
-        if _blog_engine is not None and "_blog_pub" in dir():
+    with _lane("king_local_mirror"):
+        # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
+        # of the public build — same civic dashboards + data, plus the owner-only surfaces it
+        # already has. We mirror the public artifacts into it so PRIVATE serves the same
+        # information, and (running locally) it updates BEFORE the git push reaches GitHub
+        # Pages — "private first, public mirror." On CI this dir is absent, so it no-ops.
+        KLOCAL = os.path.expanduser(os.path.join("~", "AppData", "Local", "king-extract", "deploy", "king-local"))
+        if os.path.isdir(KLOCAL):
+            import glob
+            for h in glob.glob(os.path.join(SITE, "*.html")):
+                b = os.path.basename(h)
+                # SINGLE SOURCE: local root == public root (the civic landing front door).
+                # The King System app lives at /king/ on BOTH (one tap from the landing).
+                shutil.copy(h, os.path.join(KLOCAL, b))
+            # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
+            # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
+            # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no
+            # blog_engine import, confirmed by trace), so those relative links resolve WRONG under the
+            # private /king/blog (no .html) URL shape (e.g. href="king/" -> /king/king/, a 404). Re-render
+            # the PRIVATE (static=False, absolute /king/... nav + dynamic ?post= links) version directly
+            # into KLOCAL right here so this build pass is self-consistent and never depends on some other
+            # process re-running blog_engine.generate() afterward to undo the clobber.
+            if _blog_engine is not None and "_blog_pub" in dir():
+                try:
+                    with open(os.path.join(KLOCAL, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
+                        f.write(_blog_engine.render_list_page(_blog_pub))
+                    for _bp in _blog_pub:
+                        _slug = _bp.get("slug", _bp.get("id", ""))
+                        with open(os.path.join(KLOCAL, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
+                            f.write(_blog_engine.render_post_page(_bp))
+                    print("  + king-local blog: re-rendered PRIVATE nav (static=False) over the public mirror copy")
+                except Exception as _kbe:
+                    print("  ! king-local blog re-render skipped: %s" % str(_kbe)[:120])
+            for sub in ("data", "donors", "king"):   # +king: civic/templates tree so go.html resolves on the private server (true superset)
+                s = os.path.join(SITE, sub)
+                if os.path.isdir(s):
+                    shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
+            # king_serve strips the /king/ prefix and serves the civic templates from KLOCAL/civic (NOT KLOCAL/king/civic),
+            # so mirror the civic tree to the ROOT civic dir too — else nav links like king/civic/templates/title16-service/...
+            # 404 on the private server even though the page exists under king/ (Jimmy 2026-06-25, "broken links NEVER AGAIN").
+            _civ = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src", "civic")
+            if os.path.isdir(_civ):
+                shutil.copytree(_civ, os.path.join(KLOCAL, "civic"), dirs_exist_ok=True)
+            print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ + civic/ -> served first via Tailscale")
+            # [OWNER ONLY] the prosecutorial back end — copied to king-local (private/Tailscale) ONLY.
+            # Deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE, so it can never reach
+            # public GitHub Pages. Front end stays Aloha + factual; this rigor is owner-private.
+            _cf = os.path.join(MAUIOS, "case_files.html")
+            if os.path.exists(_cf):
+                shutil.copy(_cf, os.path.join(KLOCAL, "case_files.html"))
+                print("  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)")
+            # [OWNER ONLY] system status (so go.html's status link resolves PORTLESS via /king/ — the :8781 port
+            # is never shown publicly) + the real-estate loop breakdown. Private; never in SITE/EXTRA_PAGES.
+            for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
+                                (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html"),
+                                (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html"),
+                                (os.path.join(PROJECT, "reports", "_status", "king_message.html"), "king_message.html"),
+                                (os.path.join(PROJECT, "reports", "_status", "maui_re_report.html"), "maui_re_report.html")):
+                if os.path.exists(_src):
+                    shutil.copy(_src, os.path.join(KLOCAL, _name))
+                    print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")
+            # [OWNER ONLY] recusal/conflict dollar evidence (the Po behind the public eligibility questions) -
+            # king-local/Tailscale ONLY; deliberately NOT in PAGES/EXTRA_PAGES/seed so it never reaches Pages.
+            _re = os.path.join(MAUIOS, "recusal_evidence.html")
+            if os.path.exists(_re):
+                shutil.copy(_re, os.path.join(KLOCAL, "recusal_evidence.html"))
+                print("  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)")
+            # [OWNER ONLY] corporate-quad-os private packet (12SGI data room + cap table + deck PDFs) — king-local/Tailscale
+            # ONLY; the WHOLE king_private_src/ tree, deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE so
+            # it never reaches public Pages. Add private pages/docs by dropping them in king_private_src/.
+            _priv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_private_src")
+            if os.path.isdir(_priv):
+                shutil.copytree(_priv, KLOCAL, dirs_exist_ok=True)
+                print("  + king-local OWNER-ONLY: king_private_src/* (12SGI corporate data room + cap table + docs — never public)")
+            # [king-recolor] private pages + King-app .dc components bypass the site recolor above; re-flip any that
+            # land in king-local dark (king-extract is volatile). Keeps the private server 100% Yale-blue every build.
+            _kr = os.path.join(PROJECT, "tools", "kilo-aupuni", "king_recolor.py")
+            if os.path.exists(_kr):
+                import subprocess as _sp
+                try:
+                    _sp.run([sys.executable, _kr], timeout=60, stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
+                    print("  + king_recolor: private/.dc pages kept Yale-blue (0 dark)")
+                except Exception:
+                    pass
+
+    with _lane("public_api_sanitize"):
+        # [build-aware API base] The generator bakes VBASE="/api" (same-origin = the PRIVATE King mirror on the
+        # tailnet; king-local was mirrored ABOVE with /api intact). Here we rewrite ONLY the public site/ copies
+        # to verify_api_base_public from config/beta.json (default "" = 'opening soon', clean + leak-safe). When
+        # the Cloudflare Tunnel is up, setting that one field to https://api.12sgi.com wires public clients
+        # both-ways - a single-line activation. Runs on CI too (KLOCAL absent there).
+        try:
+            _bp = json.load(open(os.path.join(PROJECT, "config", "beta.json"), encoding="utf-8")).get("verify_api_base_public", "")
+        except Exception:
+            _bp = ""
+        _pub = ("" if (_bp or "").startswith("PASTE_") else (_bp or "")).rstrip("/")
+        # [PUBLIC leak-sanitize] strip the PRIVATE tailnet host from PUBLIC site/ copies (king-local, mirrored
+        # ABOVE, keeps the real ts.net for the owner). The :8443 funnel -> the public API base (or '#' until live);
+        # the bare host -> 12sgi.com (the public King at /king exists there). Closes the go.html ts.net leak the
+        # king/-only leak-gate didn't catch. NEVER touches king-local (private).
+        _TSNET = "12sgianonymous.tail760750.ts.net"
+        import glob as _glob
+        _n = 0
+        for _h in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
             try:
-                with open(os.path.join(KLOCAL, "blog.html"), "w", encoding="utf-8", newline="\n") as f:
-                    f.write(_blog_engine.render_list_page(_blog_pub))
-                for _bp in _blog_pub:
-                    _slug = _bp.get("slug", _bp.get("id", ""))
-                    with open(os.path.join(KLOCAL, "blog_post_%s.html" % _slug), "w", encoding="utf-8", newline="\n") as f:
-                        f.write(_blog_engine.render_post_page(_bp))
-                print("  + king-local blog: re-rendered PRIVATE nav (static=False) over the public mirror copy")
-            except Exception as _kbe:
-                print("  ! king-local blog re-render skipped: %s" % str(_kbe)[:120])
-        for sub in ("data", "donors", "king"):   # +king: civic/templates tree so go.html resolves on the private server (true superset)
-            s = os.path.join(SITE, sub)
-            if os.path.isdir(s):
-                shutil.copytree(s, os.path.join(KLOCAL, sub), dirs_exist_ok=True)
-        # king_serve strips the /king/ prefix and serves the civic templates from KLOCAL/civic (NOT KLOCAL/king/civic),
-        # so mirror the civic tree to the ROOT civic dir too — else nav links like king/civic/templates/title16-service/...
-        # 404 on the private server even though the page exists under king/ (Jimmy 2026-06-25, "broken links NEVER AGAIN").
-        _civ = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src", "civic")
-        if os.path.isdir(_civ):
-            shutil.copytree(_civ, os.path.join(KLOCAL, "civic"), dirs_exist_ok=True)
-        print(f"  + king-local (PRIVATE superset): mirrored {len(present)} dashboards + data + king/ + civic/ -> served first via Tailscale")
-        # [OWNER ONLY] the prosecutorial back end — copied to king-local (private/Tailscale) ONLY.
-        # Deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE, so it can never reach
-        # public GitHub Pages. Front end stays Aloha + factual; this rigor is owner-private.
-        _cf = os.path.join(MAUIOS, "case_files.html")
-        if os.path.exists(_cf):
-            shutil.copy(_cf, os.path.join(KLOCAL, "case_files.html"))
-            print("  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)")
-        # [OWNER ONLY] system status (so go.html's status link resolves PORTLESS via /king/ — the :8781 port
-        # is never shown publicly) + the real-estate loop breakdown. Private; never in SITE/EXTRA_PAGES.
-        for _src, _name in ((os.path.join(PROJECT, "reports", "_status", "system_status.html"), "system_status.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "ram_loop.html"), "ram_loop.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "onboard_readiness.html"), "onboard_readiness.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "king_message.html"), "king_message.html"),
-                            (os.path.join(PROJECT, "reports", "_status", "maui_re_report.html"), "maui_re_report.html")):
-            if os.path.exists(_src):
-                shutil.copy(_src, os.path.join(KLOCAL, _name))
-                print(f"  + king-local OWNER-ONLY: {_name} (private — never public)")
-        # [OWNER ONLY] recusal/conflict dollar evidence (the Po behind the public eligibility questions) -
-        # king-local/Tailscale ONLY; deliberately NOT in PAGES/EXTRA_PAGES/seed so it never reaches Pages.
-        _re = os.path.join(MAUIOS, "recusal_evidence.html")
-        if os.path.exists(_re):
-            shutil.copy(_re, os.path.join(KLOCAL, "recusal_evidence.html"))
-            print("  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)")
-        # [OWNER ONLY] corporate-quad-os private packet (12SGI data room + cap table + deck PDFs) — king-local/Tailscale
-        # ONLY; the WHOLE king_private_src/ tree, deliberately NOT in PAGES/EXTRA_PAGES/seed and NOT mirrored to SITE so
-        # it never reaches public Pages. Add private pages/docs by dropping them in king_private_src/.
-        _priv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_private_src")
-        if os.path.isdir(_priv):
-            shutil.copytree(_priv, KLOCAL, dirs_exist_ok=True)
-            print("  + king-local OWNER-ONLY: king_private_src/* (12SGI corporate data room + cap table + docs — never public)")
-        # [king-recolor] private pages + King-app .dc components bypass the site recolor above; re-flip any that
-        # land in king-local dark (king-extract is volatile). Keeps the private server 100% Yale-blue every build.
-        _kr = os.path.join(PROJECT, "tools", "kilo-aupuni", "king_recolor.py")
-        if os.path.exists(_kr):
-            import subprocess as _sp
-            try:
-                _sp.run([sys.executable, _kr], timeout=60, stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
-                print("  + king_recolor: private/.dc pages kept Yale-blue (0 dark)")
+                _t = open(_h, encoding="utf-8").read()
+                _o = _t
+                _t = _t.replace('VBASE="/api"', 'VBASE="%s"' % _pub)
+                _t = _t.replace("https://%s:8443" % _TSNET, (_pub or "#"))
+                _t = _t.replace("https://%s" % _TSNET, "https://12sgi.com").replace(_TSNET, "12sgi.com")
+                if _t != _o:
+                    open(_h, "w", encoding="utf-8").write(_t); _n += 1
             except Exception:
                 pass
-
-    # [build-aware API base] The generator bakes VBASE="/api" (same-origin = the PRIVATE King mirror on the
-    # tailnet; king-local was mirrored ABOVE with /api intact). Here we rewrite ONLY the public site/ copies
-    # to verify_api_base_public from config/beta.json (default "" = 'opening soon', clean + leak-safe). When
-    # the Cloudflare Tunnel is up, setting that one field to https://api.12sgi.com wires public clients
-    # both-ways - a single-line activation. Runs on CI too (KLOCAL absent there).
-    try:
-        _bp = json.load(open(os.path.join(PROJECT, "config", "beta.json"), encoding="utf-8")).get("verify_api_base_public", "")
-    except Exception:
-        _bp = ""
-    _pub = ("" if (_bp or "").startswith("PASTE_") else (_bp or "")).rstrip("/")
-    # [PUBLIC leak-sanitize] strip the PRIVATE tailnet host from PUBLIC site/ copies (king-local, mirrored
-    # ABOVE, keeps the real ts.net for the owner). The :8443 funnel -> the public API base (or '#' until live);
-    # the bare host -> 12sgi.com (the public King at /king exists there). Closes the go.html ts.net leak the
-    # king/-only leak-gate didn't catch. NEVER touches king-local (private).
-    _TSNET = "12sgianonymous.tail760750.ts.net"
-    import glob as _glob
-    _n = 0
-    for _h in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
+        if _n:
+            print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
+                  % (_pub or "(opening-soon)", _n))
+    with _lane("reconcile"):
+        # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
         try:
-            _t = open(_h, encoding="utf-8").read()
-            _o = _t
-            _t = _t.replace('VBASE="/api"', 'VBASE="%s"' % _pub)
-            _t = _t.replace("https://%s:8443" % _TSNET, (_pub or "#"))
-            _t = _t.replace("https://%s" % _TSNET, "https://12sgi.com").replace(_TSNET, "12sgi.com")
-            if _t != _o:
-                open(_h, "w", encoding="utf-8").write(_t); _n += 1
+            import subprocess as _sp, sys as _sys
+            _rp = os.path.join(os.path.dirname(__file__), "tools", "reconcile.py")
+            if os.path.isfile(_rp):
+                _r = _sp.run([_sys.executable, _rp, "--scan", SITE, "html", "--route-only"],
+                             capture_output=True, text=True, encoding="utf-8", errors="replace")
+                if _r.stdout.strip() and "clean" not in _r.stdout:
+                    print("[reconcile] WARN (dev only — CI gate blocks on seed_reports):")
+                    for _ln in _r.stdout.strip().splitlines():
+                        print("  " + _ln)
         except Exception:
             pass
-    if _n:
-        print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
-              % (_pub or "(opening-soon)", _n))
-    # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
-    try:
-        import subprocess as _sp, sys as _sys
-        _rp = os.path.join(os.path.dirname(__file__), "tools", "reconcile.py")
-        if os.path.isfile(_rp):
-            _r = _sp.run([_sys.executable, _rp, "--scan", SITE, "html", "--route-only"],
-                         capture_output=True, text=True, encoding="utf-8", errors="replace")
-            if _r.stdout.strip() and "clean" not in _r.stdout:
-                print("[reconcile] WARN (dev only — CI gate blocks on seed_reports):")
-                for _ln in _r.stdout.strip().splitlines():
-                    print("  " + _ln)
-    except Exception:
-        pass
+    with _lane("lane_report"):
+        # Fold the per-lane pass/fail/timing summary into buildinfo.json so the heal system
+        # (selfheal.py or any future CI check) can see exactly which lane failed on a given
+        # build, instead of scanning raw scrollback for a stray "skipped: ..." line.
+        _bi_path = os.path.join(SITE, "buildinfo.json")
+        _bi = json.load(open(_bi_path, encoding="utf-8")) if os.path.exists(_bi_path) else {}
+        _bi["lanes"] = _LANE_REPORT
+        _failed = [l["lane"] for l in _LANE_REPORT if not l["ok"]]
+        _bi["lanes_failed"] = _failed
+        json.dump(_bi, open(_bi_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(f"  + lane report: {len(_LANE_REPORT)} lanes, {len(_failed)} failed"
+              + (f" ({', '.join(_failed)})" if _failed else ""))
     return 0
 
 if __name__ == "__main__":
