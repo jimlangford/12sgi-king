@@ -2,6 +2,24 @@ Deployment and rollback runbook
 
 This document describes the releases + symlink deploy pattern, how to deploy, and how to rollback safely.
 
+## govOS v2 backend (auth/tenant/documents/storage/ai) — where it actually runs
+
+The SSH/rsync/systemd pattern below targets `staging-596d-monkshrooms.wpcomstaging.com`, a
+WordPress.com-managed staging host. **Do not target the v2 FastAPI services at that host** — WP.com
+managed hosting does not grant sudo/systemd, Docker, or the ability to run arbitrary long-lived
+processes on custom ports, so the v2 services (`services/auth`, `services/tenant`,
+`services/documents`, `services/storage`, `services/ai`) cannot run there. That deploy path stays
+scoped to the WordPress/static side of the project.
+
+The real deploy target for v2 is **king-server** (the Tailscale host `12sgianonymous`, tailnet
+`tail760750.ts.net`, Funnel already enabled) — the same private machine already running the
+workboard/self-heal automation. As of this writing that host has no SSH server, Docker, or WSL
+installed, so it is not yet reachable by the GitHub Actions SSH/rsync workflow below. Until that
+infra decision is made explicitly by the owner, run v2 the same way the rest of the local automation
+runs: as supervised local processes (see `docs/GOVOS_V2_LOCAL_DEV.md` for the exact `uvicorn`
+commands), reachable privately over Tailscale, with a public flip being a later reverse-proxy/DNS
+step once the services are verified stable locally — not a `git push`-triggered remote deploy.
+
 Overview
 - Deploys are written to: DEPLOY_PATH/releases/<timestamp>/
 - The live site is the symlink: DEPLOY_PATH/current -> releases/<timestamp>
