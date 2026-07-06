@@ -4,7 +4,7 @@ const endpoints = {
   documents: window.DOCUMENTS_SERVICE_URL || 'http://localhost:8103',
   storage: window.STORAGE_SERVICE_URL || 'http://localhost:8104',
   ai: window.AI_SERVICE_URL || 'http://localhost:8105',
-  health: window.HEALTH_SERVICE_URL || 'http://localhost:8000',
+  health: window.HEALTH_SERVICE_URL || 'http://localhost:8106',
 };
 
 const output = document.getElementById('output');

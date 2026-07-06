@@ -1,5 +1,5 @@
 const tenantUrl = window.TENANT_SERVICE_URL || 'http://localhost:8102';
-const healthUrl = window.HEALTH_SERVICE_URL || 'http://localhost:8000';
+const healthUrl = window.HEALTH_SERVICE_URL || 'http://localhost:8106';
 const output = document.getElementById('output');
 
 document.getElementById('metrics').addEventListener('click', async () => {
