@@ -233,6 +233,61 @@ def reject_workboard_job(
     return tombstone
 
 
+def emit_hina_creative_job(
+    *,
+    offering_date: str,
+    hina_node_id: int,
+    akua: str,
+    wa_phase: str,
+    particles: str,
+    civic_source: str,
+    output_types: list | None = None,
+    source: str = "hina-nightly",
+    log_path: "Path | None" = None,
+) -> dict:
+    """Emit a HINA-driven creative lane job to the workboard dispatch log.
+
+    This is the canonical entry point for HINA's nightly Pō balancing work.
+    Every call is traceable back to a civic date + node, satisfying the
+    studio_parity.py cycle_connected and hina_balance_present checks.
+
+    Parameters
+    ----------
+    offering_date:  The civic date HINA is balancing (ISO format YYYY-MM-DD).
+    hina_node_id:   Node id (1–54) whose energy answers today's Ao imbalance.
+    akua:           Presiding source-energy (Pele / Kāne / Lono / Kanaloa).
+    wa_phase:       Kumulipo era key: "Ao" or "Pō".
+    particles:      Creative expression layer bound to this akua + zone.
+    civic_source:   The civic event that created the Ao imbalance (e.g.
+                    "agenda/2026-07-06/item-3 — Lahaina recovery vote").
+    output_types:   Which content jobs this balance reading drives.
+                    Defaults to ["cut-scene", "card-render"].
+    source:         Originating process name (default: "hina-nightly").
+    log_path:       Override the dispatch log path (default: DISPATCH_LOG).
+
+    Returns the emitted workboard job entry dict.
+    """
+    return emit_workboard_job(
+        source=source,
+        action="hina-balance",
+        event=f"HINA Pō balance: node {hina_node_id} ({akua}) answers {offering_date}",
+        lane="creative",
+        status="queued",
+        priority="normal",
+        kind="job",
+        payload={
+            "offering_date": offering_date,
+            "hina_node_id": hina_node_id,
+            "akua": akua,
+            "wa_phase": wa_phase,
+            "particles": particles,
+            "civic_source": civic_source,
+            "output_types": output_types or ["cut-scene", "card-render"],
+        },
+        log_path=log_path,
+    )
+
+
 def pending_approvals(log_path: Path | None = None) -> list[dict]:
     """Return all creative and output lane jobs that have not yet been resolved.
 

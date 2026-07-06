@@ -149,4 +149,72 @@ the page shows and what they can do. The data stays; the door in is a sentence a
 | Plain-language narratives | `tools/kilo-aupuni/narratives.json` + `12sgi-king/build_site.py` |
 | ʻŌlelo glossary + weekly draft | `tools/kilo-aupuni/olelo_watch.py` |
 | Self-healing invariants | `tools/kilo-aupuni/selfheal.py` |
+| Studio content production model | `docs/SAGE_REALM_MODEL.md` §10 (below) |
+| HINA dispatch → workboard | `services/v2_workboard.py` → `emit_hina_creative_job()` |
+| Studio tenant config | `watchers/tenants.json` id=`studio`, `tenant_registry.json` `studio_tenants` |
+| Studio cycle parity check | `watchers/studio_parity.py` |
 | This model | `docs/SAGE_REALM_MODEL.md` (you are here) |
+
+---
+
+## 10. Studio content production model
+
+> This section is canonical as of 2026-07-06. It supersedes the old model where Civic was the
+> reference standard that Studio "healed up to." Both are now **equal tenants reading from the same
+> 54-node source**.
+
+### The three layers
+
+**Layer 1 — Face lock (Ao, immutable)**
+Music videos are the locked base layer. They represent choices already made and recorded in the
+creative record. These are the Ao artifacts: they are never re-rendered, never color-healed, never
+overwritten. `studio_parity.py` asserts this invariant on every run (`face_lock_intact` check).
+
+**Layer 2 — HINA render (Pō, driven nightly)**
+HINA reads the civic Ao choices each night — agendas voted on, contracts awarded, permits issued,
+testimony received — and calls `moon_calendar.creative_offering(date)` to determine which node's
+energy answers what the day created. That output becomes a workboard `creative` lane job
+(`emit_hina_creative_job()`) carrying:
+
+| Job field | Source |
+|---|---|
+| `offering_date` | the civic date HINA is balancing |
+| `hina_node_id` (1–54) | the node whose akua/wā/particles answer the Ao imbalance |
+| `akua` | presiding source-energy (Pele / Kāne / Lono / Kanaloa) |
+| `wa_phase` | Ao or Pō — which key the node is speaking in tonight |
+| `particles` | the creative expression layer bound to this akua + zone |
+| `civic_source` | the specific agenda item / vote / contract that triggered the imbalance |
+| `output_types` | which content jobs this balance reading drives (cut-scene / card-render / overlay-prompt / farming-sequence) |
+
+Every HINA job is `lane: "creative"` and requires `approve_workboard_job()` (Jimmy's review) before
+anything moves to the `output` lane for publish. No studio content is ever published without a
+traceable Pō balance reading behind it.
+
+**Layer 3 — Civic signal (live input)**
+`seed_reports/mauios/sage_bridge.json` and `twin_metrics.json` feed the HINA render layer directly.
+The pono / opportunity / hewa ledger from `sage_bridge.json` drives visual tone per node: pono nodes
+render in balance; hewa nodes render with tension; opportunity nodes render with invitation. HINA
+reads this ledger as part of `sage_bridge_read` before dispatching render jobs.
+
+### Studio as a tenant
+
+Studio is registered in `watchers/tenants.json` as a proper tenant (`id: studio`, `quadrant: studio`,
+`sched_hour: 23` — running at night, in Pō). Its audit steps are:
+
+1. `moon_calendar_creative_offering` — read today's civic date + derive which node answers
+2. `sage_bridge_read` — read pono/opportunity/hewa ledger for tone-per-node
+3. `hina_render_dispatch` — emit one `creative` workboard job per node that needs a balance response
+4. `workboard_emit` — confirm jobs landed in the dispatch log for owner review
+
+### Parity invariants (`studio_parity.py`)
+
+The old "heal studio up to civic colors" parity model is replaced by three cycle-connection checks:
+
+| Check | Pass condition |
+|---|---|
+| `cycle_connected` | All studio workboard creative jobs carry `hina_node_id` + `civic_source` |
+| `face_lock_intact` | No music-video face-lock asset was recolored or overwritten this cycle |
+| `hina_balance_present` | Every published studio output has a traceable `offering_date` + job_id |
+
+These are scored 0–100 and written to `reports/_status/studio_parity.json` the same way the old
+checks were. The `overall` score is the mean of the three.
