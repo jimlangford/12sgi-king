@@ -1,0 +1,68 @@
+name: Triage — bulk close noise issues
+
+# Run once from the Actions tab.  Adds a traceable comment then closes each issue.
+# The list is the 94 noise/duplicate [ALERT] issues identified in the 2026-07-06 triage.
+# Genuine open items (#309, #299, #298, #291, #290, #278) are intentionally excluded.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+
+jobs:
+  triage-close:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close noise issues
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const NOISE = [
+              // [ALERT] Dispatch bus event (84) — completed HANDOFF events
+              307, 306, 305, 304, 303, 302, 301, 300,
+              297, 296, 295, 294, 293, 292,
+              286, 285, 284, 283, 282, 281, 280, 279,
+              277, 276, 275, 273, 272, 271, 270, 269,
+              268, 267, 266, 265, 264, 263, 262, 261,
+              260, 259, 258, 257, 256, 255, 254, 253,
+              252, 251, 250, 248, 247, 246, 245, 244,
+              243, 242, 241, 239, 238, 236, 235, 234,
+              233, 232, 231, 230, 229, 227, 226, 225,
+              224, 223, 222, 221, 220, 219, 218, 217,
+              216, 215, 214, 213, 211, 210,
+              // test / dummy (2)
+              308, 289,
+              // duplicate OWNER-ACTION and INTEGRITY (8)
+              288, 287, 274, 240, 237, 228, 249, 212,
+            ];
+
+            const COMMENT = [
+              'triage-closed 2026-07-06: noise or duplicate dispatch-bus event.',
+              'Genuine action items kept open: #309, #299, #298, #291, #290, #278.',
+            ].join(' ');
+
+            let closed = 0;
+            for (const number of NOISE) {
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  body: COMMENT,
+                });
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  state: 'closed',
+                  state_reason: 'not_planned',
+                });
+                closed++;
+                console.log(`closed #${number} (${closed}/${NOISE.length})`);
+              } catch (e) {
+                console.warn(`#${number} skipped: ${e.message}`);
+              }
+            }
+            console.log(`Done — closed ${closed} issues.`);
