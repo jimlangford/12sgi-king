@@ -8,6 +8,8 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
+from services.v2_workboard import emit_workboard_job
+
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("DOCUMENTS_DB_PATH", "/tmp/govos_v2_documents.db")
@@ -207,6 +209,22 @@ def generate_document(payload: DocumentGenerateRequest, authorization: str | Non
             record,
         )
         conn.commit()
+
+    try:
+        emit_workboard_job(
+            source="govos-v2-documents",
+            action="document.generated",
+            event=f"V2 DOCUMENT QUEUED: {record['id']}",
+            payload={
+                "document_id": record["id"],
+                "case_id": record["case_id"],
+                "output_format": record["output_format"],
+                "created_by": record["created_by"],
+            },
+        )
+    except Exception:
+        pass
+
     return {
         "id": record["id"],
         "template_id": record["template_id"],

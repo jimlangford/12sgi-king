@@ -57,6 +57,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         cls.tempdir = tempfile.TemporaryDirectory(prefix='v2-stack-')
         cls.processes = []
         cls.service_token = 'integration-service-token'
+        cls.dispatch_log = Path(cls.tempdir.name) / 'workboard-dispatch.jsonl'
 
         cls.ports = {
             'auth': BASE_PORT,
@@ -97,6 +98,8 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'AUTH_READY_URL': f"{cls.urls['auth']}/api/v2/ready",
                 'TENANT_SERVICE_URL': cls.urls['tenant'],
                 'TENANT_READY_URL': f"{cls.urls['tenant']}/api/v2/ready",
+                'WORKBOARD_DISPATCH_LOG': str(cls.dispatch_log),
+                'WORKBOARD_TARGET_THREAD': 'workboard-quad-os',
             }
         )
         if extra_env:
@@ -121,6 +124,16 @@ class TestV2IntegrationStack(unittest.TestCase):
             stderr=subprocess.DEVNULL,
         )
         cls.processes.append(proc)
+
+    def _dispatch_entries(self):
+        if not self.dispatch_log.exists():
+            return []
+        entries = []
+        for line in self.dispatch_log.read_text(encoding='utf-8').splitlines():
+            if not line.strip():
+                continue
+            entries.append(json.loads(line))
+        return entries
 
     @classmethod
     def _start_full_stack(cls):
@@ -195,6 +208,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         return body['access_token']
 
     def test_end_to_end_stack_flow(self):
+        before = len(self._dispatch_entries())
         token = self._create_session()
         auth_headers = {'Authorization': 'Bearer ' + token}
 
@@ -243,6 +257,24 @@ class TestV2IntegrationStack(unittest.TestCase):
         self.assertEqual(ready['status'], 'ready')
         for service_name in ['auth', 'tenant', 'documents', 'storage', 'ai']:
             self.assertTrue(ready['services'][service_name]['ok'])
+
+        queued = self._dispatch_entries()[before:]
+        self.assertGreaterEqual(len(queued), 4)
+        expected_actions = {
+            'case.created',
+            'document.generated',
+            'storage.object.created',
+            'ai.assist.completed',
+        }
+        seen_actions = {entry.get('job', {}).get('action') for entry in queued}
+        self.assertTrue(expected_actions.issubset(seen_actions))
+        for entry in queued:
+            action = entry.get('job', {}).get('action')
+            if action not in expected_actions:
+                continue
+            self.assertEqual(entry.get('schema'), 'workboard-job-v1')
+            self.assertEqual(entry.get('target_thread'), 'workboard-quad-os')
+            self.assertEqual(entry.get('status'), 'queued')
 
     def test_auth_and_failure_paths(self):
         status, body = http_json(

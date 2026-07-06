@@ -8,6 +8,8 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel, Field
 
+from services.v2_workboard import emit_workboard_job
+
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DOWNLOAD_BASE_URL = os.environ.get("STORAGE_DOWNLOAD_BASE_URL", "https://storage.local/download")
@@ -171,6 +173,21 @@ def create_object(payload: StorageObjectCreateRequest, authorization: str | None
             record,
         )
         conn.commit()
+
+    try:
+        emit_workboard_job(
+            source="govos-v2-storage",
+            action="storage.object.created",
+            event=f"V2 STORAGE OBJECT QUEUED: {record['id']}",
+            payload={
+                "object_id": record["id"],
+                "name": record["name"],
+                "content_type": record["content_type"],
+                "created_by": record["created_by"],
+            },
+        )
+    except Exception:
+        pass
 
     return record
 

@@ -8,6 +8,8 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
+from services.v2_workboard import emit_workboard_job
+
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("TENANT_DB_PATH", "/tmp/govos_v2_tenant.db")
@@ -179,6 +181,20 @@ def create_case(payload: CaseCreateRequest, authorization: str | None = Header(d
             record,
         )
         conn.commit()
+
+    try:
+        emit_workboard_job(
+            source="govos-v2-tenant",
+            action="case.created",
+            event=f"V2 CASE QUEUED: {record['id']}",
+            payload={
+                "case_id": record["id"],
+                "tenant_id": record["tenant_id"],
+                "created_by": record["created_by"],
+            },
+        )
+    except Exception:
+        pass
 
     return record
 
