@@ -2,12 +2,18 @@
 
 Purpose
 
-Internal administrative UI for operations, user management, and system health. Only accessible to authorized admin users and internal networks.
+Admin-facing v2 frontend integration scaffold for service status checks.
 
-Ownership
+Current implementation
 
-- Primary: Platform / operations
+- `public/index.html`: health snapshot control panel
+- `public/app.js`: requests health from auth, tenant, documents, storage, ai, and health gateway services
 
-Next steps
+Configuration
 
-- Add Next.js scaffold and admin authentication hooks
+- `AUTH_SERVICE_URL`
+- `TENANT_SERVICE_URL`
+- `DOCUMENTS_SERVICE_URL`
+- `STORAGE_SERVICE_URL`
+- `AI_SERVICE_URL`
+- `HEALTH_SERVICE_URL`

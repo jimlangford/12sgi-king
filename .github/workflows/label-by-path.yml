@@ -99,6 +99,28 @@ jobs:
               }
 
               try {
+                for (const label of labels) {
+                  try {
+                    await github.rest.issues.getLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      name: label,
+                    })
+                  } catch (labelErr) {
+                    if (labelErr.status === 404) {
+                      await github.rest.issues.createLabel({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        name: label,
+                        color: 'ededed',
+                        description: 'Auto-created area label',
+                      })
+                    } else {
+                      throw labelErr
+                    }
+                  }
+                }
+
                 await github.rest.issues.addLabels({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -121,4 +143,4 @@ jobs:
 
         env:
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
-          DRY_RUN: ${{ github.event.inputs.dry_run || 'true' }}
+          DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run) || 'false' }}

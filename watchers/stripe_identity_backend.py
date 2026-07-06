@@ -459,9 +459,12 @@ class H(BaseHTTPRequestHandler):
                 return self._json(400, {"error": "message required"})
             tenant = (body.get("tenant") or "").strip()[:40]
             entry = {"ts": int(time.time()), "iso": time.strftime("%Y-%m-%d %H:%M:%S"),
+                     "schema": "workboard-job-v1",
                      "source": "civic-paid-%s" % tier, "kind": "command",
                      "target_thread": "workboard-quad-os", "priority": (body.get("priority") or "normal"),
-                     "event": "CIVIC MESSAGE (%s%s): %s" % (tier, (" / " + tenant) if tenant else "", msg[:1500])}
+                     "status": "queued",
+                     "event": "CIVIC MESSAGE (%s%s): %s" % (tier, (" / " + tenant) if tenant else "", msg[:1500]),
+                     "job": {"action": "message.claude", "status": "queued", "payload": {"tier": tier, "tenant": tenant}}}
             try:
                 with open(os.path.join(PROJ, ".dispatch_log.jsonl"), "a", encoding="utf-8") as f:
                     f.write(json.dumps(entry, ensure_ascii=False) + "\n")
