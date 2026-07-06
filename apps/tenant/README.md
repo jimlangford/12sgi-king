@@ -2,13 +2,14 @@
 
 Purpose
 
-Frontend for tenant-specific experiences: guided interviews, tenant-specific dashboards, and the Tenant Assistant.
+Tenant-facing v2 frontend integration scaffold.
 
-Ownership
+Current implementation
 
-- Primary: Product engineering / tenant experience
+- `public/index.html`: tenant integration controls
+- `public/app.js`: calls tenant and ai service endpoints
 
-Next steps
+Configuration
 
-- Scaffold Next.js app using shared components
-- Integrate with auth service and AI assistant APIs
+- `TENANT_SERVICE_URL`
+- `AI_SERVICE_URL`

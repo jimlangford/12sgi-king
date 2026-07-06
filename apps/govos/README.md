@@ -2,15 +2,18 @@
 
 Purpose
 
-This directory will contain the main govOS Next.js application. It will host the primary user-facing UI for case management, tenant assistance, and administrative workflows.
+Main govOS v2 frontend integration scaffold.
 
-Ownership
+Current implementation
 
-- Primary: Frontend / product engineering
-- Secondary: Platform / infra for deployment concerns
+- `public/index.html`: integration UI for auth, case creation, document generation, and AI guidance
+- `public/app.js`: frontend service client wiring using env-provided base URLs
 
-Next steps
+Configuration
 
-- Add Next.js + Tailwind scaffold
-- Add routing, auth integration hooks, and CI placeholders
-- Do not store secrets or hard-code Tailnet hosts here
+Set these globals before loading `public/app.js` (or rely on localhost defaults):
+
+- `AUTH_SERVICE_URL`
+- `TENANT_SERVICE_URL`
+- `DOCUMENTS_SERVICE_URL`
+- `AI_SERVICE_URL`
