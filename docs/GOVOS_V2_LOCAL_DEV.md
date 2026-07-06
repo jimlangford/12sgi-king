@@ -96,3 +96,58 @@ Defaults point to localhost service ports above. You can override with globals:
 ```bash
 python -m unittest tests.v2.test_v2_integration_stack
 ```
+
+## 7) V2 four-lane approval workflow
+
+V2 uses three workboard lanes to control what flows from private to public:
+
+| Lane | Who resolves | Rule |
+|---|---|---|
+| `engineering` | Self-heals automatically | Internal plumbing — auth events, storage uploads, AI analysis. Never blocks the system. |
+| `creative` | Human review required | Generated documents, images, reports in draft state. V1 is the review surface. |
+| `output` | Owner approval required | Staged content ready to publish to 12sgi.com or govOS. Always needs explicit sign-off. |
+
+**Core rule:** V2 does not think in public. It processes privately, then only clean approved outputs leave.
+
+### Check pending approvals (CLI)
+
+```bash
+python -m services.v2_workboard --pending
+```
+
+### Self-heal stalled engineering jobs (CLI)
+
+```bash
+python -m services.v2_workboard --outcome self-healed
+```
+
+Engineering jobs (case creation, storage, AI analysis) are approved to fix themselves forward.  
+This command is always safe — it never touches creative or output jobs.
+
+### Owner node approval API (local Tailscale only — port 8088)
+
+```bash
+# List items needing review
+GET http://127.0.0.1:8088/approvals/pending
+
+# Approve a creative/output job
+POST http://127.0.0.1:8088/approvals/{job_id}/approve
+{"approver": "owner", "note": "Approved for publish"}
+
+# Reject a creative/output job
+POST http://127.0.0.1:8088/approvals/{job_id}/reject
+{"reason": "Wrong template", "rejector": "owner"}
+
+# Trigger engineering self-heal manually
+POST http://127.0.0.1:8088/selfheal
+```
+
+### Lane assignment by service action
+
+| Action | Lane | Reason |
+|---|---|---|
+| `case.created` | engineering | Internal case plumbing |
+| `document.generated` | creative | Human should review before output |
+| `storage.object.created` | engineering | File upload plumbing |
+| `ai.assist.completed` | engineering | Private AI analysis |
+| `publish.staged` (future v2-publish) | output | Owner must approve before 12sgi.com publish |
