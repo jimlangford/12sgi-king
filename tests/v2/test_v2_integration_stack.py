@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import os
 import signal
 import subprocess
@@ -50,6 +51,9 @@ def wait_for_service(url: str, timeout: float = 20.0):
 class TestV2IntegrationStack(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        if importlib.util.find_spec('uvicorn') is None:
+            raise unittest.SkipTest('uvicorn is required to run full-stack v2 integration tests')
+
         cls.tempdir = tempfile.TemporaryDirectory(prefix='v2-stack-')
         cls.processes = []
         cls.service_token = 'integration-service-token'
