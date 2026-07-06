@@ -1313,6 +1313,13 @@ Sources are linked on every page.</div>
                     return 'href="%s"' % h[3:]
                 return 'href="%s"' % h
             _idx_html = re.sub(r'href="([^"]*)"', _root_href, _idx_html)
+            # Same root-promotion problem hits the crown/gov-lands map's local GeoJSON snapshot
+            # fetch() calls: authored king/-relative ('gis/hawaii_*.geojson'), but those files only
+            # exist at king/gis/ -- at root they'd 404 and silently fall through to the live ArcGIS
+            # service every time, defeating the point of committing the snapshot. Rewrite just those
+            # two JS string literals to point at king/gis/ when promoted to the root index.html.
+            _idx_html = re.sub(
+                r"(GEO_(?:DHHL|GOV)\s*=\s*')gis/", r"\1king/gis/", _idx_html)
             with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
                 f.write(_idx_html)
             print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
