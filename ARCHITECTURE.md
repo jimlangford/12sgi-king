@@ -20,7 +20,7 @@ Frontend integration scaffolds:
 
 ## Contract and integration
 
-- Canonical contract: `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-openapi.yaml`
+- Canonical contract: `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-api-contract.yaml`
 - Integration guide: `/home/runner/work/12sgi-king/12sgi-king/docs/GOVOS_V2_LOCAL_DEV.md`
 
 ## Module guidance

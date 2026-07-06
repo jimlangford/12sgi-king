@@ -20,8 +20,8 @@ from services.v2_workboard import (
 
 
 class TestV2ContractFiles(unittest.TestCase):
-    def test_openapi_contains_required_routes(self):
-        text = (ROOT / 'docs/api/v2-openapi.yaml').read_text()
+    def test_contract_contains_required_routes(self):
+        text = (ROOT / 'docs/api/v2-api-contract.yaml').read_text()
         required = [
             '/api/v2/auth/session',
             '/api/v2/cases',
@@ -33,7 +33,7 @@ class TestV2ContractFiles(unittest.TestCase):
             self.assertIn(route, text)
 
     def test_error_schema_exists(self):
-        text = (ROOT / 'docs/api/v2-openapi.yaml').read_text()
+        text = (ROOT / 'docs/api/v2-api-contract.yaml').read_text()
         self.assertIn('ErrorResponse', text)
         self.assertIn('code', text)
         self.assertIn('message', text)
