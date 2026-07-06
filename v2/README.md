@@ -87,6 +87,19 @@ docker compose exec app python /workspace/app/hf_pull.py
 
 V2 does not "think in public." It works privately, verifies evidence, then publishes only clean approved outputs.
 
+## Planned modules
+
+| Module | Status | Purpose |
+|---|---|---|
+| `v2-core` | scaffold ready | Local dashboard + FastAPI owner node |
+| `v2-ingest` | planned | PDFs, agendas, web pages, CSVs → structured data |
+| `v2-ai` | planned | Local LLM (Ollama) + Hugging Face model tools |
+| `v2-ledger` | planned | Audit log + source traceability per output |
+| `v2-reports` | planned | Testimony packs, grant reports, council reports |
+| `v2-publish` | planned | Human-approved updates → 12sgi.com / govOS |
+| `v2-tailscale` | scaffold ready | Private Tailscale access layer |
+| **`v2-explainer`** | **noted** | **Free animated agenda explainer — turns any govOS agenda item into shareable animated fact-cards using premade design assets only. No AI required, no subscription. Wire after v2-core + v2-ingest are stable.** |
+
 ## What NOT to do
 
 - Do not expose port 8088 or 11434 publicly (they bind to `127.0.0.1` only)
