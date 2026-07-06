@@ -24,4 +24,5 @@ uvicorn app.main:app --app-dir services/tenant --host 0.0.0.0 --port 8102
 
 Notes
 
-- Uses in-memory case records for local integration bootstrap.
+- Case records are persisted in SQLite (`TENANT_DB_PATH`, default `/tmp/govos_v2_tenant.db`).
+- Business endpoints require bearer auth sessions validated by auth introspection.

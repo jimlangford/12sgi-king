@@ -1,8 +1,26 @@
 # govOS v2 Local Integration
 
-This guide wires backend services, health checks, and frontend scaffolds for local v2 integration.
+This guide wires backend services, health checks, auth trust, and frontend scaffolds for local v2 integration.
 
-## 1) Start backend services
+## 1) Shared environment
+
+Set a shared internal trust token once for all services:
+
+```bash
+export INTERNAL_SERVICE_TOKEN="dev-internal-token"
+```
+
+Optional local DB paths (defaults use `/tmp/govos_v2_*.db`):
+
+```bash
+export AUTH_DB_PATH="/tmp/govos_v2_auth.db"
+export TENANT_DB_PATH="/tmp/govos_v2_tenant.db"
+export DOCUMENTS_DB_PATH="/tmp/govos_v2_documents.db"
+export STORAGE_DB_PATH="/tmp/govos_v2_storage.db"
+export AI_DB_PATH="/tmp/govos_v2_ai.db"
+```
+
+## 2) Start backend services
 
 ```bash
 uvicorn app.main:app --app-dir services/auth --port 8101
@@ -13,16 +31,31 @@ uvicorn app.main:app --app-dir services/ai --port 8105
 uvicorn app.main:app --app-dir services/health --port 8000
 ```
 
-## 2) Configure health aggregation
+Service defaults expect:
+
+- auth at `http://localhost:8101`
+- tenant at `http://localhost:8102`
+- documents at `http://localhost:8103`
+- storage at `http://localhost:8104`
+- ai at `http://localhost:8105`
+
+Override with service envs if needed:
+
+- `AUTH_INTROSPECTION_URL`
+- `AUTH_READY_URL`
+- `TENANT_SERVICE_URL`
+- `TENANT_READY_URL`
+
+## 3) Configure health aggregation
 
 Set environment variables for health service:
 
 ```bash
-SURFACES_LIST="auth=localhost:8101,tenant=localhost:8102,documents=localhost:8103,storage=localhost:8104,ai=localhost:8105"
-SURFACES_HEALTH_PATH="/api/v2/ready"
+export SURFACES_LIST="auth=localhost:8101,tenant=localhost:8102,documents=localhost:8103,storage=localhost:8104,ai=localhost:8105"
+export SURFACES_HEALTH_PATH="/api/v2/ready"
 ```
 
-## 3) Load frontend scaffolds
+## 4) Load frontend scaffolds
 
 Serve each app folder statically (example):
 
@@ -42,10 +75,17 @@ Defaults point to localhost service ports above. You can override with globals:
 - `AI_SERVICE_URL`
 - `HEALTH_SERVICE_URL`
 
-## 4) End-to-end checks
+## 5) End-to-end checks
 
-- Create auth session (govOS app)
-- Create tenant case (govOS app)
-- Generate document (govOS app)
-- Ask AI guidance (govOS or tenant app)
-- Check `/api/v1/health` from health service and verify all v2 services show ready
+1. Create auth session (`POST /api/v2/auth/session`) and keep the returned access token.
+2. Create tenant case with an `Authorization` header that uses the access token.
+3. Generate document for the case with the same `Authorization` header.
+4. Create/list storage objects with the same `Authorization` header.
+5. Ask AI guidance for the same case with the same `Authorization` header.
+6. Check `/api/v1/ready` and `/api/v1/health` from health service and verify all v2 services are reachable.
+
+## 6) Run integration tests
+
+```bash
+python -m unittest tests.v2.test_v2_integration_stack
+```

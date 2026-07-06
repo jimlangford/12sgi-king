@@ -23,4 +23,6 @@ uvicorn app.main:app --app-dir services/ai --host 0.0.0.0 --port 8105
 
 Notes
 
-- Local response is deterministic placeholder guidance for frontend integration.
+- Assist events are persisted in SQLite (`AI_DB_PATH`, default `/tmp/govos_v2_ai.db`).
+- Business endpoints require bearer auth sessions validated by auth introspection.
+- Case references are validated against the tenant service.
