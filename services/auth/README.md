@@ -2,18 +2,27 @@
 
 Purpose
 
-Authentication and authorization services. Focus on passwordless and modern auth flows (Passkeys, OAuth providers, Magic Links). No local password storage.
+Authentication and authorization service for govOS v2 with passwordless-first provider flows.
 
-Ownership
+Owner
 
 - Security / Auth engineering
 
-Next steps
+API
 
-- Design auth API (token issuance, JWKS, session management)
-- Plan credential storage for passkeys (relying on secure hardware-backed attestation as appropriate)
-- Implement developer-friendly test harness (local test clients)
+- `/api/v2/live`
+- `/api/v2/ready`
+- `/api/v2/health`
+- `/api/v2/auth/session`
+- `/api/v2/auth/jwks`
 
-Security notes
+Run locally
 
-- Do not commit secrets. Use runtime environment or secret manager.
+```bash
+uvicorn app.main:app --app-dir services/auth --host 0.0.0.0 --port 8101
+```
+
+Notes
+
+- Uses an in-memory session placeholder for local integration.
+- Do not commit secrets or real signing keys.

@@ -1,12 +1,14 @@
 # govOS v2 — repo README additions
 
-This repository now includes the govOS v2 skeleton branch (feature/govos-v2-foundation) and the integration/infrastructure work on automation/project-setup.
+This repository includes govOS v2 service and frontend integration scaffolds.
 
 Key points
 - Deployment infrastructure is intentionally frozen for Phase 1 (releases + rollback + health service + Tailscale integration).
-- Development should proceed on feature/govos-v2-foundation (base: automation/project-setup).
+- v2 contract is published at `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-openapi.yaml`.
+- Local integration guide is available at `/home/runner/work/12sgi-king/12sgi-king/docs/GOVOS_V2_LOCAL_DEV.md`.
 - Do NOT commit secrets or internal hostnames. Use environment and secret management at deployment time.
 
 Getting started
-- Create feature branches from feature/govos-v2-foundation for specific workstreams (auth, dashboard, tenant assistant).
-- Follow the Sprint roadmap in docs/GOVOS_V2_ROADMAP.md
+- Start backend services in `/services/*` using each service README.
+- Start static frontend app scaffolds in `/apps/*/public`.
+- Follow the Sprint roadmap in `docs/GOVOS_V2_ROADMAP.md`.
