@@ -123,9 +123,10 @@
   .card9 .csub { font-size: 9.5px; color: var(--mauios-mut); margin-top: 7px; line-height: 1.35; }
   .card9 .cfoot { position: relative; font-family: var(--font-mono); font-size: 7.5px; color: var(--mauios-faint); letter-spacing: .3px; border-top: 1px solid rgba(255,255,255,.08); padding-top: 7px; }
   .card9.k-hook .cbig { font-size: 21px; }
+  .card9.k-what .cbig { font-size: 13px; line-height: 1.3; }
   .card9.k-money .cbig { font-size: 27px; color: var(--mauios-gold-2); }
   .card9.k-law .cbig { font-size: 16px; color: var(--mauios-makai); }
-  .card9.k-stakes .cbig { font-size: 17px; }
+  .card9.k-stakes .cbig { font-size: 13px; line-height: 1.3; }
   .card9.k-deadline .cbig { font-size: 17px; }
   .card9.k-cta { background: linear-gradient(165deg, rgba(217,178,76,.14), #0c100e); }
   .card9.k-cta .cbig { font-size: 18px; color: var(--mauios-gold-2); }
@@ -341,11 +342,12 @@
   function buildCards(it) {
     var cards = [];
     cards.push({ kind: "hook", t: "0:00–0:06", big: hookLine(it), sub: it.body, src: it.file, broll: it.clips[0] || "establishing", vo: hookVO(it) });
-    cards.push({ kind: "what", t: "0:06–0:16", big: "What's on the table", sub: it.decision, src: it.body, broll: it.clips[1] || "context", vo: it.decision });
+    cards.push({ kind: "what", t: "0:06–0:16", big: it.title, sub: it.decision, src: it.body, broll: it.clips[1] || "context", vo: it.decision });
     var topLaw = it.law[0];
     cards.push({ kind: "law", t: "0:16–0:26", big: topLaw[0], sub: topLaw[1] + (it.law[1] ? " · " + it.law[1][0] : ""), src: it.law.map(function (l) { return l[0]; }).join(" · "), broll: "statute / chambers", vo: "This is governed by " + topLaw[0] + " — " + topLaw[1] + ". " + (it.law[1] ? "It also touches " + it.law[1][0] + "." : "") });
     if (it.money !== "—") cards.push({ kind: "money", t: "0:26–0:34", big: it.money, sub: it.moneyNote, src: "council-watch money trail", broll: it.clips[2] || "figures", vo: "The number: " + it.money + " — " + it.moneyNote + "." });
-    cards.push({ kind: "stakes", t: nextT(it), big: "What to ask", sub: it.ask, src: "question for testimony", broll: "chambers / map", vo: it.ask, flag: false });
+    var shortAsk = it.ask.length > 72 ? it.ask.slice(0, 70) + "…" : it.ask;
+    cards.push({ kind: "stakes", t: nextT(it), big: shortAsk, sub: it.ask, src: "question for testimony", broll: "chambers / map", vo: it.ask, flag: false });
     cards.push({ kind: "deadline", t: "—", big: it.days + " days · " + fmtDate(it.meeting), sub: it.testify, src: A.meta.sunshine, broll: "calendar / testify", vo: "Decision date: " + fmtDate(it.meeting) + ". " + it.testify });
     cards.push({ kind: "cta", t: "outro", big: "Your move", sub: "Read the record. Submit testimony. Show up.", src: "mauicounty.us/agendas", broll: "logo / CTA", vo: "Read the full record and submit your testimony — link below. This is your government." });
     return cards;
@@ -359,7 +361,7 @@
     if (it.type === "permit") return "114 permits, one signature.";
     return "On the agenda this week.";
   }
-  function hookVO(it) { return "Here's what's on the Maui County agenda — and why it matters to you."; }
+  function hookVO(it) { return (it.hook || hookLine(it)) + " Here's what's on the Maui County Council agenda — and why it matters to you."; }
   function nextT() { return "0:34–0:44"; }
 
   /* Board */
