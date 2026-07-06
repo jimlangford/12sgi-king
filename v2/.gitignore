@@ -1,0 +1,23 @@
+# Secrets — local only, never committed
+secrets/*.txt
+
+# Runtime env — local only
+.env
+.env.local
+
+# Generated data and model weights — local only
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+
+# Hugging Face cache
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store

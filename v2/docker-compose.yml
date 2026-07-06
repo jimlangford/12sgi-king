@@ -1,0 +1,64 @@
+services:
+  app:
+    build: .
+    container_name: 12sgi-v2-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8088:8088"
+    environment:
+      APP_ENV: local
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8088
+      HF_HOME: /workspace/.cache/huggingface
+      MODEL_DIR: /workspace/models
+      DATA_DIR: /workspace/data
+    volumes:
+      - ./app:/workspace/app
+      - ./data:/workspace/data
+      - ./models:/workspace/models
+      - hf_cache:/workspace/.cache/huggingface
+    secrets:
+      - hf_token
+      - github_token
+    command: python /workspace/app/main.py
+
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: 12sgi-v2-tailscale
+    hostname: 12sgi-v2
+    restart: unless-stopped
+    environment:
+      TS_AUTHKEY_FILE: /run/secrets/ts_authkey
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_USERSPACE: "false"
+      TS_EXTRA_ARGS: "--advertise-tags=tag:12sgi-v2"
+    volumes:
+      - tailscale_state:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    secrets:
+      - ts_authkey
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: 12sgi-v2-ollama
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+secrets:
+  hf_token:
+    file: ./secrets/hf_token.txt
+  github_token:
+    file: ./secrets/github_token.txt
+  ts_authkey:
+    file: ./secrets/ts_authkey.txt
+
+volumes:
+  hf_cache:
+  ollama_data:
+  tailscale_state:
