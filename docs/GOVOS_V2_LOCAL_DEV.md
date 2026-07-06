@@ -20,6 +20,13 @@ export STORAGE_DB_PATH="/tmp/govos_v2_storage.db"
 export AI_DB_PATH="/tmp/govos_v2_ai.db"
 ```
 
+Optional unified workboard queue path (v2 + legacy share `workboard-quad-os`):
+
+```bash
+export WORKBOARD_DISPATCH_LOG="/tmp/govos_v2_dispatch.jsonl"
+export WORKBOARD_TARGET_THREAD="workboard-quad-os"
+```
+
 ## 2) Start backend services
 
 ```bash

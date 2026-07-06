@@ -8,6 +8,8 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
+from services.v2_workboard import emit_workboard_job
+
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("AI_DB_PATH", "/tmp/govos_v2_ai.db")
@@ -191,6 +193,20 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
             event,
         )
         conn.commit()
+
+    try:
+        emit_workboard_job(
+            source="govos-v2-ai",
+            action="ai.assist.completed",
+            event=f"V2 AI ASSIST QUEUED: {event['id']}",
+            payload={
+                "assist_id": event["id"],
+                "case_id": event["case_id"],
+                "created_by": event["created_by"],
+            },
+        )
+    except Exception:
+        pass
 
     return {
         "case_id": payload.case_id,
