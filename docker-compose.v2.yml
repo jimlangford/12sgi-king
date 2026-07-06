@@ -1,0 +1,134 @@
+# govOS v2 backend — local/king-server container stack.
+#
+# Runs the 5 FastAPI services (auth/tenant/documents/storage/ai) plus the health aggregator as
+# containers on this machine (king-server, Tailscale host 12sgianonymous.tail760750.ts.net).
+# This replaces ad-hoc `uvicorn ... --app-dir` processes from docs/GOVOS_V2_LOCAL_DEV.md with
+# supervised, restart-on-failure containers — a step toward "build it out, then flip the switch
+# live" without needing SSH/rsync into anywhere. Ports are bound to 127.0.0.1 only; reach them
+# over Tailscale via this host, same trust boundary as the rest of the local automation.
+#
+# Usage:
+#   docker compose -f docker-compose.v2.yml up -d --build
+#   docker compose -f docker-compose.v2.yml ps
+#   docker compose -f docker-compose.v2.yml logs -f auth
+#   docker compose -f docker-compose.v2.yml down
+#
+# Secrets note: AUTH_SIGNING_SECRET / INTERNAL_SERVICE_TOKEN below use dev defaults matching
+# docs/GOVOS_V2_LOCAL_DEV.md. Override with a local `.env.v2` (gitignored) before exposing this
+# past Tailscale-private use.
+
+x-common-env: &common-env
+  INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+  AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+  AUTH_READY_URL: http://auth:8101/api/v2/ready
+  TENANT_SERVICE_URL: http://tenant:8102
+  TENANT_READY_URL: http://tenant:8102/api/v2/ready
+  DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+  WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+  WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+
+services:
+  auth:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.auth.app.main:app", "--host", "0.0.0.0", "--port", "8101"]
+    environment:
+      <<: *common-env
+      AUTH_SIGNING_SECRET: ${AUTH_SIGNING_SECRET:-dev-only-signing-secret-change-me}
+      AUTH_DB_PATH: /data/db/govos_v2_auth.db
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8101:8101"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8101/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  tenant:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.tenant.app.main:app", "--host", "0.0.0.0", "--port", "8102"]
+    environment:
+      <<: *common-env
+      TENANT_DB_PATH: /data/db/govos_v2_tenant.db
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8102:8102"]
+    depends_on: [auth]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8102/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  documents:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.documents.app.main:app", "--host", "0.0.0.0", "--port", "8103"]
+    environment:
+      <<: *common-env
+      DOCUMENTS_DB_PATH: /data/db/govos_v2_documents.db
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8103:8103"]
+    depends_on: [auth, tenant]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8103/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  storage:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.storage.app.main:app", "--host", "0.0.0.0", "--port", "8104"]
+    environment:
+      <<: *common-env
+      STORAGE_DB_PATH: /data/db/govos_v2_storage.db
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8104:8104"]
+    depends_on: [auth]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8104/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  ai:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.ai.app.main:app", "--host", "0.0.0.0", "--port", "8105"]
+    environment:
+      <<: *common-env
+      AI_DB_PATH: /data/db/govos_v2_ai.db
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8105:8105"]
+    depends_on: [auth, tenant]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8105/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  health:
+    build: { context: ., dockerfile: services/Dockerfile }
+    # Bound to 8106, not 8000 — 8000 was already occupied by another local process on this host.
+    command: ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105"
+      SURFACES_HEALTH_PATH: /api/v2/ready
+    ports: ["127.0.0.1:8106:8000"]
+    depends_on: [auth, tenant, documents, storage, ai]
+    restart: unless-stopped
+
+volumes:
+  v2-db:
+  v2-dispatch:
