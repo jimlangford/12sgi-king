@@ -109,3 +109,19 @@ truncated (another thread's incomplete edit) — NOT committed by this thread; C
 committed (complete) build_site.py. Stray untracked file _build_test_tmp.py (could not be
 deleted from sandbox) is not staged and not in the CI trigger paths.
 **Result:** see commit + live verification appended after push.
+
+---
+
+## 2026-07-06 10:08 HST — Owner approvals for blocked workboard items
+**Thread:** owner-approvals / unblock-queue
+**Approver:** jimlangford (owner, in-session)
+**Approved items:**
+- **#291 nonatomic_ledger** — `paid_orders.jsonl` append without a lock. Owner acknowledges; engineering lane self-heal approved. Engineering to add file lock on next ledger write.
+- **#290 cors_star x9** — `Access-Control-Allow-Origin: *` on live servers (9 instances). Owner approves fixing CORS wildcards on all live endpoints. Engineering lane.
+- **#278 charter-explainer heading** — charter text inside `<h2>` renders as bold heading. Owner approves fix. Engineering lane.
+- **#309 INTEGRITY — rebuild backend+frontend links coherent + tenant-aware** — Owner approves engineering work to begin. Engineering lane (Roadmap Item 1).
+- **#299 wp-go-live milestone** — Owner approves driving to READY; gates and lane reports to be tracked. Output lane — owner sign-off given here.
+- **#298 SAGE Wā3+5 linchpin** — "start here / education pathway" page. Owner approves creative work. Creative lane — design pass required before output.
+- **#209–#203 (×multiple) Recolor off-palette pages to Yale-blue** — Owner approves recolor of `jurisdictions.html` and any other off-palette pages. Engineering lane.
+**Note:** These approvals unblock engineering self-heal on #291, #290, #278, #309, and the recolor set. Creative/output lanes (#298, #299) proceed but require human review before publish per workboard protocol.
+**Result:** Approvals logged. Engineering items proceed; creative/output items enter review queue.

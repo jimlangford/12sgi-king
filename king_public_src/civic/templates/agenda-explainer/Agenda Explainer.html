@@ -151,6 +151,88 @@
 
   footer { margin-top: 40px; border-top: 1px solid var(--mauios-line); padding-top: 16px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-faint); letter-spacing: .4px; }
   footer .r { margin-left: auto; }
+
+  /* ── CPU-only animations (no canvas / no WebGL / no GPU compositing tricks) ── */
+  /* Keyframes */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseLive {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.45; }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmerBar {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+  @keyframes countdownTick {
+    0%, 49% { transform: scale(1);    opacity: 1; }
+    50%      { transform: scale(0.9); opacity: 0.7; }
+    100%     { transform: scale(1);   opacity: 1; }
+  }
+
+  /* Queue items — staggered fade-up on load */
+  .qi { animation: fadeUp 0.35s ease both; }
+  .qi:nth-child(1) { animation-delay: 0.05s; }
+  .qi:nth-child(2) { animation-delay: 0.12s; }
+  .qi:nth-child(3) { animation-delay: 0.19s; }
+  .qi:nth-child(4) { animation-delay: 0.26s; }
+  .qi:nth-child(5) { animation-delay: 0.33s; }
+  .qi:nth-child(6) { animation-delay: 0.40s; }
+
+  /* Board header — slide in from left */
+  .boardhd { animation: slideInLeft 0.4s ease both; animation-delay: 0.08s; }
+
+  /* 9:16 cards — staggered fade-up */
+  .card9 { animation: fadeUp 0.4s ease both; }
+  .shot:nth-child(1) .card9 { animation-delay: 0.15s; }
+  .shot:nth-child(2) .card9 { animation-delay: 0.22s; }
+  .shot:nth-child(3) .card9 { animation-delay: 0.29s; }
+  .shot:nth-child(4) .card9 { animation-delay: 0.36s; }
+  .shot:nth-child(5) .card9 { animation-delay: 0.43s; }
+  .shot:nth-child(6) .card9 { animation-delay: 0.50s; }
+  .shot:nth-child(7) .card9 { animation-delay: 0.57s; }
+
+  /* "TODAY" live badge — pulsing dot */
+  .badge-today {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: #56c08a;
+    border: 1px solid rgba(86,192,138,.4); border-radius: 20px;
+    padding: 3px 10px; margin-bottom: 12px;
+  }
+  .badge-today::before {
+    content: ""; display: inline-block; width: 7px; height: 7px;
+    border-radius: 50%; background: #56c08a;
+    animation: pulseLive 1.6s ease-in-out infinite;
+  }
+
+  /* Sunshine countdown pill — ticks every second via CSS */
+  .pill.sunshine-live { animation: countdownTick 60s step-end infinite; }
+
+  /* Skeleton shimmer for feed-loading state */
+  .shimmer-line {
+    height: 12px; border-radius: 4px; margin: 6px 0;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,.04) 25%,
+      rgba(255,255,255,.09) 50%,
+      rgba(255,255,255,.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmerBar 1.4s linear infinite;
+  }
+
+  /* Reduce motion — respect user preference */
+  @media (prefers-reduced-motion: reduce) {
+    .qi, .boardhd, .card9 { animation: none !important; }
+    .badge-today::before { animation: none !important; opacity: 1; }
+    .shimmer-line { animation: none !important; }
+  }
 </style>
 <style>@media (max-width:820px){body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px) !important}}</style>
 </head>
@@ -170,10 +252,11 @@
       <div class="sub">Forecast → fact → publish · Wehewehe ʻāpana · get ahead of every vote</div>
     </div>
     <div class="pills">
-      <span class="pill gold" id="sunshine">SUNSHINE · HRS §92-7</span>
+      <span class="pill gold sunshine-live" id="sunshine">SUNSHINE · HRS §92-7</span>
       <a class="xnav" href="../mauios-gov/MauiOS Government OS.html">govOS home →</a>
     </div>
   </header>
+  <div id="today-banner"></div>
   <div class="tagline">Every item on the queue becomes a fact-card video — what's being decided, the law that governs it, the dollars, the deadline, and how to testify. Published inside the 6-day window, so the public can still act.</div>
 
   <div class="layout">
@@ -217,9 +300,18 @@
   }
   function pubBy(iso) { var d = new Date(iso + "T00:00:00"); d.setDate(d.getDate() - 3); return fmtDate(d.toISOString().slice(0, 10)); }
 
-  document.getElementById("qsub").textContent = ITEMS.length + " items this week · " + (A.meta.week || "") + " · sorted by Sunshine clock";
-  document.getElementById("snap").textContent = "this week · " + (A.meta.week || A.meta.snapshot);
+  document.getElementById("qsub").textContent = ITEMS.length + " item" + (ITEMS.length !== 1 ? "s" : "") + (A.meta.today ? " · TODAY" : " this week") + " · " + (A.meta.week || "") + " · sorted by Sunshine clock";
+  document.getElementById("snap").textContent = (A.meta.today ? "TODAY · " : "this week · ") + (A.meta.week || A.meta.snapshot);
   document.getElementById("sunshine").textContent = "SUNSHINE · " + A.meta.sunshine.split("·")[1].trim();
+
+  /* Today banner */
+  (function () {
+    var banner = document.getElementById("today-banner");
+    if (!banner) return;
+    if (A.meta.today) {
+      banner.innerHTML = '<div class="badge-today">TODAY · ' + A.meta.snapshot + ' · ' + (A.meta.meeting_body || "committee meeting") + ' · ' + (A.meta.meeting_time || "") + '</div>';
+    }
+  })();
 
   /* Queue */
   function renderQueue() {
