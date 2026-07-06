@@ -34,8 +34,11 @@ jobs:
           ssh -p ${{ secrets.DEPLOY_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p ${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }} && mkdir -p ${{ secrets.DEPLOY_PATH }}/shared"
 
       - name: Rsync to remote release directory
+        # NOTE: this target is WP.com-managed staging (see docs/DEPLOYMENT.md) — it cannot run the
+        # govOS v2 FastAPI backend (no sudo/systemd/Docker there), so v2 service/test code is excluded
+        # rather than copied somewhere it will never execute.
         run: |
-          rsync -avz --delete --exclude '.git/' --exclude '.github/' -e "ssh -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=yes" ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }}/
+          rsync -avz --delete --exclude '.git/' --exclude '.github/' --exclude 'services/' --exclude 'apps/' --exclude 'tests/v2/' -e "ssh -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=yes" ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/releases/${{ env.RELEASE_ID }}/
 
       - name: Run remote build steps (if any)
         if: ${{ env.POST_DEPLOY_BUILD == 'true' }}
