@@ -122,6 +122,11 @@
   .card9 .cbig { font-family: var(--font-serif-display); font-weight: 600; line-height: 1.12; color: var(--mauios-ink); }
   .card9 .csub { font-size: 9.5px; color: var(--mauios-mut); margin-top: 7px; line-height: 1.35; }
   .card9 .cfoot { position: relative; font-family: var(--font-mono); font-size: 7.5px; color: var(--mauios-faint); letter-spacing: .3px; border-top: 1px solid rgba(255,255,255,.08); padding-top: 7px; }
+  .card9 .cheal { position: relative; font-family: var(--font-mono); font-size: 7px; color: var(--mauios-ok); letter-spacing: .2px; line-height: 1.3; margin-top: 5px; border-top: 1px solid rgba(86,192,138,.18); padding-top: 5px; }
+  .card9 .cboundary { display: inline-block; font-family: var(--font-mono); font-size: 6.5px; letter-spacing: .8px; text-transform: uppercase; padding: 1px 4px; border-radius: 3px; margin-bottom: 4px; position: relative; }
+  .cboundary.PUBLIC  { color: var(--mauios-ok);   border: 1px solid rgba(86,192,138,.4);  background: rgba(86,192,138,.07); }
+  .cboundary.PRIVATE { color: var(--mauios-pele); border: 1px solid rgba(217,98,43,.4);   background: rgba(217,98,43,.07); }
+  .cboundary.BRIDGE  { color: var(--mauios-makai); border: 1px solid rgba(47,127,166,.4); background: rgba(47,127,166,.07); }
   .card9.k-hook .cbig { font-size: 21px; }
   .card9.k-what .cbig { font-size: 13px; line-height: 1.3; }
   .card9.k-money .cbig { font-size: 27px; color: var(--mauios-gold-2); }
@@ -144,6 +149,12 @@
   .script .m3 .ml { color: var(--mauios-faint); letter-spacing: .4px; text-transform: uppercase; font-size: 8.5px; display: block; margin-bottom: 2px; }
   .script .m3 .src { color: var(--mauios-makai); }
   .script .m3 .broll { color: var(--mauios-mut); }
+  .script .sheal { margin-top: 8px; font-size: 12px; color: var(--mauios-ok); font-style: italic; }
+  .script .sheal::before { content: "↪ heal forward: "; font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); font-style: normal; letter-spacing: .4px; text-transform: uppercase; }
+  .script .sboundary { display: inline-block; font-family: var(--font-mono); font-size: 8px; letter-spacing: .8px; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; margin-top: 6px; }
+  .script .sboundary.PUBLIC  { color: var(--mauios-ok);    background: rgba(86,192,138,.1); }
+  .script .sboundary.PRIVATE { color: var(--mauios-pele);  background: rgba(217,98,43,.1); }
+  .script .sboundary.BRIDGE  { color: var(--mauios-makai); background: rgba(47,127,166,.1); }
 
   .integrity { margin-top: 26px; border: 1px solid rgba(86,192,138,.28); border-left: 3px solid var(--mauios-ok); border-radius: 12px; padding: 14px 18px; background: rgba(86,192,138,.04); }
   .integrity .il { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .9px; text-transform: uppercase; color: var(--mauios-ok); }
@@ -341,15 +352,22 @@
   /* Build the 7 storyboard cards from an item */
   function buildCards(it) {
     var cards = [];
-    cards.push({ kind: "hook", t: "0:00–0:06", big: hookLine(it), sub: it.body, src: it.file, broll: it.clips[0] || "establishing", vo: hookVO(it) });
-    cards.push({ kind: "what", t: "0:06–0:16", big: it.title, sub: it.decision, src: it.body, broll: it.clips[1] || "context", vo: it.decision });
+    cards.push({ kind: "hook", boundary: "PUBLIC", t: "0:00–0:06", big: hookLine(it), sub: it.body, src: it.file, broll: it.clips[0] || "establishing", vo: hookVO(it),
+      healForward: "Share this with someone who lives near the meeting location." });
+    cards.push({ kind: "what", boundary: "PUBLIC", t: "0:06–0:16", big: it.title, sub: it.decision, src: it.body, broll: it.clips[1] || "context", vo: it.decision,
+      healForward: "Read the full agenda item on Legistar before you form an opinion." });
     var topLaw = it.law[0];
-    cards.push({ kind: "law", t: "0:16–0:26", big: topLaw[0], sub: topLaw[1] + (it.law[1] ? " · " + it.law[1][0] : ""), src: it.law.map(function (l) { return l[0]; }).join(" · "), broll: "statute / chambers", vo: "This is governed by " + topLaw[0] + " — " + topLaw[1] + ". " + (it.law[1] ? "It also touches " + it.law[1][0] + "." : "") });
-    if (it.money !== "—") cards.push({ kind: "money", t: "0:26–0:34", big: it.money, sub: it.moneyNote, src: "council-watch money trail", broll: it.clips[2] || "figures", vo: "The number: " + it.money + " — " + it.moneyNote + "." });
+    cards.push({ kind: "law", boundary: "PUBLIC", t: "0:16–0:26", big: topLaw[0], sub: topLaw[1] + (it.law[1] ? " · " + it.law[1][0] : ""), src: it.law.map(function (l) { return l[0]; }).join(" · "), broll: "statute / chambers", vo: "This is governed by " + topLaw[0] + " — " + topLaw[1] + ". " + (it.law[1] ? "It also touches " + it.law[1][0] + "." : ""),
+      healForward: "Open the statute at mauicounty.us — the law is public record." });
+    if (it.money !== "—") cards.push({ kind: "money", boundary: "PUBLIC", t: "0:26–0:34", big: it.money, sub: it.moneyNote, src: "council-watch money trail", broll: it.clips[2] || "figures", vo: "The number: " + it.money + " — " + it.moneyNote + ".",
+      healForward: "Follow the money trail at the council-watch page." });
     var shortAsk = it.ask.length > 72 ? it.ask.slice(0, 70) + "…" : it.ask;
-    cards.push({ kind: "stakes", t: nextT(it), big: shortAsk, sub: it.ask, src: "question for testimony", broll: "chambers / map", vo: it.ask, flag: false });
-    cards.push({ kind: "deadline", t: "—", big: it.days + " days · " + fmtDate(it.meeting), sub: it.testify, src: A.meta.sunshine, broll: "calendar / testify", vo: "Decision date: " + fmtDate(it.meeting) + ". " + it.testify });
-    cards.push({ kind: "cta", t: "outro", big: "Your move", sub: "Read the record. Submit testimony. Show up.", src: "mauicounty.us/agendas", broll: "logo / CTA", vo: "Read the full record and submit your testimony — link below. This is your government." });
+    cards.push({ kind: "stakes", boundary: "PUBLIC", t: nextT(it), big: shortAsk, sub: it.ask, src: "question for testimony", broll: "chambers / map", vo: it.ask, flag: false,
+      healForward: "Write your answer to this question — that's the start of your testimony." });
+    cards.push({ kind: "deadline", boundary: "PUBLIC", t: "—", big: it.days + " days · " + fmtDate(it.meeting), sub: it.testify, src: A.meta.sunshine, broll: "calendar / testify", vo: "Decision date: " + fmtDate(it.meeting) + ". " + it.testify,
+      healForward: "Submit testimony now — you have " + it.days + " day" + (it.days !== 1 ? "s" : "") + " before this closes." });
+    cards.push({ kind: "cta", boundary: "PUBLIC", t: "outro", big: "Your move", sub: "Read the record. Submit testimony. Show up.", src: "mauicounty.us/agendas", broll: "logo / CTA", vo: "Read the full record and submit your testimony — link below. This is your government.",
+      healForward: "Follow for the next agenda drop — every meeting, every item, plain language." });
     return cards;
   }
   function hookLine(it) {
@@ -361,7 +379,10 @@
     if (it.type === "permit") return "114 permits, one signature.";
     return "On the agenda this week.";
   }
-  function hookVO(it) { return (it.hook || hookLine(it)) + " Here's what's on the Maui County Council agenda — and why it matters to you."; }
+  function hookVO(it) {
+    var open = it.hook || hookLine(it);
+    return open + " Here's what Maui County is deciding — and why it's worth knowing before the vote. Come learn with us.";
+  }
   function nextT() { return "0:34–0:44"; }
 
   /* Board */
@@ -378,14 +399,19 @@
     document.getElementById("shots").innerHTML = cards.map(function (c, i) {
       var sub = c.sub ? '<div class="csub">' + esc(c.sub.length > 150 ? c.sub.slice(0, 147) + "…" : c.sub) + '</div>' : '';
       var flag = c.flag ? '<span class="badge9">⚑ flag · question</span>' : '';
+      var bdg = c.boundary ? '<span class="cboundary ' + c.boundary + '">' + c.boundary + '</span>' : '';
+      var heal = c.healForward ? '<div class="cheal">' + esc(c.healForward) + '</div>' : '';
       var card =
-        '<div class="card9 k-' + c.kind + '"><div class="ck">' + (i + 1) + ' · ' + c.kind + '</div>' +
+        '<div class="card9 k-' + c.kind + '"><div class="ck">' + bdg + (i + 1) + ' · ' + c.kind + '</div>' +
           '<div class="cmain">' + flag + '<div class="cbig">' + esc(c.big) + '</div>' + sub + '</div>' +
-          '<div class="cfoot">⚖ 12SGI · src: ' + esc(c.src.length > 26 ? c.src.slice(0, 24) + "…" : c.src) + '</div></div>';
+          '<div>' + heal + '<div class="cfoot">⚖ 12SGI · src: ' + esc(c.src.length > 26 ? c.src.slice(0, 24) + "…" : c.src) + '</div></div></div>';
+      var sbdg = c.boundary ? '<span class="sboundary ' + c.boundary + '">' + c.boundary + '</span>' : '';
+      var sheal = c.healForward ? '<div class="sheal">' + esc(c.healForward) + '</div>' : '';
       var script =
         '<div class="script"><div class="sl"><span class="sn">' + String(i + 1).padStart(2, "0") + '</span>' +
-          '<span class="skind">' + c.kind + '</span><span class="stime">' + esc(c.t) + '</span></div>' +
+          '<span class="skind">' + c.kind + '</span><span class="stime">' + esc(c.t) + '</span>' + sbdg + '</div>' +
           '<div class="vo">' + (c.flag ? '<span class="q">' : '') + esc(c.vo) + (c.flag ? '</span>' : '') + '</div>' +
+          sheal +
           '<div class="meta3">' +
             '<div class="m3"><span class="ml">source</span><span class="src">' + esc(c.src) + '</span></div>' +
             '<div class="m3"><span class="ml">b-roll · clip_forge</span><span class="broll">' + esc(c.broll) + '</span></div>' +
