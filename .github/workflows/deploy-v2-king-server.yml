@@ -1,0 +1,268 @@
+name: Deploy V2 to king-server (private, self-hosted)
+
+# PRIVATE — this workflow runs exclusively on the self-hosted runner installed on king-server
+# (Tailscale host 12sgianonymous.tail760750.ts.net).
+#
+# Security rules:
+#   - No SSH.  No rsync.  No inbound ports.  No Tailscale Funnel for SSH/Docker/Ollama.
+#   - The runner polls GitHub over HTTPS; all execution stays on king-server.
+#   - This workflow NEVER touches the public 12sgi.com deploy or GitHub Pages.
+#   - Public deploy lives in publish.yml and deploy-to-server.yml — keep them separate.
+#
+# What this does:
+#   1. Checkout repo on king-server
+#   2. Validate V2 service files are present
+#   3. Run V2 contract smoke tests (no live services needed)
+#   4. Copy /go Owner Console and private board files to king-local deploy path
+#   5. Restart approved local V2 services via docker compose (if stack is running)
+#   6. Verify /go and /board/api/* health against localhost ports
+#   7. Write a timestamped deployment log to the local king-server log directory
+#
+# To use:
+#   1. On king-server, install the GitHub Actions self-hosted runner
+#      (Settings → Actions → Runners → New self-hosted runner) with labels:
+#        self-hosted, king-server, windows
+#   2. Trigger manually: Actions → "Deploy V2 to king-server" → Run workflow
+#
+# Optional trigger on push to v2-related paths (disabled by default — uncomment to enable):
+# push:
+#   branches: [main]
+#   paths:
+#     - "services/**"
+#     - "docker-compose.v2.yml"
+#     - "go.html"
+
+on:
+  workflow_dispatch:
+    inputs:
+      restart_services:
+        description: "Restart V2 Docker services after deploy (true/false)"
+        required: false
+        default: "false"
+      dry_run:
+        description: "Dry run — validate and report only, make no changes"
+        required: false
+        default: "false"
+
+# No special GitHub permissions needed — all work is local to king-server.
+permissions:
+  contents: read
+
+jobs:
+  deploy-v2-private:
+    name: V2 private deploy — king-server
+    runs-on: [self-hosted, king-server, windows]
+    timeout-minutes: 20
+
+    env:
+      # king-local deploy directory — the private owner surface on this machine.
+      # Matches the path used by blog_engine.py, daily_brief.py, and king_message.py.
+      KING_LOCAL: "${{ runner.temp }}\\..\\..\\..\\AppData\\Local\\king-extract\\deploy\\king-local"
+      # Local V2 service ports (bound to 127.0.0.1 only — see docker-compose.v2.yml)
+      V2_AUTH_PORT: "8101"
+      V2_TENANT_PORT: "8102"
+      V2_DOCUMENTS_PORT: "8103"
+      V2_STORAGE_PORT: "8104"
+      V2_AI_PORT: "8105"
+      V2_HEALTH_PORT: "8106"
+      # Local deployment log directory (PRIVATE — never committed to repo)
+      DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      RESTART_SERVICES: ${{ github.event.inputs.restart_services || 'false' }}
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Validate V2 files ───────────────────────────────────────────────────
+      - name: Validate V2 service files are present
+        shell: pwsh
+        run: |
+          $required = @(
+            "services\auth\app\main.py",
+            "services\tenant\app\main.py",
+            "services\documents\app\main.py",
+            "services\storage\app\main.py",
+            "services\ai\app\main.py",
+            "services\health\app\main.py",
+            "services\v2_workboard.py",
+            "docker-compose.v2.yml",
+            "go.html",
+            "docs\api\v2-api-contract.yaml"
+          )
+          $missing = @()
+          foreach ($f in $required) {
+            if (-not (Test-Path $f)) { $missing += $f }
+          }
+          if ($missing.Count -gt 0) {
+            Write-Error "V2 validation failed — missing required files:`n$($missing -join "`n")"
+            exit 1
+          }
+          Write-Host "✓ All $($required.Count) required V2 files present"
+
+      # ── 3. V2 contract smoke tests (no live services required) ─────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip --quiet
+          python -m pip install -r requirements.txt --quiet
+
+      - name: Run V2 contract smoke tests
+        shell: pwsh
+        run: |
+          Write-Host "Running V2 contract tests..."
+          python -m unittest tests.v2.test_v2_contract -v
+          Write-Host "✓ V2 contract tests passed"
+
+      # ── 4. Copy /go Owner Console + private board files to king-local ──────────
+      - name: Resolve king-local deploy path
+        shell: pwsh
+        id: king_local
+        run: |
+          # Try the canonical AppData path first; fall back to the repo-relative king-local
+          # (used when running from the Documents/Claude checkout directly).
+          $canonical = "$env:USERPROFILE\AppData\Local\king-extract\deploy\king-local"
+          $fallback  = "$env:USERPROFILE\Documents\Claude\king-local"
+          if (Test-Path $canonical) {
+            $path = $canonical
+          } elseif (Test-Path $fallback) {
+            $path = $fallback
+          } else {
+            Write-Warning "king-local not found at $canonical or $fallback — skipping private file copy"
+            $path = ""
+          }
+          "KING_LOCAL_PATH=$path" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          if ($path) { Write-Host "king-local resolved to: $path" }
+
+      - name: Copy /go Owner Console and board files to king-local
+        if: steps.king_local.outputs.KING_LOCAL_PATH != ''
+        shell: pwsh
+        run: |
+          $dest = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
+          $dry  = "$env:DRY_RUN" -eq "true"
+
+          # Files that belong to the private /go and /board owner surfaces
+          $files = @{
+            "go.html"     = "go.html"
+          }
+
+          foreach ($src in $files.Keys) {
+            $target = Join-Path $dest $files[$src]
+            if ($dry) {
+              Write-Host "[DRY RUN] Would copy $src → $target"
+            } else {
+              Copy-Item -Path $src -Destination $target -Force -ErrorAction SilentlyContinue
+              if (Test-Path $target) {
+                Write-Host "✓ Copied $src → $target"
+              } else {
+                Write-Warning "Could not copy $src (destination may not exist yet)"
+              }
+            }
+          }
+
+      # ── 5. Restart V2 services via docker compose (if opted in) ───────────────
+      - name: Restart V2 Docker services
+        if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
+        shell: pwsh
+        run: |
+          # Only restart if docker compose is available and the stack is already running.
+          # We never cold-start the stack here — that's an owner decision.
+          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $dc) {
+            Write-Warning "docker not found on PATH — skipping service restart"
+            exit 0
+          }
+          $running = docker compose -f docker-compose.v2.yml ps --services --filter status=running 2>$null
+          if (-not $running) {
+            Write-Warning "V2 stack does not appear to be running — skipping restart (start it manually first)"
+            exit 0
+          }
+          Write-Host "Restarting V2 services..."
+          docker compose -f docker-compose.v2.yml up -d --build --no-deps
+          Write-Host "✓ docker compose up -d complete"
+
+      # ── 6. Verify /go and /board/api/* health against localhost ───────────────
+      - name: Health-check V2 localhost services
+        shell: pwsh
+        run: |
+          # Check each V2 service /api/v2/ready endpoint.
+          # Services may not be running yet (self-hosted runner first run) — warn, don't fail.
+          $checks = @(
+            @{ name="auth";      port=$env:V2_AUTH_PORT     },
+            @{ name="tenant";    port=$env:V2_TENANT_PORT   },
+            @{ name="documents"; port=$env:V2_DOCUMENTS_PORT},
+            @{ name="storage";   port=$env:V2_STORAGE_PORT  },
+            @{ name="ai";        port=$env:V2_AI_PORT       },
+            @{ name="health";    port=$env:V2_HEALTH_PORT   }
+          )
+          $results = @{}
+          foreach ($svc in $checks) {
+            $url = "http://127.0.0.1:$($svc.port)/api/v2/ready"
+            try {
+              $r = Invoke-WebRequest -Uri $url -TimeoutSec 5 -ErrorAction Stop
+              $results[$svc.name] = "ok ($($r.StatusCode))"
+              Write-Host "  ✓ $($svc.name) → $url  [$($r.StatusCode)]"
+            } catch {
+              $results[$svc.name] = "down ($($_.Exception.Message -replace '\n',' '))"
+              Write-Warning "  ✗ $($svc.name) → $url  [not reachable — is docker compose up?]"
+            }
+          }
+
+          # /go is a static file served locally — check king-local path exists
+          $goPath = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html"
+          if ($goPath -and (Test-Path $goPath)) {
+            $results["go.html"] = "present"
+            Write-Host "  ✓ go.html present at king-local"
+          } else {
+            $results["go.html"] = "missing"
+            Write-Warning "  ✗ go.html not found at king-local path"
+          }
+
+          # Write summary
+          "::group::Health check summary"
+          $results.GetEnumerator() | ForEach-Object { Write-Host "  $($_.Key): $($_.Value)" }
+          "::endgroup::"
+
+          # Export for log step
+          $json = $results | ConvertTo-Json -Compress
+          "HEALTH_RESULTS=$json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      # ── 7. Write deployment log to king-server local log directory ─────────────
+      - name: Write local deployment log
+        if: always()
+        shell: pwsh
+        run: |
+          $logDir = $env:DEPLOY_LOG_DIR
+          if (-not $logDir) { $logDir = "$env:USERPROFILE\Documents\Claude\logs\v2-deploy" }
+          if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
+
+          $ts      = Get-Date -Format "yyyy-MM-ddTHH-mm-ssZ" -AsUTC
+          $logFile = Join-Path $logDir "deploy-$ts.json"
+
+          $entry = @{
+            timestamp     = (Get-Date -Format "o" -AsUTC)
+            run_id        = "${{ github.run_id }}"
+            run_number    = "${{ github.run_number }}"
+            sha           = "${{ github.sha }}"
+            ref           = "${{ github.ref }}"
+            actor         = "${{ github.actor }}"
+            dry_run       = ($env:DRY_RUN -eq "true")
+            restart_req   = ($env:RESTART_SERVICES -eq "true")
+            king_local    = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
+            health        = if ($env:HEALTH_RESULTS) { $env:HEALTH_RESULTS | ConvertFrom-Json } else { $null }
+            outcome       = "${{ job.status }}"
+          }
+
+          $entry | ConvertTo-Json -Depth 5 | Out-File -FilePath $logFile -Encoding utf8
+          Write-Host "Deployment log written to: $logFile"
+          # Keep only the 30 most recent deploy logs
+          Get-ChildItem $logDir -Filter "deploy-*.json" |
+            Sort-Object LastWriteTime -Descending |
+            Select-Object -Skip 30 |
+            Remove-Item -Force -ErrorAction SilentlyContinue
