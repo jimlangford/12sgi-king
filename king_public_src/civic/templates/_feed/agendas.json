@@ -1,29 +1,19 @@
 {
   "meta": {
     "source": "Maui County Council committee agendas (Legistar)",
-    "generated": "2026-06-15T07:00:00-10:00",
+    "generated": "2026-07-06T10:00:00-10:00",
     "jurisdiction": "MAU-001",
-    "week": "2026-06-15 / 2026-06-17",
+    "week": "2026-07-06 · Housing and Land Use Committee reconvened",
     "sunshine": "HRS §92-7 · agendas post ≥6 days before a meeting",
-    "producer": "council-watch — this week's posted committee agendas"
+    "producer": "council-watch — today's reconvened HLU committee"
   },
   "agendas": [
-    { "file": "Legistar · WASSP", "title": "Bill 77 — Affordable Housing Fund for the unhoused", "body": "Water Authority, Social Services & Parks Cmte", "type": "housing", "meeting": "2026-06-15", "charter": "WASSP-11", "stake": 5 },
-    { "file": "Legistar · WAI", "title": "Bill 68 — Special parking regulations (West & South Maui)", "body": "Water & Infrastructure Cmte", "type": "permit", "meeting": "2026-06-15", "charter": "WAI-24", "stake": 3 },
-    { "file": "Legistar · BFED", "title": "Reso 26-100 — $9.0M energy-performance lease (Johnson Controls)", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-16", "charter": "BFED-61", "stake": 4 },
-    { "file": "Legistar · BFED", "title": "Bill 73 — Uniform rules for the county Grants Program", "body": "Budget, Finance & Economic Development Cmte", "type": "budget", "meeting": "2026-06-16", "charter": "BFED-58", "stake": 3 },
-    { "file": "Legistar · GREAT", "title": "14 proposed Charter amendments for the ballot", "body": "Government Relations, Ethics & Transparency Cmte", "type": "gov", "meeting": "2026-06-16", "charter": "GREAT-10", "stake": 5 },
-    { "file": "Legistar · HLU", "title": "Title 19 zoning rewrite — Planning Dept. briefing", "body": "Housing & Land Use Cmte", "type": "zoning", "meeting": "2026-06-17", "charter": "HLU-3(5)", "stake": 4 },
-    { "file": "Legistar · DRIP", "title": "Long-term recovery & the 2026 Kona Low storms", "body": "Disaster Recovery, International Affairs & Planning Cmte", "type": "housing", "meeting": "2026-06-17", "charter": "DRIP-9(4)", "stake": 4 }
+    { "file": "Legistar · HLU", "title": "Housing & Land Use Committee — reconvened from 7/1/2026", "body": "Housing & Land Use Cmte (2025-2027) · Chair Uʻu-Hodgins", "type": "zoning", "meeting": "2026-07-06", "time": "10:30 a.m.", "charter": "HLU-reconvene-20260706", "stake": 4, "today": true },
+    { "file": "Legistar · HLU", "title": "Title 19 zoning rewrite — ongoing briefing series", "body": "Housing & Land Use Cmte · background context", "type": "zoning", "meeting": "2026-07-06", "charter": "HLU-3(5+)", "stake": 5, "today": true }
   ],
   "conflicts": [],
   "ledger": [
-    { "id": "Bill 77", "t": "Affordable Housing Fund for the unhoused (WASSP)", "status": "first reading" },
-    { "id": "Bill 68", "t": "Special parking regulations, West & South Maui (WAI)", "status": "first reading" },
-    { "id": "Reso 26-100", "t": "$9.0M energy-performance lease, Johnson Controls (BFED)", "status": "adoption" },
-    { "id": "Bill 73", "t": "Uniform rules for county Grants Program (BFED)", "status": "first reading" },
-    { "id": "GREAT-10", "t": "14 proposed Charter amendments for the ballot", "status": "first reading" },
-    { "id": "Title 19", "t": "Zoning code rewrite — Planning briefing (HLU)", "status": "presentation" },
-    { "id": "DRIP-9(4)", "t": "Long-term recovery / 2026 Kona Low storms", "status": "presentation" }
+    { "id": "HLU-reconvene", "t": "Housing & Land Use Committee reconvened from 7/1/2026 (HLU)", "status": "reconvened meeting — check Legistar for item list" },
+    { "id": "Title 19", "t": "Zoning code rewrite — ongoing HLU briefing series", "status": "briefing / no vote today" }
   ]
 }

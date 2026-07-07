@@ -1,6 +1,74 @@
 {
   "posts": [
     {
+      "id": "ej-20260706-maui-hlu",
+      "slug": "maui-hlu-reconvene-20260706",
+      "title": "Maui Housing & Land Use Committee Meets Today — July 6, 2026",
+      "subtitle": "The HLU reconvened meeting: Title 19 zoning rewrite and what the public can do right now",
+      "author": "elementLOTUS Earth-Justice · Kilo Aupuni",
+      "date": "2026-07-06",
+      "status": "published",
+      "tags": [
+        "maui-county",
+        "zoning",
+        "housing",
+        "civic",
+        "title-19",
+        "agenda-explainer"
+      ],
+      "summary": "The Maui County Housing and Land Use Committee (HLU) reconvenes this morning at 10:30 a.m. from its July 1, 2026 session. The committee is picking up unfinished agenda items — most notably the ongoing Title 19 zoning rewrite, the most significant overhaul of Maui’s land-use code in a generation.",
+      "body": [
+        {
+          "type": "lede",
+          "text": "The Maui County Housing and Land Use Committee reconvenes today, Monday July 6, 2026, at 10:30 a.m. This is a continuation of the July 1 session — a reconvened meeting picks up exactly where the committee left off. The public can still testify."
+        },
+        {
+          "type": "h2",
+          "text": "What is a reconvened meeting?"
+        },
+        {
+          "type": "p",
+          "text": "Under Hawaii Sunshine Law (HRS §92), a committee may recess a meeting and reconvene it at a later date. No new items may be added to a reconvened session — only items from the original July 1 agenda are on the table. The full item list is posted on the Maui County Legistar calendar (mauicounty.legistar.com)."
+        },
+        {
+          "type": "h2",
+          "text": "The big picture: Title 19 zoning rewrite"
+        },
+        {
+          "type": "p",
+          "text": "The Housing and Land Use Committee has been receiving briefings on the Maui County Planning Department’s project to modernize and rewrite Title 19 — the comprehensive zoning code that governs what can be built, where, and at what density across the entire island. The June 17 session (HLU-3(5)) was the committee’s first formal briefing on the project. Today’s reconvened meeting continues that work."
+        },
+        {
+          "type": "p",
+          "text": "Title 19 touches every neighborhood on Maui. Changes to zoning districts, density rules, and permitted uses affect housing costs, short-term rental policy, agricultural land protection, and coastal access. The rewrite is in a briefing phase — no vote on specific language is expected today. But this is exactly the moment to get informed and get on record."
+        },
+        {
+          "type": "h2",
+          "text": "How to participate today"
+        },
+        {
+          "type": "p",
+          "text": "The meeting is open to the public. You can attend in person at the Council Chamber, Kalana O Maui Building, 8th Floor, 200 S. High Street, Wailuku — or join via Microsoft Teams (link on the Legistar meeting page). Written testimony can be sent to HLU.committee@mauicounty.us. Contact Council Services (councilservices@mauicounty.us) to confirm the testimony window for today’s reconvened items."
+        },
+        {
+          "type": "h2",
+          "text": "Questions worth raising"
+        },
+        {
+          "type": "p",
+          "text": "What specific zoning districts are changing first in the Title 19 rewrite? Will the rewrite add housing capacity near transit and jobs, or preserve existing exclusionary rules? When will the public get to comment on specific zone-change language before any text is adopted? How will affected landowners and renters be notified when their district is under review?"
+        },
+        {
+          "type": "blockquote",
+          "text": "This is an educational audit of the public record. It is not legal advice and creates no attorney-client relationship. Sources: Maui County Legistar calendar (mauicounty.legistar.com). Ua mau ke ea o ka ʻaina i ka pono."
+        },
+        {
+          "type": "cta",
+          "text": "Full agenda explainer → see the Agenda Explainer for storyboard cards, law citations, and testimony instructions for today’s items. Source: mauicounty.legistar.com · HLU committee page: mauicounty.us/HLU"
+        }
+      ]
+    },
+    {
       "id": "fable-v5-autonomous-20260701",
       "slug": "the-system-works-while-you-sleep",
       "title": "The System Works While You Sleep",

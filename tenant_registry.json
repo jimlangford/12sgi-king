@@ -1,6 +1,6 @@
 {
- "generated": "2026-07-02 18:00 HST",
- "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
+ "generated": "2026-07-06 21:00 HST",
+ "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json, studio=watchers/tenants.json id=studio. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
    "key": "govern",
@@ -345,9 +345,44 @@
    "status": "proposed_internal"
   }
  ],
+ "studio_tenants": [
+  {
+   "id": "studio",
+   "name": "12SGI Studio (HINA)",
+   "kind": "studio",
+   "quadrant": "studio",
+   "sched_hour": 23,
+   "publish": false,
+   "depth": "creative",
+   "steps": [
+    "moon_calendar_creative_offering",
+    "sage_bridge_read",
+    "hina_render_dispatch",
+    "workboard_emit"
+   ],
+   "lenses": [
+    "Pō balance readings",
+    "civic Ao inputs",
+    "node/akua/wā render jobs",
+    "face-lock layer preservation"
+   ],
+   "layer_model": {
+    "face_lock": "Music videos — immutable Ao base layer, never re-rendered or color-healed",
+    "hina_render": "HINA reads civic Ao choices nightly; creative_offering(date) drives render jobs per node",
+    "civic_signal": "sage_bridge.json + twin_metrics.json — pono/opportunity/hewa ledger sets visual tone per node"
+   },
+   "parity_checks": [
+    "cycle_connected",
+    "face_lock_intact",
+    "hina_balance_present"
+   ],
+   "_note": "Equal tenant alongside Civic. Both read from the same 54-node source. Civic is Ao (choices); Studio/HINA is Pō (balances the equation). See docs/SAGE_REALM_MODEL.md §10."
+  }
+ ],
  "counts": {
   "civic": 6,
   "creative": 10,
+  "studio": 1,
   "report_classes": 10
  }
 }

@@ -268,6 +268,11 @@ class TestV2IntegrationStack(unittest.TestCase):
         }
         seen_actions = {entry.get('job', {}).get('action') for entry in queued}
         self.assertTrue(expected_actions.issubset(seen_actions))
+
+        # V2 lane contract: every dispatch entry must carry a lane field.
+        # engineering jobs self-heal; creative jobs (document.generated) need human review.
+        engineering_actions = {'case.created', 'storage.object.created', 'ai.assist.completed'}
+        creative_actions = {'document.generated'}
         for entry in queued:
             action = entry.get('job', {}).get('action')
             if action not in expected_actions:
@@ -275,6 +280,11 @@ class TestV2IntegrationStack(unittest.TestCase):
             self.assertEqual(entry.get('schema'), 'workboard-job-v1')
             self.assertEqual(entry.get('target_thread'), 'workboard-quad-os')
             self.assertEqual(entry.get('status'), 'queued')
+            self.assertIn(entry.get('lane'), {'engineering', 'creative', 'output'}, msg=f"lane missing on {action}")
+            if action in engineering_actions:
+                self.assertEqual(entry.get('lane'), 'engineering', msg=f"{action} must be engineering lane")
+            elif action in creative_actions:
+                self.assertEqual(entry.get('lane'), 'creative', msg=f"{action} must be creative lane")
 
     def test_auth_and_failure_paths(self):
         status, body = http_json(

@@ -1,5 +1,5 @@
 {
-  "_doc": "govOS tenants for the CPU-balanced per-tenant audit. Each runs its own chain via tenant_audit.py --tenant <id>, one at a time (cpu_lock), staggered across the day (sched_hour) to balance CPU load - the CPU analog of the one-GPU-at-a-time rule. publish=true tenants ship their public-safe subset to the git site; prosecutorial content stays private for ALL. Depth reflects current data: Maui is the proven deep tenant; State is rich (lege+money+contracts+federal); the other counties are agenda+money until their watchers fill.",
+  "_doc": "govOS tenants for the CPU-balanced per-tenant audit. Each runs its own chain via tenant_audit.py --tenant <id>, one at a time (cpu_lock), staggered across the day (sched_hour) to balance CPU load - the CPU analog of the one-GPU-at-a-time rule. publish=true tenants ship their public-safe subset to the git site; prosecutorial content stays private for ALL. Depth reflects current data: Maui is the proven deep tenant; State is rich (lege+money+contracts+federal); the other counties are agenda+money until their watchers fill. Studio runs at sched_hour=23 (Pō, night) as an equal tenant reading from the same 54-node source.",
   "tenants": [
     {"id": "hi-state", "code": "000", "name": "State of Hawaiʻi", "sched_hour": 1,
      "publish": true, "depth": "rich",
@@ -26,6 +26,12 @@
     {"id": "ny", "code": "NY", "name": "New York (NYC + NY State)", "sched_hour": 11,
      "publish": false, "depth": "experimental",
      "steps": ["agenda_watch"],
-     "lenses": ["agendas (Legistar/OpenData)"]}
+     "lenses": ["agendas (Legistar/OpenData)"]},
+    {"id": "studio", "code": "STU", "name": "12SGI Studio (HINA)", "sched_hour": 23,
+     "publish": false, "depth": "creative",
+     "quadrant": "studio",
+     "steps": ["moon_calendar_creative_offering", "sage_bridge_read", "hina_render_dispatch", "workboard_emit"],
+     "lenses": ["Pō balance readings", "civic Ao inputs", "node/akua/wā render jobs", "face-lock layer preservation"],
+     "_note": "Runs at Pō (23:00). Equal tenant reading from the same 54-node source as Civic. HINA balances the equation of the day's Ao choices. publish=false: all output requires approve_workboard_job() before moving to output lane."}
   ]
 }

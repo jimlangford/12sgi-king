@@ -4,7 +4,7 @@ This document defines the shared v2 contract for backend and frontend integratio
 
 - Version: `2.0.0`
 - Base path: `/api/v2`
-- Canonical spec: `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-openapi.yaml`
+- Canonical spec: `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-api-contract.yaml`
 - Error format:
 
 ```json

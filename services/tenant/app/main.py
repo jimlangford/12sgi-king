@@ -187,6 +187,7 @@ def create_case(payload: CaseCreateRequest, authorization: str | None = Header(d
             source="govos-v2-tenant",
             action="case.created",
             event=f"V2 CASE QUEUED: {record['id']}",
+            lane="engineering",  # case management is internal plumbing; self-heals
             payload={
                 "case_id": record["id"],
                 "tenant_id": record["tenant_id"],

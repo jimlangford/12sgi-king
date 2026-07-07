@@ -9,7 +9,28 @@ WORKBOARD_SCHEMA = "workboard-job-v1"
 WORKBOARD_THREAD = os.environ.get("WORKBOARD_TARGET_THREAD", "workboard-quad-os")
 DEFAULT_DISPATCH_LOG = Path(__file__).resolve().parents[1] / ".dispatch_log.jsonl"
 DISPATCH_LOG = Path(os.environ.get("WORKBOARD_DISPATCH_LOG") or DEFAULT_DISPATCH_LOG)
-QUEUE_STATUSES = {"queued", "in-progress", "done", "failed"}
+
+# V2 four-lane architecture
+# ─────────────────────────────────────────────────────────────────────────────
+#  engineering  – internal plumbing (auth, storage, AI analysis, data ingest).
+#                 These jobs self-heal automatically; no human gate required.
+#  creative     – content that a human must review before it leaves the system
+#                 (generated documents, images, civic reports in draft state).
+#                 V1 is the review surface for creative approvals.
+#  output       – items approved and staged for publish to 12sgi.com / govOS.
+#                 Requires explicit owner approval; never auto-healed.
+# ─────────────────────────────────────────────────────────────────────────────
+LANE_TYPES = {"engineering", "creative", "output"}
+
+# engineering lane: queued → in-progress → done | failed (auto-heal allowed)
+# creative/output:  queued → in-progress → pending-approval → approved | rejected
+QUEUE_STATUSES = {"queued", "in-progress", "pending-approval", "approved", "rejected", "done", "failed"}
+
+# Statuses that the self-healer may resolve automatically (engineering only)
+_AUTO_HEAL_STATUSES = {"queued", "in-progress"}
+
+# Statuses that require human action (never auto-healed regardless of lane)
+_APPROVAL_STATUSES = {"pending-approval"}
 
 
 def _iso_now() -> str:
@@ -23,6 +44,13 @@ def _coerce_status(status: str) -> str:
     return candidate
 
 
+def _coerce_lane(lane: str) -> str:
+    candidate = (lane or "engineering").strip().lower()
+    if candidate not in LANE_TYPES:
+        return "engineering"
+    return candidate
+
+
 def emit_workboard_job(
     *,
     source: str,
@@ -32,16 +60,19 @@ def emit_workboard_job(
     status: str = "queued",
     priority: str = "normal",
     kind: str = "job",
+    lane: str = "engineering",
     correlation_id: str | None = None,
     log_path: Path | None = None,
 ) -> dict:
     queue_status = _coerce_status(status)
+    job_lane = _coerce_lane(lane)
     entry = {
         "ts": int(time.time()),
         "iso": _iso_now(),
         "schema": WORKBOARD_SCHEMA,
         "source": source,
         "kind": kind,
+        "lane": job_lane,
         "target_thread": WORKBOARD_THREAD,
         "priority": priority or "normal",
         "status": queue_status,
@@ -123,18 +154,149 @@ def resolve_workboard_job(
     return tombstone
 
 
-def _batch_resolve_log(log_path: Path | None = None, outcome: str = "batch-closed") -> int:
-    """Close every open (queued / in-progress) job that has no tombstone yet.
+def approve_workboard_job(
+    job_id: str,
+    approver: str,
+    *,
+    note: str | None = None,
+    log_path: Path | None = None,
+) -> dict:
+    """Record an approval tombstone for a creative or output lane job.
 
-    Reads the log, computes the set of job IDs already resolved via
-    tombstone entries, then appends a done tombstone for every remaining
-    open entry.  Returns the count of newly resolved jobs.
+    Appends an ``approved`` tombstone so the job is considered resolved via
+    human sign-off.  Only creative and output lane jobs should normally flow
+    through here; engineering jobs should self-heal instead.
+
+    Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    entries = read_workboard_log(path)
+    tombstone = {
+        "ts": int(time.time()),
+        "iso": _iso_now(),
+        "schema": WORKBOARD_SCHEMA,
+        "source": approver,
+        "kind": "tombstone",
+        "target_thread": WORKBOARD_THREAD,
+        "priority": "normal",
+        "status": "approved",
+        "event": f"APPROVED: {job_id}",
+        "job": {
+            "id": str(uuid4()),
+            "action": "approved",
+            "status": "approved",
+            "correlation_id": job_id,
+            "payload": {"approver": approver, "note": note or ""},
+        },
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    return tombstone
 
+
+def reject_workboard_job(
+    job_id: str,
+    reason: str,
+    *,
+    rejector: str = "owner",
+    log_path: Path | None = None,
+) -> dict:
+    """Record a rejection tombstone for a creative or output lane job.
+
+    Appends a ``rejected`` tombstone.  The original job entry is not modified;
+    the log remains fully auditable.
+
+    Returns the tombstone entry dict.
+    """
+    path = log_path or DISPATCH_LOG
+    tombstone = {
+        "ts": int(time.time()),
+        "iso": _iso_now(),
+        "schema": WORKBOARD_SCHEMA,
+        "source": rejector,
+        "kind": "tombstone",
+        "target_thread": WORKBOARD_THREAD,
+        "priority": "normal",
+        "status": "rejected",
+        "event": f"REJECTED: {job_id}",
+        "job": {
+            "id": str(uuid4()),
+            "action": "rejected",
+            "status": "rejected",
+            "correlation_id": job_id,
+            "payload": {"rejector": rejector, "reason": reason},
+        },
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    return tombstone
+
+
+def emit_hina_creative_job(
+    *,
+    offering_date: str,
+    hina_node_id: int,
+    akua: str,
+    wa_phase: str,
+    particles: str,
+    civic_source: str,
+    output_types: list | None = None,
+    source: str = "hina-nightly",
+    log_path: "Path | None" = None,
+) -> dict:
+    """Emit a HINA-driven creative lane job to the workboard dispatch log.
+
+    This is the canonical entry point for HINA's nightly Pō balancing work.
+    Every call is traceable back to a civic date + node, satisfying the
+    studio_parity.py cycle_connected and hina_balance_present checks.
+
+    Parameters
+    ----------
+    offering_date:  The civic date HINA is balancing (ISO format YYYY-MM-DD).
+    hina_node_id:   Node id (1–54) whose energy answers today's Ao imbalance.
+    akua:           Presiding source-energy (Pele / Kāne / Lono / Kanaloa).
+    wa_phase:       Kumulipo era key: "Ao" or "Pō".
+    particles:      Creative expression layer bound to this akua + zone.
+    civic_source:   The civic event that created the Ao imbalance (e.g.
+                    "agenda/2026-07-06/item-3 — Lahaina recovery vote").
+    output_types:   Which content jobs this balance reading drives.
+                    Defaults to ["cut-scene", "card-render"].
+    source:         Originating process name (default: "hina-nightly").
+    log_path:       Override the dispatch log path (default: DISPATCH_LOG).
+
+    Returns the emitted workboard job entry dict.
+    """
+    return emit_workboard_job(
+        source=source,
+        action="hina-balance",
+        event=f"HINA Pō balance: node {hina_node_id} ({akua}) answers {offering_date}",
+        lane="creative",
+        status="queued",
+        priority="normal",
+        kind="job",
+        payload={
+            "offering_date": offering_date,
+            "hina_node_id": hina_node_id,
+            "akua": akua,
+            "wa_phase": wa_phase,
+            "particles": particles,
+            "civic_source": civic_source,
+            "output_types": output_types or ["cut-scene", "card-render"],
+        },
+        log_path=log_path,
+    )
+
+
+def pending_approvals(log_path: Path | None = None) -> list[dict]:
+    """Return all creative and output lane jobs that have not yet been resolved.
+
+    These are the items waiting for human review before any content goes public.
+    Engineering lane jobs are excluded — they self-heal and never need this queue.
+    """
+    entries = read_workboard_log(log_path)
     resolved_ids: set[str] = set()
-    open_jobs: dict[str, dict] = {}
+    pending: dict[str, dict] = {}
 
     for entry in entries:
         job = entry.get("job") or {}
@@ -142,35 +304,108 @@ def _batch_resolve_log(log_path: Path | None = None, outcome: str = "batch-close
             cid = job.get("correlation_id")
             if cid:
                 resolved_ids.add(cid)
-        elif entry.get("status") in {"queued", "in-progress"}:
+        elif entry.get("lane") in {"creative", "output"} and entry.get("kind") == "job":
             jid = job.get("id")
             if jid:
-                open_jobs[jid] = entry
+                pending[jid] = entry
 
-    to_close = {jid: e for jid, e in open_jobs.items() if jid not in resolved_ids}
-    for jid, entry in to_close.items():
-        action = (entry.get("job") or {}).get("action", "unknown")
+    return [entry for jid, entry in pending.items() if jid not in resolved_ids]
+
+
+def selfheal_engineering_jobs(
+    log_path: Path | None = None,
+    outcome: str = "self-healed",
+) -> int:
+    """Self-heal all stalled engineering lane jobs that have no tombstone yet.
+
+    Engineering jobs (auth, storage, AI analysis, data ingest) are approved to
+    fix themselves forward — this is the one-place implementation of that rule.
+
+    Creative and output lane jobs are deliberately skipped: they require human
+    approval before any content leaves the private system.  Calling this
+    function will never close a creative or output job.
+
+    Returns the count of newly resolved engineering jobs.
+    """
+    path = log_path or DISPATCH_LOG
+    entries = read_workboard_log(path)
+
+    resolved_ids: set[str] = set()
+    open_engineering: dict[str, dict] = {}
+
+    for entry in entries:
+        job = entry.get("job") or {}
+        if entry.get("kind") == "tombstone":
+            cid = job.get("correlation_id")
+            if cid:
+                resolved_ids.add(cid)
+        elif (
+            entry.get("kind") == "job"
+            and entry.get("lane", "engineering") == "engineering"
+            and entry.get("status") in _AUTO_HEAL_STATUSES
+        ):
+            jid = job.get("id")
+            if jid:
+                open_engineering[jid] = entry
+
+    to_heal = {jid: e for jid, e in open_engineering.items() if jid not in resolved_ids}
+    for jid in to_heal:
         resolve_workboard_job(
             jid,
             outcome,
-            source="workboard-batch-resolver",
+            source="workboard-self-healer",
             log_path=path,
         )
-    return len(to_close)
+    return len(to_heal)
+
+
+def _batch_resolve_log(log_path: Path | None = None, outcome: str = "batch-closed") -> int:
+    """Backward-compatible wrapper: self-heal engineering lane jobs only.
+
+    The old behavior of closing ALL open jobs unconditionally is replaced by
+    lane-aware healing.  Creative and output jobs are never auto-closed here —
+    they require explicit human approval via approve_workboard_job().
+
+    Use selfheal_engineering_jobs() for new code.  This wrapper exists so
+    existing CLI calls (``python -m services.v2_workboard --outcome ...``) and
+    tests that import ``_batch_resolve_log`` continue to work unchanged.
+    """
+    return selfheal_engineering_jobs(log_path=log_path, outcome=outcome)
 
 
 if __name__ == "__main__":
-    # CLI: python -m services.v2_workboard [--log PATH] [--outcome TEXT]
+    # CLI: python -m services.v2_workboard [--log PATH] [--outcome TEXT] [--pending]
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Batch-close all open workboard jobs in the dispatch log."
+        description=(
+            "Workboard CLI — self-heal engineering jobs or list pending approvals.\n"
+            "\n"
+            "Lanes:\n"
+            "  engineering  Auto-healed by this tool (--outcome flag applies).\n"
+            "  creative     Needs human approval — never auto-healed.\n"
+            "  output       Needs owner approval before publish — never auto-healed.\n"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--log", default=None, help="Path to dispatch log (default: WORKBOARD_DISPATCH_LOG env or repo default)")
-    parser.add_argument("--outcome", default="batch-closed", help="Outcome label to record on each tombstone")
+    parser.add_argument("--outcome", default="self-healed", help="Outcome label recorded on each self-healed engineering tombstone")
+    parser.add_argument("--pending", action="store_true", help="List pending creative/output jobs that need human approval")
     args = parser.parse_args()
 
     log_path = Path(args.log) if args.log else None
-    closed = _batch_resolve_log(log_path=log_path, outcome=args.outcome)
-    print(f"Resolved {closed} open job(s).")
+
+    if args.pending:
+        items = pending_approvals(log_path=log_path)
+        if not items:
+            print("No pending approvals.")
+        else:
+            print(f"{len(items)} item(s) pending approval:")
+            for item in items:
+                job = item.get("job") or {}
+                print(f"  [{item.get('lane')}] {job.get('id')} | {job.get('action')} | {item.get('iso')}")
+        sys.exit(0)
+
+    healed = selfheal_engineering_jobs(log_path=log_path, outcome=args.outcome)
+    print(f"Self-healed {healed} engineering job(s).")
     sys.exit(0)

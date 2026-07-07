@@ -199,6 +199,7 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
             source="govos-v2-ai",
             action="ai.assist.completed",
             event=f"V2 AI ASSIST QUEUED: {event['id']}",
+            lane="engineering",  # AI analysis is private intelligence; self-heals
             payload={
                 "assist_id": event["id"],
                 "case_id": event["case_id"],
