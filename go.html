@@ -169,6 +169,47 @@
     <div id="nlMsg" style="font-size:12px;color:var(--ink-dim);margin-top:8px;min-height:16px"></div>
   </div>
 
+  <!-- Owner Console — PRIVATE sub-pages (Tailscale-only). Each page fails closed on the public mirror.
+       Links are always rendered; content on each sub-page only shows when /board/api/* is reachable. -->
+  <div class="sect">Owner console · private</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:4px">
+    <a class="card dim" id="goDocker" href="go/docker.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🐳</div>
+      <div class="t" style="font-size:13px">Docker</div>
+      <div class="b" style="font-size:11px">containers</div>
+    </a>
+    <a class="card dim" id="goOllama" href="go/ollama.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🦙</div>
+      <div class="t" style="font-size:13px">Ollama</div>
+      <div class="b" style="font-size:11px">LLM server</div>
+    </a>
+    <a class="card dim" id="goLlmWatch" href="go/llm-watch.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">📡</div>
+      <div class="t" style="font-size:13px">LLM Watch</div>
+      <div class="b" style="font-size:11px">requests</div>
+    </a>
+    <a class="card dim" id="goComfyui" href="go/comfyui.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🎨</div>
+      <div class="t" style="font-size:13px">ComfyUI</div>
+      <div class="b" style="font-size:11px">render queue</div>
+    </a>
+    <a class="card dim" id="goGithub" href="go/github.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">⚙</div>
+      <div class="t" style="font-size:13px">GitHub</div>
+      <div class="b" style="font-size:11px">CI status</div>
+    </a>
+    <a class="card dim" id="goSystem" href="go/system.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🖥</div>
+      <div class="t" style="font-size:13px">System</div>
+      <div class="b" style="font-size:11px">health</div>
+    </a>
+    <a class="card dim" id="goLogs" href="go/logs.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">📋</div>
+      <div class="t" style="font-size:13px">Logs</div>
+      <div class="b" style="font-size:11px">viewer</div>
+    </a>
+  </div>
+
   <div class="sect">Live system · private (your server, via Tailscale)</div>
   <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
   <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
@@ -182,7 +223,7 @@
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
-     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
    } else { dot.className='dot down'; st.textContent='live system offline (server/Tailscale off) — civic mirror is always on'; }
  }
  (function(){ var done=false, ctl=new AbortController();
