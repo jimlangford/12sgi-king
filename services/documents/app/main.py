@@ -215,6 +215,7 @@ def generate_document(payload: DocumentGenerateRequest, authorization: str | Non
             source="govos-v2-documents",
             action="document.generated",
             event=f"V2 DOCUMENT QUEUED: {record['id']}",
+            lane="creative",  # generated documents need human review before publish
             payload={
                 "document_id": record["id"],
                 "case_id": record["case_id"],

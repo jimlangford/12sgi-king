@@ -179,6 +179,7 @@ def create_object(payload: StorageObjectCreateRequest, authorization: str | None
             source="govos-v2-storage",
             action="storage.object.created",
             event=f"V2 STORAGE OBJECT QUEUED: {record['id']}",
+            lane="engineering",  # file upload is internal plumbing; self-heals
             payload={
                 "object_id": record["id"],
                 "name": record["name"],
