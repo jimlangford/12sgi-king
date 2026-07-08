@@ -385,9 +385,10 @@ class H(BaseHTTPRequestHandler):
                 email = ""
             sess = "sess_" + _sec.token_urlsafe(18)        # the user's access token (their key)
             try:
-                p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "reports", "_status", "paid_orders.jsonl")
-                open(p, "a", encoding="utf-8").write(json.dumps({"verify_id": sess, "email": email, "tier": "free",
-                    "paid": True, "source": "facebook_signup", "when": time.strftime("%Y-%m-%d %H:%M:%S")}) + "\n")
+                os.makedirs(os.path.dirname(ORDERS), exist_ok=True)
+                with _ORDERS_LOCK, open(ORDERS, "a", encoding="utf-8", newline="\n") as _f:
+                    _f.write(json.dumps({"verify_id": sess, "email": email, "tier": "free",
+                        "paid": True, "source": "facebook_signup", "when": time.strftime("%Y-%m-%d %H:%M:%S")}) + "\n")
             except Exception:
                 pass
             page = ("<html><body style='font-family:system-ui;background:#0c0b09;color:#efe9da;text-align:center;padding:56px 20px'>"
