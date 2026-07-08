@@ -1,7 +1,9 @@
 import base64
 import hashlib
 import hmac
+import html as _html
 import json
+import logging
 import os
 import secrets
 import sqlite3
@@ -13,6 +15,8 @@ from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
+
+_log = logging.getLogger(__name__)
 
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
@@ -93,15 +97,18 @@ def _verify_oauth_state(state: str, provider: str) -> bool:
     return hmac.compare_digest(sig, expected)
 
 
-def _error_page(msg: str) -> HTMLResponse:
-    safe = msg.replace("<", "&lt;").replace(">", "&gt;")
+def _error_page(msg: str, *, log_detail: str = "") -> HTMLResponse:
+    if log_detail:
+        _log.warning("OAuth error: %s | detail: %s", msg, log_detail)
+    safe = _html.escape(msg)
+    back = _html.escape(OAUTH_REDIRECT_BASE)
     body = (
         "<!DOCTYPE html><html><head><meta charset='utf-8'>"
         "<title>Auth error · 12sgi</title>"
         "<style>body{font-family:system-ui,sans-serif;padding:40px;max-width:480px;margin:auto}"
         "h2{color:#c0322c}a{color:#1259a3}</style></head><body>"
         f"<h2>Authentication error</h2><p>{safe}</p>"
-        f"<p><a href='{OAUTH_REDIRECT_BASE}'>← Back to console</a></p>"
+        f"<p><a href='{back}'>&#8592; Back to console</a></p>"
         "</body></html>"
     )
     return HTMLResponse(content=body, status_code=400)
@@ -320,7 +327,8 @@ def oauth_github_start():
 @app.get(f"{API_PREFIX}/auth/github/callback")
 def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if error:
-        return _error_page(f"GitHub denied access: {error}")
+        # "error" is a fixed OAuth error code from GitHub (e.g. "access_denied") — safe to show.
+        return _error_page("GitHub sign-in was not completed.", log_detail=f"provider_error={error}")
     if not code:
         return _error_page("No authorization code received from GitHub.")
     if not _verify_oauth_state(state, "github"):
@@ -339,7 +347,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         if not gh_access_token:
             return _error_page("GitHub did not return an access token.")
     except Exception as exc:
-        return _error_page(f"Token exchange failed: {exc}")
+        return _error_page("Could not complete sign-in with GitHub — please try again.", log_detail=str(exc))
 
     try:
         user_resp = _requests.get(
@@ -352,10 +360,10 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         login = gh_user.get("login", "")
         email = gh_user.get("email") or ""
     except Exception as exc:
-        return _error_page(f"Failed to fetch GitHub user profile: {exc}")
+        return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc))
 
     if login not in OWNER_GITHUB_LOGINS:
-        return _error_page(f"GitHub account @{login} is not on the owner allow-list.")
+        return _error_page("This GitHub account is not authorised for owner access.")
 
     token = _issue_and_store_session(f"github:{login}", "github", email)
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
@@ -384,7 +392,7 @@ def oauth_google_start():
 @app.get(f"{API_PREFIX}/auth/google/callback")
 def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if error:
-        return _error_page(f"Google denied access: {error}")
+        return _error_page("Google sign-in was not completed.", log_detail=f"provider_error={error}")
     if not code:
         return _error_page("No authorization code received from Google.")
     if not _verify_oauth_state(state, "google"):
@@ -406,7 +414,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         resp.raise_for_status()
         token_data = resp.json()
     except Exception as exc:
-        return _error_page(f"Token exchange failed: {exc}")
+        return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc))
 
     id_token_raw = token_data.get("id_token", "")
     try:
@@ -418,10 +426,10 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         email = id_payload.get("email", "")
         sub = id_payload.get("sub", "")
     except Exception as exc:
-        return _error_page(f"Failed to decode Google ID token: {exc}")
+        return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
 
     if OWNER_GOOGLE_EMAILS and email not in OWNER_GOOGLE_EMAILS:
-        return _error_page(f"Google account {email} is not on the owner allow-list.")
+        return _error_page("This Google account is not authorised for owner access.")
 
     token = _issue_and_store_session(f"google:{sub}", "google", email)
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
