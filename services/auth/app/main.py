@@ -428,7 +428,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     except Exception as exc:
         return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
 
-    if OWNER_GOOGLE_EMAILS and email not in OWNER_GOOGLE_EMAILS:
+    if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.")
 
     token = _issue_and_store_session(f"google:{sub}", "google", email)
