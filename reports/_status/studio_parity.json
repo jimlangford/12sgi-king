@@ -1,0 +1,27 @@
+{
+ "generated": "2026-07-08T01:05:40",
+ "model": "equal-tenants — Civic (Ao) + Studio/HINA (Po) both read from the 54-node source",
+ "scores": {
+  "cycle_connected": 100,
+  "face_lock_intact": 100,
+  "hina_balance_present": 100,
+  "overall": 100
+ },
+ "detail": {
+  "creative_jobs_in_log": 130,
+  "cycle_connected": {
+   "connected": 130,
+   "total": 130
+  },
+  "face_lock": {
+   "intact": 0,
+   "registered": 0,
+   "_note": "0 registered = no face-lock assets declared yet; score=100 (nothing violated)"
+  },
+  "hina_balance": {
+   "with_offering_date": 130,
+   "total": 130
+  }
+ },
+ "flags": []
+}
