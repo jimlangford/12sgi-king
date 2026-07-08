@@ -12,13 +12,31 @@ processes on custom ports, so the v2 services (`services/auth`, `services/tenant
 scoped to the WordPress/static side of the project.
 
 The real deploy target for v2 is **king-server** (the Tailscale host `12sgianonymous`, tailnet
-`tail760750.ts.net`, Funnel already enabled) — the same private machine already running the
-workboard/self-heal automation. As of this writing that host has no SSH server, Docker, or WSL
-installed, so it is not yet reachable by the GitHub Actions SSH/rsync workflow below. Until that
-infra decision is made explicitly by the owner, run v2 the same way the rest of the local automation
-runs: as supervised local processes (see `docs/GOVOS_V2_LOCAL_DEV.md` for the exact `uvicorn`
-commands), reachable privately over Tailscale, with a public flip being a later reverse-proxy/DNS
-step once the services are verified stable locally — not a `git push`-triggered remote deploy.
+`tail760750.ts.net`) — the same private machine already running the workboard/self-heal automation.
+
+**V2 deploy path: self-hosted GitHub Actions runner (not SSH/rsync)**
+
+V2 uses a self-hosted runner installed on king-server, not SSH/rsync into king-server. The runner
+polls GitHub over HTTPS; all execution runs locally on king-server with no inbound ports opened and
+no Tailscale Funnel required for SSH, Docker, Ollama, logs, or system metrics.
+
+Workflow: `.github/workflows/deploy-v2-king-server.yml`
+Trigger: manual (`workflow_dispatch`) → Actions → "Deploy V2 to king-server" → Run workflow
+Runner labels: `self-hosted`, `king-server`, `windows`
+
+**To install the runner on king-server:**
+1. Go to repo Settings → Actions → Runners → New self-hosted runner → Windows
+2. Follow the on-screen PowerShell commands to download, configure, and start the runner
+3. When prompted for labels, add: `king-server`
+4. The runner registers itself with GitHub and begins polling — no inbound firewall changes needed
+
+**Security boundary:**
+- GitHub Actions triggers the work; king-server runner executes it locally
+- No V2 service, Docker port, Ollama instance, log, or metric is exposed beyond Tailscale-private
+- The public 12sgi.com deploy (publish.yml / deploy-to-server.yml) is completely separate
+
+For local development without the runner, see `docs/GOVOS_V2_LOCAL_DEV.md` for the uvicorn
+commands and `docker-compose.v2.yml` for the supervised container stack.
 
 Overview
 - Deploys are written to: DEPLOY_PATH/releases/<timestamp>/
