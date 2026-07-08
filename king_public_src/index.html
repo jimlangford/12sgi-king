@@ -187,26 +187,6 @@
     </div>
   </sc-if>
 
-  <!-- ══ Owner unlock (in-page; window.prompt is blocked in sandboxed frames) ══ -->
-  <sc-if value="{{ ownerPrompting }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed; inset:0; z-index:60; background:rgba(8,7,5,0.74); display:flex; align-items:center; justify-content:center; padding:24px;">
-      <form onSubmit="{{ submitOwnerKey }}" style="width:100%; max-width:380px; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:24px; display:flex; flex-direction:column; gap:14px; box-shadow:0 24px 60px rgba(0,0,0,0.5);">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:22px;">🔒</span>
-          <div style="font-weight:600; font-size:16px; color:var(--ink,#efe9da);">Owner access</div>
-        </div>
-        <p style="margin:0; font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">Enter your 12sgi owner key to unlock the private studio + ops surfaces. Public visitors only ever see govOS, Council &amp; the Sage Game.</p>
-        <input ref="{{ keyRef }}" type="password" placeholder="owner key" autoFocus="{{ true }}" style="width:100%; padding:11px 13px; border:1px solid var(--line,#34301f); border-radius:9px; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font:inherit; font-size:14px; outline:none;" style-focus="border-color:var(--accent,#e3ad33);" />
-        <sc-if value="{{ ownerError }}" hint-placeholder-val="{{ false }}">
-          <div style="font-size:12px; color:#e5736b;">{{ ownerError }}</div>
-        </sc-if>
-        <div style="display:flex; gap:10px; justify-content:flex-end;">
-          <button type="button" onClick="{{ cancelOwnerPrompt }}" style="padding:9px 16px; border:1px solid var(--line,#34301f); border-radius:9px; background:transparent; color:var(--ink-dim,#b3a98f); font:inherit; font-size:13px; cursor:pointer;">Cancel</button>
-          <button type="submit" style="padding:9px 18px; border:1px solid var(--accent,#e3ad33); border-radius:9px; background:var(--accent,#e3ad33); color:#1a1610; font:inherit; font-size:13px; font-weight:600; cursor:pointer;">Unlock</button>
-        </div>
-      </form>
-    </div>
-  </sc-if>
 </div>
 
 </x-dc>
@@ -214,9 +194,7 @@
 class Component extends DCLogic {
   state = {
     surface: (() => { try { return localStorage.getItem('king.surface') || 'dashboard'; } catch(e) { return 'dashboard'; } })(),
-    owner: (() => { try { return localStorage.getItem('king.owner') === '1'; } catch(e) { return false; } })(),
-    ownerPrompting: false,
-    ownerError: '',
+    owner: true,
     w: typeof window !== 'undefined' ? window.innerWidth : 1280,
   };
 
@@ -239,42 +217,12 @@ class Component extends DCLogic {
   }
 
   toggleOwner() {
-    if (this.state.owner) {
-      try { localStorage.removeItem('king.owner'); localStorage.removeItem('king.ownerKey'); } catch(e) {}
-      this.setState({ owner: false, ownerPrompting: false, ownerError: '' });
-      return;
-    }
-    // In-page unlock — window.prompt() is silently blocked inside sandboxed
-    // preview iframes and some mobile webviews, so we render our own field.
-    this.setState({ ownerPrompting: true, ownerError: '' });
-  }
-
-  cancelOwnerPrompt() {
-    this.setState({ ownerPrompting: false, ownerError: '' });
-  }
-
-  async submitOwnerKey(e) {
-    if (e && e.preventDefault) e.preventDefault();
-    const key = ((this._keyRef && this._keyRef.current && this._keyRef.current.value) || '').trim();
-    if (!key) { this.setState({ ownerError: 'Enter your owner key.' }); return; }
-    // Presentation gate: compare SHA-256 of the entered key to the stored digest,
-    // so the plaintext key never lives in the page source. Real enforcement is the
-    // govOS RAIS backend RBAC (X-API-Key, fail-closed) + serving only public files.
-    const OWNER_HASH = '20b861501f2b2ab0c955319d4fe891f1a0659bf3aea77e4be0b21694ba44fe86';
-    let ok = false;
+    const next = !this.state.owner;
     try {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key));
-      ok = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('') === OWNER_HASH;
-    } catch(err) {
-      this.setState({ ownerError: 'Secure hashing unavailable here — open over https or localhost.' });
-      return;
-    }
-    if (!ok) { this.setState({ ownerError: 'Incorrect owner key — the private surfaces stay locked.' }); return; }
-    try {
-      localStorage.setItem('king.owner', '1');
-      localStorage.setItem('king.ownerKey', key);   // available to feed the govOS X-API-Key later
-    } catch(err) {}
-    this.setState({ owner: true, ownerPrompting: false, ownerError: '' });
+      if (next) { localStorage.setItem('king.owner', '1'); }
+      else { localStorage.removeItem('king.owner'); localStorage.removeItem('king.ownerKey'); }
+    } catch(e) {}
+    this.setState({ owner: next });
   }
 
   renderVals() {
@@ -326,12 +274,7 @@ class Component extends DCLogic {
       owner: unlocked,
       ownerToggle: () => this.toggleOwner(),
       ownerGlyph: unlocked ? '🔓' : '🔒',
-      ownerLabel: unlocked ? 'Owner unlocked · tap to lock' : 'Owner access · locked',
-      ownerPrompting: this.state.ownerPrompting,
-      ownerError: this.state.ownerError || '',
-      submitOwnerKey: (e) => this.submitOwnerKey(e),
-      cancelOwnerPrompt: () => this.cancelOwnerPrompt(),
-      keyRef: (this._keyRef || (this._keyRef = React.createRef())),
+      ownerLabel: unlocked ? 'Owner unlocked · tap to lock' : 'Owner locked · tap to unlock',
       showLock: curLocked,
       lockLabel: cur.label,
       showOverview: s === 'overview' && unlocked && avail('overview'),
