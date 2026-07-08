@@ -87,9 +87,9 @@
     <div id="reviewQueue"></div>
   </div>
 
-  <!-- Owner Actions — Ops launcher (workboard Ops tab mirrored to mobile). Fetches open owner actions
-       from the workboard API (/board/api/owner-actions -> :8782). Fails CLOSED: hidden on the public
-       mirror where the board is unreachable. Leak-gate: local 127.0.0.1 links shown as "on desktop". -->
+  <!-- Owner Actions — v2 workboard pending approvals (creative + output lanes). Fetches from
+       /board/api/pending-approvals -> services/v2_workboard.pending_approvals() -> :8782.
+       Fails CLOSED: section hidden when board is unreachable (public mirror / server offline). -->
   <div id="opsSect" style="display:none">
     <div class="sect">🔑 Owner Actions</div>
     <div id="opsCards"></div>
@@ -169,6 +169,47 @@
     <div id="nlMsg" style="font-size:12px;color:var(--ink-dim);margin-top:8px;min-height:16px"></div>
   </div>
 
+  <!-- Owner Console — PRIVATE sub-pages (Tailscale-only). Each page fails closed on the public mirror.
+       Links are always rendered; content on each sub-page only shows when /board/api/* is reachable. -->
+  <div class="sect">Owner console · private</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:4px">
+    <a class="card dim" id="goDocker" href="go/docker.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🐳</div>
+      <div class="t" style="font-size:13px">Docker</div>
+      <div class="b" style="font-size:11px">containers</div>
+    </a>
+    <a class="card dim" id="goOllama" href="go/ollama.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🦙</div>
+      <div class="t" style="font-size:13px">Ollama</div>
+      <div class="b" style="font-size:11px">LLM server</div>
+    </a>
+    <a class="card dim" id="goLlmWatch" href="go/llm-watch.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">📡</div>
+      <div class="t" style="font-size:13px">LLM Watch</div>
+      <div class="b" style="font-size:11px">requests</div>
+    </a>
+    <a class="card dim" id="goComfyui" href="go/comfyui.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🎨</div>
+      <div class="t" style="font-size:13px">ComfyUI</div>
+      <div class="b" style="font-size:11px">render queue</div>
+    </a>
+    <a class="card dim" id="goGithub" href="go/github.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">⚙</div>
+      <div class="t" style="font-size:13px">GitHub</div>
+      <div class="b" style="font-size:11px">CI status</div>
+    </a>
+    <a class="card dim" id="goSystem" href="go/system.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">🖥</div>
+      <div class="t" style="font-size:13px">System</div>
+      <div class="b" style="font-size:11px">health</div>
+    </a>
+    <a class="card dim" id="goLogs" href="go/logs.html" style="text-align:center;padding:14px 10px">
+      <div style="font-size:22px;margin-bottom:5px">📋</div>
+      <div class="t" style="font-size:13px">Logs</div>
+      <div class="b" style="font-size:11px">viewer</div>
+    </a>
+  </div>
+
   <div class="sect">Live system · private (your server, via Tailscale)</div>
   <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
   <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
@@ -182,7 +223,7 @@
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
-     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
    } else { dot.className='dot down'; st.textContent='live system offline (server/Tailscale off) — civic mirror is always on'; }
  }
  (function(){ var done=false, ctl=new AbortController();
@@ -252,31 +293,65 @@
    tryNext(0);
  })();
  (function(){
-   // Owner Actions Ops launcher — fetches from workboard API (/board/api/owner-actions).
-   // Fails CLOSED: section stays hidden if board unreachable (public mirror). Leak-gate: 127.0.0.1 links
-   // labeled "on desktop" so local-only actions never appear as tappable links on mobile.
+   // Owner Actions — v2 workboard pending approvals (creative + output lanes).
+   // Fails CLOSED: section stays hidden when /board/api/pending-approvals is unreachable
+   // (public mirror, offline server). Approve/Reject POST back to the board API.
+   // Source: services/v2_workboard.pending_approvals()
    var sect=document.getElementById('opsSect'), el=document.getElementById('opsCards');
    if(!sect||!el) return;
-   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-   fetch('/board/api/owner-actions',{cache:'no-store'})
+   function esc2(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+   fetch('/board/api/pending-approvals',{cache:'no-store'})
      .then(function(r){return r.ok?r.json():Promise.reject();})
      .then(function(d){
-       var actions=(d.owner_actions||[]).filter(function(a){return a.status==='open';});
-       if(!actions.length) return;
-       el.innerHTML=actions.map(function(a){
-         var link=(a.link||'').trim();
-         var remote=link.startsWith('http')&&link.indexOf('127.0.0.1')<0;
-         var btn=remote
-           ?'<a href="'+esc(link)+'" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:7px;background:var(--accent);color:var(--accent-ink);text-decoration:none;white-space:nowrap;flex-shrink:0">Open →</a>'
-           :'<span style="font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap;flex-shrink:0">on desktop</span>';
-         return '<div class="card" style="display:flex;align-items:center;gap:10px"><div style="flex:1;min-width:0">'
-           +'<div class="t">P'+(a.priority||'?')+' · '+esc((a.title||'').slice(0,80))+'</div>'
-           +(a.detail?'<div class="b">'+esc((a.detail||'').slice(0,120))+'</div>':'')
-           +'</div>'+btn+'</div>';
+       var items=Array.isArray(d)?d:(d.items||d.pending||[]);
+       if(!items.length) return;
+       el.innerHTML=items.map(function(entry){
+         var job=entry.job||{};
+         var lane=entry.lane||'creative';
+         var col=lane==='output'?'var(--warn)':'#7a3fb0';
+         var pri=entry.priority||'normal';
+         var priCol=(pri==='high'||pri==='critical')?'var(--err)':'var(--accent-2)';
+         var title=esc2((entry.event||job.action||'').slice(0,90));
+         var jid=job.id||'';
+         var jidShort=jid?jid.slice(0,8)+'…':'';
+         return '<div style="border-left:3px solid '+col+';background:var(--accent-wash);border-radius:10px;padding:13px 15px;margin-bottom:10px">'
+           +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap">'
+           +'<span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;font-weight:700;background:'+col+';color:#fff">'+lane.toUpperCase()+'</span>'
+           +'<span class="t" style="flex:1;min-width:0">'+title+'</span>'
+           +'<span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:6px;border:1px solid var(--line);color:'+priCol+'">'+esc2(pri)+'</span>'
+           +'</div>'
+           +'<div class="b" style="margin-bottom:9px">'+esc2(entry.source||'')
+             +(entry.iso?' · '+esc2(entry.iso):'')
+             +(jidShort?' · <span style="opacity:.6;font-family:var(--mono);font-size:10.5px">'+esc2(jidShort)+'</span>':'')
+           +'</div>'
+           +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
+           +'<button onclick="approveJob(\''+jid+'\',this)" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--ok);background:rgba(31,138,91,.12);color:var(--ok);cursor:pointer;white-space:nowrap">✓ Approve</button>'
+           +'<button onclick="rejectJob(\''+jid+'\',this)" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--err);background:rgba(192,50,44,.08);color:var(--err);cursor:pointer;white-space:nowrap">✕ Reject</button>'
+           +'<a href="https://12sgianonymous.tail760750.ts.net/board" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;background:var(--accent);color:var(--accent-ink);text-decoration:none;white-space:nowrap">Board →</a>'
+           +'</div></div>';
        }).join('');
        sect.style.display='block';
      }).catch(function(){});
  })();
+ function approveJob(jobId,btn){
+   if(!jobId) return;
+   btn.disabled=true; btn.textContent='…';
+   fetch('/board/api/approve-job',{method:'POST',headers:{'Content-Type':'application/json'},
+         body:JSON.stringify({job_id:jobId,approver:'owner'})})
+     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+     .then(function(){btn.textContent='✓ Approved';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';})
+     .catch(function(){btn.disabled=false;btn.textContent='✓ Approve';alert('Could not approve — board may be offline.');});
+ }
+ function rejectJob(jobId,btn){
+   if(!jobId) return;
+   var reason=window.prompt('Reason for rejection (optional):'); if(reason===null) return;
+   btn.disabled=true; btn.textContent='…';
+   fetch('/board/api/reject-job',{method:'POST',headers:{'Content-Type':'application/json'},
+         body:JSON.stringify({job_id:jobId,reason:reason||'rejected by owner',rejector:'owner'})})
+     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+     .then(function(){btn.textContent='✕ Rejected';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';})
+     .catch(function(){btn.disabled=false;btn.textContent='✕ Reject';alert('Could not reject — board may be offline.');});
+ }
  (function(){
    // Civic newsletter opt-in -> public charging/signup backend over Tailscale Funnel (:8443 -> :8810).
    // Absolute URL because go.html is served from king (:8799) and the public Pages mirror, not the backend origin.

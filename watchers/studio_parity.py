@@ -32,7 +32,7 @@ import json
 import sys
 import datetime
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CFG  = os.path.join(ROOT, "config")
 STATUS = os.path.join(ROOT, "reports", "_status")
 
