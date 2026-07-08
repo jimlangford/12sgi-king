@@ -60,7 +60,7 @@
       <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
         <div id="ops-live-dot" style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--ink-faint,#756b56);">●</div>
         <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:2px;">Live server</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;" id="ops-live-label">checking…</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;" id="ops-live-label">offline or local</div>
       </div>
     </div>
 
@@ -183,24 +183,6 @@ class Component extends DCLogic {
         hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
       });
     }
-    // Live server check
-    const dot = document.getElementById('ops-live-dot');
-    const lbl = document.getElementById('ops-live-label');
-    const base = 'https://12sgianonymous.tail760750.ts.net';
-    fetch(base + '/api/health', { signal: AbortSignal.timeout(4000) })
-      .then(r => {
-        if (r.ok) {
-          if (dot) dot.style.color = 'var(--ok,#6abf86)';
-          if (lbl) lbl.textContent = 'live · ts.net';
-        } else {
-          if (dot) dot.style.color = 'var(--warn,#d29922)';
-          if (lbl) lbl.textContent = 'server error ' + r.status;
-        }
-      })
-      .catch(() => {
-        if (dot) dot.style.color = 'var(--warn,#d29922)';
-        if (lbl) lbl.textContent = 'offline or local';
-      });
   }
 
   renderVals() {
