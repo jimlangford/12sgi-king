@@ -120,11 +120,15 @@ services:
     environment:
       <<: *common-env
       AI_DB_PATH: /data/db/govos_v2_ai.db
+      GPU_ROUTER_URL: http://gpu-router:8107
+      GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
+      GPU_DEFAULT_MODEL: ${GPU_DEFAULT_MODEL:-llama3}
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:
       - v2-db:/data/db
       - v2-dispatch:/data/dispatch
     ports: ["127.0.0.1:8105:8105"]
-    depends_on: [auth, tenant]
+    depends_on: [auth, tenant, gpu-router]
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8105/api/v2/ready', timeout=3)"]
@@ -137,12 +141,65 @@ services:
     # Bound to 8106, not 8000 — 8000 was already occupied by another local process on this host.
     command: ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
     environment:
-      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105"
+      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107"
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports: ["127.0.0.1:8106:8000"]
-    depends_on: [auth, tenant, documents, storage, ai]
+    depends_on: [auth, tenant, documents, storage, ai, gpu-router]
     restart: unless-stopped
+
+  # ── GPU layer ──────────────────────────────────────────────────────────────
+  # gpu-runtime: Ollama; one container owns the GPU.
+  # gpu-router:  priority queue that serialises who gets GPU time.
+  # ───────────────────────────────────────────────────────────────────────────
+
+  gpu-runtime:
+    image: ollama/ollama:latest
+    # GPU passthrough — works when the host has NVIDIA drivers + nvidia-container-toolkit.
+    # Remove the `deploy` block on CPU-only hosts; Ollama will fall back to CPU inference.
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - v2-ollama:/root/.ollama
+    ports: ["127.0.0.1:11434:11434"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c",
+             "import urllib.request as u; u.urlopen('http://localhost:11434/api/tags', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  gpu-router:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.gpu_router.app.main:app", "--host", "0.0.0.0", "--port", "8107"]
+    environment:
+      <<: *common-env
+      GPU_ROUTER_DB_PATH: /data/db/govos_v2_gpu_router.db
+      GPU_RUNTIME_URL: http://gpu-runtime:11434
+      # Comma-separated priority list (lower = higher priority).
+      # Clients: govos-core:1, maui-tenant:2, studio:3, civic-signal:4, workboard:5, reports:6
+      GPU_CLIENT_PRIORITIES: ${GPU_CLIENT_PRIORITIES:-govos-core:1,maui-tenant:2,studio:3,civic-signal:4,workboard:5,reports:6}
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8107:8107"]
+    depends_on: [auth, gpu-runtime]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request as u; u.urlopen('http://localhost:8107/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 volumes:
   v2-db:
   v2-dispatch:
+  v2-ollama:   # Ollama model cache — survives container restarts
