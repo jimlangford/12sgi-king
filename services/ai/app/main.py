@@ -20,6 +20,11 @@ TENANT_READY_URL = os.environ.get("TENANT_READY_URL", f"{TENANT_SERVICE_URL}/api
 INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
 REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 
+# GPU router — inference requests are forwarded here; falls back to stub when unavailable.
+GPU_ROUTER_URL = os.environ.get("GPU_ROUTER_URL", "http://gpu-router:8107")
+GPU_ROUTER_READY_URL = os.environ.get("GPU_ROUTER_READY_URL", f"{GPU_ROUTER_URL}/api/v2/ready")
+GPU_DEFAULT_MODEL = os.environ.get("GPU_DEFAULT_MODEL", "llama3")
+
 app = FastAPI(title="govOS v2 AI Service", version=VERSION)
 
 
@@ -70,6 +75,30 @@ def _check_dependency_ready(url: str) -> bool:
             return data.get("status") in {"ready", "healthy"}
     except Exception:
         return False
+
+
+def _gpu_infer(authorization: str, client_id: str, prompt: str, model: str | None = None) -> str | None:
+    """Forward a prompt to the GPU router; return the response text or None on failure."""
+    payload = json.dumps({
+        "client_id": client_id,
+        "model": model or GPU_DEFAULT_MODEL,
+        "prompt": prompt,
+    }).encode()
+    req = request.Request(
+        f"{GPU_ROUTER_URL}/api/v2/gpu/infer",
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": authorization,
+        },
+        method="POST",
+    )
+    try:
+        with request.urlopen(req, timeout=float(os.environ.get("GPU_INFER_TIMEOUT", "120"))) as resp:
+            data = json.loads(resp.read().decode() or "{}")
+            return data.get("response") or None
+    except Exception:
+        return None
 
 
 def _require_auth(authorization: str | None) -> dict:
@@ -144,13 +173,17 @@ def ready(response: Response):
 
     auth_ok = _check_dependency_ready(AUTH_READY_URL)
     tenant_ok = _check_dependency_ready(TENANT_READY_URL)
+    gpu_ok = _check_dependency_ready(GPU_ROUTER_READY_URL)
+    # gpu_ok is intentionally excluded from is_ready: GPU is a best-effort enhancement —
+    # the ai service degrades to stub responses when the router is unavailable, so GPU
+    # unavailability does not make the ai service itself un-ready.
     is_ready = db_ok and auth_ok and tenant_ok
 
     response.status_code = 200 if is_ready else 503
     return {
         "status": "ready" if is_ready else "not-ready",
         "service": "ai",
-        "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok},
+        "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok, "gpu_router": gpu_ok},
     }
 
 
@@ -167,12 +200,27 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     _ensure_case_exists(payload.case_id, authorization)
 
     prompt = payload.prompt.strip()
-    summary = (
-        f"Suggested next step for case {payload.case_id}: gather timeline facts, "
-        f"organize evidence, and generate a draft document."
+
+    # Try real inference via the GPU router first; fall back to stub if unavailable.
+    gpu_response = _gpu_infer(
+        authorization=authorization or "",
+        client_id="govos-core",
+        prompt=(
+            f"You are a govOS legal-case assistant. Case: {payload.case_id}. "
+            + (f"Context: {json.dumps(payload.context)}. " if payload.context else "")
+            + f"Request: {prompt}"
+        ) if prompt else f"Summarise next actions for case {payload.case_id}.",
     )
-    if prompt:
+
+    if gpu_response:
+        summary = gpu_response
+    elif prompt:
         summary = f"Assistant reviewed your prompt and prepared next actions for case {payload.case_id}."
+    else:
+        summary = (
+            f"Suggested next step for case {payload.case_id}: gather timeline facts, "
+            f"organize evidence, and generate a draft document."
+        )
 
     event = {
         "id": str(uuid4()),

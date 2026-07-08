@@ -151,3 +151,67 @@ POST http://127.0.0.1:8088/selfheal
 | `storage.object.created` | engineering | File upload plumbing |
 | `ai.assist.completed` | engineering | Private AI analysis |
 | `publish.staged` (future v2-publish) | output | Owner must approve before 12sgi.com publish |
+
+
+---
+
+## GPU layer smoke tests
+
+All gpu-router endpoints require a valid owner bearer token.  
+Obtain one by signing in via the Naga console and copying `king.ownerToken` from localStorage,  
+or use the dev signing secret to mint a token directly from the auth service.
+
+```bash
+# Set token once for the session
+TOKEN="<paste owner token here>"
+
+# 1. Check Ollama is alive (no auth required — direct to gpu-runtime)
+curl http://127.0.0.1:11434/api/tags
+
+# 2. Check the router is ready (no auth required — health surface)
+curl http://127.0.0.1:8107/api/v2/ready
+
+# 3. Inspect the queue (auth required)
+curl http://127.0.0.1:8107/api/v2/gpu/queue \
+  -H "Authorization: ******"
+
+# 4. Per-client usage stats (auth required)
+curl http://127.0.0.1:8107/api/v2/gpu/usage \
+  -H "Authorization: ******"
+
+# 5. Test inference through the router — do NOT call Ollama directly
+#    Field is client_id (not client); timeout is set server-side via GPU_INFER_TIMEOUT.
+curl -X POST http://127.0.0.1:8107/api/v2/gpu/infer \
+  -H "Content-Type: application/json" \
+  -H "Authorization: ******" \
+  -d '{
+    "client_id": "govos-core",
+    "model": "llama3",
+    "prompt": "Confirm you are the shared govOS GPU runtime."
+  }'
+
+# 6. Test the AI service (uses gpu-router internally)
+curl http://127.0.0.1:8105/api/v2/ready
+```
+
+### Pull models on first run
+
+```bash
+# Smoke test model
+docker exec -it 12sgi-king-gpu-runtime-1 ollama pull llama3
+
+# Reasoning model (after stack is stable on the 8 GB card)
+docker exec -it 12sgi-king-gpu-runtime-1 ollama pull qwen3:8b
+```
+
+### Traffic must flow through gpu-router
+
+```
+govOS AI / Maui tenant / Studio / Civic / Workboard
+        ↓
+gpu-router  :8107
+        ↓
+gpu-runtime / Ollama  :11434
+```
+
+Clients must not call port 11434 directly.  One brain, one queue, no VRAM fighting.

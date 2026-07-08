@@ -165,7 +165,7 @@
     <div class="stat">
       <div class="stat-n ok" id="wb-count">0</div>
       <div class="stat-l">Open workboard jobs</div>
-      <div class="stat-sub" id="wb-time">batch-closed 2026-07-06</div>
+      <div class="stat-sub" id="wb-time">batch-closed 2026-07-08</div>
     </div>
     <div class="stat">
       <div class="stat-n ok">21</div>
@@ -173,9 +173,9 @@
       <div class="stat-sub">0 failed</div>
     </div>
     <div class="stat">
-      <div class="stat-n ok">13</div>
+      <div class="stat-n ok">33</div>
       <div class="stat-l">Tests passing</div>
-      <div class="stat-sub">3 skipped · 0 failed</div>
+      <div class="stat-sub">0 skipped · 0 failed</div>
     </div>
     <div class="stat">
       <div class="stat-n" style="color:var(--accent)">79</div>
@@ -188,9 +188,9 @@
       <div class="stat-sub">digital twin complete</div>
     </div>
     <div class="stat">
-      <div class="stat-n ok" id="live-dot">●</div>
+      <div class="stat-n" style="color:var(--ink-faint)" id="live-dot">●</div>
       <div class="stat-l">Live server</div>
-      <div class="stat-sub" id="live-label">checking…</div>
+      <div class="stat-sub" id="live-label">offline or local</div>
     </div>
   </div>
 
@@ -247,7 +247,7 @@
   <div class="wb-row">
     <div class="wb-dot"></div>
     <div class="wb-text">No open jobs — log is clean</div>
-    <div class="wb-time" id="wb-stamp">2026-07-06 07:15 UTC</div>
+    <div class="wb-time" id="wb-stamp">2026-07-08 02:30 UTC</div>
   </div>
 
   <div class="sect">Quick Tools</div>
@@ -264,7 +264,7 @@
         <div class="tool-name">Run tests</div>
         <div class="tool-cmd">python -m pytest tests/ -q</div>
       </div>
-      <span class="tool-badge ok">13 pass</span>
+      <span class="tool-badge ok">33 pass</span>
     </div>
     <div class="tool">
       <div>
@@ -319,27 +319,6 @@
       hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
     });
   }
-})();
-
-// Try live server — update live-dot status
-(function() {
-  var dot = document.getElementById('live-dot');
-  var lbl = document.getElementById('live-label');
-  var base = 'https://12sgianonymous.tail760750.ts.net';
-  fetch(base + '/api/health', { signal: AbortSignal.timeout(4000) })
-    .then(function(r) {
-      if (r.ok) {
-        if (dot) { dot.style.color = 'var(--ok)'; }
-        if (lbl) lbl.textContent = 'live · ts.net';
-      } else {
-        if (dot) { dot.style.color = 'var(--warn)'; }
-        if (lbl) lbl.textContent = 'server error ' + r.status;
-      }
-    })
-    .catch(function() {
-      if (dot) { dot.style.color = 'var(--warn)'; }
-      if (lbl) lbl.textContent = 'offline or local';
-    });
 })();
 </script>
 </body>
