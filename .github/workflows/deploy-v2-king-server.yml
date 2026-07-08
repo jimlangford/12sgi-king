@@ -149,7 +149,8 @@ jobs:
 
           # Files that belong to the private /go and /board owner surfaces
           $files = @{
-            "go.html"     = "go.html"
+            "go.html"                          = "go.html"
+            "king_public_src\ops_board.html"   = "board.html"
           }
 
           foreach ($src in $files.Keys) {
@@ -214,14 +215,22 @@ jobs:
             }
           }
 
-          # /go is a static file served locally — check king-local path exists
-          $goPath = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html"
+          # /go and /board are static files served locally — check king-local path exists
+          $goPath   = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html"
+          $boardPath = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\board.html"
           if ($goPath -and (Test-Path $goPath)) {
             $results["go.html"] = "present"
             Write-Host "  ✓ go.html present at king-local"
           } else {
             $results["go.html"] = "missing"
             Write-Warning "  ✗ go.html not found at king-local path"
+          }
+          if ($boardPath -and (Test-Path $boardPath)) {
+            $results["board.html"] = "present"
+            Write-Host "  ✓ board.html present at king-local"
+          } else {
+            $results["board.html"] = "missing"
+            Write-Warning "  ✗ board.html not found at king-local path"
           }
 
           # Write summary
