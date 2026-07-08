@@ -168,8 +168,8 @@ services:
     ports: ["127.0.0.1:11434:11434"]
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python3", "-c",
-             "import urllib.request as u; u.urlopen('http://localhost:11434/api/tags', timeout=5)"]
+      # ollama/ollama:latest is Ubuntu-based and ships wget; avoid python3 (not guaranteed).
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:11434/api/tags || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5

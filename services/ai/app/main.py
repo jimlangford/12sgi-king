@@ -174,6 +174,9 @@ def ready(response: Response):
     auth_ok = _check_dependency_ready(AUTH_READY_URL)
     tenant_ok = _check_dependency_ready(TENANT_READY_URL)
     gpu_ok = _check_dependency_ready(GPU_ROUTER_READY_URL)
+    # gpu_ok is intentionally excluded from is_ready: GPU is a best-effort enhancement —
+    # the ai service degrades to stub responses when the router is unavailable, so GPU
+    # unavailability does not make the ai service itself un-ready.
     is_ready = db_ok and auth_ok and tenant_ok
 
     response.status_code = 200 if is_ready else 503
