@@ -152,6 +152,18 @@
       <sc-if value="{{ showPush }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Push" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showDashboard }}" hint-placeholder-val="{{ true }}">
+        <dc-import name="Dashboard" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
+      <sc-if value="{{ showWatcher }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Watcher" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
+      <sc-if value="{{ showAupuni }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Aupuni" embedded="{{ true }}" hint-size="100%,100vh"></dc-import>
+      </sc-if>
+      <sc-if value="{{ showOps }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Ops" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
     </main>
   </div>
 
@@ -201,7 +213,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = {
-    surface: (() => { try { return localStorage.getItem('king.surface') || 'mauios'; } catch(e) { return 'mauios'; } })(),
+    surface: (() => { try { return localStorage.getItem('king.surface') || 'dashboard'; } catch(e) { return 'dashboard'; } })(),
     owner: (() => { try { return localStorage.getItem('king.owner') === '1'; } catch(e) { return false; } })(),
     ownerPrompting: false,
     ownerError: '',
@@ -274,19 +286,23 @@ class Component extends DCLogic {
     // Scene Review / Motion Picture) live in the elementLOTUS Studio app (:8770) and
     // are reached via the "Studio ->" door, NOT from the civic nav. (2026-06-14)
     const ITEMS = [
-      { id:'mauios',   label:'govOS',           short:'govOS',   icon:'🌺', register:'public', owner:false },
-      { id:'council',  label:'Council & Agendas', short:'Council', icon:'🏛', register:'public', owner:false },
-      { id:'game',     label:'Sage Game',       short:'Game',    icon:'🂡',  register:'public', owner:false },
-      { id:'studio',   label:'Studio →',        short:'Studio',  icon:'🎛', register:'studio', owner:false, href:'go.html' },
-      { id:'overview', label:'Overview',        short:'Home',    icon:'◉',  register:'ops',    owner:true },
-      { id:'mission',  label:'Mission Control', short:'Mission', icon:'⌖',  register:'ops',    owner:true },
-      { id:'push',     label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
+      { id:'dashboard', label:'Home',            short:'Home',    icon:'◈',  register:'public', owner:false },
+      { id:'mauios',    label:'govOS',           short:'govOS',   icon:'🌺', register:'public', owner:false },
+      { id:'council',   label:'Council & Agendas', short:'Council', icon:'🏛', register:'public', owner:false },
+      { id:'game',      label:'Sage Game',       short:'Game',    icon:'🂡',  register:'public', owner:false },
+      { id:'watcher',   label:'Watcher',         short:'Watch',   icon:'👁',  register:'public', owner:false },
+      { id:'aupuni',    label:'Aupuni Globe',    short:'Globe',   icon:'🌍',  register:'public', owner:false },
+      { id:'studio',    label:'Studio →',        short:'Studio',  icon:'🎛', register:'studio', owner:false, href:'go.html' },
+      { id:'overview',  label:'Overview',        short:'Home',    icon:'◉',  register:'ops',    owner:true },
+      { id:'mission',   label:'Mission Control', short:'Mission', icon:'⌖',  register:'ops',    owner:true },
+      { id:'push',      label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
+      { id:'ops',       label:'Ops Board',       short:'Ops',     icon:'⌗',  register:'ops',    owner:true },
     ];
     const unlocked = this.state.owner;
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'ops'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
     // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
@@ -328,6 +344,10 @@ class Component extends DCLogic {
       showGame: s === 'game',
       showMauios: s === 'mauios',
       showCouncil: s === 'council',
+      showDashboard: s === 'dashboard',
+      showWatcher: s === 'watcher',
+      showAupuni: s === 'aupuni',
+      showOps: s === 'ops' && unlocked,
     };
   }
 }
