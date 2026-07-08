@@ -1,0 +1,509 @@
+/* SAGE · the ahupuaʻa game — css/sage.css
+   12sgi-design canon: warm volcanic near-black, one gold accent, zone hexes locked.
+   Radii: chips 4 · controls 7 · cards 9 · modals 12. Transitions ≤200ms. No blur, no neon. */
+
+/* JetBrains Mono — bundled locally (assets/fonts/, OFL.txt alongside).
+   Canon locks it for every machine value; iPad does not ship it and CDN
+   loading is banned, so the face must travel with the game. */
+@font-face{
+  font-family:"JetBrains Mono";
+  src:url("../assets/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"JetBrains Mono";
+  src:url("../assets/fonts/JetBrainsMono-Bold.woff2") format("woff2");
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+}
+
+:root{
+  /* Brightness lift 2026-07-02 (Jimmy: "i cant read the screen") — same warm volcanic
+     family + one gold accent, every step raised for legibility. Old values in history. */
+  --bg:#161209;
+  --s1:#231d10;
+  --s2:#2e2716;
+  --s3:#3e351f;
+  --line:#5a4f33;
+  --gold:#e3ad33;
+  --gold-hi:#f4c95d;
+  --ink:#f7f1e3;
+  --ink-2:#d8cdb0;
+  --ink-3:#ab9e7f;
+  --mauka:#4ade80;
+  --kula:#fbbf24;
+  --makai:#38bdf8;
+  --uni:#ffffff;
+  --hewa:#c96f4a;
+  --mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-chip:4px;
+  --r-ctl:7px;
+  --r-card:9px;
+  --r-modal:12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.45;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+img{max-width:100%}
+.mono{font-family:var(--mono)}
+.eyebrow{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ink-3);
+}
+
+/* ---------- selftest banner ---------- */
+#selftest-banner{
+  padding:8px 14px;
+  font-family:var(--mono);
+  font-size:12px;
+  border-bottom:1px solid var(--line);
+  background:var(--s1);
+}
+#selftest-banner.ok{color:var(--mauka);border-bottom-color:#28502f}
+#selftest-banner.fail{color:var(--hewa)}
+#selftest-banner .difflist{margin-top:4px;color:var(--ink-2);max-height:110px;overflow:auto}
+
+/* ---------- top bar ---------- */
+#topbar{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  padding:8px 14px;
+  background:var(--s1);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:8px;min-width:0}
+.hexmark{color:var(--gold);font-size:20px;line-height:1}
+.wordmark strong{font-size:16px;letter-spacing:.04em}
+.wordmark .sub{color:var(--ink-2);margin-left:6px;font-size:12px}
+.studio{white-space:nowrap}
+
+.moonwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+#moondots{display:flex;gap:4px}
+#moondots .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--s3);border:1px solid var(--line);
+  transition:background .2s,border-color .2s;
+}
+#moondots .dot.past{background:var(--line)}
+#moondots .dot.cur{background:var(--gold);border-color:var(--gold-hi)}
+#moonlabel{font-size:12px;color:var(--ink-2);white-space:nowrap}
+
+.water{display:flex;align-items:center;gap:6px;min-width:150px}
+.wicon{font-size:13px}
+.wbar{
+  width:110px;height:8px;border-radius:4px;
+  background:var(--s3);border:1px solid var(--line);overflow:hidden;
+}
+#wfill{height:100%;width:0;background:var(--makai);transition:width .2s}
+#wfill.tight{background:var(--hewa)}
+#wtext{font-size:11px;color:var(--ink-2);white-space:nowrap}
+
+.season{font-size:12px;color:var(--ink-2);white-space:nowrap}
+.health{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+#score{font-size:14px;color:var(--gold)}
+#wonmark{color:var(--gold);font-size:13px}
+.seed{white-space:nowrap}
+#seedval{color:var(--ink-2);font-size:11px}
+
+.actions{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.btn{
+  min-height:40px;
+  padding:8px 14px;
+  border:1px solid var(--line);
+  border-radius:var(--r-ctl);
+  background:var(--s2);
+  color:var(--ink);
+  font-size:13px;
+  transition:border-color .15s,background .15s,transform .15s;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold-hi)}
+.btn.gold{background:var(--gold);color:#141109;border-color:var(--gold);font-weight:600}
+.btn.gold:hover{background:var(--gold-hi);border-color:var(--gold-hi);color:#141109}
+.btn.icon{min-width:40px;padding:8px 10px}
+.btn.armed{border-color:var(--hewa);color:var(--hewa)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:disabled:hover{border-color:var(--line);color:var(--ink)}
+
+/* ---------- crisis banner ---------- */
+#crisis-banner{
+  padding:7px 14px;
+  background:#241610;
+  border-bottom:1px solid #4a2c1c;
+  color:var(--hewa);
+  font-size:13px;
+}
+#crisis-banner .mono{font-size:12px}
+
+/* ---------- board ---------- */
+#main{flex:1;min-height:0;overflow:auto;padding:12px 14px}
+#board{
+  display:grid;
+  grid-template-columns:1fr 172px;
+  gap:12px;
+  align-items:start;
+  max-width:1500px;
+  margin:0 auto;
+}
+#bands{display:flex;flex-direction:column;gap:12px;min-width:0}
+
+.band{
+  background:var(--s1);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  overflow:hidden;
+}
+.band>header,#urail>header{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  padding:8px 12px;
+  border-bottom:1px solid var(--line);
+  background:var(--s2);
+}
+.band h2,#urail h2{font-size:15px;font-weight:700;letter-spacing:.03em}
+.band .desc,#urail .desc{font-size:12px;color:var(--ink-2)}
+.band .roll,#urail .roll{margin-left:auto;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.band[data-zone="Mauka"] h2{color:var(--mauka)}
+.band[data-zone="Kula"] h2{color:var(--kula)}
+.band[data-zone="Makai"] h2{color:var(--makai)}
+.band[data-zone="Mauka"]{background:linear-gradient(180deg,rgba(74,222,128,.13),rgba(74,222,128,.03) 70%),var(--s1)}
+.band[data-zone="Kula"]{background:linear-gradient(180deg,rgba(251,191,36,.13),rgba(251,191,36,.03) 70%),var(--s1)}
+.band[data-zone="Makai"]{background:linear-gradient(180deg,rgba(56,189,248,.14),rgba(56,189,248,.03) 70%),var(--s1)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px}
+
+/* node chip */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-height:42px;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--zc,var(--line));  /* zone color visible even unplanted */
+  border-radius:var(--r-chip);
+  background:var(--s3);
+  color:var(--ink-2);
+  font-family:var(--mono);
+  font-size:13px;
+  transition:transform .15s,border-color .15s,box-shadow .15s,color .15s;
+  position:relative;
+}
+.chip:hover{transform:translateY(-2px);border-color:var(--ink-2);color:var(--ink)}
+.chip .hex{font-size:14px;color:var(--zc,var(--ink-2))}
+.chip .mn{font-size:11px;color:var(--ink-3)}
+.chip .rev{display:none;color:var(--hewa);font-size:12px}
+.chip.pono{
+  color:var(--ink);
+  border-color:var(--zc,var(--gold));
+  box-shadow:0 0 8px 0 color-mix(in srgb,var(--zc,#e3ad33) 28%,transparent);
+}
+.chip.pono .hex{color:var(--zc,var(--gold))}
+.chip.pono .mn{color:var(--ink-2)}
+.chip.hewa{color:var(--ink-2);border-color:var(--hewa)}
+.chip.hewa .rev{display:inline}
+.chip.target{animation:targetpulse 1.1s ease-in-out infinite;border-color:var(--gold)}
+.chip.pulse{animation:goldpulse .5s ease-out 2}
+.chip.joker{border-style:dashed;color:var(--ink-2)}
+.chip.joker .hex{color:var(--uni)}
+@keyframes goldpulse{
+  0%{box-shadow:0 0 0 0 rgba(227,173,51,.5)}
+  100%{box-shadow:0 0 0 12px rgba(227,173,51,0)}
+}
+@keyframes targetpulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(227,173,51,.35)}
+  50%{box-shadow:0 0 0 5px rgba(227,173,51,.08)}
+}
+
+/* universal rail */
+#urail{
+  background:var(--s1);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  overflow:hidden;
+}
+#urail>header{flex-wrap:wrap}                      /* "the whole ahupuaʻa" clipped on iPad rail */
+#urail .desc{white-space:normal;min-width:0}
+#urail h2{color:var(--ink)}
+#urail .chips{flex-direction:column;align-items:stretch}
+#urail .chip{justify-content:flex-start}
+#urail .tag{font-size:10px;color:var(--ink-3);margin-left:auto;font-family:var(--sans)}
+
+/* ---------- event log drawer ---------- */
+#logdrawer{
+  position:fixed;
+  top:0;right:0;bottom:0;
+  width:280px;
+  max-width:85vw;
+  background:var(--s1);
+  border-left:1px solid var(--line);
+  transform:translateX(100%);
+  transition:transform .2s;
+  z-index:40;
+  display:flex;
+  flex-direction:column;
+}
+#logdrawer.open{transform:translateX(0)}
+#logdrawer header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px;border-bottom:1px solid var(--line);
+}
+#loglist{flex:1;overflow:auto;padding:8px 12px}
+#loglist .line{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-2);
+  padding:4px 0;
+  border-bottom:1px solid var(--s2);
+  word-break:break-word;
+}
+#loglist .line:first-child{color:var(--ink)}
+
+/* ---------- hand dock ---------- */
+#dock{
+  background:var(--s1);
+  border-top:1px solid var(--line);
+  padding:6px 14px 10px;
+}
+.dockhead{
+  display:flex;justify-content:space-between;gap:10px;
+  padding:2px 2px 6px;flex-wrap:wrap;
+}
+#deckcount{color:var(--ink-3);font-size:11px}
+#hand{
+  display:flex;gap:10px;
+  overflow-x:auto;
+  padding:4px 2px 2px;
+  -webkit-overflow-scrolling:touch;
+}
+.card{
+  position:relative;
+  flex:0 0 auto;
+  width:78px;height:108px;
+  border:2px solid var(--fh,var(--line));
+  border-radius:var(--r-card);
+  background:var(--s2);
+  overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+.card:hover{transform:translateY(-2px)}
+.card .art{
+  position:absolute;inset:0;
+  background-color:var(--s3);
+  background-size:cover;
+  background-position:center;
+}
+.card .corner{
+  position:absolute;top:3px;left:5px;
+  font-family:var(--mono);font-size:11px;
+  color:var(--ink);
+  background:rgba(12,11,9,.72);
+  padding:1px 4px;border-radius:3px;
+}
+.card .mbadge{
+  position:absolute;bottom:3px;right:4px;
+  font-family:var(--mono);font-size:10px;
+  color:var(--ink);
+  background:rgba(12,11,9,.72);
+  padding:1px 4px;border-radius:3px;
+}
+.card .nid{
+  position:absolute;bottom:3px;left:5px;
+  font-family:var(--mono);font-size:10px;color:var(--ink-2);
+  background:rgba(12,11,9,.72);
+  padding:1px 3px;border-radius:3px;
+}
+.card.pono-now{box-shadow:0 0 0 2px var(--gold),0 0 10px rgba(227,173,51,.35)}
+.card.sel{outline:2px solid var(--gold-hi);outline-offset:2px;transform:translateY(-4px)}
+.card.blocked{opacity:.55}
+
+/* ---------- toast / status ---------- */
+#toast{
+  position:fixed;
+  left:50%;bottom:148px;
+  transform:translateX(-50%);
+  background:var(--s3);
+  border:1px solid var(--line);
+  border-radius:var(--r-ctl);
+  color:var(--ink);
+  font-size:12px;
+  padding:8px 14px;
+  z-index:60;
+  max-width:min(92vw,560px);
+  text-align:center;
+}
+#toast.warn{border-color:var(--hewa);color:var(--hewa)}
+#toast.gold{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- detail panel ---------- */
+#scrim{
+  position:fixed;inset:0;
+  background:rgba(12,11,9,.62);
+  z-index:45;
+}
+#panel{
+  position:fixed;
+  top:0;right:0;bottom:0;
+  width:400px;max-width:100vw;
+  background:var(--s1);
+  border-left:1px solid var(--line);
+  z-index:50;
+  overflow-y:auto;
+  padding:14px 16px 24px;
+}
+#panel-close{position:absolute;top:8px;right:10px;z-index:2}
+.p-eyebrow{margin:2px 0 10px}
+.p-eyebrow .gold{color:var(--gold)}
+.artwrap{
+  width:100%;aspect-ratio:3/4;max-height:330px;
+  background:var(--s2);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  overflow:hidden;
+  margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-3);font-size:34px;
+}
+.artwrap img{width:100%;height:100%;object-fit:cover;display:block}
+.p-name{font-size:17px;font-weight:600;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p-name .suit{font-family:var(--mono);font-size:14px;color:var(--ink-2)}
+.p-node{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin:2px 0 10px}
+.p-role{font-size:14px;color:var(--gold);margin-bottom:10px}
+.p-status{
+  font-family:var(--mono);font-size:11px;
+  padding:6px 9px;border-radius:var(--r-chip);
+  border:1px solid var(--line);background:var(--s2);
+  color:var(--ink-2);margin-bottom:12px;
+}
+.p-status.pono{border-color:var(--zc,var(--gold));color:var(--ink)}
+.p-status.hewa{border-color:var(--hewa);color:var(--hewa)}
+.p-sec{margin-bottom:12px}
+.p-sec .eyebrow{display:block;margin-bottom:3px}
+.p-sec p{font-size:13px;color:var(--ink-2)}
+.p-sec p.up{color:var(--ink)}
+.p-sec p.down{color:var(--hewa)}
+.p-meta{font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pill{
+  font-size:11px;
+  padding:4px 9px;
+  border:1px solid var(--gold);
+  border-radius:var(--r-chip);
+  color:var(--gold);
+  background:rgba(227,173,51,.06);
+}
+.p-narr{
+  font-size:13px;color:var(--ink-2);
+  border-left:2px solid var(--gold);
+  padding:2px 0 2px 10px;
+  margin-bottom:12px;
+}
+.p-actions{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.p-actions .btn{width:100%}
+.p-hint{font-size:12px;color:var(--ink-3)}
+
+/* ---------- overlays: coach / victory / fatal ---------- */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(12,11,9,.78);
+  z-index:70;
+  display:flex;align-items:center;justify-content:center;
+  padding:18px;
+}
+/* the UI hides overlays via the hidden ATTRIBUTE — an author display:flex overrides
+   [hidden]'s UA display:none, so all three overlays stacked a ~99% black wash over the
+   board ("i cant read the screen", 2026-07-02). This rule restores hidden's meaning. */
+.overlay[hidden]{display:none}
+.modal{
+  width:min(560px,94vw);
+  max-height:88vh;
+  overflow-y:auto;
+  background:var(--s2);
+  border:1px solid var(--line);
+  border-radius:var(--r-modal);
+  padding:22px 24px;
+}
+.modal h1{font-size:19px;margin:4px 0 10px}
+.modal h1 .hexmark{margin-right:6px}
+.modal p{font-size:14px;color:var(--ink-2);margin-bottom:10px}
+.modal .btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.coach-dots{display:flex;gap:6px;margin-top:14px}
+.coach-dots span{width:8px;height:8px;border-radius:50%;background:var(--s3);border:1px solid var(--line)}
+.coach-dots span.cur{background:var(--gold);border-color:var(--gold-hi)}
+
+/* victory report */
+.vic-label{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-bottom:12px}
+.vic-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:14px;
+}
+.vic-grid .cell{
+  background:var(--s1);
+  border:1px solid var(--line);
+  border-radius:var(--r-chip);
+  padding:8px 10px;
+}
+.vic-grid .cell .eyebrow{display:block}
+.vic-grid .cell .v{font-family:var(--mono);font-size:14px;color:var(--gold)}
+.vic-tablewrap{overflow-x:auto;margin-bottom:6px}
+table.vic{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+table.vic th,table.vic td{
+  text-align:right;
+  padding:5px 8px;
+  border-bottom:1px solid var(--line);
+  color:var(--ink-2);
+  white-space:nowrap;
+}
+table.vic th{color:var(--ink-3);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+table.vic td:first-child,table.vic th:first-child{text-align:left}
+table.vic td.z-Mauka{color:var(--mauka)}
+table.vic td.z-Kula{color:var(--kula)}
+table.vic td.z-Makai{color:var(--makai)}
+table.vic td.z-Universal{color:var(--uni)}
+
+/* fatal */
+#fatal .modal{border-color:var(--hewa)}
+#fatal h1{color:var(--hewa)}
+#fatal p{font-family:var(--mono);font-size:12px}
+
+/* ---------- narrow / iPad portrait ---------- */
+@media (max-width:980px){
+  #board{grid-template-columns:1fr}
+  #urail{order:2}
+  .season{display:none}
+  #panel{width:100vw;border-left:none}
+}
+@media (max-width:640px){
+  #topbar{gap:10px}
+  .studio{display:none}
+  .seed{display:none}
+  #moonlabel{white-space:normal}   /* "plays N" was clipping off the iPhone edge */
+  .card{width:66px;height:92px}
+  .vic-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}

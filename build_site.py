@@ -1076,6 +1076,20 @@ def main():
                 shutil.copytree(s, os.path.join(SITE, sub))
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
 
+    with _lane("sage_game"):
+        # [sage] publish the self-contained 2D SAGE education game at /sage/ (Jimmy 2026-07-03:
+        # the CF tunnel that served the game was flaky/down, breaking every public link -> host it
+        # on always-up GitHub Pages instead. Pure static (HTML/CSS/JS/JSON/images), no server.
+        _gsrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "game_sage")
+        if os.path.isdir(_gsrc):
+            _gdst = os.path.join(SITE, "sage")
+            if os.path.isdir(_gdst):
+                shutil.rmtree(_gdst, ignore_errors=True)
+            shutil.copytree(_gsrc, _gdst)
+            print("  + sage/: 2D SAGE game (%d card assets, static, always-up)"
+                  % len([f for f in os.listdir(os.path.join(_gsrc, "assets", "cards"))
+                         if f.endswith(".jpg")] if os.path.isdir(os.path.join(_gsrc, "assets", "cards")) else []))
+
     with _lane("king_public_system"):
         # [king-system] publish the public King System shell at /king/
         _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")

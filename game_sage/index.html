@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAGE · the ahupuaʻa game</title>
+<meta name="description" content="SAGE · the ahupuaʻa game — steward one ahupuaʻa across the 13-moon kaulana mahina cycle. Real practices, real funding pathways. TribeGameStudios · 12sgi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpolygon%20points='50,7%2088,28.5%2088,71.5%2050,93%2012,71.5%2012,28.5'%20fill='none'%20stroke='%23e3ad33'%20stroke-width='9'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/sage.css">
+</head>
+<body>
+
+<div id="selftest-banner" hidden></div>
+
+<header id="topbar">
+  <div class="brand" title="SAGE · the ahupuaʻa game — TribeGameStudios · 12sgi">
+    <span class="hexmark">⬡</span>
+    <div class="wordmark"><strong>SAGE</strong><span class="sub">the ahupuaʻa game</span></div>
+    <span class="studio eyebrow">TribeGameStudios · 12sgi</span>
+  </div>
+
+  <div class="moonwrap" title="the 13-moon kaulana mahina cycle — plant each card within one moon of its own">
+    <div id="moondots"></div>
+    <span id="moonlabel" class="mono">moon — of 13</span>
+  </div>
+
+  <div class="water" title="ahupuaʻa water budget — Kula and Makai plantings draw from it; Mauka plants draw none (upland forest catches rain) and each adds +400 gal/day of watershed capacity">
+    <span class="wicon">💧</span>
+    <div class="wbar"><div id="wfill"></div></div>
+    <span id="wtext" class="mono">— / — gal/day</span>
+  </div>
+
+  <div class="season mono" id="seasonstats" title="season totals — production books at each end of moon">$0 rev · $0 gwt · 0 jobs</div>
+
+  <div class="health" title="ahupuaʻa health — annual revenue + jobs×10000 + resilience of planted pono nodes. no hard loss; this is the score">
+    <span class="eyebrow">health</span>
+    <span id="score" class="mono">0</span>
+    <span id="wonmark" hidden title="aloha as completion — synergy achieved">✓</span>
+  </div>
+
+  <div class="seed eyebrow" title="deterministic shuffle — same seed, same game. set ?seed= in the URL to replay one">seed <span id="seedval" class="mono">—</span></div>
+
+  <div class="actions">
+    <button id="btn-end" class="btn gold" title="end this moon — planted nodes produce one moon of KPIs, hand refills to 7. key: E">end moon ▶</button>
+    <button id="btn-export" class="btn" title="feeds grant_generate.py — projections, assumptions stated">⬡ export KPIs</button>
+    <button id="btn-new" class="btn" title="fresh shuffle, fresh season — your current save is discarded (asks twice)">new game</button>
+    <button id="btn-sound" class="btn icon" title="sound — a small pluck on planting">🔇</button>
+    <button id="btn-log" class="btn icon" title="event log — every move, dispatch-style">▤</button>
+    <button id="btn-help" class="btn icon" title="how to play — the 4-step coach">?</button>
+  </div>
+</header>
+
+<div id="crisis-banner" hidden title="the Override joker was drawn — at the end of this moon, total resilience of planted pono nodes must hold or the weakest planted node reverts">
+  ★ Override — the system remembers. Resilience holds or the weakest falls.
+</div>
+
+<main id="main">
+  <div id="board">
+    <div id="bands"><!-- Mauka / Kula / Makai bands built by sage_ui.js --></div>
+    <aside id="urail">
+      <header>
+        <h2>Universal</h2>
+        <span class="desc">the whole ahupuaʻa</span>
+        <span id="uroll" class="roll mono">—</span>
+      </header>
+      <div class="chips" id="uchips"></div>
+    </aside>
+  </div>
+</main>
+
+<footer id="dock">
+  <div class="dockhead">
+    <span class="eyebrow">your hand · press 1–7 to select · click a card, then its node, to plant (kanu)</span>
+    <span id="deckcount" class="mono">deck — · discard —</span>
+  </div>
+  <div id="hand"></div>
+</footer>
+
+<div id="toast" class="mono" hidden></div>
+
+<aside id="logdrawer" aria-label="event log">
+  <header>
+    <span class="eyebrow">event log · dispatch-style</span>
+    <button id="log-close" class="btn icon" title="close the log (Esc)">✕</button>
+  </header>
+  <div id="loglist"></div>
+</aside>
+
+<div id="scrim" hidden></div>
+<aside id="panel" role="dialog" aria-label="node detail" hidden>
+  <button id="panel-close" class="btn icon" title="close (Esc)">✕</button>
+  <div id="panel-body"></div>
+</aside>
+
+<div id="coach" class="overlay" hidden></div>
+<div id="victory" class="overlay" hidden></div>
+<div id="fatal" class="overlay" hidden></div>
+
+<script src="js/sage_engine.js"></script>
+<script src="js/sage_ui.js"></script>
+</body>
+</html>

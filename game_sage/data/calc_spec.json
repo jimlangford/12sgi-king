@@ -1,0 +1,77 @@
+{
+ "source": "tools/grants/sage_calc.py",
+ "assumptions": {
+  "yield_basis": "modeled lbs/day per node at full deployment; zone factors from intensive-ag / agroforestry / aquaculture norms",
+  "water_basis": "gal/day per Maui County Bill 146 crop-water methodology (placeholder coefficients)",
+  "price_per_lb": {
+   "Kula": 3.5,
+   "Mauka": 2.0,
+   "Makai": 4.0,
+   "Universal": 3.0
+  },
+  "gwt_rate": 0.125,
+  "note": "PROJECTIONS, not actuals. Assumptions stated; refine with real crop data + HFEv4 T_ tables."
+ },
+ "zone_coef": {
+  "Mauka": {
+   "yield": 18,
+   "water": 120,
+   "resil": 80,
+   "fish": 0,
+   "jobs": 1.5
+  },
+  "Kula": {
+   "yield": 55,
+   "water": 240,
+   "resil": 60,
+   "fish": 6,
+   "jobs": 2.5
+  },
+  "Makai": {
+   "yield": 22,
+   "water": 90,
+   "resil": 55,
+   "fish": 40,
+   "jobs": 2.0
+  },
+  "Universal": {
+   "yield": 30,
+   "water": 150,
+   "resil": 70,
+   "fish": 10,
+   "jobs": 3.0
+  }
+ },
+ "price_per_lb": {
+  "Kula": 3.5,
+  "Mauka": 2.0,
+  "Makai": 4.0,
+  "Universal": 3.0
+ },
+ "gwt_rate": 0.125,
+ "moon_window": "1.0 + 0.10*(1 - abs((moon-7)/7.0)) rounded half-even to 3, or 1.0 if moon falsy",
+ "rounding": "python-half-even",
+ "game_rules": {
+  "hand_size": 7,
+  "plays_per_moon": 3,
+  "moons_per_cycle": 13,
+  "water_base_capacity": 500,
+  "mauka_watershed_bonus": 400,
+  "hewa_production_factor": 0.5,
+  "pono_moon_tolerance": 1,
+  "hina_bridge_enabled": true,
+  "hina_bridge_base_chance": 0.5,
+  "n54_gate": {
+   "per_zone_pono_min": 4
+  },
+  "crisis_threshold": "60 + 25*cycles_completed + 5*planted_count",
+  "_balance_note": "2026-07-02 winnability smoke fixes: (1) mauka_watershed_bonus 200->400; (2) Mauka plants EXEMPT from the water budget (upland forest catches rain, grows the shed) -- without this the game soft-locks needing water to plant the thing that makes water; (3) n54_gate universal_pono_min REMOVED -- the only Universal cards are the two jokers (N53 unplantable, N54 is the win card), so it was unsatisfiable. Gate = 4 pono per production zone (deck lock 18 Mauka / 18 Kula / 16 Makai + 2 jokers). (4) 2026-07-02 review: discards_per_moon=1 pressure valve — one free hand-discard per moon so a water-stuck hand can never freeze the deck (draw only fires when hand < 7).",
+  "mauka_water_exempt": true,
+  "discards_per_moon": 1
+ },
+ "_3d_note": "zone_coef/price/gwt/moon_window/rounding are PARITY-LOCKED to sage_calc.py and the future AC_SGI_Calculator; game_rules are the 2D game layer and free to tune.",
+ "_data_conventions": {
+  "governance_role": "'—' = not yet chartered in the civic canon (node_map/node_map_canonical.json status 'UNDEFINED - no name match'). Only 4 roles are EVIDENCED_BY_NAME: N01 Wildfire Resilience Lead, N02+N04 Carbon & Ecology Lead, N42 Water Innovation Lead. Never invent civic titles; UE5 F_SGI_Node treats '—' as absent, same as the UI.",
+  "card_identity": "suit/rank/card_name = James canon from node_map_canonical (N01-N13 Hearts A-K, N14-N26 Diamonds, N27-N39 Clubs, N40-N52 Spades; one-of-each 52-card deck + 2 jokers)."
+ }
+}
