@@ -35,6 +35,20 @@ services:
       <<: *common-env
       AUTH_SIGNING_SECRET: ${AUTH_SIGNING_SECRET:-dev-only-signing-secret-change-me}
       AUTH_DB_PATH: /data/db/govos_v2_auth.db
+      # OAuth — set in .env.v2 (gitignored).  Leave blank to disable the provider.
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      # Public URL of this auth service (used to build OAuth callback URIs).
+      AUTH_PUBLIC_URL: ${AUTH_PUBLIC_URL:-https://auth.12sgi.com}
+      # Console URL to redirect back to after sign-in (#token=... appended).
+      OAUTH_REDIRECT_BASE: ${OAUTH_REDIRECT_BASE:-https://12sgi.com/king/}
+      # Comma-separated owner allow-lists.
+      OWNER_GITHUB_LOGINS: ${OWNER_GITHUB_LOGINS:-jimlangford}
+      OWNER_GOOGLE_EMAILS: ${OWNER_GOOGLE_EMAILS:-}
+      # CORS origins for the console front-end.
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://jimlangford.github.io,https://12sgi.com}
     volumes:
       - v2-db:/data/db
       - v2-dispatch:/data/dispatch
