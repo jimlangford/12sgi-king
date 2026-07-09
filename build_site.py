@@ -20,14 +20,6 @@ try:
     import civic_shell as _civic_shell   # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
 except Exception:
     _civic_shell = None
-# tenant_directory = the fresh-Yale-blue template for the Maui "every page" directory (single source =
-# tools/kilo-aupuni/tenant_directory.py). build_maui_nav_page() below is the ONLY writer of site/maui.html
-# in the standing pipeline — CI-safe: falls back to a skip (never a stale re-write) if unavailable
-# (2026-07-09 heal-audit fix: this used to be a second, independent generator that collided with it).
-try:
-    import tenant_directory as _tenant_directory
-except Exception:
-    _tenant_directory = None
 sys.path.insert(0, os.path.join(PROJECT, "tools", "ops"))
 try:
     import blog_engine as _blog_engine
@@ -167,6 +159,10 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                "orgs_maui.html", "orgs_honolulu.html", "orgs_hawaii.html", "orgs_kauai.html",
                # THE LOOP, ON THE RECORD — donor orgs joined to the meetings their names appear in (2,293 minutes)
                "connections_maui.html", "connections_honolulu.html", "connections_hawaii.html", "connections_kauai.html",
+               # nonprofits + subcontractor chain + the unified money-chain graph (Jimmy 2026-07-08/09) — built,
+               # verified, but never added to PAGES/EXTRA_PAGES, so they never reached SITE at all (the actual
+               # root cause of "I don't see all the pages for that tenant" — not a missing nav link, a missing copy).
+               "nonprofits_maui.html", "subcontracts_maui.html", "money_chain_maui.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
@@ -289,6 +285,10 @@ NAV_LABEL = {
     "king/civic/templates/state-law/State%20of%20Hawai%CA%BBi%20Law%20Index.html": "Hawaiʻi Law Index",
     "king/civic/templates/hawaii-crosswalk/Hawai%CA%BBi%20County%20Crosswalk.html": "Hawaiʻi County Crosswalk",
     "king/civic/templates/agenda-explainer/Agenda%20Explainer.html": "Agenda Explainer",
+    # nonprofits + subcontractor chain (Jimmy 2026-07-09) — the money-chain graph work
+    "money_chain_maui.html": "Money Chain — Maui (graph)",
+    "nonprofits_maui.html": "990 Nonprofits — Maui",
+    "subcontracts_maui.html": "Subcontractor Chain — Maui",
     # tenant overview pages — the per-government entry points (the Governments nav group)
     "tenant_12stonescharter.html": "⚖ 12 Stones Charter",
     "tenant_hi-maui.html": "Maui County", "tenant_hi-honolulu.html": "Honolulu",
@@ -317,7 +317,10 @@ NAV_GROUPS = [
     ("Follow the Money", ["county_dashboard.html", "patterns_money_x_votes.html", "contracts_x_donors.html",
                           "testimony_effect_map.html",
                           "lobby_money_watch.html", "maui_contract_awards.html", "statewide_money_patterns.html",
-                          "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html"]),
+                          "wildfire_recovery_watch.html", "rebuild_first.html", "money_holysee.html",
+                          # nonprofits + subcontractor chain (Jimmy 2026-07-09, "the new audit profiles") —
+                          # were built, verified, but never surfaced anywhere navigable. Now they are.
+                          "money_chain_maui.html", "nonprofits_maui.html", "subcontracts_maui.html"]),
     ("The Record", ["civic_daily.html", "n53_engine.html", "archive.html", "testimony_record.html", "testimony_money.html", "parity_check.html", "accountability_record.html",
                     "sole_source_watch.html", "commission_antitrust.html", "bill9_bill9_testimony_scan.html",
                     "great_mahele_overlay.html",
@@ -559,65 +562,24 @@ def inject_nav(html, current):
     return html
 
 
-# ── Maui tenant CUSTOM navigation (Jimmy 2026-07-08: "govOS is the navigation, independent of Maui …
-#    Maui tenant has a lot of pages and needs a custom navigation to show all all all of the pages").
-#    govOS (the injected top bar) is the tenant-INDEPENDENT outer nav / tenant switcher; THIS page is the
-#    Maui tenant's own full directory — every Maui page, grouped. Data-driven: only links pages that exist
-#    in SITE (no dead links), and a new Maui page joins a group + shows up automatically.
-MAUI_NAV_GROUPS = [
-    ("Start here", [("tenant_hi-maui.html", "Maui County overview"), ("county_dashboard.html", "County dashboard"),
-                    ("aloha_aina.html", "Aloha ʻĀina")]),
-    ("Who governs", [("officials_scorecard.html", "Officials scorecard"), ("officials_maui.html", "Officials"),
-                     ("rep_audit.html", "Audit by representative"), ("donor_bloc.html", "The donor bloc"),
-                     ("ka_leo_voice.html", "Ka Leo — the louder voice"), ("departments_maui.html", "All departments")]),
-    ("Departments", [("dept_council_maui.html", "Council"), ("dept_mayor_maui.html", "Mayor"),
-                     ("dept_management_maui.html", "Management"), ("dept_finance_maui.html", "Finance"),
-                     ("dept_public_works_maui.html", "Public Works"), ("dept_water_maui.html", "Water Supply"),
-                     ("dept_planning_maui.html", "Planning"), ("dept_environmental_maui.html", "Environmental Mgmt"),
-                     ("dept_fire_maui.html", "Fire & Public Safety"), ("dept_police_maui.html", "Police"),
-                     ("dept_prosecutor_maui.html", "Prosecuting Attorney"), ("dept_parks_maui.html", "Parks & Rec"),
-                     ("dept_housing_maui.html", "Housing & Human Concerns"), ("dept_agriculture_maui.html", "Agriculture"),
-                     ("dept_transportation_maui.html", "Transportation"), ("dept_liquor_maui.html", "Liquor Control"),
-                     ("dept_personnel_maui.html", "Personnel Services"), ("dept_corp_counsel_maui.html", "Corporation Counsel")]),
-    ("Follow the money", [("money_behind_officials.html", "Money behind officials"), ("money_maui.html", "Campaign money"),
-                          ("realestate_maui.html", "Real-estate money"), ("maui_contract_awards.html", "Contract awards"),
-                          ("federal_money.html", "Federal dollars")]),
-    ("Money × votes", [("contracts_x_donors.html", "Contracts × donors"), ("testifiers_maui.html", "Who testifies × money"),
-                       ("testimony_effect_map.html", "Testimony effect map"), ("lobby_money_watch.html", "Lobby + money"),
-                       ("parity_check.html", "Pairs that no longer answer")]),
-    ("Agendas & meetings", [("agendas_maui.html", "Upcoming agendas"), ("meetings_maui.html", "Meetings calendar"),
-                            ("archive_maui.html", "Meeting archive"), ("sunshine_maui.html", "Sunshine Law watch")]),
-    ("The record", [("council_votes_maui.html", "Council votes & dissent"), ("minutes_hi-maui.html", "Meeting minutes")]),
-    ("Entities & orgs", [("orgs_maui.html", "Organizations"), ("connections_maui.html", "Connections"),
-                         ("entity_maui_hotel_lodging_assoc_pac.html", "Hotel & Lodging Assoc PAC"),
-                         ("entity_maui_land_pineapple_co_inc_state_pac.html", "Maui Land & Pineapple PAC")]),
-    ("Charter & law", [("crosswalk_maui.html", "Charter ↔ law crosswalk")]),
-    ("Audit & oversight", [("audit_balance.html", "Audit balance"), ("govos_audit_hi-maui.html", "govOS audit"),
-                           ("oversight_hi-maui.html", "Oversight")]),
-    ("Maps", [("maui_parcel_map.html", "Parcel / TMK map")]),
-]
-
+# ── maui.html = tenant_hi-maui.html, byte-for-byte (2026-07-09, Jimmy: "I don't want Maui's cards
+#    different looking from other tenants, that is a system error based on the old MauiOS"). Maui used to
+#    get its OWN hand-rolled directory (MAUI_NAV_GROUPS, a second, Maui-only rendering path) — exactly the
+#    Maui-centric special-casing that was a leftover from the era when this whole system WAS "MauiOS".
+#    govOS treats every tenant identically: tenant_pages.py's directory_sections() (project tools/kilo-aupuni,
+#    the SAME function for all 6 tenants) is now the ONLY generator of a tenant's page directory. This
+#    function no longer renders anything of its own — it just mirrors site/tenant_hi-maui.html (already
+#    built by the normal "dashboards" pass above, from the SAME unified tenant_pages.py output) under the
+#    legacy "maui.html" URL so old bookmarks/links keep working.
 def build_maui_nav_page():
-    """THE SOLE WRITER of site/maui.html (2026-07-09 heal-audit fix — this function used to hand-roll its
-    own black-box HTML/CSS; it now supplies ONLY the data (existence-filtered, so no dead links ever ship)
-    and delegates the template to tenant_directory.page_html(), the single fresh-Yale-blue source shared
-    with the standalone reports/mauios copy. If that module is unavailable, SKIP rather than write a stale
-    or wrong design — a page that's momentarily missing is more honest than one that's silently reverted."""
-    secs, total = [], 0
-    for glabel, items in MAUI_NAV_GROUPS:
-        pairs = [(lbl, p) for (p, lbl) in items if os.path.exists(os.path.join(SITE, p))]
-        total += len(pairs)
-        if pairs:
-            secs.append((glabel, pairs))
-    if _tenant_directory is None:
-        print("  ! maui.html SKIPPED: tenant_directory module unavailable (not overwriting with a stale design)")
+    src = os.path.join(SITE, "tenant_hi-maui.html")
+    if not os.path.exists(src):
+        print("  ! maui.html SKIPPED: site/tenant_hi-maui.html not built yet (dashboards pass didn't run first)")
         return
-    body = _tenant_directory.page_html(secs)
-    body = ensure_civic_chrome(inject_nav(body, "tenant_hi-maui.html"))
+    body = open(src, encoding="utf-8", errors="replace").read()
     with open(os.path.join(SITE, "maui.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(body)
-    print("  + maui.html: Maui tenant directory (fresh Yale-blue, single source=tenant_directory.py) — %d pages in %d groups"
-          % (total, len(secs)))
+    print("  + maui.html: mirrors tenant_hi-maui.html verbatim (%d bytes) — no separate Maui rendering path" % len(body))
 
 
 # ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
