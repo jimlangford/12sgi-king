@@ -32,6 +32,8 @@ HST     = timezone(timedelta(hours=-10))
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
     ("aloha_aina.html",                  "Aloha ʻĀina",                  "The land is chief. How the open record becomes the land's legal shield - food security as land vitality, sourced from 57 certified operations across six islands, widened back into the living ecosystem. He aliʻi ka ʻāina, he kauā ke kanaka."),
+    ("rep_audit.html",                   "Audit by Representative",      "For each Maui County Council member - how their recorded behavior (votes, the money behind them, recusals) lines up against the will of the voters they represent. The overlapping money-and-votes logic as a graph. Sourced questions for the Board of Ethics, never verdicts."),
+    ("donor_bloc.html",                  "The Donor Bloc",                "Which donor and vendor entities fund multiple Council members at once - a graph (Neo4j) of the shared-money network, mapped to real parcels those entities hold. Council votes are near-unanimous almost always; the money network is the sourced pattern here, not vote coordination."),
     ("civic_daily.html",                 "Today's Civic Agenda",         "Today's Maui meetings before they happen - HST times, agenda items, what to ask, how to testify - bracketed by the night's moon prayers. Refreshed each sunrise. Public records (Legistar)."),
     ("county_dashboard.html",            "Maui County Dashboard",        "Coverage map + lens activity + money trail across every watcher."),
     ("accountability_record.html",       "Accountability Record",        "Public record: corruption rankings, federal convictions (Stant/Choy/English/Cullen), reforms recommended vs enacted."),
@@ -143,6 +145,9 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # county 'Who governs' rosters — sourced from each council's official site (2026-06-16)
                "officials_honolulu.html", "officials_hawaii.html", "officials_kauai.html", "officials_nyc.html",
                "officials_maui.html", "officials_nys.html",
+               # per-representative silencing audit (rep_audit.py) — one console per Maui council member, reached from rep_audit.html
+               "rep_batangan.html", "rep_cook.html", "rep_johnson.html", "rep_lee.html", "rep_paltin.html",
+               "rep_rawlins-fernandez.html", "rep_sinenci.html", "rep_sugimura.html", "rep_uu-hodgins.html",
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
                "money_hawaii.html", "money_kauai.html", "money_maui.html",
                # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
@@ -341,39 +346,41 @@ NAV_GROUPS = [
                        "crosswalk_paris.html", "crosswalk_dubai.html"]),
 ]
 NAV_CSS = ("<style>"
-    ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:54px;"
-    "padding:0 18px;background:#0b0f0d;border-bottom:1px solid rgba(217,178,76,.26);"
-    "font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;font-size:13px;box-shadow:0 1px 0 rgba(0,0,0,.4)}"
+    "html{background:#081420}body{background:#081420;color:#eaf2fc}"
+    ".govos-nav{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:2px;height:56px;"
+    "padding:0 18px;background:rgba(11,28,46,0.72);border-bottom:1px solid rgba(90,151,230,.24);"
+    "-webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15);"
+    "font-family:-apple-system,'SF Pro Text','Segoe UI Variable Text','Segoe UI',system-ui,Roboto,sans-serif;font-size:13px}"
     ".govos-nav *{box-sizing:border-box}"
     ".gn-brand{display:flex;align-items:center;gap:9px;text-decoration:none;margin-right:16px;white-space:nowrap}"
-    ".gn-brand .mk{color:#d9b24c;font-size:17px;line-height:1}"
-    ".gn-brand b{color:#efe9da;font-weight:600;font-size:15px;letter-spacing:.2px}"
-    ".gn-brand .sub{color:#8a8674;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;border-left:1px solid #34301f;padding-left:9px}"
-    ".gn-here{font-size:11px;color:#8a8674;margin-right:12px;white-space:nowrap;align-self:center}.gn-here b{color:#d9b24c}"
+    ".gn-brand .mk{color:#5a97e6;font-size:17px;line-height:1}"
+    ".gn-brand b{color:#eaf2fc;font-weight:700;font-size:15px;letter-spacing:.2px}"
+    ".gn-brand .sub{color:#e3ad33;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;border-left:1px solid #1f3d5f;padding-left:9px}"
+    ".gn-here{font-size:11px;color:#6d89ab;margin-right:12px;white-space:nowrap;align-self:center}.gn-here b{color:#5a97e6}"
     ".gn-menu{display:flex;align-items:center;gap:1px;flex:1}"
     ".gn-group{position:relative}"
-    ".gn-top{display:flex;align-items:center;gap:6px;background:none;border:0;color:#cfc9b6;font:inherit;font-size:13px;padding:8px 12px;border-radius:7px;cursor:pointer}"
-    ".gn-top .ar{font-size:9px;color:#8a8674}"
-    ".gn-top:hover,.gn-group:hover .gn-top{color:#efe9da;background:rgba(255,255,255,.045)}"
-    ".gn-top.active{color:#f4c95d}"
-    ".gn-panel{position:absolute;top:calc(100% + 5px);left:0;min-width:240px;background:#121714;border:1px solid #2a2f29;"
-    "border-radius:11px;padding:6px;box-shadow:0 16px 38px rgba(0,0,0,.55);display:none;flex-direction:column;gap:1px;z-index:50}"
+    ".gn-top{display:flex;align-items:center;gap:6px;background:none;border:0;color:#a7c0dd;font:inherit;font-size:13px;padding:8px 12px;border-radius:9px;cursor:pointer;transition:.16s}"
+    ".gn-top .ar{font-size:9px;color:#6d89ab}"
+    ".gn-top:hover,.gn-group:hover .gn-top{color:#eaf2fc;background:rgba(47,116,208,.14)}"
+    ".gn-top.active{color:#5a97e6}"
+    ".gn-panel{position:absolute;top:calc(100% + 6px);left:0;min-width:244px;background:rgba(15,37,64,.94);border:1px solid rgba(90,151,230,.24);"
+    "border-radius:13px;padding:6px;box-shadow:0 16px 40px -10px rgba(0,0,0,.7);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);display:none;flex-direction:column;gap:1px;z-index:50}"
     ".gn-group:hover .gn-panel,.gn-group.open .gn-panel{display:flex}"
-    ".gn-panel a{display:block;color:#cfc9b6;text-decoration:none;padding:8px 11px;border-radius:6px;font-size:13px;white-space:nowrap}"
-    ".gn-panel a:hover{background:rgba(217,178,76,.1);color:#efe9da}"
-    ".gn-panel a.cur{color:#f4c95d;background:rgba(217,178,76,.13)}"
-    ".gn-link{color:#cfc9b6;text-decoration:none;padding:8px 12px;border-radius:7px}"
-    ".gn-link:hover{color:#efe9da;background:rgba(255,255,255,.045)}"
-    ".gn-link.cur{color:#f4c95d}"
-    ".gn-lead{color:#9fd9bf;font-weight:600;text-decoration:none;padding:8px 12px;border-radius:7px;margin-right:4px}"
-    ".gn-lead:hover{background:rgba(67,211,158,.12)}.gn-lead.cur{color:#c8efd9}"
-    ".gn-cta{margin-left:auto;background:#d9b24c;color:#0c100e;font-weight:600;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;white-space:nowrap}"
-    ".gn-cta:hover{background:#e7c361}"
-    ".gn-burger{display:none;margin-left:auto;background:none;border:0;color:#efe9da;font-size:21px;cursor:pointer;padding:4px 8px;line-height:1}"
+    ".gn-panel a{display:block;color:#a7c0dd;text-decoration:none;padding:8px 11px;border-radius:8px;font-size:13px;white-space:nowrap;transition:.14s}"
+    ".gn-panel a:hover{background:rgba(47,116,208,.18);color:#fff}"
+    ".gn-panel a.cur{color:#5a97e6;background:rgba(47,116,208,.15)}"
+    ".gn-link{color:#a7c0dd;text-decoration:none;padding:8px 12px;border-radius:9px}"
+    ".gn-link:hover{color:#eaf2fc;background:rgba(47,116,208,.14)}"
+    ".gn-link.cur{color:#5a97e6}"
+    ".gn-lead{color:#e3ad33;font-weight:600;text-decoration:none;padding:8px 12px;border-radius:9px;margin-right:4px}"
+    ".gn-lead:hover{background:rgba(227,173,51,.14)}.gn-lead.cur{color:#e3ad33}"
+    ".gn-cta{margin-left:auto;background:linear-gradient(180deg,#2f74d0,#00356b);color:#fff;font-weight:600;text-decoration:none;padding:9px 16px;border-radius:10px;font-size:13px;white-space:nowrap;border:1px solid #2f74d0}"
+    ".gn-cta:hover{background:linear-gradient(180deg,#5a97e6,#2f74d0)}"
+    ".gn-burger{display:none;margin-left:auto;background:none;border:0;color:#eaf2fc;font-size:21px;cursor:pointer;padding:4px 8px;line-height:1}"
     "@media(max-width:880px){"
     ".gn-burger{display:block}"
-    ".gn-menu{display:none;position:absolute;top:54px;left:0;right:0;flex-direction:column;align-items:stretch;"
-    "background:#0b0f0d;border-bottom:1px solid #2a2f29;padding:8px;gap:2px;max-height:82vh;overflow:auto}"
+    ".gn-menu{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;"
+    "background:rgba(11,28,46,0.97);border-bottom:1px solid rgba(90,151,230,.24);padding:8px;gap:2px;max-height:82vh;overflow:auto}"
     ".govos-nav.open .gn-menu{display:flex}"
     ".gn-top{width:100%;justify-content:space-between}"
     ".gn-panel{position:static;box-shadow:none;border:0;background:rgba(255,255,255,.03);min-width:0;margin:1px 0 3px 10px}"
@@ -552,6 +559,7 @@ MAUI_NAV_GROUPS = [
     ("Start here", [("tenant_hi-maui.html", "Maui County overview"), ("county_dashboard.html", "County dashboard"),
                     ("aloha_aina.html", "Aloha ʻĀina")]),
     ("Who governs", [("officials_scorecard.html", "Officials scorecard"), ("officials_maui.html", "Officials"),
+                     ("rep_audit.html", "Audit by representative"), ("donor_bloc.html", "The donor bloc"),
                      ("ka_leo_voice.html", "Ka Leo — the louder voice"), ("departments_maui.html", "All departments")]),
     ("Departments", [("dept_council_maui.html", "Council"), ("dept_mayor_maui.html", "Mayor"),
                      ("dept_management_maui.html", "Management"), ("dept_finance_maui.html", "Finance"),
@@ -753,43 +761,41 @@ def _ftm_script(prefix=""):
 # Cosmology/zone hexes are deliberately NOT remapped (Mauka #4ade80 · Kula #fbbf24 ·
 # Makai #38bdf8 · joker #9b8cff stay canon), so node/zone data colors are preserved.
 _RECOLOR = [
-    # backgrounds: dark -> white / near-white
-    ("#0c100e", "#ffffff"), ("#0c0b09", "#ffffff"), ("#080c12", "#ffffff"), ("#0a0e14", "#ffffff"),
-    ("#0b0f0d", "#f3f7fc"), ("#0b0e14", "#f3f7fc"),
-    # panels: dark -> light blue
-    ("#121714", "#e7eef8"), ("#151d19", "#e7eef8"), ("#16140f", "#e7eef8"), ("#15110d", "#e7eef8"),
-    ("#1e1b14", "#dae5f3"), ("#1a1610", "#dae5f3"), ("#2a261c", "#ccddef"),
-    # lines/borders: dark -> light blue line
-    ("#2a2f29", "#bacde6"), ("#34301f", "#bacde6"), ("#243029", "#bacde6"),
-    # ink: cream/light -> navy
-    ("#efe9da", "#13243d"), ("#e8e4d8", "#13243d"), ("#eef3ef", "#13243d"), ("#f0ead8", "#13243d"),
-    ("#cfc9b6", "#41536b"), ("#bdb8a4", "#41536b"), ("#b3a98f", "#41536b"),
-    ("#9a957f", "#6d7f97"), ("#8a8674", "#6d7f97"), ("#756b56", "#6d7f97"), ("#9fb1a6", "#6d7f97"),
-    # accents: gold -> Yale navy/blue
-    ("#d9b24c", "#00356b"), ("#e3ad33", "#00356b"), ("#f4c95d", "#1259a3"), ("#f3d589", "#1259a3"),
-    ("#e7c361", "#1259a3"), ("#f0cf7a", "#1259a3"),
-    # aloha teal / sea accents -> new ok-green / accent
-    ("#9fd9bf", "#1f8a5b"), ("#c8efd9", "#1f8a5b"), ("#e3ecdf", "#41536b"), ("#5fc0d8", "#1259a3"), ("#3a8fb7", "#00356b"),
-    # moon/Po offering: light-purple TEXT (unreadable on the new white bg) -> readable dark indigo;
-    # purple border/bg -> readable indigo on a faint light tint. (Jimmy: "gold and purple is hard to read".)
-    ("#ecdfff", "#2e2a5c"), ("#efe4ff", "#2e2a5c"), ("#cdb4f0", "#5b5fb0"),
-    ("rgba(205,180,240", "rgba(91,95,176"),
-    # stray cream/ivory texts the first pass missed -> navy
-    ("#f4eeda", "#13243d"), ("#f6f0dc", "#13243d"), ("#f4c95d", "#1259a3"),
-    # status: keep semantics
-    ("#6abf86", "#1f8a5b"), ("#56c08a", "#1f8a5b"), ("#d29922", "#b07d1a"),
-    ("#e06a4a", "#c0322c"), ("#e5736b", "#c0322c"),
-    # stray accents the scan caught on jurisdictions (green/orange) -> ok-green / gold
-    ("#43d39e", "#1f8a5b"), ("#e0863a", "#b8860b"),
-    # a11y: faint small-text was ~4.0:1 on white -> darken to clear WCAG AA 4.5:1 (runs LAST so it
-    # also catches the #6d7f97 produced by the ink pairs above). UI/UX audit item 13.
-    ("#6d7f97", "#5b6e86"),
-    # rgba tints (keep the alpha; swap the color): gold/teal -> navy/green
-    ("rgba(217,178,76", "rgba(0,53,107"), ("rgba(227,173,51", "rgba(0,53,107"),
-    ("rgba(159,217,191", "rgba(31,138,91"), ("rgba(67,211,158", "rgba(31,138,91"),
-    # light-on-dark hairline borders -> dark-on-light so they remain visible on white
-    ("rgba(255,255,255,.1)", "rgba(0,53,107,.12)"), ("rgba(255,255,255,.08)", "rgba(0,53,107,.1)"),
-    ("rgba(255,255,255,.06)", "rgba(0,53,107,.08)"), ("rgba(255,255,255,.045)", "rgba(0,53,107,.05)"),
+    # FRESH YALE BLUE (dark navy register, Jimmy 2026-07-08). Same source hexes; keep pages DARK.
+    # backgrounds: warm-dark -> deep navy
+    ("#0c100e", "#081420"), ("#0c0b09", "#081420"), ("#080c12", "#081420"), ("#0a0e14", "#081420"),
+    ("#0b0f0d", "#0b1c2e"), ("#0b0e14", "#0b1c2e"),
+    # panels: dark -> navy panel
+    ("#121714", "#0f2540"), ("#151d19", "#0f2540"), ("#16140f", "#0f2540"), ("#15110d", "#0f2540"),
+    ("#1e1b14", "#16324e"), ("#1a1610", "#16324e"), ("#2a261c", "#1f3d5f"),
+    # lines/borders: dark -> navy line
+    ("#2a2f29", "#1f3d5f"), ("#34301f", "#1f3d5f"), ("#243029", "#1f3d5f"),
+    # ink: cream/light stays LIGHT (light-on-dark) -> soft blue-white
+    ("#efe9da", "#eaf2fc"), ("#e8e4d8", "#eaf2fc"), ("#eef3ef", "#eaf2fc"), ("#f0ead8", "#eaf2fc"),
+    ("#cfc9b6", "#a7c0dd"), ("#bdb8a4", "#a7c0dd"), ("#b3a98f", "#a7c0dd"),
+    ("#9a957f", "#6d89ab"), ("#8a8674", "#6d89ab"), ("#756b56", "#6d89ab"), ("#9fb1a6", "#6d89ab"),
+    # accents: gold stays gold; bright gold -> bright Yale blue
+    ("#d9b24c", "#e3ad33"), ("#e3ad33", "#e3ad33"), ("#f4c95d", "#5a97e6"), ("#f3d589", "#5a97e6"),
+    ("#e7c361", "#5a97e6"), ("#f0cf7a", "#5a97e6"),
+    # aloha teal / sea -> ok-green / Yale blue
+    ("#9fd9bf", "#4bbf7b"), ("#c8efd9", "#4bbf7b"), ("#e3ecdf", "#a7c0dd"), ("#5fc0d8", "#5a97e6"), ("#3a8fb7", "#2f74d0"),
+    # moon/Po purple: keep readable ON DARK -> light indigo
+    ("#ecdfff", "#c9b8ff"), ("#efe4ff", "#c9b8ff"), ("#cdb4f0", "#b9a6ef"),
+    ("rgba(205,180,240", "rgba(201,184,255"),
+    # stray cream/ivory -> light ink
+    ("#f4eeda", "#eaf2fc"), ("#f6f0dc", "#eaf2fc"),
+    # status: keep semantics, readable on dark
+    ("#6abf86", "#4bbf7b"), ("#56c08a", "#4bbf7b"), ("#d29922", "#e3ad33"),
+    ("#e06a4a", "#f0663f"), ("#e5736b", "#f0663f"),
+    ("#43d39e", "#4bbf7b"), ("#e0863a", "#e3ad33"),
+    # faint small text on dark
+    ("#6d7f97", "#6d89ab"),
+    # rgba tints (keep alpha): gold stays gold; teal -> green
+    ("rgba(217,178,76", "rgba(227,173,51"),
+    ("rgba(159,217,191", "rgba(75,191,123"), ("rgba(67,211,158", "rgba(75,191,123"),
+    # light-on-dark hairlines: KEEP light-on-dark (Yale-blue tint) so they read on navy
+    ("rgba(255,255,255,.1)", "rgba(90,151,230,.16)"), ("rgba(255,255,255,.08)", "rgba(90,151,230,.13)"),
+    ("rgba(255,255,255,.06)", "rgba(90,151,230,.1)"), ("rgba(255,255,255,.045)", "rgba(90,151,230,.08)"),
 ]
 def recolor(text):
     """Color-only remap (case-insensitive on hexes). Never alters markup/JS/data."""
