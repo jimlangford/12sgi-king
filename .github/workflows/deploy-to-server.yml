@@ -1,9 +1,10 @@
 name: Deploy to elementlotus server (releases + atomic symlink)
 
+# RETIRED from auto-push (2026-07-09, James): elementlotus.com moved to WordPress.com hosting
+# (JRCSL_DOCTRINE.md SIV, 2026-06-19) - this SSH/rsync deploy target predates that decision and its
+# deploy secrets (SSH key, host, port) were never configured, so it failed on EVERY push, generating a
+# GitHub failure email each time. Kept as manual-only in case a real SSH target is ever wanted again.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch: {}
 
 permissions:
