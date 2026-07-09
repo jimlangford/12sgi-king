@@ -118,8 +118,8 @@ def page(src, recs, err, sysname):
                     "ever invented.</div>" % (esc(sysname), (" (%s)" % esc(err)) if err else ""))
     src_link = ('<a href="%s" target=_blank rel=noopener>%s &#8599;</a>' % (esc(surl), esc(sysname))) if surl else esc(sysname)
     html = ("<!doctype html><meta charset=utf-8><title>%s — Meeting minutes | govOS</title><style>"
-        "body{font-family:system-ui,Segoe UI,sans-serif;max-width:980px;margin:2.1rem auto;padding:0 1.1rem;color:#15212e}"
-        "a{color:#0b6bcb;text-decoration:none}a:hover{text-decoration:underline}"
+        "body{font-family:system-ui,Segoe UI,sans-serif;max-width:980px;margin:2.1rem auto;padding:0 1.1rem;color:#eaf2fc}"
+        "a{color:#5a97e6;text-decoration:none}a:hover{text-decoration:underline}"
         ".eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6b7a89}"
         "h1{font-size:1.6rem;margin:.2rem 0 .15rem}.sub{color:#56646f;font-size:.93rem;margin-bottom:1rem}"
         "table{border-collapse:collapse;width:100%%;font-size:.85rem;margin-top:.6rem}"

@@ -19,7 +19,7 @@ def page(slug, c, gen):
       "<title>%s — who governs | govOS</title><style>"
       "body{font-family:'Segoe UI',system-ui,sans-serif;max-width:900px;margin:1.3rem auto;padding:0 1rem;color:#13243d;background:#fff}"
       "h1{font-size:1.5rem;margin:.3rem 0}.sub{color:#41536b;font-size:.9rem;line-height:1.5}"
-      ".disc{background:#eef2f7;border:1px solid #bacde6;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0}"
+      ".disc{background:#0f2540;border:1px solid #1f3d5f;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0}"
       "table{border-collapse:collapse;width:100%%;font-size:.9rem;margin-top:.4rem}td,th{padding:.45rem .6rem;border-bottom:1px solid #e3e9f1;text-align:left}"
       ".d{font-family:Consolas,monospace;color:#1259a3;white-space:nowrap;width:1%%}.nm{font-weight:600;color:#00356b}"
       ".role{color:#1f8a5b;font-size:.82rem;font-family:Consolas,monospace}th{color:#6d7f97;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase}a{color:#1259a3}</style>"

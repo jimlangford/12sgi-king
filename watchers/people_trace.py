@@ -92,7 +92,7 @@ def page(slug,disp,tid,orgs,gen,mr,ao_po):
                   ", ".join("%s <span class=ti>(%s)</span>"%(esc(n),esc(t)) for n,t in sorted(off.items())[:8])+"</div>") if off else ""
         reg=oc_officers(o["name"])
         if reg:
-            off_line+=("<div class=ofx style='background:#eef2f7;border-color:#bacde6'>"
+            off_line+=("<div class=ofx style='background:#0f2540;border-color:#1f3d5f'>"
                        "<b>Registered officers (state registry):</b> "+
                        ", ".join("%s <span class=ti>(%s)</span>"%(esc(r.get('name')),esc(r.get('position') or 'officer')) for r in reg[:10])+"</div>")
         names=", ".join(esc(n) for n,_ in ppl[:6])+(" +%d more"%(len(ppl)-6) if len(ppl)>6 else "")

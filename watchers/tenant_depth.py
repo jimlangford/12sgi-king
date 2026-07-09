@@ -129,7 +129,7 @@ def _html(p):
             (" · +%d to Maui depth" % t["to_maui"]) if t["to_maui"] else " · at reference depth", cells))
     html = ("<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=600>"
         "<title>Tenant testimony depth</title><style>"
-        "body{font-family:system-ui,Segoe UI,sans-serif;max-width:1000px;margin:1.4rem auto;padding:0 1rem;color:#15212e}"
+        "body{font-family:system-ui,Segoe UI,sans-serif;max-width:1000px;margin:1.4rem auto;padding:0 1rem;color:#eaf2fc}"
         "h1{font-size:1.35rem;margin:.2rem 0}.sub{color:#5b6b78;font-size:.9rem;margin-bottom:1rem}"
         "table{border-collapse:collapse;width:100%%;font-size:.82rem}th,td{padding:.45rem .5rem;border-bottom:1px solid #e7edf2}"
         "th{text-align:left;color:#42535f;font-weight:600;font-size:.74rem}.m{color:#8b99a6;font-size:.72rem}"

@@ -60,7 +60,7 @@ def page(slug, gen, sm):
       ".kpi{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1rem 0}"
       ".kpi .n{font-family:Consolas,monospace;font-size:1.5rem;color:#00356b;font-weight:700}"
       ".kpi .l{font-size:.72rem;letter-spacing:.4px;text-transform:uppercase;color:#6d7f97}"
-      ".disc{background:#eef2f7;border:1px solid #bacde6;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0;line-height:1.5}"
+      ".disc{background:#0f2540;border:1px solid #1f3d5f;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0;line-height:1.5}"
       ".q{background:#fbf7ec;border:1px solid #e4d6a8;border-radius:10px;padding:.7rem 1rem;color:#5a4d22;font-size:.86rem;margin:.9rem 0;line-height:1.5}"
       ".re{background:#fdeeee;border:1px solid #e6bcbc;border-radius:10px;padding:.7rem 1rem;color:#7a3030;font-size:.86rem;margin:.9rem 0;line-height:1.5}"
       "a{color:#1259a3}</style>"

@@ -87,8 +87,8 @@ def render(tid,ms,feed_note):
         sect+="<details%s><summary>%s · %d meetings</summary><table><tbody>%s</tbody></table></details>"%(" open" if y>=today[:4] else "",y,len(rowsy),items)
     fut="".join("<li>%s — %s</li>"%(esc(m["date"]),esc(m["body"])) for m in sorted(future,key=lambda x:x["date"])[:25])
     html=("<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=600><title>%s — meetings calendar | govOS</title>"
-      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:960px;margin:2rem auto;padding:0 1.1rem;color:#15212e}"
-      "a{color:#0b6bcb}h1{font-size:1.5rem;margin:.2rem 0}.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6b7a89}"
+      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:960px;margin:2rem auto;padding:0 1.1rem;color:#eaf2fc}"
+      "a{color:#5a97e6}h1{font-size:1.5rem;margin:.2rem 0}.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6b7a89}"
       ".sub{color:#56646f;font-size:.9rem;margin:.3rem 0 1rem}details{border:1px solid #e7edf2;border-radius:10px;margin:.4rem 0;padding:.2rem .6rem}"
       "summary{cursor:pointer;font-weight:600;padding:.4rem 0}table{border-collapse:collapse;width:100%%;font-size:.85rem}"
       "td{padding:.3rem .5rem;border-bottom:1px solid #f0f3f6}.d{color:#42535f;white-space:nowrap;width:6rem}"
@@ -123,9 +123,9 @@ def main():
     cards="".join("<a class=card href='meetings_%s.html'><h3>%s</h3><div class=m>%d meetings · %d bodies<br>%s · %d upcoming</div></a>"
                   %(esc(s["tenant"]),esc(s["name"]),s["meetings"],s["bodies"],esc(s["span"]),s["future"]) for s in summ)
     hub=("<!doctype html><meta charset=utf-8><title>govOS — meetings calendar (all governments)</title>"
-      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.1rem;color:#15212e}a{color:#0b6bcb;text-decoration:none}"
+      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.1rem;color:#eaf2fc}a{color:#5a97e6;text-decoration:none}"
       "h1{font-size:1.5rem}.sub{color:#56646f;font-size:.92rem;margin-bottom:1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem}"
-      ".card{display:block;border:1px solid #e1e7ec;border-radius:13px;padding:1rem;background:#fafcfe}.card h3{margin:.1rem 0 .4rem}.m{color:#6b7a89;font-size:.83rem}</style>"
+      ".card{display:block;border:1px solid #e1e7ec;border-radius:13px;padding:1rem;background:#0b1c2e}.card h3{margin:.1rem 0 .4rem}.m{color:#6b7a89;font-size:.83rem}</style>"
       "<h1>Meetings calendar — every government</h1>"
       "<div class=sub>Every digitized public meeting we track, from the earliest record forward to scheduled future meetings. "
       "Pick a government. Generated %s · sourced from each jurisdiction's official system.</div><div class=grid>%s</div>"%(esc(gen),cards))

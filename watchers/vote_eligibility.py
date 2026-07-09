@@ -83,8 +83,8 @@ def main():
     os.makedirs(M,exist_ok=True)
     open(os.path.join(M,"bfed_eligibility_today.html"),"w",encoding="utf-8").write(
         "<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=300><title>BFED - who may vote | govOS</title>"
-        "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.1rem;color:#15212e}"
-        "a{color:#0b6bcb}.eh{font-size:1.25rem;color:#1f6b4a;margin:.2rem 0}.esub{color:#56646f;font-size:.86rem;margin:.4rem 0 1rem}"
+        "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.1rem;color:#eaf2fc}"
+        "a{color:#5a97e6}.eh{font-size:1.25rem;color:#1f6b4a;margin:.2rem 0}.esub{color:#56646f;font-size:.86rem;margin:.4rem 0 1rem}"
         ".elig{border-left:3px solid #1f9d55;background:#f3faf5;border-radius:0 10px 10px 0;padding:.7rem 1rem;margin:.6rem 0}"
         ".ei{font-weight:650;font-size:.9rem;margin-bottom:.3rem}.eq{color:#2c4a3a;font-size:.92rem;line-height:1.5}</style>"+html)
     if priv:

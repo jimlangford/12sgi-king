@@ -75,8 +75,8 @@ def main():
         pat="<li>No vendor↔member tie has recurred across the scanned window yet — patterns surface as more meetings (forward + back) are processed.</li>"
     rank="".join("<li>%s — touched %d scanned meetings with a donor-tied party</li>"%(esc(m),len(mem_meetings[m])) for m in mem_rank[:9])
     html=("<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=600><title>Agenda patterns — forward & back | govOS</title>"
-      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.1rem;color:#15212e}"
-      "a{color:#0b6bcb}h1{font-size:1.45rem;margin:.2rem 0}h2{font-size:1.05rem;color:#1f6b4a;margin:1.3rem 0 .3rem}"
+      "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.1rem;color:#eaf2fc}"
+      "a{color:#5a97e6}h1{font-size:1.45rem;margin:.2rem 0}h2{font-size:1.05rem;color:#1f6b4a;margin:1.3rem 0 .3rem}"
       ".eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6b7a89}.sub{color:#56646f;font-size:.9rem;margin:.3rem 0 1rem}"
       "li{margin:.3rem 0;font-size:.9rem;line-height:1.45}.meter{color:#8b99a6;font-size:.82rem}</style>"
       "<div class=eyebrow><a href='agenda_explainer.html'>govOS · agenda explainer</a> · <a href='meetings_calendar.html'>calendar</a></div>"
