@@ -1,0 +1,609 @@
+MINUTES | hi-maui | County Council Meeting | 2026-06-19
+SOURCE: https://mauicounty.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5900,plainText=false)
+STATUS: civicclerk-pdf
+SOURCE_TYPE: sourced
+------------------------------------------------------------
+
+ 1 
+MAUI COUNTY COUNCIL 
+REGULAR COUNCIL MEETING 
+MINUTES 
+ 
+June 19, 2026 
+9:00 AM 
+ 
+Pursuant to §92-3.7, Hawaii Revised Statutes, the meeting was conducted as a 
+remote meeting by interactive conference technology, via Microsoft Teams, 
+http://tinyurl.com/2p9zhjr2. 
+ 
+In person testimony and viewing: Council Chamber, Kalana O Maui Building, 
+8th Floor, 200 S. High Street, Wailuku, Hawaii. 
+ 
+Video recording of meeting available at: http://mauicounty.portal.civicclerk.com 
+ 
+TIME MEETING CALLED TO ORDER: 9:03 a.m. 
+ 
+ROLL CALL 
+ 
+Councilmember Pres. Abs. Exc. Time(s) In/Out  
+(during meeting) 
+CM Kauanoe Batangan √   Exc.: 11:26 a.m. – 
+12:14 p.m. 
+Vice Chair Yuki Lei 
+Sugimura 
+√    
+CM Tamara Paltin √    
+CM Gabe Johnson  √    
+CM Keani Rawlins-
+Fernandez 
+√   Exc.:11:26 a.m. – 
+11:56 a.m. 
+CM Tom Cook √    
+CM Nohelani Uʻu-
+Hodgins 
+√   Exc.: 1:43 p.m. – 1:45 p.m. 
+CM Shane Sinenci √    
+Chair Alice L. Lee √    
+TOTAL PRESENT 9    
+ 
+ 
+  
+ 2 
+CEREMONIAL RESOLUTIONS: 
+ 
+RESO 26 -101 "RECOGNIZING JUNE 2026 AS MVPFAFF+ AND LGBTQIA+ 
+PRIDE MONTH IN THE COUNTY OF MAUI AND HONORING ALOHA MAUI 
+PRIDE" 
+ 
+ AYE NO EXC Time Deliberations Began 9:32 a.m. 
+CM Sinenci √   Time Motion Made 9:33 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci, 
+Cook, 
+Rawlins-
+Fernandez, 
+Johnson, 
+Paltin, 
+Sugimura, 
+and 
+Batangan 
+CM Johnson √   Time Vote Taken 9:50 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+COUNTY COMMUNICATIONS: 
+ 
+CC 26-19 COUNCIL CHAIR LEE, transmitting a proposed amendment to 
+Bill 119 (2025), entitled "A BILL FOR AN ORDINANCE AMENDING SECTION 
+9.36.040, MAUI COUNTY CODE, ON PENALTIES FOR PROHIBITED NOISE 
+VIOLATIONS". 
+Postponed, without objection, until Bill 119 (2025) was called up. 
+ 
+ 
+CC  26-20 BUDGET DIRECTOR, transmitting proposed amendments to: 
+ 
+1.  Bill 70, CD1, (2026), entitled " A BILL FOR AN ORDINANCE 
+AMENDING THE FISCAL YEAR 2026 BUDGET, INCREASING 
+ESTIMATED REVENUES, BOND/LAPSED BOND BY $4,000,000, 
+CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT OF 
+MANAGEMENT, WAILUKU -KAHULUI COMMUNITY PLAN AREA, 
+NEW APPROPRIATION FOR HĀLAU OF ʻŌIWI ART FOR $4,000,000, 
+AND APPENDIX C, DEPARTMENT OF MANAGEMENT, WAILUKU -
+ 3 
+KAHULUI COMMUNITY PLAN AREA, NEW APPROPRIATION FOR 
+HĀLAU OF ʻŌIWI ART FOR $4,000,000"; and 
+ 
+2. Bill 80 (2026), entitled " A BILL FOR AN ORDINANCE AMENDING 
+ORDINANCE 5818 (2025), RELATING TO THE ISSUANCE OF 
+GENERAL OBLIGATION BONDS OF THE COUNTY OF MAUI 
+ISSUANCE, SALE AND DELIVERY OF SAID BONDS (DEPARTMENT 
+OF MANAGEMENT)". 
+Postponed, without objection, until Bill 80 (2026) was called up. 
+ 
+ 
+COMMITTEE REPORTS: 
+ 
+CR  26-33 Recommending FIRST READING of Bill 13, CD1 (2026), to amend the 
+requirements for County transit bus advertising. 
+ 
+ AYE NO EXC Time Deliberations Began 11:34 a.m. 
+CM Sinenci √   Time Motion Made 11:34 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Johnson 
+CM Rawlins-
+Fernandez 
+  √ Seconder Cook 
+CM Johnson √   Time Vote Taken 11:36 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 7  2 MOTION PASSED  
+ 
+ 
+CR 26-34 Recommending the following: 
+ 
+1. FIRST READING of Bill 163, CD1 (2025), to amend the Maui 
+Island Plan’s Directed Growth Map C5 (Pulehu Road) to 
+include 163.443 acres located at Kahului, Hawai‘i, identified 
+for Real Property Tax purposes as a portion of Tax Map Key 
+(2) 3-8-006:004-0005, within the Urban Growth Boundary for 
+the Ho‘onani Village Mixed Use Development project; 
+ 
+2. FIRST READING of Bill 164, CD1 (2025), to amend the 
+Wailuku-Kahului Community Plan designation for the 
+163.443 acres from Agriculture to Business/Multi-Family for 
+the Ho‘onani Village Mixed Use Development project; and 
+ 
+3. PUBLIC HEARING be HELD on Maui on Bill 163, CD1 (2025), 
+before second and final reading.   
+ 4 
+ 
+ AYE NO EXC Time Deliberations Began 11:37 a.m. 
+CM Sinenci  √  Time Motion Made 11:38 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+  √ Seconder Sugimura 
+CM Johnson √   Time Vote Taken 11:53 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 6 1 2 MOTION PASSED  
+ 
+ 
+CR 26-35 Recommending FIRST READING of Bill 78, CD1 (2026), to allow for 
+the construction of two accessory dwelling units for residential use on 
+residentially zoned lots, consistent with Section 46 -4.8, Hawai ʻi Revised 
+Statutes.  
+ 
+ AYE NO EXC Time Deliberations Began 11:54 a.m. 
+CM Sinenci √   Time Motion Made 11:54 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 11:57 a.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26-36 Recommending FIRST READING of Bill 84 (2026), to restrict the 
+number and specify the locations of Bed and Breakfast Homes on Molokai. 
+ 
+ AYE NO EXC Time Deliberations Began 11:58 a.m. 
+CM Sinenci √   Time Motion Made 11:58 a.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Rawlins-
+Fernandez 
+CM Johnson √   Time Vote Taken 12:00 p.m. 
+ 5 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26-37 Recommending ADOPTION of Resolution 26-84, CD1, to refer to the 
+Maui Planning Commission proposed bills to amend the Pa ʻia-Haʻiku 
+Community Plan and to conditionally change the zoning for 40.392 acres in 
+Pāʻia, Hawaiʻi, for the EC Pāʻia Town Project.  The 40.392 acres is comprised of 
+five portions of a parcel identified for Real Property Tax purposes as Tax Map Key 
+(2) 2 -5-005:066 and a portion of a parcel identified for Real Property Tax 
+purposes as Tax Map Key (2) 2-5-005:067. 
+ 
+ AYE NO EXC Time Deliberations Began 12:00 p.m. 
+CM Sinenci √   Time Motion Made 12:00 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 12:09 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+CR 26-38 Recommending DISCHARGE from further consideration of Bill 119 
+(2025), to increase fines and establish penalties, including the forfeiture of sound 
+amplification systems, for vehicle noise violations. 
+ 
+CC 26-19 COUNCIL CHAIR LEE, transmitting a proposed amendment to 
+Bill 119 (2025), entitled "A BILL FOR AN ORDINANCE AMENDING 
+SECTION 9.36.040, MAUI COUNTY CODE, ON PENALTIES FOR 
+PROHIBITED NOISE VIOLATIONS". 
+ 
+ AYE NO EXC Time Deliberations Began 12:09 p.m. 
+CM Sinenci √   Time Motion Made 12:10 p.m. 
+CM Uʻu-Hodgins √   Motion  DISCHARGE 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 12:11 p.m. 
+ 6 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   √   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 12:12 p.m. 
+CM Sinenci √   Time Motion Made 12:12 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bill 
+119 on first 
+reading, as 
+amended 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+ √  Seconder Sugimura 
+CM Johnson  √  Time Vote Taken 12:33 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 12:13 p.m. 
+CM Sinenci √   Time Motion Made 12:13 p.m. 
+CM Uʻu-Hodgins √   Motion  AMEND per 
+CC 26-19 
+CM Cook √   Maker Lee 
+CM Rawlins-
+Fernandez 
+ √  Seconder Sugimura 
+CM Johnson  √  Time Vote Taken 12:20 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+RESOLUTIONS 
+ 
+RESO 26-102 "AUTHORIZING THE ACQUISITION OF 1.714 ACRES IDENTIFIED 
+FOR REAL PROPERTY TAX PURPOSES AS A PORTION OF TAX MAP 
+KEY (2) 2-3-007:037, SITUATED AT KULA, MAKAWAO, MAUI, HAWAIʻI, FOR UP 
+TO $470,000, EXCLUSIVE OF CLOSING COSTS AND EXPENSES, UNDER 
+SUBSECTION 3.44.015(C), MAUI COUNTY CODE" 
+ 7 
+ 
+ AYE NO EXC Time Deliberations Began 1:46 p.m. 
+CM Sinenci √   Time Motion Made 1:47 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Cook 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 2:03 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+RESO 26-103 "APPROVING THE FISCAL YEAR 2027 OPERATING BUDGET FOR 
+THE HAWAIʻI STATE ASSOCIATION OF COUNTIES" 
+ 
+ AYE NO EXC Time Deliberations Began 2:03 p.m. 
+CM Sinenci √   Time Motion Made 2:04 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sinenci 
+CM Johnson √   Time Vote Taken 2:05 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+RESO 26-104 "APPOINTING LISA GALLOWAY TO THE L ĀNAʻI PLANNING 
+COMMISSION" 
+ 
+ AYE NO EXC Time Deliberations Began 2:05 p.m. 
+CM Sinenci √   Time Motion Made 2:05 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Johnson 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 2:09 p.m. 
+CM Paltin √     
+VC Sugimura √     
+ 8 
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+RESO 26-105 "APPOINTING PAUL TAYLOR TO THE L ĀNAʻI PLANNING 
+COMMISSION" 
+ 
+ AYE NO EXC Time Deliberations Began 2:09 p.m. 
+CM Sinenci √   Time Motion Made 2:09 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Johnson 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 2:10 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+RESO 26-106 "AUTHORIZING THE GRANT OF A 15 -YEAR EXTENSION OF 
+LEASE TO MAUI ECONOMIC OPPORTUNITY, INC., FOR REAL PROPERTY 
+LOCATED IN MAKAWAO, MAUI, HAWAI ʻI, IDENTIFIED FOR REAL PROPERTY 
+TAX PURPOSES AS TAX MAP KEYS (2) 2 -4-006:005 AND (2)  2-4-032:098, 
+UNDER SECTIONS 3.40.200 AND 3.36.090, MAUI COUNTY CODE" 
+ 
+ AYE NO EXC Time Deliberations 
+Began 
+2:11 p.m. 
+CM Sinenci √   Time Motion Made 2:11 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT, as 
+amended 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 2:16 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   Recused   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 9 
+ AYE NO EXC Time Deliberations 
+Began 
+2:11 p.m. 
+CM Sinenci √   Time Motion Made 2:12 p.m. 
+CM Uʻu-Hodgins √   Motion  AMEND, 
+SUSPEND 
+Rule 19 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Cook 
+CM Johnson √   Time Vote Taken 2:16 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan   Recused   
+Chair Lee √     
+TOTAL VOTES 8  1 MOTION PASSED  
+ 
+ 
+RESO 26-107 "AUTHORIZING THE ACQUISITION OF A CONDOMINIUM UNIT 
+IDENTIFIED FOR REAL PROPERTY TAX PURPOSES AS TAX MAP 
+KEY (2) 4-3-006-004:0140 LOCATED IN LAHAINA, HAWAI ʻI, FOR AN AMOUNT 
+NOT TO EXCEED $278,000, EXCLUSIVE OF CLOSING COSTS AND EXPENSES, 
+UNDER SUBSECTION 3.44.015(C), MAUI COUNTY CODE" 
+2:17 p.m. – Postpone until 7/7/2026 Council Meeting. 
+ 
+ 
+RESO 26-108 "APPROVING A TIME EXTENSION FOR THE MAUI PLANNING 
+COMMISSION TO TRANSMIT ITS FINDINGS AND RECOMMENDATIONS FOR 
+THE SOUTH MAUI COMMUNITY PLAN UPDATE TO THE COUNCIL UNDER 
+SUBSECTION 2.80B.090(C), MAUI COUNTY CODE" 
+ 
+ AYE NO EXC Time Deliberations Began 2:19 p.m. 
+CM Sinenci √   Time Motion Made 2:19 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Paltin 
+CM Rawlins-
+Fernandez 
+√   Seconder Sugimura 
+CM Johnson √   Time Vote Taken 2:21 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+ 10 
+RESO 26-109 "URING THE MAYOR TO SUBMIT A RESOLUTION GRANTING A 
+LONG-TERM LEASE TO M ĀLAMA KAKANILUA TO PRESERVE AND PROTECT 
+THE WAIʻALE CULTURAL PRESERVE" 
+ 
+ AYE NO EXC Time Deliberations Began 2:22 p.m. 
+CM Sinenci √   Time Motion Made 2:22 p.m. 
+CM Uʻu-Hodgins √   Motion  ADOPT 
+CM Cook √   Maker Sinenci 
+CM Rawlins-
+Fernandez 
+√   Seconder Johnson 
+CM Johnson √   Time Vote Taken 2:23 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+ORDINANCES 
+ 
+BILL 94 (2026)  "A BILL FOR AN ORDINANCE TO CHANGE ZONING FROM R-2 
+RESIDENTIAL DISTRICT TO P -1 PUBLIC/QUASI-PUBLIC DISTRICT 
+(CONDITIONAL ZONING) FOR 3.255  ACRES AT LAHAINA, HAWAI ʻI, TAX MAP 
+KEYS (2) 4-5-002:005 AND 006 (LAHAINA UNITED METHODIST CHURCH)" 
+2:33 p.m.: Referred to the Disaster Recovery, International Affairs, and Planning  
+Committee. 
+ 
+ 
+BILLS FOR SECOND AND FINAL READING: 
+ 
+BILL 69 (2026) "A BILL FOR AN ORDINANCE AMENDING 
+SUBSECTION 3.36.190, MAUI COUNTY CODE, REGARDING UPFRONT 
+DISBURSEMENTS AND INSTALLMENT PAYMENTS FOR GRANT RECIPIENTS" 
+ 
+BILL 83, CD1 (2026)   "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, DEPARTMENT OF ENVIRONMENTAL MANAGEMENT, 
+WASTEWATER ADMINISTRATION PROGRAM – SEWER FUND, ADD AN 
+APPROPRIATION FOR TRANSFER TO THE OPEN SPACE, NATURAL 
+RESOURCES, AND SCENIC VIEWS PRESERVATION FUND FOR TMK: (2) 3-8-
+005:023 IN THE AMOUNT OF $372,933, WASTEWATER OPERATIONS 
+PROGRAM – SEWER FUND, DECREASE CATEGORY B – OPERATIONS & 
+EQUIPMENT BY $372,933, APPENDIX A, PART II, OPEN SPACE, NATURAL 
+RESOURCES, CULTURAL RESOURCES, AND SCENIC VIEWS PRESERVATION 
+FUND, INCREASE ANTICIPATED REVENUES AND TOTAL BY $372,933" 
+ 
+ 11 
+BILL 92 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET, APPENDIX A, PART I, OFFICE OF THE MAYOR, NEW GRANT 
+APPROPRIATION FROM THE STATE OF HAWAIʻI DEPARTMENT OF BUSINESS, 
+ECONOMIC DEVELOPMENT, AND TOURISM, KONA LOW BUSINESS 
+RECOVERY GRANT PROGRAM IN THE AMOUNT OF $500,000" 
+ 
+BILL 93 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE FISCAL YEAR 
+2026 BUDGET FOR THE COUNTY OF MAUI, OFFICE OF THE MAYOR, 
+ADMINISTRATION PROGRAM, DELETE STEWARDSHIP AND MAINTENANCE 
+OF COUNTY-OWNED LAND BY $300,000, CAPITAL IMPROVEMENT PROJECTS, 
+EMERGENCY MANAGEMENT AGENCY, WAI LUKU-KAHULUI COMMUNITY 
+PLAN AREA, OTHER PROJECTS, GENERAL FUND, NEW APPROPRIATION FOR 
+CENTRAL MAUI CRITICAL WILDFIRE CORRIDOR FENCING FOR $300,000, 
+AND APPENDIX C, EMERGENCY MANAGEMENT AGENCY, WAILUKU-KAHULUI 
+COMMUNITY PLAN AREA, NEW APPROPRIATION FOR CENTRAL MAUI 
+CRITICAL WILDFIRE CORRIDOR FENCING FOR $300,000" 
+ 
+ AYE NO EXC Time Deliberations Began 2:34 p.m. 
+CM Sinenci √   Time Motion Made 2:36 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bills 
+69; 83, CD1; 
+92; and 93 
+on second 
+and final 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Johnson 
+CM Johnson √   Time Vote Taken 2:37 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+BILL 70, CD1  (2026) "A BILL FOR AN ORDINANCE AMENDING THE FISCAL 
+YEAR 2026 BUDGET, INCREASING ESTIMATED REVENUES, BOND/LAPSED 
+BOND BY $4,000,000, CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT OF 
+MANAGEMENT, WAILUKU -KAHULUI COMMUNITY PLAN AREA, NEW 
+APPROPRIATION FOR HĀLAU OF ʻŌIWI ART FOR $4,000,000, AND APPENDIX 
+C, DEPARTMENT OF MANAGEMENT, WAILUKU -KAHULUI COMMUNITY PLAN 
+AREA, NEW APPROPRIATION FOR HĀLAU OF ʻŌIWI ART FOR $4,000,000" 
+  
+ 12 
+ CC 26-20 BUDGET DIRECTOR, transmitting proposed amendments to: 
+1.  Bill 70, CD1, (2026), entitled " A BILL FOR AN ORDINANCE 
+AMENDING THE FISCAL YEAR 2026 BUDGET, INCREASING 
+ESTIMATED REVENUES, BOND/LAPSED BOND BY $4,000,000, 
+CAPITAL IMPROVEMENT PROJECTS, DEPARTMENT OF 
+MANAGEMENT, WAILUKU -KAHULUI COMMUNITY PLAN AREA, 
+NEW APPROPRIATION FOR HĀLAU OF ʻŌIWI ART FOR $4,000,000, 
+AND APPENDIX C, DEPARTMENT OF MANAGEMENT, WAILUKU -
+KAHULUI COMMUNITY PLAN AREA, NEW APPROPRIATION FOR 
+HĀLAU OF ʻŌIWI ART FOR $4,000,000"; and 
+ 
+2. Bill 80 (2026), entitled " A BILL FOR AN ORDINANCE AMENDING 
+ORDINANCE 5818 (2025), RELATING TO THE ISSUANCE OF 
+GENERAL OBLIGATION BONDS OF THE COUNTY OF MAUI 
+ISSUANCE, SALE AND DELIVERY OF SAID BONDS (DEPARTMENT 
+OF MANAGEMENT)". 
+ 
+BILL 80 (2026) "A BILL FOR AN ORDINANCE AMENDING ORDINANCE  5818 
+(2025), RELATING TO THE ISSUANCE OF GENERAL OBLIGATION BONDS OF 
+THE COUNTY OF MAUI ISSUANCE, SALE AND DELIVERY OF SAID BONDS 
+(DEPARTMENT OF MANAGEMENT)" 
+ 
+ AYE NO EXC Time Deliberations Began 2:37 p.m. 
+CM Sinenci √   Time Motion Made 2:38 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bills 
+70 CD1 & 80 
+on second 
+and final 
+reading 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Uʻu-Hodgins 
+CM Johnson √   Time Vote Taken 2:40 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ AYE NO EXC Time Deliberations Began 2:38 p.m. 
+CM Sinenci √   Time Motion Made 2:39 p.m. 
+CM Uʻu-Hodgins √   Motion  AMEND Bills 
+70, CD1 & 
+80 per 
+CC 26-20 
+ 13 
+CM Cook √   Maker Sugimura 
+CM Rawlins-
+Fernandez 
+√   Seconder Lee 
+CM Johnson √   Time Vote Taken 2:40 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 9   MOTION PASSED  
+ 
+ 
+BILL 88, CD1, FD1 (2026)  "A BILL FOR AN ORDINANCE AMENDING THE 
+COMPREHENSIVE ZONING ORDINANCE TO ESTABLISH THE H -3 AND H -4 
+HOTEL DISTRICTS" 
+ 
+ AYE NO EXC Time Deliberations Began 2:41 p.m. 
+CM Sinenci √   Time Motion Made 2:41 p.m. 
+CM Uʻu-Hodgins √   Motion  PASS Bill 88. 
+CD1, FD1 on 
+second and 
+final reading 
+CM Cook √   Maker Uʻu-Hodgins 
+CM Rawlins-
+Fernandez 
+ √  Seconder Cook 
+CM Johnson  √  Time Vote Taken 2:47 p.m. 
+CM Paltin √     
+VC Sugimura √     
+CM Batangan √     
+Chair Lee √     
+TOTAL VOTES 7 2  MOTION PASSED  
+ 
+ 
+TIME MEETING ADJOURNED:  2:48 p.m. 

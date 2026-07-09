@@ -31,6 +31,7 @@ HST     = timezone(timedelta(hours=-10))
 
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
+    ("aloha_aina.html",                  "Aloha ʻĀina",                  "The land is chief. How the open record becomes the land's legal shield - food security as land vitality, sourced from 57 certified operations across six islands, widened back into the living ecosystem. He aliʻi ka ʻāina, he kauā ke kanaka."),
     ("civic_daily.html",                 "Today's Civic Agenda",         "Today's Maui meetings before they happen - HST times, agenda items, what to ask, how to testify - bracketed by the night's moon prayers. Refreshed each sunrise. Public records (Legistar)."),
     ("county_dashboard.html",            "Maui County Dashboard",        "Coverage map + lens activity + money trail across every watcher."),
     ("accountability_record.html",       "Accountability Record",        "Public record: corruption rankings, federal convictions (Stant/Choy/English/Cullen), reforms recommended vs enacted."),
