@@ -39,7 +39,13 @@ PRIVATE_NAMES = ("prosecutor.py", "case_files.html", "recusal_evidence.html",  #
                  "beta.json", "stripe.json", "verified_sessions.json",  # beta config + Stripe keys + verified-status store — never public
                  "paid_orders.jsonl", "civic_quotes.jsonl", "fulfilled_orders.jsonl",  # paid-render ledgers (no PII) — owner-only
                  "civic_pricing.json", "grant_service_offerings.json", "agenda_post_policy.json", "publish_policy.json",  # pricing + grant-service offerings — keep out of the public repo
-                 "comfy_cloud.json", "opencorporates.json")  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
+                 "comfy_cloud.json", "opencorporates.json",  # API keys (ComfyUI Cloud, OpenCorporates) — never publish
+                 # Source .py watchers confirmed self-declared PRIVATE/owner-only whose exact phrasing
+                 # ("never public" without -ish, or PRIVATE/OWNER-ONLY separated by more than the regex
+                 # window) doesn't reliably trip _SELF_PRIVATE_MARKER -- listed explicitly as a second
+                 # layer on top of that regex (found 2026-07-09, same leak sweep as lead_dossier.py).
+                 "recusal_evidence.py", "daily_learnings.py", "facebook_dyi_ingest.py",
+                 "prosecutor_reddit_pull.py", "prosecutor_youtube_pull.py")
 
 def _known_secrets():
     """The ACTUAL secret VALUES, read at runtime from the local key files — NEVER hard-coded here
@@ -152,10 +158,26 @@ _GOOGLE_OAUTH    = re.compile(r"\bGOCSPX-[A-Za-z0-9_-]{10,}")                   
 # civic minutes text that has similar-looking short-word sequences.
 _ALL_PATTERNS    = [_STRIPE_SECRET, _DROPBOX_SECRET, _SUPABASE_SECRET, _FACEBOOK_SECRET,
                     _CLOUDFLARE_TOK, _GOOGLE_OAUTH]
+# A watcher marks ITSELF private in its own header comment/docstring, in the same convention
+# lead_dossier.py uses ("PRIVATE, OWNER-ONLY ... never published"). PRIVATE_NAMES above is a
+# hand-maintained list of PRIVATE OUTPUT filenames (recusal_evidence.html etc) — it was never
+# meant to, and structurally cannot, catch the SOURCE .py watcher that generates that output
+# (found 2026-07-09: 17 of 18 self-declared-private watchers were missing from PRIVATE_NAMES and
+# slipped into the public repo via sync_watchers.bat; only lead_dossier.py got caught, purely
+# because its filename happens to contain "dossier"). This scans the file's own declaration
+# instead of a filename list that always lags behind whoever writes the next private watcher.
+_SELF_PRIVATE_MARKER = re.compile(
+    r"PRIVATE.{0,100}OWNER-ONLY|OWNER-ONLY.{0,100}PRIVATE|"
+    r"never\s+(?:be\s+)?(?:public\b|publish(?:ed)?\b)",
+    re.I | re.S)
+
+
 def chk_no_leak():
     """No private back-end file or secret key may exist anywhere in the publish repo tree.
-    Scans both known runtime values (read from config files at check time) AND structural
-    patterns for Stripe, Dropbox, Supabase, Facebook, Cloudflare, Google OAuth, WordPress."""
+    Scans known runtime values, structural secret patterns (Stripe/Dropbox/Supabase/Facebook/
+    Cloudflare/Google OAuth/WordPress), AND every .py file's own header for a self-declared
+    PRIVATE/OWNER-ONLY/never-published marker — the last catches a private watcher regardless of
+    what it's named, instead of relying on a filename list someone has to remember to update."""
     hits = []
     secrets = _known_secrets()
     for root, dirs, files in os.walk(REPO):
@@ -173,6 +195,8 @@ def chk_no_leak():
                             hits.append(os.path.relpath(os.path.join(root, fn), REPO) +
                                         " (secret pattern: %s)" % pat.pattern[:30])
                             break  # one hit per file per pattern group is enough to flag
+                    if fn.endswith(".py") and _SELF_PRIVATE_MARKER.search(body[:1200]):
+                        hits.append(os.path.relpath(os.path.join(root, fn), REPO) + " (self-declared PRIVATE)")
                 except Exception:
                     pass
     if hits:
@@ -378,6 +402,11 @@ def chk_seed_parity():
 # independent copies of "what should this hex become" that can silently drift apart. Extend
 # _SINGLE_WRITER_FILES as new flagship pages are added.
 _SINGLE_WRITER_FILES = ["maui.html"]
+# NOTE: tenant_hi-maui.html is NOT in this list even though it's equally critical — it's written via
+# f"tenant_{tid}.html" (a dynamic filename), which this check's literal-string regex cannot see. Adding
+# it would report a trivial, unverified PASS (0 writers found, which technically satisfies "not >1").
+# Its actual protection is structural: exactly one function (tenant_pages.gen()) writes that pattern, and
+# maui.html now READS it rather than writing a second copy (verified byte-identical, 2026-07-09).
 _SCAN_ROOTS = [REPO, os.path.join(PROJ, "tools", "kilo-aupuni"), os.path.join(PROJ, "tools", "ops")]
 
 def _iter_py_files():
