@@ -20,6 +20,14 @@ try:
     import civic_shell as _civic_shell   # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
 except Exception:
     _civic_shell = None
+# tenant_directory = the fresh-Yale-blue template for the Maui "every page" directory (single source =
+# tools/kilo-aupuni/tenant_directory.py). build_maui_nav_page() below is the ONLY writer of site/maui.html
+# in the standing pipeline — CI-safe: falls back to a skip (never a stale re-write) if unavailable
+# (2026-07-09 heal-audit fix: this used to be a second, independent generator that collided with it).
+try:
+    import tenant_directory as _tenant_directory
+except Exception:
+    _tenant_directory = None
 sys.path.insert(0, os.path.join(PROJECT, "tools", "ops"))
 try:
     import blog_engine as _blog_engine
@@ -148,6 +156,7 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # per-representative silencing audit (rep_audit.py) — one console per Maui council member, reached from rep_audit.html
                "rep_batangan.html", "rep_cook.html", "rep_johnson.html", "rep_lee.html", "rep_paltin.html",
                "rep_rawlins-fernandez.html", "rep_sinenci.html", "rep_sugimura.html", "rep_uu-hodgins.html",
+               "rep_kama_former.html",   # former member (deceased Oct 2025) — her own record, kept separate
                # county campaign-money pages (sourced CSC donor totals + real-estate slice; honest contract-gap note)
                "money_hawaii.html", "money_kauai.html", "money_maui.html",
                # PUBLIC real-estate report — giving × recorded property sales, as questions + curse-breaker (2026-06-16)
@@ -589,36 +598,26 @@ MAUI_NAV_GROUPS = [
 ]
 
 def build_maui_nav_page():
+    """THE SOLE WRITER of site/maui.html (2026-07-09 heal-audit fix — this function used to hand-roll its
+    own black-box HTML/CSS; it now supplies ONLY the data (existence-filtered, so no dead links ever ship)
+    and delegates the template to tenant_directory.page_html(), the single fresh-Yale-blue source shared
+    with the standalone reports/mauios copy. If that module is unavailable, SKIP rather than write a stale
+    or wrong design — a page that's momentarily missing is more honest than one that's silently reverted."""
     secs, total = [], 0
     for glabel, items in MAUI_NAV_GROUPS:
-        cards = [('<a class="mn-card" href="%s">%s</a>' % (p, _esc(lbl)))
-                 for (p, lbl) in items if os.path.exists(os.path.join(SITE, p))]
-        total += len(cards)
-        if cards:
-            secs.append('<section class="mn-sec"><h2>%s <span class="mn-n">%d</span></h2><div class="mn-grid">%s</div></section>'
-                        % (_esc(glabel), len(cards), "".join(cards)))
-    body = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
-            '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<title>Maui County — every page | govOS</title><style>'
-            '.mn-wrap{max-width:1120px;margin:0 auto;padding:26px 20px 80px;font-family:"Segoe UI",system-ui,sans-serif}'
-            '.mn-head{padding:16px 0 22px;border-bottom:1px solid rgba(227,173,51,.25);margin-bottom:28px}'
-            '.mn-head h1{font-size:clamp(26px,5vw,38px);margin:0 0 8px;color:#e9dcc0}'
-            '.mn-head p{color:#b3a98f;margin:0;font-size:16px;max-width:60ch}'
-            '.mn-sec{margin:0 0 30px}'
-            '.mn-sec h2{font-size:14px;letter-spacing:.07em;text-transform:uppercase;color:#e3ad33;margin:0 0 12px;display:flex;align-items:center;gap:9px}'
-            '.mn-n{font:600 11px/1 Consolas,monospace;color:#8a7c60;background:rgba(227,173,51,.12);border-radius:20px;padding:3px 9px}'
-            '.mn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}'
-            '.mn-card{display:block;padding:13px 15px;background:#16130d;border:1px solid #2a241a;border-radius:10px;'
-            'color:#efe9da;text-decoration:none;font-size:14.5px;line-height:1.35;transition:border-color .14s,background .14s,transform .14s}'
-            '.mn-card:hover{border-color:#e3ad33;background:#1c1810;transform:translateY(-1px)}'
-            '</style></head><body><div class="mn-wrap">'
-            '<div class="mn-head"><h1>Maui County — every page</h1>'
-            '<p>The full Maui tenant directory — %d pages, grouped. Use the govOS bar above to switch to another government.</p></div>'
-            '%s</div></body></html>') % (total, "\n".join(secs))
+        pairs = [(lbl, p) for (p, lbl) in items if os.path.exists(os.path.join(SITE, p))]
+        total += len(pairs)
+        if pairs:
+            secs.append((glabel, pairs))
+    if _tenant_directory is None:
+        print("  ! maui.html SKIPPED: tenant_directory module unavailable (not overwriting with a stale design)")
+        return
+    body = _tenant_directory.page_html(secs)
     body = ensure_civic_chrome(inject_nav(body, "tenant_hi-maui.html"))
     with open(os.path.join(SITE, "maui.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(body)
-    print("  + maui.html: Maui tenant CUSTOM nav — %d pages in %d groups" % (total, len(secs)))
+    print("  + maui.html: Maui tenant directory (fresh Yale-blue, single source=tenant_directory.py) — %d pages in %d groups"
+          % (total, len(secs)))
 
 
 # ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
@@ -660,13 +659,18 @@ def _switcher_maps():
     _SWITCHER = (rev, byclass, treg, order)
     return _SWITCHER
 
+# DARK-REGISTER FIX (2026-07-09 heal-audit): was a light gray panel (#eef2f7 bg + white <select>s) that
+# reads as a stray bright box on every civic page now that NAV_CSS sets a global dark body — none of its
+# hex values overlapped build_site._RECOLOR's remap table, so the color-fix pass never touched it. Recolored
+# to the same fresh-navy glass register as NAV_CSS/tenant_directory.py.
 _SWITCH_CSS = ("<style id=tenant-switch-css>.tenant-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;"
-    "max-width:1100px;margin:10px auto 0;padding:9px 14px;background:#eef2f7;border:1px solid #bacde6;border-radius:11px;"
-    "font-family:'Segoe UI',system-ui,sans-serif}.tn-grp{display:flex;align-items:center;gap:6px}"
-    ".tn-lbl{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#5b6e86;font-weight:600}"
-    ".tenant-nav select{font-family:inherit;font-size:13px;color:#00356b;background:#fff;border:1px solid #bacde6;"
-    "border-radius:8px;padding:5px 9px;cursor:pointer;max-width:230px}.tenant-nav select:hover{border-color:#00356b}"
-    ".tn-here{font-size:11px;color:#41536b}.tn-here b{color:#00356b}</style>")
+    "max-width:1100px;margin:10px auto 0;padding:9px 14px;background:rgba(15,37,64,.7);border:1px solid #1f3d5f;border-radius:11px;"
+    "-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-family:'Segoe UI',system-ui,sans-serif}"
+    ".tn-grp{display:flex;align-items:center;gap:6px}"
+    ".tn-lbl{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#a7c0dd;font-weight:600}"
+    ".tenant-nav select{font-family:inherit;font-size:13px;color:#eaf2fc;background:#0f2540;border:1px solid #1f3d5f;"
+    "border-radius:8px;padding:5px 9px;cursor:pointer;max-width:230px}.tenant-nav select:hover{border-color:#5a97e6}"
+    ".tn-here{font-size:11px;color:#a7c0dd}.tn-here b{color:#5a97e6}</style>")
 
 def inject_switcher(html, current_file):
     """Inject the TENANT-AWARE pulldown nav (Jimmy 2026-06-16 #1): a 'Government' select that switches tenant —
@@ -761,6 +765,9 @@ def _ftm_script(prefix=""):
 # Cosmology/zone hexes are deliberately NOT remapped (Mauka #4ade80 · Kula #fbbf24 ·
 # Makai #38bdf8 · joker #9b8cff stay canon), so node/zone data colors are preserved.
 _RECOLOR = [
+    ("#16130d", "#0f2540"), ("#1c1810", "#16324e"), ("#2a241a", "#1f3d5f"), ("#2a2419", "#1f3d5f"),
+    ("#e0872f", "#e3ad33"), ("#3a2e20", "#0f2540"), ("#c3b79c", "#a7c0dd"), ("#e9dcc0", "#eaf2fc"),
+    ("#efe4c8", "#eaf2fc"), ("#d9c9a8", "#a7c0dd"), ("#c9b98f", "#a7c0dd"), ("#b8a67e", "#6d89ab"),
     # FRESH YALE BLUE (dark navy register, Jimmy 2026-07-08). Same source hexes; keep pages DARK.
     # backgrounds: warm-dark -> deep navy
     ("#0c100e", "#081420"), ("#0c0b09", "#081420"), ("#080c12", "#081420"), ("#0a0e14", "#081420"),
@@ -1537,10 +1544,13 @@ Sources are linked on every page.</div>
             if os.path.exists(_kr):
                 import subprocess as _sp
                 try:
-                    _sp.run([sys.executable, _kr], timeout=60, stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
-                    print("  + king_recolor: private/.dc pages kept Yale-blue (0 dark)")
-                except Exception:
-                    pass
+                    # HONEST LOG (2026-07-09 heal-audit fix): this used to discard real stdout and print a
+                    # hardcoded "(0 dark)" regardless of what actually happened. Show the script's real count.
+                    _kro = _sp.run([sys.executable, _kr], timeout=60, capture_output=True, text=True)
+                    _kline = (_kro.stdout or "").strip().splitlines()
+                    print("  + " + (_kline[-1] if _kline else "king_recolor: ran, no output"))
+                except Exception as _kre:
+                    print("  ! king_recolor FAILED: %s" % str(_kre)[:120])
 
     with _lane("public_api_sanitize"):
         # [build-aware API base] The generator bakes VBASE="/api" (same-origin = the PRIVATE King mirror on the
