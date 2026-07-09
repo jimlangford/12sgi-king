@@ -15,7 +15,9 @@ HST = timezone(timedelta(hours=-10))
 
 def esc(s): return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 def exists(fn): return os.path.exists(os.path.join(M, fn))
-import tenant_depth as TD   # one source of truth for the 8 testimony dimensions + per-tenant file map
+import tenant_depth as TD          # one source of truth for the testimony dimensions + per-tenant file map
+import tenant_directory as _tdir   # the fresh Yale-navy .govos design tokens — ONE shared register (2026-07-09)
+TD_CSS = _tdir.CSS
 def short(tid): return tid.replace("hi-", "").replace("ny", "ny")
 
 # The lens menu per tenant short-id: (label, filename). Filenames already produced by the
@@ -42,77 +44,64 @@ LENSES = {
     "ny": [("Upcoming agendas", "agendas_nyc.html")],
 }
 
-# DARK-REGISTER FIX (2026-07-09 heal-audit): this CSS used to assume a plain light body (bare `color`,
-# no `background`), which was safe until today's site-wide reskin (build_site.NAV_CSS now sets a GLOBAL
-# `body{background:#081420;color:#eaf2fc}` on every page inject_nav touches). Because this file had NO
-# <body> tag, inject_nav prepended the nav+NAV_CSS block IN FRONT of this file's own <style>, so this
-# file's later `body{color:#15212e}` cascade-won over NAV_CSS's color while the dark BACKGROUND stayed —
-# near-black text on a near-black background, confirmed live-broken on tenant_hi-maui.html and
-# tenants_hub.html. Fix: match the SAME fresh-navy register NAV_CSS/tenant_directory.py already use, and
-# add a real <body> tag (see gen()/build_hub() below) so inject_nav inserts the nav INSIDE it, never before.
-CSS = ("body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;max-width:980px;margin:2.2rem auto;"
-       "padding:0 1.1rem 4rem;color:#eaf2fc}"
-       "a{color:#5a97e6;text-decoration:none}a:hover{text-decoration:underline}"
-       ".eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6d89ab}"
-       "h1{font-size:1.7rem;margin:.2rem 0 .1rem;color:#eaf2fc}.sub{color:#a7c0dd;font-size:.95rem}"
-       ".grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;margin:1.3rem 0}"
-       ".card{border:1px solid #1f3d5f;border-radius:13px;padding:1rem 1.1rem;background:#0f2540}"
-       ".card h3{margin:.1rem 0 .3rem;font-size:1.05rem;color:#eaf2fc}.card .d{color:#a7c0dd;font-size:.82rem}"
-       ".pill{display:inline-block;font-size:.68rem;padding:.12rem .5rem;border-radius:99px;background:#1f3d5f;color:#a7c0dd;margin-left:.4rem}"
-       ".lens{display:flex;justify-content:space-between;padding:.5rem .2rem;border-bottom:1px solid #1f3d5f}"
-       ".pending{color:#6d89ab;font-style:italic;font-size:.8rem}"
-       # friendlier question-grid + depth bar
-       ".depth{display:flex;align-items:center;gap:.6rem;margin:.6rem 0 1rem;color:#a7c0dd;font-size:.9rem}"
-       ".bar{flex:0 0 160px;height:9px;border-radius:99px;background:#1f3d5f;overflow:hidden}"
-       ".bar span{display:block;height:100%;background:linear-gradient(90deg,#1f8a5b,#5a97e6)}"
-       ".qs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem;margin:1.1rem 0}"
-       ".q{display:block;border:1px solid #1f3d5f;border-radius:13px;padding:.9rem 1rem;background:#0f2540}"
-       ".q.off{background:#0b1c30;border-style:dashed;color:#6d89ab}"
-       ".ql{font-weight:650;font-size:1rem;color:#eaf2fc}.q.off .ql{color:#a7c0dd}"
-       ".qd{color:#a7c0dd;font-size:.8rem;margin:.2rem 0 .5rem}"
-       ".go{color:#5a97e6;font-size:.82rem;font-weight:600}"
-       ".meter{flex:0 0 56px;height:7px;border-radius:99px;background:#1f3d5f;overflow:hidden;display:inline-block}"
-       ".meter span{display:block;height:100%;background:linear-gradient(90deg,#1f8a5b,#5a97e6)}")
+# UNIFIED DESIGN (2026-07-09, Jimmy "rethought with the new audit profiles"): every tenant page now shares
+# ONE register — tenant_directory.CSS (the .govos tokens + .tile/.sec/.grid classes) + tenant_depth.PROFILE_CSS
+# (the .pcard audit-dimension cards). HUB_CSS below is the small addendum just for tenants_hub.html's
+# government-picker cards (name + code + progress bar), reusing the same custom properties.
+HUB_CSS = """
+.govos .gc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:20px 0}
+.govos .gcard{display:block;padding:16px 17px;border-radius:14px;border:1px solid var(--glass-line);
+  background:var(--glass-bg);box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(14px) saturate(1.15);
+  backdrop-filter:blur(14px) saturate(1.15);text-decoration:none;color:var(--ink);transition:.16s}
+.govos .gcard:hover{border-color:var(--blue-2);transform:translateY(-2px);color:#fff}
+.govos .gc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.govos .gc-name{font-weight:650;font-size:15px}
+.govos .bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:8px}
+.govos .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--ok),var(--blue-2))}
+.govos .gc-meta{color:var(--ink-dim);font-size:12.5px}
+"""
 
 def depth_of(tid):
     """(covered, total) civic questions answered for this tenant — shared with the hub + depth sweep."""
     covered = sum(1 for k, _l, _d in TD.DIMS if TD.cell_status(tid, k)[0] == "ok")
     return covered, len(TD.DIMS)
 
+# UNIFIED CARD DESIGN (2026-07-09, Jimmy "rethought with the new audit profiles"): every tenant page
+# renders through tenant_depth.profile_cards_html() — the SAME function maui.html's directory uses (via
+# tenant_directory.page_html's profile_html slot) — so there is exactly one audit-profile card design,
+# never two that can quietly drift apart. This page adds the fresh-navy .govos wrapper (tenant_directory.CSS)
+# + a lightweight "other pages" section from LENSES for pages outside the 12 core dimensions.
 def gen(t):
     os.makedirs(M, exist_ok=True)
     tid = t["id"]
-    cards = []
-    for key, label, desc in TD.DIMS:        # navigate by QUESTION, not filename
-        st, fn = TD.cell_status(tid, key)
-        if st == "ok":
-            href = fn.replace("/", "_")     # build_site flattens subdir paths when publishing
-            cards.append(f'<a class=q href="{esc(href)}"><div class=ql>{esc(label)}</div>'
-                         f'<div class=qd>{esc(desc)}</div><div class=go>View the record →</div></a>')
-        elif fn:                            # page exists but the record is still being gathered (honest, sourced)
-            href = fn.replace("/", "_")
-            cards.append(f'<a class=q href="{esc(href)}"><div class=ql>{esc(label)}</div>'
-                         f'<div class=qd>{esc(desc)}</div><div class=go>See the source · gathering →</div></a>')
-        else:
-            cards.append(f'<div class="q off"><div class=ql>{esc(label)}</div>'
-                         f'<div class=qd>{esc(desc)}</div>'
-                         f'<div class=pending>building — added as {esc(t["name"])}’s public records are ingested</div></div>')
-    covered, total = depth_of(tid); pct = round(100 * covered / total)
-    tag = "complete coverage" if covered >= total else f"{total - covered} more to full depth"
-    # real <html>/<head>/<body> structure (2026-07-09 heal-audit fix, see CSS comment above) so
-    # inject_nav's <body[^>]*> regex actually matches and inserts the nav INSIDE the page, not before it.
+    profile = TD.profile_cards_html(tid, esc=esc)
+    covered, total = depth_of(tid)
+    lens_items = []
+    for entry in LENSES.get(short(tid), []):
+        lbl, src_fn = entry[0], entry[1]
+        pub_fn = entry[2] if len(entry) > 2 else src_fn   # published (flattened) href when it differs
+        if exists(src_fn) or exists(pub_fn):
+            lens_items.append((lbl, pub_fn))
+    other = ""
+    if lens_items:
+        tiles = "".join('<a class="tile" href="%s"><span>%s</span><span class="go">&rarr;</span></a>'
+                        % (esc(fn), esc(lbl)) for lbl, fn in lens_items)
+        other = ('<section class="sec"><h2>Other pages <span class="n">%d</span></h2>'
+                '<div class="grid">%s</div></section>' % (len(lens_items), tiles))
+    # real <html>/<head>/<body> structure (2026-07-09 heal-audit fix) so inject_nav's <body[^>]*> regex
+    # matches and inserts the standing nav INSIDE the page, never prepended before a body-less doctype.
     html = (f"<!doctype html><html lang=en><head><meta charset=utf-8>"
             f"<meta name=viewport content='width=device-width,initial-scale=1'>"
-            f"<title>{esc(t['name'])} | govOS</title><style>{CSS}</style></head><body>"
+            f"<title>{esc(t['name'])} | govOS</title><style>{TD_CSS}{TD.PROFILE_CSS}</style></head>"
+            f"<body class=govos><div class=wrap>"
             f"<div class=eyebrow><a href='tenants_hub.html'>govOS</a> · tenant {esc(t['code'])}</div>"
             f"<h1>{esc(t['name'])}</h1>"
-            f"<div class=depth><span class=bar><span style='width:{pct}%'></span></span>"
-            f"<span><b>{covered} of {total}</b> civic questions answered · {tag}</span></div>"
-            f"<div class=sub>The public record for {esc(t['name'])}, organized by the questions that matter most. "
-            f"Each is framed for oversight, never accusation — and the prosecutorial files stay private.</div>"
-            f"<div class=qs>{''.join(cards)}</div>"
-            f"<p class=sub><a href='tenants_hub.html'>← all governments</a></p>"
-            f"</body></html>")
+            f"<p class=sub>The public record for {esc(t['name'])}, organized by the questions that matter most. "
+            f"Each is framed for oversight, never accusation — and the prosecutorial files stay private.</p>"
+            f"{profile}{other}"
+            f"<p class=sub style='margin-top:24px'><a href='tenants_hub.html'>&larr; all governments</a> "
+            f"&middot; <a href='maui.html'>Maui — every page &rarr;</a></p>"
+            f"</div></body></html>")
     with open(os.path.join(M, f"tenant_{tid}.html"), "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -124,26 +113,26 @@ def build_hub(ts):
     for t in ordered:
         covered, total = depth_of(t["id"]); pct = round(100 * covered / total)
         cards.append(
-            f'<a class=card href="tenant_{esc(t["id"])}.html"><h3>{esc(t["name"])}'
-            f'<span class=pill>{esc(t["code"])}</span></h3>'
-            f'<div class=depth style="margin:.3rem 0"><span class=meter><span style="width:{pct}%"></span></span>'
-            f'<span class=d>{covered}/{total} questions</span></div>'
-            f'<div class=d>Agendas, money, contracts, federal dollars — what you can see for {esc(t["name"])}.</div></a>')
+            f'<a class=gcard href="tenant_{esc(t["id"])}.html"><div class=gc-top>'
+            f'<span class=gc-name>{esc(t["name"])}</span><span class="pill">{esc(t["code"])}</span></div>'
+            f'<div class=bar><span style="width:{pct}%"></span></div>'
+            f'<div class=gc-meta>{covered}/{total} audit-profile questions answered</div></a>')
     gen_ts = datetime.now(HST).strftime("%Y-%m-%d %H:%M HST")
     # real <html>/<head>/<body> structure (2026-07-09 heal-audit fix, see CSS comment above)
     html = (f"<!doctype html><html lang=en><head><meta charset=utf-8>"
             f"<meta name=viewport content='width=device-width,initial-scale=1'>"
-            f"<title>govOS — Governments | Kilo Aupuni</title><style>{CSS}</style></head><body>"
-            f"<div class=eyebrow>govOS · Kilo Aupuni</div>"
-            f"<h1>Pick your government</h1>"
-            f"<div class=sub>One civic engine, many governments. Choose one to see its public record in plain words — "
+            f"<title>govOS — Governments | Kilo Aupuni</title><style>{TD_CSS}{HUB_CSS}</style></head>"
+            f"<body class=govos><div class=wrap>"
+            f"<div class=hero><div class=eyebrow>govOS &middot; Kilo Aupuni</div>"
+            f"<h1>Pick your <span class=u>government</span></h1>"
+            f"<p class=sub>One civic engine, many governments. Choose one to see its public record in plain words — "
             f"who governs, where the money comes from, who gets the contracts — each a question for oversight, "
-            f"never an accusation. The bar shows how complete each government’s record is; Maui is the deepest, "
-            f"and the others fill in as their public records are gathered.</div>"
-            f"<div class=grid>{''.join(cards)}</div>"
-            f"<p class=sub>Generated {esc(gen_ts)}. Facts and sourced questions only — never accusations. "
-            f"Prosecutorial files stay private.</p>"
-            f"</body></html>")
+            f"never an accusation. The bar shows how complete each government's audit profile is; Maui is the "
+            f"deepest, and the others fill in as their public records are gathered.</p></div>"
+            f"<div class=gc-grid>{''.join(cards)}</div>"
+            f"<p class=sub style='margin-top:20px'>Generated {esc(gen_ts)}. Facts and sourced questions only — "
+            f"never accusations. Prosecutorial files stay private.</p>"
+            f"</div></body></html>")
     with open(os.path.join(M, "tenants_hub.html"), "w", encoding="utf-8") as f:
         f.write(html)
 

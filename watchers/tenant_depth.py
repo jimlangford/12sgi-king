@@ -15,13 +15,17 @@ OUT = os.path.join(PROJECT, "reports", "_status")
 HST = timezone(timedelta(hours=-10))
 MIN_BYTES = 700          # below this = stub/placeholder, not real testimony
 
-# The 8 canonical testimony DIMENSIONS every tenant should answer (Maui answers ~all of them).
+# The canonical testimony DIMENSIONS every tenant should answer (Maui answers ~all of them).
+# nonprofits + subcontracts added 2026-07-09 (Jimmy "the new audit profiles") — the 990-nonprofit +
+# federal subaward-chain work built that day; they extend the audit profile, not just link into it.
 DIMS = [
     ("govern",   "Who governs",        "officials / representatives + their voting record"),
     ("money",    "Money behind them",  "campaign finance — who funds the officials"),
     ("contracts","Contracts & spending","who the government pays"),
     ("federal",  "Federal dollars",    "federal money flowing into the jurisdiction"),
     ("crossref", "Money × votes",  "contracts crossed with donors / parity — the pattern"),
+    ("nonprofits","990 Nonprofits", "nonprofit filings — revenue, expenses, officer comp, sourced from the IRS record"),
+    ("subcontracts","Subcontractor chain", "who the primes actually pay — federal subaward money one hop further down"),
     ("agendas",  "Upcoming agendas",   "what is being decided next"),
     ("minutes",  "Meeting minutes",    "the official record — who moved, who voted, what carried"),
     ("council_votes", "Council votes & dissent", "every split vote + the dissenter's own recorded words, public record framed as questions"),
@@ -42,7 +46,9 @@ def _minutes_records(tid):
 FILES = {
     "hi-maui":     {"govern":["officials_scorecard.html"], "money":["money_behind_officials.html"],
                     "contracts":["maui_contract_awards.html"], "federal":["federal_money.html"],
-                    "crossref":["contracts_x_donors.html"], "agendas":["agendas_maui.html"],
+                    "crossref":["contracts_x_donors.html"],
+                    "nonprofits":["nonprofits_maui.html"], "subcontracts":["subcontracts_maui.html"],
+                    "agendas":["agendas_maui.html"],
                     "council_votes":["council_votes_maui.html"],
                     "charter":["crosswalk_maui.html"], "audit":["audit_balance.html"]},
     "hi-state":    {"govern":["lege/legislator_scorecard.html"], "money":["statewide_money_patterns.html"],
@@ -83,6 +89,80 @@ def cell_status(tid, key):
         if _minutes_records(tid) > 0: return "ok", fn
         return ("thin" if exists else "gap"), (fn if exists else None)
     return status_of(FILES.get(tid, {}).get(key, []))
+
+def _pesc(s): return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+# AUDIT PROFILE CARDS (Jimmy 2026-07-09 "rethought with the new audit profiles"): the ONE rendering of the
+# testimony-dimension scorecard, shared by tenant_pages.py (every tenant's own page) AND build_site.py's
+# maui.html directory (via tenant_directory.page_html's profile_html slot) — a single source so the two
+# surfaces can never visually or data-wise drift apart. Uses the SAME .govos design tokens/classes as
+# tenant_directory.py's CSS (fresh Yale-navy glass register) so it composes cleanly when concatenated in.
+PROFILE_CSS = """
+.govos .profile{margin:8px 0 30px}
+.govos .profile-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.govos .profile-ring{position:relative;width:64px;height:64px;flex:none}
+.govos .profile-ring svg{transform:rotate(-90deg)}
+.govos .profile-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:700 15px/1 var(--mono);color:var(--ink)}
+.govos .profile-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.govos .profile-sub{color:var(--ink-dim);font-size:14px;margin-top:2px}
+.govos .profile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.govos .pcard{display:block;padding:16px 17px;border-radius:14px;border:1px solid var(--glass-line);
+  background:var(--glass-bg);box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(14px) saturate(1.15);
+  backdrop-filter:blur(14px) saturate(1.15);text-decoration:none;color:var(--ink);transition:.16s}
+.govos .pcard:hover{border-color:var(--blue-2);transform:translateY(-2px);color:#fff}
+.govos .pcard.gap{opacity:.55;border-style:dashed}
+.govos .pcard .pc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.govos .pcard .pc-label{font-weight:650;font-size:14.5px}
+.govos .pcard .pc-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.govos .pcard .pc-desc{color:var(--ink-dim);font-size:12.5px;line-height:1.4}
+.govos .pcard .pc-go{color:var(--blue-2);font-size:12px;font-weight:600;margin-top:8px;display:block}
+"""
+
+def profile_cards_html(tid, esc=None):
+    """The audit-profile scorecard for one tenant: a ring summary + one card per DIMENSION, sourced-or-gap,
+    each linking straight to its real page. Self-contained (assumes PROFILE_CSS + tenant_directory's .govos
+    tokens are already on the page). Never invents a page — a 'gap' card says so plainly, never fabricated."""
+    _e = esc or _pesc
+    ok = warn = 0
+    cards = []
+    for key, label, desc in DIMS:
+        st, fn = cell_status(tid, key)
+        if st == "ok":
+            ok += 1
+            dot, cls = "var(--ok)", ""
+            go = "View the record &rarr;"
+        elif st == "thin":
+            warn += 1
+            dot, cls = "var(--gold)", ""
+            go = "Source exists, building &rarr;"
+        else:
+            dot, cls = "var(--ink-faint)", " gap"
+            go = "Not yet built"
+        href = _e(fn) if fn else "#"
+        tag = "a" if fn else "div"
+        cards.append(
+            '<%s class="pcard%s" href="%s"><div class="pc-top"><span class="pc-label">%s</span>'
+            '<span class="pc-dot" style="background:%s"></span></div>'
+            '<div class="pc-desc">%s</div><span class="pc-go">%s</span></%s>'
+            % (tag, cls, href if fn else "javascript:void(0)", _e(label), dot, _e(desc), go, tag))
+    total = len(DIMS)
+    pct = round(100 * ok / total) if total else 0
+    circumf = 2 * 3.14159 * 26
+    dash = round(circumf * pct / 100, 1)
+    ring = (
+        '<svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" '
+        'stroke="var(--line)" stroke-width="6"/><circle cx="32" cy="32" r="26" fill="none" stroke="var(--blue-2)" '
+        'stroke-width="6" stroke-linecap="round" stroke-dasharray="%s %s"/></svg>' % (dash, round(circumf, 1)))
+    name = NAMES.get(tid, tid)
+    return (
+        '<div class="profile"><div class="profile-head">'
+        '<div class="profile-ring">%s<div class="pct">%d%%</div></div>'
+        '<div><div class="profile-title">Audit profile</div>'
+        '<div class="profile-sub"><b>%d of %d</b> civic questions answered for %s — sourced from the public '
+        'record, framed as questions, never accusations.</div></div></div>'
+        '<div class="profile-grid">%s</div></div>'
+        % (ring, pct, ok, total, _e(name), "".join(cards)))
 
 def main():
     now = datetime.now(HST)

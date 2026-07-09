@@ -112,10 +112,14 @@ display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 def page_html(sections, title="Maui County — every page | govOS",
              h1_plain="Maui County — ", h1_accent="every page",
              sub=("The full Maui tenant directory, grouped. Sourced from the public record, "
-                  "cross-checked, laid side by side — patterns are questions, never accusations.")):
+                  "cross-checked, laid side by side — patterns are questions, never accusations."),
+             profile_html="", profile_css=""):
     """sections: list of (group_title, [(label, href), ...]) — ALREADY FILTERED to real pages by the
-    caller. Returns a full HTML doc (<head>+<body class="govos">) with NO <nav> — the caller injects the
-    one standing govOS nav bar. Pure function: no filesystem I/O, safe to call from anywhere."""
+    caller. profile_html (2026-07-09, "rethought with the new audit profiles"): an optional pre-rendered
+    block (from tenant_depth.profile_cards_html) inserted between the hero and the page grid, so the
+    audit-profile scorecard leads the directory instead of a flat tile list starting the page. Returns a
+    full HTML doc (<head>+<body class="govos">) with NO <nav> — the caller injects the one standing govOS
+    nav bar. Pure function: no filesystem I/O, safe to call from anywhere."""
     total = sum(len(tiles) for _, tiles in sections)
     secs = []
     for gtitle, tiles in sections:
@@ -123,9 +127,11 @@ def page_html(sections, title="Maui County — every page | govOS",
                         % (esc(h), esc(n)) for n, h in tiles)
         secs.append('<section class="sec"><h2>%s <span class="n">%d</span></h2>'
                     '<div class="grid">%s</div></section>' % (esc(gtitle), len(tiles), cards))
+    directory_head = ('<div class="sec" style="margin-top:0"><h2 style="margin-bottom:0">Every page</h2></div>'
+                      if profile_html else "")
     return ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<title>%s</title><style>%s</style></head>'
+            '<title>%s</title><style>%s%s</style></head>'
             '<body class="govos"><div class="wrap">'
             '<div class="hero"><div class="eyebrow">Kilo Aupuni &middot; public record</div>'
             '<h1>%s<span class="u">%s</span></h1>'
@@ -133,10 +139,11 @@ def page_html(sections, title="Maui County — every page | govOS",
             '<div class="cta"><a class="btn solid" href="maui_parcel_map.html">&#9656; Explore the map</a>'
             '<a class="btn" href="contracts_x_donors.html">&#9671; Money &times; votes</a>'
             '<a class="btn gold" href="audit_balance.html">&#9878; Audit balance</a></div></div>'
-            '%s'
+            '%s%s%s'
             '<div class="foot"><span class="pill"><span class="dot" style="background:var(--ok)"></span> all figures sourced (%d pages)</span>'
             '<span>govOS &middot; fresh Yale blue register &middot; sourced-only &middot; de-identified &middot; never libel</span></div>'
-            '</div></body></html>') % (esc(title), CSS, esc(h1_plain), esc(h1_accent), esc(sub), "".join(secs), total)
+            '</div></body></html>') % (esc(title), CSS, profile_css, esc(h1_plain), esc(h1_accent), esc(sub),
+                                       profile_html, directory_head, "".join(secs), total)
 
 
 def build():
