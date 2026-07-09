@@ -543,6 +543,76 @@ def inject_nav(html, current):
     return html
 
 
+# ── Maui tenant CUSTOM navigation (Jimmy 2026-07-08: "govOS is the navigation, independent of Maui …
+#    Maui tenant has a lot of pages and needs a custom navigation to show all all all of the pages").
+#    govOS (the injected top bar) is the tenant-INDEPENDENT outer nav / tenant switcher; THIS page is the
+#    Maui tenant's own full directory — every Maui page, grouped. Data-driven: only links pages that exist
+#    in SITE (no dead links), and a new Maui page joins a group + shows up automatically.
+MAUI_NAV_GROUPS = [
+    ("Start here", [("tenant_hi-maui.html", "Maui County overview"), ("county_dashboard.html", "County dashboard"),
+                    ("aloha_aina.html", "Aloha ʻĀina")]),
+    ("Who governs", [("officials_scorecard.html", "Officials scorecard"), ("officials_maui.html", "Officials"),
+                     ("ka_leo_voice.html", "Ka Leo — the louder voice"), ("departments_maui.html", "All departments")]),
+    ("Departments", [("dept_council_maui.html", "Council"), ("dept_mayor_maui.html", "Mayor"),
+                     ("dept_management_maui.html", "Management"), ("dept_finance_maui.html", "Finance"),
+                     ("dept_public_works_maui.html", "Public Works"), ("dept_water_maui.html", "Water Supply"),
+                     ("dept_planning_maui.html", "Planning"), ("dept_environmental_maui.html", "Environmental Mgmt"),
+                     ("dept_fire_maui.html", "Fire & Public Safety"), ("dept_police_maui.html", "Police"),
+                     ("dept_prosecutor_maui.html", "Prosecuting Attorney"), ("dept_parks_maui.html", "Parks & Rec"),
+                     ("dept_housing_maui.html", "Housing & Human Concerns"), ("dept_agriculture_maui.html", "Agriculture"),
+                     ("dept_transportation_maui.html", "Transportation"), ("dept_liquor_maui.html", "Liquor Control"),
+                     ("dept_personnel_maui.html", "Personnel Services"), ("dept_corp_counsel_maui.html", "Corporation Counsel")]),
+    ("Follow the money", [("money_behind_officials.html", "Money behind officials"), ("money_maui.html", "Campaign money"),
+                          ("realestate_maui.html", "Real-estate money"), ("maui_contract_awards.html", "Contract awards"),
+                          ("federal_money.html", "Federal dollars")]),
+    ("Money × votes", [("contracts_x_donors.html", "Contracts × donors"), ("testifiers_maui.html", "Who testifies × money"),
+                       ("testimony_effect_map.html", "Testimony effect map"), ("lobby_money_watch.html", "Lobby + money"),
+                       ("parity_check.html", "Pairs that no longer answer")]),
+    ("Agendas & meetings", [("agendas_maui.html", "Upcoming agendas"), ("meetings_maui.html", "Meetings calendar"),
+                            ("archive_maui.html", "Meeting archive"), ("sunshine_maui.html", "Sunshine Law watch")]),
+    ("The record", [("council_votes_maui.html", "Council votes & dissent"), ("minutes_hi-maui.html", "Meeting minutes")]),
+    ("Entities & orgs", [("orgs_maui.html", "Organizations"), ("connections_maui.html", "Connections"),
+                         ("entity_maui_hotel_lodging_assoc_pac.html", "Hotel & Lodging Assoc PAC"),
+                         ("entity_maui_land_pineapple_co_inc_state_pac.html", "Maui Land & Pineapple PAC")]),
+    ("Charter & law", [("crosswalk_maui.html", "Charter ↔ law crosswalk")]),
+    ("Audit & oversight", [("audit_balance.html", "Audit balance"), ("govos_audit_hi-maui.html", "govOS audit"),
+                           ("oversight_hi-maui.html", "Oversight")]),
+    ("Maps", [("maui_parcel_map.html", "Parcel / TMK map")]),
+]
+
+def build_maui_nav_page():
+    secs, total = [], 0
+    for glabel, items in MAUI_NAV_GROUPS:
+        cards = [('<a class="mn-card" href="%s">%s</a>' % (p, _esc(lbl)))
+                 for (p, lbl) in items if os.path.exists(os.path.join(SITE, p))]
+        total += len(cards)
+        if cards:
+            secs.append('<section class="mn-sec"><h2>%s <span class="mn-n">%d</span></h2><div class="mn-grid">%s</div></section>'
+                        % (_esc(glabel), len(cards), "".join(cards)))
+    body = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1">'
+            '<title>Maui County — every page | govOS</title><style>'
+            '.mn-wrap{max-width:1120px;margin:0 auto;padding:26px 20px 80px;font-family:"Segoe UI",system-ui,sans-serif}'
+            '.mn-head{padding:16px 0 22px;border-bottom:1px solid rgba(227,173,51,.25);margin-bottom:28px}'
+            '.mn-head h1{font-size:clamp(26px,5vw,38px);margin:0 0 8px;color:#e9dcc0}'
+            '.mn-head p{color:#b3a98f;margin:0;font-size:16px;max-width:60ch}'
+            '.mn-sec{margin:0 0 30px}'
+            '.mn-sec h2{font-size:14px;letter-spacing:.07em;text-transform:uppercase;color:#e3ad33;margin:0 0 12px;display:flex;align-items:center;gap:9px}'
+            '.mn-n{font:600 11px/1 Consolas,monospace;color:#8a7c60;background:rgba(227,173,51,.12);border-radius:20px;padding:3px 9px}'
+            '.mn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}'
+            '.mn-card{display:block;padding:13px 15px;background:#16130d;border:1px solid #2a241a;border-radius:10px;'
+            'color:#efe9da;text-decoration:none;font-size:14.5px;line-height:1.35;transition:border-color .14s,background .14s,transform .14s}'
+            '.mn-card:hover{border-color:#e3ad33;background:#1c1810;transform:translateY(-1px)}'
+            '</style></head><body><div class="mn-wrap">'
+            '<div class="mn-head"><h1>Maui County — every page</h1>'
+            '<p>The full Maui tenant directory — %d pages, grouped. Use the govOS bar above to switch to another government.</p></div>'
+            '%s</div></body></html>') % (total, "\n".join(secs))
+    body = ensure_civic_chrome(inject_nav(body, "tenant_hi-maui.html"))
+    with open(os.path.join(SITE, "maui.html"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(body)
+    print("  + maui.html: Maui tenant CUSTOM nav — %d pages in %d groups" % (total, len(secs)))
+
+
 # ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
 #    tenant_registry). On any report that exists per-tenant, surface a "choose a government" row so you can
 #    select a different tenant FROM THE SAME REPORT. Reads the ONE registry (tenant_registry.json) — no
@@ -1190,6 +1260,9 @@ def main():
             with open(os.path.join(SITE, "testify.html"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(inject_nav(open(_tf, encoding="utf-8", errors="replace").read(), "testify.html"))
             print("  + testify.html: citizen testimony -> County Clerk + govOS (+nav)")
+        # Maui tenant CUSTOM navigation — must run AFTER all Maui pages are in SITE so the exists() gate
+        # links only real pages. govOS bar = outer tenant switcher; maui.html = the Maui tenant's own directory.
+        build_maui_nav_page()
     with _lane("grants"):
         # [grants] community grants library — public preview page (paywall for full access)
         _gr = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grants.html")
@@ -1222,6 +1295,7 @@ def main():
         # [orphan-heal 2026-06-17] Civic pages that are built + useful but weren't carded anywhere
         # (calendars, fire-recovery, agenda patterns) — wire them into the hub so nothing useful is orphaned.
         _MORE = [
+            ("maui.html",                  "Maui County — every page", "The full Maui tenant directory: officials, all 18 departments, the money, the votes, agendas, records, entities — every Maui page grouped in one place."),
             ("meetings_calendar.html",     "Meeting Calendars",        "Upcoming public meetings across every government."),
             ("meetings_maui.html",         "Meetings — Maui",          "Maui County meeting calendar."),
             ("meetings_honolulu.html",     "Meetings — Honolulu",      "City &amp; County of Honolulu meeting calendar."),
