@@ -1,10 +1,10 @@
 {
- "generated": "2026-07-02T19:20:33.095875-10:00",
+ "generated": "2026-07-09T06:12:57.886475-10:00",
  "source": "HANDS hands.ehawaii.gov",
- "statewide_total": 9891,
+ "statewide_total": 9902,
  "maui_awards": 269,
- "maui_vendors": 73,
- "maui_dollars": 118346946.74,
+ "maui_vendors": 74,
+ "maui_dollars": 118213430.74,
  "vendors": [
   {
    "vendor": "Bowers + Kubota Consulting, Inc.",
@@ -318,8 +318,8 @@
   },
   {
    "vendor": "SSFM INTERNATIONAL, INC.",
-   "total": 9526482.66,
-   "count": 14,
+   "total": 9301824.66,
+   "count": 13,
    "awards": [
     {
      "amount": 600000.0,
@@ -405,14 +405,6 @@
      "amount": 887300.0,
      "date": "05/23/2023",
      "title": "Makawao Avenue Pavement Reconstruction, MP 0.8 to AI Street - CM Services",
-     "dept": "Maui Director of Finance",
-     "category": "Professional Services",
-     "sol": null
-    },
-    {
-     "amount": 224658.0,
-     "date": "04/26/2023",
-     "title": "Pu'u Hauole Improvements",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
@@ -2468,6 +2460,21 @@
      "amount": 91246.0,
      "date": "04/12/2023",
      "title": "Lower Kula Road Pavement Reconstruction",
+     "dept": "Maui Director of Finance",
+     "category": "Professional Services",
+     "sol": null
+    }
+   ]
+  },
+  {
+   "vendor": "MISSION CRITICAL PARTNERS, LLC",
+   "total": 91142.0,
+   "count": 1,
+   "awards": [
+    {
+     "amount": 91142.0,
+     "date": "07/01/2026",
+     "title": "Secondary Public Safety Answering Point Feasibility Evaluation",
      "dept": "Maui Director of Finance",
      "category": "Professional Services",
      "sol": null
