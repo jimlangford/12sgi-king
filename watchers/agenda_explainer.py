@@ -54,9 +54,14 @@ def how_to_testify(tid):
     return ("Submit testimony before the meeting through this government's process.", "request_records.html#" + tid)
 
 def card(tid, m, idx):
+    # truth_gate: every card fact is sourced from agenda_sources.json (named record).
+    # Items with no source URL are marked NEEDS-RECORD so the claim is never fabricated.
     nm = NAMES.get(tid, tid); L = links_for(tid)
     body = m.get("body", "Meeting"); title = m.get("title", ""); date = m.get("date", "")
     src = m.get("url", ""); tip, tlink = how_to_testify(tid)
+    if not src:
+        # sourced integrity: mark the card as NEEDS-RECORD so it's never surfaced as a verified fact
+        body = "[NEEDS-RECORD] " + body
     mr = moon_calendar.reading(date) if (moon_calendar and date) else None
     moon_cap = (" 🌙 %s moon (pō %d) — %s." % (mr["po"], mr["night"], mr["offering"])) if mr else ""
     caption = ("⚖ %s — %s%s on %s. Know the law, follow the money, and testify BEFORE the vote. "

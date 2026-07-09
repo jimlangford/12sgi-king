@@ -150,7 +150,7 @@ def main():
     county_html="".join(rowCo(r) for r in county)
     county_chart = svg_bar_chart(sorted(county, key=lambda r: -r["re"]), lambda r: r["name"], lambda r: r["re"], "#d9b24c", unit_fn=usd)
     legis_chart = svg_bar_chart(rowsA, lambda r: r["name"], lambda r: r["re"], "#e06a4a", unit_fn=usd)
-    cross_chart = svg_bar_chart(crossd, lambda r: r["name"], lambda r: r["total"], "#6a9ad9", unit_fn=usd)
+    cross_chart = svg_bar_chart(crossd, lambda r: r["name"], lambda r: r["total"], "#1259a3", unit_fn=usd)
     g=now_hst().strftime("%Y-%m-%d %H:%M HST")
     html=f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">

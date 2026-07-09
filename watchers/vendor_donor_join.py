@@ -205,13 +205,13 @@ def svg_network(matches, max_vendors=12):
         lines.append(f'<text x="{left_x-10}" y="{y+4}" font-size="11" fill="#bdb8a4" text-anchor="end" font-family="Consolas,monospace">{esc(m["vendor"])[:28]}</text>')
     for o in officials:
         y = o_y[o]
-        lines.append(f'<circle cx="{right_x}" cy="{y}" r="6" fill="#6a9ad9"/>')
+        lines.append(f'<circle cx="{right_x}" cy="{y}" r="6" fill="#1259a3"/>')
         lines.append(f'<text x="{right_x+12}" y="{y+4}" font-size="11" fill="#bdb8a4" font-family="Consolas,monospace">{esc(o)[:30]}</text>')
     return (f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}" style="margin:12px 0" '
             f'role="img" aria-label="vendor to official money network">{"".join(lines)}</svg>'
             f'<div style="font-size:11px;color:#9a957f;font-family:Consolas,monospace">'
             f'<span style="color:#d9b24c">&#9679;</span> vendor (size = award $) &nbsp; '
-            f'<span style="color:#6a9ad9">&#9679;</span> official &nbsp; '
+            f'<span style="color:#1259a3">&#9679;</span> official &nbsp; '
             f'<span style="color:#e06a4a">&mdash;</span> line weight = $ contributed</div>')
 
 

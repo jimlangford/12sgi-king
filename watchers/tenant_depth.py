@@ -24,6 +24,7 @@ DIMS = [
     ("crossref", "Money × votes",  "contracts crossed with donors / parity — the pattern"),
     ("agendas",  "Upcoming agendas",   "what is being decided next"),
     ("minutes",  "Meeting minutes",    "the official record — who moved, who voted, what carried"),
+    ("council_votes", "Council votes & dissent", "every split vote + the dissenter's own recorded words, public record framed as questions"),
     ("charter",  "Charter ↔ Law",  "the governing rules, crosswalked to real law"),
     ("audit",    "Audit balance",      "the money×votes equation scorecard"),
 ]
@@ -42,6 +43,7 @@ FILES = {
     "hi-maui":     {"govern":["officials_scorecard.html"], "money":["money_behind_officials.html"],
                     "contracts":["maui_contract_awards.html"], "federal":["federal_money.html"],
                     "crossref":["contracts_x_donors.html"], "agendas":["agendas_maui.html"],
+                    "council_votes":["council_votes_maui.html"],
                     "charter":["crosswalk_maui.html"], "audit":["audit_balance.html"]},
     "hi-state":    {"govern":["lege/legislator_scorecard.html"], "money":["statewide_money_patterns.html"],
                     "contracts":["contracts_state.html"], "federal":["federal_money.html"],

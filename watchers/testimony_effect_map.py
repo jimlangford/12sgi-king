@@ -56,7 +56,10 @@ def find_tmks_for_entity(entity_names, limit=MAX_TMK_PER_ENTITY):
     conservative rule as maui_re_report.py) -- never a bare substring match. Returns first `limit`
     9-digit GIS-format TMKs (13-digit extract TMK truncated to the 9-digit zone-section-plat-parcel
     the statewide GIS layer keys on -- confirmed by test query, CPR/unit suffix dropped)."""
-    wanted = {nm.upper(): entity_tokens(nm) for nm in entity_names}
+    # KEY BUG FIX (2026-07-08): was `nm.upper()` here vs `nm` in `found` below -> found[nm] raised
+    # KeyError for any non-all-caps entity name (nearly all of them). entity_tokens() already
+    # lowercases internally, so upper()-ing the outer key served no purpose except breaking the lookup.
+    wanted = {nm: entity_tokens(nm) for nm in entity_names}
     found = {nm: [] for nm in entity_names}
     if not os.path.exists(EXTRACT):
         return found
@@ -164,7 +167,7 @@ def main():
         tmks = tmk_by_entity.get(nm, [])
         donated = e.get("donated") or 0
         r = 4 + min(14, (donated / max_donated) * 14)
-        color = "#e06a4a" if donated > 5000 else "#d9b24c" if donated > 1000 else "#6a9ad9"
+        color = "#e06a4a" if donated > 5000 else "#d9b24c" if donated > 1000 else "#1259a3"
         found_here = 0
         for t in tmks:
             c = centroids.get(t)
@@ -182,7 +185,7 @@ def main():
     hits_total = sum(t.get("industry_hits", 0) for t in industry_testimony)
 
     legend_html = "".join(
-        f'<div class="lg"><span class="dot" style="background:{"#e06a4a" if d>5000 else "#d9b24c" if d>1000 else "#6a9ad9"}"></span>'
+        f'<div class="lg"><span class="dot" style="background:{"#e06a4a" if d>5000 else "#d9b24c" if d>1000 else "#1259a3"}"></span>'
         f'<span class="nm">{esc(nm)}</span><span class="ct">{n} of {tot} parcels mapped &middot; ${d:,.0f} donated</span></div>'
         for nm, n, d, tot in legend_rows
     )

@@ -385,10 +385,9 @@ class H(BaseHTTPRequestHandler):
                 email = ""
             sess = "sess_" + _sec.token_urlsafe(18)        # the user's access token (their key)
             try:
-                os.makedirs(os.path.dirname(ORDERS), exist_ok=True)
-                with _ORDERS_LOCK, open(ORDERS, "a", encoding="utf-8", newline="\n") as _f:
-                    _f.write(json.dumps({"verify_id": sess, "email": email, "tier": "free",
-                        "paid": True, "source": "facebook_signup", "when": time.strftime("%Y-%m-%d %H:%M:%S")}) + "\n")
+                p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "reports", "_status", "paid_orders.jsonl")
+                open(p, "a", encoding="utf-8").write(json.dumps({"verify_id": sess, "email": email, "tier": "free",
+                    "paid": True, "source": "facebook_signup", "when": time.strftime("%Y-%m-%d %H:%M:%S")}) + "\n")
             except Exception:
                 pass
             page = ("<html><body style='font-family:system-ui;background:#0c0b09;color:#efe9da;text-align:center;padding:56px 20px'>"
@@ -460,12 +459,9 @@ class H(BaseHTTPRequestHandler):
                 return self._json(400, {"error": "message required"})
             tenant = (body.get("tenant") or "").strip()[:40]
             entry = {"ts": int(time.time()), "iso": time.strftime("%Y-%m-%d %H:%M:%S"),
-                     "schema": "workboard-job-v1",
                      "source": "civic-paid-%s" % tier, "kind": "command",
                      "target_thread": "workboard-quad-os", "priority": (body.get("priority") or "normal"),
-                     "status": "queued",
-                     "event": "CIVIC MESSAGE (%s%s): %s" % (tier, (" / " + tenant) if tenant else "", msg[:1500]),
-                     "job": {"action": "message.claude", "status": "queued", "payload": {"tier": tier, "tenant": tenant}}}
+                     "event": "CIVIC MESSAGE (%s%s): %s" % (tier, (" / " + tenant) if tenant else "", msg[:1500])}
             try:
                 with open(os.path.join(PROJ, ".dispatch_log.jsonl"), "a", encoding="utf-8") as f:
                     f.write(json.dumps(entry, ensure_ascii=False) + "\n")
@@ -576,8 +572,13 @@ def main():
         return 0
     if "--serve" in a:
         port = int(a[a.index("--serve") + 1]) if len(a) > a.index("--serve") + 1 else 8810
-        print("stripe_identity_backend serving on :%d (origin=%s, key=%s)" % (port, ALLOWED_ORIGIN, bool(_key())))
-        ThreadingHTTPServer(("0.0.0.0", port), H).serve_forever(); return 0
+        print("stripe_identity_backend serving on 127.0.0.1:%d (origin=%s, key=%s); public reach is via "
+              "tailscale funnel (see `tailscale serve status`), not a direct LAN/WAN bind" % (port, ALLOWED_ORIGIN, bool(_key())))
+        # 2026-07-05: was 0.0.0.0 -- this handles payment/identity/OAuth callbacks so it was directly
+        # reachable (plain HTTP, no peer-IP gate) from anyone on the LAN/WiFi. tailscale funnel already
+        # proxies https://...:8443 -> http://127.0.0.1:8810, so binding loopback-only changes nothing
+        # for legitimate traffic and removes the redundant unauthenticated LAN exposure.
+        ThreadingHTTPServer(("127.0.0.1", port), H).serve_forever(); return 0
     print(__doc__); return 0
 
 if __name__ == "__main__":

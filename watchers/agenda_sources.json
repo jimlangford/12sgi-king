@@ -1,569 +1,873 @@
 {
- "sources": [
-  {
-   "tenant_id": "state",
-   "agenda_system": "Hawaii State Legislature website (capitol.hawaii.gov) - official Capitol hearing-notices / upcoming-hearings system. Committee hearing notices are posted here under HRS 92 (Sunshine Law) at least 48 hours ahead. Per-measure / per-committee / per-member status RSS icons and an email Hearing Notification subscription (account/hearingnotice.aspx) provide push alerts.",
-   "source_url": "https://www.capitol.hawaii.gov/upcominghearings.aspx",
-   "feed_url": "https://www.capitol.hawaii.gov/session/upcominghearingsfiltered.aspx",
-   "feed_type": "html",
-   "resolves": true,
-   "horizon": "During session (Jan-May): rolling, notices posted 48h+ ahead per HRS 92. Currently INTERIM RECESS (2026 session adjourned sine die in May); next regular session convenes Jan 2027 - no hearings posted now.",
-   "upcoming": [],
-   "conf": "v",
-   "note": "VERIFIED 2026-06-15 by independent WebFetch. Both source_url (upcominghearings.aspx) and feed_url (session/upcominghearingsfiltered.aspx) resolve and are the real official Hawaii State Legislature hearing-notice pages; both currently render \"No Hearings\" because the Legislature has adjourned sine die (interim recess) - the 2026 regular session ran Jan-May. upcoming[] is intentionally EMPTY: no real hearings are published now and none were invented. feed_type=\"html\" is honest - confirmed via rss.aspx that NO consolidated upcoming-hearings iCal/RSS/API feed exists; the site only offers per-measure / per-committee / per-member status RSS (click the RSS icon on an individual measure/committee/member page). For automated daily checking during the Jan-May session window: (a) scrape upcominghearingsfiltered.aspx HTML (filterable by chamber House/Senate/All and committee code e.g. AEN, AGR, CPC, JDC), or (b) subscribe to email hearing notifications at /account/hearingnotice.aspx. During session, hearing notices post here 48h+ ahead per HRS 92 (Sunshine Law). Recommend a daily HTML checker scoped to the session window. All three core claims (URLs resolve, no real upcoming meetings, feed_type honest) confirmed - conf kept at \"v\"."
-  },
-  {
-   "tenant_id": "maui",
-   "agenda_system": "Legistar (Granicus) — mauicounty.legistar.com. Full Council meetings also published on CivicClerk (mauicounty.portal.civicclerk.com); committee meetings + eComment are on Legistar. Official portal hub: mauicounty.us/agendas.",
-   "source_url": "https://mauicounty.legistar.com/Calendar.aspx",
-   "feed_url": "https://webapi.legistar.com/v1/mauicounty/events",
-   "feed_type": "legistar_api",
-   "resolves": true,
-   "horizon": "rolling ~30 days (committee agendas posted ~6 days ahead per Hawaii Sunshine Law; Legistar calendar shows current + upcoming weeks)",
-   "upcoming": [
+  "sources": [
     {
-     "date": "2026-06-15",
-     "body": "Water Authority, Social Services, and Parks Committee (2025-2027)",
-     "title": "Committee meeting, 9:00 AM",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "state",
+      "agenda_system": "Hawaii State Legislature website (capitol.hawaii.gov) - official Capitol hearing-notices / upcoming-hearings system. Committee hearing notices are posted here under HRS 92 (Sunshine Law) at least 48 hours ahead. Per-measure / per-committee / per-member status RSS icons and an email Hearing Notification subscription (account/hearingnotice.aspx) provide push alerts.",
+      "source_url": "https://www.capitol.hawaii.gov/upcominghearings.aspx",
+      "feed_url": "https://www.capitol.hawaii.gov/session/upcominghearingsfiltered.aspx",
+      "feed_type": "html",
+      "resolves": true,
+      "horizon": "During session (Jan-May): rolling, notices posted 48h+ ahead per HRS 92. Currently INTERIM RECESS (2026 session adjourned sine die in May); next regular session convenes Jan 2027 - no hearings posted now.",
+      "upcoming": [],
+      "conf": "v",
+      "note": "VERIFIED 2026-06-15 by independent WebFetch. Both source_url (upcominghearings.aspx) and feed_url (session/upcominghearingsfiltered.aspx) resolve and are the real official Hawaii State Legislature hearing-notice pages; both currently render \"No Hearings\" because the Legislature has adjourned sine die (interim recess) - the 2026 regular session ran Jan-May. upcoming[] is intentionally EMPTY: no real hearings are published now and none were invented. feed_type=\"html\" is honest - confirmed via rss.aspx that NO consolidated upcoming-hearings iCal/RSS/API feed exists; the site only offers per-measure / per-committee / per-member status RSS (click the RSS icon on an individual measure/committee/member page). For automated daily checking during the Jan-May session window: (a) scrape upcominghearingsfiltered.aspx HTML (filterable by chamber House/Senate/All and committee code e.g. AEN, AGR, CPC, JDC), or (b) subscribe to email hearing notifications at /account/hearingnotice.aspx. During session, hearing notices post here 48h+ ahead per HRS 92 (Sunshine Law). Recommend a daily HTML checker scoped to the session window. All three core claims (URLs resolve, no real upcoming meetings, feed_type honest) confirmed - conf kept at \"v\"."
     },
     {
-     "date": "2026-06-15",
-     "body": "Water and Infrastructure Committee (2025-2027)",
-     "title": "Committee meeting, 1:30 PM",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "maui",
+      "agenda_system": "Legistar (Granicus) — mauicounty.legistar.com. Full Council meetings also published on CivicClerk (mauicounty.portal.civicclerk.com); committee meetings + eComment are on Legistar. Official portal hub: mauicounty.us/agendas.",
+      "source_url": "https://mauicounty.legistar.com/Calendar.aspx",
+      "feed_url": "https://webapi.legistar.com/v1/mauicounty/events",
+      "feed_type": "legistar_api",
+      "resolves": true,
+      "horizon": "rolling ~30 days (committee agendas posted ~6 days ahead per Hawaii Sunshine Law; Legistar calendar shows current + upcoming weeks)",
+      "upcoming": [
+        {
+          "date": "2026-07-01",
+          "body": "Housing and Land Use Committee (2025-2027)",
+          "title": "Recessed to 07/06/2026 at 11:00 a.m.",
+          "url": "https://mauicounty.legistar.com/MeetingDetail.aspx?LEGID=4803&GID=632&G=E71DEF67-B5BD-48E0-B187-94BEDF37B05F",
+          "time": "10:30 AM"
+        },
+        {
+          "date": "2026-07-01",
+          "body": "Disaster Recovery, International Affairs, and Planning Committee (2025-2027)",
+          "title": "End time:  10:00 a.m.",
+          "url": "https://mauicounty.legistar.com/MeetingDetail.aspx?LEGID=4820&GID=632&G=E71DEF67-B5BD-48E0-B187-94BEDF37B05F",
+          "time": "9:00 AM"
+        },
+        {
+          "date": "2026-07-02",
+          "body": "Agriculture, Diversification, Environment, & Public Transportation Committee",
+          "title": "Agriculture, Diversification, Environment, & Public Transportation Committee",
+          "url": "https://mauicounty.legistar.com/MeetingDetail.aspx?LEGID=4819&GID=632&G=E71DEF67-B5BD-48E0-B187-94BEDF37B05F",
+          "time": "9:00 AM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "Housing and Land Use Committee (2025-2027)",
+          "title": "Reconvened from 7/1/2026 at 10:30 a.m.",
+          "url": "https://mauicounty.legistar.com/MeetingDetail.aspx?LEGID=4830&GID=632&G=E71DEF67-B5BD-48E0-B187-94BEDF37B05F",
+          "time": "11:00 AM"
+        }
+      ],
+      "conf": "v",
+      "note": "CONFIRMED LIVE (re-verified 2026-06-15). Maui County Council agenda system = Legistar (a Granicus product), client name \"mauicounty\". Official entry point mauicounty.us/agendas links committee materials to https://mauicounty.legistar.com/Calendar.aspx (full Council meetings now on CivicClerk: https://mauicounty.portal.civicclerk.com/). eComment (Granicus) is enabled per-committee-meeting from the Legistar agendas.\n\nBEST FEED FOR A DAILY CHECKER = the Legistar Web API (no key required): https://webapi.legistar.com/v1/mauicounty/events — verified returning live JSON. Useful OData params: ?$orderby=EventDate desc&$top=N , and filter upcoming with ?$filter=EventDate ge datetime'2026-06-15'. Each event includes EventDate, EventTime, EventBodyName, EventLocation, EventComment, EventAgendaFile, EventInSiteURL. Per-body matter/agenda detail also via /v1/mauicounty/bodies and /v1/mauicounty/eventitems.\n\nALTERNATIVE FEED: Legistar offers per-meeting iCalendar export at https://mauicounty.legistar.com/View.ashx?M=IC&ID=<meetingID>&GUID=<guid> (the calendar's 'Export to iCalendar' icons). No site-wide single .ics subscription or RSS feed found; for an aggregated daily checker the JSON API is the right choice (feed_type=legistar_api).\n\nVERIFICATION (this pass): WebFetched both URLs. Calendar.aspx renders a real June 2026 committee calendar (6/1–6/17). The Web API returned matching live JSON; the 'upcoming' list is taken directly from it (?$orderby=EventDate desc&$top=20). NOTE: the API surfaced one meeting the prior proposal MISSED — a second 6/15 meeting, Water and Infrastructure Committee at 1:30 PM — now ADDED. The 6/16 Government Relations meeting carries the reconvene note (its 6/2 counterpart shows EventComment 'Recessed to 06/16/2026 at 1:30 p.m.'; the 6/16 row itself shows 'Reconvened from 6/2/2026 at 1:30 p.m.'). All six upcoming meetings cross-check between the calendar page and the API. The hint's 'Granicus + eComment' is correct — Legistar IS the Granicus agenda platform.",
+      "last_refreshed": "2026-07-01 22:32 HST"
     },
     {
-     "date": "2026-06-16",
-     "body": "Budget, Finance, and Economic Development Committee (2025-2027)",
-     "title": "Committee meeting, 9:00 AM",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "honolulu",
+      "agenda_system": "https://honolulucitycouncil.org/",
+      "source_url": "https://honolulucitycouncil.org/",
+      "feed_url": "https://honolulu.granicus.com/ViewPublisherRSS.php?view_id=3&mode=agendas",
+      "feed_type": "rss",
+      "resolves": true,
+      "horizon": "Rolling ~30 days on the City Clerk Council Calendar (full Council meets monthly on a Wednesday; committees meet monthly over 3 consecutive days). Individual agendas post 6 days prior for Council / ~48 hours prior for committees, so the Granicus RSS agenda feed surfaces a meeting's agenda only within that window.",
+      "upcoming": [
+        {
+          "date": "2026-06-03",
+          "body": "Honolulu City Council (Regular Full Council)",
+          "title": "Regular Full Council Meeting, 10:00 AM",
+          "url": "https://hnldoc.ehawaii.gov/hnldoc/document-download?id=28259"
+        },
+        {
+          "date": "2026-06-10",
+          "body": "Charter Commission (Committee on Style)",
+          "title": "Charter Commission / Committee on Style Meeting, 2:00 PM",
+          "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-358525/2026%20-%20061026%20Agenda%20Committee%20on%20Style%20Meeting.pdf"
+        },
+        {
+          "date": "2026-06-23",
+          "body": "Committee on Budget",
+          "title": "Budget Committee, 9:00 AM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-23",
+          "body": "Committee on Energy, Environment & Sustainability",
+          "title": "Energy, Environment & Sustainability Committee, 1:00 PM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-23",
+          "body": "Committee on Housing, Homelessness & Parks",
+          "title": "Housing, Homelessness & Parks Committee, 2:30 PM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-24",
+          "body": "Committee on Infrastructure, Transportation & Technology",
+          "title": "Infrastructure, Transportation & Technology Committee, 9:00 AM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-24",
+          "body": "Committee on International & Legal Affairs",
+          "title": "International & Legal Affairs Committee, 1:00 PM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-25",
+          "body": "Committee on Zoning & Planning",
+          "title": "Zoning & Planning Committee, 9:00 AM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-25",
+          "body": "Committee on Public Safety & Economy",
+          "title": "Public Safety & Economy Committee, 1:00 PM",
+          "url": "https://honolulucitycouncil.org/"
+        },
+        {
+          "date": "2026-06-25",
+          "body": "Committee on Government Efficiency & Customer Services",
+          "title": "Government Efficiency & Customer Services Committee, 2:30 PM",
+          "url": "https://honolulucitycouncil.org/"
+        }
+      ],
+      "conf": "v",
+      "note": "https://honolulucitycouncil.org/"
     },
     {
-     "date": "2026-06-16",
-     "body": "Government Relations, Ethics, and Transparency Committee (2025-2027)",
-     "title": "Committee meeting, 1:30 PM (Reconvened from 6/2/2026)",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "hawaii",
+      "agenda_system": "Granicus (hawaiicounty.granicus.com) — Hawaii County Streaming Media Archive / Legislative Management. The official county.gov agenda page links into this Granicus system.",
+      "source_url": "https://hawaiicounty.granicus.com/viewpublisher.php?view_id=1",
+      "feed_url": "http://hawaiicounty.granicus.com/ViewPublisherRSS.php?view_id=1&mode=agendas",
+      "feed_type": "rss",
+      "resolves": true,
+      "horizon": "rolling — committee + council agendas posted roughly a week ahead; archive extends back to 2015 (council) / 2022 (committees)",
+      "upcoming": [
+        {
+          "date": "2026-06-16",
+          "body": "Governmental Operations and External Affairs Committee",
+          "title": "GovOps & External Affairs Committee — 9:00 AM",
+          "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2022"
+        },
+        {
+          "date": "2026-06-16",
+          "body": "Finance Committee",
+          "title": "Finance Committee — 10:30 AM",
+          "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2021"
+        },
+        {
+          "date": "2026-06-16",
+          "body": "Policy Committee on Planning, Land Use, and Economic Development",
+          "title": "Planning, Land Use & Economic Development Committee — 12:00 PM",
+          "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2023"
+        },
+        {
+          "date": "2026-06-17",
+          "body": "Hawaii County Council",
+          "title": "Hawaii County Council Meeting — 9:00 AM",
+          "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2024"
+        }
+      ],
+      "conf": "v",
+      "note": "Adversarially verified 2026-06-15 via WebFetch. source_url (viewpublisher.php?view_id=1) resolves and is confirmed as the real Hawaii County Council / Streaming Media Archive on Granicus (NOT Legistar). All four upcoming meetings (3 committees Jun 16, full Council Jun 17) cross-checked against the live publisher page — exact match on body, date, and time. feed_url (ViewPublisherRSS.php?view_id=1&mode=agendas) confirmed as a valid RSS 2.0 feed with ~116 items. feed_type=rss is honest. Spot-checked two AgendaViewer deep-links (event_id=2021 Finance, event_id=2024 Council): both download as genuine published agenda PDFs created/modified Jun 10, 2026 by county staff with embedded links to the Hawaii County records system — event_ids are real, not fabricated. The official human-facing page (www.hawaiicounty.gov/.../meeting-agendas-and-actions) returns HTTP 403 to bots/WAF but links into this same Granicus system. Granicus also offers minutes, podcast (audio), and video podcast (mode=vpodcast) feeds; no iCal or Legistar/JSON API observed. For a daily checker, poll the agendas RSS feed and diff new <item> entries; agenda-viewer links are PDFs. Confidence v."
     },
     {
-     "date": "2026-06-17",
-     "body": "Housing and Land Use Committee (2025-2027)",
-     "title": "Committee meeting, 9:00 AM",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "kauai",
+      "agenda_system": "Granicus (County of Kauaʻi legislative portal, kauai.granicus.com)",
+      "source_url": "https://kauai.granicus.com/ViewPublisher.php?view_id=2",
+      "feed_url": "https://kauai.granicus.com/ViewPublisherRSS.php?view_id=2&mode=agendas",
+      "feed_type": "rss",
+      "resolves": true,
+      "horizon": "rolling; agendas posted ~7 days before each meeting (the June 17 council agenda was authored June 10). Typically the next 1-2 council/committee meetings are visible at a time.",
+      "upcoming": [
+        {
+          "date": "2026-06-17",
+          "body": "Kauaʻi County Council",
+          "title": "County Council Meeting - includes Resolution No. 2026-16 (public pedestrian beach access easement, Aliomanu Bay, Anahola) and C 2026-140 (Condition of County Treasury quarterly reports)",
+          "url": "https://kauai.granicus.com/AgendaViewer.php?view_id=2&event_id=1593"
+        }
+      ],
+      "conf": "v",
+      "note": "Official agenda system is Granicus at kauai.granicus.com (view_id=2), linked from the county site at kauai.gov/Government/Council. VERIFIED 2026-06-15: fetched the RSS feed (valid RSS 2.0, mode=agendas) and confirmed it lists County Council, County Council Committee, and Planning Commission meetings. The June 17, 2026 County Council entry appears with link event_id=1593. Followed that AgendaViewer URL (302-redirects to a Granicus S3 agenda PDF) and confirmed the actual agenda contents: meeting body = Kauaʻi County Council, agenda authored June 10 2026, containing Resolution No. 2026-16 (Aliomanu Bay, Anahola pedestrian beach access easement), Resolution No. 2026-18 (HHCA lawsuit opposition), and communications C 2026-140 (County Treasury quarterly reports) through C 2026-152 (EV charging, federal grants, fire/EMS funding). The RSS feed (mode=agendas) is the machine-readable source for a daily checker; a videos/podcast RSS also exists at mode=podcast. NOTE: kauai.gov itself returns HTTP 403 to automated fetchers and the Granicus ViewPublisher HTML page (source_url) exceeds the fetch size limit (~10MB) — both are genuine but use the RSS feed for programmatic polling. As of today (2026-06-15) the June 3 council, May 27 committee, and June 9 Planning Commission meetings in the feed are already past; June 17 is the only confirmed genuinely-upcoming meeting. Future events use event_id (e.g. event_id=1593) in the agenda URL while past meetings use clip_id. Contact for agenda/accessibility: Office of the County Clerk, Council Services Division, (808) 241-4188, cokcouncil@kauai.gov."
     },
     {
-     "date": "2026-06-17",
-     "body": "Disaster Recovery, International Affairs, and Planning Committee (2025-2027)",
-     "title": "Committee meeting, 1:30 PM",
-     "url": "https://mauicounty.legistar.com/Calendar.aspx"
+      "tenant_id": "nyc",
+      "agenda_system": "Granicus Legistar (NYC City Council Legislative Research Center / InSite)",
+      "source_url": "https://legistar.council.nyc.gov/Calendar.aspx",
+      "feed_url": "https://webapi.legistar.com/v1/nyc/Events?$filter=EventDate+ge+datetime'2026-06-15'&$orderby=EventDate",
+      "feed_type": "legistar_api",
+      "resolves": true,
+      "horizon": "rolling; committee hearings posted a few weeks out, monthly Stated Meetings scheduled through end of year (~30 days to several months ahead)",
+      "upcoming": [
+        {
+          "date": "2026-06-24",
+          "body": "Committee on Education (jointly with Committee on Technology)",
+          "title": "Committee hearing (1:00 PM, Council Chambers, City Hall)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-08-04",
+          "body": "Committee on Land Use",
+          "title": "Committee hearing (12:00 PM, 250 Broadway, 8th Floor, Hearing Room 1)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-09-15",
+          "body": "Committee on Oversight and Investigations (jointly with Education)",
+          "title": "Examining the Use of Screens in New York City Public Schools",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-10-20",
+          "body": "Committee on Environmental Protection and Waterfronts",
+          "title": "Committee hearing (12:00 PM)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-11-19",
+          "body": "New York City Council",
+          "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-12-03",
+          "body": "New York City Council",
+          "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "date": "2026-12-17",
+          "body": "New York City Council",
+          "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        }
+      ],
+      "conf": "v",
+      "note": "CONFIRMED via two independent WebFetch passes of the live calendar (2026-06-15). Official source: NYC City Council Legislative Research Center (Legistar/InSite by Granicus), https://legistar.council.nyc.gov/Calendar.aspx — resolved successfully, 410 records across 5 pages, filterable by year/session/committee. All 7 upcoming meetings were read directly off that page and re-verified individually: the 6/24/2026 Education+Technology joint hearing confirmed at 1:00 PM Council Chambers; the 8/4/2026 Land Use hearing confirmed at 12:00 PM, 250 Broadway 8th Floor Hearing Room 1; the 9/15/2026 Oversight & Investigations/Education joint hearing 'Examining the Use of Screens in NYC Public Schools' confirmed; the 10/20/2026 Environmental Protection & Waterfronts hearing 12:00 PM confirmed; and the 11/19, 12/3, 12/17 Stated Meetings at 1:30 PM Council Chambers all confirmed. Machine-readable feed for a daily checker: the Legistar Web API, client code 'nyc', base https://webapi.legistar.com/v1/nyc/, Events endpoint with OData date filtering. NOTE: direct WebFetch of the API returned HTTP 403 (Granicus WAF blocking automated user-agents) from this environment; the API client code 'nyc' and date-filter pattern are documented by official NYC Council docs (council.nyc.gov/legislation/api) and Granicus (webapi.legistar.com/Help). A free API key is requested via a name/email form for full automated read access, and a custom User-Agent typically clears the WAF. feed_type 'legistar_api' is honest (the endpoint exists; only automated access from this IP/UA was blocked). Per-meeting iCalendar (.ics) and Excel/PDF/Word exports also exist on the InSite calendar but are per-item, not a single subscribable feed, so the Legistar API remains the recommended daily-check feed. Each calendar row links to a Meeting Details page with the posted PDF agenda. Committee schedules shift; confirm exact times/locations on the per-meeting detail page before relying on them."
+    },
+    {
+      "tenant_id": "nys",
+      "agenda_system": "NY State Legislature — combined Public Hearing Schedule (Senate/Assembly hearing notices) at the Assembly site, plus the NY Senate Open Legislation API (machine-readable agendas/calendars covering both chambers)",
+      "source_url": "https://nyassembly.gov/leg/?sh=hear",
+      "feed_url": "https://legislation.nysenate.gov/api/3/",
+      "feed_type": "json_api",
+      "resolves": true,
+      "horizon": "rolling; hearings posted as scheduled (often weeks ahead — budget-hearing season announced ~1 month out). No fixed window; depends on legislative session activity.",
+      "upcoming": [
+        {
+          "date": "2026-06-15",
+          "body": "NY Senate District 15 (Sen. Joseph P. Addabbo Jr.)",
+          "title": "NYLAG Legal Assistance (by appointment only), Middle Village NY, 10:00 AM–3:00 PM",
+          "url": "https://www.nysenate.gov/events"
+        },
+        {
+          "date": "2026-06-15",
+          "body": "NY Senate District 34 (Sen. Nathalia Fernandez)",
+          "title": "District 34 Bronx Town Hall, Huntington Free Library, Bronx NY, 6:00–7:30 PM",
+          "url": "https://www.nysenate.gov/events"
+        }
+      ],
+      "conf": "v",
+      "note": "VERIFIED (fetched 2026-06-15). source_url https://nyassembly.gov/leg/?sh=hear resolves and is confirmed as the combined \"New York State Legislature Public Hearing Calendar\" (lists both chambers' leadership; currently shows a Senate Labor Committee hearing, demonstrating it carries Senate hearings too). At fetch time it listed exactly one item: Senate Standing Committee on Labor (Chair Sen. Jessica Ramos), \"The current state of Workers' Compensation and opportunities for improvement and modernization,\" Van Buren Hearing Room A, LOB 2nd Fl, Albany, scheduled 2026-05-20 10:00 AM but marked POSTPONED. That date is now in the PAST relative to today and the hearing was postponed, so it is intentionally EXCLUDED from the upcoming list. The Senate-side mirror https://www.nysenate.gov/issues/public-hearings resolved and explicitly states \"There are no upcoming meetings or public hearings scheduled at this time.\"\n\nMACHINE-READABLE FEED: NY Senate Open Legislation API, base https://legislation.nysenate.gov/api/3/ — REST/JSON, near-real-time, covers BOTH Senate and Assembly. Relevant endpoints: /agendas/{year} (committee agendas), /calendars/{year} (floor/active-list calendars), /committees, hearing-transcript endpoints. CONFIRMED it requires a free API key: an unkeyed call to /api/3/agendas/2026 returned HTTP 401 Unauthorized, matching the documented '?key=' requirement (docs: https://legislation.nysenate.gov/static/docs/html/index.html). Sign up free at https://legislation.nysenate.gov/. feed_type=json_api is honest — there is NO native iCal/RSS for hearings (the nysenate.gov/events calendar only offers 'Add all Session dates' to Outlook/Google/Apple — session dates, not hearings). Recommended daily-check: poll Open Legislation /agendas + /calendars JSON with an API key, and/or scrape https://nyassembly.gov/leg/?sh=hear as HTML fallback.\n\nUPCOMING list now contains only the two items independently confirmed on https://www.nysenate.gov/events at fetch time, both dated 2026-06-15: (1) NYLAG Legal Assistance, by appointment, Sen. Addabbo's Middle Village office, 10:00 AM–3:00 PM; (2) District 34 Bronx Town Hall, Sen. Fernandez, Huntington Free Library, Bronx, 6:00–7:30 PM. NOTE: these are constituent/district events, NOT formal legislative-body agenda hearings — included for transparency but they are a different concept from committee/floor agendas. At fetch time no future formal committee or floor hearing was posted (NY is past the Jan–Feb budget-hearing season). The truest 'agenda/hearing' example seen was the (now past, postponed) Senate Labor hearing. The Senate floor Calendar/Agenda (active-list, session days) is a separate concept best pulled from the Open Legislation API, not the public-hearing page."
+    },
+    {
+      "tenant_id": "liverpool",
+      "agenda_system": "WordPress site (villageofliverpoolny.gov) with The Events Calendar / Tribe Events plugin (ECPv6.15.14). Board pages host agendas/board-packets as PDFs; the Events Calendar plugin provides a machine-readable iCal feed.",
+      "source_url": "https://villageofliverpoolny.gov/board-of-trustees/",
+      "feed_url": "https://villageofliverpoolny.gov/events/?ical=1",
+      "feed_type": "ical",
+      "resolves": true,
+      "horizon": "Rolling ~30 days on the events calendar; Board of Trustees meets the 3rd Monday monthly at 6:00pm with agenda/board packet PDF posted shortly before each meeting (next meeting's packet currently posted). Planning Board ~1st Monday, Zoning Board ~4th Monday, both \"as needed.\"",
+      "upcoming": [
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "🎇Happy Birthday America! 🎇",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%87happy-birthday-america-%f0%9f%8e%87/",
+          "time": "8:00 AM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-9/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-08",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-10/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-09",
+          "body": "",
+          "title": "Tree Committee Meeting",
+          "url": "https://villageofliverpoolny.gov/event/tree-committee-meeting-7/",
+          "time": "6:00 PM"
+        },
+        {
+          "date": "2026-07-11",
+          "body": "",
+          "title": "Village & Willow Museum open",
+          "url": "https://villageofliverpoolny.gov/event/village-willow-museum-open-4/",
+          "time": "10:00 AM"
+        },
+        {
+          "date": "2026-07-11",
+          "body": "",
+          "title": "Craft Show",
+          "url": "https://villageofliverpoolny.gov/event/craft-show-5/",
+          "time": "11:00 AM"
+        },
+        {
+          "date": "2026-07-13",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-11/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-15",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-12/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-18",
+          "body": "",
+          "title": "Village & Willow Museum open",
+          "url": "https://villageofliverpoolny.gov/event/village-willow-museum-open-5/",
+          "time": "10:00 AM"
+        },
+        {
+          "date": "2026-07-20",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-13/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-21",
+          "body": "",
+          "title": "Pedestrian Safety Committee Meeting",
+          "url": "https://villageofliverpoolny.gov/event/pedestrian-safety-committee-meeting-2/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-22",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-14/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-25",
+          "body": "",
+          "title": "Village & Willow Museum open",
+          "url": "https://villageofliverpoolny.gov/event/village-willow-museum-open-6/",
+          "time": "10:00 AM"
+        },
+        {
+          "date": "2026-07-25",
+          "body": "",
+          "title": "Craft Show",
+          "url": "https://villageofliverpoolny.gov/event/craft-show-6/",
+          "time": "11:00 AM"
+        },
+        {
+          "date": "2026-07-27",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-15/",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-07-29",
+          "body": "",
+          "title": "🎶Liverpool Is The Place Concert 🎶",
+          "url": "https://villageofliverpoolny.gov/event/%f0%9f%8e%b6liverpool-is-the-place-concert-%f0%9f%8e%b6-16/",
+          "time": "7:00 PM"
+        }
+      ],
+      "conf": "v",
+      "note": "VERIFIED via WebFetch (2026-06-15). source_url https://villageofliverpoolny.gov/board-of-trustees/ resolves and states \"The Village Board meets the 3rd Monday of each month at 6:00 p.m.\" and links the agenda/board-packet PDF Board-Packet-06152026.pdf for the June 15, 2026 6:00pm regular meeting. The PDF URL resolves to a real 4.7MB scanned-image PDF (not text-extractable, but valid). feed_url https://villageofliverpoolny.gov/events/?ical=1 returns a valid VCALENDAR (PRODID -//Village of Liverpool - ECPv6.15.14//NONSGML v1.0//EN) including the June 22 \"Zoning Board meeting\" VEVENT and the cancelled June 22 \"No Planning Board meeting\" VEVENT — good for a daily checker. All three listed upcoming meetings cross-confirmed against fetched sources. Note: the Board of Trustees page does NOT list Planning/Zoning schedules (those come from the iCal feed only); Board of Trustees agenda packets are PDFs on the board page (not in iCal descriptions), so a full agenda checker should poll the iCal feed for meeting dates AND scrape the board page / wp-content/uploads for dated Board-Packet PDFs. The Zoning/Planning event detail URLs were not separately confirmed, so those two rows point to the iCal feed rather than an asserted event-permalink. Old domain villageofliverpool.org redirects to the official .gov. Board meets 3rd Monday at 6pm; Planning ~1st Mon, Zoning ~4th Mon, as needed.",
+      "last_refreshed": "2026-07-01 22:32 HST"
+    },
+    {
+      "tenant_id": "london",
+      "agenda_system": "ModernGov (Modern Council) — used by BOTH bodies in this tenant. City of London Corporation: democracy.cityoflondon.gov.uk. Greater London Authority / London Assembly: gla.moderngov.co.uk (also reachable via the london.gov.uk/about-us/londonassembly/meetings/ proxy path).",
+      "source_url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1",
+      "feed_url": "https://democracy.cityoflondon.gov.uk/mgListDownloadOptions.aspx",
+      "feed_type": "ical",
+      "resolves": true,
+      "horizon": "rolling ~1-2 months of committee meetings published in advance per the ModernGov monthly calendar",
+      "upcoming": [
+        {
+          "date": "2026-06-17",
+          "body": "City of London Corporation — Health and Wellbeing Board",
+          "title": "Health and Wellbeing Board, 1:45pm",
+          "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
+        },
+        {
+          "date": "2026-06-22",
+          "body": "City of London Corporation — Planning and Transportation Committee",
+          "title": "Planning and Transportation Committee, 1:45pm",
+          "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
+        },
+        {
+          "date": "2026-06-25",
+          "body": "City of London Corporation — Court of Common Council",
+          "title": "Court of Common Council, 1:00pm",
+          "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
+        },
+        {
+          "date": "2026-06-30",
+          "body": "City of London Corporation — Community & Children's Services Committee",
+          "title": "Community & Children's Services Committee, 1:45pm",
+          "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
+        }
+      ],
+      "conf": "v",
+      "note": "This tenant bundles two distinct governments, both running the ModernGov (Modern Council) agenda platform.\n\nVERIFIED (conf=v basis): City of London Corporation. I directly WebFetched democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx and confirmed it is the live ModernGov June 2026 calendar. The four 'upcoming' entries were cross-checked against the fetched page and match exactly: Health & Wellbeing Board 17 Jun 1:45pm, Planning & Transportation Committee 22 Jun 1:45pm, Court of Common Council 25 Jun 1:00pm, Community & Children's Services Committee 30 Jun 1:45pm. All four are still in the future as of today (2026-06-15). Earlier-June meetings (e.g. Finance 2 Jun, Policy & Resources 4 Jun, and the 15 Jun Finance & Risk / Safeguarding sub-committees) have passed and were correctly dropped. No invented meetings — every listed item is on the live page.\n\nFEED CAVEAT: feed_url is the ModernGov download-options landing page (mgListDownloadOptions.aspx), which I fetched cleanly and which confirms machine-readable exports ('Download meeting dates as vcalendar and icalendar files' → mgAddCommitteesToVCalendar.aspx; 'Synchronise with Google calendar' → mgAddCommitteesToICal.aspx; plus committee-paper subscriptions). feed_type='ical' is honest, but this URL is the ENTRY POINT, not a direct .ics — a daily checker must select the committees of interest on that page to generate a stable .ics subscription URL via the mgAddCommitteesToICal.aspx / mgAddCommitteesToVCalendar.aspx generator.\n\nGLA STATUS: The Greater London Authority / London Assembly half is also ModernGov but its calendar returned HTTP 403 (bot protection, not auth) on every host attempted — gla.moderngov.co.uk AND the london.gov.uk/about-us/londonassembly/meetings/ proxy. I confirmed the system exists via web search: real GLA ModernGov meeting pages were found (Environment Committee 3 Jun 2026, Planning & Regeneration Committee 10 Jun 2026 MId=8092, Mayor's Question Time 12 Jun 2026) — but ALL of those have already passed as of 2026-06-15, and I could NOT load the live GLA calendar to confirm any specific FUTURE date. Therefore NO GLA meetings are listed in 'upcoming' (correctly empty for GLA rather than invented). A daily checker should hit gla.moderngov.co.uk with a browser-like User-Agent to bypass the 403; the same ModernGov iCal export pattern applies. GLA primary calendar: https://gla.moderngov.co.uk/mgCalendarMonthView.aspx?GL=1&bcr=1 ; Assembly meeting list: https://gla.moderngov.co.uk/ieListMeetings.aspx?CommitteeId=183 .\n\nNet: conf=v is justified — the source_url and feed_url (both City of London, the bodies they point to) are directly fetch-verified and all four upcoming entries confirmed live and future. The GLA sub-feed is honestly disclosed as 403-blocked with no unverified meetings added."
+    },
+    {
+      "tenant_id": "tokyo",
+      "agenda_system": "Tokyo Metropolitan Assembly (東京都議会) official website — schedule section (会議の予定)",
+      "source_url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+      "feed_url": "",
+      "feed_type": "html",
+      "resolves": true,
+      "horizon": "Current regular session only (posted after convocation notice). The 令和8年第2回定例会 / 2026 2nd Regular Session covers June 9-24, 2026. Roughly the next session's worth of meetings; no rolling multi-month calendar.",
+      "upcoming": [
+        {
+          "date": "2026-06-09",
+          "body": "Plenary Session (本会議)",
+          "title": "Opening of 2026 2nd Regular Session — session period determination & governor's statement (会期の決定・知事の発言)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
+        },
+        {
+          "date": "2026-06-16",
+          "body": "Plenary Session (本会議)",
+          "title": "Representative questions (代表質問)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
+        },
+        {
+          "date": "2026-06-17",
+          "body": "Plenary Session (本会議)",
+          "title": "General questions; bills referred to standing committees; personnel matters (一般質問・議案の委員会付託)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
+        },
+        {
+          "date": "2026-06-18",
+          "body": "Standing Committees (常任委員会)",
+          "title": "General Affairs / Welfare / Economic & Port committee sessions (総務・厚生・経済港湾)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+        },
+        {
+          "date": "2026-06-19",
+          "body": "Standing Committees (常任委員会)",
+          "title": "Financial / Education / Urban Development / Environment & Construction / Public Enterprise / Police & Fire committee sessions",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+        },
+        {
+          "date": "2026-06-22",
+          "body": "Standing Committees (常任委員会)",
+          "title": "Multiple standing committees (committee deliberations)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
+        },
+        {
+          "date": "2026-06-24",
+          "body": "Plenary Session (本会議)",
+          "title": "Final session — bill votes, petition decisions, continued investigations (議案の議決・請願陳情)",
+          "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
+        }
+      ],
+      "conf": "v",
+      "note": "CONFIRMED via WebFetch (2026-06-15). Both URLs resolve. source_url https://www.gikai.metro.tokyo.lg.jp/schedule/ (会議の予定 = \"meeting schedule\") returned the live committee schedule; the plenary page https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html returned the live plenary schedule and its per-day descriptions matched the proposed entries exactly.\n\nVERIFIED MEETINGS: Plenary on June 9 (会期の決定・知事の発言), 16 (代表質問), 17 (一般質問・委員会付託), 24 (議案の議決・請願陳情) — all cross-checked against plenary-session.html, all begin 1:00 PM. Standing committees confirmed June 18 (総務/厚生/経済・港湾), June 19 (財政/文教/都市整備/環境・建設/公営企業/警察・消防), and June 22 (multiple committees) — cross-checked against the schedule root. Session: 令和8年第2回定例会 (2026 2nd Regular Session), June 9-24, 2026. (Note: the schedule page also lists earlier committee meetings on June 2-8 that have already occurred and are excluded from upcoming.)\n\nFEED: No machine-readable feed exists. No iCal (.ics), RSS, or public API link was present on either page — content is plain HTML (Japanese). For a daily checker, scrape source_url (feed_type=html). \n\nCORRECTION vs proposal: contact phone fixed to 03-5320-7141 (議会局議事部議事課) — the live page shows 7141, not 7142. Canonical host is gikai.metro.tokyo.lg.jp (the .lg.jp variant); a gikai.metro.tokyo.jp form appears in search results but .lg.jp is the official resolving domain."
+    },
+    {
+      "tenant_id": "hongkong",
+      "agenda_system": "LegCo (Legislative Council of the Hong Kong SAR) official website — legco.gov.hk. Council meeting agendas, panel/committee meeting schedules and agenda documents are published per-meeting (e.g. counmtg/agenda/cmYYYYMMDD.htm) and aggregated in the LegCo Calendar. The Calendar is backed by a public iCalendar feed and an OData ScheduleDB API.",
+      "source_url": "https://www.legco.gov.hk/en/legco-business/useful-information/legco-calendar.html",
+      "feed_url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+      "feed_type": "ical",
+      "resolves": true,
+      "horizon": "rolling ~2-3 weeks of detailed Council/panel/committee meetings published in advance; full session calendar maintained for the current legislative session",
+      "upcoming": [
+        {
+          "date": "2026-07-02",
+          "body": "",
+          "title": "Meeting of the Public Accounts Committee",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "Meeting of Public Works Subcommittee",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "8:30 AM"
+        },
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "Meeting of Subcommittee on Matters Relating to Railways",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "10:45 AM"
+        },
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "Meeting of Panel on Education",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "10:45 AM"
+        },
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "Meeting of House Committee",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-03",
+          "body": "",
+          "title": "Meeting of Finance Committee (or an earlier time between 2:45 pm a",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "3:00 PM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "",
+          "title": "Meeting of Panel on Financial Affairs",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "9:00 AM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "",
+          "title": "Meeting of Panel on Commerce\\, Industry\\, Innovation and Technology",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "",
+          "title": "Meeting of Panel on Housing",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-06",
+          "body": "",
+          "title": "Meeting of Subcommittee to Study the Promotion of Occupational Saf",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "4:30 PM"
+        },
+        {
+          "date": "2026-07-07",
+          "body": "",
+          "title": "Meeting of Subcommittee to Study Matters Relating to “Ecology + To",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "9:00 AM"
+        },
+        {
+          "date": "2026-07-07",
+          "body": "",
+          "title": "Meeting of Subcommittee on Matters Relating to the Development of",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "9:00 AM"
+        },
+        {
+          "date": "2026-07-07",
+          "body": "",
+          "title": "Meeting of Panel on Public Service",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "10:45 AM"
+        },
+        {
+          "date": "2026-07-07",
+          "body": "",
+          "title": "Meeting of Panel on Security",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-07",
+          "body": "",
+          "title": "Meeting of Panel on Economic Development",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "4:30 PM"
+        },
+        {
+          "date": "2026-07-08",
+          "body": "",
+          "title": "Meeting of Bills Committee on Inland Revenue (Amendment) (Preferen",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "8:30 AM"
+        },
+        {
+          "date": "2026-07-08",
+          "body": "",
+          "title": "Council meeting",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "11:00 AM"
+        },
+        {
+          "date": "2026-07-09",
+          "body": "",
+          "title": "Visit to Urban Renewal Authority Exploration Centre and Peel Stree",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "2:30 PM"
+        },
+        {
+          "date": "2026-07-10",
+          "body": "",
+          "title": "Meeting of Panel on Environmental Affairs",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "8:30 AM"
+        },
+        {
+          "date": "2026-07-10",
+          "body": "",
+          "title": "Meeting of Bills Committee on Evidence (Amendment) Bill 2026",
+          "url": "https://www.legco.gov.hk/xml/schedule_en.ics",
+          "time": "9:00 AM"
+        }
+      ],
+      "conf": "p",
+      "note": "Re-verified via WebFetch on 2026-06-15. BOTH URLs resolve: source_url (LegCo Calendar page) loads and describes the meeting search + iCal subscription; feed_url (https://www.legco.gov.hk/xml/schedule_en.ics) returns real VEVENTs. feed_type=ical is honest. CORRECTION: the proposal's \"upcoming\" list (Panel on Housing/Economic Development/Manpower/Environmental Affairs/Transport, Establishment Subcommittee, dated 2026-06-23 to 2026-06-25) could NOT be confirmed — a direct re-fetch of the same .ics could not locate any of those VEVENTs in the 2026-06-20..06-30 range, so they were DELETED as unverifiable. Replaced with meetings actually present in the live feed (all 2026-06-15, confirmed across two independent fetches): the Ride-Hailing Services subsidiary-legislation subcommittee, the LegCo Commission, the Insurance Ordinance subsidiary-legislation subcommittee, and the Belt-and-Road Parliamentary Liaison Subcommittee. NOTE: WebFetch's markdown rendering of the .ics appears to truncate around 2026-06-15, so events after that date could not be inspected — the feed itself likely contains more, but they cannot be verified through this tool. Traditional Chinese feed: schedule_tc.ics; Simplified: schedule_sc.ics. OData ScheduleDB API at https://app.legco.gov.hk/ScheduleDB/odata/ is a documented structured fallback (https://www.legco.gov.hk/en/open-legco/open-data/meeting-schedule.html) but a direct Tmeeting query returned HTTP 400, so it is unverified here. Per-meeting Council agendas are HTML (e.g. https://www.legco.gov.hk/yr2025/english/counmtg/agenda/cm20251022.htm); VEVENTs carry no per-meeting agenda URL, so the url field points to the feed. conf downgraded to \"p\": the originally proposed upcoming meetings were unreproducible and the OData path is unconfirmed; the .ics feed and its 2026-06-15 contents are confirmed.",
+      "last_refreshed": "2026-07-01 22:32 HST"
+    },
+    {
+      "tenant_id": "singapore",
+      "agenda_system": "Parliament of Singapore — Order Paper (parliament.gov.sg, Parliamentary Business section). The Order Paper lists the agenda of business for each day's sitting and is published online one day before each sitting as a PDF. Upcoming sitting dates are announced via the homepage banner and the official Singapore Parliament Facebook page.",
+      "source_url": "https://www.parliament.gov.sg/parliamentary-business/order-paper",
+      "feed_url": "",
+      "feed_type": "html",
+      "resolves": true,
+      "horizon": "Order Paper (full agenda) posted ~1 day before each sitting; next sitting date announced in advance via the homepage banner. Currently no upcoming sitting is published — homepage states \"Parliament is adjourned to a date to be fixed.\"",
+      "upcoming": [],
+      "conf": "v",
+      "note": "VERIFIED. Re-fetched source_url https://www.parliament.gov.sg/parliamentary-business/order-paper (HTTP 200) — confirmed real agenda system: page states \"The Order Paper lists the agenda for the day's sitting at the House. The latest Order Paper will be available online a day before the sitting.\" Re-fetched the homepage https://www.parliament.gov.sg/ (HTTP 200) which currently shows the banner \"Parliament is adjourned to a date to be fixed.\" No confirmed upcoming sitting is published, so \"upcoming\" is intentionally EMPTY (no invented dates).\n\nCORRECTION to prior note: the \"Sitting of Parliament\" page at https://www.parliament.gov.sg/parliamentary-business/sitting-of-parliament was claimed as fetched/200 but actually returns HTTP 404 — that path is wrong and has been removed from the recommendation. Do NOT rely on it.\n\nNO machine-readable feed exists: no iCal (.ics), no RSS, no public API found on the Order Paper page or homepage. feed_url blanked; feed_type=html. Order Papers are published only as individual date-stamped PDFs (e.g. under /docs/default-source/order-paper/ with names like order-paper---3feb2026.pdf, lowercase 3-letter month, no leading zero on day); filenames are rotated/archived so a checker must not hard-code old paths.\n\nDAILY-CHECKER RECOMMENDATION (feed_type=html): poll the Order Paper landing page and the homepage banner for the next announced sitting date, then construct the PDF URL for that date. The official Singapore Parliament Facebook page posts \"next Sitting of Parliament\" announcements as a secondary signal. Recent real sittings referenced in source listings include Feb–May 2026 (15th Parliament, First Session), but these are past, not upcoming, and are therefore not listed."
+    },
+    {
+      "tenant_id": "zurich",
+      "agenda_system": "Gemeinderat der Stadt Zürich (city council) official site, gemeinderat-zuerich.ch — a Politik-Axioma / CMI Axioma Ratsinformationssystem. Publishes Sitzungstermine (session calendar), Traktandenlisten / Tagliste (agendas), and Geschäfte (council business) for the city parliament. German-language.",
+      "source_url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/",
+      "feed_url": "https://www.gemeinderat-zuerich.ch/format/module/politik_axioma/sitzungen/sitzungen_exports.php",
+      "feed_type": "ical",
+      "resolves": true,
+      "horizon": "rolling ~next 4 sessions published (sessions are weekly, Wednesdays); full season calendar via Sitzungskalender-GR-2025-2026.pdf",
+      "upcoming": [
+        {
+          "date": "2026-06-17",
+          "body": "Gemeinderat der Stadt Zürich",
+          "title": "6. Sitzung (17:00-20:00)",
+          "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
+        },
+        {
+          "date": "2026-06-24",
+          "body": "Gemeinderat der Stadt Zürich",
+          "title": "7. Sitzung (17:00-20:30)",
+          "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
+        },
+        {
+          "date": "2026-07-01",
+          "body": "Gemeinderat der Stadt Zürich",
+          "title": "8. Sitzung (17:00-21:30)",
+          "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
+        },
+        {
+          "date": "2026-07-08",
+          "body": "Gemeinderat der Stadt Zürich",
+          "title": "9. Sitzung (17:00-19:30)",
+          "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
+        }
+      ],
+      "conf": "v",
+      "note": "Verified by WebFetch on 2026-06-15. Both source_url and feed_url resolve. Source page (gemeinderat-zuerich.ch/sitzungen/termine/) confirms the next session is Wed 17 June 2026, 17:00, and exposes an iCal export link. The feed_url returns valid BEGIN:VCALENDAR/VERSION:2.0 data with Europe/Zurich timezone and four VEVENTs matching the proposed list exactly: 6.-9. Sitzung on 17/24 June and 1/8 July 2026, with the session times shown in titles. feed_type=ical is honest and confirmed. Recommend this .ics for the daily checker (no RSS/JSON API found). Date + body + session number are firmly confirmed for all four entries; times come from the iCal. NOTE: the original proposal listed venue \"Rathaus Hard\" for the first two sessions — I dropped venue strings from the titles because the source page lists the Parliamentary Services address as Stadthausquai 17 and the iCal location was not independently re-verified per session; only date/body/session-number/time are retained. Per-session agendas (Traktanden/Tagliste) are linked per session from the homepage; individual Geschäfte browsable at /ueber-den-gemeinderat/geschaefte/. Sessions are normally weekly on Wednesday evenings."
+    },
+    {
+      "tenant_id": "frankfurt",
+      "agenda_system": "PARLIS (PARLamentsInformationsSystem der Stadt Frankfurt am Main) — the official parliamentary information system of the Frankfurt am Main Stadtverordnetenversammlung, hosted at stvv.frankfurt.de/parlis2. Publishes Tagesordnungen (agendas), Sitzungstermine (meeting dates), Niederschriften (minutes), and motions for the city assembly, its committees (Ausschüsse), and the 16 district councils (Ortsbeiräte). German language.",
+      "source_url": "https://www.stvv.frankfurt.de/parlis2/termine.php",
+      "feed_url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+      "feed_type": "ical",
+      "resolves": true,
+      "horizon": "rolling — calendar (.ics) lists scheduled plenary/committee/Ortsbeirat dates for the full year ahead (Stadtverordnetenversammlung plenary sessions span 2026, e.g. 2026-01-29, 03-05, 04-23, 05-21, 06-25, 08-27, 10-01, 11-05, 12-10); detailed agendas with documents are posted in the days before each meeting",
+      "upcoming": [
+        {
+          "date": "2026-08-10",
+          "body": "",
+          "title": "Sitzung des OBR 11 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-10",
+          "body": "",
+          "title": "Sitzung der KAV - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "6:00 PM"
+        },
+        {
+          "date": "2026-08-11",
+          "body": "",
+          "title": "Sitzung des OBR 10 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-11",
+          "body": "",
+          "title": "Sitzung des OBR 6 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "6:00 PM"
+        },
+        {
+          "date": "2026-08-14",
+          "body": "",
+          "title": "Sitzung des OBR 15 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-17",
+          "body": "",
+          "title": "Sitzung des OBR 14 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "8:00 PM"
+        },
+        {
+          "date": "2026-08-17",
+          "body": "",
+          "title": "Sitzung des OBR 2 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-08-18",
+          "body": "",
+          "title": "Sitzung des OBR 1 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-08-18",
+          "body": "",
+          "title": "Sitzung des OBR 13 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "8:00 PM"
+        },
+        {
+          "date": "2026-08-18",
+          "body": "",
+          "title": "Sitzung des OBR 16 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-18",
+          "body": "",
+          "title": "Sitzung des OBR 4 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-18",
+          "body": "",
+          "title": "Sitzung des OBR 7 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-20",
+          "body": "",
+          "title": "Sitzung des OBR 3 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-20",
+          "body": "",
+          "title": "Sitzung des OBR 8 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-20",
+          "body": "",
+          "title": "Sitzung des OBR 9 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-21",
+          "body": "",
+          "title": "Sitzung des OBR 12 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:30 PM"
+        },
+        {
+          "date": "2026-08-21",
+          "body": "",
+          "title": "Sitzung des OBR 5 - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "7:00 PM"
+        },
+        {
+          "date": "2026-08-25",
+          "body": "",
+          "title": "Sitzung des Haupt- und Finanzausschusses - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "5:00 PM"
+        },
+        {
+          "date": "2026-08-27",
+          "body": "",
+          "title": "Sitzung des Ältestenausschusses - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "2:00 PM"
+        },
+        {
+          "date": "2026-08-27",
+          "body": "",
+          "title": "Sitzung der Stadtverordnetenversammlung - geplanter Termin",
+          "url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
+          "time": "4:00 PM"
+        }
+      ],
+      "conf": "v",
+      "note": "CONFIRMED (conf=v). Official source is PARLIS, Frankfurt's parliamentary information system. Verified by WebFetch on 2026-06-15:\\n1) source_url https://www.stvv.frankfurt.de/parlis2/termine.php RESOLVED and listed the exact upcoming meetings snapshotted above (dates/times/locations cross-checked 1:1 — Ortsbeirat 2 on 06-15 at the Georg-Buechner-Schule Aula, five Ortsbeiraete on 06-16, etc.).\\n2) feed_url https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics VERIFIED as a valid RFC 5545 iCalendar with real VEVENTs. Confirmed 9 Stadtverordnetenversammlung plenary sessions for 2026 (DTSTART lines: 20260129T160000, 20260305, 20260423, 20260521, 20260625, 20260827, 20261001, 20261105, 20261210), each SUMMARY 'Sitzung der Stadtverordnetenversammlung - geplanter Termin', ending 23:00.\\n\\nCORRECTION vs proposed: added the 2026-06-25 16:00 Stadtverordnetenversammlung PLENARY to upcoming. The original proposal listed only the Aeltestenausschuss (14:00) that day and omitted the plenary, but this tenant IS the Stadtverordnetenversammlung, so its own plenary (confirmed in BOTH the termine.php listing context and the .ics) is the most relevant entry. All other proposed entries verified accurate.\\n\\nFEED OPTIONS for a daily checker (under https://www.stvv.frankfurt.de/stvvorg/):\\n- alle_termine.ics = ALL bodies combined (recommended single feed)\\n- tstvv.ics = Stadtverordnetenversammlung (plenary) only\\n- t1.ics ... t16.ics = individual Ortsbeiraete (district councils)\\nPlus per-committee .ics files.\\n\\nNOTES/CAVEATS:\\n- The convenience portal https://frankfurt.de/.../sitzungstermine returned HTTP 403 to WebFetch (bot-blocked); the canonical machine-readable data lives on the stvv.frankfurt.de PARLIS host, which resolved fine. Use stvv.frankfurt.de for automation.\\n- All content is German.\\n- /parlis2/ is the current PARLIS generation; an older /parlis/ path and a PARLIS.mobil interface (stvv.frankfurt.de/pamobil/) also exist.",
+      "last_refreshed": "2026-07-01 22:32 HST"
+    },
+    {
+      "tenant_id": "paris",
+      "agenda_system": "Ville de Paris — the Conseil de Paris \"ordre du jour\" (order of the day) web application, the official system where the Mayor of Paris publishes session agendas, deliberation projects, and downloadable PDF documents. Reached via paris.fr (Municipalité > Conseil de Paris > Ordre du jour).",
+      "source_url": "https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm",
+      "feed_url": "",
+      "feed_type": "html",
+      "resolves": true,
+      "horizon": "Rolling, tied to the next plenary session. Three agenda versions are posted per session: a provisional list of deliberation projects on the Tuesday 12 days before the session, an updated agenda the Tuesday before, and the definitive version the Friday before. The Conseil de Paris meets roughly 4-10 times/year, so typically only the next session's agenda is published at a time.",
+      "upcoming": [
+        {
+          "date": "2026-06-16/2026-06-19",
+          "body": "Conseil de Paris (plenary)",
+          "title": "Séance du Conseil de Paris — ordre du jour définitif des mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026 (budget/6e Commission, débats organisés, projets de délibération, autres). Agenda items carry reference codes (e.g. '2026 DFA 19', '2026 DASCO 37') with downloadable PDFs.",
+          "url": "https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm"
+        }
+      ],
+      "conf": "v",
+      "note": "CONFIRMED (conf=v). WebFetched the agenda application at a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm — it resolves and is the real ordre du jour system. It displayed the header \"Ordre du jour définitif du Conseil de Paris\" for the session of mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026, organized into sections (I budget/6e Commission, II débats organisés, III projets de délibération, IV autres) with item reference codes (e.g. \"2026 DFA 19\", \"2026 DASCO 37\") and downloadable PDF documents (\"Télécharger le fichier\").\n\nAlso WebFetched and confirmed the official paris.fr landing page https://www.paris.fr/pages/ordre-du-jour-du-conseil-de-paris-228 — it resolves, describes the 12-days/Tuesday/Friday three-version publication schedule, and links out to the Portal.jsp?page=odjcpcm agenda portal plus live streaming and video archive.\n\nFEED: feed_type=html, feed_url blanked. Neither fetched page exposed any iCal (.ics), RSS, or public API. The agenda application offers only HTML browsing plus per-item PDF downloads. A daily checker must scrape this HTML page (the Portal.jsp?page=odjcpcm URL is stable and re-renders per session) and diff the session-date header / item list.\n\nUPCOMING: Only the June 16-19, 2026 session is confirmed on the fetched agenda page (listed). A July 2026 session surfaced in earlier web-search snippets but was NOT confirmed on a fetched page, so it is intentionally omitted per the no-invention rule."
+    },
+    {
+      "tenant_id": "dubai",
+      "agenda_system": "The Executive Council of Dubai (TEC) — tec.gov.ae",
+      "source_url": "https://tec.gov.ae/en/web/tec/agendas",
+      "feed_url": "",
+      "feed_type": "none",
+      "resolves": false,
+      "horizon": "unknown — no forward agenda calendar is published; only post-meeting decisions/outcomes are released after sessions occur",
+      "upcoming": [],
+      "conf": "p",
+      "note": "ADVERSARIAL VERIFICATION (2026-06-15). The proposed record's core finding is upheld: Dubai has no Western-style public legislative meeting-agenda feed. conf kept at \"p\" because NO candidate page could be loaded from this environment.\n\nURL CHECKS:\n- source_url: I could NOT load tec.gov.ae from this environment. WebFetch returned ECONNREFUSED on tec.gov.ae/en/events AND tec.gov.ae/en/web/tec/home (consistent with the prior finding of geo/bot/Akamai blocking of non-UAE traffic). I changed source_url from /en/events to /en/web/tec/agendas because that is the page WebSearch actually surfaced and described, and it is the closest thing TEC has to an \"agendas\" surface — BUT note that page is about STRATEGIC POLICY agendas (Economic Agenda D33, Social Agenda 33, Dubai Plan 2033), NOT meeting agendas. Unverified in-browser, hence conf=p. The /en/events path from the original proposal was also unloadable and its content unconfirmed.\n- feed_url: blank. feed_type=none. CONFIRMED honest — no iCal/.ics, RSS, or public agenda API was found via search. Nothing to poll.\n\nWEBSEARCH CONFIRMATION (loaded successfully): Search results for the TEC site show its General Secretariat handles 'public policymaking, developing strategies and initiatives, decision making, determining the strategic directions of the emirate through the Dubai Plan.' The 'Agendas' results returned are exclusively strategic plans (D33, Social Agenda 33, Dubai Plan 2033) — confirming there is no item-level public meeting agenda with hearing notices.\n\nNOTE on the original proposal's dubai.ae citation: the prior record said it loaded https://www.dubai.ae/events-and-meetings and quoted an outcomes-only disclosure statement. On re-check that URL now returns HTTP 403 Forbidden from this environment, so I could not independently re-verify that quote. The outcomes-only model is still strongly supported by the WebSearch description of the Council's functions, but I downgrade reliance on the dubai.ae quote accordingly.\n\nUPCOMING: empty — correct. No advance meeting agendas are published, and no TEC page was loadable to observe any real scheduled session. Per integrity rules, nothing was invented.\n\nRECOMMENDATION for a daily checker: there is no agenda feed to poll. Treat Dubai as a 'no public meeting-agenda feed' tenant. The only monitorable signals are (a) TEC website news/event pages once reachable from a UAE-routed IP, and (b) the Council's social accounts for post-meeting decision announcements. 'Dubai Calendar' / investindubai.gov.ae events are tourism/lifestyle listings, not a government agenda system.\n\nSources reachable this session: WebSearch results enumerating tec.gov.ae pages (agendas = strategic policy, not meeting agendas). Sources NOT reachable: tec.gov.ae (ECONNREFUSED), www.dubai.ae (HTTP 403)."
     }
-   ],
-   "conf": "v",
-   "note": "CONFIRMED LIVE (re-verified 2026-06-15). Maui County Council agenda system = Legistar (a Granicus product), client name \"mauicounty\". Official entry point mauicounty.us/agendas links committee materials to https://mauicounty.legistar.com/Calendar.aspx (full Council meetings now on CivicClerk: https://mauicounty.portal.civicclerk.com/). eComment (Granicus) is enabled per-committee-meeting from the Legistar agendas.\n\nBEST FEED FOR A DAILY CHECKER = the Legistar Web API (no key required): https://webapi.legistar.com/v1/mauicounty/events — verified returning live JSON. Useful OData params: ?$orderby=EventDate desc&$top=N , and filter upcoming with ?$filter=EventDate ge datetime'2026-06-15'. Each event includes EventDate, EventTime, EventBodyName, EventLocation, EventComment, EventAgendaFile, EventInSiteURL. Per-body matter/agenda detail also via /v1/mauicounty/bodies and /v1/mauicounty/eventitems.\n\nALTERNATIVE FEED: Legistar offers per-meeting iCalendar export at https://mauicounty.legistar.com/View.ashx?M=IC&ID=<meetingID>&GUID=<guid> (the calendar's 'Export to iCalendar' icons). No site-wide single .ics subscription or RSS feed found; for an aggregated daily checker the JSON API is the right choice (feed_type=legistar_api).\n\nVERIFICATION (this pass): WebFetched both URLs. Calendar.aspx renders a real June 2026 committee calendar (6/1–6/17). The Web API returned matching live JSON; the 'upcoming' list is taken directly from it (?$orderby=EventDate desc&$top=20). NOTE: the API surfaced one meeting the prior proposal MISSED — a second 6/15 meeting, Water and Infrastructure Committee at 1:30 PM — now ADDED. The 6/16 Government Relations meeting carries the reconvene note (its 6/2 counterpart shows EventComment 'Recessed to 06/16/2026 at 1:30 p.m.'; the 6/16 row itself shows 'Reconvened from 6/2/2026 at 1:30 p.m.'). All six upcoming meetings cross-check between the calendar page and the API. The hint's 'Granicus + eComment' is correct — Legistar IS the Granicus agenda platform."
-  },
-  {
-   "tenant_id": "honolulu",
-   "agenda_system": "Granicus (honolulu.granicus.com, view_id=3) for the Honolulu City Council meeting/video portal + RSS agenda feed; official upcoming-meeting calendar published by the City Clerk at honolulu.gov/clerk/clk-council-calendar (honolulu.gov/council-cal), with agenda PDFs hosted on the HNLDoc records system (hnldoc.ehawaii.gov) and DocuShare.",
-   "source_url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
-   "feed_url": "https://honolulu.granicus.com/ViewPublisherRSS.php?view_id=3&mode=agendas",
-   "feed_type": "rss",
-   "resolves": true,
-   "horizon": "Rolling ~30 days on the City Clerk Council Calendar (full Council meets monthly on a Wednesday; committees meet monthly over 3 consecutive days). Individual agendas post 6 days prior for Council / ~48 hours prior for committees, so the Granicus RSS agenda feed surfaces a meeting's agenda only within that window.",
-   "upcoming": [
-    {
-     "date": "2026-06-03",
-     "body": "Honolulu City Council (Regular Full Council)",
-     "title": "Regular Full Council Meeting, 10:00 AM",
-     "url": "https://hnldoc.ehawaii.gov/hnldoc/document-download?id=28259"
-    },
-    {
-     "date": "2026-06-10",
-     "body": "Charter Commission (Committee on Style)",
-     "title": "Charter Commission / Committee on Style Meeting, 2:00 PM",
-     "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-358525/2026%20-%20061026%20Agenda%20Committee%20on%20Style%20Meeting.pdf"
-    },
-    {
-     "date": "2026-06-23",
-     "body": "Committee on Budget",
-     "title": "Budget Committee, 9:00 AM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-23",
-     "body": "Committee on Energy, Environment & Sustainability",
-     "title": "Energy, Environment & Sustainability Committee, 1:00 PM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-23",
-     "body": "Committee on Housing, Homelessness & Parks",
-     "title": "Housing, Homelessness & Parks Committee, 2:30 PM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-24",
-     "body": "Committee on Infrastructure, Transportation & Technology",
-     "title": "Infrastructure, Transportation & Technology Committee, 9:00 AM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-24",
-     "body": "Committee on International & Legal Affairs",
-     "title": "International & Legal Affairs Committee, 1:00 PM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "Committee on Zoning & Planning",
-     "title": "Zoning & Planning Committee, 9:00 AM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "Committee on Public Safety & Economy",
-     "title": "Public Safety & Economy Committee, 1:00 PM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "Committee on Government Efficiency & Customer Services",
-     "title": "Government Efficiency & Customer Services Committee, 2:30 PM",
-     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/"
-    }
-   ],
-   "conf": "v",
-   "note": "VERIFIED by WebFetch + PDF byte inspection. (1) source_url honolulu.gov/clerk/clk-council-calendar/ resolves and lists exactly the 10 meetings below, range June 3-25, 2026 — all upcoming entries confirmed against the live page; none invented. (2) feed_url Granicus agendas RSS resolves as a valid RSS 2.0 feed; feed_type \"rss\" is honest. No iCal (.ics) is offered by this Granicus publisher. The feed currently shows only archived items (newest ~June 27, 2024) because agendas publish 6 days (Council) / ~48 hrs (committees) before a meeting and roll off — a daily checker must poll for new dated entries within that window. (3) Agenda PDFs resolve: HNLDoc id=28259 downloaded as a real 325KB PDF whose extracted text reads \"CITY COUNCIL\" / \"060326 Council Agenda\" (created 2026-05-28) — confirmed as the genuine June 3, 2026 Regular Full Council agenda. The DocuShare June 10 Committee-on-Style PDF (Document-358525) downloaded as a valid 313KB PDF (no 404; text stream compressed/non-extractable but file is real). The 8 committee rows (June 23-25) correctly point to the Clerk calendar because per-meeting agenda links were not yet posted at fetch time. Recommended daily checker: poll the Granicus agendas RSS for the machine-readable signal, and scrape honolulu.gov/council-cal for the forward calendar. No changes required to the proposed record; all claims hold."
-  },
-  {
-   "tenant_id": "hawaii",
-   "agenda_system": "Granicus (hawaiicounty.granicus.com) — Hawaii County Streaming Media Archive / Legislative Management. The official county.gov agenda page links into this Granicus system.",
-   "source_url": "https://hawaiicounty.granicus.com/viewpublisher.php?view_id=1",
-   "feed_url": "http://hawaiicounty.granicus.com/ViewPublisherRSS.php?view_id=1&mode=agendas",
-   "feed_type": "rss",
-   "resolves": true,
-   "horizon": "rolling — committee + council agendas posted roughly a week ahead; archive extends back to 2015 (council) / 2022 (committees)",
-   "upcoming": [
-    {
-     "date": "2026-06-16",
-     "body": "Governmental Operations and External Affairs Committee",
-     "title": "GovOps & External Affairs Committee — 9:00 AM",
-     "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2022"
-    },
-    {
-     "date": "2026-06-16",
-     "body": "Finance Committee",
-     "title": "Finance Committee — 10:30 AM",
-     "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2021"
-    },
-    {
-     "date": "2026-06-16",
-     "body": "Policy Committee on Planning, Land Use, and Economic Development",
-     "title": "Planning, Land Use & Economic Development Committee — 12:00 PM",
-     "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2023"
-    },
-    {
-     "date": "2026-06-17",
-     "body": "Hawaii County Council",
-     "title": "Hawaii County Council Meeting — 9:00 AM",
-     "url": "https://hawaiicounty.granicus.com/AgendaViewer.php?view_id=1&event_id=2024"
-    }
-   ],
-   "conf": "v",
-   "note": "Adversarially verified 2026-06-15 via WebFetch. source_url (viewpublisher.php?view_id=1) resolves and is confirmed as the real Hawaii County Council / Streaming Media Archive on Granicus (NOT Legistar). All four upcoming meetings (3 committees Jun 16, full Council Jun 17) cross-checked against the live publisher page — exact match on body, date, and time. feed_url (ViewPublisherRSS.php?view_id=1&mode=agendas) confirmed as a valid RSS 2.0 feed with ~116 items. feed_type=rss is honest. Spot-checked two AgendaViewer deep-links (event_id=2021 Finance, event_id=2024 Council): both download as genuine published agenda PDFs created/modified Jun 10, 2026 by county staff with embedded links to the Hawaii County records system — event_ids are real, not fabricated. The official human-facing page (www.hawaiicounty.gov/.../meeting-agendas-and-actions) returns HTTP 403 to bots/WAF but links into this same Granicus system. Granicus also offers minutes, podcast (audio), and video podcast (mode=vpodcast) feeds; no iCal or Legistar/JSON API observed. For a daily checker, poll the agendas RSS feed and diff new <item> entries; agenda-viewer links are PDFs. Confidence v."
-  },
-  {
-   "tenant_id": "kauai",
-   "agenda_system": "Granicus (County of Kauaʻi legislative portal, kauai.granicus.com)",
-   "source_url": "https://kauai.granicus.com/ViewPublisher.php?view_id=2",
-   "feed_url": "https://kauai.granicus.com/ViewPublisherRSS.php?view_id=2&mode=agendas",
-   "feed_type": "rss",
-   "resolves": true,
-   "horizon": "rolling; agendas posted ~7 days before each meeting (the June 17 council agenda was authored June 10). Typically the next 1-2 council/committee meetings are visible at a time.",
-   "upcoming": [
-    {
-     "date": "2026-06-17",
-     "body": "Kauaʻi County Council",
-     "title": "County Council Meeting - includes Resolution No. 2026-16 (public pedestrian beach access easement, Aliomanu Bay, Anahola) and C 2026-140 (Condition of County Treasury quarterly reports)",
-     "url": "https://kauai.granicus.com/AgendaViewer.php?view_id=2&event_id=1593"
-    }
-   ],
-   "conf": "v",
-   "note": "Official agenda system is Granicus at kauai.granicus.com (view_id=2), linked from the county site at kauai.gov/Government/Council. VERIFIED 2026-06-15: fetched the RSS feed (valid RSS 2.0, mode=agendas) and confirmed it lists County Council, County Council Committee, and Planning Commission meetings. The June 17, 2026 County Council entry appears with link event_id=1593. Followed that AgendaViewer URL (302-redirects to a Granicus S3 agenda PDF) and confirmed the actual agenda contents: meeting body = Kauaʻi County Council, agenda authored June 10 2026, containing Resolution No. 2026-16 (Aliomanu Bay, Anahola pedestrian beach access easement), Resolution No. 2026-18 (HHCA lawsuit opposition), and communications C 2026-140 (County Treasury quarterly reports) through C 2026-152 (EV charging, federal grants, fire/EMS funding). The RSS feed (mode=agendas) is the machine-readable source for a daily checker; a videos/podcast RSS also exists at mode=podcast. NOTE: kauai.gov itself returns HTTP 403 to automated fetchers and the Granicus ViewPublisher HTML page (source_url) exceeds the fetch size limit (~10MB) — both are genuine but use the RSS feed for programmatic polling. As of today (2026-06-15) the June 3 council, May 27 committee, and June 9 Planning Commission meetings in the feed are already past; June 17 is the only confirmed genuinely-upcoming meeting. Future events use event_id (e.g. event_id=1593) in the agenda URL while past meetings use clip_id. Contact for agenda/accessibility: Office of the County Clerk, Council Services Division, (808) 241-4188, cokcouncil@kauai.gov."
-  },
-  {
-   "tenant_id": "nyc",
-   "agenda_system": "Granicus Legistar (NYC City Council Legislative Research Center / InSite)",
-   "source_url": "https://legistar.council.nyc.gov/Calendar.aspx",
-   "feed_url": "https://webapi.legistar.com/v1/nyc/Events?$filter=EventDate+ge+datetime'2026-06-15'&$orderby=EventDate",
-   "feed_type": "legistar_api",
-   "resolves": true,
-   "horizon": "rolling; committee hearings posted a few weeks out, monthly Stated Meetings scheduled through end of year (~30 days to several months ahead)",
-   "upcoming": [
-    {
-     "date": "2026-06-24",
-     "body": "Committee on Education (jointly with Committee on Technology)",
-     "title": "Committee hearing (1:00 PM, Council Chambers, City Hall)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-08-04",
-     "body": "Committee on Land Use",
-     "title": "Committee hearing (12:00 PM, 250 Broadway, 8th Floor, Hearing Room 1)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-09-15",
-     "body": "Committee on Oversight and Investigations (jointly with Education)",
-     "title": "Examining the Use of Screens in New York City Public Schools",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-10-20",
-     "body": "Committee on Environmental Protection and Waterfronts",
-     "title": "Committee hearing (12:00 PM)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-11-19",
-     "body": "New York City Council",
-     "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-12-03",
-     "body": "New York City Council",
-     "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    },
-    {
-     "date": "2026-12-17",
-     "body": "New York City Council",
-     "title": "Stated Meeting (1:30 PM, Council Chambers, City Hall)",
-     "url": "https://legistar.council.nyc.gov/Calendar.aspx"
-    }
-   ],
-   "conf": "v",
-   "note": "CONFIRMED via two independent WebFetch passes of the live calendar (2026-06-15). Official source: NYC City Council Legislative Research Center (Legistar/InSite by Granicus), https://legistar.council.nyc.gov/Calendar.aspx — resolved successfully, 410 records across 5 pages, filterable by year/session/committee. All 7 upcoming meetings were read directly off that page and re-verified individually: the 6/24/2026 Education+Technology joint hearing confirmed at 1:00 PM Council Chambers; the 8/4/2026 Land Use hearing confirmed at 12:00 PM, 250 Broadway 8th Floor Hearing Room 1; the 9/15/2026 Oversight & Investigations/Education joint hearing 'Examining the Use of Screens in NYC Public Schools' confirmed; the 10/20/2026 Environmental Protection & Waterfronts hearing 12:00 PM confirmed; and the 11/19, 12/3, 12/17 Stated Meetings at 1:30 PM Council Chambers all confirmed. Machine-readable feed for a daily checker: the Legistar Web API, client code 'nyc', base https://webapi.legistar.com/v1/nyc/, Events endpoint with OData date filtering. NOTE: direct WebFetch of the API returned HTTP 403 (Granicus WAF blocking automated user-agents) from this environment; the API client code 'nyc' and date-filter pattern are documented by official NYC Council docs (council.nyc.gov/legislation/api) and Granicus (webapi.legistar.com/Help). A free API key is requested via a name/email form for full automated read access, and a custom User-Agent typically clears the WAF. feed_type 'legistar_api' is honest (the endpoint exists; only automated access from this IP/UA was blocked). Per-meeting iCalendar (.ics) and Excel/PDF/Word exports also exist on the InSite calendar but are per-item, not a single subscribable feed, so the Legistar API remains the recommended daily-check feed. Each calendar row links to a Meeting Details page with the posted PDF agenda. Committee schedules shift; confirm exact times/locations on the per-meeting detail page before relying on them."
-  },
-  {
-   "tenant_id": "nys",
-   "agenda_system": "NY State Legislature — combined Public Hearing Schedule (Senate/Assembly hearing notices) at the Assembly site, plus the NY Senate Open Legislation API (machine-readable agendas/calendars covering both chambers)",
-   "source_url": "https://nyassembly.gov/leg/?sh=hear",
-   "feed_url": "https://legislation.nysenate.gov/api/3/",
-   "feed_type": "json_api",
-   "resolves": true,
-   "horizon": "rolling; hearings posted as scheduled (often weeks ahead — budget-hearing season announced ~1 month out). No fixed window; depends on legislative session activity.",
-   "upcoming": [
-    {
-     "date": "2026-06-15",
-     "body": "NY Senate District 15 (Sen. Joseph P. Addabbo Jr.)",
-     "title": "NYLAG Legal Assistance (by appointment only), Middle Village NY, 10:00 AM–3:00 PM",
-     "url": "https://www.nysenate.gov/events"
-    },
-    {
-     "date": "2026-06-15",
-     "body": "NY Senate District 34 (Sen. Nathalia Fernandez)",
-     "title": "District 34 Bronx Town Hall, Huntington Free Library, Bronx NY, 6:00–7:30 PM",
-     "url": "https://www.nysenate.gov/events"
-    }
-   ],
-   "conf": "v",
-   "note": "VERIFIED (fetched 2026-06-15). source_url https://nyassembly.gov/leg/?sh=hear resolves and is confirmed as the combined \"New York State Legislature Public Hearing Calendar\" (lists both chambers' leadership; currently shows a Senate Labor Committee hearing, demonstrating it carries Senate hearings too). At fetch time it listed exactly one item: Senate Standing Committee on Labor (Chair Sen. Jessica Ramos), \"The current state of Workers' Compensation and opportunities for improvement and modernization,\" Van Buren Hearing Room A, LOB 2nd Fl, Albany, scheduled 2026-05-20 10:00 AM but marked POSTPONED. That date is now in the PAST relative to today and the hearing was postponed, so it is intentionally EXCLUDED from the upcoming list. The Senate-side mirror https://www.nysenate.gov/issues/public-hearings resolved and explicitly states \"There are no upcoming meetings or public hearings scheduled at this time.\"\n\nMACHINE-READABLE FEED: NY Senate Open Legislation API, base https://legislation.nysenate.gov/api/3/ — REST/JSON, near-real-time, covers BOTH Senate and Assembly. Relevant endpoints: /agendas/{year} (committee agendas), /calendars/{year} (floor/active-list calendars), /committees, hearing-transcript endpoints. CONFIRMED it requires a free API key: an unkeyed call to /api/3/agendas/2026 returned HTTP 401 Unauthorized, matching the documented '?key=' requirement (docs: https://legislation.nysenate.gov/static/docs/html/index.html). Sign up free at https://legislation.nysenate.gov/. feed_type=json_api is honest — there is NO native iCal/RSS for hearings (the nysenate.gov/events calendar only offers 'Add all Session dates' to Outlook/Google/Apple — session dates, not hearings). Recommended daily-check: poll Open Legislation /agendas + /calendars JSON with an API key, and/or scrape https://nyassembly.gov/leg/?sh=hear as HTML fallback.\n\nUPCOMING list now contains only the two items independently confirmed on https://www.nysenate.gov/events at fetch time, both dated 2026-06-15: (1) NYLAG Legal Assistance, by appointment, Sen. Addabbo's Middle Village office, 10:00 AM–3:00 PM; (2) District 34 Bronx Town Hall, Sen. Fernandez, Huntington Free Library, Bronx, 6:00–7:30 PM. NOTE: these are constituent/district events, NOT formal legislative-body agenda hearings — included for transparency but they are a different concept from committee/floor agendas. At fetch time no future formal committee or floor hearing was posted (NY is past the Jan–Feb budget-hearing season). The truest 'agenda/hearing' example seen was the (now past, postponed) Senate Labor hearing. The Senate floor Calendar/Agenda (active-list, session days) is a separate concept best pulled from the Open Legislation API, not the public-hearing page."
-  },
-  {
-   "tenant_id": "liverpool",
-   "agenda_system": "WordPress site (villageofliverpoolny.gov) with The Events Calendar / Tribe Events plugin (ECPv6.15.14). Board pages host agendas/board-packets as PDFs; the Events Calendar plugin provides a machine-readable iCal feed.",
-   "source_url": "https://villageofliverpoolny.gov/board-of-trustees/",
-   "feed_url": "https://villageofliverpoolny.gov/events/?ical=1",
-   "feed_type": "ical",
-   "resolves": true,
-   "horizon": "Rolling ~30 days on the events calendar; Board of Trustees meets the 3rd Monday monthly at 6:00pm with agenda/board packet PDF posted shortly before each meeting (next meeting's packet currently posted). Planning Board ~1st Monday, Zoning Board ~4th Monday, both \"as needed.\"",
-   "upcoming": [
-    {
-     "date": "2026-06-15",
-     "body": "Board of Trustees",
-     "title": "Village Board of Trustees Regular Meeting (6:00pm) — Agenda & Board Packet posted",
-     "url": "https://villageofliverpoolny.gov/wp-content/uploads/2026/06/Board-Packet-06152026.pdf"
-    },
-    {
-     "date": "2026-06-22",
-     "body": "Zoning Board of Appeals",
-     "title": "Zoning Board Meeting",
-     "url": "https://villageofliverpoolny.gov/events/?ical=1"
-    },
-    {
-     "date": "2026-06-22",
-     "body": "Planning Board",
-     "title": "No Planning Board Meeting — cancelled",
-     "url": "https://villageofliverpoolny.gov/events/?ical=1"
-    }
-   ],
-   "conf": "v",
-   "note": "VERIFIED via WebFetch (2026-06-15). source_url https://villageofliverpoolny.gov/board-of-trustees/ resolves and states \"The Village Board meets the 3rd Monday of each month at 6:00 p.m.\" and links the agenda/board-packet PDF Board-Packet-06152026.pdf for the June 15, 2026 6:00pm regular meeting. The PDF URL resolves to a real 4.7MB scanned-image PDF (not text-extractable, but valid). feed_url https://villageofliverpoolny.gov/events/?ical=1 returns a valid VCALENDAR (PRODID -//Village of Liverpool - ECPv6.15.14//NONSGML v1.0//EN) including the June 22 \"Zoning Board meeting\" VEVENT and the cancelled June 22 \"No Planning Board meeting\" VEVENT — good for a daily checker. All three listed upcoming meetings cross-confirmed against fetched sources. Note: the Board of Trustees page does NOT list Planning/Zoning schedules (those come from the iCal feed only); Board of Trustees agenda packets are PDFs on the board page (not in iCal descriptions), so a full agenda checker should poll the iCal feed for meeting dates AND scrape the board page / wp-content/uploads for dated Board-Packet PDFs. The Zoning/Planning event detail URLs were not separately confirmed, so those two rows point to the iCal feed rather than an asserted event-permalink. Old domain villageofliverpool.org redirects to the official .gov. Board meets 3rd Monday at 6pm; Planning ~1st Mon, Zoning ~4th Mon, as needed."
-  },
-  {
-   "tenant_id": "london",
-   "agenda_system": "ModernGov (Modern Council) — used by BOTH bodies in this tenant. City of London Corporation: democracy.cityoflondon.gov.uk. Greater London Authority / London Assembly: gla.moderngov.co.uk (also reachable via the london.gov.uk/about-us/londonassembly/meetings/ proxy path).",
-   "source_url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1",
-   "feed_url": "https://democracy.cityoflondon.gov.uk/mgListDownloadOptions.aspx",
-   "feed_type": "ical",
-   "resolves": true,
-   "horizon": "rolling ~1-2 months of committee meetings published in advance per the ModernGov monthly calendar",
-   "upcoming": [
-    {
-     "date": "2026-06-17",
-     "body": "City of London Corporation — Health and Wellbeing Board",
-     "title": "Health and Wellbeing Board, 1:45pm",
-     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
-    },
-    {
-     "date": "2026-06-22",
-     "body": "City of London Corporation — Planning and Transportation Committee",
-     "title": "Planning and Transportation Committee, 1:45pm",
-     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "City of London Corporation — Court of Common Council",
-     "title": "Court of Common Council, 1:00pm",
-     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
-    },
-    {
-     "date": "2026-06-30",
-     "body": "City of London Corporation — Community & Children's Services Committee",
-     "title": "Community & Children's Services Committee, 1:45pm",
-     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1"
-    }
-   ],
-   "conf": "v",
-   "note": "This tenant bundles two distinct governments, both running the ModernGov (Modern Council) agenda platform.\n\nVERIFIED (conf=v basis): City of London Corporation. I directly WebFetched democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx and confirmed it is the live ModernGov June 2026 calendar. The four 'upcoming' entries were cross-checked against the fetched page and match exactly: Health & Wellbeing Board 17 Jun 1:45pm, Planning & Transportation Committee 22 Jun 1:45pm, Court of Common Council 25 Jun 1:00pm, Community & Children's Services Committee 30 Jun 1:45pm. All four are still in the future as of today (2026-06-15). Earlier-June meetings (e.g. Finance 2 Jun, Policy & Resources 4 Jun, and the 15 Jun Finance & Risk / Safeguarding sub-committees) have passed and were correctly dropped. No invented meetings — every listed item is on the live page.\n\nFEED CAVEAT: feed_url is the ModernGov download-options landing page (mgListDownloadOptions.aspx), which I fetched cleanly and which confirms machine-readable exports ('Download meeting dates as vcalendar and icalendar files' → mgAddCommitteesToVCalendar.aspx; 'Synchronise with Google calendar' → mgAddCommitteesToICal.aspx; plus committee-paper subscriptions). feed_type='ical' is honest, but this URL is the ENTRY POINT, not a direct .ics — a daily checker must select the committees of interest on that page to generate a stable .ics subscription URL via the mgAddCommitteesToICal.aspx / mgAddCommitteesToVCalendar.aspx generator.\n\nGLA STATUS: The Greater London Authority / London Assembly half is also ModernGov but its calendar returned HTTP 403 (bot protection, not auth) on every host attempted — gla.moderngov.co.uk AND the london.gov.uk/about-us/londonassembly/meetings/ proxy. I confirmed the system exists via web search: real GLA ModernGov meeting pages were found (Environment Committee 3 Jun 2026, Planning & Regeneration Committee 10 Jun 2026 MId=8092, Mayor's Question Time 12 Jun 2026) — but ALL of those have already passed as of 2026-06-15, and I could NOT load the live GLA calendar to confirm any specific FUTURE date. Therefore NO GLA meetings are listed in 'upcoming' (correctly empty for GLA rather than invented). A daily checker should hit gla.moderngov.co.uk with a browser-like User-Agent to bypass the 403; the same ModernGov iCal export pattern applies. GLA primary calendar: https://gla.moderngov.co.uk/mgCalendarMonthView.aspx?GL=1&bcr=1 ; Assembly meeting list: https://gla.moderngov.co.uk/ieListMeetings.aspx?CommitteeId=183 .\n\nNet: conf=v is justified — the source_url and feed_url (both City of London, the bodies they point to) are directly fetch-verified and all four upcoming entries confirmed live and future. The GLA sub-feed is honestly disclosed as 403-blocked with no unverified meetings added."
-  },
-  {
-   "tenant_id": "tokyo",
-   "agenda_system": "Tokyo Metropolitan Assembly (東京都議会) official website — schedule section (会議の予定)",
-   "source_url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
-   "feed_url": "",
-   "feed_type": "html",
-   "resolves": true,
-   "horizon": "Current regular session only (posted after convocation notice). The 令和8年第2回定例会 / 2026 2nd Regular Session covers June 9-24, 2026. Roughly the next session's worth of meetings; no rolling multi-month calendar.",
-   "upcoming": [
-    {
-     "date": "2026-06-09",
-     "body": "Plenary Session (本会議)",
-     "title": "Opening of 2026 2nd Regular Session — session period determination & governor's statement (会期の決定・知事の発言)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
-    },
-    {
-     "date": "2026-06-16",
-     "body": "Plenary Session (本会議)",
-     "title": "Representative questions (代表質問)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
-    },
-    {
-     "date": "2026-06-17",
-     "body": "Plenary Session (本会議)",
-     "title": "General questions; bills referred to standing committees; personnel matters (一般質問・議案の委員会付託)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
-    },
-    {
-     "date": "2026-06-18",
-     "body": "Standing Committees (常任委員会)",
-     "title": "General Affairs / Welfare / Economic & Port committee sessions (総務・厚生・経済港湾)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
-    },
-    {
-     "date": "2026-06-19",
-     "body": "Standing Committees (常任委員会)",
-     "title": "Financial / Education / Urban Development / Environment & Construction / Public Enterprise / Police & Fire committee sessions",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
-    },
-    {
-     "date": "2026-06-22",
-     "body": "Standing Committees (常任委員会)",
-     "title": "Multiple standing committees (committee deliberations)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/"
-    },
-    {
-     "date": "2026-06-24",
-     "body": "Plenary Session (本会議)",
-     "title": "Final session — bill votes, petition decisions, continued investigations (議案の議決・請願陳情)",
-     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html"
-    }
-   ],
-   "conf": "v",
-   "note": "CONFIRMED via WebFetch (2026-06-15). Both URLs resolve. source_url https://www.gikai.metro.tokyo.lg.jp/schedule/ (会議の予定 = \"meeting schedule\") returned the live committee schedule; the plenary page https://www.gikai.metro.tokyo.lg.jp/schedule/plenary-session.html returned the live plenary schedule and its per-day descriptions matched the proposed entries exactly.\n\nVERIFIED MEETINGS: Plenary on June 9 (会期の決定・知事の発言), 16 (代表質問), 17 (一般質問・委員会付託), 24 (議案の議決・請願陳情) — all cross-checked against plenary-session.html, all begin 1:00 PM. Standing committees confirmed June 18 (総務/厚生/経済・港湾), June 19 (財政/文教/都市整備/環境・建設/公営企業/警察・消防), and June 22 (multiple committees) — cross-checked against the schedule root. Session: 令和8年第2回定例会 (2026 2nd Regular Session), June 9-24, 2026. (Note: the schedule page also lists earlier committee meetings on June 2-8 that have already occurred and are excluded from upcoming.)\n\nFEED: No machine-readable feed exists. No iCal (.ics), RSS, or public API link was present on either page — content is plain HTML (Japanese). For a daily checker, scrape source_url (feed_type=html). \n\nCORRECTION vs proposal: contact phone fixed to 03-5320-7141 (議会局議事部議事課) — the live page shows 7141, not 7142. Canonical host is gikai.metro.tokyo.lg.jp (the .lg.jp variant); a gikai.metro.tokyo.jp form appears in search results but .lg.jp is the official resolving domain."
-  },
-  {
-   "tenant_id": "hongkong",
-   "agenda_system": "LegCo (Legislative Council of the Hong Kong SAR) official website — legco.gov.hk. Council meeting agendas, panel/committee meeting schedules and agenda documents are published per-meeting (e.g. counmtg/agenda/cmYYYYMMDD.htm) and aggregated in the LegCo Calendar. The Calendar is backed by a public iCalendar feed and an OData ScheduleDB API.",
-   "source_url": "https://www.legco.gov.hk/en/legco-business/useful-information/legco-calendar.html",
-   "feed_url": "https://www.legco.gov.hk/xml/schedule_en.ics",
-   "feed_type": "ical",
-   "resolves": true,
-   "horizon": "rolling ~2-3 weeks of detailed Council/panel/committee meetings published in advance; full session calendar maintained for the current legislative session",
-   "upcoming": [
-    {
-     "date": "2026-06-15",
-     "body": "Subcommittee on Four Pieces of Subsidiary Legislation Relating to Regulation of Ride-Hailing Services",
-     "title": "Meeting of Subcommittee on Four Pieces of Subsidiary Legislation Relating to Regulation of Ride-Hailing Services (Conference Room 1)",
-     "url": "https://www.legco.gov.hk/xml/schedule_en.ics"
-    },
-    {
-     "date": "2026-06-15",
-     "body": "The Legislative Council Commission",
-     "title": "Meeting of The Legislative Council Commission (Conference Room 5)",
-     "url": "https://www.legco.gov.hk/xml/schedule_en.ics"
-    },
-    {
-     "date": "2026-06-15",
-     "body": "Subcommittee on Three Pieces of Subsidiary Legislation Relating to Insurance Ordinance",
-     "title": "Meeting of Subcommittee on Three Pieces of Subsidiary Legislation Relating to Insurance Ordinance (Conference Room 2B)",
-     "url": "https://www.legco.gov.hk/xml/schedule_en.ics"
-    },
-    {
-     "date": "2026-06-15",
-     "body": "Parliamentary Liaison Subcommittee",
-     "title": "Meeting of the Parliamentary Liaison Subcommittee with Consuls-General of Asian countries of the Belt and Road Initiative in Hong Kong (Conference Room 4)",
-     "url": "https://www.legco.gov.hk/xml/schedule_en.ics"
-    }
-   ],
-   "conf": "p",
-   "note": "Re-verified via WebFetch on 2026-06-15. BOTH URLs resolve: source_url (LegCo Calendar page) loads and describes the meeting search + iCal subscription; feed_url (https://www.legco.gov.hk/xml/schedule_en.ics) returns real VEVENTs. feed_type=ical is honest. CORRECTION: the proposal's \"upcoming\" list (Panel on Housing/Economic Development/Manpower/Environmental Affairs/Transport, Establishment Subcommittee, dated 2026-06-23 to 2026-06-25) could NOT be confirmed — a direct re-fetch of the same .ics could not locate any of those VEVENTs in the 2026-06-20..06-30 range, so they were DELETED as unverifiable. Replaced with meetings actually present in the live feed (all 2026-06-15, confirmed across two independent fetches): the Ride-Hailing Services subsidiary-legislation subcommittee, the LegCo Commission, the Insurance Ordinance subsidiary-legislation subcommittee, and the Belt-and-Road Parliamentary Liaison Subcommittee. NOTE: WebFetch's markdown rendering of the .ics appears to truncate around 2026-06-15, so events after that date could not be inspected — the feed itself likely contains more, but they cannot be verified through this tool. Traditional Chinese feed: schedule_tc.ics; Simplified: schedule_sc.ics. OData ScheduleDB API at https://app.legco.gov.hk/ScheduleDB/odata/ is a documented structured fallback (https://www.legco.gov.hk/en/open-legco/open-data/meeting-schedule.html) but a direct Tmeeting query returned HTTP 400, so it is unverified here. Per-meeting Council agendas are HTML (e.g. https://www.legco.gov.hk/yr2025/english/counmtg/agenda/cm20251022.htm); VEVENTs carry no per-meeting agenda URL, so the url field points to the feed. conf downgraded to \"p\": the originally proposed upcoming meetings were unreproducible and the OData path is unconfirmed; the .ics feed and its 2026-06-15 contents are confirmed."
-  },
-  {
-   "tenant_id": "singapore",
-   "agenda_system": "Parliament of Singapore — Order Paper (parliament.gov.sg, Parliamentary Business section). The Order Paper lists the agenda of business for each day's sitting and is published online one day before each sitting as a PDF. Upcoming sitting dates are announced via the homepage banner and the official Singapore Parliament Facebook page.",
-   "source_url": "https://www.parliament.gov.sg/parliamentary-business/order-paper",
-   "feed_url": "",
-   "feed_type": "html",
-   "resolves": true,
-   "horizon": "Order Paper (full agenda) posted ~1 day before each sitting; next sitting date announced in advance via the homepage banner. Currently no upcoming sitting is published — homepage states \"Parliament is adjourned to a date to be fixed.\"",
-   "upcoming": [],
-   "conf": "v",
-   "note": "VERIFIED. Re-fetched source_url https://www.parliament.gov.sg/parliamentary-business/order-paper (HTTP 200) — confirmed real agenda system: page states \"The Order Paper lists the agenda for the day's sitting at the House. The latest Order Paper will be available online a day before the sitting.\" Re-fetched the homepage https://www.parliament.gov.sg/ (HTTP 200) which currently shows the banner \"Parliament is adjourned to a date to be fixed.\" No confirmed upcoming sitting is published, so \"upcoming\" is intentionally EMPTY (no invented dates).\n\nCORRECTION to prior note: the \"Sitting of Parliament\" page at https://www.parliament.gov.sg/parliamentary-business/sitting-of-parliament was claimed as fetched/200 but actually returns HTTP 404 — that path is wrong and has been removed from the recommendation. Do NOT rely on it.\n\nNO machine-readable feed exists: no iCal (.ics), no RSS, no public API found on the Order Paper page or homepage. feed_url blanked; feed_type=html. Order Papers are published only as individual date-stamped PDFs (e.g. under /docs/default-source/order-paper/ with names like order-paper---3feb2026.pdf, lowercase 3-letter month, no leading zero on day); filenames are rotated/archived so a checker must not hard-code old paths.\n\nDAILY-CHECKER RECOMMENDATION (feed_type=html): poll the Order Paper landing page and the homepage banner for the next announced sitting date, then construct the PDF URL for that date. The official Singapore Parliament Facebook page posts \"next Sitting of Parliament\" announcements as a secondary signal. Recent real sittings referenced in source listings include Feb–May 2026 (15th Parliament, First Session), but these are past, not upcoming, and are therefore not listed."
-  },
-  {
-   "tenant_id": "zurich",
-   "agenda_system": "Gemeinderat der Stadt Zürich (city council) official site, gemeinderat-zuerich.ch — a Politik-Axioma / CMI Axioma Ratsinformationssystem. Publishes Sitzungstermine (session calendar), Traktandenlisten / Tagliste (agendas), and Geschäfte (council business) for the city parliament. German-language.",
-   "source_url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/",
-   "feed_url": "https://www.gemeinderat-zuerich.ch/format/module/politik_axioma/sitzungen/sitzungen_exports.php",
-   "feed_type": "ical",
-   "resolves": true,
-   "horizon": "rolling ~next 4 sessions published (sessions are weekly, Wednesdays); full season calendar via Sitzungskalender-GR-2025-2026.pdf",
-   "upcoming": [
-    {
-     "date": "2026-06-17",
-     "body": "Gemeinderat der Stadt Zürich",
-     "title": "6. Sitzung (17:00-20:00)",
-     "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
-    },
-    {
-     "date": "2026-06-24",
-     "body": "Gemeinderat der Stadt Zürich",
-     "title": "7. Sitzung (17:00-20:30)",
-     "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
-    },
-    {
-     "date": "2026-07-01",
-     "body": "Gemeinderat der Stadt Zürich",
-     "title": "8. Sitzung (17:00-21:30)",
-     "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
-    },
-    {
-     "date": "2026-07-08",
-     "body": "Gemeinderat der Stadt Zürich",
-     "title": "9. Sitzung (17:00-19:30)",
-     "url": "https://www.gemeinderat-zuerich.ch/sitzungen/termine/"
-    }
-   ],
-   "conf": "v",
-   "note": "Verified by WebFetch on 2026-06-15. Both source_url and feed_url resolve. Source page (gemeinderat-zuerich.ch/sitzungen/termine/) confirms the next session is Wed 17 June 2026, 17:00, and exposes an iCal export link. The feed_url returns valid BEGIN:VCALENDAR/VERSION:2.0 data with Europe/Zurich timezone and four VEVENTs matching the proposed list exactly: 6.-9. Sitzung on 17/24 June and 1/8 July 2026, with the session times shown in titles. feed_type=ical is honest and confirmed. Recommend this .ics for the daily checker (no RSS/JSON API found). Date + body + session number are firmly confirmed for all four entries; times come from the iCal. NOTE: the original proposal listed venue \"Rathaus Hard\" for the first two sessions — I dropped venue strings from the titles because the source page lists the Parliamentary Services address as Stadthausquai 17 and the iCal location was not independently re-verified per session; only date/body/session-number/time are retained. Per-session agendas (Traktanden/Tagliste) are linked per session from the homepage; individual Geschäfte browsable at /ueber-den-gemeinderat/geschaefte/. Sessions are normally weekly on Wednesday evenings."
-  },
-  {
-   "tenant_id": "frankfurt",
-   "agenda_system": "PARLIS (PARLamentsInformationsSystem der Stadt Frankfurt am Main) — the official parliamentary information system of the Frankfurt am Main Stadtverordnetenversammlung, hosted at stvv.frankfurt.de/parlis2. Publishes Tagesordnungen (agendas), Sitzungstermine (meeting dates), Niederschriften (minutes), and motions for the city assembly, its committees (Ausschüsse), and the 16 district councils (Ortsbeiräte). German language.",
-   "source_url": "https://www.stvv.frankfurt.de/parlis2/termine.php",
-   "feed_url": "https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics",
-   "feed_type": "ical",
-   "resolves": true,
-   "horizon": "rolling — calendar (.ics) lists scheduled plenary/committee/Ortsbeirat dates for the full year ahead (Stadtverordnetenversammlung plenary sessions span 2026, e.g. 2026-01-29, 03-05, 04-23, 05-21, 06-25, 08-27, 10-01, 11-05, 12-10); detailed agendas with documents are posted in the days before each meeting",
-   "upcoming": [
-    {
-     "date": "2026-06-15",
-     "body": "Ortsbeirat 2",
-     "title": "Ortsbeirat 2 meeting, 19:00, Georg-Buechner-Schule (Aula)",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-16",
-     "body": "Ortsbeirat 1 / 16 / 7 / 4 / 13",
-     "title": "Five district council (Ortsbeirat) meetings, 19:00-20:00",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-18",
-     "body": "Ortsbeirat 3 / 9",
-     "title": "Two district council meetings, 19:30",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-19",
-     "body": "Ortsbeirat 5 / 12",
-     "title": "Two district council meetings, 19:00 / 19:30",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-23",
-     "body": "Haupt- und Finanzausschuss",
-     "title": "Main and Finance Committee, 17:00, Rathaus Roemer",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "Stadtverordnetenversammlung",
-     "title": "Sitzung der Stadtverordnetenversammlung (plenary), 16:00",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    },
-    {
-     "date": "2026-06-25",
-     "body": "Aeltestenausschuss",
-     "title": "Council of Elders committee, 14:00, Rathaus-Suedbau",
-     "url": "https://www.stvv.frankfurt.de/parlis2/termine.php"
-    }
-   ],
-   "conf": "v",
-   "note": "CONFIRMED (conf=v). Official source is PARLIS, Frankfurt's parliamentary information system. Verified by WebFetch on 2026-06-15:\\n1) source_url https://www.stvv.frankfurt.de/parlis2/termine.php RESOLVED and listed the exact upcoming meetings snapshotted above (dates/times/locations cross-checked 1:1 — Ortsbeirat 2 on 06-15 at the Georg-Buechner-Schule Aula, five Ortsbeiraete on 06-16, etc.).\\n2) feed_url https://www.stvv.frankfurt.de/stvvorg/alle_termine.ics VERIFIED as a valid RFC 5545 iCalendar with real VEVENTs. Confirmed 9 Stadtverordnetenversammlung plenary sessions for 2026 (DTSTART lines: 20260129T160000, 20260305, 20260423, 20260521, 20260625, 20260827, 20261001, 20261105, 20261210), each SUMMARY 'Sitzung der Stadtverordnetenversammlung - geplanter Termin', ending 23:00.\\n\\nCORRECTION vs proposed: added the 2026-06-25 16:00 Stadtverordnetenversammlung PLENARY to upcoming. The original proposal listed only the Aeltestenausschuss (14:00) that day and omitted the plenary, but this tenant IS the Stadtverordnetenversammlung, so its own plenary (confirmed in BOTH the termine.php listing context and the .ics) is the most relevant entry. All other proposed entries verified accurate.\\n\\nFEED OPTIONS for a daily checker (under https://www.stvv.frankfurt.de/stvvorg/):\\n- alle_termine.ics = ALL bodies combined (recommended single feed)\\n- tstvv.ics = Stadtverordnetenversammlung (plenary) only\\n- t1.ics ... t16.ics = individual Ortsbeiraete (district councils)\\nPlus per-committee .ics files.\\n\\nNOTES/CAVEATS:\\n- The convenience portal https://frankfurt.de/.../sitzungstermine returned HTTP 403 to WebFetch (bot-blocked); the canonical machine-readable data lives on the stvv.frankfurt.de PARLIS host, which resolved fine. Use stvv.frankfurt.de for automation.\\n- All content is German.\\n- /parlis2/ is the current PARLIS generation; an older /parlis/ path and a PARLIS.mobil interface (stvv.frankfurt.de/pamobil/) also exist."
-  },
-  {
-   "tenant_id": "paris",
-   "agenda_system": "Ville de Paris — the Conseil de Paris \"ordre du jour\" (order of the day) web application, the official system where the Mayor of Paris publishes session agendas, deliberation projects, and downloadable PDF documents. Reached via paris.fr (Municipalité > Conseil de Paris > Ordre du jour).",
-   "source_url": "https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm",
-   "feed_url": "",
-   "feed_type": "html",
-   "resolves": true,
-   "horizon": "Rolling, tied to the next plenary session. Three agenda versions are posted per session: a provisional list of deliberation projects on the Tuesday 12 days before the session, an updated agenda the Tuesday before, and the definitive version the Friday before. The Conseil de Paris meets roughly 4-10 times/year, so typically only the next session's agenda is published at a time.",
-   "upcoming": [
-    {
-     "date": "2026-06-16/2026-06-19",
-     "body": "Conseil de Paris (plenary)",
-     "title": "Séance du Conseil de Paris — ordre du jour définitif des mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026 (budget/6e Commission, débats organisés, projets de délibération, autres). Agenda items carry reference codes (e.g. '2026 DFA 19', '2026 DASCO 37') with downloadable PDFs.",
-     "url": "https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm"
-    }
-   ],
-   "conf": "v",
-   "note": "CONFIRMED (conf=v). WebFetched the agenda application at a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm — it resolves and is the real ordre du jour system. It displayed the header \"Ordre du jour définitif du Conseil de Paris\" for the session of mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026, organized into sections (I budget/6e Commission, II débats organisés, III projets de délibération, IV autres) with item reference codes (e.g. \"2026 DFA 19\", \"2026 DASCO 37\") and downloadable PDF documents (\"Télécharger le fichier\").\n\nAlso WebFetched and confirmed the official paris.fr landing page https://www.paris.fr/pages/ordre-du-jour-du-conseil-de-paris-228 — it resolves, describes the 12-days/Tuesday/Friday three-version publication schedule, and links out to the Portal.jsp?page=odjcpcm agenda portal plus live streaming and video archive.\n\nFEED: feed_type=html, feed_url blanked. Neither fetched page exposed any iCal (.ics), RSS, or public API. The agenda application offers only HTML browsing plus per-item PDF downloads. A daily checker must scrape this HTML page (the Portal.jsp?page=odjcpcm URL is stable and re-renders per session) and diff the session-date header / item list.\n\nUPCOMING: Only the June 16-19, 2026 session is confirmed on the fetched agenda page (listed). A July 2026 session surfaced in earlier web-search snippets but was NOT confirmed on a fetched page, so it is intentionally omitted per the no-invention rule."
-  },
-  {
-   "tenant_id": "dubai",
-   "agenda_system": "The Executive Council of Dubai (TEC) — tec.gov.ae",
-   "source_url": "https://tec.gov.ae/en/web/tec/agendas",
-   "feed_url": "",
-   "feed_type": "none",
-   "resolves": false,
-   "horizon": "unknown — no forward agenda calendar is published; only post-meeting decisions/outcomes are released after sessions occur",
-   "upcoming": [],
-   "conf": "p",
-   "note": "ADVERSARIAL VERIFICATION (2026-06-15). The proposed record's core finding is upheld: Dubai has no Western-style public legislative meeting-agenda feed. conf kept at \"p\" because NO candidate page could be loaded from this environment.\n\nURL CHECKS:\n- source_url: I could NOT load tec.gov.ae from this environment. WebFetch returned ECONNREFUSED on tec.gov.ae/en/events AND tec.gov.ae/en/web/tec/home (consistent with the prior finding of geo/bot/Akamai blocking of non-UAE traffic). I changed source_url from /en/events to /en/web/tec/agendas because that is the page WebSearch actually surfaced and described, and it is the closest thing TEC has to an \"agendas\" surface — BUT note that page is about STRATEGIC POLICY agendas (Economic Agenda D33, Social Agenda 33, Dubai Plan 2033), NOT meeting agendas. Unverified in-browser, hence conf=p. The /en/events path from the original proposal was also unloadable and its content unconfirmed.\n- feed_url: blank. feed_type=none. CONFIRMED honest — no iCal/.ics, RSS, or public agenda API was found via search. Nothing to poll.\n\nWEBSEARCH CONFIRMATION (loaded successfully): Search results for the TEC site show its General Secretariat handles 'public policymaking, developing strategies and initiatives, decision making, determining the strategic directions of the emirate through the Dubai Plan.' The 'Agendas' results returned are exclusively strategic plans (D33, Social Agenda 33, Dubai Plan 2033) — confirming there is no item-level public meeting agenda with hearing notices.\n\nNOTE on the original proposal's dubai.ae citation: the prior record said it loaded https://www.dubai.ae/events-and-meetings and quoted an outcomes-only disclosure statement. On re-check that URL now returns HTTP 403 Forbidden from this environment, so I could not independently re-verify that quote. The outcomes-only model is still strongly supported by the WebSearch description of the Council's functions, but I downgrade reliance on the dubai.ae quote accordingly.\n\nUPCOMING: empty — correct. No advance meeting agendas are published, and no TEC page was loadable to observe any real scheduled session. Per integrity rules, nothing was invented.\n\nRECOMMENDATION for a daily checker: there is no agenda feed to poll. Treat Dubai as a 'no public meeting-agenda feed' tenant. The only monitorable signals are (a) TEC website news/event pages once reachable from a UAE-routed IP, and (b) the Council's social accounts for post-meeting decision announcements. 'Dubai Calendar' / investindubai.gov.ae events are tourism/lifestyle listings, not a government agenda system.\n\nSources reachable this session: WebSearch results enumerating tec.gov.ae pages (agendas = strategic policy, not meeting agendas). Sources NOT reachable: tec.gov.ae (ECONNREFUSED), www.dubai.ae (HTTP 403)."
-  }
- ]
+  ]
 }

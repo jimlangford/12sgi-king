@@ -23,11 +23,43 @@ STALE_AFTER_HOURS = 4          # an audit cycle should never run > 4h; older = c
 CPU_BUSY_DEFAULT = 75          # yield if system CPU is above this %
 
 def _pid_alive(pid):
+    """Windows-safe liveness probe — never raises.
+
+    os.kill(pid, 0) on Windows raises SystemError (not OSError) for privileged PIDs,
+    which bypasses all the old except clauses and crashes callers. Use OpenProcess instead;
+    access-denied means the PID exists (alive). Mirrors gpu_lock._pid_alive.
+    """
     try:
-        os.kill(pid, 0); return True
-    except ProcessLookupError: return False
-    except PermissionError: return True
-    except OSError: return False
+        pid = int(pid)
+    except (TypeError, ValueError):
+        return False
+    if pid < 0:
+        return False
+    if os.name == "nt":
+        try:
+            import ctypes
+            from ctypes import wintypes
+            k32 = ctypes.windll.kernel32
+            PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+            ERROR_ACCESS_DENIED = 5
+            h = k32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+            if h:
+                code = wintypes.DWORD()
+                ok = k32.GetExitCodeProcess(h, ctypes.byref(code))
+                k32.CloseHandle(h)
+                return bool(ok) and code.value == 259  # STILL_ACTIVE
+            return k32.GetLastError() == ERROR_ACCESS_DENIED
+        except Exception:
+            return True  # never raise — let age/staleness logic decide
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except Exception:
+        return False
 
 def _write(name, pid):
     with open(LOCK_PATH, "w", encoding="utf-8") as f:

@@ -42,28 +42,37 @@ LENSES = {
     "ny": [("Upcoming agendas", "agendas_nyc.html")],
 }
 
-CSS = ("body{font-family:system-ui,Segoe UI,sans-serif;max-width:980px;margin:2.2rem auto;padding:0 1.1rem;color:#15212e}"
-       "a{color:#0b6bcb;text-decoration:none}a:hover{text-decoration:underline}"
-       ".eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6b7a89}"
-       "h1{font-size:1.7rem;margin:.2rem 0 .1rem}.sub{color:#56646f;font-size:.95rem}"
+# DARK-REGISTER FIX (2026-07-09 heal-audit): this CSS used to assume a plain light body (bare `color`,
+# no `background`), which was safe until today's site-wide reskin (build_site.NAV_CSS now sets a GLOBAL
+# `body{background:#081420;color:#eaf2fc}` on every page inject_nav touches). Because this file had NO
+# <body> tag, inject_nav prepended the nav+NAV_CSS block IN FRONT of this file's own <style>, so this
+# file's later `body{color:#15212e}` cascade-won over NAV_CSS's color while the dark BACKGROUND stayed —
+# near-black text on a near-black background, confirmed live-broken on tenant_hi-maui.html and
+# tenants_hub.html. Fix: match the SAME fresh-navy register NAV_CSS/tenant_directory.py already use, and
+# add a real <body> tag (see gen()/build_hub() below) so inject_nav inserts the nav INSIDE it, never before.
+CSS = ("body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;max-width:980px;margin:2.2rem auto;"
+       "padding:0 1.1rem 4rem;color:#eaf2fc}"
+       "a{color:#5a97e6;text-decoration:none}a:hover{text-decoration:underline}"
+       ".eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#6d89ab}"
+       "h1{font-size:1.7rem;margin:.2rem 0 .1rem;color:#eaf2fc}.sub{color:#a7c0dd;font-size:.95rem}"
        ".grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;margin:1.3rem 0}"
-       ".card{border:1px solid #e1e7ec;border-radius:13px;padding:1rem 1.1rem;background:#fafcfe}"
-       ".card h3{margin:.1rem 0 .3rem;font-size:1.05rem}.card .d{color:#6b7a89;font-size:.82rem}"
-       ".pill{display:inline-block;font-size:.68rem;padding:.12rem .5rem;border-radius:99px;background:#eef3f7;color:#42535f;margin-left:.4rem}"
-       ".lens{display:flex;justify-content:space-between;padding:.5rem .2rem;border-bottom:1px solid #eef2f5}"
-       ".pending{color:#9aa6b1;font-style:italic;font-size:.8rem}"
+       ".card{border:1px solid #1f3d5f;border-radius:13px;padding:1rem 1.1rem;background:#0f2540}"
+       ".card h3{margin:.1rem 0 .3rem;font-size:1.05rem;color:#eaf2fc}.card .d{color:#a7c0dd;font-size:.82rem}"
+       ".pill{display:inline-block;font-size:.68rem;padding:.12rem .5rem;border-radius:99px;background:#1f3d5f;color:#a7c0dd;margin-left:.4rem}"
+       ".lens{display:flex;justify-content:space-between;padding:.5rem .2rem;border-bottom:1px solid #1f3d5f}"
+       ".pending{color:#6d89ab;font-style:italic;font-size:.8rem}"
        # friendlier question-grid + depth bar
-       ".depth{display:flex;align-items:center;gap:.6rem;margin:.6rem 0 1rem;color:#42535f;font-size:.9rem}"
-       ".bar{flex:0 0 160px;height:9px;border-radius:99px;background:#e7edf2;overflow:hidden}"
-       ".bar span{display:block;height:100%;background:linear-gradient(90deg,#1f9d55,#0b6bcb)}"
+       ".depth{display:flex;align-items:center;gap:.6rem;margin:.6rem 0 1rem;color:#a7c0dd;font-size:.9rem}"
+       ".bar{flex:0 0 160px;height:9px;border-radius:99px;background:#1f3d5f;overflow:hidden}"
+       ".bar span{display:block;height:100%;background:linear-gradient(90deg,#1f8a5b,#5a97e6)}"
        ".qs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem;margin:1.1rem 0}"
-       ".q{display:block;border:1px solid #e1e7ec;border-radius:13px;padding:.9rem 1rem;background:#fafcfe}"
-       ".q.off{background:#f6f8fa;border-style:dashed;color:#9aa6b1}"
-       ".ql{font-weight:650;font-size:1rem;color:#15212e}.q.off .ql{color:#8b99a6}"
-       ".qd{color:#6b7a89;font-size:.8rem;margin:.2rem 0 .5rem}"
-       ".go{color:#0b6bcb;font-size:.82rem;font-weight:600}"
-       ".meter{flex:0 0 56px;height:7px;border-radius:99px;background:#e7edf2;overflow:hidden;display:inline-block}"
-       ".meter span{display:block;height:100%;background:linear-gradient(90deg,#1f9d55,#0b6bcb)}")
+       ".q{display:block;border:1px solid #1f3d5f;border-radius:13px;padding:.9rem 1rem;background:#0f2540}"
+       ".q.off{background:#0b1c30;border-style:dashed;color:#6d89ab}"
+       ".ql{font-weight:650;font-size:1rem;color:#eaf2fc}.q.off .ql{color:#a7c0dd}"
+       ".qd{color:#a7c0dd;font-size:.8rem;margin:.2rem 0 .5rem}"
+       ".go{color:#5a97e6;font-size:.82rem;font-weight:600}"
+       ".meter{flex:0 0 56px;height:7px;border-radius:99px;background:#1f3d5f;overflow:hidden;display:inline-block}"
+       ".meter span{display:block;height:100%;background:linear-gradient(90deg,#1f8a5b,#5a97e6)}")
 
 def depth_of(tid):
     """(covered, total) civic questions answered for this tenant — shared with the hub + depth sweep."""
@@ -90,7 +99,11 @@ def gen(t):
                          f'<div class=pending>building — added as {esc(t["name"])}’s public records are ingested</div></div>')
     covered, total = depth_of(tid); pct = round(100 * covered / total)
     tag = "complete coverage" if covered >= total else f"{total - covered} more to full depth"
-    html = (f"<!doctype html><meta charset=utf-8><title>{esc(t['name'])} | govOS</title><style>{CSS}</style>"
+    # real <html>/<head>/<body> structure (2026-07-09 heal-audit fix, see CSS comment above) so
+    # inject_nav's <body[^>]*> regex actually matches and inserts the nav INSIDE the page, not before it.
+    html = (f"<!doctype html><html lang=en><head><meta charset=utf-8>"
+            f"<meta name=viewport content='width=device-width,initial-scale=1'>"
+            f"<title>{esc(t['name'])} | govOS</title><style>{CSS}</style></head><body>"
             f"<div class=eyebrow><a href='tenants_hub.html'>govOS</a> · tenant {esc(t['code'])}</div>"
             f"<h1>{esc(t['name'])}</h1>"
             f"<div class=depth><span class=bar><span style='width:{pct}%'></span></span>"
@@ -98,7 +111,8 @@ def gen(t):
             f"<div class=sub>The public record for {esc(t['name'])}, organized by the questions that matter most. "
             f"Each is framed for oversight, never accusation — and the prosecutorial files stay private.</div>"
             f"<div class=qs>{''.join(cards)}</div>"
-            f"<p class=sub><a href='tenants_hub.html'>← all governments</a></p>")
+            f"<p class=sub><a href='tenants_hub.html'>← all governments</a></p>"
+            f"</body></html>")
     with open(os.path.join(M, f"tenant_{tid}.html"), "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -116,7 +130,10 @@ def build_hub(ts):
             f'<span class=d>{covered}/{total} questions</span></div>'
             f'<div class=d>Agendas, money, contracts, federal dollars — what you can see for {esc(t["name"])}.</div></a>')
     gen_ts = datetime.now(HST).strftime("%Y-%m-%d %H:%M HST")
-    html = (f"<!doctype html><meta charset=utf-8><title>govOS — Governments | Kilo Aupuni</title><style>{CSS}</style>"
+    # real <html>/<head>/<body> structure (2026-07-09 heal-audit fix, see CSS comment above)
+    html = (f"<!doctype html><html lang=en><head><meta charset=utf-8>"
+            f"<meta name=viewport content='width=device-width,initial-scale=1'>"
+            f"<title>govOS — Governments | Kilo Aupuni</title><style>{CSS}</style></head><body>"
             f"<div class=eyebrow>govOS · Kilo Aupuni</div>"
             f"<h1>Pick your government</h1>"
             f"<div class=sub>One civic engine, many governments. Choose one to see its public record in plain words — "
@@ -125,7 +142,8 @@ def build_hub(ts):
             f"and the others fill in as their public records are gathered.</div>"
             f"<div class=grid>{''.join(cards)}</div>"
             f"<p class=sub>Generated {esc(gen_ts)}. Facts and sourced questions only — never accusations. "
-            f"Prosecutorial files stay private.</p>")
+            f"Prosecutorial files stay private.</p>"
+            f"</body></html>")
     with open(os.path.join(M, "tenants_hub.html"), "w", encoding="utf-8") as f:
         f.write(html)
 

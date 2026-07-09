@@ -32,7 +32,24 @@ SITE = os.path.join(REPO, "site")
 
 # Entry points the crawl seeds from (a visitor can always reach these directly).
 SEEDS = ["index.html", "reports.html", "go.html", "jurisdictions.html", "reports_hub.html",
-         "king/index.html", "king/app.html", "take_action.html", "testify.html"]
+         "king/index.html", "king/app.html", "take_action.html", "testify.html",
+         "king/govos_signup.html",   # the govOS client signup landing = the 12sgi.com homepage (served as index.html)
+         # HEAL-FORWARD (Jimmy 2026-07-01/02): real, sourced, standalone destinations that aren't woven
+         # into a per-tenant nav — same category as take_action.html/testify.html above. blog.html's
+         # own posts self-link once wired (see blog_engine.py static=True), so seeding blog.html here
+         # pulls all of them in too. Re-applied 2026-07-02 after this file reverted to an older version
+         # once already tonight -- see dispatch FINDING about tools/kilo-aupuni vs 12sgi-king/watchers
+         # canonical-source confusion.
+         "blog.html", "grants.html", "king/aupuni.html",
+         # officials_maui.html: real, sourced "who governs" roster, superseded as the CANONICAL Maui
+         # governance page by officials_scorecard.html (confirmed in tenant_registry.json) but not
+         # garbage -- seeded rather than deleted; a content call on whether to keep both stays Jimmy's.
+         "officials_maui.html",
+         # tenant_coverage.html: the 9x16 coverage heatmap (dashboard redesign 2026-07-01) -- a
+         # standalone destination, same category as datasets.html's Open Data page.
+         "tenant_coverage.html",
+         # great_mahele_overlay.html: the Great Mahele overlay (2026-07-02) -- standalone, same category.
+         "great_mahele_overlay.html"]
 
 # Built html that is intentionally NOT a navigable destination — never an orphan.
 EXEMPT_EXACT = {"404.html", "go.html", "selfheal.html", "orphans.html", "navmap.html", "external_links.html"}

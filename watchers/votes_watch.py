@@ -138,54 +138,18 @@ def roster_present(txt):
 #    TOTAL VOTES 9 MOTION PASSED".  A name followed by √/✓ = AYE; "Recused"/"Excused"
 #   /"No" after the name set those states.  Each motion block ends at "TOTAL VOTES n
 #   MOTION <result>".  We anchor on that and read the preceding window as the roll call.
-VOTE_MARK    = re.compile(r"[√✓✔]")   # √ ✓ ✔
-MOTION_ANCHOR= re.compile(r"TOTAL\s+VOTES\s+(\d+)\s+MOTION\s+([A-Z][A-Za-z]+)", re.I)
-MAKER_RE     = re.compile(r"Maker\s+([A-Z][A-Za-zʻ'\-ūō]+)")
-SECOND_RE    = re.compile(r"Seconder\s+([A-Z][A-Za-zʻ'\-ūō]+)")
-MOTIONTXT_RE = re.compile(r"Motion\s+(ADOPT|AMEND|DEFER|FILE|PASS|RECEIVE|REFER|POSTPONE|APPROVE|RECONSIDER|TABLE|WAIVE)[^\n]{0,70}", re.I)
-
-def _member_vote(block, tok):
-    m = re.search(tok, block)
-    if not m: return None
-    tail = block[m.end(): m.end()+18]
-    if re.match(r"[\s:]*Recus", tail, re.I):  return "RECUSED"
-    if re.match(r"[\s:]*(Excus|Absent)", tail, re.I): return "EXCUSED"
-    if re.match(r"[\s:]*Abstain", tail, re.I): return "ABSTAIN"
-    if VOTE_MARK.search(tail[:7]):            return "AYE"
-    if re.match(r"[\s:]*No\b", tail):         return "NO"
-    return None   # present but mark unclear -> do NOT guess (integrity)
-
-# Dissent is also recorded as a TALLY LINE, not just a per-name mark — capture both (Jimmy 2026-06-16:
-# "see what council people vote no on and why"). e.g. "NOES: Paltin, Cook" / "Voting No — Sinenci" /
-# "ABSTAIN: Lee". We mark every roster member named in such a line, so a NAY is never silently dropped.
-NOES_BLOCK    = re.compile(r"(?:NOES?|VOTING\s+NO|NO\s+VOTES?|OPPOSED)\s*[:\-–—]\s*([A-Z][^\n.;]{0,140})", re.I)
-ABSTAIN_BLOCK = re.compile(r"(?:ABSTAIN(?:ED|ING)?|ABSTENTIONS?)\s*[:\-–—]\s*([A-Z][^\n.;]{0,140})", re.I)
-
-def _apply_tally(win, votes):
-    """Overlay explicit NOES:/ABSTAIN: tally lines onto the per-name marks (tally wins — it's explicit)."""
-    for rx, state in ((NOES_BLOCK, "NO"), (ABSTAIN_BLOCK, "ABSTAIN")):
-        for mm in rx.finditer(win):
-            names = mm.group(1)
-            for k, tok in SURNAME_TOKENS.items():
-                if re.search(tok, names):
-                    votes[k] = state
-    return votes
+# 2026-07-08: extracted into rollcall_parser.py (shared with nay_narratives.py + any historical
+# extraction) with a real bug fix — the old local MOTION_ANCHOR here matched only 45% of real
+# split/failed motions (silently dropped every non-unanimous vote). See that module's docstring.
+from rollcall_parser import VOTE_MARK, MOTION_ANCHOR, MAKER_RE, SECOND_RE, MOTIONTXT_RE, motions_in as _rc_motions_in
 
 def motions_in(txt):
     out = []
-    for am in MOTION_ANCHOR.finditer(txt):
-        win = txt[max(0, am.start()-850): am.end()]
-        votes = {k: v for k, tok in SURNAME_TOKENS.items() if (v := _member_vote(win, tok))}
-        votes = _apply_tally(win, votes)   # overlay explicit NOES:/ABSTAIN: tally lines (dissent capture)
-        if not votes: continue
-        mk = MAKER_RE.search(win); sc = SECOND_RE.search(win); mt = MOTIONTXT_RE.search(win)
-        it = ITEM_RE.search(txt[am.start(): am.start()+260]) or ITEM_RE.search(win[-500:])
-        out.append({"result": am.group(2).upper(), "total": int(am.group(1)),
-                    "maker": (canon(mk.group(1)) if mk else None),
-                    "seconder": (canon(sc.group(1)) if sc else None),
-                    "motion": (re.sub(r"\s+", " ", mt.group(0)).strip()[:90] if mt else None),
-                    "item": (re.sub(r"\s+", " ", it.group(1)).strip() if it else None),
-                    "votes": votes})
+    for mo in _rc_motions_in(txt, SURNAME_TOKENS, ITEM_RE):
+        mo["maker"] = canon(mo.pop("maker_raw")) if mo.get("maker_raw") else None
+        mo["seconder"] = canon(mo.pop("seconder_raw")) if mo.get("seconder_raw") else None
+        mo["total"] = mo["total"]  # unanimous-vote consumers (analyze/report_html) read this unchanged
+        out.append(mo)
     return out
 
 def analyze(txt, date):

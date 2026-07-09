@@ -677,51 +677,49 @@
   {
    "id": "liverpool",
    "code": "NY-LIVERPOOL",
-   "name": "Village of Liverpool",
-   "seat": "Liverpool, NY",
+   "name": "Village of Liverpool, NY",
+   "seat": "Liverpool, New York",
    "state_parent": "nys",
-   "local_jur": "Village of Liverpool (Village Code + NY Village Law)",
-   "local_label": "Village of Liverpool (Code + NY Village Law)",
-   "tagline": "A small NY village (Onondaga County) — its own Code under NY Village Law, on the New York State corpus.",
+   "local_jur": "Village of Liverpool, Onondaga County — New York State",
+   "local_label": "Village of Liverpool, Onondaga County — New York State",
+   "tagline": "Village of Liverpool, Onondaga County, New York — home of American High Studios; its village code and the law of the State of New York, up the shared apex to the Holy See.",
    "local": {
     "transparency": {
-     "cite": "NY Public Officers Law Art. 6, Freedom of Information Law (§§84-90), administered by the Village of Liverpool as a local agency; assessment rolls under Code of the Village of Liverpool Ch. 10 (Assessments)",
-     "note": "Public access to Village records and assessment rolls runs through the FOIL records-officer duties the Village fulfills as a local agency.",
-     "conf": "p"
+     "cite": "NY Public Officers Law Art. 6 §§84-90 (Freedom of Information Law, FOIL) — applies to village government records; NY General Municipal Law §§30-b (financial disclosure); Village of Liverpool annual audit published under NY General Municipal Law §35",
+     "note": "Does FOIL's right to inspect village records, combined with the mandatory annual audit and financial-disclosure filing under the General Municipal Law, provide Liverpool village residents' access to public records and the village's financial accounts?",
+     "conf": "v"
     },
     "conflict": {
-     "cite": "Code of the Village of Liverpool — Code of Ethics provisions, adopted under NY General Municipal Law §806; advisory opinions via a board of ethics under GML §808",
-     "note": "Sets conflict-of-interest disclosure and recusal standards for Village officers and employees, with provision for an ethics board to render advisory opinions.",
-     "conf": "p"
+     "cite": "NY Public Officers Law §73 and §74 (business activities restrictions; Code of Ethics) — applicable to village officers; NY General Municipal Law §805-a (prohibited conduct by municipal officers and employees)",
+     "conf": "v"
     },
     "sunshine": {
-     "cite": "NY Public Officers Law Art. 7, Open Meetings Law (§§100-111), governing meetings of the Village of Liverpool Board of Trustees",
-     "note": "Requires the Board of Trustees to deliberate and vote in meetings open to the public with advance notice.",
+     "cite": "NY Public Officers Law Art. 7 §§100-111 (Open Meetings Law) — applies to all meetings of the Liverpool Village Board of Trustees and village boards/committees; advance public notice required",
+     "note": "Does the Open Meetings Law require all Village Board and committee meetings to be open to the public with notice posted at least 72 hours in advance?",
      "conf": "v"
     },
     "fiduciary": {
-     "cite": "NY Village Law §4-412 (board of trustees' management of village property, funds, and affairs)",
-     "note": "Vests stewardship of Village property, public funds, and lands in the Board of Trustees for the general welfare of inhabitants.",
+     "cite": "NY General Municipal Law §35 (annual audit of village accounts); NY Village Law §5-500 et seq. (village budget and appropriations); Onondaga County Independent Audit oversight",
+     "note": "Does the Village Law's budget and appropriations process, combined with the mandatory General Municipal Law annual audit, establish stewardship of Liverpool village public funds?",
      "conf": "v"
     },
     "sacred": {
-     "cite": "Code of the Village of Liverpool Ch. 380 (Zoning) under NY Village Law §7-700 et seq. zoning authority, with NY General Municipal Law §96-a as the state historic-landmark-protection enabling authority",
-     "note": "Authorizes the Village to regulate land use and, where adopted, to protect historic and landmark properties through zoning and state historic-preservation authority.",
+     "cite": "NY Parks, Recreation and Historic Preservation Law §14.09 (state historic-preservation review for any undertaking receiving state or federal funding or requiring a state permit); Village of Liverpool zoning/land-use code — historic and archaeological resource provisions",
+     "note": "Does PRHPL §14.09 require state agencies to consider impacts to historic, architectural, and archaeological resources in the Liverpool area, and does village zoning protect any designated local landmarks?",
      "conf": "p"
     },
     "enforcement": {
-     "cite": "Code of the Village of Liverpool — general penalty provisions for code violations, with adjudication under NY Village Law (village enforcement powers) and the applicable local justice court / Uniform Justice Court Act",
-     "note": "Provides the civil-penalty mechanism and local tribunal for adjudicating violations of Village ordinances.",
-     "conf": "p"
+     "cite": "NY Village Law §4-412 (Village Justice Court); Onondaga County Court; NY Judiciary Law — Onondaga County Supreme Court for civil matters; NY CPLR Art. 78 proceedings against village agencies",
+     "note": "Does the Village Justice Court handle local ordinance violations and petty offenses, with the Onondaga County Court and Supreme Court available for civil proceedings and CPLR Art. 78 challenges to village agency action?",
+     "conf": "v"
     },
     "culture": {
-     "cite": "Code of the Village of Liverpool Ch. 380 (Zoning) and comprehensive-plan provisions under NY Village Law §7-722 (comprehensive planning)",
-     "note": "Protects the Village's heritage and community character through comprehensive-plan goals and consistent land-use regulation.",
+     "cite": "NY Education Law — Central Square / Liverpool Central School District serving the village; Onondaga County public library system (Liverpool Public Library branch); village parks and recreational facilities under NY Village Law",
      "conf": "p"
     },
     "selfdet": {
-     "cite": "NY Village Law (incorporation under Art. 2) and NY Municipal Home Rule Law §10 (local-law authority of the Village)",
-     "note": "Establishes the Village as an incorporated self-governing municipality with home-rule power to adopt its own local laws.",
+     "cite": "NY Municipal Home Rule Law; NY Village Law (the Village of Liverpool incorporated under Village Law); NY Constitution Art. IX (Local Governments) §2(c) — rights of local governments",
+     "note": "Is Liverpool's authority to govern its own local affairs grounded in the Village Law's incorporation, the Municipal Home Rule Law, and the constitutional guarantees of local-government powers in NY Constitution Art. IX?",
      "conf": "v"
     }
    }

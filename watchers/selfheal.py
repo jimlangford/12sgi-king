@@ -370,6 +370,65 @@ def chk_seed_parity():
     return "WARN", "%d page(s) waiting to reach the public floor (%d missing, %d stale) — heal: publish_audit.py --sync" % (
         r["gap_count"], len(r["missing"]), len(r["drift"]))
 
+# SINGLE-WRITER + PALETTE-AGREEMENT GUARDRAIL (2026-07-09 heal-audit): the class of bug that cost hours
+# today — build_maui_nav_page() (12sgi-king/build_site.py) AND tenant_directory.py (this project's
+# tools/kilo-aupuni) both hardcoded "maui.html" as an output filename, silently colliding on every build:
+# whichever ran last won, with no signal to anyone that the OTHER generator's work had just been erased.
+# A second instance of the same failure shape: king_recolor.py's MAP and build_site._RECOLOR are two
+# independent copies of "what should this hex become" that can silently drift apart. Extend
+# _SINGLE_WRITER_FILES as new flagship pages are added.
+_SINGLE_WRITER_FILES = ["maui.html"]
+_SCAN_ROOTS = [REPO, os.path.join(PROJ, "tools", "kilo-aupuni"), os.path.join(PROJ, "tools", "ops")]
+
+def _iter_py_files():
+    for root in _SCAN_ROOTS:
+        if not os.path.isdir(root):
+            continue
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__", "node_modules", ".venv", "venv")]
+            for fn in filenames:
+                if fn.endswith(".py"):
+                    yield os.path.join(dirpath, fn)
+
+def chk_single_writer():
+    """Every critical output filename must have exactly ONE writer across both repos. Catches the
+    maui.html-class collision automatically instead of by multi-hour manual audit."""
+    dupes = []
+    for target in _SINGLE_WRITER_FILES:
+        pat = re.compile(r'open\([^\n]{0,220}?["\']' + re.escape(target) + r'["\'][^\n]{0,80}?,\s*["\']w',
+                         re.S)
+        writers = []
+        for f in _iter_py_files():
+            try:
+                t = open(f, encoding="utf-8", errors="ignore").read()
+            except Exception:
+                continue
+            if pat.search(t):
+                writers.append(os.path.relpath(f, PROJ if f.startswith(PROJ) else REPO))
+        if len(writers) > 1:
+            dupes.append("%s has %d writers: %s" % (target, len(writers), ", ".join(writers)))
+    if dupes:
+        return "FAIL", "; ".join(dupes)
+    return "PASS", "%d critical filename(s) checked, each has exactly one writer" % len(_SINGLE_WRITER_FILES)
+
+def chk_palette_agreement():
+    """king_recolor.py (flips OLD private King-app dark obsidian -> light, Jimmy 2026-06-16) and
+    build_site._RECOLOR (flips public civic dark -> the FRESH navy register, Jimmy 2026-07-08) are
+    DELIBERATELY different policies for different page domains that happen to share some source hex
+    values — they are NOT supposed to agree hex-for-hex (an earlier version of this check wrongly
+    assumed that and false-failed on 41 legitimately-different-by-design hexes). The TRUE invariant:
+    king_recolor.py must be STRUCTURALLY INCAPABLE of touching a page in the fresh navy register — verify
+    its never-touch guard actually exists and is checked in main(), not that the two maps match."""
+    try:
+        src = open(os.path.join(PROJ, "tools", "kilo-aupuni", "king_recolor.py"), encoding="utf-8", errors="ignore").read()
+    except Exception as e:
+        return "WARN", "king_recolor.py unreadable (%s)" % e
+    has_mark = "FRESH_REGISTER_MARK" in src
+    guarded = bool(re.search(r"if\s+FRESH_REGISTER_MARK\s+in\s+\w+", src))
+    if has_mark and guarded:
+        return "PASS", "king_recolor.py cannot touch the fresh-navy register (guard present + wired into main())"
+    return "FAIL", "king_recolor.py's never-touch guard for the fresh-navy register is missing or not wired in"
+
 CHECKS = [
     ("Private back end stays private", chk_no_leak),
     ("Seed mirror is current",        chk_seed_parity),
@@ -383,6 +442,8 @@ CHECKS = [
     ("ʻŌlelo held under review",       chk_olelo),
     ("Batch files pure ASCII",         chk_bats_ascii),
     ("All surfaces persist (boot)",    chk_surface_liveness),
+    ("Every critical page has one writer", chk_single_writer),
+    ("Recolor scripts can't fight the fresh register", chk_palette_agreement),
 ]
 
 # ---------------------------------------------------------------------------
@@ -513,6 +574,19 @@ PROGRESS = [
     ("Record stays fresh",          prog_freshness),
 ]
 
+# checks that FAIL LOUDLY (dispatch a BLOCKER, not just a print) — the class of bug that cost hours
+# today deserves more than a line buried in selfheal.html; still never blocks the build itself.
+_LOUD_ON_FAIL = ("Every critical page has one writer", "Recolor scripts can't fight the fresh register")
+
+def _dispatch_blocker(msg):
+    try:
+        import subprocess
+        subprocess.run([__import__("sys").executable, os.path.join(PROJ, "app", "server", "dispatch.py"), PROJ,
+                        "--log-event", "BLOCKER: " + msg, "--source", "kilo-aupuni", "--no-probe"],
+                       capture_output=True, timeout=30, creationflags=(0x08000000 if os.name == "nt" else 0))
+    except Exception:
+        pass
+
 def run():
     now = datetime.now(HST)
     results = []
@@ -520,6 +594,8 @@ def run():
         try: status, detail = fn()
         except Exception as e: status, detail = "FAIL", "check errored: %s" % e
         results.append({"check": name, "status": status, "detail": detail})
+        if status == "FAIL" and name in _LOUD_ON_FAIL:
+            _dispatch_blocker("%s — %s" % (name, detail))
     summary = {s: sum(1 for r in results if r["status"] == s) for s in ("PASS", "WARN", "FAIL")}
     # progress / best-practice meter (MET / TODO — advances the system, never blocks)
     prog = []

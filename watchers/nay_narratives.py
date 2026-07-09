@@ -12,8 +12,9 @@ HERE=os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path: sys.path.insert(0, HERE)
 import moon_calendar as mc
 from _quados_style import STYLE, moon_banner
-try: from votes_watch import ROSTER
-except Exception: ROSTER={}
+try: from votes_watch import ROSTER, SURNAME_TOKENS
+except Exception: ROSTER={}; SURNAME_TOKENS={}
+from rollcall_parser import motions_in as _rc_motions_in
 from datetime import datetime, timedelta, timezone
 HST=timezone(timedelta(hours=-10))
 HOME=os.path.expanduser("~"); PROJ=os.path.join(HOME,"Documents","Claude","Projects","Video System elementLOTUS")
@@ -145,6 +146,25 @@ def extract():
             events.append({"date":date,"body":body,"url":url,"item":item,"motion_narrative":narr,
                            "ayes":[_disp(a) for a in ayes],"noes":[_disp(n) for n in noes],
                            "tally":tally,"quotes":quotes,"file":fn})
+        # 2023+ CHECKMARK-TABLE corpus (rollcall_parser.py, fixed 2026-07-08 — the legacy NOES: loop above
+        # never fires here since these files contain no literal "NOES" text at all). A named per-member NO
+        # attribution needs checkmark COLUMN-POSITION parsing not yet built (low_confidence=True flags this
+        # honestly) — so we NEVER guess who dissented from an ambiguous mark. What IS reliable: the numeric
+        # tally itself (from "TOTAL VOTES n m MOTION ..."), and any EXPLICIT "NOES:"/"ABSTAIN:" text overlay
+        # inside the same window (rare in this format, but apply_tally() still catches it when present).
+        for mo in _rc_motions_in(txt, SURNAME_TOKENS, ITEM_RE):
+            if mo["noes_total"] <= 0 and not any(v in ("NO","ABSTAIN") for v in mo["votes"].values()):
+                continue   # unanimous — not a split, skip (matches the legacy-branch behavior above)
+            named_no = [] if mo["low_confidence"] else [_disp(k) for k,v in mo["votes"].items() if v in ("NO","ABSTAIN")]
+            named_ayes = [] if mo["low_confidence"] else [_disp(k) for k,v in mo["votes"].items() if v=="AYE"]
+            tally = "%d aye / %d no"%(mo["total"], mo["noes_total"])
+            if mo["exc_total"]: tally += " / %d excused"%mo["exc_total"]
+            narr = _clean(txt[max(0,mo["pos"]-650):mo["pos"]])[-460:]
+            events.append({"date":date,"body":body,"url":url,"item":mo.get("item"),"motion_narrative":narr,
+                           "ayes":named_ayes,"noes":named_no,"tally":tally,"quotes":[],"file":fn,
+                           "needs_record": ("which member(s) dissented — checkmark column position not yet "
+                                            "machine-resolved; the count above is sourced, the name(s) are not"
+                                            if mo["low_confidence"] else None)})
     # newest first by date (Jimmy 2026-06-19 "sort recent to latest"); richer (has quote/item) breaks date ties
     events.sort(key=lambda e:(e["date"] or "",bool(e["quotes"]),bool(e["item"])),reverse=True)
     return events
@@ -170,15 +190,17 @@ def page(events,gen,mr,ao_po):
     mrows="".join(mrow(n,c) for n,c in members)
     def card(e):
         noes="".join("<span class=no>%s</span>"%esc(n) for n in e["noes"])
+        nr=e.get("needs_record")
+        nr_html=("<div class=nr>NEEDS-RECORD: %s.</div>"%esc(nr)) if nr else ""
         q="".join("<div class=qt><b>%s:</b> &ldquo;%s&hellip;&rdquo;</div>"%(esc(nm),esc(t)) for nm,t in e["quotes"])
         src=(" &middot; <a href='%s'>source minutes</a>"%esc(e["url"])) if e["url"] else ""
         rich=(2 if e["quotes"] else 0)+(1 if e["item"] else 0)+min(len(e["noes"]),3)
         return ("<div class=\"dv\" data-date=\"%s\" data-rich=\"%d\"><div class=dh><b>%s</b><span class=dd>%s &middot; %s</span></div>"
-                "<div class=spl>NO: %s <span class=tl>(%s)</span></div>%s"
+                "<div class=spl>NO: %s <span class=tl>(%s)</span></div>%s%s"
                 "<div class=nar>%s</div><div class=sub2>%s%s</div></div>")%(
                 esc(e["date"] or ""),rich,
                 esc(e["item"] or "Motion (item not parsed — read source)"),esc(e["body"] or "Council"),esc(e["date"]),
-                noes or "&mdash;",esc(e["tally"]),q,esc(e["motion_narrative"] or ""),
+                noes or "&mdash;",esc(e["tally"]),nr_html,q,esc(e["motion_narrative"] or ""),
                 ("%s"%esc(e["body"])) if not e["url"] else "",src)
     cards="".join(card(e) for e in events[:80]) or "<div class=dv><div class=nar>No split votes parsed yet.</div></div>"
     # search + sort toolbar (Jimmy 2026-06-19: "add sort to navigation" + "add search feature") —
@@ -212,6 +234,7 @@ def page(events,gen,mr,ao_po):
          ".dv .dh b{color:var(--accent);font-size:1.0rem}.dv .dd{font:600 12px/1 'JetBrains Mono',Consolas,monospace;color:var(--accent2);white-space:nowrap}"
          ".dv .spl{margin:.4rem 0;font-size:.92rem}.dv .no{display:inline-block;background:#f6e4e4;color:#9a242c;border:1px solid #e3bcbc;border-radius:99px;padding:.12rem .55rem;margin:.1rem .25rem .1rem 0;font-size:.82rem;font-weight:600}"
          ".dv .tl{color:var(--faint);font-family:Consolas,monospace;font-size:.8rem}"
+         ".dv .nr{color:var(--faint);font-size:.78rem;font-style:italic;margin:.25rem 0}"
          ".dv .qt{background:#fbf6ea;border:1px solid #e6d8a8;border-radius:8px;padding:.4rem .7rem;margin:.35rem 0;font-size:.88rem;color:#5a4a16;line-height:1.5}"
          ".dv .nar{color:var(--dim);font-size:.82rem;line-height:1.5;margin:.35rem 0;font-style:italic;border-top:1px dashed var(--line);padding-top:.35rem}"
          ".dv .sub2{font-size:.78rem;color:var(--faint);margin-top:.2rem}"
