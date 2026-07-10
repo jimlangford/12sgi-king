@@ -1,0 +1,94 @@
+name: Yale daily ingest
+
+# Yale sunrise New Haven CT (41.3°N 72.9°W) — July: ~05:20 EDT = 09:20 UTC
+# This runs during Hawaii Pō (HINA active, ~23:00–05:50 HST) so the engineering
+# lane auto-resolves overnight while HINA balances.  By Hawaii dawn (15:50 UTC /
+# 05:50 HST = Ao) the full Yale morning content drop is in Neo4j and ready for
+# creative-lane review.
+#
+# Lane rhythm:
+#   09:20 UTC  Engineering ingest (this job, Pō)
+#   15:50 UTC  Hawaii sunrise → creative scan drafts surface (Ao begins)
+#   15:20 UTC  Existing publish cron fires — owner reviews outbox (publish.yml)
+#   17:00 UTC  Owner-approved outreach fires to Yale (Hawaii 7 AM / Yale 1 PM)
+#
+# Requires: NEO4J_HTTP env (defaults to localhost; for GitHub Actions the
+# graph ingest step connects to a locally started Neo4j service).
+# On runner environments without Neo4j the ingest soft-skips automatically.
+
+on:
+  schedule:
+    - cron: "20 9 * * *"    # Yale sunrise UTC — engineering lane (Pō)
+  workflow_dispatch: {}       # run on demand from Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yale-daily
+  cancel-in-progress: true
+
+jobs:
+  yale-ingest:
+    name: Yale ecosystem ingest (engineering lane, Pō)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lay out runtime tree (watchers expect Documents/Claude path)
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
+          mkdir -p "$P/tools/kilo-aupuni" "$P/reports/_status"
+          cp watchers/*.py "$P/tools/kilo-aupuni/"
+          cp watchers/departments.json watchers/energov_permit_template.json \
+             watchers/commission_inputs.json \
+             "$P/tools/kilo-aupuni/" 2>/dev/null || true
+
+      - name: Yale ecosystem ingest → Neo4j (engineering lane)
+        env:
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: "utf-8"
+          # NEO4J_HTTP defaults to localhost; soft-skips when unreachable on runner
+          NEO4J_HTTP: ${{ vars.NEO4J_HTTP || 'http://127.0.0.1:7474/db/neo4j/tx/commit' }}
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          echo "::group::yale_ecosystem ingest"
+          timeout 300 python "$P/yale_ecosystem.py" || true
+          echo "(exit $?)"
+          echo "::endgroup::"
+
+      - name: Yale opportunity scan → outbox drafts (creative lane, runs at Ao)
+        # The scan queues drafts to the local outbox for owner approval.
+        # On GitHub runners outbox writes to the Documents/Claude path created above.
+        # On king-server (deploy target) this path is the real owner outbox.
+        env:
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: "utf-8"
+          NEO4J_HTTP: ${{ vars.NEO4J_HTTP || 'http://127.0.0.1:7474/db/neo4j/tx/commit' }}
+          OLLAMA_BASE_URL: ${{ vars.OLLAMA_BASE_URL || 'http://127.0.0.1:11434' }}
+          YALE_SCAN_STATE_PATH: >-
+            ${{ runner.temp }}/yale_scan_state.json
+        run: |
+          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          echo "::group::yale_opportunity_scan"
+          timeout 180 python "$P/yale_opportunity_scan.py" || true
+          echo "(exit $?)"
+          echo "::endgroup::"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "Yale ingest complete — $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          echo "  Cadence: Yale sunrise 09:20 UTC (Pō / HINA active)"
+          echo "  Next review window: Hawaii dawn 15:50 UTC (Ao begins)"
