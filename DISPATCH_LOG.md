@@ -5,6 +5,19 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-10 01:10 HST — Ordinance-level crosswalk (Maui) + CANON.md documents the apex/church hierarchy
+**Thread:** charter_crosswalk.py — "update the corporate canon... adding the rules and details of each tenant's jurisdictions as they relate to the apex and church"  **From:** cowork session  **To:** King-server / next agent
+**Read first:** every one of the 17 tenants already had all 8 governance-function cells filled in `crosswalk_local.json` (transparency/conflict/sunshine/fiduciary/sacred/enforcement/culture/selfdet), each already citing real local + apex-spine + Holy See law. Nothing was missing at that level — so this pass goes one level DOWN, per real ordinance, and only where a sourced ordinance corpus exists: **Maui only** (the 17-title MCC digital-twin engine). Extending fabricated ordinance citations to the other 14 tenants (none of which have an equivalent per-ordinance corpus built) would mean inventing law, which this project never does — logged as the reason the other tenants are untouched.
+**Built:** `charter_crosswalk.py` — `ORDINANCES{"maui": [...]}` (17 real Maui County Code titles, each with its actual Municode nodeId already used by that title's own service page — none invented), `ordinance_row()` / `ordinance_section()` render each title against the SAME already-verified apex spine (International → ICC → ICJ → Holy See) via a disclosed closest-fit governance-function grouping (an editorial cross-reference for navigation, explicitly NOT a legal-equivalence claim — stated on the page itself). Wired into `build(tid)`; empty string for every tenant without an `ORDINANCES` entry, so only `crosswalk_maui.html` changes.
+**CANON.md:** new "The Apex Spine — Charter, tenant jurisdictions, and the Church" section documenting the 4-level hierarchy (local → state/national → apex spine → Holy See as the apex tenant) and the ordinance-level extension rule, so the next agent doesn't re-derive or fork this.
+**Verification:** `charter_crosswalk.py` is pure stdlib (no Neo4j/Ollama needed) — ran it live. All 17 `crosswalk_*.html` regenerate clean; diffed old vs new ignoring the timestamp footer — only `crosswalk_maui.html` gained real content (the ordinance section), the other 16 only picked up 4 new (unused-by-them) CSS rules. `html.parser` tag-balance check on the rendered `crosswalk_maui.html`: 0 errors, 0 unclosed tags. Full `build_site.py` rebuild + `audit_links.py` + the CI reconcile gate all still clean (crosswalk pages aren't in the static-build path for anything else).
+**Result:** Maui's crosswalk now goes Charter → 8 functions → 17 real ordinances → apex spine → Holy See, unit-verified end to end (pure-Python path); the other 16 tenants are unchanged in substance, by design, until each has its own sourced ordinance corpus.
+**Note:** a separate, unrelated thread (donor-bloc network → local vector/semantic-search layer, `collusion_graph.py`/`graph_vectors.py`) is on its own branch (`feature/donor-bloc-vector-embed`), not mixed into this one.
+
+---
+
+---
+
 ## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
 
 **Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review

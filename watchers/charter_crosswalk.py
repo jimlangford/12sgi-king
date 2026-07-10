@@ -163,6 +163,66 @@ TENANTS = {
     },
 }
 
+# ── ordinance-level detail (Jimmy 2026-07-10: "graphed to each ordinance rule et al") ─────────
+# Extends the 8-function crosswalk one level DOWN: real Maui County Code TITLES (not just the
+# governance-function summary) linked to the SAME already-verified apex spine (via the closest-fit
+# governance function). Maui is the only tenant with an ordinance-level corpus built (the county
+# digital-twin engine, king_public_src/civic/templates/title<NN>-service/) — this is NOT extended to
+# other tenants because no equivalent per-ordinance sourced corpus exists for them yet; doing so
+# would mean inventing citations, which this project never does (CANON.md / JRCSL: sourced only).
+# Citation = the real Municode nodeId each title module already links out to (never invented here).
+# fn_key = closest-fit governance-function categorization for cross-referencing purposes ONLY — an
+# editorial grouping, not a claim that the ordinance and the apex cite are legally equivalent.
+ORDINANCES = {
+    "maui": [
+        (1,  "General Provisions",              "TIT1GEPR",                 "selfdet"),
+        (2,  "Administration & Personnel",       "TIT2ADPE",                 "sunshine"),
+        (3,  "Real Property Tax",                "TIT3REFI_CH3.48REPRTA",    "fiduciary"),
+        (5,  "Business Licenses & Regulations",  "TIT5BULIRE",               "conflict"),
+        (6,  "Animals",                          "TIT6AN",                  "enforcement"),
+        (8,  "Health & Safety",                  "TIT8HESA",                "enforcement"),
+        (9,  "Public Peace, Morals & Welfare",    "TIT9PUPEMOWE",            "enforcement"),
+        (10, "Vehicles & Traffic",                "TIT10VETR",               "enforcement"),
+        (11, "Public Transit",                    "TIT11PUTR",               "fiduciary"),
+        (12, "Streets, Sidewalks & Public Places","TIT12STSIPUPL",           "fiduciary"),
+        (13, "Parks & Recreation",                "TIT13PARE",               "fiduciary"),
+        (14, "Public Services — Water",           "TIT14PUSE",               "fiduciary"),
+        (16, "Buildings & Construction",          "TIT16BUCO",               "enforcement"),
+        (18, "Subdivisions",                      "TIT18SU",                 "fiduciary"),
+        (19, "Zoning",                            "TIT19ZO",                 "selfdet"),
+        (20, "Environmental Protection",          "TIT20ENPR",               "sacred"),
+        (22, "Department of Agriculture",         "TIT22DEAG",               "culture"),
+    ],
+}
+MUNICODE_BASE = "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId="
+
+def ordinance_row(num, name, node_id, fn_key):
+    fn = FUNC_BY_KEY[fn_key]
+    spine = apex_spine(fn)   # the SAME already-verified International -> ICC -> ICJ -> Holy See cells
+    return """<div class="ord">
+  <div class="ord-hd"><span class="ord-t">Title %d &mdash; %s</span>
+    <a href="%s%s" target="_blank" rel="noopener">Municode &#8599;</a></div>
+  <div class="ord-fn">closest-fit function: <b>%s</b></div>
+  <div class="cells">%s</div>
+</div>""" % (num, esc(name), MUNICODE_BASE, node_id, esc(fn["title"]),
+             "".join(cell_html(c) for c in spine))
+
+def ordinance_section(tid):
+    rows = ORDINANCES.get(tid)
+    if not rows:
+        return ""
+    cards = "".join(ordinance_row(n, nm, node, fk) for n, nm, node, fk in rows)
+    return """
+<h2 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#d9b24c;margin:34px 0 6px">
+Ordinance-Level Detail &mdash; Maui County Code, title by title</h2>
+<div class="disc">One level below the 8 governance functions above: each REAL Maui County Code title
+(cited to its own Municode chapter — never invented), grouped under whichever of the 8 functions it
+fits closest, then shown against that function's SAME already-verified apex spine (International &rarr;
+ICC &rarr; ICJ &rarr; Holy See). The grouping is an editorial cross-reference for navigation, not a legal-
+equivalence claim between the county title and the apex citation. Built from the sourced MCC digital-twin
+corpus (17 titles) — see each Title's own service page for its full plain-language detail.</div>
+<div class="ords">%s</div>""" % cards
+
 def load_extra_tenants():
     """Merge fan-out tenants from crosswalk_local.json. Each entry supplies the LOCAL layer
     (8 cells); the cell `layer` label is stamped from `local_jur`. Verified upstream."""
@@ -271,6 +331,10 @@ def build(tid):
  .cn{font-size:11.5px;color:#bdb8a4;margin-top:3px}
  .cf{font-family:Consolas,monospace;font-size:9px;letter-spacing:.4px;padding:1px 6px;border-radius:8px;vertical-align:middle;white-space:nowrap}
  .cf.v{background:rgba(86,192,138,.14);color:#56c08a} .cf.p{background:rgba(224,106,74,.14);color:#e06a4a}
+ .ord{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin:10px 0;background:rgba(255,255,255,.015)}
+ .ord-hd{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+ .ord-t{font-size:14.5px;font-weight:600;color:#f0ead8}
+ .ord-fn{font-size:11.5px;color:#9a957f;margin:4px 0 8px}
  a{color:#d9b24c}
  footer{margin-top:34px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}
 </style></head><body><div class="wrap">
@@ -284,14 +348,14 @@ hierarchy. A roadmap of lawful correspondence, framed as a map &mdash; never an 
 <div class="disc">Integrity: every cell names a real instrument. A solid flagship citation is tagged
 <b>cited</b>; where the exact section is still being verified the cell is tagged <b>§ pending verification</b>
 and shown dashed &mdash; named, never invented. %d law-body cells across %d functions, %d pending verification.</div>
-%s
+%s%s
 <p style="margin-top:18px"><a href="jurisdictions.html">all govOS jurisdictions</a>
 &middot; <a href="charter_application.html">Charter &rarr; Law &rarr; live evidence (Maui)</a>
 &middot; <a href="parity_check.html">parity — pairs that no longer answer</a></p>
 <footer>generated %s &middot; charter-crosswalk v2 &middot; SSC v5 &times; %s &middot; sources: local charter/code, HRS/NY law, U.S. Code, UN/UNCAC/ICCPR/UNDRIP, Rome &amp; ICJ Statutes, Code of Canon Law (1983) &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
 </div></body></html>""" % (
         esc(t["name"]), esc(t["name"]), esc(t["seat"]), esc(t["name"]),
-        hierarchy_line(t), tot, len(FUNCTIONS), pend, cards, g, esc(t["name"]))
+        hierarchy_line(t), tot, len(FUNCTIONS), pend, cards, ordinance_section(tid), g, esc(t["name"]))
 
 def main():
     os.makedirs(MAUIOS, exist_ok=True)
