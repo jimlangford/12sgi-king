@@ -1,0 +1,39 @@
+{
+ "generated": "2026-06-16 19:54 HST",
+ "date": "2026-06-16",
+ "moon": {
+  "night": 1,
+  "po": "Hilo",
+  "anahulu": "Hoʻonui",
+  "phase": "new/dark",
+  "nature": "first thin crescent; new beginnings, planting",
+  "offering": "a night of beginnings — plant the intention; learn the item before you speak",
+  "ao_po": "Pō"
+ },
+ "tenants": {
+  "hi-maui": {
+   "name": "Maui County",
+   "daily": "Aloha, Maui County. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  },
+  "hi-honolulu": {
+   "name": "Honolulu",
+   "daily": "Aloha, Honolulu. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  },
+  "hi-hawaii": {
+   "name": "Hawaiʻi County",
+   "daily": "Aloha, Hawaiʻi County. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  },
+  "hi-kauai": {
+   "name": "Kauaʻi County",
+   "daily": "Aloha, Kauaʻi County. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  },
+  "hi-state": {
+   "name": "State of Hawaiʻi",
+   "daily": "Aloha, State of Hawaiʻi. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  },
+  "ny": {
+   "name": "New York",
+   "daily": "Aloha, New York. Tonight is pō 1 Hilo — first thin crescent; new beginnings, planting. The moon's offering for those who govern and those who watch: a night of beginnings — plant the intention; learn the item before you speak. Sun and moon held together: lead in the light, decide in aloha."
+  }
+ }
+}
