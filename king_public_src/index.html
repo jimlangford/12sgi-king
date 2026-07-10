@@ -164,6 +164,9 @@
       <sc-if value="{{ showOps }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Ops" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showGpu }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Gpu" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
     </main>
   </div>
 
@@ -300,6 +303,7 @@ class Component extends DCLogic {
       { id:'mission',   label:'Mission Control', short:'Mission', icon:'⌖',  register:'ops',    owner:true },
       { id:'push',      label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
       { id:'ops',       label:'Ops Board',       short:'Ops',     icon:'⌗',  register:'ops',    owner:true },
+      { id:'gpu',       label:'GPU · CPU Router', short:'GPU',     icon:'⚡', register:'ops',    owner:true },
     ];
     const unlocked = this.state.owner;
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
@@ -350,6 +354,7 @@ class Component extends DCLogic {
       showWatcher: s === 'watcher',
       showAupuni: s === 'aupuni',
       showOps: s === 'ops' && unlocked,
+      showGpu: s === 'gpu' && unlocked,
     };
   }
 }
