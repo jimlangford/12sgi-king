@@ -33,7 +33,7 @@ SITE = os.path.join(REPO, "site")
 # Entry points the crawl seeds from (a visitor can always reach these directly).
 SEEDS = ["index.html", "reports.html", "go.html", "jurisdictions.html", "reports_hub.html",
          "king/index.html", "king/app.html", "take_action.html", "testify.html",
-         "king/govos_signup.html",   # the govOS client signup landing = the 12sgi.com homepage (served as index.html)
+         "king/govos_signup.html",   # still a public civic entry point even though the site root is now studio-first
          # HEAL-FORWARD (Jimmy 2026-07-01/02): real, sourced, standalone destinations that aren't woven
          # into a per-tenant nav — same category as take_action.html/testify.html above. blog.html's
          # own posts self-link once wired (see blog_engine.py static=True), so seeding blog.html here

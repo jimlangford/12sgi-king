@@ -65,6 +65,9 @@ jobs:
       V2_STORAGE_PORT: "8104"
       V2_AI_PORT: "8105"
       V2_HEALTH_PORT: "8106"
+      V2_GPU_ROUTER_PORT: "8107"
+      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-runtime,gpu-router,ai,storage,health"
+      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107"
       # Local deployment log directory (PRIVATE — never committed to repo)
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
       DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
@@ -74,6 +77,13 @@ jobs:
       # ── 1. Checkout ────────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set deployment provenance environment
+        shell: pwsh
+        run: |
+          "COMMIT_SHA=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIMESTAMP=$(Get-Date -Format o -AsUTC)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ENVIRONMENT=king-server-private" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       # ── 2. Validate V2 files ───────────────────────────────────────────────────
       - name: Validate V2 service files are present
@@ -86,6 +96,7 @@ jobs:
             "services\storage\app\main.py",
             "services\ai\app\main.py",
             "services\health\app\main.py",
+            "services\gpu_router\app\main.py",
             "services\v2_workboard.py",
             "docker-compose.v2.yml",
             "go.html",
@@ -167,6 +178,33 @@ jobs:
             }
           }
 
+      - name: Validate V2 compose plan and print inventory
+        shell: pwsh
+        run: |
+          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $dc) {
+            Write-Error "docker not found on PATH — cannot validate docker-compose.v2.yml"
+            exit 1
+          }
+          Write-Host "Intended V2 service inventory:"
+          foreach ($svc in ($env:V2_SERVICE_INVENTORY -split ',')) {
+            Write-Host "  - $svc"
+          }
+          Write-Host "Expected API ports:"
+          foreach ($port in ($env:V2_API_PORT_INVENTORY -split ',')) {
+            Write-Host "  - $port"
+          }
+          Write-Host "Expected deployment provenance:"
+          Write-Host "  - commit_sha=$env:COMMIT_SHA"
+          Write-Host "  - build_timestamp=$env:BUILD_TIMESTAMP"
+          Write-Host "  - environment=$env:ENVIRONMENT"
+          $config = docker compose -f docker-compose.v2.yml config 2>&1
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "docker compose validation failed:`n$($config | Out-String)"
+            exit 1
+          }
+          Write-Host "✓ docker compose -f docker-compose.v2.yml config passed"
+
       # ── 5. Restart V2 services via docker compose (if opted in) ───────────────
       - name: Restart V2 Docker services
         if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
@@ -192,27 +230,105 @@ jobs:
       - name: Health-check V2 localhost services
         shell: pwsh
         run: |
-          # Check each V2 service /api/v2/ready endpoint.
-          # Services may not be running yet (self-hosted runner first run) — warn, don't fail.
+          $severityRank = @{
+            info = 0
+            low = 1
+            high = 2
+            critical = 3
+          }
+          $findings = New-Object System.Collections.Generic.List[object]
+          $maxSeverity = "info"
+          $seenCommitShas = New-Object System.Collections.Generic.HashSet[string]
+
+          function Add-Finding([string]$Service, [string]$Severity, [string]$Code, [string]$Message) {
+            $script:findings.Add([pscustomobject]@{
+              service = $Service
+              severity = $Severity
+              code = $Code
+              message = $Message
+            }) | Out-Null
+            if ($severityRank[$Severity] -gt $severityRank[$script:maxSeverity]) {
+              $script:maxSeverity = $Severity
+            }
+          }
+
+          function Test-Iso8601([string]$Value) {
+            if ([string]::IsNullOrWhiteSpace($Value)) { return $false }
+            try {
+              [datetimeoffset]::Parse($Value) | Out-Null
+              return $true
+            } catch {
+              return $false
+            }
+          }
+
           $checks = @(
-            @{ name="auth";      port=$env:V2_AUTH_PORT     },
-            @{ name="tenant";    port=$env:V2_TENANT_PORT   },
-            @{ name="documents"; port=$env:V2_DOCUMENTS_PORT},
-            @{ name="storage";   port=$env:V2_STORAGE_PORT  },
-            @{ name="ai";        port=$env:V2_AI_PORT       },
-            @{ name="health";    port=$env:V2_HEALTH_PORT   }
+            @{ name="auth";       port=$env:V2_AUTH_PORT;      path="/api/v2/ready"; expected_status=200 },
+            @{ name="tenant";     port=$env:V2_TENANT_PORT;    path="/api/v2/ready"; expected_status=200 },
+            @{ name="documents";  port=$env:V2_DOCUMENTS_PORT; path="/api/v2/ready"; expected_status=200 },
+            @{ name="storage";    port=$env:V2_STORAGE_PORT;   path="/api/v2/ready"; expected_status=200 },
+            @{ name="ai";         port=$env:V2_AI_PORT;        path="/api/v2/ready"; expected_status=200 },
+            @{ name="health";     port=$env:V2_HEALTH_PORT;    path="/api/v1/ready"; expected_status=200 },
+            @{ name="gpu-router"; port=$env:V2_GPU_ROUTER_PORT; path="/api/v2/ready"; expected_status=200 }
           )
           $results = @{}
+          $serviceMeta = @{}
           foreach ($svc in $checks) {
-            $url = "http://127.0.0.1:$($svc.port)/api/v2/ready"
+            $url = "http://127.0.0.1:$($svc.port)$($svc.path)"
             try {
-              $r = Invoke-WebRequest -Uri $url -TimeoutSec 5 -ErrorAction Stop
-              $results[$svc.name] = "ok ($($r.StatusCode))"
-              Write-Host "  ✓ $($svc.name) → $url  [$($r.StatusCode)]"
+              $r = Invoke-WebRequest -Uri $url -TimeoutSec 5 -SkipHttpErrorCheck -ErrorAction Stop
             } catch {
-              $results[$svc.name] = "down ($($_.Exception.Message -replace '\n',' '))"
-              Write-Warning "  ✗ $($svc.name) → $url  [not reachable — is docker compose up?]"
+              $results[$svc.name] = "unreachable"
+              Add-Finding $svc.name "high" "service_unreachable" "Readiness endpoint unreachable at $url"
+              Write-Warning "  ✗ $($svc.name) → $url  [unreachable]"
+              continue
             }
+
+            $results[$svc.name] = "http-$($r.StatusCode)"
+            try {
+              $body = $r.Content | ConvertFrom-Json -ErrorAction Stop
+            } catch {
+              Add-Finding $svc.name "high" "malformed_metadata" "Readiness response at $url was not valid JSON"
+              Write-Warning "  ✗ $($svc.name) → $url  [malformed JSON]"
+              continue
+            }
+
+            $serviceMeta[$svc.name] = $body
+            Write-Host "  • $($svc.name) → $url  [$($r.StatusCode)]"
+
+            if ([int]$r.StatusCode -ne [int]$svc.expected_status) {
+              $severity = if (@(401, 403) -contains [int]$r.StatusCode) { "critical" } else { "high" }
+              Add-Finding $svc.name $severity "readiness_status_mismatch" "Expected HTTP $($svc.expected_status) from $url, got $($r.StatusCode)"
+            }
+
+            if (-not $body.service -or [string]::IsNullOrWhiteSpace([string]$body.service)) {
+              Add-Finding $svc.name "high" "missing_service_field" "Response missing non-empty service field"
+            }
+            if (-not $body.version -or [string]::IsNullOrWhiteSpace([string]$body.version)) {
+              Add-Finding $svc.name "high" "missing_version_field" "Response missing non-empty version field"
+            }
+            if (-not $body.commit_sha -or [string]::IsNullOrWhiteSpace([string]$body.commit_sha)) {
+              Add-Finding $svc.name "high" "missing_commit_sha" "Response missing non-empty commit_sha field"
+            } else {
+              [void]$seenCommitShas.Add([string]$body.commit_sha)
+              if ([string]$body.commit_sha -ne [string]$env:COMMIT_SHA) {
+                Add-Finding $svc.name "high" "mismatched_commit_sha" "commit_sha '$($body.commit_sha)' does not match expected '$($env:COMMIT_SHA)'"
+              }
+            }
+            if (-not $body.build_timestamp -or [string]::IsNullOrWhiteSpace([string]$body.build_timestamp)) {
+              Add-Finding $svc.name "high" "missing_build_timestamp" "Response missing non-empty build_timestamp field"
+            } elseif (-not (Test-Iso8601 ([string]$body.build_timestamp))) {
+              Add-Finding $svc.name "high" "invalid_build_timestamp" "build_timestamp '$($body.build_timestamp)' is not valid ISO-8601"
+            }
+            if (-not $body.environment -or [string]::IsNullOrWhiteSpace([string]$body.environment)) {
+              Add-Finding $svc.name "high" "missing_environment" "Response missing non-empty environment field"
+            } elseif ([string]$body.environment -ne "king-server-private") {
+              Add-Finding $svc.name "high" "invalid_environment" "environment '$($body.environment)' does not equal king-server-private"
+            }
+          }
+
+          if ($seenCommitShas.Count -gt 1) {
+            Add-Finding "fleet" "high" "mixed_commit_sha" "Services reported mixed commit_sha values: $([string]::Join(', ', $seenCommitShas))"
           }
 
           # /go and /board are static files served locally — check king-local path exists
@@ -236,11 +352,28 @@ jobs:
           # Write summary
           "::group::Health check summary"
           $results.GetEnumerator() | ForEach-Object { Write-Host "  $($_.Key): $($_.Value)" }
+          if ($findings.Count -gt 0) {
+            Write-Host "Validation findings:"
+            foreach ($finding in $findings) {
+              Write-Host "  [$($finding.severity)] $($finding.service) $($finding.code): $($finding.message)"
+            }
+          } else {
+            Write-Host "Validation findings: none"
+          }
           "::endgroup::"
 
           # Export for log step
           $json = $results | ConvertTo-Json -Compress
           "HEALTH_RESULTS=$json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $metaJson = $serviceMeta | ConvertTo-Json -Depth 8 -Compress
+          "SERVICE_METADATA=$metaJson" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $findingsJson = $findings | ConvertTo-Json -Depth 6 -Compress
+          "VALIDATION_FINDINGS=$findingsJson" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          if ($severityRank[$maxSeverity] -ge $severityRank["high"]) {
+            Write-Error "V2 provenance/readiness validation failed with max severity '$maxSeverity'"
+            exit 1
+          }
 
       # ── 7. Write deployment log to king-server local log directory ─────────────
       - name: Write local deployment log
@@ -259,12 +392,17 @@ jobs:
             run_id        = "${{ github.run_id }}"
             run_number    = "${{ github.run_number }}"
             sha           = "${{ github.sha }}"
+            expected_sha  = $env:COMMIT_SHA
+            build_timestamp = $env:BUILD_TIMESTAMP
+            environment   = $env:ENVIRONMENT
             ref           = "${{ github.ref }}"
             actor         = "${{ github.actor }}"
             dry_run       = ($env:DRY_RUN -eq "true")
             restart_req   = ($env:RESTART_SERVICES -eq "true")
             king_local    = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
             health        = if ($env:HEALTH_RESULTS) { $env:HEALTH_RESULTS | ConvertFrom-Json } else { $null }
+            services      = if ($env:SERVICE_METADATA) { $env:SERVICE_METADATA | ConvertFrom-Json } else { $null }
+            findings      = if ($env:VALIDATION_FINDINGS) { $env:VALIDATION_FINDINGS | ConvertFrom-Json } else { $null }
             outcome       = "${{ job.status }}"
           }
 

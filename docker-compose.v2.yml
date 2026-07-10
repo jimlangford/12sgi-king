@@ -28,6 +28,9 @@ x-common-env: &common-env
   TENANT_SERVICE_URL: http://tenant:8102
   TENANT_READY_URL: http://tenant:8102/api/v2/ready
   DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+  COMMIT_SHA: ${COMMIT_SHA:-unknown}
+  BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+  ENVIRONMENT: ${ENVIRONMENT:-local}
   WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
   WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
   NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
@@ -169,6 +172,9 @@ services:
     # Bound to 8106, not 8000 — 8000 was already occupied by another local process on this host.
     command: ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
     environment:
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
       SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107"
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports: ["127.0.0.1:8106:8000"]

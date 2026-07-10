@@ -152,6 +152,39 @@ WP_DEFAULT_STATUS=draft
 
 **Never commit secrets.** Store actual values in GitHub repository secrets.
 
+## Element Lotus Rebuild Source Bundle
+
+The actual Element Lotus page/template rebuild happens in WordPress itself, but the repo remains the
+source blueprint.
+
+- Source shell: `/home/runner/work/12sgi-king/12sgi-king/element_lotus_public/`
+- Builder: `/home/runner/work/12sgi-king/12sgi-king/watchers/deploy_elementlotus_wp.py`
+- Output bundle: `/home/runner/work/12sgi-king/12sgi-king/content/wordpress/element_lotus/`
+
+Run:
+
+```bash
+python /home/runner/work/12sgi-king/12sgi-king/watchers/deploy_elementlotus_wp.py
+```
+
+Operational rule:
+
+- whenever `/home/runner/work/12sgi-king/12sgi-king/element_lotus_public/` changes, rerun the builder above
+- then paste/apply the refreshed bundle from `/home/runner/work/12sgi-king/12sgi-king/content/wordpress/element_lotus/` into WordPress
+- `python -m unittest tests.test_deploy_elementlotus_wp` now fails if the committed WordPress bundle drifts from the public shell source
+
+The bundle generates:
+
+- one WordPress-ready page fragment per public Element Lotus page
+- scoped CSS for WordPress (`additional-css.css`)
+- a manifest describing slugs, templates, titles, and source files
+
+Boundary rules enforced by this bundle:
+
+- WordPress-owned public pages stay on WordPress routes (`/`, `/about/`, `/contact/`, `/films/`, `/music/`, `/civic/`)
+- static playables and civic artifacts stay on the 12sgi bridge (`https://12sgi.com/games/`, `https://12sgi.com/sage/`, `https://12sgi.com/reports.html`, etc.)
+- private/owner-only surfaces are not added to the WordPress bundle
+
 ## Monitoring
 
 Monitor the publishing workflow via:

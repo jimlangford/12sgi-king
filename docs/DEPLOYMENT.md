@@ -38,6 +38,100 @@ Runner labels: `self-hosted`, `king-server`, `windows`
 For local development without the runner, see `docs/GOVOS_V2_LOCAL_DEV.md` for the uvicorn
 commands and `docker-compose.v2.yml` for the supervised container stack.
 
+## king-server V2 rollback (PRIVATE / BRIDGE)
+
+Use this procedure for the private king-server V2 Docker stack (`docker-compose.v2.yml`) only.
+This rollback preserves the existing named volumes, SQLite databases, Neo4j state, dispatch logs,
+and queue evidence while redeploying an earlier known-good commit through the same self-hosted
+runner path.
+
+### Rollback triggers
+
+Rollback is required when any of these conditions persists after a dry run or deploy attempt:
+
+- mixed commit SHAs across V2 services
+- persistent readiness failure
+- authentication failure
+- tenant data exposure
+- queue corruption
+- database damage
+- core service outage
+
+### 1. Identify the previously known-good commit
+
+1. Open the most recent successful king-server V2 deployment evidence in:
+   `C:\Users\12sgi\Documents\Claude\logs\v2-deploy\deploy-*.json`
+2. Confirm all required services reported:
+   - `environment = king-server-private`
+   - the same `commit_sha`
+   - healthy readiness/provenance responses
+3. Record that commit SHA as the rollback target.
+4. Cross-check the GitHub Actions run history for `.github/workflows/deploy-v2-king-server.yml` and
+   the repo history so the rollback target is an actual previously known-good revision.
+
+### 2. Preserve volumes, databases, and queue state
+
+- Keep the existing named volumes intact:
+  - `v2-db`
+  - `v2-dispatch`
+  - `v2-ollama`
+  - `v2-neo4j-data`
+  - `v2-neo4j-logs`
+- Before rollback, inspect queue/dispatch state and capture it in deployment evidence:
+  - `docker compose -f docker-compose.v2.yml logs --tail 200 gpu-router`
+  - `docker compose -f docker-compose.v2.yml logs --tail 200 ai`
+  - `docker compose -f docker-compose.v2.yml exec gpu-router python - <<'PY'` (or equivalent local
+    inspection) to review queued/running jobs if the service is reachable
+  - review `/data/dispatch/govos_v2_dispatch.jsonl` on the host if queue evidence needs a durable
+    snapshot
+- Repeat the same queue inspection immediately after rollback so before/after state is preserved.
+
+### 3. Redeploy the previous commit with the same Compose file
+
+1. Check out the previously known-good commit on the king-server runner worktree (or dispatch the
+   workflow against that commit/ref).
+2. Reuse the same `docker-compose.v2.yml`; do not substitute another compose definition during
+   routine rollback.
+3. Re-run `docker compose -f docker-compose.v2.yml config` before restart.
+4. Re-run the private deploy workflow with `restart_services=true` only after the rollback target is
+   confirmed.
+5. Let `docker compose up -d --build --no-deps` refresh the stack in place so the named volumes and
+   databases remain attached.
+
+### 4. Verify health and provenance after rollback
+
+After the rollback restart completes, verify every required V2 surface reports:
+
+- readiness endpoint HTTP 200 where expected
+- valid JSON response bodies
+- non-empty `service`, `version`, `commit_sha`, `build_timestamp`, and `environment`
+- `commit_sha` exactly equal to the rollback target commit
+- `environment` exactly equal to `king-server-private`
+
+Also verify `/api/v1/ready` on the health service reports aggregated dependency status with the same
+rollback provenance and that `/go` / `board.html` are still present at the king-local path.
+
+### 5. Capture logs and deployment evidence
+
+- Save the workflow run URL, run number, rollback target commit SHA, and resulting deploy log JSON.
+- Capture:
+  - `docker compose -f docker-compose.v2.yml ps`
+  - `docker compose -f docker-compose.v2.yml logs --tail 200 auth tenant documents storage ai health gpu-router`
+  - any queue/dispatch snapshots gathered before and after rollback
+- Preserve evidence in the same private log/evidence locations already used for king-server deploys.
+
+### Routine rollback prohibitions
+
+During a normal rollback, do **not** run any destructive volume cleanup commands:
+
+- `docker compose down -v`
+- manual Docker volume deletion
+- `docker system prune`
+- `docker volume prune`
+
+Those commands risk queue loss, database loss, Neo4j damage, and destruction of rollback evidence.
+Use them only in a separately authorized recovery operation, never as part of routine rollback.
+
 Overview
 - Deploys are written to: DEPLOY_PATH/releases/<timestamp>/
 - The live site is the symlink: DEPLOY_PATH/current -> releases/<timestamp>
