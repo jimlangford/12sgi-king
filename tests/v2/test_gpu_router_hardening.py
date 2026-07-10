@@ -28,6 +28,10 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
                 os.environ.pop(key, None)
         if env_overrides:
             os.environ.update(env_overrides)
+        sys.modules.pop("services.service_metadata", None)
+        services_pkg = sys.modules.get("services")
+        if services_pkg is not None and hasattr(services_pkg, "service_metadata"):
+            delattr(services_pkg, "service_metadata")
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
@@ -291,11 +295,11 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
 class TestDeployWorkflowHardening(unittest.TestCase):
     def test_workflow_validates_compose_before_restart(self):
         text = WORKFLOW.read_text()
-        self.assertIn("Validate V2 compose plan and print inventory", text)
+        self.assertIn("- name: Validate V2 compose plan and print inventory", text)
         self.assertIn("docker compose -f docker-compose.v2.yml config", text)
         self.assertLess(
-            text.index("Validate V2 compose plan and print inventory"),
-            text.index("Restart V2 Docker services"),
+            text.index("- name: Validate V2 compose plan and print inventory"),
+            text.index("- name: Restart V2 Docker services"),
         )
 
     def test_workflow_declares_explicit_service_inventory_and_ports(self):

@@ -44,6 +44,10 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
                 os.environ.pop(key, None)
         if env_overrides:
             os.environ.update(env_overrides)
+        sys.modules.pop('services.service_metadata', None)
+        services_pkg = sys.modules.get('services')
+        if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
+            delattr(services_pkg, 'service_metadata')
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
@@ -261,18 +265,46 @@ class _FakeResponse:
 
 
 class TestHealthReadinessHardening(unittest.TestCase):
+    def setUp(self):
+        self._saved_env = dict(os.environ)
+
+    def tearDown(self):
+        os.environ.clear()
+        os.environ.update(self._saved_env)
+
+    def _load_health_module(self, surfaces):
+        saved = dict(os.environ)
+        try:
+            os.environ.update(
+                {
+                    'SURFACES_LIST': surfaces,
+                    'SURFACES_HEALTH_PATH': '/api/v2/ready',
+                    'COMMIT_SHA': 'abc123def456',
+                    'BUILD_TIMESTAMP': '2026-07-10T23:30:00Z',
+                    'ENVIRONMENT': 'king-server-private',
+                }
+            )
+            for key in (
+                'services.health.app.main',
+                'services.health.app.checks',
+                'services.service_metadata',
+            ):
+                sys.modules.pop(key, None)
+            import services.health.app.main as health_main
+            return health_main
+        finally:
+            os.environ.clear()
+            os.environ.update(saved)
+
     def _client(self, surfaces='auth=auth:8101,tenant=tenant:8102'):
-        module = _load_module(
-            HEALTH_MAIN,
-            f'health_test_{id(self)}_{time.time_ns()}',
-            env_overrides={
-                'SURFACES_LIST': surfaces,
-                'SURFACES_HEALTH_PATH': '/api/v2/ready',
-                'COMMIT_SHA': 'abc123def456',
-                'BUILD_TIMESTAMP': '2026-07-10T23:30:00Z',
-                'ENVIRONMENT': 'king-server-private',
-            },
-        )
+        module = self._load_health_module(surfaces)
+        os.environ['SURFACES_HEALTH_PATH'] = '/api/v2/ready'
+        module.load_surfaces_from_env = lambda: {
+            name.strip(): hostport.strip()
+            for name, hostport in (
+                part.split('=', 1) for part in surfaces.split(',') if '=' in part
+            )
+        }
         return module, TestClient(module.app)
 
     def _install_requests_stub(self, module, handlers):

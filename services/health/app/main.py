@@ -1,6 +1,6 @@
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
+from datetime import datetime, timezone
 import ipaddress
 import json
 import os
@@ -27,6 +27,10 @@ ADMIN_BASIC_USER = os.environ.get("ADMIN_BASIC_USER")
 ADMIN_BASIC_PASS = os.environ.get("ADMIN_BASIC_PASS")
 DEPENDENCY_TIMEOUT_SECONDS = max(float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "5") or "5"), 0.1)
 PROVENANCE_FIELDS = ("service", "version", "commit_sha", "build_timestamp", "environment")
+
+
+def _utc_timestamp() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 # Helper: determine client IP respecting X-Forwarded-For if present
 def get_client_ip(request: Request) -> str:
@@ -216,7 +220,7 @@ async def root():
 async def live():
     return JSONResponse(
         with_service_metadata(
-            {"status": "alive", "timestamp": datetime.utcnow().isoformat() + 'Z'},
+            {"status": "alive", "timestamp": _utc_timestamp()},
             SERVICE_NAME,
             VERSION,
         )
@@ -232,7 +236,7 @@ async def ready():
         with_service_metadata(
             {
                 "status": status_text,
-                "timestamp": datetime.utcnow().isoformat() + 'Z',
+                "timestamp": _utc_timestamp(),
                 "services": results,
             },
             SERVICE_NAME,
@@ -248,7 +252,7 @@ async def health():
     release = read_release_metadata()
     out = {
         "status": "healthy" if all(v.get('ok', False) for v in checks.values()) else "degraded",
-        "timestamp": datetime.utcnow().isoformat() + 'Z',
+        "timestamp": _utc_timestamp(),
         "services": checks,
     }
     if release:
