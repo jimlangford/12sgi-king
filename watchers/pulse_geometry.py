@@ -40,6 +40,8 @@ ORGANIC_CARBON_WEIGHT = 6
 EDGE_CONTEXT_ID = "context:known-universe-edge"
 APEX_CONTEXT_ID = "context:shared-apex-spine"
 RHYTHM_CONTEXT_ID = "context:ao-po-rhythm"
+LOCAL_BOUNDARY_SCALE = "tenant"
+TENANT_OVERLAP_SURFACE = "Neo"
 
 _DIRECTION_BY_ANAHULU = {
     "Hoʻonui": "expanding",
@@ -177,13 +179,17 @@ def build_context_rows() -> list[dict]:
             "name": "Known universe boundary",
             "context_kind": "edge",
             "scope": "outermost",
-            "note": "Outer containment boundary carried directly by the quadrant lattice.",
+            "local_boundary_scale": LOCAL_BOUNDARY_SCALE,
+            "tenant_overlap_surface": TENANT_OVERLAP_SURFACE,
+            "note": "Tenant-local containment boundary carried directly by the quadrant lattice; overlap across tenants resolves through Neo.",
         },
         {
             "id": APEX_CONTEXT_ID,
             "name": "Shared apex spine",
             "context_kind": "apex",
             "scope": "governing",
+            "local_boundary_scale": LOCAL_BOUNDARY_SCALE,
+            "tenant_overlap_surface": TENANT_OVERLAP_SURFACE,
             "note": "Governing hierarchy for civic and accountability alignment.",
         },
         {
@@ -191,6 +197,8 @@ def build_context_rows() -> list[dict]:
             "name": "Ao/Pō rhythm",
             "context_kind": "rhythm",
             "scope": "balancing",
+            "local_boundary_scale": LOCAL_BOUNDARY_SCALE,
+            "tenant_overlap_surface": TENANT_OVERLAP_SURFACE,
             "note": "Rhythm layer for Ao action, Pō balancing, and Hina cadence.",
         },
     ]
@@ -430,6 +438,8 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
                     "outer_boundary_context_id": EDGE_CONTEXT_ID,
                     "governing_context_id": APEX_CONTEXT_ID,
                     "rhythm_context_id": RHYTHM_CONTEXT_ID,
+                    "local_boundary_scale": LOCAL_BOUNDARY_SCALE,
+                    "tenant_overlap_surface": TENANT_OVERLAP_SURFACE,
                     "context_model": "edge_apex_rhythm",
                     "akua": skill.get("akua", ""),
                     "element": skill.get("element", "Earth"),
@@ -470,6 +480,8 @@ def build_quadrant_rows(skills: list[dict]) -> list[dict]:
                 "outer_boundary_context_id": EDGE_CONTEXT_ID,
                 "governing_context_id": APEX_CONTEXT_ID,
                 "rhythm_context_id": RHYTHM_CONTEXT_ID,
+                "local_boundary_scale": LOCAL_BOUNDARY_SCALE,
+                "tenant_overlap_surface": TENANT_OVERLAP_SURFACE,
                 "context_model": "edge_apex_rhythm",
             }
         )

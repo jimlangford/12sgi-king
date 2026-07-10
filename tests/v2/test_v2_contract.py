@@ -467,6 +467,11 @@ class TestPulseGeometry(unittest.TestCase):
             self.assertEqual(row['outer_boundary_context_id'], pulse_geometry.EDGE_CONTEXT_ID)
             self.assertEqual(row['governing_context_id'], pulse_geometry.APEX_CONTEXT_ID)
             self.assertEqual(row['rhythm_context_id'], pulse_geometry.RHYTHM_CONTEXT_ID)
+            self.assertEqual(row['local_boundary_scale'], pulse_geometry.LOCAL_BOUNDARY_SCALE)
+            self.assertEqual(row['tenant_overlap_surface'], pulse_geometry.TENANT_OVERLAP_SURFACE)
+        edge_context = next(row for row in snap['contexts'] if row['id'] == pulse_geometry.EDGE_CONTEXT_ID)
+        self.assertEqual(edge_context['local_boundary_scale'], pulse_geometry.LOCAL_BOUNDARY_SCALE)
+        self.assertEqual(edge_context['tenant_overlap_surface'], pulse_geometry.TENANT_OVERLAP_SURFACE)
         edges = {(row['rel'], row['src_id'], row['dst_id']) for row in snap['context_edges']}
         self.assertIn(('CONTAINS', pulse_geometry.EDGE_CONTEXT_ID, 'quadrant:mauka'), edges)
         self.assertIn(('GOVERNS', pulse_geometry.APEX_CONTEXT_ID, 'quadrant:kula'), edges)
