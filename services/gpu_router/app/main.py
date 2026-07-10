@@ -40,15 +40,17 @@ import tempfile
 import threading
 import time
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 from urllib import error, request
 from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
+from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "gpu-router"
 VERSION = os.environ.get("VERSION", "3.0.0")
 DB_PATH = os.environ.get("GPU_ROUTER_DB_PATH", "/tmp/govos_v2_gpu_router.db")
 
@@ -63,6 +65,11 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 
 # How long to wait for Ollama to finish a job (seconds).
 INFER_TIMEOUT = float(os.environ.get("GPU_INFER_TIMEOUT", "120"))
+JOB_LEASE_SECONDS = float(os.environ.get("GPU_JOB_LEASE_SECONDS", str(max(INFER_TIMEOUT + 30, 150))))
+RETRY_BACKOFF_SECONDS = float(os.environ.get("GPU_RETRY_BACKOFF_SECONDS", "2"))
+MAX_RETRIES = max(0, int(os.environ.get("GPU_MAX_RETRIES", "2")))
+DEFAULT_MAX_ATTEMPTS = MAX_RETRIES + 1
+TENANT_CONCURRENCY_LIMIT = max(1, int(os.environ.get("GPU_TENANT_CONCURRENCY_LIMIT", "1")))
 
 # Job type → engine lane mapping.
 #   GPU worker:  ollama, comfyui
@@ -135,18 +142,26 @@ def init_db() -> None:
             """
             CREATE TABLE IF NOT EXISTS gpu_jobs (
                 id          TEXT PRIMARY KEY,
+                tenant_id   TEXT NOT NULL DEFAULT '',
                 client_id   TEXT NOT NULL,
                 priority    INTEGER NOT NULL,
                 job_type    TEXT NOT NULL DEFAULT 'ollama',
                 model       TEXT NOT NULL,
                 prompt      TEXT NOT NULL,
                 options_json TEXT,
+                idempotency_key TEXT,
                 status      TEXT NOT NULL DEFAULT 'pending',
                 result_json TEXT,
                 error       TEXT,
                 created_at  TEXT NOT NULL,
                 started_at  TEXT,
+                available_at TEXT,
+                lease_expires_at TEXT,
                 finished_at TEXT,
+                attempt_count INTEGER NOT NULL DEFAULT 0,
+                max_attempts INTEGER NOT NULL DEFAULT 3,
+                worker_name TEXT,
+                claim_token TEXT,
                 created_by  TEXT NOT NULL
             )
             """
@@ -156,6 +171,37 @@ def init_db() -> None:
             conn.execute("ALTER TABLE gpu_jobs ADD COLUMN job_type TEXT NOT NULL DEFAULT 'ollama'")
         except sqlite3.OperationalError:
             pass  # column already exists
+        for ddl in (
+            "ALTER TABLE gpu_jobs ADD COLUMN tenant_id TEXT NOT NULL DEFAULT ''",
+            "ALTER TABLE gpu_jobs ADD COLUMN idempotency_key TEXT",
+            "ALTER TABLE gpu_jobs ADD COLUMN available_at TEXT",
+            "ALTER TABLE gpu_jobs ADD COLUMN lease_expires_at TEXT",
+            "ALTER TABLE gpu_jobs ADD COLUMN attempt_count INTEGER NOT NULL DEFAULT 0",
+            f"ALTER TABLE gpu_jobs ADD COLUMN max_attempts INTEGER NOT NULL DEFAULT {DEFAULT_MAX_ATTEMPTS}",
+            "ALTER TABLE gpu_jobs ADD COLUMN worker_name TEXT",
+            "ALTER TABLE gpu_jobs ADD COLUMN claim_token TEXT",
+        ):
+            try:
+                conn.execute(ddl)
+            except sqlite3.OperationalError:
+                pass
+        conn.execute(
+            "UPDATE gpu_jobs SET tenant_id = client_id WHERE tenant_id IS NULL OR tenant_id = ''"
+        )
+        conn.execute(
+            "UPDATE gpu_jobs SET available_at = created_at WHERE available_at IS NULL"
+        )
+        conn.execute(
+            "UPDATE gpu_jobs SET max_attempts = ? WHERE max_attempts IS NULL OR max_attempts < 1",
+            (DEFAULT_MAX_ATTEMPTS,),
+        )
+        conn.execute(
+            """
+            CREATE UNIQUE INDEX IF NOT EXISTS gpu_jobs_tenant_idempotency_idx
+            ON gpu_jobs (tenant_id, idempotency_key)
+            WHERE idempotency_key IS NOT NULL
+            """
+        )
 
         conn.execute(
             """
@@ -169,14 +215,98 @@ def init_db() -> None:
             )
             """
         )
-        # Reset any job that was mid-flight when the process died.
-        conn.execute(
-            "UPDATE gpu_jobs SET status = 'pending', started_at = NULL WHERE status = 'running'"
-        )
         conn.commit()
 
 def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _utc_after(seconds: float) -> str:
+    return (datetime.now(timezone.utc) + timedelta(seconds=seconds)).isoformat()
+
+
+def _parse_utc(ts: str | None) -> datetime | None:
+    if not ts:
+        return None
+    try:
+        return datetime.fromisoformat(ts)
+    except ValueError:
+        return None
+
+
+def _normalise_tenant_id(value: str | None, client_id: str) -> str:
+    tenant_id = (value or "").strip()
+    return tenant_id or client_id
+
+
+def _normalise_idempotency_key(value: str | None) -> str | None:
+    key = (value or "").strip()
+    return key or None
+
+
+def _options_json(options: dict | None) -> str | None:
+    if not options:
+        return None
+    return json.dumps(options, sort_keys=True, separators=(",", ":"))
+
+
+def _recover_abandoned_jobs(conn: sqlite3.Connection) -> list[dict[str, str]]:
+    now = datetime.now(timezone.utc)
+    rows = conn.execute(
+        """
+        SELECT id, tenant_id, job_type, client_id, attempt_count, max_attempts, lease_expires_at
+        FROM gpu_jobs
+        WHERE status = 'running'
+          AND lease_expires_at IS NOT NULL
+        """
+    ).fetchall()
+    recovered: list[dict[str, str]] = []
+    for row in rows:
+        lease_expires = _parse_utc(row["lease_expires_at"])
+        if not lease_expires or lease_expires > now:
+            continue
+        retryable = row["attempt_count"] < row["max_attempts"]
+        if retryable:
+            conn.execute(
+                """
+                UPDATE gpu_jobs
+                SET status='pending',
+                    started_at=NULL,
+                    available_at=?,
+                    lease_expires_at=NULL,
+                    claim_token=NULL,
+                    worker_name=NULL,
+                    error=?
+                WHERE id=? AND status='running'
+                """,
+                (
+                    _utc_after(RETRY_BACKOFF_SECONDS),
+                    "Recovered abandoned job after worker lease expiry",
+                    row["id"],
+                ),
+            )
+            recovered.append({"job_id": row["id"], "event_type": "job.recovered", "job_type": row["job_type"]})
+        else:
+            conn.execute(
+                """
+                UPDATE gpu_jobs
+                SET status='timeout',
+                    finished_at=?,
+                    lease_expires_at=NULL,
+                    claim_token=NULL,
+                    worker_name=NULL,
+                    error=?
+                WHERE id=? AND status='running'
+                """,
+                (
+                    _now_utc(),
+                    "Job exceeded retry limit after worker lease expiry",
+                    row["id"],
+                ),
+            )
+            recovered.append({"job_id": row["id"], "event_type": "job.timeout", "job_type": row["job_type"]})
+    return recovered
+
 
 def _log_event(event_type: str, engine: str, job_id: str | None = None, detail: dict | None = None) -> None:
     """Append an event to the gpu_events bus.  Never raises — event loss is acceptable."""
@@ -199,18 +329,79 @@ _cpu_worker_lock = threading.Lock()   # serialise CPU (voice/embedding) calls
 _gpu_wakeup = threading.Event()       # signal GPU worker when a job is enqueued
 _cpu_wakeup = threading.Event()       # signal CPU worker when a job is enqueued
 
-
-def _next_pending_job(conn: sqlite3.Connection, lanes: set[str]) -> sqlite3.Row | None:
-    placeholders = ",".join("?" for _ in lanes)
+def _find_idempotent_job(
+    conn: sqlite3.Connection,
+    tenant_id: str,
+    idempotency_key: str | None,
+) -> sqlite3.Row | None:
+    if not idempotency_key:
+        return None
     return conn.execute(
-        f"""
+        """
         SELECT * FROM gpu_jobs
-        WHERE status = 'pending' AND job_type IN ({placeholders})
-        ORDER BY priority ASC, created_at ASC
+        WHERE tenant_id = ? AND idempotency_key = ?
+        ORDER BY created_at DESC
         LIMIT 1
         """,
-        list(lanes),
+        (tenant_id, idempotency_key),
     ).fetchone()
+
+
+def _claim_next_pending_job(conn: sqlite3.Connection, lanes: set[str], worker_name: str) -> sqlite3.Row | None:
+    placeholders = ",".join("?" for _ in lanes)
+    now = _now_utc()
+    claim_token = str(uuid4())
+    conn.execute("BEGIN IMMEDIATE")
+    recovered = _recover_abandoned_jobs(conn)
+    job = conn.execute(
+        f"""
+        SELECT * FROM gpu_jobs AS j
+        WHERE j.status = 'pending'
+          AND j.job_type IN ({placeholders})
+          AND (j.available_at IS NULL OR j.available_at <= ?)
+          AND (
+                SELECT COUNT(*)
+                FROM gpu_jobs AS active
+                WHERE active.tenant_id = j.tenant_id
+                  AND active.status = 'running'
+              ) < ?
+        ORDER BY j.priority ASC, j.created_at ASC
+        LIMIT 1
+        """,
+        [*list(lanes), now, TENANT_CONCURRENCY_LIMIT],
+    ).fetchone()
+    if not job:
+        conn.commit()
+        for event in recovered:
+            _log_event(event["event_type"], event["job_type"], event["job_id"])
+        return None
+    started_at = _now_utc()
+    cursor = conn.execute(
+        """
+        UPDATE gpu_jobs
+        SET status='running',
+            started_at=?,
+            lease_expires_at=?,
+            claim_token=?,
+            worker_name=?,
+            attempt_count=attempt_count + 1,
+            available_at=NULL
+        WHERE id=? AND status='pending'
+        """,
+        (
+            started_at,
+            _utc_after(JOB_LEASE_SECONDS),
+            claim_token,
+            worker_name,
+            job["id"],
+        ),
+    )
+    conn.commit()
+    for event in recovered:
+        _log_event(event["event_type"], event["job_type"], event["job_id"])
+    if cursor.rowcount != 1:
+        return None
+    return conn.execute("SELECT * FROM gpu_jobs WHERE id=?", (job["id"],)).fetchone()
 
 
 def _call_ollama(model: str, prompt: str, options: dict | None) -> dict[str, Any]:
@@ -350,6 +541,88 @@ def _run_job(job: sqlite3.Row) -> tuple[str, dict | None, str | None]:
         return "error", None, str(exc)
 
 
+def _persist_job_outcome(
+    conn: sqlite3.Connection,
+    job: sqlite3.Row,
+    status: str,
+    result: dict | None,
+    err: str | None,
+) -> str:
+    attempt_count = job["attempt_count"]
+    max_attempts = job["max_attempts"] or DEFAULT_MAX_ATTEMPTS
+    should_retry = status == "error" and attempt_count < max_attempts
+    if should_retry:
+        cursor = conn.execute(
+            """
+            UPDATE gpu_jobs
+            SET status='pending',
+                result_json=NULL,
+                error=?,
+                finished_at=NULL,
+                started_at=NULL,
+                available_at=?,
+                lease_expires_at=NULL,
+                claim_token=NULL,
+                worker_name=NULL
+            WHERE id=? AND status='running' AND claim_token=?
+            """,
+            (
+                err,
+                _utc_after(RETRY_BACKOFF_SECONDS),
+                job["id"],
+                job["claim_token"],
+            ),
+        )
+        return "retry" if cursor.rowcount == 1 else "stale"
+    cursor = conn.execute(
+        """
+        UPDATE gpu_jobs
+        SET status=?,
+            result_json=?,
+            error=?,
+            finished_at=?,
+            lease_expires_at=NULL,
+            claim_token=NULL,
+            worker_name=NULL
+        WHERE id=? AND status='running' AND claim_token=?
+        """,
+        (
+            status,
+            json.dumps(result) if result else None,
+            err,
+            _now_utc(),
+            job["id"],
+            job["claim_token"],
+        ),
+    )
+    return status if cursor.rowcount == 1 else "stale"
+
+
+def _build_infer_response(row: sqlite3.Row, job_type: str, model: str) -> dict[str, Any]:
+    result = json.loads(row["result_json"] or "{}")
+    resp: dict[str, Any] = {
+        "job_id": row["id"],
+        "tenant_id": row["tenant_id"],
+        "job_type": job_type,
+        "client_id": row["client_id"],
+        "model": model,
+        "done": True,
+        "started_at": row["started_at"],
+        "finished_at": row["finished_at"],
+    }
+    if row["idempotency_key"]:
+        resp["idempotency_key"] = row["idempotency_key"]
+    if job_type == "voice":
+        resp["audio_b64"] = result.get("audio_b64", "")
+        resp["duration_s"] = result.get("duration_s")
+        resp["engine"] = result.get("engine", "espeak-ng")
+    elif job_type == "embedding":
+        resp["embedding"] = result.get("embedding", [])
+    else:
+        resp["response"] = result.get("response", "")
+    return resp
+
+
 def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup: threading.Event) -> None:
     """Generic worker loop for a set of engine lanes.
 
@@ -367,14 +640,9 @@ def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup
             with lock:
                 while True:
                     with _db() as conn:
-                        job = _next_pending_job(conn, lanes)
+                        job = _claim_next_pending_job(conn, lanes, worker_name)
                         if not job:
                             break
-                        conn.execute(
-                            "UPDATE gpu_jobs SET status='running', started_at=? WHERE id=?",
-                            (_now_utc(), job["id"]),
-                        )
-                        conn.commit()
 
                     job_id = job["id"]
                     engine = job["job_type"] or "ollama"
@@ -383,16 +651,15 @@ def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup
                     status, result, err = _run_job(job)
 
                     with _db() as conn:
-                        conn.execute(
-                            "UPDATE gpu_jobs SET status=?, result_json=?, error=?, finished_at=? WHERE id=?",
-                            (status, json.dumps(result) if result else None, err, _now_utc(), job_id),
-                        )
+                        outcome = _persist_job_outcome(conn, job, status, result, err)
                         conn.commit()
 
                     _log_event(
-                        f"job.{status}", engine, job_id,
+                        f"job.{outcome}", engine, job_id,
                         {"client_id": job["client_id"], "error": err} if err else {"client_id": job["client_id"]},
                     )
+                    if outcome == "retry":
+                        wakeup.set()
         except Exception as exc:
             # Never let a worker die: log via the event bus (best-effort) and loop again.
             try:
@@ -464,6 +731,7 @@ def _ollama_ready() -> bool:
 
 class InferRequest(BaseModel):
     client_id: str           # e.g. "govos-core", "studio", "workboard"
+    tenant_id: str | None = None
     model: str               # Ollama model name e.g. "llama3"; or voice tag e.g. "haw"
     prompt: str              # LLM prompt or text to synthesise (voice lane)
     options: dict | None = None  # Ollama options (temperature, …) or voice options (rate, pitch)
@@ -476,7 +744,11 @@ class InferRequest(BaseModel):
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "gpu-router", "version": VERSION, "timestamp": _now_utc()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -495,17 +767,19 @@ def ready(response: Response):
     is_ready = db_ok and auth_ok and runtime_ok
 
     response.status_code = 200 if is_ready else 503
-    return {
-        "status": "ready" if is_ready else "not-ready",
-        "service": "gpu-router",
-        "version": VERSION,
-        "dependencies": {
-            "database": db_ok,
-            "auth": auth_ok,
-            "gpu_runtime": runtime_ok,
-            "voice_engine": voice_ok,
+    return with_service_metadata(
+        {
+            "status": "ready" if is_ready else "not-ready",
+            "dependencies": {
+                "database": db_ok,
+                "auth": auth_ok,
+                "gpu_runtime": runtime_ok,
+                "voice_engine": voice_ok,
+            },
         },
-    }
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/health")
@@ -526,23 +800,31 @@ def health():
             """
         ).fetchall()
     lanes = {r["job_type"]: {"pending": r["pending"], "running": r["running"]} for r in lane_rows}
-    return {
-        "status": "healthy",
-        "service": "gpu-router",
-        "version": VERSION,
-        "jobs": {"total": total, "pending": pending, "running": running},
-        "lanes": lanes,
-        "engines": {
-            "gpu": list(GPU_LANES),
-            "cpu": list(CPU_LANES),
+    return with_service_metadata(
+        {
+            "status": "healthy",
+            "jobs": {"total": total, "pending": pending, "running": running},
+            "lanes": lanes,
+            "engines": {
+                "gpu": list(GPU_LANES),
+                "cpu": list(CPU_LANES),
+            },
+            "voice_engine": "espeak-ng" if shutil.which("espeak-ng") else "unavailable",
+            "priorities": CLIENT_PRIORITIES,
+            "tenant_concurrency_limit": TENANT_CONCURRENCY_LIMIT,
         },
-        "voice_engine": "espeak-ng" if shutil.which("espeak-ng") else "unavailable",
-        "priorities": CLIENT_PRIORITIES,
-    }
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.post(f"{API_PREFIX}/gpu/infer")
-def infer(payload: InferRequest, authorization: str | None = Header(default=None)):
+def infer(
+    payload: InferRequest,
+    authorization: str | None = Header(default=None),
+    x_idempotency_key: str | None = Header(default=None, alias="X-Idempotency-Key"),
+    x_tenant_id: str | None = Header(default=None, alias="X-Tenant-ID"),
+):
     """Enqueue a job and block until it completes (or times out).
 
     job_type controls which engine lane handles the job:
@@ -554,31 +836,64 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
 
     job_type = payload.job_type if payload.job_type in ALL_JOB_TYPES else "ollama"
     priority = CLIENT_PRIORITIES.get(payload.client_id, DEFAULT_PRIORITY)
-    job_id = str(uuid4())
-    now = _now_utc()
+    tenant_id = _normalise_tenant_id(payload.tenant_id or x_tenant_id, payload.client_id)
+    if payload.tenant_id and x_tenant_id and payload.tenant_id.strip() != x_tenant_id.strip():
+        _error(400, "tenant_mismatch", "Tenant header does not match request body")
+    idempotency_key = _normalise_idempotency_key(x_idempotency_key)
+    options_json = _options_json(payload.options)
+    job_id: str | None = None
 
     with _db() as conn:
-        conn.execute(
-            """
-            INSERT INTO gpu_jobs
-                (id, client_id, priority, job_type, model, prompt, options_json, status, created_at, created_by)
-            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)
-            """,
-            (
-                job_id,
-                payload.client_id,
-                priority,
-                job_type,
-                payload.model,
-                payload.prompt,
-                json.dumps(payload.options) if payload.options else None,
-                now,
-                user.get("id", "unknown"),
-            ),
-        )
+        existing = _find_idempotent_job(conn, tenant_id, idempotency_key)
+        if existing:
+            same_payload = (
+                existing["client_id"] == payload.client_id
+                and existing["job_type"] == job_type
+                and existing["model"] == payload.model
+                and existing["prompt"] == payload.prompt
+                and (existing["options_json"] or None) == options_json
+            )
+            if not same_payload:
+                _error(409, "idempotency_conflict", "Idempotency key is already bound to a different request", {"job_id": existing["id"]})
+            job_id = existing["id"]
+        else:
+            job_id = str(uuid4())
+            try:
+                conn.execute(
+                    """
+                    INSERT INTO gpu_jobs
+                        (id, tenant_id, client_id, priority, job_type, model, prompt, options_json,
+                         idempotency_key, status, created_at, available_at, max_attempts, created_by)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)
+                    """,
+                    (
+                        job_id,
+                        tenant_id,
+                        payload.client_id,
+                        priority,
+                        job_type,
+                        payload.model,
+                        payload.prompt,
+                        options_json,
+                        idempotency_key,
+                        _now_utc(),
+                        _now_utc(),
+                        DEFAULT_MAX_ATTEMPTS,
+                        user.get("id", "unknown"),
+                    ),
+                )
+            except sqlite3.IntegrityError:
+                existing = _find_idempotent_job(conn, tenant_id, idempotency_key)
+                if not existing:
+                    raise
+                job_id = existing["id"]
         conn.commit()
 
-    _log_event("job.queued", job_type, job_id, {"client_id": payload.client_id})
+    row = None
+    with _db() as conn:
+        row = conn.execute("SELECT * FROM gpu_jobs WHERE id=?", (job_id,)).fetchone()
+    if row and row["status"] == "pending" and row["attempt_count"] == 0:
+        _log_event("job.queued", job_type, job_id, {"client_id": payload.client_id, "tenant_id": tenant_id})
 
     # Wake the right worker.
     if job_type in CPU_LANES:
@@ -592,88 +907,98 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
         with _db() as conn:
             row = conn.execute("SELECT * FROM gpu_jobs WHERE id=?", (job_id,)).fetchone()
         if row and row["status"] == "done":
-            result = json.loads(row["result_json"] or "{}")
-            resp: dict[str, Any] = {
-                "job_id": job_id,
-                "job_type": job_type,
-                "client_id": payload.client_id,
-                "model": payload.model,
-                "done": True,
-                "started_at": row["started_at"],
-                "finished_at": row["finished_at"],
-            }
-            if job_type == "voice":
-                resp["audio_b64"] = result.get("audio_b64", "")
-                resp["duration_s"] = result.get("duration_s")
-                resp["engine"] = result.get("engine", "espeak-ng")
-            elif job_type == "embedding":
-                resp["embedding"] = result.get("embedding", [])
-            else:
-                resp["response"] = result.get("response", "")
-            return resp
+            return _build_infer_response(row, job_type, payload.model)
         if row and row["status"] == "error":
             engine_label = "CPU" if job_type in CPU_LANES else "GPU"
             _error(502, f"{job_type}_error", f"{engine_label} error: {row['error']}", {"job_id": job_id})
+        if row and row["status"] == "timeout":
+            _error(504, "job_timeout", row["error"] or "Job exceeded the allowed runtime", {"job_id": job_id})
         time.sleep(0.5)
 
-    # Timed out — mark the job so it is not orphaned.
-    with _db() as conn:
-        conn.execute(
-            "UPDATE gpu_jobs SET status='timeout', finished_at=? WHERE id=? AND status IN ('pending','running')",
-            (_now_utc(), job_id),
-        )
-        conn.commit()
-    _log_event("job.timeout", job_type, job_id, {"client_id": payload.client_id})
-    _error(504, "infer_timeout", "Job did not complete within the allowed time", {"job_id": job_id})
+    _log_event("request.timeout", job_type, job_id, {"client_id": payload.client_id, "tenant_id": tenant_id})
+    _error(504, "infer_timeout", "Job did not complete within the allowed wait window", {"job_id": job_id})
 
 
 @app.get(f"{API_PREFIX}/gpu/queue")
-def queue_status(authorization: str | None = Header(default=None)):
+def queue_status(authorization: str | None = Header(default=None), tenant_id: str | None = None):
     """List pending and running jobs (owner/internal use)."""
     _require_auth(authorization)
     with _db() as conn:
-        rows = conn.execute(
-            """
-            SELECT id, client_id, priority, job_type, model, status, created_at, started_at
-            FROM gpu_jobs
-            WHERE status IN ('pending', 'running')
-            ORDER BY priority ASC, created_at ASC
-            """
-        ).fetchall()
+        if tenant_id:
+            rows = conn.execute(
+                """
+                SELECT id, tenant_id, client_id, priority, job_type, model, status, created_at, started_at, attempt_count
+                FROM gpu_jobs
+                WHERE status IN ('pending', 'running') AND tenant_id = ?
+                ORDER BY priority ASC, created_at ASC
+                """,
+                (tenant_id,),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                """
+                SELECT id, tenant_id, client_id, priority, job_type, model, status, created_at, started_at, attempt_count
+                FROM gpu_jobs
+                WHERE status IN ('pending', 'running')
+                ORDER BY priority ASC, created_at ASC
+                """
+            ).fetchall()
     return {"queue": [dict(r) for r in rows]}
 
 
 @app.get(f"{API_PREFIX}/gpu/usage")
-def usage(authorization: str | None = Header(default=None)):
+def usage(authorization: str | None = Header(default=None), tenant_id: str | None = None):
     """Per-client job counts."""
     _require_auth(authorization)
     with _db() as conn:
+        params: list[Any] = []
+        tenant_clause = ""
+        if tenant_id:
+            tenant_clause = "WHERE tenant_id = ?"
+            params.append(tenant_id)
         rows = conn.execute(
-            """
-            SELECT client_id,
+            f"""
+            SELECT tenant_id,
+                   client_id,
                    COUNT(*) AS total,
                    SUM(CASE WHEN status='done'    THEN 1 ELSE 0 END) AS done,
                    SUM(CASE WHEN status='error'   THEN 1 ELSE 0 END) AS errors,
                    SUM(CASE WHEN status='timeout' THEN 1 ELSE 0 END) AS timeouts,
-                   SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) AS pending
+                   SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) AS pending,
+                   SUM(CASE WHEN status='running' THEN 1 ELSE 0 END) AS running
             FROM gpu_jobs
-            GROUP BY client_id
-            ORDER BY client_id
-            """
+            {tenant_clause}
+            GROUP BY tenant_id, client_id
+            ORDER BY tenant_id, client_id
+            """,
+            params,
         ).fetchall()
     return {"usage": [dict(r) for r in rows]}
 
 
 @app.get(f"{API_PREFIX}/gpu/events")
-def events(authorization: str | None = Header(default=None), limit: int = 50):
+def events(authorization: str | None = Header(default=None), limit: int = 50, tenant_id: str | None = None):
     """Recent events from the engine event bus (job start / done / error)."""
     _require_auth(authorization)
     limit = min(max(1, limit), 500)
     with _db() as conn:
-        rows = conn.execute(
-            "SELECT id, event_type, engine, job_id, detail_json, ts FROM gpu_events ORDER BY ts DESC LIMIT ?",
-            (limit,),
-        ).fetchall()
+        if tenant_id:
+            rows = conn.execute(
+                """
+                SELECT e.id, e.event_type, e.engine, e.job_id, e.detail_json, e.ts
+                FROM gpu_events AS e
+                JOIN gpu_jobs AS j ON j.id = e.job_id
+                WHERE j.tenant_id = ?
+                ORDER BY e.ts DESC
+                LIMIT ?
+                """,
+                (tenant_id, limit),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT id, event_type, engine, job_id, detail_json, ts FROM gpu_events ORDER BY ts DESC LIMIT ?",
+                (limit,),
+            ).fetchall()
     return {
         "events": [
             {**dict(r), "detail": json.loads(r["detail_json"] or "{}")}
@@ -687,6 +1012,11 @@ def events(authorization: str | None = Header(default=None), limit: int = 50):
 # ──────────────────────────────────────────────
 
 init_db()
+with _db() as _startup_conn:
+    _startup_recovered = _recover_abandoned_jobs(_startup_conn)
+    _startup_conn.commit()
+for _event in _startup_recovered:
+    _log_event(_event["event_type"], _event["job_type"], _event["job_id"])
 
 # GPU worker: handles ollama + comfyui lanes.
 _gpu_thread = threading.Thread(

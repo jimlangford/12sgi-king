@@ -16,10 +16,12 @@ from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
+from services.service_metadata import with_service_metadata
 
 _log = logging.getLogger(__name__)
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "auth"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("AUTH_DB_PATH", "/tmp/govos_v2_auth.db")
 
@@ -230,7 +232,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "auth", "timestamp": _now_utc().isoformat()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc().isoformat()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -238,7 +244,11 @@ def ready():
     try:
         with _db() as conn:
             conn.execute("SELECT 1").fetchone()
-        return {"status": "ready", "service": "auth", "db_path": DB_PATH}
+        return with_service_metadata(
+            {"status": "ready", "db_path": DB_PATH},
+            SERVICE_NAME,
+            VERSION,
+        )
     except sqlite3.Error as exc:
         raise HTTPException(
             status_code=503,
@@ -250,7 +260,11 @@ def ready():
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM sessions").fetchone()[0]
-    return {"status": "healthy", "service": "auth", "version": VERSION, "session_count": count}
+    return with_service_metadata(
+        {"status": "healthy", "session_count": count},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/auth/jwks")

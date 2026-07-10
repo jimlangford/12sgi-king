@@ -38,6 +38,11 @@
         <span id="gpu-status-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-dim,#b3a98f);">connecting…</span>
         <span id="gpu-version" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);"></span>
       </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:12px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);">
+        <div><div>Commit</div><div id="gpu-commit" style="color:var(--ink-dim,#b3a98f); word-break:break-all;">—</div></div>
+        <div><div>Build</div><div id="gpu-build-ts" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Environment</div><div id="gpu-environment" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+      </div>
       <!-- VRAM bar (synthetic — shows GPU runtime availability) -->
       <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-bottom:4px;">GPU Runtime (Ollama)</div>
       <div style="background:#1e1c16; border-radius:4px; height:8px; overflow:hidden; margin-bottom:10px;">
@@ -105,6 +110,9 @@
       var dot = _el('gpu-status-dot');
       var lbl = _el('gpu-status-label');
       var ver = _el('gpu-version');
+      var commit = _el('gpu-commit');
+      var buildTs = _el('gpu-build-ts');
+      var env = _el('gpu-environment');
       var bar = _el('gpu-vram-bar');
       var vs  = _el('gpu-voice-status');
       var grid = _el('gpu-lanes-grid');
@@ -112,6 +120,9 @@
       dot.style.background = '#6abf86';
       lbl.textContent = 'healthy · ' + (data.jobs ? data.jobs.pending + ' pending · ' + data.jobs.running + ' running' : '');
       ver.textContent = 'v' + (data.version || '');
+      commit.textContent = data.commit_sha || 'unknown';
+      buildTs.textContent = data.build_timestamp || 'unknown';
+      env.textContent = data.environment || 'unknown';
 
       // VRAM bar: 100% green when Ollama is running (no direct VRAM API from router).
       var ollama_active = (data.lanes && (data.lanes.ollama || {}).running > 0);

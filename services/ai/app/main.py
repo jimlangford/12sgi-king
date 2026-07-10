@@ -9,9 +9,11 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
+from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "ai"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("AI_DB_PATH", "/tmp/govos_v2_ai.db")
 AUTH_INTROSPECTION_URL = os.environ.get("AUTH_INTROSPECTION_URL", "http://localhost:8101/api/v2/auth/introspect")
@@ -175,7 +177,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "ai", "timestamp": _now_utc()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -196,11 +202,14 @@ def ready(response: Response):
     is_ready = db_ok and auth_ok and tenant_ok
 
     response.status_code = 200 if is_ready else 503
-    return {
-        "status": "ready" if is_ready else "not-ready",
-        "service": "ai",
-        "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok, "gpu_router": gpu_ok},
-    }
+    return with_service_metadata(
+        {
+            "status": "ready" if is_ready else "not-ready",
+            "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok, "gpu_router": gpu_ok},
+        },
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/health")
@@ -215,9 +224,8 @@ def health():
     # UNGROUNDED template text -- the same signal workboard_evidence.py's needs_verify backlog
     # gave on the laptop system, surfaced here instead of discovered by reading case notes.
     return {
+        **with_service_metadata({}, SERVICE_NAME, VERSION),
         "status": "healthy",
-        "service": "ai",
-        "version": VERSION,
         "assist_count": count,
         "grounded_count": grounded_count,
         "grounded_ratio": round(grounded_count / count, 3) if count else None,

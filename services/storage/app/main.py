@@ -9,9 +9,11 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel, Field
 
+from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "storage"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DOWNLOAD_BASE_URL = os.environ.get("STORAGE_DOWNLOAD_BASE_URL", "https://storage.local/download")
 DB_PATH = os.environ.get("STORAGE_DB_PATH", "/tmp/govos_v2_storage.db")
@@ -128,7 +130,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "storage", "timestamp": _now_utc()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -144,18 +150,25 @@ def ready(response: Response):
     is_ready = db_ok and auth_ok
 
     response.status_code = 200 if is_ready else 503
-    return {
-        "status": "ready" if is_ready else "not-ready",
-        "service": "storage",
-        "dependencies": {"database": db_ok, "auth": auth_ok},
-    }
+    return with_service_metadata(
+        {
+            "status": "ready" if is_ready else "not-ready",
+            "dependencies": {"database": db_ok, "auth": auth_ok},
+        },
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/health")
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM objects").fetchone()[0]
-    return {"status": "healthy", "service": "storage", "version": VERSION, "object_count": count}
+    return with_service_metadata(
+        {"status": "healthy", "object_count": count},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.post(f"{API_PREFIX}/storage/objects", status_code=201)

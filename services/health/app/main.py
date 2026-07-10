@@ -7,11 +7,13 @@ import ipaddress
 import secrets
 from datetime import datetime
 from .checks import run_all_checks, run_surfaces_checks, load_surfaces_from_env
+from services.service_metadata import with_service_metadata
 
 app = FastAPI(title="12SGI Health Service")
 security = HTTPBasic()
 
 API_PREFIX = "/api/v1"
+SERVICE_NAME = "health"
 VERSION = os.environ.get("VERSION", "0.1.0")
 RELEASE_FILE = os.environ.get("RELEASE_FILE", "./release.json")
 ADMIN_ALLOWED_IPS = os.environ.get("ADMIN_ALLOWED_IPS", "")  # comma-separated CIDR or IPs
@@ -74,7 +76,13 @@ async def root():
 
 @app.get(f"{API_PREFIX}/live")
 async def live():
-    return JSONResponse({"status": "alive", "timestamp": datetime.utcnow().isoformat() + 'Z'})
+    return JSONResponse(
+        with_service_metadata(
+            {"status": "alive", "timestamp": datetime.utcnow().isoformat() + 'Z'},
+            SERVICE_NAME,
+            VERSION,
+        )
+    )
 
 @app.get(f"{API_PREFIX}/ready")
 async def ready():
@@ -83,7 +91,13 @@ async def ready():
     results = await run_surfaces_checks(surfaces)
     all_ok = all(v.get('ok', False) for v in results.values())
     status = "ready" if all_ok else "not-ready"
-    return JSONResponse({"status": status, "timestamp": datetime.utcnow().isoformat() + 'Z', "services": results})
+    return JSONResponse(
+        with_service_metadata(
+            {"status": status, "timestamp": datetime.utcnow().isoformat() + 'Z', "services": results},
+            SERVICE_NAME,
+            VERSION,
+        )
+    )
 
 @app.get(f"{API_PREFIX}/health")
 async def health():
@@ -92,13 +106,12 @@ async def health():
     release = read_release_metadata()
     out = {
         "status": "healthy" if all(v.get('ok', False) for v in checks.values()) else "degraded",
-        "version": VERSION,
         "timestamp": datetime.utcnow().isoformat() + 'Z',
         "services": checks,
     }
     if release:
         out["release"] = release
-    return JSONResponse(out)
+    return JSONResponse(with_service_metadata(out, SERVICE_NAME, VERSION))
 
 @app.get("/health", include_in_schema=False)
 async def compat_health():

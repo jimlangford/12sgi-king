@@ -9,9 +9,11 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
+from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "documents"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("DOCUMENTS_DB_PATH", "/tmp/govos_v2_documents.db")
 AUTH_INTROSPECTION_URL = os.environ.get("AUTH_INTROSPECTION_URL", "http://localhost:8101/api/v2/auth/introspect")
@@ -157,7 +159,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "documents", "timestamp": _now_utc()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -174,18 +180,25 @@ def ready(response: Response):
     is_ready = db_ok and auth_ok and tenant_ok
 
     response.status_code = 200 if is_ready else 503
-    return {
-        "status": "ready" if is_ready else "not-ready",
-        "service": "documents",
-        "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok},
-    }
+    return with_service_metadata(
+        {
+            "status": "ready" if is_ready else "not-ready",
+            "dependencies": {"database": db_ok, "auth": auth_ok, "tenant": tenant_ok},
+        },
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/health")
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
-    return {"status": "healthy", "service": "documents", "version": VERSION, "document_count": count}
+    return with_service_metadata(
+        {"status": "healthy", "document_count": count},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.post(f"{API_PREFIX}/documents/generate", status_code=201)
