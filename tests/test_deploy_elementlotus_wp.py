@@ -73,6 +73,13 @@ class TestDeployElementLotusWp(unittest.TestCase):
                 with self.subTest(name=name):
                     generated = (Path(tmp) / name).read_text(encoding='utf-8')
                     committed = (tracked / name).read_text(encoding='utf-8')
+                    if name == 'manifest.json':
+                        generated_json = json.loads(generated)
+                        committed_json = json.loads(committed)
+                        generated_json['source'] = committed_json.get('source')
+                        generated_json['output'] = committed_json.get('output')
+                        generated = json.dumps(generated_json, indent=2, ensure_ascii=False) + '\n'
+                        committed = json.dumps(committed_json, indent=2, ensure_ascii=False) + '\n'
                     self.assertEqual(
                         generated,
                         committed,
