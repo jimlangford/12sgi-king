@@ -21,6 +21,8 @@ from services.v2_workboard import (
     resolve_workboard_job,
     selfheal_engineering_jobs,
 )
+from watchers import pulse_geometry
+import importlib.util
 
 
 class TestV2ContractFiles(unittest.TestCase):
@@ -448,6 +450,179 @@ class TestWorkboardLanes(unittest.TestCase):
         self.assertEqual(original['lane'], 'creative')
         self.assertEqual(original['status'], 'queued')
         self.assertEqual(original['kind'], 'job')
+
+
+class TestPulseGeometry(unittest.TestCase):
+    def test_snapshot_meets_minimum_geometry(self):
+        snap = pulse_geometry.snapshot(sample_cells=4)
+        self.assertEqual(snap['counts']['contexts'], 3)
+        self.assertEqual(snap['counts']['quadrants'], 4)
+        self.assertGreaterEqual(snap['counts']['lanes'], pulse_geometry.FULL_LANE_COUNT)
+        self.assertGreaterEqual(snap['counts']['skills'], pulse_geometry.MIN_SKILLS)
+        self.assertGreaterEqual(snap['counts']['cells'], pulse_geometry.MIN_LANES * pulse_geometry.MIN_SKILLS)
+        self.assertTrue(snap['geometry_complete'])
+        self.assertEqual(snap['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
+        self.assertEqual(snap['counts']['forecasts'], 6)
+        self.assertGreaterEqual(snap['counts']['elements'], 1)
+        self.assertEqual(
+            snap['counts']['forecast_elements'],
+            snap['counts']['forecasts'] * snap['counts']['elements'],
+        )
+        self.assertEqual(snap['place_tuning']['model'], 'human_residence_frequencies')
+        self.assertEqual(snap['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertEqual(snap['place_tuning']['audit_status'], 'audited')
+        self.assertEqual(snap['place_tuning']['serves'], 'humans')
+        self.assertFalse(snap['place_tuning']['experiments_enabled'])
+        self.assertEqual(snap['place_tuning']['human_alignment_system'], 'chakra')
+        self.assertEqual(snap['place_tuning']['organic_carbon_weight'], 6)
+        self.assertEqual(snap['place_tuning']['chakra_count'], 6)
+        self.assertEqual(len(snap['residence_frequencies']), 4)
+
+    def test_cells_carry_pulse_engine_fields(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        cell = snap['cells_sample'][0]
+        for field in (
+            'trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance',
+            'residence_frequency', 'residence_secondary_frequency', 'residence_alignment',
+            'chakra_index', 'chakra_tone', 'organic_carbon_weight', 'element',
+            'quadrant', 'quadrant_id', 'outer_boundary_context_id', 'governing_context_id', 'rhythm_context_id',
+        ):
+            self.assertIn(field, cell)
+
+    def test_graph_payload_is_cartesian(self):
+        payload = pulse_geometry.build_graph_payload()
+        self.assertEqual(payload['counts']['contexts'], 3)
+        self.assertEqual(payload['counts']['quadrants'], 4)
+        self.assertEqual(
+            payload['counts']['cells'],
+            payload['counts']['lanes'] * payload['counts']['skills'],
+        )
+        self.assertEqual(payload['counts']['forecasts'], 6)
+        self.assertGreaterEqual(payload['counts']['elements'], 1)
+        self.assertEqual(payload['counts']['context_edges'], 14)
+        self.assertEqual(
+            payload['counts']['forecast_elements'],
+            payload['counts']['forecasts'] * payload['counts']['elements'],
+        )
+        self.assertEqual(payload['counts']['residence_frequencies'], 4)
+
+    def test_forecasts_cover_month_quarter_year(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        windows = {row['window'] for row in snap['forecasts']}
+        self.assertEqual(windows, {'monthly', 'quarterly', 'yearly'})
+        labels = {row['label'] for row in snap['forecasts']}
+        self.assertIn('28-30 day Hina moon cycle', labels)
+        self.assertIn('13-moon annual accounting cycle', labels)
+        self.assertTrue(all('residence_frequency_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all('chakra_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all('element_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all(set(row['element_counts']) == set(pulse_geometry._DEFAULT_ELEMENTS) for row in snap['forecasts']))
+
+    def test_quadrants_carry_context_model_directly(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        quadrants = {row['quadrant']: row for row in snap['quadrants']}
+        self.assertEqual(set(quadrants), {'Mauka', 'Kula', 'Makai', 'Universal'})
+        for row in quadrants.values():
+            self.assertEqual(row['outer_boundary_context_id'], pulse_geometry.EDGE_CONTEXT_ID)
+            self.assertEqual(row['governing_context_id'], pulse_geometry.APEX_CONTEXT_ID)
+            self.assertEqual(row['rhythm_context_id'], pulse_geometry.RHYTHM_CONTEXT_ID)
+            self.assertEqual(row['local_boundary_scale'], pulse_geometry.LOCAL_BOUNDARY_SCALE)
+            self.assertEqual(row['tenant_overlap_surface'], pulse_geometry.TENANT_OVERLAP_SURFACE)
+        edge_context = next(row for row in snap['contexts'] if row['id'] == pulse_geometry.EDGE_CONTEXT_ID)
+        self.assertEqual(edge_context['local_boundary_scale'], pulse_geometry.LOCAL_BOUNDARY_SCALE)
+        self.assertEqual(edge_context['tenant_overlap_surface'], pulse_geometry.TENANT_OVERLAP_SURFACE)
+        edges = {(row['rel'], row['src_id'], row['dst_id']) for row in snap['context_edges']}
+        self.assertIn(('CONTAINS', pulse_geometry.EDGE_CONTEXT_ID, 'quadrant:mauka'), edges)
+        self.assertIn(('GOVERNS', pulse_geometry.APEX_CONTEXT_ID, 'quadrant:kula'), edges)
+        self.assertIn(('FRAMES', pulse_geometry.RHYTHM_CONTEXT_ID, 'quadrant:makai'), edges)
+
+
+class TestPulseGeometryApiSurface(unittest.TestCase):
+    def test_v2_main_declares_pulse_routes(self):
+        text = (ROOT / 'v2' / 'app' / 'main.py').read_text(encoding='utf-8')
+        self.assertIn('/pulse/geometry', text)
+        self.assertIn('/pulse/geometry/refresh', text)
+        self.assertIn('/graph/status', text)
+        self.assertIn('/graph/refresh', text)
+
+    def test_snapshot_handler_returns_geometry_summary(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        body = v2_main.pulse_geometry_snapshot()
+        self.assertEqual(body['layer'], pulse_geometry.LAYER)
+        self.assertTrue(body['geometry_complete'])
+        self.assertEqual(body['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
+        self.assertEqual(len(body['forecast_sample']), 6)
+        self.assertEqual(len(body['context_sample']), 3)
+        self.assertEqual(len(body['quadrant_sample']), 4)
+        self.assertLessEqual(len(body['lane_sample']), 6)
+        self.assertLessEqual(len(body['skill_sample']), 6)
+        self.assertLessEqual(len(body['element_sample']), 6)
+        self.assertEqual(body['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertFalse(body['place_tuning']['experiments_enabled'])
+        self.assertEqual(body['place_tuning']['organic_carbon_weight'], 6)
+        self.assertEqual(len(body['residence_frequency_sample']), 4)
+
+    def test_refresh_handler_returns_layer(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original = v2_main.pulse_geometry.refresh
+        v2_main.pulse_geometry.refresh = lambda: True
+        try:
+            body = v2_main.refresh_pulse_geometry()
+        finally:
+            v2_main.pulse_geometry.refresh = original
+        self.assertEqual(body['layer'], pulse_geometry.LAYER)
+        self.assertTrue(body['refreshed'])
+
+    def test_graph_status_handler_returns_stack_summary(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original = v2_main.graph_refresh.status
+        v2_main.graph_refresh.status = lambda: {'boundary': 'PRIVATE', 'graph_stack_version': '5.2'}
+        try:
+            body = v2_main.graph_status()
+        finally:
+            v2_main.graph_refresh.status = original
+        self.assertEqual(body['boundary'], 'PRIVATE')
+        self.assertEqual(body['graph_stack_version'], '5.2')
+
+    def test_owner_shell_declares_graph_panel(self):
+        shell = (ROOT / 'king_public_src' / 'index.html').read_text(encoding='utf-8')
+        panel = (ROOT / 'king_public_src' / 'Graph.dc.html').read_text(encoding='utf-8')
+        self.assertIn("id:'graph'", shell)
+        self.assertIn("'graph'", shell)
+        self.assertIn('showGraph', shell)
+        self.assertIn('<dc-import name="Graph"', shell)
+        self.assertIn('/graph/status', panel)
+        self.assertIn('/graph/refresh', panel)
+
+    def test_graph_refresh_handler_returns_status_payload(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original_refresh = v2_main.graph_refresh.refresh
+        original_status = v2_main.graph_refresh.status
+        calls = []
+        v2_main.graph_refresh.refresh = lambda mode, reason, targets: calls.append((mode, reason, targets)) or True
+        v2_main.graph_refresh.status = lambda: {'status': 'idle', 'requested_targets': ['pulse_geometry']}
+        try:
+            body = v2_main.refresh_graph(
+                v2_main.GraphRefreshRequest(
+                    mode='incremental',
+                    reason='unit-test',
+                    targets=['pulse_geometry'],
+                )
+            )
+        finally:
+            v2_main.graph_refresh.refresh = original_refresh
+            v2_main.graph_refresh.status = original_status
+        self.assertEqual(calls, [('incremental', 'unit-test', ['pulse_geometry'])])
+        self.assertTrue(body['refreshed'])
+        self.assertEqual(body['status']['requested_targets'], ['pulse_geometry'])
 
 
 if __name__ == '__main__':

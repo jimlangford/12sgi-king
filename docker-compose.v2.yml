@@ -30,8 +30,32 @@ x-common-env: &common-env
   DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
   WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
   WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+  NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+  GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+  GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
 
 services:
+  neo4j:
+    image: neo4j:5-community
+    environment:
+      NEO4J_AUTH: none
+      NEO4J_server_default__listen__address: 0.0.0.0
+      NEO4J_server_memory_pagecache_size: ${NEO4J_PAGECACHE_SIZE:-512M}
+      NEO4J_server_memory_heap_initial__size: ${NEO4J_HEAP_SIZE:-512M}
+      NEO4J_server_memory_heap_max__size: ${NEO4J_HEAP_SIZE:-512M}
+      NEO4J_server_config_strict__validation_enabled: "false"
+    volumes:
+      - v2-neo4j-data:/data
+      - v2-neo4j-logs:/logs
+    ports: ["127.0.0.1:7474:7474", "127.0.0.1:7687:7687"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:7474 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
   auth:
     build: { context: ., dockerfile: services/Dockerfile }
     command: ["python", "-m", "uvicorn", "services.auth.app.main:app", "--host", "0.0.0.0", "--port", "8101"]
@@ -215,3 +239,5 @@ volumes:
   v2-db:
   v2-dispatch:
   v2-ollama:   # Ollama model cache — survives container restarts
+  v2-neo4j-data:
+  v2-neo4j-logs:

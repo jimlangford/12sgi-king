@@ -9,6 +9,7 @@ Owner Machine
 │
 ├─ Docker Desktop / Docker Engine
 │  ├─ 12sgi-v2-app       FastAPI owner dashboard + API   :8088
+│  ├─ 12sgi-v2-neo4j     Local graph + vector bus        :7474 / :7687
 │  ├─ 12sgi-v2-ollama    Local LLM (Ollama)              :11434
 │  └─ 12sgi-v2-tailscale Private network tunnel
 │
@@ -69,6 +70,7 @@ bash scripts/stop.sh
 docker compose up -d --build
 docker compose ps
 curl http://127.0.0.1:8088/health
+curl http://127.0.0.1:8088/graph/status
 
 # Tailscale status
 docker exec -it 12sgi-v2-tailscale tailscale status

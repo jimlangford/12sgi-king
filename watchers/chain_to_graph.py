@@ -13,9 +13,36 @@ Once loaded you can ask the graph what static JSON can't: multi-hop "up and down
   python tools/kilo-aupuni/chain_to_graph.py --ask      # + print a few example up/down-the-chain queries
 """
 import os, sys, json, argparse, urllib.request, urllib.error
+from pathlib import Path
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-CHAIN = os.path.join(ROOT, "reports", "mauios", "money_chain_maui.json")
+
+def _resolve_mauios_dir():
+    override = os.environ.get("MAUIOS_REPORTS_DIR")
+    if override:
+        return Path(override)
+    here = Path(__file__).resolve()
+    default = here.parents[1] / "reports" / "mauios"
+    candidates = []
+    for ancestor in here.parents:
+        candidates.append(ancestor / "reports" / "mauios")
+    candidates.append(
+        Path.home() / "Documents" / "Claude" / "Projects" / "Video System elementLOTUS" / "reports" / "mauios"
+    )
+    seen = set()
+    for candidate in candidates:
+        key = str(candidate)
+        if key in seen:
+            continue
+        seen.add(key)
+        if candidate.exists():
+            return candidate
+    return default
+
+
+def _chain_path():
+    return _resolve_mauios_dir() / "money_chain_maui.json"
+
+
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
 
 
@@ -54,7 +81,12 @@ def _rows(result_block):
 
 
 def load():
-    d = json.load(open(CHAIN, encoding="utf-8"))
+    chain_path = _chain_path()
+    if not chain_path.exists():
+        say("money-chain source missing: %s" % chain_path)
+        return False
+    with open(chain_path, encoding="utf-8") as f:
+        d = json.load(f)
     nodes = d.get("nodes", [])
     edges = d.get("edges", [])
     xkeys = {c.get("key") for c in d.get("cross_links", [])}

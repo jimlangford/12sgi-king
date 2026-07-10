@@ -14,9 +14,32 @@ Embeds the sourced civic records (chain flows + 990 nonprofits) so you can ask i
   python tools/kilo-aupuni/graph_vectors.py --query "..."      # semantic search
 """
 import os, sys, json, argparse, urllib.request, urllib.error
+from pathlib import Path
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-MAUIOS = os.path.join(ROOT, "reports", "mauios")
+
+def _resolve_mauios_dir():
+    override = os.environ.get("MAUIOS_REPORTS_DIR")
+    if override:
+        return Path(override)
+    here = Path(__file__).resolve()
+    default = here.parents[1] / "reports" / "mauios"
+    candidates = []
+    for ancestor in here.parents:
+        candidates.append(ancestor / "reports" / "mauios")
+    candidates.append(
+        Path.home() / "Documents" / "Claude" / "Projects" / "Video System elementLOTUS" / "reports" / "mauios"
+    )
+    seen = set()
+    for candidate in candidates:
+        key = str(candidate)
+        if key in seen:
+            continue
+        seen.add(key)
+        if candidate.exists():
+            return candidate
+    return default
+
+
 NEO = os.environ.get("NEO4J_HTTP") or "http://127.0.0.1:7474/db/neo4j/tx/commit"
 # OLLAMA_HOST is often set bare on this machine (e.g. "127.0.0.1") — normalize to a full URL with port.
 _oh = os.environ.get("OLLAMA_HOST") or "http://127.0.0.1:11434"
@@ -75,9 +98,11 @@ def embed(text):
 def gather_docs():
     """Sourced civic records to embed: chain flows + 990 nonprofits. Each carries its provenance."""
     docs = []
+    mauios = _resolve_mauios_dir()
     # chain flows (money_chain_maui.json)
     try:
-        d = json.load(open(os.path.join(MAUIOS, "money_chain_maui.json"), encoding="utf-8"))
+        with open(mauios / "money_chain_maui.json", encoding="utf-8") as f:
+            d = json.load(f)
         name = {n["id"]: n.get("label", n["id"]) for n in d.get("nodes", [])}
         for i, e in enumerate(d.get("edges", [])):
             amt = e.get("amount")
@@ -92,7 +117,8 @@ def gather_docs():
         say("chain docs skipped: %s" % str(ex)[:100])
     # 990 nonprofits (nonprofits_maui.json)
     try:
-        nd = json.load(open(os.path.join(MAUIOS, "nonprofits_maui.json"), encoding="utf-8"))
+        with open(mauios / "nonprofits_maui.json", encoding="utf-8") as f:
+            nd = json.load(f)
         rows = nd if isinstance(nd, list) else nd.get("organizations", nd.get("records", nd.get("nonprofits", [])))
         for r in rows:
             if not isinstance(r, dict):
