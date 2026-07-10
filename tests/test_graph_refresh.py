@@ -35,6 +35,7 @@ class TestGraphRefresh(unittest.TestCase):
         self.assertEqual(body['neo4j_http'], 'http://neo4j:7474/db/neo4j/tx/commit')
         self.assertEqual(body['status'], 'idle')
         self.assertEqual(body['supported_targets'], list(graph_refresh.DEFAULT_TARGETS))
+        self.assertIn('sage_trinity', body['supported_targets'])
         self.assertIsNone(body['freshness']['last_successful_at'])
         self.assertEqual(body['audit_lens']['frame'], '12-stone-earth-justice-audit')
         self.assertEqual(body['audit_lens']['money_intention']['edge_context_id'], graph_refresh.EDGE_CONTEXT_ID)
@@ -74,8 +75,37 @@ class TestGraphRefresh(unittest.TestCase):
         self.assertEqual(body['layers']['pulse_geometry'], 'current')
         self.assertEqual(body['layers']['graph'], 'skipped')
         self.assertEqual(body['layers']['vectors'], 'skipped')
+        self.assertEqual(body['layers']['sage_trinity'], 'skipped')
         self.assertEqual(body['last_result'], 'ok')
         self.assertIsNotNone(body['freshness']['last_successful_at'])
+
+    def test_sage_trinity_target_refreshes_and_tracks_state(self):
+        fake_trinity = types.SimpleNamespace(refresh=lambda: True)
+        with mock.patch.dict(sys.modules, {'sage_trinity': fake_trinity}):
+            ok = graph_refresh.refresh(
+                mode='incremental',
+                reason='unit-test-trinity',
+                targets=['sage_trinity'],
+            )
+        self.assertTrue(ok)
+        body = graph_refresh.status()
+        self.assertEqual(body['layers']['sage_trinity'], 'current')
+        self.assertEqual(body['layers']['graph'], 'skipped')
+        self.assertEqual(body['layers']['pulse_geometry'], 'skipped')
+        self.assertEqual(body['last_result'], 'ok')
+
+    def test_sage_trinity_failure_degrades_result(self):
+        fake_trinity = types.SimpleNamespace(refresh=lambda: False)
+        with mock.patch.dict(sys.modules, {'sage_trinity': fake_trinity}):
+            ok = graph_refresh.refresh(
+                mode='incremental',
+                reason='unit-test-trinity-fail',
+                targets=['sage_trinity'],
+            )
+        self.assertFalse(ok)
+        body = graph_refresh.status()
+        self.assertEqual(body['layers']['sage_trinity'], 'failed')
+        self.assertEqual(body['last_result'], 'degraded')
 
 
 if __name__ == '__main__':
