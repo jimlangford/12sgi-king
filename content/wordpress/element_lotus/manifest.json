@@ -1,0 +1,55 @@
+{
+  "source": "/home/runner/work/12sgi-king/12sgi-king/element_lotus_public",
+  "output": "/home/runner/work/12sgi-king/12sgi-king/content/wordpress/element_lotus",
+  "css": "additional-css.css",
+  "pages": [
+    {
+      "source": "index.html",
+      "slug": "/",
+      "template": "front-page",
+      "title": "Element Lotus · studio first",
+      "description": "Element Lotus by 12 Stones Global — games, films, and music first. TribeGameStudios, SAGE canon, and a secondary govOS civic lane.",
+      "output": "front-page.html"
+    },
+    {
+      "source": "about.html",
+      "slug": "/about/",
+      "template": "default",
+      "title": "Element Lotus · about the studio",
+      "description": "About Element Lotus, 12 Stones Global, and the TribeGameStudios public shell.",
+      "output": "about.html"
+    },
+    {
+      "source": "contact.html",
+      "slug": "/contact/",
+      "template": "default",
+      "title": "Element Lotus · contact",
+      "description": "Contact and next-step page for the Element Lotus studio shell.",
+      "output": "contact.html"
+    },
+    {
+      "source": "films.html",
+      "slug": "/films/",
+      "template": "default",
+      "title": "Element Lotus · films",
+      "description": "Element Lotus film lane — story-first public shell for the 12 Stones Global slate.",
+      "output": "films.html"
+    },
+    {
+      "source": "music.html",
+      "slug": "/music/",
+      "template": "default",
+      "title": "Element Lotus · music",
+      "description": "Element Lotus music lane — songs, score, and sound first.",
+      "output": "music.html"
+    },
+    {
+      "source": "civic.html",
+      "slug": "/civic/",
+      "template": "default",
+      "title": "Element Lotus · civic / govOS",
+      "description": "Secondary civic lane for govOS within the Element Lotus studio-first shell.",
+      "output": "civic.html"
+    }
+  ]
+}
