@@ -29,6 +29,7 @@ from services.v2_workboard import (
     reject_workboard_job,
     selfheal_engineering_jobs,
 )
+from watchers import pulse_geometry
 
 app = FastAPI(
     title="12 Stones v2 Local Owner Node",
@@ -151,6 +152,32 @@ def reject_job(job_id: str, body: RejectRequest):
         "tombstone_id": tombstone["job"]["id"],
         "iso": tombstone["iso"],
     }
+
+
+@app.get("/pulse/geometry")
+def pulse_geometry_snapshot():
+    """Return the dedicated pulse lane×skill geometry snapshot.
+
+    This is a PRIVATE read surface over the additive geometry model. It does not
+    modify the existing workboard or publish anything.
+    """
+    snap = pulse_geometry.snapshot()
+    return {
+        "layer": snap["layer"],
+        "minimum_geometry": snap["minimum_geometry"],
+        "counts": snap["counts"],
+        "geometry_complete": snap["geometry_complete"],
+        "lane_sample": snap["lanes"][:6],
+        "skill_sample": snap["skills"][:6],
+        "cell_sample": snap["cells_sample"],
+    }
+
+
+@app.post("/pulse/geometry/refresh")
+def refresh_pulse_geometry():
+    """Project the pulse geometry lattice into Neo4j under its own additive layer."""
+    ok = pulse_geometry.refresh()
+    return {"refreshed": bool(ok), "layer": pulse_geometry.LAYER}
 
 
 # ── Engineering self-heal (manual trigger) ────────────────────────────────────

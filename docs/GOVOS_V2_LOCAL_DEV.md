@@ -142,6 +142,15 @@ POST http://127.0.0.1:8088/approvals/{job_id}/reject
 POST http://127.0.0.1:8088/selfheal
 ```
 
+### Inspect the pulse geometry lattice
+
+```bash
+GET http://127.0.0.1:8088/pulse/geometry
+POST http://127.0.0.1:8088/pulse/geometry/refresh
+```
+
+The pulse geometry is a dedicated PRIVATE Neo4j-backed lane×skill lattice. It is additive and does not change the existing workboard lanes.
+
 ### Lane assignment by service action
 
 | Action | Lane | Reason |

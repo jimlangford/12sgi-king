@@ -4,8 +4,8 @@
 Runs on the sunset (hina/pō) edge — civic/record work rides Hina, not a wall clock (Jimmy 2026-07-08).
 Reloads the Maui money-chain into Neo4j (chain_to_graph), refreshes the vector index from the host
 Ollama embeddings (graph_vectors), then refreshes the additive PRIVATE skill/workboard spine
-(private_spine). Zero Claude tokens. Resilient: if Neo4j or Ollama is down it logs and skips — never
-crashes the maintenance tick.
+(private_spine) and the dedicated pulse geometry lattice (pulse_geometry). Zero Claude tokens.
+Resilient: if Neo4j or Ollama is down it logs and skips — never crashes the maintenance tick.
 """
 import os, sys
 
@@ -35,7 +35,14 @@ def main():
                     spine_note = "private spine current"
             except Exception as spine_exc:
                 _say("graph_refresh spine skip: %s" % str(spine_exc)[:160])
-            _say(f"graph_refresh: graph + vectors current ({spine_note}, Hina).")
+            pulse_note = "pulse geometry skipped"
+            try:
+                import pulse_geometry as PG
+                if PG.refresh():
+                    pulse_note = "pulse geometry current"
+            except Exception as pulse_exc:
+                _say("graph_refresh pulse skip: %s" % str(pulse_exc)[:160])
+            _say(f"graph_refresh: graph + vectors current ({spine_note}; {pulse_note}, Hina).")
         else:
             _say("graph_refresh: Neo4j unreachable — skipped (no crash).")
     except Exception as e:
