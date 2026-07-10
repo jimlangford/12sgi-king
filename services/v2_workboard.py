@@ -24,7 +24,9 @@ LANE_TYPES = {"engineering", "creative", "output"}
 
 # engineering lane: queued → in-progress → done | failed (auto-heal allowed)
 # creative/output:  queued → in-progress → pending-approval → approved | rejected
-QUEUE_STATUSES = {"queued", "in-progress", "pending-approval", "approved", "rejected", "done", "failed"}
+# any lane:         → archived (owner soft-delete, never a raw removal — see
+#                      archive_workboard_job() below)
+QUEUE_STATUSES = {"queued", "in-progress", "pending-approval", "approved", "rejected", "done", "failed", "archived"}
 
 # Statuses that the self-healer may resolve automatically (engineering only)
 _AUTO_HEAL_STATUSES = {"queued", "in-progress"}
@@ -233,6 +235,50 @@ def reject_workboard_job(
     return tombstone
 
 
+def archive_workboard_job(
+    job_id: str,
+    archiver: str,
+    *,
+    note: str | None = None,
+    log_path: Path | None = None,
+) -> dict:
+    """Record an archive tombstone for any lane's job (owner soft-delete).
+
+    This is the v2 counterpart of the legacy workboard consumer's
+    archive/restore/retry/reschedule job-management actions: a job is never
+    hard-deleted here or there. Archiving only appends an ``archived``
+    tombstone so the original job entry is preserved and the log stays fully
+    auditable — mirroring the legacy consumer's soft-delete-as-archive +
+    append-only audit-trail pattern (e.g. clearing stale engineering-lane
+    jobs once a newer backend supersedes them).
+
+    Returns the tombstone entry dict.
+    """
+    path = log_path or DISPATCH_LOG
+    tombstone = {
+        "ts": int(time.time()),
+        "iso": _iso_now(),
+        "schema": WORKBOARD_SCHEMA,
+        "source": archiver,
+        "kind": "tombstone",
+        "target_thread": WORKBOARD_THREAD,
+        "priority": "normal",
+        "status": "archived",
+        "event": f"ARCHIVED: {job_id}",
+        "job": {
+            "id": str(uuid4()),
+            "action": "archived",
+            "status": "archived",
+            "correlation_id": job_id,
+            "payload": {"archiver": archiver, "note": note or ""},
+        },
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    return tombstone
+
+
 def emit_hina_creative_job(
     *,
     offering_date: str,
@@ -391,9 +437,17 @@ if __name__ == "__main__":
     parser.add_argument("--log", default=None, help="Path to dispatch log (default: WORKBOARD_DISPATCH_LOG env or repo default)")
     parser.add_argument("--outcome", default="self-healed", help="Outcome label recorded on each self-healed engineering tombstone")
     parser.add_argument("--pending", action="store_true", help="List pending creative/output jobs that need human approval")
+    parser.add_argument("--archive", metavar="JOB_ID", default=None, help="Archive (soft-delete) a job by id; appends an audit tombstone, never deletes")
+    parser.add_argument("--archiver", default="owner", help="Identity recorded as the archiver (used with --archive)")
+    parser.add_argument("--note", default=None, help="Optional note recorded on the archive tombstone (used with --archive)")
     args = parser.parse_args()
 
     log_path = Path(args.log) if args.log else None
+
+    if args.archive:
+        tombstone = archive_workboard_job(args.archive, args.archiver, note=args.note, log_path=log_path)
+        print(f"Archived {args.archive} -> {tombstone['job']['id']}")
+        sys.exit(0)
 
     if args.pending:
         items = pending_approvals(log_path=log_path)

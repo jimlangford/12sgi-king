@@ -27,6 +27,18 @@ export WORKBOARD_DISPATCH_LOG="/tmp/govos_v2_dispatch.jsonl"
 export WORKBOARD_TARGET_THREAD="workboard-quad-os"
 ```
 
+`services/v2_workboard.py` is lane-aware (`engineering` self-heals automatically;
+`creative`/`output` require human `approve_workboard_job()` /
+`reject_workboard_job()`). It now also has `archive_workboard_job()`, the v2
+counterpart of the legacy board consumer's job-management actions
+(archive/restore/retry/reschedule): no job is ever hard-deleted on either
+side — archiving appends an `archived` tombstone to the shared append-only
+dispatch log, preserving the original entry, same as the legacy consumer's
+soft-delete-as-archive + audit-trail pattern (e.g. clearing stale
+engineering-lane jobs once a newer backend supersedes them). Use
+`python -m services.v2_workboard --archive JOB_ID [--archiver who] [--note "..."]`
+from the CLI, or call `archive_workboard_job()` directly.
+
 ## 2) Start backend services
 
 ```bash
