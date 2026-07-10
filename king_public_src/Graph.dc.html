@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<div data-surface="graph" data-screen-label="Graph Ratchet · PRIVATE owner console"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+
+  <div style="padding:18px clamp(14px,2.5vw,28px) 14px; border-bottom:1px solid var(--line,#34301f);">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-bottom:5px;">PRIVATE · owner ratchet · v5.2</div>
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <h1 style="margin:0; font-size:clamp(20px,3vw,28px); font-weight:800; letter-spacing:-0.5px;">Graph Ratchet</h1>
+      <span id="graph-boundary-badge" style="display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#e3ad33; background:rgba(227,173,51,.14); border:1px solid #e3ad33; border-radius:20px; padding:3px 10px;">Loading…</span>
+      <span id="graph-last-update" style="font-size:12px; color:var(--ink-faint,#756b56);"></span>
+    </div>
+    <p style="margin:6px 0 0; font-size:13px; color:var(--ink-dim,#b3a98f);">12-stone audit lens for money intention, Urim/Thummim, edge of nature, and earth-justice alignment on top of the v5.2 graph stack.</p>
+  </div>
+
+  <div style="padding:18px clamp(14px,2.5vw,28px) 28px;">
+    <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;" id="graph-summary-grid">
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Ratchet</div>
+        <div id="graph-version" style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--accent,#e3ad33); margin-top:8px;">—</div>
+        <div id="graph-result" style="font-size:12px; color:var(--ink-dim,#b3a98f); margin-top:6px;">waiting for status</div>
+      </div>
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Last success</div>
+        <div id="graph-last-success" style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:var(--ok,#6abf86); margin-top:8px;">—</div>
+        <div id="graph-age" style="font-size:12px; color:var(--ink-dim,#b3a98f); margin-top:6px;">age —</div>
+      </div>
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Targets</div>
+        <div id="graph-targets" style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:var(--ink,#efe9da); margin-top:8px;">—</div>
+        <div id="graph-mode" style="font-size:12px; color:var(--ink-dim,#b3a98f); margin-top:6px;">mode —</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
+      <button id="graph-read-btn" onclick="graphPanelReadStatus()" style="padding:10px 14px; border:1px solid var(--line,#34301f); border-radius:10px; background:transparent; color:var(--ink,#efe9da); font:inherit; cursor:pointer;">Read /graph/status</button>
+      <button id="graph-refresh-btn" onclick="graphPanelRefreshAll()" style="padding:10px 14px; border:1px solid var(--accent,#e3ad33); border-radius:10px; background:rgba(227,173,51,.14); color:var(--accent-2,#f4c95d); font:inherit; cursor:pointer;">Run /graph/refresh ratchet</button>
+      <button id="graph-refresh-audit-btn" onclick="graphPanelRefreshAudit()" style="padding:10px 14px; border:1px solid var(--line,#34301f); border-radius:10px; background:transparent; color:var(--ink,#efe9da); font:inherit; cursor:pointer;">Refresh audit layers</button>
+      <span id="graph-action-note" style="font-size:12px; color:var(--ink-faint,#756b56); align-self:center;">Uses window.KING_BOARD_URL when present; otherwise same-origin /graph routes.</span>
+    </div>
+
+    <div style="margin-top:18px; display:grid; grid-template-columns:1fr 1fr; gap:16px;" id="graph-detail-grid">
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:18px 16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); font-weight:700; margin-bottom:14px;">Urim / Thummim</div>
+        <div id="graph-discernment"><div style="color:var(--ink-faint,#756b56); font-size:13px;">Loading discernment view…</div></div>
+      </div>
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:18px 16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); font-weight:700; margin-bottom:14px;">Layer freshness</div>
+        <div id="graph-layers"><div style="color:var(--ink-faint,#756b56); font-size:13px;">Loading layer state…</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:18px 16px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); font-weight:700; margin-bottom:14px;">12-stone audit lens</div>
+      <div id="graph-stones"><div style="color:var(--ink-faint,#756b56); font-size:13px;">Loading 12-stone layout…</div></div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    window.graphPanelReadStatus = () => this._readStatus();
+    window.graphPanelRefreshAll = () => this._refresh({
+      mode: 'incremental',
+      reason: 'owner-console-graph-panel',
+      targets: ['graph', 'vectors', 'private_spine', 'pulse_geometry'],
+    });
+    window.graphPanelRefreshAudit = () => this._refresh({
+      mode: 'incremental',
+      reason: 'owner-console-audit-refresh',
+      targets: ['private_spine', 'pulse_geometry'],
+    });
+    this._readStatus();
+  }
+
+  componentWillUnmount() {
+    window.graphPanelReadStatus = null;
+    window.graphPanelRefreshAll = null;
+    window.graphPanelRefreshAudit = null;
+  }
+
+  _esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+  }
+
+  _apiBase() {
+    const override = (typeof window !== 'undefined' && (window.KING_BOARD_URL || window.KING_GRAPH_URL)) || '';
+    if (override) return String(override).replace(/\/+$/, '');
+    try {
+      if (window.location && window.location.origin && window.location.origin !== 'null') return window.location.origin;
+    } catch (e) {}
+    return '';
+  }
+
+  _url(path) {
+    const base = this._apiBase();
+    return base ? `${base}${path}` : path;
+  }
+
+  _setBusy(active, note) {
+    const ids = ['graph-read-btn', 'graph-refresh-btn', 'graph-refresh-audit-btn'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.disabled = !!active;
+    });
+    const label = document.getElementById('graph-action-note');
+    if (label && note) label.textContent = note;
+  }
+
+  async _readStatus() {
+    this._setBusy(true, 'Reading /graph/status …');
+    try {
+      const resp = await fetch(this._url('/graph/status'), { cache: 'no-store' });
+      if (!resp.ok) throw new Error(`status ${resp.status}`);
+      const body = await resp.json();
+      this._render(body);
+      this._setBusy(false, 'Status loaded.');
+    } catch (e) {
+      this._renderError(`Could not read /graph/status (${this._esc(String(e && e.message || e))}). Set window.KING_BOARD_URL to your PRIVATE v2 owner node if needed.`);
+      this._setBusy(false, 'Status read failed.');
+    }
+  }
+
+  async _refresh(payload) {
+    this._setBusy(true, `Posting /graph/refresh (${payload.reason}) …`);
+    try {
+      const resp = await fetch(this._url('/graph/refresh'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!resp.ok) throw new Error(`refresh ${resp.status}`);
+      const body = await resp.json();
+      this._render(body.status || {});
+      this._setBusy(false, body.refreshed ? 'Ratchet refresh completed.' : 'Ratchet refresh returned degraded state.');
+    } catch (e) {
+      this._renderError(`Could not post /graph/refresh (${this._esc(String(e && e.message || e))}).`);
+      this._setBusy(false, 'Refresh failed.');
+    }
+  }
+
+  _renderError(msg) {
+    const targets = ['graph-result', 'graph-layers', 'graph-discernment', 'graph-stones'];
+    const body = `<div style="border:1px solid rgba(229,115,107,.35); background:rgba(229,115,107,.08); color:#e7b3ad; border-radius:10px; padding:12px 14px; font-size:13px;">${msg}</div>`;
+    targets.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = body;
+    });
+  }
+
+  _render(body) {
+    const freshness = body.freshness || {};
+    const audit = body.audit_lens || {};
+    const urim = audit.urim || {};
+    const thummim = audit.thummim || {};
+    const stones = (((audit.levi_breastplate || {}).stones) || []);
+    const layers = body.layers || {};
+
+    const boundary = document.getElementById('graph-boundary-badge');
+    if (boundary) boundary.textContent = `${body.boundary || 'PRIVATE'} · ${body.status || 'idle'}`;
+
+    const upd = document.getElementById('graph-last-update');
+    if (upd) upd.textContent = `last completed: ${freshness.last_completed_at || '—'}`;
+
+    const version = document.getElementById('graph-version');
+    if (version) version.textContent = `v${this._esc(body.graph_stack_version || '5.2')}`;
+
+    const result = document.getElementById('graph-result');
+    if (result) result.textContent = `${body.last_result || 'waiting'} · ${body.neo4j_http || 'neo4j endpoint unknown'}`;
+
+    const lastSuccess = document.getElementById('graph-last-success');
+    if (lastSuccess) lastSuccess.textContent = freshness.last_successful_at || '—';
+
+    const age = document.getElementById('graph-age');
+    if (age) age.textContent = freshness.age_seconds == null ? 'age —' : `age ${freshness.age_seconds}s`;
+
+    const targets = document.getElementById('graph-targets');
+    if (targets) targets.textContent = (body.requested_targets || []).join(' · ') || '—';
+
+    const mode = document.getElementById('graph-mode');
+    if (mode) mode.textContent = `mode ${body.last_mode || '—'} · result ${body.last_result || '—'}`;
+
+    const discernment = document.getElementById('graph-discernment');
+    if (discernment) {
+      discernment.innerHTML = `
+        <div style="display:grid; grid-template-columns:1fr; gap:10px;">
+          <div style="border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px; background:rgba(255,255,255,.03);">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent,#e3ad33);">Urim · edge reading</div>
+            <div style="font-size:13px; margin-top:6px; color:var(--ink,#efe9da);">Layer: ${this._esc(urim.layer || '—')} · Context: ${this._esc(urim.context_id || '—')}</div>
+            <div style="font-size:12px; margin-top:6px; color:var(--ink-dim,#b3a98f);">${(urim.reads || []).map(x => this._esc(x)).join(' · ') || '—'}</div>
+          </div>
+          <div style="border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px; background:rgba(255,255,255,.03);">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent,#e3ad33);">Thummim · justice reading</div>
+            <div style="font-size:13px; margin-top:6px; color:var(--ink,#efe9da);">Layers: ${((thummim.layers || []).map(x => this._esc(x))).join(' · ') || '—'}</div>
+            <div style="font-size:12px; margin-top:6px; color:var(--ink-dim,#b3a98f);">${(thummim.reads || []).map(x => this._esc(x)).join(' · ') || '—'}</div>
+          </div>
+        </div>`;
+    }
+
+    const layerHost = document.getElementById('graph-layers');
+    if (layerHost) {
+      const rows = Object.keys(layers).sort().map(name => {
+        const val = String(layers[name] || 'unknown');
+        const color = val === 'current' ? '#6abf86' : (val === 'failed' ? '#e5736b' : '#b3a98f');
+        return `<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line,#34301f); border-radius:10px; padding:10px 12px; background:rgba(255,255,255,.03);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink,#efe9da);">${this._esc(name)}</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:${color};">${this._esc(val)}</span>
+        </div>`;
+      });
+      layerHost.innerHTML = `<div style="display:flex; flex-direction:column; gap:8px;">${rows.join('')}</div>`;
+    }
+
+    const stoneHost = document.getElementById('graph-stones');
+    if (stoneHost) {
+      const earth = audit.earth_justice || {};
+      stoneHost.innerHTML = `
+        <div style="font-size:13px; color:var(--ink-dim,#b3a98f); margin-bottom:12px;">${this._esc((audit.money_intention || {}).question || '')}</div>
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;">
+          ${stones.map(stone => `
+            <div style="border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 12px; background:rgba(255,255,255,.03);">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.3px; text-transform:uppercase; color:var(--accent,#e3ad33);">${this._esc(String(stone.slot).padStart(2, '0'))} · ${this._esc(stone.name)}</div>
+              <div style="font-size:13px; margin-top:6px; color:var(--ink,#efe9da);">${this._esc(stone.lens)}</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; margin-top:6px; color:var(--ink-faint,#756b56);">layer · ${this._esc(stone.layer)}</div>
+            </div>`).join('')}
+        </div>
+        <div style="margin-top:14px; border-top:1px solid var(--line,#34301f); padding-top:12px; font-size:12px; color:var(--ink-dim,#b3a98f);">
+          <strong style="color:var(--ink,#efe9da);">Earth justice:</strong>
+          ${this._esc(earth.approach || '—')}<br>
+          <span style="font-family:'JetBrains Mono',monospace; color:var(--ink-faint,#756b56);">${((earth.checks || []).map(x => this._esc(x))).join(' · ')}</span>
+        </div>`;
+    }
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

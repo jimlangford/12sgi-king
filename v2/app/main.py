@@ -29,6 +29,8 @@ from services.v2_workboard import (
     reject_workboard_job,
     selfheal_engineering_jobs,
 )
+from watchers import graph_refresh
+from watchers import pulse_geometry
 
 app = FastAPI(
     title="12 Stones v2 Local Owner Node",
@@ -151,6 +153,58 @@ def reject_job(job_id: str, body: RejectRequest):
         "tombstone_id": tombstone["job"]["id"],
         "iso": tombstone["iso"],
     }
+
+
+@app.get("/pulse/geometry")
+def pulse_geometry_snapshot():
+    """Return the dedicated pulse lane×skill geometry snapshot.
+
+    This is a PRIVATE read surface over the additive geometry model. It does not
+    modify the existing workboard or publish anything.
+    """
+    snap = pulse_geometry.snapshot()
+    return {
+        "layer": snap["layer"],
+        "minimum_geometry": snap["minimum_geometry"],
+        "full_hina_cycle": snap["full_hina_cycle"],
+        "counts": snap["counts"],
+        "place_tuning": snap["place_tuning"],
+        "geometry_complete": snap["geometry_complete"],
+        "context_sample": snap["contexts"],
+        "quadrant_sample": snap["quadrants"],
+        "lane_sample": snap["lanes"][:6],
+        "skill_sample": snap["skills"][:6],
+        "element_sample": snap["elements"][:6],
+        "residence_frequency_sample": snap["residence_frequencies"],
+        "cell_sample": snap["cells_sample"],
+        "forecast_sample": snap["forecasts"],
+    }
+
+
+@app.post("/pulse/geometry/refresh")
+def refresh_pulse_geometry():
+    """Project the pulse geometry lattice into Neo4j under its own additive layer."""
+    ok = pulse_geometry.refresh()
+    return {"refreshed": bool(ok), "layer": pulse_geometry.LAYER}
+
+
+@app.get("/graph/status")
+def graph_status():
+    """Return PRIVATE freshness/status for the v5.2 Neo4j graph stack."""
+    return graph_refresh.status()
+
+
+class GraphRefreshRequest(BaseModel):
+    mode: str = "full"
+    reason: str = "owner-manual"
+    targets: list[str] | None = None
+
+
+@app.post("/graph/refresh")
+def refresh_graph(body: GraphRefreshRequest):
+    """Refresh graph/vector/spine/pulse layers through the single PRIVATE ratchet."""
+    ok = graph_refresh.refresh(mode=body.mode, reason=body.reason, targets=body.targets)
+    return {"refreshed": bool(ok), "status": graph_refresh.status()}
 
 
 # ── Engineering self-heal (manual trigger) ────────────────────────────────────

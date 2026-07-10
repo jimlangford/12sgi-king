@@ -27,6 +27,26 @@ export WORKBOARD_DISPATCH_LOG="/tmp/govos_v2_dispatch.jsonl"
 export WORKBOARD_TARGET_THREAD="workboard-quad-os"
 ```
 
+`services/v2_workboard.py` is lane-aware (`engineering` self-heals automatically;
+`creative`/`output` require human `approve_workboard_job()` /
+`reject_workboard_job()`). It now also has `archive_workboard_job()`, the v2
+counterpart of the legacy board consumer's job-management actions
+(archive/restore/retry/reschedule): no job is ever hard-deleted on either
+side — archiving appends an `archived` tombstone to the shared append-only
+dispatch log, preserving the original entry, same as the legacy consumer's
+soft-delete-as-archive + audit-trail pattern (e.g. clearing stale
+engineering-lane jobs once a newer backend supersedes them). Use
+`python -m services.v2_workboard --archive JOB_ID [--archiver who] [--note "..."]`
+from the CLI, or call `archive_workboard_job()` directly.
+
+Optional graph-layer wiring (defaults now match the Dockerized Neo4j v5 stack):
+
+```bash
+export NEO4J_HTTP="http://127.0.0.1:7474/db/neo4j/tx/commit"
+export GRAPH_REFRESH_STATE_PATH="/tmp/govos_v2_graph_refresh_state.json"
+export GRAPH_STACK_VERSION="5.2"
+```
+
 ## 2) Start backend services
 
 ```bash
@@ -140,7 +160,25 @@ POST http://127.0.0.1:8088/approvals/{job_id}/reject
 
 # Trigger engineering self-heal manually
 POST http://127.0.0.1:8088/selfheal
+
+# Inspect graph freshness / stack status
+GET http://127.0.0.1:8088/graph/status
+
+# Refresh all graph layers or a targeted subset
+POST http://127.0.0.1:8088/graph/refresh
+{"mode": "incremental", "reason": "owner-manual", "targets": ["private_spine", "pulse_geometry"]}
 ```
+
+### Inspect the pulse geometry lattice
+
+```bash
+GET http://127.0.0.1:8088/pulse/geometry
+POST http://127.0.0.1:8088/pulse/geometry/refresh
+```
+
+The pulse geometry is a dedicated PRIVATE Neo4j-backed lane×skill lattice. It now uses the full 28–30 day Hina moon cycle, adds Maui / `Pacific/Honolulu` human-residence frequency tuning for the geometry layer, carries a deterministic six-step human/chakra alignment keyed to organic carbon weight `6`, and projects a Sage element view into Neo4j from the existing `akua` / skill geometry, all as an audited, deterministic, non-experimental human-serving surface without changing the existing workboard lanes.
+
+The graph ratchet now persists PRIVATE freshness/status metadata for the owner node and supports targeted `incremental` refreshes for `graph`, `vectors`, `private_spine`, and `pulse_geometry`. Full refreshes remain available for bootstrap or repair.
 
 ### Lane assignment by service action
 
