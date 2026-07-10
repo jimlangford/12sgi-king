@@ -34,6 +34,8 @@ LAYER = "pulse_geometry"
 MIN_LANES = 28
 FULL_LANE_COUNT = len(moon_calendar.PO)
 MIN_SKILLS = 28
+RESIDENCE_PLACE = os.environ.get("PULSE_RESIDENCE_PLACE", "Maui")
+RESIDENCE_TIMEZONE = os.environ.get("PULSE_RESIDENCE_TZ", "Pacific/Honolulu")
 
 _DIRECTION_BY_ANAHULU = {
     "Hoʻonui": "expanding",
@@ -50,6 +52,40 @@ _OUTPUT_BY_BALANCE = {
     "opportunity": "prepare",
     "pono": "stabilize",
 }
+_RESIDENCE_FREQUENCIES = (
+    {
+        "id": "residence:dawn",
+        "frequency": "dawn",
+        "label": "pre-dawn to morning rise",
+        "hours": "05:00-08:59",
+        "ao_po": "Ao",
+        "cadences": ("build", "steady"),
+    },
+    {
+        "id": "residence:day",
+        "frequency": "day",
+        "label": "daylight work and civic action",
+        "hours": "09:00-16:59",
+        "ao_po": "Ao",
+        "cadences": ("build", "crest"),
+    },
+    {
+        "id": "residence:dusk",
+        "frequency": "dusk",
+        "label": "return home and integrate",
+        "hours": "17:00-20:59",
+        "ao_po": "Ao→Pō",
+        "cadences": ("crest", "release"),
+    },
+    {
+        "id": "residence:night",
+        "frequency": "night",
+        "label": "quiet home, rest, and reset",
+        "hours": "21:00-04:59",
+        "ao_po": "Pō",
+        "cadences": ("release", "steady"),
+    },
+)
 
 
 def _say(message: str) -> None:
@@ -133,6 +169,8 @@ def build_skill_rows(limit: int = MIN_SKILLS) -> list[dict]:
 def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
     rows = []
     for idx, (po_name, anahulu, nature, offering) in enumerate(moon_calendar.PO[:limit], start=1):
+        cadence = _CADENCE_BY_ANAHULU.get(anahulu, "steady")
+        primary_frequency, secondary_frequency = _residence_tuning_for(cadence)
         rows.append(
             {
                 "id": f"pulse-lane:{idx:02d}",
@@ -142,11 +180,16 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
                 "nature": nature,
                 "trigger": offering,
                 "direction": _DIRECTION_BY_ANAHULU.get(anahulu, "holding"),
-                "cadence": _CADENCE_BY_ANAHULU.get(anahulu, "steady"),
+                "cadence": cadence,
+                "residence_frequency": primary_frequency,
+                "residence_secondary_frequency": secondary_frequency,
+                "place": RESIDENCE_PLACE,
+                "timezone": RESIDENCE_TIMEZONE,
             }
         )
     if len(rows) < limit:
         for idx in range(len(rows) + 1, limit + 1):
+            primary_frequency, secondary_frequency = _residence_tuning_for("steady")
             rows.append(
                 {
                     "id": f"pulse-lane:{idx:02d}",
@@ -157,6 +200,10 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
                     "trigger": "advance the pulse lattice",
                     "direction": "holding",
                     "cadence": "steady",
+                    "residence_frequency": primary_frequency,
+                    "residence_secondary_frequency": secondary_frequency,
+                    "place": RESIDENCE_PLACE,
+                    "timezone": RESIDENCE_TIMEZONE,
                 }
             )
     return rows
@@ -189,6 +236,47 @@ def _resonance_for(lane_index: int, moon13: int | str | None) -> str:
     return "cross"
 
 
+def build_residence_frequency_rows() -> list[dict]:
+    rows = []
+    for idx, row in enumerate(_RESIDENCE_FREQUENCIES, start=1):
+        rows.append(
+            {
+                "id": row["id"],
+                "sequence": idx,
+                "frequency": row["frequency"],
+                "label": row["label"],
+                "hours": row["hours"],
+                "ao_po": row["ao_po"],
+                "cadences": list(row["cadences"]),
+                "place": RESIDENCE_PLACE,
+                "timezone": RESIDENCE_TIMEZONE,
+            }
+        )
+    return rows
+
+
+def _residence_tuning_for(cadence: str) -> tuple[str, str]:
+    if cadence == "build":
+        return ("dawn", "day")
+    if cadence == "crest":
+        return ("day", "dusk")
+    if cadence == "release":
+        return ("dusk", "night")
+    return ("night", "dawn")
+
+
+def _residence_alignment_for(cadence: str, balance: str) -> str:
+    if cadence == "release":
+        return "settling"
+    if cadence == "crest" and balance == "pono":
+        return "gathered"
+    if cadence == "build" and balance != "hewa":
+        return "rising"
+    if balance == "hewa":
+        return "corrective"
+    return "steady"
+
+
 def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
     rows = []
     for lane in lanes:
@@ -210,6 +298,11 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
                     "output": _OUTPUT_BY_BALANCE.get(balance, "observe"),
                     "state": _state_for(direction, balance),
                     "resonance": _resonance_for(lane["lane_index"], skill.get("moon13")),
+                    "residence_frequency": lane.get("residence_frequency", "night"),
+                    "residence_secondary_frequency": lane.get("residence_secondary_frequency", "dawn"),
+                    "residence_alignment": _residence_alignment_for(cadence, balance),
+                    "place": lane.get("place", RESIDENCE_PLACE),
+                    "timezone": lane.get("timezone", RESIDENCE_TIMEZONE),
                     "source_node": skill.get("source_node"),
                     "akua": skill.get("akua", ""),
                     "zone": skill.get("zone", ""),
@@ -239,6 +332,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "cadence_counts": _count_by(lanes, "cadence"),
         "balance_counts": _count_by(cells, "balance"),
         "output_counts": _count_by(cells, "output"),
+        "residence_frequency_counts": _count_by(cells, "residence_frequency"),
     }
 
     quarter_spans = [("Q1", 1, 3), ("Q2", 4, 6), ("Q3", 7, 9), ("Q4", 10, 13)]
@@ -257,6 +351,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
                 "skill_count": len(quarter_skills),
                 "balance_counts": _count_by(quarter_cells, "balance"),
                 "output_counts": _count_by(quarter_cells, "output"),
+                "residence_frequency_counts": _count_by(quarter_cells, "residence_frequency"),
             }
         )
 
@@ -270,6 +365,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "phase_counts": _count_by(skills, "phase"),
         "zone_counts": _count_by(skills, "zone"),
         "output_counts": _count_by(cells, "output"),
+        "residence_frequency_counts": _count_by(cells, "residence_frequency"),
     }
 
     return [monthly, *quarterly, yearly]
@@ -280,14 +376,23 @@ def snapshot(sample_cells: int = 16) -> dict:
     skills = build_skill_rows()
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
+    residence_frequencies = build_residence_frequency_rows()
     return {
         "layer": LAYER,
         "minimum_geometry": {"lanes": MIN_LANES, "skills": MIN_SKILLS, "cells": MIN_LANES * MIN_SKILLS},
         "full_hina_cycle": {"lanes": FULL_LANE_COUNT, "cycle": "28-30 day monthly pulse"},
         "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells), "forecasts": len(forecasts)},
+        "place_tuning": {
+            "model": "human_residence_frequencies",
+            "place": RESIDENCE_PLACE,
+            "timezone": RESIDENCE_TIMEZONE,
+            "natural_rhythm": "Ao→Pō",
+            "frequency_count": len(residence_frequencies),
+        },
         "geometry_complete": len(lanes) >= MIN_LANES and len(skills) >= MIN_SKILLS and len(cells) >= MIN_LANES * MIN_SKILLS,
         "lanes": lanes,
         "skills": skills,
+        "residence_frequencies": residence_frequencies,
         "cells_sample": cells[:sample_cells],
         "forecasts": forecasts,
     }
@@ -298,12 +403,20 @@ def build_graph_payload() -> dict:
     skills = build_skill_rows()
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
+    residence_frequencies = build_residence_frequency_rows()
     return {
         "lanes": [dict(row, layer=LAYER) for row in lanes],
         "skills": [dict(row, layer=LAYER) for row in skills],
+        "residence_frequencies": [dict(row, layer=LAYER) for row in residence_frequencies],
         "cells": [dict(row, layer=LAYER) for row in cells],
         "forecasts": [dict(row, layer=LAYER) for row in forecasts],
-        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells), "forecasts": len(forecasts)},
+        "counts": {
+            "lanes": len(lanes),
+            "skills": len(skills),
+            "residence_frequencies": len(residence_frequencies),
+            "cells": len(cells),
+            "forecasts": len(forecasts),
+        },
     }
 
 
@@ -328,7 +441,13 @@ def refresh() -> bool:
 
     _post([{"statement": "CREATE CONSTRAINT pulse_geometry_id IF NOT EXISTS FOR (x:PulseGeometry) REQUIRE x.id IS UNIQUE"}])
 
-    for label, rows in (("PulseLane", payload["lanes"]), ("PulseSkill", payload["skills"]), ("PulseCell", payload["cells"]), ("ForecastWindow", payload["forecasts"])):
+    for label, rows in (
+        ("PulseLane", payload["lanes"]),
+        ("PulseSkill", payload["skills"]),
+        ("ResidenceFrequency", payload["residence_frequencies"]),
+        ("PulseCell", payload["cells"]),
+        ("ForecastWindow", payload["forecasts"]),
+    ):
         _post(
             [
                 {
@@ -363,6 +482,16 @@ def refresh() -> bool:
             {
                 "statement": (
                     "UNWIND $rows AS r "
+                    "MATCH (freq:PulseGeometry:ResidenceFrequency {id:'residence:' + r.residence_frequency}) "
+                    "MATCH (cell:PulseGeometry:PulseCell {id:r.id}) "
+                    "MERGE (freq)-[e:TUNES {key:r.id}]->(cell) "
+                    "SET e.layer = $layer, e.alignment = r.residence_alignment"
+                ),
+                "parameters": {"rows": payload["cells"], "layer": LAYER},
+            },
+            {
+                "statement": (
+                    "UNWIND $rows AS r "
                     "MATCH (forecast:PulseGeometry:ForecastWindow {id:r.id}) "
                     "MATCH (yearly:PulseGeometry:ForecastWindow {id:'forecast:yearly:hina-13-moon'}) "
                     "FOREACH (_ IN CASE WHEN r.window = 'quarterly' THEN [1] ELSE [] END | "
@@ -374,7 +503,13 @@ def refresh() -> bool:
     )
 
     _say(
-        "pulse_geometry: loaded %d lanes, %d skills, %d cells, %d forecast windows."
-        % (payload["counts"]["lanes"], payload["counts"]["skills"], payload["counts"]["cells"], payload["counts"]["forecasts"])
+        "pulse_geometry: loaded %d lanes, %d skills, %d residence frequencies, %d cells, %d forecast windows."
+        % (
+            payload["counts"]["lanes"],
+            payload["counts"]["skills"],
+            payload["counts"]["residence_frequencies"],
+            payload["counts"]["cells"],
+            payload["counts"]["forecasts"],
+        )
     )
     return True

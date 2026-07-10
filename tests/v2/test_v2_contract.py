@@ -402,11 +402,17 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertTrue(snap['geometry_complete'])
         self.assertEqual(snap['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertEqual(snap['counts']['forecasts'], 6)
+        self.assertEqual(snap['place_tuning']['model'], 'human_residence_frequencies')
+        self.assertEqual(snap['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertEqual(len(snap['residence_frequencies']), 4)
 
     def test_cells_carry_pulse_engine_fields(self):
         snap = pulse_geometry.snapshot(sample_cells=1)
         cell = snap['cells_sample'][0]
-        for field in ('trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance'):
+        for field in (
+            'trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance',
+            'residence_frequency', 'residence_secondary_frequency', 'residence_alignment',
+        ):
             self.assertIn(field, cell)
 
     def test_graph_payload_is_cartesian(self):
@@ -416,6 +422,7 @@ class TestPulseGeometry(unittest.TestCase):
             payload['counts']['lanes'] * payload['counts']['skills'],
         )
         self.assertEqual(payload['counts']['forecasts'], 6)
+        self.assertEqual(payload['counts']['residence_frequencies'], 4)
 
     def test_forecasts_cover_month_quarter_year(self):
         snap = pulse_geometry.snapshot(sample_cells=1)
@@ -424,6 +431,7 @@ class TestPulseGeometry(unittest.TestCase):
         labels = {row['label'] for row in snap['forecasts']}
         self.assertIn('28-30 day Hina moon cycle', labels)
         self.assertIn('13-moon annual accounting cycle', labels)
+        self.assertTrue(all('residence_frequency_counts' in row for row in snap['forecasts']))
 
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
@@ -443,6 +451,8 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertEqual(len(body['forecast_sample']), 6)
         self.assertLessEqual(len(body['lane_sample']), 6)
         self.assertLessEqual(len(body['skill_sample']), 6)
+        self.assertEqual(body['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertEqual(len(body['residence_frequency_sample']), 4)
 
     def test_refresh_handler_returns_layer(self):
         if importlib.util.find_spec('fastapi') is None:

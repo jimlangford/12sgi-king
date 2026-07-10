@@ -167,9 +167,11 @@ def pulse_geometry_snapshot():
         "minimum_geometry": snap["minimum_geometry"],
         "full_hina_cycle": snap["full_hina_cycle"],
         "counts": snap["counts"],
+        "place_tuning": snap["place_tuning"],
         "geometry_complete": snap["geometry_complete"],
         "lane_sample": snap["lanes"][:6],
         "skill_sample": snap["skills"][:6],
+        "residence_frequency_sample": snap["residence_frequencies"],
         "cell_sample": snap["cells_sample"],
         "forecast_sample": snap["forecasts"],
     }
