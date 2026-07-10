@@ -37,6 +37,9 @@ MIN_SKILLS = 28
 RESIDENCE_PLACE = os.environ.get("PULSE_RESIDENCE_PLACE", "Maui")
 RESIDENCE_TIMEZONE = os.environ.get("PULSE_RESIDENCE_TZ", "Pacific/Honolulu")
 ORGANIC_CARBON_WEIGHT = 6
+EDGE_CONTEXT_ID = "context:known-universe-edge"
+APEX_CONTEXT_ID = "context:shared-apex-spine"
+RHYTHM_CONTEXT_ID = "context:ao-po-rhythm"
 
 _DIRECTION_BY_ANAHULU = {
     "Hoʻonui": "expanding",
@@ -103,6 +106,8 @@ _ELEMENT_BY_AKUA = {
     "Kū": "Structure",
 }
 _DEFAULT_ELEMENTS = tuple(sorted(set(_ELEMENT_BY_AKUA.values()) | {"Earth"}))
+_QUADRANT_ORDER = ("Mauka", "Kula", "Makai", "Universal")
+_QUADRANT_ALIASES = {"Farmlands": "Kula", "Po": "Pō"}
 
 
 def _say(message: str) -> None:
@@ -118,6 +123,10 @@ def _read_json(path: Path) -> dict:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return {}
+
+
+def _slug(text: object) -> str:
+    return "".join(ch.lower() if ch.isalnum() else "-" for ch in str(text or "")).strip("-") or "unknown"
 
 
 def _source_candidates() -> list[Path]:
@@ -140,6 +149,7 @@ def load_sage_nodes() -> list[dict]:
 def _fallback_skills(limit: int) -> list[dict]:
     rows = []
     for idx in range(1, limit + 1):
+        quadrant = _quadrant_for({"zone": _QUADRANT_ORDER[(idx - 1) % len(_QUADRANT_ORDER)]})
         rows.append(
             {
                 "id": f"pulse-skill:{idx:02d}",
@@ -147,7 +157,8 @@ def _fallback_skills(limit: int) -> list[dict]:
                 "name": f"Pulse Skill {idx:02d}",
                 "source_node": idx,
                 "role": "",
-                "zone": "",
+                "zone": quadrant,
+                "quadrant": quadrant,
                 "akua": "",
                 "element": "Earth",
                 "phase": "",
@@ -157,6 +168,32 @@ def _fallback_skills(limit: int) -> list[dict]:
             }
         )
     return rows
+
+
+def build_context_rows() -> list[dict]:
+    return [
+        {
+            "id": EDGE_CONTEXT_ID,
+            "name": "Known universe boundary",
+            "context_kind": "edge",
+            "scope": "outermost",
+            "note": "Outer containment boundary carried directly by the quadrant lattice.",
+        },
+        {
+            "id": APEX_CONTEXT_ID,
+            "name": "Shared apex spine",
+            "context_kind": "apex",
+            "scope": "governing",
+            "note": "Governing hierarchy for civic and accountability alignment.",
+        },
+        {
+            "id": RHYTHM_CONTEXT_ID,
+            "name": "Ao/Pō rhythm",
+            "context_kind": "rhythm",
+            "scope": "balancing",
+            "note": "Rhythm layer for Ao action, Pō balancing, and Hina cadence.",
+        },
+    ]
 
 
 def build_skill_rows(limit: int = MIN_SKILLS) -> list[dict]:
@@ -174,6 +211,7 @@ def build_skill_rows(limit: int = MIN_SKILLS) -> list[dict]:
                 "source_node": node.get("node", idx),
                 "role": node.get("role", ""),
                 "zone": node.get("zone", ""),
+                "quadrant": _quadrant_for(node),
                 "akua": node.get("akua", ""),
                 "element": _element_for(node),
                 "phase": node.get("phase", ""),
@@ -291,6 +329,13 @@ def _element_for(node: dict) -> str:
     return _ELEMENT_BY_AKUA.get(str(node.get("akua") or ""), "Earth")
 
 
+def _quadrant_for(node: dict) -> str:
+    quadrant = str(node.get("quadrant") or node.get("zone") or "").strip()
+    if quadrant in _QUADRANT_ALIASES:
+        return _QUADRANT_ALIASES[quadrant]
+    return quadrant or "Universal"
+
+
 def _chakra_index_for(lane_index: int) -> int:
     return ((lane_index - 1) % ORGANIC_CARBON_WEIGHT) + 1
 
@@ -356,6 +401,7 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
             balance = skill.get("balance") or "pono"
             direction = lane.get("direction") or "holding"
             cadence = lane.get("cadence") or "steady"
+            quadrant = _quadrant_for(skill)
             rows.append(
                 {
                     "id": f"pulse-cell:{lane['lane_index']:02d}:{skill['skill_index']:02d}",
@@ -379,6 +425,12 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
                     "place": lane.get("place", RESIDENCE_PLACE),
                     "timezone": lane.get("timezone", RESIDENCE_TIMEZONE),
                     "source_node": skill.get("source_node"),
+                    "quadrant": quadrant,
+                    "quadrant_id": f"quadrant:{_slug(quadrant)}",
+                    "outer_boundary_context_id": EDGE_CONTEXT_ID,
+                    "governing_context_id": APEX_CONTEXT_ID,
+                    "rhythm_context_id": RHYTHM_CONTEXT_ID,
+                    "context_model": "edge_apex_rhythm",
                     "akua": skill.get("akua", ""),
                     "element": skill.get("element", "Earth"),
                     "zone": skill.get("zone", ""),
@@ -400,6 +452,76 @@ def _count_all_elements(rows: list[dict], key: str = "element") -> dict[str, int
     counts = {element: 0 for element in _DEFAULT_ELEMENTS}
     counts.update(_count_by(rows, key))
     return counts
+
+
+def build_quadrant_rows(skills: list[dict]) -> list[dict]:
+    rows = []
+    for idx, quadrant in enumerate(_QUADRANT_ORDER, start=1):
+        quadrant_skills = [skill for skill in skills if _quadrant_for(skill) == quadrant]
+        rows.append(
+            {
+                "id": f"quadrant:{_slug(quadrant)}",
+                "sequence": idx,
+                "quadrant": quadrant,
+                "skill_count": len(quadrant_skills),
+                "balance_counts": _count_by(quadrant_skills, "balance"),
+                "phase_counts": _count_by(quadrant_skills, "phase"),
+                "element_counts": _count_all_elements(quadrant_skills, "element"),
+                "outer_boundary_context_id": EDGE_CONTEXT_ID,
+                "governing_context_id": APEX_CONTEXT_ID,
+                "rhythm_context_id": RHYTHM_CONTEXT_ID,
+                "context_model": "edge_apex_rhythm",
+            }
+        )
+    return rows
+
+
+def build_context_edge_rows(quadrants: list[dict]) -> list[dict]:
+    rows = [
+        {
+            "id": "context-edge-apex",
+            "rel": "CONTAINS",
+            "src_id": EDGE_CONTEXT_ID,
+            "dst_id": APEX_CONTEXT_ID,
+            "props": {"layer": LAYER, "context_model": "edge_apex_rhythm"},
+        },
+        {
+            "id": "context-edge-rhythm",
+            "rel": "CONTAINS",
+            "src_id": EDGE_CONTEXT_ID,
+            "dst_id": RHYTHM_CONTEXT_ID,
+            "props": {"layer": LAYER, "context_model": "edge_apex_rhythm"},
+        },
+    ]
+    for quadrant in quadrants:
+        qid = quadrant["id"]
+        qslug = _slug(quadrant["quadrant"])
+        rows.extend(
+            [
+                {
+                    "id": f"edge-quadrant:{qslug}",
+                    "rel": "CONTAINS",
+                    "src_id": EDGE_CONTEXT_ID,
+                    "dst_id": qid,
+                    "props": {"layer": LAYER, "quadrant": quadrant["quadrant"], "context_model": "edge_apex_rhythm"},
+                },
+                {
+                    "id": f"apex-quadrant:{qslug}",
+                    "rel": "GOVERNS",
+                    "src_id": APEX_CONTEXT_ID,
+                    "dst_id": qid,
+                    "props": {"layer": LAYER, "quadrant": quadrant["quadrant"], "context_model": "edge_apex_rhythm"},
+                },
+                {
+                    "id": f"rhythm-quadrant:{qslug}",
+                    "rel": "FRAMES",
+                    "src_id": RHYTHM_CONTEXT_ID,
+                    "dst_id": qid,
+                    "props": {"layer": LAYER, "quadrant": quadrant["quadrant"], "context_model": "edge_apex_rhythm"},
+                },
+            ]
+        )
+    return rows
 
 
 def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]) -> list[dict]:
@@ -462,19 +584,25 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
 def snapshot(sample_cells: int = 16) -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
+    contexts = build_context_rows()
+    quadrants = build_quadrant_rows(skills)
     elements = build_element_rows(skills)
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
     forecast_elements = build_forecast_element_rows(forecasts)
     residence_frequencies = build_residence_frequency_rows()
+    context_edges = build_context_edge_rows(quadrants)
     return {
         "layer": LAYER,
         "minimum_geometry": {"lanes": MIN_LANES, "skills": MIN_SKILLS, "cells": MIN_LANES * MIN_SKILLS},
         "full_hina_cycle": {"lanes": FULL_LANE_COUNT, "cycle": "28-30 day monthly pulse"},
         "counts": {
+            "contexts": len(contexts),
+            "quadrants": len(quadrants),
             "lanes": len(lanes),
             "skills": len(skills),
             "elements": len(elements),
+            "context_edges": len(context_edges),
             "forecast_elements": len(forecast_elements),
             "cells": len(cells),
             "forecasts": len(forecasts),
@@ -494,24 +622,32 @@ def snapshot(sample_cells: int = 16) -> dict:
             "chakra_count": ORGANIC_CARBON_WEIGHT,
         },
         "geometry_complete": len(lanes) >= MIN_LANES and len(skills) >= MIN_SKILLS and len(cells) >= MIN_LANES * MIN_SKILLS,
+        "contexts": contexts,
+        "quadrants": quadrants,
         "lanes": lanes,
         "skills": skills,
         "elements": elements,
         "residence_frequencies": residence_frequencies,
         "cells_sample": cells[:sample_cells],
         "forecasts": forecasts,
+        "context_edges": context_edges,
     }
 
 
 def build_graph_payload() -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
+    contexts = build_context_rows()
+    quadrants = build_quadrant_rows(skills)
     elements = build_element_rows(skills)
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
     forecast_elements = build_forecast_element_rows(forecasts)
     residence_frequencies = build_residence_frequency_rows()
+    context_edges = build_context_edge_rows(quadrants)
     return {
+        "contexts": [dict(row, layer=LAYER) for row in contexts],
+        "quadrants": [dict(row, layer=LAYER) for row in quadrants],
         "lanes": [dict(row, layer=LAYER) for row in lanes],
         "skills": [dict(row, layer=LAYER) for row in skills],
         "elements": [dict(row, layer=LAYER) for row in elements],
@@ -519,10 +655,14 @@ def build_graph_payload() -> dict:
         "cells": [dict(row, layer=LAYER) for row in cells],
         "forecasts": [dict(row, layer=LAYER) for row in forecasts],
         "forecast_elements": forecast_elements,
+        "context_edges": context_edges,
         "counts": {
+            "contexts": len(contexts),
+            "quadrants": len(quadrants),
             "lanes": len(lanes),
             "skills": len(skills),
             "elements": len(elements),
+            "context_edges": len(context_edges),
             "forecast_elements": len(forecast_elements),
             "residence_frequencies": len(residence_frequencies),
             "cells": len(cells),
@@ -553,6 +693,8 @@ def refresh() -> bool:
     _post([{"statement": "CREATE CONSTRAINT pulse_geometry_id IF NOT EXISTS FOR (x:PulseGeometry) REQUIRE x.id IS UNIQUE"}])
 
     for label, rows in (
+        ("Context", payload["contexts"]),
+        ("Quadrant", payload["quadrants"]),
         ("PulseLane", payload["lanes"]),
         ("PulseSkill", payload["skills"]),
         ("SageElement", payload["elements"]),
@@ -634,9 +776,30 @@ def refresh() -> bool:
         ]
     )
 
+    for rel in ("CONTAINS", "GOVERNS", "FRAMES"):
+        rel_rows = [row for row in payload["context_edges"] if row["rel"] == rel]
+        if not rel_rows:
+            continue
+        _post(
+            [
+                {
+                    "statement": (
+                        f"UNWIND $rows AS r "
+                        f"MATCH (src:PulseGeometry {{id:r.src_id}}) "
+                        f"MATCH (dst:PulseGeometry {{id:r.dst_id}}) "
+                        f"MERGE (src)-[e:{rel} {{key:r.id}}]->(dst) "
+                        f"SET e += r.props"
+                    ),
+                    "parameters": {"rows": rel_rows},
+                }
+            ]
+        )
+
     _say(
-        "pulse_geometry: loaded %d lanes, %d skills, %d elements, %d residence frequencies, %d cells, %d forecast windows, %d forecast-element edges."
+        "pulse_geometry: loaded %d contexts, %d quadrants, %d lanes, %d skills, %d elements, %d residence frequencies, %d cells, %d forecast windows, %d forecast-element edges, %d context edges."
         % (
+            payload["counts"]["contexts"],
+            payload["counts"]["quadrants"],
             payload["counts"]["lanes"],
             payload["counts"]["skills"],
             payload["counts"]["elements"],
@@ -644,6 +807,7 @@ def refresh() -> bool:
             payload["counts"]["cells"],
             payload["counts"]["forecasts"],
             payload["counts"]["forecast_elements"],
+            payload["counts"]["context_edges"],
         )
     )
     return True

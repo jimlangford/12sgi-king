@@ -169,6 +169,8 @@ def pulse_geometry_snapshot():
         "counts": snap["counts"],
         "place_tuning": snap["place_tuning"],
         "geometry_complete": snap["geometry_complete"],
+        "context_sample": snap["contexts"],
+        "quadrant_sample": snap["quadrants"],
         "lane_sample": snap["lanes"][:6],
         "skill_sample": snap["skills"][:6],
         "element_sample": snap["elements"][:6],

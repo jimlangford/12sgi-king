@@ -396,6 +396,8 @@ class TestWorkboardLanes(unittest.TestCase):
 class TestPulseGeometry(unittest.TestCase):
     def test_snapshot_meets_minimum_geometry(self):
         snap = pulse_geometry.snapshot(sample_cells=4)
+        self.assertEqual(snap['counts']['contexts'], 3)
+        self.assertEqual(snap['counts']['quadrants'], 4)
         self.assertGreaterEqual(snap['counts']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertGreaterEqual(snap['counts']['skills'], pulse_geometry.MIN_SKILLS)
         self.assertGreaterEqual(snap['counts']['cells'], pulse_geometry.MIN_LANES * pulse_geometry.MIN_SKILLS)
@@ -424,17 +426,21 @@ class TestPulseGeometry(unittest.TestCase):
             'trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance',
             'residence_frequency', 'residence_secondary_frequency', 'residence_alignment',
             'chakra_index', 'chakra_tone', 'organic_carbon_weight', 'element',
+            'quadrant', 'quadrant_id', 'outer_boundary_context_id', 'governing_context_id', 'rhythm_context_id',
         ):
             self.assertIn(field, cell)
 
     def test_graph_payload_is_cartesian(self):
         payload = pulse_geometry.build_graph_payload()
+        self.assertEqual(payload['counts']['contexts'], 3)
+        self.assertEqual(payload['counts']['quadrants'], 4)
         self.assertEqual(
             payload['counts']['cells'],
             payload['counts']['lanes'] * payload['counts']['skills'],
         )
         self.assertEqual(payload['counts']['forecasts'], 6)
         self.assertGreaterEqual(payload['counts']['elements'], 1)
+        self.assertEqual(payload['counts']['context_edges'], 14)
         self.assertEqual(
             payload['counts']['forecast_elements'],
             payload['counts']['forecasts'] * payload['counts']['elements'],
@@ -453,6 +459,19 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertTrue(all('element_counts' in row for row in snap['forecasts']))
         self.assertTrue(all(set(row['element_counts']) == set(pulse_geometry._DEFAULT_ELEMENTS) for row in snap['forecasts']))
 
+    def test_quadrants_carry_context_model_directly(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        quadrants = {row['quadrant']: row for row in snap['quadrants']}
+        self.assertEqual(set(quadrants), {'Mauka', 'Kula', 'Makai', 'Universal'})
+        for row in quadrants.values():
+            self.assertEqual(row['outer_boundary_context_id'], pulse_geometry.EDGE_CONTEXT_ID)
+            self.assertEqual(row['governing_context_id'], pulse_geometry.APEX_CONTEXT_ID)
+            self.assertEqual(row['rhythm_context_id'], pulse_geometry.RHYTHM_CONTEXT_ID)
+        edges = {(row['rel'], row['src_id'], row['dst_id']) for row in snap['context_edges']}
+        self.assertIn(('CONTAINS', pulse_geometry.EDGE_CONTEXT_ID, 'quadrant:mauka'), edges)
+        self.assertIn(('GOVERNS', pulse_geometry.APEX_CONTEXT_ID, 'quadrant:kula'), edges)
+        self.assertIn(('FRAMES', pulse_geometry.RHYTHM_CONTEXT_ID, 'quadrant:makai'), edges)
+
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
     def test_v2_main_declares_pulse_routes(self):
@@ -469,6 +488,8 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertTrue(body['geometry_complete'])
         self.assertEqual(body['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertEqual(len(body['forecast_sample']), 6)
+        self.assertEqual(len(body['context_sample']), 3)
+        self.assertEqual(len(body['quadrant_sample']), 4)
         self.assertLessEqual(len(body['lane_sample']), 6)
         self.assertLessEqual(len(body['skill_sample']), 6)
         self.assertLessEqual(len(body['element_sample']), 6)
