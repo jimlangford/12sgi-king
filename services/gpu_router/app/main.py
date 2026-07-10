@@ -119,6 +119,11 @@ def _db():
     # Transactional behavior at call sites is unchanged.
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    # busy_timeout (audit-quad-os 2026-07-10): gpu-router-v3 runs TWO concurrent SQLite writers
+    # (GPU + CPU workers) plus the infer poller. Wait up to 30s for a lock instead of raising
+    # 'database is locked' immediately, so transient write contention self-resolves rather than
+    # surfacing as an error the worker loop has to swallow.
+    conn.execute("PRAGMA busy_timeout=30000")
     try:
         yield conn
     finally:
@@ -237,6 +242,29 @@ def _call_embedding(model: str, prompt: str, options: dict | None) -> dict[str, 
         return json.loads(resp.read().decode() or "{}")
 
 
+_VOICE_LANGS_CACHE: set[str] | None = None
+
+
+def _voice_langs() -> set[str]:
+    """The set of espeak-ng voice names actually installed, queried once and cached. Used to
+    validate the requested `lang` so it can't smuggle an espeak flag. Falls back to a small
+    known-safe set (the ones this stack ships: Hawaiian + English) if the query fails."""
+    global _VOICE_LANGS_CACHE
+    if _VOICE_LANGS_CACHE is None:
+        langs: set[str] = set()
+        try:
+            out = subprocess.run(["espeak-ng", "--voices"], capture_output=True,
+                                  stdin=subprocess.DEVNULL, timeout=10)
+            for line in out.stdout.decode(errors="replace").splitlines()[1:]:
+                parts = line.split()
+                if len(parts) >= 2:
+                    langs.add(parts[1])          # column 2 = voice name
+        except Exception:
+            pass
+        _VOICE_LANGS_CACHE = langs or {"haw", "en-us", "en-gb", "en"}
+    return _VOICE_LANGS_CACHE
+
+
 def _call_voice(model: str, prompt: str, options: dict | None) -> dict[str, Any]:
     """Synthesise speech from *prompt* using espeak-ng.
 
@@ -260,9 +288,18 @@ def _call_voice(model: str, prompt: str, options: dict | None) -> dict[str, Any]
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
         tmp_path = tmp.name
     try:
+        # "--" ends espeak-ng option parsing so a prompt/lang beginning with '-' is spoken as TEXT,
+        # not interpreted as an espeak flag (e.g. --phonout=<path> or -f <file>/--stdin, which an
+        # authenticated caller could otherwise use to write to an arbitrary path or hang the shared
+        # CPU worker to the 60s timeout = voice+embedding lane DoS). argv form + no shell already
+        # blocks shell RCE; this closes the residual espeak-own-flag argument-injection surface.
+        # lang is validated against the installed-voice allowlist so it can't smuggle a flag either.
+        if lang not in _voice_langs():
+            return {"error": f"unknown voice '{lang}'; install it or pick an available voice"}
         result = subprocess.run(
-            ["espeak-ng", "-v", lang, "-s", str(rate), "-p", str(pitch), "-w", tmp_path, text],
+            ["espeak-ng", "-v", lang, "-s", str(rate), "-p", str(pitch), "-w", tmp_path, "--", text],
             capture_output=True,
+            stdin=subprocess.DEVNULL,
             timeout=60,
         )
         if result.returncode != 0:
@@ -314,39 +351,54 @@ def _run_job(job: sqlite3.Row) -> tuple[str, dict | None, str | None]:
 
 
 def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup: threading.Event) -> None:
-    """Generic worker loop for a set of engine lanes."""
+    """Generic worker loop for a set of engine lanes.
+
+    Hardened (audit-quad-os 2026-07-10): the whole inner body is wrapped in try/except so a
+    transient sqlite3.OperationalError('database is locked') — now more likely because this branch
+    runs TWO concurrent SQLite writers (the GPU and CPU workers) plus the infer poller — can no
+    longer propagate out and permanently kill the worker thread (there is no supervisor to restart
+    it), which would silently stall a whole engine lane. On error we log and continue; _db()'s
+    connections also carry PRAGMA busy_timeout to absorb the contention in the first place.
+    """
     while True:
         wakeup.wait(timeout=5)
         wakeup.clear()
-        with lock:
-            while True:
-                with _db() as conn:
-                    job = _next_pending_job(conn, lanes)
-                    if not job:
-                        break
-                    conn.execute(
-                        "UPDATE gpu_jobs SET status='running', started_at=? WHERE id=?",
-                        (_now_utc(), job["id"]),
+        try:
+            with lock:
+                while True:
+                    with _db() as conn:
+                        job = _next_pending_job(conn, lanes)
+                        if not job:
+                            break
+                        conn.execute(
+                            "UPDATE gpu_jobs SET status='running', started_at=? WHERE id=?",
+                            (_now_utc(), job["id"]),
+                        )
+                        conn.commit()
+
+                    job_id = job["id"]
+                    engine = job["job_type"] or "ollama"
+                    _log_event("job.start", engine, job_id, {"client_id": job["client_id"]})
+
+                    status, result, err = _run_job(job)
+
+                    with _db() as conn:
+                        conn.execute(
+                            "UPDATE gpu_jobs SET status=?, result_json=?, error=?, finished_at=? WHERE id=?",
+                            (status, json.dumps(result) if result else None, err, _now_utc(), job_id),
+                        )
+                        conn.commit()
+
+                    _log_event(
+                        f"job.{status}", engine, job_id,
+                        {"client_id": job["client_id"], "error": err} if err else {"client_id": job["client_id"]},
                     )
-                    conn.commit()
-
-                job_id = job["id"]
-                engine = job["job_type"] or "ollama"
-                _log_event("job.start", engine, job_id, {"client_id": job["client_id"]})
-
-                status, result, err = _run_job(job)
-
-                with _db() as conn:
-                    conn.execute(
-                        "UPDATE gpu_jobs SET status=?, result_json=?, error=?, finished_at=? WHERE id=?",
-                        (status, json.dumps(result) if result else None, err, _now_utc(), job_id),
-                    )
-                    conn.commit()
-
-                _log_event(
-                    f"job.{status}", engine, job_id,
-                    {"client_id": job["client_id"], "error": err} if err else {"client_id": job["client_id"]},
-                )
+        except Exception as exc:
+            # Never let a worker die: log via the event bus (best-effort) and loop again.
+            try:
+                _log_event("worker.error", worker_name, None, {"error": str(exc)[:300]})
+            except Exception:
+                pass
 
 
 # ──────────────────────────────────────────────
