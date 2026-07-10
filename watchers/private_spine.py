@@ -27,6 +27,9 @@ REPO = HERE.parent
 HOME = Path.home()
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
 LAYER = "private_spine"
+EDGE_CONTEXT_ID = "context:known-universe-edge"
+APEX_CONTEXT_ID = "context:shared-apex-spine"
+RHYTHM_CONTEXT_ID = "context:ao-po-rhythm"
 COORDINATION_FALLBACK = HOME / "Documents" / "Claude" / "Projects" / "Video System elementLOTUS" / ".dispatch_log.jsonl"
 WORKBOARD_DEFAULT = REPO / ".dispatch_log.jsonl"
 STATUS_SKILLS = REPO / "reports" / "_status" / "selfheal_skills.json"
@@ -325,7 +328,6 @@ def publish_ready_jobs(workboard_entries: list[dict]) -> list[dict]:
 def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[dict]) -> dict:
     skill_rows = load_skill_catalog()
     lane_rows = [{"id": f"lane:{lane}", "name": lane, "layer": LAYER} for lane in LANE_LABELS]
-    capability_rows = []
     nodes_by_id = {}
     edges_by_type: dict[str, dict[str, dict]] = {}
 
@@ -339,10 +341,41 @@ def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[di
     def add_edge(rel: str, src: str, dst: str, key: str, props: dict | None = None) -> None:
         edges_by_type.setdefault(rel, {})[key] = {"src": src, "dst": dst, "key": key, "props": {"layer": LAYER, **(props or {})}}
 
+    for context in (
+        {
+            "id": EDGE_CONTEXT_ID,
+            "name": "Known universe boundary",
+            "context_kind": "edge",
+            "scope": "outermost",
+            "note": "Outer containment boundary; not the day-to-day source of truth.",
+        },
+        {
+            "id": APEX_CONTEXT_ID,
+            "name": "Shared apex spine",
+            "context_kind": "apex",
+            "scope": "governing",
+            "note": "Governing hierarchy for civic and accountability alignment.",
+        },
+        {
+            "id": RHYTHM_CONTEXT_ID,
+            "name": "Ao/Pō rhythm",
+            "context_kind": "rhythm",
+            "scope": "balancing",
+            "note": "Rhythm layer for Ao action, Pō balancing, and Hina cadence.",
+        },
+    ):
+        add_node("Context", context)
+    add_edge("CONTAINS", EDGE_CONTEXT_ID, APEX_CONTEXT_ID, "context-edge-apex")
+    add_edge("CONTAINS", EDGE_CONTEXT_ID, RHYTHM_CONTEXT_ID, "context-edge-rhythm")
+
     for lane in lane_rows:
         add_node("Lane", lane)
+        add_edge("MODULATES", RHYTHM_CONTEXT_ID, lane["id"], f"rhythm-lane:{lane['name']}")
 
     for skill in skill_rows:
+        quadrant_id = f"quadrant:{_slug(skill['quadrant'])}"
+        add_node("Quadrant", {"id": quadrant_id, "name": skill["quadrant"]})
+        add_edge("GOVERNS", APEX_CONTEXT_ID, quadrant_id, f"apex-quadrant:{skill['quadrant']}")
         add_node(
             "Skill",
             {
@@ -355,6 +388,7 @@ def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[di
             },
         )
         add_edge("OPERATES_IN", f"skill:{skill['id']}", f"lane:{skill['lane']}", f"skill-lane:{skill['id']}:{skill['lane']}")
+        add_edge("OPERATES_IN_QUADRANT", f"skill:{skill['id']}", quadrant_id, f"skill-quadrant:{skill['id']}:{skill['quadrant']}")
         for uses in skill.get("uses", []):
             cid = f"capability:{uses}"
             add_node("Capability", {"id": cid, "name": uses})
@@ -376,10 +410,19 @@ def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[di
                 "event": entry.get("event", ""),
                 "source": entry.get("source", ""),
                 "iso": entry.get("iso", ""),
+                "target_thread": entry.get("target_thread", ""),
             },
         )
         for skill_id in classify_skills(text):
             add_edge("TOUCHES_SKILL", event_id, f"skill:{skill_id}", f"dispatch-skill:{event_id}:{skill_id}")
+        thread_name = entry.get("target_thread", "")
+        if thread_name:
+            thread_id = f"thread:{_slug(thread_name)}"
+            add_node("Thread", {"id": thread_id, "thread": thread_name, "name": thread_name})
+            add_edge("CONTAINS", EDGE_CONTEXT_ID, thread_id, f"edge-thread:{thread_name}")
+            add_edge("GOVERNS", APEX_CONTEXT_ID, thread_id, f"apex-thread:{thread_name}")
+            add_edge("FRAMES", RHYTHM_CONTEXT_ID, thread_id, f"rhythm-thread:{thread_name}")
+            add_edge("ROUTES_TO_THREAD", event_id, thread_id, f"dispatch-thread:{event_id}:{thread_name}")
 
     jobs = []
     approvals = []
@@ -425,6 +468,14 @@ def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[di
     for job_row in jobs:
         add_node("WorkboardJob", job_row)
         add_edge("EMITTED_IN", job_row["id"], f"lane:{job_row['lane']}", f"job-lane:{job_row['job_id']}:{job_row['lane']}")
+        thread_name = job_row.get("target_thread") or ""
+        if thread_name:
+            thread_id = f"thread:{_slug(thread_name)}"
+            add_node("Thread", {"id": thread_id, "thread": thread_name, "name": thread_name})
+            add_edge("CONTAINS", EDGE_CONTEXT_ID, thread_id, f"edge-thread:{thread_name}")
+            add_edge("GOVERNS", APEX_CONTEXT_ID, thread_id, f"apex-thread:{thread_name}")
+            add_edge("FRAMES", RHYTHM_CONTEXT_ID, thread_id, f"rhythm-thread:{thread_name}")
+            add_edge("ROUTES_TO_THREAD", job_row["id"], thread_id, f"job-thread:{job_row['job_id']}:{thread_name}")
         matches = classify_skills(" ".join([job_row["action"], job_row["event"], job_row["source"]]))
         for skill_id in matches:
             add_edge("TOUCHES_SKILL", job_row["id"], f"skill:{skill_id}", f"job-skill:{job_row['job_id']}:{skill_id}")
@@ -465,6 +516,8 @@ def build_private_spine(dispatch_entries: list[dict], workboard_entries: list[di
                 },
             )
             add_edge("ANSWERS_NODE", f"job:{jid}", nid, f"job-node:{jid}:{nid}")
+            add_edge("CONTAINS", EDGE_CONTEXT_ID, nid, f"edge-node:{nid}")
+            add_edge("BALANCES_THROUGH", RHYTHM_CONTEXT_ID, nid, f"rhythm-node:{nid}", {"wa_phase": payload.get("wa_phase", "")})
         if jid in approvals_by_job and jid in publish_ready_ids:
             add_edge("PUBLISH_READY", f"job:{jid}", approvals_by_job[jid]["id"], f"publish-ready:{jid}", {"status": approvals_by_job[jid]["status"]})
 
@@ -537,4 +590,3 @@ def refresh(dispatch_path: Path | None = None, workboard_path: Path | None = Non
         )
     )
     return True
-

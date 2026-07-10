@@ -68,7 +68,13 @@ class TestPrivateSpine(unittest.TestCase):
 
     def test_build_private_spine_links_skills_jobs_and_artifacts(self):
         dispatch_entries = [
-            {"id": "evt-1", "event": "POLICY: GPU VRAM lock", "instruction": "self-heal gpu queue", "source": "owner"}
+            {
+                "id": "evt-1",
+                "event": "POLICY: GPU VRAM lock",
+                "instruction": "self-heal gpu queue",
+                "source": "owner",
+                "target_thread": "workboard-quad-os",
+            }
         ]
         workboard_entries = [
             {
@@ -78,6 +84,7 @@ class TestPrivateSpine(unittest.TestCase):
                 "source": "civic-v2-catchup",
                 "event": "HINA Pō balance",
                 "iso": "2026-07-10 00:00:00",
+                "target_thread": "workboard-quad-os",
                 "job": {
                     "id": "job-3",
                     "action": "hina-balance",
@@ -102,15 +109,26 @@ class TestPrivateSpine(unittest.TestCase):
         ]
         built = private_spine.build_private_spine(dispatch_entries, workboard_entries)
         node_ids = {row["id"] for row in built["nodes"]}
+        self.assertIn(private_spine.EDGE_CONTEXT_ID, node_ids)
+        self.assertIn(private_spine.APEX_CONTEXT_ID, node_ids)
+        self.assertIn(private_spine.RHYTHM_CONTEXT_ID, node_ids)
+        self.assertIn("quadrant:game", node_ids)
+        self.assertIn("thread:workboard-quad-os", node_ids)
         self.assertIn("skill:gpu_orchestration", node_ids)
         self.assertIn("evt-1", node_ids)
         self.assertIn("job:job-3", node_ids)
         self.assertIn("artifact:cut-scene:job-3", node_ids)
         self.assertIn("source:maui-council-2026-07-09-item-3", node_ids)
+        self.assertIn("sage-node:9", node_ids)
         self.assertIn("job-3", built["publish_ready_ids"])
         self.assertIn("TOUCHES_SKILL", built["edges"])
         self.assertIn("HAS_ARTIFACT", built["edges"])
         self.assertIn("PUBLISH_READY", built["edges"])
+        self.assertIn("CONTAINS", built["edges"])
+        self.assertIn("GOVERNS", built["edges"])
+        self.assertIn("FRAMES", built["edges"])
+        self.assertIn("ROUTES_TO_THREAD", built["edges"])
+        self.assertIn("BALANCES_THROUGH", built["edges"])
 
 
 if __name__ == "__main__":
