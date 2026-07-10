@@ -15,9 +15,11 @@ open until this pass:
 """
 import importlib.util
 import os
+import requests
 import sqlite3
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -28,6 +30,7 @@ sys.path.insert(0, str(ROOT))
 
 AUTH_MAIN = ROOT / 'services' / 'auth' / 'app' / 'main.py'
 AI_MAIN = ROOT / 'services' / 'ai' / 'app' / 'main.py'
+HEALTH_MAIN = ROOT / 'services' / 'health' / 'app' / 'main.py'
 
 
 def _load_module(path, name, env_overrides=None, env_clear_keys=None):
@@ -243,6 +246,247 @@ class TestAiSchemaMigration(unittest.TestCase):
             cols = [row[1] for row in conn.execute('PRAGMA table_info(assist_events)')]
             conn.close()
             self.assertIn('grounded', cols)
+
+
+class _FakeResponse:
+    def __init__(self, status_code, payload=None, json_error=None):
+        self.status_code = status_code
+        self._payload = payload
+        self._json_error = json_error
+
+    def json(self):
+        if self._json_error is not None:
+            raise self._json_error
+        return self._payload
+
+
+class TestHealthReadinessHardening(unittest.TestCase):
+    def _client(self, surfaces='auth=auth:8101,tenant=tenant:8102'):
+        module = _load_module(
+            HEALTH_MAIN,
+            f'health_test_{id(self)}_{time.time_ns()}',
+            env_overrides={
+                'SURFACES_LIST': surfaces,
+                'SURFACES_HEALTH_PATH': '/api/v2/ready',
+                'COMMIT_SHA': 'abc123def456',
+                'BUILD_TIMESTAMP': '2026-07-10T23:30:00Z',
+                'ENVIRONMENT': 'king-server-private',
+            },
+        )
+        return module, TestClient(module.app)
+
+    def _install_requests_stub(self, module, handlers):
+        def fake_get(url, timeout):
+            for needle, result in handlers.items():
+                if needle in url:
+                    if isinstance(result, Exception):
+                        raise result
+                    return result
+            raise AssertionError(f'unexpected URL {url}')
+
+        module.requests.get = fake_get
+
+    def assertTopLevelProvenance(self, body):
+        self.assertEqual(body['service'], 'health')
+        self.assertEqual(body['commit_sha'], 'abc123def456')
+        self.assertEqual(body['build_timestamp'], '2026-07-10T23:30:00Z')
+        self.assertEqual(body['environment'], 'king-server-private')
+        self.assertTrue(body['version'])
+
+    def test_ready_returns_200_when_all_dependencies_ready(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 200)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['status'], 'ready')
+        self.assertTrue(body['services']['auth']['ok'])
+        self.assertTrue(body['services']['tenant']['ok'])
+        self.assertEqual(body['services']['auth']['provenance']['service'], 'auth')
+
+    def test_ready_returns_503_when_dependency_unreachable(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': requests.ConnectionError(
+                    'connection failed token=super-secret-value'
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['status'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['failure'], 'unreachable')
+        self.assertIn('connection failed', body['services']['tenant']['detail'])
+        self.assertNotIn('super-secret-value', body['services']['tenant']['detail'])
+
+    def test_ready_returns_503_on_malformed_dependency_json(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(200, json_error=ValueError('bad json')),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['services']['tenant']['failure'], 'malformed-json')
+        self.assertIn('valid JSON', body['services']['tenant']['detail'])
+
+    def test_ready_returns_503_when_dependency_reports_not_ready(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    503,
+                    {
+                        'status': 'not-ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                        'dependencies': {'database': False},
+                    },
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['services']['tenant']['failure'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['reported_status'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['dependencies'], {'database': False})
+
+    def test_provenance_fields_remain_present_on_success_and_failure(self):
+        ready_module, ready_client = self._client()
+        self._install_requests_stub(
+            ready_module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+            },
+        )
+        fail_module, fail_client = self._client()
+        self._install_requests_stub(
+            fail_module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(200, json_error=ValueError('bad json')),
+            },
+        )
+
+        ready_body = ready_client.get('/api/v1/ready').json()
+        fail_body = fail_client.get('/api/v1/ready').json()
+
+        for body in (ready_body, fail_body):
+            for key in ('service', 'version', 'commit_sha', 'build_timestamp', 'environment'):
+                self.assertIn(key, body)
 
 
 if __name__ == '__main__':

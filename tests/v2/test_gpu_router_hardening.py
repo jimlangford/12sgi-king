@@ -17,6 +17,7 @@ AUTH_MAIN = ROOT / "services" / "auth" / "app" / "main.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "deploy-v2-king-server.yml"
 GPU_PANEL = ROOT / "king_public_src" / "Gpu.dc.html"
 OWNER_SHELL = ROOT / "king_public_src" / "index.html"
+DEPLOYMENT_DOC = ROOT / "docs" / "DEPLOYMENT.md"
 
 
 def _load_module(path, name, env_overrides=None, env_clear_keys=None):
@@ -285,6 +286,91 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
         self.assertIn("gpu-environment", panel)
         self.assertIn("commit_sha", panel)
         self.assertIn("'gpu'", shell)
+
+
+class TestDeployWorkflowHardening(unittest.TestCase):
+    def test_workflow_validates_compose_before_restart(self):
+        text = WORKFLOW.read_text()
+        self.assertIn("Validate V2 compose plan and print inventory", text)
+        self.assertIn("docker compose -f docker-compose.v2.yml config", text)
+        self.assertLess(
+            text.index("Validate V2 compose plan and print inventory"),
+            text.index("Restart V2 Docker services"),
+        )
+
+    def test_workflow_declares_explicit_service_inventory_and_ports(self):
+        text = WORKFLOW.read_text()
+        for service in (
+            "neo4j",
+            "auth",
+            "tenant",
+            "documents",
+            "gpu-runtime",
+            "gpu-router",
+            "ai",
+            "storage",
+            "health",
+        ):
+            self.assertIn(service, text)
+        for port in (
+            "auth=8101",
+            "tenant=8102",
+            "documents=8103",
+            "storage=8104",
+            "ai=8105",
+            "health=8106",
+            "gpu-router=8107",
+        ):
+            self.assertIn(port, text)
+
+    def test_workflow_validates_provenance_fields_sha_timestamp_and_environment(self):
+        text = WORKFLOW.read_text()
+        for field in (
+            "service",
+            "version",
+            "commit_sha",
+            "build_timestamp",
+            "environment",
+        ):
+            self.assertIn(field, text)
+        self.assertIn("ConvertFrom-Json", text)
+        self.assertIn("mismatched_commit_sha", text)
+        self.assertIn("Test-Iso8601", text)
+        self.assertIn("king-server-private", text)
+
+    def test_workflow_fails_on_high_or_critical_findings(self):
+        text = WORKFLOW.read_text()
+        self.assertIn("service_unreachable", text)
+        self.assertIn("malformed_metadata", text)
+        self.assertIn("mixed_commit_sha", text)
+        self.assertIn('if ($severityRank[$maxSeverity] -ge $severityRank["high"])', text)
+        self.assertIn("exit 1", text)
+
+
+class TestDeploymentRollbackDocs(unittest.TestCase):
+    def test_v2_rollback_section_covers_required_triggers_and_safeguards(self):
+        text = DEPLOYMENT_DOC.read_text()
+        self.assertIn("king-server V2 rollback", text)
+        for trigger in (
+            "mixed commit SHAs",
+            "persistent readiness failure",
+            "authentication failure",
+            "tenant data exposure",
+            "queue corruption",
+            "database damage",
+            "core service outage",
+        ):
+            self.assertIn(trigger, text)
+        for safeguard in (
+            "docker compose down -v",
+            "docker system prune",
+            "docker volume prune",
+            "named volumes",
+            "queue/dispatch",
+            "previously known-good commit",
+            "docker compose -f docker-compose.v2.yml config",
+        ):
+            self.assertIn(safeguard, text)
 
 
 if __name__ == "__main__":
