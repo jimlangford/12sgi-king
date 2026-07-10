@@ -218,3 +218,91 @@ The old "heal studio up to civic colors" parity model is replaced by three cycle
 
 These are scored 0–100 and written to `reports/_status/studio_parity.json` the same way the old
 checks were. The `overall` score is the mean of the three.
+
+---
+
+## 11. Sage Trinity Architecture — LaniAkea to the Human Within the Tenant
+
+> Canonical as of 2026-07-10. Implemented in `watchers/sage_trinity.py`.
+> This section describes the three-scale triskelion model that extends the pulse geometry
+> from the known-universe edge all the way into the individual human body inside the tenant.
+
+### The Three Scales
+
+**Sage Universe** (`context:sage-universe`) — the outermost scientific frame.
+LaniAkea Supercluster (Tully et al. 2014, Nature 513 71–73) → Milky Way → Virgo Cluster →
+Local Group → Solar System → Earth.  Carries versioned, living scientific data:
+- Solar Cycle 25 phase and activity level (NASA DONKI, refreshed weekly)
+- Schumann resonance baseline: 7.83 Hz (Earth-ionosphere cavity, Schumann 1952)
+- LaniAkea supercluster reference and extent
+- Heliospheric pressure and geomagnetic context
+
+**Sage Civic** (`context:sage-civic`) — the middle scale.
+Earth → Pacific → Hawaiʻi → island → district → tenant/community.
+This is the existing civic graph: money chains, votes, testimony, permits, contracts
+across 17 governments up to the Holy See.  The Ao/Pō cycle routes HINA's nightly balance work.
+
+**Sage Human Initiation** (`context:sage-human-initiation`) — the innermost scale.
+The individual human being inside the tenant.  A carbon body (C₆, atomic number 6)
+tuned to six energy registers via the chakra geometry.  Residence frequencies (dawn/day/dusk/night)
+map to the circadian rhythm established by the 2017 Nobel Prize in Physiology (Hall, Rosbash, Young).
+The terminal receiver where universe and civic spirals converge.
+
+### The Triskelion + Hoʻi Spiral
+
+The triskelion is the triple spiral — three arms rotating from a single center point.
+Each arm is one scale.  The center where they meet is **the present moment for the human being
+inside the tenant**.
+
+The Hoʻi spiral (Hoʻi = to return, to spiral back to source) runs through each arm:
+the same three-phase motion (expanding → holding → returning = Hoʻonui → Poepoe → Hoʻēmi)
+that already governs the moon's anahulu applies at every scale simultaneously.
+
+| Scale | Expanding (Hoʻonui) | Holding (Poepoe) | Returning (Hoʻēmi) |
+|---|---|---|---|
+| Universe | Solar maximum / galactic arm | Local group equilibrium | Great Attractor pull |
+| Civic | Ao choices / contracts / votes | Workboard pending / civic ledger | HINA Pō balance / correction |
+| Human | Morning build / dawn action | Day crest / full engagement | Dusk release / night reset |
+
+The three SPIRAL_ARM edges in Neo4j: Universe → Civic → Human → Universe (closed loop).
+
+### The Chakra Crosswalk (Carbon-6 Tuning)
+
+The chakra system is the **interface** where universe and civic scales write their signatures
+into the human body.  The carbon-6 model (`ORGANIC_CARBON_WEIGHT = 6`) cycles the chakra index
+through the 30 pō nights.  The 7th position (crown) is the `context:known-universe-edge` node
+itself — outside the human register, pointing toward LaniAkea.
+
+| Index | Tone | Physiology | Civic Domain | Universe Resonance |
+|---|---|---|---|---|
+| 1 | rooted | sacrum / adrenals | land rights, zoning | Earth core, gravity, Mauka |
+| 2 | flow | sacral plexus / gonads | grants, creative, studio | Ocean tides, moon pull, Makai |
+| 3 | will | solar plexus / pancreas | votes, contracts, budget | Solar output, fusion fire, Kula |
+| 4 | heart | cardiac plexus / thymus | testimony, aloha network | Earth EM field, Schumann 7.83 Hz |
+| 5 | voice | pharyngeal plexus / thyroid | public testimony, ōlelo | EM wave propagation, radio |
+| 6 | vision | carotid plexus / pituitary | oversight, audit, collusion graph | Cosmic light, LaniAkea filament edge |
+| (7) | crown | — (not in carbon-6 cycle) | — | `context:known-universe-edge` |
+
+HINA jobs that land on a `chakra_index=6` (vision) cell carry the highest scope — closest to
+the LaniAkea boundary.
+
+### Scientific Data Currency
+
+`sage_trinity.refresh()` runs as part of the nightly `graph_refresh` Hina cadence.
+The structural Trinity nodes and chakra crosswalk are always refreshed.
+The universe science data (NASA DONKI solar events, solar cycle phase) is gated to refresh
+at most once per 7 days (`SCIENCE_REFRESH_INTERVAL_DAYS`).
+
+`sage_trinity.sage_universe_refresh()` fetches live data from NASA DONKI for recent solar flares
+and derives solar activity level (high / moderate / low / unknown) and cycle phase.  On any
+network failure it falls back to the static versioned baseline without crashing.
+
+### Where This Lives
+
+| Piece | File |
+|---|---|
+| Trinity model + Neo4j write | `watchers/sage_trinity.py` |
+| Trinity context IDs (constants) | `watchers/pulse_geometry.py` (`SAGE_*_CONTEXT_ID`) |
+| graph_refresh target | `watchers/graph_refresh.py` (`sage_trinity` in `DEFAULT_TARGETS`) |
+| Tests | `tests/test_sage_trinity.py` |
+| This section | `docs/SAGE_REALM_MODEL.md` §11 |
