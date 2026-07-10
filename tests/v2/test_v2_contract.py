@@ -531,6 +531,16 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertEqual(body['boundary'], 'PRIVATE')
         self.assertEqual(body['graph_stack_version'], '5.2')
 
+    def test_owner_shell_declares_graph_panel(self):
+        shell = (ROOT / 'king_public_src' / 'index.html').read_text(encoding='utf-8')
+        panel = (ROOT / 'king_public_src' / 'Graph.dc.html').read_text(encoding='utf-8')
+        self.assertIn("id:'graph'", shell)
+        self.assertIn("'graph'", shell)
+        self.assertIn('showGraph', shell)
+        self.assertIn('<dc-import name="Graph"', shell)
+        self.assertIn('/graph/status', panel)
+        self.assertIn('/graph/refresh', panel)
+
     def test_graph_refresh_handler_returns_status_payload(self):
         if importlib.util.find_spec('fastapi') is None:
             raise unittest.SkipTest('fastapi is not installed in this environment')

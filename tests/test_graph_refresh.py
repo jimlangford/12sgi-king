@@ -36,6 +36,14 @@ class TestGraphRefresh(unittest.TestCase):
         self.assertEqual(body['status'], 'idle')
         self.assertEqual(body['supported_targets'], list(graph_refresh.DEFAULT_TARGETS))
         self.assertIsNone(body['freshness']['last_successful_at'])
+        self.assertEqual(body['audit_lens']['frame'], '12-stone-earth-justice-audit')
+        self.assertEqual(body['audit_lens']['money_intention']['edge_context_id'], graph_refresh.EDGE_CONTEXT_ID)
+        self.assertEqual(len(body['audit_lens']['levi_breastplate']['stones']), 12)
+        self.assertEqual(body['audit_lens']['urim']['context_id'], graph_refresh.EDGE_CONTEXT_ID)
+        self.assertEqual(
+            body['audit_lens']['thummim']['context_ids'],
+            [graph_refresh.APEX_CONTEXT_ID, graph_refresh.RHYTHM_CONTEXT_ID],
+        )
 
     def test_incremental_refresh_updates_state_for_targeted_layers(self):
         fake_chain = types.SimpleNamespace(load=lambda: True)

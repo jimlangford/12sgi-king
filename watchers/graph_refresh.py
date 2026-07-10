@@ -27,6 +27,9 @@ DEFAULT_TARGETS = ("graph", "vectors", "private_spine", "pulse_geometry")
 STATE_PATH = Path(os.environ.get("GRAPH_REFRESH_STATE_PATH", "/tmp/12sgi-graph-refresh-state.json"))
 GRAPH_STACK_VERSION = os.environ.get("GRAPH_STACK_VERSION", "5.2")
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
+EDGE_CONTEXT_ID = "context:known-universe-edge"
+APEX_CONTEXT_ID = "context:shared-apex-spine"
+RHYTHM_CONTEXT_ID = "context:ao-po-rhythm"
 
 
 def _say(m):
@@ -120,6 +123,53 @@ def _age_seconds(iso_text):
         return None
 
 
+def _audit_lens():
+    return {
+        "frame": "12-stone-earth-justice-audit",
+        "boundary": "PRIVATE",
+        "money_intention": {
+            "question": "How does money intention move through civic flow and touch the edge of nature?",
+            "source_layer": "graph",
+            "source_dataset": "maui money-chain",
+            "edge_context_id": EDGE_CONTEXT_ID,
+            "earth_justice_target": "align money flow before public action or publish",
+        },
+        "levi_breastplate": {
+            "concept": "12-stone audit",
+            "stones": [
+                {"slot": 1, "name": "foundation", "layer": "graph", "lens": "origin of record"},
+                {"slot": 2, "name": "witness", "layer": "graph", "lens": "who is seen in the chain"},
+                {"slot": 3, "name": "source", "layer": "graph", "lens": "where money begins"},
+                {"slot": 4, "name": "flow", "layer": "graph", "lens": "where money moves"},
+                {"slot": 5, "name": "intention", "layer": "graph", "lens": "what the flow claims to serve"},
+                {"slot": 6, "name": "ledger", "layer": "vectors", "lens": "what can be recalled and compared"},
+                {"slot": 7, "name": "approval", "layer": "private_spine", "lens": "who cleared the action"},
+                {"slot": 8, "name": "lineage", "layer": "private_spine", "lens": "what the work derives from"},
+                {"slot": 9, "name": "boundary", "layer": "pulse_geometry", "lens": "edge of nature and quadrant boundary"},
+                {"slot": 10, "name": "balance", "layer": "pulse_geometry", "lens": "Ao/Pō rhythm and cadence"},
+                {"slot": 11, "name": "justice", "layer": "pulse_geometry", "lens": "earth-serving quadrant fit"},
+                {"slot": 12, "name": "renewal", "layer": "graph_refresh", "lens": "whether the ratchet has been refreshed"},
+            ],
+        },
+        "urim": {
+            "signal": "edge reading",
+            "layer": "pulse_geometry",
+            "context_id": EDGE_CONTEXT_ID,
+            "reads": ["nature", "quadrant boundary", "human residence cadence"],
+        },
+        "thummim": {
+            "signal": "justice reading",
+            "layers": ["private_spine", "pulse_geometry"],
+            "context_ids": [APEX_CONTEXT_ID, RHYTHM_CONTEXT_ID],
+            "reads": ["approval lineage", "governing context", "balance before publish"],
+        },
+        "earth_justice": {
+            "approach": "money flow must stay accountable to boundary, balance, and civic lineage",
+            "checks": ["graph flow", "vector recall", "private approvals", "edge/apex/rhythm contexts"],
+        },
+    }
+
+
 def status():
     state = _read_state()
     return {
@@ -140,6 +190,7 @@ def status():
             "age_seconds": _age_seconds(state.get("last_successful_at")),
         },
         "last_result": state.get("last_result"),
+        "audit_lens": _audit_lens(),
     }
 
 
