@@ -141,7 +141,8 @@ def gather_docs():
     # and rendered to donor_bloc.html all along, but had no structured file for THIS embedding layer to
     # read, so the local semantic search never learned it. donor_bloc.json closes that gap.)
     try:
-        bd = json.load(open(os.path.join(MAUIOS, "donor_bloc.json"), encoding="utf-8"))
+        with open(mauios / "donor_bloc.json", encoding="utf-8") as f:
+            bd = json.load(f)
         for i, b in enumerate(bd.get("bloc", [])):
             reps_s = ", ".join(sorted((b.get("reps") or {}).keys()))
             total = b.get("total") or 0
