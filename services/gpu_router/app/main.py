@@ -1,29 +1,42 @@
-# gpu-router — single GPU, many clients.
+# gpu-router v3 — multi-engine state orchestrator, single host.
 #
-# ONE GPU OWNER: Ollama (or llama.cpp / ComfyUI) runs at GPU_RUNTIME_URL.
-# MANY CLIENTS:  govOS core, Maui tenant, Studio / Element LOTUS, Civic Signal,
-#                Workboard, reports — each submits inference jobs by client_id.
+# ENGINES:
+#   ollama    → Ollama (or llama.cpp) LLM inference; GPU-bound; serialised.
+#   voice     → espeak-ng text-to-speech; CPU-bound; serialised on a CPU worker.
+#   embedding → Ollama /api/embeddings; lighter GPU call; serialised on CPU worker.
+#   comfyui   → ComfyUI image/video render; GPU-bound; future (shares GPU worker).
+#
+# CLIENTS:  govOS core, Maui tenant, Studio / Element LOTUS, Civic Signal,
+#           Workboard, reports — each submits jobs by client_id + job_type.
 #
 # How it works:
-#   POST /api/v2/gpu/infer  → enqueue job, block until Ollama returns (or timeout).
+#   POST /api/v2/gpu/infer  → enqueue job by job_type, block until done (or timeout).
 #   GET  /api/v2/gpu/queue  → list pending / running jobs (owner only).
 #   GET  /api/v2/gpu/usage  → per-client usage stats.
+#   GET  /api/v2/gpu/events → recent event bus entries (engine start/done/error).
 #   GET  /api/v2/gpu/ready|live|health  → standard govOS health surface.
 #
+# Workers:
+#   GPU worker  — serialises ollama + comfyui calls (one GPU job at a time).
+#   CPU worker  — serialises voice + embedding calls (runs concurrently with GPU).
+#
 # Priority:
-#   The router serialises Ollama calls — only one job runs at a time so the
-#   single GPU is never overloaded.  Jobs from higher-priority clients are
-#   pulled first.  Priority is configured via CLIENT_PRIORITIES env (see below).
-#   Ties are broken by arrival order (FIFO within a tier).
+#   Jobs from higher-priority clients are pulled first within each worker lane.
+#   Priority is configured via CLIENT_PRIORITIES env (see below).
+#   Ties broken by arrival order (FIFO within a tier).
 #
 # Queue persistence:
 #   SQLite at GPU_ROUTER_DB_PATH.  A restart drains pending jobs in priority
 #   order; any job still in state "running" at startup is reset to "pending" so
-#   it can be retried (the Ollama call did not complete).
+#   it can be retried.
 
+import base64
 import json
 import os
+import shutil
 import sqlite3
+import subprocess
+import tempfile
 import threading
 import time
 from datetime import datetime, timezone
@@ -35,7 +48,7 @@ from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
 API_PREFIX = "/api/v2"
-VERSION = os.environ.get("VERSION", "2.0.0")
+VERSION = os.environ.get("VERSION", "3.0.0")
 DB_PATH = os.environ.get("GPU_ROUTER_DB_PATH", "/tmp/govos_v2_gpu_router.db")
 
 # Ollama (or llama.cpp) base URL — internal Docker network name.
@@ -49,6 +62,18 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 
 # How long to wait for Ollama to finish a job (seconds).
 INFER_TIMEOUT = float(os.environ.get("GPU_INFER_TIMEOUT", "120"))
+
+# Job type → engine lane mapping.
+#   GPU worker:  ollama, comfyui
+#   CPU worker:  voice, embedding
+GPU_LANES = {"ollama", "comfyui"}
+CPU_LANES = {"voice", "embedding"}
+ALL_JOB_TYPES = GPU_LANES | CPU_LANES
+
+# espeak-ng voice synthesis defaults (overridable via options in the request).
+VOICE_DEFAULT_LANG = os.environ.get("VOICE_DEFAULT_LANG", "haw")
+VOICE_DEFAULT_RATE = int(os.environ.get("VOICE_DEFAULT_RATE", "130"))
+VOICE_DEFAULT_PITCH = int(os.environ.get("VOICE_DEFAULT_PITCH", "50"))
 
 # Per-client priority weights (lower number = higher priority).
 # Override via env: GPU_CLIENT_PRIORITIES=govos-core:1,maui-tenant:2,studio:3,...
@@ -79,7 +104,7 @@ def _load_priorities() -> dict[str, int]:
 CLIENT_PRIORITIES = _load_priorities()
 DEFAULT_PRIORITY = max(CLIENT_PRIORITIES.values()) + 1  # unknown clients go last
 
-app = FastAPI(title="govOS GPU Router", version=VERSION)
+app = FastAPI(title="govOS GPU Router v3", version=VERSION)
 
 # ──────────────────────────────────────────────
 # DB
@@ -98,6 +123,7 @@ def init_db() -> None:
                 id          TEXT PRIMARY KEY,
                 client_id   TEXT NOT NULL,
                 priority    INTEGER NOT NULL,
+                job_type    TEXT NOT NULL DEFAULT 'ollama',
                 model       TEXT NOT NULL,
                 prompt      TEXT NOT NULL,
                 options_json TEXT,
@@ -111,6 +137,24 @@ def init_db() -> None:
             )
             """
         )
+        # Add job_type column to existing databases that pre-date v3.
+        try:
+            conn.execute("ALTER TABLE gpu_jobs ADD COLUMN job_type TEXT NOT NULL DEFAULT 'ollama'")
+        except sqlite3.OperationalError:
+            pass  # column already exists
+
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS gpu_events (
+                id          TEXT PRIMARY KEY,
+                event_type  TEXT NOT NULL,
+                engine      TEXT NOT NULL,
+                job_id      TEXT,
+                detail_json TEXT,
+                ts          TEXT NOT NULL
+            )
+            """
+        )
         # Reset any job that was mid-flight when the process died.
         conn.execute(
             "UPDATE gpu_jobs SET status = 'pending', started_at = NULL WHERE status = 'running'"
@@ -120,22 +164,38 @@ def init_db() -> None:
 def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat()
 
+def _log_event(event_type: str, engine: str, job_id: str | None = None, detail: dict | None = None) -> None:
+    """Append an event to the gpu_events bus.  Never raises — event loss is acceptable."""
+    try:
+        with _db() as conn:
+            conn.execute(
+                "INSERT INTO gpu_events (id, event_type, engine, job_id, detail_json, ts) VALUES (?,?,?,?,?,?)",
+                (str(uuid4()), event_type, engine, job_id, json.dumps(detail or {}), _now_utc()),
+            )
+            conn.commit()
+    except Exception:
+        pass
+
 # ──────────────────────────────────────────────
-# Queue worker — single background thread
+# Queue workers — one GPU worker, one CPU worker
 # ──────────────────────────────────────────────
 
-_worker_lock = threading.Lock()   # serialise Ollama calls
-_wakeup = threading.Event()       # signal worker when a job is enqueued
+_gpu_worker_lock = threading.Lock()   # serialise GPU (Ollama) calls
+_cpu_worker_lock = threading.Lock()   # serialise CPU (voice/embedding) calls
+_gpu_wakeup = threading.Event()       # signal GPU worker when a job is enqueued
+_cpu_wakeup = threading.Event()       # signal CPU worker when a job is enqueued
 
 
-def _next_pending_job(conn: sqlite3.Connection) -> sqlite3.Row | None:
+def _next_pending_job(conn: sqlite3.Connection, lanes: set[str]) -> sqlite3.Row | None:
+    placeholders = ",".join("?" for _ in lanes)
     return conn.execute(
-        """
+        f"""
         SELECT * FROM gpu_jobs
-        WHERE status = 'pending'
+        WHERE status = 'pending' AND job_type IN ({placeholders})
         ORDER BY priority ASC, created_at ASC
         LIMIT 1
-        """
+        """,
+        list(lanes),
     ).fetchone()
 
 
@@ -154,14 +214,105 @@ def _call_ollama(model: str, prompt: str, options: dict | None) -> dict[str, Any
         return json.loads(resp.read().decode() or "{}")
 
 
-def _worker_loop() -> None:
+def _call_embedding(model: str, prompt: str, options: dict | None) -> dict[str, Any]:
+    """Generate a text embedding vector via Ollama /api/embeddings."""
+    payload = {"model": model or "nomic-embed-text", "prompt": prompt}
+    data = json.dumps(payload).encode()
+    req = request.Request(
+        f"{GPU_RUNTIME_URL}/api/embeddings",
+        data=data,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with request.urlopen(req, timeout=INFER_TIMEOUT) as resp:
+        return json.loads(resp.read().decode() or "{}")
+
+
+def _call_voice(model: str, prompt: str, options: dict | None) -> dict[str, Any]:
+    """Synthesise speech from *prompt* using espeak-ng.
+
+    model   = voice/language tag, e.g. "haw" (Hawaiian), "en-us", "en-gb".
+    options = {"rate": int, "pitch": int} — espeak-ng -s / -p flags.
+
+    Returns {"audio_b64": <base64 WAV>, "duration_s": float, "engine": "espeak-ng"}.
+    Falls back to a dict with "error" key if espeak-ng is not installed.
+    """
+    if not shutil.which("espeak-ng"):
+        return {"error": "espeak-ng not found on PATH; install it in the container image"}
+
+    opts = options or {}
+    lang = model or VOICE_DEFAULT_LANG
+    rate = int(opts.get("rate", VOICE_DEFAULT_RATE))
+    pitch = int(opts.get("pitch", VOICE_DEFAULT_PITCH))
+    text = (prompt or "").strip()
+    if not text:
+        return {"error": "empty text — nothing to synthesise"}
+
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+        tmp_path = tmp.name
+    try:
+        result = subprocess.run(
+            ["espeak-ng", "-v", lang, "-s", str(rate), "-p", str(pitch), "-w", tmp_path, text],
+            capture_output=True,
+            timeout=60,
+        )
+        if result.returncode != 0:
+            err = result.stderr.decode(errors="replace").strip()
+            return {"error": f"espeak-ng exited {result.returncode}: {err}"}
+        with open(tmp_path, "rb") as f:
+            wav_bytes = f.read()
+        if not wav_bytes:
+            return {"error": "espeak-ng produced an empty WAV file"}
+        # WAV frame rate is 22050 Hz, 16-bit mono — approximate duration from file size.
+        header_bytes = 44
+        frame_bytes = max(1, len(wav_bytes) - header_bytes)
+        duration_s = round(frame_bytes / (22050 * 2), 2)
+        return {
+            "audio_b64": base64.b64encode(wav_bytes).decode(),
+            "duration_s": duration_s,
+            "engine": "espeak-ng",
+            "voice": lang,
+            "rate": rate,
+            "pitch": pitch,
+        }
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
+
+def _run_job(job: sqlite3.Row) -> tuple[str, dict | None, str | None]:
+    """Dispatch one job to the correct engine.  Returns (status, result, error)."""
+    job_type = job["job_type"] or "ollama"
+    model = job["model"]
+    prompt = job["prompt"]
+    options = json.loads(job["options_json"]) if job["options_json"] else None
+    try:
+        if job_type == "ollama":
+            result = _call_ollama(model, prompt, options)
+        elif job_type == "embedding":
+            result = _call_embedding(model, prompt, options)
+        elif job_type == "voice":
+            result = _call_voice(model, prompt, options)
+            if "error" in result:
+                return "error", None, result["error"]
+        else:
+            return "error", None, f"unknown job_type '{job_type}'"
+        return "done", result, None
+    except Exception as exc:
+        return "error", None, str(exc)
+
+
+def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup: threading.Event) -> None:
+    """Generic worker loop for a set of engine lanes."""
     while True:
-        _wakeup.wait(timeout=5)
-        _wakeup.clear()
-        with _worker_lock:
+        wakeup.wait(timeout=5)
+        wakeup.clear()
+        with lock:
             while True:
                 with _db() as conn:
-                    job = _next_pending_job(conn)
+                    job = _next_pending_job(conn, lanes)
                     if not job:
                         break
                     conn.execute(
@@ -171,25 +322,22 @@ def _worker_loop() -> None:
                     conn.commit()
 
                 job_id = job["id"]
-                model = job["model"]
-                prompt = job["prompt"]
-                options = json.loads(job["options_json"]) if job["options_json"] else None
+                engine = job["job_type"] or "ollama"
+                _log_event("job.start", engine, job_id, {"client_id": job["client_id"]})
 
-                try:
-                    result = _call_ollama(model, prompt, options)
-                    with _db() as conn:
-                        conn.execute(
-                            "UPDATE gpu_jobs SET status='done', result_json=?, finished_at=? WHERE id=?",
-                            (json.dumps(result), _now_utc(), job_id),
-                        )
-                        conn.commit()
-                except Exception as exc:
-                    with _db() as conn:
-                        conn.execute(
-                            "UPDATE gpu_jobs SET status='error', error=?, finished_at=? WHERE id=?",
-                            (str(exc), _now_utc(), job_id),
-                        )
-                        conn.commit()
+                status, result, err = _run_job(job)
+
+                with _db() as conn:
+                    conn.execute(
+                        "UPDATE gpu_jobs SET status=?, result_json=?, error=?, finished_at=? WHERE id=?",
+                        (status, json.dumps(result) if result else None, err, _now_utc(), job_id),
+                    )
+                    conn.commit()
+
+                _log_event(
+                    f"job.{status}", engine, job_id,
+                    {"client_id": job["client_id"], "error": err} if err else {"client_id": job["client_id"]},
+                )
 
 
 # ──────────────────────────────────────────────
@@ -255,9 +403,10 @@ def _ollama_ready() -> bool:
 
 class InferRequest(BaseModel):
     client_id: str           # e.g. "govos-core", "studio", "workboard"
-    model: str               # Ollama model name e.g. "llama3"
-    prompt: str
-    options: dict | None = None  # Ollama options (temperature, num_predict, …)
+    model: str               # Ollama model name e.g. "llama3"; or voice tag e.g. "haw"
+    prompt: str              # LLM prompt or text to synthesise (voice lane)
+    options: dict | None = None  # Ollama options (temperature, …) or voice options (rate, pitch)
+    job_type: str = "ollama"     # "ollama" | "voice" | "embedding" | "comfyui"
 
 
 # ──────────────────────────────────────────────
@@ -266,7 +415,7 @@ class InferRequest(BaseModel):
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "gpu-router", "timestamp": _now_utc()}
+    return {"status": "alive", "service": "gpu-router", "version": VERSION, "timestamp": _now_utc()}
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -280,16 +429,20 @@ def ready(response: Response):
 
     auth_ok = _check_dependency_ready(AUTH_READY_URL)
     runtime_ok = _ollama_ready()
+    voice_ok = bool(shutil.which("espeak-ng"))
+    # voice lane is best-effort — router is ready as long as DB + auth + GPU runtime are up.
     is_ready = db_ok and auth_ok and runtime_ok
 
     response.status_code = 200 if is_ready else 503
     return {
         "status": "ready" if is_ready else "not-ready",
         "service": "gpu-router",
+        "version": VERSION,
         "dependencies": {
             "database": db_ok,
             "auth": auth_ok,
             "gpu_runtime": runtime_ok,
+            "voice_engine": voice_ok,
         },
     }
 
@@ -300,20 +453,45 @@ def health():
         total = conn.execute("SELECT COUNT(*) FROM gpu_jobs").fetchone()[0]
         pending = conn.execute("SELECT COUNT(*) FROM gpu_jobs WHERE status='pending'").fetchone()[0]
         running = conn.execute("SELECT COUNT(*) FROM gpu_jobs WHERE status='running'").fetchone()[0]
+        # Per-lane pending/running counts.
+        lane_rows = conn.execute(
+            """
+            SELECT job_type,
+                   SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) AS pending,
+                   SUM(CASE WHEN status='running' THEN 1 ELSE 0 END) AS running
+            FROM gpu_jobs
+            WHERE status IN ('pending','running')
+            GROUP BY job_type
+            """
+        ).fetchall()
+    lanes = {r["job_type"]: {"pending": r["pending"], "running": r["running"]} for r in lane_rows}
     return {
         "status": "healthy",
         "service": "gpu-router",
         "version": VERSION,
         "jobs": {"total": total, "pending": pending, "running": running},
+        "lanes": lanes,
+        "engines": {
+            "gpu": list(GPU_LANES),
+            "cpu": list(CPU_LANES),
+        },
+        "voice_engine": "espeak-ng" if shutil.which("espeak-ng") else "unavailable",
         "priorities": CLIENT_PRIORITIES,
     }
 
 
 @app.post(f"{API_PREFIX}/gpu/infer")
 def infer(payload: InferRequest, authorization: str | None = Header(default=None)):
-    """Enqueue an inference job and block until it completes (or times out)."""
+    """Enqueue a job and block until it completes (or times out).
+
+    job_type controls which engine lane handles the job:
+      "ollama"    — LLM inference via Ollama (GPU).
+      "voice"     — Text-to-speech via espeak-ng (CPU).  model = voice lang, e.g. "haw".
+      "embedding" — Text embeddings via Ollama (CPU-light).
+    """
     user = _require_auth(authorization)
 
+    job_type = payload.job_type if payload.job_type in ALL_JOB_TYPES else "ollama"
     priority = CLIENT_PRIORITIES.get(payload.client_id, DEFAULT_PRIORITY)
     job_id = str(uuid4())
     now = _now_utc()
@@ -322,13 +500,14 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
         conn.execute(
             """
             INSERT INTO gpu_jobs
-                (id, client_id, priority, model, prompt, options_json, status, created_at, created_by)
-            VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?)
+                (id, client_id, priority, job_type, model, prompt, options_json, status, created_at, created_by)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)
             """,
             (
                 job_id,
                 payload.client_id,
                 priority,
+                job_type,
                 payload.model,
                 payload.prompt,
                 json.dumps(payload.options) if payload.options else None,
@@ -338,7 +517,13 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
         )
         conn.commit()
 
-    _wakeup.set()  # wake the worker
+    _log_event("job.queued", job_type, job_id, {"client_id": payload.client_id})
+
+    # Wake the right worker.
+    if job_type in CPU_LANES:
+        _cpu_wakeup.set()
+    else:
+        _gpu_wakeup.set()
 
     # Poll until done or timeout.
     deadline = time.monotonic() + INFER_TIMEOUT
@@ -347,17 +532,27 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
             row = conn.execute("SELECT * FROM gpu_jobs WHERE id=?", (job_id,)).fetchone()
         if row and row["status"] == "done":
             result = json.loads(row["result_json"] or "{}")
-            return {
+            resp: dict[str, Any] = {
                 "job_id": job_id,
+                "job_type": job_type,
                 "client_id": payload.client_id,
                 "model": payload.model,
-                "response": result.get("response", ""),
                 "done": True,
                 "started_at": row["started_at"],
                 "finished_at": row["finished_at"],
             }
+            if job_type == "voice":
+                resp["audio_b64"] = result.get("audio_b64", "")
+                resp["duration_s"] = result.get("duration_s")
+                resp["engine"] = result.get("engine", "espeak-ng")
+            elif job_type == "embedding":
+                resp["embedding"] = result.get("embedding", [])
+            else:
+                resp["response"] = result.get("response", "")
+            return resp
         if row and row["status"] == "error":
-            _error(502, "gpu_error", f"Ollama error: {row['error']}", {"job_id": job_id})
+            engine_label = "CPU" if job_type in CPU_LANES else "GPU"
+            _error(502, f"{job_type}_error", f"{engine_label} error: {row['error']}", {"job_id": job_id})
         time.sleep(0.5)
 
     # Timed out — mark the job so it is not orphaned.
@@ -367,7 +562,8 @@ def infer(payload: InferRequest, authorization: str | None = Header(default=None
             (_now_utc(), job_id),
         )
         conn.commit()
-    _error(504, "gpu_timeout", "GPU inference did not complete within the allowed time", {"job_id": job_id})
+    _log_event("job.timeout", job_type, job_id, {"client_id": payload.client_id})
+    _error(504, "infer_timeout", "Job did not complete within the allowed time", {"job_id": job_id})
 
 
 @app.get(f"{API_PREFIX}/gpu/queue")
@@ -377,7 +573,7 @@ def queue_status(authorization: str | None = Header(default=None)):
     with _db() as conn:
         rows = conn.execute(
             """
-            SELECT id, client_id, priority, model, status, created_at, started_at
+            SELECT id, client_id, priority, job_type, model, status, created_at, started_at
             FROM gpu_jobs
             WHERE status IN ('pending', 'running')
             ORDER BY priority ASC, created_at ASC
@@ -407,10 +603,42 @@ def usage(authorization: str | None = Header(default=None)):
     return {"usage": [dict(r) for r in rows]}
 
 
+@app.get(f"{API_PREFIX}/gpu/events")
+def events(authorization: str | None = Header(default=None), limit: int = 50):
+    """Recent events from the engine event bus (job start / done / error)."""
+    _require_auth(authorization)
+    limit = min(max(1, limit), 500)
+    with _db() as conn:
+        rows = conn.execute(
+            "SELECT id, event_type, engine, job_id, detail_json, ts FROM gpu_events ORDER BY ts DESC LIMIT ?",
+            (limit,),
+        ).fetchall()
+    return {
+        "events": [
+            {**dict(r), "detail": json.loads(r["detail_json"] or "{}")}
+            for r in rows
+        ]
+    }
+
+
 # ──────────────────────────────────────────────
 # Startup
 # ──────────────────────────────────────────────
 
 init_db()
-_thread = threading.Thread(target=_worker_loop, daemon=True)
-_thread.start()
+
+# GPU worker: handles ollama + comfyui lanes.
+_gpu_thread = threading.Thread(
+    target=_worker_loop,
+    args=("gpu-worker", GPU_LANES, _gpu_worker_lock, _gpu_wakeup),
+    daemon=True,
+)
+_gpu_thread.start()
+
+# CPU worker: handles voice + embedding lanes concurrently with GPU work.
+_cpu_thread = threading.Thread(
+    target=_worker_loop,
+    args=("cpu-worker", CPU_LANES, _cpu_worker_lock, _cpu_wakeup),
+    daemon=True,
+)
+_cpu_thread.start()

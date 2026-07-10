@@ -9,6 +9,14 @@ FROM python:3.12-slim
 
 WORKDIR /repo
 
+# espeak-ng: required for the voice CPU lane (text-to-speech synthesis via espeak-ng).
+# libespeak-ng1 is the runtime library; espeak-ng-data provides the voice data files
+# (including Hawaiian 'haw' and English variants). ffmpeg is used by audio post-processing.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    espeak-ng \
+    espeak-ng-data \
+    && rm -rf /var/lib/apt/lists/*
+
 # Union of services/*/requirements.txt (fastapi, uvicorn[standard], requests, python-dotenv).
 COPY services/auth/requirements.txt /tmp/req-auth.txt
 COPY services/tenant/requirements.txt /tmp/req-tenant.txt
