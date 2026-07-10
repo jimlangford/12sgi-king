@@ -1,11 +1,11 @@
 {
  "Batangan": {
-  "meetings": 16,
-  "ayes": 67,
+  "meetings": 17,
+  "ayes": 84,
   "noes": 0,
   "recused": 1,
   "excused": 0,
-  "total_votes": 67,
+  "total_votes": 84,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -310,6 +310,78 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": [
@@ -353,12 +425,12 @@
   ]
  },
  "Cook": {
-  "meetings": 16,
-  "ayes": 70,
+  "meetings": 17,
+  "ayes": 94,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 70,
+  "total_votes": 94,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -687,17 +759,105 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Johnson": {
-  "meetings": 16,
-  "ayes": 65,
+  "meetings": 17,
+  "ayes": 88,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 65,
+  "total_votes": 88,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -1010,17 +1170,89 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Lee": {
-  "meetings": 16,
-  "ayes": 70,
+  "meetings": 17,
+  "ayes": 95,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 70,
+  "total_votes": 95,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -1357,17 +1589,105 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Paltin": {
-  "meetings": 16,
-  "ayes": 62,
+  "meetings": 17,
+  "ayes": 82,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 62,
+  "total_votes": 82,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -1672,17 +1992,81 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Rawlins-Fernandez": {
-  "meetings": 16,
-  "ayes": 62,
+  "meetings": 17,
+  "ayes": 87,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 62,
+  "total_votes": 87,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -1987,17 +2371,105 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Sinenci": {
-  "meetings": 16,
-  "ayes": 69,
+  "meetings": 17,
+  "ayes": 94,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 69,
+  "total_votes": 94,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -2318,17 +2790,105 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Sugimura": {
-  "meetings": 16,
-  "ayes": 35,
+  "meetings": 17,
+  "ayes": 49,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 35,
+  "total_votes": 49,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -2489,17 +3049,73 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
  },
  "Uu-Hodgins": {
-  "meetings": 16,
-  "ayes": 67,
+  "meetings": 17,
+  "ayes": 92,
   "noes": 0,
   "recused": 0,
   "excused": 0,
-  "total_votes": 67,
+  "total_votes": 92,
   "vote_log": [
    {
     "date": "2026-05-15",
@@ -2812,6 +3428,94 @@
     "vote": "AYE",
     "result": "PASSED",
     "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 73",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "Bill 68",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL 96",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 78",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "BILL NO. 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
+   },
+   {
+    "date": "2026-07-07",
+    "item": "CC 26-22",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1384/files/minutes/5904"
    }
   ],
   "recusals": []
