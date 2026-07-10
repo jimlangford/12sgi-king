@@ -1,0 +1,19 @@
+# Docker build context allowlist (2026-07-09 fleet review V2-DOCK-2).
+# docker-compose.v2.yml builds with context: '.' (the repo root), so WITHOUT this file the ENTIRE
+# 12sgi-king tree streams to the Docker daemon on every build -- including king_private_src/ (the
+# private corporate data room / cap table / investor / charter that .gitignore marks NEVER-public),
+# config/ (Stripe + secret configs), .env*, and the private cross-thread bus .dispatch_log.jsonl.
+# The shipped image only COPYs services/, so today none of that lands in a layer -- but streaming the
+# private/secret tree into the build VM every build is needless exposure, and one careless future
+# `COPY . .` would bake secrets into an image. Deny-by-default: exclude everything, re-include only
+# what the build needs.
+*
+
+# Re-include ONLY the build inputs the services/Dockerfile actually uses.
+!services/
+
+# Even inside services/, never ship caches or local state.
+services/**/__pycache__/
+services/**/*.pyc
+services/**/*.db
+services/**/.env*

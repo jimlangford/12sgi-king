@@ -26,6 +26,7 @@ import os
 import sqlite3
 import threading
 import time
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from typing import Any
 from urllib import error, request
@@ -85,10 +86,18 @@ app = FastAPI(title="govOS GPU Router", version=VERSION)
 # DB
 # ──────────────────────────────────────────────
 
-def _db() -> sqlite3.Connection:
+@contextmanager
+def _db():
+    # sqlite3.Connection.__exit__ only commits/rolls back -- it does not close the connection.
+    # Same leak found+fixed across services/{ai,auth,tenant,documents,storage}/app/main.py
+    # 2026-07-09; worst offender here since _worker_loop polls _db() in a `while True:` loop.
+    # Transactional behavior at call sites is unchanged.
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 def init_db() -> None:
     with _db() as conn:

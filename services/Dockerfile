@@ -23,6 +23,17 @@ RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
 # Bring in only what the v2 backend needs at runtime (not the whole civic site/watchers tree).
 COPY services/ /repo/services/
 
+# Non-root runtime (2026-07-09 fleet review V2-DOCK-3). uvicorn binds ports >1024 (8000/8101-8107)
+# and needs ZERO Linux capabilities, so nothing here requires root. Running as an unprivileged uid
+# shrinks the blast radius of any future dependency-CVE / endpoint compromise on the owner's machine.
+# /data (the named volumes v2-db + v2-dispatch, mounted by compose) must be writable by this uid --
+# Docker creates named-volume mount points owned by the container's runtime user on first mount, and
+# these services only ever write under /data, so uid 10001 owning nothing at build time is fine.
+RUN useradd -u 10001 -m -s /usr/sbin/nologin app \
+    && mkdir -p /data/db /data/dispatch \
+    && chown -R app:app /data /repo
+USER app
+
 EXPOSE 8000 8101 8102 8103 8104 8105 8107
 
 # Overridden per-service by docker-compose.v2.yml `command:`.
