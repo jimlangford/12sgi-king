@@ -403,6 +403,10 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertEqual(snap['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertEqual(snap['counts']['forecasts'], 6)
         self.assertGreaterEqual(snap['counts']['elements'], 1)
+        self.assertEqual(
+            snap['counts']['forecast_elements'],
+            snap['counts']['forecasts'] * snap['counts']['elements'],
+        )
         self.assertEqual(snap['place_tuning']['model'], 'human_residence_frequencies')
         self.assertEqual(snap['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
         self.assertEqual(snap['place_tuning']['audit_status'], 'audited')
@@ -431,6 +435,10 @@ class TestPulseGeometry(unittest.TestCase):
         )
         self.assertEqual(payload['counts']['forecasts'], 6)
         self.assertGreaterEqual(payload['counts']['elements'], 1)
+        self.assertEqual(
+            payload['counts']['forecast_elements'],
+            payload['counts']['forecasts'] * payload['counts']['elements'],
+        )
         self.assertEqual(payload['counts']['residence_frequencies'], 4)
 
     def test_forecasts_cover_month_quarter_year(self):
@@ -443,6 +451,7 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertTrue(all('residence_frequency_counts' in row for row in snap['forecasts']))
         self.assertTrue(all('chakra_counts' in row for row in snap['forecasts']))
         self.assertTrue(all('element_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all(set(row['element_counts']) == set(pulse_geometry._DEFAULT_ELEMENTS) for row in snap['forecasts']))
 
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
