@@ -6,9 +6,10 @@ The second layer borrowed from docker/genai-stack (a VECTOR store) — on our te
   - store: the SAME local Neo4j (graph + vector in one place). Neo4j 5 native vector index, cosine, 768-dim.
   - NO LangChain, NO pip driver — stdlib urllib to both Ollama (:11434) and Neo4j HTTP (:7474).
 
-Embeds the sourced civic records (chain flows + 990 nonprofits) so you can ask in plain language —
-  "Lahaina homeless housing grants", "engineering firms with county contracts" — and get the right
-  sourced records back, then hop into the graph from there.
+Embeds the sourced civic records (chain flows + 990 nonprofits + the donor-bloc network) so you can ask
+  in plain language — "Lahaina homeless housing grants", "engineering firms with county contracts",
+  "who funds multiple Council members at once" — and get the right sourced records back, then hop into
+  the graph from there.
 
   python tools/kilo-aupuni/graph_vectors.py --build            # embed + index (idempotent)
   python tools/kilo-aupuni/graph_vectors.py --query "..."      # semantic search
@@ -96,7 +97,8 @@ def embed(text):
 
 
 def gather_docs():
-    """Sourced civic records to embed: chain flows + 990 nonprofits. Each carries its provenance."""
+    """Sourced civic records to embed: chain flows + 990 nonprofits + the donor-bloc network. Each carries
+    its provenance."""
     docs = []
     mauios = _resolve_mauios_dir()
     # chain flows (money_chain_maui.json)
@@ -134,6 +136,24 @@ def gather_docs():
                          "source_type": r.get("source_type", "sourced")})
     except Exception as ex:
         say("nonprofit docs skipped: %s" % str(ex)[:100])
+    # donor-bloc network (collusion_graph.py's write_bloc_json output, added 2026-07-10: "use the
+    # graphing system to relearn our skills on the local AI" — the bloc was computed + loaded into Neo4j
+    # and rendered to donor_bloc.html all along, but had no structured file for THIS embedding layer to
+    # read, so the local semantic search never learned it. donor_bloc.json closes that gap.)
+    try:
+        bd = json.load(open(os.path.join(MAUIOS, "donor_bloc.json"), encoding="utf-8"))
+        for i, b in enumerate(bd.get("bloc", [])):
+            reps_s = ", ".join(sorted((b.get("reps") or {}).keys()))
+            total = b.get("total") or 0
+            txt = "Donor bloc: %s (%s) funds %d Council member(s) at once (%s), total $%s.%s" % (
+                b.get("donor", ""), str(b.get("kind", "")).replace("_", " "), b.get("n_reps", 0), reps_s,
+                "{:,.0f}".format(total),
+                (" Vendor tie: %s ($%s in county awards)." % (b.get("vendor"), "{:,.0f}".format(b.get("award_total") or 0)))
+                if b.get("vendor") else "")
+            docs.append({"id": "bloc:%d" % i, "text": txt.strip(), "kind": "donor_bloc",
+                         "source_url": "", "source_type": "sourced"})
+    except Exception as ex:
+        say("donor-bloc docs skipped: %s" % str(ex)[:100])
     return docs
 
 

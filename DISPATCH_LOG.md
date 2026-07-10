@@ -5,6 +5,17 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-10 00:15 HST — donor-bloc network now feeds the local vector layer (Jimmy: "use the graphing system to relearn our skills on the local AI")
+**Thread:** collusion_graph.py / graph_vectors.py — close the gap between the Neo4j donor-bloc feature and the local semantic-search embedding layer  **From:** cowork session  **To:** King-server (host has the live Neo4j + Ollama; this session has neither)
+**Gap found:** `collusion_graph.py` computes the donor-bloc network (which donor/vendor entities fund 2+ Maui Council members at once) and loads it into Neo4j + renders `donor_bloc.html` — but never wrote a structured file. `graph_vectors.py`'s `gather_docs()` (the function that feeds Jimmy's host Ollama embeddings into the Neo4j vector index — i.e. what lets the local semantic-search "learn" the civic corpus) only ever read `money_chain_maui.json` + `nonprofits_maui.json`. The donor-bloc feature was invisible to the local AI's semantic search even though the data existed.
+**Built:** `collusion_graph.py` gains `write_bloc_json()` — writes `donor_bloc.json` (bloc rows: donor, kind, n_reps, per-rep $, total, vendor tie, matched TMKs, + provenance/sources block), called from `main()` right after `donor_bloc.html` renders. `graph_vectors.py`'s `gather_docs()` gains a third source block that reads `donor_bloc.json` and turns each bloc row into one sourced, embeddable sentence (`kind: "donor_bloc"`). `graph_refresh.py` needed no change — it already calls `chain_to_graph.load()` + `graph_vectors.build()` on the Hina cadence, so this flows through automatically once `collusion_graph.py` has run at least once on the host.
+**Verification (this session has no Neo4j/Ollama, so no live embed/query — verified everything short of that):** `python -m py_compile` on both files; a standalone dry run with synthetic bloc rows confirmed `write_bloc_json()` produces valid JSON and `gather_docs()` correctly reads it back into two clean, sourced doc strings ("Donor bloc: Hawaii Realtors PAC (realestate donor) funds 5 Council member(s) at once... total $18,000." etc.); full `build_site.py` rebuild + `audit_links.py` + the CI reconcile gate all still clean/unchanged — neither file is in the static-build path, so nothing there was at risk.
+**Result:** wiring is in place and unit-verified; **awaiting a host run** (`python collusion_graph.py` then `python graph_vectors.py --build`, or just let `graph_refresh.py`'s Hina tick pick it up) to actually embed it live and confirm a `--query "who funds multiple council members"` returns the bloc rows.
+
+---
+
+---
+
 ## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
 
 **Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review

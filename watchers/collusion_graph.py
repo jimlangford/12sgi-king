@@ -17,11 +17,13 @@ Representative/Donor/Vendor/Parcel, property layer='silencing_audit').
   python tools/kilo-aupuni/collusion_graph.py            # compute + load Neo4j + render the console page
 """
 import io, json, os, re, sys, urllib.error, urllib.parse, urllib.request
+from datetime import datetime, timezone, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(os.path.dirname(HERE))
 MAUIOS = os.path.join(PROJ, "reports", "mauios")
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
+HST = timezone(timedelta(hours=-10))
 sys.path.insert(0, HERE)
 import testimony_effect_map as tem  # reuse the REAL GIS TMK/centroid lookup — never duplicate it
 
@@ -299,6 +301,41 @@ def render_page(reps, bloc, tmk_by_entity, centroids):
     return out_path
 
 
+# ---------- 5) machine-readable output (Jimmy 2026-07-10: "use the graphing system to relearn our skills
+#    on the local AI") — until now build_network()'s bloc list only ever reached a human via donor_bloc.html
+#    prose; graph_vectors.py's gather_docs() (the embedding layer that lets the local Ollama-backed semantic
+#    search "learn" the civic corpus) had nothing structured to read for this feature and so never embedded
+#    it. This writes the SAME computed bloc (+ the parcel matches already resolved by bloc_locations()) as
+#    donor_bloc.json, sitting next to donor_bloc.html — graph_vectors.gather_docs() picks it up from there.
+def write_bloc_json(bloc, tmk_by_entity, centroids):
+    rows = []
+    for b in bloc:
+        rows.append({
+            "donor": b["donor"], "kind": b["kind"], "n_reps": b["n_reps"],
+            "reps": b["reps"], "total": b["total"],
+            "vendor": b.get("vendor"), "award_total": b.get("award_total"),
+            "tmks": sorted(tmk_by_entity.get(b["donor"], [])),
+        })
+    payload = {
+        "generated": datetime.now(HST).strftime("%Y-%m-%d %H:%M HST"),
+        "note": "Donor/vendor entities that fund 2+ of the 9 current Maui Council members simultaneously. "
+                "A structural pattern to question, never proof any vote was bought or coordinated — see "
+                "donor_bloc.html for the full honest framing. Same computation as the Neo4j load in this "
+                "module (load_neo4j); this file exists so downstream tools (e.g. graph_vectors.py's local "
+                "semantic-search embedding layer) have a structured artifact to read, not just prose.",
+            "sources": ["Hawaii Campaign Spending Commission (donations)", "HANDS Notice-of-Award (contracts)",
+                    "Hawaii Statewide GIS ParcelsZoning (parcel locations)",
+                    "Maui County CivicClerk (vote record, 34 joint bills reviewed)"],
+        "bloc": rows,
+    }
+    out_path = os.path.join(MAUIOS, "donor_bloc.json")
+    tmp = out_path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, out_path)
+    return out_path
+
+
 def main():
     print("computing the donor-bloc network from sourced data...")
     reps, donors, bloc = build_network()
@@ -320,6 +357,10 @@ def main():
     print("\nrendering the graphic console page...")
     out = render_page(reps, bloc, tmk_by_entity, centroids)
     print("wrote", out)
+
+    print("\nwriting the structured artifact (so the local vector layer can learn it too)...")
+    jout = write_bloc_json(bloc, tmk_by_entity, centroids)
+    print("wrote", jout, "— run graph_vectors.py --build to embed it")
 
 
 if __name__ == "__main__":
