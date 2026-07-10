@@ -1230,6 +1230,19 @@ def main():
                 with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_kgo)
             print("  + go.html: live/mirror failover launcher (root + king/)")
+    with _lane("element_lotus_public_shell"):
+        # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
+        # interactive games on static Pages while WordPress can remain the narrative/brand shell.
+        _elsrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "element_lotus_public")
+        if os.path.isdir(_elsrc):
+            _copied = []
+            for _name in sorted(os.listdir(_elsrc)):
+                _src = os.path.join(_elsrc, _name)
+                if os.path.isfile(_src):
+                    shutil.copy(_src, os.path.join(SITE, _name))
+                    _copied.append(_name)
+            if _copied:
+                print("  + Element Lotus shell: %d public studio file(s) (games/films/music first)" % len(_copied))
     with _lane("static_pages"):
         # [no-access] friendly 404 — GitHub Pages serves /404.html for any missing OR owner-only path
         # (e.g. case_files.html), explaining it's a private surface by design instead of a bare 404.
@@ -1371,41 +1384,21 @@ Sources are linked on every page.</div>
         # contexts (public site root + king-local, where index.html is the King shell).
         with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
             f.write(index)
-    with _lane("govos_signup_landing"):
-        # [front door = go.html] Jimmy 2026-06-16: the Quad-OS launcher (go.html) is the SAME consistent entry on
-        # EVERY surface — public root AND the Tailscale King (king-local mirrors site/index.html below). The civic
-        # hub lives on at reports.html (go.html's "govOS — home" card points there). One look, every front door.
-        # 12sgi.com HOMEPAGE = the govOS CLIENT signup landing (Jimmy 2026-06-19: "the home page of 12sgi.com
-        # = what a govOS client would see to sign up"). go.html stays the PRIVATE launcher at /go.html.
-        _landing = os.path.join(SITE, "king", "govos_signup.html")
-        _go_built = os.path.join(SITE, "go.html")   # the internal Quad-OS launcher (FTM map injected) — stays at /go.html
-        _idx_src = _landing if os.path.exists(_landing) else _go_built
+    with _lane("public_front_door"):
+        # [front door] The public root now leads with the Element Lotus studio shell while preserving
+        # /games/, /sage/, the civic hub at reports.html, and the private launcher at /go.html.
+        _studio_root = os.path.join(SITE, "index.html")
+        _govos_fallback = os.path.join(SITE, "king", "govos_signup.html")
+        _go_built = os.path.join(SITE, "go.html")
+        _idx_src = _studio_root if os.path.exists(_studio_root) else (_govos_fallback if os.path.exists(_govos_fallback) else _go_built)
         if os.path.exists(_idx_src):
-            _idx_html = open(_idx_src, encoding="utf-8", errors="ignore").read()
-            # govos_signup.html is authored for king/ context (uses ../ for root-level paths).
-            # When deployed to site/index.html (root), strip the leading ../ so links resolve correctly.
-            def _root_href(m):
-                h = m.group(1)
-                if h.startswith('../'):
-                    return 'href="%s"' % h[3:]
-                return 'href="%s"' % h
-            _idx_html = re.sub(r'href="([^"]*)"', _root_href, _idx_html)
-            # Same root-promotion problem hits the crown/gov-lands map's local GeoJSON snapshot
-            # fetch() calls: authored king/-relative ('gis/hawaii_*.geojson'), but those files only
-            # exist at king/gis/ -- at root they'd 404 and silently fall through to the live ArcGIS
-            # service every time, defeating the point of committing the snapshot. Rewrite just those
-            # two JS string literals to point at king/gis/ when promoted to the root index.html.
-            _idx_html = re.sub(
-                r"(GEO_(?:DHHL|GOV)\s*=\s*')gis/", r"\1king/gis/", _idx_html)
-            with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
-                f.write(_idx_html)
-            print("  + index.html = %s (12sgi.com public front door = govOS client signup; go.html stays the private launcher)" % os.path.basename(_idx_src))
+            print("  + index.html = %s (public front door: studio-first shell; go.html stays the private launcher)" % os.path.basename(_idx_src))
     with _lane("cname"):
-        # GitHub Pages custom domain: serve the civic engine (govOS) at 12sgi.com (Jimmy 2026-06-18).
+        # GitHub Pages custom domain for the public mirror / interactive artifacts at 12sgi.com.
         # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build
-        # (site/ is wiped each run). elementlotus.com = brand (WordPress); 12sgi.com = govOS (this site).
+        # (site/ is wiped each run). elementlotus.com = WordPress brand shell; 12sgi.com = static mirror + games + civic artifacts.
         open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8").write("12sgi.com\n")
-        print("  + CNAME = 12sgi.com (GitHub Pages custom domain for govOS)")
+        print("  + CNAME = 12sgi.com (GitHub Pages custom domain for the public mirror)")
     with _lane("buildinfo_json"):
         # BUILD MARKER for git-awareness (Jimmy 2026-07-03): stamp the deployed commit into the
         # artifact so the state-based sense-organ can read the LIVE sha directly (one curl of
