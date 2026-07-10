@@ -17,6 +17,8 @@ from services.v2_workboard import (
     resolve_workboard_job,
     selfheal_engineering_jobs,
 )
+from watchers import pulse_geometry
+import importlib.util
 
 
 class TestV2ContractFiles(unittest.TestCase):
@@ -389,6 +391,58 @@ class TestWorkboardLanes(unittest.TestCase):
         self.assertEqual(original['lane'], 'creative')
         self.assertEqual(original['status'], 'queued')
         self.assertEqual(original['kind'], 'job')
+
+
+class TestPulseGeometry(unittest.TestCase):
+    def test_snapshot_meets_minimum_geometry(self):
+        snap = pulse_geometry.snapshot(sample_cells=4)
+        self.assertGreaterEqual(snap['counts']['lanes'], pulse_geometry.MIN_LANES)
+        self.assertGreaterEqual(snap['counts']['skills'], pulse_geometry.MIN_SKILLS)
+        self.assertGreaterEqual(snap['counts']['cells'], pulse_geometry.MIN_LANES * pulse_geometry.MIN_SKILLS)
+        self.assertTrue(snap['geometry_complete'])
+
+    def test_cells_carry_pulse_engine_fields(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        cell = snap['cells_sample'][0]
+        for field in ('trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance'):
+            self.assertIn(field, cell)
+
+    def test_graph_payload_is_cartesian(self):
+        payload = pulse_geometry.build_graph_payload()
+        self.assertEqual(
+            payload['counts']['cells'],
+            payload['counts']['lanes'] * payload['counts']['skills'],
+        )
+
+
+class TestPulseGeometryApiSurface(unittest.TestCase):
+    def test_v2_main_declares_pulse_routes(self):
+        text = (ROOT / 'v2' / 'app' / 'main.py').read_text(encoding='utf-8')
+        self.assertIn('/pulse/geometry', text)
+        self.assertIn('/pulse/geometry/refresh', text)
+
+    def test_snapshot_handler_returns_geometry_summary(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        body = v2_main.pulse_geometry_snapshot()
+        self.assertEqual(body['layer'], pulse_geometry.LAYER)
+        self.assertTrue(body['geometry_complete'])
+        self.assertLessEqual(len(body['lane_sample']), 6)
+        self.assertLessEqual(len(body['skill_sample']), 6)
+
+    def test_refresh_handler_returns_layer(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original = v2_main.pulse_geometry.refresh
+        v2_main.pulse_geometry.refresh = lambda: True
+        try:
+            body = v2_main.refresh_pulse_geometry()
+        finally:
+            v2_main.pulse_geometry.refresh = original
+        self.assertEqual(body['layer'], pulse_geometry.LAYER)
+        self.assertTrue(body['refreshed'])
 
 
 if __name__ == '__main__':
