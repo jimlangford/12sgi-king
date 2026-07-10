@@ -111,6 +111,10 @@ Planned modules (phase 2):
 --------------
 - All major architecture changes must be documented here and reviewed by platform leads
 - Each module must register a maintainer and include an OWNERS entry or CODEOWNERS rule
+- See docs/adr/ADR-006-Ordinance-Level-Charter-Crosswalk.md — the Charter Crosswalk module
+  (watchers/charter_crosswalk.py) now carries ordinance-level detail for tenants with a sourced
+  per-ordinance corpus (Maui only, today); CANON.md's "Apex Spine" section documents the model so it is
+  extended (never forked or fabricated) as more tenants build their own corpora.
 
 16. Completion governance rubric
 --------------------------------

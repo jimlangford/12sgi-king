@@ -5,6 +5,15 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-10 01:35 HST — Ordinance-crosswalk decision registered in QUAD OS's own canonical architecture doc
+**Thread:** follow-up to the apex/church ordinance crosswalk (previous entry) — Jimmy: "my Quad OS software on the code side has that info"
+**Found:** `docs/QUAD_OS_MASTER_ARCHITECTURE.md` is this platform's own stated "canonical architecture reference" (its own header: "All new services, modules, and high-level design decisions should reference this document"), with a Governance section (§15) requiring exactly that. It had no entry for the Charter Crosswalk module or the ordinance-level extension just built.
+**Built:** `docs/adr/ADR-006-Ordinance-Level-Charter-Crosswalk.md` — a proper ADR (Context/Decision/Consequences/Alternatives/Future Evolution, matching ADR-001..005's format) recording the ordinance-crosswalk decision, why it's Maui-only today, and why fabricating ordinance data for the other 14 tenants was rejected. `QUAD_OS_MASTER_ARCHITECTURE.md` §15 now points to it.
+**Verification:** `tools/reconcile.py --scan docs/adr md` — clean, no duplicate-content clusters against the existing 5 ADRs.
+**Result:** the ordinance-crosswalk + CANON.md apex/church work from the previous entry is now registered where this platform's own rules say architecture decisions belong.
+
+---
+
 ## 2026-07-10 01:10 HST — Ordinance-level crosswalk (Maui) + CANON.md documents the apex/church hierarchy
 **Thread:** charter_crosswalk.py — "update the corporate canon... adding the rules and details of each tenant's jurisdictions as they relate to the apex and church"  **From:** cowork session  **To:** King-server / next agent
 **Read first:** every one of the 17 tenants already had all 8 governance-function cells filled in `crosswalk_local.json` (transparency/conflict/sunshine/fiduciary/sacred/enforcement/culture/selfdet), each already citing real local + apex-spine + Holy See law. Nothing was missing at that level — so this pass goes one level DOWN, per real ordinance, and only where a sourced ordinance corpus exists: **Maui only** (the 17-title MCC digital-twin engine). Extending fabricated ordinance citations to the other 14 tenants (none of which have an equivalent per-ordinance corpus built) would mean inventing law, which this project never does — logged as the reason the other tenants are untouched.
