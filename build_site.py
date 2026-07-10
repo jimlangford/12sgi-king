@@ -1136,6 +1136,19 @@ def main():
                   % len([f for f in os.listdir(os.path.join(_gsrc, "assets", "cards"))
                          if f.endswith(".jpg")] if os.path.isdir(os.path.join(_gsrc, "assets", "cards")) else []))
 
+    with _lane("games_hub"):
+        # [games] TribeGameStudios hub at /games/ — all cultural games in one always-up catalog.
+        # Extends the sage_game lane pattern: pure static HTML, zero external deps, leak-clean.
+        # Sources: game_studio/ (hub + 4 new games) + /sage/ (existing SAGE game, stays at /sage/).
+        _ghsrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "game_studio")
+        if os.path.isdir(_ghsrc):
+            _ghdst = os.path.join(SITE, "games")
+            if os.path.isdir(_ghdst):
+                shutil.rmtree(_ghdst, ignore_errors=True)
+            shutil.copytree(_ghsrc, _ghdst)
+            _gh_files = [f for f in os.listdir(_ghsrc) if f.endswith(".html")]
+            print("  + games/: TribeGameStudios hub (%d HTML games, static, always-up)" % len(_gh_files))
+
     with _lane("king_public_system"):
         # [king-system] publish the public King System shell at /king/
         _ksrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "king_public_src")
