@@ -2,9 +2,10 @@
 """graph_refresh.py — keep the LOCAL civic graph+vector store current, on the Hina cadence. FREE.
 
 Runs on the sunset (hina/pō) edge — civic/record work rides Hina, not a wall clock (Jimmy 2026-07-08).
-Reloads the Maui money-chain into Neo4j (chain_to_graph) then refreshes the vector index from the host
-Ollama embeddings (graph_vectors). Zero Claude tokens. Resilient: if the Neo4j container or Ollama is
-down it logs and skips — never crashes the maintenance tick.
+Reloads the Maui money-chain into Neo4j (chain_to_graph), refreshes the vector index from the host
+Ollama embeddings (graph_vectors), then refreshes the additive PRIVATE skill/workboard spine
+(private_spine). Zero Claude tokens. Resilient: if Neo4j or Ollama is down it logs and skips — never
+crashes the maintenance tick.
 """
 import os, sys
 
@@ -27,7 +28,14 @@ def main():
         if G.load():                       # graph reloaded (returns False + logs if Neo4j is down)
             import graph_vectors as V
             V.build()                      # vector index refreshed from host Ollama
-            _say("graph_refresh: graph + vectors current (Hina).")
+            spine_note = "private spine skipped"
+            try:
+                import private_spine as P
+                if P.refresh():
+                    spine_note = "private spine current"
+            except Exception as spine_exc:
+                _say("graph_refresh spine skip: %s" % str(spine_exc)[:160])
+            _say(f"graph_refresh: graph + vectors current ({spine_note}, Hina).")
         else:
             _say("graph_refresh: Neo4j unreachable — skipped (no crash).")
     except Exception as e:
