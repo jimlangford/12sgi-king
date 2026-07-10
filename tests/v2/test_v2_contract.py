@@ -404,6 +404,9 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertEqual(snap['counts']['forecasts'], 6)
         self.assertEqual(snap['place_tuning']['model'], 'human_residence_frequencies')
         self.assertEqual(snap['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertEqual(snap['place_tuning']['audit_status'], 'audited')
+        self.assertEqual(snap['place_tuning']['serves'], 'humans')
+        self.assertFalse(snap['place_tuning']['experiments_enabled'])
         self.assertEqual(len(snap['residence_frequencies']), 4)
 
     def test_cells_carry_pulse_engine_fields(self):
@@ -452,6 +455,7 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertLessEqual(len(body['lane_sample']), 6)
         self.assertLessEqual(len(body['skill_sample']), 6)
         self.assertEqual(body['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
+        self.assertFalse(body['place_tuning']['experiments_enabled'])
         self.assertEqual(len(body['residence_frequency_sample']), 4)
 
     def test_refresh_handler_returns_layer(self):
