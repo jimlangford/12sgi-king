@@ -1387,11 +1387,12 @@ Sources are linked on every page.</div>
     with _lane("public_front_door"):
         # [front door] The public root now leads with the Element Lotus studio shell while preserving
         # /games/, /sage/, the civic hub at reports.html, and the private launcher at /go.html.
-        _studio_root = os.path.join(SITE, "index.html")
+        _studio_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "element_lotus_public", "index.html")
         _govos_fallback = os.path.join(SITE, "king", "govos_signup.html")
         _go_built = os.path.join(SITE, "go.html")
         _idx_src = _studio_root if os.path.exists(_studio_root) else (_govos_fallback if os.path.exists(_govos_fallback) else _go_built)
         if os.path.exists(_idx_src):
+            shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
             print("  + index.html = %s (public front door: studio-first shell; go.html stays the private launcher)" % os.path.basename(_idx_src))
     with _lane("cname"):
         # GitHub Pages custom domain for the public mirror / interactive artifacts at 12sgi.com.
