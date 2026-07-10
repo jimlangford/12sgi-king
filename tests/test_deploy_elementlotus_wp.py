@@ -63,6 +63,24 @@ class TestDeployElementLotusWp(unittest.TestCase):
             saved_manifest = json.loads((out / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(saved_manifest['pages'][0]['output'], 'front-page.html')
 
+    def test_checked_in_bundle_matches_current_public_shell(self):
+        tracked = ROOT / 'content' / 'wordpress' / 'element_lotus'
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = deploy_elementlotus_wp.build(out_dir=Path(tmp))
+            tracked_files = {'additional-css.css', 'manifest.json'}
+            tracked_files.update(page['output'] for page in manifest['pages'])
+            for name in sorted(tracked_files):
+                with self.subTest(name=name):
+                    generated = (Path(tmp) / name).read_text(encoding='utf-8')
+                    committed = (tracked / name).read_text(encoding='utf-8')
+                    self.assertEqual(
+                        generated,
+                        committed,
+                        f"{name} is out of sync with element_lotus_public/. Run "
+                        "python /home/runner/work/12sgi-king/12sgi-king/watchers/deploy_elementlotus_wp.py "
+                        "and re-apply the bundle in WordPress.",
+                    )
+
 
 if __name__ == '__main__':
     unittest.main()

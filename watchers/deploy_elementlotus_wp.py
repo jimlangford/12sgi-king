@@ -218,3 +218,4 @@ if __name__ == "__main__":
     print("deploy_elementlotus_wp: built WordPress rebuild bundle ->", OUT_DIR)
     print("  pages:", len(manifest["pages"]))
     print("  css: additional-css.css")
+    print("  NEXT: paste/apply the bundle from", OUT_DIR, "into WordPress after any element_lotus_public/ change")

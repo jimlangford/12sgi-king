@@ -167,6 +167,12 @@ Run:
 python /home/runner/work/12sgi-king/12sgi-king/watchers/deploy_elementlotus_wp.py
 ```
 
+Operational rule:
+
+- whenever `/home/runner/work/12sgi-king/12sgi-king/element_lotus_public/` changes, rerun the builder above
+- then paste/apply the refreshed bundle from `/home/runner/work/12sgi-king/12sgi-king/content/wordpress/element_lotus/` into WordPress
+- `python -m unittest tests.test_deploy_elementlotus_wp` now fails if the committed WordPress bundle drifts from the public shell source
+
 The bundle generates:
 
 - one WordPress-ready page fragment per public Element Lotus page
