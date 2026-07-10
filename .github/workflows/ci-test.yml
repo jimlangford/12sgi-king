@@ -43,3 +43,31 @@ jobs:
 
       - name: Run v2 full-stack integration tests
         run: python -m unittest tests.v2.test_v2_integration_stack
+
+  v2-hardening-tests:
+    # Regression coverage for the 2026-07-09 pass: the auth fail-closed dev-secret guard and the
+    # ai service's grounded/ungrounded correctness split (see tests/v2/test_v2_hardening.py).
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          for svc in auth ai; do
+            python -m pip install -r "services/$svc/requirements.txt"
+          done
+          # httpx powers fastapi.testclient.TestClient (used by test_v2_hardening.py) -- it is a
+          # test-only dependency, not a runtime dependency of the auth/ai services, so it lives
+          # here rather than in either service's requirements.txt.
+          python -m pip install httpx
+
+      - name: Run v2 hardening regression tests
+        run: python -m unittest tests.v2.test_v2_hardening
