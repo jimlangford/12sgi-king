@@ -483,6 +483,8 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         text = (ROOT / 'v2' / 'app' / 'main.py').read_text(encoding='utf-8')
         self.assertIn('/pulse/geometry', text)
         self.assertIn('/pulse/geometry/refresh', text)
+        self.assertIn('/graph/status', text)
+        self.assertIn('/graph/refresh', text)
 
     def test_snapshot_handler_returns_geometry_summary(self):
         if importlib.util.find_spec('fastapi') is None:
@@ -515,6 +517,43 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
             v2_main.pulse_geometry.refresh = original
         self.assertEqual(body['layer'], pulse_geometry.LAYER)
         self.assertTrue(body['refreshed'])
+
+    def test_graph_status_handler_returns_stack_summary(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original = v2_main.graph_refresh.status
+        v2_main.graph_refresh.status = lambda: {'boundary': 'PRIVATE', 'graph_stack_version': '5.2'}
+        try:
+            body = v2_main.graph_status()
+        finally:
+            v2_main.graph_refresh.status = original
+        self.assertEqual(body['boundary'], 'PRIVATE')
+        self.assertEqual(body['graph_stack_version'], '5.2')
+
+    def test_graph_refresh_handler_returns_status_payload(self):
+        if importlib.util.find_spec('fastapi') is None:
+            raise unittest.SkipTest('fastapi is not installed in this environment')
+        import v2.app.main as v2_main
+        original_refresh = v2_main.graph_refresh.refresh
+        original_status = v2_main.graph_refresh.status
+        calls = []
+        v2_main.graph_refresh.refresh = lambda mode, reason, targets: calls.append((mode, reason, targets)) or True
+        v2_main.graph_refresh.status = lambda: {'status': 'idle', 'requested_targets': ['pulse_geometry']}
+        try:
+            body = v2_main.refresh_graph(
+                v2_main.GraphRefreshRequest(
+                    mode='incremental',
+                    reason='unit-test',
+                    targets=['pulse_geometry'],
+                )
+            )
+        finally:
+            v2_main.graph_refresh.refresh = original_refresh
+            v2_main.graph_refresh.status = original_status
+        self.assertEqual(calls, [('incremental', 'unit-test', ['pulse_geometry'])])
+        self.assertTrue(body['refreshed'])
+        self.assertEqual(body['status']['requested_targets'], ['pulse_geometry'])
 
 
 if __name__ == '__main__':

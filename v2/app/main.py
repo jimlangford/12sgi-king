@@ -29,6 +29,7 @@ from services.v2_workboard import (
     reject_workboard_job,
     selfheal_engineering_jobs,
 )
+from watchers import graph_refresh
 from watchers import pulse_geometry
 
 app = FastAPI(
@@ -185,6 +186,25 @@ def refresh_pulse_geometry():
     """Project the pulse geometry lattice into Neo4j under its own additive layer."""
     ok = pulse_geometry.refresh()
     return {"refreshed": bool(ok), "layer": pulse_geometry.LAYER}
+
+
+@app.get("/graph/status")
+def graph_status():
+    """Return PRIVATE freshness/status for the v5.2 Neo4j graph stack."""
+    return graph_refresh.status()
+
+
+class GraphRefreshRequest(BaseModel):
+    mode: str = "full"
+    reason: str = "owner-manual"
+    targets: list[str] | None = None
+
+
+@app.post("/graph/refresh")
+def refresh_graph(body: GraphRefreshRequest):
+    """Refresh graph/vector/spine/pulse layers through the single PRIVATE ratchet."""
+    ok = graph_refresh.refresh(mode=body.mode, reason=body.reason, targets=body.targets)
+    return {"refreshed": bool(ok), "status": graph_refresh.status()}
 
 
 # ── Engineering self-heal (manual trigger) ────────────────────────────────────
