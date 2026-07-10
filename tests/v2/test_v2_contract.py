@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 from services.v2_workboard import (
     _batch_resolve_log,
     approve_workboard_job,
+    archive_workboard_job,
     emit_workboard_job,
     pending_approvals,
     read_workboard_log,
@@ -347,6 +348,61 @@ class TestWorkboardLanes(unittest.TestCase):
 
         reject_workboard_job(job_id, 'Not ready', log_path=self.log_path)
         self.assertEqual(len(pending_approvals(log_path=self.log_path)), 0)
+
+    # --- archive (soft-delete, any lane) ---
+
+    def test_archive_job(self):
+        job = emit_workboard_job(
+            source='svc', action='case.created', event='CASE',
+            lane='engineering', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+
+        tombstone = archive_workboard_job(job_id, 'owner', note='superseded by v2', log_path=self.log_path)
+
+        self.assertEqual(tombstone['kind'], 'tombstone')
+        self.assertEqual(tombstone['status'], 'archived')
+        self.assertEqual(tombstone['job']['action'], 'archived')
+        self.assertEqual(tombstone['job']['correlation_id'], job_id)
+        self.assertEqual(tombstone['job']['payload']['archiver'], 'owner')
+        self.assertEqual(tombstone['job']['payload']['note'], 'superseded by v2')
+
+    def test_archive_does_not_modify_original_entry(self):
+        job = emit_workboard_job(
+            source='svc', action='case.created', event='CASE',
+            lane='engineering', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+        archive_workboard_job(job_id, 'owner', log_path=self.log_path)
+
+        entries = read_workboard_log(self.log_path)
+        original = entries[0]
+        self.assertEqual(original['status'], 'queued')
+        self.assertEqual(original['kind'], 'job')
+        # archiving appended a second entry; it never rewrote the first
+        self.assertEqual(len(entries), 2)
+
+    def test_archive_removes_creative_job_from_pending(self):
+        job = emit_workboard_job(
+            source='svc', action='document.generated', event='DOC',
+            lane='creative', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+        self.assertEqual(len(pending_approvals(log_path=self.log_path)), 1)
+
+        archive_workboard_job(job_id, 'owner', log_path=self.log_path)
+        self.assertEqual(len(pending_approvals(log_path=self.log_path)), 0)
+
+    def test_archive_excludes_engineering_job_from_selfheal(self):
+        job = emit_workboard_job(
+            source='svc', action='case.created', event='CASE',
+            lane='engineering', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+        archive_workboard_job(job_id, 'owner', log_path=self.log_path)
+
+        healed = selfheal_engineering_jobs(log_path=self.log_path)
+        self.assertEqual(healed, 0)
 
     # --- pending_approvals only returns creative/output ---
 
