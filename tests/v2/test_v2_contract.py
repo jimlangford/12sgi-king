@@ -396,10 +396,12 @@ class TestWorkboardLanes(unittest.TestCase):
 class TestPulseGeometry(unittest.TestCase):
     def test_snapshot_meets_minimum_geometry(self):
         snap = pulse_geometry.snapshot(sample_cells=4)
-        self.assertGreaterEqual(snap['counts']['lanes'], pulse_geometry.MIN_LANES)
+        self.assertGreaterEqual(snap['counts']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertGreaterEqual(snap['counts']['skills'], pulse_geometry.MIN_SKILLS)
         self.assertGreaterEqual(snap['counts']['cells'], pulse_geometry.MIN_LANES * pulse_geometry.MIN_SKILLS)
         self.assertTrue(snap['geometry_complete'])
+        self.assertEqual(snap['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
+        self.assertEqual(snap['counts']['forecasts'], 6)
 
     def test_cells_carry_pulse_engine_fields(self):
         snap = pulse_geometry.snapshot(sample_cells=1)
@@ -413,6 +415,15 @@ class TestPulseGeometry(unittest.TestCase):
             payload['counts']['cells'],
             payload['counts']['lanes'] * payload['counts']['skills'],
         )
+        self.assertEqual(payload['counts']['forecasts'], 6)
+
+    def test_forecasts_cover_month_quarter_year(self):
+        snap = pulse_geometry.snapshot(sample_cells=1)
+        windows = {row['window'] for row in snap['forecasts']}
+        self.assertEqual(windows, {'monthly', 'quarterly', 'yearly'})
+        labels = {row['label'] for row in snap['forecasts']}
+        self.assertIn('28-30 day Hina moon cycle', labels)
+        self.assertIn('13-moon annual accounting cycle', labels)
 
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
@@ -428,6 +439,8 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         body = v2_main.pulse_geometry_snapshot()
         self.assertEqual(body['layer'], pulse_geometry.LAYER)
         self.assertTrue(body['geometry_complete'])
+        self.assertEqual(body['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
+        self.assertEqual(len(body['forecast_sample']), 6)
         self.assertLessEqual(len(body['lane_sample']), 6)
         self.assertLessEqual(len(body['skill_sample']), 6)
 

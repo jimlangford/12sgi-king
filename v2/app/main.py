@@ -165,11 +165,13 @@ def pulse_geometry_snapshot():
     return {
         "layer": snap["layer"],
         "minimum_geometry": snap["minimum_geometry"],
+        "full_hina_cycle": snap["full_hina_cycle"],
         "counts": snap["counts"],
         "geometry_complete": snap["geometry_complete"],
         "lane_sample": snap["lanes"][:6],
         "skill_sample": snap["skills"][:6],
         "cell_sample": snap["cells_sample"],
+        "forecast_sample": snap["forecasts"],
     }
 
 

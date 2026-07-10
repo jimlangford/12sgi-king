@@ -32,6 +32,7 @@ REPO = HERE.parent
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
 LAYER = "pulse_geometry"
 MIN_LANES = 28
+FULL_LANE_COUNT = len(moon_calendar.PO)
 MIN_SKILLS = 28
 
 _DIRECTION_BY_ANAHULU = {
@@ -129,7 +130,7 @@ def build_skill_rows(limit: int = MIN_SKILLS) -> list[dict]:
     return rows[: max(limit, MIN_SKILLS)]
 
 
-def build_lane_rows(limit: int = MIN_LANES) -> list[dict]:
+def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
     rows = []
     for idx, (po_name, anahulu, nature, offering) in enumerate(moon_calendar.PO[:limit], start=1):
         rows.append(
@@ -218,18 +219,77 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
     return rows
 
 
+def _count_by(rows: list[dict], key: str) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for row in rows:
+        label = str(row.get(key) or "unknown")
+        counts[label] = counts.get(label, 0) + 1
+    return counts
+
+
+def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]) -> list[dict]:
+    monthly = {
+        "id": "forecast:monthly:hina-30",
+        "window": "monthly",
+        "label": "28-30 day Hina moon cycle",
+        "start_lane": 1,
+        "end_lane": len(lanes),
+        "lane_count": len(lanes),
+        "direction_counts": _count_by(lanes, "direction"),
+        "cadence_counts": _count_by(lanes, "cadence"),
+        "balance_counts": _count_by(cells, "balance"),
+        "output_counts": _count_by(cells, "output"),
+    }
+
+    quarter_spans = [("Q1", 1, 3), ("Q2", 4, 6), ("Q3", 7, 9), ("Q4", 10, 13)]
+    quarterly = []
+    for label, start, end in quarter_spans:
+        quarter_skills = [skill for skill in skills if start <= int(skill.get("moon13") or 0) <= end]
+        quarter_ids = {skill["id"] for skill in quarter_skills}
+        quarter_cells = [cell for cell in cells if cell["skill_id"] in quarter_ids]
+        quarterly.append(
+            {
+                "id": f"forecast:quarter:{label.lower()}",
+                "window": "quarterly",
+                "label": label,
+                "moon_start": start,
+                "moon_end": end,
+                "skill_count": len(quarter_skills),
+                "balance_counts": _count_by(quarter_cells, "balance"),
+                "output_counts": _count_by(quarter_cells, "output"),
+            }
+        )
+
+    yearly = {
+        "id": "forecast:yearly:hina-13-moon",
+        "window": "yearly",
+        "label": "13-moon annual accounting cycle",
+        "skill_count": len(skills),
+        "lane_count": len(lanes),
+        "balance_counts": _count_by(skills, "balance"),
+        "phase_counts": _count_by(skills, "phase"),
+        "zone_counts": _count_by(skills, "zone"),
+        "output_counts": _count_by(cells, "output"),
+    }
+
+    return [monthly, *quarterly, yearly]
+
+
 def snapshot(sample_cells: int = 16) -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
     cells = build_cell_rows(lanes, skills)
+    forecasts = build_forecast_rows(lanes, skills, cells)
     return {
         "layer": LAYER,
         "minimum_geometry": {"lanes": MIN_LANES, "skills": MIN_SKILLS, "cells": MIN_LANES * MIN_SKILLS},
-        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells)},
+        "full_hina_cycle": {"lanes": FULL_LANE_COUNT, "cycle": "28-30 day monthly pulse"},
+        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells), "forecasts": len(forecasts)},
         "geometry_complete": len(lanes) >= MIN_LANES and len(skills) >= MIN_SKILLS and len(cells) >= MIN_LANES * MIN_SKILLS,
         "lanes": lanes,
         "skills": skills,
         "cells_sample": cells[:sample_cells],
+        "forecasts": forecasts,
     }
 
 
@@ -237,11 +297,13 @@ def build_graph_payload() -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
     cells = build_cell_rows(lanes, skills)
+    forecasts = build_forecast_rows(lanes, skills, cells)
     return {
         "lanes": [dict(row, layer=LAYER) for row in lanes],
         "skills": [dict(row, layer=LAYER) for row in skills],
         "cells": [dict(row, layer=LAYER) for row in cells],
-        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells)},
+        "forecasts": [dict(row, layer=LAYER) for row in forecasts],
+        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells), "forecasts": len(forecasts)},
     }
 
 
@@ -266,7 +328,7 @@ def refresh() -> bool:
 
     _post([{"statement": "CREATE CONSTRAINT pulse_geometry_id IF NOT EXISTS FOR (x:PulseGeometry) REQUIRE x.id IS UNIQUE"}])
 
-    for label, rows in (("PulseLane", payload["lanes"]), ("PulseSkill", payload["skills"]), ("PulseCell", payload["cells"])):
+    for label, rows in (("PulseLane", payload["lanes"]), ("PulseSkill", payload["skills"]), ("PulseCell", payload["cells"]), ("ForecastWindow", payload["forecasts"])):
         _post(
             [
                 {
@@ -298,11 +360,21 @@ def refresh() -> bool:
                 ),
                 "parameters": {"rows": payload["cells"], "layer": LAYER},
             },
+            {
+                "statement": (
+                    "UNWIND $rows AS r "
+                    "MATCH (forecast:PulseGeometry:ForecastWindow {id:r.id}) "
+                    "MATCH (yearly:PulseGeometry:ForecastWindow {id:'forecast:yearly:hina-13-moon'}) "
+                    "FOREACH (_ IN CASE WHEN r.window = 'quarterly' THEN [1] ELSE [] END | "
+                    "MERGE (forecast)-[e:ROLLS_UP_TO {key:r.id}]->(yearly) SET e.layer = $layer)"
+                ),
+                "parameters": {"rows": payload["forecasts"], "layer": LAYER},
+            },
         ]
     )
 
     _say(
-        "pulse_geometry: loaded %d lanes, %d skills, %d cells."
-        % (payload["counts"]["lanes"], payload["counts"]["skills"], payload["counts"]["cells"])
+        "pulse_geometry: loaded %d lanes, %d skills, %d cells, %d forecast windows."
+        % (payload["counts"]["lanes"], payload["counts"]["skills"], payload["counts"]["cells"], payload["counts"]["forecasts"])
     )
     return True
