@@ -4,7 +4,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-ROOT = Path('/home/runner/work/12sgi-king/12sgi-king')
+# Repo root, derived from this file's location (tests/v2/<file>.py) instead of hardcoding the
+# GitHub Actions runner's checkout path -- that made this suite impossible to run anywhere except
+# CI. Works identically in CI and local dev.
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from services.v2_workboard import (

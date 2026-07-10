@@ -1,6 +1,7 @@
 import json
 import os
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from urllib import error, parse, request
 from uuid import uuid4
@@ -32,10 +33,17 @@ def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _db() -> sqlite3.Connection:
+@contextmanager
+def _db():
+    # sqlite3.Connection.__exit__ only commits/rolls back -- it does not close the connection.
+    # Same leak found+fixed across services/{ai,auth}/app/main.py 2026-07-09; applied here for
+    # consistency. Transactional behavior at call sites is unchanged.
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 
 def init_db() -> None:

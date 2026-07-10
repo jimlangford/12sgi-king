@@ -1,6 +1,7 @@
 import json
 import os
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from urllib import error, parse, request
 from uuid import uuid4
@@ -38,10 +39,19 @@ def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _db() -> sqlite3.Connection:
+@contextmanager
+def _db():
+    # sqlite3.Connection.__exit__ only commits/rolls back a transaction -- it does NOT close the
+    # connection, so `with _db() as conn:` at every call site was leaking one open handle per
+    # request. Harmless on Linux until enough requests accumulate; on Windows it locks the db file
+    # against deletion immediately (caught by tests/v2/test_v2_hardening.py). Transactional
+    # behavior at call sites is unchanged -- they already commit explicitly where needed.
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 
 def init_db() -> None:
@@ -59,6 +69,12 @@ def init_db() -> None:
             )
             """
         )
+        # Migration-safe: ADD COLUMN on a table that predates this field errors if it already
+        # exists -- catch and ignore rather than gating on a PRAGMA read every boot.
+        try:
+            conn.execute("ALTER TABLE assist_events ADD COLUMN grounded INTEGER DEFAULT 0")
+        except sqlite3.OperationalError:
+            pass
         conn.commit()
 
 
@@ -191,7 +207,21 @@ def ready(response: Response):
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM assist_events").fetchone()[0]
-    return {"status": "healthy", "service": "ai", "version": VERSION, "assist_count": count}
+        grounded_count = conn.execute(
+            "SELECT COUNT(*) FROM assist_events WHERE grounded = 1"
+        ).fetchone()[0]
+    # grounded_ratio makes correctness auditable at a glance: a sustained drop means the GPU
+    # router/Ollama backend is unreachable and this service has been silently answering with
+    # UNGROUNDED template text -- the same signal workboard_evidence.py's needs_verify backlog
+    # gave on the laptop system, surfaced here instead of discovered by reading case notes.
+    return {
+        "status": "healthy",
+        "service": "ai",
+        "version": VERSION,
+        "assist_count": count,
+        "grounded_count": grounded_count,
+        "grounded_ratio": round(grounded_count / count, 3) if count else None,
+    }
 
 
 @app.post(f"{API_PREFIX}/ai/assist")
@@ -212,14 +242,21 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
         ) if prompt else f"Summarise next actions for case {payload.case_id}.",
     )
 
-    if gpu_response:
+    # POLICY (2026-07-09, mirrors tools/ops/workboard_evidence.py on the laptop system, and RAG-
+    # grounding best practice: never present ungrounded output with the same confidence as a real
+    # model answer -- a caller reading "summary" has no way to tell a real GPU-router response from
+    # a hardcoded placeholder string unless the response says so explicitly). grounded=False means
+    # no inference actually ran; the summary is a template, not analysis, and must be flagged as
+    # such rather than worded to sound like the assistant "reviewed" anything.
+    grounded = bool(gpu_response)
+    if grounded:
         summary = gpu_response
-    elif prompt:
-        summary = f"Assistant reviewed your prompt and prepared next actions for case {payload.case_id}."
     else:
         summary = (
-            f"Suggested next step for case {payload.case_id}: gather timeline facts, "
-            f"organize evidence, and generate a draft document."
+            f"[UNGROUNDED — GPU inference unavailable, no model reviewed this case] "
+            f"Placeholder next step for case {payload.case_id}: gather timeline facts, organize "
+            f"evidence, and generate a draft document. This is a static template, not case-specific "
+            f"analysis — requires human review before acting on it."
         )
 
     event = {
@@ -230,13 +267,14 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
         "summary": summary,
         "created_at": _now_utc(),
         "created_by": user.get("id", "unknown"),
+        "grounded": int(grounded),
     }
 
     with _db() as conn:
         conn.execute(
             """
-            INSERT INTO assist_events (id, case_id, prompt, context_json, summary, created_at, created_by)
-            VALUES (:id, :case_id, :prompt, :context_json, :summary, :created_at, :created_by)
+            INSERT INTO assist_events (id, case_id, prompt, context_json, summary, created_at, created_by, grounded)
+            VALUES (:id, :case_id, :prompt, :context_json, :summary, :created_at, :created_by, :grounded)
             """,
             event,
         )
@@ -260,7 +298,11 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     return {
         "case_id": payload.case_id,
         "summary": summary,
-        "actions": [
+        "grounded": grounded,
+        # The fixed action list is a generic starting checklist, not a claim derived from this
+        # case's actual analysis -- only offered when there's no real grounded summary to point to,
+        # so it's never mistaken for output the model produced.
+        "actions": [] if grounded else [
             "Review latest timeline events",
             "Generate notice draft from template",
             "Upload supporting files to evidence storage",

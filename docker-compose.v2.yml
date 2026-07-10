@@ -15,9 +15,13 @@
 #
 # Secrets note: AUTH_SIGNING_SECRET / INTERNAL_SERVICE_TOKEN below use dev defaults matching
 # docs/GOVOS_V2_LOCAL_DEV.md. Override with a local `.env.v2` (gitignored) before exposing this
-# past Tailscale-private use.
+# past Tailscale-private use. GOVOS_ALLOW_DEV_SECRETS=1 is the explicit opt-in that lets the auth
+# service boot on those dev defaults at all (services/auth/app/main.py fails to start without it) --
+# a deploy that forgets to set a real secret AND forgets this flag now fails loudly instead of
+# silently shipping an auth bypass.
 
 x-common-env: &common-env
+  GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
   INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
   AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
   AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -165,7 +169,15 @@ services:
               capabilities: [gpu]
     volumes:
       - v2-ollama:/root/.ollama
-    ports: ["127.0.0.1:11434:11434"]
+    # NO host port publish (2026-07-09 fleet review V2-DOCK-1): the owner's REAL production Ollama
+    # already owns host :11434 (the ~40 baked king-<lane> models). Publishing the container's 11434
+    # to the host either (a) fails to bind (host Ollama holds it) so this container never starts, or
+    # (b) wins the bind and every host lane that queries :11434 hits an EMPTY container Ollama instead
+    # of the real models -- the exact silent "fleet fabrication" / cold-start symptom, caused by infra
+    # not by the models. gpu-router reaches Ollama over the internal Docker network only
+    # (GPU_RUNTIME_URL=http://gpu-runtime:11434), so nothing needs 11434 on the host. If you ever want
+    # host visibility for debugging, remap to an unused port e.g. "127.0.0.1:11435:11434".
+    expose: ["11434"]
     restart: unless-stopped
     healthcheck:
       # ollama/ollama:latest is Ubuntu-based and ships wget; avoid python3 (not guaranteed).

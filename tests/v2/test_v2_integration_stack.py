@@ -10,7 +10,10 @@ import unittest
 from pathlib import Path
 from urllib import error, request
 
-ROOT = Path('/home/runner/work/12sgi-king/12sgi-king')
+# Repo root, derived from this file's location (tests/v2/<file>.py) instead of hardcoding the
+# GitHub Actions runner's checkout path -- that made this suite impossible to run anywhere except
+# CI. Works identically in CI and local dev.
+ROOT = Path(__file__).resolve().parents[2]
 BASE_PORT = int(os.environ.get('V2_TEST_BASE_PORT', '19101'))
 
 
@@ -57,6 +60,10 @@ class TestV2IntegrationStack(unittest.TestCase):
         cls.tempdir = tempfile.TemporaryDirectory(prefix='v2-stack-')
         cls.processes = []
         cls.service_token = 'integration-service-token'
+        # A real (non-default) signing secret -- exercises the same fail-closed startup guard
+        # production runs under (services/auth/app/main.py refuses to boot on the published dev
+        # default unless GOVOS_ALLOW_DEV_SECRETS=1), rather than routing the test suite around it.
+        cls.auth_signing_secret = 'integration-test-signing-secret-not-the-dev-default'
         cls.dispatch_log = Path(cls.tempdir.name) / 'workboard-dispatch.jsonl'
 
         cls.ports = {
@@ -94,12 +101,17 @@ class TestV2IntegrationStack(unittest.TestCase):
             {
                 'PYTHONUNBUFFERED': '1',
                 'INTERNAL_SERVICE_TOKEN': cls.service_token,
+                'AUTH_SIGNING_SECRET': cls.auth_signing_secret,
                 'AUTH_INTROSPECTION_URL': f"{cls.urls['auth']}/api/v2/auth/introspect",
                 'AUTH_READY_URL': f"{cls.urls['auth']}/api/v2/ready",
                 'TENANT_SERVICE_URL': cls.urls['tenant'],
                 'TENANT_READY_URL': f"{cls.urls['tenant']}/api/v2/ready",
                 'WORKBOARD_DISPATCH_LOG': str(cls.dispatch_log),
                 'WORKBOARD_TARGET_THREAD': 'workboard-quad-os',
+                # Explicitly unset -- these tests must prove the stack boots on REAL secrets, not
+                # the dev-bypass flag. If GOVOS_ALLOW_DEV_SECRETS leaks in from the outer CI/dev
+                # environment, this test would silently stop exercising the fail-closed guard.
+                'GOVOS_ALLOW_DEV_SECRETS': '',
             }
         )
         if extra_env:

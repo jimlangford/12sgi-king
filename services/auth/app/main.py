@@ -8,6 +8,7 @@ import os
 import secrets
 import sqlite3
 import urllib.parse
+from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 
 import requests as _requests
@@ -21,8 +22,30 @@ _log = logging.getLogger(__name__)
 API_PREFIX = "/api/v2"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("AUTH_DB_PATH", "/tmp/govos_v2_auth.db")
-SIGNING_SECRET = os.environ.get("AUTH_SIGNING_SECRET", "dev-only-signing-secret-change-me")
-INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
+
+_DEV_SIGNING_SECRET = "dev-only-signing-secret-change-me"
+_DEV_SERVICE_TOKEN = "dev-internal-token"
+SIGNING_SECRET = os.environ.get("AUTH_SIGNING_SECRET", _DEV_SIGNING_SECRET)
+INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", _DEV_SERVICE_TOKEN)
+
+# Fail-closed on the well-known dev secrets (docs/architecture/V1_TO_V2_UPGRADE_MAP.md Section E:
+# "make that structurally impossible (fail-to-start on default secret), not remembered" -- these
+# values are published in this repo's own docker-compose.v2.yml comments, so a deploy that forgets
+# to override them is an auth bypass, not a hardening detail). GOVOS_ALLOW_DEV_SECRETS is the
+# explicit, visible opt-in for local/Tailscale-private dev (set by docker-compose.v2.yml) -- the
+# service now refuses to boot on the default secret unless that flag is deliberately set, so
+# "forgot to set a real secret" can no longer silently ship instead of loudly failing.
+if not os.environ.get("GOVOS_ALLOW_DEV_SECRETS"):
+    if SIGNING_SECRET == _DEV_SIGNING_SECRET:
+        raise RuntimeError(
+            "AUTH_SIGNING_SECRET is unset and defaulted to the published dev value -- refusing to "
+            "start. Set a real AUTH_SIGNING_SECRET, or set GOVOS_ALLOW_DEV_SECRETS=1 for local/"
+            "Tailscale-private dev only.")
+    if INTERNAL_SERVICE_TOKEN == _DEV_SERVICE_TOKEN:
+        raise RuntimeError(
+            "INTERNAL_SERVICE_TOKEN is unset and defaulted to the published dev value -- refusing to "
+            "start. Set a real INTERNAL_SERVICE_TOKEN, or set GOVOS_ALLOW_DEV_SECRETS=1 for local/"
+            "Tailscale-private dev only.")
 
 # ── OAuth ─────────────────────────────────────────────────────────────────────
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "")
@@ -137,10 +160,18 @@ def _now_utc() -> datetime:
     return datetime.now(timezone.utc)
 
 
-def _db() -> sqlite3.Connection:
+@contextmanager
+def _db():
+    # sqlite3.Connection.__exit__ only commits/rolls back -- it does not close the connection, so
+    # every `with _db() as conn:` call site was leaking one open handle (services/ai/app/main.py
+    # had the identical bug, found + fixed 2026-07-09 via tests/v2/test_v2_hardening.py). Same fix
+    # applied here for consistency; transactional behavior at call sites is unchanged.
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 
 def init_db() -> None:
