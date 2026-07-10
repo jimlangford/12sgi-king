@@ -149,7 +149,7 @@ GET http://127.0.0.1:8088/pulse/geometry
 POST http://127.0.0.1:8088/pulse/geometry/refresh
 ```
 
-The pulse geometry is a dedicated PRIVATE Neo4j-backed lane×skill lattice. It now uses the full 28–30 day Hina moon cycle, adds Maui / `Pacific/Honolulu` human-residence frequency tuning for the geometry layer, carries a deterministic six-step human/chakra alignment keyed to organic carbon weight `6`, and reports that tuning as an audited, deterministic, non-experimental human-serving surface without changing the existing workboard lanes.
+The pulse geometry is a dedicated PRIVATE Neo4j-backed lane×skill lattice. It now uses the full 28–30 day Hina moon cycle, adds Maui / `Pacific/Honolulu` human-residence frequency tuning for the geometry layer, carries a deterministic six-step human/chakra alignment keyed to organic carbon weight `6`, and projects a Sage element view into Neo4j from the existing `akua` / skill geometry, all as an audited, deterministic, non-experimental human-serving surface without changing the existing workboard lanes.
 
 ### Lane assignment by service action
 

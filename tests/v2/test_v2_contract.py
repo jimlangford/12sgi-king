@@ -402,6 +402,7 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertTrue(snap['geometry_complete'])
         self.assertEqual(snap['full_hina_cycle']['lanes'], pulse_geometry.FULL_LANE_COUNT)
         self.assertEqual(snap['counts']['forecasts'], 6)
+        self.assertGreaterEqual(snap['counts']['elements'], 1)
         self.assertEqual(snap['place_tuning']['model'], 'human_residence_frequencies')
         self.assertEqual(snap['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
         self.assertEqual(snap['place_tuning']['audit_status'], 'audited')
@@ -418,7 +419,7 @@ class TestPulseGeometry(unittest.TestCase):
         for field in (
             'trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance',
             'residence_frequency', 'residence_secondary_frequency', 'residence_alignment',
-            'chakra_index', 'chakra_tone', 'organic_carbon_weight',
+            'chakra_index', 'chakra_tone', 'organic_carbon_weight', 'element',
         ):
             self.assertIn(field, cell)
 
@@ -429,6 +430,7 @@ class TestPulseGeometry(unittest.TestCase):
             payload['counts']['lanes'] * payload['counts']['skills'],
         )
         self.assertEqual(payload['counts']['forecasts'], 6)
+        self.assertGreaterEqual(payload['counts']['elements'], 1)
         self.assertEqual(payload['counts']['residence_frequencies'], 4)
 
     def test_forecasts_cover_month_quarter_year(self):
@@ -440,6 +442,7 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertIn('13-moon annual accounting cycle', labels)
         self.assertTrue(all('residence_frequency_counts' in row for row in snap['forecasts']))
         self.assertTrue(all('chakra_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all('element_counts' in row for row in snap['forecasts']))
 
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
@@ -459,6 +462,7 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertEqual(len(body['forecast_sample']), 6)
         self.assertLessEqual(len(body['lane_sample']), 6)
         self.assertLessEqual(len(body['skill_sample']), 6)
+        self.assertLessEqual(len(body['element_sample']), 6)
         self.assertEqual(body['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
         self.assertFalse(body['place_tuning']['experiments_enabled'])
         self.assertEqual(body['place_tuning']['organic_carbon_weight'], 6)

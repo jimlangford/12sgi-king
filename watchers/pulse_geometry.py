@@ -95,6 +95,13 @@ _CARBON_SIX_TONES = (
     "voice",
     "vision",
 )
+_ELEMENT_BY_AKUA = {
+    "Pele": "Fire",
+    "Kanaloa": "Ocean",
+    "Kāne": "Fresh Water",
+    "Lono": "Growth",
+    "Kū": "Structure",
+}
 
 
 def _say(message: str) -> None:
@@ -141,6 +148,7 @@ def _fallback_skills(limit: int) -> list[dict]:
                 "role": "",
                 "zone": "",
                 "akua": "",
+                "element": "Earth",
                 "phase": "",
                 "balance": "pono",
                 "moon13": ((idx - 1) % 13) + 1,
@@ -166,6 +174,7 @@ def build_skill_rows(limit: int = MIN_SKILLS) -> list[dict]:
                 "role": node.get("role", ""),
                 "zone": node.get("zone", ""),
                 "akua": node.get("akua", ""),
+                "element": _element_for(node),
                 "phase": node.get("phase", ""),
                 "balance": node.get("balance", "pono"),
                 "moon13": node.get("moon13") or ((idx - 1) % 13) + 1,
@@ -272,6 +281,15 @@ def build_residence_frequency_rows() -> list[dict]:
     return rows
 
 
+def _element_for(node: dict) -> str:
+    explicit = node.get("element")
+    if isinstance(explicit, dict):
+        return str(explicit.get("value") or explicit.get("name") or "Unknown")
+    if explicit:
+        return str(explicit)
+    return _ELEMENT_BY_AKUA.get(str(node.get("akua") or ""), "Earth")
+
+
 def _chakra_index_for(lane_index: int) -> int:
     return ((lane_index - 1) % ORGANIC_CARBON_WEIGHT) + 1
 
@@ -296,6 +314,21 @@ def _residence_alignment_for(cadence: str, balance: str) -> str:
     if balance == "hewa":
         return "corrective"
     return "steady"
+
+
+def build_element_rows(skills: list[dict]) -> list[dict]:
+    counts = _count_by(skills, "element")
+    rows = []
+    for idx, element in enumerate(sorted(counts), start=1):
+        rows.append(
+            {
+                "id": f"element:{element.lower().replace(' ', '-')}",
+                "element": element,
+                "skill_count": counts[element],
+                "layer": LAYER,
+            }
+        )
+    return rows
 
 
 def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
@@ -329,6 +362,7 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
                     "timezone": lane.get("timezone", RESIDENCE_TIMEZONE),
                     "source_node": skill.get("source_node"),
                     "akua": skill.get("akua", ""),
+                    "element": skill.get("element", "Earth"),
                     "zone": skill.get("zone", ""),
                     "phase": skill.get("phase", ""),
                 }
@@ -358,6 +392,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "output_counts": _count_by(cells, "output"),
         "residence_frequency_counts": _count_by(cells, "residence_frequency"),
         "chakra_counts": _count_by(cells, "chakra_tone"),
+        "element_counts": _count_by(cells, "element"),
     }
 
     quarter_spans = [("Q1", 1, 3), ("Q2", 4, 6), ("Q3", 7, 9), ("Q4", 10, 13)]
@@ -378,6 +413,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
                 "output_counts": _count_by(quarter_cells, "output"),
                 "residence_frequency_counts": _count_by(quarter_cells, "residence_frequency"),
                 "chakra_counts": _count_by(quarter_cells, "chakra_tone"),
+                "element_counts": _count_by(quarter_cells, "element"),
             }
         )
 
@@ -393,6 +429,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "output_counts": _count_by(cells, "output"),
         "residence_frequency_counts": _count_by(cells, "residence_frequency"),
         "chakra_counts": _count_by(cells, "chakra_tone"),
+        "element_counts": _count_by(cells, "element"),
     }
 
     return [monthly, *quarterly, yearly]
@@ -401,6 +438,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
 def snapshot(sample_cells: int = 16) -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
+    elements = build_element_rows(skills)
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
     residence_frequencies = build_residence_frequency_rows()
@@ -408,7 +446,7 @@ def snapshot(sample_cells: int = 16) -> dict:
         "layer": LAYER,
         "minimum_geometry": {"lanes": MIN_LANES, "skills": MIN_SKILLS, "cells": MIN_LANES * MIN_SKILLS},
         "full_hina_cycle": {"lanes": FULL_LANE_COUNT, "cycle": "28-30 day monthly pulse"},
-        "counts": {"lanes": len(lanes), "skills": len(skills), "cells": len(cells), "forecasts": len(forecasts)},
+        "counts": {"lanes": len(lanes), "skills": len(skills), "elements": len(elements), "cells": len(cells), "forecasts": len(forecasts)},
         "place_tuning": {
             "model": "human_residence_frequencies",
             "place": RESIDENCE_PLACE,
@@ -426,6 +464,7 @@ def snapshot(sample_cells: int = 16) -> dict:
         "geometry_complete": len(lanes) >= MIN_LANES and len(skills) >= MIN_SKILLS and len(cells) >= MIN_LANES * MIN_SKILLS,
         "lanes": lanes,
         "skills": skills,
+        "elements": elements,
         "residence_frequencies": residence_frequencies,
         "cells_sample": cells[:sample_cells],
         "forecasts": forecasts,
@@ -435,18 +474,21 @@ def snapshot(sample_cells: int = 16) -> dict:
 def build_graph_payload() -> dict:
     lanes = build_lane_rows()
     skills = build_skill_rows()
+    elements = build_element_rows(skills)
     cells = build_cell_rows(lanes, skills)
     forecasts = build_forecast_rows(lanes, skills, cells)
     residence_frequencies = build_residence_frequency_rows()
     return {
         "lanes": [dict(row, layer=LAYER) for row in lanes],
         "skills": [dict(row, layer=LAYER) for row in skills],
+        "elements": [dict(row, layer=LAYER) for row in elements],
         "residence_frequencies": [dict(row, layer=LAYER) for row in residence_frequencies],
         "cells": [dict(row, layer=LAYER) for row in cells],
         "forecasts": [dict(row, layer=LAYER) for row in forecasts],
         "counts": {
             "lanes": len(lanes),
             "skills": len(skills),
+            "elements": len(elements),
             "residence_frequencies": len(residence_frequencies),
             "cells": len(cells),
             "forecasts": len(forecasts),
@@ -478,6 +520,7 @@ def refresh() -> bool:
     for label, rows in (
         ("PulseLane", payload["lanes"]),
         ("PulseSkill", payload["skills"]),
+        ("SageElement", payload["elements"]),
         ("ResidenceFrequency", payload["residence_frequencies"]),
         ("PulseCell", payload["cells"]),
         ("ForecastWindow", payload["forecasts"]),
@@ -516,6 +559,16 @@ def refresh() -> bool:
             {
                 "statement": (
                     "UNWIND $rows AS r "
+                    "MATCH (skill:PulseGeometry:PulseSkill {id:r.id}) "
+                    "MATCH (element:PulseGeometry:SageElement {id:'element:' + toLower(replace(r.element, ' ', '-'))}) "
+                    "MERGE (skill)-[e:EXPRESSES {key:r.id}]->(element) "
+                    "SET e.layer = $layer, e.akua = r.akua"
+                ),
+                "parameters": {"rows": payload["skills"], "layer": LAYER},
+            },
+            {
+                "statement": (
+                    "UNWIND $rows AS r "
                     "MATCH (freq:PulseGeometry:ResidenceFrequency {id:'residence:' + r.residence_frequency}) "
                     "MATCH (cell:PulseGeometry:PulseCell {id:r.id}) "
                     "MERGE (freq)-[e:TUNES {key:r.id}]->(cell) "
@@ -537,10 +590,11 @@ def refresh() -> bool:
     )
 
     _say(
-        "pulse_geometry: loaded %d lanes, %d skills, %d residence frequencies, %d cells, %d forecast windows."
+        "pulse_geometry: loaded %d lanes, %d skills, %d elements, %d residence frequencies, %d cells, %d forecast windows."
         % (
             payload["counts"]["lanes"],
             payload["counts"]["skills"],
+            payload["counts"]["elements"],
             payload["counts"]["residence_frequencies"],
             payload["counts"]["cells"],
             payload["counts"]["forecasts"],
