@@ -407,6 +407,9 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertEqual(snap['place_tuning']['audit_status'], 'audited')
         self.assertEqual(snap['place_tuning']['serves'], 'humans')
         self.assertFalse(snap['place_tuning']['experiments_enabled'])
+        self.assertEqual(snap['place_tuning']['human_alignment_system'], 'chakra')
+        self.assertEqual(snap['place_tuning']['organic_carbon_weight'], 6)
+        self.assertEqual(snap['place_tuning']['chakra_count'], 6)
         self.assertEqual(len(snap['residence_frequencies']), 4)
 
     def test_cells_carry_pulse_engine_fields(self):
@@ -415,6 +418,7 @@ class TestPulseGeometry(unittest.TestCase):
         for field in (
             'trigger', 'direction', 'cadence', 'balance', 'output', 'state', 'resonance',
             'residence_frequency', 'residence_secondary_frequency', 'residence_alignment',
+            'chakra_index', 'chakra_tone', 'organic_carbon_weight',
         ):
             self.assertIn(field, cell)
 
@@ -435,6 +439,7 @@ class TestPulseGeometry(unittest.TestCase):
         self.assertIn('28-30 day Hina moon cycle', labels)
         self.assertIn('13-moon annual accounting cycle', labels)
         self.assertTrue(all('residence_frequency_counts' in row for row in snap['forecasts']))
+        self.assertTrue(all('chakra_counts' in row for row in snap['forecasts']))
 
 
 class TestPulseGeometryApiSurface(unittest.TestCase):
@@ -456,6 +461,7 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertLessEqual(len(body['skill_sample']), 6)
         self.assertEqual(body['place_tuning']['timezone'], pulse_geometry.RESIDENCE_TIMEZONE)
         self.assertFalse(body['place_tuning']['experiments_enabled'])
+        self.assertEqual(body['place_tuning']['organic_carbon_weight'], 6)
         self.assertEqual(len(body['residence_frequency_sample']), 4)
 
     def test_refresh_handler_returns_layer(self):

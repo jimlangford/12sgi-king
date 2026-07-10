@@ -36,6 +36,7 @@ FULL_LANE_COUNT = len(moon_calendar.PO)
 MIN_SKILLS = 28
 RESIDENCE_PLACE = os.environ.get("PULSE_RESIDENCE_PLACE", "Maui")
 RESIDENCE_TIMEZONE = os.environ.get("PULSE_RESIDENCE_TZ", "Pacific/Honolulu")
+ORGANIC_CARBON_WEIGHT = 6
 
 _DIRECTION_BY_ANAHULU = {
     "Hoʻonui": "expanding",
@@ -85,6 +86,14 @@ _RESIDENCE_FREQUENCIES = (
         "ao_po": "Pō",
         "cadences": ("release", "steady"),
     },
+)
+_CARBON_SIX_TONES = (
+    "rooted",
+    "flow",
+    "will",
+    "heart",
+    "voice",
+    "vision",
 )
 
 
@@ -171,6 +180,7 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
     for idx, (po_name, anahulu, nature, offering) in enumerate(moon_calendar.PO[:limit], start=1):
         cadence = _CADENCE_BY_ANAHULU.get(anahulu, "steady")
         primary_frequency, secondary_frequency = _residence_tuning_for(cadence)
+        chakra_index = _chakra_index_for(idx)
         rows.append(
             {
                 "id": f"pulse-lane:{idx:02d}",
@@ -183,6 +193,9 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
                 "cadence": cadence,
                 "residence_frequency": primary_frequency,
                 "residence_secondary_frequency": secondary_frequency,
+                "chakra_index": chakra_index,
+                "chakra_tone": _CARBON_SIX_TONES[chakra_index - 1],
+                "organic_carbon_weight": ORGANIC_CARBON_WEIGHT,
                 "place": RESIDENCE_PLACE,
                 "timezone": RESIDENCE_TIMEZONE,
             }
@@ -190,6 +203,7 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
     if len(rows) < limit:
         for idx in range(len(rows) + 1, limit + 1):
             primary_frequency, secondary_frequency = _residence_tuning_for("steady")
+            chakra_index = _chakra_index_for(idx)
             rows.append(
                 {
                     "id": f"pulse-lane:{idx:02d}",
@@ -202,6 +216,9 @@ def build_lane_rows(limit: int = FULL_LANE_COUNT) -> list[dict]:
                     "cadence": "steady",
                     "residence_frequency": primary_frequency,
                     "residence_secondary_frequency": secondary_frequency,
+                    "chakra_index": chakra_index,
+                    "chakra_tone": _CARBON_SIX_TONES[chakra_index - 1],
+                    "organic_carbon_weight": ORGANIC_CARBON_WEIGHT,
                     "place": RESIDENCE_PLACE,
                     "timezone": RESIDENCE_TIMEZONE,
                 }
@@ -255,6 +272,10 @@ def build_residence_frequency_rows() -> list[dict]:
     return rows
 
 
+def _chakra_index_for(lane_index: int) -> int:
+    return ((lane_index - 1) % ORGANIC_CARBON_WEIGHT) + 1
+
+
 def _residence_tuning_for(cadence: str) -> tuple[str, str]:
     if cadence == "build":
         return ("dawn", "day")
@@ -301,6 +322,9 @@ def build_cell_rows(lanes: list[dict], skills: list[dict]) -> list[dict]:
                     "residence_frequency": lane.get("residence_frequency", "night"),
                     "residence_secondary_frequency": lane.get("residence_secondary_frequency", "dawn"),
                     "residence_alignment": _residence_alignment_for(cadence, balance),
+                    "chakra_index": lane.get("chakra_index", 1),
+                    "chakra_tone": lane.get("chakra_tone", _CARBON_SIX_TONES[0]),
+                    "organic_carbon_weight": lane.get("organic_carbon_weight", ORGANIC_CARBON_WEIGHT),
                     "place": lane.get("place", RESIDENCE_PLACE),
                     "timezone": lane.get("timezone", RESIDENCE_TIMEZONE),
                     "source_node": skill.get("source_node"),
@@ -333,6 +357,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "balance_counts": _count_by(cells, "balance"),
         "output_counts": _count_by(cells, "output"),
         "residence_frequency_counts": _count_by(cells, "residence_frequency"),
+        "chakra_counts": _count_by(cells, "chakra_tone"),
     }
 
     quarter_spans = [("Q1", 1, 3), ("Q2", 4, 6), ("Q3", 7, 9), ("Q4", 10, 13)]
@@ -352,6 +377,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
                 "balance_counts": _count_by(quarter_cells, "balance"),
                 "output_counts": _count_by(quarter_cells, "output"),
                 "residence_frequency_counts": _count_by(quarter_cells, "residence_frequency"),
+                "chakra_counts": _count_by(quarter_cells, "chakra_tone"),
             }
         )
 
@@ -366,6 +392,7 @@ def build_forecast_rows(lanes: list[dict], skills: list[dict], cells: list[dict]
         "zone_counts": _count_by(skills, "zone"),
         "output_counts": _count_by(cells, "output"),
         "residence_frequency_counts": _count_by(cells, "residence_frequency"),
+        "chakra_counts": _count_by(cells, "chakra_tone"),
     }
 
     return [monthly, *quarterly, yearly]
@@ -392,6 +419,9 @@ def snapshot(sample_cells: int = 16) -> dict:
             "serves": "humans",
             "experiments_enabled": False,
             "mode": "deterministic",
+            "human_alignment_system": "chakra",
+            "organic_carbon_weight": ORGANIC_CARBON_WEIGHT,
+            "chakra_count": ORGANIC_CARBON_WEIGHT,
         },
         "geometry_complete": len(lanes) >= MIN_LANES and len(skills) >= MIN_SKILLS and len(cells) >= MIN_LANES * MIN_SKILLS,
         "lanes": lanes,
