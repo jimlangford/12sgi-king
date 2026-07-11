@@ -5,6 +5,14 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-15 (session) — `/civic/` WordPress design divergence flag
+**Thread:** civic-page-divergence  **From:** Claude (owner session)  **To:** owner review
+**INTENT:** Flag, not resolve, a live product-direction conflict on the WordPress `/civic/` page (id 172). The `element_lotus_public/civic.html` → `content/wordpress/element_lotus/civic.html` studio-first teaser bundle (not yet applied) targets the same `/civic/` slug where a full 17-tenant civic directory was built and published live on 2026-07-10. Both designs cannot hold the same URL. Neither was reverted or applied — that call belongs to the owner.
+**NOTE:** An earlier version of this entry also carried a fix for literal git conflict markers committed to this file; upstream resolved those independently, so only the divergence flag remains.
+**NEXT:** Owner decides: keep tenant directory at `/civic/`, apply the studio-first teaser, or split them across slugs (e.g. teaser at `/`, directory at a dedicated sub-path). Then either apply the WP bundle or repoint its manifest slug.
+
+---
+
 ## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
 
 **Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review
