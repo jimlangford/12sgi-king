@@ -23,7 +23,7 @@ if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
 REPO = Path(HERE).resolve().parent
-DEFAULT_TARGETS = ("graph", "vectors", "private_spine", "pulse_geometry")
+DEFAULT_TARGETS = ("graph", "vectors", "private_spine", "pulse_geometry", "sage_trinity", "yale_ecosystem", "agenda_civic")
 STATE_PATH = Path(os.environ.get("GRAPH_REFRESH_STATE_PATH", "/tmp/12sgi-graph-refresh-state.json"))
 GRAPH_STACK_VERSION = os.environ.get("GRAPH_STACK_VERSION", "5.2")
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
@@ -262,6 +262,57 @@ def refresh(mode="full", reason="manual", targets=None):
                 ok = False
                 _say("graph_refresh pulse skip: %s" % str(pulse_exc)[:160])
         notes.append(pulse_note)
+        trinity_note = "sage trinity skipped"
+        if "sage_trinity" in wanted:
+            try:
+                import sage_trinity as ST
+                if ST.refresh():
+                    layer_state["sage_trinity"] = "current"
+                    trinity_note = "sage trinity current"
+                else:
+                    layer_state["sage_trinity"] = "failed"
+                    trinity_note = "sage trinity skipped"
+                    ok = False
+            except Exception as trinity_exc:
+                layer_state["sage_trinity"] = "failed"
+                trinity_note = "sage trinity skipped"
+                ok = False
+                _say("graph_refresh trinity skip: %s" % str(trinity_exc)[:160])
+        notes.append(trinity_note)
+        yale_note = "yale ecosystem skipped"
+        if "yale_ecosystem" in wanted:
+            try:
+                import yale_ecosystem as YE
+                if YE.refresh():
+                    layer_state["yale_ecosystem"] = "current"
+                    yale_note = "yale ecosystem current"
+                else:
+                    layer_state["yale_ecosystem"] = "failed"
+                    yale_note = "yale ecosystem skipped"
+                    ok = False
+            except Exception as yale_exc:
+                layer_state["yale_ecosystem"] = "failed"
+                yale_note = "yale ecosystem skipped"
+                ok = False
+                _say("graph_refresh yale skip: %s" % str(yale_exc)[:160])
+        notes.append(yale_note)
+        agenda_note = "agenda civic skipped"
+        if "agenda_civic" in wanted:
+            try:
+                import agenda_to_graph as ATG
+                if ATG.refresh():
+                    layer_state["agenda_civic"] = "current"
+                    agenda_note = "agenda civic current"
+                else:
+                    layer_state["agenda_civic"] = "failed"
+                    agenda_note = "agenda civic skipped"
+                    ok = False
+            except Exception as agenda_exc:
+                layer_state["agenda_civic"] = "failed"
+                agenda_note = "agenda civic skipped"
+                ok = False
+                _say("graph_refresh agenda skip: %s" % str(agenda_exc)[:160])
+        notes.append(agenda_note)
         completed_at = _now_iso()
         result = "ok" if ok else "degraded"
         _write_state(

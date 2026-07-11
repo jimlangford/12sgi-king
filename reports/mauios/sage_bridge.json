@@ -1,0 +1,975 @@
+{
+ "generated": "2026-06-15 13:35 HST",
+ "what": "Cloud bridge: the live govOS civic record projected onto the 54-node Sage twin (Kumulipo parity).",
+ "summary": {
+  "pono": 44,
+  "opportunity": 8,
+  "hewa": 2
+ },
+ "overseer": {
+  "node": 53,
+  "name": "Ka Luna Kiaʻi (the Overseer Joker)",
+  "broken_pairs": 9,
+  "charge": "9 pairs no longer answer ($8,350,426 in awards shadowed by $9,814 in donations). The Overseer voices each cited pair - naming the award and the donation together - calling it back toward Pono."
+ },
+ "today": {
+  "date": "2026-06-15",
+  "moon_of_year": 6,
+  "ao_po": "Pō",
+  "node": 21,
+  "node_name": "Smart Irrigation",
+  "akua": "Lono",
+  "po": "Muku",
+  "po_night": 30,
+  "civic_offering": "the dark before renewal — rest, then begin the cycle in pono",
+  "creative_offering": "express the energy of node 21 — Smart Irrigation (akua Lono), in the Pō key: drip-line dew light, soil-moisture sensor pulse, water-economy thread"
+ },
+ "nodes": [
+  {
+   "node": 1,
+   "name": "Firebreak Design",
+   "role": "Wildfire Resilience Lead",
+   "zone": "Mauka",
+   "akua": "Pele",
+   "wa": 8,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 1,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 2,
+   "name": "Soil Health",
+   "role": "Carbon & Ecology Lead",
+   "zone": "Mauka",
+   "akua": "Lono",
+   "wa": 8,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 1,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "london",
+     "date": "2026-06-17",
+     "body": "City of London Corporation — Health and Wellbeing Board",
+     "url": "https://democracy.cityoflondon.gov.uk/mgCalendarMonthView.aspx?GL=1&bcr=1",
+     "moon": {
+      "night": 2,
+      "po": "Hoaka",
+      "phase": "waxing",
+      "offering": "go gently — gather the facts before the vote casts its shadow"
+     }
+    }
+   ]
+  },
+  {
+   "node": 3,
+   "name": "Rainwater Harvesting",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 9,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 1,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 4,
+   "name": "Carbon Sequestration",
+   "role": "Carbon & Ecology Lead",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 9,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 1,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 5,
+   "name": "Biodiversity Restoration",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 10,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 2,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 6,
+   "name": "IoT Fire Detection",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Pele",
+   "wa": 10,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 2,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "tokyo",
+     "date": "2026-06-19",
+     "body": "Standing Committees (常任委員会)",
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
+    }
+   ]
+  },
+  {
+   "node": 7,
+   "name": "Renewable Energy Systems",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kanaloa",
+   "wa": 11,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 2,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "honolulu",
+     "date": "2026-06-23",
+     "body": "Committee on Energy, Environment & Sustainability",
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
+    }
+   ]
+  },
+  {
+   "node": 8,
+   "name": "Cultural Site Preservation",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kū",
+   "wa": 11,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 2,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 9,
+   "name": "Watershed Management",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 12,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 3,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 10,
+   "name": "Ecosystem Connectivity",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 12,
+   "phase": "Ao",
+   "frame": "#4ade80",
+   "moon13": 3,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 11,
+   "name": "Native Tree Planting",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 13,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 3,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 12,
+   "name": "Fog Harvesting",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 13,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 3,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 13,
+   "name": "Waterfall Restoration",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 14,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 4,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 14,
+   "name": "Sacred Forests",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kū",
+   "wa": 14,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 4,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 15,
+   "name": "Mauka Rangeland Management",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kāne",
+   "wa": 15,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 4,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 16,
+   "name": "Indigenous Forestry Knowledge",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Kū",
+   "wa": 15,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 4,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 17,
+   "name": "Crop Diversification",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Lono",
+   "wa": 16,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 5,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 18,
+   "name": "Hydroponic Systems",
+   "role": "",
+   "zone": "Mauka",
+   "akua": "Lono",
+   "wa": 16,
+   "phase": "Ao",
+   "frame": "#fbbf24",
+   "moon13": 5,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 19,
+   "name": "Mushroom Cultivation",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 5,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 20,
+   "name": "Waste-to-Resource Recycling",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 5,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 21,
+   "name": "Smart Irrigation",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 6,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 22,
+   "name": "Pest Control",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 6,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 23,
+   "name": "Post-Harvest Preservation",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 6,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 24,
+   "name": "Seed Germination",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 5,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 6,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 25,
+   "name": "Aquaponics Fish Farming",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 5,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 7,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 26,
+   "name": "Crop Quality Optimization",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 5,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 7,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 27,
+   "name": "Food Forest Design",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 5,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 7,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 28,
+   "name": "Vertical Farming",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 5,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 7,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 29,
+   "name": "Wave Energy Integration",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Kanaloa",
+   "wa": 6,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 8,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "honolulu",
+     "date": "2026-06-23",
+     "body": "Committee on Energy, Environment & Sustainability",
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
+    }
+   ]
+  },
+  {
+   "node": 30,
+   "name": "Modular FarmBox Design",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 6,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 8,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 31,
+   "name": "Nutrient Recovery",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 6,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 8,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "maui",
+     "date": "2026-06-17",
+     "body": "Disaster Recovery, International Affairs, and Planning Committee (2025-2027)",
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 2,
+      "po": "Hoaka",
+      "phase": "waxing",
+      "offering": "go gently — gather the facts before the vote casts its shadow"
+     }
+    }
+   ]
+  },
+  {
+   "node": 32,
+   "name": "Compost Management",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 6,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 8,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 33,
+   "name": "Climate-Resilient Crops",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 6,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 9,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 34,
+   "name": "Rotational Grazing",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 7,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 9,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 35,
+   "name": "Heirloom Seed Libraries",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Lono",
+   "wa": 7,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 9,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 36,
+   "name": "Coral Restoration",
+   "role": "",
+   "zone": "Kula",
+   "akua": "Kanaloa",
+   "wa": 1,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 9,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 37,
+   "name": "Wave Energy",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 1,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 10,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "honolulu",
+     "date": "2026-06-23",
+     "body": "Committee on Energy, Environment & Sustainability",
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
+    }
+   ]
+  },
+  {
+   "node": 38,
+   "name": "Marine Biodiversity",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kāne",
+   "wa": 1,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 10,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 39,
+   "name": "Plastic Cleanup",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 1,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 10,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 40,
+   "name": "Coastal Erosion Prevention",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 1,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 10,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 41,
+   "name": "Eco-Tourism Education",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 2,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 11,
+   "balance": "hewa",
+   "hewa_evidence": "vendor: fukumoto engineering, inc., award_total: 4723680.0, award_coun",
+   "opportunities": [
+    {
+     "tenant": "nyc",
+     "date": "2026-06-24",
+     "body": "Committee on Education (jointly with Committee on Technology)",
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 9,
+      "po": "ʻOlekūkolu",
+      "phase": "waxing",
+      "offering": "patience — let the record speak before you do"
+     }
+    },
+    {
+     "tenant": "nyc",
+     "date": "2026-09-15",
+     "body": "Committee on Oversight and Investigations (jointly with Education)",
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
+    },
+    {
+     "tenant": "tokyo",
+     "date": "2026-06-19",
+     "body": "Standing Committees (常任委員会)",
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
+    }
+   ]
+  },
+  {
+   "node": 42,
+   "name": "Water Desalination",
+   "role": "Water Innovation Lead",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 2,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 11,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "maui",
+     "date": "2026-06-15",
+     "body": "Water Authority, Social Services, and Parks Committee (2025-2027)",
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 30,
+      "po": "Muku",
+      "phase": "new/dark",
+      "offering": "the dark before renewal — rest, then begin the cycle in pono"
+     }
+    },
+    {
+     "tenant": "maui",
+     "date": "2026-06-15",
+     "body": "Water and Infrastructure Committee (2025-2027)",
+     "url": "https://mauicounty.legistar.com/Calendar.aspx",
+     "moon": {
+      "night": 30,
+      "po": "Muku",
+      "phase": "new/dark",
+      "offering": "the dark before renewal — rest, then begin the cycle in pono"
+     }
+    }
+   ]
+  },
+  {
+   "node": 43,
+   "name": "Coastal Erosion Prevention",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 2,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 11,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 44,
+   "name": "Eco-Tourism Education",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 2,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 11,
+   "balance": "hewa",
+   "hewa_evidence": "vendor: fukumoto engineering, inc., award_total: 4723680.0, award_coun",
+   "opportunities": [
+    {
+     "tenant": "nyc",
+     "date": "2026-06-24",
+     "body": "Committee on Education (jointly with Committee on Technology)",
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 9,
+      "po": "ʻOlekūkolu",
+      "phase": "waxing",
+      "offering": "patience — let the record speak before you do"
+     }
+    },
+    {
+     "tenant": "nyc",
+     "date": "2026-09-15",
+     "body": "Committee on Oversight and Investigations (jointly with Education)",
+     "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
+    },
+    {
+     "tenant": "tokyo",
+     "date": "2026-06-19",
+     "body": "Standing Committees (常任委員会)",
+     "url": "https://www.gikai.metro.tokyo.lg.jp/schedule/",
+     "moon": {
+      "night": 4,
+      "po": "Kūlua",
+      "phase": "waxing",
+      "offering": "stand together — add your voice to the record"
+     }
+    }
+   ]
+  },
+  {
+   "node": 45,
+   "name": "Traditional Fishing Practices",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kū",
+   "wa": 3,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 12,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 46,
+   "name": "Ridge-to-Reef Systems",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 3,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 12,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 47,
+   "name": "Artificial Reef Creation",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 3,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 12,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 48,
+   "name": "Red Algae Farming",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 3,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 12,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 49,
+   "name": "Algae Biofuel Production",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#fbbf24",
+   "moon13": 13,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 50,
+   "name": "Offshore Wind Energy",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 13,
+   "balance": "opportunity",
+   "hewa_evidence": null,
+   "opportunities": [
+    {
+     "tenant": "honolulu",
+     "date": "2026-06-23",
+     "body": "Committee on Energy, Environment & Sustainability",
+     "url": "https://www.honolulu.gov/clerk/clk-council-calendar/",
+     "moon": {
+      "night": 8,
+      "po": "ʻOlekūlua",
+      "phase": "waxing",
+      "offering": "clear the noise — separate the money from the merit"
+     }
+    }
+   ]
+  },
+  {
+   "node": 51,
+   "name": "Flood Management",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#4ade80",
+   "moon13": 13,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 52,
+   "name": "Renewable Marine Farming",
+   "role": "",
+   "zone": "Makai",
+   "akua": "Kanaloa",
+   "wa": 4,
+   "phase": "Po",
+   "frame": "#38bdf8",
+   "moon13": 13,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 53,
+   "name": "Annual Reckoning - Wildfire-Risk Override",
+   "role": "",
+   "zone": "Universal",
+   "akua": "Pele",
+   "wa": null,
+   "phase": "Ao->Po",
+   "frame": "#ffffff",
+   "moon13": null,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  },
+  {
+   "node": 54,
+   "name": "Generational Leap (4-Year Synergy)",
+   "role": "",
+   "zone": "Universal",
+   "akua": "Kū",
+   "wa": null,
+   "phase": "Ao->Po",
+   "frame": "#ffffff",
+   "moon13": null,
+   "balance": "pono",
+   "hewa_evidence": null,
+   "opportunities": []
+  }
+ ]
+}

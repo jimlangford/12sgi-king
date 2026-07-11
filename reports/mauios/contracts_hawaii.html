@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hawaiʻi County (Big Island) Contract Awards — the gap — Kilo Aupuni</title>
+<style>
+ body{margin:0;background:#0c100e;color:#e8e4d8;font-family:Georgia,'Iowan Old Style',serif;line-height:1.55}
+ .wrap{max-width:920px;margin:0 auto;padding:34px 24px calc(env(safe-area-inset-bottom,0px) + 70px)}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.2px;color:#d9b24c;text-transform:uppercase}
+ h1{font-size:26px;font-weight:600;margin:8px 0 2px}
+ h2{font-size:17px;margin:28px 0 6px}
+ .lead{font-size:13.5px;color:#bdb8a4;max-width:82ch}
+ .kpi{display:flex;gap:28px;margin:16px 0;flex-wrap:wrap}
+ .kpi .n{font-family:Consolas,monospace;font-size:22px;color:#e0863a}
+ .kpi .l{font-family:Consolas,monospace;font-size:11px;color:#9a957f;text-transform:uppercase}
+ .disc{font-size:12px;color:#9a957f;font-style:italic;border-left:2px solid rgba(217,178,76,.4);padding:7px 12px;margin:14px 0}
+ .pending{display:inline-block;font-family:Consolas,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#0c100e;background:#e0863a;border-radius:4px;padding:3px 9px;margin:6px 0}
+ .src{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+ .src .a{font-family:Consolas,monospace;font-size:12px;color:#d9b24c;text-align:right}
+ .src .c{font-size:13px;color:#bdb8a4}
+ .src .c b{color:#e8e4d8} .src .c .u{font-family:Consolas,monospace;font-size:11.5px;word-break:break-all}
+ .src .c .st{font-family:Consolas,monospace;font-size:10.5px;color:#756b56;text-transform:uppercase;letter-spacing:.5px}
+ .q{background:rgba(217,178,76,.05);border:1px solid rgba(217,178,76,.25);border-radius:10px;padding:13px 16px;margin:18px 0;font-size:13px;color:#cfc9b6}
+ .q b{color:#e8e4d8}
+ a{color:#d9b24c}
+ footer{margin-top:34px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}
+</style></head><body><div class="wrap">
+<div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; Hawaiʻi County (Big Island) &middot; the vendor side of the money</div>
+<h1>Hawaiʻi County (Big Island) — Contract Awards</h1>
+<span class="pending">Source gap — pending</span>
+<p class="lead">Every other county's contract awards arrive through the State's <b>Hawaiʻi Awards &amp; Notices Data
+System (HANDS)</b>. Hawaiʻi County (Big Island) does not. We pulled the full statewide HANDS record live this
+run and confirmed the gap: <b>not one</b> award notice is filed under a County of Hawaiʻi jurisdiction. The Big
+Island side of the money map is missing — not because the contracts don't exist, but because the county
+publishes them on its own systems, neither of which exposes a machine-readable list of awards.</p>
+
+<div class="kpi">
+ <div><div class="n">0</div><div class="l">County of Hawaiʻi awards in HANDS</div></div>
+ <div><div class="n">10,601</div><div class="l">statewide HANDS notices pulled live</div></div>
+ <div><div class="n">3 of 4</div><div class="l">counties that DO file in HANDS</div></div>
+</div>
+
+<div class="disc">Re-verified <b>this run</b> by a live full pull of the HANDS API
+(<code>POST hands.ehawaii.gov/hands/api/contract-awards</code>): 10,601 award notices, every page fetched.
+Jurisdiction counts present include County of Maui (260, + 11 Office of Council Services), City &amp; County of
+Honolulu (345, + 2 City Council), Honolulu Rapid Transit (12), Kauai County – Dept. of Water Supply (1) — and
+<b>County of Hawaiʻi: 0</b>.
+Of the 812 notices located on Hawaiʻi island, all are <i>State</i> bodies doing work on the Big Island
+(Executive 705 · Education 67 · Judiciary 21 · University of Hawaiʻi 19) — none are County procurement.
+This is a documented data gap, not an allegation against anyone.</div>
+
+<h2>The exact real sources to pursue</h2>
+<p style="font-size:13px;color:#bdb8a4;margin:0 0 8px">Where the Big Island's awarded contracts actually live,
+and why each is not yet machine-readable from here (each status re-checked this run):</p>
+
+<div class="src"><span class="a">Notice of Awards</span><span class="c">
+ <b>Hawaiʻi County Purchasing Division — Notice of Awards (RFP/IFB)</b>
+ <span class="st">status: WAF-blocked — returned HTTP 403 to automated requests this run</span><br>
+ The canonical county source. Per the division, awards of <b>$50,000 and more</b> are posted here for a
+ minimum of five working days, then rotate off — so there is no standing public archive to scrape.<br>
+ <span class="u">https://www.hawaiicounty.gov/departments/finance/purchasing</span><br>
+ <span class="u">https://www.hawaiicounty.gov/business/bids-proposals-contracts-info-status</span></span></div>
+
+<div class="src"><span class="a">eProcurement</span><span class="c">
+ <b>County of Hawaiʻi OpenGov Procurement Portal</b>
+ <span class="st">status: HTTP 200 but a JS single-page app — no open awards feed</span><br>
+ The county is moving solicitations and vendor responses to OpenGov. The public portal returned a
+ client-side-rendered shell this run (52&nbsp;KB of HTML, no embedded awards data) and exposes no
+ unauthenticated machine-readable list of <i>awarded</i> contracts; full visibility requires a (free)
+ vendor account.<br>
+ <span class="u">https://procurement.opengov.com/</span></span></div>
+
+<div class="src"><span class="a">Records request</span><span class="c">
+ <b>UIPA request to the Hawaiʻi County Department of Finance, Purchasing Division</b>
+ <span class="st">status: the reliable path — public-records request</span><br>
+ Under Hawaiʻi&rsquo;s Uniform Information Practices Act (HRS &sect;92F), request a register of contracts/purchase
+ orders awarded in a fiscal year (vendor, amount, department, solicitation no., date). This converts the
+ rotating five-day postings into a durable, joinable ledger.<br>
+ <span class="u">https://oip.hawaii.gov/ — UIPA Record Request Log</span></span></div>
+
+<div class="q"><b>Why this page is honest and not empty.</b> The integrity rule is that a missing source is named,
+never invented. We did not fabricate a single Big Island vendor, dollar, or award. The finding here is real and
+checkable: across 10,601 statewide HANDS notices pulled live this run, Hawaiʻi County files <b>zero</b>. The
+open question for the county: <b>why is the Big Island the one county whose awarded contracts cannot be read
+beside who funds its officials?</b> When the Notice-of-Awards postings are captured (or a UIPA register
+returns), this page fills with real vendors and real dollars — and joins the contracts&times;donors map like
+Maui and Honolulu already do.</div>
+
+<p style="margin-top:16px"><a href="maui_contract_awards.html">Maui contract awards (HANDS, live)</a>
+&middot; <a href="contracts_honolulu.html">Honolulu contract awards</a>
+&middot; <a href="jurisdictions.html">&larr; all govOS jurisdictions</a></p>
+<footer>generated 2026-06-15 HST &middot; county-awards (hawaii) v3 &middot; source: HANDS statewide live pull 10,601 notices (verified 0 County of Hawaiʻi awards) + named county sources re-checked &middot; Kilo Aupuni &middot; govOS</footer>
+</div></body></html>

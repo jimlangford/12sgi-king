@@ -43,6 +43,11 @@ RHYTHM_CONTEXT_ID = "context:ao-po-rhythm"
 LOCAL_BOUNDARY_SCALE = "tenant"
 TENANT_OVERLAP_SURFACE = "Neo"
 
+# Sage Trinity scale context IDs (written by sage_trinity.py, referenced here for cross-module use)
+SAGE_UNIVERSE_CONTEXT_ID = "context:sage-universe"
+SAGE_CIVIC_CONTEXT_ID = "context:sage-civic"
+HUMAN_INITIATION_CONTEXT_ID = "context:sage-human-initiation"
+
 _DIRECTION_BY_ANAHULU = {
     "Hoʻonui": "expanding",
     "Poepoe": "holding",

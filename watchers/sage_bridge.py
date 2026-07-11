@@ -52,6 +52,57 @@ def hewa_list(p):
     if isinstance(h, dict): h = list(h.values())
     return h if isinstance(h, list) else []
 
+def _build_moon_grid(ag):
+    """Build the 30-pō lunation grid for the current moon month.
+
+    Each cell contains: the pō night data + any upcoming civic meetings that
+    fall on a day whose kaulana mahina night lands on that pō index.
+    This is what the MoonCal panel and moon_cal.html game page render.
+    """
+    if not moon_calendar:
+        return []
+    # pre-compute pō index for each agenda meeting (cached)
+    meeting_by_po = {}  # po_index (1..30) -> list of meeting dicts
+    for a in ag:
+        r = moon_calendar.reading(a["date"])
+        if not r:
+            continue
+        po_n = r["night"]  # 1..30
+        meeting_by_po.setdefault(po_n, []).append({
+            "tenant": a["tenant"],
+            "date": a["date"],
+            "body": a["body"],
+            "url": a["url"],
+            "po": r["po"],
+            "phase": r["phase"],
+            "offering": r["offering"],
+        })
+    grid = []
+    for i, (nm, anahulu, nature, offering) in enumerate(moon_calendar.PO):
+        po_night = i + 1
+        # game-turn frame label
+        if "Kū" in nm and "Kā" not in nm:
+            game_frame = "stand-testify"
+        elif nm == "Māhealani":
+            game_frame = "full-light"
+        elif "ʻOle" in nm:
+            game_frame = "listen-hold"
+        elif nm in ("Kāne", "Lono", "Akua"):
+            game_frame = "sacred"
+        else:
+            game_frame = "flow"
+        grid.append({
+            "po_index": po_night,
+            "po": nm,
+            "anahulu": anahulu,
+            "nature": nature,
+            "offering": offering,
+            "game_frame": game_frame,
+            "meetings": meeting_by_po.get(po_night, []),
+        })
+    return grid
+
+
 def main():
     cards = (load(CARDS, {}) or {}).get("cards", [])
     # the Sage 13-moon binding per node (Moon N of 13) — the studio-node side of the moon link
@@ -108,7 +159,8 @@ def main():
                      if co else None)
     bridge = {"generated": now_hst().strftime("%Y-%m-%d %H:%M HST"),
               "what": "Cloud bridge: the live govOS civic record projected onto the 54-node Sage twin (Kumulipo parity).",
-              "summary": summary, "overseer": par.get("overseer"), "today": today_overlap, "nodes": nodes}
+              "summary": summary, "overseer": par.get("overseer"), "today": today_overlap, "nodes": nodes,
+              "moon_grid": _build_moon_grid(ag)}
     open(OUTJ, "w", encoding="utf-8", newline="\n").write(json.dumps(bridge, ensure_ascii=False, indent=1))
     open(OUTH, "w", encoding="utf-8", newline="\n").write(render(bridge))
     print("sage-bridge: 54 nodes · pono %d / opportunity %d / hewa %d · %d live agenda signals"

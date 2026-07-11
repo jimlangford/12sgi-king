@@ -1,0 +1,22 @@
+{
+  "hi-maui": {
+    "public": 6,
+    "held": 6
+  },
+  "hi-honolulu": {
+    "public": 0,
+    "held": 6
+  },
+  "hi-hawaii": {
+    "public": 0,
+    "held": 6
+  },
+  "hi-kauai": {
+    "public": 0,
+    "held": 6
+  },
+  "hi-state": {
+    "public": 0,
+    "held": 0
+  }
+}

@@ -1,4 +1,5 @@
 import base64
+import binascii
 import hashlib
 import hmac
 import html as _html
@@ -10,18 +11,43 @@ import sqlite3
 import urllib.parse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
+from uuid import uuid4
 
 import requests as _requests
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
+from services.service_metadata import with_service_metadata
+from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 
 _log = logging.getLogger(__name__)
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "auth"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("AUTH_DB_PATH", "/tmp/govos_v2_auth.db")
+AUTH_ISSUER = os.environ.get("AUTH_ISSUER", "govos-auth")
+AUTH_AUDIENCE = os.environ.get("AUTH_AUDIENCE", "govos-v2")
+AUTH_TOKEN_TTL_SECONDS = max(300, int(os.environ.get("AUTH_TOKEN_TTL_SECONDS", "3600")))
+SERVICE_ALLOWED_SCOPES = {
+    scope.strip()
+    for scope in os.environ.get(
+        "AUTH_SERVICE_ALLOWED_SCOPES",
+        "auth:introspect,tenant:read,tenant:write,documents:read,documents:write,storage:read,storage:write,ai:assist,gpu:infer,gpu:read",
+    ).split(",")
+    if scope.strip()
+}
+ALLOWED_WILDCARD_SCOPES = {
+    scope.strip()
+    for scope in os.environ.get("AUTH_ALLOWED_WILDCARD_SCOPES", "").split(",")
+    if scope.strip()
+}
+AUTH_VERIFICATION_DIAGNOSTICS_ENABLED = os.environ.get("AUTH_VERIFICATION_DIAGNOSTICS_ENABLED", "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 _DEV_SIGNING_SECRET = "dev-only-signing-secret-change-me"
 _DEV_SERVICE_TOKEN = "dev-internal-token"
@@ -80,17 +106,27 @@ class AuthSessionRequest(BaseModel):
     provider: str
     subject: str
     email: str | None = None
+    tenant_id: str | None = None
+    role: str = "Resident"
+    scopes: list[str] | None = None
+    audience: str | None = None
+    expires_in: int | None = None
 
 
 class AuthSessionResponse(BaseModel):
     access_token: str
     token_type: str
     expires_in: int
+    claims: dict
     user: dict
 
 
 class AuthIntrospectionRequest(BaseModel):
     token: str
+
+
+class AuthClaimsDiagnosticRequest(BaseModel):
+    token: str | None = None
 
 
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
@@ -137,23 +173,53 @@ def _error_page(msg: str, *, log_detail: str = "") -> HTMLResponse:
     return HTMLResponse(content=body, status_code=400)
 
 
-def _issue_and_store_session(subject: str, provider: str, email: str) -> str:
+def _issue_and_store_session(
+    *,
+    subject: str,
+    provider: str,
+    email: str,
+    tenant_id: str,
+    role: str,
+    scopes: list[str],
+    audience: str = AUTH_AUDIENCE,
+    ttl_seconds: int = AUTH_TOKEN_TTL_SECONDS,
+) -> tuple[str, int]:
     """Issue a JWT and persist the session row, returning the raw token."""
     issued_at = _now_utc()
-    expires_at = issued_at + timedelta(hours=8)
+    expires_at = issued_at + timedelta(seconds=ttl_seconds)
     expires_at_ts = int(expires_at.timestamp())
-    token = _issue_token(subject, provider, expires_at_ts)
+    token = _issue_token(
+        subject=subject,
+        provider=provider,
+        tenant_id=tenant_id,
+        role=role,
+        scopes=scopes,
+        audience=audience,
+        expires_at=expires_at_ts,
+    )
     with _db() as conn:
         conn.execute(
             """
             INSERT OR REPLACE INTO sessions
-              (token, provider, subject, email, issued_at, expires_at)
-            VALUES (?, ?, ?, ?, ?, ?)
+              (token, provider, subject, email, tenant_id, role, scopes_json, issuer, audience, issued_at, expires_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (token, provider, subject, email, issued_at.isoformat(), expires_at_ts),
+            (
+                token,
+                provider,
+                subject,
+                email,
+                tenant_id,
+                role,
+                json.dumps(scopes, separators=(",", ":")),
+                AUTH_ISSUER,
+                audience,
+                issued_at.isoformat(),
+                expires_at_ts,
+            ),
         )
         conn.commit()
-    return token
+    return token, expires_at_ts
 
 
 def _now_utc() -> datetime:
@@ -183,11 +249,27 @@ def init_db() -> None:
                 provider TEXT NOT NULL,
                 subject TEXT NOT NULL,
                 email TEXT,
+                tenant_id TEXT,
+                role TEXT NOT NULL DEFAULT 'Resident',
+                scopes_json TEXT,
+                issuer TEXT NOT NULL DEFAULT 'govos-auth',
+                audience TEXT NOT NULL DEFAULT 'govos-v2',
                 issued_at TEXT NOT NULL,
                 expires_at INTEGER NOT NULL
             )
             """
         )
+        for ddl in (
+            "ALTER TABLE sessions ADD COLUMN tenant_id TEXT",
+            "ALTER TABLE sessions ADD COLUMN role TEXT NOT NULL DEFAULT 'Resident'",
+            "ALTER TABLE sessions ADD COLUMN scopes_json TEXT",
+            "ALTER TABLE sessions ADD COLUMN issuer TEXT NOT NULL DEFAULT 'govos-auth'",
+            "ALTER TABLE sessions ADD COLUMN audience TEXT NOT NULL DEFAULT 'govos-v2'",
+        ):
+            try:
+                conn.execute(ddl)
+            except sqlite3.OperationalError:
+                pass
         conn.commit()
 
 
@@ -195,11 +277,115 @@ def _b64url(data: bytes) -> str:
     return base64.urlsafe_b64encode(data).decode().rstrip("=")
 
 
-def _issue_token(subject: str, provider: str, expires_at: int) -> str:
+def _b64url_decode(data: str) -> bytes:
+    padding = "=" * ((4 - len(data) % 4) % 4)
+    return base64.urlsafe_b64decode(data + padding)
+
+
+def _normalise_scopes(scopes: list[str] | None) -> list[str]:
+    items = sorted({str(scope).strip() for scope in (scopes or []) if str(scope).strip()})
+    return items
+
+
+def _default_scopes(role: str) -> list[str]:
+    return sorted(DEFAULT_SCOPES_BY_ROLE.get(role, set()))
+
+
+def _resolve_scopes(role: str, requested_scopes: list[str] | None) -> list[str]:
+    requested = set(_normalise_scopes(requested_scopes))
+    wildcard_scopes = sorted(scope for scope in requested if "*" in scope and scope not in ALLOWED_WILDCARD_SCOPES)
+    if wildcard_scopes:
+        audit_auth_event("auth", "wildcard_scope_blocked", {"role": role, "requested_scopes": wildcard_scopes})
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_scope", "message": "Wildcard scopes require explicit allowlisting", "details": {"blocked_scopes": wildcard_scopes}}},
+        )
+    unknown_scopes = sorted(scope for scope in requested if scope not in KNOWN_SCOPES and "*" not in scope)
+    if unknown_scopes:
+        audit_auth_event("auth", "legacy_claim_pattern_rejected", {"reason": "undefined_scopes", "requested_scopes": unknown_scopes})
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_scope", "message": "Requested scopes are undefined", "details": {"undefined_scopes": unknown_scopes}}},
+        )
+    allowed = set(DEFAULT_SCOPES_BY_ROLE.get(role, set()))
+    if role == "Service":
+        allowed = set(SERVICE_ALLOWED_SCOPES)
+        if not requested:
+            raise HTTPException(
+                status_code=400,
+                detail={"error": {"code": "invalid_scope", "message": "Service role requires explicit scopes", "details": {}}},
+            )
+        if not requested.issubset(allowed):
+            disallowed = sorted(requested - allowed)
+            audit_auth_event("auth", "role_escalation_attempt", {"role": role, "requested_scopes": sorted(requested)})
+            raise HTTPException(
+                status_code=400,
+                detail={"error": {"code": "invalid_scope", "message": "Service scopes are not allowlisted", "details": {"disallowed_scopes": disallowed}}},
+            )
+        return sorted(requested)
+    if not requested:
+        return sorted(allowed)
+    if not requested.issubset(allowed):
+        disallowed = sorted(requested - allowed)
+        audit_auth_event("auth", "role_escalation_attempt", {"role": role, "requested_scopes": sorted(requested)})
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_scope", "message": "Requested scopes exceed role permissions", "details": {"disallowed_scopes": disallowed}}},
+        )
+    return sorted(requested)
+
+
+def _decode_and_verify_token(token: str) -> tuple[dict, dict]:
+    try:
+        header_part, payload_part, sig_part = token.split(".")
+    except ValueError:
+        audit_auth_event("auth", "malformed_token", {})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Malformed token", "details": {}}})
+
+    unsigned = f"{header_part}.{payload_part}".encode()
+    expected_sig = _b64url(hmac.new(SIGNING_SECRET.encode(), unsigned, hashlib.sha256).digest())
+    if not secrets.compare_digest(expected_sig, sig_part):
+        audit_auth_event("auth", "malformed_token", {"reason": "invalid_signature"})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Malformed token", "details": {}}})
+
+    try:
+        header = json.loads(_b64url_decode(header_part).decode("utf-8"))
+        claims = json.loads(_b64url_decode(payload_part).decode("utf-8"))
+    except (binascii.Error, json.JSONDecodeError, UnicodeDecodeError):
+        audit_auth_event("auth", "malformed_token", {"reason": "decode_error"})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Malformed token", "details": {}}})
+
+    now_ts = int(_now_utc().timestamp())
+    if int(claims.get("exp", 0)) <= now_ts:
+        audit_auth_event("auth", "expired_token", {"sub": claims.get("sub", "")})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}})
+    if claims.get("iss") != AUTH_ISSUER:
+        audit_auth_event("auth", "denied_access", {"reason": "wrong_issuer", "iss": claims.get("iss")})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}})
+    if claims.get("aud") != AUTH_AUDIENCE:
+        audit_auth_event("auth", "denied_access", {"reason": "wrong_audience", "aud": claims.get("aud")})
+        raise HTTPException(status_code=401, detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}})
+    return header, claims
+
+
+def _issue_token(
+    *,
+    subject: str,
+    provider: str,
+    tenant_id: str,
+    role: str,
+    scopes: list[str],
+    audience: str,
+    expires_at: int,
+) -> str:
     header = {"alg": "HS256", "typ": "JWT"}
     payload = {
-        "iss": "govos-auth",
+        "iss": AUTH_ISSUER,
+        "aud": audience,
         "sub": subject,
+        "tenant_id": tenant_id,
+        "role": role,
+        "scopes": scopes,
         "provider": provider,
         "exp": expires_at,
         "jti": secrets.token_urlsafe(16),
@@ -211,18 +397,23 @@ def _issue_token(subject: str, provider: str, expires_at: int) -> str:
     return f"{header_part}.{payload_part}.{_b64url(sig)}"
 
 
+def _redact_claim_identifier(raw: str) -> str:
+    value = str(raw or "").strip()
+    if not value:
+        return ""
+    return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
+
+
 def _session_for_token(token: str) -> sqlite3.Row | None:
-    now_ts = int(_now_utc().timestamp())
     with _db() as conn:
-        row = conn.execute(
+        return conn.execute(
             """
-            SELECT token, provider, subject, email, issued_at, expires_at
+            SELECT token, provider, subject, email, tenant_id, role, scopes_json, issuer, audience, issued_at, expires_at
             FROM sessions
-            WHERE token = ? AND expires_at > ?
+            WHERE token = ?
             """,
-            (token, now_ts),
+            (token,),
         ).fetchone()
-    return row
 
 
 init_db()
@@ -230,7 +421,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "auth", "timestamp": _now_utc().isoformat()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc().isoformat()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -238,7 +433,11 @@ def ready():
     try:
         with _db() as conn:
             conn.execute("SELECT 1").fetchone()
-        return {"status": "ready", "service": "auth", "db_path": DB_PATH}
+        return with_service_metadata(
+            {"status": "ready", "db_path": DB_PATH},
+            SERVICE_NAME,
+            VERSION,
+        )
     except sqlite3.Error as exc:
         raise HTTPException(
             status_code=503,
@@ -250,7 +449,11 @@ def ready():
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM sessions").fetchone()[0]
-    return {"status": "healthy", "service": "auth", "version": VERSION, "session_count": count}
+    return with_service_metadata(
+        {"status": "healthy", "session_count": count},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/auth/jwks")
@@ -282,29 +485,58 @@ def create_session(payload: AuthSessionRequest):
             },
         )
 
-    issued_at = _now_utc()
-    expires_at = issued_at + timedelta(hours=1)
-    expires_at_ts = int(expires_at.timestamp())
-    token = _issue_token(payload.subject, payload.provider, expires_at_ts)
-
-    with _db() as conn:
-        conn.execute(
-            """
-            INSERT INTO sessions (token, provider, subject, email, issued_at, expires_at)
-            VALUES (?, ?, ?, ?, ?, ?)
-            """,
-            (token, payload.provider, payload.subject, payload.email, issued_at.isoformat(), expires_at_ts),
+    role = (payload.role or "Resident").strip()
+    if role not in VALID_ROLES:
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_role", "message": "Role is not supported", "details": {"role": role}}},
         )
-        conn.commit()
+    if role == "Service" and payload.provider != "magic_link":
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_provider", "message": "Service role requires magic_link provider", "details": {}}},
+        )
+    tenant_id = (payload.tenant_id or "").strip()
+    if role not in {"Owner", "Service"} and not tenant_id:
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "missing_tenant_claim", "message": "tenant_id is required for this role", "details": {"role": role}}},
+        )
+    scopes = _resolve_scopes(role, payload.scopes)
+    ttl = payload.expires_in if payload.expires_in is not None else AUTH_TOKEN_TTL_SECONDS
+    ttl = max(300, min(int(ttl), 8 * 3600))
+    audience = (payload.audience or AUTH_AUDIENCE).strip() or AUTH_AUDIENCE
+    token, exp = _issue_and_store_session(
+        subject=payload.subject,
+        provider=payload.provider,
+        email=payload.email or "",
+        tenant_id=tenant_id,
+        role=role,
+        scopes=scopes,
+        audience=audience,
+        ttl_seconds=ttl,
+    )
 
     return {
         "access_token": token,
         "token_type": "Bearer",
-        "expires_in": 3600,
+        "expires_in": ttl,
+        "claims": {
+            "sub": payload.subject,
+            "tenant_id": tenant_id,
+            "role": role,
+            "scopes": scopes,
+            "exp": exp,
+            "iss": AUTH_ISSUER,
+            "aud": audience,
+        },
         "user": {
             "id": payload.subject,
             "provider": payload.provider,
             "email": payload.email,
+            "tenant_id": tenant_id,
+            "role": role,
+            "scopes": scopes,
         },
     }
 
@@ -312,6 +544,7 @@ def create_session(payload: AuthSessionRequest):
 @app.post(f"{API_PREFIX}/auth/introspect")
 def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str | None = Header(default=None)):
     if not x_service_token or not secrets.compare_digest(x_service_token, INTERNAL_SERVICE_TOKEN):
+        audit_auth_event("auth", "service_auth_failure", {"reason": "invalid_service_token"})
         raise HTTPException(
             status_code=403,
             detail={
@@ -323,19 +556,172 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             },
         )
 
+    try:
+        _, jwt_claims = _decode_and_verify_token(payload.token)
+    except HTTPException:
+        return {"active": False}
+
     row = _session_for_token(payload.token)
     if not row:
+        audit_auth_event("auth", "denied_access", {"reason": "session_not_found"})
         return {"active": False}
+    if int(row["expires_at"]) <= int(_now_utc().timestamp()):
+        audit_auth_event("auth", "expired_token", {"sub": row["subject"]})
+        return {"active": False}
+    if jwt_claims.get("sub") != row["subject"]:
+        audit_auth_event("auth", "malformed_token", {"reason": "subject_mismatch"})
+        return {"active": False}
+    if (jwt_claims.get("tenant_id") or "") != (row["tenant_id"] or ""):
+        audit_auth_event("auth", "tenant_mismatch", {"reason": "jwt_session_mismatch"})
+        return {"active": False}
+    if jwt_claims.get("role") != (row["role"] or "Resident"):
+        audit_auth_event("auth", "role_escalation_attempt", {"reason": "jwt_session_mismatch"})
+        return {"active": False}
+    if (jwt_claims.get("iss") or "") != (row["issuer"] or AUTH_ISSUER):
+        audit_auth_event("auth", "denied_access", {"reason": "issuer_mismatch"})
+        return {"active": False}
+    if (jwt_claims.get("aud") or "") != (row["audience"] or AUTH_AUDIENCE):
+        audit_auth_event("auth", "denied_access", {"reason": "audience_mismatch"})
+        return {"active": False}
+
+    try:
+        stored_scopes = json.loads(row["scopes_json"] or "[]")
+    except json.JSONDecodeError:
+        stored_scopes = []
+    if sorted(stored_scopes) != sorted(jwt_claims.get("scopes") or []):
+        audit_auth_event("auth", "role_escalation_attempt", {"reason": "scope_mismatch"})
+        return {"active": False}
+    role = row["role"] or "Resident"
+    tenant_id = (row["tenant_id"] or "").strip()
+    if role == "Resident":
+        disallowed = {"tenant:write", "documents:write", "storage:write", "gpu:read", "ops:owner"}
+        if disallowed.intersection(set(stored_scopes)):
+            audit_auth_event("auth", "role_escalation_attempt", {"role": role, "scopes": stored_scopes})
+            return {"active": False, "reason": "scope_role_violation"}
 
     return {
         "active": True,
+        "claims": {
+            "sub": row["subject"],
+            "tenant_id": tenant_id,
+            "role": role,
+            "scopes": stored_scopes,
+            "exp": row["expires_at"],
+            "iss": row["issuer"] or AUTH_ISSUER,
+            "aud": row["audience"] or AUTH_AUDIENCE,
+            "provider": row["provider"],
+        },
         "user": {
             "id": row["subject"],
             "provider": row["provider"],
             "email": row["email"],
+            "tenant_id": tenant_id,
+            "role": role,
+            "scopes": stored_scopes,
         },
         "exp": row["expires_at"],
     }
+
+
+@app.post(f"{API_PREFIX}/auth/diagnostics/claims")
+def diagnostic_claims(
+    payload: AuthClaimsDiagnosticRequest,
+    authorization: str | None = Header(default=None),
+    x_request_id: str | None = Header(default=None, alias="X-Request-ID"),
+):
+    if not AUTH_VERIFICATION_DIAGNOSTICS_ENABLED:
+        raise HTTPException(
+            status_code=404,
+            detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
+        )
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+
+    owner_token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, owner_claims = _decode_and_verify_token(owner_token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    owner_session = _session_for_token(owner_token)
+    if not owner_session or (owner_session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if owner_claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+
+    target_token = (payload.token or owner_token).strip()
+    audit_event_id = str(uuid4())
+    request_id = (x_request_id or "").strip() or str(uuid4())
+    decision = "denied"
+    safe_claims: dict = {
+        "sub": "",
+        "tenant_id": "",
+        "role": "",
+        "scopes": [],
+        "exp": None,
+        "iss": "",
+        "aud": "",
+    }
+
+    try:
+        _, jwt_claims = _decode_and_verify_token(target_token)
+        row = _session_for_token(target_token)
+        if row and int(row["expires_at"]) > int(_now_utc().timestamp()):
+            decision = "accepted"
+            safe_claims = {
+                "sub": row["subject"] or jwt_claims.get("sub") or "",
+                "tenant_id": (row["tenant_id"] or "").strip() or (jwt_claims.get("tenant_id") or ""),
+                "role": row["role"] or jwt_claims.get("role") or "",
+                "scopes": json.loads(row["scopes_json"] or "[]"),
+                "exp": row["expires_at"],
+                "iss": row["issuer"] or jwt_claims.get("iss") or AUTH_ISSUER,
+                "aud": row["audience"] or jwt_claims.get("aud") or AUTH_AUDIENCE,
+            }
+    except Exception:
+        decision = "denied"
+
+    diagnostic = {
+        "subject": _redact_claim_identifier(safe_claims.get("sub") or ""),
+        "role": safe_claims.get("role") or "",
+        "tenant_id": _redact_claim_identifier(safe_claims.get("tenant_id") or ""),
+        "accepted_scopes": sorted({str(scope) for scope in (safe_claims.get("scopes") or []) if str(scope).strip()}),
+        "issuer": safe_claims.get("iss") or "",
+        "audience": safe_claims.get("aud") or "",
+        "expires_at": safe_claims.get("exp"),
+        "authorization_decision": decision,
+        "audit_event_id": audit_event_id,
+        "request_id": request_id,
+    }
+    audit_auth_event(
+        "auth",
+        "diagnostic_claim_snapshot",
+        {
+            "audit_event_id": audit_event_id,
+            "request_id": request_id,
+            "authorization_decision": decision,
+            "role": diagnostic["role"],
+        },
+    )
+    return diagnostic
 
 
 # ── GitHub OAuth ──────────────────────────────────────────────────────────────
@@ -396,7 +782,15 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if login not in OWNER_GITHUB_LOGINS:
         return _error_page("This GitHub account is not authorised for owner access.")
 
-    token = _issue_and_store_session(f"github:{login}", "github", email)
+    token, _ = _issue_and_store_session(
+        subject=f"github:{login}",
+        provider="github",
+        email=email,
+        tenant_id="",
+        role="Owner",
+        scopes=_default_scopes("Owner"),
+        ttl_seconds=8 * 3600,
+    )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
 
@@ -462,6 +856,14 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.")
 
-    token = _issue_and_store_session(f"google:{sub}", "google", email)
+    token, _ = _issue_and_store_session(
+        subject=f"google:{sub}",
+        provider="google",
+        email=email,
+        tenant_id="",
+        role="Owner",
+        scopes=_default_scopes("Owner"),
+        ttl_seconds=8 * 3600,
+    )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)

@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: govOS v2 API
   version: 2.0.0
-  description: Shared contract for auth, tenant, documents, storage, and AI services.
+  description: Sovereign interface specification for auth, tenant, documents, storage, and AI services.
 servers:
   - url: http://localhost
 paths:
@@ -40,6 +40,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthSessionResponse'
+  /api/v2/auth/diagnostics/claims:
+    post:
+      summary: Owner-only non-secret claim diagnostics
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClaimsDiagnosticRequest'
+      responses:
+        '200':
+          description: Diagnostic claim snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClaimsDiagnosticResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Diagnostics disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/auth/jwks:
     get:
       summary: Public signing keys
@@ -217,24 +251,58 @@ components:
       properties:
         provider:
           type: string
-          enum: [passkey, google, apple, microsoft, magic_link]
+          enum: [passkey, google, apple, microsoft, magic_link, github]
         subject:
           type: string
         email:
           type: string
           format: email
+        tenant_id:
+          type: string
+        role:
+          type: string
+          enum: [Owner, Municipality, Partner, Resident, Service]
+        scopes:
+          type: array
+          items:
+            type: string
+        audience:
+          type: string
+        expires_in:
+          type: integer
     AuthSessionResponse:
       type: object
-      required: [access_token, token_type, expires_in, user]
+      required: [access_token, token_type, expires_in, claims, user]
       properties:
         access_token:
           type: string
         token_type:
           type: string
-          example: Bearer
+          example: "Bearer"
         expires_in:
           type: integer
-          description: Unix timestamp for expiration
+          description: Lifetime in seconds
+        claims:
+          type: object
+          required: [sub, role, scopes, exp, iss, aud]
+          properties:
+            sub:
+              type: string
+            tenant_id:
+              type: string
+            role:
+              type: string
+              enum: [Owner, Municipality, Partner, Resident, Service]
+            scopes:
+              type: array
+              items:
+                type: string
+            exp:
+              type: integer
+            iss:
+              type: string
+            aud:
+              type: string
         user:
           type: object
           required: [id, provider]
@@ -245,6 +313,58 @@ components:
               type: string
             email:
               type: string
+            tenant_id:
+              type: string
+            role:
+              type: string
+            scopes:
+              type: array
+              items:
+                type: string
+    AuthClaimsDiagnosticRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Optional target bearer token to inspect when owner-authenticated.
+    AuthClaimsDiagnosticResponse:
+      type: object
+      required:
+        - subject
+        - role
+        - tenant_id
+        - accepted_scopes
+        - issuer
+        - audience
+        - expires_at
+        - authorization_decision
+        - audit_event_id
+        - request_id
+      properties:
+        subject:
+          type: string
+        role:
+          type: string
+        tenant_id:
+          type: string
+        accepted_scopes:
+          type: array
+          items:
+            type: string
+        issuer:
+          type: string
+        audience:
+          type: string
+        expires_at:
+          type: integer
+          nullable: true
+        authorization_decision:
+          type: string
+          enum: [accepted, denied]
+        audit_event_id:
+          type: string
+        request_id:
+          type: string
     CaseCreateRequest:
       type: object
       required: [tenant_id, title]

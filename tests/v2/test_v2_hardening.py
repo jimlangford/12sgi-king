@@ -14,10 +14,15 @@ open until this pass:
      fallbacks are explicitly flagged, and /health exposes an auditable grounded_ratio.
 """
 import importlib.util
+import json
+import hashlib
+import hmac
 import os
+import requests
 import sqlite3
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -28,6 +33,7 @@ sys.path.insert(0, str(ROOT))
 
 AUTH_MAIN = ROOT / 'services' / 'auth' / 'app' / 'main.py'
 AI_MAIN = ROOT / 'services' / 'ai' / 'app' / 'main.py'
+HEALTH_MAIN = ROOT / 'services' / 'health' / 'app' / 'main.py'
 
 
 def _load_module(path, name, env_overrides=None, env_clear_keys=None):
@@ -41,6 +47,10 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
                 os.environ.pop(key, None)
         if env_overrides:
             os.environ.update(env_overrides)
+        sys.modules.pop('services.service_metadata', None)
+        services_pkg = sys.modules.get('services')
+        if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
+            delattr(services_pkg, 'service_metadata')
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
@@ -103,6 +113,97 @@ class TestAuthSecretsGuard(unittest.TestCase):
             )
 
 
+class TestAuthClaimValidation(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix='auth-claims-')
+        self.db_path = str(Path(self._tmp.name) / 'auth.db')
+        self.module = _load_module(
+            AUTH_MAIN,
+            f'auth_claims_{time.time_ns()}',
+            env_overrides={
+                'AUTH_SIGNING_SECRET': 'claims-test-secret',
+                'INTERNAL_SERVICE_TOKEN': 'claims-test-service-token',
+                'AUTH_DB_PATH': self.db_path,
+            },
+            env_clear_keys=('GOVOS_ALLOW_DEV_SECRETS',),
+        )
+        self.client = TestClient(self.module.app)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _mint_token(self, *, sub='u1', tenant_id='tenant-a', role='Municipality', scopes=None, iss=None, aud=None, exp=None):
+        claims = {
+            'iss': iss if iss is not None else self.module.AUTH_ISSUER,
+            'aud': aud if aud is not None else self.module.AUTH_AUDIENCE,
+            'sub': sub,
+            'tenant_id': tenant_id,
+            'role': role,
+            'scopes': scopes if scopes is not None else ['tenant:read'],
+            'exp': exp if exp is not None else int(self.module._now_utc().timestamp()) + 3600,
+            'jti': 'jti-1',
+            'provider': 'passkey',
+        }
+        header = {'alg': 'HS256', 'typ': 'JWT'}
+        header_part = self.module._b64url(json.dumps(header, separators=(',', ':')).encode())
+        payload_part = self.module._b64url(json.dumps(claims, separators=(',', ':')).encode())
+        sig = hmac.new(self.module.SIGNING_SECRET.encode(), f'{header_part}.{payload_part}'.encode(), hashlib.sha256).digest()
+        token = f'{header_part}.{payload_part}.{self.module._b64url(sig)}'
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute(
+                """
+                INSERT OR REPLACE INTO sessions
+                  (token, provider, subject, email, tenant_id, role, scopes_json, issuer, audience, issued_at, expires_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    token,
+                    'passkey',
+                    sub,
+                    '',
+                    tenant_id,
+                    role,
+                    json.dumps(claims['scopes']),
+                    claims['iss'],
+                    claims['aud'],
+                    self.module._now_utc().isoformat(),
+                    claims['exp'],
+                ),
+            )
+            conn.commit()
+        return token
+
+    def _introspect(self, token):
+        return self.client.post(
+            '/api/v2/auth/introspect',
+            json={'token': token},
+            headers={'X-Service-Token': 'claims-test-service-token'},
+        )
+
+    def test_expired_token_fails_introspection(self):
+        token = self._mint_token(exp=int(self.module._now_utc().timestamp()) - 10)
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_malformed_token_fails_introspection(self):
+        resp = self._introspect('not-a-jwt')
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_wrong_issuer_fails_introspection(self):
+        token = self._mint_token(iss='wrong-issuer')
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_wrong_audience_fails_introspection(self):
+        token = self._mint_token(aud='wrong-audience')
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+
 class TestAiGroundingCorrectness(unittest.TestCase):
     """/ai/assist must never present an ungrounded template response with the same confidence as
     a real GPU-router answer."""
@@ -121,8 +222,13 @@ class TestAiGroundingCorrectness(unittest.TestCase):
             env_overrides={'AI_DB_PATH': str(self.db_path),
                             'WORKBOARD_DISPATCH_LOG': str(self._dispatch_log)},
         )
-        module._require_auth = lambda authorization: {'id': 'test-user'}
-        module._ensure_case_exists = lambda case_id, authorization: None
+        module.require_claims = lambda **kwargs: {
+            'sub': 'test-user',
+            'role': 'Municipality',
+            'tenant_id': 'tenant-a',
+            'scopes': ['ai:assist'],
+        }
+        module._ensure_case_exists = lambda case_id, authorization: {'id': case_id, 'tenant_id': 'tenant-a'}
         return module, TestClient(module.app)
 
     def test_grounded_response_is_not_flagged_and_carries_no_stub_actions(self):
@@ -243,6 +349,275 @@ class TestAiSchemaMigration(unittest.TestCase):
             cols = [row[1] for row in conn.execute('PRAGMA table_info(assist_events)')]
             conn.close()
             self.assertIn('grounded', cols)
+
+
+class _FakeResponse:
+    def __init__(self, status_code, payload=None, json_error=None):
+        self.status_code = status_code
+        self._payload = payload
+        self._json_error = json_error
+
+    def json(self):
+        if self._json_error is not None:
+            raise self._json_error
+        return self._payload
+
+
+class TestHealthReadinessHardening(unittest.TestCase):
+    def setUp(self):
+        self._saved_env = dict(os.environ)
+
+    def tearDown(self):
+        os.environ.clear()
+        os.environ.update(self._saved_env)
+
+    def _load_health_module(self, surfaces):
+        saved = dict(os.environ)
+        try:
+            os.environ.update(
+                {
+                    'SURFACES_LIST': surfaces,
+                    'SURFACES_HEALTH_PATH': '/api/v2/ready',
+                    'COMMIT_SHA': 'abc123def456',
+                    'BUILD_TIMESTAMP': '2026-07-10T23:30:00Z',
+                    'ENVIRONMENT': 'king-server-private',
+                }
+            )
+            for key in (
+                'services.health.app.main',
+                'services.health.app.checks',
+                'services.service_metadata',
+            ):
+                sys.modules.pop(key, None)
+            import services.health.app.main as health_main
+            return health_main
+        finally:
+            os.environ.clear()
+            os.environ.update(saved)
+
+    def _client(self, surfaces='auth=auth:8101,tenant=tenant:8102'):
+        module = self._load_health_module(surfaces)
+        os.environ['SURFACES_HEALTH_PATH'] = '/api/v2/ready'
+        module.load_surfaces_from_env = lambda: {
+            name.strip(): hostport.strip()
+            for name, hostport in (
+                part.split('=', 1) for part in surfaces.split(',') if '=' in part
+            )
+        }
+        return module, TestClient(module.app)
+
+    def _install_requests_stub(self, module, handlers):
+        def fake_get(url, timeout):
+            for needle, result in handlers.items():
+                if needle in url:
+                    if isinstance(result, Exception):
+                        raise result
+                    return result
+            raise AssertionError(f'unexpected URL {url}')
+
+        module.requests.get = fake_get
+
+    def assertTopLevelProvenance(self, body):
+        self.assertEqual(body['service'], 'health')
+        self.assertEqual(body['commit_sha'], 'abc123def456')
+        self.assertEqual(body['build_timestamp'], '2026-07-10T23:30:00Z')
+        self.assertEqual(body['environment'], 'king-server-private')
+        self.assertTrue(body['version'])
+
+    def test_ready_returns_200_when_all_dependencies_ready(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 200)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['status'], 'ready')
+        self.assertTrue(body['services']['auth']['ok'])
+        self.assertTrue(body['services']['tenant']['ok'])
+        self.assertEqual(body['services']['auth']['provenance']['service'], 'auth')
+
+    def test_ready_returns_503_when_dependency_unreachable(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': requests.ConnectionError(
+                    'connection failed token=super-secret-value'
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['status'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['failure'], 'unreachable')
+        self.assertIn('connection failed', body['services']['tenant']['detail'])
+        self.assertNotIn('super-secret-value', body['services']['tenant']['detail'])
+
+    def test_ready_returns_503_on_malformed_dependency_json(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(200, json_error=ValueError('bad json')),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['services']['tenant']['failure'], 'malformed-json')
+        self.assertIn('valid JSON', body['services']['tenant']['detail'])
+
+    def test_ready_returns_503_when_dependency_reports_not_ready(self):
+        module, client = self._client()
+        self._install_requests_stub(
+            module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    503,
+                    {
+                        'status': 'not-ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                        'dependencies': {'database': False},
+                    },
+                ),
+            },
+        )
+
+        resp = client.get('/api/v1/ready')
+
+        self.assertEqual(resp.status_code, 503)
+        body = resp.json()
+        self.assertTopLevelProvenance(body)
+        self.assertEqual(body['services']['tenant']['failure'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['reported_status'], 'not-ready')
+        self.assertEqual(body['services']['tenant']['dependencies'], {'database': False})
+
+    def test_provenance_fields_remain_present_on_success_and_failure(self):
+        ready_module, ready_client = self._client()
+        self._install_requests_stub(
+            ready_module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'tenant',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+            },
+        )
+        fail_module, fail_client = self._client()
+        self._install_requests_stub(
+            fail_module,
+            {
+                'auth:8101': _FakeResponse(
+                    200,
+                    {
+                        'status': 'ready',
+                        'service': 'auth',
+                        'version': '1.0.0',
+                        'commit_sha': 'abc123def456',
+                        'build_timestamp': '2026-07-10T23:30:00Z',
+                        'environment': 'king-server-private',
+                    },
+                ),
+                'tenant:8102': _FakeResponse(200, json_error=ValueError('bad json')),
+            },
+        )
+
+        ready_body = ready_client.get('/api/v1/ready').json()
+        fail_body = fail_client.get('/api/v1/ready').json()
+
+        for body in (ready_body, fail_body):
+            for key in ('service', 'version', 'commit_sha', 'build_timestamp', 'environment'):
+                self.assertIn(key, body)
 
 
 if __name__ == '__main__':

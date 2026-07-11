@@ -1,22 +1,36 @@
-from fastapi import FastAPI, Request, Depends, HTTPException, status
-from fastapi.responses import JSONResponse, HTMLResponse, RedirectResponse
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
-import os
-import json
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 import ipaddress
+import json
+import os
+import re
 import secrets
-from datetime import datetime
-from .checks import run_all_checks, run_surfaces_checks, load_surfaces_from_env
+
+import requests
+from fastapi import Depends, FastAPI, HTTPException, Request, status
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
+from .checks import load_surfaces_from_env, run_all_checks
+from services.service_metadata import with_service_metadata
 
 app = FastAPI(title="12SGI Health Service")
 security = HTTPBasic()
 
 API_PREFIX = "/api/v1"
+SERVICE_NAME = "health"
 VERSION = os.environ.get("VERSION", "0.1.0")
 RELEASE_FILE = os.environ.get("RELEASE_FILE", "./release.json")
 ADMIN_ALLOWED_IPS = os.environ.get("ADMIN_ALLOWED_IPS", "")  # comma-separated CIDR or IPs
 ADMIN_BASIC_USER = os.environ.get("ADMIN_BASIC_USER")
 ADMIN_BASIC_PASS = os.environ.get("ADMIN_BASIC_PASS")
+DEPENDENCY_TIMEOUT_SECONDS = max(float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "5") or "5"), 0.1)
+PROVENANCE_FIELDS = ("service", "version", "commit_sha", "build_timestamp", "environment")
+
+
+def _utc_timestamp() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 # Helper: determine client IP respecting X-Forwarded-For if present
 def get_client_ip(request: Request) -> str:
@@ -67,6 +81,136 @@ def read_release_metadata():
         return None
     return None
 
+
+def _sanitize_failure_detail(detail) -> str:
+    text = str(detail or "").replace("\r", " ").replace("\n", " ").strip()
+    text = re.sub(r"//([^/\s:@]+):([^/@\s]+)@", "//***:***@", text)
+    text = re.sub(r"(?i)\b(token|secret|password)=([^&\s]+)", r"\1=***", text)
+    if len(text) > 240:
+        text = text[:240] + "..."
+    return text or "dependency check failed"
+
+
+def _extract_provenance(payload: dict) -> dict:
+    return {
+        field: str(payload[field]).strip()
+        for field in PROVENANCE_FIELDS
+        if isinstance(payload.get(field), str) and payload.get(field).strip()
+    }
+
+
+def _check_dependency_ready_sync(name: str, hostport: str, path: str, timeout: float) -> dict:
+    url = f"http://{hostport}{path}"
+    result = {
+        "ok": False,
+        "target": hostport,
+        "path": path,
+    }
+    try:
+        response = requests.get(url, timeout=timeout)
+    except requests.Timeout:
+        result.update(
+            {
+                "failure": "timeout",
+                "detail": f"dependency readiness check timed out after {timeout:g}s",
+            }
+        )
+        return result
+    except requests.RequestException as exc:
+        result.update(
+            {
+                "failure": "unreachable",
+                "detail": _sanitize_failure_detail(exc),
+            }
+        )
+        return result
+
+    result["http_status"] = response.status_code
+
+    try:
+        payload = response.json()
+    except ValueError:
+        result.update(
+            {
+                "failure": "malformed-json",
+                "detail": "dependency readiness response was not valid JSON",
+            }
+        )
+        return result
+
+    if not isinstance(payload, dict):
+        result.update(
+            {
+                "failure": "malformed-json",
+                "detail": "dependency readiness response JSON was not an object",
+            }
+        )
+        return result
+
+    provenance = _extract_provenance(payload)
+    if provenance:
+        result["provenance"] = provenance
+
+    dependency_status = payload.get("status")
+    if isinstance(payload.get("dependencies"), dict):
+        result["dependencies"] = payload["dependencies"]
+    if isinstance(payload.get("services"), dict):
+        result["services"] = payload["services"]
+
+    result["reported_status"] = dependency_status if isinstance(dependency_status, str) else "unknown"
+
+    if not isinstance(dependency_status, str) or not dependency_status.strip():
+        result.update(
+            {
+                "failure": "missing-status",
+                "detail": "dependency readiness response missing status field",
+            }
+        )
+        return result
+
+    if dependency_status != "ready":
+        result.update(
+            {
+                "failure": "not-ready",
+                "detail": f"dependency reported status '{dependency_status}'",
+            }
+        )
+        return result
+
+    if response.status_code != 200:
+        result.update(
+            {
+                "failure": "unexpected-http-status",
+                "detail": f"dependency reported ready with HTTP {response.status_code}",
+            }
+        )
+        return result
+
+    result.update({"ok": True, "detail": "dependency ready"})
+    return result
+
+
+async def _run_dependency_checks(surfaces: dict) -> dict:
+    path = os.environ.get("SURFACES_HEALTH_PATH", "/api/v2/ready")
+    path = path if path.startswith("/") else f"/{path}"
+    loop = asyncio.get_running_loop()
+    results = {}
+    with ThreadPoolExecutor(max_workers=max(1, min(8, len(surfaces) or 1))) as executor:
+        tasks = {
+            name: loop.run_in_executor(
+                executor,
+                _check_dependency_ready_sync,
+                name,
+                hostport,
+                path,
+                DEPENDENCY_TIMEOUT_SECONDS,
+            )
+            for name, hostport in surfaces.items()
+        }
+        for name, task in tasks.items():
+            results[name] = await task
+    return results
+
 @app.get("/", include_in_schema=False)
 async def root():
     # Keep compatibility: redirect to API health
@@ -74,16 +218,32 @@ async def root():
 
 @app.get(f"{API_PREFIX}/live")
 async def live():
-    return JSONResponse({"status": "alive", "timestamp": datetime.utcnow().isoformat() + 'Z'})
+    return JSONResponse(
+        with_service_metadata(
+            {"status": "alive", "timestamp": _utc_timestamp()},
+            SERVICE_NAME,
+            VERSION,
+        )
+    )
 
 @app.get(f"{API_PREFIX}/ready")
 async def ready():
-    # For readiness, run minimal critical checks: surfaces
     surfaces = load_surfaces_from_env()
-    results = await run_surfaces_checks(surfaces)
+    results = await _run_dependency_checks(surfaces)
     all_ok = all(v.get('ok', False) for v in results.values())
-    status = "ready" if all_ok else "not-ready"
-    return JSONResponse({"status": status, "timestamp": datetime.utcnow().isoformat() + 'Z', "services": results})
+    status_text = "ready" if all_ok else "not-ready"
+    return JSONResponse(
+        with_service_metadata(
+            {
+                "status": status_text,
+                "timestamp": _utc_timestamp(),
+                "services": results,
+            },
+            SERVICE_NAME,
+            VERSION,
+        ),
+        status_code=200 if all_ok else 503,
+    )
 
 @app.get(f"{API_PREFIX}/health")
 async def health():
@@ -92,13 +252,12 @@ async def health():
     release = read_release_metadata()
     out = {
         "status": "healthy" if all(v.get('ok', False) for v in checks.values()) else "degraded",
-        "version": VERSION,
-        "timestamp": datetime.utcnow().isoformat() + 'Z',
+        "timestamp": _utc_timestamp(),
         "services": checks,
     }
     if release:
         out["release"] = release
-    return JSONResponse(out)
+    return JSONResponse(with_service_metadata(out, SERVICE_NAME, VERSION))
 
 @app.get("/health", include_in_schema=False)
 async def compat_health():

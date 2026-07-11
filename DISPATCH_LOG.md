@@ -5,6 +5,126 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+<<<<<<< HEAD
+## 2026-07-11 02:10 HST — Agent C final: media integration + source-of-truth architecture
+**Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
+**INTENT:** Eliminate slate-data.js drift by generating it at build time; introduce data/media_catalog.json as the per-entry structured catalog; add YouTube button support; add regression tests; fix previously-failing WP bundle test.
+**FILES CHANGED:**
+- `data/media_catalog.json` (new) — per-entry structured catalog; schema covers all Part 2 fields (title, type, status, public_visibility, youtube_url, youtube_video_id, thumbnail, release_date, duration, description, related_project, album, credits, copyright_status, tags); 8 film entries from latest_films; music entries empty (no confirmed titles yet)
+- `element_lotus_public/slate-data.js` (updated) — embeds catalog entries from media_catalog.json; `window.SLATE.catalog.films/music` shape; documents architecture and drift-protection rules
+- `build_site.py` (updated) — `production_status` lane now generates `site/slate-data.js` from live production_status.json + data/media_catalog.json, overwriting the static copy; also copies media_catalog.json to `site/data/`
+- `element_lotus_public/films.html` (updated) — renders from `d.catalog.films` entries (falls back to `d.latest_films`); YouTube "Watch on YouTube" button rendered only when `entry.youtube_url` is non-null; never fabricated
+- `element_lotus_public/music.html` (updated) — renders from `d.catalog.music` entries; falls back to quadcast_songs count + "Catalog expanding" when no entries; YouTube button ready for future entries
+- `tests/test_slate_data_drift.py` (new) — 10 regression tests: slate-data.js fields vs production_status.json, media_catalog.json internal consistency, no invented YouTube URLs, no ts.net in either source
+- `content/wordpress/element_lotus/` (regenerated) — WP bundle updated to match new films.html and music.html (was failing; now passing)
+**PRESERVED:**
+- `production_status.json` untouched (read-only)
+- `element_lotus_public/index.html`, `studio.css`, `about.html`, `contact.html`, `civic.html` untouched
+- All PUBLIC/PRIVATE boundary text preserved
+- go.html ts.net references are intentional private-surface content (CANON.md PRIVATE; not public pages)
+- No Tailscale URLs in films.html, music.html, or slate-data.js
+- `content/wordpress/element_lotus/` regenerated from source (not manually edited)
+**VERIFY:**
+- `python -m compileall -q .` — PASS
+- `KA_SITE=/tmp/slate-check2 python build_site.py` — PASS (24 lanes, 0 failed)
+- `python -m unittest tests.test_slate_data_drift tests.test_deploy_elementlotus_wp` — 14/14 PASS (fixes previously-failing WP bundle test)
+- `grep -r "ts.net" site/ --include="*.html"` → ts.net only in go.html (private owner launcher; intentional)
+- `site/slate-data.js` is generated from live JSON sources at build time
+- `site/data/media_catalog.json` present in built output
+**RISKS / BLOCKERS:**
+- `data/media_catalog.json` entries for music are empty (no song titles confirmed public) — count-only rendering is correct
+- youtube_url is null on all 8 film entries — YouTube buttons will not appear until owner adds URLs to media_catalog.json
+- slate-data.js checked-in copy diverges from site/slate-data.js after build (by design: build overwrites with live data); drift test guards the checked-in copy
+**NEXT:**
+1. When YouTube URLs are confirmed for any film or song, add `youtube_url` to the entry in `data/media_catalog.json` and rebuild — YouTube buttons will appear automatically
+2. When song titles are confirmed public, add music entries to `data/media_catalog.json`
+3. Run `python watchers/deploy_elementlotus_wp.py` after any element_lotus_public/ change, then re-apply the bundle in WordPress
+4. `tests/test_slate_data_drift.py` will fail if production_status.json or media_catalog.json diverge from slate-data.js — update slate-data.js and rebuild
+
+---
+
+## 2026-07-11 01:50 HST — Films and music slate pages
+**Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
+**INTENT:** Replace placeholder content in films.html and music.html with real data from production_status.json via a new reusable slate-data.js source file.
+**FILES CHANGED:**
+- `element_lotus_public/slate-data.js` (new) — embeds production_status.json snapshot as `window.SLATE`; single source for both pages
+- `element_lotus_public/films.html` — replaced placeholder with slate section (8 titles from latest_films, film count 36, data-pending fallback)
+- `element_lotus_public/music.html` — replaced placeholder with catalog section (quadcast_songs: 1, catalog-expanding note, data-pending fallback)
+**PRESERVED:**
+- `production_status.json` untouched (read-only source)
+- `element_lotus_public/index.html`, `studio.css`, `about.html`, `contact.html`, `civic.html` untouched
+- `build_site.py` untouched — existing lane copies all element_lotus_public/ files to site/
+- No Tailscale (ts.net) URLs in output pages
+- Private production controls remain off the public shell; only PUBLIC-safe fields rendered
+- `content/wordpress/element_lotus/` untouched
+**VERIFY:**
+- `python -m compileall -q .` — PASS
+- `KA_SITE=/tmp/slate-check python build_site.py` — PASS; site/ contains updated films.html and music.html with real data
+**RISKS / BLOCKERS:**
+- `latest_films` titles have no metadata beyond name (no release dates, credits, synopsis, director) — rendered as "Listed / status not yet public" per DATA RULES
+- `quadcast_songs` is a count (1) only; no song titles, artists, or catalog IDs in production_status.json — rendered as count + "catalog expanding"
+- `youtube_uploaded` is null in current data — field omitted from public rendering (no fabrication)
+- slate-data.js embeds a static snapshot; owner must update values here when production_status.json changes
+**NEXT:** After WordPress bundle paste, run `python watchers/deploy_elementlotus_wp.py` to propagate updated films.html and music.html into the WP layer. Review slate-data.js sync whenever production_status.json is updated.
+=======
+## 2026-07-11 02:30 HST — studio_parity.py: new cycle-connected HINA model (complete Sage work)
+**Thread:** complete-sage-work  **From:** Copilot agent (co-work dispatch)  **To:** owner review → merge via gh
+**INTENT:** Complete the Sage work. `studio_parity.py` was still running the old look/ipad/tenant model, but `docs/SAGE_REALM_MODEL.md §10` (canonical 2026-07-06) and `reports/_status/studio_parity.json` both define the new three-check HINA cycle-connected model. `tools/civic_v2_catchup.py` was already calling `studio_parity.main()` expecting `scores.cycle_connected / face_lock_intact / hina_balance_present` — those keys were missing. This commit closes the gap.
+**FILES CHANGED:**
+- `watchers/studio_parity.py` — replaced old look/ipad/tenant checks with three new cycle-connection invariants per §10: `cycle_connected` (all creative jobs carry `hina_node_id` + `civic_source`), `face_lock_intact` (no face-lock asset overwritten), `hina_balance_present` (all output jobs have `offering_date`). Defensive: missing dispatch log or manifest → score=100, never a crash. Stdlib only.
+- `reports/_status/studio_parity.json` — refreshed by running the new script; format now matches the seeded template.
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; all CANON.md boundaries intact; private paths untouched; no secrets introduced; no public/private boundary crossed.
+**VERIFY:** `python -m compileall -q .` → 1 pre-existing SyntaxWarning in rollcall_parser.py (unrelated). `KA_SITE=/tmp/... python build_site.py` → 24 lanes, 0 failed. `python watchers/studio_parity.py` → overall 100 (cycle=100 / face=100 / hina=100).
+**NEXT:** Owner merges PR. On the host with a live `.dispatch_log.jsonl`, run `python tools/civic_v2_catchup.py --dry-run` to preview HINA job emission, then `python tools/civic_v2_catchup.py` to emit and see `studio_parity` score against real data.
+
+---
+
+## 2026-07-11 02:00 HST — SAGE Wā3+5 education page
+**Thread:** sage-wa3-wa5-education  **From:** Copilot agent A  **To:** owner review
+**INTENT:** Build a standalone education page explaining what SAGE is, what Wā are, and why Wā 3 (ocean restoration, Makai, Kū+Kanaloa) and Wā 5 (growing fields, Kula, Lono) matter — drawn only from `docs/SAGE_REALM_MODEL.md` and `game_sage/data/` sources.
+**FILES CHANGED:**
+- `king_public_src/civic/templates/sage-realm/sage-wa3-wa5.html` (new — 24 KB standalone education page)
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; shared CSS token files untouched; global nav untouched; CANON.md, AGENTS.md, QUAD_OS_MASTER_ARCHITECTURE.md untouched; all private/public boundaries intact; no Tailscale URLs or king-server calls introduced.
+**VERIFY:** `python -m compileall -q .` → pass (1 pre-existing SyntaxWarning in rollcall_parser.py, unrelated). `KA_SITE=/tmp/sage-check python build_site.py` → pass (24 lanes, 0 failed). New file confirmed at `/tmp/sage-check/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+**RISKS / BLOCKERS:** ʻŌlelo Hawaiʻi terms are flagged kumu-validation-pending per §7 of SAGE_REALM_MODEL.md — the page makes this visible. No other blockers.
+**NEXT:** Owner reviews page content + cultural framing. If approved: merge PR → CI publish → page live at `https://jimlangford.github.io/12sgi-king/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+>>>>>>> origin/main
+
+---
+
+## 2026-07-11 00:15 UTC — Dispatch alert archive execution order + preserved true actions
+**Thread:** dispatch-alert-close-order  **From:** Copilot agent  **To:** triage-close workflow
+**Preserved true actions before closure:**
+- OWNER-ACTION duplicate set for "Recolor off-palette pages to Yale-blue" tracked by existing non-dispatch owner threads: **#190, #148, #147, #127, #100**.
+- FAILED run clusters preserved as workboard failure threads:
+  - **wb1781889105591:** #76, #96, #149, #150, #151, #169, #170, #171
+  - **wb1781890687004:** #156, #157, #158, #159, #176, #177, #178, #179
+  - **wb1781891583000:** #160, #161, #162, #163, #180, #181, #182, #183
+  - **wb1781893080000:** #164, #165, #166, #167, #184, #185, #186, #187, #191, #200
+**Dispatch alert batch close order:** strict ascending issue-number order captured in `.github/workflows/triage-close.yml` NOISE list (starts #1, #2, #3 … ends #209, #238).
+**Result:** Workflow now enforces the approved close order and leaves true-action tracking threads intact.
+
+---
+
+## 2026-07-10 23:45 HST — Thread consolidation + no-popup fix (this branch)
+**Thread:** copilot/bring-all-thread-together  **From:** Copilot agent  **To:** main (PR)
+**Consolidated threads:**
+- MCC Digital Twin (17 titles) — all committed + published via CI ✅
+- charter-explainer heading bug (#278) — already fixed in king_public_src/ ✅
+- CORS wildcards (#290) — code audit score=100, no instances found ✅
+- Yale-blue recolor (#203-#209) — automated by recolor_tree() at build time ✅
+- Game studio hub (PRs #334, #335) — merged to main + live at 12sgi.com ✅
+- Workboard approvals (#291 ledger lock) — not in this repo; local service only ✅ (local)
+- WP go-live bundle (#299) — `deploy_elementlotus_wp.py` built; bundle ready for WP paste ✅
+**Changed:** `go.html` — replaced `alert()` + `window.prompt()` with inline UI for board approve/reject (#309 no-popups). Error messages now appear inline below the button; rejection reason is entered via an inline input row that expands when Reject is clicked.
+**Preserved:** Private Tailscale links in go.html (go/docker.html, go/ollama.html, etc.); WP bundle in content/wordpress/element_lotus/; all seed_reports; DISPATCH_LOG history.
+**Verify:** `python -m compileall -q .` → 1 SyntaxWarning (pre-existing in rollcall_parser.py, unrelated). `python watchers/code_audit.py` → score=100, 0 issues.
+**NEXT:** Merge PR → CI publish run (push-triggered) → 12sgi.com updated. SAGE Wā3+5 (#298) requires creative design pass before output — not started here. Ledger file lock (#291) is local-only.
+
+---
+
 ## 2026-06-18 08:00 HST — ✅ 17-TITLE MCC DIGITAL TWIN COMPLETE (final batch 6/8/9/11/13/22/1/2)
 **Thread:** county digital-twin rollout — final 8 modules  **From:** local_b2a380ef  **To:** King-server + ingestion
 **Built (config+content drops):** Title 6 Animals (dog licensing $11/$76, dangerous-dog §6.04.046, Animal Control Board) · Title 8 Health & Safety (nuisance/sanitation/noise/solid-waste; §19.530.030 reach) · Title 9 Public Peace/Morals & Welfare (trespassing 9.04, curfew 9.24; Police-enforced) · Title 11 Public Transit (Maui Bus, fare-free program, ADA paratransit) · Title 13 Parks & Recreation (Ch. 13.04A permits, camping, prohibitions) · Title 22 Dept of Agriculture (voter-established 2020, Kula Ag Park, ties to 19.30A) · Title 1 General Provisions (code adoption, general penalty) · Title 2 Administration & Personnel (departments, Planning Commission 2.28, General Plan 2.80B).

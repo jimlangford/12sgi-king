@@ -26,3 +26,4 @@ Notes
 
 - Case records are persisted in SQLite (`TENANT_DB_PATH`, default `/tmp/govos_v2_tenant.db`).
 - Business endpoints require bearer auth sessions validated by auth introspection.
+- Business authorization uses claim-derived tenant scope (never client tenant overrides).

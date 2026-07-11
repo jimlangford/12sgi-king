@@ -3,15 +3,18 @@ import os
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
-from urllib import error, parse, request
+from urllib import request
 from uuid import uuid4
 
-from fastapi import FastAPI, Header, HTTPException, Response
+from fastapi import FastAPI, Header, Response
 from pydantic import BaseModel
 
+from services.authz import auth_error, audit_auth_event, enforce_resource_tenant, enforce_tenant_scope, require_claims
+from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
 
 API_PREFIX = "/api/v2"
+SERVICE_NAME = "tenant"
 VERSION = os.environ.get("VERSION", "2.0.0")
 DB_PATH = os.environ.get("TENANT_DB_PATH", "/tmp/govos_v2_tenant.db")
 AUTH_INTROSPECTION_URL = os.environ.get("AUTH_INTROSPECTION_URL", "http://localhost:8101/api/v2/auth/introspect")
@@ -75,40 +78,7 @@ def _check_dependency_ready(url: str) -> bool:
         return False
 
 
-def _error(status_code: int, code: str, message: str, details: dict | None = None):
-    raise HTTPException(status_code=status_code, detail={"error": {"code": code, "message": message, "details": details or {}}})
 
-
-def _require_auth(authorization: str | None) -> dict:
-    if not authorization or not authorization.startswith("Bearer "):
-        _error(401, "unauthorized", "Missing or invalid bearer token")
-
-    token = authorization.split(" ", 1)[1].strip()
-    payload = json.dumps({"token": token}).encode()
-    req = request.Request(
-        AUTH_INTROSPECTION_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "X-Service-Token": INTERNAL_SERVICE_TOKEN,
-        },
-        method="POST",
-    )
-
-    try:
-        with request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
-            data = json.loads(resp.read().decode() or "{}")
-    except error.HTTPError as exc:
-        if exc.code == 403:
-            _error(503, "dependency_denied", "Auth service rejected service trust")
-        _error(503, "dependency_unavailable", "Auth service unavailable", {"status": exc.code})
-    except Exception:
-        _error(503, "dependency_unavailable", "Auth service unavailable")
-
-    if not data.get("active"):
-        _error(401, "unauthorized", "Session is not active")
-
-    return data.get("user") or {}
 
 
 def _to_case(row: sqlite3.Row) -> dict:
@@ -128,7 +98,11 @@ init_db()
 
 @app.get(f"{API_PREFIX}/live")
 def live():
-    return {"status": "alive", "service": "tenant", "timestamp": _now_utc()}
+    return with_service_metadata(
+        {"status": "alive", "timestamp": _now_utc()},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/ready")
@@ -143,41 +117,79 @@ def ready(response: Response):
     auth_ok = _check_dependency_ready(AUTH_READY_URL)
     is_ready = db_ok and auth_ok
     response.status_code = 200 if is_ready else 503
-    return {
-        "status": "ready" if is_ready else "not-ready",
-        "service": "tenant",
-        "dependencies": {"database": db_ok, "auth": auth_ok},
-    }
+    return with_service_metadata(
+        {
+            "status": "ready" if is_ready else "not-ready",
+            "dependencies": {"database": db_ok, "auth": auth_ok},
+        },
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/health")
 def health():
     with _db() as conn:
         count = conn.execute("SELECT COUNT(*) FROM cases").fetchone()[0]
-    return {"status": "healthy", "service": "tenant", "version": VERSION, "case_count": count}
+    return with_service_metadata(
+        {"status": "healthy", "case_count": count},
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get(f"{API_PREFIX}/cases")
-def list_cases(authorization: str | None = Header(default=None)):
-    _require_auth(authorization)
+def list_cases(authorization: str | None = Header(default=None), tenant_id: str | None = None):
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"tenant:read"},
+    )
+    scope_tenant = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=tenant_id,
+        owner_override_allowed=True,
+    )
+    if claims.get("role") == "Owner" and not scope_tenant:
+        audit_auth_event(SERVICE_NAME, "owner_override", {"resource": "cases.list", "scope": "all_tenants"})
     with _db() as conn:
-        rows = conn.execute("SELECT * FROM cases ORDER BY created_at DESC").fetchall()
+        if scope_tenant:
+            rows = conn.execute("SELECT * FROM cases WHERE tenant_id = ? ORDER BY created_at DESC", (scope_tenant,)).fetchall()
+        else:
+            rows = conn.execute("SELECT * FROM cases ORDER BY created_at DESC").fetchall()
     return {"cases": [_to_case(row) for row in rows]}
 
 
 @app.post(f"{API_PREFIX}/cases", status_code=201)
 def create_case(payload: CaseCreateRequest, authorization: str | None = Header(default=None)):
-    user = _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"tenant:write"},
+    )
+    tenant_id = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=payload.tenant_id,
+        owner_override_allowed=True,
+    )
 
     case_id = str(uuid4())
     record = {
         "id": case_id,
-        "tenant_id": payload.tenant_id,
+        "tenant_id": tenant_id,
         "title": payload.title,
         "status": payload.status,
         "notes": payload.notes,
         "created_at": _now_utc(),
-        "created_by": user.get("id", "unknown"),
+        "created_by": claims.get("sub", "unknown"),
     }
 
     with _db() as conn:
@@ -210,9 +222,17 @@ def create_case(payload: CaseCreateRequest, authorization: str | None = Header(d
 
 @app.get(f"{API_PREFIX}/cases/{{case_id}}")
 def get_case(case_id: str, authorization: str | None = Header(default=None)):
-    _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"tenant:read"},
+    )
     with _db() as conn:
         row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
     if not row:
-        _error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
+        auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
+    enforce_resource_tenant(service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"])
     return _to_case(row)
