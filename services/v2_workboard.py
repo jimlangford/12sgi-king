@@ -5,6 +5,13 @@ import time
 from pathlib import Path
 from uuid import uuid4
 
+# Platform event bus — best-effort; import failure must never break workboard.
+try:
+    from services.event_bus import publish_event as _publish_platform_event
+except Exception:
+    def _publish_platform_event(*args, **kwargs):  # type: ignore[misc]
+        return None
+
 WORKBOARD_SCHEMA = "workboard-job-v1"
 WORKBOARD_THREAD = os.environ.get("WORKBOARD_TARGET_THREAD", "workboard-quad-os")
 DEFAULT_DISPATCH_LOG = Path(__file__).resolve().parents[1] / ".dispatch_log.jsonl"
@@ -125,6 +132,14 @@ def emit_workboard_job(
             log_path=path,
         )
         entry["auto_approved"] = True
+
+    _publish_platform_event(
+        "workboard.job.created",
+        "v2_workboard",
+        payload={"lane": job_lane, "action": action, "event": event, "status": queue_status},
+        entity_id=entry["job"]["id"],
+        correlation_id=correlation_id,
+    )
     return entry
 
 
@@ -227,6 +242,12 @@ def approve_workboard_job(
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    _publish_platform_event(
+        "workboard.job.approved",
+        "v2_workboard",
+        payload={"approver": approver, "note": note or ""},
+        entity_id=job_id,
+    )
     return tombstone
 
 
@@ -266,6 +287,12 @@ def reject_workboard_job(
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    _publish_platform_event(
+        "workboard.job.rejected",
+        "v2_workboard",
+        payload={"rejector": rejector, "reason": reason},
+        entity_id=job_id,
+    )
     return tombstone
 
 
@@ -435,6 +462,12 @@ def selfheal_engineering_jobs(
             outcome,
             source="workboard-self-healer",
             log_path=path,
+        )
+    if to_heal:
+        _publish_platform_event(
+            "workboard.engineering.selfhealed",
+            "v2_workboard",
+            payload={"healed_count": len(to_heal), "outcome": outcome},
         )
     return len(to_heal)
 
