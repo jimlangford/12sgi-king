@@ -5,6 +5,22 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (later) — Education page promoted to 12sgi.com front door; government watcher surfaced through it
+
+**Thread:** education/front-page request → build_site.py  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** the live `/king/education` page (Tailscale-private, unreachable by this tool — owner pasted its rendered content directly). No file/route matching "education" existed anywhere in the repo before this change. Found `watchers/civic_daily_briefing.py` (real daily "Today's Civic Agenda" briefing, sourced from Legistar) and `watchers/meetings_calendar.py` (real filled-out yearly meeting calendar, 2015→present, 5 governments) were already wired into `build_site.py`'s `PAGES`/`EXTRA_PAGES` and publishing to `civic_daily.html` / `meetings_calendar.html` — just never surfaced from the front page. `news_record.html` (News vs Record watcher output) was written by its own script but was **not** wired into the build at all.
+
+**CHANGED:** added `education.html` (new file, PUBLIC) reproducing the owner-provided Lux et Veritas PONO civic-education content (hero, three pillars, K-2 curriculum block verbatim from the pasted copy, grade-band tabs for 3-5 through grad school marked honestly as "in development" — no fabricated lesson content for bands we have no sourced copy for). Wired `news_record.html` into `EXTRA_PAGES`. Changed the `public_front_door` lane in `build_site.py` so `education.html` is now `site/index.html`; the former studio-first shell is preserved (not deleted) at the stable `site/studio.html`. The education page prominently links `civic_daily.html` (daily state) and `meetings_calendar.html` (yearly calendar) as "the government watcher, live."
+
+**PRESERVED:** no PRIVATE/Tailscale content was copied into the public build — the page was reconstructed from the owner's own pasted text, not scraped from king-local. `/go.html` stays the private launcher, `/king/` stays the King app root, `reports.html` (civic hub) unchanged.
+
+**VERIFY:** `python -m compileall -q .` clean. `KA_SITE=C:\tmp\12sgi-king-site-check python build_site.py` → 24 lanes, 0 failed, leak-gate clean; confirmed `site/index.html` byte-identical to `site/education.html`, `site/studio.html` present, and the Yale-blue recolor pass left the new page's CSS vars/links intact.
+
+**NEXT:** not yet committed/pushed — awaiting owner go-ahead. On the real king-server build, `civic_daily.html`/`meetings_calendar.html`/`news_record.html` will resolve for real (their source data lives under the local `Video System elementLOTUS/reports/mauios` tree, absent in this sandboxed checkout).
+
+---
+
 ## 2026-07-11 08:00 HST — Backlog cleared: 100 approved jobs run through PUBLISH; 0 errors, 0 auto-posts
 
 **Thread:** social content team → PUBLISH step  **From:** Copilot CLI  **To:** Jimmy
