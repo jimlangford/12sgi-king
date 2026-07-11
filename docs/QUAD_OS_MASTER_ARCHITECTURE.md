@@ -112,6 +112,12 @@ Planned modules (phase 2):
 - All major architecture changes must be documented here and reviewed by platform leads
 - Each module must register a maintainer and include an OWNERS entry or CODEOWNERS rule
 
+16. Completion governance rubric
+--------------------------------
+- Platform completion checkpoints and latest execution status are tracked in:
+  `/home/runner/work/12sgi-king/12sgi-king/docs/QUAD_OS_COMPLETION_RUBRIC.md`
+- Update that rubric checkpoint-by-checkpoint as operational evidence changes (especially deploy-v2 dry-run/restart evidence).
+
 Appendix: Implementation checklist (first actions)
 - [ ] Verify label-by-path workflow passes for PR #313 (dry-run then apply)
 - [ ] Audit all workflows for least-privilege permissions and deprecated actions
@@ -119,5 +125,4 @@ Appendix: Implementation checklist (first actions)
 - [ ] Create Auth service scaffold and API spec
 - [ ] Create RBAC/Permissions service scaffold
 - [ ] Implement centralized Event Bus and Audit Log scaffolds
-
 
