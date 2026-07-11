@@ -86,27 +86,36 @@
 
   var html = '';
 
-  if (songs != null) {
+  /* Render structured catalog entries for music if available. */
+  var entries = (d.catalog && Array.isArray(d.catalog.music)) ? d.catalog.music : [];
+  if (entries.length > 0) {
+    entries.forEach(function (entry) {
+      var title = (entry.title != null) ? esc(entry.title) : '[data pending]';
+      var ytBtn = '';
+      /* YouTube button: only render if a confirmed URL exists — never fabricate. */
+      if (entry.youtube_url) {
+        ytBtn = ' <a class="btn secondary" href="' + esc(entry.youtube_url) + '" target="_blank" rel="noopener noreferrer"'
+          + ' style="font-size:11px;padding:4px 10px;margin-left:8px">Watch on YouTube ↗</a>';
+      }
+      var albumNote = entry.album ? ' &middot; ' + esc(entry.album) : '';
+      html += '<div class="row">'
+        + '<strong>' + title + ytBtn + '</strong>'
+        + '<p>' + (entry.description ? esc(entry.description) : '')
+        + albumNote + '</p>'
+        + '</div>';
+    });
+  } else if (songs != null) {
+    /* No per-entry titles yet — render the count with a catalog-expanding note. */
     var label = (songs === 1) ? 'song' : 'songs';
     html += '<div class="row">'
       + '<strong>Quadcast catalog</strong>'
       + '<p>' + esc(String(songs)) + '&nbsp;' + label + ' in the current catalog. '
-      + '<span class="tag">Catalog expanding</span></p>'
+      + '<span class="tag">Catalog expanding</span>&nbsp; '
+      + 'Song titles will appear here as they are confirmed for public release.</p>'
       + '</div>';
   } else {
     html += '<div class="row"><strong>[data pending]</strong>'
       + '<p>quadcast_songs field not present in production_status.json.</p></div>';
-  }
-
-  if (d.youtube_uploaded != null) {
-    html += '<div class="row">'
-      + '<strong>YouTube uploads</strong>'
-      + '<p>' + esc(String(d.youtube_uploaded)) + '</p>'
-      + '</div>';
-  }
-
-  if (html === '') {
-    html = '<div class="row"><strong>[data pending]</strong><p>No music fields available in production_status.json.</p></div>';
   }
 
   slateEl.innerHTML = html;

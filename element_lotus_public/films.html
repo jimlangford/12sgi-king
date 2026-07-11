@@ -86,17 +86,27 @@
 
   if (!slateEl) return;
 
-  var films = Array.isArray(d.latest_films) ? d.latest_films : [];
-  if (films.length === 0) {
-    slateEl.innerHTML = '<div class="row"><strong>[data pending]</strong><p>No titles found in latest_films.</p></div>';
+  /* Prefer structured catalog entries; fall back to latest_films strings. */
+  var entries = (d.catalog && Array.isArray(d.catalog.films) && d.catalog.films.length > 0)
+    ? d.catalog.films
+    : (Array.isArray(d.latest_films) ? d.latest_films.map(function (t) { return { title: t }; }) : []);
+
+  if (entries.length === 0) {
+    slateEl.innerHTML = '<div class="row"><strong>[data pending]</strong><p>No film entries found in catalog.</p></div>';
     return;
   }
 
   var html = '';
-  films.forEach(function (title) {
-    var safeTitle = (title != null) ? esc(title) : '[data pending]';
+  entries.forEach(function (entry) {
+    var title = (entry.title != null) ? esc(entry.title) : '[data pending]';
+    var ytBtn = '';
+    /* YouTube button: only render if a confirmed URL exists — never fabricate. */
+    if (entry.youtube_url) {
+      ytBtn = ' <a class="btn secondary" href="' + esc(entry.youtube_url) + '" target="_blank" rel="noopener noreferrer"'
+        + ' style="font-size:11px;padding:4px 10px;margin-left:8px">Watch on YouTube ↗</a>';
+    }
     html += '<div class="row">'
-      + '<strong>' + safeTitle + '</strong>'
+      + '<strong>' + title + ytBtn + '</strong>'
       + '<p><span class="tag">Listed</span>&nbsp; Full status not yet public. '
       + 'Credits, synopsis, and release details remain in the private production system.</p>'
       + '</div>';

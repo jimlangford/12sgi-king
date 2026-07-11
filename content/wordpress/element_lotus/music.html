@@ -7,25 +7,114 @@
     <div class="brand"><div class="mark">♫</div><div class="wordmark"><strong>Music</strong><span>Element Lotus · song first</span></div></div>
     <nav class="nav"><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/films/">Films</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
   </header>
+
   <section class="hero">
     <div class="eyebrow">Public studio lane</div>
-    <h1>Put the music ahead of the music video.</h1>
-    <p>This front-facing lane prioritizes songs, score, lyric systems, and catalog growth. Moving-image workflows can still exist, but they no longer define the first impression of the music lane.</p>
+    <h1>Put the song ahead of the screen.</h1>
+    <p>This front-facing lane prioritizes compositions, catalog growth, and the scoring work that supports the SAGE universe, game catalog, and film slate. Moving-image workflows live deeper in the stack; the music itself is the headline here.</p>
   </section>
-  <section class="section">
-    <h2>Front-page priorities</h2>
-    <div class="card-grid">
-      <article class="card"><div class="kicker">Songs</div><h3>Lead with the catalog</h3><p>Feature the compositions, themes, and releases first so listeners understand the music before any downstream visual treatment.</p></article>
-      <article class="card"><div class="kicker">Score</div><h3>Support the films and games</h3><p>The music lane also carries score and sonic identity for the SAGE universe, the game catalog, and the film slate.</p></article>
-      <article class="card"><div class="kicker">Boundary</div><h3>Video is not the headline here</h3><p>Music-video production can stay deeper in the stack or private-only without dominating the public shell.</p></article>
+
+  <section class="band">
+    <div class="panel">
+      <h2>Catalog snapshot</h2>
+      <p>Source: <code>production_status.json</code> &mdash; updated <span id="music-updated">&mdash;</span></p>
+      <p style="margin-top:10px">The catalog is in early growth. Entries below reflect what is confirmed in the production record; additional songs and scoring work are in progress.</p>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><span>Quadcast songs</span><strong id="song-count">&mdash;</strong></div>
     </div>
   </section>
-  <section class="section split">
-    <div class="panel"><h2>How to use WordPress</h2><p>Use the WordPress shell for artist notes, lyric excerpts, release posts, mailing-list capture, and public updates. Keep render-control systems and private studio ops out of the public mirror.</p></div>
-    <div class="panel"><h2>Related</h2><p><a href="/films/">Film lane →</a><br><a href="https://12sgi.com/games/">Games hub →</a><br><a href="/contact/">Studio contact →</a></p></div>
+
+  <section class="section">
+    <h2>Music catalog</h2>
+    <p class="lead">The entries below are sourced directly from <code>production_status.json</code>. Only confirmed fields are shown; no entries have been invented or projected.</p>
+    <div class="list" id="music-slate">
+      <noscript><div class="row"><strong>[data pending]</strong><p>Enable JavaScript to render catalog data from slate-data.js.</p></div></noscript>
+    </div>
   </section>
-  <footer class="footer"><nav><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/films/">Films</a><a href="/civic/">Civic / govOS</a></nav>Music first. Video deeper in the stack.</footer>
+
+  <section class="section split">
+    <div class="panel">
+      <h2>How to use WordPress</h2>
+      <p>Use the WordPress shell for artist notes, lyric excerpts, release posts, mailing-list capture, and public updates. Keep render-control systems and private studio operations out of the public mirror.</p>
+    </div>
+    <div class="panel">
+      <h2>Related</h2>
+      <p><a href="/films/">Film lane →</a><br><a href="https://12sgi.com/games/">Games hub →</a><br><a href="/contact/">Studio contact →</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <nav><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/films/">Films</a><a href="/civic/">Civic / govOS</a></nav>
+    PUBLIC studio lane. PRIVATE production remains protected.
+  </footer>
 </div>
+
+<script src="slate-data.js"></script>
+<script>
+(function () {
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  var slateEl = document.getElementById('music-slate');
+  var countEl = document.getElementById('song-count');
+  var updatedEl = document.getElementById('music-updated');
+
+  var d = window.SLATE;
+  if (!d) {
+    if (slateEl) slateEl.innerHTML = '<div class="row"><strong>[data pending]</strong><p>slate-data.js did not load.</p></div>';
+    return;
+  }
+
+  if (updatedEl) updatedEl.textContent = d.updated || '\u2014';
+
+  var songs = d.quadcast_songs;
+  if (countEl) countEl.textContent = (songs != null) ? songs : '[data pending]';
+
+  if (!slateEl) return;
+
+  var html = '';
+
+  /* Render structured catalog entries for music if available. */
+  var entries = (d.catalog && Array.isArray(d.catalog.music)) ? d.catalog.music : [];
+  if (entries.length > 0) {
+    entries.forEach(function (entry) {
+      var title = (entry.title != null) ? esc(entry.title) : '[data pending]';
+      var ytBtn = '';
+      /* YouTube button: only render if a confirmed URL exists — never fabricate. */
+      if (entry.youtube_url) {
+        ytBtn = ' <a class="btn secondary" href="' + esc(entry.youtube_url) + '" target="_blank" rel="noopener noreferrer"'
+          + ' style="font-size:11px;padding:4px 10px;margin-left:8px">Watch on YouTube ↗</a>';
+      }
+      var albumNote = entry.album ? ' &middot; ' + esc(entry.album) : '';
+      html += '<div class="row">'
+        + '<strong>' + title + ytBtn + '</strong>'
+        + '<p>' + (entry.description ? esc(entry.description) : '')
+        + albumNote + '</p>'
+        + '</div>';
+    });
+  } else if (songs != null) {
+    /* No per-entry titles yet — render the count with a catalog-expanding note. */
+    var label = (songs === 1) ? 'song' : 'songs';
+    html += '<div class="row">'
+      + '<strong>Quadcast catalog</strong>'
+      + '<p>' + esc(String(songs)) + '&nbsp;' + label + ' in the current catalog. '
+      + '<span class="tag">Catalog expanding</span>&nbsp; '
+      + 'Song titles will appear here as they are confirmed for public release.</p>'
+      + '</div>';
+  } else {
+    html += '<div class="row"><strong>[data pending]</strong>'
+      + '<p>quadcast_songs field not present in production_status.json.</p></div>';
+  }
+
+  slateEl.innerHTML = html;
+}());
+</script>
 </div>
 </div>
 <!-- /wp:group -->

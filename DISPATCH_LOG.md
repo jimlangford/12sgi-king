@@ -5,6 +5,43 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 02:10 HST — Agent C final: media integration + source-of-truth architecture
+**Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
+**INTENT:** Eliminate slate-data.js drift by generating it at build time; introduce data/media_catalog.json as the per-entry structured catalog; add YouTube button support; add regression tests; fix previously-failing WP bundle test.
+**FILES CHANGED:**
+- `data/media_catalog.json` (new) — per-entry structured catalog; schema covers all Part 2 fields (title, type, status, public_visibility, youtube_url, youtube_video_id, thumbnail, release_date, duration, description, related_project, album, credits, copyright_status, tags); 8 film entries from latest_films; music entries empty (no confirmed titles yet)
+- `element_lotus_public/slate-data.js` (updated) — embeds catalog entries from media_catalog.json; `window.SLATE.catalog.films/music` shape; documents architecture and drift-protection rules
+- `build_site.py` (updated) — `production_status` lane now generates `site/slate-data.js` from live production_status.json + data/media_catalog.json, overwriting the static copy; also copies media_catalog.json to `site/data/`
+- `element_lotus_public/films.html` (updated) — renders from `d.catalog.films` entries (falls back to `d.latest_films`); YouTube "Watch on YouTube" button rendered only when `entry.youtube_url` is non-null; never fabricated
+- `element_lotus_public/music.html` (updated) — renders from `d.catalog.music` entries; falls back to quadcast_songs count + "Catalog expanding" when no entries; YouTube button ready for future entries
+- `tests/test_slate_data_drift.py` (new) — 10 regression tests: slate-data.js fields vs production_status.json, media_catalog.json internal consistency, no invented YouTube URLs, no ts.net in either source
+- `content/wordpress/element_lotus/` (regenerated) — WP bundle updated to match new films.html and music.html (was failing; now passing)
+**PRESERVED:**
+- `production_status.json` untouched (read-only)
+- `element_lotus_public/index.html`, `studio.css`, `about.html`, `contact.html`, `civic.html` untouched
+- All PUBLIC/PRIVATE boundary text preserved
+- go.html ts.net references are intentional private-surface content (CANON.md PRIVATE; not public pages)
+- No Tailscale URLs in films.html, music.html, or slate-data.js
+- `content/wordpress/element_lotus/` regenerated from source (not manually edited)
+**VERIFY:**
+- `python -m compileall -q .` — PASS
+- `KA_SITE=/tmp/slate-check2 python build_site.py` — PASS (24 lanes, 0 failed)
+- `python -m unittest tests.test_slate_data_drift tests.test_deploy_elementlotus_wp` — 14/14 PASS (fixes previously-failing WP bundle test)
+- `grep -r "ts.net" site/ --include="*.html"` → ts.net only in go.html (private owner launcher; intentional)
+- `site/slate-data.js` is generated from live JSON sources at build time
+- `site/data/media_catalog.json` present in built output
+**RISKS / BLOCKERS:**
+- `data/media_catalog.json` entries for music are empty (no song titles confirmed public) — count-only rendering is correct
+- youtube_url is null on all 8 film entries — YouTube buttons will not appear until owner adds URLs to media_catalog.json
+- slate-data.js checked-in copy diverges from site/slate-data.js after build (by design: build overwrites with live data); drift test guards the checked-in copy
+**NEXT:**
+1. When YouTube URLs are confirmed for any film or song, add `youtube_url` to the entry in `data/media_catalog.json` and rebuild — YouTube buttons will appear automatically
+2. When song titles are confirmed public, add music entries to `data/media_catalog.json`
+3. Run `python watchers/deploy_elementlotus_wp.py` after any element_lotus_public/ change, then re-apply the bundle in WordPress
+4. `tests/test_slate_data_drift.py` will fail if production_status.json or media_catalog.json diverge from slate-data.js — update slate-data.js and rebuild
+
+---
+
 ## 2026-07-11 01:50 HST — Films and music slate pages
 **Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
 **INTENT:** Replace placeholder content in films.html and music.html with real data from production_status.json via a new reusable slate-data.js source file.
