@@ -69,10 +69,17 @@ bash scripts/stop.sh
 ```bash
 docker compose up -d --build
 docker compose ps
+
+# Health check from the host machine (via port mapping on the tailscale service)
 curl http://127.0.0.1:8088/health
 curl http://127.0.0.1:8088/graph/status
 
+# From your laptop on the same Tailscale network (MagicDNS or Tailscale IP):
+#   curl http://12sgi-v2:8088/health
+#   curl http://100.x.x.x:8088/health
+
 # Tailscale status
+bash scripts/tailscale-check.sh
 docker exec -it 12sgi-v2-tailscale tailscale status
 docker exec -it 12sgi-v2-tailscale tailscale ip
 
