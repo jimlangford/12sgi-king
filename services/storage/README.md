@@ -26,3 +26,4 @@ Notes
 
 - Object metadata is persisted in SQLite (`STORAGE_DB_PATH`, default `/tmp/govos_v2_storage.db`).
 - Business endpoints require bearer auth sessions validated by auth introspection.
+- Business authorization uses claim-derived tenant scope (never client tenant overrides).

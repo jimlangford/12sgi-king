@@ -61,7 +61,12 @@ class GpuRouterHarness(unittest.TestCase):
                 **env,
             },
         )
-        module._require_auth = lambda authorization: {"id": "owner-test"}
+        module.require_claims = lambda **kwargs: {
+            "sub": "owner-test",
+            "role": "Owner",
+            "tenant_id": "",
+            "scopes": ["gpu:infer", "gpu:read", "ops:owner"],
+        }
         return module
 
     def connect(self):
@@ -264,7 +269,12 @@ class TestGpuRouterHardening(GpuRouterHarness):
                 (now, now, now, now),
             )
             conn.commit()
-        module._require_auth = lambda authorization: {"id": "owner-test"}
+        module.require_claims = lambda **kwargs: {
+            "sub": "owner-test",
+            "role": "Owner",
+            "tenant_id": "",
+            "scopes": ["gpu:infer", "gpu:read", "ops:owner"],
+        }
         client = TestClient(module.app)
 
         queue = client.get("/api/v2/gpu/queue?tenant_id=tenant-a", headers={"Authorization": "******"}).json()
@@ -272,6 +282,39 @@ class TestGpuRouterHardening(GpuRouterHarness):
 
         self.assertEqual([item["tenant_id"] for item in queue["queue"]], ["tenant-a"])
         self.assertEqual([item["tenant_id"] for item in usage["usage"]], ["tenant-a"])
+
+    def test_non_owner_operational_endpoints_cannot_leak_other_tenants(self):
+        module = self.load_gpu()
+        now = module._now_utc()
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO gpu_jobs
+                  (id, tenant_id, client_id, priority, job_type, model, prompt, status,
+                   created_at, available_at, max_attempts, created_by)
+                VALUES
+                  ('job-a', 'tenant-a', 'studio', 1, 'ollama', 'llama3', 'a', 'pending', ?, ?, 3, 'tester'),
+                  ('job-b', 'tenant-b', 'reports', 1, 'ollama', 'llama3', 'b', 'pending', ?, ?, 3, 'tester')
+                """,
+                (now, now, now, now),
+            )
+            conn.commit()
+        module.require_claims = lambda **kwargs: {
+            "sub": "resident-a",
+            "role": "Resident",
+            "tenant_id": "tenant-a",
+            "scopes": ["gpu:read"],
+        }
+        client = TestClient(module.app)
+
+        queue = client.get("/api/v2/gpu/queue", headers={"Authorization": "******"}).json()
+        usage = client.get("/api/v2/gpu/usage", headers={"Authorization": "******"}).json()
+        blocked = client.get("/api/v2/gpu/queue?tenant_id=tenant-b", headers={"Authorization": "******"})
+
+        self.assertEqual([item["tenant_id"] for item in queue["queue"]], ["tenant-a"])
+        self.assertEqual([item["tenant_id"] for item in usage["usage"]], ["tenant-a"])
+        self.assertEqual(blocked.status_code, 403)
+        self.assertEqual(blocked.json()["detail"]["error"]["code"], "tenant_mismatch")
 
 
 class TestGpuRouterDeploymentSurfaces(unittest.TestCase):

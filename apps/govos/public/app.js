@@ -6,14 +6,28 @@ const API = {
 };
 
 const output = document.getElementById('output');
+let accessToken = null;
+
 const show = (value) => {
   output.textContent = JSON.stringify(value, null, 2);
 };
 
-async function post(url, body) {
+function parseScopes(value) {
+  return (value || '')
+    .split(',')
+    .map((scope) => scope.trim())
+    .filter(Boolean);
+}
+
+function authHeaders() {
+  if (!accessToken) throw new Error('Create a session first.');
+  return { Authorization: 'Bearer ' + accessToken };
+}
+
+async function post(url, body, headers = {}) {
   const response = await fetch(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', ...headers },
     body: JSON.stringify(body),
   });
   const data = await response.json();
@@ -27,7 +41,11 @@ document.getElementById('createSession').addEventListener('click', async () => {
       provider: document.getElementById('provider').value,
       subject: document.getElementById('subject').value,
       email: document.getElementById('email').value,
+      tenant_id: document.getElementById('tenantId').value,
+      role: document.getElementById('role').value,
+      scopes: parseScopes(document.getElementById('scopes').value),
     });
+    accessToken = data.access_token;
     show(data);
   } catch (error) {
     show({ error: String(error) });
@@ -39,7 +57,7 @@ document.getElementById('createCase').addEventListener('click', async () => {
     const data = await post(`${API.tenant}/api/v2/cases`, {
       tenant_id: document.getElementById('tenantId').value,
       title: document.getElementById('caseTitle').value,
-    });
+    }, authHeaders());
     document.getElementById('docCaseId').value = data.id;
     document.getElementById('aiCaseId').value = data.id;
     show(data);
@@ -55,7 +73,7 @@ document.getElementById('generateDoc').addEventListener('click', async () => {
       template_id: document.getElementById('templateId').value,
       output_format: document.getElementById('docFormat').value,
       fields: { sample: true },
-    });
+    }, authHeaders());
     show(data);
   } catch (error) {
     show({ error: String(error) });
@@ -67,7 +85,7 @@ document.getElementById('askAi').addEventListener('click', async () => {
     const data = await post(`${API.ai}/api/v2/ai/assist`, {
       case_id: document.getElementById('aiCaseId').value,
       prompt: document.getElementById('aiPrompt').value,
-    });
+    }, authHeaders());
     show(data);
   } catch (error) {
     show({ error: String(error) });

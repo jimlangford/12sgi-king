@@ -104,11 +104,11 @@ Defaults point to localhost service ports above. You can override with globals:
 
 ## 5) End-to-end checks
 
-1. Create auth session (`POST /api/v2/auth/session`) and keep the returned access token.
-2. Create tenant case with an `Authorization` header that uses the access token.
-3. Generate document for the case with the same `Authorization` header.
-4. Create/list storage objects with the same `Authorization` header.
-5. Ask AI guidance for the same case with the same `Authorization` header.
+1. Create auth session (`POST /api/v2/auth/session`) with explicit claims (`sub`, `tenant_id`, `role`, `scopes`, `exp`, `iss`, `aud`) and keep the returned access token.
+2. Create tenant case with an `Authorization` header that uses the access token; request tenant must match token tenant unless role is `Owner`.
+3. Generate document for the case with the same `Authorization` header (cross-tenant case access is denied).
+4. Create/list storage objects with the same `Authorization` header (tenant scope is claim-derived).
+5. Ask AI guidance for the same case with the same `Authorization` header (tenant scope is claim-derived).
 6. Check `/api/v1/ready` and `/api/v1/health` from health service and verify all v2 services are reachable.
 
 ## 6) Run integration tests
@@ -253,3 +253,10 @@ gpu-runtime / Ollama  :11434
 ```
 
 Clients must not call port 11434 directly.  One brain, one queue, no VRAM fighting.
+
+## Service-token governance (local/dev)
+
+- Do not commit tokens, service secrets, or long-lived credentials.
+- Keep machine scopes explicit and narrow; avoid wildcard scopes.
+- Use short-lived tokens only; rotate local secrets by replacing env values and restarting services.
+- Treat `INTERNAL_SERVICE_TOKEN` as private service trust material and keep it out of examples/log dumps.

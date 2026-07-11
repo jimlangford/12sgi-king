@@ -27,3 +27,4 @@ Notes
 - Generated metadata is persisted in SQLite (`DOCUMENTS_DB_PATH`, default `/tmp/govos_v2_documents.db`).
 - Auth sessions are required for business endpoints.
 - Case references are validated against the tenant service.
+- Business authorization uses claim-derived tenant scope (never client tenant overrides).

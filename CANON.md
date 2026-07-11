@@ -19,6 +19,7 @@ Historical root: ALOHAnet became operational at the University of Hawai'i in 197
 - Public transparency does not mean private exposure.
 - Cloudflare, Tailscale, local mirrors, owner-only pages, private paths, and bridge scripts may be intentional.
 - Do not "fix," remove, simplify, publish, or normalize private infrastructure unless JRCSL explicitly asks.
+- For v2 APIs, tenant authorization must come from verified auth claims (never client-supplied tenant overrides).
 - Treat `PUBLIC`, `PRIVATE`, `BRIDGE`, `DO NOT TOUCH`, and `VERIFY` as active boundary labels.
 - Treat social and business connectors as `BRIDGE` systems; follow `docs/SOCIAL_CONNECTORS.md` before enabling or changing publishing automation.
 - Report in a way Claude Code, Codex, GitHub, and future agents can continue cleanly.
