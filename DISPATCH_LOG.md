@@ -5,6 +5,20 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 00:15 UTC — Dispatch alert archive execution order + preserved true actions
+**Thread:** dispatch-alert-close-order  **From:** Copilot agent  **To:** triage-close workflow
+**Preserved true actions before closure:**
+- OWNER-ACTION duplicate set for "Recolor off-palette pages to Yale-blue" tracked by existing non-dispatch owner threads: **#190, #148, #147, #127, #100**.
+- FAILED run clusters preserved as workboard failure threads:
+  - **wb1781889105591:** #76, #96, #149, #150, #151, #169, #170, #171
+  - **wb1781890687004:** #156, #157, #158, #159, #176, #177, #178, #179
+  - **wb1781891583000:** #160, #161, #162, #163, #180, #181, #182, #183
+  - **wb1781893080000:** #164, #165, #166, #167, #184, #185, #186, #187, #191, #200
+**Dispatch alert batch close order:** strict ascending issue-number order captured in `.github/workflows/triage-close.yml` NOISE list (starts #1, #2, #3 … ends #209, #238).
+**Result:** Workflow now enforces the approved close order and leaves true-action tracking threads intact.
+
+---
+
 ## 2026-07-10 23:45 HST — Thread consolidation + no-popup fix (this branch)
 **Thread:** copilot/bring-all-thread-together  **From:** Copilot agent  **To:** main (PR)
 **Consolidated threads:**
