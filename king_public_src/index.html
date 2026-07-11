@@ -140,6 +140,9 @@
       <sc-if value="{{ showGame }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Game" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showMoonCal }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="MoonCal" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
       <sc-if value="{{ showMauios }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Mauios" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
@@ -299,6 +302,7 @@ class Component extends DCLogic {
       { id:'mauios',    label:'govOS',           short:'govOS',   icon:'🌺', register:'public', owner:false },
       { id:'council',   label:'Council & Agendas', short:'Council', icon:'🏛', register:'public', owner:false },
       { id:'game',      label:'Sage Game',       short:'Game',    icon:'🂡',  register:'public', owner:false },
+      { id:'mooncal',   label:'Moon Calendar',   short:'Moon',    icon:'🌙', register:'public', owner:false },
       { id:'watcher',   label:'Watcher',         short:'Watch',   icon:'👁',  register:'public', owner:false },
       { id:'aupuni',    label:'Aupuni Globe',    short:'Globe',   icon:'🌍',  register:'public', owner:false },
       { id:'studio',    label:'Studio →',        short:'Studio',  icon:'🎛', register:'studio', owner:false, href:'go.html' },
@@ -313,7 +317,7 @@ class Component extends DCLogic {
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'mooncal'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
     // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
@@ -352,6 +356,7 @@ class Component extends DCLogic {
       showMission: s === 'mission' && unlocked && avail('mission'),
       showPush: s === 'push' && unlocked && avail('push'),
       showGame: s === 'game',
+      showMoonCal: s === 'mooncal',
       showMauios: s === 'mauios',
       showCouncil: s === 'council',
       showDashboard: s === 'dashboard',
