@@ -74,6 +74,16 @@ if not os.environ.get("GOVOS_ALLOW_DEV_SECRETS"):
             "Tailscale-private dev only.")
 
 # ── OAuth ─────────────────────────────────────────────────────────────────────
+def _csv_env_set(name: str, default: str = "", *, casefold: bool = False) -> set[str]:
+    values: set[str] = set()
+    for raw in os.environ.get(name, default).split(","):
+        item = raw.strip()
+        if not item:
+            continue
+        values.add(item.casefold() if casefold else item)
+    return values
+
+
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "")
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "")
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
@@ -83,8 +93,8 @@ AUTH_PUBLIC_URL = os.environ.get("AUTH_PUBLIC_URL", "https://auth.12sgi.com")
 # Console URL to redirect back to after successful sign-in (token appended as #token=...).
 OAUTH_REDIRECT_BASE = os.environ.get("OAUTH_REDIRECT_BASE", "https://12sgi.com/king/")
 # Comma-separated list of allowed GitHub logins and Google e-mail addresses.
-OWNER_GITHUB_LOGINS: set[str] = set(filter(None, os.environ.get("OWNER_GITHUB_LOGINS", "jimlangford").split(",")))
-OWNER_GOOGLE_EMAILS: set[str] = set(filter(None, os.environ.get("OWNER_GOOGLE_EMAILS", "").split(",")))
+OWNER_GITHUB_LOGINS = _csv_env_set("OWNER_GITHUB_LOGINS", "jimlangford", casefold=True)
+OWNER_GOOGLE_EMAILS = _csv_env_set("OWNER_GOOGLE_EMAILS", casefold=True)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -774,12 +784,12 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         )
         user_resp.raise_for_status()
         gh_user = user_resp.json()
-        login = gh_user.get("login", "")
-        email = gh_user.get("email") or ""
+        login = (gh_user.get("login") or "").strip()
+        email = (gh_user.get("email") or "").strip()
     except Exception as exc:
         return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc))
 
-    if login not in OWNER_GITHUB_LOGINS:
+    if not login or login.casefold() not in OWNER_GITHUB_LOGINS:
         return _error_page("This GitHub account is not authorised for owner access.")
 
     token, _ = _issue_and_store_session(
@@ -848,12 +858,23 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         # Restore standard base64 padding.
         padding = (4 - len(payload_b64) % 4) % 4
         id_payload = json.loads(base64.b64decode(payload_b64 + "=" * padding).decode("utf-8"))
-        email = id_payload.get("email", "")
-        sub = id_payload.get("sub", "")
+        email = (id_payload.get("email") or "").strip()
+        sub = (id_payload.get("sub") or "").strip()
+        aud = (id_payload.get("aud") or "").strip()
+        email_verified = id_payload.get("email_verified")
+        token_exp = int(id_payload.get("exp") or 0)
     except Exception as exc:
         return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
 
-    if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
+    if not email or not sub:
+        return _error_page("Google did not return the required account details.")
+    if aud != GOOGLE_CLIENT_ID:
+        return _error_page("Google sign-in did not match this configured app.")
+    if email_verified is not True and str(email_verified).strip().lower() != "true":
+        return _error_page("This Google account e-mail is not verified.")
+    if token_exp and token_exp <= int(_now_utc().timestamp()):
+        return _error_page("Google sign-in expired before it could be completed.")
+    if not OWNER_GOOGLE_EMAILS or email.casefold() not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.")
 
     token, _ = _issue_and_store_session(

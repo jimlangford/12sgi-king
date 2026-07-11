@@ -131,6 +131,7 @@ curl https://auth.12sgi.com/api/v2/live
 3. Choose **Continue with GitHub** or **Continue with Google**
 4. Authorize — you'll be redirected back with the owner surfaces unlocked
 5. The session lasts **8 hours** and is stored in `localStorage`
+6. While the token is still valid, the console silently calls `POST /api/v2/auth/renew` before expiry so long editing sessions do not force a fresh OAuth round-trip
 
 ---
 
@@ -152,6 +153,7 @@ docker compose -f docker-compose.v2.yml --env-file .env.v2 up -d auth
 ```
 
 The `OWNER_GITHUB_LOGINS` and `OWNER_GOOGLE_EMAILS` variables are comma-separated.  
+Whitespace is ignored, and matching is case-insensitive for both GitHub logins and Google e-mail addresses.  
 If `OWNER_GOOGLE_EMAILS` is left empty, any Google account is blocked.
 
 ---
