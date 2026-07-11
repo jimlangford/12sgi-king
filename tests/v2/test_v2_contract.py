@@ -30,6 +30,12 @@ class TestV2ContractFiles(unittest.TestCase):
         text = (ROOT / 'docs/api/v2-api-contract.yaml').read_text()
         required = [
             '/api/v2/auth/session',
+            '/api/v2/auth/introspect',
+            '/api/v2/auth/renew',
+            '/api/v2/auth/github',
+            '/api/v2/auth/github/callback',
+            '/api/v2/auth/google',
+            '/api/v2/auth/google/callback',
             '/api/v2/auth/diagnostics/claims',
             '/api/v2/cases',
             '/api/v2/documents/generate',

@@ -6,6 +6,7 @@ import sys
 import tempfile
 import time
 import unittest
+import urllib.parse
 from pathlib import Path
 from unittest import mock
 
@@ -340,6 +341,129 @@ class TestClaimClientMigration(unittest.TestCase):
         self.assertIn("No broad compatibility mode is permitted.", text)
         self.assertIn("FINAL LIVE-VERIFICATION READINESS", text)
         self.assertIn("NO-GO", text)
+
+
+class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="v2-owner-oauth-")
+        self.auth = _load_module(
+            AUTH_MAIN,
+            f"auth_owner_oauth_{time.time_ns()}",
+            env_overrides={
+                "AUTH_SIGNING_SECRET": "owner-oauth-secret",
+                "INTERNAL_SERVICE_TOKEN": "owner-oauth-service-token",
+                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth.db"),
+                "GITHUB_CLIENT_ID": "github-client-id",
+                "GITHUB_CLIENT_SECRET": "github-client-secret",
+                "GOOGLE_CLIENT_ID": "google-client-id",
+                "GOOGLE_CLIENT_SECRET": "google-client-secret",
+                "OWNER_GITHUB_LOGINS": " JimLangford , second-owner ",
+                "OWNER_GOOGLE_EMAILS": " Owner@Example.com , backup@example.com ",
+                "AUTH_PUBLIC_URL": "https://auth.example.com",
+                "OAUTH_REDIRECT_BASE": "https://console.example.com/king/",
+            },
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        self.client = TestClient(self.auth.app)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_owner_allowlists_are_trimmed_and_normalized(self):
+        self.assertEqual(self.auth.OWNER_GITHUB_LOGINS, {"jimlangford", "second-owner"})
+        self.assertEqual(self.auth.OWNER_GOOGLE_EMAILS, {"owner@example.com", "backup@example.com"})
+
+    def test_github_oauth_callback_accepts_case_insensitive_allowlist(self):
+        state = self.auth._make_oauth_state("github")
+
+        token_resp = mock.Mock()
+        token_resp.raise_for_status.return_value = None
+        token_resp.json.return_value = {"access_token": "gh-access-token"}
+
+        user_resp = mock.Mock()
+        user_resp.raise_for_status.return_value = None
+        user_resp.json.return_value = {"login": "JimLangford", "email": "owner@example.com"}
+
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp), mock.patch.object(
+            self.auth._requests, "get", return_value=user_resp
+        ):
+            resp = self.client.get(
+                "/api/v2/auth/github/callback",
+                params={"code": "oauth-code", "state": state},
+                follow_redirects=False,
+            )
+
+        self.assertEqual(resp.status_code, 307)
+        redirect = resp.headers["location"]
+        self.assertTrue(redirect.startswith("https://console.example.com/king/#token="))
+        token = urllib.parse.unquote(redirect.split("#token=", 1)[1])
+        claims = self.auth._decode_and_verify_token(token)[1]
+        self.assertEqual(claims["sub"], "github:JimLangford")
+        self.assertEqual(claims["role"], "Owner")
+
+    def test_google_oauth_callback_rejects_wrong_audience(self):
+        state = self.auth._make_oauth_state("google")
+        payload = {
+            "email": "owner@example.com",
+            "sub": "google-subject",
+            "aud": "wrong-client-id",
+            "email_verified": True,
+            "exp": int(time.time()) + 300,
+        }
+        id_token = ".".join(
+            [
+                "header",
+                self.auth._b64url(json.dumps(payload).encode()),
+                "sig",
+            ]
+        )
+
+        token_resp = mock.Mock()
+        token_resp.raise_for_status.return_value = None
+        token_resp.json.return_value = {"id_token": id_token}
+
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp):
+            resp = self.client.get(
+                "/api/v2/auth/google/callback",
+                params={"code": "oauth-code", "state": state},
+                follow_redirects=False,
+            )
+
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn("did not match this configured app", resp.text)
+
+    def test_google_oauth_callback_requires_verified_email(self):
+        state = self.auth._make_oauth_state("google")
+        payload = {
+            "email": "owner@example.com",
+            "sub": "google-subject",
+            "aud": "google-client-id",
+            "email_verified": False,
+            "exp": int(time.time()) + 300,
+        }
+        id_token = ".".join(
+            [
+                "header",
+                self.auth._b64url(json.dumps(payload).encode()),
+                "sig",
+            ]
+        )
+
+        token_resp = mock.Mock()
+        token_resp.raise_for_status.return_value = None
+        token_resp.json.return_value = {"id_token": id_token}
+
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp):
+            resp = self.client.get(
+                "/api/v2/auth/google/callback",
+                params={"code": "oauth-code", "state": state},
+                follow_redirects=False,
+            )
+
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn("e-mail is not verified", resp.text)
 
 
 if __name__ == "__main__":
