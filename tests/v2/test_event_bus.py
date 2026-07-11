@@ -9,6 +9,7 @@ import json
 import os
 import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
 
@@ -236,6 +237,7 @@ class TestAuthTenantEventEmission(unittest.TestCase):
         os.environ["GOVOS_ALLOW_DEV_SECRETS"] = "1"
         os.environ["AUTH_DB_PATH"] = str(self._auth_db)
         os.environ["TENANT_DB_PATH"] = str(self._tenant_db)
+        self._install_service_stubs()
 
         import importlib
         import services.event_bus as eb_module
@@ -255,7 +257,72 @@ class TestAuthTenantEventEmission(unittest.TestCase):
         del os.environ["GOVOS_ALLOW_DEV_SECRETS"]
         del os.environ["AUTH_DB_PATH"]
         del os.environ["TENANT_DB_PATH"]
+        for name in [
+            "fastapi",
+            "fastapi.middleware",
+            "fastapi.middleware.cors",
+            "fastapi.responses",
+            "pydantic",
+        ]:
+            sys.modules.pop(name, None)
         self._tmp.cleanup()
+
+    def _install_service_stubs(self):
+        if "fastapi" not in sys.modules:
+            fastapi = types.ModuleType("fastapi")
+
+            class HTTPException(Exception):
+                def __init__(self, status_code=500, detail=None):
+                    self.status_code = status_code
+                    self.detail = detail
+
+            class FastAPI:
+                def __init__(self, *args, **kwargs):
+                    pass
+
+                def add_middleware(self, *args, **kwargs):
+                    return None
+
+                def _route(self, *args, **kwargs):
+                    def dec(fn):
+                        return fn
+                    return dec
+
+                get = post = patch = _route
+
+            def Header(default=None, alias=None):
+                return default
+
+            class Response:
+                def __init__(self):
+                    self.status_code = 200
+
+            fastapi.FastAPI = FastAPI
+            fastapi.Header = Header
+            fastapi.HTTPException = HTTPException
+            fastapi.Response = Response
+            sys.modules["fastapi"] = fastapi
+
+            middleware = types.ModuleType("fastapi.middleware")
+            cors = types.ModuleType("fastapi.middleware.cors")
+            cors.CORSMiddleware = object
+            responses = types.ModuleType("fastapi.responses")
+            responses.HTMLResponse = object
+            responses.RedirectResponse = object
+            sys.modules["fastapi.middleware"] = middleware
+            sys.modules["fastapi.middleware.cors"] = cors
+            sys.modules["fastapi.responses"] = responses
+
+        if "pydantic" not in sys.modules:
+            pydantic = types.ModuleType("pydantic")
+
+            class BaseModel:
+                def __init__(self, **kwargs):
+                    for key, value in kwargs.items():
+                        setattr(self, key, value)
+
+            pydantic.BaseModel = BaseModel
+            sys.modules["pydantic"] = pydantic
 
     def test_auth_session_creation_emits_event(self):
         req = self.auth.AuthSessionRequest(
