@@ -40,6 +40,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthSessionResponse'
+  /api/v2/auth/diagnostics/claims:
+    post:
+      summary: Owner-only non-secret claim diagnostics
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClaimsDiagnosticRequest'
+      responses:
+        '200':
+          description: Diagnostic claim snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClaimsDiagnosticResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Diagnostics disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/auth/jwks:
     get:
       summary: Public signing keys
@@ -263,6 +297,52 @@ components:
               type: array
               items:
                 type: string
+    AuthClaimsDiagnosticRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Optional target bearer token to inspect when owner-authenticated.
+    AuthClaimsDiagnosticResponse:
+      type: object
+      required:
+        [
+          subject,
+          role,
+          tenant_id,
+          accepted_scopes,
+          issuer,
+          audience,
+          expires_at,
+          authorization_decision,
+          audit_event_id,
+          request_id,
+        ]
+      properties:
+        subject:
+          type: string
+        role:
+          type: string
+        tenant_id:
+          type: string
+        accepted_scopes:
+          type: array
+          items:
+            type: string
+        issuer:
+          type: string
+        audience:
+          type: string
+        expires_at:
+          type: integer
+          nullable: true
+        authorization_decision:
+          type: string
+          enum: [accepted, denied]
+        audit_event_id:
+          type: string
+        request_id:
+          type: string
             exp:
               type: integer
             iss:

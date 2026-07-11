@@ -19,6 +19,7 @@ GOVOS_APP = ROOT / "apps" / "govos" / "public" / "app.js"
 TENANT_APP = ROOT / "apps" / "tenant" / "public" / "app.js"
 CIVIC_APP = ROOT / "apps" / "civic-signal" / "public" / "app.js"
 LOCAL_DEV_DOC = ROOT / "docs" / "GOVOS_V2_LOCAL_DEV.md"
+MIGRATION_DOC = ROOT / "docs" / "V2_CLAIM_CLIENT_MIGRATION.md"
 
 
 def _load_module(path, name, env_overrides=None, env_clear_keys=None):
@@ -167,6 +168,176 @@ class TestClaimClientMigration(unittest.TestCase):
         for path in (GOVOS_APP, TENANT_APP, CIVIC_APP, LOCAL_DEV_DOC):
             text = path.read_text(encoding="utf-8")
             self.assertIsNone(jwt_pattern.search(text), msg=str(path))
+
+    def test_diagnostic_endpoint_is_disabled_by_default(self):
+        owner = self.client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "owner-diag", "role": "Owner", "scopes": ["ops:owner"]},
+        )
+        self.assertEqual(owner.status_code, 200)
+        token = owner.json()["access_token"]
+        resp = self.client.post(
+            "/api/v2/auth/diagnostics/claims",
+            json={},
+            headers={"Authorization": "Bearer " + token, "X-Request-ID": "req-disabled"},
+        )
+        self.assertEqual(resp.status_code, 404)
+
+    def test_diagnostic_endpoint_owner_only_and_redacted(self):
+        auth_enabled = _load_module(
+            AUTH_MAIN,
+            f"auth_diag_{time.time_ns()}",
+            env_overrides={
+                "AUTH_SIGNING_SECRET": "claim-client-secret",
+                "INTERNAL_SERVICE_TOKEN": "claim-client-service-token",
+                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth_diag.db"),
+                "AUTH_VERIFICATION_DIAGNOSTICS_ENABLED": "true",
+            },
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        client = TestClient(auth_enabled.app)
+        owner = client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "owner-1", "role": "Owner", "scopes": ["ops:owner"]},
+        )
+        resident = client.post(
+            "/api/v2/auth/session",
+            json={
+                "provider": "passkey",
+                "subject": "resident-1",
+                "tenant_id": "tenant-a",
+                "role": "Resident",
+                "scopes": ["tenant:read"],
+            },
+        )
+        self.assertEqual(owner.status_code, 200)
+        self.assertEqual(resident.status_code, 200)
+
+        denied = client.post(
+            "/api/v2/auth/diagnostics/claims",
+            json={},
+            headers={"Authorization": "Bearer " + resident.json()["access_token"]},
+        )
+        self.assertEqual(denied.status_code, 403)
+
+        allowed = client.post(
+            "/api/v2/auth/diagnostics/claims",
+            json={},
+            headers={"Authorization": "Bearer " + owner.json()["access_token"], "X-Request-ID": "req-123"},
+        )
+        self.assertEqual(allowed.status_code, 200)
+        payload = allowed.json()
+        self.assertTrue(str(payload["subject"]).startswith("sha256:"))
+        self.assertTrue(str(payload["tenant_id"]).startswith("sha256:") or payload["tenant_id"] == "")
+        self.assertEqual(payload["request_id"], "req-123")
+        self.assertIn(payload["authorization_decision"], {"accepted", "denied"})
+
+    def test_diagnostic_endpoint_never_leaks_token_or_service_secret(self):
+        auth_enabled = _load_module(
+            AUTH_MAIN,
+            f"auth_diag_leak_{time.time_ns()}",
+            env_overrides={
+                "AUTH_SIGNING_SECRET": "claim-client-secret",
+                "INTERNAL_SERVICE_TOKEN": "claim-client-service-token",
+                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth_diag_leak.db"),
+                "AUTH_VERIFICATION_DIAGNOSTICS_ENABLED": "true",
+            },
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        client = TestClient(auth_enabled.app)
+        owner = client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "owner-1", "role": "Owner", "scopes": ["ops:owner"]},
+        )
+        token = owner.json()["access_token"]
+        resp = client.post(
+            "/api/v2/auth/diagnostics/claims",
+            json={"token": token},
+            headers={"Authorization": "Bearer " + token, "X-Request-ID": "req-leak"},
+        )
+        self.assertEqual(resp.status_code, 200)
+        payload = json.dumps(resp.json())
+        self.assertNotIn(token, payload)
+        self.assertNotIn("claim-client-service-token", payload)
+
+    def test_diagnostic_request_id_correlates_with_audit_event(self):
+        auth_enabled = _load_module(
+            AUTH_MAIN,
+            f"auth_diag_audit_{time.time_ns()}",
+            env_overrides={
+                "AUTH_SIGNING_SECRET": "claim-client-secret",
+                "INTERNAL_SERVICE_TOKEN": "claim-client-service-token",
+                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth_diag_audit.db"),
+                "AUTH_VERIFICATION_DIAGNOSTICS_ENABLED": "true",
+            },
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        client = TestClient(auth_enabled.app)
+        owner = client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "owner-audit", "role": "Owner", "scopes": ["ops:owner"]},
+        )
+        with mock.patch.object(auth_enabled._log, "warning") as warning:
+            resp = client.post(
+                "/api/v2/auth/diagnostics/claims",
+                json={},
+                headers={"Authorization": "Bearer " + owner.json()["access_token"], "X-Request-ID": "req-corr-42"},
+            )
+        self.assertEqual(resp.status_code, 200)
+        body = resp.json()
+        matched = False
+        for call in warning.call_args_list:
+            if not call.args or call.args[0] != "auth_audit %s":
+                continue
+            payload = json.loads(call.args[1])
+            if payload.get("event_type") == "diagnostic_claim_snapshot":
+                matched = True
+                self.assertEqual(payload["details"]["request_id"], "req-corr-42")
+                self.assertEqual(payload["details"]["audit_event_id"], body["audit_event_id"])
+        self.assertTrue(matched)
+
+    def test_caller_tracker_includes_required_columns_and_callers(self):
+        text = MIGRATION_DOC.read_text(encoding="utf-8")
+        for field in (
+            "caller name",
+            "source path",
+            "owner",
+            "environment",
+            "target service and endpoint",
+            "expected role",
+            "expected scopes",
+            "expected tenant behavior",
+            "token issuer and audience",
+            "verification method",
+            "current status",
+            "rollback action",
+            "evidence location",
+        ):
+            self.assertIn(field, text.lower())
+        for caller in (
+            "govOS scaffold session creator",
+            "Tenant scaffold session creator",
+            "Civic Signal scaffold session creator",
+            "Naga owner console OAuth",
+            "Naga GPU Brain panel",
+            "AI service -> GPU router",
+            "Documents service -> Tenant service",
+            "V2 services -> Auth introspection",
+        ):
+            self.assertIn(caller, text)
+
+    def test_acceptance_criteria_and_no_compatibility_mode_are_documented(self):
+        text = MIGRATION_DOC.read_text(encoding="utf-8")
+        self.assertIn("## ACCEPTANCE CRITERIA", text)
+        self.assertIn("No broad compatibility mode is permitted.", text)
+        self.assertIn("FINAL LIVE-VERIFICATION READINESS", text)
+        self.assertIn("NO-GO", text)
 
 
 if __name__ == "__main__":

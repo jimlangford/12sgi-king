@@ -11,6 +11,7 @@ import sqlite3
 import urllib.parse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
+from uuid import uuid4
 
 import requests as _requests
 from fastapi import FastAPI, Header, HTTPException
@@ -41,6 +42,11 @@ ALLOWED_WILDCARD_SCOPES = {
     scope.strip()
     for scope in os.environ.get("AUTH_ALLOWED_WILDCARD_SCOPES", "").split(",")
     if scope.strip()
+}
+AUTH_VERIFICATION_DIAGNOSTICS_ENABLED = os.environ.get("AUTH_VERIFICATION_DIAGNOSTICS_ENABLED", "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
 }
 
 _DEV_SIGNING_SECRET = "dev-only-signing-secret-change-me"
@@ -117,6 +123,10 @@ class AuthSessionResponse(BaseModel):
 
 class AuthIntrospectionRequest(BaseModel):
     token: str
+
+
+class AuthClaimsDiagnosticRequest(BaseModel):
+    token: str | None = None
 
 
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
@@ -387,6 +397,13 @@ def _issue_token(
     return f"{header_part}.{payload_part}.{_b64url(sig)}"
 
 
+def _redact_claim_identifier(raw: str) -> str:
+    value = str(raw or "").strip()
+    if not value:
+        return ""
+    return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
+
+
 def _session_for_token(token: str) -> sqlite3.Row | None:
     with _db() as conn:
         return conn.execute(
@@ -604,6 +621,107 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
         },
         "exp": row["expires_at"],
     }
+
+
+@app.post(f"{API_PREFIX}/auth/diagnostics/claims")
+def diagnostic_claims(
+    payload: AuthClaimsDiagnosticRequest,
+    authorization: str | None = Header(default=None),
+    x_request_id: str | None = Header(default=None, alias="X-Request-ID"),
+):
+    if not AUTH_VERIFICATION_DIAGNOSTICS_ENABLED:
+        raise HTTPException(
+            status_code=404,
+            detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
+        )
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+
+    owner_token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, owner_claims = _decode_and_verify_token(owner_token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    owner_session = _session_for_token(owner_token)
+    if not owner_session or (owner_session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if owner_claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+
+    target_token = (payload.token or owner_token).strip()
+    audit_event_id = str(uuid4())
+    request_id = (x_request_id or "").strip() or str(uuid4())
+    decision = "denied"
+    safe_claims: dict = {
+        "sub": "",
+        "tenant_id": "",
+        "role": "",
+        "scopes": [],
+        "exp": None,
+        "iss": "",
+        "aud": "",
+    }
+
+    try:
+        _, jwt_claims = _decode_and_verify_token(target_token)
+        row = _session_for_token(target_token)
+        if row and int(row["expires_at"]) > int(_now_utc().timestamp()):
+            decision = "accepted"
+            safe_claims = {
+                "sub": row["subject"] or jwt_claims.get("sub") or "",
+                "tenant_id": (row["tenant_id"] or "").strip() or (jwt_claims.get("tenant_id") or ""),
+                "role": row["role"] or jwt_claims.get("role") or "",
+                "scopes": json.loads(row["scopes_json"] or "[]"),
+                "exp": row["expires_at"],
+                "iss": row["issuer"] or jwt_claims.get("iss") or AUTH_ISSUER,
+                "aud": row["audience"] or jwt_claims.get("aud") or AUTH_AUDIENCE,
+            }
+    except Exception:
+        decision = "denied"
+
+    diagnostic = {
+        "subject": _redact_claim_identifier(safe_claims.get("sub") or ""),
+        "role": safe_claims.get("role") or "",
+        "tenant_id": _redact_claim_identifier(safe_claims.get("tenant_id") or ""),
+        "accepted_scopes": sorted({str(scope) for scope in (safe_claims.get("scopes") or []) if str(scope).strip()}),
+        "issuer": safe_claims.get("iss") or "",
+        "audience": safe_claims.get("aud") or "",
+        "expires_at": safe_claims.get("exp"),
+        "authorization_decision": decision,
+        "audit_event_id": audit_event_id,
+        "request_id": request_id,
+    }
+    audit_auth_event(
+        "auth",
+        "diagnostic_claim_snapshot",
+        {
+            "audit_event_id": audit_event_id,
+            "request_id": request_id,
+            "authorization_decision": decision,
+            "role": diagnostic["role"],
+        },
+    )
+    return diagnostic
 
 
 # ── GitHub OAuth ──────────────────────────────────────────────────────────────
