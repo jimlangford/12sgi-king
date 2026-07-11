@@ -21,10 +21,18 @@ Last execution: 2026-07-11 (UTC)
 **Executed evidence**
 
 - Workflow file includes dry-run and restart gating inputs (`dry_run`, `restart_services`) and provenance/readiness validation steps.
-- GitHub Actions workflow state currently reports `disabled_manually`.
-- Recent workflow runs for deploy-v2 report zero jobs on latest failed runs, consistent with disabled/manual state.
+- Workflow state check: `disabled_manually` for workflow ID `309022902` (Deploy V2 to king-server).
+- Latest recorded run remains a push-triggered disabled-state failure with no jobs:
+  - run_id: `29106370721`
+  - url: `https://github.com/jimlangford/12sgi-king/actions/runs/29106370721`
+  - head_branch: `main`
+  - head_sha: `78129a41cbc579e4a74e1944759c1383afb05e37`
+  - jobs: `0`
+- Operational action attempts from this checkpoint execution:
+  - Re-enable workflow API call (`PUT /actions/workflows/309022902/enable`): `HTTP 403` (permission-controlled block in this execution environment).
+  - Dry-run dispatch API call (`POST /actions/workflows/309022902/dispatches`, `ref=main`, `dry_run=true`, `restart_services=false`): `HTTP 403`.
 
-**Status**: **BLOCKED** (requires repository admin/owner to re-enable workflow and run self-hosted execution).
+**Status**: **BLOCKED** (workflow control-plane permission required before dry run can be executed and evidenced).
 
 ---
 
@@ -187,8 +195,8 @@ Last execution: 2026-07-11 (UTC)
 
 ## Immediate next actions (ordered)
 
-1. Re-enable `Deploy V2 to king-server (private, self-hosted)` in Actions and run dry run (`dry_run=true`, `restart_services=false`).
-2. Capture deploy evidence log and confirm provenance/readiness findings are empty.
-3. Run controlled restart (`restart_services=true`) only after clean dry run evidence.
+1. Repository owner/admin re-enables `Deploy V2 to king-server (private, self-hosted)` in Actions.
+2. Run dispatch on `main` with `dry_run=true`, `restart_services=false`, then capture run id/url, runner identity, provenance/readiness matrices, and findings.
+3. Authorize controlled restart (`restart_services=true`) only if dry-run evidence is clean and decision gate is GO.
 4. Formalize subsystem cross-reference updates so all docs point to `QUAD_OS_MASTER_ARCHITECTURE.md` and this rubric.
 5. Implement event transport + audit ledger wiring to convert event-bus design from documented to operational.
