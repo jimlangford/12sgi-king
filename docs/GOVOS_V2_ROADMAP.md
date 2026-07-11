@@ -35,3 +35,7 @@ Sprint 6 — Modern UI
 
 Sprint 7 — AI Integration
 - RAG, local/hosted models, knowledge integration
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](QUAD_OS_MASTER_ARCHITECTURE.md) §14 (Long-term roadmap) | [GOVOS_V2_API.md](GOVOS_V2_API.md) | [QUAD_OS_COMPLETION_RUBRIC.md](QUAD_OS_COMPLETION_RUBRIC.md)

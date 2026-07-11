@@ -2,7 +2,7 @@
 
 This rubric turns the platform direction into concrete completion gates and records the latest checkpoint execution.
 
-Last execution: 2026-07-11 (UTC)
+Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:xx UTC (Copilot agent)
 
 ## Status scale
 
@@ -49,8 +49,11 @@ Last execution: 2026-07-11 (UTC)
 - Canonical master architecture doc exists and defines public/private boundaries and module registry.
 - Existing docs already describe govOS and Element LOTUS under QUAD OS.
 - This rubric is now linked from the canonical doc for completion governance.
+- All subsystem plan docs and ADRs now include cross-references to `QUAD_OS_MASTER_ARCHITECTURE.md`:
+  `docs/EVENT_BUS.md`, `docs/AUTH_PLAN.md`, `docs/CASE_MANAGEMENT_PLAN.md`, `docs/TENANT_ASSISTANT_PLAN.md`,
+  `docs/GOVOS_V2_ROADMAP.md`, `docs/ENGINEERING_STANDARDS.md`, and ADRs 001–005.
 
-**Status**: **IN PROGRESS** (canonical source exists; subsystem cross-reference tightening continues).
+**Status**: **PASS**.
 
 ---
 
@@ -101,8 +104,16 @@ Last execution: 2026-07-11 (UTC)
 
 - `/home/runner/work/12sgi-king/12sgi-king/docs/EVENT_BUS.md` defines event contracts.
 - Architecture gap report still calls out production event bus implementation as missing.
+- **2026-07-11:** `services/event_bus.py` implements a SQLite-backed append-only platform event bus
+  following the EVENT_BUS.md contract (typed events, versioned payloads, idempotency keys, dead-letter
+  queue for oversized payloads, never-raises guarantee). `services/v2_workboard.py` now emits
+  `workboard.job.created`, `workboard.job.approved`, `workboard.job.rejected`, and
+  `workboard.engineering.selfhealed` events. `v2/app/main.py` exposes `GET /events` and
+  `GET /events/dead-letters` as the PRIVATE owner-console surface. 19 new tests pass
+  (`tests/v2/test_event_bus.py`). Cross-service wiring for auth and case events is the next step.
 
-**Status**: **IN PROGRESS** (design complete; platform wiring incomplete).
+**Status**: **IN PROGRESS** (durable transport implemented and wired to workboard; remaining wiring
+for auth, case, and public projections continues).
 
 ---
 
@@ -150,8 +161,12 @@ Last execution: 2026-07-11 (UTC)
 
 - Public shell and WordPress bundle pipeline for Element LOTUS are established.
 - A single explicit cross-surface design token/component governance document is not yet centralized.
+- **2026-07-11:** `docs/DESIGN_TOKENS.md` now documents the full CSS token set from `element_lotus_public/studio.css`
+  as the canonical source of truth, the promotion path (Element Lotus → civic surfaces), WCAG 2.2 AA
+  contrast requirements, and a growing component catalogue. `docs/ENGINEERING_STANDARDS.md` now
+  cross-references this document.
 
-**Status**: **IN PROGRESS**.
+**Status**: **PASS**.
 
 ---
 
@@ -189,8 +204,8 @@ Last execution: 2026-07-11 (UTC)
 
 ## Current completion summary
 
-- **PASS**: 3, 4, 6, 7, 9, 10
-- **IN PROGRESS**: 2, 5, 8
+- **PASS**: 2, 3, 4, 6, 7, 8, 9, 10
+- **IN PROGRESS**: 5
 - **BLOCKED**: 1
 
 ## Immediate next actions (ordered)
@@ -198,5 +213,5 @@ Last execution: 2026-07-11 (UTC)
 1. Repository owner/admin re-enables `Deploy V2 to king-server (private, self-hosted)` in Actions.
 2. Run dispatch on `main` with `dry_run=true`, `restart_services=false`, then capture run id/url, runner identity, provenance/readiness matrices, and findings.
 3. Authorize controlled restart (`restart_services=true`) only if dry-run evidence is clean and decision gate is GO.
-4. Formalize subsystem cross-reference updates so all docs point to `QUAD_OS_MASTER_ARCHITECTURE.md` and this rubric.
-5. Implement event transport + audit ledger wiring to convert event-bus design from documented to operational.
+4. Wire auth login / case state-change events to `services/event_bus.publish_event()` to further advance Checkpoint 5.
+5. Connect event bus projections to the Naga console `Events` panel (new `.dc.html`) so the owner can see the live event feed in the private dashboard.

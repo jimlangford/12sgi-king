@@ -16,3 +16,7 @@ Alternatives Considered
 
 Future Evolution
 - Revisit boundaries when multi-tenant public APIs are required.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](../QUAD_OS_MASTER_ARCHITECTURE.md) §2 (Public vs. private boundaries) | [WORDPRESS_PUBLIC_LAYER.md](../WORDPRESS_PUBLIC_LAYER.md)

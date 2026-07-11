@@ -58,3 +58,7 @@ Testing requirements
 
 Appendix: enforcement and exceptions
 - Exceptions must be documented in PRs and approved by owners.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](QUAD_OS_MASTER_ARCHITECTURE.md) §9 (Coding standards) + §12 (CI/CD strategy) | [SERVICE_REGISTRY.md](SERVICE_REGISTRY.md) | [DESIGN_TOKENS.md](DESIGN_TOKENS.md)
