@@ -5,6 +5,19 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 02:00 HST — SAGE Wā3+5 education page
+**Thread:** sage-wa3-wa5-education  **From:** Copilot agent A  **To:** owner review
+**INTENT:** Build a standalone education page explaining what SAGE is, what Wā are, and why Wā 3 (ocean restoration, Makai, Kū+Kanaloa) and Wā 5 (growing fields, Kula, Lono) matter — drawn only from `docs/SAGE_REALM_MODEL.md` and `game_sage/data/` sources.
+**FILES CHANGED:**
+- `king_public_src/civic/templates/sage-realm/sage-wa3-wa5.html` (new — 24 KB standalone education page)
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; shared CSS token files untouched; global nav untouched; CANON.md, AGENTS.md, QUAD_OS_MASTER_ARCHITECTURE.md untouched; all private/public boundaries intact; no Tailscale URLs or king-server calls introduced.
+**VERIFY:** `python -m compileall -q .` → pass (1 pre-existing SyntaxWarning in rollcall_parser.py, unrelated). `KA_SITE=/tmp/sage-check python build_site.py` → pass (24 lanes, 0 failed). New file confirmed at `/tmp/sage-check/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+**RISKS / BLOCKERS:** ʻŌlelo Hawaiʻi terms are flagged kumu-validation-pending per §7 of SAGE_REALM_MODEL.md — the page makes this visible. No other blockers.
+**NEXT:** Owner reviews page content + cultural framing. If approved: merge PR → CI publish → page live at `https://jimlangford.github.io/12sgi-king/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+
+---
+
 ## 2026-07-11 00:15 UTC — Dispatch alert archive execution order + preserved true actions
 **Thread:** dispatch-alert-close-order  **From:** Copilot agent  **To:** triage-close workflow
 **Preserved true actions before closure:**
