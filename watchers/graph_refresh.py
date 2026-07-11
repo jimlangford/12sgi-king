@@ -23,7 +23,7 @@ if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
 REPO = Path(HERE).resolve().parent
-DEFAULT_TARGETS = ("graph", "vectors", "private_spine", "pulse_geometry", "sage_trinity", "yale_ecosystem")
+DEFAULT_TARGETS = ("graph", "vectors", "private_spine", "pulse_geometry", "sage_trinity", "yale_ecosystem", "agenda_civic")
 STATE_PATH = Path(os.environ.get("GRAPH_REFRESH_STATE_PATH", "/tmp/12sgi-graph-refresh-state.json"))
 GRAPH_STACK_VERSION = os.environ.get("GRAPH_STACK_VERSION", "5.2")
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
@@ -296,6 +296,23 @@ def refresh(mode="full", reason="manual", targets=None):
                 ok = False
                 _say("graph_refresh yale skip: %s" % str(yale_exc)[:160])
         notes.append(yale_note)
+        agenda_note = "agenda civic skipped"
+        if "agenda_civic" in wanted:
+            try:
+                import agenda_to_graph as ATG
+                if ATG.refresh():
+                    layer_state["agenda_civic"] = "current"
+                    agenda_note = "agenda civic current"
+                else:
+                    layer_state["agenda_civic"] = "failed"
+                    agenda_note = "agenda civic skipped"
+                    ok = False
+            except Exception as agenda_exc:
+                layer_state["agenda_civic"] = "failed"
+                agenda_note = "agenda civic skipped"
+                ok = False
+                _say("graph_refresh agenda skip: %s" % str(agenda_exc)[:160])
+        notes.append(agenda_note)
         completed_at = _now_iso()
         result = "ok" if ok else "degraded"
         _write_state(

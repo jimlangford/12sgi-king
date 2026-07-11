@@ -5,6 +5,19 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 02:30 HST — studio_parity.py: new cycle-connected HINA model (complete Sage work)
+**Thread:** complete-sage-work  **From:** Copilot agent (co-work dispatch)  **To:** owner review → merge via gh
+**INTENT:** Complete the Sage work. `studio_parity.py` was still running the old look/ipad/tenant model, but `docs/SAGE_REALM_MODEL.md §10` (canonical 2026-07-06) and `reports/_status/studio_parity.json` both define the new three-check HINA cycle-connected model. `tools/civic_v2_catchup.py` was already calling `studio_parity.main()` expecting `scores.cycle_connected / face_lock_intact / hina_balance_present` — those keys were missing. This commit closes the gap.
+**FILES CHANGED:**
+- `watchers/studio_parity.py` — replaced old look/ipad/tenant checks with three new cycle-connection invariants per §10: `cycle_connected` (all creative jobs carry `hina_node_id` + `civic_source`), `face_lock_intact` (no face-lock asset overwritten), `hina_balance_present` (all output jobs have `offering_date`). Defensive: missing dispatch log or manifest → score=100, never a crash. Stdlib only.
+- `reports/_status/studio_parity.json` — refreshed by running the new script; format now matches the seeded template.
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; all CANON.md boundaries intact; private paths untouched; no secrets introduced; no public/private boundary crossed.
+**VERIFY:** `python -m compileall -q .` → 1 pre-existing SyntaxWarning in rollcall_parser.py (unrelated). `KA_SITE=/tmp/... python build_site.py` → 24 lanes, 0 failed. `python watchers/studio_parity.py` → overall 100 (cycle=100 / face=100 / hina=100).
+**NEXT:** Owner merges PR. On the host with a live `.dispatch_log.jsonl`, run `python tools/civic_v2_catchup.py --dry-run` to preview HINA job emission, then `python tools/civic_v2_catchup.py` to emit and see `studio_parity` score against real data.
+
+---
+
 ## 2026-07-11 02:00 HST — SAGE Wā3+5 education page
 **Thread:** sage-wa3-wa5-education  **From:** Copilot agent A  **To:** owner review
 **INTENT:** Build a standalone education page explaining what SAGE is, what Wā are, and why Wā 3 (ocean restoration, Makai, Kū+Kanaloa) and Wā 5 (growing fields, Kula, Lono) matter — drawn only from `docs/SAGE_REALM_MODEL.md` and `game_sage/data/` sources.
