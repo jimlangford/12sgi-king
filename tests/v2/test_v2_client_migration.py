@@ -283,7 +283,9 @@ class TestClaimClientMigration(unittest.TestCase):
             "/api/v2/auth/session",
             json={"provider": "passkey", "subject": "owner-audit", "role": "Owner", "scopes": ["ops:owner"]},
         )
-        with mock.patch.object(auth_enabled._log, "warning") as warning:
+        from services import authz
+
+        with mock.patch.object(authz._log, "warning") as warning:
             resp = client.post(
                 "/api/v2/auth/diagnostics/claims",
                 json={},

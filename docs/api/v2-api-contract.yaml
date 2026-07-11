@@ -278,7 +278,7 @@ components:
           type: string
         token_type:
           type: string
-          example: Bearer
+          example: "Bearer"
         expires_in:
           type: integer
           description: Lifetime in seconds
@@ -297,6 +297,30 @@ components:
               type: array
               items:
                 type: string
+            exp:
+              type: integer
+            iss:
+              type: string
+            aud:
+              type: string
+        user:
+          type: object
+          required: [id, provider]
+          properties:
+            id:
+              type: string
+            provider:
+              type: string
+            email:
+              type: string
+            tenant_id:
+              type: string
+            role:
+              type: string
+            scopes:
+              type: array
+              items:
+                type: string
     AuthClaimsDiagnosticRequest:
       type: object
       properties:
@@ -306,18 +330,16 @@ components:
     AuthClaimsDiagnosticResponse:
       type: object
       required:
-        [
-          subject,
-          role,
-          tenant_id,
-          accepted_scopes,
-          issuer,
-          audience,
-          expires_at,
-          authorization_decision,
-          audit_event_id,
-          request_id,
-        ]
+        - subject
+        - role
+        - tenant_id
+        - accepted_scopes
+        - issuer
+        - audience
+        - expires_at
+        - authorization_decision
+        - audit_event_id
+        - request_id
       properties:
         subject:
           type: string
@@ -343,30 +365,6 @@ components:
           type: string
         request_id:
           type: string
-            exp:
-              type: integer
-            iss:
-              type: string
-            aud:
-              type: string
-        user:
-          type: object
-          required: [id, provider]
-          properties:
-            id:
-              type: string
-            provider:
-              type: string
-            email:
-              type: string
-            tenant_id:
-              type: string
-            role:
-              type: string
-            scopes:
-              type: array
-              items:
-                type: string
     CaseCreateRequest:
       type: object
       required: [tenant_id, title]
