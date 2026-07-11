@@ -5,6 +5,38 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (later still) — LOTUS/Neo4j education layer: grade-band <-> civic-data map
+
+**Thread:** "connect data to each level correctly with my neo4j system LOTUS"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** existing local-Neo4j patterns (`watchers/chain_to_graph.py`, `watchers/graph_vectors.py`) — HTTP Cypher via urllib to `127.0.0.1:7474`, stdlib only, zero cloud tokens, MERGE-based idempotent loads. Per this repo's own CANON rule, Neo4j only answers on the owner's machine; this cloud session cannot reach or verify it directly.
+
+**CHANGED:** added `watchers/education_to_graph.py`, following the exact same house pattern. Two additive layers, both requested together: (1) `(:GradeBand)-[:USES]->(:CivicTool)` — which tool/page each grade band points to and why, sourced directly from `education.html`'s own copy (no fabricated content for the bands marked "in development" there). (2) `(:GradeBand)-[:CAN_QUERY]->(:Node)` — links college/grad bands into the existing money-chain graph from `chain_to_graph.py` (gated by a `grade_floor`, younger bands aren't given an unguided link into raw financial-flow data). `--ask <grade_id> [--query TEXT]` lets a student/teacher pull a grade-appropriate answer; falls back to a static in-script map if Neo4j is down so the answer is never empty.
+
+**PRESERVED:** never runs `DETACH DELETE` on the whole graph — only MERGEs its own `GradeBand`/`CivicTool`/`USES`/`CAN_QUERY` layer on top of whatever `chain_to_graph.py` already loaded, any order, repeatedly, safely.
+
+**VERIFY:** `python -m py_compile` clean; `python -m compileall -q .` clean; `--dry-run` prints the exact Cypher; `--ask k2` / `--ask grad` verified against the static fallback path (Neo4j correctly unreachable from this cloud session — matches the "Neo4j not reachable... is the lotus-neo4j container up?" message by design).
+
+**NEXT:** owner needs to run `python watchers/education_to_graph.py` on king-server (where `lotus-neo4j` is actually up) to load it for real, then `--ask <grade>` / `--ask <grade> --query "..."` to confirm live graph answers match the fallback output shown here.
+
+---
+
+## 2026-07-11 (later) — Education page promoted to 12sgi.com front door; government watcher surfaced through it
+
+**Thread:** education/front-page request → build_site.py  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** the live `/king/education` page (Tailscale-private, unreachable by this tool — owner pasted its rendered content directly). No file/route matching "education" existed anywhere in the repo before this change. Found `watchers/civic_daily_briefing.py` (real daily "Today's Civic Agenda" briefing, sourced from Legistar) and `watchers/meetings_calendar.py` (real filled-out yearly meeting calendar, 2015→present, 5 governments) were already wired into `build_site.py`'s `PAGES`/`EXTRA_PAGES` and publishing to `civic_daily.html` / `meetings_calendar.html` — just never surfaced from the front page. `news_record.html` (News vs Record watcher output) was written by its own script but was **not** wired into the build at all.
+
+**CHANGED:** added `education.html` (new file, PUBLIC) reproducing the owner-provided Lux et Veritas PONO civic-education content (hero, three pillars, K-2 curriculum block verbatim from the pasted copy, grade-band tabs for 3-5 through grad school marked honestly as "in development" — no fabricated lesson content for bands we have no sourced copy for). Wired `news_record.html` into `EXTRA_PAGES`. Changed the `public_front_door` lane in `build_site.py` so `education.html` is now `site/index.html`; the former studio-first shell is preserved (not deleted) at the stable `site/studio.html`. The education page prominently links `civic_daily.html` (daily state) and `meetings_calendar.html` (yearly calendar) as "the government watcher, live."
+
+**PRESERVED:** no PRIVATE/Tailscale content was copied into the public build — the page was reconstructed from the owner's own pasted text, not scraped from king-local. `/go.html` stays the private launcher, `/king/` stays the King app root, `reports.html` (civic hub) unchanged.
+
+**VERIFY:** `python -m compileall -q .` clean. `KA_SITE=C:\tmp\12sgi-king-site-check python build_site.py` → 24 lanes, 0 failed, leak-gate clean; confirmed `site/index.html` byte-identical to `site/education.html`, `site/studio.html` present, and the Yale-blue recolor pass left the new page's CSS vars/links intact.
+
+**NEXT:** not yet committed/pushed — awaiting owner go-ahead. On the real king-server build, `civic_daily.html`/`meetings_calendar.html`/`news_record.html` will resolve for real (their source data lives under the local `Video System elementLOTUS/reports/mauios` tree, absent in this sandboxed checkout).
+
+---
+
 ## 2026-07-11 08:00 HST — Backlog cleared: 100 approved jobs run through PUBLISH; 0 errors, 0 auto-posts
 
 **Thread:** social content team → PUBLISH step  **From:** Copilot CLI  **To:** Jimmy
