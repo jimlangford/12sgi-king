@@ -1,157 +1,212 @@
 # -*- coding: utf-8 -*-
 """
-studio_parity.py - heal the STUDIO side UP to the CIVIC standard, and keep it there.
+studio_parity.py — verify the HINA cycle is connected; keep Studio + Civic on the same 54-node source.
 
-CIVIC is the reference. This reads config/parity_standard.json (the single declared standard)
-and checks the studio surfaces on three dimensions - LOOK (Yale-blue tokens, no gold/purple),
-TENANT LOGIC (the unified config/tenants.json model + per-tenant infra), and iPad-WORKABLE
-(viewport + responsive, served over :8770/Tailscale). It SCORES each (0-100) and, with --heal,
-auto-fixes the one thing that is safe to auto-fix: COLOR drift (color-only remap, byte-verified;
-cosmology zone hexes are never touched). Structural gaps (tenant infra, per-feature iPad work)
-are FLAGGED for the build plan - never auto-restructured.
+New model (canonical as of 2026-07-06, per docs/SAGE_REALM_MODEL.md §10):
+  Civic (Ao) and Studio/HINA (Pō) are EQUAL TENANTS both reading from the same 54-node source.
+  The old "heal Studio up to Civic colors" model is superseded by three cycle-connection checks:
 
-Designed to be called by quadrant_selfheal.py (hourly, report+score) and the daily audit_cycle
-(--heal). Stdlib only. Defensive: a missing source -> low score, never a crash.
+  cycle_connected      — all creative-lane workboard jobs carry hina_node_id + civic_source.
+  face_lock_intact     — no face-lock asset (music-video base layer) was recolored or overwritten.
+  hina_balance_present — every output-lane (published) job has a traceable offering_date + job_id.
 
-Writes reports/_status/studio_parity.json (+ .html badge).  Run: python studio_parity.py [--heal]
+Defensive: a missing dispatch log or missing face-lock manifest → score=100 (nothing violated).
+Stdlib only.  Writes reports/_status/studio_parity.json.
+Run: python studio_parity.py [--dry-run]
+Called by: quadrant_selfheal.py, tools/civic_v2_catchup.py
 """
-import os, re, json, sys, datetime
+import json
+import os
+import sys
+import datetime
+from pathlib import Path
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-CFG  = os.path.join(ROOT, "config")
-STATUS = os.path.join(ROOT, "reports", "_status")
+# repo root = one level up from watchers/
+_HERE = Path(__file__).resolve().parent
+REPO_ROOT = _HERE.parent
 
-def load(p, d=None):
-    try: return json.load(open(p, encoding="utf-8"))
-    except Exception: return d
+# Dispatch log: honour the same env var as services/v2_workboard.py
+_DEFAULT_LOG = REPO_ROOT / ".dispatch_log.jsonl"
+DISPATCH_LOG = Path(os.environ.get("WORKBOARD_DISPATCH_LOG") or _DEFAULT_LOG)
 
-STD = load(os.path.join(CFG, "parity_standard.json"), {}) or {}
-TEN = load(os.path.join(CFG, "tenants.json"), {}) or {}
-# intentional non-light registers (e.g. the dark-blue Studio shell) — LOOK parity is skipped + never healed
-EXEMPT = {os.path.normpath(os.path.join(ROOT, r))
-          for r in (STD.get("look", {}).get("register_exempt", {}) or {}) if r != "_note"}
+# Face-lock manifest: optional config file listing protected music-video assets.
+# Format: {"assets": [{"path": "relative/to/repo", "sha256": "..."}]}
+# Missing or empty manifest → score=100 (no assets registered, nothing violated).
+FACE_LOCK_MANIFEST = REPO_ROOT / "config" / "face_lock_assets.json"
 
-def _surfaces():
-    out = []
-    for rel in (STD.get("surfaces_to_check", {}) or {}).get("studio", []):
-        p = os.path.join(ROOT, rel)
-        if os.path.exists(p): out.append(p)
-    # include any per-tenant studio pages once they exist
-    sdir = os.path.join(ROOT, "app", "studio")
-    if os.path.isdir(sdir):
-        for fn in os.listdir(sdir):
-            if fn.startswith("tenant_") and fn.endswith(".html"):
-                out.append(os.path.join(sdir, fn))
-    return sorted(set(out))
+# Status output — kept at the old ROOT/../reports/_status/ when running on the project
+# host (two levels up from watchers/).  On CI / sandbox it falls back to repo root.
+_legacy_root = REPO_ROOT.parent  # project root on owner's machine
+STATUS_DIR = (_legacy_root / "reports" / "_status"
+              if (_legacy_root / "reports").is_dir()
+              else REPO_ROOT / "reports" / "_status")
 
-def check_look(text):
-    look = STD.get("look", {})
-    present = all(t.lower() in text.lower() for t in look.get("required_present", []))
-    banned = look.get("banned_text_tokens", {})
-    hits = []
-    for grp in ("gold", "purple", "dark_bg"):
-        for tok in banned.get(grp, []):
-            if re.search(re.escape(tok), text, re.I):
-                hits.append(tok)
-    return present, sorted(set(hits))
 
-def check_ipad(text):
-    ip = STD.get("ipad_workable", {})
-    has_vp = any(re.search(m, text, re.I) for m in ip.get("required_meta", []))
-    has_resp = ("@media" in text) or ("max-width" in text) or ("min-width" in text) or ("touch-action" in text)
-    return has_vp, has_resp
+# ── helpers ───────────────────────────────────────────────────────────────────
 
-def heal_colors(text):
-    hm = STD.get("look", {}).get("heal_map", {})
-    n = 0
-    for old, new in hm.items():
-        new_text = re.sub(re.escape(old), new, text, flags=re.I)
-        if new_text != text:
-            n += text.lower().count(old.lower()); text = new_text
-    return text, n
+def _read_log(path: Path) -> list[dict]:
+    """Read the JSONL dispatch log; return list of entries (empty on any error)."""
+    if not path.is_file():
+        return []
+    entries = []
+    try:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                try:
+                    entries.append(json.loads(line))
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    return entries
 
-def main():
-    heal = "--heal" in sys.argv
-    surfaces = _surfaces()
-    look_ok = ipad_ok = 0
-    look_denom = 0
-    look_hits_total = 0
-    healed = []
-    per = []
-    for p in surfaces:
-        try: t = open(p, encoding="utf-8").read()
-        except Exception: continue
-        is_exempt = os.path.normpath(p) in EXEMPT      # intentional dark register — skip LOOK + never heal it
-        present, hits = check_look(t)
-        if heal and hits and not is_exempt:            # NEVER recolor an exempt (dark-register) surface to light
-            t2, n = heal_colors(t)
-            if n and t2 != t:
-                open(p, "w", encoding="utf-8", newline="\n").write(t2)
-                disk = open(p, encoding="utf-8").read()
-                if disk == t2:
-                    healed.append({"file": os.path.basename(p), "tokens_recolored": n})
-                    t = t2; present, hits = check_look(t)   # re-check post-heal
-        vp, resp = check_ipad(t)
-        if is_exempt:
-            look_clean = None                          # LOOK is N/A for an exempt dark-register surface
+
+def _load_json(path: Path, default=None):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
+
+# ── check 1: cycle_connected ──────────────────────────────────────────────────
+
+def check_cycle_connected(entries: list[dict]) -> dict:
+    """All creative-lane jobs must carry hina_node_id + civic_source in payload."""
+    # collect active (non-tombstoned) creative lane jobs
+    resolved: set[str] = set()
+    creative_jobs: list[dict] = []
+    for e in entries:
+        if e.get("kind") == "tombstone":
+            cid = (e.get("job") or {}).get("correlation_id")
+            if cid:
+                resolved.add(cid)
+        elif e.get("lane") == "creative" and e.get("kind") == "job":
+            creative_jobs.append(e)
+
+    active = [j for j in creative_jobs if j.get("job", {}).get("id") not in resolved]
+    total = len(active)
+    if total == 0:
+        return {"connected": 0, "total": 0, "score": 100,
+                "_note": "0 active creative jobs — nothing to violate"}
+
+    connected = 0
+    for job in active:
+        payload = job.get("payload") or {}
+        if payload.get("hina_node_id") and payload.get("civic_source"):
+            connected += 1
+
+    score = round(100 * connected / total)
+    return {"connected": connected, "total": total, "score": score}
+
+
+# ── check 2: face_lock_intact ─────────────────────────────────────────────────
+
+def check_face_lock(manifest_path: Path) -> dict:
+    """No face-lock (music-video base-layer) asset may be recolored or overwritten."""
+    manifest = _load_json(manifest_path)
+    if not manifest:
+        return {"intact": 0, "registered": 0, "score": 100,
+                "_note": "0 registered = no face-lock assets declared yet; score=100 (nothing violated)"}
+
+    assets = manifest.get("assets") or []
+    if not assets:
+        return {"intact": 0, "registered": 0, "score": 100,
+                "_note": "0 registered = no face-lock assets declared yet; score=100 (nothing violated)"}
+
+    import hashlib
+
+    intact = 0
+    flags = []
+    for entry in assets:
+        rel = entry.get("path", "")
+        expected_sha = entry.get("sha256", "")
+        full = REPO_ROOT / rel
+        if not full.is_file():
+            flags.append(f"MISSING: {rel}")
+            continue
+        if expected_sha:
+            digest = hashlib.sha256(full.read_bytes()).hexdigest()
+            if digest == expected_sha:
+                intact += 1
+            else:
+                flags.append(f"OVERWRITTEN: {rel}")
         else:
-            look_clean = present and not hits
-            look_denom += 1
-            if look_clean: look_ok += 1
-            look_hits_total += len(hits)
-        if vp and resp: ipad_ok += 1
-        per.append({"file": os.path.basename(p), "look_clean": look_clean, "look_exempt": is_exempt,
-                    "banned_found": (hits if not is_exempt else []), "ipad_viewport": vp, "ipad_responsive": resp})
+            intact += 1  # registered but no checksum declared — presence is enough
 
-    nsurf = max(1, len(surfaces))
-    # tenant-logic parity: studio tenants registered with the full schema + (live infra присутствие)
-    req = STD.get("tenant_logic", {}).get("required_tenant_fields", [])
-    studio_q = set(STD.get("tenant_logic", {}).get("studio_quadrants", []))
-    studio_tenants = [t for t in TEN.get("tenants", []) if t.get("quadrant") in studio_q]
-    well_formed = sum(1 for t in studio_tenants if all(t.get(f) for f in req))
-    # live infra check: does any per-tenant studio surface exist yet? (civic has tenant_<id>.html)
-    served_tenant_pages = [s for s in surfaces if os.path.basename(s).startswith("tenant_")]
-    def _has(rel, tok):
-        try: return tok in open(os.path.join(ROOT, rel), encoding="utf-8", errors="ignore").read()
-        except Exception: return False
-    # dynamic per-tenant serving = the studio control layer: /api/tenants route + the switcher chrome
-    served_dynamic = _has("app/studio/studio_server.py", "/api/tenants") and _has("app/studio/studio.html", "scl-bar")
-    served = bool(served_tenant_pages) or served_dynamic
-    tenant_score = round(100 * (
-        0.5 * (well_formed / max(1, len(studio_tenants))) +            # registered with schema
-        0.5 * (1 if served else 0)                                    # served per-tenant (static pages OR dynamic control layer)
-    )) if studio_tenants else 0
+    total = len(assets)
+    score = round(100 * intact / total) if total else 100
+    return {"intact": intact, "registered": total, "score": score,
+            **({"flags": flags} if flags else {})}
 
-    look_score = 100 if look_denom == 0 else round(100 * look_ok / look_denom)
-    ipad_score = round(100 * ipad_ok / nsurf)
-    overall = round((look_score + tenant_score + ipad_score) / 3)
+
+# ── check 3: hina_balance_present ────────────────────────────────────────────
+
+def check_hina_balance(entries: list[dict]) -> dict:
+    """Every approved/published output-lane job must carry offering_date + job_id."""
+    output_jobs = [e for e in entries
+                   if e.get("lane") == "output"
+                   and e.get("status") in {"approved", "done"}
+                   and e.get("kind") == "job"]
+    total = len(output_jobs)
+    if total == 0:
+        return {"with_offering_date": 0, "total": 0, "score": 100,
+                "_note": "0 output jobs published yet — nothing to violate"}
+
+    with_offering = 0
+    for job in output_jobs:
+        payload = job.get("payload") or {}
+        jid = (job.get("job") or {}).get("id") or job.get("id")
+        if payload.get("offering_date") and jid:
+            with_offering += 1
+
+    score = round(100 * with_offering / total)
+    return {"with_offering_date": with_offering, "total": total, "score": score}
+
+
+# ── main ──────────────────────────────────────────────────────────────────────
+
+def main() -> dict:
+    entries = _read_log(DISPATCH_LOG)
+
+    cc = check_cycle_connected(entries)
+    fl = check_face_lock(FACE_LOCK_MANIFEST)
+    hb = check_hina_balance(entries)
+
+    overall = round((cc["score"] + fl["score"] + hb["score"]) / 3)
+    flags = fl.get("flags", [])
+
+    creative_total = cc.get("total", 0)
 
     res = {
         "generated": datetime.datetime.now().isoformat(timespec="seconds"),
-        "reference": STD.get("reference_side", "civic"),
-        "healed_this_run": healed,
-        "scores": {"look": look_score, "tenant_logic": tenant_score, "ipad_workable": ipad_score, "overall": overall},
-        "look": {"surfaces": nsurf, "clean": look_ok, "banned_token_hits": look_hits_total},
-        "tenant_logic": {"studio_tenants": len(studio_tenants), "well_formed": well_formed,
-                         "served_per_tenant_pages": len(served_tenant_pages), "served_dynamic_control_layer": served_dynamic,
-                         "gap": "studio tenants are registered but NOT yet served per-tenant on :8770 (civic has tenant_<id>.html + depth + switcher)" if not served_tenant_pages else "served"},
-        "ipad_workable": {"surfaces": nsurf, "ok": ipad_ok},
-        "per_surface": per,
-        "flags_for_build_not_auto_healed": [
-            "TENANT: build per-studio-tenant served surfaces on :8770 + a tenant switcher reading config/tenants.json (mirror civic tenant_<id>.html + depth)",
-            "iPad: inventory + close per-feature desktop-only blockers (align ONE iPad layer with the SAGE/UE5 session)",
-            "LOOK: converge studio onto the SHARED token CSS (tokens/colors.css) instead of a parallel :root",
-        ],
+        "model": "equal-tenants — Civic (Ao) + Studio/HINA (Po) both read from the 54-node source",
+        "scores": {
+            "cycle_connected":      cc["score"],
+            "face_lock_intact":     fl["score"],
+            "hina_balance_present": hb["score"],
+            "overall":              overall,
+        },
+        "detail": {
+            "creative_jobs_in_log": creative_total,
+            "cycle_connected":  {k: v for k, v in cc.items() if k != "score"},
+            "face_lock":        {k: v for k, v in fl.items() if k != "score"},
+            "hina_balance":     {k: v for k, v in hb.items() if k != "score"},
+        },
+        "flags": flags,
     }
-    os.makedirs(STATUS, exist_ok=True)
-    with open(os.path.join(STATUS, "studio_parity.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump(res, f, ensure_ascii=False, indent=1)
-    print("studio_parity: overall %d  (look %d / tenant %d / ipad %d)%s" % (
-        overall, look_score, tenant_score, ipad_score, "  [HEALED %d file(s)]" % len(healed) if healed else ""))
-    for row in per:
-        print("  %-22s look_clean=%s banned=%s vp=%s resp=%s" % (
-            row["file"], row["look_clean"], row["banned_found"] or "-", row["ipad_viewport"], row["ipad_responsive"]))
+
+    STATUS_DIR.mkdir(parents=True, exist_ok=True)
+    out_path = STATUS_DIR / "studio_parity.json"
+    out_path.write_text(json.dumps(res, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+    print("studio_parity: overall %d  (cycle=%d / face=%d / hina=%d)" % (
+        overall, cc["score"], fl["score"], hb["score"]))
+    if flags:
+        for f in flags:
+            print("  ! %s" % f)
     return res
+
 
 if __name__ == "__main__":
     main()
