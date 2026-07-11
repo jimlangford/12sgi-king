@@ -12,7 +12,7 @@ except Exception:
     def _publish_platform_event(*args, **kwargs):  # type: ignore[misc]
         return None
 
-WORKBOARD_SCHEMA = "workboard-job-v1"
+WORKBOARD_SCHEMA = "workboard-job-v2"
 WORKBOARD_THREAD = os.environ.get("WORKBOARD_TARGET_THREAD", "workboard-quad-os")
 DEFAULT_DISPATCH_LOG = Path(__file__).resolve().parents[1] / ".dispatch_log.jsonl"
 DISPATCH_LOG = Path(os.environ.get("WORKBOARD_DISPATCH_LOG") or DEFAULT_DISPATCH_LOG)
@@ -40,6 +40,15 @@ _AUTO_HEAL_STATUSES = {"queued", "in-progress"}
 
 # Statuses that require human action (never auto-healed regardless of lane)
 _APPROVAL_STATUSES = {"pending-approval"}
+
+# Approval-type vocabulary used for multi-gate corporate/legal workflows.
+# A job may require one or more of these before it is considered fully approved.
+# editorial  — content review by the owner (default for all creative/output jobs)
+# legal      — legal clearance (copyright, claims, compliance)
+# corporate  — brand / entity alignment across 12SGI corporate family
+# rights     — media rights cleared (video clips, music, likeness)
+APPROVAL_TYPES = {"editorial", "legal", "corporate", "rights"}
+_DEFAULT_APPROVAL_TYPES = ("editorial",)
 
 # Owner opt-in override: config/owner_policy.json can set auto_approve_creative /
 # auto_approve_output to true. This is an explicit, auditable, reversible owner decision
@@ -93,10 +102,16 @@ def emit_workboard_job(
     kind: str = "job",
     lane: str = "engineering",
     correlation_id: str | None = None,
+    approval_types: list | None = None,
     log_path: Path | None = None,
 ) -> dict:
     queue_status = _coerce_status(status)
     job_lane = _coerce_lane(lane)
+    # Normalise and validate approval_types; fall back to the default set.
+    if approval_types is not None:
+        atypes = [a.strip().lower() for a in approval_types if a.strip().lower() in APPROVAL_TYPES]
+    else:
+        atypes = list(_DEFAULT_APPROVAL_TYPES)
     entry = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -108,6 +123,7 @@ def emit_workboard_job(
         "priority": priority or "normal",
         "status": queue_status,
         "event": event,
+        "approval_types": atypes,
         "job": {
             "id": str(uuid4()),
             "action": action,
@@ -210,6 +226,7 @@ def approve_workboard_job(
     approver: str,
     *,
     note: str | None = None,
+    approval_type: str = "editorial",
     log_path: Path | None = None,
 ) -> dict:
     """Record an approval tombstone for a creative or output lane job.
@@ -218,8 +235,17 @@ def approve_workboard_job(
     human sign-off.  Only creative and output lane jobs should normally flow
     through here; engineering jobs should self-heal instead.
 
+    ``approval_type`` identifies *which* gate was cleared (editorial / legal /
+    corporate / rights).  Callers that do not specify it default to
+    ``"editorial"`` — the standard owner content review.  Use
+    :func:`approvals_cleared` to check which types have been recorded and
+    :func:`all_required_approvals_met` to decide whether a job is fully cleared.
+
     Returns the tombstone entry dict.
     """
+    atype = approval_type.strip().lower() if approval_type else "editorial"
+    if atype not in APPROVAL_TYPES:
+        atype = "editorial"
     path = log_path or DISPATCH_LOG
     tombstone = {
         "ts": int(time.time()),
@@ -230,13 +256,14 @@ def approve_workboard_job(
         "target_thread": WORKBOARD_THREAD,
         "priority": "normal",
         "status": "approved",
-        "event": f"APPROVED: {job_id}",
+        "event": f"APPROVED[{atype}]: {job_id}",
+        "approval_type": atype,
         "job": {
             "id": str(uuid4()),
             "action": "approved",
             "status": "approved",
             "correlation_id": job_id,
-            "payload": {"approver": approver, "note": note or ""},
+            "payload": {"approver": approver, "note": note or "", "approval_type": atype},
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -419,6 +446,60 @@ def pending_approvals(log_path: Path | None = None) -> list[dict]:
     return [entry for jid, entry in pending.items() if jid not in resolved_ids]
 
 
+def approvals_cleared(job_id: str, log_path: Path | None = None) -> list[str]:
+    """Return the list of approval types that have been recorded for *job_id*.
+
+    Each call to :func:`approve_workboard_job` with a different ``approval_type``
+    adds one entry.  This function scans the append-only log and returns the
+    unique set of types that have been approved, so callers can compare against
+    the job's ``approval_types`` list to see what is still outstanding.
+
+    Example::
+
+        cleared = approvals_cleared(job_id)
+        # ['editorial']  — legal and corporate still pending
+    """
+    entries = read_workboard_log(log_path)
+    cleared: list[str] = []
+    for entry in entries:
+        job = entry.get("job") or {}
+        if (
+            entry.get("kind") == "tombstone"
+            and entry.get("status") == "approved"
+            and job.get("correlation_id") == job_id
+        ):
+            atype = entry.get("approval_type") or job.get("payload", {}).get("approval_type", "editorial")
+            if atype and atype not in cleared:
+                cleared.append(atype)
+    return cleared
+
+
+def all_required_approvals_met(
+    job_id: str,
+    required_types: list | None = None,
+    log_path: Path | None = None,
+) -> bool:
+    """Return True only when every required approval type has been recorded.
+
+    If *required_types* is not provided, looks up the job entry in the log and
+    uses its ``approval_types`` field; falls back to ``["editorial"]``.
+
+    This is the single check that determines whether a job is fully cleared for
+    the PUBLISH step — callers must call this instead of checking for any single
+    ``approved`` tombstone when corporate/legal gates are required.
+    """
+    if required_types is None:
+        entries = read_workboard_log(log_path)
+        for entry in entries:
+            if entry.get("job", {}).get("id") == job_id and entry.get("kind") == "job":
+                required_types = entry.get("approval_types") or ["editorial"]
+                break
+        else:
+            required_types = ["editorial"]
+    cleared = set(approvals_cleared(job_id, log_path))
+    return all(t in cleared for t in required_types)
+
+
 def selfheal_engineering_jobs(
     log_path: Path | None = None,
     outcome: str = "self-healed",
@@ -498,6 +579,12 @@ if __name__ == "__main__":
             "  engineering  Auto-healed by this tool (--outcome flag applies).\n"
             "  creative     Needs human approval — never auto-healed.\n"
             "  output       Needs owner approval before publish — never auto-healed.\n"
+            "\n"
+            "Approval types (--approval-type):\n"
+            "  editorial    Owner content review (default).\n"
+            "  legal        Legal clearance: copyright, claims, compliance.\n"
+            "  corporate    Brand/entity alignment across the 12SGI corporate family.\n"
+            "  rights       Media rights cleared: clips, music, likeness.\n"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -509,6 +596,9 @@ if __name__ == "__main__":
     parser.add_argument("--note", default=None, help="Optional note recorded on the archive tombstone (used with --archive)")
     parser.add_argument("--approve", metavar="JOB_ID", default=None, help="Approve a pending creative/output lane job by id; appends an approved tombstone")
     parser.add_argument("--approver", default="owner", help="Identity recorded as the approver (used with --approve)")
+    parser.add_argument("--approval-type", default="editorial", dest="approval_type",
+                        choices=sorted(APPROVAL_TYPES),
+                        help="Approval gate being cleared (editorial/legal/corporate/rights). Default: editorial")
     parser.add_argument("--reject", metavar="JOB_ID", default=None, help="Reject a pending creative/output lane job by id; appends a rejected tombstone")
     parser.add_argument("--rejector", default="owner", help="Identity recorded as the rejector (used with --reject)")
     parser.add_argument("--reason", default=None, help="Reason recorded on the rejection tombstone (used with --reject)")
@@ -522,8 +612,13 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.approve:
-        tombstone = approve_workboard_job(args.approve, args.approver, note=args.note, log_path=log_path)
-        print(f"Approved {args.approve} -> {tombstone['job']['id']} (approver={args.approver})")
+        tombstone = approve_workboard_job(
+            args.approve, args.approver,
+            note=args.note,
+            approval_type=args.approval_type,
+            log_path=log_path,
+        )
+        print(f"Approved[{args.approval_type}] {args.approve} -> {tombstone['job']['id']} (approver={args.approver})")
         sys.exit(0)
 
     if args.reject:

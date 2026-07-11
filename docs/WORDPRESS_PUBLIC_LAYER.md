@@ -185,6 +185,55 @@ Boundary rules enforced by this bundle:
 - static playables and civic artifacts stay on the 12sgi bridge (`https://12sgi.com/games/`, `https://12sgi.com/sage/`, `https://12sgi.com/reports.html`, etc.)
 - private/owner-only surfaces are not added to the WordPress bundle
 
+## Launch Center (Owner Publishing Dashboard)
+
+The **Launch Center** (`king_public_src/LaunchCenter.dc.html`) is the owner's
+single-pane view of the publishing pipeline.  It is an owner-only panel in the
+Naga console (sign-in required; never public) that reads the
+**media catalog** (`watchers/media_catalog.py` / `data/media_catalog.jsonl`).
+
+### What it shows
+
+Each content item becomes one card with four sections:
+
+- **Asset checklist** — video rendered · transcript · thumbnail · social package · metadata
+- **WordPress row** — draft ID, draft URL, current WP status
+- **Platform grid** — per-platform status badges (queued / draft / published / failed)
+- **Approval badges** — which approval gates (editorial / legal / corporate / rights) are cleared
+
+### Tabs
+
+| Tab | Contents |
+|-----|----------|
+| **Drafts** | WP draft exists, approvals incomplete |
+| **Ready** | All required approvals cleared, not yet published |
+| **Published** | Live on ≥1 platform |
+| **Needs Attention** | Any platform in `failed` state |
+
+### Approval types
+
+`services/v2_workboard.py` now supports multi-gate approval via `--approval-type`:
+
+```
+python -m services.v2_workboard --approve <job_id> --approver owner --approval-type editorial
+python -m services.v2_workboard --approve <job_id> --approver legal  --approval-type legal
+```
+
+Available types: `editorial` (default) · `legal` · `corporate` · `rights`
+
+All required types must be cleared before a job passes
+`all_required_approvals_met()` and is eligible for publish.
+
+### Pipeline boundary
+
+WordPress remains the *preview and public presentation* surface.  The Launch
+Center is the *editorial decision* surface.  Nothing reaches any platform without:
+
+1. A WordPress draft registered in the media catalog
+2. All required approval types cleared in the workboard log
+3. An explicit `tools/publish_approved_social.py` call per
+   `docs/SOCIAL_CONNECTORS.md` — fail-closed, no tombstone = no post.
+
 ## Monitoring
 
 Monitor the publishing workflow via:
