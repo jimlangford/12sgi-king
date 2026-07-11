@@ -226,5 +226,79 @@ class TestWorkboardEventEmission(unittest.TestCase):
         self.assertGreater(events[0]["payload"]["healed_count"], 0)
 
 
+class TestAuthTenantEventEmission(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self._db_path = Path(self._tmp.name) / "platform_events.db"
+        self._auth_db = Path(self._tmp.name) / "auth.db"
+        self._tenant_db = Path(self._tmp.name) / "tenant.db"
+        os.environ["PLATFORM_EVENTS_DB"] = str(self._db_path)
+        os.environ["GOVOS_ALLOW_DEV_SECRETS"] = "1"
+        os.environ["AUTH_DB_PATH"] = str(self._auth_db)
+        os.environ["TENANT_DB_PATH"] = str(self._tenant_db)
+
+        import importlib
+        import services.event_bus as eb_module
+        importlib.reload(eb_module)
+        self.eb = eb_module
+
+        import services.auth.app.main as auth_module
+        importlib.reload(auth_module)
+        self.auth = auth_module
+
+        import services.tenant.app.main as tenant_module
+        importlib.reload(tenant_module)
+        self.tenant = tenant_module
+
+    def tearDown(self):
+        del os.environ["PLATFORM_EVENTS_DB"]
+        del os.environ["GOVOS_ALLOW_DEV_SECRETS"]
+        del os.environ["AUTH_DB_PATH"]
+        del os.environ["TENANT_DB_PATH"]
+        self._tmp.cleanup()
+
+    def test_auth_session_creation_emits_event(self):
+        req = self.auth.AuthSessionRequest(
+            provider="magic_link",
+            subject="resident:abc",
+            tenant_id="tenant-a",
+            role="Resident",
+            scopes=["tenant:read"],
+        )
+        self.auth.create_session(req)
+        events = self.eb.get_recent_events(event_type="auth.session.created", producer="auth")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["payload"]["provider"], "magic_link")
+        self.assertEqual(events[0]["payload"]["role"], "Resident")
+
+    def test_tenant_case_create_and_status_change_emit_events(self):
+        self.tenant.require_claims = lambda **kwargs: {
+            "sub": "user-1",
+            "tenant_id": "tenant-a",
+            "role": "Resident",
+            "scopes": ["tenant:write", "tenant:read"],
+        }
+        self.tenant.enforce_tenant_scope = lambda **kwargs: kwargs.get("requested_tenant_id") or "tenant-a"
+        self.tenant.enforce_resource_tenant = lambda **kwargs: None
+
+        created = self.tenant.create_case(
+            self.tenant.CaseCreateRequest(tenant_id="tenant-a", title="Case A", status="open"),
+            authorization="******",
+        )
+        updated = self.tenant.update_case_status(
+            created["id"],
+            self.tenant.CaseStatusUpdateRequest(status="closed", notes="resolved"),
+            authorization="******",
+        )
+
+        self.assertEqual(updated["status"], "closed")
+        created_events = self.eb.get_recent_events(event_type="case.created", producer="tenant")
+        changed_events = self.eb.get_recent_events(event_type="case.status.changed", producer="tenant")
+        self.assertEqual(len(created_events), 1)
+        self.assertEqual(len(changed_events), 1)
+        self.assertEqual(changed_events[0]["payload"]["previous_status"], "open")
+        self.assertEqual(changed_events[0]["payload"]["status"], "closed")
+
+
 if __name__ == "__main__":
     unittest.main()

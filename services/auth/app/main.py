@@ -20,6 +20,11 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
+try:
+    from services.event_bus import publish_event as _publish_platform_event
+except Exception:
+    def _publish_platform_event(*args, **kwargs):  # type: ignore[misc]
+        return None
 
 _log = logging.getLogger(__name__)
 
@@ -404,6 +409,31 @@ def _redact_claim_identifier(raw: str) -> str:
     return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
 
 
+def _emit_auth_event(
+    event_type: str,
+    *,
+    subject: str = "",
+    provider: str = "",
+    role: str = "",
+    tenant_id: str = "",
+    reason: str = "",
+    outcome: str = "",
+) -> None:
+    _publish_platform_event(
+        event_type,
+        "auth",
+        payload={
+            "subject": _redact_claim_identifier(subject),
+            "provider": provider,
+            "role": role,
+            "tenant_id": _redact_claim_identifier(tenant_id),
+            "reason": reason,
+            "outcome": outcome,
+        },
+        entity_id=_redact_claim_identifier(subject),
+    )
+
+
 def _session_for_token(token: str) -> sqlite3.Row | None:
     with _db() as conn:
         return conn.execute(
@@ -515,6 +545,14 @@ def create_session(payload: AuthSessionRequest):
         scopes=scopes,
         audience=audience,
         ttl_seconds=ttl,
+    )
+    _emit_auth_event(
+        "auth.session.created",
+        subject=payload.subject,
+        provider=payload.provider,
+        role=role,
+        tenant_id=tenant_id,
+        outcome="issued",
     )
 
     return {
@@ -780,6 +818,14 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc))
 
     if login not in OWNER_GITHUB_LOGINS:
+        _emit_auth_event(
+            "auth.login.denied",
+            subject=f"github:{login}",
+            provider="github",
+            role="Owner",
+            reason="owner_not_allowlisted",
+            outcome="denied",
+        )
         return _error_page("This GitHub account is not authorised for owner access.")
 
     token, _ = _issue_and_store_session(
@@ -790,6 +836,13 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+    )
+    _emit_auth_event(
+        "auth.login.success",
+        subject=f"github:{login}",
+        provider="github",
+        role="Owner",
+        outcome="granted",
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
@@ -854,6 +907,14 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
 
     if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
+        _emit_auth_event(
+            "auth.login.denied",
+            subject=f"google:{sub}",
+            provider="google",
+            role="Owner",
+            reason="owner_not_allowlisted",
+            outcome="denied",
+        )
         return _error_page("This Google account is not authorised for owner access.")
 
     token, _ = _issue_and_store_session(
@@ -864,6 +925,13 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+    )
+    _emit_auth_event(
+        "auth.login.success",
+        subject=f"google:{sub}",
+        provider="google",
+        role="Owner",
+        outcome="granted",
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)

@@ -127,6 +127,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/cases/{case_id}/status:
+    patch:
+      summary: Update case status
+      parameters:
+        - in: path
+          name: case_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseStatusUpdateRequest'
+      responses:
+        '200':
+          description: Case status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/documents/generate:
     post:
       summary: Generate document from template
@@ -395,6 +423,14 @@ components:
         created_at:
           type: string
           format: date-time
+    CaseStatusUpdateRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+        notes:
+          type: string
     CaseListResponse:
       type: object
       required: [cases]

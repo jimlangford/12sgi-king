@@ -12,6 +12,11 @@ from pydantic import BaseModel
 from services.authz import auth_error, audit_auth_event, enforce_resource_tenant, enforce_tenant_scope, require_claims
 from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
+try:
+    from services.event_bus import publish_event as _publish_platform_event
+except Exception:
+    def _publish_platform_event(*args, **kwargs):  # type: ignore[misc]
+        return None
 
 API_PREFIX = "/api/v2"
 SERVICE_NAME = "tenant"
@@ -29,6 +34,11 @@ class CaseCreateRequest(BaseModel):
     tenant_id: str
     title: str
     status: str = "open"
+    notes: str | None = None
+
+
+class CaseStatusUpdateRequest(BaseModel):
+    status: str
     notes: str | None = None
 
 
@@ -91,6 +101,29 @@ def _to_case(row: sqlite3.Row) -> dict:
         "created_at": row["created_at"],
         "created_by": row["created_by"],
     }
+
+
+def _emit_case_event(
+    event_type: str,
+    *,
+    case_id: str,
+    tenant_id: str,
+    actor: str,
+    status: str,
+    previous_status: str = "",
+) -> None:
+    _publish_platform_event(
+        event_type,
+        "tenant",
+        payload={
+            "case_id": case_id,
+            "tenant_id": tenant_id,
+            "actor": actor,
+            "status": status,
+            "previous_status": previous_status,
+        },
+        entity_id=case_id,
+    )
 
 
 init_db()
@@ -216,6 +249,13 @@ def create_case(payload: CaseCreateRequest, authorization: str | None = Header(d
         )
     except Exception:
         pass
+    _emit_case_event(
+        "case.created",
+        case_id=record["id"],
+        tenant_id=record["tenant_id"],
+        actor=record["created_by"],
+        status=record["status"],
+    )
 
     return record
 
@@ -236,3 +276,39 @@ def get_case(case_id: str, authorization: str | None = Header(default=None)):
         auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
     enforce_resource_tenant(service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"])
     return _to_case(row)
+
+
+@app.patch(f"{API_PREFIX}/cases/{{case_id}}/status")
+def update_case_status(case_id: str, payload: CaseStatusUpdateRequest, authorization: str | None = Header(default=None)):
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"tenant:write"},
+    )
+    new_status = (payload.status or "").strip().lower()
+    if not new_status:
+        auth_error(400, "invalid_status", "status is required")
+    with _db() as conn:
+        row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
+        if not row:
+            auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
+        enforce_resource_tenant(service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"])
+        previous_status = row["status"]
+        conn.execute(
+            "UPDATE cases SET status = ?, notes = ? WHERE id = ?",
+            (new_status, payload.notes if payload.notes is not None else row["notes"], case_id),
+        )
+        conn.commit()
+        updated = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
+    _emit_case_event(
+        "case.status.changed",
+        case_id=case_id,
+        tenant_id=updated["tenant_id"],
+        actor=claims.get("sub", "unknown"),
+        status=updated["status"],
+        previous_status=previous_status,
+    )
+    return _to_case(updated)

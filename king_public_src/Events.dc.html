@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<div data-surface="events" data-screen-label="Platform Events"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f);">
+    <span style="font-size:18px; color:var(--accent,#e3ad33);">🧾</span>
+    <div>
+      <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">12sgi · Platform Events</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Owner Event Bus Feed</div>
+    </div>
+    <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(227,173,51,0.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:3px 10px;">owner · private</span>
+  </div>
+
+  <div style="max-width:880px; padding:0 clamp(14px,2.5vw,28px) 60px; margin:0 auto;">
+    <div style="display:flex; align-items:center; gap:8px; margin-top:16px; margin-bottom:12px;">
+      <button id="events-refresh" style="padding:8px 12px; border:1px solid var(--line,#34301f); border-radius:8px; background:transparent; color:var(--ink,#efe9da); font:inherit; cursor:pointer;">Refresh</button>
+      <button id="events-show-dead" style="padding:8px 12px; border:1px solid var(--line,#34301f); border-radius:8px; background:transparent; color:var(--ink,#efe9da); font:inherit; cursor:pointer;">Dead letters</button>
+      <span id="events-note" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);"></span>
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:8px 0 6px; margin-bottom:10px;">Platform Event Feed</div>
+    <div id="events-list" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">Loading…</div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const refreshBtn = document.getElementById('events-refresh');
+    const deadBtn = document.getElementById('events-show-dead');
+    if (refreshBtn) refreshBtn.onclick = () => this._loadEvents();
+    if (deadBtn) deadBtn.onclick = () => this._loadDeadLetters();
+    this._loadEvents();
+    this._timer = setInterval(() => this._loadEvents(), 10000);
+  }
+
+  componentWillUnmount() {
+    if (this._timer) clearInterval(this._timer);
+  }
+
+  _apiBase() {
+    const override = (typeof window !== 'undefined' && window.KING_BOARD_URL) || '';
+    if (override) return String(override).replace(/\/+$/, '');
+    try {
+      if (window.location && window.location.origin && window.location.origin !== 'null') return window.location.origin;
+    } catch (e) {}
+    return '';
+  }
+
+  _url(path) {
+    const base = this._apiBase();
+    return base ? `${base}${path}` : path;
+  }
+
+  _setNote(msg) {
+    const note = document.getElementById('events-note');
+    if (note) note.textContent = msg;
+  }
+
+  _esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+  }
+
+  async _loadEvents() {
+    try {
+      const resp = await fetch(this._url('/events?limit=50'), { cache: 'no-store' });
+      if (!resp.ok) throw new Error(`status ${resp.status}`);
+      const body = await resp.json();
+      const items = body.events || [];
+      this._setNote(`${items.length} event(s)`);
+      this._renderEvents(items);
+    } catch (e) {
+      this._setNote('event fetch failed');
+      this._renderMessage(`Could not read /events (${this._esc(String(e && e.message || e))}).`);
+    }
+  }
+
+  async _loadDeadLetters() {
+    try {
+      const resp = await fetch(this._url('/events/dead-letters?limit=30'), { cache: 'no-store' });
+      if (!resp.ok) throw new Error(`status ${resp.status}`);
+      const body = await resp.json();
+      const items = body.dead_letters || [];
+      this._setNote(`${items.length} dead-letter item(s)`);
+      this._renderDeadLetters(items);
+    } catch (e) {
+      this._setNote('dead-letter fetch failed');
+      this._renderMessage(`Could not read /events/dead-letters (${this._esc(String(e && e.message || e))}).`);
+    }
+  }
+
+  _renderMessage(msg) {
+    const host = document.getElementById('events-list');
+    if (!host) return;
+    host.innerHTML = `<div style="border:1px solid rgba(229,115,107,.35); background:rgba(229,115,107,.08); color:#e7b3ad; border-radius:10px; padding:12px 14px; font-size:12px;">${msg}</div>`;
+  }
+
+  _renderEvents(items) {
+    const host = document.getElementById('events-list');
+    if (!host) return;
+    if (!items.length) {
+      host.textContent = 'No platform events yet.';
+      return;
+    }
+    host.innerHTML = items.map(e => {
+      const payload = JSON.stringify(e.payload || {});
+      const lineColor = (e.event_type || '').includes('denied') || (e.event_type || '').includes('rejected') ? '#c97b7b' : '#b3a98f';
+      return `<div style="display:flex; flex-direction:column; gap:3px; padding:9px 10px; border:1px solid rgba(255,255,255,.06); border-radius:8px; margin-bottom:8px; background:rgba(255,255,255,.02);">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <span style="color:var(--ink-faint,#756b56);">${this._esc((e.ts || '').replace('T',' ').substring(0, 19))} UTC</span>
+          <span style="color:#e3ad33;">${this._esc(e.producer || '')}</span>
+          <span style="color:${lineColor};">${this._esc(e.event_type || '')}</span>
+        </div>
+        <div style="color:var(--ink-faint,#756b56); font-size:10px;">entity: ${this._esc(e.entity_id || '—')} · correlation: ${this._esc(e.correlation_id || '—')}</div>
+        <div style="color:var(--ink-dim,#b3a98f); font-size:10px; white-space:pre-wrap; word-break:break-word;">${this._esc(payload)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  _renderDeadLetters(items) {
+    const host = document.getElementById('events-list');
+    if (!host) return;
+    if (!items.length) {
+      host.textContent = 'No dead-letter events.';
+      return;
+    }
+    host.innerHTML = items.map(e => `
+      <div style="display:flex; flex-direction:column; gap:3px; padding:9px 10px; border:1px solid rgba(229,115,107,.3); border-radius:8px; margin-bottom:8px; background:rgba(229,115,107,.08);">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <span style="color:var(--ink-faint,#756b56);">${this._esc((e.ts || '').replace('T',' ').substring(0, 19))} UTC</span>
+          <span style="color:#e3ad33;">${this._esc(e.producer || '')}</span>
+          <span style="color:#e7b3ad;">${this._esc(e.event_type || '')}</span>
+        </div>
+        <div style="color:#e7b3ad; font-size:10px;">reason: ${this._esc(e.reason || '')}</div>
+        <div style="color:var(--ink-dim,#b3a98f); font-size:10px;">payload_ref: ${this._esc(e.payload_ref || '')}</div>
+      </div>
+    `).join('');
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

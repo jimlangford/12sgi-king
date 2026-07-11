@@ -36,6 +36,36 @@ Runner labels: `self-hosted`, `king-server`, `windows`
 - The public 12sgi.com deploy (publish.yml / deploy-to-server.yml) is completely separate
 - Claim-based tenant authorization is enforced service-side from verified token claims (`sub`, `tenant_id`, `role`, `scopes`, `exp`, `iss`, `aud`); deployment must not re-enable client-tenant trust paths.
 
+## Launch readiness (GO / NO-GO)
+
+Treat launch as **NO-GO** until all items below are green and evidenced in private deploy logs:
+
+- Backend sovereign checks:
+  - auth claim enforcement (no client-tenant trust fallback),
+  - tenant isolation checks,
+  - service metadata consistency (`service`, `version`, `commit_sha`, `build_timestamp`, `environment`),
+  - gpu-router readiness + queue health,
+  - platform event durability (`/events`, `/events/dead-letters`),
+  - rollback target + proof captured.
+- Public/private boundary checks:
+  - owner workflows remain private (`/go`, board, Tailscale paths),
+  - public build outputs stay sanitized (`site/`, WordPress layer).
+
+## Launch sequence (private-first)
+
+1. **Stage 1 — PRIVATE validation on king-server**
+   - Run deploy workflow dry run first, collect readiness/provenance evidence.
+   - Allow controlled restart only if dry-run evidence is clean.
+2. **Stage 2 — Limited audience rollout**
+   - Monitor queue/event/error signals and owner console feeds.
+3. **Stage 3 — Full public launch**
+   - Proceed only after stability window passes with no tenant/auth/security regressions.
+
+## Post-launch stabilization
+
+- Daily verify: deploy provenance, queue health, dead letters, rollback readiness.
+- Launch-week issues: patch fast with boundary-safe changes only (no private-path exposure).
+
 For local development without the runner, see `docs/GOVOS_V2_LOCAL_DEV.md` for the uvicorn
 commands and `docker-compose.v2.yml` for the supervised container stack.
 

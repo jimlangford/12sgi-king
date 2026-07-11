@@ -2,7 +2,7 @@
 
 This rubric turns the platform direction into concrete completion gates and records the latest checkpoint execution.
 
-Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:xx UTC (Copilot agent)
+Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:29 UTC (Copilot agent)
 
 ## Status scale
 
@@ -106,14 +106,17 @@ Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:xx UTC (Copilot agent
 - Architecture gap report still calls out production event bus implementation as missing.
 - **2026-07-11:** `services/event_bus.py` implements a SQLite-backed append-only platform event bus
   following the EVENT_BUS.md contract (typed events, versioned payloads, idempotency keys, dead-letter
-  queue for oversized payloads, never-raises guarantee). `services/v2_workboard.py` now emits
+  queue for oversized payloads, never-raises guarantee). `services/v2_workboard.py` emits
   `workboard.job.created`, `workboard.job.approved`, `workboard.job.rejected`, and
-  `workboard.engineering.selfhealed` events. `v2/app/main.py` exposes `GET /events` and
-  `GET /events/dead-letters` as the PRIVATE owner-console surface. 19 new tests pass
-  (`tests/v2/test_event_bus.py`). Cross-service wiring for auth and case events is the next step.
+  `workboard.engineering.selfhealed` events. `services/auth/app/main.py` now emits
+  `auth.session.created`, `auth.login.success`, and `auth.login.denied` events; `services/tenant/app/main.py`
+  now emits `case.created` and `case.status.changed`. `v2/app/main.py` exposes `GET /events` and
+  `GET /events/dead-letters` as the PRIVATE owner-console API, and Naga now exposes a private `Events`
+  panel (`king_public_src/Events.dc.html`) for live owner observability. 21 tests pass
+  (`tests/v2/test_event_bus.py`).
 
-**Status**: **IN PROGRESS** (durable transport implemented and wired to workboard; remaining wiring
-for auth, case, and public projections continues).
+**Status**: **IN PROGRESS** (durable transport and owner observability are wired for workboard/auth/case;
+public projections remain to be connected deliberately).
 
 ---
 
@@ -213,5 +216,5 @@ for auth, case, and public projections continues).
 1. Repository owner/admin re-enables `Deploy V2 to king-server (private, self-hosted)` in Actions.
 2. Run dispatch on `main` with `dry_run=true`, `restart_services=false`, then capture run id/url, runner identity, provenance/readiness matrices, and findings.
 3. Authorize controlled restart (`restart_services=true`) only if dry-run evidence is clean and decision gate is GO.
-4. Wire auth login / case state-change events to `services/event_bus.publish_event()` to further advance Checkpoint 5.
-5. Connect event bus projections to the Naga console `Events` panel (new `.dc.html`) so the owner can see the live event feed in the private dashboard.
+4. Connect approved event-bus projections to public transparency surfaces without exposing owner-private payloads.
+5. Keep owner Events panel focused on PRIVATE operational truth (`/events`, dead letters, routing health) for launch monitoring.
