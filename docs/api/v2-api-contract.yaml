@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: govOS v2 API
   version: 2.0.0
-  description: Shared contract for auth, tenant, documents, storage, and AI services.
+  description: Sovereign interface specification for auth, tenant, documents, storage, and AI services.
 servers:
   - url: http://localhost
 paths:

@@ -4,6 +4,8 @@ Decision: **NO-GO for citizen accounts** until live caller verification is compl
 
 Status: code-side migration is hardened; proceed with monitored production-adoption verification only.
 
+Sovereign boundary: authorization claims here are technical access metadata only, not ownership claims on software or civic assets.
+
 ## INSPECTED
 
 - `/home/runner/work/12sgi-king/12sgi-king/docs/V2_CLAIM_CLIENT_MIGRATION.md`
