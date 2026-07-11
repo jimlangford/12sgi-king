@@ -16,3 +16,7 @@ Alternatives Considered
 
 Future Evolution
 - Consider headless CMS or static export for performance when needed.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](../QUAD_OS_MASTER_ARCHITECTURE.md) §2 (Public vs. private boundaries) | [WORDPRESS_PUBLIC_LAYER.md](../WORDPRESS_PUBLIC_LAYER.md)

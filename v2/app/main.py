@@ -29,6 +29,7 @@ from services.v2_workboard import (
     reject_workboard_job,
     selfheal_engineering_jobs,
 )
+from services.event_bus import get_recent_events, get_dead_letters
 from watchers import graph_refresh
 from watchers import pulse_geometry
 
@@ -219,6 +220,41 @@ def trigger_selfheal():
     """
     healed = selfheal_engineering_jobs(log_path=WORKBOARD_LOG, outcome="self-healed")
     return {"healed": healed, "lane": "engineering"}
+
+
+# ── Platform event log (owner-only) ──────────────────────────────────────────
+
+@app.get("/events")
+def list_platform_events(
+    limit: int = 50,
+    event_type: str | None = None,
+    producer: str | None = None,
+):
+    """Return recent platform events from the append-only event log.
+
+    This is the PRIVATE owner-console surface for the platform event bus
+    described in docs/EVENT_BUS.md. Filters:
+      ?limit=N           — max events to return (default 50, max 200)
+      ?event_type=x      — exact match on event type
+      ?producer=x        — exact match on producer
+
+    Events include workboard lane transitions (job.created / job.approved /
+    job.rejected / engineering.selfhealed) and any other service that calls
+    services.event_bus.publish_event().
+    """
+    events = get_recent_events(
+        limit=min(limit, 200),
+        event_type=event_type,
+        producer=producer,
+    )
+    return {"count": len(events), "events": events}
+
+
+@app.get("/events/dead-letters")
+def list_dead_letters(limit: int = 20):
+    """Return recent dead-letter events (oversized or undeliverable payloads)."""
+    items = get_dead_letters(limit=min(limit, 100))
+    return {"count": len(items), "dead_letters": items}
 
 
 if __name__ == "__main__":

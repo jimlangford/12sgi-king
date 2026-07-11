@@ -16,3 +16,7 @@ Alternatives Considered
 
 Future Evolution
 - Evaluate Kafka or cloud-native event streaming solutions as scale demands.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](../QUAD_OS_MASTER_ARCHITECTURE.md) §5 (Event model) | [EVENT_BUS.md](../EVENT_BUS.md) | `services/event_bus.py` (SQLite implementation)

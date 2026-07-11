@@ -16,3 +16,7 @@ Alternatives Considered
 
 Future Evolution
 - Expand core services with scale and multi-region capabilities.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](../QUAD_OS_MASTER_ARCHITECTURE.md) §3 (Module registry) | [SERVICE_REGISTRY.md](../SERVICE_REGISTRY.md) | [EVENT_BUS.md](../EVENT_BUS.md)

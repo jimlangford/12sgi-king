@@ -17,3 +17,7 @@ Alternatives Considered
 
 Future Evolution
 - Add support for enterprise identity providers (SSO) with SCIM user provisioning.
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](../QUAD_OS_MASTER_ARCHITECTURE.md) §7 (Security model) | [AUTH_PLAN.md](../AUTH_PLAN.md) | [OAUTH_SETUP.md](../OAUTH_SETUP.md)

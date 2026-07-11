@@ -39,6 +39,6 @@ Idempotency
 Auditing
 - All events are stored in the Audit Log with full payloads, producer metadata, and delivery attempts.
 
-Security
-- Events carrying PII should be encrypted or redacted as appropriate.
-- Event authentication should use service tokens with RBAC controls.
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](QUAD_OS_MASTER_ARCHITECTURE.md) §5 (Event model) | [ADR-004-Event-Bus.md](adr/ADR-004-Event-Bus.md) | `services/event_bus.py` (implementation)
