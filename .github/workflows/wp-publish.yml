@@ -94,7 +94,7 @@ print(json.dumps({
 ")
           RESPONSE=$(curl -s -w '\n%{http_code}' -X POST \
             "https://public-api.wordpress.com/rest/v1.1/sites/${JETPACK_SITE_ID}/posts/new" \
-            -H "Authorization: ******" \
+            -H "Authorization: Bearer $JETPACK_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD")
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
