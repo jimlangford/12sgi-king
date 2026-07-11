@@ -5,6 +5,22 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (later still) — LOTUS/Neo4j education layer: grade-band <-> civic-data map
+
+**Thread:** "connect data to each level correctly with my neo4j system LOTUS"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** existing local-Neo4j patterns (`watchers/chain_to_graph.py`, `watchers/graph_vectors.py`) — HTTP Cypher via urllib to `127.0.0.1:7474`, stdlib only, zero cloud tokens, MERGE-based idempotent loads. Per this repo's own CANON rule, Neo4j only answers on the owner's machine; this cloud session cannot reach or verify it directly.
+
+**CHANGED:** added `watchers/education_to_graph.py`, following the exact same house pattern. Two additive layers, both requested together: (1) `(:GradeBand)-[:USES]->(:CivicTool)` — which tool/page each grade band points to and why, sourced directly from `education.html`'s own copy (no fabricated content for the bands marked "in development" there). (2) `(:GradeBand)-[:CAN_QUERY]->(:Node)` — links college/grad bands into the existing money-chain graph from `chain_to_graph.py` (gated by a `grade_floor`, younger bands aren't given an unguided link into raw financial-flow data). `--ask <grade_id> [--query TEXT]` lets a student/teacher pull a grade-appropriate answer; falls back to a static in-script map if Neo4j is down so the answer is never empty.
+
+**PRESERVED:** never runs `DETACH DELETE` on the whole graph — only MERGEs its own `GradeBand`/`CivicTool`/`USES`/`CAN_QUERY` layer on top of whatever `chain_to_graph.py` already loaded, any order, repeatedly, safely.
+
+**VERIFY:** `python -m py_compile` clean; `python -m compileall -q .` clean; `--dry-run` prints the exact Cypher; `--ask k2` / `--ask grad` verified against the static fallback path (Neo4j correctly unreachable from this cloud session — matches the "Neo4j not reachable... is the lotus-neo4j container up?" message by design).
+
+**NEXT:** owner needs to run `python watchers/education_to_graph.py` on king-server (where `lotus-neo4j` is actually up) to load it for real, then `--ask <grade>` / `--ask <grade> --query "..."` to confirm live graph answers match the fallback output shown here.
+
+---
+
 ## 2026-07-11 (later) — Education page promoted to 12sgi.com front door; government watcher surfaced through it
 
 **Thread:** education/front-page request → build_site.py  **From:** Copilot CLI  **To:** Jimmy
