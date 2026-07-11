@@ -5,6 +5,24 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
+
+**Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review
+
+**INSPECTED:** Issue #323 (`Build private /go Owner Console for V2`). `go/` directory: all 7 subpages (`docker.html`, `ollama.html`, `llm-watch.html`, `comfyui.html`, `github.html`, `system.html`, `logs.html`) already exist and are feature-complete with error cards (what/cause/severity/steps/safe-fix-buttons/logs/test-again/escalation). `go.html` hub links to them via `href="go/docker.html"` etc. Gap: neither `build_site.py` nor `deploy-v2-king-server.yml` was copying the `go/` subdirectory, so clicking any subpage link from `go.html` would 404.
+
+**CHANGED:**
+- `build_site.py` — added `go/` subpages copy to `site/go/` after the `go.html` copy; subpages fail-closed on the public mirror (no /board/api/* = only an unreachable error card shown)
+- `.github/workflows/deploy-v2-king-server.yml` — "Copy /go Owner Console and board files to king-local" step now also copies `go/*.html` to `king-local/go/`; health check step now verifies all 7 go/ panel files are present
+
+**PRESERVED:** All 7 go/ subpages content untouched. No secrets. All PRIVATE/Tailscale labels and board API paths unchanged. go.html hub untouched.
+
+**VERIFY:** `python -m compileall -q .` → clean. `KA_SITE=/tmp/go-launch-check python build_site.py` → go.html + go/ subpages in output.
+
+**NEXT:** Merge PR → run `deploy-v2-king-server` workflow to push go/ subpages to king-local → all 7 Owner Console panels live on Tailscale at ts.net/go/docker.html etc.
+
+---
+
 ## 2026-07-11 — Product launch completion: slate sync + partner page
 
 **Thread:** completing-product-launch  **From:** Copilot agent  **To:** owner review

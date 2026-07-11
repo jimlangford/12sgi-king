@@ -190,6 +190,31 @@ jobs:
             }
           }
 
+          # go/ Owner Console subpages — docker, ollama, llm-watch, comfyui, github, system, logs.
+          # These must live next to go.html so relative href="go/X.html" links resolve correctly.
+          $goSrc  = "go"
+          $goDest = Join-Path $dest "go"
+          if (Test-Path $goSrc) {
+            if ($dry) {
+              Write-Host "[DRY RUN] Would copy go\*.html → $goDest\"
+            } else {
+              if (-not (Test-Path $goDest)) { New-Item -ItemType Directory -Path $goDest -Force | Out-Null }
+              $goFiles = Get-ChildItem -Path $goSrc -Filter "*.html" -File
+              foreach ($gf in $goFiles) {
+                $gtarget = Join-Path $goDest $gf.Name
+                Copy-Item -Path $gf.FullName -Destination $gtarget -Force -ErrorAction SilentlyContinue
+                if (Test-Path $gtarget) {
+                  Write-Host "✓ Copied go\$($gf.Name) → $gtarget"
+                } else {
+                  Write-Warning "Could not copy go\$($gf.Name)"
+                }
+              }
+              Write-Host "✓ go/ Owner Console subpages deployed ($($goFiles.Count) files)"
+            }
+          } else {
+            Write-Warning "go/ subdirectory not found in repo — subpages will not be available"
+          }
+
       - name: Validate V2 compose plan and print inventory
         shell: pwsh
         run: |
@@ -366,6 +391,22 @@ jobs:
           } else {
             $results["board.html"] = "missing"
             Write-Warning "  ✗ board.html not found at king-local path"
+          }
+
+          # go/ Owner Console subpages — verify all 7 panels are present
+          $goSubPages = @("docker.html","ollama.html","llm-watch.html","comfyui.html","github.html","system.html","logs.html")
+          $goSubDir   = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go"
+          $goSubMissing = @()
+          foreach ($sp in $goSubPages) {
+            $spPath = Join-Path $goSubDir $sp
+            if (-not (Test-Path $spPath)) { $goSubMissing += $sp }
+          }
+          if ($goSubMissing.Count -eq 0) {
+            $results["go/subpages"] = "all present ($($goSubPages.Count) panels)"
+            Write-Host "  ✓ go/ subpages: all $($goSubPages.Count) Owner Console panels present"
+          } else {
+            $results["go/subpages"] = "missing: $([string]::Join(', ', $goSubMissing))"
+            Write-Warning "  ✗ go/ subpages missing: $([string]::Join(', ', $goSubMissing))"
           }
 
           # Write summary
