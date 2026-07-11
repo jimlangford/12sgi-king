@@ -20,6 +20,8 @@ from services.v2_workboard import (
     reject_workboard_job,
     resolve_workboard_job,
     selfheal_engineering_jobs,
+    workboard_pulse,
+    workboard_hub_feed,
 )
 from watchers import pulse_geometry
 import importlib.util
@@ -630,6 +632,261 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertEqual(calls, [('incremental', 'unit-test', ['pulse_geometry'])])
         self.assertTrue(body['refreshed'])
         self.assertEqual(body['status']['requested_targets'], ['pulse_geometry'])
+
+
+class TestDagNodes(unittest.TestCase):
+    """Tests for the dag_nodes field on emit_workboard_job."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.log_path = Path(self._tmp.name) / 'test-dag.jsonl'
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def test_dag_nodes_stored_on_job(self):
+        nodes = [
+            {'name': 'Scene Build', 'status': 'waiting', 'engine': 'none', 'inputs_resolved': False},
+            {'name': 'GPU Render',  'status': 'running', 'engine': 'comfyui', 'inputs_resolved': True},
+        ]
+        entry = emit_workboard_job(
+            source='test', action='render', event='RENDER',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        stored = entry['job']['dag_nodes']
+        self.assertEqual(len(stored), 2)
+        self.assertEqual(stored[0]['name'], 'Scene Build')
+        self.assertEqual(stored[1]['engine'], 'comfyui')
+        self.assertEqual(stored[1]['inputs_resolved'], True)
+
+    def test_dag_nodes_persisted_in_log(self):
+        nodes = [{'name': 'Audio Sync', 'status': 'done', 'engine': 'voice', 'inputs_resolved': True}]
+        emit_workboard_job(
+            source='test', action='audio', event='AUDIO',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        entries = read_workboard_log(self.log_path)
+        stored = entries[0]['job']['dag_nodes']
+        self.assertEqual(stored[0]['engine'], 'voice')
+        self.assertEqual(stored[0]['status'], 'done')
+
+    def test_invalid_dag_node_status_coerced(self):
+        nodes = [{'name': 'X', 'status': 'BOGUS', 'engine': 'none', 'inputs_resolved': False}]
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        self.assertEqual(entry['job']['dag_nodes'][0]['status'], 'waiting')
+
+    def test_invalid_dag_node_engine_coerced(self):
+        nodes = [{'name': 'X', 'status': 'waiting', 'engine': 'BOGUS', 'inputs_resolved': False}]
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        self.assertEqual(entry['job']['dag_nodes'][0]['engine'], 'none')
+
+    def test_no_dag_nodes_gives_empty_list(self):
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            log_path=self.log_path,
+        )
+        self.assertEqual(entry['job']['dag_nodes'], [])
+
+    def test_none_dag_nodes_gives_empty_list(self):
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            dag_nodes=None, log_path=self.log_path,
+        )
+        self.assertEqual(entry['job']['dag_nodes'], [])
+
+    def test_non_dict_items_skipped(self):
+        nodes = ['not-a-dict', None, {'name': 'Valid', 'status': 'waiting', 'engine': 'none', 'inputs_resolved': False}]
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        self.assertEqual(len(entry['job']['dag_nodes']), 1)
+        self.assertEqual(entry['job']['dag_nodes'][0]['name'], 'Valid')
+
+    def test_extra_node_keys_preserved(self):
+        nodes = [{'name': 'A', 'status': 'waiting', 'engine': 'ollama', 'inputs_resolved': False, 'retry_count': 3}]
+        entry = emit_workboard_job(
+            source='test', action='x', event='X',
+            dag_nodes=nodes, log_path=self.log_path,
+        )
+        self.assertEqual(entry['job']['dag_nodes'][0]['retry_count'], 3)
+
+
+class TestWorkboardPulse(unittest.TestCase):
+    """Tests for the workboard_pulse() operational counter function."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.log_path = Path(self._tmp.name) / 'test-pulse.jsonl'
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _write_raw(self, obj):
+        import json as _json, time as _time
+        obj.setdefault('ts', int(_time.time()))
+        obj.setdefault('iso', _time.strftime('%Y-%m-%d %H:%M:%S', _time.gmtime()))
+        with self.log_path.open('a', encoding='utf-8') as f:
+            f.write(_json.dumps(obj) + '\n')
+
+    def test_empty_log_all_zeros(self):
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['jobs_running'], 0)
+        self.assertEqual(p['waiting_gpu'], 0)
+        self.assertEqual(p['waiting_owner'], 0)
+        self.assertEqual(p['auto_healed_today'], 0)
+        self.assertEqual(p['deploy_ready'], 0)
+        self.assertEqual(p['critical'], 0)
+
+    def test_missing_log_all_zeros(self):
+        missing = Path(self._tmp.name) / 'no-such.jsonl'
+        p = workboard_pulse(log_path=missing)
+        self.assertEqual(p['jobs_running'], 0)
+
+    def test_in_progress_job_counted(self):
+        emit_workboard_job(
+            source='s', action='a', event='E',
+            status='in-progress', lane='engineering',
+            log_path=self.log_path,
+        )
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['jobs_running'], 1)
+
+    def test_queued_job_not_in_running(self):
+        emit_workboard_job(
+            source='s', action='a', event='E',
+            status='queued', lane='engineering',
+            log_path=self.log_path,
+        )
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['jobs_running'], 0)
+
+    def test_resolved_job_not_counted(self):
+        job = emit_workboard_job(
+            source='s', action='a', event='E',
+            status='in-progress', log_path=self.log_path,
+        )
+        resolve_workboard_job(job['job']['id'], 'done', log_path=self.log_path)
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['jobs_running'], 0)
+
+    def test_gpu_engine_node_counted(self):
+        emit_workboard_job(
+            source='s', action='render', event='E',
+            status='in-progress', lane='engineering',
+            dag_nodes=[{'name': 'GPU', 'status': 'running', 'engine': 'comfyui', 'inputs_resolved': True}],
+            log_path=self.log_path,
+        )
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['waiting_gpu'], 1)
+
+    def test_non_gpu_engine_not_counted(self):
+        emit_workboard_job(
+            source='s', action='render', event='E',
+            status='in-progress', lane='engineering',
+            dag_nodes=[{'name': 'LLM', 'status': 'running', 'engine': 'ollama', 'inputs_resolved': True}],
+            log_path=self.log_path,
+        )
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['waiting_gpu'], 0)
+
+    def test_pending_approval_counted(self):
+        emit_workboard_job(
+            source='s', action='doc', event='DOC',
+            status='pending-approval', lane='creative',
+            log_path=self.log_path,
+        )
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['waiting_owner'], 1)
+
+    def test_blocker_watcher_entry_counted_as_critical(self):
+        self._write_raw({'source': 'watcher', 'event': 'BLOCKER: server disk 90%'})
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['critical'], 1)
+
+    def test_no_blocker_critical_zero(self):
+        self._write_raw({'source': 'watcher', 'event': 'FINDING: server fine'})
+        p = workboard_pulse(log_path=self.log_path)
+        self.assertEqual(p['critical'], 0)
+
+    def test_pulse_keys_present(self):
+        p = workboard_pulse(log_path=self.log_path)
+        for key in ('jobs_running', 'waiting_gpu', 'waiting_owner', 'auto_healed_today', 'deploy_ready', 'critical'):
+            self.assertIn(key, p)
+
+
+class TestWorkboardHubFeed(unittest.TestCase):
+    """Tests for workboard_hub_feed()."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.log_path = Path(self._tmp.name) / 'test-hub.jsonl'
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _write_raw(self, obj):
+        import json as _json, time as _time
+        obj.setdefault('ts', int(_time.time()))
+        obj.setdefault('iso', _time.strftime('%Y-%m-%d %H:%M:%S', _time.gmtime()))
+        with self.log_path.open('a', encoding='utf-8') as f:
+            f.write(_json.dumps(obj) + '\n')
+
+    def test_empty_log_returns_empty_list(self):
+        self.assertEqual(workboard_hub_feed(log_path=self.log_path), [])
+
+    def test_missing_log_returns_empty_list(self):
+        missing = Path(self._tmp.name) / 'nope.jsonl'
+        self.assertEqual(workboard_hub_feed(log_path=missing), [])
+
+    def test_workboard_job_appears_in_feed(self):
+        emit_workboard_job(
+            source='svc', action='a', event='FINDING: disk low',
+            log_path=self.log_path,
+        )
+        feed = workboard_hub_feed(log_path=self.log_path)
+        self.assertEqual(len(feed), 1)
+        self.assertEqual(feed[0]['prefix'], 'FINDING')
+        self.assertEqual(feed[0]['source'], 'svc')
+
+    def test_watcher_entry_prefix_extracted(self):
+        self._write_raw({'source': 'watcher', 'event': 'BLOCKER: disk full'})
+        feed = workboard_hub_feed(log_path=self.log_path)
+        self.assertEqual(feed[0]['prefix'], 'BLOCKER')
+
+    def test_unknown_prefix_becomes_info(self):
+        self._write_raw({'source': 'misc', 'event': 'Something happened'})
+        feed = workboard_hub_feed(log_path=self.log_path)
+        self.assertEqual(feed[0]['prefix'], 'INFO')
+
+    def test_feed_sorted_newest_first(self):
+        import time as _time
+        self._write_raw({'source': 'a', 'event': 'FINDING: old', 'ts': 1000})
+        self._write_raw({'source': 'b', 'event': 'SHIPPED: new', 'ts': 2000})
+        feed = workboard_hub_feed(log_path=self.log_path)
+        self.assertEqual(feed[0]['source'], 'b')
+        self.assertEqual(feed[1]['source'], 'a')
+
+    def test_limit_respected(self):
+        for i in range(10):
+            self._write_raw({'source': f's{i}', 'event': f'FINDING: item {i}', 'ts': i})
+        feed = workboard_hub_feed(limit=3, log_path=self.log_path)
+        self.assertEqual(len(feed), 3)
+
+    def test_feed_entry_has_required_keys(self):
+        emit_workboard_job(
+            source='svc', action='a', event='SHIPPED: done',
+            log_path=self.log_path,
+        )
+        entry = workboard_hub_feed(log_path=self.log_path)[0]
+        for key in ('ts', 'iso', 'source', 'prefix', 'event', 'lane', 'kind'):
+            self.assertIn(key, entry)
 
 
 if __name__ == '__main__':

@@ -13,6 +13,20 @@ except Exception:
         return None
 
 WORKBOARD_SCHEMA = "workboard-job-v2"
+
+# ── DAG node schema ───────────────────────────────────────────────────────────
+# Each dag_node in a job's dag_nodes list carries:
+#   name             — human-readable stage label (e.g. "Scene Build")
+#   status           — waiting | running | done | failed
+#   engine           — ollama | comfyui | voice | embedding | none
+#   inputs_resolved  — True once all predecessor outputs are available
+#
+# The list is ordered (index 0 = first stage). The router advances each node's
+# status as execution progresses. A job is "Waiting on GPU" when any node has
+# engine in {comfyui, gpu} and status = "running".
+DAG_NODE_STATUSES = {"waiting", "running", "done", "failed"}
+DAG_NODE_ENGINES  = {"ollama", "comfyui", "voice", "embedding", "none"}
+GPU_ENGINES       = {"comfyui", "gpu"}
 WORKBOARD_THREAD = os.environ.get("WORKBOARD_TARGET_THREAD", "workboard-quad-os")
 DEFAULT_DISPATCH_LOG = Path(__file__).resolve().parents[1] / ".dispatch_log.jsonl"
 DISPATCH_LOG = Path(os.environ.get("WORKBOARD_DISPATCH_LOG") or DEFAULT_DISPATCH_LOG)
@@ -91,6 +105,36 @@ def _coerce_lane(lane: str) -> str:
     return candidate
 
 
+def _coerce_dag_nodes(nodes: list | None) -> list:
+    """Validate and normalise a dag_nodes list.
+
+    Each element must be a dict; unknown keys are preserved so future node
+    metadata (e.g. retry counts, time estimates) round-trips cleanly.
+    Invalid status/engine values are coerced to "waiting"/"none".
+    """
+    if not nodes:
+        return []
+    out = []
+    for raw in nodes:
+        if not isinstance(raw, dict):
+            continue
+        node = dict(raw)
+        st = (node.get("status") or "waiting").strip().lower()
+        if st not in DAG_NODE_STATUSES:
+            st = "waiting"
+        eng = (node.get("engine") or "none").strip().lower()
+        if eng not in DAG_NODE_ENGINES:
+            eng = "none"
+        out.append({
+            **node,
+            "name": str(node.get("name") or "unnamed"),
+            "status": st,
+            "engine": eng,
+            "inputs_resolved": bool(node.get("inputs_resolved", False)),
+        })
+    return out
+
+
 def emit_workboard_job(
     *,
     source: str,
@@ -103,6 +147,7 @@ def emit_workboard_job(
     lane: str = "engineering",
     correlation_id: str | None = None,
     approval_types: list | None = None,
+    dag_nodes: list | None = None,
     log_path: Path | None = None,
 ) -> dict:
     queue_status = _coerce_status(status)
@@ -112,6 +157,7 @@ def emit_workboard_job(
         atypes = [a.strip().lower() for a in approval_types if a.strip().lower() in APPROVAL_TYPES]
     else:
         atypes = list(_DEFAULT_APPROVAL_TYPES)
+    coerced_nodes = _coerce_dag_nodes(dag_nodes)
     entry = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -130,6 +176,7 @@ def emit_workboard_job(
             "status": queue_status,
             "correlation_id": correlation_id,
             "payload": payload or {},
+            "dag_nodes": coerced_nodes,
         },
     }
     path = log_path or DISPATCH_LOG
@@ -565,6 +612,182 @@ def _batch_resolve_log(log_path: Path | None = None, outcome: str = "batch-close
     tests that import ``_batch_resolve_log`` continue to work unchanged.
     """
     return selfheal_engineering_jobs(log_path=log_path, outcome=outcome)
+
+
+def workboard_pulse(log_path: Path | None = None) -> dict:
+    """Compute the six operational pulse counters from the dispatch log.
+
+    Returns a dict with:
+      jobs_running      — open jobs in any lane with status "in-progress"
+      waiting_gpu       — open in-progress jobs where any dag_node uses a GPU engine
+      waiting_owner     — creative/output jobs in pending-approval (human gate)
+      auto_healed_today — engineering tombstones resolved today (UTC) with a
+                          self-heal outcome
+      deploy_ready      — output lane jobs with an "approved" tombstone
+      critical          — log entries whose event field starts with "BLOCKER"
+                          and that have no subsequent RESOLVED entry
+
+    All values are non-negative integers.  Safe to call when the log is
+    missing (returns all zeros).  Does not write to the log.
+    """
+    import re as _re
+
+    entries = read_workboard_log(log_path)
+    today_prefix = time.strftime("%Y-%m-%d", time.gmtime())  # UTC date
+
+    # Collect all job ids that have tombstones (resolved/approved/rejected/archived)
+    tombstoned_ids: set[str] = set()
+    # Engineering healed today
+    auto_healed_today = 0
+    # Deploy-ready: output lane + approved tombstone
+    deploy_ready_ids: set[str] = set()
+    # Blocked event tracking: key = identifier string → True if unresolved
+    blocker_events: dict[str, bool] = {}
+
+    for entry in entries:
+        job = entry.get("job") or {}
+        ev = entry.get("event") or ""
+        iso = entry.get("iso") or ""
+
+        if entry.get("kind") == "tombstone":
+            cid = job.get("correlation_id")
+            if cid:
+                tombstoned_ids.add(cid)
+            # Count self-healed engineering today
+            outcome = job.get("payload", {}).get("outcome") or ""
+            if (
+                entry.get("source") == "workboard-self-healer"
+                and "heal" in outcome.lower()
+                and iso.startswith(today_prefix)
+            ):
+                auto_healed_today += 1
+            # Track approved output lane jobs
+            if entry.get("status") == "approved":
+                orig_id = job.get("correlation_id")
+                if orig_id:
+                    deploy_ready_ids.add(orig_id)
+            # RESOLVED prefix clears a BLOCKER
+            if ev.startswith("RESOLVED:") or ev.startswith("DONE") or ev.startswith("SHIPPED"):
+                pass  # tombstone presence covers resolution for jobs
+
+        elif ev.upper().startswith("BLOCKER"):
+            # Watcher-style BLOCKER entries — key on the message text
+            blocker_events[ev] = True
+        elif ev.upper().startswith("RESOLVED"):
+            # Clear matching blocker if watcher emitted explicit resolution
+            for key in list(blocker_events):
+                if ev[len("RESOLVED:"):].strip() in key:
+                    blocker_events.pop(key, None)
+
+    # Open jobs: has a job entry with no tombstone
+    open_jobs: list[dict] = []
+    for entry in entries:
+        if entry.get("kind") != "job":
+            continue
+        jid = (entry.get("job") or {}).get("id")
+        if jid and jid not in tombstoned_ids:
+            open_jobs.append(entry)
+
+    jobs_running = sum(1 for e in open_jobs if e.get("status") == "in-progress")
+
+    # Waiting on GPU: in-progress open jobs with any dag_node on a GPU engine
+    waiting_gpu = 0
+    for e in open_jobs:
+        if e.get("status") != "in-progress":
+            continue
+        nodes = (e.get("job") or {}).get("dag_nodes") or []
+        if any(n.get("engine") in GPU_ENGINES for n in nodes):
+            waiting_gpu += 1
+
+    # Waiting on owner: pending-approval in creative/output lane
+    waiting_owner = sum(
+        1 for e in open_jobs
+        if e.get("lane") in {"creative", "output"} and e.get("status") == "pending-approval"
+    )
+
+    # Deploy ready: output lane jobs approved but not yet archived/rejected
+    # (approved tombstone exists AND no archive/reject tombstone supersedes it)
+    rejected_archived: set[str] = set()
+    for entry in entries:
+        if entry.get("kind") == "tombstone" and entry.get("status") in {"rejected", "archived"}:
+            cid = (entry.get("job") or {}).get("correlation_id")
+            if cid:
+                rejected_archived.add(cid)
+    # Only count output lane originals
+    output_original_ids: set[str] = {
+        (e.get("job") or {}).get("id")
+        for e in entries
+        if e.get("kind") == "job" and e.get("lane") == "output"
+        and (e.get("job") or {}).get("id")
+    }
+    deploy_ready = len(
+        deploy_ready_ids & output_original_ids - rejected_archived
+    )
+
+    critical = len(blocker_events)
+
+    return {
+        "jobs_running":      jobs_running,
+        "waiting_gpu":       waiting_gpu,
+        "waiting_owner":     waiting_owner,
+        "auto_healed_today": auto_healed_today,
+        "deploy_ready":      deploy_ready,
+        "critical":          critical,
+    }
+
+
+# ── Hub feed: the prefix vocabulary the system uses for log entries ───────────
+# FINDING   — evidence of a state mismatch; may trigger automatic repair
+# SHIPPED   — work completed and pushed
+# BLOCKER   — unresolved obstacle requiring owner attention
+# DECISION  — owner-recorded policy or direction
+# POLICY    — standing rule recorded for future reference
+# HANDOFF   — cross-agent or cross-session handover note
+# OWNERSHIP — domain or component ownership recorded
+# DONE      — task closure note
+_HUB_PREFIX_ORDER = ["BLOCKER", "FINDING", "SHIPPED", "DECISION", "POLICY", "HANDOFF", "OWNERSHIP", "DONE"]
+_HUB_PREFIX_SET   = set(_HUB_PREFIX_ORDER)
+
+
+def _hub_prefix(event: str) -> str:
+    """Extract the capitalised prefix from a dispatch log event string."""
+    upper = (event or "").upper()
+    for pfx in _HUB_PREFIX_ORDER:
+        if upper.startswith(pfx):
+            return pfx
+    return "INFO"
+
+
+def workboard_hub_feed(limit: int = 60, log_path: Path | None = None) -> list[dict]:
+    """Return the last *limit* dispatch log entries formatted for the Hub panel.
+
+    Each returned dict carries:
+      ts      — Unix timestamp (int)
+      iso     — ISO datetime string
+      source  — originating watcher or service
+      prefix  — capitalised event prefix (FINDING / SHIPPED / BLOCKER / …)
+      event   — full event string
+      lane    — workboard lane if applicable, else ""
+      kind    — "job" | "tombstone" | "watcher"
+
+    Sorted newest-first.  Safe to call when the log is missing.
+    """
+    entries = read_workboard_log(log_path)
+    result = []
+    for entry in entries:
+        ev = entry.get("event") or ""
+        kind = entry.get("kind") or ("watcher" if "schema" not in entry else "job")
+        result.append({
+            "ts":     entry.get("ts") or 0,
+            "iso":    entry.get("iso") or "",
+            "source": entry.get("source") or "",
+            "prefix": _hub_prefix(ev),
+            "event":  ev,
+            "lane":   entry.get("lane") or "",
+            "kind":   kind,
+        })
+    result.sort(key=lambda x: x["ts"], reverse=True)
+    return result[:limit]
 
 
 if __name__ == "__main__":

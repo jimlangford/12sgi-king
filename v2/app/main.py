@@ -37,6 +37,8 @@ from services.v2_workboard import (
     pending_approvals,
     reject_workboard_job,
     selfheal_engineering_jobs,
+    workboard_pulse,
+    workboard_hub_feed,
 )
 from services.event_bus import get_recent_events, get_dead_letters
 from services.connectors import registry as _connector_registry
@@ -366,6 +368,35 @@ def trigger_selfheal():
     """
     healed = selfheal_engineering_jobs(log_path=WORKBOARD_LOG, outcome="self-healed")
     return {"healed": healed, "lane": "engineering"}
+
+
+# ── Workboard operational pulse counters (owner-only) ─────────────────────────
+
+@app.get("/workboard/pulse")
+def get_workboard_pulse():
+    """Return the six operational pulse counters computed from the dispatch log.
+
+    Counters:
+      jobs_running      — open jobs currently in-progress (any lane)
+      waiting_gpu       — in-progress jobs with a GPU-engine dag_node
+      waiting_owner     — creative/output jobs in pending-approval
+      auto_healed_today — engineering jobs self-healed today (UTC)
+      deploy_ready      — output lane jobs approved but not yet archived
+      critical          — unresolved BLOCKER entries in the dispatch log
+
+    No writes — read-only, safe to call at any frequency.
+    """
+    return workboard_pulse(log_path=WORKBOARD_LOG)
+
+
+@app.get("/workboard/hub-feed")
+def get_hub_feed(limit: int = 60):
+    """Return the last N dispatch log entries for the Hub (System Witness) panel.
+
+    Each entry carries: ts, iso, source, prefix, event, lane, kind.
+    Sorted newest-first.  limit is capped at 200.
+    """
+    return {"entries": workboard_hub_feed(limit=min(limit, 200), log_path=WORKBOARD_LOG)}
 
 
 # ── Platform event log (owner-only) ──────────────────────────────────────────

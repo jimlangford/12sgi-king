@@ -173,6 +173,9 @@
       <sc-if value="{{ showGpu }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Gpu" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showHub }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Hub" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
       <sc-if value="{{ showLaunch }}" hint-placeholder-val="{{ false }}">
         <dc-import name="LaunchCenter" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
@@ -365,6 +368,7 @@ class Component extends DCLogic {
       { id:'push',      label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
       { id:'ops',       label:'Ops Board',       short:'Ops',     icon:'⌗',  register:'ops',    owner:true },
       { id:'gpu',       label:'GPU · CPU Router', short:'GPU',     icon:'⚡', register:'ops',    owner:true },
+      { id:'hub',       label:'Hub · Witness',    short:'Hub',     icon:'◈',  register:'ops',    owner:true },
       { id:'launch',    label:'Launch Center',    short:'Launch',  icon:'📡', register:'ops',    owner:true },
       { id:'connectors',label:'Connectors',       short:'Connect', icon:'🔗', register:'ops',    owner:true },
     ];
@@ -372,7 +376,7 @@ class Component extends DCLogic {
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'mooncal', 'launch', 'connectors'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
     // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
@@ -420,6 +424,7 @@ class Component extends DCLogic {
       showGraph: s === 'graph' && unlocked && avail('graph'),
       showOps: s === 'ops' && unlocked,
       showGpu: s === 'gpu' && unlocked && avail('gpu'),
+      showHub: s === 'hub' && unlocked && avail('hub'),
       showLaunch: s === 'launch' && unlocked && avail('launch'),
       showConnectors: s === 'connectors' && unlocked && avail('connectors'),
     };
