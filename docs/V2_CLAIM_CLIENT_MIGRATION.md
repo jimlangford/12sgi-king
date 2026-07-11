@@ -68,6 +68,16 @@ Evidence discipline:
 - Never record raw bearer tokens, OAuth codes, or provider secrets in logs, screenshots, or evidence bundles.
 - If the launch path fails, roll back the console/application change or provider configuration only; keep strict claim enforcement in place.
 
+Suggested evidence template:
+
+| Step | Provider | `X-Request-ID` | Expected evidence | Capture location | Completion |
+|---|---|---|---|---|---|
+| OAuth start from owner console | GitHub / Google | `oauth-start-*` | provider redirect began from lock affordance | owner-console screenshot + browser history note | pending |
+| OAuth return to owner console | GitHub / Google | `oauth-return-*` | owner surfaces unlocked and token fragment removed from URL bar | owner-console screenshot | pending |
+| Diagnostic claims probe | GitHub / Google | `oauth-diagnostic-*` | `diagnostic_claim_snapshot` with Owner role, expected issuer/audience, owner scopes | `auth_audit` export + response record | pending |
+| Owner surface read check | GitHub / Google | `oauth-owner-read-*` | successful GPU/owner read path and expected `owner_override` event only where allowed | service log + `auth_audit` export | pending |
+| Negative allowlist probe | GitHub / Google | `oauth-negative-*` | rejected sign-in with no retained owner session | error screenshot + auth evidence | pending |
+
 ## DIAGNOSTIC DESIGN
 
 Endpoint: `POST /api/v2/auth/diagnostics/claims`
