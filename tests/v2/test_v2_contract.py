@@ -79,7 +79,7 @@ class TestWorkboardResolve(unittest.TestCase):
         self.assertEqual(len(entries), 1)
         self.assertEqual(entries[0]['source'], 'test-src')
         self.assertEqual(entries[0]['status'], 'queued')
-        self.assertEqual(entries[0]['schema'], 'workboard-job-v1')
+        self.assertEqual(entries[0]['schema'], 'workboard-job-v2')
 
     # --- resolve_workboard_job ---
 
@@ -99,7 +99,7 @@ class TestWorkboardResolve(unittest.TestCase):
         self.assertEqual(tombstone['job']['action'], 'resolved')
         self.assertEqual(tombstone['job']['correlation_id'], job_id)
         self.assertEqual(tombstone['job']['payload']['outcome'], 'completed-ok')
-        self.assertEqual(tombstone['schema'], 'workboard-job-v1')
+        self.assertEqual(tombstone['schema'], 'workboard-job-v2')
 
     def test_resolve_original_entry_unchanged(self):
         job = emit_workboard_job(

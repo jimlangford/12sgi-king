@@ -299,7 +299,7 @@ class TestV2IntegrationStack(unittest.TestCase):
             action = entry.get('job', {}).get('action')
             if action not in expected_actions:
                 continue
-            self.assertEqual(entry.get('schema'), 'workboard-job-v1')
+            self.assertEqual(entry.get('schema'), 'workboard-job-v2')
             self.assertEqual(entry.get('target_thread'), 'workboard-quad-os')
             self.assertEqual(entry.get('status'), 'queued')
             self.assertIn(entry.get('lane'), {'engineering', 'creative', 'output'}, msg=f"lane missing on {action}")
