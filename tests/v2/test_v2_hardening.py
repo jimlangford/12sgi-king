@@ -14,6 +14,9 @@ open until this pass:
      fallbacks are explicitly flagged, and /health exposes an auditable grounded_ratio.
 """
 import importlib.util
+import json
+import hashlib
+import hmac
 import os
 import requests
 import sqlite3
@@ -110,6 +113,97 @@ class TestAuthSecretsGuard(unittest.TestCase):
             )
 
 
+class TestAuthClaimValidation(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix='auth-claims-')
+        self.db_path = str(Path(self._tmp.name) / 'auth.db')
+        self.module = _load_module(
+            AUTH_MAIN,
+            f'auth_claims_{time.time_ns()}',
+            env_overrides={
+                'AUTH_SIGNING_SECRET': 'claims-test-secret',
+                'INTERNAL_SERVICE_TOKEN': 'claims-test-service-token',
+                'AUTH_DB_PATH': self.db_path,
+            },
+            env_clear_keys=('GOVOS_ALLOW_DEV_SECRETS',),
+        )
+        self.client = TestClient(self.module.app)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _mint_token(self, *, sub='u1', tenant_id='tenant-a', role='Municipality', scopes=None, iss=None, aud=None, exp=None):
+        claims = {
+            'iss': iss if iss is not None else self.module.AUTH_ISSUER,
+            'aud': aud if aud is not None else self.module.AUTH_AUDIENCE,
+            'sub': sub,
+            'tenant_id': tenant_id,
+            'role': role,
+            'scopes': scopes if scopes is not None else ['tenant:read'],
+            'exp': exp if exp is not None else int(self.module._now_utc().timestamp()) + 3600,
+            'jti': 'jti-1',
+            'provider': 'passkey',
+        }
+        header = {'alg': 'HS256', 'typ': 'JWT'}
+        header_part = self.module._b64url(json.dumps(header, separators=(',', ':')).encode())
+        payload_part = self.module._b64url(json.dumps(claims, separators=(',', ':')).encode())
+        sig = hmac.new(self.module.SIGNING_SECRET.encode(), f'{header_part}.{payload_part}'.encode(), hashlib.sha256).digest()
+        token = f'{header_part}.{payload_part}.{self.module._b64url(sig)}'
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute(
+                """
+                INSERT OR REPLACE INTO sessions
+                  (token, provider, subject, email, tenant_id, role, scopes_json, issuer, audience, issued_at, expires_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    token,
+                    'passkey',
+                    sub,
+                    '',
+                    tenant_id,
+                    role,
+                    json.dumps(claims['scopes']),
+                    claims['iss'],
+                    claims['aud'],
+                    self.module._now_utc().isoformat(),
+                    claims['exp'],
+                ),
+            )
+            conn.commit()
+        return token
+
+    def _introspect(self, token):
+        return self.client.post(
+            '/api/v2/auth/introspect',
+            json={'token': token},
+            headers={'X-Service-Token': 'claims-test-service-token'},
+        )
+
+    def test_expired_token_fails_introspection(self):
+        token = self._mint_token(exp=int(self.module._now_utc().timestamp()) - 10)
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_malformed_token_fails_introspection(self):
+        resp = self._introspect('not-a-jwt')
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_wrong_issuer_fails_introspection(self):
+        token = self._mint_token(iss='wrong-issuer')
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+    def test_wrong_audience_fails_introspection(self):
+        token = self._mint_token(aud='wrong-audience')
+        resp = self._introspect(token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.json()['active'])
+
+
 class TestAiGroundingCorrectness(unittest.TestCase):
     """/ai/assist must never present an ungrounded template response with the same confidence as
     a real GPU-router answer."""
@@ -128,8 +222,13 @@ class TestAiGroundingCorrectness(unittest.TestCase):
             env_overrides={'AI_DB_PATH': str(self.db_path),
                             'WORKBOARD_DISPATCH_LOG': str(self._dispatch_log)},
         )
-        module._require_auth = lambda authorization: {'id': 'test-user'}
-        module._ensure_case_exists = lambda case_id, authorization: None
+        module.require_claims = lambda **kwargs: {
+            'sub': 'test-user',
+            'role': 'Municipality',
+            'tenant_id': 'tenant-a',
+            'scopes': ['ai:assist'],
+        }
+        module._ensure_case_exists = lambda case_id, authorization: {'id': case_id, 'tenant_id': 'tenant-a'}
         return module, TestClient(module.app)
 
     def test_grounded_response_is_not_flagged_and_carries_no_stub_actions(self):

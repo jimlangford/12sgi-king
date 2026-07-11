@@ -206,14 +206,24 @@ class TestV2IntegrationStack(unittest.TestCase):
         wait_for_service(f"{cls.urls['ai']}/api/v2/live")
         wait_for_service(f"{cls.urls['health']}/api/v1/live")
 
-    def _create_session(self):
+    def _create_session(
+        self,
+        *,
+        subject: str = "integration-user-1",
+        tenant_id: str = "tenant-1",
+        role: str = "Municipality",
+        scopes: list[str] | None = None,
+    ):
         status, body = http_json(
             'POST',
             f"{self.urls['auth']}/api/v2/auth/session",
             {
                 'provider': 'passkey',
-                'subject': 'integration-user-1',
+                'subject': subject,
                 'email': 'integration@example.com',
+                'tenant_id': tenant_id,
+                'role': role,
+                'scopes': scopes,
             },
         )
         self.assertEqual(status, 200)
@@ -221,7 +231,7 @@ class TestV2IntegrationStack(unittest.TestCase):
 
     def test_end_to_end_stack_flow(self):
         before = len(self._dispatch_entries())
-        token = self._create_session()
+        token = self._create_session(scopes=["tenant:write", "tenant:read", "documents:write", "documents:read", "storage:write", "storage:read", "ai:assist"])
         auth_headers = {'Authorization': 'Bearer ' + token}
 
         status, case = http_json(
@@ -308,7 +318,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         self.assertEqual(status, 401)
         self.assertEqual(body['detail']['error']['code'], 'unauthorized')
 
-        token = self._create_session()
+        token = self._create_session(scopes=["tenant:write", "tenant:read", "documents:write"])
         auth_headers = {'Authorization': 'Bearer ' + token}
 
         status, body = http_json(
@@ -319,6 +329,116 @@ class TestV2IntegrationStack(unittest.TestCase):
         )
         self.assertEqual(status, 404)
         self.assertEqual(body['detail']['error']['code'], 'resource_not_found')
+
+    def test_cross_tenant_access_is_blocked(self):
+        tenant_a_token = self._create_session(subject="u-a", tenant_id="tenant-a", scopes=["tenant:write", "tenant:read"])
+        tenant_b_token = self._create_session(subject="u-b", tenant_id="tenant-b", scopes=["tenant:read"])
+
+        status, created = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-a', 'title': 'Tenant A case'},
+            headers={'Authorization': 'Bearer ' + tenant_a_token},
+        )
+        self.assertEqual(status, 201)
+
+        status, body = http_json(
+            'GET',
+            f"{self.urls['tenant']}/api/v2/cases/{created['id']}",
+            headers={'Authorization': 'Bearer ' + tenant_b_token},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body['detail']['error']['code'], 'forbidden')
+
+    def test_missing_tenant_claim_is_rejected(self):
+        status, body = http_json(
+            'POST',
+            f"{self.urls['auth']}/api/v2/auth/session",
+            {
+                'provider': 'passkey',
+                'subject': 'u-no-tenant',
+                'role': 'Resident',
+                'scopes': ['tenant:read'],
+            },
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body['detail']['error']['code'], 'missing_tenant_claim')
+
+    def test_client_tenant_override_is_rejected(self):
+        token = self._create_session(subject="u-override", tenant_id="tenant-a", scopes=["tenant:write"])
+        status, body = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-b', 'title': 'Bad override'},
+            headers={'Authorization': 'Bearer ' + token},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body['detail']['error']['code'], 'tenant_mismatch')
+
+    def test_owner_access_succeeds(self):
+        token = self._create_session(subject="owner-1", tenant_id="", role="Owner")
+        status, body = http_json(
+            'GET',
+            f"{self.urls['tenant']}/api/v2/cases",
+            headers={'Authorization': 'Bearer ' + token},
+        )
+        self.assertEqual(status, 200)
+        self.assertIn("cases", body)
+
+    def test_resident_cannot_request_owner_scope(self):
+        status, body = http_json(
+            'POST',
+            f"{self.urls['auth']}/api/v2/auth/session",
+            {
+                'provider': 'passkey',
+                'subject': 'resident-bad-scope',
+                'tenant_id': 'tenant-r',
+                'role': 'Resident',
+                'scopes': ['ops:owner'],
+            },
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body['detail']['error']['code'], 'invalid_scope')
+
+    def test_service_tokens_must_declare_scopes(self):
+        status, body = http_json(
+            'POST',
+            f"{self.urls['auth']}/api/v2/auth/session",
+            {
+                'provider': 'magic_link',
+                'subject': 'svc:router',
+                'role': 'Service',
+                'tenant_id': 'tenant-s',
+                'scopes': [],
+            },
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body['detail']['error']['code'], 'invalid_scope')
+
+    def test_malformed_and_wrong_audience_tokens_fail(self):
+        wrong_audience_token = None
+        status, body = http_json(
+            'POST',
+            f"{self.urls['auth']}/api/v2/auth/session",
+            {
+                'provider': 'passkey',
+                'subject': 'u-bad-aud',
+                'tenant_id': 'tenant-c',
+                'role': 'Municipality',
+                'scopes': ['tenant:read'],
+                'audience': 'wrong-audience',
+            },
+        )
+        self.assertEqual(status, 200)
+        wrong_audience_token = body['access_token']
+        for bad_token in (wrong_audience_token, wrong_audience_token + ".broken"):
+            status, body = http_json(
+                'GET',
+                f"{self.urls['tenant']}/api/v2/cases",
+                headers={'Authorization': 'Bearer ' + bad_token},
+            )
+            self.assertEqual(status, 401)
+            self.assertEqual(body['detail']['error']['code'], 'unauthorized')
 
     def test_dependency_readiness_failure(self):
         base = Path(self.tempdir.name)

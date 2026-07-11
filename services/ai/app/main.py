@@ -6,9 +6,10 @@ from datetime import datetime, timezone
 from urllib import error, parse, request
 from uuid import uuid4
 
-from fastapi import FastAPI, Header, HTTPException, Response
+from fastapi import FastAPI, Header, Response
 from pydantic import BaseModel
 
+from services.authz import auth_error, enforce_resource_tenant, require_claims
 from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
 
@@ -62,6 +63,7 @@ def init_db() -> None:
             """
             CREATE TABLE IF NOT EXISTS assist_events (
                 id TEXT PRIMARY KEY,
+                tenant_id TEXT NOT NULL DEFAULT '',
                 case_id TEXT NOT NULL,
                 prompt TEXT NOT NULL,
                 context_json TEXT,
@@ -77,11 +79,11 @@ def init_db() -> None:
             conn.execute("ALTER TABLE assist_events ADD COLUMN grounded INTEGER DEFAULT 0")
         except sqlite3.OperationalError:
             pass
+        try:
+            conn.execute("ALTER TABLE assist_events ADD COLUMN tenant_id TEXT NOT NULL DEFAULT ''")
+        except sqlite3.OperationalError:
+            pass
         conn.commit()
-
-
-def _error(status_code: int, code: str, message: str, details: dict | None = None):
-    raise HTTPException(status_code=status_code, detail={"error": {"code": code, "message": message, "details": details or {}}})
 
 
 def _check_dependency_ready(url: str) -> bool:
@@ -95,10 +97,11 @@ def _check_dependency_ready(url: str) -> bool:
         return False
 
 
-def _gpu_infer(authorization: str, client_id: str, prompt: str, model: str | None = None) -> str | None:
+def _gpu_infer(authorization: str, client_id: str, prompt: str, model: str | None = None, tenant_id: str | None = None) -> str | None:
     """Forward a prompt to the GPU router; return the response text or None on failure."""
     payload = json.dumps({
         "client_id": client_id,
+        "tenant_id": tenant_id,
         "model": model or GPU_DEFAULT_MODEL,
         "prompt": prompt,
     }).encode()
@@ -119,39 +122,7 @@ def _gpu_infer(authorization: str, client_id: str, prompt: str, model: str | Non
         return None
 
 
-def _require_auth(authorization: str | None) -> dict:
-    if not authorization or not authorization.startswith("Bearer "):
-        _error(401, "unauthorized", "Missing or invalid bearer token")
-
-    token = authorization.split(" ", 1)[1].strip()
-    payload = json.dumps({"token": token}).encode()
-    req = request.Request(
-        AUTH_INTROSPECTION_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "X-Service-Token": INTERNAL_SERVICE_TOKEN,
-        },
-        method="POST",
-    )
-
-    try:
-        with request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
-            data = json.loads(resp.read().decode() or "{}")
-    except error.HTTPError as exc:
-        if exc.code == 403:
-            _error(503, "dependency_denied", "Auth service rejected service trust")
-        _error(503, "dependency_unavailable", "Auth service unavailable", {"status": exc.code})
-    except Exception:
-        _error(503, "dependency_unavailable", "Auth service unavailable")
-
-    if not data.get("active"):
-        _error(401, "unauthorized", "Session is not active")
-
-    return data.get("user") or {}
-
-
-def _ensure_case_exists(case_id: str, authorization: str) -> None:
+def _ensure_case_exists(case_id: str, authorization: str) -> dict:
     encoded_case_id = parse.quote(case_id, safe="")
     req = request.Request(
         f"{TENANT_SERVICE_URL}/api/v2/cases/{encoded_case_id}",
@@ -161,15 +132,16 @@ def _ensure_case_exists(case_id: str, authorization: str) -> None:
     try:
         with request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
             if resp.status != 200:
-                _error(503, "dependency_unavailable", "Tenant service unavailable", {"status": resp.status})
+                auth_error(503, "dependency_unavailable", "Tenant service unavailable", {"status": resp.status})
+            return json.loads(resp.read().decode() or "{}")
     except error.HTTPError as exc:
         if exc.code == 404:
-            _error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
+            auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
         if exc.code == 401:
-            _error(401, "unauthorized", "Session is not active")
-        _error(503, "dependency_unavailable", "Tenant service unavailable", {"status": exc.code})
+            auth_error(401, "unauthorized", "Session is not active")
+        auth_error(503, "dependency_unavailable", "Tenant service unavailable", {"status": exc.code})
     except Exception:
-        _error(503, "dependency_unavailable", "Tenant service unavailable")
+        auth_error(503, "dependency_unavailable", "Tenant service unavailable")
 
 
 init_db()
@@ -234,8 +206,17 @@ def health():
 
 @app.post(f"{API_PREFIX}/ai/assist")
 def assist(payload: AiAssistRequest, authorization: str | None = Header(default=None)):
-    user = _require_auth(authorization)
-    _ensure_case_exists(payload.case_id, authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"ai:assist"},
+    )
+    case = _ensure_case_exists(payload.case_id, authorization or "")
+    case_tenant_id = case.get("tenant_id", "")
+    enforce_resource_tenant(service_name=SERVICE_NAME, claims=claims, resource_tenant_id=case_tenant_id)
 
     prompt = payload.prompt.strip()
 
@@ -243,6 +224,7 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     gpu_response = _gpu_infer(
         authorization=authorization or "",
         client_id="govos-core",
+        tenant_id=case_tenant_id,
         prompt=(
             f"You are a govOS legal-case assistant. Case: {payload.case_id}. "
             + (f"Context: {json.dumps(payload.context)}. " if payload.context else "")
@@ -269,20 +251,21 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
 
     event = {
         "id": str(uuid4()),
+        "tenant_id": case_tenant_id,
         "case_id": payload.case_id,
         "prompt": payload.prompt,
         "context_json": json.dumps(payload.context) if payload.context else None,
         "summary": summary,
         "created_at": _now_utc(),
-        "created_by": user.get("id", "unknown"),
+        "created_by": claims.get("sub", "unknown"),
         "grounded": int(grounded),
     }
 
     with _db() as conn:
         conn.execute(
             """
-            INSERT INTO assist_events (id, case_id, prompt, context_json, summary, created_at, created_by, grounded)
-            VALUES (:id, :case_id, :prompt, :context_json, :summary, :created_at, :created_by, :grounded)
+            INSERT INTO assist_events (id, tenant_id, case_id, prompt, context_json, summary, created_at, created_by, grounded)
+            VALUES (:id, :tenant_id, :case_id, :prompt, :context_json, :summary, :created_at, :created_by, :grounded)
             """,
             event,
         )

@@ -34,6 +34,7 @@ Runner labels: `self-hosted`, `king-server`, `windows`
 - GitHub Actions triggers the work; king-server runner executes it locally
 - No V2 service, Docker port, Ollama instance, log, or metric is exposed beyond Tailscale-private
 - The public 12sgi.com deploy (publish.yml / deploy-to-server.yml) is completely separate
+- Claim-based tenant authorization is enforced service-side from verified token claims (`sub`, `tenant_id`, `role`, `scopes`, `exp`, `iss`, `aud`); deployment must not re-enable client-tenant trust paths.
 
 For local development without the runner, see `docs/GOVOS_V2_LOCAL_DEV.md` for the uvicorn
 commands and `docker-compose.v2.yml` for the supervised container stack.

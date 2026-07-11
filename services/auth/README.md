@@ -27,4 +27,6 @@ Notes
 
 - Sessions are persisted in SQLite (`AUTH_DB_PATH`, default `/tmp/govos_v2_auth.db`).
 - Service-to-service auth trust uses `INTERNAL_SERVICE_TOKEN`.
+- Session claims include `sub`, `tenant_id`, `role`, `scopes`, `exp`, `iss`, and `aud`.
+- Supported roles: `Owner`, `Municipality`, `Partner`, `Resident`, `Service`.
 - Do not commit secrets or real signing keys.

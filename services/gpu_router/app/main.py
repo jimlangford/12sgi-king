@@ -47,6 +47,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
+from services.authz import audit_auth_event, enforce_tenant_scope, require_claims
 from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
@@ -832,11 +833,24 @@ def infer(
       "voice"     — Text-to-speech via espeak-ng (CPU).  model = voice lang, e.g. "haw".
       "embedding" — Text embeddings via Ollama (CPU-light).
     """
-    user = _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"gpu:infer"},
+    )
 
     job_type = payload.job_type if payload.job_type in ALL_JOB_TYPES else "ollama"
     priority = CLIENT_PRIORITIES.get(payload.client_id, DEFAULT_PRIORITY)
-    tenant_id = _normalise_tenant_id(payload.tenant_id or x_tenant_id, payload.client_id)
+    requested_tenant_id = payload.tenant_id or x_tenant_id
+    tenant_id = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=requested_tenant_id,
+        owner_override_allowed=True,
+    ) or payload.client_id
     if payload.tenant_id and x_tenant_id and payload.tenant_id.strip() != x_tenant_id.strip():
         _error(400, "tenant_mismatch", "Tenant header does not match request body")
     idempotency_key = _normalise_idempotency_key(x_idempotency_key)
@@ -879,7 +893,7 @@ def infer(
                         _now_utc(),
                         _now_utc(),
                         DEFAULT_MAX_ATTEMPTS,
-                        user.get("id", "unknown"),
+                        claims.get("sub", "unknown"),
                     ),
                 )
             except sqlite3.IntegrityError:
@@ -922,9 +936,24 @@ def infer(
 @app.get(f"{API_PREFIX}/gpu/queue")
 def queue_status(authorization: str | None = Header(default=None), tenant_id: str | None = None):
     """List pending and running jobs (owner/internal use)."""
-    _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"gpu:read"},
+    )
+    scoped_tenant_id = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=tenant_id,
+        owner_override_allowed=True,
+    )
+    if claims.get("role") == "Owner" and not scoped_tenant_id:
+        audit_auth_event(SERVICE_NAME, "owner_override", {"resource": "gpu.queue", "scope": "all_tenants"})
     with _db() as conn:
-        if tenant_id:
+        if scoped_tenant_id:
             rows = conn.execute(
                 """
                 SELECT id, tenant_id, client_id, priority, job_type, model, status, created_at, started_at, attempt_count
@@ -932,7 +961,7 @@ def queue_status(authorization: str | None = Header(default=None), tenant_id: st
                 WHERE status IN ('pending', 'running') AND tenant_id = ?
                 ORDER BY priority ASC, created_at ASC
                 """,
-                (tenant_id,),
+                (scoped_tenant_id,),
             ).fetchall()
         else:
             rows = conn.execute(
@@ -949,13 +978,28 @@ def queue_status(authorization: str | None = Header(default=None), tenant_id: st
 @app.get(f"{API_PREFIX}/gpu/usage")
 def usage(authorization: str | None = Header(default=None), tenant_id: str | None = None):
     """Per-client job counts."""
-    _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"gpu:read"},
+    )
+    scoped_tenant_id = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=tenant_id,
+        owner_override_allowed=True,
+    )
+    if claims.get("role") == "Owner" and not scoped_tenant_id:
+        audit_auth_event(SERVICE_NAME, "owner_override", {"resource": "gpu.usage", "scope": "all_tenants"})
     with _db() as conn:
         params: list[Any] = []
         tenant_clause = ""
-        if tenant_id:
+        if scoped_tenant_id:
             tenant_clause = "WHERE tenant_id = ?"
-            params.append(tenant_id)
+            params.append(scoped_tenant_id)
         rows = conn.execute(
             f"""
             SELECT tenant_id,
@@ -979,10 +1023,25 @@ def usage(authorization: str | None = Header(default=None), tenant_id: str | Non
 @app.get(f"{API_PREFIX}/gpu/events")
 def events(authorization: str | None = Header(default=None), limit: int = 50, tenant_id: str | None = None):
     """Recent events from the engine event bus (job start / done / error)."""
-    _require_auth(authorization)
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"gpu:read"},
+    )
+    scoped_tenant_id = enforce_tenant_scope(
+        service_name=SERVICE_NAME,
+        claims=claims,
+        requested_tenant_id=tenant_id,
+        owner_override_allowed=True,
+    )
+    if claims.get("role") == "Owner" and not scoped_tenant_id:
+        audit_auth_event(SERVICE_NAME, "owner_override", {"resource": "gpu.events", "scope": "all_tenants"})
     limit = min(max(1, limit), 500)
     with _db() as conn:
-        if tenant_id:
+        if scoped_tenant_id:
             rows = conn.execute(
                 """
                 SELECT e.id, e.event_type, e.engine, e.job_id, e.detail_json, e.ts
@@ -992,7 +1051,7 @@ def events(authorization: str | None = Header(default=None), limit: int = 50, te
                 ORDER BY e.ts DESC
                 LIMIT ?
                 """,
-                (tenant_id, limit),
+                (scoped_tenant_id, limit),
             ).fetchall()
         else:
             rows = conn.execute(
