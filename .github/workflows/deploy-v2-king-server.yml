@@ -160,8 +160,9 @@ jobs:
 
           # Files that belong to the private /go and /board owner surfaces
           $files = @{
-            "go.html"                          = "go.html"
-            "king_public_src\ops_board.html"   = "board.html"
+            "go.html"                                  = "go.html"
+            "king_public_src\ops_board.html"           = "board.html"
+            "king_public_src\social_drafts_board.html" = "social.html"
           }
 
           foreach ($src in $files.Keys) {

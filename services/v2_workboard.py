@@ -34,6 +34,28 @@ _AUTO_HEAL_STATUSES = {"queued", "in-progress"}
 # Statuses that require human action (never auto-healed regardless of lane)
 _APPROVAL_STATUSES = {"pending-approval"}
 
+# Owner opt-in override: config/owner_policy.json can set auto_approve_creative /
+# auto_approve_output to true. This is an explicit, auditable, reversible owner decision
+# (see docs/SOCIAL_CONNECTORS.md "Owner Auto-Approval Mode") — default (no file, or flag
+# false) is the standard manual-review workflow described above.
+OWNER_POLICY_PATH = Path(__file__).resolve().parents[1] / "config" / "owner_policy.json"
+
+
+def _load_owner_policy() -> dict:
+    try:
+        return json.loads(OWNER_POLICY_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def auto_approve_enabled(lane: str) -> bool:
+    """True only if the owner has explicitly opted this lane into auto-approval.
+
+    Reads config/owner_policy.json at call time (no caching), so toggling the flag off
+    (or deleting the file) immediately restores manual review with no code change.
+    """
+    return bool(_load_owner_policy().get(f"auto_approve_{lane}"))
+
 
 def _iso_now() -> str:
     return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
@@ -91,6 +113,18 @@ def emit_workboard_job(
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+    # Owner opt-in auto-approval (config/owner_policy.json). Off by default; when on, a
+    # creative/output job that lands in pending-approval is immediately approved instead
+    # of waiting for a human. See docs/SOCIAL_CONNECTORS.md "Owner Auto-Approval Mode".
+    if job_lane in ("creative", "output") and queue_status == "pending-approval" and auto_approve_enabled(job_lane):
+        approve_workboard_job(
+            entry["job"]["id"],
+            approver="owner-auto-approve-policy",
+            note="auto-approved per config/owner_policy.json",
+            log_path=path,
+        )
+        entry["auto_approved"] = True
     return entry
 
 
@@ -440,6 +474,11 @@ if __name__ == "__main__":
     parser.add_argument("--archive", metavar="JOB_ID", default=None, help="Archive (soft-delete) a job by id; appends an audit tombstone, never deletes")
     parser.add_argument("--archiver", default="owner", help="Identity recorded as the archiver (used with --archive)")
     parser.add_argument("--note", default=None, help="Optional note recorded on the archive tombstone (used with --archive)")
+    parser.add_argument("--approve", metavar="JOB_ID", default=None, help="Approve a pending creative/output lane job by id; appends an approved tombstone")
+    parser.add_argument("--approver", default="owner", help="Identity recorded as the approver (used with --approve)")
+    parser.add_argument("--reject", metavar="JOB_ID", default=None, help="Reject a pending creative/output lane job by id; appends a rejected tombstone")
+    parser.add_argument("--rejector", default="owner", help="Identity recorded as the rejector (used with --reject)")
+    parser.add_argument("--reason", default=None, help="Reason recorded on the rejection tombstone (used with --reject)")
     args = parser.parse_args()
 
     log_path = Path(args.log) if args.log else None
@@ -447,6 +486,16 @@ if __name__ == "__main__":
     if args.archive:
         tombstone = archive_workboard_job(args.archive, args.archiver, note=args.note, log_path=log_path)
         print(f"Archived {args.archive} -> {tombstone['job']['id']}")
+        sys.exit(0)
+
+    if args.approve:
+        tombstone = approve_workboard_job(args.approve, args.approver, note=args.note, log_path=log_path)
+        print(f"Approved {args.approve} -> {tombstone['job']['id']} (approver={args.approver})")
+        sys.exit(0)
+
+    if args.reject:
+        tombstone = reject_workboard_job(args.reject, args.reason or "(no reason given)", rejector=args.rejector, log_path=log_path)
+        print(f"Rejected {args.reject} -> {tombstone['job']['id']} (rejector={args.rejector})")
         sys.exit(0)
 
     if args.pending:

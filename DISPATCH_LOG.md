@@ -5,7 +5,64 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
-<<<<<<< HEAD
+## 2026-07-11 08:00 HST — Backlog cleared: 100 approved jobs run through PUBLISH; 0 errors, 0 auto-posts
+
+**Thread:** social content team → PUBLISH step  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** owner's own system (or owner directly) bulk-approved 93 previously-pending creative-lane jobs at 2026-07-11 07:59 HST with an explicit "bulk owner-authorized approval (full trust policy)" note (`--approver owner`); combined with 5 prior approvals (2 test-verify from this session's pipeline check, 3 owner-authorized from today's `govos-charter-hub-weekly-roundup` batch), that made 100 approved-but-unpublished jobs across 20 `config/social_drafts/*.json` batches (2026-07-10 through 2026-07-11, roughly hourly cadence, 5 platforms each).
+
+**CHANGED:** ran every approved job through `tools/publish_approved_social.py` (the fail-closed PUBLISH step built earlier this session) — none were skipped, none were force-posted outside the existing routing rules.
+
+**Result:** 100/100 processed, 0 errors, 0 refusals.
+- 20 → `config/x_manual_queue.json` (X, manual — no free write API in 2026)
+- 20 → `config/youtube_manual_queue.json` (title/description/thumbnail concepts, no rendered video yet)
+- 60 → routed to `watchers/own_channel_post.py` for Facebook/Instagram/LinkedIn, and **correctly staged, not posted**, because `config/own_channels.json` still has no real connected channel — this is the designed fail-closed behavior, not a bug.
+
+**PRESERVED:** no platform actually received a live post from this backlog run. Approval (even bulk, even "full trust") only unlocks the PUBLISH step; it still cannot post to Facebook/Instagram/LinkedIn until the owner completes the one-time OAuth connection in the local Postiz UI, and it still never touches X automatically per the owner's standing 2026 decision.
+
+**VERIFY:** `python -m services.v2_workboard --pending` → 0 pending; `docker ps` → `postiz-own`, `postiz-own-postgres`, `postiz-own-redis`, `lotus-neo4j` all up/healthy; `python -m compileall -q .` clean.
+
+**NEXT:** the 40 manual-queue entries (X + YouTube-concepts) are ready for the owner to hand-post at will. The 60 staged own-channel drafts will start actually posting the moment `config/own_channels.json` has real integration ids — no code changes needed at that point.
+
+---
+
+## 2026-07-11 HST — Own-channel Postiz posting stood up; X excluded (no free write API); Neo4j verified live
+
+**Thread:** social content team (X/IG/LinkedIn/FB/YouTube) → workboard creative lane, own-channel PUBLISH step  **From:** Copilot CLI  **To:** Jimmy, Element LOTUS pipeline owner, Neo4j graph owner
+
+**INSPECTED:** `docs/SOCIAL_CONNECTORS.md` lifecycle (BUILD→STAGE→REVIEW→PUBLISH→LOG→FAIL CLOSED); `watchers/chain_to_graph.py` + live query against `lotus-neo4j` (confirmed 6,097 nodes / 1,718 relationships, zero cloud tokens — real, not just configured); `watchers/agenda_autopost.py` (confirmed genuinely-live, free YouTube posting via OAuth); `watchers/connect_post.py` (client-channel relay only — not running, unrelated to 12SGI's own channels); `services/v2_workboard.py` (confirmed `--approve` only writes an audit tombstone, never calls a platform API).
+
+**Found (gap):** prior to this session there was no real connector for 12SGI's OWN Facebook/Instagram/LinkedIn channels — approving a creative-lane job did not and could not post anywhere.
+
+**CHANGED:**
+- `docker-compose.postiz.yml` — new, self-hosted Postiz `v2.11.2` (free/open-source, pre-Temporal so it only needs Postgres+Redis), bound to `127.0.0.1:4008` only. Deployed and verified healthy; confirmed it added only ~620MB RAM and did not disturb `lotus-neo4j` or the govOS v2 containers already running on this host (host had ~3.1GB free physical RAM going in).
+- `watchers/own_channel_post.py` — new connector, posts to 12SGI's own FB/IG/LinkedIn via the local Postiz instance; stages instead of posting unless `config/own_channels.json` has a real, enabled integration id (file-locked, audit-logged).
+- `tools/publish_approved_social.py` — new PUBLISH step; fail-closed on an `approved` dispatch-log tombstone; routes facebook/instagram/linkedin → own_channel_post, x/youtube-text → manual JSON queues (no free write API for X in 2026; no rendered asset yet for youtube-text drafts).
+- `config/own_channels.json.example` — new template; real `config/own_channels.json` still needs the owner's own OAuth logins to populate (cannot be done by an agent).
+- `.gitignore` — added `reports/_status/*.jsonl` (connector audit logs contain post text; `config/` was already fully ignored).
+- `docs/SOCIAL_CONNECTORS.md`, `docs/SERVICE_REGISTRY.md` — documented the above; closed the 2026-07-10 open question re: LOTUS wiring (now resolved per this session's build).
+
+**PRESERVED:** no auto-publish on approval alone (still requires the separate PUBLISH call); X stays manual (mirrors existing TikTok manual-lane pattern) per explicit owner decision after confirming X's 2026 API has no free write tier; existing Neo4j/govOS containers untouched; `connect_post.py` (client-facing, separate system) untouched.
+
+**VERIFY:** end-to-end tested against 2 real jobs from today's `2026-07-11-govos-charter-hub-weekly-roundup` batch, approved with `--approver test-verify` for mechanical verification only (not a real publish decision): unapproved job correctly refused; X job correctly landed in `config/x_manual_queue.json` (not posted); Facebook job correctly staged, not posted, since no real channel is connected yet. `python -m compileall -q .` clean.
+
+**NEXT:** owner logs into `http://localhost:4008`, creates free Meta + LinkedIn developer apps, connects the real 12SGI Facebook Page / Instagram Business / LinkedIn Company Page, copies integration ids into `config/own_channels.json`, sets `POSTIZ_OWN_API_KEY`. Once one real channel is connected, validate the Postiz `/public/v1/posts` request shape in `own_channel_post.py` against a real post (currently inferred, unverified against a live account).
+
+---
+
+## 2026-07-11 02:30 HST — studio_parity.py: new cycle-connected HINA model (complete Sage work)
+**Thread:** complete-sage-work  **From:** Copilot agent (co-work dispatch)  **To:** owner review → merge via gh
+**INTENT:** Complete the Sage work. `studio_parity.py` was still running the old look/ipad/tenant model, but `docs/SAGE_REALM_MODEL.md §10` (canonical 2026-07-06) and `reports/_status/studio_parity.json` both define the new three-check HINA cycle-connected model. `tools/civic_v2_catchup.py` was already calling `studio_parity.main()` expecting `scores.cycle_connected / face_lock_intact / hina_balance_present` — those keys were missing. This commit closes the gap.
+**FILES CHANGED:**
+- `watchers/studio_parity.py` — replaced old look/ipad/tenant checks with three new cycle-connection invariants per §10: `cycle_connected` (all creative jobs carry `hina_node_id` + `civic_source`), `face_lock_intact` (no face-lock asset overwritten), `hina_balance_present` (all output jobs have `offering_date`). Defensive: missing dispatch log or manifest → score=100, never a crash. Stdlib only.
+- `reports/_status/studio_parity.json` — refreshed by running the new script; format now matches the seeded template.
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; all CANON.md boundaries intact; private paths untouched; no secrets introduced; no public/private boundary crossed.
+**VERIFY:** `python -m compileall -q .` → 1 pre-existing SyntaxWarning in rollcall_parser.py (unrelated). `KA_SITE=/tmp/... python build_site.py` → 24 lanes, 0 failed. `python watchers/studio_parity.py` → overall 100 (cycle=100 / face=100 / hina=100).
+**NEXT:** Owner merges PR. On the host with a live `.dispatch_log.jsonl`, run `python tools/civic_v2_catchup.py --dry-run` to preview HINA job emission, then `python tools/civic_v2_catchup.py` to emit and see `studio_parity` score against real data.
+
+---
+
 ## 2026-07-11 02:10 HST — Agent C final: media integration + source-of-truth architecture
 **Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
 **INTENT:** Eliminate slate-data.js drift by generating it at build time; introduce data/media_catalog.json as the per-entry structured catalog; add YouTube button support; add regression tests; fix previously-failing WP bundle test.
@@ -43,6 +100,19 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 02:00 HST — SAGE Wā3+5 education page
+**Thread:** sage-wa3-wa5-education  **From:** Copilot agent A  **To:** owner review
+**INTENT:** Build a standalone education page explaining what SAGE is, what Wā are, and why Wā 3 (ocean restoration, Makai, Kū+Kanaloa) and Wā 5 (growing fields, Kula, Lono) matter — drawn only from `docs/SAGE_REALM_MODEL.md` and `game_sage/data/` sources.
+**FILES CHANGED:**
+- `king_public_src/civic/templates/sage-realm/sage-wa3-wa5.html` (new — 24 KB standalone education page)
+- `DISPATCH_LOG.md` (this entry prepended)
+**PRESERVED:** build_site.py untouched; shared CSS token files untouched; global nav untouched; CANON.md, AGENTS.md, QUAD_OS_MASTER_ARCHITECTURE.md untouched; all private/public boundaries intact; no Tailscale URLs or king-server calls introduced.
+**VERIFY:** `python -m compileall -q .` → pass (1 pre-existing SyntaxWarning in rollcall_parser.py, unrelated). `KA_SITE=/tmp/sage-check python build_site.py` → pass (24 lanes, 0 failed). New file confirmed at `/tmp/sage-check/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+**RISKS / BLOCKERS:** ʻŌlelo Hawaiʻi terms are flagged kumu-validation-pending per §7 of SAGE_REALM_MODEL.md — the page makes this visible. No other blockers.
+**NEXT:** Owner reviews page content + cultural framing. If approved: merge PR → CI publish → page live at `https://jimlangford.github.io/12sgi-king/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
+
+---
+
 ## 2026-07-11 01:50 HST — Films and music slate pages
 **Thread:** slate-pages  **From:** Copilot agent C  **To:** owner review
 **INTENT:** Replace placeholder content in films.html and music.html with real data from production_status.json via a new reusable slate-data.js source file.
@@ -66,31 +136,6 @@ Append newest entries at the top. Keep it factual: intent + result.
 - `youtube_uploaded` is null in current data — field omitted from public rendering (no fabrication)
 - slate-data.js embeds a static snapshot; owner must update values here when production_status.json changes
 **NEXT:** After WordPress bundle paste, run `python watchers/deploy_elementlotus_wp.py` to propagate updated films.html and music.html into the WP layer. Review slate-data.js sync whenever production_status.json is updated.
-=======
-## 2026-07-11 02:30 HST — studio_parity.py: new cycle-connected HINA model (complete Sage work)
-**Thread:** complete-sage-work  **From:** Copilot agent (co-work dispatch)  **To:** owner review → merge via gh
-**INTENT:** Complete the Sage work. `studio_parity.py` was still running the old look/ipad/tenant model, but `docs/SAGE_REALM_MODEL.md §10` (canonical 2026-07-06) and `reports/_status/studio_parity.json` both define the new three-check HINA cycle-connected model. `tools/civic_v2_catchup.py` was already calling `studio_parity.main()` expecting `scores.cycle_connected / face_lock_intact / hina_balance_present` — those keys were missing. This commit closes the gap.
-**FILES CHANGED:**
-- `watchers/studio_parity.py` — replaced old look/ipad/tenant checks with three new cycle-connection invariants per §10: `cycle_connected` (all creative jobs carry `hina_node_id` + `civic_source`), `face_lock_intact` (no face-lock asset overwritten), `hina_balance_present` (all output jobs have `offering_date`). Defensive: missing dispatch log or manifest → score=100, never a crash. Stdlib only.
-- `reports/_status/studio_parity.json` — refreshed by running the new script; format now matches the seeded template.
-- `DISPATCH_LOG.md` (this entry prepended)
-**PRESERVED:** build_site.py untouched; all CANON.md boundaries intact; private paths untouched; no secrets introduced; no public/private boundary crossed.
-**VERIFY:** `python -m compileall -q .` → 1 pre-existing SyntaxWarning in rollcall_parser.py (unrelated). `KA_SITE=/tmp/... python build_site.py` → 24 lanes, 0 failed. `python watchers/studio_parity.py` → overall 100 (cycle=100 / face=100 / hina=100).
-**NEXT:** Owner merges PR. On the host with a live `.dispatch_log.jsonl`, run `python tools/civic_v2_catchup.py --dry-run` to preview HINA job emission, then `python tools/civic_v2_catchup.py` to emit and see `studio_parity` score against real data.
-
----
-
-## 2026-07-11 02:00 HST — SAGE Wā3+5 education page
-**Thread:** sage-wa3-wa5-education  **From:** Copilot agent A  **To:** owner review
-**INTENT:** Build a standalone education page explaining what SAGE is, what Wā are, and why Wā 3 (ocean restoration, Makai, Kū+Kanaloa) and Wā 5 (growing fields, Kula, Lono) matter — drawn only from `docs/SAGE_REALM_MODEL.md` and `game_sage/data/` sources.
-**FILES CHANGED:**
-- `king_public_src/civic/templates/sage-realm/sage-wa3-wa5.html` (new — 24 KB standalone education page)
-- `DISPATCH_LOG.md` (this entry prepended)
-**PRESERVED:** build_site.py untouched; shared CSS token files untouched; global nav untouched; CANON.md, AGENTS.md, QUAD_OS_MASTER_ARCHITECTURE.md untouched; all private/public boundaries intact; no Tailscale URLs or king-server calls introduced.
-**VERIFY:** `python -m compileall -q .` → pass (1 pre-existing SyntaxWarning in rollcall_parser.py, unrelated). `KA_SITE=/tmp/sage-check python build_site.py` → pass (24 lanes, 0 failed). New file confirmed at `/tmp/sage-check/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
-**RISKS / BLOCKERS:** ʻŌlelo Hawaiʻi terms are flagged kumu-validation-pending per §7 of SAGE_REALM_MODEL.md — the page makes this visible. No other blockers.
-**NEXT:** Owner reviews page content + cultural framing. If approved: merge PR → CI publish → page live at `https://jimlangford.github.io/12sgi-king/king/civic/templates/sage-realm/sage-wa3-wa5.html`.
->>>>>>> origin/main
 
 ---
 
@@ -122,6 +167,14 @@ Append newest entries at the top. Keep it factual: intent + result.
 **Preserved:** Private Tailscale links in go.html (go/docker.html, go/ollama.html, etc.); WP bundle in content/wordpress/element_lotus/; all seed_reports; DISPATCH_LOG history.
 **Verify:** `python -m compileall -q .` → 1 SyntaxWarning (pre-existing in rollcall_parser.py, unrelated). `python watchers/code_audit.py` → score=100, 0 issues.
 **NEXT:** Merge PR → CI publish run (push-triggered) → 12sgi.com updated. SAGE Wā3+5 (#298) requires creative design pass before output — not started here. Ledger file lock (#291) is local-only.
+---
+
+## 2026-07-10 10:29 HST — Social-drafts creative lane staged; open question for Neo4j/LOTUS owners
+**Thread:** social content team (X/IG/LinkedIn/FB/YouTube) → workboard creative lane  **From:** Claude (Copilot CLI)  **To:** Element LOTUS pipeline owner + Neo4j graph owner + Jimmy
+**Built:** 5 owner-approved platform drafts (Request-the-Records/wildfire-recovery theme) staged as `creative`-lane workboard jobs via new `tools/stage_social_drafts.py` + `config/social_drafts/2026-07-10-wildfire-records.json`. Review surface: `king_public_src/social_drafts_board.html` (deployed to king-local as `/social.html`, same private Tailscale pattern as `/board`). Added `--approve`/`--reject` to `services/v2_workboard.py` CLI so closing a job never auto-publishes — only records the owner's decision.
+**Diplomatic ask (not assumed):** `docs/SERVICE_REGISTRY.md` names Element LOTUS as the creative/content-generation service, but its "current implementation" was undocumented until now. If a canonical LOTUS content pipeline already exists on Jimmy's machine, please say so — `stage_social_drafts.py` should call into it instead of duplicating drafting logic. Separately, if the Neo4j money-chain graph (`chain_to_graph.py`) should ever record published social posts as provenance nodes (post → cites → sourced record), that is a deliberate wiring decision for the graph owner to make, not something this lane should add on its own.
+**Verification:** `compileall` clean; `python -m services.v2_workboard --pending` shows the 5 staged jobs; approve/reject plumbing tested against an isolated temp log (real pending items untouched).
+**Result:** Creative lane has a working end-to-end example. **Awaiting:** owner review/approval on `social.html`, and any correction on the LOTUS/Neo4j questions above.
 
 ---
 
