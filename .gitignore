@@ -25,3 +25,10 @@ reports/_status/*.jsonl
 
 # SECURITY (Jimmy 2026-06-26 harden): private corporate data room / cap table / investor / charter - NEVER in the public repo
 king_private_src/
+
+# git filter-branch / filter-repo rewrite artifacts — never commit these
+.git-rewrite/
+
+# runtime SQLite databases — generated locally, never commit
+.platform_events.db
+*.db
