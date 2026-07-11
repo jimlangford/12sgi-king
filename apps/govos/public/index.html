@@ -20,6 +20,16 @@
       <select id="provider"><option>passkey</option><option>google</option><option>apple</option><option>microsoft</option><option>magic_link</option></select>
       <label>Subject</label><input id="subject" value="user-123" />
       <label>Email</label><input id="email" value="user@example.com" />
+      <label>Role</label>
+      <select id="role">
+        <option>Municipality</option>
+        <option>Partner</option>
+        <option>Resident</option>
+        <option>Owner</option>
+        <option>Service</option>
+      </select>
+      <label>Scopes (comma-separated)</label>
+      <input id="scopes" value="tenant:write,tenant:read,documents:write,documents:read,storage:write,storage:read,ai:assist" />
       <button id="createSession">Create session</button>
     </section>
 

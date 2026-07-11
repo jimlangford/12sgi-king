@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from datetime import datetime, timezone
 from urllib import error, request
 
@@ -7,6 +8,24 @@ from fastapi import HTTPException
 
 OWNER_ROLE = "Owner"
 VALID_ROLES = {"Owner", "Municipality", "Partner", "Resident", "Service"}
+KNOWN_SCOPES = {
+    "tenant:read",
+    "tenant:write",
+    "documents:read",
+    "documents:write",
+    "storage:read",
+    "storage:write",
+    "ai:assist",
+    "gpu:infer",
+    "gpu:read",
+    "ops:owner",
+    "auth:introspect",
+}
+ALLOWED_WILDCARD_SCOPES = {
+    scope.strip()
+    for scope in os.environ.get("GOVOS_ALLOWED_WILDCARD_SCOPES", "").split(",")
+    if scope.strip()
+}
 
 DEFAULT_SCOPES_BY_ROLE = {
     "Owner": {
@@ -140,16 +159,58 @@ def require_claims(
         auth_error(401, "unauthorized", "Session is not active")
 
     claims = _normalise_claims(data.get("claims"))
+    missing_claims: list[str] = []
     if not claims.get("sub"):
-        audit_auth_event(service_name, "denied_access", {"reason": "missing_subject_claim"})
-        auth_error(401, "unauthorized", "Session claims are incomplete")
+        missing_claims.append("sub")
+    if not claims.get("role"):
+        missing_claims.append("role")
+    if not claims.get("scopes"):
+        missing_claims.append("scopes")
+    if claims.get("exp") in (None, ""):
+        missing_claims.append("exp")
+    if not claims.get("iss"):
+        missing_claims.append("iss")
+    if not claims.get("aud"):
+        missing_claims.append("aud")
+    if missing_claims:
+        audit_auth_event(
+            service_name,
+            "legacy_claim_pattern_rejected",
+            {"reason": "missing_required_claims", "missing": sorted(set(missing_claims))},
+        )
+        auth_error(401, "unauthorized", "Session claims are incomplete", {"missing": sorted(set(missing_claims))})
     if claims["role"] not in VALID_ROLES:
-        audit_auth_event(service_name, "role_escalation_attempt", {"role": claims["role"]})
+        audit_auth_event(service_name, "legacy_claim_pattern_rejected", {"reason": "invalid_role", "role": claims["role"]})
         auth_error(403, "forbidden", "Role is not allowed")
+    if claims["role"] not in {OWNER_ROLE, "Service"} and not claims.get("tenant_id"):
+        audit_auth_event(
+            service_name,
+            "legacy_claim_pattern_rejected",
+            {"reason": "missing_tenant_claim", "role": claims["role"]},
+        )
+        auth_error(403, "forbidden", "Missing tenant claim")
+
+    scope_values = set(claims.get("scopes") or [])
+    wildcard_scopes = sorted(scope for scope in scope_values if "*" in scope and scope not in ALLOWED_WILDCARD_SCOPES)
+    if wildcard_scopes:
+        audit_auth_event(
+            service_name,
+            "legacy_claim_pattern_rejected",
+            {"reason": "wildcard_scope_blocked", "scopes": wildcard_scopes},
+        )
+        auth_error(403, "forbidden", "Wildcard scopes are not allowed", {"blocked_scopes": wildcard_scopes})
+    undefined_scopes = sorted(scope for scope in scope_values if scope not in KNOWN_SCOPES and "*" not in scope)
+    if undefined_scopes:
+        audit_auth_event(
+            service_name,
+            "legacy_claim_pattern_rejected",
+            {"reason": "undefined_scopes", "scopes": undefined_scopes},
+        )
+        auth_error(403, "forbidden", "Undefined scopes are not allowed", {"undefined_scopes": undefined_scopes})
 
     needed = required_scopes or set()
     role = claims["role"]
-    scopes = set(claims.get("scopes") or [])
+    scopes = scope_values
     if role != OWNER_ROLE:
         if needed - scopes:
             audit_auth_event(

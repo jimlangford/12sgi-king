@@ -5,6 +5,7 @@ This document defines the shared v2 contract for backend and frontend integratio
 - Version: `2.0.0`
 - Base path: `/api/v2`
 - Canonical spec: `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-api-contract.yaml`
+- Claim-client migration matrix: `/home/runner/work/12sgi-king/12sgi-king/docs/V2_CLAIM_CLIENT_MIGRATION.md`
 - Error format:
 
 ```json
@@ -46,3 +47,17 @@ Health service can monitor v2 readiness with:
 
 - `SURFACES_LIST="auth=localhost:8101,tenant=localhost:8102,documents=localhost:8103,storage=localhost:8104,ai=localhost:8105"`
 - `SURFACES_HEALTH_PATH="/api/v2/ready"`
+
+## Auth claims baseline
+
+All v2 callers must present bearer tokens containing:
+
+- `sub`
+- `tenant_id` (required except Owner/service cases)
+- `role`
+- `scopes`
+- `exp`
+- `iss`
+- `aud`
+
+Undefined or wildcard scopes are rejected unless explicitly allowlisted and audited.

@@ -18,7 +18,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
-from services.authz import DEFAULT_SCOPES_BY_ROLE, VALID_ROLES, audit_auth_event
+from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 
 _log = logging.getLogger(__name__)
 
@@ -29,6 +29,19 @@ DB_PATH = os.environ.get("AUTH_DB_PATH", "/tmp/govos_v2_auth.db")
 AUTH_ISSUER = os.environ.get("AUTH_ISSUER", "govos-auth")
 AUTH_AUDIENCE = os.environ.get("AUTH_AUDIENCE", "govos-v2")
 AUTH_TOKEN_TTL_SECONDS = max(300, int(os.environ.get("AUTH_TOKEN_TTL_SECONDS", "3600")))
+SERVICE_ALLOWED_SCOPES = {
+    scope.strip()
+    for scope in os.environ.get(
+        "AUTH_SERVICE_ALLOWED_SCOPES",
+        "auth:introspect,tenant:read,tenant:write,documents:read,documents:write,storage:read,storage:write,ai:assist,gpu:infer,gpu:read",
+    ).split(",")
+    if scope.strip()
+}
+ALLOWED_WILDCARD_SCOPES = {
+    scope.strip()
+    for scope in os.environ.get("AUTH_ALLOWED_WILDCARD_SCOPES", "").split(",")
+    if scope.strip()
+}
 
 _DEV_SIGNING_SECRET = "dev-only-signing-secret-change-me"
 _DEV_SERVICE_TOKEN = "dev-internal-token"
@@ -160,7 +173,7 @@ def _issue_and_store_session(
     scopes: list[str],
     audience: str = AUTH_AUDIENCE,
     ttl_seconds: int = AUTH_TOKEN_TTL_SECONDS,
-) -> str:
+) -> tuple[str, int]:
     """Issue a JWT and persist the session row, returning the raw token."""
     issued_at = _now_utc()
     expires_at = issued_at + timedelta(seconds=ttl_seconds)
@@ -196,7 +209,7 @@ def _issue_and_store_session(
             ),
         )
         conn.commit()
-    return token
+    return token, expires_at_ts
 
 
 def _now_utc() -> datetime:
@@ -270,12 +283,34 @@ def _default_scopes(role: str) -> list[str]:
 
 def _resolve_scopes(role: str, requested_scopes: list[str] | None) -> list[str]:
     requested = set(_normalise_scopes(requested_scopes))
+    wildcard_scopes = sorted(scope for scope in requested if "*" in scope and scope not in ALLOWED_WILDCARD_SCOPES)
+    if wildcard_scopes:
+        audit_auth_event("auth", "wildcard_scope_blocked", {"role": role, "requested_scopes": wildcard_scopes})
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_scope", "message": "Wildcard scopes require explicit allowlisting", "details": {"blocked_scopes": wildcard_scopes}}},
+        )
+    unknown_scopes = sorted(scope for scope in requested if scope not in KNOWN_SCOPES and "*" not in scope)
+    if unknown_scopes:
+        audit_auth_event("auth", "legacy_claim_pattern_rejected", {"reason": "undefined_scopes", "requested_scopes": unknown_scopes})
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_scope", "message": "Requested scopes are undefined", "details": {"undefined_scopes": unknown_scopes}}},
+        )
     allowed = set(DEFAULT_SCOPES_BY_ROLE.get(role, set()))
     if role == "Service":
+        allowed = set(SERVICE_ALLOWED_SCOPES)
         if not requested:
             raise HTTPException(
                 status_code=400,
                 detail={"error": {"code": "invalid_scope", "message": "Service role requires explicit scopes", "details": {}}},
+            )
+        if not requested.issubset(allowed):
+            disallowed = sorted(requested - allowed)
+            audit_auth_event("auth", "role_escalation_attempt", {"role": role, "requested_scopes": sorted(requested)})
+            raise HTTPException(
+                status_code=400,
+                detail={"error": {"code": "invalid_scope", "message": "Service scopes are not allowlisted", "details": {"disallowed_scopes": disallowed}}},
             )
         return sorted(requested)
     if not requested:
@@ -454,7 +489,7 @@ def create_session(payload: AuthSessionRequest):
     ttl = payload.expires_in if payload.expires_in is not None else AUTH_TOKEN_TTL_SECONDS
     ttl = max(300, min(int(ttl), 8 * 3600))
     audience = (payload.audience or AUTH_AUDIENCE).strip() or AUTH_AUDIENCE
-    token = _issue_and_store_session(
+    token, exp = _issue_and_store_session(
         subject=payload.subject,
         provider=payload.provider,
         email=payload.email or "",
@@ -474,6 +509,7 @@ def create_session(payload: AuthSessionRequest):
             "tenant_id": tenant_id,
             "role": role,
             "scopes": scopes,
+            "exp": exp,
             "iss": AUTH_ISSUER,
             "aud": audience,
         },
@@ -628,7 +664,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if login not in OWNER_GITHUB_LOGINS:
         return _error_page("This GitHub account is not authorised for owner access.")
 
-    token = _issue_and_store_session(
+    token, _ = _issue_and_store_session(
         subject=f"github:{login}",
         provider="github",
         email=email,
@@ -702,7 +738,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.")
 
-    token = _issue_and_store_session(
+    token, _ = _issue_and_store_session(
         subject=f"google:{sub}",
         provider="google",
         email=email,

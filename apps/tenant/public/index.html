@@ -4,6 +4,11 @@
   <body>
     <h1>Tenant app integration scaffold</h1>
     <p>Uses tenant and AI services.</p>
+    <label>Subject</label><input id="subject" value="tenant-user-1" />
+    <label>Tenant ID</label><input id="tenantId" value="tenant-demo" />
+    <label>Role</label>
+    <select id="role"><option>Resident</option><option>Municipality</option><option>Partner</option></select>
+    <button id="createSession">Create session</button>
     <button id="loadCases">Load cases</button>
     <button id="askAi">Sample AI guidance</button>
     <pre id="output"></pre>
