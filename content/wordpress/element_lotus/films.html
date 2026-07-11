@@ -7,25 +7,107 @@
     <div class="brand"><div class="mark">🎞</div><div class="wordmark"><strong>Films</strong><span>Element Lotus · story first</span></div></div>
     <nav class="nav"><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/music/">Music</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
   </header>
+
   <section class="hero">
     <div class="eyebrow">Public studio lane</div>
-    <h1>Film belongs on the front page again.</h1>
-    <p>The Element Lotus shell now makes room for the film slate as a primary studio lane. Public pages speak to story, universe, and invitation; private render systems remain protected behind the owner surfaces.</p>
+    <h1>Story first. Universe second. Film always.</h1>
+    <p>Element Lotus carries the 12 Stones Global film slate as a front-page lane. Public pages speak to story, world, and invitation. Private render systems and production controls remain protected behind the owner surfaces.</p>
   </section>
-  <section class="section">
-    <h2>What this lane does</h2>
-    <div class="card-grid">
-      <article class="card"><div class="kicker">Slate</div><h3>Present the universe</h3><p>Lead with the world, the themes, and the feature work itself instead of burying film behind civic product language.</p></article>
-      <article class="card"><div class="kicker">Boundary</div><h3>Keep production controls private</h3><p>The public site should never expose owner-only render queues, machine controls, or internal review surfaces.</p></article>
-      <article class="card"><div class="kicker">Bridge</div><h3>Connect film back to games and music</h3><p>The same SAGE canon and Ao · Pō rhythm can frame the film slate without collapsing every lane into one page.</p></article>
+
+  <section class="band">
+    <div class="panel">
+      <h2>Production snapshot</h2>
+      <p>Source: <code>production_status.json</code> &mdash; updated <span id="films-updated">&mdash;</span></p>
+      <p style="margin-top:10px">The titles below appear in the <em>latest_films</em> list. Full release details and credits remain private until they are confirmed for public release.</p>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><span>Films produced</span><strong id="film-count">&mdash;</strong></div>
     </div>
   </section>
-  <section class="section split">
-    <div class="panel"><h2>Studio structure</h2><p>Use WordPress for synopsis, stills, cast/world notes, and release updates. Keep the production system and review flows on the private side. This page exists to hold the public place for the film lane while the deeper WordPress rebuild comes online.</p></div>
-    <div class="panel"><h2>Related</h2><p><a href="https://12sgi.com/games/">Games hub →</a><br><a href="/music/">Music lane →</a><br><a href="/about/">About the studio →</a></p></div>
+
+  <section class="section">
+    <h2>Current slate</h2>
+    <p class="lead">Each title below is listed in the production record. No release dates, synopsis, or cast data are included here &mdash; those exist in the private production system until confirmed for public release.</p>
+    <div class="list" id="films-slate">
+      <noscript><div class="row"><strong>[data pending]</strong><p>Enable JavaScript to render slate data from slate-data.js.</p></div></noscript>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:var(--ink-3)">
+      <span class="tag">Listed</span> &nbsp; Title appears in <code>latest_films</code>. Full status not yet public.
+      Dates, credits, and synopsis remain in the private production system.
+    </p>
   </section>
-  <footer class="footer"><nav><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/music/">Music</a><a href="/civic/">Civic / govOS</a></nav>PUBLIC studio lane. PRIVATE production remains protected.</footer>
+
+  <section class="section split">
+    <div class="panel">
+      <h2>Studio structure</h2>
+      <p>WordPress carries synopsis, stills, cast and world notes, and release updates when they are confirmed public. The production system and internal review flows remain on the private side. This page is the public place-holder for the film lane while the deeper WordPress layer comes online.</p>
+    </div>
+    <div class="panel">
+      <h2>Related</h2>
+      <p><a href="https://12sgi.com/games/">Games hub →</a><br><a href="/music/">Music lane →</a><br><a href="/about/">About the studio →</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <nav><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/music/">Music</a><a href="/civic/">Civic / govOS</a></nav>
+    PUBLIC studio lane. PRIVATE production remains protected.
+  </footer>
 </div>
+
+<script src="slate-data.js"></script>
+<script>
+(function () {
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  var slateEl = document.getElementById('films-slate');
+  var countEl = document.getElementById('film-count');
+  var updatedEl = document.getElementById('films-updated');
+
+  var d = window.SLATE;
+  if (!d) {
+    if (slateEl) slateEl.innerHTML = '<div class="row"><strong>[data pending]</strong><p>slate-data.js did not load.</p></div>';
+    return;
+  }
+
+  if (countEl) countEl.textContent = (d.films_produced != null) ? d.films_produced : '[data pending]';
+  if (updatedEl) updatedEl.textContent = d.updated || '\u2014';
+
+  if (!slateEl) return;
+
+  /* Prefer structured catalog entries; fall back to latest_films strings. */
+  var entries = (d.catalog && Array.isArray(d.catalog.films) && d.catalog.films.length > 0)
+    ? d.catalog.films
+    : (Array.isArray(d.latest_films) ? d.latest_films.map(function (t) { return { title: t }; }) : []);
+
+  if (entries.length === 0) {
+    slateEl.innerHTML = '<div class="row"><strong>[data pending]</strong><p>No film entries found in catalog.</p></div>';
+    return;
+  }
+
+  var html = '';
+  entries.forEach(function (entry) {
+    var title = (entry.title != null) ? esc(entry.title) : '[data pending]';
+    var ytBtn = '';
+    /* YouTube button: only render if a confirmed URL exists — never fabricate. */
+    if (entry.youtube_url) {
+      ytBtn = ' <a class="btn secondary" href="' + esc(entry.youtube_url) + '" target="_blank" rel="noopener noreferrer"'
+        + ' style="font-size:11px;padding:4px 10px;margin-left:8px">Watch on YouTube ↗</a>';
+    }
+    html += '<div class="row">'
+      + '<strong>' + title + ytBtn + '</strong>'
+      + '<p><span class="tag">Listed</span>&nbsp; Full status not yet public. '
+      + 'Credits, synopsis, and release details remain in the private production system.</p>'
+      + '</div>';
+  });
+  slateEl.innerHTML = html;
+}());
+</script>
 </div>
 </div>
 <!-- /wp:group -->
