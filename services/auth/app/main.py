@@ -867,3 +867,80 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
+
+
+# ── Silent token renewal ──────────────────────────────────────────────────────
+
+class RenewRequest(BaseModel):
+    """Renew an existing valid owner token without a full OAuth round-trip.
+
+    The caller presents their current owner token.  If it is valid and
+    carries the Owner role, a fresh token is issued with the same subject,
+    provider, role, and scopes, resetting the expiry clock.  This keeps
+    the Owner Console session alive without interrupting the owner's work.
+
+    If the token is already expired the caller must complete a full OAuth
+    redirect — there is no silent renewal path for expired tokens.
+    """
+    token: str
+
+
+@app.post(f"{API_PREFIX}/auth/renew", response_model=AuthSessionResponse)
+def renew_owner_token(payload: RenewRequest):
+    """Silently renew a valid owner token.
+
+    * Existing token must be valid (not expired) and have role == Owner.
+    * Returns a new token with a fresh 8-hour expiry.
+    * The old token remains valid until its original expiry — the caller
+      should replace it in localStorage (king.ownerToken) with the new one.
+    * If the token is expired: returns 401 — the console must redirect to OAuth.
+    """
+    token = (payload.token or "").strip()
+    if not token:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "token required"}},
+        )
+
+    try:
+        _, claims = _decode_and_verify_token(token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Token expired or invalid — please sign in again"}},
+        )
+
+    if claims.get("role") != "Owner":
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required"}},
+        )
+
+    row = _session_for_token(token)
+    if not row or int(row["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session expired — please sign in again"}},
+        )
+
+    # Issue a fresh token, identical claims, new expiry.
+    new_token, exp = _issue_and_store_session(
+        subject=row["subject"] or claims["sub"],
+        provider=row["provider"] or claims.get("provider", "unknown"),
+        email=row["email"] or "",
+        tenant_id=row["tenant_id"] or "",
+        role="Owner",
+        scopes=json.loads(row["scopes_json"] or "[]"),
+        ttl_seconds=8 * 3600,
+    )
+    audit_auth_event("auth", "token_renewed", {"sub": _redact_claim_identifier(claims["sub"])})
+    return {
+        "access_token": new_token,
+        "token_type": "bearer",
+        "expires_in": 8 * 3600,
+        "claims": {
+            "sub": claims["sub"],
+            "role": "Owner",
+            "exp": exp,
+        },
+    }

@@ -38,6 +38,11 @@ services:
       HF_HOME: /workspace/.cache/huggingface
       MODEL_DIR: /workspace/models
       DATA_DIR: /workspace/data
+      # Must match the AUTH_SIGNING_SECRET used by the auth service so that owner
+      # tokens issued by services/auth can be verified here without a network hop.
+      AUTH_SIGNING_SECRET: ${AUTH_SIGNING_SECRET:-dev-only-signing-secret-change-me}
+      # Path for the per-platform OAuth token store (lives in the data volume).
+      CONNECTOR_TOKEN_DB: /workspace/data/govos_v2_connectors.db
     volumes:
       - ./app:/workspace/app
       - ./data:/workspace/data

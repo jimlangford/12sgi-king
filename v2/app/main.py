@@ -16,6 +16,7 @@ import binascii
 import hashlib
 import hmac
 import json
+import logging
 import secrets as _secrets
 import sys
 import os
@@ -23,7 +24,7 @@ import uvicorn
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
 # Allow importing workboard from the repo root when run inside Docker/local
@@ -38,6 +39,7 @@ from services.v2_workboard import (
     selfheal_engineering_jobs,
 )
 from services.event_bus import get_recent_events, get_dead_letters
+from services.connectors import registry as _connector_registry
 from watchers import graph_refresh
 from watchers import pulse_geometry
 
@@ -48,6 +50,8 @@ app = FastAPI(
         "All approval gates for creative and output lane content live here."
     ),
 )
+
+_log = logging.getLogger(__name__)
 
 WORKBOARD_LOG = Path(os.getenv("WORKBOARD_DISPATCH_LOG", "")) or None
 
@@ -258,7 +262,8 @@ def batch_approve(body: BatchApproveRequest = BatchApproveRequest(), owner: dict
             )
             approved.append({"job_id": job_id, "tombstone_id": tombstone["job"]["id"], "iso": tombstone["iso"]})
         except Exception as exc:
-            skipped.append({"job_id": job_id, "reason": str(exc)})
+            _log.warning("batch_approve: skipped job %s: %s", job_id, exc)
+            skipped.append({"job_id": job_id, "reason": "approval failed — see owner node log"})
 
     return {
         "approved_count": len(approved),
@@ -396,6 +401,122 @@ def list_dead_letters(limit: int = 20):
     """Return recent dead-letter events (oversized or undeliverable payloads)."""
     items = get_dead_letters(limit=min(limit, 100))
     return {"count": len(items), "dead_letters": items}
+
+
+# ── MCP Connector layer — per-platform OAuth token lifecycle ──────────────────
+#
+# Each publishing platform (wordpress / youtube / tiktok / facebook / linkedin)
+# has an entry in the connector registry.  The registry tracks token validity
+# and can attempt silent refreshes before falling through to a "needs_auth" card
+# that the console surfaces as an [Authorize <Platform>] button.
+#
+# Flow for a batch publish triggered by "Approve All":
+#   1. For each platform in the draft's destination list:
+#      a. ensure_valid() → "valid" or "refreshed"  → publish immediately
+#      b. ensure_valid() → "needs_auth"             → skip + return auth card
+#   2. Console shows one ⚠️ card per platform that needs re-authorization.
+#   3. All other platforms already published.  Owner only sees the stuck ones.
+
+@app.get("/connectors")
+def list_connectors():
+    """Return token-status cards for every publishing platform.
+
+    This is the owner console's "connector health" surface.  It never
+    exposes raw tokens — only status, expiry, account label, and scopes.
+    """
+    cards = _connector_registry.status_all()
+    meta = {m["platform"]: m for m in _connector_registry.all_platform_meta()}
+    result = []
+    for platform, card in cards.items():
+        result.append({
+            **meta.get(platform, {}),
+            **card,
+        })
+    return {"connectors": result}
+
+
+@app.post("/connectors/{platform}/refresh")
+def refresh_connector_token(platform: str, owner: dict = Depends(_require_owner)):
+    """Attempt a silent OAuth token refresh for a platform.
+
+    Requires owner OAuth token.  Returns the updated status card.
+    If the refresh fails the card will have status == 'needs_auth'.
+    """
+    try:
+        ok = _connector_registry.refresh(platform)
+    except ValueError as exc:
+        _log.warning("connector refresh %s: %s", platform, exc)
+        raise HTTPException(status_code=400, detail={"error": "unknown or misconfigured platform"})
+    card = _connector_registry.status(platform)
+    return {"refreshed": ok, **card}
+
+
+@app.get("/connectors/{platform}/authorize")
+def connector_authorize_url(platform: str, redirect_uri: str, state: str = ""):
+    """Return the OAuth authorization URL for a platform.
+
+    The console navigates the owner to this URL to (re-)authorize the
+    connector.  After authorization, the platform redirects to redirect_uri
+    with ?code=...  The owner node's /connectors/{platform}/callback then
+    exchanges the code for tokens.
+
+    WordPress returns an empty string — use /connectors/wordpress/app-password.
+    """
+    try:
+        url = _connector_registry.authorize_url(platform, redirect_uri=redirect_uri, state=state)
+    except ValueError as exc:
+        _log.warning("connector authorize_url %s: %s", platform, exc)
+        raise HTTPException(status_code=400, detail={"error": "unknown platform or missing credentials — check .env.v2"})
+    return {"platform": platform, "authorize_url": url}
+
+
+class ConnectorCallbackRequest(BaseModel):
+    code: str
+    redirect_uri: str
+
+
+@app.post("/connectors/{platform}/callback")
+def connector_oauth_callback(
+    platform: str,
+    body: ConnectorCallbackRequest,
+    owner: dict = Depends(_require_owner),
+):
+    """Exchange an OAuth authorization code for platform tokens and store them.
+
+    Called by the console after the platform redirects back with ?code=...
+    Requires owner OAuth token.
+    """
+    try:
+        card = _connector_registry.exchange_code(platform, body.code, body.redirect_uri)
+    except (ValueError, RuntimeError) as exc:
+        _log.warning("connector callback %s: %s", platform, exc)
+        raise HTTPException(status_code=400, detail={"error": "token exchange failed — check platform credentials"})
+    return {"stored": True, **card}
+
+
+class WordPressAppPasswordRequest(BaseModel):
+    username: str
+    app_password: str
+    site_url: str | None = None
+
+
+@app.post("/connectors/wordpress/app-password")
+def connector_wordpress_app_password(
+    body: WordPressAppPasswordRequest,
+    owner: dict = Depends(_require_owner),
+):
+    """Store a WordPress Application Password for the connector.
+
+    WordPress uses Basic-auth app passwords rather than OAuth.
+    Generate one at: WP Admin → Users → Edit → Application Passwords.
+    Requires owner OAuth token.
+    """
+    card = _connector_registry.store_app_password(
+        username=body.username,
+        app_password=body.app_password,
+        site_url=body.site_url,
+    )
+    return {"stored": True, **card}
 
 
 if __name__ == "__main__":

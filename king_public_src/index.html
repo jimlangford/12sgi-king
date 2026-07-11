@@ -176,6 +176,9 @@
       <sc-if value="{{ showLaunch }}" hint-placeholder-val="{{ false }}">
         <dc-import name="LaunchCenter" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showConnectors }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Connectors" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
     </main>
   </div>
 
@@ -264,10 +267,57 @@ class Component extends DCLogic {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
       }
     } catch(ignore) {}
+    // ── Silent renewal: if stored token expires within 30 min, renew proactively ──
+    this._scheduleTokenRenewal();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this._onR);
     if (this._unLive) this._unLive();
+    if (this._renewTimer) clearTimeout(this._renewTimer);
+  }
+
+  // ── Silent govOS token renewal ────────────────────────────────────────────
+  // If the stored owner token will expire within 30 minutes, call /api/v2/auth/renew
+  // on the auth service to get a fresh 8-hour token — no OAuth redirect required.
+  // If the token is already expired, the console leaves it as-is; the owner will
+  // see a 401 the next time they try to approve something and can sign in again.
+  _scheduleTokenRenewal() {
+    if (this._renewTimer) clearTimeout(this._renewTimer);
+    try {
+      const raw = localStorage.getItem('king.ownerToken');
+      if (!raw) return;
+      const parts = raw.split('.');
+      if (parts.length !== 3) return;
+      const pad = s => s + '='.repeat((4 - s.length % 4) % 4);
+      const payload = JSON.parse(atob(pad(parts[1].replace(/-/g,'+').replace(/_/g,'/'))));
+      const exp = payload && payload.exp ? payload.exp : 0;
+      const now = Math.floor(Date.now() / 1000);
+      if (exp <= now) return;                          // already expired — no renewal
+      const renewIn = Math.max(0, (exp - now - 1800)) * 1000;  // 30 min before expiry
+      this._renewTimer = setTimeout(() => this._renewToken(), renewIn);
+    } catch(ignore) {}
+  }
+
+  _renewToken() {
+    const KING_AUTH_URL = (typeof window !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.12sgi.com';
+    const raw = localStorage.getItem('king.ownerToken');
+    if (!raw) return;
+    fetch(`${KING_AUTH_URL}/api/v2/auth/renew`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: raw }),
+    })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      if (data && data.access_token) {
+        localStorage.setItem('king.ownerToken', data.access_token);
+        this._scheduleTokenRenewal();   // re-schedule for the new token's expiry
+      }
+    })
+    .catch(() => {
+      // Renewal failed (token expired or auth service unreachable) — leave token
+      // as-is; the owner will be prompted to sign in when they next try to approve.
+    });
   }
 
   go(id) {
@@ -316,12 +366,13 @@ class Component extends DCLogic {
       { id:'ops',       label:'Ops Board',       short:'Ops',     icon:'⌗',  register:'ops',    owner:true },
       { id:'gpu',       label:'GPU · CPU Router', short:'GPU',     icon:'⚡', register:'ops',    owner:true },
       { id:'launch',    label:'Launch Center',    short:'Launch',  icon:'📡', register:'ops',    owner:true },
+      { id:'connectors',label:'Connectors',       short:'Connect', icon:'🔗', register:'ops',    owner:true },
     ];
     const unlocked = this.state.owner;
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'mooncal', 'launch'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'mooncal', 'launch', 'connectors'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
     // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
@@ -370,6 +421,7 @@ class Component extends DCLogic {
       showOps: s === 'ops' && unlocked,
       showGpu: s === 'gpu' && unlocked && avail('gpu'),
       showLaunch: s === 'launch' && unlocked && avail('launch'),
+      showConnectors: s === 'connectors' && unlocked && avail('connectors'),
     };
   }
 }
