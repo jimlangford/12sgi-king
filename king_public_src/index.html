@@ -182,6 +182,9 @@
       <sc-if value="{{ showConnectors }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Connectors" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showEvents }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Events" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
     </main>
   </div>
 
@@ -371,12 +374,13 @@ class Component extends DCLogic {
       { id:'hub',       label:'Hub · Witness',    short:'Hub',     icon:'◈',  register:'ops',    owner:true },
       { id:'launch',    label:'Launch Center',    short:'Launch',  icon:'📡', register:'ops',    owner:true },
       { id:'connectors',label:'Connectors',       short:'Connect', icon:'🔗', register:'ops',    owner:true },
+      { id:'events',    label:'Platform Events',  short:'Events',  icon:'◈',  register:'ops',    owner:true },
     ];
     const unlocked = this.state.owner;
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors', 'events'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
     // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
@@ -427,6 +431,7 @@ class Component extends DCLogic {
       showHub: s === 'hub' && unlocked && avail('hub'),
       showLaunch: s === 'launch' && unlocked && avail('launch'),
       showConnectors: s === 'connectors' && unlocked && avail('connectors'),
+      showEvents: s === 'events' && unlocked && avail('events'),
     };
   }
 }

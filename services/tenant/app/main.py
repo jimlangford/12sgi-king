@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from services.authz import auth_error, audit_auth_event, enforce_resource_tenant, enforce_tenant_scope, require_claims
 from services.service_metadata import with_service_metadata
 from services.v2_workboard import emit_workboard_job
+from services.event_bus import publish_event as _publish_event
 
 API_PREFIX = "/api/v2"
 SERVICE_NAME = "tenant"
@@ -216,6 +217,18 @@ def create_case(payload: CaseCreateRequest, authorization: str | None = Header(d
         )
     except Exception:
         pass
+
+    _publish_event(
+        event_type="case.created",
+        producer="tenant",
+        entity_id=case_id,
+        payload={
+            "tenant_id": tenant_id,
+            "title": payload.title,
+            "status": payload.status,
+            "created_by": record["created_by"],
+        },
+    )
 
     return record
 

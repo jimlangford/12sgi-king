@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from urllib import error, parse, request
 from uuid import uuid4
 
-from fastapi import FastAPI, Header, Response
+from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 
 from services.authz import auth_error, enforce_resource_tenant, require_claims
@@ -239,15 +239,19 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     # no inference actually ran; the summary is a template, not analysis, and must be flagged as
     # such rather than worded to sound like the assistant "reviewed" anything.
     grounded = bool(gpu_response)
-    if grounded:
-        summary = gpu_response
-    else:
-        summary = (
-            f"[UNGROUNDED — GPU inference unavailable, no model reviewed this case] "
-            f"Placeholder next step for case {payload.case_id}: gather timeline facts, organize "
-            f"evidence, and generate a draft document. This is a static template, not case-specific "
-            f"analysis — requires human review before acting on it."
+    if not grounded:
+        # Return an explicit degraded-state response rather than a 200 with placeholder text.
+        # Callers must handle 503 and retry or show a service-unavailable message to the user.
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "degraded",
+                "error_code": "AI_BACKEND_UNAVAILABLE",
+                "retryable": True,
+                "message": "GPU inference is currently unavailable. Retry when the router is ready.",
+            },
         )
+    summary = gpu_response
 
     event = {
         "id": str(uuid4()),
@@ -289,13 +293,6 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     return {
         "case_id": payload.case_id,
         "summary": summary,
-        "grounded": grounded,
-        # The fixed action list is a generic starting checklist, not a claim derived from this
-        # case's actual analysis -- only offered when there's no real grounded summary to point to,
-        # so it's never mistaken for output the model produced.
-        "actions": [] if grounded else [
-            "Review latest timeline events",
-            "Generate notice draft from template",
-            "Upload supporting files to evidence storage",
-        ],
+        "grounded": True,
+        "actions": [],
     }

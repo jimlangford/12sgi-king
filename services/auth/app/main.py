@@ -20,6 +20,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
+from services.event_bus import publish_event as _publish_event
 
 _log = logging.getLogger(__name__)
 
@@ -166,9 +167,15 @@ def _verify_oauth_state(state: str, provider: str) -> bool:
     return hmac.compare_digest(sig, expected)
 
 
-def _error_page(msg: str, *, log_detail: str = "") -> HTMLResponse:
+def _error_page(msg: str, *, log_detail: str = "", provider: str = "oauth") -> HTMLResponse:
     if log_detail:
         _log.warning("OAuth error: %s | detail: %s", msg, log_detail)
+    # Emit a failure event — message is safe to include (no credentials/tokens).
+    _publish_event(
+        event_type="auth.oauth.failed",
+        producer="auth",
+        payload={"provider": provider, "reason": msg},
+    )
     safe = _html.escape(msg)
     back = _html.escape(OAUTH_REDIRECT_BASE)
     body = (
@@ -229,6 +236,18 @@ def _issue_and_store_session(
             ),
         )
         conn.commit()
+    # Emit auth event — never raises; never includes token/secret values.
+    _publish_event(
+        event_type="auth.session.created",
+        producer="auth",
+        entity_id=_redact_claim_identifier(subject),
+        payload={
+            "provider": provider,
+            "role": role,
+            "tenant_id": tenant_id or None,
+            "scopes": scopes,
+        },
+    )
     return token, expires_at_ts
 
 
@@ -755,11 +774,11 @@ def oauth_github_start():
 def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if error:
         # "error" is a fixed OAuth error code from GitHub (e.g. "access_denied") — safe to show.
-        return _error_page("GitHub sign-in was not completed.", log_detail=f"provider_error={error}")
+        return _error_page("GitHub sign-in was not completed.", log_detail=f"provider_error={error}", provider="github")
     if not code:
-        return _error_page("No authorization code received from GitHub.")
+        return _error_page("No authorization code received from GitHub.", provider="github")
     if not _verify_oauth_state(state, "github"):
-        return _error_page("Invalid OAuth state — please try signing in again.")
+        return _error_page("Invalid OAuth state — please try signing in again.", provider="github")
 
     callback_uri = f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/github/callback"
     try:
@@ -772,9 +791,9 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         resp.raise_for_status()
         gh_access_token = resp.json().get("access_token", "")
         if not gh_access_token:
-            return _error_page("GitHub did not return an access token.")
+            return _error_page("GitHub did not return an access token.", provider="github")
     except Exception as exc:
-        return _error_page("Could not complete sign-in with GitHub — please try again.", log_detail=str(exc))
+        return _error_page("Could not complete sign-in with GitHub — please try again.", log_detail=str(exc), provider="github")
 
     try:
         user_resp = _requests.get(
@@ -787,10 +806,10 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         login = (gh_user.get("login") or "").strip()
         email = (gh_user.get("email") or "").strip()
     except Exception as exc:
-        return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc))
+        return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc), provider="github")
 
     if not login or login.casefold() not in OWNER_GITHUB_LOGINS:
-        return _error_page("This GitHub account is not authorised for owner access.")
+        return _error_page("This GitHub account is not authorised for owner access.", provider="github")
 
     token, _ = _issue_and_store_session(
         subject=f"github:{login}",
@@ -827,11 +846,11 @@ def oauth_google_start():
 @app.get(f"{API_PREFIX}/auth/google/callback")
 def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if error:
-        return _error_page("Google sign-in was not completed.", log_detail=f"provider_error={error}")
+        return _error_page("Google sign-in was not completed.", log_detail=f"provider_error={error}", provider="google")
     if not code:
-        return _error_page("No authorization code received from Google.")
+        return _error_page("No authorization code received from Google.", provider="google")
     if not _verify_oauth_state(state, "google"):
-        return _error_page("Invalid OAuth state — please try signing in again.")
+        return _error_page("Invalid OAuth state — please try signing in again.", provider="google")
 
     callback_uri = f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google/callback"
     try:
@@ -849,7 +868,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         resp.raise_for_status()
         token_data = resp.json()
     except Exception as exc:
-        return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc))
+        return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc), provider="google")
 
     id_token_raw = token_data.get("id_token", "")
     try:
@@ -864,18 +883,18 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         email_verified = id_payload.get("email_verified")
         token_exp = int(id_payload.get("exp") or 0)
     except Exception as exc:
-        return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
+        return _error_page("Could not verify Google account — please try again.", log_detail=str(exc), provider="google")
 
     if not email or not sub:
-        return _error_page("Google did not return the required account details.")
+        return _error_page("Google did not return the required account details.", provider="google")
     if aud != GOOGLE_CLIENT_ID:
-        return _error_page("Google sign-in did not match this configured app.")
+        return _error_page("Google sign-in did not match this configured app.", provider="google")
     if email_verified is not True and str(email_verified).strip().lower() != "true":
-        return _error_page("This Google account e-mail is not verified.")
+        return _error_page("This Google account e-mail is not verified.", provider="google")
     if token_exp and token_exp <= int(_now_utc().timestamp()):
-        return _error_page("Google sign-in expired before it could be completed.")
+        return _error_page("Google sign-in expired before it could be completed.", provider="google")
     if not OWNER_GOOGLE_EMAILS or email.casefold() not in OWNER_GOOGLE_EMAILS:
-        return _error_page("This Google account is not authorised for owner access.")
+        return _error_page("This Google account is not authorised for owner access.", provider="google")
 
     token, _ = _issue_and_store_session(
         subject=f"google:{sub}",
