@@ -1,0 +1,293 @@
+name: Deploy v2 node to king-server (private, self-hosted)
+
+# PRIVATE — this workflow runs exclusively on the self-hosted runner installed on king-server
+# (Tailscale host 12sgianonymous.tail760750.ts.net).
+#
+# Security rules:
+#   - No SSH.  No rsync.  No inbound ports.  No Tailscale Funnel for SSH/Docker/Ollama.
+#   - The runner polls GitHub over HTTPS; all execution stays on king-server.
+#   - This workflow NEVER touches the public 12sgi.com deploy or GitHub Pages.
+#   - Public deploy lives in publish.yml and deploy-to-server.yml — keep them separate.
+#   - govOS v2 services (auth/tenant/documents/storage/ai/health/gpu-router) are deployed
+#     by deploy-v2-king-server.yml — keep them separate from this workflow.
+#
+# What this does:
+#   1. Checkout repo on king-server
+#   2. Validate v2/ node files are present
+#   3. Validate docker compose config for v2/docker-compose.yml
+#   4. Restart the v2 node stack via docker compose (if opted in and stack is running)
+#   5. Health-check the app at http://127.0.0.1:8088/health
+#   6. Verify Tailscale sidecar is joined to the tailnet
+#   7. Write a timestamped deployment log to the local king-server log directory
+#
+# To use:
+#   1. On king-server, install the GitHub Actions self-hosted runner
+#      (Settings → Actions → Runners → New self-hosted runner) with labels:
+#        self-hosted, king-server, windows
+#   2. Trigger manually: Actions → "Deploy v2 node to king-server" → Run workflow
+#
+# Optional trigger on push to v2-related paths (disabled by default — uncomment to enable):
+# push:
+#   branches: [main]
+#   paths:
+#     - "v2/**"
+
+on:
+  workflow_dispatch:
+    inputs:
+      restart_services:
+        description: "Restart v2 node Docker services after deploy (true/false)"
+        required: false
+        default: "false"
+      dry_run:
+        description: "Dry run — validate and report only, make no changes"
+        required: false
+        default: "false"
+
+# No special GitHub permissions needed — all work is local to king-server.
+permissions:
+  contents: read
+
+jobs:
+  deploy-v2-node:
+    name: v2 node deploy — king-server
+    runs-on: [self-hosted, king-server, windows]
+    timeout-minutes: 20
+
+    env:
+      # Local v2 node port (bound to 127.0.0.1 via the tailscale service ports mapping)
+      V2_NODE_PORT: "8088"
+      V2_COMPOSE_FILE: "v2/docker-compose.yml"
+      V2_TAILSCALE_CONTAINER: "12sgi-v2-tailscale"
+      # Local deployment log directory (PRIVATE — never committed to repo)
+      DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-node-deploy"
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      RESTART_SERVICES: ${{ github.event.inputs.restart_services || 'false' }}
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set deployment provenance environment
+        shell: pwsh
+        run: |
+          "COMMIT_SHA=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIMESTAMP=$(Get-Date -Format o -AsUTC)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ENVIRONMENT=king-server-v2-node" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      # ── 2. Validate v2 node files ─────────────────────────────────────────────
+      - name: Validate v2 node files are present
+        shell: pwsh
+        run: |
+          $required = @(
+            "v2\docker-compose.yml",
+            "v2\Dockerfile",
+            "v2\app\main.py",
+            "v2\scripts\start.sh",
+            "v2\scripts\stop.sh",
+            "v2\scripts\tailscale-check.sh"
+          )
+          $missing = @()
+          foreach ($f in $required) {
+            if (-not (Test-Path $f)) { $missing += $f }
+          }
+          if ($missing.Count -gt 0) {
+            Write-Error "v2 node validation failed — missing required files:`n$($missing -join "`n")"
+            exit 1
+          }
+          Write-Host "✓ All $($required.Count) required v2 node files present"
+
+      # ── 3. Validate docker compose config ─────────────────────────────────────
+      - name: Validate v2 node docker compose config
+        shell: pwsh
+        run: |
+          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $dc) {
+            Write-Error "docker not found on PATH — cannot validate $env:V2_COMPOSE_FILE"
+            exit 1
+          }
+          Write-Host "Deployment provenance:"
+          Write-Host "  commit_sha    = $env:COMMIT_SHA"
+          Write-Host "  build_timestamp = $env:BUILD_TIMESTAMP"
+          Write-Host "  environment   = $env:ENVIRONMENT"
+          Write-Host ""
+          Write-Host "Intended v2 node services:"
+          Write-Host "  - tailscale  (network namespace anchor)"
+          Write-Host "  - app        (FastAPI owner node  :8088)"
+          Write-Host "  - ollama     (local LLM           :11434)"
+          Write-Host ""
+          $config = docker compose -f $env:V2_COMPOSE_FILE config 2>&1
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "docker compose validation failed:`n$($config | Out-String)"
+            exit 1
+          }
+          Write-Host "✓ docker compose -f $env:V2_COMPOSE_FILE config passed"
+
+      # ── 4. Restart v2 node services (if opted in) ─────────────────────────────
+      - name: Restart v2 node Docker services
+        if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
+        shell: pwsh
+        run: |
+          # Only restart if docker compose is available and the stack is already running.
+          # We never cold-start the stack here — that is an owner decision (run start.sh).
+          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $dc) {
+            Write-Warning "docker not found on PATH — skipping service restart"
+            exit 0
+          }
+          $running = docker compose -f $env:V2_COMPOSE_FILE ps --services --filter status=running 2>$null
+          if (-not $running) {
+            Write-Warning "v2 node stack does not appear to be running — skipping restart (run v2/scripts/start.sh first)"
+            exit 0
+          }
+          Write-Host "Restarting v2 node services..."
+          docker compose -f $env:V2_COMPOSE_FILE up -d --build
+          Write-Host "✓ docker compose up -d complete"
+          # Brief pause so the app container can bind its port
+          Start-Sleep -Seconds 5
+
+      # ── 5. Health-check the app at localhost ───────────────────────────────────
+      - name: Health-check v2 node app
+        shell: pwsh
+        run: |
+          $url = "http://127.0.0.1:$($env:V2_NODE_PORT)/health"
+          $result = @{}
+          $findings = New-Object System.Collections.Generic.List[object]
+
+          function Add-Finding([string]$Severity, [string]$Code, [string]$Message) {
+            $script:findings.Add([pscustomobject]@{
+              severity = $Severity
+              code     = $Code
+              message  = $Message
+            }) | Out-Null
+          }
+
+          try {
+            $r = Invoke-WebRequest -Uri $url -TimeoutSec 8 -SkipHttpErrorCheck -ErrorAction Stop
+            $result["app"] = "http-$($r.StatusCode)"
+            Write-Host "  • app → $url  [$($r.StatusCode)]"
+
+            if ([int]$r.StatusCode -ne 200) {
+              Add-Finding "high" "unexpected_status" "Expected HTTP 200 from $url, got $($r.StatusCode)"
+            } else {
+              try {
+                $body = $r.Content | ConvertFrom-Json -ErrorAction Stop
+                if ([string]$body.status -ne "ok") {
+                  Add-Finding "high" "status_not_ok" "Health response status is '$($body.status)', expected 'ok'"
+                }
+                if ([string]$body.service -ne "12sgi-v2") {
+                  Add-Finding "high" "unexpected_service" "Health response service is '$($body.service)', expected '12sgi-v2'"
+                }
+                Write-Host "  ✓ app health: status=$($body.status) service=$($body.service) env=$($body.env)"
+              } catch {
+                Add-Finding "high" "malformed_json" "Health response at $url was not valid JSON"
+              }
+            }
+          } catch {
+            $result["app"] = "unreachable"
+            Add-Finding "high" "app_unreachable" "App health endpoint unreachable at $url — is the v2 stack running?"
+            Write-Warning "  ✗ app → $url  [unreachable]"
+          }
+
+          # Summarise findings
+          if ($findings.Count -gt 0) {
+            Write-Host "Health findings:"
+            foreach ($f in $findings) {
+              Write-Host "  [$($f.severity)] $($f.code): $($f.message)"
+            }
+          } else {
+            Write-Host "Health findings: none"
+          }
+
+          # Export for log step
+          "HEALTH_RESULT=$($result['app'])" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $findingsJson = $findings | ConvertTo-Json -Depth 4 -Compress
+          "HEALTH_FINDINGS=$findingsJson" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          # Fail the step if the app is unreachable or unhealthy, but only when the stack is
+          # expected to be running (restart_services was true means we just started it).
+          $expectRunning = "$env:RESTART_SERVICES" -eq "true" -and "$env:DRY_RUN" -ne "true"
+          if ($expectRunning -and $result["app"] -ne "http-200") {
+            Write-Error "v2 node health check failed — app did not return HTTP 200 after restart"
+            exit 1
+          }
+          if ($result["app"] -eq "unreachable") {
+            Write-Warning "v2 node app is not running — health check skipped (start with v2/scripts/start.sh)"
+          }
+
+      # ── 6. Verify Tailscale sidecar is joined ─────────────────────────────────
+      - name: Check Tailscale sidecar status
+        shell: pwsh
+        run: |
+          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $dc) {
+            Write-Warning "docker not found — skipping Tailscale check"
+            exit 0
+          }
+          $running = docker ps --filter "name=$env:V2_TAILSCALE_CONTAINER" --filter "status=running" -q 2>$null
+          if (-not $running) {
+            Write-Warning "Tailscale container ($env:V2_TAILSCALE_CONTAINER) is not running — stack may be stopped"
+            "TAILSCALE_STATUS=not-running" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            exit 0
+          }
+          $tsStatus = docker exec $env:V2_TAILSCALE_CONTAINER tailscale status --json 2>$null
+          if ($LASTEXITCODE -ne 0 -or -not $tsStatus) {
+            Write-Warning "Could not get Tailscale status from container"
+            "TAILSCALE_STATUS=unknown" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            exit 0
+          }
+          try {
+            $ts = $tsStatus | ConvertFrom-Json -ErrorAction Stop
+            $backendState = [string]$ts.BackendState
+            Write-Host "  Tailscale BackendState: $backendState"
+            if ($backendState -eq "Running") {
+              $tsIP = docker exec $env:V2_TAILSCALE_CONTAINER tailscale ip 2>$null
+              Write-Host "  ✓ Tailscale joined — node IP: $tsIP"
+              "TAILSCALE_STATUS=running" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            } else {
+              Write-Warning "  Tailscale BackendState is '$backendState' (expected Running)"
+              "TAILSCALE_STATUS=$backendState" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            }
+          } catch {
+            Write-Warning "Could not parse Tailscale status JSON"
+            "TAILSCALE_STATUS=parse-error" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          }
+
+      # ── 7. Write deployment log to king-server local log directory ─────────────
+      - name: Write local deployment log
+        if: always()
+        shell: pwsh
+        run: |
+          $logDir = $env:DEPLOY_LOG_DIR
+          if (-not $logDir) { $logDir = "$env:USERPROFILE\Documents\Claude\logs\v2-node-deploy" }
+          if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
+
+          $ts      = Get-Date -Format "yyyy-MM-ddTHH-mm-ssZ" -AsUTC
+          $logFile = Join-Path $logDir "deploy-$ts.json"
+
+          $entry = @{
+            timestamp       = (Get-Date -Format "o" -AsUTC)
+            run_id          = "${{ github.run_id }}"
+            run_number      = "${{ github.run_number }}"
+            sha             = "${{ github.sha }}"
+            commit_sha      = $env:COMMIT_SHA
+            build_timestamp = $env:BUILD_TIMESTAMP
+            environment     = $env:ENVIRONMENT
+            ref             = "${{ github.ref }}"
+            actor           = "${{ github.actor }}"
+            dry_run         = ($env:DRY_RUN -eq "true")
+            restart_req     = ($env:RESTART_SERVICES -eq "true")
+            health_result   = $env:HEALTH_RESULT
+            tailscale_status = $env:TAILSCALE_STATUS
+            findings        = if ($env:HEALTH_FINDINGS) { $env:HEALTH_FINDINGS | ConvertFrom-Json } else { $null }
+            outcome         = "${{ job.status }}"
+          }
+
+          $entry | ConvertTo-Json -Depth 5 | Out-File -FilePath $logFile -Encoding utf8
+          Write-Host "Deployment log written to: $logFile"
+          # Keep only the 30 most recent deploy logs
+          Get-ChildItem $logDir -Filter "deploy-*.json" |
+            Sort-Object LastWriteTime -Descending |
+            Select-Object -Skip 30 |
+            Remove-Item -Force -ErrorAction SilentlyContinue
