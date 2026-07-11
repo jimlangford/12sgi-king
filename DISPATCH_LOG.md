@@ -5,6 +5,23 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-10 23:45 HST — Thread consolidation + no-popup fix (this branch)
+**Thread:** copilot/bring-all-thread-together  **From:** Copilot agent  **To:** main (PR)
+**Consolidated threads:**
+- MCC Digital Twin (17 titles) — all committed + published via CI ✅
+- charter-explainer heading bug (#278) — already fixed in king_public_src/ ✅
+- CORS wildcards (#290) — code audit score=100, no instances found ✅
+- Yale-blue recolor (#203-#209) — automated by recolor_tree() at build time ✅
+- Game studio hub (PRs #334, #335) — merged to main + live at 12sgi.com ✅
+- Workboard approvals (#291 ledger lock) — not in this repo; local service only ✅ (local)
+- WP go-live bundle (#299) — `deploy_elementlotus_wp.py` built; bundle ready for WP paste ✅
+**Changed:** `go.html` — replaced `alert()` + `window.prompt()` with inline UI for board approve/reject (#309 no-popups). Error messages now appear inline below the button; rejection reason is entered via an inline input row that expands when Reject is clicked.
+**Preserved:** Private Tailscale links in go.html (go/docker.html, go/ollama.html, etc.); WP bundle in content/wordpress/element_lotus/; all seed_reports; DISPATCH_LOG history.
+**Verify:** `python -m compileall -q .` → 1 SyntaxWarning (pre-existing in rollcall_parser.py, unrelated). `python watchers/code_audit.py` → score=100, 0 issues.
+**NEXT:** Merge PR → CI publish run (push-triggered) → 12sgi.com updated. SAGE Wā3+5 (#298) requires creative design pass before output — not started here. Ledger file lock (#291) is local-only.
+
+---
+
 ## 2026-06-18 08:00 HST — ✅ 17-TITLE MCC DIGITAL TWIN COMPLETE (final batch 6/8/9/11/13/22/1/2)
 **Thread:** county digital-twin rollout — final 8 modules  **From:** local_b2a380ef  **To:** King-server + ingestion
 **Built (config+content drops):** Title 6 Animals (dog licensing $11/$76, dangerous-dog §6.04.046, Animal Control Board) · Title 8 Health & Safety (nuisance/sanitation/noise/solid-waste; §19.530.030 reach) · Title 9 Public Peace/Morals & Welfare (trespassing 9.04, curfew 9.24; Police-enforced) · Title 11 Public Transit (Maui Bus, fare-free program, ADA paratransit) · Title 13 Parks & Recreation (Ch. 13.04A permits, camping, prohibitions) · Title 22 Dept of Agriculture (voter-established 2020, Kula Ag Park, ties to 19.30A) · Title 1 General Provisions (code adoption, general penalty) · Title 2 Administration & Personnel (departments, Planning Commission 2.28, General Plan 2.80B).

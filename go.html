@@ -335,22 +335,52 @@
  })();
  function approveJob(jobId,btn){
    if(!jobId) return;
-   btn.disabled=true; btn.textContent='…';
+   // inline error — no alert() popup (#309 no-popups)
+   var errEl=document.getElementById('aperr-'+jobId);
+   if(!errEl){
+     errEl=document.createElement('span');
+     errEl.id='aperr-'+jobId;
+     errEl.style.cssText='font-family:var(--mono);font-size:10.5px;color:var(--err);display:none;margin-left:8px;vertical-align:middle';
+     btn.parentElement.appendChild(errEl);
+   }
+   btn.disabled=true; btn.textContent='…'; errEl.style.display='none';
    fetch('/board/api/approve-job',{method:'POST',headers:{'Content-Type':'application/json'},
          body:JSON.stringify({job_id:jobId,approver:'owner'})})
      .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
      .then(function(){btn.textContent='✓ Approved';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';})
-     .catch(function(){btn.disabled=false;btn.textContent='✓ Approve';alert('Could not approve — board may be offline.');});
+     .catch(function(){btn.disabled=false;btn.textContent='✓ Approve';errEl.textContent='Board offline — try again.';errEl.style.display='inline';});
  }
  function rejectJob(jobId,btn){
    if(!jobId) return;
-   var reason=window.prompt('Reason for rejection (optional):'); if(reason===null) return;
-   btn.disabled=true; btn.textContent='…';
-   fetch('/board/api/reject-job',{method:'POST',headers:{'Content-Type':'application/json'},
-         body:JSON.stringify({job_id:jobId,reason:reason||'rejected by owner',rejector:'owner'})})
-     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
-     .then(function(){btn.textContent='✕ Rejected';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';})
-     .catch(function(){btn.disabled=false;btn.textContent='✕ Reject';alert('Could not reject — board may be offline.');});
+   // inline reason input instead of window.prompt() (#309 no-popups)
+   var rRow=document.getElementById('rrow-'+jobId);
+   if(rRow){rRow.style.display=rRow.style.display==='none'?'flex':'none';return;}
+   rRow=document.createElement('div');
+   rRow.id='rrow-'+jobId;
+   rRow.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px';
+   var inp=document.createElement('input');
+   inp.type='text';inp.placeholder='Reason (optional)';
+   inp.style.cssText='font-family:var(--mono);font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2,var(--bg));color:var(--ink);flex:1;min-width:120px';
+   var conf=document.createElement('button');
+   conf.textContent='Confirm';
+   conf.style.cssText='font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--err);background:rgba(192,50,44,.08);color:var(--err);cursor:pointer';
+   var can=document.createElement('button');
+   can.textContent='Cancel';
+   can.style.cssText='font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:transparent;color:var(--ink-dim,var(--ink));cursor:pointer';
+   can.onclick=function(){rRow.style.display='none';};
+   var errEl2=document.createElement('span');
+   errEl2.style.cssText='font-family:var(--mono);font-size:10.5px;color:var(--err);display:none;flex-basis:100%';
+   conf.onclick=function(){
+     var reason=(inp.value||'').trim()||'rejected by owner';
+     btn.disabled=true;btn.textContent='…';conf.disabled=true;errEl2.style.display='none';
+     fetch('/board/api/reject-job',{method:'POST',headers:{'Content-Type':'application/json'},
+           body:JSON.stringify({job_id:jobId,reason:reason,rejector:'owner'})})
+       .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+       .then(function(){btn.textContent='✕ Rejected';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';rRow.style.display='none';})
+       .catch(function(){btn.disabled=false;btn.textContent='✕ Reject';conf.disabled=false;errEl2.textContent='Board offline — try again.';errEl2.style.display='block';});
+   };
+   rRow.appendChild(inp);rRow.appendChild(conf);rRow.appendChild(can);rRow.appendChild(errEl2);
+   btn.parentElement.parentElement.appendChild(rRow);
  }
  (function(){
    // Civic newsletter opt-in -> public charging/signup backend over Tailscale Funnel (:8443 -> :8810).
