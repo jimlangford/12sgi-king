@@ -41,9 +41,13 @@ from services.v2_workboard import (
     workboard_hub_feed,
 )
 from services.event_bus import get_recent_events, get_dead_letters
+from services.service_metadata import with_service_metadata
 from services.connectors import registry as _connector_registry
 from watchers import graph_refresh
 from watchers import pulse_geometry
+
+SERVICE_NAME = "owner-node"
+VERSION = os.environ.get("VERSION", "2.0.0")
 
 app = FastAPI(
     title="12 Stones v2 Local Owner Node",
@@ -146,12 +150,15 @@ def _require_owner(authorization: str | None = Header(default=None)) -> dict:
 
 @app.get("/health")
 def health():
-    return {
-        "status": "ok",
-        "service": "12sgi-v2",
-        "mode": "local-owner-tailscale",
-        "env": os.getenv("APP_ENV", "local"),
-    }
+    return with_service_metadata(
+        {
+            "status": "ok",
+            "mode": "local-owner-tailscale",
+            "env": os.getenv("APP_ENV", "local"),
+        },
+        SERVICE_NAME,
+        VERSION,
+    )
 
 
 @app.get("/")

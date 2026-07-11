@@ -81,9 +81,20 @@ jobs:
       - name: Set deployment provenance environment
         shell: pwsh
         run: |
+          # Read canonical platform version from root VERSION file
+          $platformVersion = (Get-Content VERSION -Raw -ErrorAction SilentlyContinue).Trim()
+          if (-not $platformVersion) { $platformVersion = "unknown" }
+          $buildTime = (Get-Date -Format o -AsUTC)
+          "PLATFORM_VERSION=$platformVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_COMMIT=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIME=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          # Also set the legacy names used by service_metadata.py for backward compat
           "COMMIT_SHA=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "BUILD_TIMESTAMP=$(Get-Date -Format o -AsUTC)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIMESTAMP=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "ENVIRONMENT=king-server-private" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Platform version: $platformVersion"
+          Write-Host "Build commit:     ${{ github.sha }}"
+          Write-Host "Build time:       $buildTime"
 
       # ── 2. Validate V2 files ───────────────────────────────────────────────────
       - name: Validate V2 service files are present
@@ -401,6 +412,9 @@ jobs:
             run_number    = "${{ github.run_number }}"
             sha           = "${{ github.sha }}"
             expected_sha  = $env:COMMIT_SHA
+            platform_version = $env:PLATFORM_VERSION
+            build_commit  = $env:BUILD_COMMIT
+            build_time    = $env:BUILD_TIME
             build_timestamp = $env:BUILD_TIMESTAMP
             environment   = $env:ENVIRONMENT
             ref           = "${{ github.ref }}"
