@@ -12,6 +12,7 @@ HOME    = os.path.expanduser("~")
 PROJECT = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS")
 MAUIOS  = os.path.join(PROJECT, "reports", "mauios")
 COUNCIL = os.path.join(PROJECT, "reports", "council")
+SEED_MAUIOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seed_reports", "mauios")
 
 # civic_shell = the unified home-page chrome (single source = tools/kilo-aupuni/civic_shell.py). CI-safe:
 # falls back to None if the project tree isn't present, so the build never breaks on a runner.
@@ -28,6 +29,14 @@ except Exception:
 # build rev: 2026-07-01 blog pages wired into public site/ output
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
+
+def mauios_src(rel):
+    """Prefer the live local reports tree, but fall back to repo seed artifacts."""
+    src = os.path.join(MAUIOS, rel)
+    if os.path.exists(src):
+        return src
+    seed = os.path.join(SEED_MAUIOS, rel)
+    return seed if os.path.exists(seed) else src
 
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
@@ -124,6 +133,7 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # made public with aloha (aloha_oversight.py). The private case files NEVER publish; only what clears.
                "oversight_hi-state.html", "oversight_hi-maui.html", "oversight_hi-hawaii.html",
                "oversight_hi-kauai.html", "oversight_hi-honolulu.html", "oversight_help.html",
+               "prosecutor_public_feed.html",
                # govOS Audit — the per-tenant combined view (funders -> votes/recusals -> contracts -> the questions),
                # one page (govos_audit.py). Maui sourced; others honest-empty until their officials are sourced.
                "govos_audit_hi-state.html", "govos_audit_hi-maui.html", "govos_audit_hi-hawaii.html",
@@ -176,7 +186,8 @@ DATA = ["statewide_money.json", "donor_profiles.json", "officials.json", "parity
         "feature_board.json",   # the AI-sorted public request board data the page renders
         "daily_aloha.json",   # public-safe daily moon offering per tenant (king_message.py) — pure aloha, no figures
         "lege/legislators.json", "twin_metrics.json",
-        "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json"]
+        "hands_maui_awards.json", "vendor_donor_join.json", "sage_bridge.json",
+        "prosecutor_public_feed.json"]
 
 # OPEN DATA — the raw public records behind every dashboard, indexed as a downloadable catalog (defeats
 # "you made it up"). Metadata for the DCAT/data.json catalog + datasets.html front door. Keyed by basename.
@@ -993,7 +1004,7 @@ def main():
     with _lane("dashboards"):
         present = []
         for rel, name, blurb in PAGES:
-            src = os.path.join(MAUIOS, rel)
+            src = mauios_src(rel)
             if os.path.exists(src):
                 flat = rel.replace("/", "_")
                 html = open(src, encoding="utf-8", errors="replace").read()
@@ -1011,7 +1022,7 @@ def main():
         import glob as _glob
         _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
         for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
-            src = os.path.join(MAUIOS, rel)
+            src = mauios_src(rel)
             if os.path.exists(src):
                 with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
                     _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
@@ -1023,7 +1034,7 @@ def main():
     with _lane("data_files"):
         _present_data = []
         for rel in DATA:
-            src = os.path.join(MAUIOS, rel)
+            src = mauios_src(rel)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
                 _present_data.append((os.path.basename(rel), src))
@@ -1426,7 +1437,7 @@ Sources are linked on every page.</div>
 </div>
 {prod}
 <div class="eyebrow" style="margin-top:30px">Raw data</div>
-<p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(os.path.join(MAUIOS,d)))}</p>
+<p>{" · ".join(f'<a class="data" href="data/{os.path.basename(d)}">{os.path.basename(d)}</a>' for d in DATA if os.path.exists(mauios_src(d)))}</p>
 <footer>generated {g} · Kilo Aupuni · sources: CivicClerk · Hawaii Campaign Spending Commission · LegiScan · capitol.hawaii.gov · public record<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</footer>
 </div></body></html>"""
         index = inject_nav(index, "")     # nav on the hub too (home pill highlights nothing)
@@ -1478,7 +1489,7 @@ Sources are linked on every page.</div>
             print("  + buildinfo.json = %s (git-awareness live-deploy marker)" % (_sha or "")[:7])
         except Exception as _e:
             print("  ! buildinfo.json skipped: %s" % _e)
-    print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(os.path.join(MAUIOS,d))])} data files")
+    print(f"built site -> {SITE}: {len(present)} dashboards + {len([d for d in DATA if os.path.exists(mauios_src(d))])} data files")
 
     with _lane("quadrant_progress"):
         # [self-heal] go.html links to quadrant_progress.html (the Quad-OS progress page, generated to

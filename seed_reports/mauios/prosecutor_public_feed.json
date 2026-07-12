@@ -1,0 +1,194 @@
+{
+  "feed_id": "prosecutor-public-factual-feed",
+  "title": "Public Factual Feed",
+  "generated_at_hst": "2026-07-11 16:33 HST",
+  "approval": {
+    "legal_owner_gate": "approved",
+    "approved_by": "James verbal",
+    "approved_at": "2026-07-03",
+    "source_workboard_item": "wb1782951339013",
+    "scope": "Publish only the curated public-safe subset already cleared onto public oversight pages."
+  },
+  "integrity": {
+    "source_scope": "public oversight pages only",
+    "private_findings": "withheld; never included in this feed",
+    "language_gate": "allegation/question-framed, not verdict-framed",
+    "leak_gate": "passed",
+    "pii_gate": "passed"
+  },
+  "count": 6,
+  "held_private_count": 24,
+  "dag_nodes": [
+    {
+      "name": "Public oversight source pages",
+      "status": "done",
+      "engine": "none",
+      "inputs_resolved": true,
+      "outputs": [
+        "oversight_hi-*.html"
+      ]
+    },
+    {
+      "name": "Legal owner-gate",
+      "status": "done",
+      "engine": "none",
+      "inputs_resolved": true,
+      "depends_on": [
+        "Public oversight source pages"
+      ],
+      "outputs": [
+        "approval.legal_owner_gate=approved"
+      ]
+    },
+    {
+      "name": "Curate public-safe subset",
+      "status": "done",
+      "engine": "none",
+      "inputs_resolved": true,
+      "depends_on": [
+        "Legal owner-gate"
+      ],
+      "outputs": [
+        "6 public item(s)",
+        "24 held private"
+      ]
+    },
+    {
+      "name": "Leak and PII gate",
+      "status": "done",
+      "engine": "none",
+      "inputs_resolved": true,
+      "depends_on": [
+        "Curate public-safe subset"
+      ],
+      "outputs": [
+        "leak_gate=passed",
+        "pii_gate=passed"
+      ]
+    },
+    {
+      "name": "Emit public artifacts",
+      "status": "done",
+      "engine": "none",
+      "inputs_resolved": true,
+      "depends_on": [
+        "Leak and PII gate"
+      ],
+      "outputs": [
+        "prosecutor_public_feed.html",
+        "prosecutor_public_feed.json"
+      ]
+    },
+    {
+      "name": "Publish build verification",
+      "status": "waiting",
+      "engine": "none",
+      "inputs_resolved": false,
+      "depends_on": [
+        "Emit public artifacts"
+      ],
+      "outputs": [
+        "12stones.com/12sgi.com public artifact verification"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "hi-maui-01",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "When voices paid on rental and property values testify on the bill that sets those values — and some hold disaster-housing contracts — does the vote answer the displaced, or the portfolio?",
+      "public_record": [
+        "10 real-estate-affiliated voices appear in Bill 9 / short-term-rental testimony (committee transcripts)",
+        "20 testimony segments invoke FEMA / disaster-housing in the same record",
+        "Mr. Pfost — comment",
+        "John Chaisson — comment",
+        "Sonny Cave — comment",
+        "Jordan Ruidas — comment",
+        "Jim Sullivan — comment",
+        "Mr. Bence — oppose"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    },
+    {
+      "id": "hi-maui-02",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "On the items where a member stepped back, who benefits — and on the comparable items where no one stepped back, why not?",
+      "public_record": [
+        "Batangan recused — {\"date\": \"2026-05-15\", \"meeting\": \"County Council Meeting\", \"item\": \"CC 26-11\", \"dollars\": [], \"url\": \"https://mauicount",
+        "Batangan recused — {\"date\": \"2026-06-19\", \"meeting\": \"County Council Meeting\", \"item\": null, \"dollars\": [], \"url\": \"https://mauicounty.port",
+        "Batangan recused — {\"date\": \"2026-06-19\", \"meeting\": \"County Council Meeting\", \"item\": null, \"dollars\": [], \"url\": \"https://mauicounty.port",
+        "Batangan recused — {\"date\": \"2026-06-05\", \"meeting\": \"County Council Meeting\", \"item\": null, \"dollars\": [\"$500,000\"], \"url\": \"https://mauic",
+        "Batangan recused — {\"date\": \"2026-06-05\", \"meeting\": \"County Council Meeting\", \"item\": \"Bill 55\", \"dollars\": [], \"url\": \"https://mauicounty"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    },
+    {
+      "id": "hi-maui-03",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "An organization that pays advocates to shape a vote and funds the members who cast it — whose voice does the outcome answer?",
+      "public_record": [
+        "registered lobbyists for Lanai Resorts, LLC dba Pulama Lanai: Fujimura, Susan A., Kaneko, William M., McCrory, Lynn P., Okudara, Jon T. (HSEC)",
+        "donation to Yuki Lei Sugimura — $4,750 (CSC)",
+        "donation to Alice L. Lee — $2,500 (CSC)",
+        "donation to Tom Cook — $6,000 (CSC)",
+        "donation to Tamara Paltin — $1,000 (CSC)",
+        "donation to Nohelani Uʻu-Hodgins — $4,000 (CSC)",
+        "registered lobbyists for General Contractors Association of Hawaii: Alivado, Shannon L., Bukoski, Kika G., Kido, C. Mike, Takenaka, Kenneth K., Yadao, Michael R. (HSEC)",
+        "donation to Tom Cook — $2,500 (CSC)",
+        "donation to Nohelani Uʻu-Hodgins — $2,500 (CSC)",
+        "name also appears among County contract winners (HANDS)",
+        "registered lobbyists for Apple Inc.: Cup Choy, Daniel, Drescher, John, Hughes, Scott, Pavlicek, Melissa T., Sinclair, Renee R. (HSEC)",
+        "donation to Yuki Lei Sugimura — $1,600 (CSC)"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    },
+    {
+      "id": "hi-maui-04",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "A member who recorded zero recusals across every vote — did any of those votes touch a donor, a contract, or a personal interest that the public's own rules say warrants stepping back?",
+      "public_record": [
+        "Cook: 0 recusals / 70 votes / 16 meetings (officials.json, parsed from the County minutes)",
+        "operator alleges Ethics/Gov-Relations committee action secured the non-recusals — verify in the Government Relations, Ethics & Transparency Committee minutes/votes"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    },
+    {
+      "id": "hi-maui-05",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "When a commercial entity's rebuild permit issues ahead of homeowners still in review, does the rebuild line answer the greatest need — or the greatest reach?",
+      "public_record": [
+        "first ISSUED fire-recovery permit: Lahaina Gateway Commercial, LLC (2026-05-12); homeowners (Panlasigui, Aguinaldo, King Trust) In Review (EnerGov public record)",
+        "pull permit-detail contractor/architect names; cross to CSC donors + HANDS + FEMA disaster-housing contracts"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    },
+    {
+      "id": "hi-maui-06",
+      "tenant": "hi-maui",
+      "tenant_name": "Maui County",
+      "question": "Where a member has a close-family tie to an organized-labor interest, do the votes touching that interest carry a disclosure — and if not, why not?",
+      "public_record": [
+        "Uʻu-Hodgins: 0 recusals / 67 votes (officials.json)",
+        "operator: father was a union rep — name + union TO BE IDENTIFIED from public record before relying on it"
+      ],
+      "records_requested": "",
+      "source_page": "oversight_hi-maui.html",
+      "frame": "question for oversight, not an accusation or finding"
+    }
+  ]
+}
