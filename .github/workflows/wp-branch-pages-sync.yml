@@ -1,0 +1,167 @@
+name: Sync WordPress branch working-space pages
+
+# Pushes the generated content/wordpress/branch_pages/<tenant>/*.html bundle onto the live
+# WordPress pages (Council/Counsel/Executive/Judicial working-space pages), matching the existing
+# Hawaii County pattern. Looks up each target page BY TITLE (case-insensitive) via the WP REST
+# API. If a matching page is found, updates its content. If no match is found, it is reported but
+# NOT created automatically on a dry run -- creation only happens with dry_run=false AND
+# create_missing=true, so a typo'd title can never silently spawn a stray new page.
+#
+# Safety model (matches deploy-v2-king-server.yml convention):
+#   - dry_run defaults to true: only searches + reports what WOULD change, writes nothing.
+#   - Never touches page access/Groups taxonomy -- that stays a manual WP-admin step so the
+#     owner keeps deliberate control over who can see each private working space.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tenant:
+        description: "Tenant id (must exist under content/wordpress/branch_pages/)"
+        required: true
+        default: maui
+        type: string
+      branch:
+        description: "Branch to sync, or 'all' for all 4"
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - council
+          - counsel
+          - executive
+          - judicial
+      dry_run:
+        description: "Dry run (search + report only, no writes)"
+        required: true
+        default: true
+        type: boolean
+      create_missing:
+        description: "If a page title has no match, create it (only used when dry_run=false)"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      WP_URL: ${{ secrets.WP_URL }}
+      WP_USER: ${{ secrets.WP_USER }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      TENANT: ${{ inputs.tenant }}
+      BRANCH_INPUT: ${{ inputs.branch }}
+      DRY_RUN: ${{ inputs.dry_run }}
+      CREATE_MISSING: ${{ inputs.create_missing }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify bundle exists
+        run: |
+          if [ ! -d "content/wordpress/branch_pages/${TENANT}" ]; then
+            echo "No generated bundle for tenant '${TENANT}'. Run:"
+            echo "  python watchers/wp_branch_pages.py --tenant ${TENANT} --all"
+            exit 1
+          fi
+          cat "content/wordpress/branch_pages/${TENANT}/manifest.json"
+
+      - name: Sync pages to WordPress
+        if: ${{ env.WP_URL != '' && env.WP_USER != '' && env.WP_APP_PASSWORD != '' }}
+        run: |
+          python3 - <<'PYEOF'
+          import base64, json, os, sys, urllib.request, urllib.error, urllib.parse
+
+          wp_url = os.environ["WP_URL"].rstrip("/")
+          user = os.environ["WP_USER"]
+          app_pw = os.environ["WP_APP_PASSWORD"]
+          tenant = os.environ["TENANT"]
+          branch_input = os.environ["BRANCH_INPUT"]
+          dry_run = os.environ["DRY_RUN"].lower() == "true"
+          create_missing = os.environ["CREATE_MISSING"].lower() == "true"
+
+          auth = base64.b64encode(f"{user}:{app_pw}".encode()).decode()
+          headers = {"Authorization": f"Basic {auth}", "Content-Type": "application/json"}
+
+          bundle_dir = os.path.join("content", "wordpress", "branch_pages", tenant)
+          with open(os.path.join(bundle_dir, "manifest.json"), encoding="utf-8") as f:
+              manifest = json.load(f)
+
+          pages = manifest["pages"]
+          if branch_input != "all":
+              pages = [p for p in pages if p["branch"] == branch_input]
+              if not pages:
+                  print(f"No page for branch '{branch_input}' in manifest -- nothing to do.")
+                  sys.exit(0)
+
+          def api_get(path, params):
+              qs = urllib.parse.urlencode(params)
+              req = urllib.request.Request(f"{wp_url}/wp-json/wp/v2/{path}?{qs}", headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          def api_write(path, method, payload):
+              data = json.dumps(payload).encode()
+              req = urllib.request.Request(f"{wp_url}/wp-json/wp/v2/{path}", data=data,
+                                            headers=headers, method=method)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          any_error = False
+          for page in pages:
+              title = page["title"]
+              frag_path = os.path.join(bundle_dir, page["output"])
+              with open(frag_path, encoding="utf-8") as f:
+                  content = f.read()
+
+              try:
+                  matches = api_get("pages", {"search": title, "per_page": 100, "status": "any"})
+              except urllib.error.HTTPError as e:
+                  print(f"[ERROR] search failed for '{title}': HTTP {e.code} {e.read()[:300]}")
+                  any_error = True
+                  continue
+
+              exact = [m for m in matches if m.get("title", {}).get("rendered", "").strip() == title]
+
+              if exact:
+                  page_id = exact[0]["id"]
+                  print(f"[FOUND] '{title}' -> page id {page_id}")
+                  if dry_run:
+                      print(f"  (dry run) would PATCH content ({len(content)} chars)")
+                      continue
+                  try:
+                      api_write(f"pages/{page_id}", "POST", {"content": content})
+                      print(f"  updated page id {page_id}")
+                  except urllib.error.HTTPError as e:
+                      print(f"[ERROR] update failed for page {page_id}: HTTP {e.code} {e.read()[:300]}")
+                      any_error = True
+              else:
+                  print(f"[NOT FOUND] '{title}'")
+                  if dry_run:
+                      print("  (dry run) would report as missing -- not creating")
+                      continue
+                  if not create_missing:
+                      print("  create_missing=false -- skipping (set create_missing=true to create it)")
+                      continue
+                  try:
+                      created = api_write("pages", "POST", {
+                          "title": title, "content": content, "status": "draft",
+                      })
+                      print(f"  created NEW page id {created['id']} as DRAFT -- "
+                            f"review, assign the correct Group, and publish manually in WP admin")
+                  except urllib.error.HTTPError as e:
+                      print(f"[ERROR] create failed for '{title}': HTTP {e.code} {e.read()[:300]}")
+                      any_error = True
+
+          if any_error:
+              sys.exit(1)
+          PYEOF
+
+      - name: No WordPress credentials configured
+        if: ${{ env.WP_URL == '' || env.WP_USER == '' || env.WP_APP_PASSWORD == '' }}
+        run: |
+          echo "WP_URL / WP_USER / WP_APP_PASSWORD secrets are not all set -- nothing to sync."
+          exit 1

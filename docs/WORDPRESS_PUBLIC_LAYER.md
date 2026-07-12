@@ -234,6 +234,28 @@ Center is the *editorial decision* surface.  Nothing reaches any platform withou
 3. An explicit `tools/publish_approved_social.py` call per
    `docs/SOCIAL_CONNECTORS.md` — fail-closed, no tombstone = no post.
 
+## Branch Working-Space Pages (private, per tenant per department)
+
+Mirrors the existing Hawaii County pattern: 4 private WordPress pages per tenant (Council /
+Counsel / Executive / Judicial), each restricted via WordPress's `Groups` taxonomy to the matching
+department. Content is generated from real, already-sourced civic reports -- no fabrication, and
+every link is checked against disk before being included so a renamed/missing report can never
+produce a dead link.
+
+- Generator: `watchers/wp_branch_pages.py --tenant <id> --all`
+- Blueprint output (repo source of record): `content/wordpress/branch_pages/<tenant>/`
+- Sync to live WordPress: `.github/workflows/wp-branch-pages-sync.yml` (`workflow_dispatch`)
+  - `dry_run` defaults to **true** -- searches WordPress by exact page title and reports what
+    would change; writes nothing.
+  - Set `dry_run=false` to push updates to existing pages found by title match.
+  - Set `dry_run=false` + `create_missing=true` to create a page that has no title match --
+    always created as a **draft**, never auto-published, and never auto-tagged with a Group (the
+    owner assigns the correct Group manually in WP admin, same as every other access-restricted
+    page on the site).
+
+**Boundary preserved:** this workflow only ever touches pages, never Group/taxonomy access
+assignments -- who can see a working space stays a deliberate, manual WordPress-admin decision.
+
 ## Monitoring
 
 Monitor the publishing workflow via:
