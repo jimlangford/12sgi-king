@@ -130,6 +130,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/debug:
+    get:
+      summary: Non-sensitive OAuth configuration status for debugging
+      responses:
+        '200':
+          description: OAuth debug info (no secrets exposed)
   /api/v2/auth/github:
     get:
       summary: Start GitHub OAuth owner sign-in

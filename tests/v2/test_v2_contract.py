@@ -34,6 +34,7 @@ class TestV2ContractFiles(unittest.TestCase):
             '/api/v2/auth/session',
             '/api/v2/auth/introspect',
             '/api/v2/auth/renew',
+            '/api/v2/auth/debug',
             '/api/v2/auth/github',
             '/api/v2/auth/github/callback',
             '/api/v2/auth/google',
