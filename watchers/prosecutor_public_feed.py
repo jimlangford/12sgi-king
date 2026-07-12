@@ -107,8 +107,11 @@ def approval_gate(cfg):
     return approval
 
 
-def dag_nodes(item_count, held_count):
+def dag_nodes(item_count, held_count, publish_verification=None):
     """Dependency graph for the public-feed lane, matching services.v2_workboard."""
+    publish_verification = publish_verification or {}
+    publish_status = publish_verification.get("status") or "waiting"
+    publish_outputs = publish_verification.get("outputs") or ["12stones.com/12sgi.com public artifact verification"]
     return [
         {
             "name": "Public oversight source pages",
@@ -151,11 +154,11 @@ def dag_nodes(item_count, held_count):
         },
         {
             "name": "Publish build verification",
-            "status": "waiting",
+            "status": publish_status,
             "engine": "none",
-            "inputs_resolved": False,
+            "inputs_resolved": publish_status == "done",
             "depends_on": ["Emit public artifacts"],
-            "outputs": ["12stones.com/12sgi.com public artifact verification"],
+            "outputs": publish_outputs,
         },
     ]
 
@@ -214,7 +217,7 @@ def build():
         },
         "count": len(findings),
         "held_private_count": held_total,
-        "dag_nodes": dag_nodes(len(findings), held_total),
+        "dag_nodes": dag_nodes(len(findings), held_total, cfg.get("publish_verification")),
         "findings": findings,
     }
     leak_gate(feed, "feed")

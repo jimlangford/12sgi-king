@@ -1,7 +1,7 @@
 {
   "feed_id": "prosecutor-public-factual-feed",
   "title": "Public Factual Feed",
-  "generated_at_hst": "2026-07-11 16:33 HST",
+  "generated_at_hst": "2026-07-11 16:40 HST",
   "approval": {
     "legal_owner_gate": "approved",
     "approved_by": "James verbal",
@@ -81,14 +81,16 @@
     },
     {
       "name": "Publish build verification",
-      "status": "waiting",
+      "status": "done",
       "engine": "none",
-      "inputs_resolved": false,
+      "inputs_resolved": true,
       "depends_on": [
         "Emit public artifacts"
       ],
       "outputs": [
-        "12stones.com/12sgi.com public artifact verification"
+        "https://12sgi.com/buildinfo.json matched the pushed release during verification",
+        "https://12sgi.com/prosecutor_public_feed.html HTTP 200",
+        "https://12sgi.com/data/prosecutor_public_feed.json count=6 held_private_count=24"
       ]
     }
   ],

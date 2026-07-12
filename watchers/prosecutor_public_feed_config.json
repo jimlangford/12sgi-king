@@ -8,6 +8,14 @@
     "source_workboard_item": "wb1782951339013",
     "scope": "Publish only the curated public-safe subset already cleared onto public oversight pages."
   },
+  "publish_verification": {
+    "status": "done",
+    "outputs": [
+      "https://12sgi.com/buildinfo.json matched the pushed release during verification",
+      "https://12sgi.com/prosecutor_public_feed.html HTTP 200",
+      "https://12sgi.com/data/prosecutor_public_feed.json count=6 held_private_count=24"
+    ]
+  },
   "source_pages": [
     {
       "tenant": "hi-maui",
