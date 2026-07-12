@@ -36,14 +36,14 @@ jobs:
           TITLE="Release: $(date -u +%Y-%m-%d)"
           # Build body via Python to avoid JSON injection from commit messages
           BODY=$(python3 - <<'PYEOF'
-import subprocess, json
-log = subprocess.check_output(
-    ["git", "log", "-n", "10", "--pretty=format:%h %s (%an)"],
-    text=True,
-)
-print("Changelog:\n\n" + log)
-PYEOF
-)
+          import subprocess, json
+          log = subprocess.check_output(
+              ["git", "log", "-n", "10", "--pretty=format:%h %s (%an)"],
+              text=True,
+          )
+          print("Changelog:\n\n" + log)
+          PYEOF
+          )
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "body<<EOF" >> $GITHUB_OUTPUT
           echo "$BODY" >> $GITHUB_OUTPUT
@@ -58,13 +58,13 @@ PYEOF
           echo "Posting to WordPress at $WP_URL (status: $POST_STATUS)"
           AUTH=$(printf "%s:%s" "$WP_USER" "$WP_APP_PASSWORD" | base64)
           PAYLOAD=$(python3 -c "
-import json, os
-print(json.dumps({
-    'title': os.environ['TITLE'],
-    'content': os.environ['BODY'],
-    'status': os.environ['POST_STATUS'],
-}))
-")
+          import json, os
+          print(json.dumps({
+              'title': os.environ['TITLE'],
+              'content': os.environ['BODY'],
+              'status': os.environ['POST_STATUS'],
+          }))
+          ")
           RESPONSE=$(curl -s -w '\n%{http_code}' -X POST "$WP_URL/wp-json/wp/v2/posts" \
             -H "Authorization: Basic $AUTH" \
             -H "Content-Type: application/json" \
@@ -85,13 +85,13 @@ print(json.dumps({
         run: |
           echo "Posting via Jetpack to WordPress.com (token-based, status: $POST_STATUS)"
           PAYLOAD=$(python3 -c "
-import json, os
-print(json.dumps({
-    'title': os.environ['TITLE'],
-    'content': os.environ['BODY'],
-    'status': os.environ['POST_STATUS'],
-}))
-")
+          import json, os
+          print(json.dumps({
+              'title': os.environ['TITLE'],
+              'content': os.environ['BODY'],
+              'status': os.environ['POST_STATUS'],
+          }))
+          ")
           RESPONSE=$(curl -s -w '\n%{http_code}' -X POST \
             "https://public-api.wordpress.com/rest/v1.1/sites/${JETPACK_SITE_ID}/posts/new" \
             -H "Authorization: Bearer $JETPACK_TOKEN" \
