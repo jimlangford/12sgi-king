@@ -909,6 +909,31 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     return RedirectResponse(url=redirect_url)
 
 
+# ── OAuth configuration debug ─────────────────────────────────────────────────
+
+@app.get(f"{API_PREFIX}/auth/debug")
+def oauth_debug():
+    """Return non-sensitive OAuth configuration status for debugging.
+
+    No authentication is required because this endpoint is intentionally useful
+    when sign-in is broken and no valid token exists yet.  It never exposes
+    client secrets, signing keys, or the actual allowlist values.
+    """
+    return {
+        "github": {
+            "configured": bool(GITHUB_CLIENT_ID),
+            "callback_uri": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/github/callback",
+        },
+        "google": {
+            "configured": bool(GOOGLE_CLIENT_ID),
+            "callback_uri": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google/callback",
+        },
+        "redirect_base": OAUTH_REDIRECT_BASE,
+        "owner_github_login_count": len(OWNER_GITHUB_LOGINS),
+        "owner_google_email_count": len(OWNER_GOOGLE_EMAILS),
+    }
+
+
 # ── Silent token renewal ──────────────────────────────────────────────────────
 
 class RenewRequest(BaseModel):
