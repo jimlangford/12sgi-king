@@ -5,6 +5,22 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (even later still) — king-server surface_health --heal run: missing publish_watch.py launcher target; local mirror is behind
+
+**Thread:** "continue" (release-readiness follow-through)  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy ran `python watchers/surface_health.py --heal` on king-server (from the local mirror at `Documents\Claude\12sgi-king`) and pasted the output: 22 items, 2 DOWN. Notably absent: the new `SERVICES` (runner) and V2 Docker-stack checks added in PR #360 -- confirms that local mirror has not yet pulled the commits merged this session (bf78873 / 1514666) and is running an older `surface_health.py`.
+
+**FINDING (real, needs owner attention -- cannot be fixed from this cloud session):** `[DOWN] launcher: publish_watch publish_watch.py` -- the Startup launcher entry checks for `%LOCALAPPDATA%\12sgi-publish\publish_watch.py` and that file does not exist on disk, even though a live `publish_watch` process was found running right now (`[OK] publish watcher publish_watch`). This means: it's fine *right now*, but will fail to relaunch on the next reboot ("couldn't find a script" per the script's own warning text). This file is **not tracked in the git repo at all** (confirmed via repo-wide search) -- it's a local-only, owner-machine script living outside source control, so this cloud session has no way to see its contents, know its last-known-good state, or restore it.
+
+**PRESERVED:** did not attempt to recreate, guess at, or stub out `publish_watch.py`'s contents -- inventing a replacement for a private local automation script the owner didn't ask me to touch would risk silently changing real publish behavior. Asked the owner directly first (per Lane Discipline); they were unavailable, so recording this here instead of guessing.
+
+**NEXT (owner action, both items local-only):**
+1. Pull latest on the `Documents\Claude\12sgi-king` mirror (`git pull`) so future `surface_health.py --heal` runs there include the runner/V2-stack checks from PR #360, and re-run `--heal` to confirm those two new surfaces report correctly on the real king-server host.
+2. Restore or re-point `publish_watch.py` at `%LOCALAPPDATA%\12sgi-publish\publish_watch.py` (from a backup, or wherever the currently-running process's actual script path is) before the next reboot, or the publish watcher won't come back up on its own.
+
+---
+
 ## 2026-07-11 (latest) — hardened surface_health.py to also watch/heal the king-server runner + V2 stack
 
 **Thread:** "they should be serving at all times and hardened i approve your fixes and forward momentum"  **From:** Copilot CLI  **To:** Jimmy
