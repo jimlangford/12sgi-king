@@ -237,21 +237,23 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     # model answer -- a caller reading "summary" has no way to tell a real GPU-router response from
     # a hardcoded placeholder string unless the response says so explicitly). grounded=False means
     # no inference actually ran; the summary is a template, not analysis, and must be flagged as
-    # such rather than worded to sound like the assistant "reviewed" anything.
+    # such rather than worded to sound like the assistant "reviewed" anything. We still answer with
+    # 200 (the request itself succeeded) and persist the event so /health's grounded_ratio stays
+    # accurate -- a 503 here would drop the event entirely and hide degraded-mode activity.
     grounded = bool(gpu_response)
-    if not grounded:
-        # Return an explicit degraded-state response rather than a 200 with placeholder text.
-        # Callers must handle 503 and retry or show a service-unavailable message to the user.
-        raise HTTPException(
-            status_code=503,
-            detail={
-                "status": "degraded",
-                "error_code": "AI_BACKEND_UNAVAILABLE",
-                "retryable": True,
-                "message": "GPU inference is currently unavailable. Retry when the router is ready.",
-            },
+    if grounded:
+        summary = gpu_response
+        actions: list[dict] = []
+    else:
+        summary = (
+            "UNGROUNDED: GPU inference was unavailable, so this is a placeholder response, not "
+            "real model analysis. This case has been flagged for human review."
         )
-    summary = gpu_response
+        actions = [
+            {"type": "flag_for_human_review", "case_id": payload.case_id},
+            {"type": "retry_ai_assist", "case_id": payload.case_id},
+            {"type": "notify_case_owner", "case_id": payload.case_id},
+        ]
 
     event = {
         "id": str(uuid4()),
@@ -293,6 +295,6 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
     return {
         "case_id": payload.case_id,
         "summary": summary,
-        "grounded": True,
-        "actions": [],
+        "grounded": grounded,
+        "actions": actions,
     }
