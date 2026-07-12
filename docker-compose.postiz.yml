@@ -1,0 +1,122 @@
+version: "3.8"
+# docker-compose.postiz.yml — self-hosted Postiz (free, open-source), OUR OWN 12SGI channels.
+#
+# WHY THIS FILE EXISTS: 2026-07-11, owner request ("use my own local system, no paid tokens
+# unless the automation is genuinely free"). Confirmed X/Twitter's write API has NO free tier
+# as of 2026 (pay-per-call) — X is deliberately excluded here and stays in the manual queue
+# (config/x_manual_queue.json), same pattern as the existing TikTok manual lane. Facebook,
+# Instagram, and LinkedIn posting APIs remain free (app review required, no per-call fee), so
+# those are wired through this local Postiz instance.
+#
+# WHY PINNED TO v2.11.2 (not :latest): current Postiz (v2.12+) requires a Temporal +
+# Elasticsearch stack alongside Postgres/Redis. This host had ~4.5GB free inside Docker's
+# 5.79GB memory limit at time of writing, already running lotus-neo4j + the govOS v2 service
+# stack (docker-compose.v2.yml) — adding Temporal+ES risked starving those. v2.11.2 is the
+# last pre-Temporal release (Postgres + Redis only), documented at
+# https://docs.postiz.com/installation/migration. Revisit if this host gets more headroom
+# and you want Postiz's newer scheduling features.
+#
+# SCOPE: this is DISTINCT from watchers/connect_post.py, which relays posts to a CLIENT's own
+# connected channels (per-client OAuth held in their own Postiz/BRIDGE instance). This compose
+# + watchers/own_channel_post.py is for 12SGI's OWN Facebook/Instagram/LinkedIn accounts only.
+#
+# Bound to 127.0.0.1 only — not reachable off this machine except via Tailscale to this host,
+# same trust boundary as the rest of local automation (see CANON.md).
+#
+# First-run setup (owner-only, requires your own login/consent — cannot be done by an agent):
+#   1. docker compose -f docker-compose.postiz.yml up -d
+#   2. Open http://localhost:4008  → create the first (owner) account (DISABLE_REGISTRATION
+#      flips to true after that automatically is NOT default; see postiz.env) 
+#   3. In Settings → add your own free developer app credentials for Facebook/Instagram
+#      (Meta for Developers) and LinkedIn (LinkedIn Developer Portal) — see
+#      docs/SOCIAL_CONNECTORS.md "Own-Channel Posting (Postiz)" section for links.
+#   4. Connect your 12SGI Facebook Page / Instagram Business / LinkedIn Company Page from the
+#      Postiz UI (OAuth consent, one-time).
+#   5. Copy each connected channel's integration id into config/own_channels.json (see
+#      config/own_channels.json.example).
+#   6. Generate a Postiz API key (Settings → API) and set it as the POSTIZ_OWN_API_KEY
+#      environment variable before running tools/publish_approved_social.py.
+#
+# Usage:
+#   docker compose -f docker-compose.postiz.yml up -d
+#   docker compose -f docker-compose.postiz.yml logs -f postiz-own
+#   docker compose -f docker-compose.postiz.yml down            # stop (data kept in volumes)
+
+services:
+  postiz-own:
+    image: ghcr.io/gitroomhq/postiz-app:v2.11.2
+    container_name: postiz-own
+    restart: unless-stopped
+    environment:
+      MAIN_URL: "http://localhost:4008"
+      FRONTEND_URL: "http://localhost:4008"
+      NEXT_PUBLIC_BACKEND_URL: "http://localhost:4008/api"
+      JWT_SECRET: ${POSTIZ_OWN_JWT_SECRET:-dev-only-jwt-secret-change-me-12sgi}
+      DATABASE_URL: "postgresql://postiz-own-user:postiz-own-password@postiz-own-postgres:5432/postiz-own-db"
+      REDIS_URL: "redis://postiz-own-redis:6379"
+      BACKEND_INTERNAL_URL: "http://localhost:3000"
+      IS_GENERAL: "true"
+      DISABLE_REGISTRATION: "false"
+      STORAGE_PROVIDER: "local"
+      UPLOAD_DIRECTORY: "/uploads"
+      NEXT_PUBLIC_UPLOAD_DIRECTORY: "/uploads"
+      # Filled in by the owner after creating free developer apps (see step 3 above).
+      # Left blank on purpose — never commit real values here; use postiz.env.local (gitignored)
+      # or export as host env vars before `docker compose up`.
+      FACEBOOK_APP_ID: ${FACEBOOK_APP_ID:-}
+      FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET:-}
+      LINKEDIN_CLIENT_ID: ${LINKEDIN_CLIENT_ID:-}
+      LINKEDIN_CLIENT_SECRET: ${LINKEDIN_CLIENT_SECRET:-}
+      API_LIMIT: "30"
+    volumes:
+      - postiz-own-config:/config/
+      - postiz-own-uploads:/uploads/
+    ports:
+      - "127.0.0.1:4008:5000"
+    networks: [postiz-own-network]
+    depends_on:
+      postiz-own-postgres:
+        condition: service_healthy
+      postiz-own-redis:
+        condition: service_healthy
+
+  postiz-own-postgres:
+    image: postgres:16-alpine
+    container_name: postiz-own-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postiz-own-user
+      POSTGRES_PASSWORD: postiz-own-password
+      POSTGRES_DB: postiz-own-db
+    volumes:
+      - postiz-own-postgres-data:/var/lib/postgresql/data
+    networks: [postiz-own-network]
+    ports:
+      - "127.0.0.1:55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postiz-own-user -d postiz-own-db"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  postiz-own-redis:
+    image: redis:7.2-alpine
+    container_name: postiz-own-redis
+    restart: unless-stopped
+    volumes:
+      - postiz-own-redis-data:/data
+    networks: [postiz-own-network]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postiz-own-postgres-data:
+  postiz-own-redis-data:
+  postiz-own-config:
+  postiz-own-uploads:
+
+networks:
+  postiz-own-network:

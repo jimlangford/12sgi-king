@@ -42,6 +42,42 @@ Sovereign boundary: authorization claims here are technical access metadata only
 | V2 services -> Auth introspection | `/home/runner/work/12sgi-king/12sgi-king/services/{tenant,documents,storage,ai,gpu_router}/app/main.py` | service platform | local + king-server-private | Auth `POST /api/v2/auth/introspect` | Service trust boundary | `auth:introspect` service trust | introspection claim normalization before access | `AUTH_ISSUER` / `AUTH_AUDIENCE` | service-token validation + wrong issuer/audience tests | verified (test) | rollback service caller code only; do not loosen auth policy | `tests/v2/test_v2_hardening.py` + `tests/v2/test_v2_integration_stack.py` |
 | V2 test fixtures | `/home/runner/work/12sgi-king/12sgi-king/tests/v2/test_v2_integration_stack.py` | engineering | CI/local | auth/tenant/documents/storage/ai/gpu test calls | Owner/Municipality/Resident/Service | explicit per test | explicit mismatch and cross-tenant denial tests | `AUTH_ISSUER` / `AUTH_AUDIENCE` | full V2 suite execution | verified (test) | rollback test change only | CI logs + local unittest logs |
 
+## LIVE-OWNER OAUTH LAUNCH NOTES
+
+Applies to tracker row `Naga owner console OAuth`.
+
+Launch prerequisites:
+
+- GitHub and/or Google OAuth must be configured on the auth service before the live window; provider callbacks must land on `AUTH_PUBLIC_URL + /api/v2/auth/{provider}/callback`.
+- `OAUTH_REDIRECT_BASE` must return to the owner console root, where the auth service appends `#token=...` and the console immediately strips that fragment from the URL after storing `king.ownerToken`.
+- GitHub owner access is allowlisted by `OWNER_GITHUB_LOGINS`; Google owner access is allowlisted by `OWNER_GOOGLE_EMAILS`.
+- Google live verification should confirm the returned identity is still `email_verified=true` and that the token audience matches `GOOGLE_CLIENT_ID`.
+
+Live-owner verification sequence:
+
+1. Open the owner console in a fresh browser session and start sign-in from the lock affordance for GitHub or Google.
+2. Confirm the browser is redirected to the provider, then back to the owner console entrypoint with owner surfaces unlocked.
+3. Confirm the URL fragment is scrubbed after load, `king.ownerToken` is stored locally, and the stored token is not already expired.
+4. If verification diagnostics are temporarily enabled, call `POST /api/v2/auth/diagnostics/claims` with an `X-Request-ID` and confirm `role=Owner`, expected issuer/audience, owner scopes (including `ops:owner`), and empty or omitted tenant claim.
+5. Exercise at least one read-only owner surface after launch (for example GPU queue/events/usage) and confirm success plus `owner_override` audit events only on the explicit all-tenant paths.
+6. Run a negative probe with a non-allowlisted GitHub login or Google e-mail and confirm the sign-in is rejected and no owner session is retained.
+
+Evidence discipline:
+
+- Capture request IDs, `auth_audit` evidence, and owner-console screenshots only after the token fragment has been removed from the address bar.
+- Never record raw bearer tokens, OAuth codes, or provider secrets in logs, screenshots, or evidence bundles.
+- If the launch path fails, roll back the console/application change or provider configuration only; keep strict claim enforcement in place.
+
+Suggested evidence template:
+
+| Step | Provider | `X-Request-ID` | Expected evidence | Capture location | Completion |
+|---|---|---|---|---|---|
+| OAuth start from owner console | GitHub / Google | `oauth-start-*` | provider redirect began from lock affordance | owner-console screenshot + browser history note | pending |
+| OAuth return to owner console | GitHub / Google | `oauth-return-*` | owner surfaces unlocked and token fragment removed from URL bar | owner-console screenshot | pending |
+| Diagnostic claims probe | GitHub / Google | `oauth-diagnostic-*` | `diagnostic_claim_snapshot` with Owner role, expected issuer/audience, owner scopes | `auth_audit` export + response record | pending |
+| Owner surface read check | GitHub / Google | `oauth-owner-read-*` | successful GPU/owner read path and expected `owner_override` event only where allowed | service log + `auth_audit` export | pending |
+| Negative allowlist probe | GitHub / Google | `oauth-negative-*` | rejected sign-in with no retained owner session | error screenshot + auth evidence | pending |
+
 ## DIAGNOSTIC DESIGN
 
 Endpoint: `POST /api/v2/auth/diagnostics/claims`

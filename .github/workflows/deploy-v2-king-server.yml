@@ -81,9 +81,20 @@ jobs:
       - name: Set deployment provenance environment
         shell: pwsh
         run: |
+          # Read canonical platform version from root VERSION file
+          $platformVersion = (Get-Content VERSION -Raw -ErrorAction SilentlyContinue).Trim()
+          if (-not $platformVersion) { $platformVersion = "unknown" }
+          $buildTime = (Get-Date -Format o -AsUTC)
+          "PLATFORM_VERSION=$platformVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_COMMIT=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIME=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          # Also set the legacy names used by service_metadata.py for backward compat
           "COMMIT_SHA=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "BUILD_TIMESTAMP=$(Get-Date -Format o -AsUTC)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_TIMESTAMP=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "ENVIRONMENT=king-server-private" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Platform version: $platformVersion"
+          Write-Host "Build commit:     ${{ github.sha }}"
+          Write-Host "Build time:       $buildTime"
 
       # ── 2. Validate V2 files ───────────────────────────────────────────────────
       - name: Validate V2 service files are present
@@ -160,8 +171,9 @@ jobs:
 
           # Files that belong to the private /go and /board owner surfaces
           $files = @{
-            "go.html"                          = "go.html"
-            "king_public_src\ops_board.html"   = "board.html"
+            "go.html"                                  = "go.html"
+            "king_public_src\ops_board.html"           = "board.html"
+            "king_public_src\social_drafts_board.html" = "social.html"
           }
 
           foreach ($src in $files.Keys) {
@@ -262,6 +274,13 @@ jobs:
             }
           }
 
+          # When services were just restarted (RESTART_SERVICES=true) we expect them to be up,
+          # so unreachable is a hard-failure (high). When running a dry run or a default
+          # dispatch (RESTART_SERVICES=false) the stack may legitimately be stopped — downgrade
+          # unreachable to low so the step reports without blocking.
+          $expectRunning = $env:RESTART_SERVICES -eq "true" -and $env:DRY_RUN -ne "true"
+          $unreachableSeverity = if ($expectRunning) { "high" } else { "low" }
+
           $checks = @(
             @{ name="auth";       port=$env:V2_AUTH_PORT;      path="/api/v2/ready"; expected_status=200 },
             @{ name="tenant";     port=$env:V2_TENANT_PORT;    path="/api/v2/ready"; expected_status=200 },
@@ -279,7 +298,7 @@ jobs:
               $r = Invoke-WebRequest -Uri $url -TimeoutSec 5 -SkipHttpErrorCheck -ErrorAction Stop
             } catch {
               $results[$svc.name] = "unreachable"
-              Add-Finding $svc.name "high" "service_unreachable" "Readiness endpoint unreachable at $url"
+              Add-Finding $svc.name $unreachableSeverity "service_unreachable" "Readiness endpoint unreachable at $url"
               Write-Warning "  ✗ $($svc.name) → $url  [unreachable]"
               continue
             }
@@ -371,7 +390,7 @@ jobs:
           "VALIDATION_FINDINGS=$findingsJson" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
           if ($severityRank[$maxSeverity] -ge $severityRank["high"]) {
-            Write-Error "V2 provenance/readiness validation failed with max severity '$maxSeverity'"
+            Write-Error "V2 provenance/readiness validation failed with max severity '$maxSeverity' (restart_services=$env:RESTART_SERVICES)"
             exit 1
           }
 
@@ -393,6 +412,9 @@ jobs:
             run_number    = "${{ github.run_number }}"
             sha           = "${{ github.sha }}"
             expected_sha  = $env:COMMIT_SHA
+            platform_version = $env:PLATFORM_VERSION
+            build_commit  = $env:BUILD_COMMIT
+            build_time    = $env:BUILD_TIME
             build_timestamp = $env:BUILD_TIMESTAMP
             environment   = $env:ENVIRONMENT
             ref           = "${{ github.ref }}"

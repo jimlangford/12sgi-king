@@ -73,6 +73,37 @@ Before upgrading any connector or platform plan, confirm:
 - rate limits and daily posting caps
 - revocation path if a connector misbehaves
 
+## Own-Channel Posting (Postiz, 2026-07-11)
+
+For 12SGI's OWN Facebook/Instagram/LinkedIn accounts (distinct from `connect_post.py`, which
+relays to a CLIENT's channels), the connector stack is:
+
+- `docker-compose.postiz.yml` — self-hosted Postiz (free, open-source), pinned to `v2.11.2`
+  (pre-Temporal, Postgres+Redis only) to fit this host's available Docker memory. Bound to
+  `127.0.0.1:4008` only.
+- `watchers/own_channel_post.py` — posts to a channel via that local Postiz instance, reading
+  `config/own_channels.json` (copy from `config/own_channels.json.example`). Stages (does not
+  post) unless a channel is `enabled: true` with a real `integration_id`.
+- `tools/publish_approved_social.py` — the PUBLISH step. Refuses to call any connector unless
+  the given `--job-id` has an `approved` tombstone in the dispatch log
+  (`python -m services.v2_workboard --approve <job_id> --approver <name>`). Fail-closed by
+  design: no tombstone, no post, ever.
+
+**X (Twitter) is deliberately excluded from auto-posting.** X's write API has no free tier as
+of 2026 (pay-per-call, no free posting allowance) — owner decision 2026-07-11 was to keep X in
+a manual queue (`config/x_manual_queue.json`), the same pattern already used for TikTok
+(`tiktok_queue.json` in the Video System elementLOTUS project). `youtube` drafts from
+`social_drafts` batches (title/description/thumbnail-concept only, no rendered video) route to
+`config/youtube_manual_queue.json` for the same reason — no asset exists yet to post. Real
+YouTube video posting already works separately via `watchers/agenda_autopost.py` for rendered
+agenda reels (OAuth, free within Google API quota).
+
+**Owner-only first-run steps** (require your own login/consent — cannot be done by an agent):
+open `http://localhost:4008`, create the admin account, add free developer-app credentials for
+Meta (Facebook/Instagram) and LinkedIn, connect your 12SGI Page/Company Page, then copy each
+channel's integration id + a Postiz API key into `config/own_channels.json` /
+`POSTIZ_OWN_API_KEY`.
+
 ## Manifest Shape
 
 Use a structured queue item for every social post:

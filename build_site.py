@@ -98,6 +98,9 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                "agendas_zurich.html", "agendas_frankfurt.html", "agendas_paris.html", "agendas_dubai.html",
                # minutes watch — the people's record per tenant (dignified, sourced; private evidence stays in _status)
                "meetings_calendar.html", "meetings_maui.html", "meetings_honolulu.html", "meetings_hawaii.html", "meetings_kauai.html", "meetings_nyc.html", "bfed_agenda_today.html", "bfed_eligibility_today.html", "minutes_hi-maui.html", "minutes_hi-hawaii.html",
+               # news vs record — pairs each news story with the underlying primary source (civic_daily_briefing's
+               # sibling watcher); linked from the education front door but was never wired into the build before.
+               "news_record.html",
                "minutes_hi-kauai.html", "minutes_hi-honolulu.html", "minutes_ny.html",
                # N53 integrity engine — past minutes / supplemental materials / roll-call corpus
                "n53_engine.html", "archive.html", "testimony_money.html", "testimony_record.html",
@@ -208,6 +211,8 @@ NAV_LABEL = {
     "officials_scorecard.html": "Officials Scorecard",
     "lege_legislator_scorecard.html": "Legislator Scorecard",
     "civic_daily.html": "Today's Civic Agenda",
+    "news_record.html": "News vs Record",
+    "education.html": "Civic Education",
     "accountability_record.html": "Accountability Record",
     "sole_source_watch.html": "Sole-Source Watch",
     "commission_antitrust.html": "Antitrust Thread",
@@ -1230,6 +1235,10 @@ def main():
                 with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_kgo)
             print("  + go.html: live/mirror failover launcher (root + king/)")
+        _go_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go")
+        if os.path.isdir(_go_dir):
+            shutil.copytree(_go_dir, os.path.join(SITE, "go"), dirs_exist_ok=True)
+            print("  + go/: owner-console route pages (/go/*)")
     with _lane("element_lotus_public_shell"):
         # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
         # interactive games on static Pages while WordPress can remain the narrative/brand shell.
@@ -1428,15 +1437,26 @@ Sources are linked on every page.</div>
         with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
             f.write(index)
     with _lane("public_front_door"):
-        # [front door] The public root now leads with the Element Lotus studio shell while preserving
-        # /games/, /sage/, the civic hub at reports.html, and the private launcher at /go.html.
+        # [front door] 2026-07: the education page (Lux et Veritas PONO) is now the public front door
+        # per owner request — it fronts the whole government watcher (daily briefing + yearly meeting
+        # calendars) through a civic-education lens. The former studio-first shell is preserved at
+        # /studio.html (not lost, just no longer the root), and /games/, /sage/, reports.html (civic
+        # hub), and the private launcher at /go.html are all still untouched.
+        _edu_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "education.html")
         _studio_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "element_lotus_public", "index.html")
         _govos_fallback = os.path.join(SITE, "king", "govos_signup.html")
         _go_built = os.path.join(SITE, "go.html")
-        _idx_src = _studio_root if os.path.exists(_studio_root) else (_govos_fallback if os.path.exists(_govos_fallback) else _go_built)
+        if os.path.exists(_studio_root):
+            shutil.copy(_studio_root, os.path.join(SITE, "studio.html"))
+            print("  + studio.html: former front-door shell, preserved at a stable URL")
+        _idx_src = _edu_root if os.path.exists(_edu_root) else (
+            _studio_root if os.path.exists(_studio_root) else (
+                _govos_fallback if os.path.exists(_govos_fallback) else _go_built))
         if os.path.exists(_idx_src):
             shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
-            print("  + index.html = %s (public front door: studio-first shell; go.html stays the private launcher)" % os.path.basename(_idx_src))
+            if _idx_src == _edu_root:
+                shutil.copy(_idx_src, os.path.join(SITE, "education.html"))
+            print("  + index.html = %s (public front door: civic education leads; go.html stays the private launcher)" % os.path.basename(_idx_src))
     with _lane("cname"):
         # GitHub Pages custom domain for the public mirror / interactive artifacts at 12sgi.com.
         # The CNAME file in the deployed artifact tells GitHub Pages the custom domain. Written every build

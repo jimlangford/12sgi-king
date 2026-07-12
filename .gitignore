@@ -19,5 +19,16 @@ watchers/*_state.json
 # internal cross-thread coordination bus — never publish (not leak-scanned; keep private)
 .dispatch_log.jsonl
 
+# connector audit/intent logs (post text + timestamps) — PRIVATE, not leak-scanned
+# (2026-07-11, own_channel_post.py + connect_post.py both write here)
+reports/_status/*.jsonl
+
 # SECURITY (Jimmy 2026-06-26 harden): private corporate data room / cap table / investor / charter - NEVER in the public repo
 king_private_src/
+
+# git filter-branch / filter-repo rewrite artifacts — never commit these
+.git-rewrite/
+
+# runtime SQLite databases — generated locally, never commit
+.platform_events.db
+*.db

@@ -74,12 +74,102 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/introspect:
+    post:
+      summary: Verify a bearer token for internal services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthIntrospectionRequest'
+      responses:
+        '200':
+          description: Token verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthIntrospectionResponse'
+        '403':
+          description: Invalid internal service token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/auth/jwks:
     get:
       summary: Public signing keys
       responses:
         '200':
           description: JWKS payload
+  /api/v2/auth/renew:
+    post:
+      summary: Renew a valid owner token without a full OAuth redirect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenewRequest'
+      responses:
+        '200':
+          description: Renewed owner token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSessionResponse'
+        '401':
+          description: Token missing, expired, or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Owner role required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/github:
+    get:
+      summary: Start GitHub OAuth owner sign-in
+      responses:
+        '307':
+          description: Redirect to GitHub OAuth
+        '501':
+          description: GitHub OAuth is not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/github/callback:
+    get:
+      summary: Complete GitHub OAuth owner sign-in
+      responses:
+        '307':
+          description: Redirect back to the owner console with token fragment
+        '400':
+          description: OAuth error page
+  /api/v2/auth/google:
+    get:
+      summary: Start Google OAuth owner sign-in
+      responses:
+        '307':
+          description: Redirect to Google OAuth
+        '501':
+          description: Google OAuth is not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/google/callback:
+    get:
+      summary: Complete Google OAuth owner sign-in
+      responses:
+        '307':
+          description: Redirect back to the owner console with token fragment
+        '400':
+          description: OAuth error page
   /api/v2/cases:
     get:
       summary: List tenant cases
@@ -327,6 +417,26 @@ components:
         token:
           type: string
           description: Optional target bearer token to inspect when owner-authenticated.
+    AuthIntrospectionRequest:
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+    AuthIntrospectionResponse:
+      type: object
+      required: [active]
+      properties:
+        active:
+          type: boolean
+        reason:
+          type: string
+        claims:
+          type: object
+          additionalProperties: true
+        user:
+          type: object
+          additionalProperties: true
     AuthClaimsDiagnosticResponse:
       type: object
       required:
@@ -364,6 +474,12 @@ components:
         audit_event_id:
           type: string
         request_id:
+          type: string
+    RenewRequest:
+      type: object
+      required: [token]
+      properties:
+        token:
           type: string
     CaseCreateRequest:
       type: object

@@ -1,27 +1,8 @@
 services:
-  app:
-    build: .
-    container_name: 12sgi-v2-app
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:8088:8088"
-    environment:
-      APP_ENV: local
-      APP_HOST: 0.0.0.0
-      APP_PORT: 8088
-      HF_HOME: /workspace/.cache/huggingface
-      MODEL_DIR: /workspace/models
-      DATA_DIR: /workspace/data
-    volumes:
-      - ./app:/workspace/app
-      - ./data:/workspace/data
-      - ./models:/workspace/models
-      - hf_cache:/workspace/.cache/huggingface
-    secrets:
-      - hf_token
-      - github_token
-    command: python /workspace/app/main.py
-
+  # Tailscale sidecar — starts first and owns the network namespace.
+  # The `app` service joins this namespace via network_mode: service:tailscale,
+  # making port 8088 reachable from your laptop at 12sgi-v2:8088 on the tailnet.
+  # Accessible from the host at 127.0.0.1:8088 via the ports mapping below.
   tailscale:
     image: tailscale/tailscale:latest
     container_name: 12sgi-v2-tailscale
@@ -36,10 +17,41 @@ services:
       - tailscale_state:/var/lib/tailscale
       - /dev/net/tun:/dev/net/tun
     cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
+      - NET_ADMIN   # required for kernel TUN mode; SYS_MODULE is not needed and fails on Docker Desktop/WSL2
+    ports:
+      - "127.0.0.1:8088:8088"   # host health-check path; Tailscale exposes same port to tailnet peers
     secrets:
       - ts_authkey
+
+  app:
+    build: .
+    container_name: 12sgi-v2-app
+    # Share Tailscale's network namespace so the app is reachable via the 12sgi-v2 Tailscale node.
+    # From your laptop: http://<12sgi-v2-tailscale-ip>:8088  or  http://12sgi-v2:8088 (MagicDNS)
+    network_mode: service:tailscale
+    depends_on: [tailscale]
+    restart: unless-stopped
+    environment:
+      APP_ENV: local
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8088
+      HF_HOME: /workspace/.cache/huggingface
+      MODEL_DIR: /workspace/models
+      DATA_DIR: /workspace/data
+      # Must match the AUTH_SIGNING_SECRET used by the auth service so that owner
+      # tokens issued by services/auth can be verified here without a network hop.
+      AUTH_SIGNING_SECRET: ${AUTH_SIGNING_SECRET:-dev-only-signing-secret-change-me}
+      # Path for the per-platform OAuth token store (lives in the data volume).
+      CONNECTOR_TOKEN_DB: /workspace/data/govos_v2_connectors.db
+    volumes:
+      - ./app:/workspace/app
+      - ./data:/workspace/data
+      - ./models:/workspace/models
+      - hf_cache:/workspace/.cache/huggingface
+    secrets:
+      - hf_token
+      - github_token
+    command: python /workspace/app/main.py
 
   ollama:
     image: ollama/ollama:latest

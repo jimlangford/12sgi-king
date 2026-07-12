@@ -28,6 +28,32 @@ Use these labels in reports and handoffs:
 - Do not flatten the system into a standard static-site template.
 - Keep changes narrow, reversible, and aligned with existing comments and scripts.
 
+## Lane Discipline & Cross-System Diplomacy
+
+This repo coordinates across more than one AI system, so any agent (Claude Code, Codex, GitHub
+Copilot, or a future agent) should work by these house rules rather than assuming another
+system's job:
+
+- **Workboard lanes** (`services/v2_workboard.py`) are the shared contract between agents:
+  - `engineering` — internal plumbing. Self-heals; no human gate required.
+  - `creative` — content a human must review before it leaves the system (this is where
+    **Element LOTUS** lives per `docs/SERVICE_REGISTRY.md` — "creative/AI experiences for
+    content generation and publishing"). Never auto-heal a creative job; it waits for
+    `approve_workboard_job()` / `reject_workboard_job()` (CLI: `--approve` / `--reject`).
+  - `output` — approved and staged for public/social publish. Same rule: owner approval only.
+- **Neo4j ("Neo")** (`watchers/chain_to_graph.py`, `graph_vectors.py`) is a LOCAL, zero-cloud-token
+  graph + vector store on the owner's machine. Do not reroute its job through a cloud AI call, and
+  do not assume a cloud agent can reach it directly — it only answers to `NEO4J_HTTP` on
+  `127.0.0.1`. If a task looks like it needs graph provenance (e.g. linking a published post back
+  to a sourced civic record), that is a deliberate, owner-approved wiring decision, not something
+  to bolt on unasked.
+- **Diplomatic asks, not assumptions:** when a task touches a lane, system, or owner-only surface
+  you don't have full visibility into (Neo4j, Element LOTUS, king-server routes outside this repo,
+  the owner's local automation), don't silently guess at the integration. Either ask the owner
+  directly, or append a plain, factual entry to `DISPATCH_LOG.md` naming the open question so the
+  next agent or the owner can resolve it. This keeps the system pono (in balance) instead of one
+  agent overriding another's lane.
+
 ## Reporting Format
 
 When reporting work, use language another agent can continue from:

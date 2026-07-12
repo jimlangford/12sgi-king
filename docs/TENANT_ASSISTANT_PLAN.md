@@ -8,3 +8,7 @@ Phases
 - Prototype guided interview UI components
 - Build timeline/editor and evidence upload flows
 - Integrate AI guidance for document drafting and next-step suggestions
+
+---
+
+**See also:** [QUAD_OS_MASTER_ARCHITECTURE.md](QUAD_OS_MASTER_ARCHITECTURE.md) §3 (Module registry) | [GOVOS_V2_ROADMAP.md](GOVOS_V2_ROADMAP.md) Sprint 3 | [CASE_MANAGEMENT_PLAN.md](CASE_MANAGEMENT_PLAN.md)
