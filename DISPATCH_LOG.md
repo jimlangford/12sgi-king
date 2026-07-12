@@ -5,6 +5,57 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-12 — Maui branch working-space pages: generator + sync workflow built
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `reports/mauios/` for real, already-sourced Maui civic data (agendas, votes,
+minutes, testimony, department dashboards, entity dossiers, oversight/accountability records);
+`build_site.py` to confirm these publish flat at `https://12sgi.com/<file>.html`;
+`watchers/deploy_elementlotus_wp.py` as the existing repo convention for WordPress content
+generators; `.github/workflows/wp-publish.yml` for the existing WP REST secrets/auth pattern
+(posts-only, create-only — no page-edit capability existed before this).
+
+**CHANGED:**
+- `watchers/wp_branch_pages.py` (new): generates the 4 branch working-space page fragments
+  (council/counsel/executive/judicial) per tenant from real, existence-checked report links —
+  every linked report is verified on disk before inclusion, so a generated page can never contain
+  a dead link or a fabricated reference. Maui's resource mapping is fully populated (53 real
+  resource links across the 4 pages); other 5 tenants are registered but not yet populated.
+- `content/wordpress/branch_pages/maui/{council,counsel,executive,judicial}.html` + `manifest.json`
+  (generated, committed as the repo source-of-record blueprint): 11/13/23/6 resources respectively.
+  Titles exactly match Hawaii County's existing live naming convention (e.g.
+  "Maui County — Council — Working Space").
+- `.github/workflows/wp-branch-pages-sync.yml` (new): `workflow_dispatch` action that searches
+  WordPress by exact page title via `wp/v2/pages` REST and either updates the matched page's
+  content or (only when `create_missing=true`) creates it as a **draft**. Defaults to
+  `dry_run=true` (report-only, no writes). Deliberately never touches the `Groups` taxonomy —
+  access-restriction assignment stays a manual WP-admin step, same as every other private page.
+- `docs/WORDPRESS_PUBLIC_LAYER.md`: documented this as an explicit, owner-approved exception to
+  the "QUAD OS never edits existing WordPress content" principle, scoped narrowly to these 4
+  branch pages per tenant.
+
+**PRESERVED:** Group/taxonomy access assignment is left as a manual owner action in both the
+generator and the workflow — the automation never decides who can see a private working space.
+No civic data was invented; every resource link is existence-checked against disk at generation
+time.
+
+**VERIFY:** `python watchers/wp_branch_pages.py --tenant maui --all` ran clean (4/4 pages built).
+YAML + embedded Python of the new workflow both parse/compile clean (checked locally, not yet run
+in Actions). Workflow NOT yet dispatched — no content has been pushed to live WordPress yet.
+
+**NEXT:** Owner should confirm `WP_APP_PASSWORD`'s account has Page edit rights, then dispatch
+`wp-branch-pages-sync.yml` with `dry_run=true` first to confirm the 4 Maui pages don't already
+exist under these exact titles, then re-run with `dry_run=false` (+ `create_missing=true` if
+truly new) to push live. Whether the `Groups` taxonomy is REST-writable is still unconfirmed —
+flag for Neo4j/LOTUS follow-up per Jimmy's interest in wiring that in "for thoroughness" is a
+separate, local-only, owner-driven step (Neo4j is not reachable from this cloud session) and is
+not attempted here. After Maui is validated live, the same generator can be extended to the
+remaining 4 tenants (Honolulu, Kauai, State of Hawaii, New York) once their resource mappings are
+populated from their own `reports/mauios/*_<tenant>.html` files.
+
+---
+
 ## 2026-07-12 — WordPress duplicate pages: Council Workspace / Counsel Review
 
 **Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy

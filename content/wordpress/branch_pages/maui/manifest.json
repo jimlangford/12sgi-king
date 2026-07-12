@@ -1,0 +1,30 @@
+{
+  "tenant": "maui",
+  "tenant_name": "Maui County",
+  "pages": [
+    {
+      "branch": "council",
+      "title": "Maui County — Council — Working Space",
+      "output": "council.html",
+      "resource_count": 11
+    },
+    {
+      "branch": "counsel",
+      "title": "Maui County — Counsel — Case Review",
+      "output": "counsel.html",
+      "resource_count": 13
+    },
+    {
+      "branch": "executive",
+      "title": "Maui County — Executive / Administration — Working Space",
+      "output": "executive.html",
+      "resource_count": 23
+    },
+    {
+      "branch": "judicial",
+      "title": "Maui County — Judicial / Independent — Working Space",
+      "output": "judicial.html",
+      "resource_count": 6
+    }
+  ]
+}
