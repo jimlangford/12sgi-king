@@ -5,6 +5,20 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (even later) — attempted live run on king-server: no self-hosted runner online
+
+**Thread:** "complete the merge into a live run on king server"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `main` already contains both `6da10ef` (education front-door) and `e273b82` (LOTUS education graph loader), confirmed via `git merge-base --is-ancestor`. Checked the only bridge that can execute anything ON king-server from this cloud session: `.github/workflows/deploy-v2-king-server.yml`, `runs-on: [self-hosted, king-server, windows]`. `gh run list --workflow=deploy-v2-king-server.yml` shows every recent dispatch (including ones triggered by merges to `main`) completing as `failure` in 0 seconds with no logs — the signature of no matching self-hosted runner ever picking up the job, not a script bug.
+
+**PRESERVED:** did not attempt SSH, rsync, or any other path into king-server (none exist by design — see the workflow's own "No SSH. No rsync. No inbound ports." header). Did not touch Neo4j, docker-compose.v2.yml, or any king-local file from here.
+
+**VERIFY:** `gh api repos/jimlangford/12sgi-king/actions/runners` returned no runners at all. `gh run list --workflow=deploy-v2-king-server.yml --limit 5` — 5/5 recent runs `failure`, 0s duration.
+
+**NEXT (owner action required — cannot be done from this cloud session):** the self-hosted Actions runner on king-server needs to be online for a "live run" to actually execute there. Once it is: `gh workflow run deploy-v2-king-server.yml` (or just let the next push trigger it, if a push trigger is later enabled) will sync `go.html`/board files and validate the V2 stack. Separately — and not part of that workflow by design, since it's a one-time/rerunnable data load, not a service — run `python watchers/education_to_graph.py` directly on king-server to load the LOTUS grade-band graph into the live Neo4j.
+
+---
+
 ## 2026-07-11 (later still) — LOTUS/Neo4j education layer: grade-band <-> civic-data map
 
 **Thread:** "connect data to each level correctly with my neo4j system LOTUS"  **From:** Copilot CLI  **To:** Jimmy
