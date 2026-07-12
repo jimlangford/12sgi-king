@@ -1,0 +1,85 @@
+# Studio-Asset Manager — standalone govOS-v2 sibling (Jimmy 2026-07-09:
+# "work on the docker to manage the studio asset with the server port as to not interfere
+#  with the other work being done").
+#
+# WHY A SEPARATE PROJECT (not a service added to docker-compose.v2.yml):
+#   Bring it up as its OWN compose project so `up` here can NEVER recreate/restart the running
+#   govOS-v2 containers (auth/tenant/documents/storage/ai/health) or disturb a live GPU render:
+#       docker compose -p studio-assets -f docker-compose.studio-assets.yml up -d --no-recreate --build
+#       docker compose -p studio-assets -f docker-compose.studio-assets.yml logs -f
+#       docker compose -p studio-assets -f docker-compose.studio-assets.yml down
+#
+# NON-INTERFERENCE (enforced here):
+#   * Publishes ONLY 127.0.0.1:8108 (loopback + Tailscale trust boundary). 8101-8106 untouched;
+#     8107 (reserved in-file for the not-running gpu-router) deliberately left alone.
+#   * IO-only: NO deploy.resources.reservations.devices / GPU — cannot contend for the 8 GB card.
+#   * Every studio-asset tree is a READ-ONLY bind (read_only: true) — the VAULT can never be
+#     pruned/mutated. The app also fail-closed write-probes each mount at boot.
+#   * Writes go ONLY to private named volumes studio_assets_db / studio_assets_derived.
+#   * Container hardening: read_only rootfs + tmpfs /tmp, cap_drop ALL, no-new-privileges.
+
+services:
+  studio-assets:
+    build:
+      context: ../..                 # 12sgi-king repo root — so `services.v2_workboard` imports
+      dockerfile: services/Dockerfile
+    image: govos-v2-studio-assets:local
+    command: ["python", "-m", "uvicorn", "services.studio_assets.app.main:app", "--host", "0.0.0.0", "--port", "8108"]
+    environment:
+      VERSION: "1.0.0"
+      STUDIO_ASSETS_DB_PATH: /data/db/studio_assets.db
+      STUDIO_INDEX_JSON: /data/index/asset_index.json
+      STUDIO_THUMBS_DIR: /data/index/thumbnails
+      STUDIO_ASSET_MOUNTS: "/data/assets/mp4,/data/assets/finals,/data/assets/audio,/data/assets/hero,/data/assets/exports,/data/assets/jimmy_lora,/data/assets/comfy_output,/data/assets/comfy_input,/data/assets/batch,/data/index"
+      STUDIO_SCAN_ROOTS: "/data/assets/mp4,/data/assets/finals,/data/assets/audio,/data/assets/hero,/data/assets/exports"
+      # Report to the board like a lane, into this project's OWN dispatch log — placed in the
+      # app-owned /data/db volume (the non-root `app` user can write there; a fresh /data/derived
+      # named volume seeds root-owned and would deny the write). Decoupled from the guacamole
+      # v2-dispatch volume to avoid any shared-volume coupling.
+      WORKBOARD_DISPATCH_LOG: /data/db/studio_assets_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: workboard-quad-os
+      STUDIO_ASSETS_REQUIRE_AUTH: "0"   # loopback + Tailscale trust boundary; flip to 1 once OAuth is wired
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "127.0.0.1:8108:8108"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+    volumes:
+      # ---- writable (private) ----
+      - type: volume
+        source: studio_assets_db
+        target: /data/db
+      - type: volume
+        source: studio_assets_derived
+        target: /data/derived
+      # ---- READ-ONLY asset trees (kernel-enforced; VAULT can never be pruned) ----
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/mp4",          target: /data/assets/mp4 }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/finals",       target: /data/assets/finals }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/audio",        target: /data/assets/audio }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/hero",         target: /data/assets/hero }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/exports",      target: /data/assets/exports }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/JIMMY_LORA",   target: /data/assets/jimmy_lora }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/batch",        target: /data/assets/batch }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/reports/_status", target: /data/index }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/output",  target: /data/assets/comfy_output }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/input",   target: /data/assets/comfy_input }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8108/api/v2/live', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    labels:
+      com.12sgi.lane: "studio-assets"
+      com.12sgi.role: "read-only studio-asset manager/serving layer"
+
+volumes:
+  studio_assets_db:
+  studio_assets_derived:
