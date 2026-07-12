@@ -5,6 +5,40 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-12 — Maui branch working-space pages: merged to main, dry-run verified, blocked only on WP secrets
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Confirmed via `gh api repos/jimlangford/12sgi-king/actions/secrets` that this repo
+has **zero** Actions secrets configured (`{"total_count":0,"secrets":[]}`). This also explains
+`wp-publish.yml`'s run history — it has failed on every push trigger (0s runs) since it depends on
+the same `WP_URL`/`WP_USER`/`WP_APP_PASSWORD` secrets, which have never existed here. This is a
+pre-existing infra gap, not something introduced this session.
+
+**CHANGED:** Merged PR #362 (`workboard-lifecycle-status-sync` → `main`, squash) after all 4 CI
+checks passed. `wp-branch-pages-sync.yml` is now registered on `main` and dispatchable. Dispatched
+it once with `tenant=maui branch=all dry_run=true` (run 29175383650) to prove the full pipeline —
+checkout, bundle verification, manifest read — runs clean end-to-end and fails exactly at the
+intended "No WordPress credentials configured" guard (exit 1, clear message), never touching the
+live site. No partial/unsafe writes are possible in this state.
+
+**PRESERVED:** Did not request, receive, or handle the actual WordPress application password in
+this session — that credential stays owner-only, added directly via `gh secret set` or the GitHub
+web UI, never pasted into a chat transcript.
+
+**VERIFY:** Generator: 4/4 pages, 53 resources, clean. PR #362: MERGED, all checks passed. Sync
+workflow: registered on `main`, dispatched, failed safely exactly as designed (missing-secrets
+guard), zero live writes attempted.
+
+**NEXT (owner-only action):** Add three repo secrets — `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` —
+via `gh secret set WP_URL` / `WP_USER` / `WP_APP_PASSWORD` (run locally, prompts for value, never
+appears in any log or chat) or GitHub → Settings → Secrets and variables → Actions. Once set,
+re-dispatch `wp-branch-pages-sync.yml` with `dry_run=true` to see FOUND/NOT FOUND per page title,
+then `dry_run=false` (+`create_missing=true` only if genuinely new) to push live. This same fix
+will also unblock the pre-existing `wp-publish.yml` release-post automation.
+
+---
+
 ## 2026-07-12 — Maui branch working-space pages: generator + sync workflow built
 
 **Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
