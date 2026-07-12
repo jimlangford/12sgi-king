@@ -5,6 +5,22 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 (latest) — hardened surface_health.py to also watch/heal the king-server runner + V2 stack
+
+**Thread:** "they should be serving at all times and hardened i approve your fixes and forward momentum"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `watchers/surface_health.py` — the existing generalized boot-persistence sweep (already covers ports, daemons, scheduled tasks, launcher-script integrity, with a `--heal` relaunch mode). This is the correct, already-established lever for "serving at all times" rather than inventing a new mechanism.
+
+**CHANGED:** extended `surface_health.py` with two new watched surfaces, following its exact existing conventions (report-only by default, `--heal` opts in to fixing): (1) `SERVICES` — the GitHub Actions self-hosted runner (`actions.runner.*` Windows Service) that backs `deploy-v2-king-server.yml`; `--heal` runs `Start-Service` if it's stopped. (2) V2 Docker Compose stack (`docker-compose.v2.yml`, the 7 core services) — `--heal` issues `docker compose up -d` if any are down. Neither path ever installs/registers a new runner or cold-starts a stack that's never been started — those stay explicit owner actions, matching this file's own existing GPU/supervisor safety rules.
+
+**PRESERVED:** did not touch the GPU report-only rule (ComfyUI/Ollama), the supervisor's own domain (:8770/roster/jobrunner/tunnel), or any of the retired-task checks.
+
+**VERIFY:** `python -m py_compile watchers/surface_health.py` clean; `python -m compileall -q .` clean; ran `python watchers/surface_health.py` in this sandbox (not king-server) — correctly reports the runner service as `unknown` (no such service here) and the V2 stack as `down` (docker present but stack not started here), proving the new checks activate/report without crashing on a non-king-server host.
+
+**NEXT (owner action on king-server):** run `python watchers/surface_health.py --heal` there (or let its existing scheduled `--heal` sweep pick this up) to confirm the runner service starts and shows `Running`, and the V2 stack comes up. If the runner service doesn't exist at all yet (not just stopped), it still needs the one-time manual registration from `docs/DEPLOYMENT.md` ("Settings -> Actions -> Runners -> New self-hosted runner") — that step can't be scripted (fresh registration token each time).
+
+---
+
 ## 2026-07-11 (even later) — attempted live run on king-server: no self-hosted runner online
 
 **Thread:** "complete the merge into a live run on king server"  **From:** Copilot CLI  **To:** Jimmy
