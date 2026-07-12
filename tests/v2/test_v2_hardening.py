@@ -130,6 +130,7 @@ class TestAuthClaimValidation(unittest.TestCase):
         self.client = TestClient(self.module.app)
 
     def tearDown(self):
+        self.client.close()
         self._tmp.cleanup()
 
     def _mint_token(self, *, sub='u1', tenant_id='tenant-a', role='Municipality', scopes=None, iss=None, aud=None, exp=None):
@@ -149,7 +150,8 @@ class TestAuthClaimValidation(unittest.TestCase):
         payload_part = self.module._b64url(json.dumps(claims, separators=(',', ':')).encode())
         sig = hmac.new(self.module.SIGNING_SECRET.encode(), f'{header_part}.{payload_part}'.encode(), hashlib.sha256).digest()
         token = f'{header_part}.{payload_part}.{self.module._b64url(sig)}'
-        with sqlite3.connect(self.db_path) as conn:
+        conn = sqlite3.connect(self.db_path)
+        try:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO sessions
@@ -171,6 +173,8 @@ class TestAuthClaimValidation(unittest.TestCase):
                 ),
             )
             conn.commit()
+        finally:
+            conn.close()
         return token
 
     def _introspect(self, token):
