@@ -21,6 +21,26 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-12 — OAuth debug endpoint (issue #358)
+
+**Thread:** degug-oauth  **From:** Copilot CLI  **To:** owner review
+
+**INSPECTED:** `services/auth/app/main.py` — GitHub/Google OAuth flows; `GITHUB_CLIENT_ID`, `GOOGLE_CLIENT_ID`, `AUTH_PUBLIC_URL`, `OAUTH_REDIRECT_BASE`, `OWNER_GITHUB_LOGINS`, `OWNER_GOOGLE_EMAILS` env-var wiring; no bugs found in flow logic.
+
+**CHANGED:**
+- `services/auth/app/main.py` — new `GET /api/v2/auth/debug` (no auth required; returns `github.configured`, `google.configured`, `github.callback_uri`, `google.callback_uri`, `redirect_base`, `owner_github_login_count`, `owner_google_email_count` — no secrets, no allowlist values exposed).
+- `docs/api/v2-api-contract.yaml` — registered `/api/v2/auth/debug` GET route.
+- `tests/v2/test_v2_contract.py` — asserts debug route present in contract.
+- `tests/v2/test_v2_hardening.py` — 6 new `TestOAuthDebugEndpoint` tests (no-auth access, unconfigured/configured states, callback URIs shape, owner counts, no-secrets guarantee).
+
+**PRESERVED:** no existing OAuth flow changed; 3 pre-existing AI grounding failures confirmed unrelated; all PRIVATE/PUBLIC boundaries intact; no secrets in output.
+
+**VERIFY:** `python -m compileall -q .` → clean. `python -m unittest tests.v2.test_v2_hardening.TestOAuthDebugEndpoint` → 6/6 PASS. `python -m unittest tests.v2.test_v2_contract` → 72/72 PASS.
+
+**NEXT:** Owner hits `GET /api/v2/auth/debug` on the live auth service to confirm env vars are wired correctly before a live OAuth login attempt. No code changes needed after merge.
+
+---
+
 ## 2026-07-11 (latest) — hardened surface_health.py to also watch/heal the king-server runner + V2 stack
 
 **Thread:** "they should be serving at all times and hardened i approve your fixes and forward momentum"  **From:** Copilot CLI  **To:** Jimmy

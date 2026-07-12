@@ -130,6 +130,7 @@ class TestAuthClaimValidation(unittest.TestCase):
         self.client = TestClient(self.module.app)
 
     def tearDown(self):
+        self.client.close()
         self._tmp.cleanup()
 
     def _mint_token(self, *, sub='u1', tenant_id='tenant-a', role='Municipality', scopes=None, iss=None, aud=None, exp=None):
@@ -149,7 +150,8 @@ class TestAuthClaimValidation(unittest.TestCase):
         payload_part = self.module._b64url(json.dumps(claims, separators=(',', ':')).encode())
         sig = hmac.new(self.module.SIGNING_SECRET.encode(), f'{header_part}.{payload_part}'.encode(), hashlib.sha256).digest()
         token = f'{header_part}.{payload_part}.{self.module._b64url(sig)}'
-        with sqlite3.connect(self.db_path) as conn:
+        conn = sqlite3.connect(self.db_path)
+        try:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO sessions
@@ -171,6 +173,8 @@ class TestAuthClaimValidation(unittest.TestCase):
                 ),
             )
             conn.commit()
+        finally:
+            conn.close()
         return token
 
     def _introspect(self, token):
@@ -202,6 +206,67 @@ class TestAuthClaimValidation(unittest.TestCase):
         resp = self._introspect(token)
         self.assertEqual(resp.status_code, 200)
         self.assertFalse(resp.json()['active'])
+
+
+class TestOAuthDebugEndpoint(unittest.TestCase):
+    """GET /api/v2/auth/debug returns non-sensitive config status with no auth required."""
+
+    def _make_client(self, extra_env=None):
+        env = {
+            'AUTH_SIGNING_SECRET': 'debug-test-secret',
+            'INTERNAL_SERVICE_TOKEN': 'debug-test-service-token',
+            'AUTH_DB_PATH': str(Path(tempfile.mkdtemp()) / 'auth.db'),
+        }
+        if extra_env:
+            env.update(extra_env)
+        module = _load_module(AUTH_MAIN, f'auth_debug_{time.time_ns()}',
+                              env_overrides=env,
+                              env_clear_keys=('GOVOS_ALLOW_DEV_SECRETS',))
+        return module, TestClient(module.app)
+
+    def test_debug_returns_200_without_auth(self):
+        _, client = self._make_client()
+        resp = client.get('/api/v2/auth/debug')
+        self.assertEqual(resp.status_code, 200)
+
+    def test_debug_shows_unconfigured_when_no_client_ids(self):
+        _, client = self._make_client()
+        body = client.get('/api/v2/auth/debug').json()
+        self.assertFalse(body['github']['configured'])
+        self.assertFalse(body['google']['configured'])
+
+    def test_debug_shows_configured_when_github_client_id_set(self):
+        _, client = self._make_client({'GITHUB_CLIENT_ID': 'gh-client-id-test'})
+        body = client.get('/api/v2/auth/debug').json()
+        self.assertTrue(body['github']['configured'])
+        self.assertFalse(body['google']['configured'])
+
+    def test_debug_includes_callback_uris(self):
+        _, client = self._make_client()
+        body = client.get('/api/v2/auth/debug').json()
+        self.assertIn('/api/v2/auth/github/callback', body['github']['callback_uri'])
+        self.assertIn('/api/v2/auth/google/callback', body['google']['callback_uri'])
+
+    def test_debug_does_not_expose_secrets(self):
+        _, client = self._make_client({
+            'GITHUB_CLIENT_ID': 'gh-id',
+            'GITHUB_CLIENT_SECRET': 'gh-secret-value',
+            'GOOGLE_CLIENT_ID': 'gg-id',
+            'GOOGLE_CLIENT_SECRET': 'gg-secret-value',
+        })
+        text = client.get('/api/v2/auth/debug').text
+        self.assertNotIn('gh-secret-value', text)
+        self.assertNotIn('gg-secret-value', text)
+        self.assertNotIn('debug-test-secret', text)
+
+    def test_debug_includes_owner_counts(self):
+        _, client = self._make_client({
+            'OWNER_GITHUB_LOGINS': 'alice,bob',
+            'OWNER_GOOGLE_EMAILS': 'carol@example.com',
+        })
+        body = client.get('/api/v2/auth/debug').json()
+        self.assertEqual(body['owner_github_login_count'], 2)
+        self.assertEqual(body['owner_google_email_count'], 1)
 
 
 class TestAiGroundingCorrectness(unittest.TestCase):
