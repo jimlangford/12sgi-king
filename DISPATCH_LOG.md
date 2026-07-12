@@ -5,6 +5,37 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-12 — Maui branch working-space pages: Jetpack OAuth2 confirmed as the standard auth path, thread closed on repo side
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy confirmed the Jetpack OAuth2 path (`JETPACK_TOKEN`/`JETPACK_SITE_ID`) is the
+standard/intended auth mechanism for this WordPress.com-hosted site, over the Application Password
+path. This matches the earlier finding that WordPress.com sites may not accept `wp/v2` App
+Password writes the way self-hosted/Atomic sites do.
+
+**CHANGED:** `docs/WORDPRESS_PUBLIC_LAYER.md` — added a concrete, step-by-step "how to get
+`JETPACK_TOKEN`" section (register app at developer.wordpress.com/apps → one-time browser
+authorize → exchange code for token via one local curl → `gh secret set` both values → dispatch
+dry-run). WordPress.com OAuth2 access tokens obtained this way don't expire on a fixed schedule, so
+this is genuinely a one-time setup step, not a recurring one. Also noted the same token pair
+unblocks `wp-publish.yml`'s existing (already-correct) Jetpack fallback for release posts.
+
+**PRESERVED:** No credential was requested, generated, or handled in this session — the OAuth2
+authorize/exchange steps are documented for the owner to run locally, never through this chat.
+
+**VERIFY:** Everything achievable from this session's side is built, merged to `main` (PR #362,
+#363), and dry-run verified twice (fails safely with no credentials, exactly as designed). No
+further repo-side action is pending on this thread.
+
+**NEXT:** Owner runs the 6-step setup in `docs/WORDPRESS_PUBLIC_LAYER.md` → "Auth: Jetpack OAuth2
+is the standard path" locally, then dispatches `wp-branch-pages-sync.yml` (dry_run=true first, then
+false) to push the 4 Maui pages live. After that's validated, the same generator can be extended to
+the remaining 4 tenants (Honolulu, Kauai, State of Hawaii, New York). This thread is closed on the
+repo/automation side pending that owner action.
+
+---
+
 ## 2026-07-12 — Maui branch working-space pages: merged to main, dry-run verified, blocked only on WP secrets
 
 **Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
