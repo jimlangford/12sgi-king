@@ -5,6 +5,45 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-12 — WordPress duplicate pages: Council Workspace / Counsel Review
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy pasted the live WordPress.com Pages list (53 pages, elementLOTUS site).
+This content is managed directly on WordPress.com and is not tracked in this git repo (only the
+Element LOTUS rebuild source is mirrored, per `docs/WORDPRESS_PUBLIC_LAYER.md`) — confirming
+access-level/role pages (Membership, govOS Commentary Seat $99/mo, govOS Owner Hub, and
+Council/Counsel/Executive/Judicial Workspace pages tagged with a `Groups` taxonomy: `council`,
+`counsel`, `executive`, `judicial`, `Registered`) are already built there.
+
+**FINDING (duplicate pages, real, needs owner cleanup on WordPress.com — not fixable from this
+repo/session):**
+- **"Council Workspace"** (County Council branch) exists twice:
+  - 2026/07/08 9:27pm — **no Group tag** (stale/incomplete)
+  - 2026/07/08 10:01pm — tagged `Council` ✅ **keep this one**
+- **"Counsel Review"** (Legal branch) exists twice:
+  - 2026/07/08 9:27pm — tagged `Registered` + `counsel` (mixed/stale)
+  - 2026/07/08 10:16pm — tagged `counsel` only ✅ **keep this one**
+
+**Reasoning for which copy to keep:** Executive Workspace (10:14pm, `executive`) and Judicial
+Workspace (10:15pm, `judicial`) were created in the same tight 10:01–10:16pm window with clean,
+single-branch Group tags. The 10:01pm Council Workspace and 10:16pm Counsel Review fall in that
+same batch and match its tagging convention — these are the correct, final versions. The two
+9:27pm pages are earlier attempts (untagged / mixed-tag) that were superseded, not intentional
+duplicates.
+
+**PRESERVED:** did not delete/trash anything — WordPress.com admin actions are outside this
+session's reach (no WP credentials/API access here, and page trash/delete is a content-owner
+decision).
+
+**NEXT (owner action, WordPress.com admin UI):**
+1. Trash the 2026/07/08 9:27pm **"Council Workspace"** (untagged copy).
+2. Trash the 2026/07/08 9:27pm **"Counsel Review"** (tagged `Registered`+`counsel` copy).
+3. Confirm the surviving 10:01pm Council Workspace and 10:16pm Counsel Review pages are linked
+   correctly from any nav/menu that previously pointed at the stale copies.
+
+---
+
 ## 2026-07-11 (even later still) — king-server surface_health --heal run: missing publish_watch.py launcher target; local mirror is behind
 
 **Thread:** "continue" (release-readiness follow-through)  **From:** Copilot CLI  **To:** Jimmy
