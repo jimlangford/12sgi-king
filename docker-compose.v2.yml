@@ -28,6 +28,9 @@ x-common-env: &common-env
   TENANT_SERVICE_URL: http://tenant:8102
   TENANT_READY_URL: http://tenant:8102/api/v2/ready
   DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+  PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+  BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+  BUILD_TIME: ${BUILD_TIME:-unknown}
   COMMIT_SHA: ${COMMIT_SHA:-unknown}
   BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
   ENVIRONMENT: ${ENVIRONMENT:-local}
@@ -172,6 +175,9 @@ services:
     # Bound to 8106, not 8000 — 8000 was already occupied by another local process on this host.
     command: ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
     environment:
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}

@@ -1,10 +1,16 @@
 name: Publish release post to WordPress
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      post_status:
+        description: "WordPress post status"
+        required: true
+        default: draft
+        type: choice
+        options:
+          - draft
+          - publish
 
 permissions:
   contents: read
@@ -18,6 +24,7 @@ jobs:
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
       JETPACK_TOKEN: ${{ secrets.JETPACK_TOKEN }}
       JETPACK_SITE_ID: ${{ secrets.JETPACK_SITE_ID }}
+      POST_STATUS: ${{ inputs.post_status }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,7 +34,16 @@ jobs:
         run: |
           # Produce a minimal changelog from the latest commit(s)
           TITLE="Release: $(date -u +%Y-%m-%d)"
-          BODY="Changelog:\n\n$(git log -n 10 --pretty=format:'%h %s (%an)')"
+          # Build body via Python to avoid JSON injection from commit messages
+          BODY=$(python3 - <<'PYEOF'
+import subprocess, json
+log = subprocess.check_output(
+    ["git", "log", "-n", "10", "--pretty=format:%h %s (%an)"],
+    text=True,
+)
+print("Changelog:\n\n" + log)
+PYEOF
+)
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "body<<EOF" >> $GITHUB_OUTPUT
           echo "$BODY" >> $GITHUB_OUTPUT
@@ -39,12 +55,27 @@ jobs:
           TITLE: ${{ steps.notes.outputs.title }}
           BODY: ${{ steps.notes.outputs.body }}
         run: |
-          echo "Posting to WordPress at $WP_URL"
+          echo "Posting to WordPress at $WP_URL (status: $POST_STATUS)"
           AUTH=$(printf "%s:%s" "$WP_USER" "$WP_APP_PASSWORD" | base64)
-          curl -s -X POST "$WP_URL/wp-json/wp/v2/posts" \
+          PAYLOAD=$(python3 -c "
+import json, os
+print(json.dumps({
+    'title': os.environ['TITLE'],
+    'content': os.environ['BODY'],
+    'status': os.environ['POST_STATUS'],
+}))
+")
+          RESPONSE=$(curl -s -w '\n%{http_code}' -X POST "$WP_URL/wp-json/wp/v2/posts" \
             -H "Authorization: Basic $AUTH" \
             -H "Content-Type: application/json" \
-            -d "{\"title\": \"$TITLE\", \"content\": \"$BODY\", \"status\": \"publish\" }"
+            -d "$PAYLOAD")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          if [[ "$HTTP_CODE" != 2* ]]; then
+            echo "WordPress API returned HTTP $HTTP_CODE"
+            echo "$RESPONSE" | head -n -1
+            exit 1
+          fi
+          echo "Post created (HTTP $HTTP_CODE, status: $POST_STATUS)"
 
       - name: Publish via Jetpack (fallback)
         if: ${{ env.JETPACK_TOKEN != '' && (env.WP_URL == '' || env.WP_USER == '' || env.WP_APP_PASSWORD == '') }}
@@ -52,9 +83,24 @@ jobs:
           TITLE: ${{ steps.notes.outputs.title }}
           BODY: ${{ steps.notes.outputs.body }}
         run: |
-          echo "Posting via Jetpack to WordPress.com (token-based). Ensure site is connected to Jetpack."
-          # This assumes a WP.com/Jetpack site; Jetpack REST endpoints vary. This is a basic example using WP.com REST API.
-          curl -s -X POST "https://public-api.wordpress.com/rest/v1.1/sites/${JETPACK_SITE_ID}/posts/new" \
+          echo "Posting via Jetpack to WordPress.com (token-based, status: $POST_STATUS)"
+          PAYLOAD=$(python3 -c "
+import json, os
+print(json.dumps({
+    'title': os.environ['TITLE'],
+    'content': os.environ['BODY'],
+    'status': os.environ['POST_STATUS'],
+}))
+")
+          RESPONSE=$(curl -s -w '\n%{http_code}' -X POST \
+            "https://public-api.wordpress.com/rest/v1.1/sites/${JETPACK_SITE_ID}/posts/new" \
             -H "Authorization: Bearer $JETPACK_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{\"title\": \"$TITLE\", \"content\": \"$BODY\", \"status\": \"publish\" }"
+            -d "$PAYLOAD")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          if [[ "$HTTP_CODE" != 2* ]]; then
+            echo "Jetpack API returned HTTP $HTTP_CODE"
+            echo "$RESPONSE" | head -n -1
+            exit 1
+          fi
+          echo "Post created via Jetpack (HTTP $HTTP_CODE, status: $POST_STATUS)"

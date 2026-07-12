@@ -1235,6 +1235,10 @@ def main():
                 with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_kgo)
             print("  + go.html: live/mirror failover launcher (root + king/)")
+        _go_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go")
+        if os.path.isdir(_go_dir):
+            shutil.copytree(_go_dir, os.path.join(SITE, "go"), dirs_exist_ok=True)
+            print("  + go/: owner-console route pages (/go/*)")
     with _lane("element_lotus_public_shell"):
         # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
         # interactive games on static Pages while WordPress can remain the narrative/brand shell.

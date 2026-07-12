@@ -20,6 +20,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
+from services.event_bus import publish_event as _publish_event
 
 _log = logging.getLogger(__name__)
 
@@ -74,6 +75,16 @@ if not os.environ.get("GOVOS_ALLOW_DEV_SECRETS"):
             "Tailscale-private dev only.")
 
 # ── OAuth ─────────────────────────────────────────────────────────────────────
+def _csv_env_set(name: str, default: str = "", *, casefold: bool = False) -> set[str]:
+    values: set[str] = set()
+    for raw in os.environ.get(name, default).split(","):
+        item = raw.strip()
+        if not item:
+            continue
+        values.add(item.casefold() if casefold else item)
+    return values
+
+
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "")
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "")
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
@@ -83,8 +94,8 @@ AUTH_PUBLIC_URL = os.environ.get("AUTH_PUBLIC_URL", "https://auth.12sgi.com")
 # Console URL to redirect back to after successful sign-in (token appended as #token=...).
 OAUTH_REDIRECT_BASE = os.environ.get("OAUTH_REDIRECT_BASE", "https://12sgi.com/king/")
 # Comma-separated list of allowed GitHub logins and Google e-mail addresses.
-OWNER_GITHUB_LOGINS: set[str] = set(filter(None, os.environ.get("OWNER_GITHUB_LOGINS", "jimlangford").split(",")))
-OWNER_GOOGLE_EMAILS: set[str] = set(filter(None, os.environ.get("OWNER_GOOGLE_EMAILS", "").split(",")))
+OWNER_GITHUB_LOGINS = _csv_env_set("OWNER_GITHUB_LOGINS", "jimlangford", casefold=True)
+OWNER_GOOGLE_EMAILS = _csv_env_set("OWNER_GOOGLE_EMAILS", casefold=True)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -156,9 +167,15 @@ def _verify_oauth_state(state: str, provider: str) -> bool:
     return hmac.compare_digest(sig, expected)
 
 
-def _error_page(msg: str, *, log_detail: str = "") -> HTMLResponse:
+def _error_page(msg: str, *, log_detail: str = "", provider: str = "oauth") -> HTMLResponse:
     if log_detail:
         _log.warning("OAuth error: %s | detail: %s", msg, log_detail)
+    # Emit a failure event — message is safe to include (no credentials/tokens).
+    _publish_event(
+        event_type="auth.oauth.failed",
+        producer="auth",
+        payload={"provider": provider, "reason": msg},
+    )
     safe = _html.escape(msg)
     back = _html.escape(OAUTH_REDIRECT_BASE)
     body = (
@@ -219,6 +236,18 @@ def _issue_and_store_session(
             ),
         )
         conn.commit()
+    # Emit auth event — never raises; never includes token/secret values.
+    _publish_event(
+        event_type="auth.session.created",
+        producer="auth",
+        entity_id=_redact_claim_identifier(subject),
+        payload={
+            "provider": provider,
+            "role": role,
+            "tenant_id": tenant_id or None,
+            "scopes": scopes,
+        },
+    )
     return token, expires_at_ts
 
 
@@ -745,11 +774,11 @@ def oauth_github_start():
 def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if error:
         # "error" is a fixed OAuth error code from GitHub (e.g. "access_denied") — safe to show.
-        return _error_page("GitHub sign-in was not completed.", log_detail=f"provider_error={error}")
+        return _error_page("GitHub sign-in was not completed.", log_detail=f"provider_error={error}", provider="github")
     if not code:
-        return _error_page("No authorization code received from GitHub.")
+        return _error_page("No authorization code received from GitHub.", provider="github")
     if not _verify_oauth_state(state, "github"):
-        return _error_page("Invalid OAuth state — please try signing in again.")
+        return _error_page("Invalid OAuth state — please try signing in again.", provider="github")
 
     callback_uri = f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/github/callback"
     try:
@@ -762,9 +791,9 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         resp.raise_for_status()
         gh_access_token = resp.json().get("access_token", "")
         if not gh_access_token:
-            return _error_page("GitHub did not return an access token.")
+            return _error_page("GitHub did not return an access token.", provider="github")
     except Exception as exc:
-        return _error_page("Could not complete sign-in with GitHub — please try again.", log_detail=str(exc))
+        return _error_page("Could not complete sign-in with GitHub — please try again.", log_detail=str(exc), provider="github")
 
     try:
         user_resp = _requests.get(
@@ -774,13 +803,13 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         )
         user_resp.raise_for_status()
         gh_user = user_resp.json()
-        login = gh_user.get("login", "")
-        email = gh_user.get("email") or ""
+        login = (gh_user.get("login") or "").strip()
+        email = (gh_user.get("email") or "").strip()
     except Exception as exc:
-        return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc))
+        return _error_page("Could not retrieve GitHub account information.", log_detail=str(exc), provider="github")
 
-    if login not in OWNER_GITHUB_LOGINS:
-        return _error_page("This GitHub account is not authorised for owner access.")
+    if not login or login.casefold() not in OWNER_GITHUB_LOGINS:
+        return _error_page("This GitHub account is not authorised for owner access.", provider="github")
 
     token, _ = _issue_and_store_session(
         subject=f"github:{login}",
@@ -817,11 +846,11 @@ def oauth_google_start():
 @app.get(f"{API_PREFIX}/auth/google/callback")
 def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if error:
-        return _error_page("Google sign-in was not completed.", log_detail=f"provider_error={error}")
+        return _error_page("Google sign-in was not completed.", log_detail=f"provider_error={error}", provider="google")
     if not code:
-        return _error_page("No authorization code received from Google.")
+        return _error_page("No authorization code received from Google.", provider="google")
     if not _verify_oauth_state(state, "google"):
-        return _error_page("Invalid OAuth state — please try signing in again.")
+        return _error_page("Invalid OAuth state — please try signing in again.", provider="google")
 
     callback_uri = f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google/callback"
     try:
@@ -839,7 +868,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         resp.raise_for_status()
         token_data = resp.json()
     except Exception as exc:
-        return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc))
+        return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc), provider="google")
 
     id_token_raw = token_data.get("id_token", "")
     try:
@@ -848,13 +877,24 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         # Restore standard base64 padding.
         padding = (4 - len(payload_b64) % 4) % 4
         id_payload = json.loads(base64.b64decode(payload_b64 + "=" * padding).decode("utf-8"))
-        email = id_payload.get("email", "")
-        sub = id_payload.get("sub", "")
+        email = (id_payload.get("email") or "").strip()
+        sub = (id_payload.get("sub") or "").strip()
+        aud = (id_payload.get("aud") or "").strip()
+        email_verified = id_payload.get("email_verified")
+        token_exp = int(id_payload.get("exp") or 0)
     except Exception as exc:
-        return _error_page("Could not verify Google account — please try again.", log_detail=str(exc))
+        return _error_page("Could not verify Google account — please try again.", log_detail=str(exc), provider="google")
 
-    if not OWNER_GOOGLE_EMAILS or email not in OWNER_GOOGLE_EMAILS:
-        return _error_page("This Google account is not authorised for owner access.")
+    if not email or not sub:
+        return _error_page("Google did not return the required account details.", provider="google")
+    if aud != GOOGLE_CLIENT_ID:
+        return _error_page("Google sign-in did not match this configured app.", provider="google")
+    if email_verified is not True and str(email_verified).strip().lower() != "true":
+        return _error_page("This Google account e-mail is not verified.", provider="google")
+    if token_exp and token_exp <= int(_now_utc().timestamp()):
+        return _error_page("Google sign-in expired before it could be completed.", provider="google")
+    if not OWNER_GOOGLE_EMAILS or email.casefold() not in OWNER_GOOGLE_EMAILS:
+        return _error_page("This Google account is not authorised for owner access.", provider="google")
 
     token, _ = _issue_and_store_session(
         subject=f"google:{sub}",
@@ -867,3 +907,80 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
+
+
+# ── Silent token renewal ──────────────────────────────────────────────────────
+
+class RenewRequest(BaseModel):
+    """Renew an existing valid owner token without a full OAuth round-trip.
+
+    The caller presents their current owner token.  If it is valid and
+    carries the Owner role, a fresh token is issued with the same subject,
+    provider, role, and scopes, resetting the expiry clock.  This keeps
+    the Owner Console session alive without interrupting the owner's work.
+
+    If the token is already expired the caller must complete a full OAuth
+    redirect — there is no silent renewal path for expired tokens.
+    """
+    token: str
+
+
+@app.post(f"{API_PREFIX}/auth/renew", response_model=AuthSessionResponse)
+def renew_owner_token(payload: RenewRequest):
+    """Silently renew a valid owner token.
+
+    * Existing token must be valid (not expired) and have role == Owner.
+    * Returns a new token with a fresh 8-hour expiry.
+    * The old token remains valid until its original expiry — the caller
+      should replace it in localStorage (king.ownerToken) with the new one.
+    * If the token is expired: returns 401 — the console must redirect to OAuth.
+    """
+    token = (payload.token or "").strip()
+    if not token:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "token required"}},
+        )
+
+    try:
+        _, claims = _decode_and_verify_token(token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Token expired or invalid — please sign in again"}},
+        )
+
+    if claims.get("role") != "Owner":
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required"}},
+        )
+
+    row = _session_for_token(token)
+    if not row or int(row["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session expired — please sign in again"}},
+        )
+
+    # Issue a fresh token, identical claims, new expiry.
+    new_token, exp = _issue_and_store_session(
+        subject=row["subject"] or claims["sub"],
+        provider=row["provider"] or claims.get("provider", "unknown"),
+        email=row["email"] or "",
+        tenant_id=row["tenant_id"] or "",
+        role="Owner",
+        scopes=json.loads(row["scopes_json"] or "[]"),
+        ttl_seconds=8 * 3600,
+    )
+    audit_auth_event("auth", "token_renewed", {"sub": _redact_claim_identifier(claims["sub"])})
+    return {
+        "access_token": new_token,
+        "token_type": "bearer",
+        "expires_in": 8 * 3600,
+        "claims": {
+            "sub": claims["sub"],
+            "role": "Owner",
+            "exp": exp,
+        },
+    }

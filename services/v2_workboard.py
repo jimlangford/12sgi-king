@@ -5,7 +5,28 @@ import time
 from pathlib import Path
 from uuid import uuid4
 
-WORKBOARD_SCHEMA = "workboard-job-v1"
+# Platform event bus — best-effort; import failure must never break workboard.
+try:
+    from services.event_bus import publish_event as _publish_platform_event
+except Exception:
+    def _publish_platform_event(*args, **kwargs):  # type: ignore[misc]
+        return None
+
+WORKBOARD_SCHEMA = "workboard-job-v2"
+
+# ── DAG node schema ───────────────────────────────────────────────────────────
+# Each dag_node in a job's dag_nodes list carries:
+#   name             — human-readable stage label (e.g. "Scene Build")
+#   status           — waiting | running | done | failed
+#   engine           — ollama | comfyui | voice | embedding | none
+#   inputs_resolved  — True once all predecessor outputs are available
+#
+# The list is ordered (index 0 = first stage). The router advances each node's
+# status as execution progresses. A job is "Waiting on GPU" when any node has
+# engine in {comfyui, gpu} and status = "running".
+DAG_NODE_STATUSES = {"waiting", "running", "done", "failed"}
+DAG_NODE_ENGINES  = {"ollama", "comfyui", "voice", "embedding", "none"}
+GPU_ENGINES       = {"comfyui", "gpu"}
 WORKBOARD_THREAD = os.environ.get("WORKBOARD_TARGET_THREAD", "workboard-quad-os")
 DEFAULT_DISPATCH_LOG = Path(__file__).resolve().parents[1] / ".dispatch_log.jsonl"
 DISPATCH_LOG = Path(os.environ.get("WORKBOARD_DISPATCH_LOG") or DEFAULT_DISPATCH_LOG)
@@ -33,6 +54,15 @@ _AUTO_HEAL_STATUSES = {"queued", "in-progress"}
 
 # Statuses that require human action (never auto-healed regardless of lane)
 _APPROVAL_STATUSES = {"pending-approval"}
+
+# Approval-type vocabulary used for multi-gate corporate/legal workflows.
+# A job may require one or more of these before it is considered fully approved.
+# editorial  — content review by the owner (default for all creative/output jobs)
+# legal      — legal clearance (copyright, claims, compliance)
+# corporate  — brand / entity alignment across 12SGI corporate family
+# rights     — media rights cleared (video clips, music, likeness)
+APPROVAL_TYPES = {"editorial", "legal", "corporate", "rights"}
+_DEFAULT_APPROVAL_TYPES = ("editorial",)
 
 # Owner opt-in override: config/owner_policy.json can set auto_approve_creative /
 # auto_approve_output to true. This is an explicit, auditable, reversible owner decision
@@ -75,6 +105,36 @@ def _coerce_lane(lane: str) -> str:
     return candidate
 
 
+def _coerce_dag_nodes(nodes: list | None) -> list:
+    """Validate and normalise a dag_nodes list.
+
+    Each element must be a dict; unknown keys are preserved so future node
+    metadata (e.g. retry counts, time estimates) round-trips cleanly.
+    Invalid status/engine values are coerced to "waiting"/"none".
+    """
+    if not nodes:
+        return []
+    out = []
+    for raw in nodes:
+        if not isinstance(raw, dict):
+            continue
+        node = dict(raw)
+        st = (node.get("status") or "waiting").strip().lower()
+        if st not in DAG_NODE_STATUSES:
+            st = "waiting"
+        eng = (node.get("engine") or "none").strip().lower()
+        if eng not in DAG_NODE_ENGINES:
+            eng = "none"
+        out.append({
+            **node,
+            "name": str(node.get("name") or "unnamed"),
+            "status": st,
+            "engine": eng,
+            "inputs_resolved": bool(node.get("inputs_resolved", False)),
+        })
+    return out
+
+
 def emit_workboard_job(
     *,
     source: str,
@@ -86,10 +146,18 @@ def emit_workboard_job(
     kind: str = "job",
     lane: str = "engineering",
     correlation_id: str | None = None,
+    approval_types: list | None = None,
+    dag_nodes: list | None = None,
     log_path: Path | None = None,
 ) -> dict:
     queue_status = _coerce_status(status)
     job_lane = _coerce_lane(lane)
+    # Normalise and validate approval_types; fall back to the default set.
+    if approval_types is not None:
+        atypes = [a.strip().lower() for a in approval_types if a.strip().lower() in APPROVAL_TYPES]
+    else:
+        atypes = list(_DEFAULT_APPROVAL_TYPES)
+    coerced_nodes = _coerce_dag_nodes(dag_nodes)
     entry = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -101,12 +169,14 @@ def emit_workboard_job(
         "priority": priority or "normal",
         "status": queue_status,
         "event": event,
+        "approval_types": atypes,
         "job": {
             "id": str(uuid4()),
             "action": action,
             "status": queue_status,
             "correlation_id": correlation_id,
             "payload": payload or {},
+            "dag_nodes": coerced_nodes,
         },
     }
     path = log_path or DISPATCH_LOG
@@ -125,6 +195,14 @@ def emit_workboard_job(
             log_path=path,
         )
         entry["auto_approved"] = True
+
+    _publish_platform_event(
+        "workboard.job.created",
+        "v2_workboard",
+        payload={"lane": job_lane, "action": action, "event": event, "status": queue_status},
+        entity_id=entry["job"]["id"],
+        correlation_id=correlation_id,
+    )
     return entry
 
 
@@ -195,6 +273,7 @@ def approve_workboard_job(
     approver: str,
     *,
     note: str | None = None,
+    approval_type: str = "editorial",
     log_path: Path | None = None,
 ) -> dict:
     """Record an approval tombstone for a creative or output lane job.
@@ -203,8 +282,17 @@ def approve_workboard_job(
     human sign-off.  Only creative and output lane jobs should normally flow
     through here; engineering jobs should self-heal instead.
 
+    ``approval_type`` identifies *which* gate was cleared (editorial / legal /
+    corporate / rights).  Callers that do not specify it default to
+    ``"editorial"`` — the standard owner content review.  Use
+    :func:`approvals_cleared` to check which types have been recorded and
+    :func:`all_required_approvals_met` to decide whether a job is fully cleared.
+
     Returns the tombstone entry dict.
     """
+    atype = approval_type.strip().lower() if approval_type else "editorial"
+    if atype not in APPROVAL_TYPES:
+        atype = "editorial"
     path = log_path or DISPATCH_LOG
     tombstone = {
         "ts": int(time.time()),
@@ -215,18 +303,25 @@ def approve_workboard_job(
         "target_thread": WORKBOARD_THREAD,
         "priority": "normal",
         "status": "approved",
-        "event": f"APPROVED: {job_id}",
+        "event": f"APPROVED[{atype}]: {job_id}",
+        "approval_type": atype,
         "job": {
             "id": str(uuid4()),
             "action": "approved",
             "status": "approved",
             "correlation_id": job_id,
-            "payload": {"approver": approver, "note": note or ""},
+            "payload": {"approver": approver, "note": note or "", "approval_type": atype},
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    _publish_platform_event(
+        "workboard.job.approved",
+        "v2_workboard",
+        payload={"approver": approver, "note": note or ""},
+        entity_id=job_id,
+    )
     return tombstone
 
 
@@ -266,6 +361,12 @@ def reject_workboard_job(
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(tombstone, ensure_ascii=False) + "\n")
+    _publish_platform_event(
+        "workboard.job.rejected",
+        "v2_workboard",
+        payload={"rejector": rejector, "reason": reason},
+        entity_id=job_id,
+    )
     return tombstone
 
 
@@ -392,6 +493,60 @@ def pending_approvals(log_path: Path | None = None) -> list[dict]:
     return [entry for jid, entry in pending.items() if jid not in resolved_ids]
 
 
+def approvals_cleared(job_id: str, log_path: Path | None = None) -> list[str]:
+    """Return the list of approval types that have been recorded for *job_id*.
+
+    Each call to :func:`approve_workboard_job` with a different ``approval_type``
+    adds one entry.  This function scans the append-only log and returns the
+    unique set of types that have been approved, so callers can compare against
+    the job's ``approval_types`` list to see what is still outstanding.
+
+    Example::
+
+        cleared = approvals_cleared(job_id)
+        # ['editorial']  — legal and corporate still pending
+    """
+    entries = read_workboard_log(log_path)
+    cleared: list[str] = []
+    for entry in entries:
+        job = entry.get("job") or {}
+        if (
+            entry.get("kind") == "tombstone"
+            and entry.get("status") == "approved"
+            and job.get("correlation_id") == job_id
+        ):
+            atype = entry.get("approval_type") or job.get("payload", {}).get("approval_type", "editorial")
+            if atype and atype not in cleared:
+                cleared.append(atype)
+    return cleared
+
+
+def all_required_approvals_met(
+    job_id: str,
+    required_types: list | None = None,
+    log_path: Path | None = None,
+) -> bool:
+    """Return True only when every required approval type has been recorded.
+
+    If *required_types* is not provided, looks up the job entry in the log and
+    uses its ``approval_types`` field; falls back to ``["editorial"]``.
+
+    This is the single check that determines whether a job is fully cleared for
+    the PUBLISH step — callers must call this instead of checking for any single
+    ``approved`` tombstone when corporate/legal gates are required.
+    """
+    if required_types is None:
+        entries = read_workboard_log(log_path)
+        for entry in entries:
+            if entry.get("job", {}).get("id") == job_id and entry.get("kind") == "job":
+                required_types = entry.get("approval_types") or ["editorial"]
+                break
+        else:
+            required_types = ["editorial"]
+    cleared = set(approvals_cleared(job_id, log_path))
+    return all(t in cleared for t in required_types)
+
+
 def selfheal_engineering_jobs(
     log_path: Path | None = None,
     outcome: str = "self-healed",
@@ -436,6 +591,12 @@ def selfheal_engineering_jobs(
             source="workboard-self-healer",
             log_path=path,
         )
+    if to_heal:
+        _publish_platform_event(
+            "workboard.engineering.selfhealed",
+            "v2_workboard",
+            payload={"healed_count": len(to_heal), "outcome": outcome},
+        )
     return len(to_heal)
 
 
@@ -453,6 +614,182 @@ def _batch_resolve_log(log_path: Path | None = None, outcome: str = "batch-close
     return selfheal_engineering_jobs(log_path=log_path, outcome=outcome)
 
 
+def workboard_pulse(log_path: Path | None = None) -> dict:
+    """Compute the six operational pulse counters from the dispatch log.
+
+    Returns a dict with:
+      jobs_running      — open jobs in any lane with status "in-progress"
+      waiting_gpu       — open in-progress jobs where any dag_node uses a GPU engine
+      waiting_owner     — creative/output jobs in pending-approval (human gate)
+      auto_healed_today — engineering tombstones resolved today (UTC) with a
+                          self-heal outcome
+      deploy_ready      — output lane jobs with an "approved" tombstone
+      critical          — log entries whose event field starts with "BLOCKER"
+                          and that have no subsequent RESOLVED entry
+
+    All values are non-negative integers.  Safe to call when the log is
+    missing (returns all zeros).  Does not write to the log.
+    """
+    import re as _re
+
+    entries = read_workboard_log(log_path)
+    today_prefix = time.strftime("%Y-%m-%d", time.gmtime())  # UTC date
+
+    # Collect all job ids that have tombstones (resolved/approved/rejected/archived)
+    tombstoned_ids: set[str] = set()
+    # Engineering healed today
+    auto_healed_today = 0
+    # Deploy-ready: output lane + approved tombstone
+    deploy_ready_ids: set[str] = set()
+    # Blocked event tracking: key = identifier string → True if unresolved
+    blocker_events: dict[str, bool] = {}
+
+    for entry in entries:
+        job = entry.get("job") or {}
+        ev = entry.get("event") or ""
+        iso = entry.get("iso") or ""
+
+        if entry.get("kind") == "tombstone":
+            cid = job.get("correlation_id")
+            if cid:
+                tombstoned_ids.add(cid)
+            # Count self-healed engineering today
+            outcome = job.get("payload", {}).get("outcome") or ""
+            if (
+                entry.get("source") == "workboard-self-healer"
+                and "heal" in outcome.lower()
+                and iso.startswith(today_prefix)
+            ):
+                auto_healed_today += 1
+            # Track approved output lane jobs
+            if entry.get("status") == "approved":
+                orig_id = job.get("correlation_id")
+                if orig_id:
+                    deploy_ready_ids.add(orig_id)
+            # RESOLVED prefix clears a BLOCKER
+            if ev.startswith("RESOLVED:") or ev.startswith("DONE") or ev.startswith("SHIPPED"):
+                pass  # tombstone presence covers resolution for jobs
+
+        elif ev.upper().startswith("BLOCKER"):
+            # Watcher-style BLOCKER entries — key on the message text
+            blocker_events[ev] = True
+        elif ev.upper().startswith("RESOLVED"):
+            # Clear matching blocker if watcher emitted explicit resolution
+            for key in list(blocker_events):
+                if ev[len("RESOLVED:"):].strip() in key:
+                    blocker_events.pop(key, None)
+
+    # Open jobs: has a job entry with no tombstone
+    open_jobs: list[dict] = []
+    for entry in entries:
+        if entry.get("kind") != "job":
+            continue
+        jid = (entry.get("job") or {}).get("id")
+        if jid and jid not in tombstoned_ids:
+            open_jobs.append(entry)
+
+    jobs_running = sum(1 for e in open_jobs if e.get("status") == "in-progress")
+
+    # Waiting on GPU: in-progress open jobs with any dag_node on a GPU engine
+    waiting_gpu = 0
+    for e in open_jobs:
+        if e.get("status") != "in-progress":
+            continue
+        nodes = (e.get("job") or {}).get("dag_nodes") or []
+        if any(n.get("engine") in GPU_ENGINES for n in nodes):
+            waiting_gpu += 1
+
+    # Waiting on owner: pending-approval in creative/output lane
+    waiting_owner = sum(
+        1 for e in open_jobs
+        if e.get("lane") in {"creative", "output"} and e.get("status") == "pending-approval"
+    )
+
+    # Deploy ready: output lane jobs approved but not yet archived/rejected
+    # (approved tombstone exists AND no archive/reject tombstone supersedes it)
+    rejected_archived: set[str] = set()
+    for entry in entries:
+        if entry.get("kind") == "tombstone" and entry.get("status") in {"rejected", "archived"}:
+            cid = (entry.get("job") or {}).get("correlation_id")
+            if cid:
+                rejected_archived.add(cid)
+    # Only count output lane originals
+    output_original_ids: set[str] = {
+        (e.get("job") or {}).get("id")
+        for e in entries
+        if e.get("kind") == "job" and e.get("lane") == "output"
+        and (e.get("job") or {}).get("id")
+    }
+    deploy_ready = len(
+        deploy_ready_ids & output_original_ids - rejected_archived
+    )
+
+    critical = len(blocker_events)
+
+    return {
+        "jobs_running":      jobs_running,
+        "waiting_gpu":       waiting_gpu,
+        "waiting_owner":     waiting_owner,
+        "auto_healed_today": auto_healed_today,
+        "deploy_ready":      deploy_ready,
+        "critical":          critical,
+    }
+
+
+# ── Hub feed: the prefix vocabulary the system uses for log entries ───────────
+# FINDING   — evidence of a state mismatch; may trigger automatic repair
+# SHIPPED   — work completed and pushed
+# BLOCKER   — unresolved obstacle requiring owner attention
+# DECISION  — owner-recorded policy or direction
+# POLICY    — standing rule recorded for future reference
+# HANDOFF   — cross-agent or cross-session handover note
+# OWNERSHIP — domain or component ownership recorded
+# DONE      — task closure note
+_HUB_PREFIX_ORDER = ["BLOCKER", "FINDING", "SHIPPED", "DECISION", "POLICY", "HANDOFF", "OWNERSHIP", "DONE"]
+_HUB_PREFIX_SET   = set(_HUB_PREFIX_ORDER)
+
+
+def _hub_prefix(event: str) -> str:
+    """Extract the capitalised prefix from a dispatch log event string."""
+    upper = (event or "").upper()
+    for pfx in _HUB_PREFIX_ORDER:
+        if upper.startswith(pfx):
+            return pfx
+    return "INFO"
+
+
+def workboard_hub_feed(limit: int = 60, log_path: Path | None = None) -> list[dict]:
+    """Return the last *limit* dispatch log entries formatted for the Hub panel.
+
+    Each returned dict carries:
+      ts      — Unix timestamp (int)
+      iso     — ISO datetime string
+      source  — originating watcher or service
+      prefix  — capitalised event prefix (FINDING / SHIPPED / BLOCKER / …)
+      event   — full event string
+      lane    — workboard lane if applicable, else ""
+      kind    — "job" | "tombstone" | "watcher"
+
+    Sorted newest-first.  Safe to call when the log is missing.
+    """
+    entries = read_workboard_log(log_path)
+    result = []
+    for entry in entries:
+        ev = entry.get("event") or ""
+        kind = entry.get("kind") or ("watcher" if "schema" not in entry else "job")
+        result.append({
+            "ts":     entry.get("ts") or 0,
+            "iso":    entry.get("iso") or "",
+            "source": entry.get("source") or "",
+            "prefix": _hub_prefix(ev),
+            "event":  ev,
+            "lane":   entry.get("lane") or "",
+            "kind":   kind,
+        })
+    result.sort(key=lambda x: x["ts"], reverse=True)
+    return result[:limit]
+
+
 if __name__ == "__main__":
     # CLI: python -m services.v2_workboard [--log PATH] [--outcome TEXT] [--pending]
     import argparse
@@ -465,6 +802,12 @@ if __name__ == "__main__":
             "  engineering  Auto-healed by this tool (--outcome flag applies).\n"
             "  creative     Needs human approval — never auto-healed.\n"
             "  output       Needs owner approval before publish — never auto-healed.\n"
+            "\n"
+            "Approval types (--approval-type):\n"
+            "  editorial    Owner content review (default).\n"
+            "  legal        Legal clearance: copyright, claims, compliance.\n"
+            "  corporate    Brand/entity alignment across the 12SGI corporate family.\n"
+            "  rights       Media rights cleared: clips, music, likeness.\n"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -476,6 +819,9 @@ if __name__ == "__main__":
     parser.add_argument("--note", default=None, help="Optional note recorded on the archive tombstone (used with --archive)")
     parser.add_argument("--approve", metavar="JOB_ID", default=None, help="Approve a pending creative/output lane job by id; appends an approved tombstone")
     parser.add_argument("--approver", default="owner", help="Identity recorded as the approver (used with --approve)")
+    parser.add_argument("--approval-type", default="editorial", dest="approval_type",
+                        choices=sorted(APPROVAL_TYPES),
+                        help="Approval gate being cleared (editorial/legal/corporate/rights). Default: editorial")
     parser.add_argument("--reject", metavar="JOB_ID", default=None, help="Reject a pending creative/output lane job by id; appends a rejected tombstone")
     parser.add_argument("--rejector", default="owner", help="Identity recorded as the rejector (used with --reject)")
     parser.add_argument("--reason", default=None, help="Reason recorded on the rejection tombstone (used with --reject)")
@@ -489,8 +835,13 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.approve:
-        tombstone = approve_workboard_job(args.approve, args.approver, note=args.note, log_path=log_path)
-        print(f"Approved {args.approve} -> {tombstone['job']['id']} (approver={args.approver})")
+        tombstone = approve_workboard_job(
+            args.approve, args.approver,
+            note=args.note,
+            approval_type=args.approval_type,
+            log_path=log_path,
+        )
+        print(f"Approved[{args.approval_type}] {args.approve} -> {tombstone['job']['id']} (approver={args.approver})")
         sys.exit(0)
 
     if args.reject:

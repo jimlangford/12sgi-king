@@ -24,19 +24,19 @@
 (function () {
   /* ── summary counts from production_status.json ── */
   var prodStatus = {
-    films_produced: 36,
+    films_produced: 37,
     quadcast_songs: 1,
     youtube_uploaded: null,
-    updated: "2026-07-09 13:34 HST",
+    updated: "2026-07-11 07:45 HST",
     latest_films: [
+      "12 Stones Feature V Auto",
+      "Track 21",
       "Keys Of Starforge Partial 2Of9",
       "Luna Chronicles Partial 2Of8",
-      "12 Stones Feature V Auto",
       "Children Of Nature S Source",
       "Bye Sin",
       "Bless Er",
-      "Aina Lani Fa",
-      "Maui Courts"
+      "Aina Lani Fa"
     ]
   };
 
@@ -48,11 +48,11 @@
       { id: "keys-of-starforge-partial-2of9", title: "Keys Of Starforge Partial 2Of9", type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
       { id: "luna-chronicles-partial-2of8",   title: "Luna Chronicles Partial 2Of8",   type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
       { id: "12-stones-feature-v-auto",       title: "12 Stones Feature V Auto",       type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
+      { id: "track-21",                       title: "Track 21",                       type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
       { id: "children-of-nature-s-source",    title: "Children Of Nature S Source",    type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
       { id: "bye-sin",                        title: "Bye Sin",                        type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
       { id: "bless-er",                       title: "Bless Er",                       type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
-      { id: "aina-lani-fa",                   title: "Aina Lani Fa",                   type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] },
-      { id: "maui-courts",                    title: "Maui Courts",                    type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] }
+      { id: "aina-lani-fa",                   title: "Aina Lani Fa",                   type: "film", status: "listed", public_visibility: true, youtube_url: null, youtube_video_id: null, thumbnail: null, release_date: null, duration: null, description: null, related_project: null, album: null, credits: null, copyright_status: "pending", tags: ["film"] }
     ],
     /* music entries: catalog is in early growth — no confirmed song titles yet.
      * Count is in prodStatus.quadcast_songs. Add entries here as titles are confirmed. */

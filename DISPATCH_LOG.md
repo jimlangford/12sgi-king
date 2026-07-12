@@ -35,6 +35,26 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 — Product launch completion: slate sync + partner page
+
+**Thread:** completing-product-launch  **From:** Copilot agent  **To:** owner review
+
+**INSPECTED:** `element_lotus_public/slate-data.js` vs `production_status.json` — 3 drift failures (films_produced 36→37, updated timestamp, latest_films list). `contact.html` → `partner.html` link was broken (no such file in element_lotus_public/). `data/media_catalog.json` had "Maui Courts" (no longer in latest_films) and was missing "Track 21" (now in latest_films).
+
+**CHANGED:**
+- `element_lotus_public/slate-data.js` — synced films_produced (36→37), updated timestamp ("2026-07-09 13:34 HST"→"2026-07-11 07:45 HST"), latest_films and catalog.films list (replaced "Maui Courts" with "Track 21", reordered to match production_status.json)
+- `data/media_catalog.json` — replaced "Maui Courts" entry with "Track 21"; updated timestamp; entries now match production_status.json latest_films exactly
+- `element_lotus_public/partner.html` (new PUBLIC) — studio partnership page; matches studio.css style; no private systems; links to elementlotus.com/join/ for formal inquiries
+- `content/wordpress/element_lotus/` — regenerated WP bundle; contact.html now rewrites `partner.html` → `https://12sgi.com/partner.html` (static bridge, as intended by ABSOLUTE_REWRITES in deploy script)
+
+**PRESERVED:** production_status.json untouched (read-only source); all PRIVATE/Tailscale boundaries intact; build_site.py and deploy_elementlotus_wp.py logic untouched; partner.html is in ABSOLUTE_REWRITES (static bridge, not a WP page) per existing deploy script design.
+
+**VERIFY:** `python -m compileall -q .` → clean. `python -m unittest tests.test_slate_data_drift tests.test_deploy_elementlotus_wp` → 14/14 PASS. `KA_SITE=/tmp/launch-check2 python build_site.py` → 24 lanes, 0 failed. `site/partner.html` confirmed in build output. WP bundle contact.html: partner link correctly rewritten to `https://12sgi.com/partner.html`.
+
+**NEXT:** Owner merges PR. WP bundle already in `content/wordpress/element_lotus/` — paste/apply to WordPress after merge. No further code changes needed for the three launch-blocking items addressed here.
+
+---
+
 ## 2026-07-11 (later still) — LOTUS/Neo4j education layer: grade-band <-> civic-data map
 
 **Thread:** "connect data to each level correctly with my neo4j system LOTUS"  **From:** Copilot CLI  **To:** Jimmy
