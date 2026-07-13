@@ -592,6 +592,18 @@ def chat_get(
     )
 
 
+# ── Full tenant→asset tree from Neo4j ───────────────────────────────────────
+@app.get(f"{API_PREFIX}/bridge/tree")
+def tree():
+    """Full tenant→asset hierarchy from Neo4j. Powers the landing page."""
+    try:
+        from services.king_bridge.app._tree import _neo_tree
+        data = _neo_tree()
+        return {"tree": data, "ts": _iso_now(), "neo4j": NEO4J_HTTP}
+    except Exception as e:
+        return {"error": str(e), "tree": {}, "ts": _iso_now()}
+
+
 # ── Recent bridge jobs ────────────────────────────────────────────────────────
 @app.get(f"{API_PREFIX}/bridge/jobs")
 def recent_jobs(limit: int = 20):
