@@ -1,0 +1,46 @@
+{
+  "feed_id": "prosecutor-public-factual-feed",
+  "title": "Public Factual Feed",
+  "approval": {
+    "legal_owner_gate": "approved",
+    "approved_by": "James verbal",
+    "approved_at": "2026-07-03",
+    "source_workboard_item": "wb1782951339013",
+    "scope": "Publish only the curated public-safe subset already cleared onto public oversight pages."
+  },
+  "publish_verification": {
+    "status": "done",
+    "outputs": [
+      "https://12sgi.com/buildinfo.json matched the pushed release during verification",
+      "https://12sgi.com/prosecutor_public_feed.html HTTP 200",
+      "https://12sgi.com/data/prosecutor_public_feed.json count=6 held_private_count=24"
+    ]
+  },
+  "source_pages": [
+    {
+      "tenant": "hi-state",
+      "name": "Hawaii State",
+      "path": "oversight_hi-state.html"
+    },
+    {
+      "tenant": "hi-hawaii",
+      "name": "Hawaii County",
+      "path": "oversight_hi-hawaii.html"
+    },
+    {
+      "tenant": "hi-maui",
+      "name": "Maui County",
+      "path": "oversight_hi-maui.html"
+    },
+    {
+      "tenant": "hi-kauai",
+      "name": "Kauai County",
+      "path": "oversight_hi-kauai.html"
+    },
+    {
+      "tenant": "hi-honolulu",
+      "name": "City and County of Honolulu",
+      "path": "oversight_hi-honolulu.html"
+    }
+  ]
+}

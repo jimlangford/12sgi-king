@@ -234,6 +234,68 @@ Center is the *editorial decision* surface.  Nothing reaches any platform withou
 3. An explicit `tools/publish_approved_social.py` call per
    `docs/SOCIAL_CONNECTORS.md` — fail-closed, no tombstone = no post.
 
+## Branch Working-Space Pages (private, per tenant per department)
+
+Mirrors the existing Hawaii County pattern: 4 private WordPress pages per tenant (Council /
+Counsel / Executive / Judicial), each restricted via WordPress's `Groups` taxonomy to the matching
+department. Content is generated from real, already-sourced civic reports -- no fabrication, and
+every link is checked against disk before being included so a renamed/missing report can never
+produce a dead link.
+
+- Generator: `watchers/wp_branch_pages.py --tenant <id> --all`
+- Blueprint output (repo source of record): `content/wordpress/branch_pages/<tenant>/`
+- Sync to live WordPress: `.github/workflows/wp-branch-pages-sync.yml` (`workflow_dispatch`)
+  - `dry_run` defaults to **true** -- searches WordPress by exact page title and reports what
+    would change; writes nothing.
+  - Set `dry_run=false` to push updates to existing pages found by title match.
+  - Set `dry_run=false` + `create_missing=true` to create a page that has no title match --
+    always created as a **draft**, never auto-published, and never auto-tagged with a Group (the
+    owner assigns the correct Group manually in WP admin, same as every other access-restricted
+    page on the site).
+
+**Boundary preserved:** this workflow only ever touches pages, never Group/taxonomy access
+assignments -- who can see a working space stays a deliberate, manual WordPress-admin decision.
+
+### Auth: Jetpack OAuth2 is the standard path for this site (owner-confirmed)
+
+Because this site is WordPress.com-hosted, `JETPACK_TOKEN` + `JETPACK_SITE_ID` (WordPress.com REST
+API v1.1, `wp-branch-pages-sync.yml`'s Jetpack fallback step) is the confirmed auth path -- not the
+Application Password path. One-time setup, owner-only (do this locally, never in a shared chat):
+
+1. **Find `JETPACK_SITE_ID`**: your site's numeric ID or domain works. Quickest way while logged
+   into WordPress.com: visit `https://public-api.wordpress.com/rest/v1.1/sites/<yourdomain>` in a
+   browser (no auth needed for this lookup) and read the `"ID"` field from the JSON response.
+2. **Register a WordPress.com application** at <https://developer.wordpress.com/apps/> → "Create
+   New Application". Redirect URI can be anything you control (e.g.
+   `https://12sgi.com/oauth/callback`) since you'll copy the `code` manually. Note the
+   `client_id` and `client_secret` it gives you.
+3. **Authorize once in a browser** — visit:
+   `https://public-api.wordpress.com/oauth2/authorize?client_id=<CLIENT_ID>&redirect_uri=<REDIRECT_URI>&response_type=code&scope=global`
+   Log in, approve, and you'll be redirected to your redirect URI with `?code=...` in the URL —
+   copy that `code`.
+4. **Exchange the code for a token** (one local `curl`, run once):
+   ```
+   curl -s https://public-api.wordpress.com/oauth2/token \
+     -d client_id=<CLIENT_ID> \
+     -d client_secret=<CLIENT_SECRET> \
+     -d redirect_uri=<REDIRECT_URI> \
+     -d grant_type=authorization_code \
+     -d code=<CODE_FROM_STEP_3>
+   ```
+   The response's `access_token` is your `JETPACK_TOKEN`. WordPress.com access tokens obtained this
+   way do not expire on a fixed schedule (no refresh-token dance needed) — they're valid until you
+   revoke the app's access in WordPress.com account settings.
+5. **Store both as repo secrets** (run locally, never paste the value in chat):
+   ```
+   gh secret set JETPACK_TOKEN
+   gh secret set JETPACK_SITE_ID
+   ```
+6. **Dispatch `wp-branch-pages-sync.yml`** with `dry_run=true` first to confirm the Jetpack path
+   picks up and reports `[FOUND]`/`[NOT FOUND]` per page title, then `dry_run=false` to go live.
+
+This same `JETPACK_TOKEN`/`JETPACK_SITE_ID` pair also unblocks `wp-publish.yml`'s existing Jetpack
+fallback for release posts — one credential covers both workflows.
+
 ## Monitoring
 
 Monitor the publishing workflow via:

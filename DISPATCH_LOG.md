@@ -20,6 +20,225 @@ Append newest entries at the top. Keep it factual: intent + result.
 **VERIFY:** `python -m compileall -q .` → clean. `KA_SITE=/tmp/go-launch-check python build_site.py` → go.html + go/ subpages in output.
 
 **NEXT:** Merge PR → run `deploy-v2-king-server` workflow to push go/ subpages to king-local → all 7 Owner Console panels live on Tailscale at ts.net/go/docker.html etc.
+## 2026-07-12 — Maui branch working-space pages: Jetpack OAuth2 confirmed as the standard auth path, thread closed on repo side
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy confirmed the Jetpack OAuth2 path (`JETPACK_TOKEN`/`JETPACK_SITE_ID`) is the
+standard/intended auth mechanism for this WordPress.com-hosted site, over the Application Password
+path. This matches the earlier finding that WordPress.com sites may not accept `wp/v2` App
+Password writes the way self-hosted/Atomic sites do.
+
+**CHANGED:** `docs/WORDPRESS_PUBLIC_LAYER.md` — added a concrete, step-by-step "how to get
+`JETPACK_TOKEN`" section (register app at developer.wordpress.com/apps → one-time browser
+authorize → exchange code for token via one local curl → `gh secret set` both values → dispatch
+dry-run). WordPress.com OAuth2 access tokens obtained this way don't expire on a fixed schedule, so
+this is genuinely a one-time setup step, not a recurring one. Also noted the same token pair
+unblocks `wp-publish.yml`'s existing (already-correct) Jetpack fallback for release posts.
+
+**PRESERVED:** No credential was requested, generated, or handled in this session — the OAuth2
+authorize/exchange steps are documented for the owner to run locally, never through this chat.
+
+**VERIFY:** Everything achievable from this session's side is built, merged to `main` (PR #362,
+#363), and dry-run verified twice (fails safely with no credentials, exactly as designed). No
+further repo-side action is pending on this thread.
+
+**NEXT:** Owner runs the 6-step setup in `docs/WORDPRESS_PUBLIC_LAYER.md` → "Auth: Jetpack OAuth2
+is the standard path" locally, then dispatches `wp-branch-pages-sync.yml` (dry_run=true first, then
+false) to push the 4 Maui pages live. After that's validated, the same generator can be extended to
+the remaining 4 tenants (Honolulu, Kauai, State of Hawaii, New York). This thread is closed on the
+repo/automation side pending that owner action.
+
+---
+
+## 2026-07-12 — Maui branch working-space pages: merged to main, dry-run verified, blocked only on WP secrets
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Confirmed via `gh api repos/jimlangford/12sgi-king/actions/secrets` that this repo
+has **zero** Actions secrets configured (`{"total_count":0,"secrets":[]}`). This also explains
+`wp-publish.yml`'s run history — it has failed on every push trigger (0s runs) since it depends on
+the same `WP_URL`/`WP_USER`/`WP_APP_PASSWORD` secrets, which have never existed here. This is a
+pre-existing infra gap, not something introduced this session.
+
+**CHANGED:** Merged PR #362 (`workboard-lifecycle-status-sync` → `main`, squash) after all 4 CI
+checks passed. `wp-branch-pages-sync.yml` is now registered on `main` and dispatchable. Dispatched
+it once with `tenant=maui branch=all dry_run=true` (run 29175383650) to prove the full pipeline —
+checkout, bundle verification, manifest read — runs clean end-to-end and fails exactly at the
+intended "No WordPress credentials configured" guard (exit 1, clear message), never touching the
+live site. No partial/unsafe writes are possible in this state.
+
+**PRESERVED:** Did not request, receive, or handle the actual WordPress application password in
+this session — that credential stays owner-only, added directly via `gh secret set` or the GitHub
+web UI, never pasted into a chat transcript.
+
+**VERIFY:** Generator: 4/4 pages, 53 resources, clean. PR #362: MERGED, all checks passed. Sync
+workflow: registered on `main`, dispatched, failed safely exactly as designed (missing-secrets
+guard), zero live writes attempted.
+
+**NEXT (owner-only action):** Add three repo secrets — `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` —
+via `gh secret set WP_URL` / `WP_USER` / `WP_APP_PASSWORD` (run locally, prompts for value, never
+appears in any log or chat) or GitHub → Settings → Secrets and variables → Actions. Once set,
+re-dispatch `wp-branch-pages-sync.yml` with `dry_run=true` to see FOUND/NOT FOUND per page title,
+then `dry_run=false` (+`create_missing=true` only if genuinely new) to push live. This same fix
+will also unblock the pre-existing `wp-publish.yml` release-post automation.
+
+---
+
+## 2026-07-12 — Maui branch working-space pages: generator + sync workflow built
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `reports/mauios/` for real, already-sourced Maui civic data (agendas, votes,
+minutes, testimony, department dashboards, entity dossiers, oversight/accountability records);
+`build_site.py` to confirm these publish flat at `https://12sgi.com/<file>.html`;
+`watchers/deploy_elementlotus_wp.py` as the existing repo convention for WordPress content
+generators; `.github/workflows/wp-publish.yml` for the existing WP REST secrets/auth pattern
+(posts-only, create-only — no page-edit capability existed before this).
+
+**CHANGED:**
+- `watchers/wp_branch_pages.py` (new): generates the 4 branch working-space page fragments
+  (council/counsel/executive/judicial) per tenant from real, existence-checked report links —
+  every linked report is verified on disk before inclusion, so a generated page can never contain
+  a dead link or a fabricated reference. Maui's resource mapping is fully populated (53 real
+  resource links across the 4 pages); other 5 tenants are registered but not yet populated.
+- `content/wordpress/branch_pages/maui/{council,counsel,executive,judicial}.html` + `manifest.json`
+  (generated, committed as the repo source-of-record blueprint): 11/13/23/6 resources respectively.
+  Titles exactly match Hawaii County's existing live naming convention (e.g.
+  "Maui County — Council — Working Space").
+- `.github/workflows/wp-branch-pages-sync.yml` (new): `workflow_dispatch` action that searches
+  WordPress by exact page title via `wp/v2/pages` REST and either updates the matched page's
+  content or (only when `create_missing=true`) creates it as a **draft**. Defaults to
+  `dry_run=true` (report-only, no writes). Deliberately never touches the `Groups` taxonomy —
+  access-restriction assignment stays a manual WP-admin step, same as every other private page.
+- `docs/WORDPRESS_PUBLIC_LAYER.md`: documented this as an explicit, owner-approved exception to
+  the "QUAD OS never edits existing WordPress content" principle, scoped narrowly to these 4
+  branch pages per tenant.
+
+**PRESERVED:** Group/taxonomy access assignment is left as a manual owner action in both the
+generator and the workflow — the automation never decides who can see a private working space.
+No civic data was invented; every resource link is existence-checked against disk at generation
+time.
+
+**VERIFY:** `python watchers/wp_branch_pages.py --tenant maui --all` ran clean (4/4 pages built).
+YAML + embedded Python of the new workflow both parse/compile clean (checked locally, not yet run
+in Actions). Workflow NOT yet dispatched — no content has been pushed to live WordPress yet.
+
+**NEXT:** Owner should confirm `WP_APP_PASSWORD`'s account has Page edit rights, then dispatch
+`wp-branch-pages-sync.yml` with `dry_run=true` first to confirm the 4 Maui pages don't already
+exist under these exact titles, then re-run with `dry_run=false` (+ `create_missing=true` if
+truly new) to push live. Whether the `Groups` taxonomy is REST-writable is still unconfirmed —
+flag for Neo4j/LOTUS follow-up per Jimmy's interest in wiring that in "for thoroughness" is a
+separate, local-only, owner-driven step (Neo4j is not reachable from this cloud session) and is
+not attempted here. After Maui is validated live, the same generator can be extended to the
+remaining 4 tenants (Honolulu, Kauai, State of Hawaii, New York) once their resource mappings are
+populated from their own `reports/mauios/*_<tenant>.html` files.
+
+---
+
+## 2026-07-12 — WordPress duplicate pages: Council Workspace / Counsel Review
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy pasted the live WordPress.com Pages list (53 pages, elementLOTUS site).
+This content is managed directly on WordPress.com and is not tracked in this git repo (only the
+Element LOTUS rebuild source is mirrored, per `docs/WORDPRESS_PUBLIC_LAYER.md`) — confirming
+access-level/role pages (Membership, govOS Commentary Seat $99/mo, govOS Owner Hub, and
+Council/Counsel/Executive/Judicial Workspace pages tagged with a `Groups` taxonomy: `council`,
+`counsel`, `executive`, `judicial`, `Registered`) are already built there.
+
+**FINDING (duplicate pages, real, needs owner cleanup on WordPress.com — not fixable from this
+repo/session):**
+- **"Council Workspace"** (County Council branch) exists twice:
+  - 2026/07/08 9:27pm — **no Group tag** (stale/incomplete)
+  - 2026/07/08 10:01pm — tagged `Council` ✅ **keep this one**
+- **"Counsel Review"** (Legal branch) exists twice:
+  - 2026/07/08 9:27pm — tagged `Registered` + `counsel` (mixed/stale)
+  - 2026/07/08 10:16pm — tagged `counsel` only ✅ **keep this one**
+
+**Reasoning for which copy to keep:** Executive Workspace (10:14pm, `executive`) and Judicial
+Workspace (10:15pm, `judicial`) were created in the same tight 10:01–10:16pm window with clean,
+single-branch Group tags. The 10:01pm Council Workspace and 10:16pm Counsel Review fall in that
+same batch and match its tagging convention — these are the correct, final versions. The two
+9:27pm pages are earlier attempts (untagged / mixed-tag) that were superseded, not intentional
+duplicates.
+
+**PRESERVED:** did not delete/trash anything — WordPress.com admin actions are outside this
+session's reach (no WP credentials/API access here, and page trash/delete is a content-owner
+decision).
+
+**NEXT (owner action, WordPress.com admin UI):**
+1. Trash the 2026/07/08 9:27pm **"Council Workspace"** (untagged copy).
+2. Trash the 2026/07/08 9:27pm **"Counsel Review"** (tagged `Registered`+`counsel` copy).
+3. Confirm the surviving 10:01pm Council Workspace and 10:16pm Counsel Review pages are linked
+   correctly from any nav/menu that previously pointed at the stale copies.
+
+---
+
+## 2026-07-11 (even later still) — king-server surface_health --heal run: missing publish_watch.py launcher target; local mirror is behind
+
+**Thread:** "continue" (release-readiness follow-through)  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy ran `python watchers/surface_health.py --heal` on king-server (from the local mirror at `Documents\Claude\12sgi-king`) and pasted the output: 22 items, 2 DOWN. Notably absent: the new `SERVICES` (runner) and V2 Docker-stack checks added in PR #360 -- confirms that local mirror has not yet pulled the commits merged this session (bf78873 / 1514666) and is running an older `surface_health.py`.
+
+**FINDING (real, needs owner attention -- cannot be fixed from this cloud session):** `[DOWN] launcher: publish_watch publish_watch.py` -- the Startup launcher entry checks for `%LOCALAPPDATA%\12sgi-publish\publish_watch.py` and that file does not exist on disk, even though a live `publish_watch` process was found running right now (`[OK] publish watcher publish_watch`). This means: it's fine *right now*, but will fail to relaunch on the next reboot ("couldn't find a script" per the script's own warning text). This file is **not tracked in the git repo at all** (confirmed via repo-wide search) -- it's a local-only, owner-machine script living outside source control, so this cloud session has no way to see its contents, know its last-known-good state, or restore it.
+
+**PRESERVED:** did not attempt to recreate, guess at, or stub out `publish_watch.py`'s contents -- inventing a replacement for a private local automation script the owner didn't ask me to touch would risk silently changing real publish behavior. Asked the owner directly first (per Lane Discipline); they were unavailable, so recording this here instead of guessing.
+
+**NEXT (owner action, both items local-only):**
+1. Pull latest on the `Documents\Claude\12sgi-king` mirror (`git pull`) so future `surface_health.py --heal` runs there include the runner/V2-stack checks from PR #360, and re-run `--heal` to confirm those two new surfaces report correctly on the real king-server host.
+2. Restore or re-point `publish_watch.py` at `%LOCALAPPDATA%\12sgi-publish\publish_watch.py` (from a backup, or wherever the currently-running process's actual script path is) before the next reboot, or the publish watcher won't come back up on its own.
+
+---
+
+## 2026-07-12 — OAuth debug endpoint (issue #358)
+
+**Thread:** degug-oauth  **From:** Copilot CLI  **To:** owner review
+
+**INSPECTED:** `services/auth/app/main.py` — GitHub/Google OAuth flows; `GITHUB_CLIENT_ID`, `GOOGLE_CLIENT_ID`, `AUTH_PUBLIC_URL`, `OAUTH_REDIRECT_BASE`, `OWNER_GITHUB_LOGINS`, `OWNER_GOOGLE_EMAILS` env-var wiring; no bugs found in flow logic.
+
+**CHANGED:**
+- `services/auth/app/main.py` — new `GET /api/v2/auth/debug` (no auth required; returns `github.configured`, `google.configured`, `github.callback_uri`, `google.callback_uri`, `redirect_base`, `owner_github_login_count`, `owner_google_email_count` — no secrets, no allowlist values exposed).
+- `docs/api/v2-api-contract.yaml` — registered `/api/v2/auth/debug` GET route.
+- `tests/v2/test_v2_contract.py` — asserts debug route present in contract.
+- `tests/v2/test_v2_hardening.py` — 6 new `TestOAuthDebugEndpoint` tests (no-auth access, unconfigured/configured states, callback URIs shape, owner counts, no-secrets guarantee).
+
+**PRESERVED:** no existing OAuth flow changed; 3 pre-existing AI grounding failures confirmed unrelated; all PRIVATE/PUBLIC boundaries intact; no secrets in output.
+
+**VERIFY:** `python -m compileall -q .` → clean. `python -m unittest tests.v2.test_v2_hardening.TestOAuthDebugEndpoint` → 6/6 PASS. `python -m unittest tests.v2.test_v2_contract` → 72/72 PASS.
+
+**NEXT:** Owner hits `GET /api/v2/auth/debug` on the live auth service to confirm env vars are wired correctly before a live OAuth login attempt. No code changes needed after merge.
+
+---
+
+## 2026-07-11 (latest) — hardened surface_health.py to also watch/heal the king-server runner + V2 stack
+
+**Thread:** "they should be serving at all times and hardened i approve your fixes and forward momentum"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `watchers/surface_health.py` — the existing generalized boot-persistence sweep (already covers ports, daemons, scheduled tasks, launcher-script integrity, with a `--heal` relaunch mode). This is the correct, already-established lever for "serving at all times" rather than inventing a new mechanism.
+
+**CHANGED:** extended `surface_health.py` with two new watched surfaces, following its exact existing conventions (report-only by default, `--heal` opts in to fixing): (1) `SERVICES` — the GitHub Actions self-hosted runner (`actions.runner.*` Windows Service) that backs `deploy-v2-king-server.yml`; `--heal` runs `Start-Service` if it's stopped. (2) V2 Docker Compose stack (`docker-compose.v2.yml`, the 7 core services) — `--heal` issues `docker compose up -d` if any are down. Neither path ever installs/registers a new runner or cold-starts a stack that's never been started — those stay explicit owner actions, matching this file's own existing GPU/supervisor safety rules.
+
+**PRESERVED:** did not touch the GPU report-only rule (ComfyUI/Ollama), the supervisor's own domain (:8770/roster/jobrunner/tunnel), or any of the retired-task checks.
+
+**VERIFY:** `python -m py_compile watchers/surface_health.py` clean; `python -m compileall -q .` clean; ran `python watchers/surface_health.py` in this sandbox (not king-server) — correctly reports the runner service as `unknown` (no such service here) and the V2 stack as `down` (docker present but stack not started here), proving the new checks activate/report without crashing on a non-king-server host.
+
+**NEXT (owner action on king-server):** run `python watchers/surface_health.py --heal` there (or let its existing scheduled `--heal` sweep pick this up) to confirm the runner service starts and shows `Running`, and the V2 stack comes up. If the runner service doesn't exist at all yet (not just stopped), it still needs the one-time manual registration from `docs/DEPLOYMENT.md` ("Settings -> Actions -> Runners -> New self-hosted runner") — that step can't be scripted (fresh registration token each time).
+
+---
+
+## 2026-07-11 (even later) — attempted live run on king-server: no self-hosted runner online
+
+**Thread:** "complete the merge into a live run on king server"  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** `main` already contains both `6da10ef` (education front-door) and `e273b82` (LOTUS education graph loader), confirmed via `git merge-base --is-ancestor`. Checked the only bridge that can execute anything ON king-server from this cloud session: `.github/workflows/deploy-v2-king-server.yml`, `runs-on: [self-hosted, king-server, windows]`. `gh run list --workflow=deploy-v2-king-server.yml` shows every recent dispatch (including ones triggered by merges to `main`) completing as `failure` in 0 seconds with no logs — the signature of no matching self-hosted runner ever picking up the job, not a script bug.
+
+**PRESERVED:** did not attempt SSH, rsync, or any other path into king-server (none exist by design — see the workflow's own "No SSH. No rsync. No inbound ports." header). Did not touch Neo4j, docker-compose.v2.yml, or any king-local file from here.
+
+**VERIFY:** `gh api repos/jimlangford/12sgi-king/actions/runners` returned no runners at all. `gh run list --workflow=deploy-v2-king-server.yml --limit 5` — 5/5 recent runs `failure`, 0s duration.
+
+**NEXT (owner action required — cannot be done from this cloud session):** the self-hosted Actions runner on king-server needs to be online for a "live run" to actually execute there. Once it is: `gh workflow run deploy-v2-king-server.yml` (or just let the next push trigger it, if a push trigger is later enabled) will sync `go.html`/board files and validate the V2 stack. Separately — and not part of that workflow by design, since it's a one-time/rerunnable data load, not a service — run `python watchers/education_to_graph.py` directly on king-server to load the LOTUS grade-band graph into the live Neo4j.
+
 
 ---
 

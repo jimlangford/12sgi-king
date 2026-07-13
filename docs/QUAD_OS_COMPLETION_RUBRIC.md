@@ -2,7 +2,10 @@
 
 This rubric turns the platform direction into concrete completion gates and records the latest checkpoint execution.
 
-Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:xx UTC (Copilot agent)
+Last execution: 2026-07-11 (UTC) — updated 2026-07-12 01:xx UTC (Copilot agent): merged PR #360
+(runner/V2-stack hardening, fixed CI-blocking AI-grounding 503 bug) and PR #361 (wp-publish.yml
+YAML parse fix); `main` fully green; logged king-server local-mirror and publish_watch.py
+launcher findings to DISPATCH_LOG.md.
 
 ## Status scale
 
@@ -33,6 +36,18 @@ Last execution: 2026-07-11 (UTC) — updated 2026-07-11 19:xx UTC (Copilot agent
   - Dry-run dispatch API call (`POST /actions/workflows/309022902/dispatches`, `ref=main`, `dry_run=true`, `restart_services=false`): `HTTP 403`.
 
 **Status**: **BLOCKED** (workflow control-plane permission required before dry run can be executed and evidenced).
+
+**Related progress this session (does not close the gate, but supports it):**
+- `watchers/surface_health.py` hardened (PR #360, merged) to watch/heal the self-hosted Actions
+  runner service and the V2 Docker Compose stack, so once the runner is re-enabled and online it
+  stays up automatically rather than needing manual restarts.
+- A live `--heal` run on king-server (2026-07-11) surfaced two real, separate operational findings
+  logged in `DISPATCH_LOG.md`: the local mirror running the sweep was behind `main` (missing the
+  new runner/stack checks), and `publish_watch.py`'s Startup launcher target is missing on disk
+  (currently running, but won't relaunch on next reboot). Both require direct owner action on
+  king-server's filesystem; neither is fixable from a repo change.
+- `ci-test.yml` was found red on `main` (AI-grounding hardening tests expecting 200, getting 503)
+  and has been fixed — `main` is fully green again as of this session.
 
 ---
 
@@ -213,5 +228,8 @@ for auth, case, and public projections continues).
 1. Repository owner/admin re-enables `Deploy V2 to king-server (private, self-hosted)` in Actions.
 2. Run dispatch on `main` with `dry_run=true`, `restart_services=false`, then capture run id/url, runner identity, provenance/readiness matrices, and findings.
 3. Authorize controlled restart (`restart_services=true`) only if dry-run evidence is clean and decision gate is GO.
-4. Wire auth login / case state-change events to `services/event_bus.publish_event()` to further advance Checkpoint 5.
-5. Connect event bus projections to the Naga console `Events` panel (new `.dc.html`) so the owner can see the live event feed in the private dashboard.
+4. On king-server: `git pull` the `Documents\Claude\12sgi-king` local mirror so `surface_health.py --heal` picks up the runner/V2-stack checks from PR #360, then re-run `--heal` and confirm both new checks report cleanly.
+5. On king-server: restore or re-point `publish_watch.py`'s Startup launcher target at `%LOCALAPPDATA%\12sgi-publish\publish_watch.py` before the next reboot (currently running, but the launcher's on-disk target is missing — see `DISPATCH_LOG.md`).
+6. Wire auth login / case state-change events to `services/event_bus.publish_event()` to further advance Checkpoint 5.
+7. Connect event bus projections to the Naga console `Events` panel (new `.dc.html`) so the owner can see the live event feed in the private dashboard.
+

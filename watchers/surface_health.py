@@ -43,6 +43,31 @@ DAEMONS = [
     {"name": "publish watcher", "match": "publish_watch", "heal": True,
      "cmd": [PYW, os.path.join(HOME, "AppData", "Local", "12sgi-publish", "publish_watch.py")]},
 ]
+# Windows Services that must stay Running at all times (Jimmy 2026-07-11: "they should be serving
+# at all times and hardened" — the self-hosted CI runner backing deploy-v2-king-server.yml went
+# silent/unregistered and nothing was watching, same CLASS of fault this file already exists to
+# catch). heal=True => Start-Service (never installs/registers a new service — that requires a
+# fresh GitHub registration token and stays a manual, security-sensitive owner step).
+SERVICES = [
+    {"name": "GitHub Actions runner (king-server)", "match": "actions.runner.*", "heal": True,
+     "note": "backs .github/workflows/deploy-v2-king-server.yml — if stopped, that workflow queues "
+             "forever with no runner to pick it up (confirmed 2026-07-11: 5/5 recent dispatches "
+             "failed in 0s, no logs)"},
+]
+
+def _repo():
+    home = os.path.expanduser("~")
+    for c in (os.path.join(home, "Documents", "Claude", "12sgi-king"), os.getcwd()):
+        if os.path.isfile(os.path.join(c, "docker-compose.v2.yml")):
+            return c
+    return os.getcwd()
+REPO = _repo()
+# V2 Docker Compose stack (services/*, docker-compose.v2.yml) — same "serving at all times" ask.
+# heal=True => `docker compose up -d`, never a cold `up` on a stack that was never started (that
+# stays an owner decision, same rule the deploy workflow itself follows).
+DOCKER_V2_COMPOSE = os.path.join(REPO, "docker-compose.v2.yml")
+DOCKER_V2_SERVICES = ["auth", "tenant", "documents", "storage", "ai", "health", "gpu-router"]
+
 # Supervisor itself must be alive (it heals :8770/roster/jobrunner/tunnel).
 SUPERVISOR = {"name": "studio_supervisor", "match": "studio_supervisor"}
 # LAUNCHER INTEGRITY (new facet of boot-persistence, learned from the reboot 2026-06-16): a Startup
@@ -115,6 +140,50 @@ def comfy_ready():
     except Exception as e:
         return False, "render node missing/unreachable (" + str(e)[:46] + ")"
 
+def service_status(name_like):
+    """Windows Service state by name/wildcard (e.g. 'actions.runner.*'). None if no such service."""
+    try:
+        o = subprocess.run(["powershell", "-NoProfile", "-Command",
+              "(Get-Service -Name '%s' -ErrorAction SilentlyContinue | Select-Object -First 1 "
+              "-ExpandProperty Status)" % name_like],
+              capture_output=True, text=True, timeout=20, creationflags=CREATE_NO_WINDOW)
+        s = (o.stdout or "").strip()
+        return s or None
+    except Exception:
+        return None
+
+def start_service(name_like):
+    try:
+        o = subprocess.run(["powershell", "-NoProfile", "-Command",
+              "Get-Service -Name '%s' -ErrorAction SilentlyContinue | Start-Service" % name_like],
+              capture_output=True, text=True, timeout=30, creationflags=CREATE_NO_WINDOW)
+        return True if o.returncode == 0 else (o.stderr or "start-service failed").strip()[:80]
+    except Exception as e:
+        return str(e)
+
+def docker_v2_running_services():
+    """Names of currently-running services in the V2 compose stack. None if docker/file unavailable."""
+    if not os.path.exists(DOCKER_V2_COMPOSE):
+        return None
+    try:
+        o = subprocess.run(["docker", "compose", "-f", DOCKER_V2_COMPOSE, "ps",
+                            "--services", "--filter", "status=running"],
+              capture_output=True, text=True, timeout=25, creationflags=CREATE_NO_WINDOW)
+        if o.returncode != 0:
+            return None
+        return set(l.strip() for l in o.stdout.splitlines() if l.strip())
+    except Exception:
+        return None
+
+def docker_v2_up():
+    try:
+        subprocess.Popen(["docker", "compose", "-f", DOCKER_V2_COMPOSE, "up", "-d"],
+              cwd=os.path.dirname(DOCKER_V2_COMPOSE) or None, creationflags=CREATE_NO_WINDOW,
+              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True)
+        return True
+    except Exception as e:
+        return str(e)
+
 def relaunch(cmd):
     try:
         subprocess.Popen(cmd, cwd=os.path.dirname(cmd[-1]) or None, creationflags=CREATE_NO_WINDOW,
@@ -142,6 +211,32 @@ def main():
     if port_up(8000):
         cok, cnote = comfy_ready()
         items.append({"surface": "ComfyUI render-ready", "kind": "render", "id": "nodes", "ok": cok, "note": cnote})
+
+    for svc in SERVICES:
+        st = service_status(svc["match"])
+        ok = (st == "Running") if st is not None else None
+        rec = {"surface": svc["name"], "kind": "service", "id": svc["match"], "ok": ok, "state": st}
+        if ok is False and heal and svc.get("heal"):
+            r = start_service(svc["match"]); rec["healed"] = (r is True)
+            rec["heal_detail"] = r if r is not True else "started"
+            healed.append(svc["name"])
+        if svc.get("note"):
+            rec["note"] = svc["note"] if ok is not True else None
+        items.append(rec)
+
+    running = docker_v2_running_services()
+    if running is not None:
+        missing = [s for s in DOCKER_V2_SERVICES if s not in running]
+        ok = not missing
+        rec = {"surface": "V2 Docker stack", "kind": "docker", "id": "docker-compose.v2.yml", "ok": ok,
+               "note": ("down: %s" % ", ".join(missing)) if missing else None}
+        if not ok and heal:
+            r = docker_v2_up(); rec["healed"] = (r is True)
+            rec["heal_detail"] = r if r is not True else "docker compose up -d issued"
+            healed.append("V2 Docker stack")
+        items.append(rec)
+    # else: docker/compose file not present on this host — silently skip (e.g. CI checkout, or a
+    # non-king-server machine running this same sweep script).
 
     for d in DAEMONS:
         run = proc_running(d["match"])
