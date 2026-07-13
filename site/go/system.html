@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>System · Owner Console</title>
+<!-- PRIVATE: Tailscale-only. Served from king :8799. Not part of the public GitHub Pages site. -->
+<style>
+ :root{
+   --bg:#ffffff;--panel:#e7eef8;--panel-2:#dae5f3;--panel-3:#ccddef;--line:#bacde6;
+   --ink:#13243d;--ink-dim:#41536b;--ink-faint:#5b6e86;
+   --accent:#00356b;--accent-2:#1259a3;--accent-ink:#ffffff;--accent-wash:rgba(0,53,107,.06);
+   --gold:#b8860b;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
+   --mono:'JetBrains Mono',Consolas,monospace;
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+      min-height:100vh;padding:20px 16px 40px;-webkit-font-smoothing:antialiased}
+ .wrap{width:100%;max-width:820px;margin:0 auto}
+ .back{font-family:var(--mono);font-size:11.5px;color:var(--accent-2);text-decoration:none;display:inline-block;margin-bottom:14px}
+ .back:hover{text-decoration:underline}
+ .head{display:flex;align-items:center;gap:11px;margin:0 0 4px}
+ .seal{width:40px;height:40px;border-radius:10px;background:var(--accent);color:var(--accent-ink);flex:none;
+       display:flex;align-items:center;justify-content:center;font-size:19px}
+ .brand{font-size:18px;font-weight:800}
+ .syslabel{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+ .sub{font-size:13px;color:var(--ink-dim);margin:10px 0 14px;line-height:1.55}
+ .status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;padding:8px 13px;
+         border-radius:10px;background:var(--panel);border:1px solid var(--line);margin-bottom:14px;color:var(--ink-dim)}
+ .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);animation:pulse 1.2s infinite;flex:none}
+ .dot.up{background:var(--ok);animation:none}.dot.down{background:var(--err);animation:none}
+ @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+ .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:18px 2px 9px;font-weight:600}
+ .card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:9px}
+ .t{font-size:14px;font-weight:650}.b{font-size:12px;color:var(--ink-dim);margin-top:3px;line-height:1.4}
+ .metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px;margin-bottom:4px}
+ .metric-box{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 14px}
+ .metric-num{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.2}
+ .metric-lbl{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:1px;margin-top:5px}
+ .metric-sub{font-size:11.5px;color:var(--ink-dim);margin-top:4px}
+ .bar-wrap{height:5px;border-radius:99px;background:var(--panel-3);overflow:hidden;margin:7px 0 3px}
+ .bar-fill{height:100%;border-radius:99px}
+ .bar-fill.ok{background:linear-gradient(90deg,var(--ok),#2aad73)}
+ .bar-fill.warn{background:linear-gradient(90deg,var(--warn),#d49a20)}
+ .bar-fill.err{background:linear-gradient(90deg,var(--err),#e05060)}
+ .foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:22px;line-height:1.7;
+       text-align:center;border-top:1px solid var(--line);padding-top:13px}
+ button.fix-btn{font-family:var(--mono);font-size:11.5px;padding:6px 13px;border-radius:8px;cursor:pointer;
+                border:1px solid var(--line);background:var(--panel);color:var(--accent-2);white-space:nowrap}
+ button.fix-btn:hover{border-color:var(--accent)}
+ button.retry-btn{font-family:var(--mono);font-size:11.5px;padding:7px 16px;border-radius:8px;
+                  background:var(--panel);border:1px solid var(--line);cursor:pointer;color:var(--accent-2)}
+ button.retry-btn:hover{border-color:var(--accent)}
+ a.fix-link{font-family:var(--mono);font-size:11.5px;padding:6px 13px;border-radius:8px;
+            border:1px solid var(--line);background:var(--panel);color:var(--accent-2);
+            text-decoration:none;white-space:nowrap;display:inline-block}
+ a.fix-link:hover{border-color:var(--accent)}
+ details>summary{font-family:var(--mono);font-size:11px;cursor:pointer;color:var(--accent-2);
+                  user-select:none;padding:2px 0}
+ pre.log-pre{font-family:var(--mono);font-size:10.5px;background:var(--panel);border-radius:7px;
+             padding:9px 11px;overflow-x:auto;white-space:pre-wrap;margin:5px 0 0;
+             max-height:180px;overflow-y:auto;border:1px solid var(--line)}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head><body>
+<div class="wrap">
+  <a class="back" href="/go">← /go</a>
+
+  <div class="head">
+    <div class="seal">🖥</div>
+    <div><div class="brand">System</div><div class="syslabel">Hardware health · Owner Console</div></div>
+  </div>
+  <p class="sub">CPU, memory, disk, GPU temperature, and uptime for the king server. Tailscale-only; fails closed on the public mirror.</p>
+
+  <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">checking system…</span></div>
+
+  <div id="content" style="display:none">
+    <div class="sect">Resources</div>
+    <div class="metric-grid" id="metricGrid"></div>
+
+    <div class="sect">GPU</div>
+    <div class="card" id="gpuCard">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;flex-wrap:wrap">
+        <div>
+          <div class="b" style="margin-bottom:3px">VRAM</div>
+          <div class="bar-wrap"><div class="bar-fill" id="vramBar" style="width:0%"></div></div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--ink-faint)" id="vramText">—</div>
+        </div>
+        <div>
+          <div class="b" style="margin-bottom:3px">Temperature</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:700" id="gpuTempVal">—</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--ink-faint)" id="gpuUtilText">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect">Disk</div>
+    <div id="diskCards"></div>
+
+    <div class="sect">Info</div>
+    <div class="card" id="infoCard">
+      <div class="b" id="infoText">—</div>
+    </div>
+  </div>
+
+  <div id="errSection" style="display:none">
+    <div class="sect">Issues detected</div>
+    <div id="errCards"></div>
+  </div>
+
+  <div class="foot">PRIVATE · System · Owner Console · 12 Stones Global · Tailscale only</div>
+</div>
+<script>
+'use strict';
+var API='/board/api/system';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+function severityStyle(sev){
+  var m={critical:['#c0322c','CRITICAL'],high:['#c04a22','HIGH'],medium:['#b07d1a','MEDIUM'],low:['#b8860b','LOW']};
+  return m[sev]||['#6d7f97','INFO'];
+}
+
+function errCard(o){
+  var ss=severityStyle(o.sev), col=ss[0], lbl=ss[1];
+  var fixes=(o.fixes||[]).map(function(f){
+    if(f.copy) return '<button class="fix-btn" onclick="copyCmd(\''+f.copy.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')">'+esc(f.lbl)+'</button>';
+    if(f.href) return '<a class="fix-link" href="'+esc(f.href)+'" target="_blank" rel="noopener">'+esc(f.lbl)+' →</a>';
+    return '';
+  }).join(' ');
+  return '<div style="border-left:3px solid '+col+';background:rgba(192,50,44,.05);border-radius:10px;padding:13px 15px;margin-bottom:12px">'
+    +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:9px">'
+    +'<span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;font-weight:700;background:'+col+';color:#fff">'+lbl+'</span>'
+    +'<span class="t">'+esc(o.what)+'</span></div>'
+    +'<div class="b" style="margin-bottom:7px"><b>Likely cause:</b> '+esc(o.cause)+'</div>'
+    +'<div class="b" style="margin-bottom:7px"><b>Order of operations:</b><ol style="margin:4px 0 0 18px;padding:0">'+(o.steps||[]).map(function(s){return '<li style="margin-bottom:3px">'+esc(s)+'</li>';}).join('')+'</ol></div>'
+    +(fixes?'<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px">'+fixes+'</div>':'')
+    +(o.logs?'<details style="margin-bottom:9px"><summary>▶ Logs</summary><pre class="log-pre">'+esc(o.logs)+'</pre></details>':'')
+    +'<div class="b" style="margin-bottom:9px"><b>Escalation:</b> '+esc(o.escalate)+'</div>'
+    +'<button class="retry-btn" onclick="loadData()">↺ Test again</button>'
+    +'</div>';
+}
+
+function copyCmd(cmd){
+  if(navigator.clipboard){navigator.clipboard.writeText(cmd).then(function(){alert('Copied to clipboard:\n'+cmd);});}
+  else{alert('Command:\n'+cmd);}
+}
+
+function fmtBytes(b){
+  if(!b)return '?';
+  if(b>=1e12)return (b/1e12).toFixed(1)+'TB';
+  if(b>=1e9)return (b/1e9).toFixed(1)+'GB';
+  if(b>=1e6)return (b/1e6).toFixed(0)+'MB';
+  return b+'B';
+}
+
+function barClass(pct){
+  if(pct>=90)return 'err';
+  if(pct>=75)return 'warn';
+  return 'ok';
+}
+
+function metricColor(pct){
+  if(pct>=90)return 'var(--err)';
+  if(pct>=75)return 'var(--warn)';
+  return 'var(--ok)';
+}
+
+function showUnreachable(){
+  var dot=document.getElementById('dot'), st=document.getElementById('stext');
+  dot.className='dot down'; st.textContent='System API unreachable — check Tailscale';
+  var sec=document.getElementById('errSection'), cards=document.getElementById('errCards');
+  sec.style.display='block';
+  cards.innerHTML=errCard({
+    what:'System API unreachable',
+    cause:'The board API at /board/api/system did not respond. The king server may be offline or Tailscale is disconnected.',
+    sev:'critical',
+    steps:[
+      'Verify Tailscale is connected on this device',
+      'Open https://12sgianonymous.tail760750.ts.net/king/ to test connectivity',
+      'Check that the king server is running on port 8799',
+      'Check board API on port 8782'
+    ],
+    fixes:[
+      {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
+      {lbl:'Test king',href:'https://12sgianonymous.tail760750.ts.net/king/'}
+    ],
+    logs:'',
+    escalate:'If Tailscale is connected and the server is running, check nginx logs and the board API. The /board/api/system endpoint may need to be implemented in the board server.',
+    retryFn:'loadData'
+  });
+}
+
+function loadData(){
+  var dot=document.getElementById('dot'), st=document.getElementById('stext');
+  dot.className='dot'; st.textContent='checking system…';
+  document.getElementById('content').style.display='none';
+  document.getElementById('errSection').style.display='none';
+  document.getElementById('errCards').innerHTML='';
+
+  fetch(API,{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():Promise.reject(new Error('HTTP '+r.status));})
+    .then(function(d){
+      var cpuPct=d.cpu_pct||d.cpu||0;
+      var memPct=d.mem_pct||d.memory_pct||0;
+      var memUsed=d.mem_used||d.memory_used||0;
+      var memTotal=d.mem_total||d.memory_total||0;
+      var vramPct=d.gpu_vram_pct||d.vram_pct||0;
+      var vramUsed=d.gpu_vram_used||d.vram_used||0;
+      var vramTotal=d.gpu_vram_total||d.vram_total||0;
+      var gpuTemp=d.gpu_temp||d.gpu_temperature||null;
+      var gpuUtil=d.gpu_util||d.gpu_utilization||null;
+      var uptime=d.uptime||'';
+      var hostname=d.hostname||'king';
+      var disks=d.disks||[];
+      var hasErrors=false;
+      var errHtml='';
+
+      // CPU alert
+      if(cpuPct>=90){
+        hasErrors=true;
+        errHtml+=errCard({
+          what:'CPU critically high ('+cpuPct+'%)',
+          cause:'System CPU is pegged. This may be caused by a runaway process, heavy AI workload, or a system update running in the background.',
+          sev:'high',
+          steps:[
+            'Identify the top process: top -bn1 | head -20',
+            'Check if an unexpected process is consuming CPU',
+            'Reduce concurrent workloads (pause renders or LLM inference)',
+            'Verify system temperature: sensors (if lm-sensors installed)'
+          ],
+          fixes:[
+            {lbl:'Copy: top processes',copy:'top -bn1 | head -20'},
+            {lbl:'Copy: cpu info',copy:'ps aux --sort=-%cpu | head -10'}
+          ],
+          logs:'',
+          escalate:'If CPU stays high with no obvious cause, check for crypto miners or runaway services. A system reboot may be required.',
+          retryFn:'loadData'
+        });
+      }
+
+      // RAM alert
+      if(memPct>=90){
+        hasErrors=true;
+        errHtml+=errCard({
+          what:'Memory critically high ('+memPct+'%)',
+          cause:'System RAM is nearly exhausted. The OS may begin swapping, causing severe slowdowns or OOM kills.',
+          sev:'high',
+          steps:[
+            'Identify memory-heavy processes: ps aux --sort=-%mem | head -10',
+            'Free page cache (safe): sudo sh -c "echo 1 > /proc/sys/vm/drop_caches"',
+            'Reduce number of loaded models or containers',
+            'Consider adding a swap file if not present'
+          ],
+          fixes:[
+            {lbl:'Copy: top by RAM',copy:'ps aux --sort=-%mem | head -10'},
+            {lbl:'Copy: free RAM stats',copy:'free -h'}
+          ],
+          logs:'',
+          escalate:'Persistent high memory usage may require reducing the number of concurrently loaded models or upgrading system RAM.',
+          retryFn:'loadData'
+        });
+      }
+
+      // GPU temp alert
+      var gpuTempNum=gpuTemp!=null?parseFloat(gpuTemp):0;
+      if(gpuTemp!=null&&gpuTempNum>=85){
+        hasErrors=true;
+        errHtml+=errCard({
+          what:'GPU overheating ('+gpuTemp+'°C)',
+          cause:'GPU temperature is dangerously high. Thermal throttling or automatic shutdown may occur.',
+          sev:'critical',
+          steps:[
+            'Stop all GPU workloads immediately',
+            'Check airflow: ensure fans are spinning',
+            'Clean GPU heatsink of dust if accessible',
+            'Monitor: nvidia-smi dmon -s pct'
+          ],
+          fixes:[
+            {lbl:'Copy: GPU monitor',copy:'nvidia-smi dmon -s pct'},
+            {lbl:'Copy: GPU temp',copy:'nvidia-smi --query-gpu=temperature.gpu,fan.speed --format=csv,noheader'}
+          ],
+          logs:'',
+          escalate:'If temperature does not drop after stopping workloads, the GPU cooling system requires physical inspection. Do not resume GPU workloads until resolved.',
+          retryFn:'loadData'
+        });
+      }
+
+      // Disk alerts
+      disks.forEach(function(disk){
+        var diskPct=disk.pct||disk.used_pct||0;
+        if(diskPct>=90){
+          hasErrors=true;
+          errHtml+=errCard({
+            what:'Disk critically full: '+esc(disk.mount||disk.path||'/')+' ('+diskPct+'%)',
+            cause:'The disk is nearly full. Docker images, model files, render outputs, or log files may be consuming excessive space.',
+            sev:'high',
+            steps:[
+              'Find large files: du -sh /* 2>/dev/null | sort -rh | head -10',
+              'Clean Docker: docker system prune -f',
+              'Remove old render outputs from the studio output directory',
+              'Check log file sizes in /var/log'
+            ],
+            fixes:[
+              {lbl:'Copy: find large dirs',copy:'du -sh /* 2>/dev/null | sort -rh | head -10'},
+              {lbl:'Copy: Docker prune',copy:'docker system prune -f'},
+              {lbl:'Copy: disk usage',copy:'df -h'}
+            ],
+            logs:'',
+            escalate:'If the disk cannot be cleared, consider moving large model files to an external drive or expanding storage.',
+            retryFn:'loadData'
+          });
+        }
+      });
+
+      dot.className=hasErrors?'dot':'dot up';
+      st.textContent=hasErrors?'System needs attention'
+        :'System healthy · CPU '+cpuPct+'% · RAM '+memPct+'% · uptime '+esc(uptime||'unknown');
+
+      // Metrics
+      var mg=document.getElementById('metricGrid');
+      mg.innerHTML='<div class="metric-box"><div class="metric-num" style="color:'+metricColor(cpuPct)+'">'+cpuPct+'<span style="font-size:16px">%</span></div><div class="metric-lbl">CPU</div><div class="bar-wrap"><div class="bar-fill '+barClass(cpuPct)+'" style="width:'+cpuPct+'%"></div></div></div>'
+        +'<div class="metric-box"><div class="metric-num" style="color:'+metricColor(memPct)+'">'+memPct+'<span style="font-size:16px">%</span></div><div class="metric-lbl">RAM</div>'
+        +(memTotal?'<div class="metric-sub">'+fmtBytes(memUsed)+' / '+fmtBytes(memTotal)+'</div>':'')
+        +'<div class="bar-wrap"><div class="bar-fill '+barClass(memPct)+'" style="width:'+memPct+'%"></div></div></div>'
+        +'<div class="metric-box"><div class="metric-num" style="color:var(--accent)">'+esc(uptime||'—')+'</div><div class="metric-lbl">Uptime</div></div>'
+        +(gpuUtil!=null?'<div class="metric-box"><div class="metric-num" style="color:'+metricColor(gpuUtil)+'">'+gpuUtil+'<span style="font-size:16px">%</span></div><div class="metric-lbl">GPU util</div></div>':'');
+
+      // VRAM bar
+      if(vramTotal>0){
+        var vb=document.getElementById('vramBar'), vt=document.getElementById('vramText');
+        vb.style.width=vramPct+'%';
+        vb.className='bar-fill '+barClass(vramPct);
+        vt.textContent=fmtBytes(vramUsed)+' / '+fmtBytes(vramTotal)+' ('+vramPct+'%)';
+      } else {
+        document.getElementById('gpuCard').style.display='none';
+      }
+
+      if(gpuTemp!=null){
+        var gt=document.getElementById('gpuTempVal'), gu=document.getElementById('gpuUtilText');
+        gt.textContent=gpuTemp+'°C';
+        gt.style.color=gpuTempNum>=85?'var(--err)':gpuTempNum>=75?'var(--warn)':'var(--ok)';
+        if(gpuUtil!=null) gu.textContent=gpuUtil+'% util';
+      }
+
+      // Disk cards
+      var dc=document.getElementById('diskCards');
+      if(disks&&disks.length){
+        dc.innerHTML=disks.map(function(disk){
+          var pct=disk.pct||disk.used_pct||0;
+          return '<div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'
+            +'<span class="t">'+esc(disk.mount||disk.path||'/')+'</span>'
+            +'<span style="font-family:var(--mono);font-size:12px;color:'+metricColor(pct)+'">'+pct+'%</span>'
+            +'</div>'
+            +'<div class="bar-wrap"><div class="bar-fill '+barClass(pct)+'" style="width:'+pct+'%"></div></div>'
+            +'<div class="b">'+fmtBytes(disk.used||0)+' used · '+fmtBytes(disk.free||0)+' free · '+fmtBytes(disk.total||0)+' total</div>'
+            +'</div>';
+        }).join('');
+      } else {
+        dc.innerHTML='<div class="card"><div class="b" style="color:var(--ink-faint)">No disk data available.</div></div>';
+      }
+
+      // Info card
+      var ic=document.getElementById('infoText');
+      ic.innerHTML='hostname: '+esc(hostname)
+        +(d.os?' · os: '+esc(d.os):'')
+        +(d.kernel?' · kernel: '+esc(d.kernel):'')
+        +(d.gpu_name?' · gpu: '+esc(d.gpu_name):'')
+        +(d.cpu_model?' · cpu: '+esc(d.cpu_model):'');
+
+      if(hasErrors){
+        document.getElementById('errSection').style.display='block';
+        document.getElementById('errCards').innerHTML=errHtml;
+      }
+      document.getElementById('content').style.display='block';
+    })
+    .catch(function(){showUnreachable();});
+}
+
+loadData();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body></html>

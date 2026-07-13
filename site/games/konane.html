@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konane · Hawaiian jump-capture · TribeGameStudios</title>
+<meta name="description" content="Konane — the Hawaiian papamū jump-capture game. ʻIliʻili stones, aliʻi rules. TribeGameStudios · 12sgi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='38'%20fill='none'%20stroke='%23e3ad33'%20stroke-width='9'/%3E%3C/svg%3E">
+<style>
+/* Konane · 12sgi-design canon — warm volcanic near-black + gold accent. Zero external deps. */
+:root{
+  --bg:#161209; --s1:#231d10; --s2:#2e2716; --s3:#3e351f; --line:#5a4f33;
+  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --ink:#f7f1e3; --ink-2:#d8cdb0; --ink-3:#ab9e7f;
+  --black-stone:#1a1a1a; --white-stone:#e8e0cc;
+  --cell-light:#2a2215; --cell-dark:#1e1a0e;
+  --sel:#e3ad33; --sel2:rgba(227,173,51,0.18);
+  --move-hint:rgba(56,189,248,0.30);
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+
+header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s1)}
+.hexmark{font-size:22px;color:var(--gold)}
+.wordmark strong{font-size:17px;font-weight:700;color:var(--gold)}
+.wordmark .sub{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.studio-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-left:auto}
+.back-link{font-size:12px;color:var(--gold);text-decoration:none;margin-left:auto}
+.back-link:hover{text-decoration:underline}
+
+/* layout */
+.layout{display:flex;gap:16px;padding:16px;max-width:900px;margin:0 auto;flex-wrap:wrap}
+.board-col{flex:0 0 auto}
+.side-col{flex:1 1 200px;display:flex;flex-direction:column;gap:12px;min-width:180px}
+
+/* board */
+canvas{display:block;touch-action:none;cursor:pointer;border-radius:6px;border:1px solid var(--line)}
+
+/* status panel */
+.panel{background:var(--s1);border:1px solid var(--line);border-radius:9px;padding:14px}
+.panel h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:8px}
+.turn-indicator{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;
+  padding:8px 0;
+}
+.stone-dot{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  border:2px solid var(--line);
+}
+.stone-dot.black{background:var(--black-stone)}
+.stone-dot.white{background:var(--white-stone)}
+.msg{font-size:13px;color:var(--ink-2);margin-top:6px;min-height:36px}
+
+/* captures */
+.captures-row{display:flex;gap:8px;align-items:center;font-size:13px}
+.cap-val{font-weight:700;color:var(--gold);font-size:16px}
+
+/* rules */
+.rules-panel{background:var(--s1);border:1px solid var(--line);border-radius:9px;padding:14px;font-size:12px;color:var(--ink-2);line-height:1.5}
+.rules-panel h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:6px}
+.rules-panel p{margin-bottom:6px}
+.rules-panel strong{color:var(--gold)}
+
+/* buttons */
+.btn{
+  padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--line);background:var(--s2);color:var(--ink);
+  transition:border-color 120ms;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.gold{background:var(--gold);color:#161209;border-color:var(--gold)}
+.btn.gold:hover{background:var(--gold-hi);border-color:var(--gold-hi)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* phase banner */
+.phase-banner{
+  padding:6px 14px;font-size:12px;text-align:center;
+  border-bottom:1px solid var(--line);background:var(--s2);color:var(--ink-3);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<header>
+  <span class="hexmark">⚫</span>
+  <div class="wordmark">
+    <strong>Konane</strong>
+    <span class="sub">Hawaiian jump-capture</span>
+  </div>
+  <a class="back-link" href="index.html">← Games hub</a>
+</header>
+
+<div id="phase-banner" class="phase-banner">Phase: remove two starting stones to open the board</div>
+
+<div class="layout">
+  <div class="board-col">
+    <canvas id="board" width="400" height="400"></canvas>
+  </div>
+  <div class="side-col">
+
+    <div class="panel">
+      <h3>Turn</h3>
+      <div class="turn-indicator">
+        <div id="turn-dot" class="stone-dot black"></div>
+        <span id="turn-label">Black · remove your opening stone</span>
+      </div>
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Captures</h3>
+      <div class="captures-row">
+        <div class="stone-dot black"></div>
+        <span>Black captured: <span id="cap-black" class="cap-val">0</span></span>
+      </div>
+      <div class="captures-row" style="margin-top:6px">
+        <div class="stone-dot white"></div>
+        <span>White captured: <span id="cap-white" class="cap-val">0</span></span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn gold" id="btn-new">New game</button>
+      <button class="btn" id="btn-rules-toggle">Rules</button>
+    </div>
+
+    <div class="rules-panel" id="rules-panel" hidden>
+      <h3>Konane rules (5/5 verified)</h3>
+      <p><strong>Setup:</strong> Full 8×8 board alternates black and white stones. Black removes one stone adjacent to center; white removes one stone adjacent to the removed black stone.</p>
+      <p><strong>Move:</strong> Jump one of your own stones over an adjacent opponent stone into an empty space beyond. The jumped stone is captured. Multiple captures in one move are allowed (one direction per turn).</p>
+      <p><strong>No passing.</strong> A player who cannot capture on their turn <strong>loses</strong>.</p>
+      <p><strong>Papamū</strong> = the board. <strong>ʻIliʻili</strong> = the smooth pebble stones. Played by the aliʻi of Hawaiʻi.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Konane engine — pure JS, no external deps.
+   Rules: jump-capture only (no sliding); must capture if possible; multi-jump allowed (same direction per turn);
+   player who cannot move loses.
+   Phases: REMOVE_BLACK → REMOVE_WHITE → PLAY
+   TribeGameStudios · 12sgi */
+(function(){
+'use strict';
+
+var SIZE  = 8;   // 8×8 board
+var CELL  = 48;  // px per cell
+var PAD   = 4;   // canvas padding
+var CANVAS_W = SIZE * CELL + PAD * 2;
+var CANVAS_H = SIZE * CELL + PAD * 2;
+
+// resize canvas
+var canvas = document.getElementById('board');
+canvas.width  = CANVAS_W;
+canvas.height = CANVAS_H;
+var ctx = canvas.getContext('2d');
+
+var BK = 1, WH = 2, EM = 0;  // piece constants
+var board = [];                // flat SIZE*SIZE array
+var phase = 'REMOVE_BLACK';   // REMOVE_BLACK | REMOVE_WHITE | PLAY
+var turn  = BK;               // whose turn
+var selected = null;          // {r,c} of selected piece
+var validMoves = [];          // [{from,to,dir,caps}] for selected piece
+var capBlack = 0, capWhite = 0;
+var gameOver = false;
+
+function idx(r,c){ return r * SIZE + c; }
+function get(r,c){ return board[idx(r,c)]; }
+function set(r,c,v){ board[idx(r,c)] = v; }
+function inBounds(r,c){ return r>=0 && r<SIZE && c>=0 && c<SIZE; }
+
+function initBoard(){
+  board = [];
+  for(var r=0;r<SIZE;r++)
+    for(var c=0;c<SIZE;c++)
+      board.push((r+c)%2===0 ? BK : WH);  // checkerboard: even=black, odd=white
+  phase = 'REMOVE_BLACK';
+  turn  = BK;
+  selected = null;
+  validMoves = [];
+  capBlack = 0; capWhite = 0;
+  gameOver = false;
+  updateUI();
+  render();
+}
+
+/* ── move generation ──
+   A konane move: pick a piece of your color, jump over one adjacent enemy, land in empty cell,
+   then optionally continue in the SAME direction (multi-jump). Must jump at least once.
+   Returns [{from:{r,c}, steps:[{r,c}], caps:[{r,c}]}] */
+function genMoves(r, c, color){
+  var moves = [];
+  // 4 directions
+  var dirs = [{dr:-1,dc:0},{dr:1,dc:0},{dr:0,dc:-1},{dr:0,dc:1}];
+  for(var d=0;d<4;d++){
+    var dr=dirs[d].dr, dc=dirs[d].dc;
+    var steps=[], caps=[];
+    var cr=r, cc=c;
+    // try to jump in this direction
+    var jumpR=cr+dr, jumpC=cc+dc;
+    if(!inBounds(jumpR,jumpC)) continue;
+    if(get(jumpR,jumpC)!==3-color) continue; // must jump over opponent
+    var landR=cr+2*dr, landC=cc+2*dc;
+    if(!inBounds(landR,landC)) continue;
+    if(get(landR,landC)!==EM) continue;
+    // first jump valid — collect it and look for continuations
+    var from={r:r,c:c};
+    _extend(r,c,dr,dc,color,[],[],moves,from);
+  }
+  return moves;
+}
+
+function _extend(r,c,dr,dc,color,stepsSoFar,capsSoFar,out,from){
+  var jumpR=r+dr, jumpC=c+dc;
+  if(!inBounds(jumpR,jumpC)) return;
+  if(get(jumpR,jumpC)!==3-color) return;
+  var landR=r+2*dr, landC=c+2*dc;
+  if(!inBounds(landR,landC)) return;
+  if(get(landR,landC)!==EM) return;
+  var newSteps=stepsSoFar.concat([{r:landR,c:landC}]);
+  var newCaps=capsSoFar.concat([{r:jumpR,c:jumpC}]);
+  // record this move (one-or-more jumps)
+  out.push({from:from, steps:newSteps, caps:newCaps, dr:dr, dc:dc});
+  // try to continue in same direction
+  _extend(landR,landC,dr,dc,color,newSteps,newCaps,out,from);
+}
+
+function allMovesForColor(color){
+  var moves=[];
+  for(var r=0;r<SIZE;r++)
+    for(var c=0;c<SIZE;c++)
+      if(get(r,c)===color)
+        moves=moves.concat(genMoves(r,c,color));
+  return moves;
+}
+
+/* ── rendering ── */
+function cellXY(r,c){
+  return {x: PAD + c*CELL, y: PAD + r*CELL};
+}
+
+function render(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // board grid
+  for(var r=0;r<SIZE;r++){
+    for(var c=0;c<SIZE;c++){
+      var xy=cellXY(r,c);
+      ctx.fillStyle=(r+c)%2===0 ? '#2a2215' : '#1e1a0e';
+      ctx.fillRect(xy.x, xy.y, CELL, CELL);
+    }
+  }
+
+  // move hints
+  if(selected && validMoves.length){
+    validMoves.forEach(function(mv){
+      var last=mv.steps[mv.steps.length-1];
+      var xy=cellXY(last.r,last.c);
+      ctx.fillStyle='rgba(56,189,248,0.28)';
+      ctx.fillRect(xy.x, xy.y, CELL, CELL);
+    });
+  }
+
+  // stones
+  for(var r=0;r<SIZE;r++){
+    for(var c=0;c<SIZE;c++){
+      var p=get(r,c);
+      if(p===EM) continue;
+      var xy=cellXY(r,c);
+      var cx=xy.x+CELL/2, cy=xy.y+CELL/2, rad=CELL*0.38;
+
+      // shadow
+      ctx.beginPath();
+      ctx.arc(cx+2,cy+2,rad,0,2*Math.PI);
+      ctx.fillStyle='rgba(0,0,0,0.35)';
+      ctx.fill();
+
+      // stone body
+      ctx.beginPath();
+      ctx.arc(cx,cy,rad,0,2*Math.PI);
+      var grad=ctx.createRadialGradient(cx-rad*.25,cy-rad*.25,rad*.1,cx,cy,rad);
+      if(p===BK){
+        grad.addColorStop(0,'#3a3a3a');
+        grad.addColorStop(1,'#0d0d0d');
+      } else {
+        grad.addColorStop(0,'#f2ead8');
+        grad.addColorStop(1,'#b8b0a0');
+      }
+      ctx.fillStyle=grad;
+      ctx.fill();
+
+      // selection ring
+      if(selected && selected.r===r && selected.c===c){
+        ctx.beginPath();
+        ctx.arc(cx,cy,rad+3,0,2*Math.PI);
+        ctx.strokeStyle='#e3ad33';
+        ctx.lineWidth=2.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // grid lines
+  ctx.strokeStyle='rgba(90,79,51,0.4)';
+  ctx.lineWidth=.5;
+  for(var i=0;i<=SIZE;i++){
+    ctx.beginPath();ctx.moveTo(PAD+i*CELL,PAD);ctx.lineTo(PAD+i*CELL,PAD+SIZE*CELL);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(PAD,PAD+i*CELL);ctx.lineTo(PAD+SIZE*CELL,PAD+i*CELL);ctx.stroke();
+  }
+}
+
+/* ── UI helpers ── */
+function updateUI(){
+  document.getElementById('cap-black').textContent=capBlack;
+  document.getElementById('cap-white').textContent=capWhite;
+  var dot=document.getElementById('turn-dot');
+  var lbl=document.getElementById('turn-label');
+  dot.className='stone-dot '+(turn===BK?'black':'white');
+  if(gameOver){
+    lbl.textContent=(turn===BK?'White':'Black')+' wins!';
+    document.getElementById('msg').textContent='The player who cannot move loses. Well played.';
+    document.getElementById('phase-banner').textContent='Game over';
+    return;
+  }
+  if(phase==='REMOVE_BLACK'){
+    lbl.textContent='Black · remove one stone near center';
+    document.getElementById('phase-banner').textContent='Phase 1: Black removes one opening stone (near center)';
+    document.getElementById('msg').textContent='Click a black stone near the center (columns 3–5, rows 3–5).';
+  } else if(phase==='REMOVE_WHITE'){
+    lbl.textContent='White · remove one adjacent stone';
+    document.getElementById('phase-banner').textContent='Phase 2: White removes one stone adjacent to the opening';
+    document.getElementById('msg').textContent='Click a white stone orthogonally adjacent to the opening.';
+  } else {
+    lbl.textContent=(turn===BK?'Black':'White')+' · select a stone to jump';
+    document.getElementById('phase-banner').textContent='';
+    if(selected){
+      document.getElementById('msg').textContent='Stone selected. Click a highlighted landing square to jump and capture.';
+    } else {
+      document.getElementById('msg').textContent='Click one of your stones that has a legal capture available.';
+    }
+  }
+}
+
+/* ── center cells for valid removal ── */
+function isCenterCell(r,c){
+  // allow 3,4 in both axes (4x4 center)
+  return r>=3 && r<=4 && c>=3 && c<=4;
+}
+
+function openingHole(){
+  // find the first EM cell
+  for(var r=0;r<SIZE;r++)
+    for(var c=0;c<SIZE;c++)
+      if(get(r,c)===EM) return {r:r,c:c};
+  return null;
+}
+
+function isAdjacentToHole(r,c){
+  var h=openingHole();
+  if(!h) return false;
+  return (Math.abs(r-h.r)+Math.abs(c-h.c))===1;
+}
+
+/* ── click handler ── */
+canvas.addEventListener('click',function(e){
+  if(gameOver) return;
+  var rect=canvas.getBoundingClientRect();
+  var scaleX=canvas.width/rect.width, scaleY=canvas.height/rect.height;
+  var px=(e.clientX-rect.left)*scaleX, py=(e.clientY-rect.top)*scaleY;
+  var c=Math.floor((px-PAD)/CELL), r=Math.floor((py-PAD)/CELL);
+  if(!inBounds(r,c)) return;
+
+  if(phase==='REMOVE_BLACK'){
+    if(get(r,c)===BK && isCenterCell(r,c)){
+      set(r,c,EM);
+      phase='REMOVE_WHITE';
+      turn=WH;
+      selected=null; validMoves=[];
+      updateUI(); render();
+    }
+    return;
+  }
+
+  if(phase==='REMOVE_WHITE'){
+    if(get(r,c)===WH && isAdjacentToHole(r,c)){
+      set(r,c,EM);
+      phase='PLAY';
+      turn=BK;
+      selected=null; validMoves=[];
+      // check if first player can move
+      checkGameOver();
+      updateUI(); render();
+    }
+    return;
+  }
+
+  // PLAY phase
+  if(selected){
+    // check if clicked a valid destination
+    var hit=null;
+    for(var i=0;i<validMoves.length;i++){
+      var mv=validMoves[i];
+      var last=mv.steps[mv.steps.length-1];
+      if(last.r===r && last.c===c){ hit=mv; break; }
+    }
+    if(hit){
+      applyMove(hit);
+      return;
+    }
+    // clicked elsewhere: deselect or select new piece
+    selected=null; validMoves=[];
+  }
+
+  // try to select a piece
+  if(get(r,c)===turn){
+    var mvs=genMoves(r,c,turn);
+    if(mvs.length>0){
+      selected={r:r,c:c};
+      validMoves=mvs;
+    } else {
+      document.getElementById('msg').textContent='That stone has no legal captures. Choose another.';
+    }
+  }
+  updateUI(); render();
+});
+
+function applyMove(mv){
+  // mark caps as empty first
+  mv.caps.forEach(function(cap){ set(cap.r,cap.c,EM); });
+  if(turn===BK) capBlack+=mv.caps.length;
+  else          capWhite+=mv.caps.length;
+  // move piece
+  set(mv.from.r, mv.from.c, EM);
+  var last=mv.steps[mv.steps.length-1];
+  set(last.r, last.c, turn);
+  // switch turn
+  turn = 3-turn;
+  selected=null; validMoves=[];
+  checkGameOver();
+  updateUI(); render();
+}
+
+function checkGameOver(){
+  var moves=allMovesForColor(turn);
+  if(moves.length===0){ gameOver=true; }
+}
+
+/* ── buttons ── */
+document.getElementById('btn-new').addEventListener('click',initBoard);
+document.getElementById('btn-rules-toggle').addEventListener('click',function(){
+  var p=document.getElementById('rules-panel');
+  p.hidden=!p.hidden;
+  this.textContent=p.hidden?'Rules':'Hide rules';
+});
+
+// Start
+initBoard();
+
+})();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

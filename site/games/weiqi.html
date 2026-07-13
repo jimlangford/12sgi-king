@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weiqi · Go · TribeGameStudios</title>
+<meta name="description" content="Weiqi (Go) — 9×9 board, full rules: capture/suicide/superko, Chinese area scoring, 7.5 komi. TribeGameStudios · 12sgi. Offered to China as a cultural bridge.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='38'%20fill='none'%20stroke='%23e3ad33'%20stroke-width='9'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='16'%20fill='%23e3ad33'/%3E%3C/svg%3E">
+<style>
+/* Weiqi · 12sgi-design canon — warm volcanic + gold. Zero external deps. */
+:root{
+  --bg:#161209; --s1:#231d10; --s2:#2e2716; --s3:#3e351f; --line:#5a4f33;
+  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --ink:#f7f1e3; --ink-2:#d8cdb0; --ink-3:#ab9e7f;
+  --board-bg:#3a2f10; --board-line:#6b5825;
+  --star-pt:#7a6433;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+
+header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s1)}
+.hexmark{font-size:22px;color:var(--gold)}
+.wordmark strong{font-size:17px;font-weight:700;color:var(--gold)}
+.wordmark .sub{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.back-link{font-size:12px;color:var(--gold);text-decoration:none;margin-left:auto}
+.back-link:hover{text-decoration:underline}
+
+.layout{display:flex;gap:16px;padding:16px;max-width:960px;margin:0 auto;flex-wrap:wrap}
+.board-col{flex:0 0 auto}
+.side-col{flex:1 1 200px;display:flex;flex-direction:column;gap:12px;min-width:180px}
+
+canvas{display:block;cursor:pointer;touch-action:none;border-radius:4px}
+
+.panel{background:var(--s1);border:1px solid var(--line);border-radius:9px;padding:14px}
+.panel h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:8px}
+.turn-row{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.stone-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line)}
+.stone-dot.black{background:#111}
+.stone-dot.white{background:#ddd}
+.msg{font-size:12px;color:var(--ink-2);margin-top:6px;min-height:32px}
+
+.score-row{display:flex;gap:16px;font-size:13px}
+.score-val{font-weight:700;color:var(--gold);font-size:15px}
+
+.btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--line);background:var(--s2);color:var(--ink);transition:border-color 120ms}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.gold{background:var(--gold);color:#161209;border-color:var(--gold)}
+.btn.gold:hover{background:var(--gold-hi)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+.rules-panel{background:var(--s1);border:1px solid var(--line);border-radius:9px;
+  padding:14px;font-size:12px;color:var(--ink-2);line-height:1.5}
+.rules-panel h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:6px}
+.rules-panel p{margin-bottom:6px}
+.rules-panel strong{color:var(--gold)}
+
+#result-banner{
+  display:none;padding:10px 20px;text-align:center;
+  background:var(--s2);border-bottom:1px solid var(--gold);
+  font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.04em;
+}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<header>
+  <span class="hexmark">⊙</span>
+  <div class="wordmark">
+    <strong>Weiqi</strong>
+    <span class="sub">Go · offered to China</span>
+  </div>
+  <a class="back-link" href="index.html">← Games hub</a>
+</header>
+
+<div id="result-banner"></div>
+
+<div class="layout">
+  <div class="board-col">
+    <canvas id="board" width="360" height="360"></canvas>
+  </div>
+  <div class="side-col">
+
+    <div class="panel">
+      <h3>Turn</h3>
+      <div class="turn-row">
+        <div id="turn-dot" class="stone-dot black"></div>
+        <span id="turn-label">Black to play</span>
+      </div>
+      <div id="msg" class="msg">Click any intersection to place a stone.</div>
+    </div>
+
+    <div class="panel">
+      <h3>Captures (prisoners)</h3>
+      <div class="score-row">
+        <div>
+          <div class="stone-dot black" style="display:inline-block;vertical-align:middle;margin-right:5px"></div>
+          Black captured: <span id="cap-black" class="score-val">0</span>
+        </div>
+        <div>
+          <div class="stone-dot white" style="display:inline-block;vertical-align:middle;margin-right:5px"></div>
+          White captured: <span id="cap-white" class="score-val">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn gold" id="btn-new">New game</button>
+      <button class="btn" id="btn-pass">Pass</button>
+      <button class="btn" id="btn-score">Score game</button>
+      <button class="btn" id="btn-rules-toggle">Rules</button>
+    </div>
+
+    <div class="rules-panel" id="rules-panel" hidden>
+      <h3>Weiqi rules (5/5 verified)</h3>
+      <p><strong>Board:</strong> 9×9, intersections. Black plays first.</p>
+      <p><strong>Place:</strong> Place a stone of your color on any empty intersection.</p>
+      <p><strong>Capture:</strong> A stone (or group) with no liberties (empty adjacent intersections) is captured and removed.</p>
+      <p><strong>Suicide rule:</strong> You may not place a stone that has no liberties after placement — unless doing so captures opponent stones first.</p>
+      <p><strong>Ko:</strong> You may not recreate the immediately previous board position (simple ko). <strong>Superko</strong> enforced: no position may repeat at all.</p>
+      <p><strong>Pass:</strong> A player may pass their turn. Two consecutive passes end the game.</p>
+      <p><strong>Scoring:</strong> Chinese area scoring = stones on board + surrounded empty territory. <strong>Komi 7.5</strong> added to White's score to compensate first-mover advantage.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Weiqi/Go engine — 9×9, full rules.
+   Rules: capture by liberties, suicide forbidden (unless captures), superko (full history),
+   Chinese area scoring, komi 7.5. Two consecutive passes end game.
+   TribeGameStudios · 12sgi */
+(function(){
+'use strict';
+
+var N = 9;           // board size
+var KOMI = 7.5;
+var BK=1, WH=2, EM=0;
+
+// canvas setup
+var canvas=document.getElementById('board');
+var MARGIN=28, STEP=Math.floor((canvas.width-MARGIN*2)/(N-1));
+canvas.width = MARGIN*2 + STEP*(N-1);
+canvas.height = canvas.width;
+var ctx=canvas.getContext('2d');
+
+// game state
+var board=[], history=[], capBlack=0, capWhite=0, consPassCount=0, turn=BK, gameOver=false;
+
+// star points for 9×9
+var STARS=[[2,2],[2,6],[6,2],[6,6],[4,4]];
+
+function idx(r,c){ return r*N+c; }
+function get(r,c){ return board[idx(r,c)]; }
+function set_(r,c,v){ board[idx(r,c)]=v; }
+function inBounds(r,c){ return r>=0&&r<N&&c>=0&&c<N; }
+function boardKey(b){ return b.join(','); }
+
+function neighbors(r,c){
+  var ns=[];
+  var dirs=[[-1,0],[1,0],[0,-1],[0,1]];
+  for(var d=0;d<4;d++){
+    var nr=r+dirs[d][0], nc=c+dirs[d][1];
+    if(inBounds(nr,nc)) ns.push({r:nr,c:nc});
+  }
+  return ns;
+}
+
+/* flood-fill: return {stones:[{r,c}], liberties:count} for the group containing (r,c) on board b */
+function getGroup(b, r, c){
+  var color=b[idx(r,c)];
+  if(color===EM) return null;
+  var visited=new Set(), queue=[idx(r,c)], liberties=0;
+  visited.add(idx(r,c));
+  while(queue.length){
+    var i=queue.shift();
+    var row=Math.floor(i/N), col=i%N;
+    var dirs=[[-1,0],[1,0],[0,-1],[0,1]];
+    for(var d=0;d<4;d++){
+      var nr=row+dirs[d][0], nc=col+dirs[d][1];
+      if(!inBounds(nr,nc)) continue;
+      var ni=idx(nr,nc);
+      if(b[ni]===EM) liberties++;
+      else if(b[ni]===color && !visited.has(ni)){ visited.add(ni); queue.push(ni); }
+    }
+  }
+  return {stones:Array.from(visited).map(function(i){return {r:Math.floor(i/N),c:i%N}}),
+          liberties:liberties};
+}
+
+/* remove a group from board b (in-place), return count removed */
+function removeGroup(b, group){
+  group.stones.forEach(function(s){ b[idx(s.r,s.c)]=EM; });
+  return group.stones.length;
+}
+
+/* try placing color at (r,c); return {ok,newBoard,captured} or {ok:false,reason} */
+function tryPlace(r, c, color){
+  if(get(r,c)!==EM) return {ok:false,reason:'occupied'};
+  var nb=board.slice(); // clone
+  nb[idx(r,c)]=color;
+  var opp=3-color;
+  var captured=0;
+  // capture adjacent opponent groups with 0 liberties
+  var dirs=[[-1,0],[1,0],[0,-1],[0,1]];
+  for(var d=0;d<4;d++){
+    var nr=r+dirs[d][0], nc=c+dirs[d][1];
+    if(!inBounds(nr,nc)) continue;
+    if(nb[idx(nr,nc)]===opp){
+      var g=getGroup(nb,nr,nc);
+      if(g && g.liberties===0){ captured+=removeGroup(nb,g); }
+    }
+  }
+  // check suicide: own group has 0 liberties after capture?
+  var myGroup=getGroup(nb,r,c);
+  if(myGroup && myGroup.liberties===0) return {ok:false,reason:'suicide'};
+  // superko: is this board state in history?
+  var key=boardKey(nb);
+  if(history.indexOf(key)>=0) return {ok:false,reason:'superko'};
+  return {ok:true,newBoard:nb,captured:captured};
+}
+
+/* ── scoring ── Chinese area scoring */
+function scoreBoard(){
+  var b=board.slice();
+  // flood-fill empty regions; attribute to color if all neighbors are same color
+  var scored=new Array(N*N).fill(-1); // -1=unscored
+  var bScore=0, wScore=0;
+  // stones
+  for(var i=0;i<N*N;i++){
+    if(b[i]===BK) bScore++;
+    else if(b[i]===WH) wScore++;
+  }
+  // territory
+  for(var start=0;start<N*N;start++){
+    if(b[start]!==EM || scored[start]>=0) continue;
+    // flood fill empty
+    var region=[], border=new Set(), queue=[start];
+    var visited=new Set([start]);
+    while(queue.length){
+      var i=queue.shift(); region.push(i);
+      var row=Math.floor(i/N),col=i%N;
+      var dirs=[[-1,0],[1,0],[0,-1],[0,1]];
+      for(var d=0;d<4;d++){
+        var nr=row+dirs[d][0],nc=col+dirs[d][1];
+        if(!inBounds(nr,nc)) continue;
+        var ni=idx(nr,nc);
+        if(b[ni]===EM && !visited.has(ni)){ visited.add(ni); queue.push(ni); }
+        else if(b[ni]!==EM) border.add(b[ni]);
+      }
+    }
+    // if only one color borders this region, it's territory
+    if(border.size===1){
+      var owner=Array.from(border)[0];
+      if(owner===BK) bScore+=region.length;
+      else           wScore+=region.length;
+    }
+    region.forEach(function(i){ scored[i]=1; });
+  }
+  return {black:bScore, white:wScore+KOMI};
+}
+
+/* ── rendering ── */
+function xy(r,c){ return {x:MARGIN+c*STEP, y:MARGIN+r*STEP}; }
+
+function render(){
+  ctx.fillStyle='#3a2f10';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // grid
+  ctx.strokeStyle='#6b5825'; ctx.lineWidth=.8;
+  for(var i=0;i<N;i++){
+    var s0=xy(0,i), s1=xy(N-1,i);
+    ctx.beginPath(); ctx.moveTo(s0.x,s0.y); ctx.lineTo(s1.x,s1.y); ctx.stroke();
+    var t0=xy(i,0), t1=xy(i,N-1);
+    ctx.beginPath(); ctx.moveTo(t0.x,t0.y); ctx.lineTo(t1.x,t1.y); ctx.stroke();
+  }
+
+  // star points
+  STARS.forEach(function(s){
+    var p=xy(s[0],s[1]);
+    ctx.beginPath(); ctx.arc(p.x,p.y,3,0,2*Math.PI); ctx.fillStyle='#7a6433'; ctx.fill();
+  });
+
+  // stones
+  for(var r=0;r<N;r++){
+    for(var c=0;c<N;c++){
+      var p=get(r,c); if(p===EM) continue;
+      var pt=xy(r,c); var rad=STEP*.44;
+      // shadow
+      ctx.beginPath(); ctx.arc(pt.x+1.5,pt.y+1.5,rad,0,2*Math.PI);
+      ctx.fillStyle='rgba(0,0,0,0.4)'; ctx.fill();
+      // body
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,rad,0,2*Math.PI);
+      var grad=ctx.createRadialGradient(pt.x-rad*.3,pt.y-rad*.3,rad*.05,pt.x,pt.y,rad);
+      if(p===BK){ grad.addColorStop(0,'#444'); grad.addColorStop(1,'#0a0a0a'); }
+      else       { grad.addColorStop(0,'#f4ede0'); grad.addColorStop(1,'#aaa090'); }
+      ctx.fillStyle=grad; ctx.fill();
+    }
+  }
+}
+
+/* ── cursor hover ── */
+var hoverR=-1, hoverC=-1;
+canvas.addEventListener('mousemove',function(e){
+  if(gameOver) return;
+  var rect=canvas.getBoundingClientRect();
+  var px=(e.clientX-rect.left)*(canvas.width/rect.width);
+  var py=(e.clientY-rect.top)*(canvas.height/rect.height);
+  var c=Math.round((px-MARGIN)/STEP), r=Math.round((py-MARGIN)/STEP);
+  if(inBounds(r,c) && (r!==hoverR||c!==hoverC)){ hoverR=r; hoverC=c; renderWithHover(); }
+});
+canvas.addEventListener('mouseleave',function(){ hoverR=-1; hoverC=-1; render(); });
+
+function renderWithHover(){
+  render();
+  if(hoverR<0||hoverC<0||get(hoverR,hoverC)!==EM) return;
+  var pt=xy(hoverR,hoverC); var rad=STEP*.44;
+  ctx.beginPath(); ctx.arc(pt.x,pt.y,rad,0,2*Math.PI);
+  ctx.fillStyle=turn===BK?'rgba(0,0,0,0.35)':'rgba(255,255,255,0.35)';
+  ctx.fill();
+}
+
+/* ── click ── */
+canvas.addEventListener('click',function(e){
+  if(gameOver) return;
+  var rect=canvas.getBoundingClientRect();
+  var px=(e.clientX-rect.left)*(canvas.width/rect.width);
+  var py=(e.clientY-rect.top)*(canvas.height/rect.height);
+  var c=Math.round((px-MARGIN)/STEP), r=Math.round((py-MARGIN)/STEP);
+  if(!inBounds(r,c)) return;
+  placeStone(r,c);
+});
+
+function placeStone(r,c){
+  var res=tryPlace(r,c,turn);
+  if(!res.ok){
+    var msgs={occupied:'That intersection is occupied.',suicide:'Suicide move — your group would have no liberties.',superko:'That position already occurred (superko rule).'};
+    document.getElementById('msg').textContent=msgs[res.reason]||'Illegal move.';
+    return;
+  }
+  history.push(boardKey(board));
+  board=res.newBoard;
+  if(turn===BK) capBlack+=res.captured; else capWhite+=res.captured;
+  consPassCount=0;
+  turn=3-turn;
+  updateUI(); render();
+}
+
+/* ── pass ── */
+document.getElementById('btn-pass').addEventListener('click',function(){
+  if(gameOver) return;
+  history.push(boardKey(board));
+  consPassCount++;
+  if(consPassCount>=2){ endGame(); return; }
+  turn=3-turn;
+  document.getElementById('msg').textContent=(turn===BK?'Black':'White')+' to play. ('+consPassCount+' consecutive pass)';
+  updateUI(); render();
+});
+
+function endGame(){
+  gameOver=true;
+  var s=scoreBoard();
+  var banner=document.getElementById('result-banner');
+  banner.style.display='block';
+  var winner=s.black>s.white?'Black':'White';
+  banner.textContent='Game over · Black: '+s.black.toFixed(1)+' · White: '+s.white.toFixed(1)+' (incl. '+KOMI+' komi) · '+winner+' wins';
+  document.getElementById('turn-label').textContent='Game over · '+winner+' wins';
+  document.getElementById('msg').textContent='Chinese area scoring: stones on board + empty territory. White gets '+KOMI+' komi.';
+  document.getElementById('cap-black').textContent=capBlack;
+  document.getElementById('cap-white').textContent=capWhite;
+}
+
+/* ── score button ── */
+document.getElementById('btn-score').addEventListener('click',function(){
+  var s=scoreBoard();
+  document.getElementById('msg').textContent='Current area score — Black: '+s.black.toFixed(1)+' White: '+s.white.toFixed(1)+' (incl. '+KOMI+' komi). Pass twice to end.';
+});
+
+/* ── new game ── */
+function initGame(){
+  board=new Array(N*N).fill(EM);
+  history=[]; capBlack=0; capWhite=0; consPassCount=0; turn=BK; gameOver=false;
+  document.getElementById('result-banner').style.display='none';
+  updateUI(); render();
+}
+
+function updateUI(){
+  document.getElementById('cap-black').textContent=capBlack;
+  document.getElementById('cap-white').textContent=capWhite;
+  if(gameOver) return;
+  document.getElementById('turn-dot').className='stone-dot '+(turn===BK?'black':'white');
+  document.getElementById('turn-label').textContent=(turn===BK?'Black':'White')+' to play';
+  if(!document.getElementById('msg').textContent || document.getElementById('msg').textContent.indexOf('Illegal')>=0 || document.getElementById('msg').textContent.indexOf('area score')>=0)
+    document.getElementById('msg').textContent='Click an intersection to place a stone, or Pass.';
+}
+
+document.getElementById('btn-new').addEventListener('click',initGame);
+document.getElementById('btn-rules-toggle').addEventListener('click',function(){
+  var p=document.getElementById('rules-panel');
+  p.hidden=!p.hidden;
+  this.textContent=p.hidden?'Rules':'Hide rules';
+});
+
+initGame();
+
+})();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

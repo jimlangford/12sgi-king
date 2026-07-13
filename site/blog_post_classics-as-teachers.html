@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Their Aloha, Present Tense — elementLOTUS</title>
+<style>
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:46px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:2px;z-index:100;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
+.brand{color:var(--gold)!important;font-weight:700;letter-spacing:.06em;margin-right:10px;font-size:15px}
+/* LAYOUT */
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* POST CARD (list view) */
+.post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
+.post-card:hover{border-color:var(--gold)}
+.post-date{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.post-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.post-title a{color:var(--text)}
+.post-title a:hover{color:var(--gold)}
+.post-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.post-summary{font-size:14px;color:var(--text);line-height:1.6;opacity:.9}
+.post-tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.read-link{margin-top:14px;font-size:13px;color:var(--gold)}
+/* POST FULL (article view) */
+.article-head{margin-bottom:32px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.article-body{margin-top:28px}
+.article-body p{margin-bottom:18px;font-size:15px;line-height:1.75}
+.article-body h2{font-size:18px;font-weight:700;color:var(--gold);margin:28px 0 10px;letter-spacing:.02em}
+.article-body blockquote{border-left:3px solid var(--gold);padding:10px 18px;margin:22px 0;color:var(--muted);font-style:italic;font-size:15px;background:var(--surf2);border-radius:0 6px 6px 0}
+.lede{font-size:17px;line-height:1.8;color:var(--text);margin-bottom:22px;font-weight:400}
+.cta-block{background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-top:30px;font-size:14px;line-height:1.65;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.back:hover{color:var(--gold)}
+/* VISUALS — gold-Aurora picture + animation (list thumbnail, article hero, body image) */
+.post-thumb{display:block;margin:0 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0}
+.post-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .3s ease}
+.post-card:hover .post-thumb img{transform:scale(1.02)}
+.article-hero{margin:0 0 30px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0;box-shadow:0 10px 44px rgba(0,0,0,.45)}
+.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.body-img{margin:26px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg)}
+.body-img img{display:block;width:100%;height:auto}
+.body-img figcaption{font-size:12px;color:var(--muted);padding:9px 14px;background:var(--surf2);text-align:center;letter-spacing:.02em}
+</style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<nav>
+  <a href="king/" class="brand">KING</a>
+  <a href="blog.html" style="color:var(--gold)">Blog</a>
+</nav>
+<div class="wrap"><a href="blog.html" class="back">← All posts</a>
+
+<div class="article-head">
+  <div class="article-title">Their Aloha, Present Tense</div>
+  <div class="article-subtitle">How 100-year-old public domain films carry a living current into the elementLOTUS work</div>
+  <div class="article-meta">2026-06-25 · Jimmy Langford</div>
+</div>
+<div class="article-body"><p class="lede">When Lahaina burned, nobody handed us a visual language for it. You can't Google 'how to film a town burning that was sacred.' So we looked at what carries aloha — back to 1925, back to Battleship Potemkin, back to Eisenstein at the Odessa Steps, working out how grief and fire and injustice become a frame.</p>
+<p>Aloha doesn't expire. It moves. The elementLOTUS studio system now runs a classics watcher — a piece of code that crosswalks every one of the 54 songs in the arc against 16 public-domain films from 1913–1934. All on archive.org. No licensing. We don't study them as relics — we recognize the current in them and bring it into the work, right now, in every render.</p>
+<h2>Why these films?</h2>
+<p>Because they made images with what was in front of them. No compositing, no stabilizers, no endless takes. When Murnau shot Sunrise in 1927 and needed 700 arc lights to build a fake sun in a studio, that wasn't extravagance — it was aloha in action: you do what the moment asks. When Dreyer made The Passion of Joan of Arc entirely in extreme close-up, he was saying the same thing: the face is the landscape. You don't need to show the room when you show the eye. That truth is alive right now.</p>
+<p>That's the energy we carry into a music video about Lahaina. You don't need to show the whole fire. You show the eye watching the fire. You hold it. Eisenstein knew this. We know it. It's the same aloha, different century.</p>
+<h2>The crosswalk</h2>
+<p>The system works by matching each song's spiritual lineage — its Hawaiian ancestral current — to the classic film that embodies the same visual energy. Songs in the Pele line (fire, transformation, memory) crosswalk to Eisenstein's montage theory: cut the official plans against the chaotic reality. Songs in the Kanaloa line (ocean, sovereignty, depth) crosswalk to F.W. Murnau's water-as-moral-threshold and Edward S. Curtis's canoe-level camera in In the Land of the Head Hunters.</p>
+<p>The farmland arc — 19 songs about patience, taro, soil, and lo'i restoration — crosswalk to Dovzhenko's Earth (1930), where faces of sunflowers are intercut with faces of old men under the same golden light. The camera moves through the wheat at eye level. The same shot, in the lo'i, gives you the same thing: the land and the face as equal in the frame.</p>
+<blockquote>Hold the shot. Don't cut away from labor. The taro farmer's hands deserve the same unbroken take as Nanook's walrus hunt.</blockquote>
+<h2>The four films</h2>
+<p>Each of the four elementLOTUS films has its own cinematography directive built from the crosswalk. 12 STONES draws from Eisenstein and Dreyer — conviction and fire as montage. LUNA draws from Murnau and Dovzhenko — water reflections, harvest compositions, the lo'i at eye level. MOKUʻULA draws from Abel Gance's Napoleon and Curtis's canoe footage — royalty that fills the frame, the sovereign and the land as one composition. STARFORGE draws from Metropolis and Man With a Movie Camera — the system becoming self-aware, split-frame simultaneity.</p>
+<p>What all 16 films share: they made images with what was in front of them, without apologizing for the constraint. The Hawaiian early footage on archive.org — 1898 through 1930 — has the same quality. The camera was there. The light was what the day gave. The hula was performed because it was performed, not because someone called 'action.'</p>
+<h2>The living school</h2>
+<p>Every time the classics watcher ticks — every six hours — it re-reads all 54 songs and re-checks the crosswalk. When a new song enters the arc, it gets its teachers automatically. The director-quad-os lane reads this crosswalk when building shot plans. The render pipeline uses it to ensure scenes reference the right visual grammar.</p>
+<p>Aloha moves through all of it. Eisenstein's aloha is in He Lei No Lahaina. Dreyer's is in Ashes of Trust. Dovzhenko's is in every farmland song. They carried it in their time. We carry it in ours. Archive.org makes the whole conversation available — free, public, forever.</p>
+<div class="cta-block">All 16 films are on archive.org at no cost. Watch Battleship Potemkin. Watch Earth. Watch In the Land of the Head Hunters. Then listen to the songs — you'll feel the same current running through both.</div></div></div>
+<script src="../govos-shell.js" defer></script>
+</body></html>

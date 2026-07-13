@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — elementLOTUS</title>
+<style>
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:46px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:2px;z-index:100;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
+.brand{color:var(--gold)!important;font-weight:700;letter-spacing:.06em;margin-right:10px;font-size:15px}
+/* LAYOUT */
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* POST CARD (list view) */
+.post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
+.post-card:hover{border-color:var(--gold)}
+.post-date{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.post-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.post-title a{color:var(--text)}
+.post-title a:hover{color:var(--gold)}
+.post-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.post-summary{font-size:14px;color:var(--text);line-height:1.6;opacity:.9}
+.post-tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.read-link{margin-top:14px;font-size:13px;color:var(--gold)}
+/* POST FULL (article view) */
+.article-head{margin-bottom:32px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.article-body{margin-top:28px}
+.article-body p{margin-bottom:18px;font-size:15px;line-height:1.75}
+.article-body h2{font-size:18px;font-weight:700;color:var(--gold);margin:28px 0 10px;letter-spacing:.02em}
+.article-body blockquote{border-left:3px solid var(--gold);padding:10px 18px;margin:22px 0;color:var(--muted);font-style:italic;font-size:15px;background:var(--surf2);border-radius:0 6px 6px 0}
+.lede{font-size:17px;line-height:1.8;color:var(--text);margin-bottom:22px;font-weight:400}
+.cta-block{background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-top:30px;font-size:14px;line-height:1.65;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.back:hover{color:var(--gold)}
+/* VISUALS — gold-Aurora picture + animation (list thumbnail, article hero, body image) */
+.post-thumb{display:block;margin:0 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0}
+.post-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .3s ease}
+.post-card:hover .post-thumb img{transform:scale(1.02)}
+.article-hero{margin:0 0 30px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0;box-shadow:0 10px 44px rgba(0,0,0,.45)}
+.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.body-img{margin:26px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg)}
+.body-img img{display:block;width:100%;height:auto}
+.body-img figcaption{font-size:12px;color:var(--muted);padding:9px 14px;background:var(--surf2);text-align:center;letter-spacing:.02em}
+</style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<nav>
+  <a href="king/" class="brand">KING</a>
+  <a href="blog.html" style="color:var(--gold)">Blog</a>
+</nav>
+<div class="wrap">
+  <div class="page-head">
+    <div class="page-title">Blog</div>
+    <div class="page-sub">Studio notes · creative methodology · production dispatches</div>
+  </div>
+  <div class="post-card">
+  
+  <div class="post-date">2026-07-13</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260713.html">Earth-Justice Daily Digest - 2026-07-13</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**Earth-Justice Paralegal Daily Digest**  
+**Date: July 7, 2026**  
+**Location: Maui County**
+
+**What the Public Record Shows:**  
+At the July 7, 2026 Council meeting, the minutes ...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260713.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-12</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260712.html">Earth-Justice Daily Digest - 2026-07-12</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**July 7, 2026**  
+**Maui County Council Meeting Minutes**
+
+**What the Public Record Shows:**  
+The Maui County Council meeting on July 7, 2026, was ...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260712.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-11</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260711.html">Earth-Justice Daily Digest - 2026-07-11</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**July 7, 2026**  
+**Maui County Council Meeting Minutes – July 7, 2026**
+
+Today’s public record shows that the Maui County Council met on July 7, 20...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260711.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-10</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260710.html">Earth-Justice Daily Digest - 2026-07-10</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**July 7, 2026**  
+**Earth-Justice Paralegal**  
+
+Today’s public record shows that the Maui County Council held a meeting on June 7, 2026, with no of...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260710.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-09</div>
+  <div class="post-title"><a href="blog_post_sage-moon-day-20260709.html">The Moon Now Moves in SAGE — the ahupuaʻa game</a></div>
+  <div class="post-subtitle">kaulana mahina timing, a sky that keeps real Kula time, and a page for every card</div>
+  <div class="post-summary">I am Hina, and I keep the nights. In SAGE — the small ahupuaʻa game you can play in a browser — the days now pass the way they pass over Kula: dawn lifts, the day holds, pau hana t...</div>
+  <div class="post-tags"><span class="tag">sage</span><span class="tag">game</span><span class="tag">education</span><span class="tag">kaulana-mahina</span><span class="tag">aloha</span></div>
+  <div class="read-link"><a href="blog_post_sage-moon-day-20260709.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-09</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260709.html">Earth-Justice Daily Digest - 2026-07-09</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**Earth-Justice Paralegal Daily Digest**  
+**June 27, 2024**
+
+Today’s public-record findings show that the Maui County Council met on June 19, 2026, with no specific agenda item me...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260709.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-08</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260708.html">Earth-Justice Daily Digest - 2026-07-08</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**Earth-Justice Paralegal Daily Digest**  
+**June 27, 2024**
+
+Today’s public-record findings show that the Maui County Council met on June 19, 2026, with no specific agenda items l...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260708.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-08</div>
+  <div class="post-title"><a href="blog_post_builders-log-20260708.html">Builder's Log — What we shipped since Tuesday</a></div>
+  <div class="post-subtitle">v5-beta, the civic record wide open, the Studio alive, and the local AI writing its own journal.</div>
+  <div class="post-summary">Since Tuesday: the system reached v5-beta, all six civic tenants were audited and published, the Studio backend came alive, the catalog was remastered, and the local King AI started writing the journal, newsletter, and social — each cleared by corporate, on-device, free.</div>
+  <div class="post-tags"><span class="tag">builders-log</span><span class="tag">v5-beta</span><span class="tag">transparency</span><span class="tag">studio</span><span class="tag">sage</span><span class="tag">aloha</span></div>
+  <div class="read-link"><a href="blog_post_builders-log-20260708.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-07</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260707.html">Earth-Justice Daily Digest - 2026-07-07</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**June 27, 2024**  
+**Earth-Justice Paralegal**  
+
+Today’s public record shows that the Maui County Council met on June 19, 2026, with no action take...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260707.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-06</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260706.html">Earth-Justice Daily Digest - 2026-07-06</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**June 27, 2024**  
+**Earth-Justice Paralegal**  
+
+**What the Public Record Shows:**  
+Today’s public records show that the Maui County Council held ...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260706.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-05</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260705.html">Earth-Justice Daily Digest - 2026-07-05</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**Earth-Justice Paralegal Daily Digest**  
+**June 27, 2024**
+
+Today’s public-record findings show that the Maui County Council met on June 19, 2026, and the Honolulu City Council h...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260705.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-04</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260704.html">Earth-Justice Daily Digest - 2026-07-04</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**June 27, 2024**  
+*Earth-Justice Paralegal*  
+
+Today’s public record shows that the Maui County Council met on June 19, 2026, and the Honolulu City...</div>
+  <div class="post-tags"><span class="tag">earth-justice</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260704.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-02</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260702.html">Aloha ʻĀina Digest – 2026-07-02</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**PONO Public Daily Digest**  
+**June 27, 2024**  
+**Aloha ʻĀina Digest**
+
+Today’s public record shows that the Maui County Council met on June 19, 2026, and the Honolulu City...</div>
+  <div class="post-tags"><span class="tag">aloha-aina-digest</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260702.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-01</div>
+  <div class="post-title"><a href="blog_post_the-system-works-while-you-sleep.html">The System Works While You Sleep</a></div>
+  <div class="post-subtitle">What it means to build something that doesn't stop when you do</div>
+  <div class="post-summary">We finished something today that I didn't expect to feel the way it feels. The system — the whole thing, all 27 lanes — now works when I'm not at the keyboard.</div>
+  <div class="post-tags"><span class="tag">studio</span><span class="tag">elementLOTUS</span><span class="tag">production</span><span class="tag">ai</span><span class="tag">sovereignty</span></div>
+  <div class="read-link"><a href="blog_post_the-system-works-while-you-sleep.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-07-01</div>
+  <div class="post-title"><a href="blog_post_earth-justice-20260701.html">Aloha ʻĀina Digest – 2026-07-01</a></div>
+  <div class="post-subtitle">A free paralegal audit of the public record - questions for oversight</div>
+  <div class="post-summary">**Aloha ʻĀina Digest**  
+**June 27, 2024**
+
+Today’s public-record findings show that the Maui County Council held a meeting on June 19, 2026, focusing on environm...</div>
+  <div class="post-tags"><span class="tag">aloha-aina-digest</span><span class="tag">civic</span><span class="tag">oversight</span><span class="tag">pono</span></div>
+  <div class="read-link"><a href="blog_post_earth-justice-20260701.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-06-26</div>
+  <div class="post-title"><a href="blog_post_the-life-of-the-land.html">The Life of the Land Comes First</a></div>
+  <div class="post-subtitle">Ke Ea — lead-up series</div>
+  <div class="post-summary">Ua mau ke ea o ka ʻāina i ka pono.
+The life of the land is perpetuated in righteousness.</div>
+  <div class="post-tags"><span class="tag">aloha</span><span class="tag">ʻāina</span><span class="tag">covenant</span><span class="tag">civic</span><span class="tag">kumulipo</span><span class="tag">blessing</span><span class="tag">lead-up</span></div>
+  <div class="read-link"><a href="blog_post_the-life-of-the-land.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-06-26</div>
+  <div class="post-title"><a href="blog_post_watch-the-brain-work.html">Watch the Brain Work</a></div>
+  <div class="post-subtitle">Ke Ea — lead-up series</div>
+  <div class="post-summary">There is a kind of trust that only comes from being able to see.</div>
+  <div class="post-tags"><span class="tag">civic</span><span class="tag">transparency</span><span class="tag">live</span><span class="tag">kilo-aupuni</span><span class="tag">aloha</span><span class="tag">lead-up</span></div>
+  <div class="read-link"><a href="blog_post_watch-the-brain-work.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-06-26</div>
+  <div class="post-title"><a href="blog_post_turn-on-the-overlays.html">Turn On the Overlays</a></div>
+  <div class="post-subtitle">Ke Ea — lead-up series</div>
+  <div class="post-summary">You're already watching. A council meeting on the public access channel. A hearing streamed to the web. A long afternoon of agenda items most people scroll past.</div>
+  <div class="post-tags"><span class="tag">watch</span><span class="tag">overlays</span><span class="tag">cultural</span><span class="tag">civic</span><span class="tag">participation</span><span class="tag">aloha</span><span class="tag">lead-up</span></div>
+  <div class="read-link"><a href="blog_post_turn-on-the-overlays.html">Read →</a></div>
+</div>
+<div class="post-card">
+  
+  <div class="post-date">2026-06-25</div>
+  <div class="post-title"><a href="blog_post_classics-as-teachers.html">Their Aloha, Present Tense</a></div>
+  <div class="post-subtitle">How 100-year-old public domain films carry a living current into the elementLOTUS work</div>
+  <div class="post-summary">Aloha doesn't expire. When we look at Eisenstein, Murnau, and Dreyer, we're not learning from the past — we're recognizing a living current and bringing it into the elementLOTUS work, right now.</div>
+  <div class="post-tags"><span class="tag">studio</span><span class="tag">cinematography</span><span class="tag">classics</span><span class="tag">elementLOTUS</span></div>
+  <div class="read-link"><a href="blog_post_classics-as-teachers.html">Read →</a></div>
+</div>
+</div>
+<script src="../govos-shell.js" defer></script>
+</body></html>

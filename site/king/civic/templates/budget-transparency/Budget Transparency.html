@@ -1,0 +1,261 @@
+<!-- @template name="Budget Transparency" description="govOS civic ledger page — Art.X budget transparency, FY2027 adopted + FY2026 baseline ledger" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Budget Transparency — govOS · 12 Stones Global</title>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c100e"/><text x="50" y="58" font-family="Georgia,serif" font-size="24" font-weight="600" fill="#d9b24c" text-anchor="middle">$X</text></svg>
+</template>
+<link rel="icon" href="../../assets/logo/favicon-32.png">
+<link rel="stylesheet" href="../../styles.css?v=2026-06-15">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--mauios-backdrop);
+    color: var(--mauios-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 26px 22px 70px; }
+
+  header.top { display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--mauios-line); padding-bottom: 18px; margin-bottom: 6px; }
+  header.top img { width: 46px; height: 46px; border-radius: 12px; }
+  .brand h1 { font-family: var(--font-serif-display); font-weight: 600; font-size: 21px; margin: 0; letter-spacing: .2px; }
+  .brand .sub { color: var(--mauios-mut); font-size: 12.5px; margin-top: 3px; letter-spacing: .3px; }
+  .pills { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .4px; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--mauios-line); color: var(--mauios-mut); }
+  .pill.gold { color: var(--mauios-gold-2); border-color: rgba(217,178,76,.5); background: rgba(217,178,76,.08); }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mauios-ok); box-shadow: 0 0 8px rgba(86,192,138,.5); }
+  a.xnav { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .4px; color: var(--mauios-gold-2);
+    text-decoration: none; border-bottom: 1px dotted rgba(217,178,76,.5); }
+  a.xnav:hover { color: var(--mauios-gold); }
+  .tagline { font-family: var(--font-serif-display); font-style: italic; color: var(--mauios-mut); font-size: 13.5px; margin: 12px 0 22px; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 26px; }
+  @media (max-width: 760px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi { background: linear-gradient(180deg, var(--mauios-panel), var(--mauios-bg-2)); border: 1px solid var(--mauios-line);
+    border-radius: 13px; padding: 14px 14px 12px; box-shadow: var(--mauios-shadow); }
+  .kpi .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .7px; text-transform: uppercase; color: var(--mauios-faint); }
+  .kpi .v { font-family: var(--font-serif-display); font-size: 22px; margin-top: 7px; font-weight: 600; }
+  .kpi .d { font-size: 11px; color: var(--mauios-mut); margin-top: 3px; }
+
+  .anchor { background: linear-gradient(150deg, var(--mauios-panel), var(--mauios-bg-2)); border: 1px solid rgba(217,178,76,.4);
+    border-radius: 15px; box-shadow: var(--mauios-shadow); padding: 18px 20px; margin-bottom: 28px; }
+  .anchor .eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--mauios-gold); }
+  .anchor h2 { font-family: var(--font-serif-display); font-size: 21px; font-weight: 600; margin: 7px 0 4px; }
+  .anchor .xwalk { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+  .anchor .side { background: var(--mauios-panel-2); border: 1px solid var(--mauios-line); border-radius: 10px; padding: 10px 14px; }
+  .anchor .side .l { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .6px; text-transform: uppercase; color: var(--mauios-faint); }
+  .anchor .side .t { font-family: var(--font-serif-display); font-size: 15.5px; font-weight: 600; margin-top: 3px; }
+  .anchor .arrows { font-size: 20px; color: var(--mauios-gold); }
+  .anchor p { color: var(--mauios-mut); font-size: 13.5px; margin: 8px 0 0; max-width: 72ch; }
+
+  .secthd { display: flex; align-items: baseline; gap: 12px; margin: 36px 0 14px; }
+  .secthd .n { font-family: var(--font-mono); font-size: 11px; color: var(--mauios-gold); letter-spacing: 1px; }
+  .secthd h3 { font-family: var(--font-serif-display); font-size: 19px; font-weight: 600; margin: 0; }
+  .secthd .sp { flex: 1; height: 1px; background: var(--mauios-line); }
+  .secnote { font-size: 12.5px; color: var(--mauios-mut); margin: -6px 0 14px; max-width: 80ch; }
+
+  /* Split bar (salaries vs operations) */
+  .split { border: 1px solid var(--mauios-line); border-radius: 13px; background: var(--mauios-panel); box-shadow: var(--mauios-shadow);
+    padding: 16px 18px; margin-bottom: 8px; }
+  .splitbar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; border: 1px solid var(--mauios-line); }
+  .splitbar .a { background: linear-gradient(180deg, rgba(217,178,76,.85), rgba(217,178,76,.6)); }
+  .splitbar .b { background: linear-gradient(180deg, rgba(86,153,192,.55), rgba(86,153,192,.35)); }
+  .splitleg { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 10px; font-size: 12.5px; color: var(--mauios-mut); }
+  .splitleg b { color: var(--mauios-ink); font-family: var(--font-mono); font-size: 12px; }
+  .sw2 { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; }
+
+  /* Department bars */
+  .depts { border: 1px solid var(--mauios-line); border-radius: 13px; overflow: hidden; background: var(--mauios-panel); box-shadow: var(--mauios-shadow); }
+  .drow { display: grid; grid-template-columns: 250px 1fr 130px 56px; gap: 12px; align-items: center;
+    padding: 8px 16px; border-bottom: 1px solid rgba(255,255,255,.04); cursor: default; transition: background var(--dur-fast); }
+  .drow:last-child { border-bottom: 0; }
+  .drow:hover { background: rgba(255,255,255,.025); }
+  .drow .nm { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .drow .nm small { display: block; font-weight: 400; font-size: 10.5px; color: var(--mauios-faint); }
+  .drow .track { height: 14px; border-radius: 5px; background: rgba(255,255,255,.04); overflow: hidden; }
+  .drow .fill { display: block; height: 100%; border-radius: 5px; background: linear-gradient(90deg, rgba(217,178,76,.85), rgba(217,178,76,.45)); min-width: 2px; }
+  .drow.cw .fill { background: linear-gradient(90deg, rgba(86,153,192,.7), rgba(86,153,192,.35)); }
+  .drow .amt { font-family: var(--font-mono); font-size: 11.5px; text-align: right; color: var(--mauios-ink); }
+  .drow .pct { font-family: var(--font-mono); font-size: 10px; text-align: right; color: var(--mauios-faint); }
+  @media (max-width: 760px) { .drow { grid-template-columns: 130px 1fr 100px; } .drow .pct { display: none; } }
+
+  /* Countywide costs */
+  .cwgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 9px; }
+  .cw { border: 1px solid var(--mauios-line); border-radius: 9px; padding: 10px 12px; background: var(--mauios-panel-2); }
+  .cw .a { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--mauios-gold-2); }
+  .cw .a.neg { color: var(--mauios-ok); }
+  .cw .t { font-size: 12px; color: var(--mauios-mut); margin-top: 3px; line-height: 1.4; }
+
+  footer { margin-top: 48px; border-top: 1px solid var(--mauios-line); padding-top: 16px;
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline;
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--mauios-faint); letter-spacing: .4px; }
+  footer .r { margin-left: auto; }
+</style>
+<style>@media (max-width:820px){body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px) !important}}</style>
+<link rel="stylesheet" href="../../../../../govos.css">
+</head>
+<body data-surface="mauios">
+<div class="wrap">
+
+  <header class="top">
+    <img src="../../assets/logo/icon-192.png" alt="12 Stones Global">
+    <div class="brand">
+      <h1>Budget Transparency</h1>
+      <div class="sub">govOS · Article X · Ka ʻOiaʻiʻo Kālā</div>
+    </div>
+    <div class="pills">
+      <span class="pill"><span class="dot"></span>PUBLIC RECORD</span>
+      <span class="pill gold">FY2027 · PASSED 06-05 · AWAITING SIGNATURE</span>
+      <span class="pill gold">RAIS · AUDIT-001 · ACTIVE</span>
+      <a class="xnav" href="../title19-crosswalk/Title19 Crosswalk.html">Title 19 crosswalk →</a>
+    </div>
+  </header>
+  <div class="tagline">Every dollar, traceable — proposed appropriation to program, program to ground.</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="k">Total appropriations</div><div class="v">$1.6 B</div><div class="d">FY2027 adopted · Bills 55–56 (2026) · unanimous, 2nd &amp; final reading 06-05</div></div>
+    <div class="kpi"><div class="k">Operating</div><div class="v">$1.2 B</div><div class="d">as published · exact penny pending ordinance text</div></div>
+    <div class="kpi"><div class="k">Capital improvement</div><div class="v">$351 M</div><div class="d">trimmed from $371.1 M proposed</div></div>
+    <div class="kpi"><div class="k">Council trim</div><div class="v">−$8.4 M</div><div class="d">vs Mayor's March proposal · housing, social services, recovery prioritized</div></div>
+  </div>
+
+  <div class="anchor">
+    <div class="eyebrow">The anchor mapping</div>
+    <h2>Article X — Budget Transparency</h2>
+    <div class="xwalk">
+      <div class="side"><div class="l">Sovereign Charter</div><div class="t">Art.X · Ka ʻOiaʻiʻo Kālā</div></div>
+      <span class="arrows">⇄</span>
+      <div class="side"><div class="l">Maui County Code</div><div class="t">MCC Art.XIII</div></div>
+      <span class="arrows">⇄</span>
+      <div class="side"><div class="l">RAIS scroll</div><div class="t">AUDIT-001 · active</div></div>
+    </div>
+    <p>Full expenditure traceability at resident level. Headline figures above are the FY2027 budget as
+       passed by the Council on second and final reading, June 5, 2026 (Bills 55–56, unanimous) — now on
+       the Mayor's desk, effective July 1 on signature. The to-the-penny ledger below remains the FY2026
+       proposed ordinance baseline until the adopted FY2027 ordinance text publishes; council-watch
+       ingests it the day it posts and this page re-reconciles exactly, including negative reimbursement
+       entries. Node budgets are glyph-verified and publicly ledgered under this article.</p>
+  </div>
+
+  <div class="secthd"><span class="n">01</span><h3>Operating — salaries vs operations</h3><span class="sp"></span></div>
+  <p class="secnote">FY2026 proposed baseline — re-parses automatically when the FY2027 ordinance publishes.</p>
+  <div class="split">
+    <div class="splitbar">
+      <div class="a" style="width:22.14%" title="Salaries & premium pay"></div>
+      <div class="b" style="width:77.86%" title="Operations & equipment"></div>
+    </div>
+    <div class="splitleg">
+      <span><span class="sw2" style="background:rgba(217,178,76,.8)"></span>Salaries &amp; premium pay <b>$271,473,017</b> · 22.1%</span>
+      <span><span class="sw2" style="background:rgba(86,153,192,.55)"></span>Operations &amp; equipment <b>$954,692,164</b> · 77.9%</span>
+    </div>
+  </div>
+
+  <div class="secthd"><span class="n">02</span><h3>Department appropriations</h3><span class="sp"></span></div>
+  <p class="secnote">FY2026 proposed baseline · all 22 departments and offices, sorted by appropriation, exact to the penny.
+     Blue bar = Finance, which carries the countywide costs (fringe benefits, debt service, fund transfers)
+     detailed in section 03 — its departmental operations alone are ~$16.7M. FY2027 department detail lands
+     here when the adopted ordinance posts.</p>
+  <div class="depts" id="depts"></div>
+
+  <div class="secthd"><span class="n">03</span><h3>Countywide costs — inside Finance</h3><span class="sp"></span></div>
+  <p class="secnote">The largest single appropriations in the county, held centrally. Green = money flowing back
+     (reimbursements, shown as negative in the ordinance).</p>
+  <div class="cwgrid" id="cw"></div>
+
+  <footer>
+    <span>govOS · 12 Stones Global Inc.</span>
+    <span>Sources: Council press release 06-06-2026 (Bills 55–56) · Mayor's Proposed Budget FY2026 · 306 pp</span>
+    <span>checksum: baseline dept sum = FY2026 ordinance total, exact · FY2027 ordinance pending</span>
+    <span class="r">aloha in action</span>
+  </footer>
+</div>
+
+<script>
+// Parsed from the Mayor's Proposed FY2026 Budget bill (uploads/2026COMBINED.pdf).
+// Sum of all 22 = $1,226,165,181 — exact match with TOTAL OPERATING APPROPRIATIONS.
+const DEPTS = [
+  { nm:"Department of Finance",                 sub:"incl. countywide costs — see 03", v:441194961, cw:true },
+  { nm:"Department of Environmental Management", v:129922887 },
+  { nm:"Department of Police",                  v:98308976 },
+  { nm:"Department of Management",              v:93392916 },
+  { nm:"Department of Water Supply",            v:91530282 },
+  { nm:"Department of Public Works",            v:78045206 },
+  { nm:"Department of Fire and Public Safety",  v:67775907 },
+  { nm:"Department of Parks and Recreation",    v:42779408 },
+  { nm:"Department of Transportation",          v:38559209 },
+  { nm:"Department of Housing",                 v:33483380 },
+  { nm:"Department of Human Concerns",          v:26033024 },
+  { nm:"Office of the Mayor",                   v:18289591 },
+  { nm:"Department of Agriculture",             v:12708076 },
+  { nm:"Office of the County Council",          v:12125898 },
+  { nm:"Department of the Prosecuting Attorney", v:9753818 },
+  { nm:"Department of Planning",                v:9531517 },
+  { nm:"Department of the Corporation Counsel", v:7131250 },
+  { nm:"Department of Liquor Control",          v:4228610 },
+  { nm:"Emergency Management Agency",           v:3689464 },
+  { nm:"Office of the County Clerk",            v:3039503 },
+  { nm:"Department of Personnel Services",      v:2712055 },
+  { nm:"Department of ʻŌiwi Resources",         v:1929243 },
+];
+const OPER_TOTAL = 1226165181;
+
+// Countywide cost lines held in Finance (exact, from the bill).
+const CW = [
+  { t:"Fringe benefits", a:171763735 },
+  { t:"Bond issuance & debt service", a:76986225 },
+  { t:"Transfer — General Excise Tax Fund", a:60530047 },
+  { t:"Transfer — Highway Fund (supplemental)", a:35848245 },
+  { t:"Transfer — Affordable Housing Fund", a:32519431 },
+  { t:"Transfer — Emergency Fund", a:25000000 },
+  { t:"Insurance programs & self-insurance", a:21600000 },
+  { t:"Transfer — GET Fund · Dept. of Hawaiian Home Lands", a:15132512 },
+  { t:"Transfer — Environmental Protection & Sustainability Fund", a:15054237 },
+  { t:"Transfer — Solid Waste Management Fund", a:14559183 },
+  { t:"Post-employment obligations", a:8566147 },
+  { t:"Transfer — Open Space & Cultural Resources Fund", a:6503886 },
+  { t:"Transfer — Managed Retreat Fund", a:2578827 },
+  { t:"General costs", a:2047272 },
+  { t:"One Main Plaza lease", a:560000 },
+  { t:"Fringe benefits reimbursement", a:-37486231 },
+  { t:"Overhead reimbursement", a:-27273135 },
+];
+
+const fmt = function(n) {
+  const s = Math.abs(n).toLocaleString("en-US");
+  return (n < 0 ? "−$" : "$") + s;
+};
+
+const max = DEPTS[0].v;
+const dhost = document.getElementById("depts");
+DEPTS.forEach(function(d) {
+  const row = document.createElement("div");
+  row.className = "drow" + (d.cw ? " cw" : "");
+  const pct = (d.v / OPER_TOTAL * 100);
+  row.innerHTML =
+    '<span class="nm">' + d.nm + (d.sub ? '<small>' + d.sub + '</small>' : '') + '</span>' +
+    '<span class="track"><span class="fill" style="width:' + (d.v / max * 100).toFixed(2) + '%"></span></span>' +
+    '<span class="amt">' + fmt(d.v) + '</span>' +
+    '<span class="pct">' + (pct < 1 ? pct.toFixed(2) : pct.toFixed(1)) + '%</span>';
+  dhost.appendChild(row);
+});
+
+const chost = document.getElementById("cw");
+CW.forEach(function(c) {
+  const d = document.createElement("div");
+  d.className = "cw";
+  d.innerHTML = '<div class="a' + (c.a < 0 ? ' neg' : '') + '">' + fmt(c.a) + '</div><div class="t">' + c.t + '</div>';
+  chost.appendChild(d);
+});
+</script>
+<script src="../../../../../govos-shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The System Works While You Sleep — elementLOTUS</title>
+<style>
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:46px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:2px;z-index:100;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
+.brand{color:var(--gold)!important;font-weight:700;letter-spacing:.06em;margin-right:10px;font-size:15px}
+/* LAYOUT */
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* POST CARD (list view) */
+.post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
+.post-card:hover{border-color:var(--gold)}
+.post-date{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.post-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.post-title a{color:var(--text)}
+.post-title a:hover{color:var(--gold)}
+.post-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.post-summary{font-size:14px;color:var(--text);line-height:1.6;opacity:.9}
+.post-tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.read-link{margin-top:14px;font-size:13px;color:var(--gold)}
+/* POST FULL (article view) */
+.article-head{margin-bottom:32px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.article-body{margin-top:28px}
+.article-body p{margin-bottom:18px;font-size:15px;line-height:1.75}
+.article-body h2{font-size:18px;font-weight:700;color:var(--gold);margin:28px 0 10px;letter-spacing:.02em}
+.article-body blockquote{border-left:3px solid var(--gold);padding:10px 18px;margin:22px 0;color:var(--muted);font-style:italic;font-size:15px;background:var(--surf2);border-radius:0 6px 6px 0}
+.lede{font-size:17px;line-height:1.8;color:var(--text);margin-bottom:22px;font-weight:400}
+.cta-block{background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-top:30px;font-size:14px;line-height:1.65;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.back:hover{color:var(--gold)}
+/* VISUALS — gold-Aurora picture + animation (list thumbnail, article hero, body image) */
+.post-thumb{display:block;margin:0 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0}
+.post-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .3s ease}
+.post-card:hover .post-thumb img{transform:scale(1.02)}
+.article-hero{margin:0 0 30px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0;box-shadow:0 10px 44px rgba(0,0,0,.45)}
+.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.body-img{margin:26px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg)}
+.body-img img{display:block;width:100%;height:auto}
+.body-img figcaption{font-size:12px;color:var(--muted);padding:9px 14px;background:var(--surf2);text-align:center;letter-spacing:.02em}
+</style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<nav>
+  <a href="king/" class="brand">KING</a>
+  <a href="blog.html" style="color:var(--gold)">Blog</a>
+</nav>
+<div class="wrap"><a href="blog.html" class="back">← All posts</a>
+
+<div class="article-head">
+  <div class="article-title">The System Works While You Sleep</div>
+  <div class="article-subtitle">What it means to build something that doesn't stop when you do</div>
+  <div class="article-meta">2026-07-01 · Jimmy Langford</div>
+</div>
+<div class="article-body"><p class="lede">We finished something today that I didn't expect to feel the way it feels. The system — the whole thing, all 27 lanes — now works when I'm not at the keyboard.</p>
+<p>That's not a small thing. For two years I have been building elementLOTUS as a one-person operation: the songs, the renders, the civic work, the legal research, the grants, the corporate structure, the food security data — every lane of it requiring me to be present and typing. The blessing was always real. The labor was also real.</p>
+<p>Today that changed. The system has timers now — anchored to Maui sunrise, the way everything in this work anchors to the sun. When the sun rises, the brain rebuilds itself. When the brain is rebuilt, the code audit runs. When the audit finishes, the lanes start processing their own boards. All of it before I open a window.</p>
+<h2>Local first, sovereign first</h2>
+<p>The AI that powers this isn't rented from someone else's cloud at $20 a month per seat. It runs on the laptop. It's called king-reason — a small model, under 1.5 gigabytes, fast enough to answer most questions in under a second. It runs alongside everything else without touching the GPU. It is always present and it costs nothing to run.</p>
+<p>When king-reason isn't enough, there's a ladder — the next rung free, the next rung after that free, and only at the very top does money enter. Private lanes — the court documents, the grant library, the civic prosecution research — never leave the machine at all. Sovereignty over information is not an abstraction here. It's an architecture decision.</p>
+<h2>The seven things that break every system</h2>
+<p>Part of what we did today was name the seven patterns that have caused real problems in this build over two years. Not hypothetical vulnerabilities — actual failures, logged, learned from, and now written into a covenant that the local AI carries in its own knowledge base. Seven specific things: the render that starts without checking the GPU first. The path that gets built by concatenating strings. The API that sends data to everyone. The file write that isn't atomic. The secret that nearly made it into a public commit. The crash from a single Hawaiian letter in the wrong encoding. The process that launches a copy of itself without checking if it's already running.</p>
+<p>The system now scans for all seven every morning. If it finds one, it dispatches it to me as a blocker — not a log line, not a silent error, but a named thing that surfaces until it's handled. Seven names for seven patterns. Naming a thing is the beginning of governing it.</p>
+<h2>274 things that need doing</h2>
+<p>The work board has 274 open items right now — tasks across all 27 lanes, from studio renders to civic data to grant research to server maintenance. Before today, those items waited for a session. Now, the board runs its own loop: each morning, a batch of safe items goes to the local AI for processing. Items that need judgment come to me. Items that are mechanical and verifiable get handled without me.</p>
+<p>This is the vision I've been working toward since the beginning: not a tool I operate, but a system that serves — one that takes the labor off the person building it and puts it where it belongs, in the hands of something that doesn't sleep. That frees me to do the things only I can do: the song, the frame, the decision, the testimony.</p>
+<h2>One server, one source</h2>
+<p>Every page you can reach in this system — the civic data, the studio, the food traceability maps, the board, the dispatch bus, the testimony watcher — runs on one Python process, one port, one machine. The Tailscale network makes it available on every device I own without exposing it to the public internet. Private is a superset of public here: the King server has everything, and the public site has the curated part.</p>
+<p>I used to have six servers, three routers, and a manifest of services I had to remember to restart after a reboot. Now there's one. One thing to heal when it breaks. One place to add a feature. One log file to read.</p>
+<h2>The offering</h2>
+<p>All of this — the autonomy, the local AI, the civic pipeline, the food data, the work board — is an offering. Not a product launch. Not a pivot. The same work, more capable of doing what it has always been trying to do: serve the people of these islands, tell the truth about the land and the law, and make the music that carries the aloha forward.</p>
+<p>The system works while I sleep. That means the offering doesn't stop either.</p>
+<div class="cta-block">The civic data is public. The testimony watcher is free. The food traceability map is free. elementlotus.com — no paywall on the people's record.</div></div></div>
+<script src="../govos-shell.js" defer></script>
+</body></html>

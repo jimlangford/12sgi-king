@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hawaiian Konami · TribeGameStudios</title>
+<meta name="description" content="Hawaiian Konami — enter the code, unlock the SAGE canon. 54 nodes, 4 lineages, the Kumulipo Ao/Pō cycle revealed. TribeGameStudios · 12sgi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🌺%3C/text%3E%3C/svg%3E">
+<style>
+/* Hawaiian Konami · 12sgi-design canon. Zero external deps. */
+:root{
+  --bg:#161209; --s1:#231d10; --s2:#2e2716; --s3:#3e351f; --line:#5a4f33;
+  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --ink:#f7f1e3; --ink-2:#d8cdb0; --ink-3:#ab9e7f;
+  --mauka:#4ade80; --kula:#fbbf24; --makai:#38bdf8; --uni:#ffffff;
+  --hewa:#c96f4a;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+
+header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s1)}
+.hexmark{font-size:22px}
+.wordmark strong{font-size:17px;font-weight:700;color:var(--gold)}
+.wordmark .sub{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.back-link{font-size:12px;color:var(--gold);text-decoration:none;margin-left:auto}
+.back-link:hover{text-decoration:underline}
+
+/* intro */
+.intro{padding:40px 24px 20px;text-align:center;max-width:600px;margin:0 auto}
+.intro h1{font-size:clamp(20px,3.5vw,32px);font-weight:700;color:var(--gold);margin-bottom:12px}
+.intro p{font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.hint{font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+
+/* sequence display */
+.seq-display{
+  display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  padding:16px 24px;max-width:600px;margin:0 auto;
+}
+.key-chip{
+  width:44px;height:44px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;border:2px solid var(--line);
+  background:var(--s1);transition:border-color 120ms,background 120ms;
+  position:relative;
+}
+.key-chip.active{border-color:var(--gold);background:var(--s2)}
+.key-chip.done{border-color:var(--mauka);background:#1a3d22}
+.key-chip.fail{border-color:var(--hewa);background:#2a1410;animation:shake .3s}
+.key-chip .key-label{
+  position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+  font-size:8px;color:var(--ink-3);white-space:nowrap;letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+@keyframes shake{0%{transform:translateX(-3px)}25%{transform:translateX(3px)}75%{transform:translateX(-3px)}100%{transform:translateX(0)}}
+
+/* reveal panel */
+#reveal{
+  max-width:700px;margin:20px auto;padding:0 20px;
+  display:none;
+}
+#reveal.shown{display:block}
+
+.reveal-header{
+  text-align:center;padding:24px 0 16px;
+  border-bottom:1px solid var(--line);margin-bottom:20px;
+}
+.reveal-header .unlock-icon{font-size:48px;display:block;margin-bottom:10px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.reveal-header h2{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.reveal-header p{font-size:13px;color:var(--ink-2)}
+
+.lineage-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;
+  margin-bottom:20px;
+}
+.lineage-card{
+  background:var(--s1);border:1px solid var(--line);border-radius:9px;padding:16px;
+}
+.lineage-card h3{font-size:13px;font-weight:700;margin-bottom:8px}
+.lineage-card.mauka h3{color:var(--mauka)}
+.lineage-card.kula   h3{color:var(--kula)}
+.lineage-card.makai  h3{color:var(--makai)}
+.lineage-card.uni    h3{color:var(--uni)}
+.node-list{font-size:11px;color:var(--ink-2);line-height:1.7}
+.node-list span{
+  display:inline-block;margin:2px 3px;
+  padding:1px 5px;border-radius:3px;
+  background:var(--s2);
+}
+.node-list .ao{color:var(--gold)}
+.node-list .po{color:var(--ink-3)}
+
+.crosswalk-strip{
+  background:var(--s1);border:1px solid var(--line);border-radius:9px;
+  padding:16px;margin-bottom:20px;
+}
+.crosswalk-strip h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:10px}
+.cw-row{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.cw-item{background:var(--s2);border-radius:5px;padding:6px 10px;flex:1 1 140px}
+.cw-item strong{color:var(--gold);display:block;font-size:12px;margin-bottom:2px}
+
+.reset-row{text-align:center;padding:12px 0 32px}
+.btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--line);background:var(--s2);color:var(--ink);transition:border-color 120ms}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+
+@media(max-width:500px){.seq-display{gap:4px}.key-chip{width:36px;height:36px;font-size:15px}}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<header>
+  <span class="hexmark">🌺</span>
+  <div class="wordmark">
+    <strong>Hawaiian Konami</strong>
+    <span class="sub">code-unlock · concurrency reveal</span>
+  </div>
+  <a class="back-link" href="index.html">← Games hub</a>
+</header>
+
+<div class="intro">
+  <h1>Enter the sequence.<br>Unlock the SAGE canon.</h1>
+  <p>
+    The Konami code — ↑↑↓↓←→←→BA — carries a hidden layer.
+    Each key maps to a phase of the Kumulipo Ao/Pō cycle.
+    Enter the full sequence to reveal the 54-node SAGE spine
+    and the 4-lineage concurrency map.
+  </p>
+  <div class="hint">Keyboard: arrow keys + B + A &nbsp;·&nbsp; Touch: tap the buttons below</div>
+</div>
+
+<div class="seq-display" id="seq-display">
+  <!-- filled by JS -->
+</div>
+
+<div id="touch-pad" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px 24px;max-width:400px;margin:0 auto">
+  <!-- direction pad -->
+  <div style="display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:4px">
+    <div></div>
+    <button class="btn" data-key="ArrowUp"   style="border-radius:6px;font-size:18px;padding:0" title="Up">↑</button>
+    <div></div>
+    <button class="btn" data-key="ArrowLeft" style="border-radius:6px;font-size:18px;padding:0" title="Left">←</button>
+    <div></div>
+    <button class="btn" data-key="ArrowRight"style="border-radius:6px;font-size:18px;padding:0" title="Right">→</button>
+    <div></div>
+    <button class="btn" data-key="ArrowDown" style="border-radius:6px;font-size:18px;padding:0" title="Down">↓</button>
+    <div></div>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:center;gap:6px">
+    <button class="btn" data-key="b" style="border-radius:6px;font-size:15px;font-weight:700;width:44px;height:44px;padding:0">B</button>
+    <button class="btn" data-key="a" style="border-radius:6px;font-size:15px;font-weight:700;width:44px;height:44px;padding:0">A</button>
+  </div>
+</div>
+
+<div id="reveal">
+  <div class="reveal-header">
+    <span class="unlock-icon">🌺</span>
+    <h2>Ka puka ʻana — The Opening</h2>
+    <p>The SAGE canon unlocked. 54 nodes · 4 lineages · Ao/Pō duality · 13 moons revealed.</p>
+  </div>
+
+  <div class="lineage-grid" id="lineage-grid">
+    <!-- filled by JS -->
+  </div>
+
+  <div class="crosswalk-strip">
+    <h3>Concurrency map — the through-line</h3>
+    <div class="cw-row">
+      <div class="cw-item"><strong>↑ UP × 2 = Ao rising</strong>The day begins. Choices are made. Civic action and game play happen in the light.</div>
+      <div class="cw-item"><strong>↓ DOWN × 2 = Pō settling</strong>Night falls. HINA uses the creative system to balance what was set in motion at Ao.</div>
+      <div class="cw-item"><strong>← → = Makai ↔ Mauka flow</strong>The ahupuaʻa spine: ocean (←) breathes upland (→). Left/right is coast-to-ridge.</div>
+      <div class="cw-item"><strong>← → = Weiqi superko reminder</strong>Left then right: oscillation is forbidden. No position may repeat — same as bad policy.</div>
+      <div class="cw-item"><strong>B = Pono / balance</strong>B is the balanced node. Pono = the pair answers. The civic record is whole.</div>
+      <div class="cw-item"><strong>A = Aloha / completion</strong>A is the final acknowledgment. Aloha as completion. The sequence is sealed.</div>
+    </div>
+  </div>
+
+  <div class="reset-row">
+    <button class="btn" id="btn-reset">Reset sequence</button>
+  </div>
+</div>
+
+<script>
+/* Hawaiian Konami · pure JS, zero external deps.
+   Sequence: ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a
+   On completion: reveal SAGE canon (54 nodes in 4 lineages) from inline data.
+   TribeGameStudios · 12sgi */
+(function(){
+'use strict';
+
+var SEQUENCE=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+var KEY_GLYPHS={ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→',b:'B',a:'A'};
+var KEY_LABELS={
+  ArrowUp:'Ao rising',ArrowDown:'Pō settling',
+  ArrowLeft:'Makai',ArrowRight:'Mauka',
+  b:'Pono',a:'Aloha'
+};
+
+var progress=0;
+var locked=false;
+
+/* build sequence display */
+var seqEl=document.getElementById('seq-display');
+SEQUENCE.forEach(function(k,i){
+  var chip=document.createElement('div');
+  chip.className='key-chip';
+  chip.id='chip-'+i;
+  chip.innerHTML='<span>'+KEY_GLYPHS[k]+'</span><span class="key-label">'+KEY_LABELS[k]+'</span>';
+  seqEl.appendChild(chip);
+});
+
+function advance(key){
+  if(locked) return;
+  var norm=key.toLowerCase();
+  // normalize arrow keys: event.key gives 'ArrowUp' etc.
+  var expected=SEQUENCE[progress];
+  // check match
+  if(norm===expected.toLowerCase()||key===expected){
+    document.getElementById('chip-'+progress).className='key-chip done';
+    progress++;
+    if(progress===SEQUENCE.length){ unlock(); }
+  } else {
+    // wrong key — flash fail, reset
+    for(var i=0;i<SEQUENCE.length;i++){
+      if(document.getElementById('chip-'+i).className.indexOf('done')<0&&
+         document.getElementById('chip-'+i).className.indexOf('fail')<0){
+        document.getElementById('chip-'+i).className='key-chip fail';
+      }
+    }
+    setTimeout(function(){
+      for(var i=0;i<SEQUENCE.length;i++)
+        document.getElementById('chip-'+i).className='key-chip';
+      progress=0;
+    },500);
+  }
+}
+
+/* keyboard */
+document.addEventListener('keydown',function(e){
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0) e.preventDefault();
+  advance(e.key);
+});
+
+/* touch pad */
+document.querySelectorAll('[data-key]').forEach(function(btn){
+  btn.addEventListener('click',function(){ advance(btn.getAttribute('data-key')); });
+});
+
+/* ── SAGE canon data (inline — no external fetch) ── */
+var LINEAGES=[
+  {
+    id:'mauka',label:'Mauka lineage',cls:'mauka',wind:'East wind',
+    nodes:[
+      {id:'N01',name:'Wildfire Resilience Lead',phase:'Ao',element:'Earth / Forest'},
+      {id:'N02',name:'Native Forest Steward',phase:'Pō',element:'Earth / Forest'},
+      {id:'N03',name:'Watershed Guardian',phase:'Ao',element:'Water'},
+      {id:'N04',name:'Reforestation Lead',phase:'Pō',element:'Earth'},
+      {id:'N05',name:'Fire Culture Keeper',phase:'Ao',element:'Fire / Earth'},
+      {id:'N06',name:'Upland Food Systems',phase:'Pō',element:'Earth'},
+      {id:'N07',name:'Mountain Access Steward',phase:'Ao',element:'Earth'},
+      {id:'N08',name:'High-Altitude Science',phase:'Pō',element:'Air / Earth'},
+      {id:'N09',name:'Sacred Land Keeper',phase:'Ao',element:'Earth / Spirit'},
+      {id:'N10',name:'Agroforestry Pioneer',phase:'Pō',element:'Earth'},
+      {id:'N11',name:'Ridge Trail Steward',phase:'Ao',element:'Earth'},
+      {id:'N12',name:'Cloud Forest Monitor',phase:'Pō',element:'Water / Air'},
+      {id:'N13',name:'Kaulana Planting Lead',phase:'Ao',element:'Earth'},
+      {id:'N27',name:'Upland Nursery Lead',phase:'Pō',element:'Earth'}
+    ]
+  },
+  {
+    id:'kula',label:'Kula lineage',cls:'kula',wind:'South wind',
+    nodes:[
+      {id:'N14',name:'Mid-Elevation Farm Lead',phase:'Ao',element:'Earth'},
+      {id:'N15',name:'Dryland Agriculture',phase:'Pō',element:'Earth / Water'},
+      {id:'N16',name:'Upcountry Market Hub',phase:'Ao',element:'Earth'},
+      {id:'N17',name:'Cultural Landscape Keeper',phase:'Pō',element:'Earth / Spirit'},
+      {id:'N18',name:'Livestock Integration',phase:'Ao',element:'Earth'},
+      {id:'N19',name:'Community Garden Lead',phase:'Pō',element:'Earth'},
+      {id:'N20',name:'Water Catchment Steward',phase:'Ao',element:'Water'},
+      {id:'N21',name:'Soil Health Guardian',phase:'Pō',element:'Earth'},
+      {id:'N22',name:'Traditional Practice Keeper',phase:'Ao',element:'Earth / Spirit'},
+      {id:'N23',name:'Solar Integration Lead',phase:'Pō',element:'Fire / Air'},
+      {id:'N24',name:'Seed Sovereignty Keeper',phase:'Ao',element:'Earth'},
+      {id:'N25',name:'Upcountry Youth Lead',phase:'Pō',element:'Earth'},
+      {id:'N26',name:'Mid-Slope Restoration',phase:'Ao',element:'Earth'}
+    ]
+  },
+  {
+    id:'makai',label:'Makai lineage',cls:'makai',wind:'West wind',
+    nodes:[
+      {id:'N28',name:'Fishpond Restoration Lead',phase:'Ao',element:'Water'},
+      {id:'N29',name:'Coastal Access Steward',phase:'Pō',element:'Water'},
+      {id:'N30',name:'Reef Health Guardian',phase:'Ao',element:'Water'},
+      {id:'N31',name:'Ocean Harvest Keeper',phase:'Pō',element:'Water'},
+      {id:'N32',name:'Shoreline Resilience Lead',phase:'Ao',element:'Water / Earth'},
+      {id:'N33',name:'Marine Protected Area',phase:'Pō',element:'Water'},
+      {id:'N34',name:'Traditional Fishing Keeper',phase:'Ao',element:'Water / Spirit'},
+      {id:'N35',name:'Aquaculture Pioneer',phase:'Pō',element:'Water'},
+      {id:'N36',name:'Tidal Calendar Keeper',phase:'Ao',element:'Water / Spirit'},
+      {id:'N37',name:'Coastal Youth Lead',phase:'Pō',element:'Water'},
+      {id:'N38',name:'Seaweed Cultivation',phase:'Ao',element:'Water'},
+      {id:'N39',name:'Harbor Steward',phase:'Pō',element:'Water'},
+      {id:'N40',name:'Ocean Education Lead',phase:'Ao',element:'Water'},
+      {id:'N41',name:'Wave Energy Pioneer',phase:'Pō',element:'Water / Fire'}
+    ]
+  },
+  {
+    id:'uni',label:'Universal lineage',cls:'uni',wind:'North wind',
+    nodes:[
+      {id:'N42',name:'Governance Systems Lead',phase:'Ao',element:'Spirit'},
+      {id:'N43',name:'Cultural Archive Keeper',phase:'Pō',element:'Spirit'},
+      {id:'N44',name:'Inter-Island Bridge',phase:'Ao',element:'Spirit / Air'},
+      {id:'N45',name:'Language Revitalization',phase:'Pō',element:'Spirit'},
+      {id:'N46',name:'Youth Leadership Lead',phase:'Ao',element:'Spirit'},
+      {id:'N47',name:'Elder Wisdom Keeper',phase:'Pō',element:'Spirit'},
+      {id:'N48',name:'Healing Arts Steward',phase:'Ao',element:'Spirit / Water'},
+      {id:'N49',name:'Ceremony Keeper',phase:'Pō',element:'Spirit / Fire'},
+      {id:'N50',name:'Navigation Arts Lead',phase:'Ao',element:'Spirit / Water'},
+      {id:'N51',name:'Music + Chant Keeper',phase:'Pō',element:'Spirit / Air'},
+      {id:'N52',name:'Arts + Craft Lead',phase:'Ao',element:'Spirit'},
+      {id:'N53',name:'Civic Integrity Overseer',phase:'Pō',element:'Spirit'},
+      {id:'N54',name:'The Living Canon',phase:'Ao',element:'Spirit / All'}
+    ]
+  }
+];
+
+function buildLineageGrid(){
+  var grid=document.getElementById('lineage-grid');
+  grid.innerHTML='';
+  LINEAGES.forEach(function(lin){
+    var card=document.createElement('div');
+    card.className='lineage-card '+lin.cls;
+    var nodeHtml=lin.nodes.map(function(n){
+      return '<span class="'+(n.phase==='Ao'?'ao':'po')+'" title="'+n.element+'">'+n.id+' · '+n.name+'</span>';
+    }).join(' ');
+    card.innerHTML='<h3>'+lin.label+' · '+lin.wind+' ('+lin.nodes.length+' nodes)</h3>'+
+      '<div class="node-list">'+nodeHtml+'</div>';
+    grid.appendChild(card);
+  });
+}
+
+function unlock(){
+  locked=true;
+  // final chip glow
+  for(var i=0;i<SEQUENCE.length;i++)
+    document.getElementById('chip-'+i).className='key-chip done';
+  buildLineageGrid();
+  var rev=document.getElementById('reveal');
+  rev.classList.add('shown');
+  rev.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('btn-reset').addEventListener('click',function(){
+  locked=false; progress=0;
+  for(var i=0;i<SEQUENCE.length;i++)
+    document.getElementById('chip-'+i).className='key-chip';
+  document.getElementById('reveal').classList.remove('shown');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+})();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

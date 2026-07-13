@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Governments · govOS</title>
+  <link rel="stylesheet" href="govos.css">
+</head>
+<body>
+
+<nav class="govos-nav" data-tenant="hi-maui">
+  <a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span><b>govOS</b><span class="sub">Kilo Aupuni</span></a>
+  <button class="gn-burger" aria-label="Menu">&#9776;</button>
+  <div class="gn-menu">
+    <span class="gn-here">viewing: <b>All Governments</b></span>
+    <div class="gn-group">
+      <button class="gn-top">Across govOS <span class="ar">&#9662;</span></button>
+      <div class="gn-panel">
+        <a href="reports.html">Dashboard hub</a>
+        <a href="datasets.html">Open data</a>
+        <a href="agenda_explainer.html">Agenda explainer</a>
+        <a href="sage_bridge.html">Sage</a>
+        <a href="olelo_glossary.html">&#699;&#332;lelo</a>
+      </div>
+    </div>
+    <a class="gn-lead" href="testify.html">&#9878; Testify</a>
+    <a class="gn-link" href="request_records.html">Request Records</a>
+    <a class="gn-cta" href="take_action.html">Take part</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="eyebrow">govOS · All Governments</div>
+  <h1 style="margin: 10px 0 6px;">Tenants Hub</h1>
+  <p class="sub" style="margin-bottom: 30px;">One civic engine, many governments. Pick a government to enter its public record — officials, money, contracts, agendas, and the pattern behind decisions.</p>
+
+  <div id="api-status" style="font-size:12px; color: var(--ink-faint); margin-bottom: 16px;">
+    <span class="spinner" style="width:12px;height:12px;border-width:1px;vertical-align:middle;"></span>
+    Loading from v2 API...
+  </div>
+
+  <!-- Hawaii -->
+  <section class="sec">
+    <h2>Hawaiʻi <span class="n" id="hi-count">—</span></h2>
+    <div class="grid" id="hi-grid">
+      <a class="tile" href="tenant_hi-state.html" data-tid="hi-state"><span>Hawaii State</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_hi-maui.html" data-tid="hi-maui"><span>Maui County</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_hi-hawaii.html" data-tid="hi-hawaii"><span>Hawaii County</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_hi-kauai.html" data-tid="hi-kauai"><span>Kauaʻi County</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_hi-honolulu.html" data-tid="hi-honolulu"><span>City & County of Honolulu</span><span class="go">→</span></a>
+    </div>
+  </section>
+
+  <!-- US -->
+  <section class="sec">
+    <h2>United States <span class="n">2</span></h2>
+    <div class="grid">
+      <a class="tile" href="tenant_ny.html"><span>New York</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_nyc.html"><span>New York City</span><span class="go">→</span></a>
+    </div>
+  </section>
+
+  <!-- Charter -->
+  <section class="sec">
+    <h2>Apex Charter</h2>
+    <div class="grid">
+      <a class="tile" href="tenant_12stonescharter.html" style="border-left: 3px solid var(--blue);"><span>&#9878; 12 Stones Sovereign Charter</span><span class="go">→</span></a>
+    </div>
+  </section>
+
+  <!-- World Centers -->
+  <section class="sec">
+    <h2>World Financial Centers <span class="n">8</span></h2>
+    <div class="grid">
+      <a class="tile" href="tenant_london.html"><span>London</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_tokyo.html"><span>Tokyo</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_hongkong.html"><span>Hong Kong SAR</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_singapore.html"><span>Singapore</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_zurich.html"><span>Zürich</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_frankfurt.html"><span>Frankfurt</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_paris.html"><span>Paris</span><span class="go">→</span></a>
+      <a class="tile" href="tenant_dubai.html"><span>Dubai</span><span class="go">→</span></a>
+    </div>
+  </section>
+
+  <div class="govos-footer">
+    generated <span id="ts"></span> · govOS v2 · <a href="reports.html">dashboard hub</a> · <a href="datasets.html">open data</a>
+  </div>
+</div>
+
+<div class="sgi-copyright">&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</div>
+
+<script>
+// Enrich tiles with live API data
+fetch('http://localhost:8108/api/v2/tenants').then(r => r.json()).then(data => {
+  var status = document.getElementById('api-status');
+  var civic = (data.tenants || []).filter(t => t.kind === 'civic');
+  document.getElementById('hi-count').textContent = civic.filter(t => t.id.startsWith('hi-')).length;
+  status.innerHTML = '&#10003; v2 API connected &middot; ' + civic.length + ' civic tenants loaded';
+  status.style.color = 'var(--ok)';
+}).catch(() => {
+  var status = document.getElementById('api-status');
+  status.innerHTML = 'v2 API offline &mdash; showing static data';
+  status.style.color = 'var(--warn)';
+});
+document.getElementById('ts').textContent = new Date().toLocaleString('en-US', {timeZone:'Pacific/Honolulu'}) + ' HST';
+</script>
+<script src="govos-shell.js" defer></script>
+</body>
+</html>

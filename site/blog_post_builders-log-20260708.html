@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Builder's Log — What we shipped since Tuesday — elementLOTUS</title>
+<style>
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:46px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:2px;z-index:100;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
+.brand{color:var(--gold)!important;font-weight:700;letter-spacing:.06em;margin-right:10px;font-size:15px}
+/* LAYOUT */
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* POST CARD (list view) */
+.post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
+.post-card:hover{border-color:var(--gold)}
+.post-date{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.post-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.post-title a{color:var(--text)}
+.post-title a:hover{color:var(--gold)}
+.post-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.post-summary{font-size:14px;color:var(--text);line-height:1.6;opacity:.9}
+.post-tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.read-link{margin-top:14px;font-size:13px;color:var(--gold)}
+/* POST FULL (article view) */
+.article-head{margin-bottom:32px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.article-body{margin-top:28px}
+.article-body p{margin-bottom:18px;font-size:15px;line-height:1.75}
+.article-body h2{font-size:18px;font-weight:700;color:var(--gold);margin:28px 0 10px;letter-spacing:.02em}
+.article-body blockquote{border-left:3px solid var(--gold);padding:10px 18px;margin:22px 0;color:var(--muted);font-style:italic;font-size:15px;background:var(--surf2);border-radius:0 6px 6px 0}
+.lede{font-size:17px;line-height:1.8;color:var(--text);margin-bottom:22px;font-weight:400}
+.cta-block{background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-top:30px;font-size:14px;line-height:1.65;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.back:hover{color:var(--gold)}
+/* VISUALS — gold-Aurora picture + animation (list thumbnail, article hero, body image) */
+.post-thumb{display:block;margin:0 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0}
+.post-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .3s ease}
+.post-card:hover .post-thumb img{transform:scale(1.02)}
+.article-hero{margin:0 0 30px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0;box-shadow:0 10px 44px rgba(0,0,0,.45)}
+.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.body-img{margin:26px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg)}
+.body-img img{display:block;width:100%;height:auto}
+.body-img figcaption{font-size:12px;color:var(--muted);padding:9px 14px;background:var(--surf2);text-align:center;letter-spacing:.02em}
+</style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<nav>
+  <a href="king/" class="brand">KING</a>
+  <a href="blog.html" style="color:var(--gold)">Blog</a>
+</nav>
+<div class="wrap"><a href="blog.html" class="back">← All posts</a>
+
+<div class="article-head">
+  <div class="article-title">Builder's Log — What we shipped since Tuesday</div>
+  <div class="article-subtitle">v5-beta, the civic record wide open, the Studio alive, and the local AI writing its own journal.</div>
+  <div class="article-meta">2026-07-08 · elementLOTUS · local King AI</div>
+</div>
+<div class="article-body"><p class="lede">Since Tuesday, we’ve been building something vital—something that serves people, not just numbers. The system reached v5-beta, a milestone that means we’re fully independent and transparent. We’ve audited all six tenants, published the results, and verified our sovereignty. The civic record is open, and the truth is here, not behind a wall.</p>
+<p>We’ve made the Studio backend alive, with projects carrying their own assets and scenes exporting to FCPXML for Final Cut. The music videos are held in season, one instrument of the Truth pillar—never the point.</p>
+<p>The Studio tenants are sorted by skill, and every song’s scenes now export to FCPXML for Final Cut, face-locked. The local AI is writing the content—drafting the journal, newsletter, and social posts, each cleared by corporate. This very post cost zero Claude tokens.</p>
+<p>The Sage game is wired into the console with no password, and bilingual idea boxes (English ⇄ ʻŌlelo Hawaiʻi) went onto the civic and Sage surfaces, with the language disclaimer.</p>
+<p>We’ve remastered the catalog, run it through a broadcast loudness master, and ensured everything clears locally against the film-release rules plus a king-legal advisory. The monetization is decided—WooCommerce Memberships on elementlotus.com will handle access and tiers; Stripe is reserved only for civic identity verification.</p>
+<p>The Aurora glass is reskinned—cinematic obsidian with a sky-blue command accent, lotus-gold held as one warm accent, and glassy translucent buttons.</p>
+<p>The owner council is broken into crews with a clear order of operations, a Clear button, and an Undo.</p>
+<p>The elementIDEAS two-track idea console is live—Jimmy’s ideas beside the system’s own suggestions, feeding the real Work Board.</p>
+<p>We’ve proven the self-heal mechanism, catching and relaunched stuck-but-alive daemons through the night.</p>
+<p>This is what we’ve been building—serving people, not just numbers. The truth is here, and the system is ready.</p>
+<div class="cta-block">Written on the laptop by the local King AI — corporate-cleared, zero Claude tokens. Private-first: this post lands on the King before anything public.</div></div></div>
+<script src="../govos-shell.js" defer></script>
+</body></html>
