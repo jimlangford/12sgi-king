@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Civic Lane · govOS</title>
+  <style>
+    :root {
+      --bg: #081420;
+      --surface: #0f2a42;
+      --accent: #5a97e6;
+      --text: #eaf2fc;
+      --text-dim: #a7c0dd;
+      --gold: #e3ad33;
+      --border: rgba(90, 151, 230, 0.24);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html {
+      background: var(--bg);
+    }
+    
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .brand-icon {
+      font-size: 32px;
+    }
+    
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .brand-text h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--text);
+    }
+    
+    .brand-text span {
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    
+    .hero {
+      padding: 60px 0;
+    }
+    
+    .hero h2 {
+      font-size: 32px;
+      margin: 0 0 20px 0;
+      color: var(--text);
+    }
+    
+    .hero p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+    
+    .section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    
+    .section h3 {
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      color: var(--text);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.2s;
+      display: block;
+    }
+    
+    .card:hover {
+      border-color: var(--accent);
+      background: rgba(47, 116, 208, 0.08);
+      transform: translateY(-2px);
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 8px 0;
+    }
+    
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    
+    .split-panel h4 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: var(--text);
+    }
+    
+    .split-panel p {
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+    
+    .split-panel a {
+      display: block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    
+    .split-panel a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+    
+    @media (max-width: 768px) {
+      .split {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand-icon">⚖️</div>
+      <div class="brand-text">
+        <h1>Civic / govOS</h1>
+        <span>Secondary public lane</span>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h2>govOS is still here — just not as the front-page identity.</h2>
+      <p>The civic work remains public, sourced, and important. This page reframes it as one dedicated lane within the wider Element Lotus / 12 Stones Global system, with direct paths into dashboards and jurisdictions when that is the visitor's actual need.</p>
+    </section>
+
+    <!-- What Stays Public -->
+    <section class="section">
+      <h3>What Stays Public</h3>
+      <div class="grid">
+        <a href="reports.html" class="card">
+          <h4 class="card-title">Dashboards</h4>
+          <p class="card-desc">The civic hub: public dashboards, archives, and transparency lenses for every jurisdiction.</p>
+        </a>
+        <a href="jurisdictions.html" class="card">
+          <h4 class="card-title">Jurisdictions</h4>
+          <p class="card-desc">Government-by-government entry. Pick a specific place, tenant, or public-record surface.</p>
+        </a>
+        <a href="testify.html" class="card">
+          <h4 class="card-title">Take Part</h4>
+          <p class="card-desc">Testimony and records-request flows — public participation without taking over the studio shell.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Boundary & Return -->
+    <section class="section split">
+      <div class="split-panel">
+        <h4>Boundary</h4>
+        <p>Civic pages stay public. Owner dashboards, Tailscale surfaces, local mirrors, and operational tooling remain private and are not republished into this shell.</p>
+      </div>
+      <div class="split-panel">
+        <h4>Return to Studio</h4>
+        <a href="index.html">Back to Element Lotus home →</a>
+        <a href="games/">Games hub →</a>
+        <a href="films.html">Film lane →</a>
+        <a href="music.html">Music →</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>PUBLIC civic lane. Studio shell and govOS now live side by side with clearer separation.</p>
+      <p>&copy; 2026 James RCS Langford · 12 Stones Global</p>
+    </footer>
+  </div>
+</body>
+</html>
