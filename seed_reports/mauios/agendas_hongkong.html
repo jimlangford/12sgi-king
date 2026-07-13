@@ -19,7 +19,8 @@
  .disc{font-size:12px;color:#9a957f;font-style:italic;border-left:2px solid rgba(217,178,76,.4);padding:7px 12px;margin:16px 0}
  a{color:#d9b24c}
  footer{margin-top:30px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}
-</style></head><body><div class="wrap">
+</style><link rel="stylesheet" href="../../govos.css">
+</head><body><div class="wrap">
 <div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; Hong Kong SAR &middot; agendas</div>
 <h1>Agendas &mdash; Hong Kong SAR</h1>
 <p class="lead">Know what is being decided <b>before</b> it is decided. Upcoming public meetings as far
@@ -30,4 +31,5 @@ ahead as this government posts them &mdash; so the community can show up, testif
 <div class="disc">Machine-readable feed: <b>ical</b> — refreshed automatically each day. Note: Re-verified via WebFetch on 2026-06-15. BOTH URLs resolve: source_url (LegCo Calendar page) loads and describes the meeting search + iCal subscription; feed_url (https://www.legco.gov.hk/xml/schedule_en.ics) returns real VEVENTs. feed_type=ical is honest. CORRECTION: the proposal&#x27;s &quot;upcoming&quot; list (Panel on Housing/Economic Development/Manpower/Environmental Affairs/Transport, Establishment Subcommittee, dated 2026-06-23 to 2026-06-25) could NOT be confirmed — a direct re-fetch of the same .ics could not locate any of those VEVENTs in the 2026-06-20..06-30 range, so they were DELETED as unverifiable. Replaced with meetings actually present in the live feed (all 2026-06-15, confirmed across two independent fetches): the Ride-Hailing Services subsidiary-legislation subcommittee, the LegCo Commission, the Insurance Ordinance subsidiary-legislation subcommittee, and the Belt-and-Road Parliamentary Liaison Subcommittee. NOTE: WebFetch&#x27;s markdown rendering of the .ics appears to truncate around 2026-06-15, so events after that date could not be inspected — the feed itself likely contains more, but they cannot be verified through this tool. Traditional Chinese feed: schedule_tc.ics; Simplified: schedule_sc.ics. OData ScheduleDB API at https://app.legco.gov.hk/ScheduleDB/odata/ is a documented structured fallback (https://www.legco.gov.hk/en/open-legco/open-data/meeting-schedule.html) but a direct Tmeeting query returned HTTP 400, so it is unverified here. Per-meeting Council agendas are HTML (e.g. https://www.legco.gov.hk/yr2025/english/counmtg/agenda/cm20251022.htm); VEVENTs carry no per-meeting agenda URL, so the url field points to the feed. conf downgraded to &quot;p&quot;: the originally proposed upcoming meetings were unreproducible and the OData path is unconfirmed; the .ics feed and its 2026-06-15 contents are confirmed.</div>
 <p style="margin-top:14px"><a href="crosswalk_hongkong.html">charter ⇄ law</a> &middot; <a href="money_hongkong.html">money</a> &middot; <a href="jurisdictions.html">all jurisdictions</a></p>
 <footer>generated 2026-07-10 10:00 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Hong Kong SAR agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
-</div></body></html>
+</div><script src="../../govos-shell.js" defer></script>
+</body></html>

@@ -11,6 +11,7 @@
 (function(){var p=location.pathname;if(p&&!/\/$/.test(p)&&!/\.[a-z0-9]+$/i.test((p.split('/').pop()||'')))location.replace(location.origin+p+'/'+location.search+location.hash);})();
 </script>
 <script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
 </head>
 <body>
 <x-dc>
@@ -437,5 +438,6 @@ class Component extends DCLogic {
 }
 
 </script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>
