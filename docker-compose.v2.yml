@@ -181,10 +181,10 @@ services:
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}
-      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107"
+      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109"
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports: ["127.0.0.1:8106:8000"]
-    depends_on: [auth, tenant, documents, storage, ai, gpu-router]
+    depends_on: [auth, tenant, documents, storage, ai, gpu-router, king-bridge]
     restart: unless-stopped
 
   # ── GPU layer ──────────────────────────────────────────────────────────────
@@ -246,6 +246,34 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+
+  # ── king-bridge — workboard → king-* Ollama router + Neo4j writer ───────────
+  # Reaches the HOST Ollama (the real king-* models) via host.docker.internal:11434.
+  # No GPU container needed — routes through host Ollama directly.
+  # Port 8109 (loopback only). Zero cloud tokens.
+  king-bridge:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.king_bridge.app.main:app", "--host", "0.0.0.0", "--port", "8109"]
+    environment:
+      <<: *common-env
+      KING_BRIDGE_DB: /data/db/king_bridge.db
+      # host.docker.internal reaches the owner's live Ollama (44 king-* models)
+      OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      KING_BRIDGE_INFER_TIMEOUT: ${KING_BRIDGE_INFER_TIMEOUT:-120}
+      KING_BRIDGE_POLL_MAX: ${KING_BRIDGE_POLL_MAX:-10}
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8109:8109"]
+    depends_on: [neo4j]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8109/api/v2/ready', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
 
 volumes:
   v2-db:
