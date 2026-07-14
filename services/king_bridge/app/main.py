@@ -80,6 +80,7 @@ from services.v2_workboard import (
     selfheal_engineering_jobs,
 )
 from services.ai_autonomy import classify_task, build_autonomy_system_prompt, record_autonomous_execution
+from services.owner_job_tracker import get_tracker, JobStatus, ApprovalType
 from services.event_bus import publish_event
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -731,3 +732,91 @@ def recent_jobs(limit: int = 20):
             FROM bridge_jobs ORDER BY created_at DESC LIMIT ?
         """, (min(limit, 100),)).fetchall()
     return {"jobs": [dict(r) for r in rows]}
+
+
+# ── Owner Job Tracking ────────────────────────────────────────────────────────
+@app.get(f"{API_PREFIX}/owner/jobs")
+def owner_jobs(limit: int = 50, status: str = None):
+    """Fetch autonomous job tracking records for owner dashboard."""
+    tracker = get_tracker()
+    jobs = tracker.list_jobs(limit=limit, status=status)
+    stats = tracker.get_stats()
+    return {
+        "jobs": jobs,
+        "stats": stats,
+        "ts": _iso_now(),
+    }
+
+
+@app.get(f"{API_PREFIX}/owner/jobs/{{job_id}}")
+def owner_job_detail(job_id: str):
+    """Fetch detailed job info + steps."""
+    tracker = get_tracker()
+    job = tracker.get_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    steps = tracker.get_job_steps(job_id)
+    return {
+        "job": job,
+        "steps": steps,
+        "ts": _iso_now(),
+    }
+
+
+class OwnerJobApprovalRequest(BaseModel):
+    decision: str  # "approve" or "reject"
+    reason: str = ""  # Note or rejection reason
+
+
+@app.post(f"{API_PREFIX}/owner/jobs/{{job_id}}/approval")
+def owner_job_approval(
+    job_id: str,
+    req: OwnerJobApprovalRequest,
+    x_service_token: str | None = Header(default=None),
+):
+    """Owner approves or rejects a completed autonomous job."""
+    _require_internal(x_service_token)
+    
+    tracker = get_tracker()
+    job = tracker.get_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    if req.decision.lower() == "approve":
+        success = tracker.approve_job(job_id, approver="owner", note=req.reason)
+        action = "approved"
+    elif req.decision.lower() == "reject":
+        success = tracker.reject_job(job_id, rejector="owner", reason=req.reason)
+        action = "rejected"
+    else:
+        raise HTTPException(status_code=400, detail="decision must be 'approve' or 'reject'")
+    
+    if not success:
+        raise HTTPException(status_code=500, detail="Failed to record approval")
+    
+    # Emit event
+    publish_event(
+        f"owner_job.{action}",
+        SERVICE_NAME,
+        payload={"job_id": job_id, "reason": req.reason},
+        entity_id=job_id,
+    )
+    
+    return {
+        "status": "recorded",
+        "job_id": job_id,
+        "decision": req.decision,
+        "timestamp": _iso_now(),
+    }
+
+
+@app.get(f"{API_PREFIX}/owner/jobs/stats")
+def owner_jobs_stats():
+    """Get aggregated job statistics."""
+    tracker = get_tracker()
+    stats = tracker.get_stats()
+    return {
+        "stats": stats,
+        "ts": _iso_now(),
+    }
