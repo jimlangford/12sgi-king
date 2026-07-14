@@ -15,14 +15,14 @@
 
   <div style="margin-bottom:18px;">
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
-      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">{{ modeLabel }} mode · overflow surfaces</span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">secondary tasks</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">{{ modeLabel }} mode · extra tools</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">as needed</span>
     </div>
     <h1 style="margin:0; font-size:clamp(20px,3.1vw,28px);">More</h1>
-    <p style="margin:5px 0 0; color:var(--ink-dim,#b3a98f); line-height:1.6;">Low-frequency surfaces are intentionally grouped here to keep the main nav focused.</p>
+    <p style="margin:5px 0 0; color:var(--ink-dim,#b3a98f); line-height:1.6;">Use these only when the main tabs are not enough.</p>
   </div>
 
-  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Secondary surfaces</div>
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Extra tools</div>
   <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-bottom:18px;">
     <sc-for list="{{ surfaces }}" as="s" hint-placeholder-count="4">
       <button onClick="{{ s.go }}" style="display:flex; flex-direction:column; align-items:flex-start; gap:5px; border:1px solid var(--line,#34301f); border-radius:10px; background:var(--panel,#16140f); color:var(--ink,#efe9da); padding:12px 14px; font:inherit; text-align:left; cursor:pointer;" style-hover="border-color:var(--accent,#e3ad33);">
@@ -36,7 +36,7 @@
     </sc-for>
   </div>
 
-  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Usability checks (quick scenarios)</div>
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Quick checks</div>
   <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:18px;">
     <sc-for list="{{ checks }}" as="c" hint-placeholder-count="5">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line,#34301f); border-radius:10px; background:var(--panel,#16140f); padding:10px 12px;">
@@ -47,8 +47,8 @@
   </div>
 
   <div style="background:var(--panel,#16140f); border:1px dashed var(--line,#34301f); border-radius:10px; padding:12px 14px;">
-    <div style="font-size:12px; color:var(--ink-faint,#756b56); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">Empty-state guidance</div>
-    <div style="font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">If no secondary actions are needed, return to Home and continue only with ranked top tasks.</div>
+    <div style="font-size:12px; color:var(--ink-faint,#756b56); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">If nothing fits</div>
+    <div style="font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">Go back to Home and continue with core tabs.</div>
   </div>
 
 </div>
@@ -71,27 +71,27 @@ class Component extends DCLogic {
     })();
 
     const publicSurfaces = [
-      { icon: '🌙', label: 'Moon Calendar', desc: 'Lunar rhythm and day/night context.', tag: 'public', go: () => this._go('mooncal') },
-      { icon: '👁', label: 'Watcher', desc: 'Watcher feed and civic observability.', tag: 'public', go: () => this._go('watcher') },
-      { icon: '🌍', label: 'Aupuni Globe', desc: 'Geospatial civic lens.', tag: 'public', go: () => this._go('aupuni') },
-      { icon: '🎛', label: 'Studio →', desc: 'Bridge to the separate studio system.', tag: 'bridge', go: () => { window.location.href = 'go.html'; } },
+      { icon: '🌙', label: 'Moon Calendar', desc: 'Moon phase and day/night context.', tag: 'public', go: () => this._go('mooncal') },
+      { icon: '👁', label: 'Watcher', desc: 'Live civic watcher feed.', tag: 'public', go: () => this._go('watcher') },
+      { icon: '🌍', label: 'Aupuni Globe', desc: 'Map-based civic view.', tag: 'public', go: () => this._go('aupuni') },
+      { icon: '🎛', label: 'Studio →', desc: 'Open the separate studio system.', tag: 'bridge', go: () => { window.location.href = 'go.html'; } },
     ];
 
     const privateSurfaces = [
-      { icon: '📡', label: 'Launch Center', desc: 'Launch routing and orchestration controls.', tag: 'private', go: () => this._go('launch') },
-      { icon: '🔗', label: 'Connectors', desc: 'Social/business bridge connector status.', tag: 'bridge', go: () => this._go('connectors') },
-      { icon: '◈', label: 'Hub · Witness', desc: 'Hub-level witness and aggregation panel.', tag: 'private', go: () => this._go('hub') },
+      { icon: '📡', label: 'Launch Center', desc: 'Launch routing controls.', tag: 'private', go: () => this._go('launch') },
+      { icon: '🔗', label: 'Connectors', desc: 'Connector health and status.', tag: 'bridge', go: () => this._go('connectors') },
+      { icon: '◈', label: 'Hub · Witness', desc: 'Hub witness and rollup view.', tag: 'private', go: () => this._go('hub') },
     ];
 
     return {
       modeLabel: mode === 'private' ? 'PRIVATE' : 'PUBLIC',
       surfaces: mode === 'private' ? privateSurfaces : publicSurfaces,
       checks: [
-        { title: '1) Public visitor finds civic records in ≤2 taps from Home', status: 'verify' },
-        { title: '2) Public mobile user sees only core tabs plus More', status: 'verify' },
-        { title: '3) Owner signs in, switches to PRIVATE mode, lands on Owner Home', status: 'verify' },
-        { title: '4) Owner reaches low-frequency tools only through More', status: 'verify' },
-        { title: '5) Empty states and status chips remain consistent across modes', status: 'verify' },
+        { title: '1) Public user reaches civic records in ≤2 taps', status: 'verify' },
+        { title: '2) Mobile public nav shows 4 core tabs + More', status: 'verify' },
+        { title: '3) Owner sign-in switches to PRIVATE and lands on Home', status: 'verify' },
+        { title: '4) Low-frequency tools stay inside More', status: 'verify' },
+        { title: '5) Empty states and status chips stay consistent', status: 'verify' },
       ],
     };
   }

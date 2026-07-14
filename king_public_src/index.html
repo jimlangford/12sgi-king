@@ -125,10 +125,10 @@
       <sc-if value="{{ showLock }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100%; padding:64px 32px; text-align:center; gap:18px;">
           <div style="font-size:46px; line-height:1;">🔒</div>
-          <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Owner access</div>
+          <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Private surface</div>
           <h2 style="margin:0; font-size:27px; color:var(--ink,#efe9da);">{{ lockLabel }}</h2>
-          <p style="max-width:460px; margin:0; color:var(--ink-dim,#b3a98f); line-height:1.65; font-size:14px; text-wrap:pretty;">This surface is private to the operator. The public system is <strong style="color:var(--accent-2,#f4c95d);">govOS</strong> — Maui County civic transparency — plus <strong style="color:var(--accent-2,#f4c95d);">Council &amp; Agendas</strong> and the <strong style="color:var(--accent-2,#f4c95d);">Sage Game</strong>. Everything else is shown for context but locked.</p>
-          <button onClick="{{ ownerToggle }}" style="margin-top:6px; padding:11px 22px; border:1px solid var(--accent,#e3ad33); border-radius:10px; background:var(--accent-dim,rgba(227,173,51,0.14)); color:var(--accent-2,#f4c95d); font:inherit; font-size:13px; cursor:pointer;" style-hover="background:var(--accent,#e3ad33); color:#1a1610;">Sign in to unlock</button>
+          <p style="max-width:460px; margin:0; color:var(--ink-dim,#b3a98f); line-height:1.65; font-size:14px; text-wrap:pretty;">This area is private. In PUBLIC mode, use <strong style="color:var(--accent-2,#f4c95d);">govOS</strong>, <strong style="color:var(--accent-2,#f4c95d);">Council</strong>, and <strong style="color:var(--accent-2,#f4c95d);">Sage Game</strong>. Other tabs stay locked.</p>
+          <button onClick="{{ ownerToggle }}" style="margin-top:6px; padding:11px 22px; border:1px solid var(--accent,#e3ad33); border-radius:10px; background:var(--accent-dim,rgba(227,173,51,0.14)); color:var(--accent-2,#f4c95d); font:inherit; font-size:13px; cursor:pointer;" style-hover="background:var(--accent,#e3ad33); color:#1a1610;">Sign in</button>
         </div>
       </sc-if>
       <sc-if value="{{ showOverview }}" hint-placeholder-val="{{ true }}">
@@ -229,9 +229,9 @@
       <div style="width:100%; max-width:360px; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:14px; padding:28px 24px; display:flex; flex-direction:column; gap:16px; box-shadow:0 24px 60px rgba(0,0,0,0.5);">
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size:22px;">🔒</span>
-          <div style="font-weight:600; font-size:16px; color:var(--ink,#efe9da);">Owner sign-in</div>
+          <div style="font-weight:600; font-size:16px; color:var(--ink,#efe9da);">Owner sign in</div>
         </div>
-        <p style="margin:0; font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">Sign in with your GitHub or Google account to access the private owner surfaces.</p>
+        <p style="margin:0; font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">Use GitHub or Google to open private tools.</p>
         <button onClick="{{ goGithubSignIn }}" style="display:flex; align-items:center; gap:10px; width:100%; padding:11px 16px; border:1px solid var(--line,#34301f); border-radius:9px; background:var(--panel-2,#1e1c14); color:var(--ink,#efe9da); font:inherit; font-size:13.5px; font-weight:600; cursor:pointer;" style-hover="border-color:var(--accent,#e3ad33);">
           <span style="font-size:18px;">🐙</span><span>Continue with GitHub</span>
         </button>
@@ -434,13 +434,13 @@ class Component extends DCLogic {
       liveLabel: this.state.liveLabel || '',
       activeLabel: cur.label,
       modeLabel: mode === 'private' ? 'PRIVATE' : 'PUBLIC',
-      modeHint: mode === 'private' ? 'Switch to PUBLIC mode' : 'Switch to PRIVATE mode',
+      modeHint: mode === 'private' ? 'Go PUBLIC' : 'Go PRIVATE',
       canSwitchModes: unlocked,
       modeToggle: () => this.setMode(mode === 'private' ? 'public' : 'private'),
       owner: unlocked,
       ownerToggle: () => this.toggleOwner(),
       ownerGlyph: unlocked ? '🔓' : '🔒',
-      ownerLabel: unlocked ? 'Signed in · tap to sign out' : 'Sign in to unlock private mode',
+      ownerLabel: unlocked ? 'Signed in · sign out' : 'Sign in for private mode',
       showSignIn: this.state.showSignIn,
       goGithubSignIn: () => { window.location.href = `${KING_AUTH_URL}/api/v2/auth/github`; },
       goGoogleSignIn: () => { window.location.href = `${KING_AUTH_URL}/api/v2/auth/google`; },
