@@ -587,3 +587,29 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 - **#209–#203 (×multiple) Recolor off-palette pages to Yale-blue** — Owner approves recolor of `jurisdictions.html` and any other off-palette pages. Engineering lane.
 **Note:** These approvals unblock engineering self-heal on #291, #290, #278, #309, and the recolor set. Creative/output lanes (#298, #299) proceed but require human review before publish per workboard protocol.
 **Result:** Approvals logged. Engineering items proceed; creative/output items enter review queue.
+\n\n
+## 2026-07-13 15:44 HST — Gordon integration, owner policy reset, beta completion sprint
+
+**Thread:** gordon-beta-completion  **From:** Gordon (Docker AI, via Claude/MCP)  **To:** James / king-server
+
+**POLICY (owner in-session 2026-07-13):** Creative/output lanes auto-approve. Owner sign-off only before public social media. Studios = business departments (no corporate gate). Casework = public daily (prayer for the moon). Personal case data = private. Artwork/music/films = private in production, public on release.
+
+**CHANGED:**
+- config/owner_policy.json (new) — auto_approve_creative/output=true; social_media_gate; studio=department model
+- services/v2_workboard.py — SOCIAL_MEDIA_PLATFORMS set + requires_owner_signoff() helper; corporate gate removed from comments
+- services/auth/app/auth_sprint1.py (new) — Apple, Microsoft, magic_link, passkey auth endpoints
+- gordon.html (new PRIVATE) — Gordon command page: API status, Postiz status, chat, system buttons, WP Jetpack setup links
+- go.html — goGordon added to setState() unlock list
+- gordon_setup.py (new) — one-time setup status checker
+- Projects/genai-stack/gordon_neo4j_knowledge.py — live-queried Neo4j schema
+
+**POSTIZ:** Free, necessary, already in docker-compose.postiz.yml. Start: docker compose -f docker-compose.postiz.yml up -d. One-time: open http://localhost:4008, connect Meta+LinkedIn, copy integration IDs to config/own_channels.json.
+
+**WORDPRESS/JETPACK:** Google OAuth2 + Jetpack is correct path. 0 GitHub secrets still set. Owner runs: register app at developer.wordpress.com/apps, exchange for JETPACK_TOKEN, gh secret set JETPACK_TOKEN + JETPACK_SITE_ID, dispatch wp-branch-pages-sync.yml dry_run=true.
+
+**VERIFY:** python -m compileall -q . clean. python gordon_setup.py shows correct status. No secrets committed.
+
+**NEXT:** Start Postiz + genai-stack + v2 stack on king-server. Set WP/Jetpack secrets. Run python gordon_setup.py to verify. Pull latest: git pull origin main.
+
+---
+

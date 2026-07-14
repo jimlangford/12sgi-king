@@ -224,7 +224,7 @@
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
-     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs','goGordon'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
    } else { dot.className='dot down'; st.textContent='live system offline (server/Tailscale off) — civic mirror is always on'; }
  }
  (function(){ var done=false, ctl=new AbortController();

@@ -1,0 +1,37 @@
+{
+  "_note": "Owner policy — James Langford / JRCSL / 12SGI / elementLOTUS. Recorded 2026-07-13.",
+  "_rule": "Auto-approve creative and output lane BUILD work. Owner sign-off required ONLY before posting to public-facing social media. Everything else — civic reports, casework, daily prayer content, system builds — runs freely.",
+  "_privacy": "Personal case data (owner's own private case) is exempt from public posting. All other casework publishes daily as prayer for the moon. Artwork/music/films are private while in production, public upon release.",
+  "_studios": "Studios are departments of working businesses. No corporate holds. Formal filings come later or through the system. editorial approval = owner social media sign-off only.",
+
+  "auto_approve_creative": true,
+  "auto_approve_output": true,
+
+  "social_media_gate": {
+    "enabled": true,
+    "description": "Owner must sign off before any post goes to public-facing social media (Facebook, Instagram, LinkedIn, YouTube, TikTok, X). All other content publishes freely.",
+    "platforms_requiring_owner_signoff": ["facebook", "instagram", "linkedin", "youtube", "tiktok", "x", "twitter"],
+    "platforms_auto_publish": ["king_local", "govos", "civic_daily", "prayer_feed", "site"]
+  },
+
+  "privacy_rules": {
+    "personal_case_data": "PRIVATE — owner's own case details never published",
+    "casework_general": "PUBLIC — publishes daily as prayer for the moon",
+    "civic_reports": "PUBLIC — all government transparency data is public by default",
+    "artwork_in_production": "PRIVATE — while being made",
+    "artwork_released": "PUBLIC — once complete and released",
+    "music_in_production": "PRIVATE — while being made",
+    "music_released": "PUBLIC — once complete and released",
+    "films_in_production": "PRIVATE — while in production",
+    "films_released": "PUBLIC — once complete and released"
+  },
+
+  "studio_policy": {
+    "model": "department",
+    "description": "Studios (elementLOTUS, 12 Stones, etc.) are departments of working businesses — not separate corporate entities with separate approval chains. Formal business filings happen later or through the system.",
+    "approval_required": "editorial only — owner social media sign-off",
+    "corporate_gate": false,
+    "legal_gate": false,
+    "rights_gate": false
+  }
+}
