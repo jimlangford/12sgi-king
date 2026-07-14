@@ -191,5 +191,89 @@ class TestSelfDevelopDedup(unittest.TestCase):
         self.assertEqual(len(fp), 64, "Fingerprint is a SHA-256 hex digest (64 chars)")
 
 
+class TestSelfDevelopTransitionHistory(unittest.TestCase):
+    """Transition history audit trail."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self._tmp_dir = Path(self._tmp.name)
+        self._gate_file = self._tmp_dir / "version_gate.json"
+        self._state_file = self._tmp_dir / "self_develop.json"
+        self._dispatch_file = self._tmp_dir / "dispatch.jsonl"
+
+        patch.object(sd, "GATE_FILE", self._gate_file).start()
+        patch.object(sd, "STATE_FILE", self._state_file).start()
+        patch.object(sd, "DISPATCH_LOG", self._dispatch_file).start()
+        patch.object(sd, "_HAS_WORKBOARD", False).start()
+
+    def tearDown(self):
+        patch.stopall()
+        self._tmp.cleanup()
+
+    def _run(self, gate_data: dict) -> dict:
+        self._gate_file.write_text(json.dumps(gate_data), encoding="utf-8")
+        return sd.evaluate()
+
+    def _gate_state(self) -> dict:
+        return json.loads(self._state_file.read_text())["gates"]["bill9_rollcall"]
+
+    def test_first_transition_recorded(self):
+        self._run(_make_gates("open"))
+        history = self._gate_state()["transition_history"]
+        self.assertEqual(len(history), 1)
+        t = history[0]
+        self.assertEqual(t["gate"], "bill9_rollcall")
+        self.assertEqual(t["previous"], "unknown")
+        self.assertEqual(t["current"], "open")
+        self.assertEqual(t["worker"], "self_develop")
+        self.assertIn("changed_at", t)
+        self.assertIn("fingerprint", t)
+        self.assertIn("evidence_hash", t)
+
+    def test_transition_on_gate_close(self):
+        self._run(_make_gates("open"))
+        self._run(_make_gates("closed"))
+        history = self._gate_state()["transition_history"]
+        self.assertEqual(len(history), 2)
+        self.assertEqual(history[0]["current"], "open")
+        self.assertEqual(history[1]["previous"], "open")
+        self.assertEqual(history[1]["current"], "closed")
+
+    def test_no_duplicate_transition_on_same_state(self):
+        self._run(_make_gates("open"))
+        self._run(_make_gates("open"))
+        history = self._gate_state()["transition_history"]
+        self.assertEqual(len(history), 1, "Suppressed run must not append a transition")
+
+    def test_transition_history_capped_at_limit(self):
+        limit = sd.TRANSITION_HISTORY_LIMIT
+        for i in range(limit + 5):
+            self._run(_make_gates("open", evidence={"run": i}))
+        history = self._gate_state()["transition_history"]
+        self.assertLessEqual(len(history), limit)
+
+    def test_evidence_hash_changes_with_evidence(self):
+        self._run(_make_gates("open", evidence={}))
+        self._run(_make_gates("open", evidence={"source_hash": "abc"}))
+        history = self._gate_state()["transition_history"]
+        self.assertEqual(len(history), 2)
+        self.assertNotEqual(history[0]["evidence_hash"], history[1]["evidence_hash"])
+
+    def test_transition_in_result_dict(self):
+        result = self._run(_make_gates("open"))
+        gate_result = result["gate_results"][0]
+        self.assertIn("transition", gate_result)
+        t = gate_result["transition"]
+        self.assertEqual(t["gate"], "bill9_rollcall")
+        self.assertEqual(t["worker"], "self_develop")
+
+    def test_dry_run_has_transition_but_no_state_written(self):
+        self._gate_file.write_text(json.dumps(_make_gates("open")), encoding="utf-8")
+        result = sd.evaluate(dry_run=True)
+        gate_result = result["gate_results"][0]
+        self.assertIn("transition", gate_result)
+        self.assertFalse(self._state_file.exists(), "State file must not be written on dry_run")
+
+
 if __name__ == "__main__":
     unittest.main()

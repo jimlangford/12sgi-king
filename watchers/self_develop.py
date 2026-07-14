@@ -76,6 +76,7 @@ except Exception:
 HST = timezone(timedelta(hours=-10))
 STREAK_REQUIRED = 3
 SUPPRESS_BURST_THRESHOLD = 3   # emit one notice after this many consecutive duplicate suppressions
+TRANSITION_HISTORY_LIMIT = 50  # max transition records retained per gate
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -96,12 +97,13 @@ def _save_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def _fingerprint(version: str, gate_id: str, gate_status: str, evidence: dict) -> str:
+def _fingerprint(version: str, gate_id: str, gate_status: str, evidence: dict) -> tuple[str, str]:
+    """Return (fingerprint, evidence_hash) for the given gate state."""
     evidence_hash = hashlib.sha256(
         json.dumps(evidence, sort_keys=True, ensure_ascii=False).encode()
     ).hexdigest()
     raw = f"{version}|{gate_id}|{gate_status}|{evidence_hash}"
-    return hashlib.sha256(raw.encode()).hexdigest()
+    return hashlib.sha256(raw.encode()).hexdigest(), evidence_hash
 
 
 def _emit_workboard(gate: dict, version: str) -> str | None:
@@ -196,12 +198,13 @@ def evaluate(*, dry_run: bool = False) -> dict:
         gate_id     = gate["id"]
         gate_status = gate.get("status", "open")
         evidence    = gate.get("evidence") or {}
-        fp          = _fingerprint(version, gate_id, gate_status, evidence)
+        fp, evidence_hash = _fingerprint(version, gate_id, gate_status, evidence)
 
         gstate = per_gate.setdefault(gate_id, {})
-        last_fp       = gstate.get("fingerprint")
+        last_fp        = gstate.get("fingerprint")
+        last_status    = gstate.get("status", "unknown")
         suppress_count = gstate.get("suppress_count", 0)
-        last_job_id   = gstate.get("job_id")
+        last_job_id    = gstate.get("job_id")
 
         if gate_status != "closed":
             open_gates.append(gate_id)
@@ -228,13 +231,29 @@ def evaluate(*, dry_run: bool = False) -> dict:
         else:
             # Fingerprint changed — new state transition
             job_id = None
+            transition = {
+                "gate":          gate_id,
+                "previous":      last_status,
+                "current":       gate_status,
+                "changed_at":    _now_iso(),
+                "fingerprint":   fp,
+                "evidence_hash": evidence_hash,
+                "worker":        "self_develop",
+            }
             if not dry_run:
                 job_id = _emit_workboard(gate, version)
+                history = gstate.get("transition_history", [])
+                history.append(transition)
+                # Keep only the most recent N transitions
+                if len(history) > TRANSITION_HISTORY_LIMIT:
+                    history = history[-TRANSITION_HISTORY_LIMIT:]
                 gstate.update({
-                    "fingerprint":    fp,
-                    "suppress_count": 0,
-                    "job_id":         job_id,
-                    "last_seen":      _now_iso(),
+                    "fingerprint":        fp,
+                    "status":             gate_status,
+                    "suppress_count":     0,
+                    "job_id":             job_id,
+                    "last_seen":          transition["changed_at"],
+                    "transition_history": history,
                 })
 
             result = {
@@ -243,6 +262,7 @@ def evaluate(*, dry_run: bool = False) -> dict:
                 "action":     "emitted_workboard_job" if not dry_run else "would_emit_workboard_job",
                 "job_id":     job_id or last_job_id,
                 "fingerprint": fp,
+                "transition": transition,
             }
 
             if gate_status == "closed":
