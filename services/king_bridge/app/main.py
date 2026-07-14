@@ -79,6 +79,7 @@ from services.v2_workboard import (
     workboard_hub_feed,
     selfheal_engineering_jobs,
 )
+from services.ai_autonomy import classify_task, build_autonomy_system_prompt, record_autonomous_execution
 from services.event_bus import publish_event
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -94,6 +95,8 @@ DB_PATH         = os.environ.get("KING_BRIDGE_DB", "/data/db/king_bridge.db")
 INFER_TIMEOUT   = int(os.environ.get("KING_BRIDGE_INFER_TIMEOUT", "120"))
 POLL_MAX        = int(os.environ.get("KING_BRIDGE_POLL_MAX", "10"))
 INTERNAL_TOKEN  = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
+AUTONOMY_ENABLED = os.environ.get("KING_BRIDGE_AUTONOMY_ENABLED", "true").lower() == "true"
+AUTONOMY_THRESHOLD = int(os.environ.get("KING_BRIDGE_AUTONOMY_THRESHOLD", "70"))
 
 # ── Model routing table ───────────────────────────────────────────────────────
 # Order matters: first match wins. Checks lane+action as a single string.
