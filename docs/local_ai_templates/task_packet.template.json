@@ -1,0 +1,12 @@
+{
+  "packet_id": "packet-20260714-001",
+  "goal": "Describe the exact change needed",
+  "constraints": [
+    "List hard constraints",
+    "List security/boundary constraints"
+  ],
+  "boundary_label": "PRIVATE",
+  "expected_output": "What done looks like",
+  "verification_target": "How success will be verified",
+  "lane": "engineering"
+}
