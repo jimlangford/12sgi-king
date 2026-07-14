@@ -820,3 +820,14 @@ def owner_jobs_stats():
         "stats": stats,
         "ts": _iso_now(),
     }
+
+
+# Serve static HTML pages from element_lotus_public
+from fastapi.staticfiles import StaticFiles
+
+static_dir = Path(__file__).parents[3] / "element_lotus_public"
+if static_dir.exists():
+    try:
+        app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="public")
+    except Exception:
+        pass
