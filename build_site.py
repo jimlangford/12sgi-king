@@ -1309,10 +1309,17 @@ def main():
     with _lane("element_lotus_public_shell"):
         # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
         # interactive games on static Pages while WordPress can remain the narrative/brand shell.
+        # [PRIVATE GATE] Files listed here are owner-administration surfaces that must never appear
+        # in the public GitHub Pages artifact. They are served privately via king-bridge / Tailscale.
+        _EL_PRIVATE = {
+            "owner_jobs.html",   # owner job tracking + approval UI — private king-bridge route only
+        }
         _elsrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "element_lotus_public")
         if os.path.isdir(_elsrc):
             _copied = []
             for _name in sorted(os.listdir(_elsrc)):
+                if _name in _EL_PRIVATE:
+                    continue  # [PRIVATE GATE] never publish owner-admin pages to the public site
                 _src = os.path.join(_elsrc, _name)
                 if os.path.isfile(_src):
                     shutil.copy(_src, os.path.join(SITE, _name))
