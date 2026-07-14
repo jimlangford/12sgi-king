@@ -314,6 +314,61 @@ class TestClaimClientMigration(unittest.TestCase):
         self.assertNotIn(token, payload)
         self.assertNotIn("claim-client-service-token", payload)
 
+    def test_identity_link_diagnostic_endpoint_reports_link_and_last_reason(self):
+        auth_enabled = _load_module(
+            AUTH_MAIN,
+            f"auth_diag_identity_{time.time_ns()}",
+            env_overrides={
+                "AUTH_SIGNING_SECRET": "claim-client-secret",
+                "INTERNAL_SERVICE_TOKEN": "claim-client-service-token",
+                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth_diag_identity.db"),
+                "ENTITLEMENT_DB_PATH": str(Path(self.tmp.name) / "entitlements_diag_identity.db"),
+                "AUTH_VERIFICATION_DIAGNOSTICS_ENABLED": "true",
+            },
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        client = TestClient(auth_enabled.app)
+        owner = client.post(
+            "/api/v2/auth/session",
+            json={
+                "provider": "google",
+                "subject": "google:owner-diag",
+                "email": "owner@example.com",
+                "role": "Owner",
+                "scopes": ["ops:owner"],
+            },
+        )
+        resident = client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "resident-diag", "role": "Resident", "scopes": ["tenant:read"]},
+        )
+        self.assertEqual(owner.status_code, 200)
+        self.assertEqual(resident.status_code, 200)
+        owner_token = owner.json()["access_token"]
+
+        denied = client.post(
+            "/api/v2/auth/diagnostics/identity-link",
+            json={},
+            headers={"Authorization": "Bearer " + resident.json()["access_token"]},
+        )
+        self.assertEqual(denied.status_code, 403)
+
+        allowed = client.post(
+            "/api/v2/auth/diagnostics/identity-link",
+            json={"token": owner_token},
+            headers={"Authorization": "Bearer " + owner_token, "X-Request-ID": "req-link-1"},
+        )
+        self.assertEqual(allowed.status_code, 200)
+        payload = allowed.json()
+        self.assertEqual(payload["provider"], "google")
+        self.assertTrue(str(payload["subject"]).startswith("sha256:"))
+        self.assertTrue(str(payload["email"]).startswith("sha256:"))
+        self.assertTrue(payload["has_identity_link"])
+        self.assertEqual(payload["last_entitlement_verification_reason"], "wordpress_unverified")
+        self.assertEqual(payload["request_id"], "req-link-1")
+
     def test_diagnostic_request_id_correlates_with_audit_event(self):
         auth_enabled = _load_module(
             AUTH_MAIN,

@@ -217,6 +217,35 @@ def get_identity_link(provider: str, subject: str) -> dict | None:
     return dict(row)
 
 
+def get_latest_entitlement_audit(provider: str, subject: str, email: str = "") -> dict | None:
+    subject_hash = _redact(subject)
+    email_hash = _redact(email)
+    with _db() as conn:
+        row = conn.execute(
+            """
+            SELECT ts, verified, tier, source, reason
+            FROM entitlement_audit
+            WHERE provider = ?
+              AND (
+                (? != '' AND subject_hash = ?)
+                OR (? != '' AND email_hash = ?)
+              )
+            ORDER BY id DESC
+            LIMIT 1
+            """,
+            (provider, subject_hash, subject_hash, email_hash, email_hash),
+        ).fetchone()
+    if row is None:
+        return None
+    return {
+        "ts": row["ts"],
+        "verified": bool(row["verified"]),
+        "tier": str(row["tier"] or "free"),
+        "source": str(row["source"] or ""),
+        "reason": str(row["reason"] or ""),
+    }
+
+
 def bind_identity(*, provider: str, subject: str, email: str) -> dict:
     mapping = _load_map()
     profile = _fetch_wordpress_profile(email)

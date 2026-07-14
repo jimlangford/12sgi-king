@@ -40,6 +40,7 @@ class TestV2ContractFiles(unittest.TestCase):
             '/api/v2/auth/google',
             '/api/v2/auth/google/callback',
             '/api/v2/auth/diagnostics/claims',
+            '/api/v2/auth/diagnostics/identity-link',
             '/api/v2/cases',
             '/api/v2/documents/generate',
             '/api/v2/storage/objects',

@@ -61,6 +61,18 @@ class TestEntitlementBridge(unittest.TestCase):
         self.assertEqual(second["source"], "identity_link")
         self.assertIn("capabilities", second)
 
+    def test_latest_entitlement_audit_tracks_last_reason(self):
+        self.mod.bind_identity(provider="google", subject="google:audit-subject", email="owner@example.com")
+        first = self.mod.get_latest_entitlement_audit("google", "google:audit-subject", "owner@example.com")
+        self.assertIsNotNone(first)
+        self.assertEqual(first["reason"], "wordpress_unverified")
+        self.assertFalse(first["verified"])
+
+        self.mod.resolve_identity_entitlement(provider="google", subject="google:audit-subject", email="owner@example.com")
+        second = self.mod.get_latest_entitlement_audit("google", "google:audit-subject", "owner@example.com")
+        self.assertIsNotNone(second)
+        self.assertEqual(second["reason"], "cached_link")
+
 
 if __name__ == "__main__":
     unittest.main()

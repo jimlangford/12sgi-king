@@ -141,6 +141,13 @@ class AuthClaimsDiagnosticRequest(BaseModel):
     token: str | None = None
 
 
+class AuthIdentityLinkDiagnosticRequest(BaseModel):
+    token: str | None = None
+    provider: str | None = None
+    subject: str | None = None
+    email: str | None = None
+
+
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
 
 
@@ -487,6 +494,42 @@ def _entitlement_claims_for_identity(provider: str, subject: str, email: str) ->
         }
 
 
+def _require_owner_session(authorization: str | None) -> tuple[str, dict]:
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+    owner_token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, owner_claims = _decode_and_verify_token(owner_token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    owner_session = _session_for_token(owner_token)
+    if not owner_session or (owner_session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if owner_claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    return owner_token, owner_claims
+
+
 init_db()
 
 
@@ -724,39 +767,7 @@ def diagnostic_claims(
             status_code=404,
             detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
         )
-    if not authorization or not authorization.startswith("Bearer "):
-        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
-        )
-
-    owner_token = authorization.split(" ", 1)[1].strip()
-    try:
-        _, owner_claims = _decode_and_verify_token(owner_token)
-    except HTTPException:
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
-        )
-    owner_session = _session_for_token(owner_token)
-    if not owner_session or (owner_session["role"] or "") != "Owner":
-        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
-        raise HTTPException(
-            status_code=403,
-            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
-        )
-    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
-        )
-    if owner_claims.get("role") != "Owner":
-        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
-        raise HTTPException(
-            status_code=403,
-            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
-        )
+    owner_token, _ = _require_owner_session(authorization)
 
     target_token = (payload.token or owner_token).strip()
     audit_event_id = str(uuid4())
@@ -809,6 +820,82 @@ def diagnostic_claims(
             "request_id": request_id,
             "authorization_decision": decision,
             "role": diagnostic["role"],
+        },
+    )
+    return diagnostic
+
+
+@app.post(f"{API_PREFIX}/auth/diagnostics/identity-link")
+def diagnostic_identity_link(
+    payload: AuthIdentityLinkDiagnosticRequest,
+    authorization: str | None = Header(default=None),
+    x_request_id: str | None = Header(default=None, alias="X-Request-ID"),
+):
+    if not AUTH_VERIFICATION_DIAGNOSTICS_ENABLED:
+        raise HTTPException(
+            status_code=404,
+            detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
+        )
+
+    owner_token, _ = _require_owner_session(authorization)
+    target_token = (payload.token or owner_token).strip()
+    request_id = (x_request_id or "").strip() or str(uuid4())
+    audit_event_id = str(uuid4())
+    decision = "denied"
+    target_provider = str(payload.provider or "").strip().lower()
+    target_subject = str(payload.subject or "").strip()
+    target_email = str(payload.email or "").strip().lower()
+
+    try:
+        _, jwt_claims = _decode_and_verify_token(target_token)
+        row = _session_for_token(target_token)
+        if row and int(row["expires_at"]) > int(_now_utc().timestamp()):
+            decision = "accepted"
+            target_provider = target_provider or str(row["provider"] or jwt_claims.get("provider") or "").strip().lower()
+            target_subject = target_subject or str(row["subject"] or jwt_claims.get("sub") or "").strip()
+            target_email = target_email or str(row["email"] or jwt_claims.get("email") or "").strip().lower()
+    except Exception:
+        decision = "denied"
+
+    if not target_provider:
+        target_provider = "google"
+
+    identity_link = None
+    latest_audit = None
+    if target_subject:
+        identity_link = _entitlements.get_identity_link(target_provider, target_subject)
+        latest_audit = _entitlements.get_latest_entitlement_audit(
+            target_provider,
+            target_subject,
+            target_email,
+        )
+
+    diagnostic = {
+        "provider": target_provider,
+        "subject": _redact_claim_identifier(target_subject),
+        "email": _redact_claim_identifier(target_email),
+        "has_identity_link": bool(identity_link),
+        "wordpress_user_linked": bool((identity_link or {}).get("wordpress_user_id")),
+        "woocommerce_customer_linked": bool((identity_link or {}).get("woocommerce_customer_id")),
+        "entitlement_verified": bool((latest_audit or {}).get("verified")),
+        "entitlement_tier": str((latest_audit or {}).get("tier") or (identity_link or {}).get("tier") or "free"),
+        "entitlement_source": str((latest_audit or {}).get("source") or ""),
+        "last_entitlement_verification_reason": str((latest_audit or {}).get("reason") or ""),
+        "last_entitlement_verification_at": (latest_audit or {}).get("ts"),
+        "authorization_decision": decision,
+        "audit_event_id": audit_event_id,
+        "request_id": request_id,
+    }
+    audit_auth_event(
+        "auth",
+        "diagnostic_identity_link_snapshot",
+        {
+            "audit_event_id": audit_event_id,
+            "request_id": request_id,
+            "authorization_decision": decision,
+            "provider": diagnostic["provider"],
+            "has_identity_link": diagnostic["has_identity_link"],
+            "entitlement_verified": diagnostic["entitlement_verified"],
         },
     )
     return diagnostic
