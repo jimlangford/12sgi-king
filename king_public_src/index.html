@@ -127,7 +127,7 @@
           <div style="font-size:46px; line-height:1;">🔒</div>
           <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Private surface</div>
           <h2 style="margin:0; font-size:27px; color:var(--ink,#efe9da);">{{ lockLabel }}</h2>
-          <p style="max-width:460px; margin:0; color:var(--ink-dim,#b3a98f); line-height:1.65; font-size:14px; text-wrap:pretty;">Private tab. PUBLIC: <strong style="color:var(--accent-2,#f4c95d);">🌺 govOS</strong> · <strong style="color:var(--accent-2,#f4c95d);">🏛 Council</strong> · <strong style="color:var(--accent-2,#f4c95d);">🂡 Sage</strong>.</p>
+          <p style="max-width:460px; margin:0; color:var(--ink-dim,#b3a98f); line-height:1.65; font-size:14px; text-wrap:pretty;">Private tab. PUBLIC: <strong style="color:var(--accent-2,#f4c95d);">🌺 govOS</strong> · <strong style="color:var(--accent-2,#f4c95d);">🏛 Council</strong> · <strong style="color:var(--accent-2,#f4c95d);">🎮 Sage</strong>.</p>
           <button onClick="{{ ownerToggle }}" style="margin-top:6px; padding:11px 22px; border:1px solid var(--accent,#e3ad33); border-radius:10px; background:var(--accent-dim,rgba(227,173,51,0.14)); color:var(--accent-2,#f4c95d); font:inherit; font-size:13px; cursor:pointer;" style-hover="background:var(--accent,#e3ad33); color:#1a1610;">🔒 Sign in</button>
         </div>
       </sc-if>
@@ -381,10 +381,10 @@ class Component extends DCLogic {
     // Scene Review / Motion Picture) live in the elementLOTUS Studio app (:8770) and
     // are reached via the "Studio ->" door, NOT from the civic nav. (2026-06-14)
     const ITEMS = [
-      { id:'dashboard', label:'Home',              short:'Home',    icon:'◈', modes:['public'],  core:true,  owner:false },
+      { id:'dashboard', label:'Home',              short:'Home',    icon:'🏠', modes:['public'],  core:true,  owner:false },
       { id:'mauios',    label:'govOS',             short:'govOS',   icon:'🌺', modes:['public'],  core:true,  owner:false },
       { id:'council',   label:'Council & Agendas', short:'Council', icon:'🏛', modes:['public'],  core:true,  owner:false },
-      { id:'game',      label:'Sage Game',         short:'Game',    icon:'🂡', modes:['public'],  core:true,  owner:false },
+      { id:'game',      label:'Sage Game',         short:'Game',    icon:'🎮', modes:['public'],  core:true,  owner:false },
       { id:'studio',    label:'Studio →',          short:'Studio',  icon:'🎛', modes:['public'],  core:false, owner:false, href:'go.html' },
       { id:'mooncal',   label:'Moon Calendar',     short:'Moon',    icon:'🌙', modes:['public'],  core:false, owner:false },
       { id:'watcher',   label:'Watcher',           short:'Watch',   icon:'👁', modes:['public'],  core:false, owner:false },
