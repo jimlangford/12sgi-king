@@ -1,0 +1,9 @@
+{
+  "manifest_version": "1.0.0",
+  "platform_version": "2026.07.14-phase1",
+  "control_plane_version": "v2",
+  "tenant_registry_version": "2.0.0",
+  "transition_schema_version": "2.0.0",
+  "updated_at": "2026-07-14T00:00:00Z",
+  "notes": "Canonical platform manifest for govOS v2 phased control-plane rollout."
+}

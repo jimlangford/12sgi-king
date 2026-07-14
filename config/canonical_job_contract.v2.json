@@ -1,0 +1,1377 @@
+{
+  "schema": "canonical-job-contract-v2",
+  "schema_version": "2.0.0",
+  "job_envelope_schema": "canonical-job-envelope-v2",
+  "lifecycle_authority": "domain_status_authoritative",
+  "lifecycle_authority_notes": {
+    "model": "Domain service owns legal transitions and canonical envelope mirrors normalized state in the same transaction.",
+    "mismatch_policy": "Mismatch detection must fail loudly and emit a Guardian finding.",
+    "phase": "phase-2-stabilization"
+  },
+  "transition_history": {
+    "entry_schema": {
+      "required": [
+        "from_state",
+        "to_state",
+        "ts",
+        "actor",
+        "engine",
+        "reason",
+        "evidence_hash"
+      ]
+    },
+    "max_entries": 64,
+    "ordering": "oldest-first",
+    "truncate": "drop-oldest",
+    "duplicate_policy": "suppressed_duplicate_evaluations_do_not_append"
+  },
+  "tenant_state_profiles": {
+    "civic": {
+      "example_state_path": [
+        "discovered",
+        "downloaded",
+        "parsed",
+        "validated",
+        "published"
+      ]
+    },
+    "media": {
+      "example_state_path": [
+        "planned",
+        "prompt_ready",
+        "reference_ready",
+        "queued",
+        "claimed",
+        "loading_model",
+        "rendering",
+        "rendered",
+        "qc_pending",
+        "qc_passed",
+        "approval_pending",
+        "approved",
+        "publish_ready",
+        "publishing",
+        "published"
+      ],
+      "states": [
+        "planned",
+        "script_ready",
+        "prompt_ready",
+        "reference_ready",
+        "queued",
+        "claimed",
+        "loading_model",
+        "rendering",
+        "rendered",
+        "qc_pending",
+        "qc_passed",
+        "qc_failed",
+        "approval_pending",
+        "approved",
+        "rejected",
+        "upscale_queued",
+        "upscaling",
+        "publish_ready",
+        "publishing",
+        "published",
+        "failed",
+        "timeout",
+        "cancelled"
+      ],
+      "terminal_states": [
+        "published",
+        "failed",
+        "timeout",
+        "cancelled",
+        "rejected"
+      ],
+      "capabilities": [
+        "image_generation",
+        "short_video_generation",
+        "long_video_generation",
+        "upscale",
+        "audio_generation",
+        "voice_generation",
+        "quality_check",
+        "publishing"
+      ],
+      "capability_routing": {
+        "image_generation": {
+          "preferred": "kandinsky5_local",
+          "fallback": "comfyui_generic"
+        },
+        "short_video_generation": {
+          "preferred": "ltx",
+          "fallback": "wan"
+        },
+        "long_video_generation": {
+          "preferred": "wan",
+          "fallback": "segmented_ltx"
+        },
+        "upscale": {
+          "preferred": "comfyui_upscale",
+          "fallback": "video_upscale_basic"
+        },
+        "audio_generation": {
+          "preferred": "audio_generation_local",
+          "fallback": "voice"
+        },
+        "voice_generation": {
+          "preferred": "voice_local",
+          "fallback": "audio_generation_local"
+        },
+        "quality_check": {
+          "preferred": "quality_check_local",
+          "fallback": "quality_check_manual"
+        },
+        "publishing": {
+          "preferred": "publish_pipeline_local",
+          "fallback": "publish_pipeline_manual"
+        }
+      },
+      "job_type_profiles": {
+        "storyboard_frame": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "prompt",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "image_generation",
+          "fallback_capability": "image_generation",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "character_reference": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "prompt",
+            "reference_image",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "image_generation",
+          "fallback_capability": "image_generation",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "scene_render": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "prompt",
+            "scene_id",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "short_video_generation",
+          "fallback_capability": "long_video_generation",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "shot_render": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "prompt",
+            "shot_id",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "short_video_generation",
+          "fallback_capability": "long_video_generation",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "video_upscale": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "source_artifact",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "upscale",
+          "fallback_capability": "upscale",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "audio_generation": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "prompt",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "audio_generation",
+          "fallback_capability": "audio_generation",
+          "gpu_requirement": "cpu_or_gpu",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "voiceover": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "script",
+            "voice_profile",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "voice_generation",
+          "fallback_capability": "audio_generation",
+          "gpu_requirement": "cpu_or_gpu",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "quality_check": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "source_artifact",
+            "qc_profile",
+            "capability"
+          ],
+          "completion_evidence": [
+            "qc_report_hash"
+          ],
+          "preferred_capability": "quality_check",
+          "fallback_capability": "quality_check",
+          "gpu_requirement": "none",
+          "approval_required": false,
+          "publish_eligibility": "n/a"
+        },
+        "release_package": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "approved_assets",
+            "manifest",
+            "capability"
+          ],
+          "completion_evidence": [
+            "package_hash",
+            "provenance_hash"
+          ],
+          "preferred_capability": "publishing",
+          "fallback_capability": "publishing",
+          "gpu_requirement": "none",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "publish_media": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "prompt_ready",
+            "reference_ready",
+            "queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "approval_pending",
+            "approved",
+            "rejected",
+            "upscale_queued",
+            "upscaling",
+            "publish_ready",
+            "publishing",
+            "published",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "approved_assets",
+            "publish_manifest",
+            "capability"
+          ],
+          "completion_evidence": [
+            "publication_id",
+            "output_hash",
+            "provenance_hash"
+          ],
+          "preferred_capability": "publishing",
+          "fallback_capability": "publishing",
+          "gpu_requirement": "none",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        }
+      },
+      "transitions_by_job_type": {
+        "storyboard_frame": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "prompt_ready",
+              "cancelled"
+            ],
+            "prompt_ready": [
+              "reference_ready",
+              "cancelled"
+            ],
+            "reference_ready": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed",
+              "cancelled"
+            ],
+            "loading_model": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending",
+              "failed"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed",
+              "failed"
+            ],
+            "qc_failed": [
+              "prompt_ready",
+              "queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "rejected": [
+              "prompt_ready",
+              "queued",
+              "cancelled"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "publish_ready": [
+              "publishing",
+              "cancelled"
+            ],
+            "publishing": [
+              "published",
+              "failed",
+              "timeout"
+            ],
+            "published": [],
+            "failed": [
+              "queued",
+              "cancelled"
+            ],
+            "timeout": [
+              "queued",
+              "cancelled"
+            ],
+            "cancelled": []
+          }
+        },
+        "character_reference": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "prompt_ready",
+              "cancelled"
+            ],
+            "prompt_ready": [
+              "reference_ready",
+              "cancelled"
+            ],
+            "reference_ready": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed",
+              "cancelled"
+            ],
+            "loading_model": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "prompt_ready",
+              "queued"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "rejected": [
+              "prompt_ready",
+              "queued"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "publish_ready": [
+              "published"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "scene_render": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "prompt_ready",
+              "cancelled"
+            ],
+            "prompt_ready": [
+              "reference_ready",
+              "cancelled"
+            ],
+            "reference_ready": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed",
+              "cancelled"
+            ],
+            "loading_model": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending",
+              "failed"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed",
+              "failed"
+            ],
+            "qc_failed": [
+              "prompt_ready",
+              "queued"
+            ],
+            "qc_passed": [
+              "approval_pending"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "rejected": [
+              "prompt_ready",
+              "queued"
+            ],
+            "approved": [
+              "publish_ready",
+              "upscale_queued"
+            ],
+            "upscale_queued": [
+              "upscaling",
+              "cancelled"
+            ],
+            "upscaling": [
+              "publish_ready",
+              "failed",
+              "timeout"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed",
+              "timeout"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "shot_render": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "prompt_ready",
+              "cancelled"
+            ],
+            "prompt_ready": [
+              "reference_ready",
+              "cancelled"
+            ],
+            "reference_ready": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed",
+              "cancelled"
+            ],
+            "loading_model": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending",
+              "failed"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "prompt_ready",
+              "queued"
+            ],
+            "qc_passed": [
+              "approval_pending"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "rejected": [
+              "prompt_ready",
+              "queued"
+            ],
+            "approved": [
+              "publish_ready",
+              "upscale_queued"
+            ],
+            "upscale_queued": [
+              "upscaling",
+              "cancelled"
+            ],
+            "upscaling": [
+              "publish_ready",
+              "failed",
+              "timeout"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed",
+              "timeout"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "video_upscale": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "upscale_queued",
+              "cancelled"
+            ],
+            "upscale_queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "upscaling",
+              "failed",
+              "timeout"
+            ],
+            "upscaling": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending",
+              "failed"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "upscale_queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "rejected": [
+              "upscale_queued",
+              "cancelled"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed",
+              "timeout"
+            ],
+            "published": [],
+            "failed": [
+              "upscale_queued"
+            ],
+            "timeout": [
+              "upscale_queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "audio_generation": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "rejected": [
+              "queued",
+              "cancelled"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "voiceover": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "rejected": [
+              "queued",
+              "cancelled"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "quality_check": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "qc_pending",
+              "cancelled"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed",
+              "failed"
+            ],
+            "qc_failed": [
+              "planned",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending",
+              "publish_ready"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "rejected": [
+              "planned",
+              "cancelled"
+            ],
+            "publish_ready": [
+              "published"
+            ],
+            "published": [],
+            "failed": [
+              "planned"
+            ],
+            "cancelled": []
+          }
+        },
+        "release_package": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "queued",
+              "cancelled"
+            ],
+            "queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "qc_pending"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed"
+            ],
+            "qc_failed": [
+              "queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "approval_pending"
+            ],
+            "approval_pending": [
+              "approved",
+              "rejected"
+            ],
+            "approved": [
+              "publish_ready"
+            ],
+            "rejected": [
+              "queued",
+              "cancelled"
+            ],
+            "publish_ready": [
+              "publishing"
+            ],
+            "publishing": [
+              "published",
+              "failed"
+            ],
+            "published": [],
+            "failed": [
+              "queued"
+            ],
+            "timeout": [
+              "queued"
+            ],
+            "cancelled": []
+          }
+        },
+        "publish_media": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "publish_ready",
+              "cancelled"
+            ],
+            "publish_ready": [
+              "publishing",
+              "cancelled"
+            ],
+            "publishing": [
+              "published",
+              "failed",
+              "timeout"
+            ],
+            "published": [],
+            "failed": [
+              "publish_ready"
+            ],
+            "timeout": [
+              "publish_ready"
+            ],
+            "cancelled": []
+          }
+        }
+      },
+      "recovery_paths": {
+        "loading_model_to_failed": [
+          "queued",
+          "cancelled"
+        ],
+        "rendering_to_failed": [
+          "queued",
+          "cancelled"
+        ],
+        "rendering_to_timeout": [
+          "queued",
+          "cancelled"
+        ],
+        "qc_failed": [
+          "prompt_ready",
+          "queued",
+          "cancelled"
+        ],
+        "rejected": [
+          "prompt_ready",
+          "queued",
+          "cancelled"
+        ]
+      },
+      "qc_and_approval_required_job_types": [
+        "storyboard_frame",
+        "character_reference",
+        "scene_render",
+        "shot_render",
+        "video_upscale",
+        "audio_generation",
+        "voiceover",
+        "release_package",
+        "publish_media"
+      ]
+    },
+    "gpu": {
+      "example_state_path": [
+        "queued",
+        "claimed",
+        "running",
+        "done"
+      ],
+      "terminal_states": [
+        "done",
+        "failed",
+        "timeout"
+      ]
+    }
+  },
+  "domains": {
+    "workboard": {
+      "initial_states": [
+        "queued",
+        "in-progress",
+        "pending-approval",
+        "approved",
+        "rejected",
+        "done",
+        "failed",
+        "archived"
+      ],
+      "allowed_transitions": {
+        "queued": [
+          "in-progress",
+          "pending-approval",
+          "approved",
+          "rejected",
+          "done",
+          "failed",
+          "archived"
+        ],
+        "in-progress": [
+          "queued",
+          "pending-approval",
+          "approved",
+          "rejected",
+          "done",
+          "failed",
+          "archived"
+        ],
+        "pending-approval": [
+          "in-progress",
+          "approved",
+          "rejected",
+          "archived"
+        ],
+        "approved": [
+          "approved",
+          "archived"
+        ],
+        "rejected": [
+          "rejected",
+          "archived"
+        ],
+        "done": [
+          "done",
+          "archived"
+        ],
+        "failed": [
+          "queued",
+          "in-progress",
+          "done",
+          "archived"
+        ],
+        "archived": []
+      }
+    },
+    "studio-assets": {
+      "initial_states": [
+        "queued",
+        "done"
+      ],
+      "allowed_transitions": {
+        "queued": [
+          "in-progress",
+          "done",
+          "failed"
+        ],
+        "in-progress": [
+          "done",
+          "failed"
+        ],
+        "done": [
+          "done"
+        ],
+        "failed": [
+          "queued",
+          "in-progress",
+          "done"
+        ]
+      }
+    },
+    "gpu-router": {
+      "initial_states": [
+        "pending"
+      ],
+      "allowed_transitions": {
+        "pending": [
+          "running",
+          "error",
+          "timeout"
+        ],
+        "running": [
+          "pending",
+          "done",
+          "error",
+          "timeout"
+        ],
+        "done": [
+          "done"
+        ],
+        "error": [
+          "error"
+        ],
+        "timeout": [
+          "timeout"
+        ]
+      }
+    }
+  }
+}

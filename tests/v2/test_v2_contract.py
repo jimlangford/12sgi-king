@@ -140,6 +140,20 @@ class TestWorkboardResolve(unittest.TestCase):
         written_ids = {e['job']['id'] for e in entries}
         self.assertIn(result['job']['id'], written_ids)
 
+    def test_resolve_is_idempotent(self):
+        job = emit_workboard_job(
+            source='test-src',
+            action='case.created',
+            event='CASE CREATED',
+            log_path=self.log_path,
+        )
+        first = resolve_workboard_job(job['job']['id'], 'done', log_path=self.log_path)
+        second = resolve_workboard_job(job['job']['id'], 'done', log_path=self.log_path)
+        entries = read_workboard_log(self.log_path)
+        tombstones = [e for e in entries if e.get('kind') == 'tombstone' and e.get('status') == 'done']
+        self.assertEqual(first['job']['id'], second['job']['id'])
+        self.assertEqual(len(tombstones), 1)
+
     # --- _batch_resolve_log ---
 
     def test_batch_resolve_closes_open_jobs(self):
@@ -340,6 +354,19 @@ class TestWorkboardLanes(unittest.TestCase):
         approve_workboard_job(job_id, 'owner', log_path=self.log_path)
         self.assertEqual(len(pending_approvals(log_path=self.log_path)), 0)
 
+    def test_approve_is_idempotent_for_same_gate(self):
+        job = emit_workboard_job(
+            source='svc', action='document.generated', event='DOC',
+            lane='creative', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+        first = approve_workboard_job(job_id, 'owner', approval_type='editorial', log_path=self.log_path)
+        second = approve_workboard_job(job_id, 'owner', approval_type='editorial', log_path=self.log_path)
+        entries = read_workboard_log(self.log_path)
+        approved = [e for e in entries if e.get('kind') == 'tombstone' and e.get('status') == 'approved']
+        self.assertEqual(first['job']['id'], second['job']['id'])
+        self.assertEqual(len(approved), 1)
+
     def test_reject_creative_job(self):
         job = emit_workboard_job(
             source='svc', action='document.generated', event='DOC',
@@ -364,6 +391,19 @@ class TestWorkboardLanes(unittest.TestCase):
 
         reject_workboard_job(job_id, 'Not ready', log_path=self.log_path)
         self.assertEqual(len(pending_approvals(log_path=self.log_path)), 0)
+
+    def test_reject_is_idempotent(self):
+        job = emit_workboard_job(
+            source='svc', action='publish.staged', event='PUBLISH',
+            lane='output', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+        first = reject_workboard_job(job_id, 'Not ready', log_path=self.log_path)
+        second = reject_workboard_job(job_id, 'Not ready', log_path=self.log_path)
+        entries = read_workboard_log(self.log_path)
+        rejected = [e for e in entries if e.get('kind') == 'tombstone' and e.get('status') == 'rejected']
+        self.assertEqual(first['job']['id'], second['job']['id'])
+        self.assertEqual(len(rejected), 1)
 
     # --- archive (soft-delete, any lane) ---
 
@@ -397,6 +437,18 @@ class TestWorkboardLanes(unittest.TestCase):
         self.assertEqual(original['kind'], 'job')
         # archiving appended a second entry; it never rewrote the first
         self.assertEqual(len(entries), 2)
+
+    def test_archive_is_idempotent(self):
+        job = emit_workboard_job(
+            source='svc', action='case.created', event='CASE',
+            lane='engineering', log_path=self.log_path,
+        )
+        first = archive_workboard_job(job['job']['id'], 'owner', log_path=self.log_path)
+        second = archive_workboard_job(job['job']['id'], 'owner', log_path=self.log_path)
+        entries = read_workboard_log(self.log_path)
+        archived = [e for e in entries if e.get('status') == 'archived' and e.get('kind') == 'tombstone']
+        self.assertEqual(first['job']['id'], second['job']['id'])
+        self.assertEqual(len(archived), 1)
 
     def test_archive_removes_creative_job_from_pending(self):
         job = emit_workboard_job(

@@ -24,6 +24,17 @@
     </div>
     <h1 style="margin:0; font-size:clamp(20px,3.2vw,28px); font-weight:700; letter-spacing:-0.4px;">Owner Home</h1>
     <p style="margin:5px 0 0; color:var(--ink-dim,#b3a98f); line-height:1.6;">Task-first private control plane with ranked actions and clear next moves.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">
+        platform {{ platformVersion }}
+      </span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">
+        manifest {{ manifestVersion }}
+      </span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:{{ mismatchColor }};">
+        {{ mismatchLabel }}
+      </span>
+    </div>
   </div>
 
   <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Top 5 private tasks</div>
@@ -62,16 +73,37 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { liveStatus: 'connecting' };
+  state = {
+    liveStatus: 'connecting',
+    platformVersion: 'unknown',
+    manifestVersion: 'unknown',
+    mismatch: false,
+  };
 
   componentDidMount() {
     if (window.KingLive) {
       this._unLive = window.KingLive.subscribe(s => this.setState({ liveStatus: s.status || 'connecting' }));
     }
+    this._loadPlatformInfo();
   }
 
   componentWillUnmount() {
     if (this._unLive) this._unLive();
+  }
+
+  _loadPlatformInfo() {
+    const base = window.KING_HEALTH_URL || '';
+    const target = (base ? base.replace(/\/$/, '') : '') + '/api/v2/health';
+    fetch(target)
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => {
+        this.setState({
+          platformVersion: data.platform_version || data.platform?.platform_version || 'unknown',
+          manifestVersion: data.platform_manifest_version || data.platform?.manifest_version || 'unknown',
+          mismatch: !!data.platform_version_mismatch || !!data.platform?.version_disagreement,
+        });
+      })
+      .catch(() => {});
   }
 
   renderVals() {
@@ -81,6 +113,10 @@ class Component extends DCLogic {
     return {
       serverChip,
       nextActionTag,
+      platformVersion: this.state.platformVersion || 'unknown',
+      manifestVersion: this.state.manifestVersion || 'unknown',
+      mismatchLabel: this.state.mismatch ? 'version disagreement' : 'version aligned',
+      mismatchColor: this.state.mismatch ? 'var(--warn,#d8904c)' : 'var(--ok,#6abf86)',
       tasks: [
         { rank: 1, title: 'Review pending approvals', desc: 'Check creative/output queue and clear owner decisions.' },
         { rank: 2, title: 'Stabilize Ops Board', desc: 'Confirm workboard, builds, and tests are green before publish.' },

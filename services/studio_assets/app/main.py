@@ -43,6 +43,7 @@ from contextlib import asynccontextmanager, contextmanager
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, JSONResponse
+from services.job_envelope import build_job_envelope
 
 # ── Config (all overridable via env; defaults match the compose stanza) ──────────────────────
 VERSION = os.environ.get("VERSION", "1.0.0")
@@ -335,17 +336,29 @@ def scan_supplemental() -> int:
     return added
 
 
-def _emit(action: str, event: str, payload: dict) -> None:
+def _emit(action: str, event: str, payload: dict, *, status: str = "queued") -> None:
     """Report to the board like a lane (best-effort; a bus hiccup never breaks the service)."""
     try:
         from services.v2_workboard import emit_workboard_job
 
+        envelope = build_job_envelope(
+            domain="studio-assets",
+            service="studio-assets",
+            action=action,
+            state=status,
+            payload=payload or {},
+            lane="engineering",
+            metadata={"emitter": WORKBOARD_SOURCE},
+        )
+        next_payload = dict(payload or {})
+        next_payload["job_envelope"] = envelope
         emit_workboard_job(
             source=WORKBOARD_SOURCE,
             action=action,
             event=event,
             lane="engineering",  # IO-only asset indexing self-heals; no human gate
-            payload=payload,
+            status=status,
+            payload=next_payload,
         )
     except Exception:
         pass
@@ -360,6 +373,7 @@ def reindex() -> dict:
         "studio.index.rescanned",
         f"STUDIO ASSET INDEX: {total} assets ({n_index} indexed + {n_scan} scanned)",
         {"total": total, "from_index": n_index, "from_scan": n_scan},
+        status="done",
     )
     return {"total": total, "from_index": n_index, "from_scan": n_scan}
 
@@ -370,7 +384,7 @@ async def lifespan(_app: FastAPI):
     _init_db()
     try:
         stats = reindex()
-        _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats)
+        _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats, status="done")
     except Exception as exc:  # never let a bad ingest stop the read API from serving
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
     yield

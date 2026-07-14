@@ -1,0 +1,8 @@
+{
+  "schema": "gpu-profile-v1",
+  "profile_id": "rtx4070_8gb",
+  "vram_total_mb": 8192,
+  "vram_safe_limit_mb": 7600,
+  "max_concurrent_large_models": 1,
+  "model_residency_preferred": true
+}
