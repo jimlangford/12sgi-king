@@ -831,3 +831,21 @@ if static_dir.exists():
         app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="public")
     except Exception:
         pass
+
+# Serve owner_jobs.html from element_lotus_public
+@app.get("/owner_jobs.html")
+async def serve_owner_jobs():
+    from fastapi.responses import FileResponse
+    html_path = Path("/repo/element_lotus_public/owner_jobs.html")
+    if html_path.exists():
+        return FileResponse(html_path, media_type="text/html")
+    raise HTTPException(status_code=404, detail="owner_jobs.html not found")
+
+# Serve owner_jobs.html from element_lotus_public
+@app.get("/owner_jobs.html")
+async def serve_owner_jobs():
+    from fastapi.responses import FileResponse
+    html_path = Path(__file__).parents[3] / "element_lotus_public" / "owner_jobs.html"
+    if html_path.exists():
+        return FileResponse(html_path, media_type="text/html")
+    raise HTTPException(status_code=404, detail="owner_jobs.html not found")

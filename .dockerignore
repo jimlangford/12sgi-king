@@ -17,3 +17,4 @@ services/**/__pycache__/
 services/**/*.pyc
 services/**/*.db
 services/**/.env*
+!element_lotus_public/
