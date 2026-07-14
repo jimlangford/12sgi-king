@@ -1537,6 +1537,13 @@ Sources are linked on every page.</div>
                 # SINGLE SOURCE: local root == public root (the civic landing front door).
                 # The King System app lives at /king/ on BOTH (one tap from the landing).
                 shutil.copy(h, os.path.join(KLOCAL, b))
+            # PRIVATE root default: on Tailscale, land on the consolidated launcher dashboard.
+            # PUBLIC root remains untouched (education front door) because this override is
+            # applied only inside king-local mirror output.
+            _k_go = os.path.join(KLOCAL, "go.html")
+            if os.path.exists(_k_go):
+                shutil.copy(_k_go, os.path.join(KLOCAL, "index.html"))
+                print("  + king-local PRIVATE root: index.html -> go.html (consolidated dashboard default)")
             # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
             # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
             # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no
