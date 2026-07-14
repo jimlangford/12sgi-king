@@ -38,6 +38,33 @@ def mauios_src(rel):
     seed = os.path.join(SEED_MAUIOS, rel)
     return seed if os.path.exists(seed) else src
 
+
+def _write_go_extensionless_wrappers(base_dir, routes, asset_prefix):
+    """Generate /<base>/<route>/index.html wrappers that redirect to /go/<route>.html."""
+    for route in routes:
+        route = (route or "").strip().strip("/")
+        if not route or route == "index":
+            continue
+        out_dir = os.path.join(base_dir, route)
+        os.makedirs(out_dir, exist_ok=True)
+        with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write("""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/go/%(route)s.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting…</title>
+<script>location.replace('/go/%(route)s.html');</script>
+<link rel="stylesheet" href="%(asset_prefix)sgovos.css">
+</head>
+<body>
+  <p>Redirecting to <a href="/go/%(route)s.html">/go/%(route)s.html</a>…</p>
+<script src="%(asset_prefix)sgovos-shell.js" defer></script>
+</body>
+</html>
+""" % {"route": route, "asset_prefix": asset_prefix})
+
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
     ("aloha_aina.html",                  "Aloha ʻĀina",                  "The land is chief. How the open record becomes the land's legal shield - food security as land vitality, sourced from 57 certified operations across six islands, widened back into the living ecosystem. He aliʻi ka ʻāina, he kauā ke kanaka."),
@@ -1266,6 +1293,19 @@ def main():
         if os.path.isdir(_go_dir):
             shutil.copytree(_go_dir, os.path.join(SITE, "go"), dirs_exist_ok=True)
             print("  + go/: owner-console route pages (/go/*)")
+            _go_routes = sorted(
+                os.path.splitext(_name)[0]
+                for _name in os.listdir(_go_dir)
+                if _name.endswith(".html") and os.path.splitext(_name)[0] != "index"
+            )
+            if _go_routes:
+                _site_go = os.path.join(SITE, "go")
+                _write_go_extensionless_wrappers(_site_go, _go_routes, "../../")
+                if os.path.isdir(os.path.join(SITE, "king")):
+                    _site_king_go = os.path.join(SITE, "king", "go")
+                    os.makedirs(_site_king_go, exist_ok=True)
+                    _write_go_extensionless_wrappers(_site_king_go, _go_routes, "../../../")
+                print("  + go route wrappers: auto-generated %d extensionless index route(s) for go/ and king/go/" % len(_go_routes))
     with _lane("element_lotus_public_shell"):
         # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
         # interactive games on static Pages while WordPress can remain the narrative/brand shell.
@@ -1537,6 +1577,13 @@ Sources are linked on every page.</div>
                 # SINGLE SOURCE: local root == public root (the civic landing front door).
                 # The King System app lives at /king/ on BOTH (one tap from the landing).
                 shutil.copy(h, os.path.join(KLOCAL, b))
+            # PRIVATE root default: on Tailscale, land on the consolidated launcher dashboard.
+            # PUBLIC root remains untouched (education front door) because this override is
+            # applied only inside king-local mirror output.
+            _k_go = os.path.join(KLOCAL, "go.html")
+            if os.path.exists(_k_go):
+                shutil.copy(_k_go, os.path.join(KLOCAL, "index.html"))
+                print("  + king-local PRIVATE root: index.html -> go.html (consolidated dashboard default)")
             # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
             # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
             # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no

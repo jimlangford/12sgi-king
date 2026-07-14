@@ -150,6 +150,16 @@ JETPACK_SITE_ID=
 WP_DEFAULT_STATUS=draft
 ```
 
+Entitlement bridge config (source-controlled, no secrets):
+
+- Canonical tier map: `/home/runner/work/12sgi-king/12sgi-king/config/entitlement_map.json`
+- Bridge implementation: `/home/runner/work/12sgi-king/12sgi-king/services/entitlements.py`
+
+This keeps authority split explicit:
+- PUBLIC authority: WordPress/Jetpack/WooCommerce access state
+- PRIVATE authority: QUAD OS workflow + internal surfaces
+- BRIDGE payload: identity + entitlement assertions only
+
 **Never commit secrets.** Store actual values in GitHub repository secrets.
 
 ## Element Lotus Rebuild Source Bundle

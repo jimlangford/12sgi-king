@@ -213,6 +213,7 @@ def assist(payload: AiAssistRequest, authorization: str | None = Header(default=
         internal_service_token=INTERNAL_SERVICE_TOKEN,
         request_timeout=REQUEST_TIMEOUT,
         required_scopes={"ai:assist"},
+        required_capabilities={"ai_advice"},
     )
     case = _ensure_case_exists(payload.case_id, authorization or "")
     case_tenant_id = case.get("tenant_id", "")

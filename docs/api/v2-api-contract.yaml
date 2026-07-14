@@ -74,6 +74,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/diagnostics/identity-link:
+    post:
+      summary: Owner-only Google↔WordPress identity-link diagnostics
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthIdentityLinkDiagnosticRequest'
+      responses:
+        '200':
+          description: Identity-link diagnostic snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthIdentityLinkDiagnosticResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Diagnostics disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/auth/introspect:
     post:
       summary: Verify a bearer token for internal services
@@ -423,6 +457,21 @@ components:
         token:
           type: string
           description: Optional target bearer token to inspect when owner-authenticated.
+    AuthIdentityLinkDiagnosticRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Optional target bearer token to inspect when owner-authenticated.
+        provider:
+          type: string
+          description: Optional provider override (defaults to token provider or google).
+        subject:
+          type: string
+          description: Optional provider subject override for direct identity-link inspection.
+        email:
+          type: string
+          description: Optional e-mail override used for latest entitlement audit lookup.
     AuthIntrospectionRequest:
       type: object
       required: [token]
@@ -473,6 +522,54 @@ components:
           type: string
         expires_at:
           type: integer
+          nullable: true
+        authorization_decision:
+          type: string
+          enum: [accepted, denied]
+        audit_event_id:
+          type: string
+        request_id:
+          type: string
+    AuthIdentityLinkDiagnosticResponse:
+      type: object
+      required:
+        - provider
+        - subject
+        - email
+        - has_identity_link
+        - wordpress_user_linked
+        - woocommerce_customer_linked
+        - entitlement_verified
+        - entitlement_tier
+        - entitlement_source
+        - last_entitlement_verification_reason
+        - last_entitlement_verification_at
+        - authorization_decision
+        - audit_event_id
+        - request_id
+      properties:
+        provider:
+          type: string
+        subject:
+          type: string
+        email:
+          type: string
+        has_identity_link:
+          type: boolean
+        wordpress_user_linked:
+          type: boolean
+        woocommerce_customer_linked:
+          type: boolean
+        entitlement_verified:
+          type: boolean
+        entitlement_tier:
+          type: string
+        entitlement_source:
+          type: string
+        last_entitlement_verification_reason:
+          type: string
+        last_entitlement_verification_at:
+          type: string
           nullable: true
         authorization_decision:
           type: string

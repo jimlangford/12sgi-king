@@ -1,0 +1,18 @@
+{
+  "ts": "2026-07-14T00:00:00+00:00",
+  "packet_id": "packet-20260714-001",
+  "friction": [
+    "What caused delay or rework"
+  ],
+  "missing_context": [
+    "What context should be included next time"
+  ],
+  "promote_to_memory": [
+    "Durable convention to store in memory"
+  ],
+  "tuning_actions": [
+    "Prompt adjustment",
+    "Routing adjustment",
+    "Lane default adjustment"
+  ]
+}

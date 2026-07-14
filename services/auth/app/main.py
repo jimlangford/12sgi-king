@@ -21,6 +21,7 @@ from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 from services.event_bus import publish_event as _publish_event
+from services import entitlements as _entitlements
 
 _log = logging.getLogger(__name__)
 
@@ -140,6 +141,13 @@ class AuthClaimsDiagnosticRequest(BaseModel):
     token: str | None = None
 
 
+class AuthIdentityLinkDiagnosticRequest(BaseModel):
+    token: str | None = None
+    provider: str | None = None
+    subject: str | None = None
+    email: str | None = None
+
+
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
 
 
@@ -200,6 +208,7 @@ def _issue_and_store_session(
     scopes: list[str],
     audience: str = AUTH_AUDIENCE,
     ttl_seconds: int = AUTH_TOKEN_TTL_SECONDS,
+    entitlement_claims: dict | None = None,
 ) -> tuple[str, int]:
     """Issue a JWT and persist the session row, returning the raw token."""
     issued_at = _now_utc()
@@ -213,6 +222,7 @@ def _issue_and_store_session(
         scopes=scopes,
         audience=audience,
         expires_at=expires_at_ts,
+        entitlement_claims=entitlement_claims,
     )
     with _db() as conn:
         conn.execute(
@@ -406,6 +416,7 @@ def _issue_token(
     scopes: list[str],
     audience: str,
     expires_at: int,
+    entitlement_claims: dict | None = None,
 ) -> str:
     header = {"alg": "HS256", "typ": "JWT"}
     payload = {
@@ -419,6 +430,13 @@ def _issue_token(
         "exp": expires_at,
         "jti": secrets.token_urlsafe(16),
     }
+    if entitlement_claims:
+        payload["entitlement"] = {
+            "tier": str(entitlement_claims.get("tier") or "free"),
+            "verified": bool(entitlement_claims.get("verified")),
+            "capabilities": [str(cap) for cap in (entitlement_claims.get("capabilities") or []) if str(cap).strip()],
+            "source": str(entitlement_claims.get("source") or ""),
+        }
     header_part = _b64url(json.dumps(header, separators=(",", ":")).encode())
     payload_part = _b64url(json.dumps(payload, separators=(",", ":")).encode())
     unsigned = f"{header_part}.{payload_part}".encode()
@@ -443,6 +461,73 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
             """,
             (token,),
         ).fetchone()
+
+
+def _entitlement_claims_for_identity(provider: str, subject: str, email: str) -> dict:
+    try:
+        resolved = _entitlements.resolve_identity_entitlement(
+            provider=provider,
+            subject=subject,
+            email=email or "",
+        )
+        return {
+            "tier": str(resolved.get("tier") or "free"),
+            "verified": bool(resolved.get("verified")),
+            "capabilities": [str(cap) for cap in (resolved.get("capabilities") or []) if str(cap).strip()],
+            "source": str(resolved.get("source") or ""),
+            "wordpress_user_id": str(resolved.get("wordpress_user_id") or ""),
+            "woocommerce_customer_id": str(resolved.get("woocommerce_customer_id") or ""),
+        }
+    except Exception as exc:
+        audit_auth_event(
+            "auth",
+            "entitlement_bridge_unavailable",
+            {"provider": provider, "subject": _redact_claim_identifier(subject), "reason": str(exc)},
+        )
+        return {
+            "tier": "free",
+            "verified": False,
+            "capabilities": [],
+            "source": "unavailable",
+            "wordpress_user_id": "",
+            "woocommerce_customer_id": "",
+        }
+
+
+def _require_owner_session(authorization: str | None) -> tuple[str, dict]:
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+    owner_token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, owner_claims = _decode_and_verify_token(owner_token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    owner_session = _session_for_token(owner_token)
+    if not owner_session or (owner_session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if owner_claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    return owner_token, owner_claims
 
 
 init_db()
@@ -535,6 +620,7 @@ def create_session(payload: AuthSessionRequest):
     ttl = payload.expires_in if payload.expires_in is not None else AUTH_TOKEN_TTL_SECONDS
     ttl = max(300, min(int(ttl), 8 * 3600))
     audience = (payload.audience or AUTH_AUDIENCE).strip() or AUTH_AUDIENCE
+    entitlement_claims = _entitlement_claims_for_identity(payload.provider, payload.subject, payload.email or "")
     token, exp = _issue_and_store_session(
         subject=payload.subject,
         provider=payload.provider,
@@ -544,6 +630,7 @@ def create_session(payload: AuthSessionRequest):
         scopes=scopes,
         audience=audience,
         ttl_seconds=ttl,
+        entitlement_claims=entitlement_claims,
     )
 
     return {
@@ -558,6 +645,10 @@ def create_session(payload: AuthSessionRequest):
             "exp": exp,
             "iss": AUTH_ISSUER,
             "aud": audience,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
+            "entitlement_capabilities": entitlement_claims["capabilities"],
+            "entitlement_source": entitlement_claims["source"],
         },
         "user": {
             "id": payload.subject,
@@ -566,6 +657,8 @@ def create_session(payload: AuthSessionRequest):
             "tenant_id": tenant_id,
             "role": role,
             "scopes": scopes,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
         },
     }
 
@@ -622,6 +715,11 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
         return {"active": False}
     role = row["role"] or "Resident"
     tenant_id = (row["tenant_id"] or "").strip()
+    entitlement_claims = _entitlement_claims_for_identity(
+        provider=row["provider"] or "",
+        subject=row["subject"] or "",
+        email=row["email"] or "",
+    )
     if role == "Resident":
         disallowed = {"tenant:write", "documents:write", "storage:write", "gpu:read", "ops:owner"}
         if disallowed.intersection(set(stored_scopes)):
@@ -639,6 +737,10 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "iss": row["issuer"] or AUTH_ISSUER,
             "aud": row["audience"] or AUTH_AUDIENCE,
             "provider": row["provider"],
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
+            "entitlement_capabilities": entitlement_claims["capabilities"],
+            "entitlement_source": entitlement_claims["source"],
         },
         "user": {
             "id": row["subject"],
@@ -647,6 +749,8 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "tenant_id": tenant_id,
             "role": role,
             "scopes": stored_scopes,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
         },
         "exp": row["expires_at"],
     }
@@ -663,39 +767,7 @@ def diagnostic_claims(
             status_code=404,
             detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
         )
-    if not authorization or not authorization.startswith("Bearer "):
-        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
-        )
-
-    owner_token = authorization.split(" ", 1)[1].strip()
-    try:
-        _, owner_claims = _decode_and_verify_token(owner_token)
-    except HTTPException:
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
-        )
-    owner_session = _session_for_token(owner_token)
-    if not owner_session or (owner_session["role"] or "") != "Owner":
-        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
-        raise HTTPException(
-            status_code=403,
-            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
-        )
-    if int(owner_session["expires_at"]) <= int(_now_utc().timestamp()):
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
-        )
-    if owner_claims.get("role") != "Owner":
-        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
-        raise HTTPException(
-            status_code=403,
-            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
-        )
+    owner_token, _ = _require_owner_session(authorization)
 
     target_token = (payload.token or owner_token).strip()
     audit_event_id = str(uuid4())
@@ -748,6 +820,82 @@ def diagnostic_claims(
             "request_id": request_id,
             "authorization_decision": decision,
             "role": diagnostic["role"],
+        },
+    )
+    return diagnostic
+
+
+@app.post(f"{API_PREFIX}/auth/diagnostics/identity-link")
+def diagnostic_identity_link(
+    payload: AuthIdentityLinkDiagnosticRequest,
+    authorization: str | None = Header(default=None),
+    x_request_id: str | None = Header(default=None, alias="X-Request-ID"),
+):
+    if not AUTH_VERIFICATION_DIAGNOSTICS_ENABLED:
+        raise HTTPException(
+            status_code=404,
+            detail={"error": {"code": "not_found", "message": "Endpoint not found", "details": {}}},
+        )
+
+    owner_token, _ = _require_owner_session(authorization)
+    target_token = (payload.token or owner_token).strip()
+    request_id = (x_request_id or "").strip() or str(uuid4())
+    audit_event_id = str(uuid4())
+    decision = "denied"
+    target_provider = str(payload.provider or "").strip().lower()
+    target_subject = str(payload.subject or "").strip()
+    target_email = str(payload.email or "").strip().lower()
+
+    try:
+        _, jwt_claims = _decode_and_verify_token(target_token)
+        row = _session_for_token(target_token)
+        if row and int(row["expires_at"]) > int(_now_utc().timestamp()):
+            decision = "accepted"
+            target_provider = target_provider or str(row["provider"] or jwt_claims.get("provider") or "").strip().lower()
+            target_subject = target_subject or str(row["subject"] or jwt_claims.get("sub") or "").strip()
+            target_email = target_email or str(row["email"] or jwt_claims.get("email") or "").strip().lower()
+    except Exception:
+        decision = "denied"
+
+    if not target_provider:
+        target_provider = "google"
+
+    identity_link = None
+    latest_audit = None
+    if target_subject:
+        identity_link = _entitlements.get_identity_link(target_provider, target_subject)
+        latest_audit = _entitlements.get_latest_entitlement_audit(
+            target_provider,
+            target_subject,
+            target_email,
+        )
+
+    diagnostic = {
+        "provider": target_provider,
+        "subject": _redact_claim_identifier(target_subject),
+        "email": _redact_claim_identifier(target_email),
+        "has_identity_link": bool(identity_link),
+        "wordpress_user_linked": bool((identity_link or {}).get("wordpress_user_id")),
+        "woocommerce_customer_linked": bool((identity_link or {}).get("woocommerce_customer_id")),
+        "entitlement_verified": bool((latest_audit or {}).get("verified")),
+        "entitlement_tier": str((latest_audit or {}).get("tier") or (identity_link or {}).get("tier") or "free"),
+        "entitlement_source": str((latest_audit or {}).get("source") or ""),
+        "last_entitlement_verification_reason": str((latest_audit or {}).get("reason") or ""),
+        "last_entitlement_verification_at": (latest_audit or {}).get("ts"),
+        "authorization_decision": decision,
+        "audit_event_id": audit_event_id,
+        "request_id": request_id,
+    }
+    audit_auth_event(
+        "auth",
+        "diagnostic_identity_link_snapshot",
+        {
+            "audit_event_id": audit_event_id,
+            "request_id": request_id,
+            "authorization_decision": decision,
+            "provider": diagnostic["provider"],
+            "has_identity_link": diagnostic["has_identity_link"],
+            "entitlement_verified": diagnostic["entitlement_verified"],
         },
     )
     return diagnostic
@@ -811,6 +959,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if not login or login.casefold() not in OWNER_GITHUB_LOGINS:
         return _error_page("This GitHub account is not authorised for owner access.", provider="github")
 
+    entitlement_claims = _entitlement_claims_for_identity("github", f"github:{login}", email)
     token, _ = _issue_and_store_session(
         subject=f"github:{login}",
         provider="github",
@@ -819,6 +968,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+        entitlement_claims=entitlement_claims,
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
@@ -896,6 +1046,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if not OWNER_GOOGLE_EMAILS or email.casefold() not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.", provider="google")
 
+    entitlement_claims = _entitlement_claims_for_identity("google", f"google:{sub}", email)
     token, _ = _issue_and_store_session(
         subject=f"google:{sub}",
         provider="google",
@@ -904,6 +1055,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+        entitlement_claims=entitlement_claims,
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
