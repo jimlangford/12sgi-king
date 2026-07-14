@@ -22,6 +22,7 @@ from typing import Optional
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from services.job_envelope import build_job_envelope
 
 # ── Repo imports ──────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve()
@@ -105,9 +106,20 @@ def _save_registry(reg: dict) -> None:
 def _emit(source: str, action: str, event: str, lane: str, status: str, payload: dict) -> str:
     if not _WB_AVAILABLE:
         return ""
+    envelope = build_job_envelope(
+        domain="studio-assets",
+        service="studio-assets",
+        action=action,
+        state=status,
+        payload=payload or {},
+        lane=lane,
+        metadata={"emitter": source},
+    )
+    next_payload = dict(payload or {})
+    next_payload["job_envelope"] = envelope
     entry = emit_workboard_job(
         source=source, action=action, event=event,
-        lane=lane, status=status, payload=payload,
+        lane=lane, status=status, payload=next_payload,
     )
     return (entry.get("job") or {}).get("id", "")
 

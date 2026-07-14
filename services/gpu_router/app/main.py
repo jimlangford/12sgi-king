@@ -48,6 +48,7 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 from services.authz import audit_auth_event, enforce_tenant_scope, require_claims
+from services.job_envelope import build_job_envelope, transition_job_envelope
 from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
@@ -163,7 +164,8 @@ def init_db() -> None:
                 max_attempts INTEGER NOT NULL DEFAULT 3,
                 worker_name TEXT,
                 claim_token TEXT,
-                created_by  TEXT NOT NULL
+                created_by  TEXT NOT NULL,
+                job_envelope_json TEXT
             )
             """
         )
@@ -181,6 +183,7 @@ def init_db() -> None:
             f"ALTER TABLE gpu_jobs ADD COLUMN max_attempts INTEGER NOT NULL DEFAULT {DEFAULT_MAX_ATTEMPTS}",
             "ALTER TABLE gpu_jobs ADD COLUMN worker_name TEXT",
             "ALTER TABLE gpu_jobs ADD COLUMN claim_token TEXT",
+            "ALTER TABLE gpu_jobs ADD COLUMN job_envelope_json TEXT",
         ):
             try:
                 conn.execute(ddl)
@@ -196,6 +199,30 @@ def init_db() -> None:
             "UPDATE gpu_jobs SET max_attempts = ? WHERE max_attempts IS NULL OR max_attempts < 1",
             (DEFAULT_MAX_ATTEMPTS,),
         )
+        rows = conn.execute(
+            "SELECT id, tenant_id, client_id, job_type, status FROM gpu_jobs WHERE job_envelope_json IS NULL OR job_envelope_json = ''"
+        ).fetchall()
+        for row in rows:
+            try:
+                envelope = build_job_envelope(
+                    domain="gpu-router",
+                    service=SERVICE_NAME,
+                    action="gpu.infer",
+                    state="pending",
+                    payload={"tenant_id": row["tenant_id"], "client_id": row["client_id"], "job_type": row["job_type"]},
+                    lane=row["job_type"] or "ollama",
+                    entity_id=row["id"],
+                    correlation_id=row["id"],
+                )
+                status = (row["status"] or "pending").strip().lower()
+                if status != "pending":
+                    envelope = transition_job_envelope(envelope, status)
+                conn.execute(
+                    "UPDATE gpu_jobs SET job_envelope_json=? WHERE id=?",
+                    (json.dumps(envelope, separators=(",", ":")), row["id"]),
+                )
+            except Exception:
+                continue
         conn.execute(
             """
             CREATE UNIQUE INDEX IF NOT EXISTS gpu_jobs_tenant_idempotency_idx
@@ -251,11 +278,45 @@ def _options_json(options: dict | None) -> str | None:
     return json.dumps(options, sort_keys=True, separators=(",", ":"))
 
 
+def _decode_envelope(blob: str | None) -> dict | None:
+    if not blob:
+        return None
+    try:
+        value = json.loads(blob)
+        return value if isinstance(value, dict) else None
+    except Exception:
+        return None
+
+
+def _envelope_for_row(job: sqlite3.Row, *, fallback_state: str = "pending") -> dict:
+    existing = _decode_envelope(job["job_envelope_json"])
+    if existing:
+        return existing
+    envelope = build_job_envelope(
+        domain="gpu-router",
+        service=SERVICE_NAME,
+        action="gpu.infer",
+        state="pending",
+        payload={"tenant_id": job["tenant_id"], "client_id": job["client_id"], "job_type": job["job_type"]},
+        lane=job["job_type"] or "ollama",
+        entity_id=job["id"],
+        correlation_id=job["id"],
+    )
+    target_state = (job["status"] or fallback_state or "pending").strip().lower()
+    if target_state != "pending":
+        try:
+            envelope = transition_job_envelope(envelope, target_state)
+        except ValueError:
+            pass
+    return envelope
+
+
 def _recover_abandoned_jobs(conn: sqlite3.Connection) -> list[dict[str, str]]:
     now = datetime.now(timezone.utc)
     rows = conn.execute(
         """
         SELECT id, tenant_id, job_type, client_id, attempt_count, max_attempts, lease_expires_at
+             , status, job_envelope_json
         FROM gpu_jobs
         WHERE status = 'running'
           AND lease_expires_at IS NOT NULL
@@ -268,6 +329,11 @@ def _recover_abandoned_jobs(conn: sqlite3.Connection) -> list[dict[str, str]]:
             continue
         retryable = row["attempt_count"] < row["max_attempts"]
         if retryable:
+            next_envelope = transition_job_envelope(
+                _envelope_for_row(row),
+                "pending",
+                metadata_update={"recovery": "lease-expired"},
+            )
             conn.execute(
                 """
                 UPDATE gpu_jobs
@@ -277,17 +343,24 @@ def _recover_abandoned_jobs(conn: sqlite3.Connection) -> list[dict[str, str]]:
                     lease_expires_at=NULL,
                     claim_token=NULL,
                     worker_name=NULL,
-                    error=?
+                    error=?,
+                    job_envelope_json=?
                 WHERE id=? AND status='running'
                 """,
                 (
                     _utc_after(RETRY_BACKOFF_SECONDS),
                     "Recovered abandoned job after worker lease expiry",
+                    json.dumps(next_envelope, separators=(",", ":")),
                     row["id"],
                 ),
             )
             recovered.append({"job_id": row["id"], "event_type": "job.recovered", "job_type": row["job_type"]})
         else:
+            next_envelope = transition_job_envelope(
+                _envelope_for_row(row),
+                "timeout",
+                metadata_update={"recovery": "lease-expired"},
+            )
             conn.execute(
                 """
                 UPDATE gpu_jobs
@@ -296,12 +369,14 @@ def _recover_abandoned_jobs(conn: sqlite3.Connection) -> list[dict[str, str]]:
                     lease_expires_at=NULL,
                     claim_token=NULL,
                     worker_name=NULL,
-                    error=?
+                    error=?,
+                    job_envelope_json=?
                 WHERE id=? AND status='running'
                 """,
                 (
                     _now_utc(),
                     "Job exceeded retry limit after worker lease expiry",
+                    json.dumps(next_envelope, separators=(",", ":")),
                     row["id"],
                 ),
             )
@@ -377,6 +452,11 @@ def _claim_next_pending_job(conn: sqlite3.Connection, lanes: set[str], worker_na
             _log_event(event["event_type"], event["job_type"], event["job_id"])
         return None
     started_at = _now_utc()
+    running_envelope = transition_job_envelope(
+        _envelope_for_row(job),
+        "running",
+        metadata_update={"worker_name": worker_name},
+    )
     cursor = conn.execute(
         """
         UPDATE gpu_jobs
@@ -385,6 +465,7 @@ def _claim_next_pending_job(conn: sqlite3.Connection, lanes: set[str], worker_na
             lease_expires_at=?,
             claim_token=?,
             worker_name=?,
+            job_envelope_json=?,
             attempt_count=attempt_count + 1,
             available_at=NULL
         WHERE id=? AND status='pending'
@@ -394,6 +475,7 @@ def _claim_next_pending_job(conn: sqlite3.Connection, lanes: set[str], worker_na
             _utc_after(JOB_LEASE_SECONDS),
             claim_token,
             worker_name,
+            json.dumps(running_envelope, separators=(",", ":")),
             job["id"],
         ),
     )
@@ -552,7 +634,13 @@ def _persist_job_outcome(
     attempt_count = job["attempt_count"]
     max_attempts = job["max_attempts"] or DEFAULT_MAX_ATTEMPTS
     should_retry = status == "error" and attempt_count < max_attempts
+    base_envelope = _envelope_for_row(job, fallback_state="running")
     if should_retry:
+        next_envelope = transition_job_envelope(
+            base_envelope,
+            "pending",
+            metadata_update={"retry_backoff_seconds": RETRY_BACKOFF_SECONDS},
+        )
         cursor = conn.execute(
             """
             UPDATE gpu_jobs
@@ -564,17 +652,24 @@ def _persist_job_outcome(
                 available_at=?,
                 lease_expires_at=NULL,
                 claim_token=NULL,
-                worker_name=NULL
+                worker_name=NULL,
+                job_envelope_json=?
             WHERE id=? AND status='running' AND claim_token=?
             """,
             (
                 err,
                 _utc_after(RETRY_BACKOFF_SECONDS),
+                json.dumps(next_envelope, separators=(",", ":")),
                 job["id"],
                 job["claim_token"],
             ),
         )
         return "retry" if cursor.rowcount == 1 else "stale"
+    next_envelope = transition_job_envelope(
+        base_envelope,
+        status,
+        metadata_update={"error": err or ""},
+    )
     cursor = conn.execute(
         """
         UPDATE gpu_jobs
@@ -584,7 +679,8 @@ def _persist_job_outcome(
             finished_at=?,
             lease_expires_at=NULL,
             claim_token=NULL,
-            worker_name=NULL
+            worker_name=NULL,
+            job_envelope_json=?
         WHERE id=? AND status='running' AND claim_token=?
         """,
         (
@@ -592,6 +688,7 @@ def _persist_job_outcome(
             json.dumps(result) if result else None,
             err,
             _now_utc(),
+            json.dumps(next_envelope, separators=(",", ":")),
             job["id"],
             job["claim_token"],
         ),
@@ -855,6 +952,14 @@ def infer(
         _error(400, "tenant_mismatch", "Tenant header does not match request body")
     idempotency_key = _normalise_idempotency_key(x_idempotency_key)
     options_json = _options_json(payload.options)
+    pending_envelope = build_job_envelope(
+        domain="gpu-router",
+        service=SERVICE_NAME,
+        action="gpu.infer",
+        state="pending",
+        payload={"tenant_id": tenant_id, "client_id": payload.client_id, "job_type": job_type},
+        lane=job_type,
+    )
     job_id: str | None = None
 
     with _db() as conn:
@@ -877,8 +982,8 @@ def infer(
                     """
                     INSERT INTO gpu_jobs
                         (id, tenant_id, client_id, priority, job_type, model, prompt, options_json,
-                         idempotency_key, status, created_at, available_at, max_attempts, created_by)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)
+                         idempotency_key, status, created_at, available_at, max_attempts, created_by, job_envelope_json)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, ?)
                     """,
                     (
                         job_id,
@@ -894,6 +999,7 @@ def infer(
                         _now_utc(),
                         DEFAULT_MAX_ATTEMPTS,
                         claims.get("sub", "unknown"),
+                        json.dumps({**pending_envelope, "entity_id": job_id, "correlation_id": job_id}, separators=(",", ":")),
                     ),
                 )
             except sqlite3.IntegrityError:
