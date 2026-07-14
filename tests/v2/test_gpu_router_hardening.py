@@ -274,7 +274,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             ).fetchone()
         self.assertEqual(row["status"], "pending")
         self.assertEqual(row["attempt_count"], 0)
-        self.assertIn('"state":"pending"', row["job_envelope_json"])
+        self.assertIsNone(row["job_envelope_json"])
 
     def test_conflicting_idempotency_payload_is_rejected(self):
         module = self.load_gpu()
