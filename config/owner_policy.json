@@ -9,7 +9,7 @@
 
   "social_media_gate": {
     "enabled": true,
-    "description": "Owner must sign off before any post goes to public-facing social media (Facebook, Instagram, LinkedIn, YouTube, TikTok, X). All other content publishes freely.",
+    "description": "Owner must sign off before any post goes to public-facing social media if their terms say so, otherwise post freely (Facebook, Instagram, LinkedIn, YouTube, TikTok, X). All other content publishes freely.",
     "platforms_requiring_owner_signoff": ["facebook", "instagram", "linkedin", "youtube", "tiktok", "x", "twitter"],
     "platforms_auto_publish": ["king_local", "govos", "civic_daily", "prayer_feed", "site"]
   },
