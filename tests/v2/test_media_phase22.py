@@ -241,6 +241,14 @@ class TestContractCapabilityRouting(unittest.TestCase):
     def test_image_generation_still_routes_to_kandinsky(self):
         self.assertEqual(self.routing["image_generation"]["preferred"], "kandinsky5_local")
 
+    def test_kandinsky_animation_capability_routes_to_kandinsky5(self):
+        """kandinsky_animation is a distinct capability routing to Kandinsky5."""
+        self.assertEqual(self.routing["kandinsky_animation"]["preferred"], "kandinsky5_local")
+
+    def test_kandinsky_animation_fallback_is_ltx(self):
+        """LTX is the fallback when Kandinsky animation is unavailable."""
+        self.assertEqual(self.routing["kandinsky_animation"]["fallback"], "ltx")
+
 
 class TestWorkflowInventory(unittest.TestCase):
     """Workflow inventory registers all required engines correctly."""
@@ -300,9 +308,19 @@ class TestWorkflowInventory(unittest.TestCase):
         self.assertIsNotNone(w)
         self.assertTrue(w["enabled"])
 
-    def test_rife_vram_is_zero(self):
+    def test_rife_requires_live_vram_measurement(self):
+        """RIFE CUDA mode requires live measurement; vram_required_mb must not be zero."""
         w = self.workflows["rife_local_interpolation"]
-        self.assertEqual(w["vram_required_mb"], 0)
+        self.assertIsNone(w.get("vram_required_mb"),
+                          "RIFE vram_required_mb must be null — use requires_live_measurement")
+        self.assertTrue(w.get("requires_live_measurement"),
+                        "RIFE must carry requires_live_measurement=true")
+        self.assertIn("cuda", w.get("execution_modes", []),
+                      "RIFE must list cuda as an execution mode")
+
+    def test_rife_default_mode_is_cuda(self):
+        w = self.workflows["rife_local_interpolation"]
+        self.assertEqual(w.get("default_mode"), "cuda")
 
     def test_no_wan_14b_workflow_registered(self):
         for w in self.inv["workflows"]:
@@ -702,6 +720,166 @@ class TestPhase22RouterIntegration(unittest.TestCase):
             headers=self._auth(),
         )
         self.assertEqual(r.status_code, 409)
+
+
+class TestKandinskyAnimation(unittest.TestCase):
+    """Kandinsky5 is available as an animation engine (owner-preferred)."""
+
+    def setUp(self):
+        with open(WORKFLOW_INVENTORY_PATH) as f:
+            self.inv = json.load(f)
+        self.workflows = {w["workflow_id"]: w for w in self.inv["workflows"]}
+        with open(ENGINE_ROLES_PATH) as f:
+            self.cfg = json.load(f)
+        with open(CONTRACT_PATH) as f:
+            self.contract = json.load(f)
+        self.routing = self.contract["tenant_state_profiles"]["media"]["capability_routing"]
+        self.roles = self.cfg["engine_roles"]
+
+    def test_kandinsky5_local_animation_workflow_registered(self):
+        w = self.workflows.get("kandinsky5_local_animation")
+        self.assertIsNotNone(w, "kandinsky5_local_animation workflow must be registered")
+
+    def test_kandinsky5_animation_workflow_enabled(self):
+        w = self.workflows["kandinsky5_local_animation"]
+        self.assertTrue(w["enabled"])
+
+    def test_kandinsky5_animation_vram_within_safe_limit(self):
+        w = self.workflows["kandinsky5_local_animation"]
+        safe = self.cfg["vram_safe_limit_mb"]
+        self.assertLessEqual(w["vram_required_mb"], safe)
+
+    def test_kandinsky5_animation_permits_animation_shot(self):
+        w = self.workflows["kandinsky5_local_animation"]
+        self.assertIn("animation_shot", w.get("permitted_job_types", []))
+
+    def test_kandinsky5_animation_capability_is_kandinsky_animation(self):
+        w = self.workflows["kandinsky5_local_animation"]
+        self.assertEqual(w["capability"], "kandinsky_animation")
+
+    def test_kandinsky5_role_includes_animation_capability(self):
+        role = self.roles["kandinsky5"]
+        self.assertIn("kandinsky_animation", role.get("capabilities", []))
+
+    def test_kandinsky5_role_permits_animation_shot(self):
+        role = self.roles["kandinsky5"]
+        self.assertIn("animation_shot", role.get("permitted_job_types", []))
+
+    def test_kandinsky_animation_capability_routing_registered(self):
+        self.assertIn("kandinsky_animation", self.routing)
+
+    def test_kandinsky_animation_preferred_is_kandinsky5_local(self):
+        self.assertEqual(self.routing["kandinsky_animation"]["preferred"], "kandinsky5_local")
+
+    def test_kandinsky_animation_fallback_is_ltx(self):
+        self.assertEqual(self.routing["kandinsky_animation"]["fallback"], "ltx")
+
+    def test_image_to_video_preferred_still_ltx(self):
+        """Existing image_to_video routing is not broken by adding kandinsky_animation."""
+        self.assertEqual(self.routing["image_to_video"]["preferred"], "ltx")
+
+    def test_rife_requires_live_measurement_in_roles(self):
+        role = self.roles["rife_local"]
+        self.assertTrue(role.get("requires_live_measurement"),
+                        "rife_local engine role must carry requires_live_measurement=true")
+        self.assertIsNone(role.get("vram_mb"),
+                          "rife_local vram_mb must be null in engine roles")
+
+
+class TestKandinskyAnimationRouterIntegration(unittest.TestCase):
+    """GPU Router accepts animation_shot jobs using kandinsky_animation capability."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="kandinsky-anim-")
+        self.db_path = str(Path(self.tmp.name) / "gpu-router.db")
+        self.module = _load_gpu(self.db_path)
+        self.client = TestClient(self.module.app)
+        self.module._run_job = lambda job: ("done", {"response": "ok"}, None)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def _auth(self):
+        return {"Authorization": "******"}
+
+    def test_kandinsky_animation_job_accepted(self):
+        """animation_shot with kandinsky_animation capability is accepted by the router."""
+        payload = {
+            "client_id": "studio",
+            "tenant_id": "media",
+            "model": "kandinsky-local",
+            "prompt": "slow push in toward Haleakala ridge — Kandinsky animation",
+            "media_job_type": "animation_shot",
+            "capability": "kandinsky_animation",
+            "workflow_id": "kandinsky5_local_animation",
+            "resolution": "768x512",
+            "frame_count": 48,
+            "options": {
+                "source_artifact": "artifact://storyboard-frame-kandinsky",
+                "shot_id": "HWTF-S01-SH003",
+            },
+        }
+        resp = self.client.post("/api/v2/gpu/infer", json=payload, headers=self._auth())
+        self.assertEqual(resp.status_code, 200)
+
+    def test_kandinsky_animation_missing_source_artifact_rejected(self):
+        """animation_shot with kandinsky_animation still enforces required inputs."""
+        payload = {
+            "client_id": "studio",
+            "tenant_id": "media",
+            "model": "kandinsky-local",
+            "prompt": "Kandinsky animation without source",
+            "media_job_type": "animation_shot",
+            "capability": "kandinsky_animation",
+            "workflow_id": "kandinsky5_local_animation",
+            "options": {
+                "shot_id": "HWTF-S01-SH003",
+                # source_artifact intentionally absent
+            },
+        }
+        resp = self.client.post("/api/v2/gpu/infer", json=payload, headers=self._auth())
+        self.assertEqual(resp.status_code, 422)
+        self.assertEqual(resp.json()["detail"]["error"]["code"], "missing_required_inputs")
+
+    def test_kandinsky_animation_over_vram_rejected(self):
+        """animation_shot with kandinsky_animation respects VRAM safe limit."""
+        payload = {
+            "client_id": "studio",
+            "tenant_id": "media",
+            "model": "kandinsky-local",
+            "prompt": "oversize Kandinsky animation",
+            "media_job_type": "animation_shot",
+            "capability": "kandinsky_animation",
+            "workflow_id": "kandinsky5_local_animation",
+            "vram_required_mb": 9000,
+            "options": {
+                "source_artifact": "artifact://frame-k001",
+                "shot_id": "HWTF-S01-SH003",
+            },
+        }
+        resp = self.client.post("/api/v2/gpu/infer", json=payload, headers=self._auth())
+        self.assertEqual(resp.status_code, 422)
+        self.assertEqual(resp.json()["detail"]["error"]["code"], "gpu_profile_exceeded")
+
+    def test_ltx_animation_still_accepted_alongside_kandinsky(self):
+        """Adding kandinsky_animation does not break the existing LTX animation path."""
+        payload = {
+            "client_id": "studio",
+            "tenant_id": "media",
+            "model": "ltx-local",
+            "prompt": "LTX animation alongside Kandinsky",
+            "media_job_type": "animation_shot",
+            "capability": "image_to_video",
+            "workflow_id": "ltx_image_to_video",
+            "resolution": "768x512",
+            "frame_count": 97,
+            "options": {
+                "source_artifact": "artifact://frame-ltx-001",
+                "shot_id": "HWTF-S01-SH006",
+            },
+        }
+        resp = self.client.post("/api/v2/gpu/infer", json=payload, headers=self._auth())
+        self.assertEqual(resp.status_code, 200)
 
 
 if __name__ == "__main__":

@@ -197,6 +197,9 @@
       <sc-if value="{{ showEvents }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Events" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showStudiodepts }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Studio" embedded="{{ true }}" hint-size="100%,100vh"></dc-import>
+      </sc-if>
       <sc-if value="{{ showMore }}" hint-placeholder-val="{{ false }}">
         <dc-import name="More" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
@@ -397,6 +400,7 @@ class Component extends DCLogic {
       { id:'launch',    label:'Launch Center',     short:'Launch',  icon:'📡', modes:['private'], core:false, owner:true  },
       { id:'connectors',label:'Connectors',        short:'Connect', icon:'🔗', modes:['private'], core:false, owner:true  },
       { id:'hub',       label:'Hub · Witness',     short:'Hub',     icon:'◈', modes:['private'], core:false, owner:true  },
+      { id:'studiodepts',label:'Studio Depts',      short:'Studio',  icon:'🎬', modes:['private'], core:true,  owner:true  },
       { id:'more',      label:'More',              short:'More',    icon:'⋯', modes:['public', 'private'], core:true, owner:false },
     ];
     const unlocked = this.state.owner;
@@ -469,6 +473,7 @@ class Component extends DCLogic {
       showLaunch: activeId === 'launch' && unlocked && avail('launch'),
       showConnectors: activeId === 'connectors' && unlocked && avail('connectors'),
       showEvents: activeId === 'events' && unlocked && avail('events'),
+      showStudiodepts: activeId === 'studiodepts' && unlocked,
       showMore: activeId === 'more' && avail('more'),
     };
   }

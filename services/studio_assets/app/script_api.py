@@ -34,9 +34,10 @@ SCRIPT_DB_PATH = os.environ.get(
 )
 
 SCRIPT_STATUSES = [
-    "concept", "premise", "story_architecture", "beat_sheet", "scene_outline",
-    "first_draft", "dialogue_pass", "continuity_pass", "cultural_review",
-    "table_read_review", "owner_approval", "script_locked", "storyboard_generation",
+    "concept", "premise_ready", "architecture_ready", "beat_sheet_ready",
+    "scene_outline_ready", "first_draft", "dialogue_review",
+    "continuity_review", "cultural_review", "table_read_review",
+    "approval_pending", "approved", "script_locked", "storyboard_generation",
 ]
 WRITING_ROLES = [
     "showrunner", "story_architect", "screenwriter", "dialogue_writer",

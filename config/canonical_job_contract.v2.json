@@ -165,6 +165,10 @@
         "editor_review": {
           "preferred": "editor_local",
           "fallback": "editor_local"
+        },
+        "kandinsky_animation": {
+          "preferred": "kandinsky5_local",
+          "fallback": "ltx"
         }
       },
       "job_type_profiles": {
@@ -1637,6 +1641,9 @@
         "interpolation_queued",
         "final_qc",
         "edit_ready"
+      ],
+      "batch_policy_notes": [
+        "kandinsky_animation is owner-preferred local animation engine; specify capability=kandinsky_animation to route animation_shot to Kandinsky5 instead of LTX"
       ]
     },
     "gpu": {

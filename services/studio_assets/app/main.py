@@ -401,9 +401,38 @@ try:
 except Exception as _proj_err:
     print(f"[studio-assets] project_api not loaded: {_proj_err}", file=_sys.stderr)
 
+# ── Phase 2.2 Studio department APIs ─────────────────────────────────────────
+try:
+    from services.studio_assets.app.storyboard_api import router as _storyboard_router
+    app.include_router(_storyboard_router)
+except Exception as _sb_err:
+    print(f"[studio-assets] storyboard_api not loaded: {_sb_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.script_api import router as _script_router
+    app.include_router(_script_router)
+except Exception as _sc_err:
+    print(f"[studio-assets] script_api not loaded: {_sc_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.fcp_adapter import router as _fcp_router
+    app.include_router(_fcp_router)
+except Exception as _fcp_err:
+    print(f"[studio-assets] fcp_adapter not loaded: {_fcp_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.logic_adapter import router as _logic_router
+    app.include_router(_logic_router)
+except Exception as _lg_err:
+    print(f"[studio-assets] logic_adapter not loaded: {_lg_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.game_api import router as _game_router
+    app.include_router(_game_router)
+except Exception as _gm_err:
+    print(f"[studio-assets] game_api not loaded: {_gm_err}", file=_sys.stderr)
 
 
-def _row(r: sqlite3.Row) -> dict:
     d = dict(r)
     d["has_thumb"] = bool(d.get("thumb_file") and os.path.isfile(d["thumb_file"]))
     d.pop("thumb_file", None)

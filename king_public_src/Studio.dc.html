@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:10px;left:12px;z-index:9999;background:rgba(0,53,107,.92);color:#fff;text-decoration:none;font:600 13px system-ui,sans-serif;padding:6px 12px;border-radius:8px">&larr; govOS</a>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script src="./data.js"></script>
+</helmet>
+
+<!--
+  Studio.dc.html — Phase 2.2 Studio departments panel.
+  PRIVATE / owner-only / Tailscale trust boundary.
+  This panel is NOT published to the public site.
+
+  Departments: Writing Room · Director · Storyboards · Editor · FCP · Logic · Game
+-->
+
+<div data-surface="studio" data-screen-label="Studio · Phase 2.2" style="min-height:100%; background:var(--codex-backdrop,#0a0e14); color:var(--codex-ink,#eaf1f5); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
+
+  <!-- Header -->
+  <div style="text-align:center; margin-bottom:18px;">
+    <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--codex-gold,#d9b24c);">12 Stones Global · Studio</div>
+    <h1 style="margin:6px 0 4px; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3.2vw,30px); font-weight:600; color:var(--codex-gold-2,#f3d589);">Phase 2.2 — Creative Departments</h1>
+    <p style="margin:0 auto; max-width:640px; font-size:12.5px; color:var(--codex-mut,#9fb0c0);">Writing Room → Director → Kandinsky Storyboard → Continuity → LTX / Kandinsky Animation → Editor → FCP → Logic → Game</p>
+  </div>
+
+  <!-- Department tabs -->
+  <div style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:22px;">
+    <sc-for list="{{ deptTabs }}" as="t">
+      <sc-if value="{{ t.active }}">
+        <button onClick="{{ t.go }}" style="padding:7px 14px; border:1px solid var(--codex-gold,#d9b24c); border-radius:20px; background:rgba(217,178,76,0.14); color:var(--codex-gold,#d9b24c); font:inherit; font-size:12px; cursor:pointer;">{{ t.label }}</button>
+      </sc-if>
+      <sc-if value="{{ t.inactive }}">
+        <button onClick="{{ t.go }}" style="padding:7px 14px; border:1px solid var(--codex-line,#1f2c3a); border-radius:20px; background:transparent; color:var(--codex-mut,#9fb0c0); font:inherit; font-size:12px; cursor:pointer;">{{ t.label }}</button>
+      </sc-if>
+    </sc-for>
+  </div>
+
+  <!-- ── WRITING ROOM ── -->
+  <sc-if value="{{ showWriting }}">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Writing Room</h2>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--codex-sea-2,#5fc0d8);">{{ scriptCount }} scripts</span>
+      </div>
+      <p style="font-size:12.5px; color:var(--codex-mut,#9fb0c0); margin:0 0 14px;">Showrunner · Story Architect · Screenwriter · Dialogue Writer · Continuity Editor · Cultural Guardian · Script Supervisor · Table-Read Critic</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-bottom:18px;">
+        <sc-for list="{{ scripts }}" as="s">
+          <div style="background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; padding:14px;">
+            <div style="font-size:13px; font-weight:600; color:var(--codex-ink,#eaf1f5);">{{ s.title }}</div>
+            <div style="font-size:11px; color:var(--codex-mut,#9fb0c0); margin:4px 0;">{{ s.production_id }} · v{{ s.version }}</div>
+            <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+              <span style="font-size:11px; background:rgba(95,192,216,0.12); color:var(--codex-sea-2,#5fc0d8); border-radius:6px; padding:2px 8px;">{{ s.status }}</span>
+              <sc-if value="{{ s.locked }}"><span style="font-size:11px;">🔒</span></sc-if>
+              <sc-if value="{{ s.unlocked }}"><span style="font-size:11px;">🔓</span></sc-if>
+            </div>
+            <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+              <button onClick="{{ s.open }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Open</button>
+              <button onClick="{{ s.advance }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:6px; background:transparent; color:var(--codex-sea-2,#5fc0d8); cursor:pointer;">Advance</button>
+              <sc-if value="{{ s.lockable }}"><button onClick="{{ s.toggleLock }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:transparent; color:var(--codex-gold,#d9b24c); cursor:pointer;">{{ s.lockLabel }}</button></sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ newScript }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ New Script</button>
+    </div>
+  </sc-if>
+
+  <!-- ── STORYBOARDS ── -->
+  <sc-if value="{{ showStoryboards }}">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Storyboards</h2>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--codex-sea-2,#5fc0d8);">{{ storyboardCount }} active</span>
+        <button onClick="{{ showArchived }}" style="font:inherit; font-size:11px; padding:3px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">View Archived</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-bottom:18px;">
+        <sc-for list="{{ storyboards }}" as="sb">
+          <div style="background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; padding:12px; position:relative;">
+            <!-- Thumbnail placeholder -->
+            <div style="aspect-ratio:16/9; background:var(--codex-panel-2,#19222f); border-radius:6px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <sc-if value="{{ sb.hasThumb }}"><img src="{{ sb.thumbUrl }}" style="width:100%; height:100%; object-fit:cover;"/></sc-if>
+              <sc-if value="{{ sb.noThumb }}"><span style="font-size:22px; color:var(--codex-faint,#647688);">🎬</span></sc-if>
+            </div>
+            <div style="font-size:11.5px; font-weight:600; color:var(--codex-ink,#eaf1f5); margin-bottom:2px;">{{ sb.shotId }}</div>
+            <div style="font-size:10.5px; color:var(--codex-mut,#9fb0c0);">Rev {{ sb.revision }} · {{ sb.engine }}</div>
+            <div style="font-size:10.5px; color:var(--codex-sea-2,#5fc0d8); margin-top:3px;">{{ sb.status }}</div>
+            <!-- Control row -->
+            <div style="display:flex; gap:5px; margin-top:10px; flex-wrap:wrap; align-items:center;">
+              <button onClick="{{ sb.toggleLock }}" style="font:inherit; font-size:11px; padding:3px 8px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:transparent; color:var(--codex-gold,#d9b24c); cursor:pointer;" title="Toggle lock">{{ sb.lockIcon }} {{ sb.lockLabel }}</button>
+              <button onClick="{{ sb.archive }}" style="font:inherit; font-size:11px; padding:3px 8px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;" title="Archive">Archive</button>
+              <button onClick="{{ sb.newRevision }}" style="font:inherit; font-size:11px; padding:3px 8px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:6px; background:transparent; color:var(--codex-sea-2,#5fc0d8); cursor:pointer;" title="Create new unlocked revision">+ Rev</button>
+            </div>
+            <div style="display:flex; gap:5px; margin-top:5px; flex-wrap:wrap;">
+              <button onClick="{{ sb.openDirector }}" style="font:inherit; font-size:10px; padding:2px 7px; border:1px solid var(--codex-line,#1f2c3a); border-radius:5px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Director</button>
+              <button onClick="{{ sb.openEditor }}" style="font:inherit; font-size:10px; padding:2px 7px; border:1px solid var(--codex-line,#1f2c3a); border-radius:5px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Editor</button>
+              <button onClick="{{ sb.openFCP }}" style="font:inherit; font-size:10px; padding:2px 7px; border:1px solid var(--codex-line,#1f2c3a); border-radius:5px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">FCP</button>
+              <button onClick="{{ sb.openGame }}" style="font:inherit; font-size:10px; padding:2px 7px; border:1px solid var(--codex-line,#1f2c3a); border-radius:5px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Game</button>
+              <button onClick="{{ sb.openProvenance }}" style="font:inherit; font-size:10px; padding:2px 7px; border:1px solid var(--codex-line,#1f2c3a); border-radius:5px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Provenance</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ── FCP ── -->
+  <sc-if value="{{ showFCP }}">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Final Cut Pro</h2>
+        <span style="font-size:11px; color:var(--codex-mut,#9fb0c0);">Deterministic interchange only — no UI automation</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:18px;">
+        <sc-for list="{{ fcpTimelines }}" as="tl">
+          <div style="background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; padding:14px;">
+            <div style="font-size:13px; font-weight:600; color:var(--codex-ink,#eaf1f5);">{{ tl.title }}</div>
+            <div style="font-size:11px; color:var(--codex-mut,#9fb0c0); margin:4px 0;">{{ tl.production_id }} · {{ tl.frame_rate }} · v{{ tl.version }}</div>
+            <div style="font-size:11px; color:var(--codex-sea-2,#5fc0d8);">{{ tl.shotCount }} shots</div>
+            <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+              <button onClick="{{ tl.exportFCPXML }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">Export FCPXML</button>
+              <button onClick="{{ tl.getMarkers }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Markers</button>
+              <button onClick="{{ tl.archive }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Archive Cut</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ newTimeline }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ Create Timeline</button>
+    </div>
+  </sc-if>
+
+  <!-- ── LOGIC ── -->
+  <sc-if value="{{ showLogic }}">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Logic Pro</h2>
+        <span style="font-size:11px; color:var(--codex-mut,#9fb0c0);">Session manifests and file packaging — no UI automation</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:18px;">
+        <sc-for list="{{ logicSessions }}" as="sess">
+          <div style="background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; padding:14px;">
+            <div style="font-size:13px; font-weight:600; color:var(--codex-ink,#eaf1f5);">{{ sess.title }}</div>
+            <div style="font-size:11px; color:var(--codex-mut,#9fb0c0); margin:4px 0;">{{ sess.production_id }} · {{ sess.sample_rate }}Hz / {{ sess.bit_depth }}bit · {{ sess.frame_rate }}</div>
+            <div style="font-size:11px; color:var(--codex-sea-2,#5fc0d8);">{{ sess.cueCount }} cues</div>
+            <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+              <button onClick="{{ sess.cueSheet }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">Cue Sheet</button>
+              <button onClick="{{ sess.adrList }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">ADR List</button>
+              <button onClick="{{ sess.foleyList }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Foley List</button>
+              <button onClick="{{ sess.archive }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Archive Mix</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ newSession }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ Create Session</button>
+    </div>
+  </sc-if>
+
+  <!-- ── GAME ── -->
+  <sc-if value="{{ showGame }}">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Game Development</h2>
+        <span style="font-size:11px; color:var(--codex-mut,#9fb0c0);">Shared Studio assets · Unreal Engine artifacts</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:18px;">
+        <sc-for list="{{ gameProjects }}" as="gp">
+          <div style="background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; padding:14px;">
+            <div style="font-size:13px; font-weight:600; color:var(--codex-ink,#eaf1f5);">{{ gp.title }}</div>
+            <div style="font-size:11px; color:var(--codex-mut,#9fb0c0); margin:4px 0;">{{ gp.production_id }} · {{ gp.engine }}</div>
+            <div style="font-size:11px; color:var(--codex-sea-2,#5fc0d8);">{{ gp.status }}</div>
+            <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+              <button onClick="{{ gp.open }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">Open</button>
+              <button onClick="{{ gp.dataTable }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">DataTable</button>
+              <button onClick="{{ gp.sequencer }}" style="font:inherit; font-size:11px; padding:4px 10px; border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; background:transparent; color:var(--codex-mut,#9fb0c0); cursor:pointer;">Sequencer</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ newGame }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ New Game Project</button>
+    </div>
+  </sc-if>
+
+  <!-- Pipeline flow footer -->
+  <div style="max-width:1100px; margin:32px auto 0; padding:14px 18px; background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; font-size:11.5px; color:var(--codex-mut,#9fb0c0);">
+    <span style="color:var(--codex-gold,#d9b24c);">Studio pipeline:</span>
+    Writing Room → Director → Kandinsky Storyboard → Continuity &amp; Review → LTX / Kandinsky Animation → Editor → RIFE → FCP Timeline → Logic Session → Game Cinematic → edit_ready
+    <span style="margin-left:12px; color:var(--codex-faint,#647688); font-size:10.5px;">Phase 2.2 · PRIVATE · owner only</span>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+// Studio.dc.html — Phase 2.2 owner controls
+// PRIVATE surface — not published to public site
+// All API calls go to the local studio-assets server (127.0.0.1:8108 / Tailscale)
+
+const STUDIO_BASE = (typeof window !== 'undefined' && window.STUDIO_API_BASE) || 'http://127.0.0.1:8108';
+
+function studioFetch(path, opts) {
+  const token = (typeof localStorage !== 'undefined' && localStorage.getItem('king.ownerToken')) || '';
+  const headers = Object.assign({ 'Content-Type': 'application/json' }, opts && opts.headers || {});
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  return fetch(STUDIO_BASE + path, Object.assign({}, opts, { headers }));
+}
+
+// Department tab state
+const DEPT_TABS = [
+  { id: 'writing',    label: '✍ Writing Room' },
+  { id: 'storyboard', label: '🎬 Storyboards' },
+  { id: 'fcp',        label: '🎞 FCP' },
+  { id: 'logic',      label: '🎵 Logic' },
+  { id: 'game',       label: '🎮 Game' },
+];
+
+function registerValues(component) {
+  let activeDept = 'writing';
+
+  function tabs() {
+    return DEPT_TABS.map(t => ({
+      label: t.label,
+      active: t.id === activeDept,
+      inactive: t.id !== activeDept,
+      go: () => { activeDept = t.id; component.update(); },
+    }));
+  }
+
+  return {
+    deptTabs: tabs(),
+    showWriting:    () => activeDept === 'writing',
+    showStoryboards:() => activeDept === 'storyboard',
+    showFCP:        () => activeDept === 'fcp',
+    showLogic:      () => activeDept === 'logic',
+    showGame:       () => activeDept === 'game',
+
+    scriptCount: 0,
+    scripts: [],
+    storyboardCount: 0,
+    storyboards: [],
+    fcpTimelines: [],
+    logicSessions: [],
+    gameProjects: [],
+
+    newScript: async () => {
+      const title = window.prompt('Script title:');
+      if (!title) return;
+      const pid = window.prompt('Production ID:');
+      if (!pid) return;
+      await studioFetch('/api/v2/media/scripts', {
+        method: 'POST',
+        body: JSON.stringify({ production_id: pid, title }),
+      });
+      component.loadScripts();
+    },
+
+    newTimeline: async () => {
+      const title = window.prompt('Timeline title:');
+      if (!title) return;
+      const pid = window.prompt('Production ID:');
+      if (!pid) return;
+      await studioFetch('/api/v2/media/fcp/timelines', {
+        method: 'POST',
+        body: JSON.stringify({ production_id: pid, title }),
+      });
+      component.loadFCP();
+    },
+
+    newSession: async () => {
+      const title = window.prompt('Session title:');
+      if (!title) return;
+      const pid = window.prompt('Production ID:');
+      if (!pid) return;
+      await studioFetch('/api/v2/media/logic/sessions', {
+        method: 'POST',
+        body: JSON.stringify({ production_id: pid, title }),
+      });
+      component.loadLogic();
+    },
+
+    newGame: async () => {
+      const title = window.prompt('Game title:');
+      if (!title) return;
+      const pid = window.prompt('Production ID:');
+      if (!pid) return;
+      await studioFetch('/api/v2/media/game/projects', {
+        method: 'POST',
+        body: JSON.stringify({ production_id: pid, title }),
+      });
+      component.loadGame();
+    },
+
+    showArchived: async () => {
+      const r = await studioFetch('/api/v2/media/storyboards/archived');
+      const list = await r.json();
+      window.alert('Archived storyboards: ' + list.length + '\n' + list.map(s => s.id + (s.locked ? ' 🔒' : '')).join('\n'));
+    },
+  };
+}
+
+// Loader helpers (called on mount and after mutations)
+async function loadScripts(component) {
+  try {
+    const r = await studioFetch('/api/v2/media/scripts');
+    const list = await r.json();
+    component.set({
+      scriptCount: list.length,
+      scripts: list.map(s => ({
+        ...s,
+        lockIcon: s.locked ? '🔒' : '🔓',
+        lockLabel: s.locked ? 'Locked' : 'Unlocked',
+        lockable: true,
+        open: () => console.log('open script', s.id),
+        advance: async () => {
+          const roles = ['premise_ready','architecture_ready','beat_sheet_ready','scene_outline_ready','first_draft','dialogue_review','continuity_review','cultural_review','table_read_review','approval_pending','approved'];
+          const next = roles[roles.indexOf(s.status) + 1];
+          if (!next) return window.alert('Script is at final status');
+          await studioFetch('/api/v2/media/scripts/' + s.id + '/advance', { method: 'POST', body: JSON.stringify({ to_status: next }) });
+          loadScripts(component);
+        },
+        toggleLock: async () => {
+          await studioFetch('/api/v2/media/scripts/' + s.id + '/lock', { method: 'POST' });
+          loadScripts(component);
+        },
+      })),
+    });
+  } catch(e) { console.warn('loadScripts:', e); }
+}
+
+async function loadStoryboards(component) {
+  try {
+    const r = await studioFetch('/api/v2/media/storyboards');
+    const list = await r.json();
+    component.set({
+      storyboardCount: list.length,
+      storyboards: list.map(sb => ({
+        ...sb,
+        lockIcon: sb.locked ? '🔒' : '🔓',
+        lockLabel: sb.locked ? 'Locked' : 'Unlocked',
+        hasThumb: false,
+        noThumb: true,
+        open: () => console.log('open sb', sb.id),
+        toggleLock: async () => {
+          await studioFetch('/api/v2/media/storyboards/' + sb.id + '/lock', {
+            method: 'PATCH',
+            body: JSON.stringify({ locked: !sb.locked, actor: 'owner', reason: 'owner_toggle' }),
+          });
+          loadStoryboards(component);
+        },
+        archive: async () => {
+          const msg = sb.locked
+            ? 'This storyboard is locked.\nArchiving preserves its lock, asset, provenance, timeline references and game references. It can be restored.\n\nArchive?'
+            : 'Archive this storyboard?';
+          if (!window.confirm(msg)) return;
+          await studioFetch('/api/v2/media/storyboards/' + sb.id + '/archive', {
+            method: 'POST',
+            body: JSON.stringify({ actor: 'owner', preserve_lock: true }),
+          });
+          loadStoryboards(component);
+        },
+        newRevision: async () => {
+          const r2 = await studioFetch('/api/v2/media/storyboards/' + sb.id + '/revisions', {
+            method: 'POST',
+            body: JSON.stringify({ actor: 'owner' }),
+          });
+          const data = await r2.json();
+          window.alert('New revision created: ' + data.storyboard_id + ' (unlocked, rev ' + data.revision + ')');
+          loadStoryboards(component);
+        },
+        openDirector: () => console.log('director', sb.id),
+        openEditor:   () => console.log('editor', sb.id),
+        openFCP:      () => console.log('fcp', sb.id),
+        openGame:     () => console.log('game', sb.id),
+        openProvenance: async () => {
+          const r2 = await studioFetch('/api/v2/media/storyboards/' + sb.id + '/provenance');
+          const events = await r2.json();
+          window.alert('Provenance (' + events.length + ' events):\n' + events.map(e => e.event_type + ' — ' + e.timestamp).join('\n'));
+        },
+      })),
+    });
+  } catch(e) { console.warn('loadStoryboards:', e); }
+}
+
+async function loadFCP(component) {
+  try {
+    const r = await studioFetch('/api/v2/media/fcp/timelines');
+    const list = await r.json();
+    component.set({
+      fcpTimelines: list.map(tl => ({
+        ...tl,
+        shotCount: (tl.shots || []).length,
+        exportFCPXML: async () => {
+          const r2 = await studioFetch('/api/v2/media/fcp/timelines/' + tl.id + '/fcpxml');
+          const data = await r2.json();
+          const blob = new Blob([data.fcpxml], { type: 'text/xml' });
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = tl.title.replace(/\s+/g, '_') + '.fcpxml';
+          a.click();
+        },
+        getMarkers: async () => {
+          const r2 = await studioFetch('/api/v2/media/fcp/timelines/' + tl.id + '/markers');
+          const data = await r2.json();
+          window.alert(JSON.stringify(data.markers, null, 2));
+        },
+        archive: async () => {
+          await studioFetch('/api/v2/media/fcp/timelines/' + tl.id + '/archive', { method: 'POST' });
+          window.alert('Cut version archived.');
+          loadFCP(component);
+        },
+      })),
+    });
+  } catch(e) { console.warn('loadFCP:', e); }
+}
+
+async function loadLogic(component) {
+  try {
+    const r = await studioFetch('/api/v2/media/logic/sessions');
+    const list = await r.json();
+    component.set({
+      logicSessions: list.map(s => ({
+        ...s,
+        cueCount: (s.cues || []).length,
+        cueSheet: async () => {
+          const r2 = await studioFetch('/api/v2/media/logic/sessions/' + s.id + '/cue_sheet');
+          const data = await r2.json();
+          window.alert('Cue sheet (' + data.cue_count + ' cues):\n' + JSON.stringify(data.cues, null, 2).slice(0,1000));
+        },
+        adrList: async () => {
+          const r2 = await studioFetch('/api/v2/media/logic/sessions/' + s.id + '/adr_list');
+          const data = await r2.json();
+          window.alert('ADR list (' + data.adr_list.length + '):\n' + data.adr_list.map(c => c.cue_id + ': ' + (c.text || '')).join('\n'));
+        },
+        foleyList: async () => {
+          const r2 = await studioFetch('/api/v2/media/logic/sessions/' + s.id + '/foley_list');
+          const data = await r2.json();
+          window.alert('Foley list (' + data.foley_list.length + ')');
+        },
+        archive: async () => {
+          await studioFetch('/api/v2/media/logic/sessions/' + s.id + '/archive', { method: 'POST' });
+          window.alert('Mix version archived.');
+          loadLogic(component);
+        },
+      })),
+    });
+  } catch(e) { console.warn('loadLogic:', e); }
+}
+
+async function loadGame(component) {
+  try {
+    const r = await studioFetch('/api/v2/media/game/projects');
+    const list = await r.json();
+    component.set({
+      gameProjects: list.map(gp => ({
+        ...gp,
+        open: () => console.log('open game', gp.id),
+        dataTable: async () => {
+          const r2 = await studioFetch('/api/v2/media/game/projects/' + gp.id + '/unreal/datatable', {
+            method: 'POST',
+            body: JSON.stringify({ table_type: 'quest' }),
+          });
+          const data = await r2.json();
+          window.alert('DataTable (' + data.row_count + ' rows)');
+        },
+        sequencer: async () => {
+          const r2 = await studioFetch('/api/v2/media/game/projects/' + gp.id + '/unreal/sequencer_manifest', { method: 'POST' });
+          const data = await r2.json();
+          window.alert('Sequencer manifest: ' + data.shot_count + ' shots, ' + data.storyboard_refs.length + ' storyboard refs');
+        },
+      })),
+    });
+  } catch(e) { console.warn('loadGame:', e); }
+}
+</script>
+
+</x-dc>
+</body>
+</html>

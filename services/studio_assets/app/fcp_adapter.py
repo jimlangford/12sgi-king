@@ -126,14 +126,19 @@ def _build_fcpxml(tl: dict) -> str:
     clip_lines = []
     for i, shot in enumerate(shots):
         shot_id = _xml_escape(str(shot.get("shot_id", f"shot_{i}")))
-        asset_id = f"r{i+1}"
+        # Use immutable asset_id from shot record; fall back to positional ref
+        # Immutable IDs survive storyboard archival
+        raw_asset_id = shot.get("asset_id") or f"r{i+1}"
+        asset_id = _xml_escape(str(raw_asset_id))
         src = _xml_escape(str(shot.get("proxy_path", f"placeholder_{i}.mov")))
         start_tc = _timecode_from_seconds(shot.get("start_seconds", 0.0), fps)
         duration_tc = _timecode_from_seconds(shot.get("duration_seconds", 3.0), fps)
         handles_tc = _timecode_from_seconds(shot.get("handles_frames", 24) / fps, fps)
+        asset_hash = _xml_escape(str(shot.get("asset_hash", "")))
         asset_lines.append(
             f'    <asset id="{asset_id}" name="{shot_id}" src="{src}" '
-            f'start="0s" duration="{duration_tc}" hasAudio="1" hasVideo="1"/>'
+            f'start="0s" duration="{duration_tc}" hasAudio="1" hasVideo="1"'
+            + (f' comment="hash:{asset_hash}"' if asset_hash else "") + "/>"
         )
         role = _xml_escape(str(shot.get("timeline_role", "Video")))
         marker_xml = ""
