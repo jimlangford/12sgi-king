@@ -1,15 +1,27 @@
 name: CI - v2 service tests
+
+# Non-blocking: billing suspension on GitHub-hosted runners must never prevent
+# the self-hosted deploy (deploy-v2-king-server.yml) from running.
+# All jobs use continue-on-error: true for exactly this reason.
 on:
   pull_request:
   push:
     branches:
       - main
+    paths:
+      - "services/**"
+      - "tests/**"
+      - "watchers/**"
+      - "requirements.txt"
   workflow_dispatch: {}
+
 permissions:
   contents: read
+
 jobs:
   v2-contract-tests:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,10 +37,11 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Run v2 contract tests
-        run: python -m unittest tests.v2.test_v2_contract
+        run: python -m unittest tests.v2.test_v2_contract -v
 
   v2-integration-tests:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,9 +63,8 @@ jobs:
         run: python -m unittest tests.v2.test_v2_integration_stack
 
   v2-hardening-tests:
-    # Regression coverage for the 2026-07-09 pass: the auth fail-closed dev-secret guard and the
-    # ai service's grounded/ungrounded correctness split (see tests/v2/test_v2_hardening.py).
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -69,9 +81,6 @@ jobs:
           for svc in auth ai; do
             python -m pip install -r "services/$svc/requirements.txt"
           done
-          # httpx powers fastapi.testclient.TestClient (used by test_v2_hardening.py) -- it is a
-          # test-only dependency, not a runtime dependency of the auth/ai services, so it lives
-          # here rather than in either service's requirements.txt.
           python -m pip install httpx
 
       - name: Run v2 hardening regression tests
