@@ -19,12 +19,29 @@ from xml.sax.saxutils import escape as _xml_escape
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-FCP_DB_PATH = os.environ.get(
+def _resolve_db_path(env_key: str, default: str) -> str:
+    """Resolve the DB path from an environment variable and validate it is within
+    an allowed directory. Allowed: the default data directory, or the system temp
+    directory (used by test fixtures). Owner-only service; env vars are set by the
+    local machine owner, not by web input."""
+    import tempfile
+    raw = os.environ.get(env_key, default)
+    resolved = os.path.realpath(raw)
+    allowed = (
+        os.path.realpath(default),
+        os.path.realpath(os.path.dirname(default)),
+        os.path.realpath(tempfile.gettempdir()),
+    )
+    for a in allowed:
+        if resolved == a or resolved.startswith(a + os.sep):
+            return resolved
+    raise ValueError(
+        f"{env_key}: DB path {resolved!r} must be within the data or temp directory."
+    )
+
+FCP_DB_PATH = _resolve_db_path(
     "STUDIO_FCP_DB_PATH",
-    str(
-        __import__("pathlib").Path(__file__).resolve().parents[3]
-        / "data" / "fcp.db"
-    ),
+    str(__import__("pathlib").Path(__file__).resolve().parents[3] / "data" / "fcp.db"),
 )
 
 FCP_ROLES = ["Dialogue", "Music", "Effects", "Ambience", "Narration",
