@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script src="./live.js"></script>
+</helmet>
+
+<div data-surface="ownerhome" data-screen-label="Owner Home"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,28px); max-width:1080px;">
+
+  <div style="margin-bottom:18px;">
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Private mode · owner dashboard</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">{{ serverChip }}</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:var(--ink-dim,#b3a98f);">next: {{ nextActionTag }}</span>
+    </div>
+    <h1 style="margin:0; font-size:clamp(20px,3.2vw,28px); font-weight:700; letter-spacing:-0.4px;">Owner Home</h1>
+    <p style="margin:5px 0 0; color:var(--ink-dim,#b3a98f); line-height:1.6;">Task-first private control plane with ranked actions and clear next moves.</p>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Top 5 private tasks</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin-bottom:18px;">
+    <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="5">
+      <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">#{{ t.rank }}</span>
+          <span style="font-size:13px; font-weight:600; color:var(--ink,#efe9da);">{{ t.title }}</span>
+        </div>
+        <div style="margin-top:5px; font-size:12px; color:var(--ink-dim,#b3a98f); line-height:1.5;">{{ t.desc }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Next actions</div>
+  <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:18px;">
+    <sc-for list="{{ actions }}" as="a" hint-placeholder-count="3">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+        <div>
+          <div style="font-size:13px; font-weight:600; color:var(--ink,#efe9da);">{{ a.title }}</div>
+          <div style="font-size:12px; color:var(--ink-dim,#b3a98f); margin-top:3px;">{{ a.detail }}</div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--line,#34301f); color:{{ a.color }};">{{ a.status }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background:var(--panel,#16140f); border:1px dashed var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="font-size:12px; color:var(--ink-faint,#756b56); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">Empty-state behavior</div>
+    <div style="font-size:12.5px; color:var(--ink-dim,#b3a98f); line-height:1.55;">If no owner actions are pending, stay on Ops Board and verify Graph/GPU health before opening low-frequency tools in More.</div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { liveStatus: 'connecting' };
+
+  componentDidMount() {
+    if (window.KingLive) {
+      this._unLive = window.KingLive.subscribe(s => this.setState({ liveStatus: s.status || 'connecting' }));
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._unLive) this._unLive();
+  }
+
+  renderVals() {
+    const ls = this.state.liveStatus || 'connecting';
+    const serverChip = ls === 'live' ? 'live' : (ls === 'offline' ? 'offline' : 'connecting');
+    const nextActionTag = ls === 'live' ? 'review approvals' : 'check connection';
+    return {
+      serverChip,
+      nextActionTag,
+      tasks: [
+        { rank: 1, title: 'Review pending approvals', desc: 'Check creative/output queue and clear owner decisions.' },
+        { rank: 2, title: 'Stabilize Ops Board', desc: 'Confirm workboard, builds, and tests are green before publish.' },
+        { rank: 3, title: 'Verify graph lineage', desc: 'Confirm graph refresh status and provenance wiring.' },
+        { rank: 4, title: 'Watch GPU routing health', desc: 'Check queue pressure, VRAM, and event stream.' },
+        { rank: 5, title: 'Audit platform events', desc: 'Scan recent system events for regressions or failures.' },
+      ],
+      actions: [
+        { title: 'Open Ops Board', detail: 'Primary control lane for owner operations.', status: 'primary', color: 'var(--ok,#6abf86)' },
+        { title: 'Check Graph Ratchet', detail: 'Validate graph status before automation changes.', status: 'verify', color: 'var(--accent,#e3ad33)' },
+        { title: 'Inspect GPU/Event feeds', detail: 'Use GPU + Events surfaces for live incident context.', status: 'monitor', color: 'var(--ink-dim,#b3a98f)' },
+      ],
+    };
+  }
+}
+</script>
+<script src="../govos-shell.js" defer></script>
+</body>
+</html>

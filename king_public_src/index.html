@@ -42,6 +42,9 @@
       <sc-if value="{{ liveOn }}" hint-placeholder-val="{{ false }}"><span style="width:8px; height:8px; border-radius:50%; background:var(--ok,#6abf86);" title="live"></span></sc-if>
       <sc-if value="{{ liveOff }}" hint-placeholder-val="{{ false }}"><span style="width:8px; height:8px; border-radius:50%; background:var(--warn,#d29922);" title="snapshot · machine offline"></span></sc-if>
       <sc-if value="{{ liveWait }}" hint-placeholder-val="{{ true }}"><span style="width:8px; height:8px; border-radius:50%; background:var(--ink-faint,#756b56);" title="finding machine…"></span></sc-if>
+      <sc-if value="{{ canSwitchModes }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ modeToggle }}" style="border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); font-size:10.5px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; padding:4px 8px; line-height:1.2; border-radius:999px;" title="{{ modeHint }}">{{ modeLabel }}</button>
+      </sc-if>
       <button onClick="{{ ownerToggle }}" style="border:none; background:transparent; color:var(--ink-dim,#b3a98f); font-size:16px; cursor:pointer; padding:2px 6px; line-height:1;" title="{{ ownerLabel }}">{{ ownerGlyph }}</button>
       <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:3px 9px;">v4.1.0</span>
     </div>
@@ -104,6 +107,11 @@
           <button onClick="{{ ownerToggle }}" style="display:flex; align-items:center; gap:8px; width:100%; padding:8px 10px; border:1px solid var(--line,#34301f); border-radius:8px; background:transparent; color:var(--ink-dim,#b3a98f); font:inherit; font-size:11.5px; cursor:pointer; text-align:left;" style-hover="border-color:var(--accent,#e3ad33); color:var(--accent-2,#f4c95d);">
             <span style="font-size:13px;">{{ ownerGlyph }}</span><span style="flex:1;">{{ ownerLabel }}</span>
           </button>
+          <sc-if value="{{ canSwitchModes }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ modeToggle }}" style="display:flex; align-items:center; gap:8px; width:100%; padding:8px 10px; border:1px solid var(--line,#34301f); border-radius:8px; background:transparent; color:var(--ink-dim,#b3a98f); font:inherit; font-size:11.5px; cursor:pointer; text-align:left;" style-hover="border-color:var(--accent,#e3ad33); color:var(--accent-2,#f4c95d);" title="{{ modeHint }}">
+              <span style="font-size:13px;">⇄</span><span style="flex:1;">Mode · {{ modeLabel }}</span>
+            </button>
+          </sc-if>
           <div style="display:flex; gap:6px;">
             <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:2px 8px;">v4.1.0</span>
             <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:2px 8px;">server v3.3.0</span>
@@ -159,6 +167,9 @@
       <sc-if value="{{ showDashboard }}" hint-placeholder-val="{{ true }}">
         <dc-import name="Dashboard" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showOwnerHome }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="OwnerHome" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
       <sc-if value="{{ showWatcher }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Watcher" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
@@ -186,13 +197,16 @@
       <sc-if value="{{ showEvents }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Events" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showMore }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="More" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
+      </sc-if>
     </main>
   </div>
 
   <!-- ══ MOBILE bottom tab bar ══ -->
   <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex; height:62px; background:var(--panel,#16140f); border-top:1px solid var(--line,#34301f); flex-shrink:0; overflow-x:auto;">
-      <sc-for list="{{ navItems }}" as="it" hint-placeholder-count="7">
+      <sc-for list="{{ mobileNavItems }}" as="it" hint-placeholder-count="5">
         <sc-if value="{{ it.on }}" hint-placeholder-val="{{ false }}">
           <button onClick="{{ it.go }}" style="flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border:none; background:transparent; color:var(--accent-2,#f4c95d); font:inherit; cursor:pointer; padding:6px 2px;">
             <span style="font-size:17px;">{{ it.icon }}</span>
@@ -236,6 +250,7 @@
 class Component extends DCLogic {
   state = {
     surface: (() => { try { return localStorage.getItem('king.surface') || 'dashboard'; } catch(e) { return 'dashboard'; } })(),
+    uiMode: (() => { try { return localStorage.getItem('king.uiMode') || 'public'; } catch(e) { return 'public'; } })(),
     owner: (() => {
       try {
         const t = localStorage.getItem('king.ownerToken');
@@ -332,6 +347,12 @@ class Component extends DCLogic {
     this.setState({ surface: id });
   }
 
+  setMode(mode) {
+    const m = mode === 'private' ? 'private' : 'public';
+    try { localStorage.setItem('king.uiMode', m); } catch(e) {}
+    this.setState({ uiMode: m });
+  }
+
   openSignIn() { this.setState({ showSignIn: true }); }
   closeSignIn() { this.setState({ showSignIn: false }); }
 
@@ -340,8 +361,10 @@ class Component extends DCLogic {
       localStorage.removeItem('king.ownerToken');
       localStorage.removeItem('king.owner');
       localStorage.removeItem('king.ownerKey');
+      localStorage.removeItem('king.uiMode');
     } catch(e) {}
-    this.setState({ owner: false, showSignIn: false });
+    try { localStorage.setItem('king.surface', 'dashboard'); } catch(e) {}
+    this.setState({ owner: false, showSignIn: false, uiMode: 'public', surface: 'dashboard' });
   }
 
   toggleOwner() {
@@ -358,81 +381,95 @@ class Component extends DCLogic {
     // Scene Review / Motion Picture) live in the elementLOTUS Studio app (:8770) and
     // are reached via the "Studio ->" door, NOT from the civic nav. (2026-06-14)
     const ITEMS = [
-      { id:'dashboard', label:'Home',            short:'Home',    icon:'◈',  register:'public', owner:false },
-      { id:'mauios',    label:'govOS',           short:'govOS',   icon:'🌺', register:'public', owner:false },
-      { id:'council',   label:'Council & Agendas', short:'Council', icon:'🏛', register:'public', owner:false },
-      { id:'game',      label:'Sage Game',       short:'Game',    icon:'🂡',  register:'public', owner:false },
-      { id:'mooncal',   label:'Moon Calendar',   short:'Moon',    icon:'🌙', register:'public', owner:false },
-      { id:'watcher',   label:'Watcher',         short:'Watch',   icon:'👁',  register:'public', owner:false },
-      { id:'aupuni',    label:'Aupuni Globe',    short:'Globe',   icon:'🌍',  register:'public', owner:false },
-      { id:'studio',    label:'Studio →',        short:'Studio',  icon:'🎛', register:'studio', owner:false, href:'go.html' },
-      { id:'overview',  label:'Overview',        short:'Home',    icon:'◉',  register:'ops',    owner:true },
-      { id:'mission',   label:'Mission Control', short:'Mission', icon:'⌖',  register:'ops',    owner:true },
-      { id:'graph',     label:'Graph Ratchet',   short:'Graph',   icon:'⟡',  register:'ops',    owner:true },
-      { id:'push',      label:'Push · Reach',    short:'Push',    icon:'📡', register:'reach',  owner:true },
-      { id:'ops',       label:'Ops Board',       short:'Ops',     icon:'⌗',  register:'ops',    owner:true },
-      { id:'gpu',       label:'GPU · CPU Router', short:'GPU',     icon:'⚡', register:'ops',    owner:true },
-      { id:'hub',       label:'Hub · Witness',    short:'Hub',     icon:'◈',  register:'ops',    owner:true },
-      { id:'launch',    label:'Launch Center',    short:'Launch',  icon:'📡', register:'ops',    owner:true },
-      { id:'connectors',label:'Connectors',       short:'Connect', icon:'🔗', register:'ops',    owner:true },
-      { id:'events',    label:'Platform Events',  short:'Events',  icon:'◈',  register:'ops',    owner:true },
+      { id:'dashboard', label:'Home',              short:'Home',    icon:'◈', modes:['public'],  core:true,  owner:false },
+      { id:'mauios',    label:'govOS',             short:'govOS',   icon:'🌺', modes:['public'],  core:true,  owner:false },
+      { id:'council',   label:'Council & Agendas', short:'Council', icon:'🏛', modes:['public'],  core:true,  owner:false },
+      { id:'game',      label:'Sage Game',         short:'Game',    icon:'🂡', modes:['public'],  core:true,  owner:false },
+      { id:'studio',    label:'Studio →',          short:'Studio',  icon:'🎛', modes:['public'],  core:false, owner:false, href:'go.html' },
+      { id:'mooncal',   label:'Moon Calendar',     short:'Moon',    icon:'🌙', modes:['public'],  core:false, owner:false },
+      { id:'watcher',   label:'Watcher',           short:'Watch',   icon:'👁', modes:['public'],  core:false, owner:false },
+      { id:'aupuni',    label:'Aupuni Globe',      short:'Globe',   icon:'🌍', modes:['public'],  core:false, owner:false },
+      { id:'ownerhome', label:'Home',              short:'Home',    icon:'◉', modes:['private'], core:true,  owner:true  },
+      { id:'ops',       label:'Ops Board',         short:'Ops',     icon:'⌗', modes:['private'], core:true,  owner:true  },
+      { id:'graph',     label:'Graph Ratchet',     short:'Graph',   icon:'⟡', modes:['private'], core:true,  owner:true  },
+      { id:'gpu',       label:'GPU · CPU Router',  short:'GPU',     icon:'⚡', modes:['private'], core:true,  owner:true  },
+      { id:'events',    label:'Platform Events',   short:'Events',  icon:'◈', modes:['private'], core:true,  owner:true  },
+      { id:'launch',    label:'Launch Center',     short:'Launch',  icon:'📡', modes:['private'], core:false, owner:true  },
+      { id:'connectors',label:'Connectors',        short:'Connect', icon:'🔗', modes:['private'], core:false, owner:true  },
+      { id:'hub',       label:'Hub · Witness',     short:'Hub',     icon:'◈', modes:['private'], core:false, owner:true  },
+      { id:'more',      label:'More',              short:'More',    icon:'⋯', modes:['public', 'private'], core:true, owner:false },
     ];
     const unlocked = this.state.owner;
+    const mode = unlocked && this.state.uiMode === 'private' ? 'private' : 'public';
+    const homeByMode = { public: 'dashboard', private: 'ownerhome' };
+    const modeItems = ITEMS.filter(it => it.modes.indexOf(mode) >= 0 && (!it.owner || unlocked));
+    const modeIds = new Set(modeItems.map(it => it.id));
+    const activeId = modeIds.has(s) ? s : homeByMode[mode];
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors', 'events'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'ownerhome', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors', 'events', 'more'];
     const avail = id => AVAIL.indexOf(id) >= 0;
-    // REGISTER-AWARE: public visitors see CIVIC nav only (govOS / Council / Sage) + the labeled
-    // "Studio →" door. Owner-only ops surfaces are HIDDEN (not shown as cryptic locked icons) unless unlocked.
-    const navItems = ITEMS.filter(it => it.register === 'public' || it.href || (it.owner && unlocked)).map(it => ({
+    // Task-first: show only core tasks in main nav; route low-frequency surfaces through "More".
+    const navItems = modeItems.filter(it => it.core).map(it => ({
       ...it,
       // external doors (href, e.g. Studio) navigate out; everything else is an in-app surface
       go: () => it.href ? (window.location.href = it.href) : this.go(it.id),
-      on: s === it.id,
-      off: s !== it.id,
+      on: activeId === it.id,
+      off: activeId !== it.id,
       locked: !it.href && !avail(it.id),
       lockGlyph: '',
     }));
-    const cur = ITEMS.find(i => i.id === s) || ITEMS[0];
+    const mobileNavItems = (() => {
+      const more = navItems.find(it => it.id === 'more');
+      const primary = navItems.filter(it => it.id !== 'more').slice(0, 4);
+      return more ? [...primary, more] : primary;
+    })();
+    const cur = ITEMS.find(i => i.id === activeId) || ITEMS[0];
     const curLocked = !avail(cur.id);
     const ls = this.state.liveStatus || 'connecting';
     return {
-      navItems, isMobile, isDesktop: !isMobile,
+      navItems, mobileNavItems, isMobile, isDesktop: !isMobile,
       liveOn: ls === 'live', liveOff: ls === 'offline', liveWait: ls === 'connecting',
       liveLabel: this.state.liveLabel || '',
       activeLabel: cur.label,
+      modeLabel: mode === 'private' ? 'PRIVATE' : 'PUBLIC',
+      modeHint: mode === 'private' ? 'Switch to PUBLIC mode' : 'Switch to PRIVATE mode',
+      canSwitchModes: unlocked,
+      modeToggle: () => this.setMode(mode === 'private' ? 'public' : 'private'),
       owner: unlocked,
       ownerToggle: () => this.toggleOwner(),
       ownerGlyph: unlocked ? '🔓' : '🔒',
-      ownerLabel: unlocked ? 'Signed in · tap to sign out' : 'Sign in to unlock owner surfaces',
+      ownerLabel: unlocked ? 'Signed in · tap to sign out' : 'Sign in to unlock private mode',
       showSignIn: this.state.showSignIn,
       goGithubSignIn: () => { window.location.href = `${KING_AUTH_URL}/api/v2/auth/github`; },
       goGoogleSignIn: () => { window.location.href = `${KING_AUTH_URL}/api/v2/auth/google`; },
       closeSignIn: () => this.closeSignIn(),
       showLock: curLocked,
       lockLabel: cur.label,
-      showOverview: s === 'overview' && unlocked && avail('overview'),
+      showOverview: activeId === 'overview' && unlocked && avail('overview'),
       showLyrics: s === 'lyrics' && unlocked && avail('lyrics'),
       showTabs: s === 'tabs' && unlocked && avail('tabs'),
       showScenes: s === 'scenes' && unlocked && avail('scenes'),
       showFilm: s === 'film' && unlocked && avail('film'),
-      showMission: s === 'mission' && unlocked && avail('mission'),
-      showPush: s === 'push' && unlocked && avail('push'),
-      showGame: s === 'game',
-      showMoonCal: s === 'mooncal',
-      showMauios: s === 'mauios',
-      showCouncil: s === 'council',
-      showDashboard: s === 'dashboard',
-      showWatcher: s === 'watcher',
-      showAupuni: s === 'aupuni',
-      showGraph: s === 'graph' && unlocked && avail('graph'),
-      showOps: s === 'ops' && unlocked,
-      showGpu: s === 'gpu' && unlocked && avail('gpu'),
-      showHub: s === 'hub' && unlocked && avail('hub'),
-      showLaunch: s === 'launch' && unlocked && avail('launch'),
-      showConnectors: s === 'connectors' && unlocked && avail('connectors'),
-      showEvents: s === 'events' && unlocked && avail('events'),
+      showMission: activeId === 'mission' && unlocked && avail('mission'),
+      showPush: activeId === 'push' && unlocked && avail('push'),
+      showGame: activeId === 'game',
+      showMoonCal: activeId === 'mooncal',
+      showMauios: activeId === 'mauios',
+      showCouncil: activeId === 'council',
+      showDashboard: activeId === 'dashboard',
+      showOwnerHome: activeId === 'ownerhome' && unlocked && avail('ownerhome'),
+      showWatcher: activeId === 'watcher',
+      showAupuni: activeId === 'aupuni',
+      showGraph: activeId === 'graph' && unlocked && avail('graph'),
+      showOps: activeId === 'ops' && unlocked,
+      showGpu: activeId === 'gpu' && unlocked && avail('gpu'),
+      showHub: activeId === 'hub' && unlocked && avail('hub'),
+      showLaunch: activeId === 'launch' && unlocked && avail('launch'),
+      showConnectors: activeId === 'connectors' && unlocked && avail('connectors'),
+      showEvents: activeId === 'events' && unlocked && avail('events'),
+      showMore: activeId === 'more' && avail('more'),
     };
   }
 }
