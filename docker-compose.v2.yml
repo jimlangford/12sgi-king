@@ -51,9 +51,11 @@ x-common-env: &common-env
   # AuraDB Free (cloud mirror — fallback when local Neo4j is offline)
   # Set these in .env.v2 (gitignored) after creating a free instance at
   # https://neo4j.com/cloud/aura-free/ — no credit card required.
+  # Leave empty to disable Aura fallback (graceful degradation).
   NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
   NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
   NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+  NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
 
 services:
   neo4j:
@@ -268,6 +270,9 @@ services:
       KING_BRIDGE_DB: /data/db/king_bridge.db
       OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
       NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
       KING_BRIDGE_INFER_TIMEOUT: ${KING_BRIDGE_INFER_TIMEOUT:-120}
       KING_BRIDGE_POLL_MAX: ${KING_BRIDGE_POLL_MAX:-10}
     volumes:

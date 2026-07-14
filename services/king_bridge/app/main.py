@@ -87,6 +87,9 @@ SERVICE_NAME    = "king-bridge"
 VERSION         = os.environ.get("VERSION", "2.0.0")
 OLLAMA_BASE     = os.environ.get("OLLAMA_BASE", "http://host.docker.internal:11434")
 NEO4J_HTTP      = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
+AURA_URI        = os.environ.get("NEO4J_AURA_URI", "").strip()
+AURA_USER       = os.environ.get("NEO4J_AURA_USER", "neo4j")
+AURA_PASSWORD   = os.environ.get("NEO4J_AURA_PASSWORD", "").strip()
 DB_PATH         = os.environ.get("KING_BRIDGE_DB", "/data/db/king_bridge.db")
 INFER_TIMEOUT   = int(os.environ.get("KING_BRIDGE_INFER_TIMEOUT", "120"))
 POLL_MAX        = int(os.environ.get("KING_BRIDGE_POLL_MAX", "10"))
@@ -231,10 +234,44 @@ def _ollama_ready() -> bool:
 
 
 # ── Neo4j helpers ─────────────────────────────────────────────────────────────
+def _cypher_endpoint() -> tuple[str, bool]:
+    """
+    Return the endpoint to use (local Neo4j or AuraDB) and whether AuraDB is active.
+    Strategy: try local first. If it fails, check Aura. Use whichever is reachable.
+    Falls back to read-only Aura if local is offline.
+    """
+    if _neo_ready():
+        return NEO4J_HTTP, False
+    if AURA_URI and AURA_PASSWORD:
+        # Aura is configured; caller can detect and handle
+        return AURA_URI, True
+    # Neither available — return local (will fail gracefully in caller)
+    return NEO4J_HTTP, False
+
+
 def _neo_cypher(statements: list[dict]) -> dict | None:
+    endpoint, is_aura = _cypher_endpoint()
+    if is_aura and "neo4j+" in endpoint:
+        # Aura fallback: try bolt driver if available
+        try:
+            from neo4j import GraphDatabase
+            driver = GraphDatabase.driver(endpoint, auth=(AURA_USER, AURA_PASSWORD))
+            session = driver.session()
+            try:
+                stmt = statements[0]["statement"]
+                params = statements[0].get("parameters") or {}
+                result = session.run(stmt, **params)
+                return {"results": [{"data": [{"row": list(record)} for record in result]}]}
+            finally:
+                session.close()
+        except ImportError:
+            pass  # Fall through to HTTP
+        except Exception:
+            return None
+    # Local HTTP or fallback
     payload = json.dumps({"statements": statements}).encode()
     req = urllib.request.Request(
-        NEO4J_HTTP,
+        endpoint,
         data=payload,
         headers={"Content-Type": "application/json", "Accept": "application/json"},
         method="POST",
@@ -407,23 +444,26 @@ def _require_internal(x_service_token: str | None):
 @app.get(f"{API_PREFIX}/ready")
 def ready(response: Response):
     ollama_ok = _ollama_ready()
-    neo_ok    = _neo_ready()
-    db_ok     = True
+    neo_local_ok = _neo_ready()
+    aura_available = AURA_URI and AURA_PASSWORD  # Configured, not necessarily reachable
+    neo_ok = neo_local_ok or aura_available  # At least one should work
+    db_ok = True
     try:
         with _db() as conn:
             conn.execute("SELECT 1").fetchone()
     except Exception:
         db_ok = False
 
-    is_ready = ollama_ok and db_ok
+    is_ready = ollama_ok and neo_ok and db_ok
     response.status_code = 200 if is_ready else 503
     return {
-        "status":  "ready" if is_ready else "not-ready",
+        "status": "ready" if is_ready else "not-ready",
         "service": SERVICE_NAME,
         "version": VERSION,
         "dependencies": {
-            "ollama":  ollama_ok,
-            "neo4j":   neo_ok,
+            "ollama": ollama_ok,
+            "neo4j_local": neo_local_ok,
+            "aura_configured": aura_available,
             "database": db_ok,
         },
     }

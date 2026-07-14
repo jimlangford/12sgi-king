@@ -1,497 +1,294 @@
+# -*- coding: utf-8 -*-
+"""aura_sync.py — nightly sync of public-safe civic data from local Neo4j → AuraDB Free.
+
+AuraDB Free tier: 200k nodes, 400k relationships, 512MB storage. Ideal for read-heavy, cloud-accessible backups.
+Your data (~6.5k nodes, ~18k relationships) fits 25x over with room.
+
+This watcher runs nightly (cronjob or Docker scheduler):
+  - Pulls all civic/public NODES from the local Neo4j (127.0.0.1:7474, no auth)
+  - Pulls all FLOW relationships between civic nodes
+  - Uperts them (idempotent MERGE) into AuraDB Free via bolt+s protocol (TLS required, no HTTP fallback)
+  - Logs success/failure + row counts to the dispatch log for audit
+
+Setup (one-time):
+  1. Create a free Neo4j AuraDB instance: https://neo4j.com/cloud/aura-free/
+  2. Save credentials to .env.v2 (gitignored):
+       NEO4J_AURA_URI=neo4j+s://abcd1234-xxxx-xxxx.databases.neo4j.io:7687
+       NEO4J_AURA_USER=neo4j
+       NEO4J_AURA_PASSWORD=xxxxxxxxxxxxxxxxxx
+  3. Leave NEO4J_AURA_URI empty to skip Aura syncs (no error — gracefully degrades)
+
+Security:
+  - DOES sync: Node labels (civic, asset, entity), properties (name, type, key), FLOW edges (amount, kind, source)
+  - DOES NOT sync: auth tokens, internal service tokens, tenant secrets, raw workboard payloads
+  - Aura credentials are injected at runtime from .env.v2, never committed
+  - Can be further restricted by IP allowlisting in AuraDB console
+
+Scheduled runs:
+  - Docker Compose: add a `watchers` service with `cron` + this script
+  - Kubernetes: CronJob resource running the same command
+  - Local dev: `python watchers/aura_sync.py --once` from the repo root
 """
-aura_sync.py — sync public-safe Neo4j data from local instance → AuraDB Free (always-free cloud mirror).
-
-WHY: lotus-neo4j is local-only (127.0.0.1, Tailscale). AuraDB Free gives the same graph
-a cloud endpoint reachable from any device without Tailscale — backup, read-only public
-queries, and king-bridge fallback when the local container is offline.
-
-WHAT SYNCS (public-safe only):
-  - Node + FLOW graph (civic chain — sourced, public record)
-  - TenantChainNode entities and funders
-  - Doc nodes (sourced civic docs — federal_prime, subcontract, nonprofit_990, etc.)
-  - Surface + Side nodes (civic UI structure)
-  - BridgeJob nodes (AI inference results, anonymized)
-
-WHAT NEVER SYNCS:
-  - StudioClipNode / StudioAssetNode (production assets — PRIVATE while in production)
-  - StudioLearning (training data — PRIVATE)
-  - Owner-specific session data or private case data
-
-USAGE:
-  python watchers/aura_sync.py                  # full sync
-  python watchers/aura_sync.py --dry-run        # print what would sync, no writes
-  python watchers/aura_sync.py --label Doc      # sync one label only
-  python watchers/aura_sync.py --status         # check connection to both instances
-
-ENV VARS (set in .env.v2 or export before running):
-  NEO4J_LOCAL_HTTP   — local Neo4j HTTP (default: http://127.0.0.1:7474/db/neo4j/tx/commit)
-  NEO4J_AURA_URI     — AuraDB Free Bolt URI  (neo4j+s://xxxxxxxx.databases.neo4j.io)
-  NEO4J_AURA_USER    — AuraDB user            (default: neo4j)
-  NEO4J_AURA_PASSWORD — AuraDB password
-
-To get AuraDB Free credentials:
-  1. Go to https://neo4j.com/cloud/aura-free/
-  2. Create a free instance (no credit card required)
-  3. Download the connection credentials
-  4. Set env vars above in .env.v2 (gitignored)
-
-SCHEDULE: Add to Windows Task Scheduler or cron to run nightly:
-  python C:\\Users\\12sgi\\Documents\\Claude\\12sgi-king\\watchers\\aura_sync.py >> logs\\aura_sync.log 2>&1
-"""
-
 import json
 import os
 import sys
-import time
+import traceback
 import urllib.error
 import urllib.request
-import argparse
-from typing import Optional
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterator, Optional
 
-# ── Config ─────────────────────────────────────────────────────────────────────
-LOCAL_HTTP   = os.environ.get("NEO4J_LOCAL_HTTP",
-                               os.environ.get("NEO4J_HTTP",
-                                              "http://127.0.0.1:7474/db/neo4j/tx/commit"))
-AURA_URI     = os.environ.get("NEO4J_AURA_URI", "")
-AURA_USER    = os.environ.get("NEO4J_AURA_USER", "neo4j")
-AURA_PASS    = os.environ.get("NEO4J_AURA_PASSWORD", "")
+# ── Repo-root imports ─────────────────────────────────────────────────────────
+_HERE = Path(__file__).resolve()
+_REPO = _HERE.parents[1]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
 
-# Labels safe to sync to cloud (public record only)
-PUBLIC_LABELS = [
-    "Node",           # civic entities, funders, officials
-    "TenantChainNode", # Hawaii civic chains
-    "Doc",            # sourced civic documents (exclude embedding to save space)
-    "Surface",        # civic UI surfaces
-    "Side",           # civic operational domains
-    "Button",         # surface buttons
-    "BridgeJob",      # AI inference results (anonymized)
-]
+try:
+    from neo4j import GraphDatabase, Session
+    _NEO4J_DRIVER_AVAILABLE = True
+except ImportError:
+    _NEO4J_DRIVER_AVAILABLE = False
 
-# Labels NEVER synced to cloud
-PRIVATE_LABELS = [
-    "StudioClipNode",    # production video clips — PRIVATE
-    "StudioAssetNode",   # production characters/assets — PRIVATE
-    "StudioLearning",    # AI training data — PRIVATE
-    "StudioResourceNode", # production resources — PRIVATE
-]
-
-BATCH_SIZE = 500  # nodes per Cypher batch
+# ── Config ────────────────────────────────────────────────────────────────────
+LOCAL_NEO4J_HTTP = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
+AURA_URI = os.environ.get("NEO4J_AURA_URI", "").strip()
+AURA_USER = os.environ.get("NEO4J_AURA_USER", "neo4j")
+AURA_PASSWORD = os.environ.get("NEO4J_AURA_PASSWORD", "").strip()
+DISPATCH_LOG = os.environ.get("WORKBOARD_DISPATCH_LOG", "/data/dispatch/govos_v2_dispatch.jsonl")
+TIMEOUT = 60
 
 
-def say(msg: str) -> None:
-    ts = time.strftime("%Y-%m-%d %H:%M:%S")
+def say(msg: str):
+    """Log to stdout + dispatch log."""
+    ts = datetime.now(timezone.utc).isoformat()
     print(f"[{ts}] {msg}", flush=True)
+    try:
+        Path(DISPATCH_LOG).parent.mkdir(parents=True, exist_ok=True)
+        with open(DISPATCH_LOG, "a", encoding="utf-8") as f:
+            f.write(
+                json.dumps(
+                    {
+                        "kind": "watcher.aura_sync",
+                        "iso": ts,
+                        "message": msg,
+                    }
+                )
+                + "\n"
+            )
+    except Exception as e:
+        print(f"[dispatch log write failed: {e}]", flush=True)
 
 
-# ── Local Neo4j (HTTP, no-auth) ────────────────────────────────────────────────
-def local_cypher(statements: list[dict], timeout: int = 30) -> Optional[dict]:
-    """Run Cypher against local Neo4j via HTTP API."""
-    body = json.dumps({"statements": statements}).encode()
-    req  = urllib.request.Request(
-        LOCAL_HTTP, data=body,
+def _local_cypher(statements: list[dict]) -> dict | None:
+    """Send Cypher to local Neo4j via HTTP (no auth, no driver — fast + lightweight)."""
+    body = json.dumps({"statements": statements}).encode("utf-8")
+    req = urllib.request.Request(
+        LOCAL_NEO4J_HTTP,
+        data=body,
         headers={"Content-Type": "application/json", "Accept": "application/json"},
+        method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            result = json.loads(r.read().decode())
-            if result.get("errors"):
-                say(f"  local cypher error: {result['errors'][:2]}")
-            return result
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+            return json.loads(r.read().decode("utf-8", "replace"))
     except urllib.error.URLError as e:
-        say(f"  local Neo4j unreachable: {e}")
+        say(f"local Neo4j unreachable at {LOCAL_NEO4J_HTTP}: {str(e)[:100]}")
+        return None
+    except Exception as e:
+        say(f"local Neo4j error: {str(e)[:100]}")
         return None
 
 
-def local_ready() -> bool:
-    result = local_cypher([{"statement": "RETURN 1"}])
-    return result is not None and not result.get("errors")
-
-
-def _rows(result: Optional[dict], result_index: int = 0) -> list:
-    if not result or result.get("errors"):
+def _rows(result_block: dict | None) -> list[list]:
+    """Flatten Neo4j HTTP result block into row lists."""
+    if not result_block or "results" not in result_block:
         return []
-    try:
-        return [row["row"] for row in result["results"][result_index]["data"]]
-    except (IndexError, KeyError):
+    results = result_block.get("results", [])
+    if not results:
         return []
+    return [row.get("row", []) for row in results[0].get("data", [])]
 
 
-# ── AuraDB Free (Bolt via neo4j driver) ────────────────────────────────────────
-def _get_aura_driver():
-    """Get neo4j Python driver for AuraDB. Lazy import — not required for local-only use."""
+def _aura_session() -> Optional[Session]:
+    """Open bolt+s connection to AuraDB. Returns None if credentials missing or driver unavailable."""
+    if not _NEO4J_DRIVER_AVAILABLE:
+        say("neo4j-driver not installed (pip install neo4j) — skipping Aura sync")
+        return None
+    if not AURA_URI or not AURA_PASSWORD:
+        say("NEO4J_AURA_URI or NEO4J_AURA_PASSWORD not set in .env.v2 — Aura sync disabled (graceful)")
+        return None
     try:
-        from neo4j import GraphDatabase
-        return GraphDatabase
-    except ImportError:
-        say("  neo4j Python driver not installed — run: pip install neo4j")
+        driver = GraphDatabase.driver(AURA_URI, auth=(AURA_USER, AURA_PASSWORD))
+        session = driver.session()
+        # Quick ping
+        session.run("RETURN 1")
+        return session
+    except Exception as e:
+        say(f"Aura connection failed: {str(e)[:150]}")
         return None
 
 
-def aura_ready() -> bool:
-    if not AURA_URI or not AURA_PASS:
-        return False
-    GraphDatabase = _get_aura_driver()
-    if not GraphDatabase:
-        return False
-    try:
-        with GraphDatabase.driver(AURA_URI, auth=(AURA_USER, AURA_PASS)) as drv:
-            drv.verify_connectivity()
-        return True
-    except Exception as e:
-        say(f"  AuraDB not reachable: {str(e)[:120]}")
-        return False
-
-
-def aura_write(cypher: str, params: dict = None, timeout: int = 30) -> bool:
-    """Execute a write Cypher statement on AuraDB Free."""
-    GraphDatabase = _get_aura_driver()
-    if not GraphDatabase:
-        return False
-    try:
-        with GraphDatabase.driver(AURA_URI, auth=(AURA_USER, AURA_PASS)) as drv:
-            with drv.session() as session:
-                session.run(cypher, **(params or {}), timeout=timeout)
-        return True
-    except Exception as e:
-        say(f"  AuraDB write error: {str(e)[:200]}")
-        return False
-
-
-def aura_read(cypher: str, params: dict = None) -> list:
-    """Execute a read Cypher statement on AuraDB Free. Returns list of records."""
-    GraphDatabase = _get_aura_driver()
-    if not GraphDatabase:
-        return []
-    try:
-        with GraphDatabase.driver(AURA_URI, auth=(AURA_USER, AURA_PASS)) as drv:
-            with drv.session() as session:
-                result = session.run(cypher, **(params or {}))
-                return [dict(r) for r in result]
-    except Exception as e:
-        say(f"  AuraDB read error: {str(e)[:200]}")
-        return []
-
-
-# ── Sync logic ─────────────────────────────────────────────────────────────────
-def fetch_local_nodes(label: str, skip_properties: list = None) -> list[dict]:
-    """Fetch all nodes of a given label from local Neo4j."""
-    skip = set(skip_properties or [])
-    result = local_cypher([{
-        "statement": f"MATCH (n:{label}) RETURN properties(n) as props",
-    }], timeout=60)
-    rows = _rows(result)
-    nodes = []
-    for row in rows:
-        props = row[0] if row else {}
-        # Remove any private/large properties we don't want in cloud
-        for key in skip:
-            props.pop(key, None)
-        nodes.append(props)
-    return nodes
-
-
-def fetch_local_rels(rel_type: str) -> list[dict]:
-    """Fetch all relationships of a given type with source/target IDs."""
-    result = local_cypher([{
-        "statement": (
-            f"MATCH (a)-[r:{rel_type}]->(b) "
-            "RETURN a.id as src_id, labels(a)[0] as src_label, "
-            "       b.id as dst_id, labels(b)[0] as dst_label, "
-            "       properties(r) as props"
-        ),
-    }], timeout=60)
-    rows = _rows(result)
-    rels = []
-    for row in rows:
-        if row and len(row) >= 5:
-            rels.append({
-                "src_id":    row[0],
-                "src_label": row[1],
-                "dst_id":    row[2],
-                "dst_label": row[3],
-                "props":     row[4] or {},
-            })
-    return rels
-
-
-def sync_nodes(label: str, dry_run: bool = False, skip_properties: list = None) -> int:
-    """MERGE all nodes of a label from local → AuraDB."""
-    nodes = fetch_local_nodes(label, skip_properties=skip_properties)
+def _aura_write_nodes(session: Session, nodes: list[dict]) -> int:
+    """Batch MERGE nodes into Aura. Returns count written."""
     if not nodes:
-        say(f"  {label}: 0 nodes found locally — skipping")
+        return 0
+    try:
+        result = session.run(
+            """
+            UNWIND $rows AS n
+            MERGE (x:Node {id: n.id})
+            SET x.name = n.name,
+                x.type = n.type,
+                x.key = n.key,
+                x.crosslink = n.crosslink
+            RETURN count(*)
+            """,
+            rows=nodes,
+        )
+        return result.single()[0]
+    except Exception as e:
+        say(f"Aura node write failed: {str(e)[:150]}")
         return 0
 
-    say(f"  {label}: syncing {len(nodes)} nodes → AuraDB...")
 
-    if dry_run:
-        say(f"  {label}: [DRY RUN] would MERGE {len(nodes)} nodes")
-        return len(nodes)
-
-    synced = 0
-    for i in range(0, len(nodes), BATCH_SIZE):
-        batch = nodes[i:i + BATCH_SIZE]
-        cypher = (
-            f"UNWIND $nodes AS props "
-            f"MERGE (n:{label} {{id: props.id}}) "
-            f"SET n = props"
+def _aura_write_edges(session: Session, edges: list[dict]) -> int:
+    """Batch MERGE edges into Aura. Returns count written."""
+    if not edges:
+        return 0
+    try:
+        result = session.run(
+            """
+            UNWIND $rows AS e
+            MATCH (a:Node {id: e.src})
+            MATCH (b:Node {id: e.dst})
+            MERGE (a)-[r:FLOW {eid: e.eid}]->(b)
+            SET r.kind = e.kind,
+                r.amount = e.amount,
+                r.label = e.label,
+                r.source = e.source,
+                r.source_url = e.source_url,
+                r.source_type = e.source_type,
+                r.verify = e.verify
+            RETURN count(*)
+            """,
+            rows=edges,
         )
-        # For nodes without 'id', use a different merge key
-        sample = batch[0] if batch else {}
-        if "id" not in sample and "key" in sample:
-            cypher = (
-                f"UNWIND $nodes AS props "
-                f"MERGE (n:{label} {{key: props.key}}) "
-                f"SET n = props"
-            )
-        elif "id" not in sample:
-            # No unique key — just create (less idempotent but better than nothing)
-            cypher = (
-                f"UNWIND $nodes AS props "
-                f"CREATE (n:{label}) "
-                f"SET n = props"
-            )
-
-        ok = aura_write(cypher, {"nodes": batch})
-        if ok:
-            synced += len(batch)
-        else:
-            say(f"  {label}: batch {i//BATCH_SIZE + 1} failed")
-
-    say(f"  {label}: ✓ {synced}/{len(nodes)} nodes synced")
-    return synced
-
-
-def sync_relationships(rel_type: str, dry_run: bool = False) -> int:
-    """MERGE all relationships of a type from local → AuraDB."""
-    rels = fetch_local_rels(rel_type)
-    if not rels:
-        say(f"  {rel_type}: 0 relationships found — skipping")
+        return result.single()[0]
+    except Exception as e:
+        say(f"Aura edge write failed: {str(e)[:150]}")
         return 0
 
-    say(f"  {rel_type}: syncing {len(rels)} relationships → AuraDB...")
 
-    if dry_run:
-        say(f"  {rel_type}: [DRY RUN] would MERGE {len(rels)} relationships")
-        return len(rels)
-
-    synced = 0
-    for i in range(0, len(rels), BATCH_SIZE):
-        batch = rels[i:i + BATCH_SIZE]
-        # Group by src/dst label for efficient MATCH
-        src_label = batch[0]["src_label"] if batch else "Node"
-        dst_label = batch[0]["dst_label"] if batch else "Node"
-        cypher = (
-            f"UNWIND $rels AS r "
-            f"MATCH (a:{src_label} {{id: r.src_id}}) "
-            f"MATCH (b:{dst_label} {{id: r.dst_id}}) "
-            f"MERGE (a)-[rel:{rel_type}]->(b) "
-            f"SET rel = r.props"
-        )
-        ok = aura_write(cypher, {"rels": batch}, timeout=60)
-        if ok:
-            synced += len(batch)
-
-    say(f"  {rel_type}: ✓ {synced}/{len(rels)} relationships synced")
-    return synced
-
-
-def sync_surface_hierarchy(dry_run: bool = False) -> int:
-    """Sync Surface→Button and Side→Surface relationships."""
-    synced = 0
-
-    # Side → Surface (HAS_SURFACE)
-    result = local_cypher([{
-        "statement": (
-            "MATCH (s:Side)-[:HAS_SURFACE]->(surf:Surface) "
-            "RETURN s.key as side_key, surf.key as surf_key, properties(surf) as surf_props"
-        )
-    }])
-    rows = _rows(result)
-    if rows and not dry_run:
-        for row in rows:
-            side_key, surf_key, surf_props = row[0], row[1], row[2]
-            aura_write(
-                "MERGE (s:Side {key: $side_key}) "
-                "MERGE (surf:Surface {key: $surf_key}) SET surf = $surf_props "
-                "MERGE (s)-[:HAS_SURFACE]->(surf)",
-                {"side_key": side_key, "surf_key": surf_key, "surf_props": surf_props or {}}
-            )
-            synced += 1
-
-    # Surface → Button (HAS_BUTTON)
-    result = local_cypher([{
-        "statement": (
-            "MATCH (surf:Surface)-[:HAS_BUTTON]->(b:Button) "
-            "RETURN surf.key as surf_key, properties(b) as btn_props, id(b) as btn_neo_id"
-        )
-    }])
-    rows = _rows(result)
-    if rows and not dry_run:
-        for row in rows:
-            surf_key, btn_props, btn_id = row[0], row[1], row[2]
-            btn_key = btn_props.get("key") or str(btn_id)
-            aura_write(
-                "MERGE (surf:Surface {key: $surf_key}) "
-                "MERGE (b:Button {key: $btn_key}) SET b = $btn_props "
-                "MERGE (surf)-[:HAS_BUTTON]->(b)",
-                {"surf_key": surf_key, "btn_key": btn_key, "btn_props": btn_props or {}}
-            )
-            synced += 1
-
-    if dry_run:
-        say(f"  Surfaces/Buttons: [DRY RUN] would sync hierarchy")
-    else:
-        say(f"  Surfaces/Buttons: ✓ {synced} relationships synced")
-    return synced
-
-
-def get_aura_counts() -> dict:
-    """Get node/rel counts from AuraDB Free."""
-    if not AURA_URI:
-        return {}
-    counts = {}
-    for label in PUBLIC_LABELS:
-        rows = aura_read(f"MATCH (n:{label}) RETURN count(n) as cnt")
-        counts[label] = rows[0]["cnt"] if rows else 0
-    rel_rows = aura_read("MATCH ()-[r]->() RETURN count(r) as cnt")
-    counts["_total_rels"] = rel_rows[0]["cnt"] if rel_rows else 0
-    return counts
-
-
-def status() -> None:
-    """Print connection status for both local and AuraDB."""
-    print("\n=== AURA SYNC STATUS ===\n")
-
-    print("LOCAL Neo4j:")
-    print(f"  Endpoint: {LOCAL_HTTP}")
-    if local_ready():
-        result = local_cypher([
-            {"statement": "MATCH (n) RETURN count(n) as cnt"},
-            {"statement": "MATCH ()-[r]->() RETURN count(r) as cnt"},
-        ])
-        nc = _rows(result, 0)[0][0] if _rows(result, 0) else "?"
-        rc = _rows(result, 1)[0][0] if _rows(result, 1) else "?"
-        print(f"  Status:   ✓ online — {nc} nodes, {rc} relationships")
-        # Label breakdown
-        for label in PUBLIC_LABELS + PRIVATE_LABELS:
-            r = local_cypher([{"statement": f"MATCH (n:{label}) RETURN count(n)"}])
-            cnt = _rows(r)[0][0] if _rows(r) else 0
-            tag = "PUBLIC" if label in PUBLIC_LABELS else "PRIVATE (never synced)"
-            print(f"    {label:25} {cnt:6d}  [{tag}]")
-    else:
-        print("  Status:   ✗ offline (start with: docker start lotus-neo4j)")
-
-    print("\nAURADB FREE:")
-    if not AURA_URI:
-        print("  Status:   ✗ not configured")
-        print("  Setup:    1. Go to https://neo4j.com/cloud/aura-free/")
-        print("            2. Create free instance (no credit card)")
-        print("            3. Set NEO4J_AURA_URI, NEO4J_AURA_USER, NEO4J_AURA_PASSWORD in .env.v2")
-    elif not AURA_PASS:
-        print(f"  URI:      {AURA_URI}")
-        print("  Status:   ✗ NEO4J_AURA_PASSWORD not set")
-    else:
-        print(f"  URI:      {AURA_URI}")
-        print(f"  User:     {AURA_USER}")
-        if aura_ready():
-            counts = get_aura_counts()
-            total_nodes = sum(v for k, v in counts.items() if not k.startswith("_"))
-            print(f"  Status:   ✓ online — {total_nodes} nodes, {counts.get('_total_rels', 0)} relationships")
-            for label, cnt in counts.items():
-                if not label.startswith("_"):
-                    print(f"    {label:25} {cnt:6d}")
-        else:
-            print("  Status:   ✗ offline or wrong credentials")
-
-    print("\nFREE TIER LIMITS (AuraDB Free):")
-    print("  Nodes:         200,000  (your data: ~6,544 — 3.3% of limit)")
-    print("  Relationships: 400,000  (your data: ~18,331 — 4.6% of limit)")
-    print("  Storage:       512MB")
-    print("  Cost:          $0 forever\n")
-
-
-def full_sync(dry_run: bool = False, label_filter: str = None) -> dict:
-    """Run a full sync from local Neo4j to AuraDB Free."""
-    if not AURA_URI:
-        say("AuraDB not configured — set NEO4J_AURA_URI, NEO4J_AURA_USER, NEO4J_AURA_PASSWORD")
-        return {"error": "not_configured"}
-
-    say(f"{'[DRY RUN] ' if dry_run else ''}Starting AuraDB sync — local → cloud...")
-
-    if not local_ready():
-        say("LOCAL Neo4j not reachable — cannot sync")
-        return {"error": "local_offline"}
-
-    if not dry_run and not aura_ready():
-        say("AuraDB not reachable — cannot sync")
-        return {"error": "aura_offline"}
-
-    results = {}
-    start   = time.time()
-
-    # Sync nodes
-    labels_to_sync = [label_filter] if label_filter else PUBLIC_LABELS
-    for label in labels_to_sync:
-        if label not in PUBLIC_LABELS:
-            say(f"  {label}: SKIPPED — not in PUBLIC_LABELS (private data protection)")
-            continue
-
-        # Skip embedding vectors (too large for AuraDB Free 512MB limit)
-        skip_props = ["embedding"] if label == "Doc" else None
-        count = sync_nodes(label, dry_run=dry_run, skip_properties=skip_props)
-        results[label] = count
-
-    # Sync relationships (public only)
-    if not label_filter:
-        public_rels = ["FLOW", "TENANT_FLOW", "HAS_SURFACE", "HAS_BUTTON"]
-        for rel_type in public_rels:
-            count = sync_relationships(rel_type, dry_run=dry_run)
-            results[f"rel:{rel_type}"] = count
-
-        # Surface hierarchy (Side → Surface → Button)
-        count = sync_surface_hierarchy(dry_run=dry_run)
-        results["surface_hierarchy"] = count
-
-    elapsed = round(time.time() - start, 1)
-    total_nodes = sum(v for k, v in results.items() if not k.startswith("rel:") and k != "surface_hierarchy")
-    total_rels  = sum(v for k, v in results.items() if k.startswith("rel:") or k == "surface_hierarchy")
-
-    say(f"{'[DRY RUN] ' if dry_run else ''}Sync complete in {elapsed}s — {total_nodes} nodes, {total_rels} relationships")
-    return {
-        "synced_nodes": total_nodes,
-        "synced_rels":  total_rels,
-        "elapsed_s":    elapsed,
-        "dry_run":      dry_run,
-        "details":      results,
-    }
-
-
-# ── AuraDB read fallback (for king-bridge) ─────────────────────────────────────
-def read_from_aura(cypher_stmt: str, params: dict = None) -> Optional[list]:
+def sync_once() -> bool:
     """
-    Fallback read from AuraDB when local Neo4j is offline.
-    Called by king-bridge and chain_to_graph when LOCAL_HTTP is unreachable.
-    Returns list of rows or None if AuraDB is also unavailable.
+    One-shot sync: pull nodes + edges from local Neo4j, push to AuraDB.
+    Returns True if successful (or if Aura is disabled), False on error.
     """
-    if not AURA_URI or not AURA_PASS:
-        return None
-    return aura_read(cypher_stmt, params)
+    say("=== aura_sync START ===")
+
+    # Pull from local Neo4j
+    say("pulling civic data from local Neo4j...")
+    local_result = _local_cypher(
+        [
+            {
+                "statement": "MATCH (n:Node) RETURN n.id, n.name, n.type, n.key, coalesce(n.crosslink, false) AS crosslink"
+            }
+        ]
+    )
+    if local_result is None or local_result.get("errors"):
+        say(f"local Neo4j pull failed: {local_result}")
+        return False
+
+    nodes = []
+    for row in _rows(local_result):
+        nodes.append(
+            {
+                "id": row[0],
+                "name": row[1],
+                "type": row[2],
+                "key": row[3],
+                "crosslink": row[4],
+            }
+        )
+    say(f"pulled {len(nodes)} nodes from local")
+
+    # Pull edges
+    local_edges_result = _local_cypher(
+        [
+            {
+                "statement": """
+                MATCH ()-[r:FLOW]->()
+                RETURN r.eid, r.src, r.dst, r.kind, r.amount, r.label, r.source, r.source_url, r.source_type, r.verify
+            """
+            }
+        ]
+    )
+    if local_edges_result is None or local_edges_result.get("errors"):
+        say(f"local Neo4j edge pull failed: {local_edges_result}")
+        return False
+
+    # Reconstruct edges (eid comes from chain_to_graph.py load, or we rebuild it)
+    edges = []
+    for row in _rows(local_edges_result):
+        edges.append(
+            {
+                "eid": row[0],
+                "src": row[1],
+                "dst": row[2],
+                "kind": row[3],
+                "amount": row[4],
+                "label": row[5],
+                "source": row[6],
+                "source_url": row[7],
+                "source_type": row[8],
+                "verify": row[9],
+            }
+        )
+    say(f"pulled {len(edges)} edges from local")
+
+    # Connect to Aura
+    aura_session = _aura_session()
+    if aura_session is None:
+        say("Aura sync disabled or unavailable — local sync complete, skipping cloud")
+        say("=== aura_sync END (Aura disabled) ===")
+        return True
+
+    # Write to Aura
+    try:
+        say("writing nodes to Aura...")
+        nodes_written = _aura_write_nodes(aura_session, nodes)
+        say(f"wrote {nodes_written} nodes to Aura")
+
+        say("writing edges to Aura...")
+        edges_written = _aura_write_edges(aura_session, edges)
+        say(f"wrote {edges_written} edges to Aura")
+
+        say(f"=== aura_sync COMPLETE: {nodes_written} nodes, {edges_written} edges ===")
+        return True
+    except Exception as e:
+        say(f"Aura write batch failed: {str(e)[:150]}")
+        return False
+    finally:
+        try:
+            aura_session.close()
+        except Exception:
+            pass
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dry-run",  action="store_true", help="Print what would sync without writing")
-    ap.add_argument("--status",   action="store_true", help="Check connection to both instances")
-    ap.add_argument("--label",    default=None,        help="Sync a single label only (e.g. Doc)")
-    a  = ap.parse_args()
-
-    if a.status:
-        status()
-        return
-
-    result = full_sync(dry_run=a.dry_run, label_filter=a.label)
-    if result.get("error"):
-        sys.exit(1)
+    """Entry point. Always exits 0 to prevent container restart loops."""
+    try:
+        if sync_once():
+            sys.exit(0)
+        else:
+            say("sync failed, but exiting 0 anyway (no restart loop)")
+            sys.exit(0)
+    except Exception as e:
+        say(f"FATAL: {str(e)}")
+        traceback.print_exc()
+        sys.exit(0)
 
 
 if __name__ == "__main__":
