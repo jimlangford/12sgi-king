@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<!-- Records & Assets panel — owner-gated within the Naga shell.
+     Embeds Open WebUI as an iframe so the owner can work records/assets
+     with a local AI co-pilot without leaving the console.
+
+     URL resolution order (configure via window globals in go.html or king-server):
+       1. window.OPEN_WEBUI_URL          — explicit override (e.g. https://ai.example.com)
+       2. window.KING_OPEN_WEBUI_URL     — king-server injection
+       3. /openwebui/                    — reverse-proxy path on the same origin (normal remote use)
+       4. http://127.0.0.1:3000         — local-machine fallback only; not valid on iPad/remote
+
+     PRIVATE · owner-only · never published to public site/. -->
+
+<div data-surface="records" data-screen-label="Records &amp; Assets"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+
+  <!-- Panel header -->
+  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f);">
+    <span style="font-size:18px; color:var(--accent,#e3ad33);">📂</span>
+    <div>
+      <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">12sgi · Records &amp; Assets</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Open WebUI · Asset Management</div>
+    </div>
+    <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(227,173,51,0.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:3px 10px;">owner · private</span>
+  </div>
+
+  <div style="display:flex; flex-direction:column; height:calc(100vh - 57px);">
+
+    <!-- Asset context selector -->
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f); background:var(--panel,#16140f);">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-right:4px;">Context:</span>
+      <button id="rec-ctx-civic"   onclick="setRecordsContext('civic')"   style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Civic Records</button>
+      <button id="rec-ctx-media"   onclick="setRecordsContext('media')"   style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Media Assets</button>
+      <button id="rec-ctx-graph"   onclick="setRecordsContext('graph')"   style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Graph Nodes</button>
+      <button id="rec-ctx-board"   onclick="setRecordsContext('board')"   style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Workboard</button>
+      <span id="rec-url-chip" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:2px 9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:240px;"></span>
+    </div>
+
+    <!-- Open WebUI iframe -->
+    <div style="flex:1; position:relative; overflow:hidden;">
+      <iframe id="rec-webui-frame"
+        allow="microphone; camera; clipboard-write"
+        style="position:absolute; inset:0; width:100%; height:100%; border:none; background:#0c0b09;">
+      </iframe>
+      <!-- Placeholder shown while src is resolving or unavailable -->
+      <div id="rec-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:32px; text-align:center; pointer-events:none;">
+        <div style="font-size:36px; opacity:0.35;">📂</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.8px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Connecting to Open WebUI…</div>
+        <div id="rec-placeholder-url" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);"></div>
+        <div style="font-size:11.5px; color:var(--ink-dim,#b3a98f); max-width:420px; line-height:1.6;">
+          Configure the service URL via <code style="color:var(--accent-2,#f4c95d);">window.OPEN_WEBUI_URL</code>
+          or <code style="color:var(--accent-2,#f4c95d);">window.KING_OPEN_WEBUI_URL</code>
+          or proxy it at <code style="color:var(--accent-2,#f4c95d);">/openwebui/</code> on your king-server origin.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Records panel — no DCLogic renderVals needed; DOM wired directly.
+
+var _recContextLabels = {
+  civic:  'Civic Records — civic data, reports, audit records',
+  media:  'Media Assets — audio, video, image production files',
+  graph:  'Graph Nodes — Neo4j civic + spine provenance',
+  board:  'Workboard — engineering/creative/output job queue',
+};
+var _recCurrentCtx = 'civic';
+
+function _resolveOpenWebuiUrl() {
+  // Resolution order per architecture requirement:
+  // 1. Explicit override from go.html / king-server window injection
+  // 2. King-server specific injection
+  // 3. Reverse-proxy path on same origin (normal remote/Tailscale use)
+  // 4. Loopback — valid only on the local machine itself, not iPad/remote
+  return (
+    (typeof window !== 'undefined' && window.OPEN_WEBUI_URL) ||
+    (typeof window !== 'undefined' && window.KING_OPEN_WEBUI_URL) ||
+    '/openwebui/'
+  );
+}
+
+function _localFallback() {
+  return 'http://127.0.0.1:3000';
+}
+
+function setRecordsContext(ctx) {
+  _recCurrentCtx = ctx || 'civic';
+  // Update button styles
+  ['civic','media','graph','board'].forEach(function(k) {
+    var btn = document.getElementById('rec-ctx-' + k);
+    if (!btn) return;
+    if (k === _recCurrentCtx) {
+      btn.style.background = 'rgba(227,173,51,0.14)';
+      btn.style.color = 'var(--accent,#e3ad33)';
+      btn.style.borderColor = 'var(--accent,#e3ad33)';
+    } else {
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--ink-dim,#b3a98f)';
+      btn.style.borderColor = 'var(--line,#34301f)';
+    }
+  });
+}
+
+function _initRecordsPanel() {
+  var url = _resolveOpenWebuiUrl();
+  var frame = document.getElementById('rec-webui-frame');
+  var chip  = document.getElementById('rec-url-chip');
+  var phUrl = document.getElementById('rec-placeholder-url');
+
+  if (chip)  chip.textContent = url;
+  if (phUrl) phUrl.textContent = url;
+
+  if (frame) {
+    frame.src = url;
+    frame.onload = function() {
+      var ph = document.getElementById('rec-placeholder');
+      if (ph) ph.style.display = 'none';
+    };
+    frame.onerror = function() {
+      // If /openwebui/ 404s, fall back to loopback (local machine only)
+      if (url !== _localFallback()) {
+        var ph = document.getElementById('rec-placeholder-url');
+        if (ph) ph.textContent = 'Trying local fallback: ' + _localFallback();
+        frame.src = _localFallback();
+        if (chip) chip.textContent = _localFallback() + ' (fallback)';
+      }
+    };
+  }
+
+  setRecordsContext('civic');
+}
+
+// Fire once the dc shell has rendered this panel into the DOM.
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _initRecordsPanel);
+  } else {
+    _initRecordsPanel();
+  }
+}
+</script>
+<script src="../govos-shell.js" defer></script>
+</body>
+</html>
