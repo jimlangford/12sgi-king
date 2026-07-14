@@ -223,6 +223,19 @@ class GitHubWorkflowMonitor:
         """
         if not logs:
             return None, 0
+        # Billing/account suspension is not a code problem — skip silently
+        billing_markers = [
+            r"account is locked due to a billing",
+            r"billing issue",
+            r"account locked",
+            r"exceeded.*spending limit",
+            r"payment.*required",
+        ]
+        for marker in billing_markers:
+            if re.search(marker, logs, re.IGNORECASE):
+                logger.info("Skipping run: GitHub billing suspension (not a code error)")
+                return None, 0
+
         
         for pattern in ERROR_PATTERNS:
             if pattern.match(logs):
