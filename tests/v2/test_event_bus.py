@@ -193,6 +193,20 @@ class TestWorkboardEventEmission(unittest.TestCase):
         self.assertEqual(len(events), 1)
         self.assertEqual(events[0]["entity_id"], entry["job"]["id"])
 
+    def test_repeated_approve_does_not_emit_duplicate_event(self):
+        entry = self.wb.emit_workboard_job(
+            source="test",
+            action="approve-once",
+            event="evt",
+            lane="creative",
+            status="pending-approval",
+            log_path=self._log_path,
+        )
+        self.wb.approve_workboard_job(entry["job"]["id"], approver="owner", log_path=self._log_path)
+        self.wb.approve_workboard_job(entry["job"]["id"], approver="owner", log_path=self._log_path)
+        events = self.eb.get_recent_events(event_type="workboard.job.approved")
+        self.assertEqual(len(events), 1)
+
     def test_reject_workboard_job_fires_rejected_event(self):
         entry = self.wb.emit_workboard_job(
             source="test",
@@ -206,6 +220,19 @@ class TestWorkboardEventEmission(unittest.TestCase):
             reason="not ready",
             log_path=self._log_path,
         )
+        events = self.eb.get_recent_events(event_type="workboard.job.rejected")
+        self.assertEqual(len(events), 1)
+
+    def test_repeated_reject_does_not_emit_duplicate_event(self):
+        entry = self.wb.emit_workboard_job(
+            source="test",
+            action="reject-once",
+            event="evt",
+            lane="creative",
+            log_path=self._log_path,
+        )
+        self.wb.reject_workboard_job(entry["job"]["id"], reason="not-ready", log_path=self._log_path)
+        self.wb.reject_workboard_job(entry["job"]["id"], reason="not-ready", log_path=self._log_path)
         events = self.eb.get_recent_events(event_type="workboard.job.rejected")
         self.assertEqual(len(events), 1)
 

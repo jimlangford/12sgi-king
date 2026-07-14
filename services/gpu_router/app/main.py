@@ -48,7 +48,7 @@ from uuid import uuid4
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
 from services.authz import audit_auth_event, enforce_tenant_scope, require_claims
-from services.job_envelope import build_job_envelope, transition_job_envelope
+from services.job_envelope import build_job_envelope, normalise_envelope, sync_envelope_state, transition_job_envelope
 from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
@@ -289,9 +289,25 @@ def _decode_envelope(blob: str | None) -> dict | None:
 
 
 def _envelope_for_row(job: sqlite3.Row, *, fallback_state: str = "pending") -> dict:
+    status_state = (job["status"] or fallback_state or "pending").strip().lower()
     existing = _decode_envelope(job["job_envelope_json"])
     if existing:
-        return existing
+        normalised = normalise_envelope(existing, domain="gpu-router", fallback_state=status_state)
+        if normalised.get("state") != status_state:
+            _log_event(
+                "guardian.state_mismatch",
+                "gpu-router",
+                job["id"],
+                {"status": status_state, "envelope_state": normalised.get("state")},
+            )
+            normalised = sync_envelope_state(
+                normalised,
+                status_state,
+                actor="guardian",
+                engine="gpu-router",
+                reason="status_envelope_mismatch",
+            )
+        return normalised
     envelope = build_job_envelope(
         domain="gpu-router",
         service=SERVICE_NAME,
@@ -302,7 +318,7 @@ def _envelope_for_row(job: sqlite3.Row, *, fallback_state: str = "pending") -> d
         entity_id=job["id"],
         correlation_id=job["id"],
     )
-    target_state = (job["status"] or fallback_state or "pending").strip().lower()
+    target_state = status_state
     if target_state != "pending":
         try:
             envelope = transition_job_envelope(envelope, target_state)

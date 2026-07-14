@@ -274,6 +274,30 @@ def _effective_job_status(job_id: str, entries: list[dict]) -> str | None:
     return current
 
 
+def _latest_tombstone(
+    job_id: str,
+    entries: list[dict],
+    *,
+    status: str,
+    approval_type: str | None = None,
+) -> dict | None:
+    wanted = (status or "").strip().lower()
+    wanted_approval = (approval_type or "").strip().lower()
+    for entry in reversed(entries):
+        if entry.get("kind") != "tombstone":
+            continue
+        if (entry.get("status") or "").strip().lower() != wanted:
+            continue
+        job = entry.get("job") or {}
+        if job.get("correlation_id") != job_id:
+            continue
+        if wanted == "approved" and wanted_approval:
+            if (entry.get("approval_type") or "").strip().lower() != wanted_approval:
+                continue
+        return entry
+    return None
+
+
 def resolve_workboard_job(
     job_id: str,
     outcome: str,
@@ -291,7 +315,11 @@ def resolve_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    previous_status = _effective_job_status(job_id, read_workboard_log(path))
+    entries = read_workboard_log(path)
+    existing = _latest_tombstone(job_id, entries, status="done")
+    if existing:
+        return existing
+    previous_status = _effective_job_status(job_id, entries)
     base_envelope = build_job_envelope(
         domain="workboard",
         service="v2_workboard",
@@ -352,7 +380,11 @@ def approve_workboard_job(
     if atype not in APPROVAL_TYPES:
         atype = "editorial"
     path = log_path or DISPATCH_LOG
-    previous_status = _effective_job_status(job_id, read_workboard_log(path))
+    entries = read_workboard_log(path)
+    existing = _latest_tombstone(job_id, entries, status="approved", approval_type=atype)
+    if existing:
+        return existing
+    previous_status = _effective_job_status(job_id, entries)
     base_envelope = build_job_envelope(
         domain="workboard",
         service="v2_workboard",
@@ -409,7 +441,11 @@ def reject_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    previous_status = _effective_job_status(job_id, read_workboard_log(path))
+    entries = read_workboard_log(path)
+    existing = _latest_tombstone(job_id, entries, status="rejected")
+    if existing:
+        return existing
+    previous_status = _effective_job_status(job_id, entries)
     base_envelope = build_job_envelope(
         domain="workboard",
         service="v2_workboard",
@@ -470,7 +506,11 @@ def archive_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    previous_status = _effective_job_status(job_id, read_workboard_log(path))
+    entries = read_workboard_log(path)
+    existing = _latest_tombstone(job_id, entries, status="archived")
+    if existing:
+        return existing
+    previous_status = _effective_job_status(job_id, entries)
     base_envelope = build_job_envelope(
         domain="workboard",
         service="v2_workboard",

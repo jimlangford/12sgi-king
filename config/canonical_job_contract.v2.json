@@ -2,6 +2,63 @@
   "schema": "canonical-job-contract-v2",
   "schema_version": "2.0.0",
   "job_envelope_schema": "canonical-job-envelope-v2",
+  "lifecycle_authority": "domain_status_authoritative",
+  "lifecycle_authority_notes": {
+    "model": "Domain service owns legal transitions and canonical envelope mirrors normalized state in the same transaction.",
+    "mismatch_policy": "Mismatch detection must fail loudly and emit a Guardian finding.",
+    "phase": "phase-2-stabilization"
+  },
+  "transition_history": {
+    "entry_schema": {
+      "required": [
+        "from_state",
+        "to_state",
+        "ts",
+        "actor",
+        "engine",
+        "reason",
+        "evidence_hash"
+      ]
+    },
+    "max_entries": 64,
+    "ordering": "oldest-first",
+    "truncate": "drop-oldest",
+    "duplicate_policy": "suppressed_duplicate_evaluations_do_not_append"
+  },
+  "tenant_state_profiles": {
+    "civic": {
+      "example_state_path": [
+        "discovered",
+        "downloaded",
+        "parsed",
+        "validated",
+        "published"
+      ]
+    },
+    "media": {
+      "example_state_path": [
+        "planned",
+        "reference_ready",
+        "rendering",
+        "qc_pending",
+        "approved",
+        "published"
+      ]
+    },
+    "gpu": {
+      "example_state_path": [
+        "queued",
+        "claimed",
+        "running",
+        "done"
+      ],
+      "terminal_states": [
+        "done",
+        "failed",
+        "timeout"
+      ]
+    }
+  },
   "domains": {
     "workboard": {
       "initial_states": [

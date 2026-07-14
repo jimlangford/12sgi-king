@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import os
 import sqlite3
 import sys
@@ -132,6 +133,8 @@ class TestGpuRouterHardening(GpuRouterHarness):
 
         self.assertIsNotNone(claimed)
         self.assertEqual(claimed["status"], "running")
+        env = json.loads(claimed["job_envelope_json"])
+        self.assertEqual(env["state"], "running")
         self.assertIsNone(claimed_again)
 
     def test_recover_abandoned_job_requeues_before_retry_limit(self):
@@ -150,10 +153,11 @@ class TestGpuRouterHardening(GpuRouterHarness):
             )
             recovered = module._recover_abandoned_jobs(conn)
             conn.commit()
-            row = conn.execute("SELECT status, error, started_at FROM gpu_jobs WHERE id='job-1'").fetchone()
+            row = conn.execute("SELECT status, error, started_at, job_envelope_json FROM gpu_jobs WHERE id='job-1'").fetchone()
 
         self.assertEqual(recovered[0]["event_type"], "job.recovered")
         self.assertEqual(row["status"], "pending")
+        self.assertEqual(json.loads(row["job_envelope_json"])["state"], "pending")
         self.assertIn("Recovered abandoned job", row["error"])
         self.assertIsNone(row["started_at"])
 
@@ -173,10 +177,11 @@ class TestGpuRouterHardening(GpuRouterHarness):
             )
             recovered = module._recover_abandoned_jobs(conn)
             conn.commit()
-            row = conn.execute("SELECT status, error, finished_at FROM gpu_jobs WHERE id='job-1'").fetchone()
+            row = conn.execute("SELECT status, error, finished_at, job_envelope_json FROM gpu_jobs WHERE id='job-1'").fetchone()
 
         self.assertEqual(recovered[0]["event_type"], "job.timeout")
         self.assertEqual(row["status"], "timeout")
+        self.assertEqual(json.loads(row["job_envelope_json"])["state"], "timeout")
         self.assertIn("retry limit", row["error"])
         self.assertIsNotNone(row["finished_at"])
 
@@ -195,7 +200,81 @@ class TestGpuRouterHardening(GpuRouterHarness):
         self.assertEqual(first.json()["job_id"], second.json()["job_id"])
         with self.connect() as conn:
             count = conn.execute("SELECT COUNT(*) FROM gpu_jobs").fetchone()[0]
+            queued_events = conn.execute(
+                "SELECT COUNT(*) FROM gpu_events WHERE event_type='job.queued'"
+            ).fetchone()[0]
+            row = conn.execute("SELECT job_envelope_json FROM gpu_jobs LIMIT 1").fetchone()
         self.assertEqual(count, 1)
+        self.assertEqual(queued_events, 1)
+        self.assertEqual(json.loads(row["job_envelope_json"])["entity_id"], first.json()["job_id"])
+
+    def test_legacy_row_without_envelope_is_claimable(self):
+        module = self.load_gpu()
+        now = module._now_utc()
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO gpu_jobs
+                  (id, tenant_id, client_id, priority, job_type, model, prompt, status,
+                   created_at, available_at, max_attempts, created_by, job_envelope_json)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, NULL)
+                """,
+                ("legacy-job", "tenant-a", "tenant-a", 1, "ollama", "llama3", "legacy", now, now, 3, "tester"),
+            )
+            conn.commit()
+            claimed = module._claim_next_pending_job(conn, {"ollama"}, "gpu-worker")
+            conn.commit()
+            row = conn.execute("SELECT status, job_envelope_json FROM gpu_jobs WHERE id='legacy-job'").fetchone()
+        self.assertIsNotNone(claimed)
+        self.assertEqual(row["status"], "running")
+        self.assertEqual(json.loads(row["job_envelope_json"])["state"], "running")
+
+    def test_legacy_partial_envelope_is_normalized_without_state_change(self):
+        module = self.load_gpu()
+        now = module._now_utc()
+        partial = json.dumps({"domain": "gpu-router", "state": "running", "payload": {"tenant_id": "tenant-a"}})
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO gpu_jobs
+                  (id, tenant_id, client_id, priority, job_type, model, prompt, status,
+                   created_at, available_at, max_attempts, created_by, job_envelope_json)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'running', ?, ?, ?, ?, ?)
+                """,
+                ("legacy-run", "tenant-a", "tenant-a", 1, "ollama", "llama3", "legacy", now, now, 3, "tester", partial),
+            )
+            row = conn.execute("SELECT * FROM gpu_jobs WHERE id='legacy-run'").fetchone()
+        envelope = module._envelope_for_row(row)
+        self.assertEqual(envelope["state"], "running")
+        self.assertEqual(envelope["schema"], "canonical-job-envelope-v2")
+        self.assertIn("transition_history", envelope)
+
+    def test_failed_claim_transition_rolls_back_status_and_envelope(self):
+        module = self.load_gpu()
+        now = module._now_utc()
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO gpu_jobs
+                  (id, tenant_id, client_id, priority, job_type, model, prompt, status,
+                   created_at, available_at, max_attempts, created_by)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)
+                """,
+                ("job-rb", "tenant-a", "tenant-a", 1, "ollama", "llama3", "rollback", now, now, 3, "tester"),
+            )
+            conn.commit()
+            original_transition = module.transition_job_envelope
+            module.transition_job_envelope = lambda *args, **kwargs: (_ for _ in ()).throw(ValueError("boom"))
+            with self.assertRaises(ValueError):
+                module._claim_next_pending_job(conn, {"ollama"}, "gpu-worker")
+            module.transition_job_envelope = original_transition
+        with self.connect() as verify:
+            row = verify.execute(
+                "SELECT status, attempt_count, job_envelope_json FROM gpu_jobs WHERE id='job-rb'"
+            ).fetchone()
+        self.assertEqual(row["status"], "pending")
+        self.assertEqual(row["attempt_count"], 0)
+        self.assertIn('"state":"pending"', row["job_envelope_json"])
 
     def test_conflicting_idempotency_payload_is_rejected(self):
         module = self.load_gpu()
@@ -316,6 +395,31 @@ class TestGpuRouterHardening(GpuRouterHarness):
         self.assertEqual(blocked.status_code, 403)
         self.assertEqual(blocked.json()["detail"]["error"]["code"], "tenant_mismatch")
 
+    def test_gpu_job_keeps_request_tenant_through_claim_and_completion(self):
+        module = self.load_gpu()
+        module._run_job = lambda job: ("done", {"response": "ok"}, None)
+        client = TestClient(module.app)
+        headers = {"Authorization": "******", "X-Idempotency-Key": "tenant-flow"}
+        payload = {
+            "client_id": "studio",
+            "tenant_id": "tenant-media",
+            "model": "llama3",
+            "prompt": "tenant flow",
+            "job_type": "ollama",
+        }
+        resp = client.post("/api/v2/gpu/infer", json=payload, headers=headers)
+        self.assertEqual(resp.status_code, 200)
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT tenant_id, status, job_envelope_json FROM gpu_jobs WHERE id=?",
+                (resp.json()["job_id"],),
+            ).fetchone()
+        self.assertEqual(row["tenant_id"], "tenant-media")
+        self.assertEqual(row["status"], "done")
+        env = json.loads(row["job_envelope_json"])
+        self.assertEqual(env["payload"]["tenant_id"], "tenant-media")
+        self.assertEqual(env["state"], "done")
+
 
 class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
     def test_workflow_tracks_gpu_router_and_service_metadata(self):
@@ -338,12 +442,11 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
 class TestDeployWorkflowHardening(unittest.TestCase):
     def test_workflow_validates_compose_before_restart(self):
         text = WORKFLOW.read_text()
-        self.assertIn("- name: Validate V2 compose plan and print inventory", text)
-        self.assertIn("docker compose -f docker-compose.v2.yml config", text)
-        self.assertLess(
-            text.index("- name: Validate V2 compose plan and print inventory"),
-            text.index("- name: Restart V2 Docker services"),
-        )
+        validate_cmd = "docker compose -f docker-compose.v2.yml config"
+        restart_cmd = "docker compose -f docker-compose.v2.yml up -d --build"
+        self.assertIn(validate_cmd, text)
+        self.assertIn(restart_cmd, text)
+        self.assertLess(text.index(validate_cmd), text.index(restart_cmd))
 
     def test_workflow_declares_explicit_service_inventory_and_ports(self):
         text = WORKFLOW.read_text()
