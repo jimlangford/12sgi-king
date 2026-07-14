@@ -10,6 +10,7 @@ Error archetypes with autonomy scores:
   ✓ 90: type_error (generate type hints)
   ✓ 85: import_error (fix circular imports)
   ✓ 80: missing_dependency (add to requirements.txt)
+  ✓ 80: workflow_yaml_error (fix YAML syntax/indentation)
   ✓ 65: config_missing (create template config)
   ✗ 0: permission_error (always owner gate)
 """
@@ -78,6 +79,18 @@ _GITHUB_ARCHETYPES = {
         timeout_seconds=120,
         requires_owner_fields=["error_type", "config_file"],
         description="Create missing config files autonomously"
+    ),
+    "github_workflow_yaml_repair": AutonomyArchetype(
+        name="github_workflow_yaml_repair",
+        autonomy_score=80,
+        success_criteria="Fix YAML syntax/indentation, validate schema, commit, workflow passes",
+        safety_gates=[
+            "Stop if error requires logic changes (not just syntax)",
+            "Stop if error is in a permission/security-critical section",
+        ],
+        timeout_seconds=180,
+        requires_owner_fields=["error_type", "workflow_file"],
+        description="Repair GitHub Actions workflow YAML syntax errors autonomously"
     ),
 }
 

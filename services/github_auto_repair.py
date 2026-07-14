@@ -9,6 +9,7 @@ Repairs common CI/CD failures:
 - Test flakes: Mark flaky, add retry logic
 - Config missing: Create template config file
 - Docker build fails: Rebuild with updated base image
+- Workflow YAML: Fix syntax, indentation, schema errors
 
 Integration with king-bridge executor:
   workboard repair job (detected error)
@@ -268,6 +269,55 @@ class AutonomousRepairExecutor:
                 duration_seconds=time.time() - start,
             )
     
+    def repair_workflow_yaml(self, workflow_file: str) -> RepairResult:
+        """Repair GitHub Actions workflow YAML syntax/indentation errors."""
+        from services.github_workflow_repair import WorkflowYamlRepair
+        
+        start = time.time()
+        branch_name = f"repair/workflow/{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"
+        
+        try:
+            self.git.checkout_branch(branch_name)
+            
+            repair = WorkflowYamlRepair(str(REPO_PATH))
+            success, msg = repair.repair_workflow(workflow_file)
+            
+            git_diff = self.git.diff()
+            if not git_diff:
+                return RepairResult(
+                    status=RepairStatus.STOPPED,
+                    error_type="workflow_yaml_error",
+                    git_diff="",
+                    commit_message="No changes needed",
+                    error_message="Workflow is already valid",
+                    duration_seconds=time.time() - start,
+                )
+            
+            commit_msg = f"repair: Fix YAML syntax in {workflow_file}"
+            if not self.dry_run:
+                self.git.add_all()
+                self.git.commit(commit_msg)
+                self.git.push(branch_name)
+            
+            return RepairResult(
+                status=RepairStatus.COMMIT_PUSHED if not self.dry_run else RepairStatus.REPAIR_READY,
+                error_type="workflow_yaml_error",
+                git_diff=git_diff,
+                commit_message=commit_msg,
+                branch_name=branch_name,
+                duration_seconds=time.time() - start,
+            )
+        
+        except Exception as e:
+            return RepairResult(
+                status=RepairStatus.REPAIR_FAILED,
+                error_type="workflow_yaml_error",
+                git_diff="",
+                commit_message="",
+                error_message=str(e),
+                duration_seconds=time.time() - start,
+            )
+    
     def repair_missing_dependency(self, package_name: str, version: str = "latest") -> RepairResult:
         """Add missing dependency to requirements."""
         start = time.time()
@@ -435,8 +485,8 @@ if __name__ == "__main__":
     executor = AutonomousRepairExecutor(dry_run=True)
     
     # Test dry-run repair
-    result = executor.repair_lint_error("services/ai_autonomy.py")
-    print(f"\nRepair Test (dry-run):")
+    result = executor.repair_workflow_yaml("deploy-v2-king-server.yml")
+    print(f"\nWorkflow Repair Test (dry-run):")
     print(f"  Status: {result.status.value}")
     print(f"  Error Type: {result.error_type}")
     print(f"  Duration: {result.duration_seconds:.2f}s")
