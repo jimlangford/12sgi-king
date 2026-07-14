@@ -1,0 +1,1 @@
+2026-07-13 git cleanup: deleted 20 stale copilot/* and gordon-admin branches (unmerged, abandoned). Removed dangling commits/trees via reflog expire + gc. Repository now clean: main branch only, fsck passes fully.
