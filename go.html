@@ -202,19 +202,8 @@
     <a class="card" href="https://12sgianonymous.tail760750.ts.net/king/testify.html"><span class="tag mir">act</span><div class="t">⚖ Testify</div><div class="b">Submit testimony to your government's clerk</div></a>
     <a class="card" href="https://12sgianonymous.tail760750.ts.net/king/datasets.html"><span class="tag mir">data</span><div class="t">Open data</div><div class="b">Every figure, downloadable · DCAT catalog</div></a>
 
-    <div class="sect">Studio Projects</div>
-    <div id="studio-panel">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <span style="font-family:var(--mono);font-size:11px;color:var(--ink-faint)" id="studio-vault-stat">loading vault…</span>
-        <button onclick="studioAdd()" style="margin-left:auto;font-family:inherit;font-size:12px;font-weight:650;padding:6px 13px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:var(--accent-ink);cursor:pointer">+ New Project</button>
-      </div>
-      <div id="studio-list" style="display:flex;flex-direction:column;gap:7px"></div>
-      <div id="studio-msg" style="font-size:12px;color:var(--err);margin-top:8px"></div>
-    </div>
-
     <div class="sect">Live System — Private (Tailscale)</div>
     <div class="live-section">
-      <a class="card dim" id="liveStudioAssets" href="http://localhost:8108/api/v2/stats" target="_blank" rel="noopener"><span class="tag live">live</span><div class="t">Studio Assets</div><div class="b" id="studio-assets-stat">vault · port 8108</div></a>
       <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">Element Lotus Studio</div><div class="b">Full production controls</div></a>
       <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces · owner ops</div></a>
       <a class="card dim" id="liveBoard" href="https://12sgianonymous.tail760750.ts.net/board"><span class="tag live">live</span><div class="t">Work Board</div><div class="b">Command center · all lanes</div></a>
@@ -226,7 +215,7 @@
       <div id="ccLanes" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
       <div class="card" style="cursor:default">
         <div class="t">Message Claude</div>
-        <div class="b" style="margin-bottom:8px">Send a request straight to the executor.</div>
+        <div class="b" style="margin-bottom:8px">Send a request straight to the executor — it queues on the board and gets acted on.</div>
         <form id="ccMsgForm" style="display:flex;gap:8px;flex-wrap:wrap">
           <input id="ccMsg" type="text" required placeholder="e.g. add a tracker" aria-label="Message Claude"
                  style="flex:1;min-width:140px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
@@ -255,6 +244,8 @@
 
 <script>
  var LIVE="https://12sgianonymous.tail760750.ts.net/king/";
+ var BRIDGE_API="https://12sgianonymous.tail760750.ts.net/king/api/v2";
+ var INTERNAL_TOKEN="dev-internal-token";
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
@@ -278,119 +269,35 @@
      });
    }).catch(function(){});
  })();
+ (function(){
+   var form=document.getElementById('ccMsgForm'), inp=document.getElementById('ccMsg'), note=document.getElementById('ccMsgNote');
+   if(!form)return;
+   form.addEventListener('submit',function(e){
+     e.preventDefault();
+     var msg=inp.value.trim();
+     if(!msg)return;
+     var btn=form.querySelector('button');
+     btn.disabled=true; btn.textContent='Sending…';
+     inp.disabled=true; note.textContent='';
+     fetch(BRIDGE_API+'/board/message',{
+       method:'POST',
+       headers:{'Content-Type':'application/json','X-Service-Token':INTERNAL_TOKEN},
+       body:JSON.stringify({message:msg,context:'owner-console'})
+     }).then(function(r){return r.json();}).then(function(d){
+       if(d.status==='queued'){
+         note.textContent='✓ Queued (job '+d.job_id.slice(0,8)+') — check dispatch log';
+         inp.value='';
+         setTimeout(function(){note.textContent='';},3000);
+       } else {
+         note.textContent='Error: '+(d.detail||d.error||'failed');
+       }
+     }).catch(function(e){
+       note.textContent='Network error: '+e.message;
+     }).finally(function(){
+       btn.disabled=false; btn.textContent='Send'; inp.disabled=false; inp.focus();
+     });
+   });
+ })();
 </script>
 <script src="https://12sgianonymous.tail760750.ts.net/king/govos-shell.js" defer></script>
-<script>
-// ── Studio project management ─────────────────────────────────────────────
-var STUDIO_API = 'http://localhost:8108/api/v2';
-var _studioProjects = [];
-
-function _statusColor(s){
-  if(s==='in_production'||s==='script_rebuilt'||s==='designed_producible_now')return'#1f8a5b';
-  if(s==='trailer_only'||s==='script_partial')return'#b07d1a';
-  if(s==='rd_private'||s==='blessing_gated_preproduction')return'#5b6e86';
-  return'#41536b';
-}
-
-function _kindIcon(k){
-  return{film:'🎞',game:'✦',music_video:'🎵',short:'📹',series:'📺',documentary:'🏛',other:'📄'}[k]||'📄';
-}
-
-async function studioLoad(){
-  var list=document.getElementById('studio-list');
-  var stat=document.getElementById('studio-vault-stat');
-  var msg=document.getElementById('studio-msg');
-  msg.textContent='';
-  try{
-    var r=await fetch(STUDIO_API+'/projects',{signal:AbortSignal.timeout(5000)});
-    var d=await r.json();
-    _studioProjects=d.projects||[];
-    stat.textContent='vault online · '+d.count+' projects';
-    document.getElementById('liveStudioAssets').classList.remove('dim');
-    // vault stats
-    try{
-      var rs=await fetch(STUDIO_API+'/stats',{signal:AbortSignal.timeout(4000)});
-      var ds=await rs.json();
-      document.getElementById('studio-assets-stat').textContent=ds.total+' assets · '+ds.total_gb+' GB · port 8108';
-    }catch(e){}
-    // render project list
-    list.innerHTML='';
-    _studioProjects.forEach(function(p){
-      var row=document.createElement('div');
-      row.style.cssText='display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;flex-wrap:wrap';
-      var sc=_statusColor(p.status);
-      row.innerHTML=
-        '<span style="font-size:16px;flex:none">'+_kindIcon(p.kind)+'</span>'+
-        '<span style="font-size:13px;font-weight:650;flex:1;min-width:120px">'+esc(p.name)+'</span>'+
-        '<span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:6px;border:1px solid '+sc+';color:'+sc+';white-space:nowrap">'+esc(p.status.replace(/_/g,' '))+'</span>'+
-        '<button data-id="'+esc(p.id)+'" data-act="reset" onclick="studioAct(this)" title="Reset storyboard" style="font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink-dim);cursor:pointer">Reset</button>'+
-        '<button data-id="'+esc(p.id)+'" data-act="restart" onclick="studioAct(this)" title="Full restart" style="font-size:12px;padding:4px 10px;border:1px solid var(--warn);border-radius:6px;background:transparent;color:var(--warn);cursor:pointer">Restart</button>';
-      list.appendChild(row);
-    });
-  }catch(e){
-    stat.textContent='studio-assets offline (port 8108)';
-    msg.textContent='Start: docker compose -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml up -d';
-    list.innerHTML='<div style="font-size:12px;color:var(--ink-faint);padding:10px 0">No projects loaded — studio-assets service offline.</div>';
-  }
-}
-
-async function studioAct(btn){
-  var tid=btn.getAttribute('data-id');
-  var act=btn.getAttribute('data-act');
-  if(!confirm((act==='restart'?'Full restart (wipes storyboard, re-queues)':'Reset storyboard only')+' for '+tid+'?'))return;
-  btn.disabled=true;btn.textContent='…';
-  try{
-    var r=await fetch(STUDIO_API+'/projects/'+tid+'/'+act,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({note:'owner action from go.html'}),
-      signal:AbortSignal.timeout(8000)
-    });
-    var d=await r.json();
-    if(r.ok){
-      document.getElementById('studio-msg').textContent='\u2713 '+act+' complete for '+tid+(d.workboard_job_id?' · job '+d.workboard_job_id:'');
-      document.getElementById('studio-msg').style.color='var(--ok)';
-    } else {
-      document.getElementById('studio-msg').textContent='Error: '+(d.detail||JSON.stringify(d));
-      document.getElementById('studio-msg').style.color='var(--err)';
-    }
-  }catch(e){
-    document.getElementById('studio-msg').textContent='Request failed: '+e.message;
-    document.getElementById('studio-msg').style.color='var(--err)';
-  }
-  btn.disabled=false;btn.textContent=act.charAt(0).toUpperCase()+act.slice(1);
-}
-
-async function studioAdd(){
-  var id=prompt('New project ID (snake_case, e.g. film_new_project):');
-  if(!id||!id.trim())return;
-  var name=prompt('Project name:');
-  if(!name||!name.trim())return;
-  var kind=prompt('Kind (film / game / music_video / short / series / documentary):','film');
-  var render=prompt('Render register (photoreal / cartoon-3d / animated / live-action / mixed):','photoreal');
-  var status=prompt('Initial status:','proposed_internal');
-  try{
-    var r=await fetch(STUDIO_API+'/projects',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({id:id.trim(),name:name.trim(),kind:kind||'film',render:render||'photoreal',status:status||'proposed_internal'}),
-      signal:AbortSignal.timeout(8000)
-    });
-    var d=await r.json();
-    if(r.status===201||r.ok){
-      document.getElementById('studio-msg').textContent='\u2713 Added '+d.name+' ('+d.tenant_id+')';
-      document.getElementById('studio-msg').style.color='var(--ok)';
-      studioLoad();
-    } else {
-      document.getElementById('studio-msg').textContent='Error: '+((d.detail&&d.detail.error)||JSON.stringify(d));
-      document.getElementById('studio-msg').style.color='var(--err)';
-    }
-  }catch(e){
-    document.getElementById('studio-msg').textContent='Request failed: '+e.message;
-    document.getElementById('studio-msg').style.color='var(--err)';
-  }
-}
-
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-studioLoad();
-</script>
 </body></html>
