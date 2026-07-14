@@ -8,6 +8,8 @@ config/*
 !config/tenant_registry.v2.json
 !config/tenant_transition_schema.v2.json
 !config/canonical_job_contract.v2.json
+!config/gpu_profiles/
+!config/gpu_profiles/rtx4070_8gb.json
 
 # generated locally (CI builds it fresh; deploy uploads it)
 site/
