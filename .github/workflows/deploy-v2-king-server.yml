@@ -10,41 +10,58 @@ name: Deploy V2 to king-server (private, self-hosted)
 #   - Public deploy lives in publish.yml and deploy-to-server.yml — keep them separate.
 #
 # What this does:
-#   1. Checkout repo on king-server
-#   2. Validate V2 service files are present
-#   3. Run V2 contract smoke tests (no live services needed)
-#   4. Copy /go Owner Console and private board files to king-local deploy path
-#   5. Restart approved local V2 services via docker compose (if stack is running)
-#   6. Verify /go and /board/api/* health against localhost ports
-#   7. Write a timestamped deployment log to the local king-server log directory
+#   1. Checkout the selected main-branch commit on king-server
+#   2. Validate required V2 service files
+#   3. Run V2 contract smoke tests
+#   4. Copy /go Owner Console and private board files to king-local
+#   5. Build and start the approved V2 Docker stack
+#   6. Verify localhost readiness and deployment provenance
+#   7. Write a timestamped deployment log on king-server
 #
-# To use:
-#   1. On king-server, install the GitHub Actions self-hosted runner
-#      (Settings → Actions → Runners → New self-hosted runner) with labels:
-#        self-hosted, king-server, windows
-#   2. Trigger manually: Actions → "Deploy V2 to king-server" → Run workflow
-#
-# Optional trigger on push to v2-related paths (disabled by default — uncomment to enable):
-# push:
-#   branches: [main]
-#   paths:
-#     - "services/**"
-#     - "docker-compose.v2.yml"
-#     - "go.html"
+# Automatic operation:
+#   - Relevant pushes to main deploy automatically.
+#   - Manual dispatch remains available for dry runs and recovery.
+#   - Execution remains exclusively on the private self-hosted runner.
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "services/**"
+      - "docker-compose.v2.yml"
+      - "go.html"
+      - "go/**"
+      - "king_public_src/**"
+      - "docs/api/v2-api-contract.yaml"
+      - "requirements.txt"
+      - "VERSION"
+      - ".github/workflows/deploy-v2-king-server.yml"
+
   workflow_dispatch:
     inputs:
       restart_services:
-        description: "Restart V2 Docker services after deploy (true/false)"
+        description: "Build and start V2 Docker services after validation"
         required: false
-        default: "false"
-      dry_run:
-        description: "Dry run — validate and report only, make no changes"
-        required: false
-        default: "false"
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
-# No special GitHub permissions needed — all work is local to king-server.
+      dry_run:
+        description: "Validate and report only; make no deployment changes"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+concurrency:
+  group: deploy-v2-king-server
+  cancel-in-progress: false
+
 permissions:
   contents: read
 
@@ -70,8 +87,8 @@ jobs:
       V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107"
       # Local deployment log directory (PRIVATE — never committed to repo)
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
-      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
-      RESTART_SERVICES: ${{ github.event.inputs.restart_services || 'false' }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
+      RESTART_SERVICES: ${{ github.event_name == 'push' && 'true' || github.event.inputs.restart_services || 'true' }}
 
     steps:
       # ── 1. Checkout ────────────────────────────────────────────────────────────
@@ -242,36 +259,50 @@ jobs:
           }
           Write-Host "✓ docker compose -f docker-compose.v2.yml config passed"
 
-      # ── 5. Restart V2 services via docker compose (if opted in) ───────────────
-      - name: Restart V2 Docker services
+      # ── 5. Build and start V2 services via Docker Compose ─────────────────────
+      - name: Deploy V2 Docker services
         if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
         shell: pwsh
         run: |
-          # Only restart if docker compose is available and the stack is already running.
-          # We never cold-start the stack here — that's an owner decision.
-          $dc = Get-Command "docker" -ErrorAction SilentlyContinue
-          if (-not $dc) {
-            Write-Warning "docker not found on PATH — skipping service restart"
-            exit 0
+          $ErrorActionPreference = "Stop"
+
+          $docker = Get-Command "docker" -ErrorAction SilentlyContinue
+          if (-not $docker) {
+            Write-Error "docker not found on PATH -- deployment cannot continue"
+            exit 1
           }
-          $running = docker compose -f docker-compose.v2.yml ps --services --filter status=running 2>$null
-          if (-not $running) {
-            Write-Warning "V2 stack does not appear to be running — skipping restart (start it manually first)"
-            exit 0
+
+          Write-Host "Building and starting the approved V2 service stack..."
+          docker compose -f docker-compose.v2.yml up -d --build
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "docker compose deployment failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
           }
-          Write-Host "Restarting V2 services..."
-          docker compose -f docker-compose.v2.yml up -d --build --no-deps
-          Write-Host "✓ docker compose up -d complete"
+
+          Write-Host "Waiting for containers to initialize..."
+          Start-Sleep -Seconds 12
+
+          Write-Host "Current V2 container state:"
+          docker compose -f docker-compose.v2.yml ps
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Unable to read the deployed V2 container state"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "✓ V2 Docker services built and started"
 
       # ── 6. Verify /go and /board/api/* health against localhost ───────────────
       - name: Health-check V2 localhost services
         shell: pwsh
         run: |
-          $severityRank = @{
+                    $severityRank = @{
             info = 0
-            low = 1
-            high = 2
-            critical = 3
+            notice = 1
+            warning = 2
+            high = 3
+            critical = 4
           }
           $findings = New-Object System.Collections.Generic.List[object]
           $maxSeverity = "info"
@@ -302,9 +333,9 @@ jobs:
           # When services were just restarted (RESTART_SERVICES=true) we expect them to be up,
           # so unreachable is a hard-failure (high). When running a dry run or a default
           # dispatch (RESTART_SERVICES=false) the stack may legitimately be stopped — downgrade
-          # unreachable to low so the step reports without blocking.
+          # unreachable to warning so the step reports without blocking.
           $expectRunning = $env:RESTART_SERVICES -eq "true" -and $env:DRY_RUN -ne "true"
-          $unreachableSeverity = if ($expectRunning) { "high" } else { "low" }
+          $unreachableSeverity = if ($expectRunning) { "high" } else { "warning" }
 
           $checks = @(
             @{ name="auth";       port=$env:V2_AUTH_PORT;      path="/api/v2/ready"; expected_status=200 },
