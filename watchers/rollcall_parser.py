@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
+r"""
 rollcall_parser.py — the shared CivicClerk roll-call/motion parser (real Maui minutes checkmark format).
 
 EXTRACTED from votes_watch.py (2026-07-08) with a real bug fix, so votes_watch.py, nay_narratives.py, and any
