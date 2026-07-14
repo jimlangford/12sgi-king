@@ -13,7 +13,11 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 from .checks import load_surfaces_from_env, run_all_checks
-from services.service_metadata import with_service_metadata
+from services.service_metadata import (
+    platform_manifest,
+    platform_version_disagreement,
+    with_service_metadata,
+)
 
 app = FastAPI(title="12SGI Health Service")
 security = HTTPBasic()
@@ -96,6 +100,15 @@ def _extract_provenance(payload: dict) -> dict:
         field: str(payload[field]).strip()
         for field in PROVENANCE_FIELDS
         if isinstance(payload.get(field), str) and payload.get(field).strip()
+    }
+
+
+def _platform_summary() -> dict:
+    manifest = platform_manifest()
+    return {
+        "manifest_version": str(manifest.get("manifest_version") or "unknown"),
+        "platform_version": str(manifest.get("platform_version") or "unknown"),
+        "version_disagreement": platform_version_disagreement(),
     }
 
 
@@ -220,7 +233,11 @@ async def root():
 async def live():
     return JSONResponse(
         with_service_metadata(
-            {"status": "alive", "timestamp": _utc_timestamp()},
+            {
+                "status": "alive",
+                "timestamp": _utc_timestamp(),
+                "platform": _platform_summary(),
+            },
             SERVICE_NAME,
             VERSION,
         )
@@ -238,6 +255,7 @@ async def ready():
                 "status": status_text,
                 "timestamp": _utc_timestamp(),
                 "services": results,
+                "platform": _platform_summary(),
             },
             SERVICE_NAME,
             VERSION,
@@ -254,6 +272,7 @@ async def health():
         "status": "healthy" if all(v.get('ok', False) for v in checks.values()) else "degraded",
         "timestamp": _utc_timestamp(),
         "services": checks,
+        "platform": _platform_summary(),
     }
     if release:
         out["release"] = release

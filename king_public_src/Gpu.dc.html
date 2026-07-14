@@ -43,6 +43,8 @@
         <div><div>Commit</div><div id="gpu-commit" style="color:var(--ink-dim,#b3a98f); word-break:break-all;">—</div></div>
         <div><div>Build</div><div id="gpu-build-ts" style="color:var(--ink-dim,#b3a98f);">—</div></div>
         <div><div>Environment</div><div id="gpu-environment" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Platform</div><div id="gpu-platform-version" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Manifest</div><div id="gpu-platform-manifest" style="color:var(--ink-dim,#b3a98f);">—</div></div>
       </div>
       <!-- VRAM bar (synthetic — shows GPU runtime availability) -->
       <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-bottom:4px;">GPU Runtime (Ollama)</div>
@@ -114,6 +116,8 @@
       var commit = _el('gpu-commit');
       var buildTs = _el('gpu-build-ts');
       var env = _el('gpu-environment');
+      var platformVersion = _el('gpu-platform-version');
+      var manifestVersion = _el('gpu-platform-manifest');
       var bar = _el('gpu-vram-bar');
       var vs  = _el('gpu-voice-status');
       var grid = _el('gpu-lanes-grid');
@@ -124,6 +128,11 @@
       commit.textContent = data.commit_sha || 'unknown';
       buildTs.textContent = data.build_timestamp || 'unknown';
       env.textContent = data.environment || 'unknown';
+      var mismatch = !!data.platform_version_mismatch || !!(data.platform && data.platform.version_disagreement);
+      platformVersion.textContent = data.platform_version || (data.platform && data.platform.platform_version) || 'unknown';
+      manifestVersion.textContent = data.platform_manifest_version || (data.platform && data.platform.manifest_version) || 'unknown';
+      platformVersion.style.color = mismatch ? '#d8904c' : 'var(--ink-dim,#b3a98f)';
+      manifestVersion.style.color = mismatch ? '#d8904c' : 'var(--ink-dim,#b3a98f)';
 
       // VRAM bar: 100% green when Ollama is running (no direct VRAM API from router).
       var ollama_active = (data.lanes && (data.lanes.ollama || {}).running > 0);

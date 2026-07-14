@@ -2,7 +2,11 @@
 legiscan_key.txt
 *.key
 .env
-config/
+config/*
+!config/owner_policy.json
+!config/platform_version.json
+!config/tenant_registry.v2.json
+!config/tenant_transition_schema.v2.json
 
 # generated locally (CI builds it fresh; deploy uploads it)
 site/
