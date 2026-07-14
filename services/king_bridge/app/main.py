@@ -234,25 +234,43 @@ def _ollama_ready() -> bool:
 
 
 # ── Neo4j helpers ─────────────────────────────────────────────────────────────
+def _neo_ping() -> bool:
+    """Direct Neo4j HTTP ping — no recursion. Used internally by _cypher_endpoint."""
+    payload = json.dumps({"statements": [{"statement": "RETURN 1"}]}).encode()
+    req = urllib.request.Request(
+        NEO4J_HTTP,
+        data=payload,
+        headers={"Content-Type": "application/json", "Accept": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=3) as resp:
+            data = json.loads(resp.read().decode())
+            return not data.get("errors")
+    except Exception:
+        return False
+
+
 def _cypher_endpoint() -> tuple[str, bool]:
     """
     Return the endpoint to use (local Neo4j or AuraDB) and whether AuraDB is active.
     Strategy: try local first. If it fails, check Aura. Use whichever is reachable.
     Falls back to read-only Aura if local is offline.
     """
-    if _neo_ready():
+    if _neo_ping():
         return NEO4J_HTTP, False
     if AURA_URI and AURA_PASSWORD:
-        # Aura is configured; caller can detect and handle
         return AURA_URI, True
-    # Neither available — return local (will fail gracefully in caller)
     return NEO4J_HTTP, False
+
+
+def _neo_ready() -> bool:
+    return _neo_ping()
 
 
 def _neo_cypher(statements: list[dict]) -> dict | None:
     endpoint, is_aura = _cypher_endpoint()
     if is_aura and "neo4j+" in endpoint:
-        # Aura fallback: try bolt driver if available
         try:
             from neo4j import GraphDatabase
             driver = GraphDatabase.driver(endpoint, auth=(AURA_USER, AURA_PASSWORD))
@@ -265,10 +283,9 @@ def _neo_cypher(statements: list[dict]) -> dict | None:
             finally:
                 session.close()
         except ImportError:
-            pass  # Fall through to HTTP
+            pass
         except Exception:
             return None
-    # Local HTTP or fallback
     payload = json.dumps({"statements": statements}).encode()
     req = urllib.request.Request(
         endpoint,
@@ -281,11 +298,6 @@ def _neo_cypher(statements: list[dict]) -> dict | None:
             return json.loads(resp.read().decode())
     except Exception:
         return None
-
-
-def _neo_ready() -> bool:
-    result = _neo_cypher([{"statement": "RETURN 1"}])
-    return result is not None and not result.get("errors")
 
 
 def _write_result_to_neo(job_id: str, lane: str, action: str, model: str, response: str, payload: dict) -> bool:
@@ -590,12 +602,74 @@ def poll(x_service_token: str | None = Header(default=None)):
 
 
 # ── Direct chat to a king-* model ─────────────────────────────────────────────
+class OwnerMessageRequest(BaseModel):
+    message: str
+    context: str = "owner-console"
+
+
 class ChatRequest(BaseModel):
     model:   str | None = None
     prompt:  str
     lane:    str = "engineering"
     action:  str = "chat"
     stream:  bool = False
+
+
+# ── Owner message → workboard executor ───────────────────────────────────────
+@app.post(f"{API_PREFIX}/board/message")
+def owner_message(req: OwnerMessageRequest, x_service_token: str | None = Header(default=None)):
+    """
+    Receive a message from the owner's go.html console and emit it as a workboard job.
+    
+    The executor reads pending jobs and sends responses back. This is the entrypoint
+    for the owner's "Message Claude" feature on the index page.
+    
+    Flow:
+      1. Owner types message in go.html
+      2. Form POSTs to /api/v2/board/message
+      3. Backend emits a workboard job (engineering lane, auto-heals)
+      4. Executor picks it up and processes
+      5. Result appears in dispatch log + owner console
+    """
+    _require_internal(x_service_token)
+    
+    if not req.message or not req.message.strip():
+        raise HTTPException(status_code=400, detail="message cannot be empty")
+    
+    message = req.message.strip()
+    
+    # Emit as engineering lane job so it auto-heals (runs immediately when executor polls)
+    entry = emit_workboard_job(
+        source="owner-console",
+        action="owner-message",
+        event=f"Owner message: {message[:100]}",
+        lane="engineering",
+        status="queued",
+        priority="high",
+        kind="job",
+        payload={
+            "message": message,
+            "context": req.context or "owner-console",
+            "timestamp": _iso_now(),
+        },
+    )
+    
+    job_id = entry["job"]["id"]
+    publish_event(
+        "owner_console.message.sent",
+        SERVICE_NAME,
+        payload={"message": message[:200], "context": req.context},
+        entity_id=job_id,
+    )
+    
+    return {
+        "status": "queued",
+        "job_id": job_id,
+        "message": message,
+        "context": req.context,
+        "note": "Your message is now in the executor queue. Check the dispatch log for responses.",
+        "ts": _iso_now(),
+    }
 
 
 @app.post(f"{API_PREFIX}/bridge/chat")

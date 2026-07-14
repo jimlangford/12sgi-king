@@ -280,7 +280,33 @@
     </button>
   </div>
 
-  <!-- ── Result Panel ──────────────────────────────────────────────── -->
+  <!-- ── Studio Projects ─────────────────────────────── -->
+  <div class="sect">Studio Projects</div>
+  <div class="status-bar">
+    <span class="dot" id="studio-dot"></span>
+    <span id="studio-status-text">Checking studio-assets (port 8108)…</span>
+  </div>
+  <div id="studio-project-list" style="margin-bottom:10px"></div>
+  <div class="btn-grid">
+    <button class="btn" onclick="studioRefresh()">
+      <span class="icon">🔄</span><span class="label">Refresh</span>
+      <span class="desc">Reload project list</span>
+    </button>
+    <button class="btn primary" onclick="studioAddPrompt()">
+      <span class="icon">➕</span><span class="label">Add Project</span>
+      <span class="desc">Register a new studio tenant</span>
+    </button>
+    <button class="btn" onclick="studioReindex()">
+      <span class="icon">🗂</span><span class="label">Reindex Vault</span>
+      <span class="desc">Rescan 62 GB asset vault</span>
+    </button>
+    <button class="btn" onclick="studioStats()">
+      <span class="icon">📊</span><span class="label">Vault Stats</span>
+      <span class="desc">Asset counts by label</span>
+    </button>
+  </div>
+
+  <!-- ── Result Panel ─────────────────────────────── -->─────────── -->
   <div id="result-panel">
     <div class="rhead">
       <span id="result-title">Result</span>
@@ -513,6 +539,104 @@ function esc(s) {
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/\n/g,'<br>');
 }
+
+// ── Studio project management ─────────────────────────────────────────────
+var STUDIO_API = 'http://localhost:8108/api/v2';
+
+function _sc(s){return{in_production:'#1f8a5b',script_rebuilt:'#1f8a5b',designed_producible_now:'#1f8a5b',trailer_only:'#b07d1a',script_partial:'#b07d1a',rd_private:'#8a9bb5',blessing_gated_preproduction:'#8a9bb5'}[s]||'#8a9bb5';}
+function _ki(k){return{film:'🎞',game:'✦',music_video:'🎵',short:'📹',series:'📺',documentary:'🏛'}[k]||'📄';}
+
+async function studioRefresh(){
+  var dot=document.getElementById('studio-dot');
+  var txt=document.getElementById('studio-status-text');
+  var list=document.getElementById('studio-project-list');
+  try{
+    var r=await fetch(STUDIO_API+'/projects',{signal:AbortSignal.timeout(5000)});
+    var d=await r.json();
+    dot.className='dot up';
+    txt.textContent='studio-assets online · '+d.count+' projects · port 8108';
+    list.innerHTML='';
+    (d.projects||[]).forEach(function(p){
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:var(--panel);border:1px solid rgba(255,255,255,.08);margin-bottom:6px;flex-wrap:wrap';
+      var sc=_sc(p.status);
+      row.innerHTML=
+        '<span style="font-size:15px;flex:none">'+_ki(p.kind)+'</span>'+
+        '<span style="font-size:13px;font-weight:600;flex:1;min-width:100px;color:var(--ink)">'+esc(p.name)+'</span>'+
+        '<span style="font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:6px;border:1px solid '+sc+';color:'+sc+'">'+esc(p.status.replace(/_/g,' '))+'</span>'+
+        '<button data-id="'+esc(p.id)+'" data-act="reset" onclick="studioAct(this)" style="font-size:11px;padding:3px 9px;border:1px solid rgba(255,255,255,.15);border-radius:5px;background:transparent;color:var(--ink-dim);cursor:pointer">Reset</button>'+
+        '<button data-id="'+esc(p.id)+'" data-act="restart" onclick="studioAct(this)" style="font-size:11px;padding:3px 9px;border:1px solid #b07d1a;border-radius:5px;background:transparent;color:#b07d1a;cursor:pointer">Restart</button>';
+      list.appendChild(row);
+    });
+  }catch(e){
+    dot.className='dot err';
+    txt.textContent='studio-assets offline — '+e.message;
+    list.innerHTML='<div style="font-size:12px;color:var(--ink-faint);padding:6px 0">Start: docker compose -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml up -d --build</div>';
+  }
+}
+
+async function studioAct(btn){
+  var tid=btn.getAttribute('data-id'), act=btn.getAttribute('data-act');
+  if(!confirm((act==='restart'?'Full restart':'Reset storyboard')+' for '+tid+'?'))return;
+  btn.disabled=true; btn.textContent='…';
+  try{
+    var r=await fetch(STUDIO_API+'/projects/'+tid+'/'+act,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({note:'owner action from gordon.html'}),
+      signal:AbortSignal.timeout(8000)
+    });
+    var d=await r.json();
+    showResult(act+' — '+tid, JSON.stringify(d,null,2));
+    studioRefresh();
+  }catch(e){
+    showResult('Error',e.message);
+  }
+  btn.disabled=false; btn.textContent=act.charAt(0).toUpperCase()+act.slice(1);
+}
+
+async function studioAddPrompt(){
+  var id=prompt('New project ID (snake_case):'); if(!id||!id.trim())return;
+  var name=prompt('Project name:'); if(!name||!name.trim())return;
+  var kind=prompt('Kind (film/game/music_video/short/series/documentary):','film');
+  var render=prompt('Render (photoreal/cartoon-3d/animated/live-action/mixed):','photoreal');
+  var status=prompt('Initial status:','proposed_internal');
+  try{
+    var r=await fetch(STUDIO_API+'/projects',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:id.trim(),name:name.trim(),kind:kind||'film',render:render||'photoreal',status:status||'proposed_internal'}),
+      signal:AbortSignal.timeout(8000)
+    });
+    var d=await r.json();
+    showResult('Add Project — '+(d.name||id), JSON.stringify(d,null,2));
+    studioRefresh();
+  }catch(e){ showResult('Error',e.message); }
+}
+
+async function studioReindex(){
+  showResult('Reindex Vault','Requesting reindex…');
+  try{
+    var r=await fetch(STUDIO_API+'/reindex',{method:'POST',signal:AbortSignal.timeout(30000)});
+    var d=await r.json();
+    showResult('Vault Reindex Complete','Total:    '+d.total+'\nIndexed:  '+d.from_index+'\nScanned:  '+d.from_scan);
+  }catch(e){ showResult('Reindex Error',e.message); }
+}
+
+async function studioStats(){
+  showResult('Vault Stats','Loading…');
+  try{
+    var r=await fetch(STUDIO_API+'/stats',{signal:AbortSignal.timeout(6000)});
+    var d=await r.json();
+    var out='Total: '+d.total+' assets · '+d.total_gb+' GB\n\nBy label:\n';
+    (d.by_label||[]).forEach(function(b){out+='  '+b.label.padEnd(20)+b.n+' files · '+(b.bytes/1e9).toFixed(2)+' GB\n';});
+    out+='\nBy type:\n';
+    (d.by_ext||[]).slice(0,12).forEach(function(b){out+='  .'+b.ext.padEnd(10)+b.n+'\n';});
+    showResult('Vault Stats',out);
+  }catch(e){ showResult('Stats Error',e.message); }
+}
+
+// Init studio
+studioRefresh();
+setInterval(studioRefresh, 60000);
 
 // ── Init ─────────────────────────────────────────────────────────────────
 checkGordon();

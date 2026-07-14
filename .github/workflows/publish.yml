@@ -40,17 +40,19 @@ jobs:
           NYSENATE_KEY: ${{ secrets.NYSENATE_KEY }}
         run: |
           set -e
-          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
-          mkdir -p "$P/tools/kilo-aupuni" "$P/config" "$HOME/Documents/Claude/tools/council-watch"
-          cp watchers/council_watch.py "$HOME/Documents/Claude/tools/council-watch/"
+          P="${WORKSPACE_ROOT:-${{ github.workspace }}/runtime}"
+          mkdir -p "$P/tools/kilo-aupuni" "$P/config" "$P/tools/council-watch"
+          cp watchers/council_watch.py "$P/tools/council-watch/"
           cp watchers/*.py "$P/tools/kilo-aupuni/"
           cp watchers/departments.json watchers/energov_permit_template.json watchers/commission_inputs.json "$P/tools/kilo-aupuni/" 2>/dev/null || true
           if [ -n "$LEGISCAN_KEY" ]; then printf '%s' "$LEGISCAN_KEY" > "$P/config/legiscan_key.txt"; fi
           if [ -n "$NYSENATE_KEY" ]; then printf '%s' "$NYSENATE_KEY" > "$P/config/nysenate_key.txt"; fi
+          # Export P for use in subsequent steps
+          echo "WORKSPACE_P=$P" >> "$GITHUB_ENV"
 
       - name: Seed the curated full-history report floor (so the published site is COMPLETE, not a thin fresh fetch)
         run: |
-          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS"
+          P="${{ env.WORKSPACE_P }}"
           if [ -d seed_reports ]; then
             mkdir -p "$P/reports/mauios/lege" "$P/reports/mauios/bill9" "$P/reports/council"
             # no-clobber: a watcher's fresh run wins; the committed floor fills gaps + carries accumulated history
@@ -73,8 +75,9 @@ jobs:
           PYTHONUTF8: "1"
           PYTHONIOENCODING: "utf-8"
         run: |
-          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
-          C="$HOME/Documents/Claude/tools/council-watch"
+          cd "${{ github.workspace }}"
+          P="${{ env.WORKSPACE_P }}/tools/kilo-aupuni"
+          C="${{ env.WORKSPACE_P }}/tools/council-watch"
           # Each watcher is a REFRESH on top of the committed seed floor. Cap every one with
           # `timeout` so a slow/hung network fetch can never stall the build -> the site
           # always reaches the deploy step. A capped watcher just leaves the seeded version.
@@ -108,7 +111,7 @@ jobs:
           run "$P/lobby_money_watch.py" || true # state lobbyist registry x donors: who lobbies AND pays the deciders (needs donor_watch first)
           run "$P/testimony_watch.py" || true   # extract NAMED public testifiers from Maui committee minutes (Legistar transcripts) + link to money
           run "$P/testimony_money.py" || true   # Follow the Money by Testimony: lobbyist advocacy x donations x contracts (needs lobby_money_watch + vendor_donor_join)
-          if [ -f "$HOME/Documents/Claude/Projects/Video System elementLOTUS/config/legiscan_key.txt" ]; then
+          if [ -f "${{ env.WORKSPACE_P }}/config/legiscan_key.txt" ]; then
             run "$P/lege_legiscan.py" --years 2024 2026 || true
           fi
           run "$P/commission_watch.py" || true
@@ -128,17 +131,20 @@ jobs:
           run "$P/kilo_aupuni.py" || true
 
       - name: Build static site
-        run: python build_site.py
+        run: |
+          cd "${{ github.workspace }}"
+          python build_site.py
 
       - name: Self-check the built site (integrity page reflects exactly what ships)
         run: |
-          P="$HOME/Documents/Claude/Projects/Video System elementLOTUS/tools/kilo-aupuni"
+          cd "${{ github.workspace }}"
+          P="${{ env.WORKSPACE_P }}/tools/kilo-aupuni"
           # OUTBOUND link verification first (writes site/external_links.html + the json selfheal reads).
           # Transient-tolerant: gov rate-limits/bot-blocks are 'recheck', never a deploy failure.
           if [ -f "$P/external_links.py" ]; then python "$P/external_links.py" || true; fi
           if [ -f "$P/selfheal.py" ]; then
             python "$P/selfheal.py" || true   # validates: no leak, links resolve, no studio route, externals, orphans, mobile, moon, deps, olelo, bats
-            cp "$HOME/Documents/Claude/Projects/Video System elementLOTUS/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
+            cp "${{ env.WORKSPACE_P }}/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
           fi
 
       - name: Upload Pages artifact
@@ -153,6 +159,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

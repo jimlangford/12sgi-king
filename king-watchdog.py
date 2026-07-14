@@ -84,16 +84,18 @@ def ensure_process(label, cmd, ready_url, cwd=HERE):
 
 PROCESS_SERVICES = [
     {
+        'label':     'board-api',
+        'cmd':       [sys.executable, '-m', 'uvicorn',
+                      'services.board_api.main:app',
+                      '--host', '127.0.0.1', '--port', '8799'],
+        'ready_url': 'http://localhost:8799/health',
+    },
+    {
         'label':     'king-bridge',
         'cmd':       [sys.executable, '-m', 'uvicorn',
                       'services.king_bridge.app.main:app',
                       '--host', '127.0.0.1', '--port', '8109'],
         'ready_url': 'http://localhost:8109/api/v2/ready',
-    },
-    {
-        'label':     'static-server',
-        'cmd':       [sys.executable, '-m', 'http.server', '8888', '--directory', str(HERE)],
-        'ready_url': 'http://localhost:8888/',
     },
 ]
 

@@ -380,6 +380,14 @@ app = FastAPI(title="govOS v2 Studio-Asset Service", version=VERSION, lifespan=l
 
 API = "/api/v2"
 
+# ── Project management API ────────────────────────────────────────────────────
+try:
+    from services.studio_assets.app.project_api import router as _project_router
+    app.include_router(_project_router)
+except Exception as _proj_err:
+    print(f"[studio-assets] project_api not loaded: {_proj_err}", file=_sys.stderr)
+
+
 
 def _row(r: sqlite3.Row) -> dict:
     d = dict(r)

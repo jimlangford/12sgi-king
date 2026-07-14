@@ -297,7 +297,7 @@ jobs:
       - name: Health-check V2 localhost services
         shell: pwsh
         run: |
-                    $severityRank = @{
+          $severityRank = @{
             info = 0
             notice = 1
             warning = 2
@@ -407,8 +407,8 @@ jobs:
           }
 
           # /go and /board are static files served locally — check king-local path exists
-          $goPath   = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html"
-          $boardPath = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\board.html"
+          $goPath   = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html" } else { $null }
+          $boardPath = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\board.html" } else { $null }
           if ($goPath -and (Test-Path $goPath)) {
             $results["go.html"] = "present"
             Write-Host "  ✓ go.html present at king-local"
@@ -426,11 +426,13 @@ jobs:
 
           # go/ Owner Console subpages — verify all 7 panels are present
           $goSubPages = @("docker.html","ollama.html","llm-watch.html","comfyui.html","github.html","system.html","logs.html")
-          $goSubDir   = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go"
+          $goSubDir   = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go" } else { $null }
           $goSubMissing = @()
-          foreach ($sp in $goSubPages) {
-            $spPath = Join-Path $goSubDir $sp
-            if (-not (Test-Path $spPath)) { $goSubMissing += $sp }
+          if ($goSubDir) {
+            foreach ($sp in $goSubPages) {
+              $spPath = Join-Path $goSubDir $sp
+              if (-not (Test-Path $spPath)) { $goSubMissing += $sp }
+            }
           }
           if ($goSubMissing.Count -eq 0) {
             $results["go/subpages"] = "all present ($($goSubPages.Count) panels)"
