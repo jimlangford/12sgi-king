@@ -112,6 +112,11 @@ def _normalise_claims(raw: dict | None) -> dict:
         "exp": claims.get("exp"),
         "iss": claims.get("iss"),
         "aud": claims.get("aud"),
+        "provider": str(claims.get("provider") or ""),
+        "entitlement_tier": str(claims.get("entitlement_tier") or "free"),
+        "entitlement_verified": bool(claims.get("entitlement_verified")),
+        "entitlement_capabilities": [str(v) for v in (claims.get("entitlement_capabilities") or []) if str(v).strip()],
+        "entitlement_source": str(claims.get("entitlement_source") or ""),
     }
     return out
 
@@ -124,6 +129,7 @@ def require_claims(
     internal_service_token: str,
     request_timeout: float,
     required_scopes: set[str] | None = None,
+    required_capabilities: set[str] | None = None,
 ) -> dict:
     if not authorization or not authorization.startswith("Bearer "):
         audit_auth_event(service_name, "denied_access", {"reason": "missing_bearer"})
@@ -219,6 +225,33 @@ def require_claims(
                 {"reason": "missing_scope", "required": sorted(needed), "scopes": sorted(scopes)},
             )
             auth_error(403, "forbidden", "Insufficient scope", {"required_scopes": sorted(needed)})
+
+    capabilities_needed = required_capabilities or set()
+    if capabilities_needed and role not in {OWNER_ROLE, "Service"}:
+        provider = (claims.get("provider") or "").strip().lower()
+        entitlement_verified = bool(claims.get("entitlement_verified"))
+        if provider == "google" and not entitlement_verified:
+            audit_auth_event(
+                service_name,
+                "denied_access",
+                {"reason": "entitlement_unverified", "provider": provider, "entitlement_source": claims.get("entitlement_source", "")},
+            )
+            auth_error(403, "forbidden", "Entitlement could not be verified", {"required_capabilities": sorted(capabilities_needed)})
+        if provider != "google" and not entitlement_verified:
+            return claims
+        ent_caps = set(claims.get("entitlement_capabilities") or [])
+        if capabilities_needed - ent_caps:
+            audit_auth_event(
+                service_name,
+                "denied_access",
+                {
+                    "reason": "missing_capability",
+                    "required_capabilities": sorted(capabilities_needed),
+                    "capabilities": sorted(ent_caps),
+                    "entitlement_tier": claims.get("entitlement_tier", "free"),
+                },
+            )
+            auth_error(403, "forbidden", "Insufficient entitlement capability", {"required_capabilities": sorted(capabilities_needed)})
     return claims
 
 

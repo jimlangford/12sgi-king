@@ -75,6 +75,8 @@ class TestClaimClientMigration(unittest.TestCase):
         claims = resp.json()["claims"]
         for field in ("sub", "tenant_id", "role", "scopes", "exp", "iss", "aud"):
             self.assertIn(field, claims)
+        for field in ("entitlement_tier", "entitlement_verified", "entitlement_capabilities", "entitlement_source"):
+            self.assertIn(field, claims)
         self.assertIsInstance(claims["exp"], int)
 
     def test_service_scope_must_be_allowlisted(self):
@@ -157,6 +159,53 @@ class TestClaimClientMigration(unittest.TestCase):
                 )
         self.assertEqual(ctx.exception.status_code, 401)
         self.assertEqual(ctx.exception.detail["error"]["code"], "unauthorized")
+
+    def test_google_claims_fail_closed_when_capability_requires_verified_entitlement(self):
+        from services.authz import require_claims
+
+        class _Resp:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self):
+                return json.dumps(
+                    {
+                        "active": True,
+                        "claims": {
+                            "sub": "google:resident-1",
+                            "tenant_id": "tenant-a",
+                            "role": "Resident",
+                            "provider": "google",
+                            "scopes": ["tenant:read"],
+                            "exp": 9999999999,
+                            "iss": "govos-auth",
+                            "aud": "govos-v2",
+                            "entitlement_verified": False,
+                            "entitlement_tier": "free",
+                            "entitlement_capabilities": [],
+                            "entitlement_source": "unavailable",
+                        },
+                    }
+                ).encode()
+
+        with mock.patch("services.authz.request.urlopen", return_value=_Resp()):
+            with self.assertRaises(HTTPException) as ctx:
+                require_claims(
+                    service_name="tenant",
+                    authorization=("Bearer " + "test-token"),
+                    introspection_url="http://auth/api/v2/auth/introspect",
+                    internal_service_token="svc-token",
+                    request_timeout=1.0,
+                    required_scopes={"tenant:read"},
+                    required_capabilities={"ai_advice"},
+                )
+        self.assertEqual(ctx.exception.status_code, 403)
+        self.assertEqual(ctx.exception.detail["error"]["code"], "forbidden")
 
     def test_client_callers_send_bearer_authorization(self):
         for path in (GOVOS_APP, TENANT_APP, CIVIC_APP):

@@ -21,6 +21,7 @@ from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 from services.event_bus import publish_event as _publish_event
+from services import entitlements as _entitlements
 
 _log = logging.getLogger(__name__)
 
@@ -200,6 +201,7 @@ def _issue_and_store_session(
     scopes: list[str],
     audience: str = AUTH_AUDIENCE,
     ttl_seconds: int = AUTH_TOKEN_TTL_SECONDS,
+    entitlement_claims: dict | None = None,
 ) -> tuple[str, int]:
     """Issue a JWT and persist the session row, returning the raw token."""
     issued_at = _now_utc()
@@ -213,6 +215,7 @@ def _issue_and_store_session(
         scopes=scopes,
         audience=audience,
         expires_at=expires_at_ts,
+        entitlement_claims=entitlement_claims,
     )
     with _db() as conn:
         conn.execute(
@@ -406,6 +409,7 @@ def _issue_token(
     scopes: list[str],
     audience: str,
     expires_at: int,
+    entitlement_claims: dict | None = None,
 ) -> str:
     header = {"alg": "HS256", "typ": "JWT"}
     payload = {
@@ -419,6 +423,13 @@ def _issue_token(
         "exp": expires_at,
         "jti": secrets.token_urlsafe(16),
     }
+    if entitlement_claims:
+        payload["entitlement"] = {
+            "tier": str(entitlement_claims.get("tier") or "free"),
+            "verified": bool(entitlement_claims.get("verified")),
+            "capabilities": [str(cap) for cap in (entitlement_claims.get("capabilities") or []) if str(cap).strip()],
+            "source": str(entitlement_claims.get("source") or ""),
+        }
     header_part = _b64url(json.dumps(header, separators=(",", ":")).encode())
     payload_part = _b64url(json.dumps(payload, separators=(",", ":")).encode())
     unsigned = f"{header_part}.{payload_part}".encode()
@@ -443,6 +454,37 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
             """,
             (token,),
         ).fetchone()
+
+
+def _entitlement_claims_for_identity(provider: str, subject: str, email: str) -> dict:
+    try:
+        resolved = _entitlements.resolve_identity_entitlement(
+            provider=provider,
+            subject=subject,
+            email=email or "",
+        )
+        return {
+            "tier": str(resolved.get("tier") or "free"),
+            "verified": bool(resolved.get("verified")),
+            "capabilities": [str(cap) for cap in (resolved.get("capabilities") or []) if str(cap).strip()],
+            "source": str(resolved.get("source") or ""),
+            "wordpress_user_id": str(resolved.get("wordpress_user_id") or ""),
+            "woocommerce_customer_id": str(resolved.get("woocommerce_customer_id") or ""),
+        }
+    except Exception as exc:
+        audit_auth_event(
+            "auth",
+            "entitlement_bridge_unavailable",
+            {"provider": provider, "subject": _redact_claim_identifier(subject), "reason": str(exc)},
+        )
+        return {
+            "tier": "free",
+            "verified": False,
+            "capabilities": [],
+            "source": "unavailable",
+            "wordpress_user_id": "",
+            "woocommerce_customer_id": "",
+        }
 
 
 init_db()
@@ -535,6 +577,7 @@ def create_session(payload: AuthSessionRequest):
     ttl = payload.expires_in if payload.expires_in is not None else AUTH_TOKEN_TTL_SECONDS
     ttl = max(300, min(int(ttl), 8 * 3600))
     audience = (payload.audience or AUTH_AUDIENCE).strip() or AUTH_AUDIENCE
+    entitlement_claims = _entitlement_claims_for_identity(payload.provider, payload.subject, payload.email or "")
     token, exp = _issue_and_store_session(
         subject=payload.subject,
         provider=payload.provider,
@@ -544,6 +587,7 @@ def create_session(payload: AuthSessionRequest):
         scopes=scopes,
         audience=audience,
         ttl_seconds=ttl,
+        entitlement_claims=entitlement_claims,
     )
 
     return {
@@ -558,6 +602,10 @@ def create_session(payload: AuthSessionRequest):
             "exp": exp,
             "iss": AUTH_ISSUER,
             "aud": audience,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
+            "entitlement_capabilities": entitlement_claims["capabilities"],
+            "entitlement_source": entitlement_claims["source"],
         },
         "user": {
             "id": payload.subject,
@@ -566,6 +614,8 @@ def create_session(payload: AuthSessionRequest):
             "tenant_id": tenant_id,
             "role": role,
             "scopes": scopes,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
         },
     }
 
@@ -622,6 +672,11 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
         return {"active": False}
     role = row["role"] or "Resident"
     tenant_id = (row["tenant_id"] or "").strip()
+    entitlement_claims = _entitlement_claims_for_identity(
+        provider=row["provider"] or "",
+        subject=row["subject"] or "",
+        email=row["email"] or "",
+    )
     if role == "Resident":
         disallowed = {"tenant:write", "documents:write", "storage:write", "gpu:read", "ops:owner"}
         if disallowed.intersection(set(stored_scopes)):
@@ -639,6 +694,10 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "iss": row["issuer"] or AUTH_ISSUER,
             "aud": row["audience"] or AUTH_AUDIENCE,
             "provider": row["provider"],
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
+            "entitlement_capabilities": entitlement_claims["capabilities"],
+            "entitlement_source": entitlement_claims["source"],
         },
         "user": {
             "id": row["subject"],
@@ -647,6 +706,8 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "tenant_id": tenant_id,
             "role": role,
             "scopes": stored_scopes,
+            "entitlement_tier": entitlement_claims["tier"],
+            "entitlement_verified": entitlement_claims["verified"],
         },
         "exp": row["expires_at"],
     }
@@ -811,6 +872,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     if not login or login.casefold() not in OWNER_GITHUB_LOGINS:
         return _error_page("This GitHub account is not authorised for owner access.", provider="github")
 
+    entitlement_claims = _entitlement_claims_for_identity("github", f"github:{login}", email)
     token, _ = _issue_and_store_session(
         subject=f"github:{login}",
         provider="github",
@@ -819,6 +881,7 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+        entitlement_claims=entitlement_claims,
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
@@ -896,6 +959,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
     if not OWNER_GOOGLE_EMAILS or email.casefold() not in OWNER_GOOGLE_EMAILS:
         return _error_page("This Google account is not authorised for owner access.", provider="google")
 
+    entitlement_claims = _entitlement_claims_for_identity("google", f"google:{sub}", email)
     token, _ = _issue_and_store_session(
         subject=f"google:{sub}",
         provider="google",
@@ -904,6 +968,7 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         role="Owner",
         scopes=_default_scopes("Owner"),
         ttl_seconds=8 * 3600,
+        entitlement_claims=entitlement_claims,
     )
     redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token, safe='')}"
     return RedirectResponse(url=redirect_url)
