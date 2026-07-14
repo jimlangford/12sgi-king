@@ -54,6 +54,16 @@
         oninput="eventsApplyFilter()" />
     </div>
 
+    <!-- Auth diagnostics -->
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:8px 0 6px; margin-bottom:10px;">
+      Auth Diagnostics
+      <button onclick="eventsRunIdentityDiag()"
+        style="float:right; font-family:inherit; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; background:rgba(227,173,51,0.12); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:14px; padding:3px 10px; cursor:pointer;">↻ Identity Link</button>
+    </div>
+    <div id="ev-auth-diag" style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.65; color:var(--ink-dim,#b3a98f); margin-bottom:14px;">
+      Run identity-link diagnostics to verify current owner link state.
+    </div>
+
     <!-- Event feed -->
     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin-bottom:10px;">Event Feed</div>
     <div id="ev-feed" style="font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.7;">
@@ -85,6 +95,17 @@
   function _headers() {
     var t = _token();
     return t ? { 'Authorization': 'Bearer ' + t } : {};
+  }
+
+  function _authBase() {
+    return (typeof window.KING_AUTH_URL !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.12sgi.com';
+  }
+
+  function _diagHeaders(requestId) {
+    var h = _headers();
+    h['Content-Type'] = 'application/json';
+    h['X-Request-ID'] = requestId;
+    return h;
   }
 
   function _el(id) { return document.getElementById(id); }
@@ -153,6 +174,56 @@
         '</div>';
     }).join('');
   }
+
+  function _renderIdentityDiag(payload) {
+    var el = _el('ev-auth-diag');
+    if (!el) return;
+    var tone = payload && payload.authorization_decision === 'accepted' ? '#6abf86' : '#d29922';
+    el.style.borderColor = tone;
+    el.innerHTML =
+      '<div style="color:' + tone + '; font-weight:700; margin-bottom:4px;">decision: ' + _esc(payload.authorization_decision || 'unknown') + '</div>' +
+      '<div>provider: <span style="color:var(--ink,#efe9da)">' + _esc(payload.provider || '—') + '</span></div>' +
+      '<div>subject: <span style="color:var(--ink,#efe9da)">' + _esc(payload.subject || '—') + '</span></div>' +
+      '<div>email: <span style="color:var(--ink,#efe9da)">' + _esc(payload.email || '—') + '</span></div>' +
+      '<div>has_identity_link: <span style="color:var(--ink,#efe9da)">' + _esc(String(!!payload.has_identity_link)) + '</span></div>' +
+      '<div>entitlement_verified: <span style="color:var(--ink,#efe9da)">' + _esc(String(!!payload.entitlement_verified)) + '</span></div>' +
+      '<div>entitlement_tier: <span style="color:var(--ink,#efe9da)">' + _esc(payload.entitlement_tier || '—') + '</span></div>' +
+      '<div>last_reason: <span style="color:var(--ink,#efe9da)">' + _esc(payload.last_entitlement_verification_reason || '—') + '</span></div>' +
+      '<div>request_id: <span style="color:var(--ink,#efe9da)">' + _esc(payload.request_id || '—') + '</span></div>' +
+      '<div>audit_event_id: <span style="color:var(--ink,#efe9da)">' + _esc(payload.audit_event_id || '—') + '</span></div>';
+  }
+
+  window.eventsRunIdentityDiag = function() {
+    var el = _el('ev-auth-diag');
+    var token = _token();
+    if (!el) return;
+    if (!token) {
+      el.style.borderColor = '#d29922';
+      el.textContent = 'Sign in first — owner token required.';
+      return;
+    }
+    var requestId = 'ev-diag-' + Date.now();
+    el.style.borderColor = 'var(--line,#34301f)';
+    el.textContent = 'Running /api/v2/auth/diagnostics/identity-link …';
+    fetch(_authBase() + '/api/v2/auth/diagnostics/identity-link', {
+      method: 'POST',
+      headers: _diagHeaders(requestId),
+      body: JSON.stringify({})
+    })
+      .then(function(r) {
+        if (!r.ok) {
+          return r.text().then(function(t) {
+            throw new Error('HTTP ' + r.status + (t ? (' · ' + t.slice(0, 200)) : ''));
+          });
+        }
+        return r.json();
+      })
+      .then(function(data) { _renderIdentityDiag(data || {}); })
+      .catch(function(err) {
+        el.style.borderColor = '#e05252';
+        el.textContent = 'Identity-link diagnostics failed: ' + err.message;
+      });
+  };
 
   function _fetch(base) {
     var b = base || _liveBase;
