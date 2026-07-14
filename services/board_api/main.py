@@ -37,6 +37,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from services import gordon_api, healing_api, pages_api
+
 # ── Repo root ─────────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve()
 _REPO = _HERE.parents[2]
@@ -61,6 +63,13 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+# Include Gordon AI router
+app.include_router(gordon_api.router)
+# Include Healing router
+app.include_router(healing_api.router)
+# Include Pages router (unified backend)
+app.include_router(pages_api.router)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -88,9 +97,10 @@ def _docker_cmd(*args) -> str:
         return ""
 
 
-# ── /board/api/docker ─────────────────────────────────────────────────────────
+# ── /board/api/docker + /api/docker ──────────────────────────────────────────
 
 @app.get("/board/api/docker")
+@app.get("/api/docker")
 def board_docker():
     # docker ps -a --format json
     raw = _docker_cmd("ps", "-a", "--format",
@@ -145,9 +155,10 @@ def board_docker():
     }
 
 
-# ── /board/api/ollama ─────────────────────────────────────────────────────────
+# ── /board/api/ollama + /api/ollama ───────────────────────────────────────────
 
 @app.get("/board/api/ollama")
+@app.get("/api/ollama")
 def board_ollama():
     tags = _get(f"{OLLAMA_BASE}/api/tags")
     ps   = _get(f"{OLLAMA_BASE}/api/ps")
@@ -181,9 +192,10 @@ def board_ollama():
     }
 
 
-# ── /board/api/system ─────────────────────────────────────────────────────────
+# ── /board/api/system + /api/system ───────────────────────────────────────────
 
 @app.get("/board/api/system")
+@app.get("/api/system")
 def board_system():
     # CPU
     cpu_pct = 0.0
@@ -292,9 +304,10 @@ def board_system():
     }
 
 
-# ── /board/api/github ─────────────────────────────────────────────────────────
+# ── /board/api/github + /api/github ───────────────────────────────────────────
 
 @app.get("/board/api/github")
+@app.get("/api/github")
 def board_github():
     if not GITHUB_TOKEN:
         # Return graceful empty — the page shows the "configure GITHUB_TOKEN" error card
@@ -353,9 +366,10 @@ def board_github():
     return {"workflow_runs": runs, "pull_requests": prs, "commits": commits, "ts": _now()}
 
 
-# ── /board/api/llm-watch ─────────────────────────────────────────────────────
+# ── /board/api/llm-watch + /api/llm-watch ────────────────────────────────────
 
 @app.get("/board/api/llm-watch")
+@app.get("/api/llm-watch")
 def board_llm_watch():
     # Active inference from Ollama /api/ps
     ps   = _get(f"{OLLAMA_BASE}/api/ps") or {}
@@ -390,9 +404,10 @@ def board_llm_watch():
     }
 
 
-# ── /board/api/logs ──────────────────────────────────────────────────────────
+# ── /board/api/logs + /api/logs ──────────────────────────────────────────────
 
 @app.get("/board/api/logs")
+@app.get("/api/logs")
 def board_logs():
     entries = []
 
@@ -459,9 +474,10 @@ def board_logs():
     return {"entries": entries, "count": len(entries), "ts": _now()}
 
 
-# ── /board/api/comfyui ────────────────────────────────────────────────────────
+# ── /board/api/comfyui + /api/comfyui ─────────────────────────────────────────
 
 @app.get("/board/api/comfyui")
+@app.get("/api/comfyui")
 def board_comfyui():
     queue   = _get(f"{COMFYUI_BASE}/queue")    or {}
     history = _get(f"{COMFYUI_BASE}/history")  or {}

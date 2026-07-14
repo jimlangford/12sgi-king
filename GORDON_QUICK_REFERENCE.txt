@@ -1,0 +1,208 @@
+╔════════════════════════════════════════════════════════════════════════════════════════╗
+║                    GORDON SYSTEM — WORKING MEMORY QUICK REFERENCE                     ║
+║                          12sgi-king govOS v2 (Production)                              ║
+╚════════════════════════════════════════════════════════════════════════════════════════╝
+
+SYSTEM HEALTH CHECK (Run this first)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  python king-watchdog.py
+  curl http://localhost:8799/health
+  
+  Expected: {"status": "ok", "services": {...}, "memory": "..."} 
+
+
+DASHBOARD ACCESS
+────────────────────────────────────────────────────────────────────────────────────────
+
+  LOCAL:     http://localhost:8799/go/healing.html
+  TAILSCALE: https://12sgianonymous.tail760750.ts.net/king/go/healing.html
+  
+  7 other go/ pages: docker, ollama, system, github, llm-watch, logs, comfyui
+
+
+WHAT'S RUNNING RIGHT NOW
+────────────────────────────────────────────────────────────────────────────────────────
+
+  ✅ king-watchdog.py (main orchestrator)
+  ✅ board-api:8799 (routes for all go/ pages)
+  ✅ king-bridge:8109 (AI router + Neo4j, 44 king-* models)
+  ✅ studio-assets:8108 (asset vault, 3800+ clips)
+  ✅ neo4j:7474 (6,544 nodes, 18,331 relationships)
+  ✅ ollama:11434 (LLM server)
+  ✅ auth:8101 (OAuth + magic links)
+  
+  ⚠️  NEEDS RESTART: lotus-neo4j (OOMKilled 47h ago)
+  ⚠️  NEEDS SETUP: health aggregator missing studio-assets
+  ⚠️  NEEDS NGINX: /board proxy not configured
+
+
+CRITICAL ISSUES TO FIX TODAY
+────────────────────────────────────────────────────────────────────────────────────────
+
+  1. Memory leak: 3.6 GB in one process
+     Fix: taskkill /F /IM pythonw.exe
+          python king-watchdog.py
+
+  2. Disk 95.9% full (lotus-neo4j OOMKilled)
+     Fix: python cleanup_system.py --verify
+          python cleanup_system.py --execute
+          docker system prune -a
+
+  3. Missing nginx /board proxy
+     Fix: Add to /etc/nginx/sites-available/default:
+          location /board/api {
+            proxy_pass http://localhost:8799;
+            proxy_set_header Host $host;
+          }
+          sudo systemctl reload nginx
+
+  4. studio-assets not in health aggregator
+     Fix: Edit health aggregator config, add:
+          "studio-assets": "http://host.docker.internal:8108/health"
+
+
+ERROR REFERENCE (copy/paste fixes)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  GITHUB ACTIONS YAML INDENTATION ERROR:
+    Error: "bad indentation at line 45"
+    Fix: Use consistent 2 spaces (not 4)
+         yamllint .github/workflows/*.yml
+
+  NEO4J RECURSION ERROR:
+    Error: "RecursionError: _neo_ready infinite loop"
+    Fix: Replace circular check with direct HTTP ping
+         response = urllib.request.urlopen(url)
+         return response.status == 200
+
+  HEALING DASHBOARD FAILS ON TAILSCALE:
+    Error: "Cannot reach /gordon/healing/dashboard"
+    Fix: Auto-detect hostname in go/healing.html:
+         const apiBase = window.location.origin.includes('localhost')
+           ? 'http://localhost:8799'
+           : window.location.origin + '/king';
+
+  AUTONOMY REPAIR NOT EXECUTING:
+    Error: "Config changed despite autonomy=50 < threshold=70"
+    Fix: Check autonomy BEFORE execution
+         if archetypes[0].autonomy_score < threshold:
+           return False  # Don't repair
+         execute_repair(archetypes)
+
+  DUPLICATE SERVICES CONFLICT:
+    Error: "Multiple repairs running; database conflicts"
+    Fix: Consolidate github_auto_repair.py + github_error_scanner.py
+         into single github_auto_repair.py with internal modules
+
+
+CLEANUP SEQUENCE (removes 50-150 MB junk)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  Step 1: Preview what will be deleted
+    python cleanup_system.py --verify
+
+  Step 2: Execute cleanup
+    python cleanup_system.py --execute
+
+  Step 3: Clean Docker images
+    docker system prune -a
+
+  Step 4: Backup to Dropbox
+    python backup_to_dropbox.py
+
+  Step 5: Restart system
+    taskkill /F /IM pythonw.exe
+    python king-watchdog.py
+
+
+API ENDPOINTS (all on port 8799)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  GET  /api/pages                    → All 8 registered pages
+  GET  /api/pages/{id}               → Specific page (docker, ollama, healing, etc)
+  GET  /api/dashboard                → Summary (page counts, tenant counts)
+  
+  GET  /gordon/health                → System health status
+  GET  /gordon/tasks                 → Job queue status
+  POST /gordon/healing/cycle/{id}    → Run healing cycle for tenant
+  GET  /gordon/healing/guidance/{id} → Get recommendations
+  
+
+NEO4J DOMAINS (what's in the graph)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  1. STUDIO (film production): 3706 clips, 1568 assets (characters/styles/tenants)
+  2. CIVIC (government): 924 documents, 228 entities, 26 Hawaii jurisdiction records
+  3. LEARNING: 56 learning schema nodes, 125 edges
+  
+  Total: 6,544 nodes, 18,331 relationships
+
+
+CURRENT TENANTS
+────────────────────────────────────────────────────────────────────────────────────────
+
+  CIVIC (6):
+    - hi-state (Hawaii State)
+    - hi-hawaii (Hawaii County)
+    - hi-maui (Maui County)
+    - hi-kauai (Kauai County)
+    - hi-honolulu (Honolulu City)
+    - ny (New York)
+
+  CREATIVE (12):
+    - film_12stones, film_mokuula, film_luna, film_keys, film_seventh_stone
+    - game_sage
+    - mv_jimmy_langford, mv_john_saunders_band
+    - + 4 proposed studios
+
+  44 OLLAMA MODELS (king-* prefix):
+    - king-civic (government analysis)
+    - king-prosecutor (legal research)
+    - king-audit (compliance)
+    - king-workboard (task scheduling)
+    - ... + 40 more (see services/king_bridge/models.py)
+
+
+DOCUMENTATION FILES (SOURCE OF TRUTH)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  PRIMARY:
+    ✅ THREAD_REVIEW_AND_ERROR_REFERENCE.md ← COMPREHENSIVE (this session)
+    ✅ HEALING_WORKING_LINKS.txt ← Dashboard links
+    ✅ SYSTEM_AUDIT_AND_CLEANUP.md ← Cleanup guide
+    ✅ BACKEND_WIRING_VERIFIED.txt ← API structure
+
+  TO DELETE (duplicates):
+    ❌ HEALING_README.py
+    ❌ HEALING_LINKS.py
+    ❌ GORDON_README.py
+    ❌ SETUP.md
+    ❌ TEST_AUTONOMOUS_REPAIRS.md
+
+
+MEMORY TRACKING
+────────────────────────────────────────────────────────────────────────────────────────
+
+  Total memories: 41 active entries
+  All threads: REVIEWED & CONSOLIDATED
+  Status: CURRENT as of 2026-07-14 07:40 UTC
+  
+  To view: Search for "12sgi-king" or "gordon" in memory system
+
+
+OWNER CONTACT
+────────────────────────────────────────────────────────────────────────────────────────
+
+  Name: James Langford (JRCSL)
+  Email: jimlangford@me.com, elementlotus@gmail.com, jimmylangford@elementlotus.com
+  Tailscale domain: 12sgianonymous.tail760750.ts.net
+  Auth: Tailscale identity (not device fingerprint)
+  Approval gates: Creative lane auto-approved; social media requires owner sign-off
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+NEXT GORDON SESSION: Start with cleanup, then verify all systems operational.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+

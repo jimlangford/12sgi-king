@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AI Healing Dashboard · Owner Console</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #e7eef8;
+      --panel-2: #dae5f3;
+      --panel-3: #ccddef;
+      --line: #bacde6;
+      --ink: #13243d;
+      --ink-dim: #41536b;
+      --ink-faint: #5b6e86;
+      --accent: #00356b;
+      --accent-2: #1259a3;
+      --accent-ink: #ffffff;
+      --accent-wash: rgba(0, 53, 107, 0.06);
+      --gold: #b8860b;
+      --ok: #1f8a5b;
+      --warn: #b07d1a;
+      --err: #c0322c;
+      --mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 20px 16px 40px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 6px 0 4px;
+    }
+
+    .seal {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .syslabel {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .sub {
+      font-size: 13px;
+      color: var(--ink-dim);
+      margin: 11px 0 14px;
+      line-height: 1.55;
+    }
+
+    .back {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--accent-2);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      padding: 8px 13px;
+      border-radius: 10px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      margin-bottom: 13px;
+      color: var(--ink-dim);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--warn);
+      animation: pulse 1.2s infinite;
+      flex: none;
+    }
+
+    .dot.ok {
+      background: var(--ok);
+      animation: none;
+    }
+
+    .dot.healing {
+      background: var(--accent);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .tabs-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--line);
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .tab-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex: none;
+    }
+
+    .tab-btn:hover {
+      color: var(--accent-2);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-2);
+      border-bottom-color: var(--accent-2);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tenant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .tenant-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      transition: all 0.2s;
+    }
+
+    .tenant-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .tenant-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .health-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      flex: none;
+      font-family: var(--mono);
+    }
+
+    .health-badge.ok {
+      background: rgba(31, 138, 91, 0.15);
+      color: var(--ok);
+    }
+
+    .health-badge.degraded {
+      background: rgba(176, 125, 26, 0.15);
+      color: var(--warn);
+    }
+
+    .health-badge.critical {
+      background: rgba(192, 50, 44, 0.15);
+      color: var(--err);
+    }
+
+    .tenant-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tenant-id {
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .tenant-status {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 5px;
+      border-radius: 99px;
+      background: var(--panel-3);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-fill.ok {
+      background: linear-gradient(90deg, var(--ok), #2aad73);
+    }
+
+    .progress-fill.warn {
+      background: linear-gradient(90deg, var(--warn), #d49a20);
+    }
+
+    .progress-fill.err {
+      background: linear-gradient(90deg, var(--err), #e05060);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-num {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .metric-label {
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-weight: 600;
+    }
+
+    .guidance-section {
+      margin-top: 14px;
+      padding: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent-2);
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      line-height: 1.5;
+      color: var(--ink-dim);
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .guidance-section.loading {
+      color: var(--ink-faint);
+      font-style: italic;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--accent-2);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .btn:hover:not(:disabled) {
+      border-color: var(--accent-2);
+      background: var(--accent-wash);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .btn.primary:hover:not(:disabled) {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .sect {
+      font-size: 10.5px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 20px 2px 10px;
+      font-weight: 600;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid var(--accent-2);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .foot {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-faint);
+      margin-top: 24px;
+      line-height: 1.7;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+
+    .empty-state {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      color: var(--ink-faint);
+    }
+
+    .empty-state p {
+      margin: 0 0 12px;
+      font-size: 13px;
+    }
+
+    .empty-state code {
+      font-family: var(--mono);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/go">← /go</a>
+
+    <div class="header">
+      <div class="seal">🤖</div>
+      <div>
+        <div class="brand">AI Healing Dashboard</div>
+        <div class="syslabel">Self-Healing System · Watch It Fix Itself</div>
+      </div>
+    </div>
+
+    <p class="sub">Real-time healing diagnostics for each tenant. Gordon automatically detects issues, applies fixes, and provides guidance. The system heals itself continuously—just watch.</p>
+
+    <div class="status">
+      <span class="dot healing" id="statusDot"></span>
+      <span id="statusText">Initializing healing system…</span>
+    </div>
+
+    <div class="sect">Tenants</div>
+    <div class="tabs-wrapper" id="tabsContainer"></div>
+
+    <div id="tabsContent"></div>
+
+    <div class="foot">PRIVATE · AI Healing · Owner Console · 12 Stones Global · Tailscale only</div>
+  </div>
+
+  <script>
+    'use strict';
+
+    // Detect environment and build API base URL
+    const getApiBase = () => {
+      const protocol = window.location.protocol;
+      const hostname = window.location.hostname;
+      const port = window.location.port;
+      
+      // If on Tailscale domain, use that
+      if (hostname.includes('tail') || hostname.includes('.net') || hostname.includes('.com')) {
+        return `${protocol}//${hostname}`;
+      }
+      
+      // Otherwise use localhost with port
+      if (port) {
+        return `${protocol}//${hostname}:${port}`;
+      }
+      return `${protocol}//${hostname}`;
+    };
+
+    const API_BASE = getApiBase();
+    const DASHBOARD_API = `${API_BASE}/gordon/healing/dashboard`;
+    const CYCLE_API = `${API_BASE}/gordon/healing/cycle`;
+
+    let allTenants = [];
+    let activeTenant = null;
+    let autoRefreshInterval = null;
+
+    async function fetchJSON(url) {
+      try {
+        const resp = await fetch(url, { 
+          cache: 'no-store',
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return await resp.json();
+      } catch (e) {
+        console.error('Fetch error:', e);
+        return null;
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function getHealthClass(score) {
+      if (score >= 80) return 'ok';
+      if (score >= 50) return 'degraded';
+      return 'critical';
+    }
+
+    function getHealthIcon(status) {
+      if (status === 'healthy') return '🟢';
+      if (status === 'degraded') return '🟡';
+      return '🔴';
+    }
+
+    function renderTabs(tenants) {
+      const container = document.getElementById('tabsContainer');
+      
+      if (tenants.length === 0) {
+        container.innerHTML = '<div class="tab-btn" style="color: var(--ink-faint); cursor: default;">No tenants yet</div>';
+        return;
+      }
+
+      container.innerHTML = tenants.map((t, idx) => `
+        <button class="tab-btn ${idx === 0 ? 'active' : ''}" 
+                onclick="switchTenant('${escapeHtml(t.id)}')">
+          ${escapeHtml(t.id.slice(0, 25))}${t.id.length > 25 ? '…' : ''}
+        </button>
+      `).join('');
+
+      if (!activeTenant && tenants.length > 0) {
+        activeTenant = tenants[0].id;
+      }
+    }
+
+    function switchTenant(tenantId) {
+      activeTenant = tenantId;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const btnText = btn.textContent.slice(0, 25);
+        const isActive = tenantId.slice(0, 25) === btnText || tenantId.startsWith(btnText);
+        btn.classList.toggle('active', isActive);
+      });
+      renderTenantContent();
+    }
+
+    function renderTenantContent() {
+      const tenant = allTenants.find(t => t.id === activeTenant);
+      if (!tenant) {
+        document.getElementById('tabsContent').innerHTML = '<div class="empty-state"><p>No data for this tenant</p></div>';
+        return;
+      }
+
+      const healthClass = getHealthClass(tenant.health_score);
+      const healthIcon = getHealthIcon(tenant.status);
+      const progressPct = tenant.health_score;
+
+      let guidance = '⏳ Loading guidance…';
+      if (tenant.recent_guidance && tenant.recent_guidance.length > 0) {
+        const g = tenant.recent_guidance[0];
+        if (g.actions && g.actions.length > 0) {
+          guidance = g.actions.map(a => `${a.category}:\n${a.guidance}`).join('\n\n');
+        }
+      }
+
+      const html = `
+        <div class="tenant-grid">
+          <div class="tenant-card">
+            <div class="tenant-header">
+              <div class="health-badge ${healthClass}">${progressPct}</div>
+              <div class="tenant-info">
+                <div class="tenant-id">${escapeHtml(tenant.id)} ${healthIcon}</div>
+                <div class="tenant-status">${tenant.status.toUpperCase()}</div>
+                <div class="progress-bar">
+                  <div class="progress-fill ${healthClass}" style="width: ${progressPct}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric">
+                <div class="metric-num">${tenant.diagnostics_count || 0}</div>
+                <div class="metric-label">Scans</div>
+              </div>
+              <div class="metric">
+                <div class="metric-num">${tenant.repairs_count || 0}</div>
+                <div class="metric-label">Repairs</div>
+              </div>
+              <div class="metric">
+                <div class="metric-num">${tenant.guidance_count || 0}</div>
+                <div class="metric-label">Guides</div>
+              </div>
+              <div class="metric">
+                <div class="metric-num">${tenant.last_check ? formatTimeAgo(tenant.last_check) : '—'}</div>
+                <div class="metric-label">Last</div>
+              </div>
+            </div>
+
+            <div class="guidance-section">${escapeHtml(guidance)}</div>
+
+            <div class="action-row">
+              <button class="btn primary" onclick="runHealingCycle('${escapeHtml(tenant.id)}')">
+                🔧 Heal
+              </button>
+              <button class="btn" onclick="viewTenantDetails('${escapeHtml(tenant.id)}')">
+                📊 Details
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('tabsContent').innerHTML = html;
+    }
+
+    function formatTimeAgo(isoString) {
+      try {
+        const then = new Date(isoString);
+        const now = new Date();
+        const diffMs = now - then;
+        const diffMins = Math.floor(diffMs / 60000);
+        
+        if (diffMins < 1) return 'now';
+        if (diffMins < 60) return `${diffMins}m`;
+        const hours = Math.floor(diffMins / 60);
+        if (hours < 24) return `${hours}h`;
+        return `${Math.floor(hours / 24)}d`;
+      } catch {
+        return '—';
+      }
+    }
+
+    async function loadDashboard() {
+      const data = await fetchJSON(DASHBOARD_API);
+      if (!data || !data.tenants) {
+        document.getElementById('statusText').textContent = 'Failed to load dashboard';
+        document.getElementById('statusDot').className = 'dot';
+        return;
+      }
+
+      allTenants = data.tenants || [];
+      renderTabs(allTenants);
+      if (activeTenant) {
+        renderTenantContent();
+      }
+
+      // Update status
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      if (allTenants.length === 0) {
+        statusDot.className = 'dot';
+        statusText.textContent = 'No tenants yet — create one to start healing';
+        document.getElementById('tabsContent').innerHTML = `
+          <div class="empty-state">
+            <p>No tenants created yet.</p>
+            <p>Create one by running:</p>
+            <code>curl -X POST ${API_BASE}/gordon/healing/cycle/my-tenant</code>
+          </div>
+        `;
+      } else {
+        const criticalCount = allTenants.filter(t => t.status === 'critical').length;
+        const degradedCount = allTenants.filter(t => t.status === 'degraded').length;
+        const healthyCount = allTenants.filter(t => t.status === 'healthy').length;
+
+        let statusClass = 'dot ok';
+        let statusMsg = `All systems healthy · ${healthyCount} tenant(s) online`;
+
+        if (criticalCount > 0) {
+          statusClass = 'dot';
+          statusMsg = `${criticalCount} CRITICAL · ${degradedCount} degraded · ${healthyCount} healthy`;
+        } else if (degradedCount > 0) {
+          statusClass = 'dot healing';
+          statusMsg = `All systems healing · ${degradedCount} degraded · ${healthyCount} healthy`;
+        }
+
+        statusDot.className = statusClass;
+        statusText.textContent = statusMsg;
+      }
+    }
+
+    async function runHealingCycle(tenantId) {
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner"></span> Healing…`;
+
+      try {
+        const result = await fetchJSON(`${CYCLE_API}/${tenantId}`);
+        
+        if (result) {
+          // Wait before refreshing
+          await new Promise(r => setTimeout(r, 800));
+          await loadDashboard();
+        } else {
+          alert('Healing cycle failed');
+        }
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    function viewTenantDetails(tenantId) {
+      const tenant = allTenants.find(t => t.id === tenantId);
+      if (!tenant) {
+        alert('Tenant not found');
+        return;
+      }
+
+      let details = `═══════════════════════════════════════\n`;
+      details += `TENANT: ${tenant.id}\n`;
+      details += `═══════════════════════════════════════\n\n`;
+      details += `Health Score: ${tenant.health_score}/100\n`;
+      details += `Status: ${tenant.status.toUpperCase()}\n`;
+      details += `Last Check: ${tenant.last_check || 'never'}\n\n`;
+      details += `Diagnostics Run: ${tenant.diagnostics_count}\n`;
+      details += `Repairs Applied: ${tenant.repairs_count}\n`;
+      details += `Guidance Issued: ${tenant.guidance_count}\n\n`;
+
+      if (tenant.recent_guidance && tenant.recent_guidance.length > 0) {
+        const g = tenant.recent_guidance[0];
+        details += `CURRENT GUIDANCE:\n`;
+        details += `─────────────────────────────────────\n`;
+        if (g.actions) {
+          g.actions.forEach(a => {
+            details += `\n${a.category} (${a.priority}):\n${a.guidance}\n`;
+          });
+        }
+        if (g.next_steps && g.next_steps.length > 0) {
+          details += `\nNEXT STEPS:\n`;
+          g.next_steps.forEach(step => {
+            details += `• ${step}\n`;
+          });
+        }
+      }
+
+      details += `\n═══════════════════════════════════════\n`;
+      alert(details);
+    }
+
+    // Auto-refresh
+    function startAutoRefresh() {
+      loadDashboard();
+      autoRefreshInterval = setInterval(loadDashboard, 15000); // Every 15 seconds
+    }
+
+    // Initialize
+    startAutoRefresh();
+
+    // Also refresh when page becomes visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        loadDashboard();
+      }
+    });
+  </script>
+</body>
+</html>
