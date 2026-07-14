@@ -1,0 +1,48 @@
+{
+  "schema": "canonical-job-contract-v2",
+  "schema_version": "2.0.0",
+  "job_envelope_schema": "canonical-job-envelope-v2",
+  "domains": {
+    "workboard": {
+      "initial_states": [
+        "queued",
+        "in-progress",
+        "pending-approval",
+        "approved",
+        "rejected",
+        "done",
+        "failed",
+        "archived"
+      ],
+      "allowed_transitions": {
+        "queued": ["in-progress", "pending-approval", "approved", "rejected", "done", "failed", "archived"],
+        "in-progress": ["queued", "pending-approval", "approved", "rejected", "done", "failed", "archived"],
+        "pending-approval": ["in-progress", "approved", "rejected", "archived"],
+        "approved": ["approved", "archived"],
+        "rejected": ["rejected", "archived"],
+        "done": ["done", "archived"],
+        "failed": ["queued", "in-progress", "done", "archived"],
+        "archived": []
+      }
+    },
+    "studio-assets": {
+      "initial_states": ["queued", "done"],
+      "allowed_transitions": {
+        "queued": ["in-progress", "done", "failed"],
+        "in-progress": ["done", "failed"],
+        "done": ["done"],
+        "failed": ["queued", "in-progress", "done"]
+      }
+    },
+    "gpu-router": {
+      "initial_states": ["pending"],
+      "allowed_transitions": {
+        "pending": ["running", "error", "timeout"],
+        "running": ["pending", "done", "error", "timeout"],
+        "done": ["done"],
+        "error": ["error"],
+        "timeout": ["timeout"]
+      }
+    }
+  }
+}
