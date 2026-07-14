@@ -43,6 +43,7 @@ Endpoints:
   POST /api/v2/bridge/poll    — owner-triggered: drain pending workboard jobs
   GET  /api/v2/bridge/chat    — SSE stream: talk to a king-* model directly
   POST /api/v2/bridge/chat    — single-turn chat to a king-* model
+  GET  /owner_jobs.html       — owner job tracking dashboard
 
 Security: owner-only (no external auth required on loopback; INTERNAL_SERVICE_TOKEN
   header required for non-loopback callers). Private data never leaves the machine.
@@ -61,7 +62,7 @@ from typing import Iterator
 from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Request, Response
-from fastapi.responses import StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 
 # ── Repo-root imports (same pattern as all other v2 services) ─────────────────
@@ -99,8 +100,10 @@ INTERNAL_TOKEN  = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
 AUTONOMY_ENABLED = os.environ.get("KING_BRIDGE_AUTONOMY_ENABLED", "true").lower() == "true"
 AUTONOMY_THRESHOLD = int(os.environ.get("KING_BRIDGE_AUTONOMY_THRESHOLD", "70"))
 
+# Static file directory for owner HTML surfaces
+_STATIC_DIR = _REPO / "element_lotus_public"
+
 # ── Model routing table ───────────────────────────────────────────────────────
-# Order matters: first match wins. Checks lane+action as a single string.
 _ROUTE_TABLE = [
     ("prosecutor",   "king-prosecutor"),
     ("audit",        "king-audit"),
@@ -122,8 +125,8 @@ _ROUTE_TABLE = [
     ("naga",         "king-naga"),
     ("heal",         "king-heal"),
     ("awareness",    "king-awareness"),
-    ("creative",     "king-workboard"),   # creative lane → workboard model
-    ("output",       "king-dispatch"),    # output lane → dispatch model
+    ("creative",     "king-workboard"),
+    ("output",       "king-dispatch"),
 ]
 _DEFAULT_MODEL = "king-quad-os"
 
@@ -170,12 +173,7 @@ def _init_db():
 
 # ── Ollama helpers ────────────────────────────────────────────────────────────
 def _ollama_generate(model: str, prompt: str, stream: bool = False) -> str | None:
-    """Send a prompt to a king-* model via Ollama. Returns response text or None."""
-    payload = json.dumps({
-        "model": model,
-        "prompt": prompt,
-        "stream": stream,
-    }).encode()
+    payload = json.dumps({"model": model, "prompt": prompt, "stream": stream}).encode()
     req = urllib.request.Request(
         f"{OLLAMA_BASE}/api/generate",
         data=payload,
@@ -191,7 +189,6 @@ def _ollama_generate(model: str, prompt: str, stream: bool = False) -> str | Non
 
 
 def _ollama_stream(model: str, prompt: str) -> Iterator[str]:
-    """SSE generator: yields token chunks from Ollama streaming API."""
     payload = json.dumps({"model": model, "prompt": prompt, "stream": True}).encode()
     req = urllib.request.Request(
         f"{OLLAMA_BASE}/api/generate",
@@ -220,7 +217,6 @@ def _ollama_stream(model: str, prompt: str) -> Iterator[str]:
 
 
 def _ollama_models() -> list[str]:
-    """Return list of available Ollama model names."""
     try:
         with urllib.request.urlopen(f"{OLLAMA_BASE}/api/tags", timeout=5) as resp:
             data = json.loads(resp.read().decode())
@@ -239,7 +235,6 @@ def _ollama_ready() -> bool:
 
 # ── Neo4j helpers ─────────────────────────────────────────────────────────────
 def _neo_ping() -> bool:
-    """Direct Neo4j HTTP ping — no recursion. Used internally by _cypher_endpoint."""
     payload = json.dumps({"statements": [{"statement": "RETURN 1"}]}).encode()
     req = urllib.request.Request(
         NEO4J_HTTP,
@@ -256,11 +251,6 @@ def _neo_ping() -> bool:
 
 
 def _cypher_endpoint() -> tuple[str, bool]:
-    """
-    Return the endpoint to use (local Neo4j or AuraDB) and whether AuraDB is active.
-    Strategy: try local first. If it fails, check Aura. Use whichever is reachable.
-    Falls back to read-only Aura if local is offline.
-    """
     if _neo_ping():
         return NEO4J_HTTP, False
     if AURA_URI and AURA_PASSWORD:
@@ -305,10 +295,6 @@ def _neo_cypher(statements: list[dict]) -> dict | None:
 
 
 def _write_result_to_neo(job_id: str, lane: str, action: str, model: str, response: str, payload: dict) -> bool:
-    """
-    MERGE a BridgeJob node into Neo4j and link it to any referenced tenant/civic nodes.
-    Zero duplicate creation — MERGE on job_id is idempotent.
-    """
     stmts = [
         {
             "statement": """
@@ -324,12 +310,11 @@ def _write_result_to_neo(job_id: str, lane: str, action: str, model: str, respon
                 "lane":       lane,
                 "action":     action,
                 "model":      model,
-                "response":   response[:4000],   # cap at 4KB for graph storage
+                "response":   response[:4000],
                 "created_at": datetime.now(timezone.utc).isoformat(),
             },
         }
     ]
-    # If payload references a tenant, link it
     tenant_id = payload.get("tenant_id") or payload.get("tenant")
     if tenant_id:
         stmts.append({
@@ -346,10 +331,6 @@ def _write_result_to_neo(job_id: str, lane: str, action: str, model: str, respon
 
 # ── Core job processor ────────────────────────────────────────────────────────
 def _process_job(entry: dict) -> dict:
-    """
-    Run one workboard entry through the correct king-* model.
-    Returns a result dict. Never raises — errors are captured in result.
-    """
     job     = entry.get("job") or {}
     job_id  = job.get("id", str(uuid4()))
     lane    = entry.get("lane", "engineering")
@@ -362,16 +343,13 @@ def _process_job(entry: dict) -> dict:
     bridge_id  = str(uuid4())
     created_at = datetime.now(timezone.utc).isoformat()
 
-    # Infer
     response  = _ollama_generate(model, prompt)
     grounded  = bool(response)
     if not grounded:
         response = f"UNGROUNDED: {model} unavailable. Job {job_id} flagged for review."
 
-    # Write to Neo4j
     neo_ok = _write_result_to_neo(job_id, lane, action, model, response or "", payload)
 
-    # Persist to bridge DB
     with _db() as conn:
         conn.execute("""
             INSERT OR REPLACE INTO bridge_jobs
@@ -385,11 +363,9 @@ def _process_job(entry: dict) -> dict:
         ))
         conn.commit()
 
-    # Emit workboard tombstone (engineering lane self-heals)
     if lane == "engineering" and grounded:
         resolve_workboard_job(job_id, outcome=f"king-bridge:{model}", source=SERVICE_NAME)
 
-    # Emit event bus entry
     publish_event(
         "king_bridge.job.completed",
         SERVICE_NAME,
@@ -418,7 +394,6 @@ def _process_job(entry: dict) -> dict:
 
 
 def _build_prompt(lane: str, action: str, payload: dict, entry: dict) -> str:
-    """Build a context-rich prompt for the king-* model from a workboard entry."""
     lines = [
         f"You are {route_model(lane, action)}, a specialized govOS AI agent.",
         f"Lane: {lane} | Action: {action}",
@@ -448,12 +423,27 @@ def _iso_now() -> str:
 
 
 def _require_internal(x_service_token: str | None):
-    """Lightweight internal-token check — owner-only service on loopback."""
     if x_service_token and x_service_token == INTERNAL_TOKEN:
         return
-    # Allow loopback without token (local owner direct calls)
-    # Non-loopback without token → reject
-    # (Full auth wiring can be added later via require_claims if exposed externally)
+
+
+# ── Static HTML surfaces ──────────────────────────────────────────────────────
+def _serve_html(filename: str) -> FileResponse:
+    """Serve a file from element_lotus_public/."""
+    path = _STATIC_DIR / filename
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"{filename} not found")
+    return FileResponse(path, media_type="text/html")
+
+
+@app.get("/owner_jobs.html")
+def serve_owner_jobs():
+    return _serve_html("owner_jobs.html")
+
+
+@app.get("/civic.html")
+def serve_civic():
+    return _serve_html("civic.html")
 
 
 # ── Ready / health ────────────────────────────────────────────────────────────
@@ -461,8 +451,8 @@ def _require_internal(x_service_token: str | None):
 def ready(response: Response):
     ollama_ok = _ollama_ready()
     neo_local_ok = _neo_ready()
-    aura_available = AURA_URI and AURA_PASSWORD  # Configured, not necessarily reachable
-    neo_ok = neo_local_ok or aura_available  # At least one should work
+    aura_available = bool(AURA_URI and AURA_PASSWORD)
+    neo_ok = neo_local_ok or aura_available
     db_ok = True
     try:
         with _db() as conn:
@@ -505,7 +495,7 @@ class BridgeJobRequest(BaseModel):
     action:  str
     event:   str = ""
     payload: dict = {}
-    model:   str | None = None   # override routing if set
+    model:   str | None = None
 
 
 @app.post(f"{API_PREFIX}/bridge/job")
@@ -554,11 +544,6 @@ def pulse():
 # ── Poll + drain pending workboard jobs ───────────────────────────────────────
 @app.post(f"{API_PREFIX}/bridge/poll")
 def poll(x_service_token: str | None = Header(default=None)):
-    """
-    Owner-triggered drain: reads pending engineering-lane jobs from the workboard
-    and processes them through the correct king-* model. Creative/output jobs are
-    listed but never auto-processed (owner approval required per AGENTS.md).
-    """
     _require_internal(x_service_token)
     from services.v2_workboard import read_workboard_log, DISPATCH_LOG
 
@@ -577,7 +562,6 @@ def poll(x_service_token: str | None = Header(default=None)):
             if jid:
                 open_jobs[jid] = e
 
-    # Separate engineering (auto-process) from creative/output (list only)
     to_process  = [(jid, e) for jid, e in open_jobs.items()
                    if jid not in tombstoned and e.get("lane") == "engineering"][:POLL_MAX]
     needs_owner = [(jid, e) for jid, e in open_jobs.items()
@@ -619,30 +603,14 @@ class ChatRequest(BaseModel):
     stream:  bool = False
 
 
-# ── Owner message → workboard executor ───────────────────────────────────────
 @app.post(f"{API_PREFIX}/board/message")
 def owner_message(req: OwnerMessageRequest, x_service_token: str | None = Header(default=None)):
-    """
-    Receive a message from the owner's go.html console and emit it as a workboard job.
-    
-    The executor reads pending jobs and sends responses back. This is the entrypoint
-    for the owner's "Message Claude" feature on the index page.
-    
-    Flow:
-      1. Owner types message in go.html
-      2. Form POSTs to /api/v2/board/message
-      3. Backend emits a workboard job (engineering lane, auto-heals)
-      4. Executor picks it up and processes
-      5. Result appears in dispatch log + owner console
-    """
     _require_internal(x_service_token)
-    
+
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="message cannot be empty")
-    
+
     message = req.message.strip()
-    
-    # Emit as engineering lane job so it auto-heals (runs immediately when executor polls)
     entry = emit_workboard_job(
         source="owner-console",
         action="owner-message",
@@ -657,7 +625,6 @@ def owner_message(req: OwnerMessageRequest, x_service_token: str | None = Header
             "timestamp": _iso_now(),
         },
     )
-    
     job_id = entry["job"]["id"]
     publish_event(
         "owner_console.message.sent",
@@ -665,7 +632,6 @@ def owner_message(req: OwnerMessageRequest, x_service_token: str | None = Header
         payload={"message": message[:200], "context": req.context},
         entity_id=job_id,
     )
-    
     return {
         "status": "queued",
         "job_id": job_id,
@@ -701,7 +667,6 @@ def chat_get(
     action: str = "chat",
     x_service_token: str | None = Header(default=None),
 ):
-    """GET variant for quick browser/curl testing."""
     _require_internal(x_service_token)
     resolved_model = model or route_model(lane, action)
     return StreamingResponse(
@@ -713,7 +678,6 @@ def chat_get(
 # ── Full tenant→asset tree from Neo4j ───────────────────────────────────────
 @app.get(f"{API_PREFIX}/bridge/tree")
 def tree():
-    """Full tenant→asset hierarchy from Neo4j. Powers the landing page."""
     try:
         from services.king_bridge.app._tree import _neo_tree
         data = _neo_tree()
@@ -737,36 +701,31 @@ def recent_jobs(limit: int = 20):
 # ── Owner Job Tracking ────────────────────────────────────────────────────────
 @app.get(f"{API_PREFIX}/owner/jobs")
 def owner_jobs(limit: int = 50, status: str = None):
-    """Fetch autonomous job tracking records for owner dashboard."""
     tracker = get_tracker()
-    jobs = tracker.list_jobs(limit=limit, status=status)
+    jobs  = tracker.list_jobs(limit=limit, status=status)
     stats = tracker.get_stats()
-    return {
-        "jobs": jobs,
-        "stats": stats,
-        "ts": _iso_now(),
-    }
+    return {"jobs": jobs, "stats": stats, "ts": _iso_now()}
+
+
+@app.get(f"{API_PREFIX}/owner/jobs/stats")
+def owner_jobs_stats():
+    tracker = get_tracker()
+    return {"stats": tracker.get_stats(), "ts": _iso_now()}
 
 
 @app.get(f"{API_PREFIX}/owner/jobs/{{job_id}}")
 def owner_job_detail(job_id: str):
-    """Fetch detailed job info + steps."""
     tracker = get_tracker()
     job = tracker.get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found")
-    
     steps = tracker.get_job_steps(job_id)
-    return {
-        "job": job,
-        "steps": steps,
-        "ts": _iso_now(),
-    }
+    return {"job": job, "steps": steps, "ts": _iso_now()}
 
 
 class OwnerJobApprovalRequest(BaseModel):
-    decision: str  # "approve" or "reject"
-    reason: str = ""  # Note or rejection reason
+    decision: str
+    reason: str = ""
 
 
 @app.post(f"{API_PREFIX}/owner/jobs/{{job_id}}/approval")
@@ -775,77 +734,28 @@ def owner_job_approval(
     req: OwnerJobApprovalRequest,
     x_service_token: str | None = Header(default=None),
 ):
-    """Owner approves or rejects a completed autonomous job."""
     _require_internal(x_service_token)
-    
     tracker = get_tracker()
     job = tracker.get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found")
-    
+
     if req.decision.lower() == "approve":
         success = tracker.approve_job(job_id, approver="owner", note=req.reason)
-        action = "approved"
+        action  = "approved"
     elif req.decision.lower() == "reject":
         success = tracker.reject_job(job_id, rejector="owner", reason=req.reason)
-        action = "rejected"
+        action  = "rejected"
     else:
         raise HTTPException(status_code=400, detail="decision must be 'approve' or 'reject'")
-    
+
     if not success:
         raise HTTPException(status_code=500, detail="Failed to record approval")
-    
-    # Emit event
+
     publish_event(
         f"owner_job.{action}",
         SERVICE_NAME,
         payload={"job_id": job_id, "reason": req.reason},
         entity_id=job_id,
     )
-    
-    return {
-        "status": "recorded",
-        "job_id": job_id,
-        "decision": req.decision,
-        "timestamp": _iso_now(),
-    }
-
-
-@app.get(f"{API_PREFIX}/owner/jobs/stats")
-def owner_jobs_stats():
-    """Get aggregated job statistics."""
-    tracker = get_tracker()
-    stats = tracker.get_stats()
-    return {
-        "stats": stats,
-        "ts": _iso_now(),
-    }
-
-
-# Serve static HTML pages from element_lotus_public
-from fastapi.staticfiles import StaticFiles
-
-static_dir = Path(__file__).parents[3] / "element_lotus_public"
-if static_dir.exists():
-    try:
-        app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="public")
-    except Exception:
-        pass
-
-# Serve owner_jobs.html from element_lotus_public
-@app.get("/owner_jobs.html")
-async def serve_owner_jobs():
-    from fastapi.responses import FileResponse
-    html_path = Path("/repo/element_lotus_public/owner_jobs.html")
-    if html_path.exists():
-        return FileResponse(html_path, media_type="text/html")
-    raise HTTPException(status_code=404, detail="owner_jobs.html not found")
-
-# Serve owner_jobs.html from element_lotus_public
-@app.get("/owner_jobs.html")
-async def serve_owner_jobs():
-    from fastapi.responses import FileResponse
-    html_path = Path(__file__).parents[3] / "element_lotus_public" / "owner_jobs.html"
-    if html_path.exists():
-        return FileResponse(html_path, media_type="text/html")
-    raise HTTPException(status_code=404, detail="owner_jobs.html not found")
+    return {"status": "recorded", "job_id": job_id, "decision": req.decision, "timestamp": _iso_now()}

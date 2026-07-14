@@ -32,6 +32,7 @@ on:
       - "docker-compose.v2.yml"
       - "go.html"
       - "go/**"
+      - "element_lotus_public/**"
       - "king_public_src/**"
       - "docs/api/v2-api-contract.yaml"
       - "requirements.txt"
@@ -72,10 +73,7 @@ jobs:
     timeout-minutes: 20
 
     env:
-      # king-local deploy directory — the private owner surface on this machine.
-      # Matches the path used by blog_engine.py, daily_brief.py, and king_message.py.
       KING_LOCAL: "${{ runner.temp }}\\..\\..\\..\\AppData\\Local\\king-extract\\deploy\\king-local"
-      # Local V2 service ports (bound to 127.0.0.1 only — see docker-compose.v2.yml)
       V2_AUTH_PORT: "8101"
       V2_TENANT_PORT: "8102"
       V2_DOCUMENTS_PORT: "8103"
@@ -83,9 +81,9 @@ jobs:
       V2_AI_PORT: "8105"
       V2_HEALTH_PORT: "8106"
       V2_GPU_ROUTER_PORT: "8107"
-      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-runtime,gpu-router,ai,storage,health"
-      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107"
-      # Local deployment log directory (PRIVATE — never committed to repo)
+      V2_KING_BRIDGE_PORT: "8109"
+      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-runtime,gpu-router,ai,storage,health,king-bridge"
+      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109"
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
       RESTART_SERVICES: ${{ github.event_name == 'push' && 'true' || github.event.inputs.restart_services || 'true' }}
@@ -98,14 +96,12 @@ jobs:
       - name: Set deployment provenance environment
         shell: pwsh
         run: |
-          # Read canonical platform version from root VERSION file
           $platformVersion = (Get-Content VERSION -Raw -ErrorAction SilentlyContinue).Trim()
           if (-not $platformVersion) { $platformVersion = "unknown" }
           $buildTime = (Get-Date -Format o -AsUTC)
           "PLATFORM_VERSION=$platformVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "BUILD_COMMIT=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "BUILD_TIME=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          # Also set the legacy names used by service_metadata.py for backward compat
           "COMMIT_SHA=${{ github.sha }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "BUILD_TIMESTAMP=$buildTime" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "ENVIRONMENT=king-server-private" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -125,9 +121,11 @@ jobs:
             "services\ai\app\main.py",
             "services\health\app\main.py",
             "services\gpu_router\app\main.py",
+            "services\king_bridge\app\main.py",
             "services\v2_workboard.py",
             "docker-compose.v2.yml",
             "go.html",
+            "element_lotus_public\owner_jobs.html",
             "docs\api\v2-api-contract.yaml"
           )
           $missing = @()
@@ -159,13 +157,11 @@ jobs:
           python -m unittest tests.v2.test_v2_contract -v
           Write-Host "✓ V2 contract tests passed"
 
-      # ── 4. Copy /go Owner Console + private board files to king-local ──────────
+      # ── 4. Copy /go Owner Console + private board + element_lotus_public files ─
       - name: Resolve king-local deploy path
         shell: pwsh
         id: king_local
         run: |
-          # Try the canonical AppData path first; fall back to the repo-relative king-local
-          # (used when running from the Documents/Claude checkout directly).
           $canonical = "$env:USERPROFILE\AppData\Local\king-extract\deploy\king-local"
           $fallback  = "$env:USERPROFILE\Documents\Claude\king-local"
           if (Test-Path $canonical) {
@@ -186,7 +182,6 @@ jobs:
           $dest = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
           $dry  = "$env:DRY_RUN" -eq "true"
 
-          # Files that belong to the private /go and /board owner surfaces
           $files = @{
             "go.html"                                  = "go.html"
             "king_public_src\ops_board.html"           = "board.html"
@@ -207,8 +202,6 @@ jobs:
             }
           }
 
-          # go/ Owner Console subpages — docker, ollama, llm-watch, comfyui, github, system, logs.
-          # These must live next to go.html so relative href="go/X.html" links resolve correctly.
           $goSrc  = "go"
           $goDest = Join-Path $dest "go"
           if (Test-Path $goSrc) {
@@ -232,6 +225,7 @@ jobs:
             Write-Warning "go/ subdirectory not found in repo — subpages will not be available"
           }
 
+      # ── 5. Validate compose plan ──────────────────────────────────────────────
       - name: Validate V2 compose plan and print inventory
         shell: pwsh
         run: |
@@ -248,10 +242,6 @@ jobs:
           foreach ($port in ($env:V2_API_PORT_INVENTORY -split ',')) {
             Write-Host "  - $port"
           }
-          Write-Host "Expected deployment provenance:"
-          Write-Host "  - commit_sha=$env:COMMIT_SHA"
-          Write-Host "  - build_timestamp=$env:BUILD_TIMESTAMP"
-          Write-Host "  - environment=$env:ENVIRONMENT"
           $config = docker compose -f docker-compose.v2.yml config 2>&1
           if ($LASTEXITCODE -ne 0) {
             Write-Error "docker compose validation failed:`n$($config | Out-String)"
@@ -259,93 +249,66 @@ jobs:
           }
           Write-Host "✓ docker compose -f docker-compose.v2.yml config passed"
 
-      # ── 5. Build and start V2 services via Docker Compose ─────────────────────
+      # ── 6. Build and start V2 services via Docker Compose ─────────────────────
       - name: Deploy V2 Docker services
         if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-
           $docker = Get-Command "docker" -ErrorAction SilentlyContinue
           if (-not $docker) {
             Write-Error "docker not found on PATH -- deployment cannot continue"
             exit 1
           }
-
           Write-Host "Building and starting the approved V2 service stack..."
           docker compose -f docker-compose.v2.yml up -d --build
-
           if ($LASTEXITCODE -ne 0) {
             Write-Error "docker compose deployment failed with exit code $LASTEXITCODE"
             exit $LASTEXITCODE
           }
-
           Write-Host "Waiting for containers to initialize..."
-          Start-Sleep -Seconds 12
-
+          Start-Sleep -Seconds 15
           Write-Host "Current V2 container state:"
           docker compose -f docker-compose.v2.yml ps
-
           if ($LASTEXITCODE -ne 0) {
             Write-Error "Unable to read the deployed V2 container state"
             exit $LASTEXITCODE
           }
-
           Write-Host "✓ V2 Docker services built and started"
 
-      # ── 6. Verify /go and /board/api/* health against localhost ───────────────
+      # ── 7. Health-check all services including king-bridge ────────────────────
       - name: Health-check V2 localhost services
         shell: pwsh
         run: |
-          $severityRank = @{
-            info = 0
-            notice = 1
-            warning = 2
-            high = 3
-            critical = 4
-          }
+          $severityRank = @{ info=0; notice=1; warning=2; high=3; critical=4 }
           $findings = New-Object System.Collections.Generic.List[object]
           $maxSeverity = "info"
           $seenCommitShas = New-Object System.Collections.Generic.HashSet[string]
 
           function Add-Finding([string]$Service, [string]$Severity, [string]$Code, [string]$Message) {
-            $script:findings.Add([pscustomobject]@{
-              service = $Service
-              severity = $Severity
-              code = $Code
-              message = $Message
-            }) | Out-Null
-            if ($severityRank[$Severity] -gt $severityRank[$script:maxSeverity]) {
-              $script:maxSeverity = $Severity
-            }
+            $script:findings.Add([pscustomobject]@{ service=$Service; severity=$Severity; code=$Code; message=$Message }) | Out-Null
+            if ($severityRank[$Severity] -gt $severityRank[$script:maxSeverity]) { $script:maxSeverity = $Severity }
           }
 
           function Test-Iso8601([string]$Value) {
             if ([string]::IsNullOrWhiteSpace($Value)) { return $false }
-            try {
-              [datetimeoffset]::Parse($Value) | Out-Null
-              return $true
-            } catch {
-              return $false
-            }
+            try { [datetimeoffset]::Parse($Value) | Out-Null; return $true } catch { return $false }
           }
 
-          # When services were just restarted (RESTART_SERVICES=true) we expect them to be up,
-          # so unreachable is a hard-failure (high). When running a dry run or a default
-          # dispatch (RESTART_SERVICES=false) the stack may legitimately be stopped — downgrade
-          # unreachable to warning so the step reports without blocking.
           $expectRunning = $env:RESTART_SERVICES -eq "true" -and $env:DRY_RUN -ne "true"
           $unreachableSeverity = if ($expectRunning) { "high" } else { "warning" }
 
           $checks = @(
-            @{ name="auth";       port=$env:V2_AUTH_PORT;      path="/api/v2/ready"; expected_status=200 },
-            @{ name="tenant";     port=$env:V2_TENANT_PORT;    path="/api/v2/ready"; expected_status=200 },
-            @{ name="documents";  port=$env:V2_DOCUMENTS_PORT; path="/api/v2/ready"; expected_status=200 },
-            @{ name="storage";    port=$env:V2_STORAGE_PORT;   path="/api/v2/ready"; expected_status=200 },
-            @{ name="ai";         port=$env:V2_AI_PORT;        path="/api/v2/ready"; expected_status=200 },
-            @{ name="health";     port=$env:V2_HEALTH_PORT;    path="/api/v1/ready"; expected_status=200 },
-            @{ name="gpu-router"; port=$env:V2_GPU_ROUTER_PORT; path="/api/v2/ready"; expected_status=200 }
+            @{ name="auth";         port=$env:V2_AUTH_PORT;        path="/api/v2/ready"; expected_status=200 },
+            @{ name="tenant";       port=$env:V2_TENANT_PORT;      path="/api/v2/ready"; expected_status=200 },
+            @{ name="documents";    port=$env:V2_DOCUMENTS_PORT;   path="/api/v2/ready"; expected_status=200 },
+            @{ name="storage";      port=$env:V2_STORAGE_PORT;     path="/api/v2/ready"; expected_status=200 },
+            @{ name="ai";           port=$env:V2_AI_PORT;          path="/api/v2/ready"; expected_status=200 },
+            @{ name="health";       port=$env:V2_HEALTH_PORT;      path="/api/v1/ready"; expected_status=200 },
+            @{ name="gpu-router";   port=$env:V2_GPU_ROUTER_PORT;  path="/api/v2/ready"; expected_status=200 },
+            @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 }
           )
+
           $results = @{}
           $serviceMeta = @{}
           foreach ($svc in $checks) {
@@ -358,24 +321,18 @@ jobs:
               Write-Warning "  ✗ $($svc.name) → $url  [unreachable]"
               continue
             }
-
             $results[$svc.name] = "http-$($r.StatusCode)"
-            try {
-              $body = $r.Content | ConvertFrom-Json -ErrorAction Stop
-            } catch {
+            try { $body = $r.Content | ConvertFrom-Json -ErrorAction Stop } catch {
               Add-Finding $svc.name "high" "malformed_metadata" "Readiness response at $url was not valid JSON"
               Write-Warning "  ✗ $($svc.name) → $url  [malformed JSON]"
               continue
             }
-
             $serviceMeta[$svc.name] = $body
             Write-Host "  • $($svc.name) → $url  [$($r.StatusCode)]"
-
             if ([int]$r.StatusCode -ne [int]$svc.expected_status) {
-              $severity = if (@(401, 403) -contains [int]$r.StatusCode) { "critical" } else { "high" }
+              $severity = if (@(401,403) -contains [int]$r.StatusCode) { "critical" } else { "high" }
               Add-Finding $svc.name $severity "readiness_status_mismatch" "Expected HTTP $($svc.expected_status) from $url, got $($r.StatusCode)"
             }
-
             if (-not $body.service -or [string]::IsNullOrWhiteSpace([string]$body.service)) {
               Add-Finding $svc.name "high" "missing_service_field" "Response missing non-empty service field"
             }
@@ -406,25 +363,36 @@ jobs:
             Add-Finding "fleet" "high" "mixed_commit_sha" "Services reported mixed commit_sha values: $([string]::Join(', ', $seenCommitShas))"
           }
 
-          # /go and /board are static files served locally — check king-local path exists
-          $goPath   = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html" } else { $null }
-          $boardPath = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\board.html" } else { $null }
-          if ($goPath -and (Test-Path $goPath)) {
-            $results["go.html"] = "present"
-            Write-Host "  ✓ go.html present at king-local"
-          } else {
-            $results["go.html"] = "missing"
-            Write-Warning "  ✗ go.html not found at king-local path"
-          }
-          if ($boardPath -and (Test-Path $boardPath)) {
-            $results["board.html"] = "present"
-            Write-Host "  ✓ board.html present at king-local"
-          } else {
-            $results["board.html"] = "missing"
-            Write-Warning "  ✗ board.html not found at king-local path"
+          # Check king-bridge owner_jobs.html surface
+          $ownerJobsUrl = "http://127.0.0.1:$($env:V2_KING_BRIDGE_PORT)/owner_jobs.html"
+          try {
+            $r2 = Invoke-WebRequest -Uri $ownerJobsUrl -TimeoutSec 5 -SkipHttpErrorCheck -ErrorAction Stop
+            if ([int]$r2.StatusCode -eq 200) {
+              $results["owner_jobs.html"] = "http-200"
+              Write-Host "  ✓ owner_jobs.html → $ownerJobsUrl  [200]"
+            } else {
+              $results["owner_jobs.html"] = "http-$($r2.StatusCode)"
+              Add-Finding "king-bridge" "warning" "owner_jobs_not_200" "owner_jobs.html returned $($r2.StatusCode)"
+            }
+          } catch {
+            $results["owner_jobs.html"] = "unreachable"
+            Add-Finding "king-bridge" $unreachableSeverity "owner_jobs_unreachable" "owner_jobs.html not reachable at $ownerJobsUrl"
+            Write-Warning "  ✗ owner_jobs.html not reachable at $ownerJobsUrl"
           }
 
-          # go/ Owner Console subpages — verify all 7 panels are present
+          $goPath    = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go.html" } else { $null }
+          $boardPath = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\board.html" } else { $null }
+          if ($goPath -and (Test-Path $goPath)) {
+            $results["go.html"] = "present"; Write-Host "  ✓ go.html present at king-local"
+          } else {
+            $results["go.html"] = "missing"; Write-Warning "  ✗ go.html not found at king-local path"
+          }
+          if ($boardPath -and (Test-Path $boardPath)) {
+            $results["board.html"] = "present"; Write-Host "  ✓ board.html present at king-local"
+          } else {
+            $results["board.html"] = "missing"; Write-Warning "  ✗ board.html not found at king-local path"
+          }
+
           $goSubPages = @("docker.html","ollama.html","llm-watch.html","comfyui.html","github.html","system.html","logs.html")
           $goSubDir   = if ("${{ steps.king_local.outputs.KING_LOCAL_PATH }}") { "${{ steps.king_local.outputs.KING_LOCAL_PATH }}\go" } else { $null }
           $goSubMissing = @()
@@ -442,7 +410,6 @@ jobs:
             Write-Warning "  ✗ go/ subpages missing: $([string]::Join(', ', $goSubMissing))"
           }
 
-          # Write summary
           "::group::Health check summary"
           $results.GetEnumerator() | ForEach-Object { Write-Host "  $($_.Key): $($_.Value)" }
           if ($findings.Count -gt 0) {
@@ -450,12 +417,9 @@ jobs:
             foreach ($finding in $findings) {
               Write-Host "  [$($finding.severity)] $($finding.service) $($finding.code): $($finding.message)"
             }
-          } else {
-            Write-Host "Validation findings: none"
-          }
+          } else { Write-Host "Validation findings: none" }
           "::endgroup::"
 
-          # Export for log step
           $json = $results | ConvertTo-Json -Compress
           "HEALTH_RESULTS=$json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           $metaJson = $serviceMeta | ConvertTo-Json -Depth 8 -Compress
@@ -464,11 +428,11 @@ jobs:
           "VALIDATION_FINDINGS=$findingsJson" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
           if ($severityRank[$maxSeverity] -ge $severityRank["high"]) {
-            Write-Error "V2 provenance/readiness validation failed with max severity '$maxSeverity' (restart_services=$env:RESTART_SERVICES)"
+            Write-Error "V2 provenance/readiness validation failed with max severity '$maxSeverity'"
             exit 1
           }
 
-      # ── 7. Write deployment log to king-server local log directory ─────────────
+      # ── 8. Write deployment log ───────────────────────────────────────────────
       - name: Write local deployment log
         if: always()
         shell: pwsh
@@ -481,30 +445,29 @@ jobs:
           $logFile = Join-Path $logDir "deploy-$ts.json"
 
           $entry = @{
-            timestamp     = (Get-Date -Format "o" -AsUTC)
-            run_id        = "${{ github.run_id }}"
-            run_number    = "${{ github.run_number }}"
-            sha           = "${{ github.sha }}"
-            expected_sha  = $env:COMMIT_SHA
+            timestamp        = (Get-Date -Format "o" -AsUTC)
+            run_id           = "${{ github.run_id }}"
+            run_number       = "${{ github.run_number }}"
+            sha              = "${{ github.sha }}"
+            expected_sha     = $env:COMMIT_SHA
             platform_version = $env:PLATFORM_VERSION
-            build_commit  = $env:BUILD_COMMIT
-            build_time    = $env:BUILD_TIME
-            build_timestamp = $env:BUILD_TIMESTAMP
-            environment   = $env:ENVIRONMENT
-            ref           = "${{ github.ref }}"
-            actor         = "${{ github.actor }}"
-            dry_run       = ($env:DRY_RUN -eq "true")
-            restart_req   = ($env:RESTART_SERVICES -eq "true")
-            king_local    = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
-            health        = if ($env:HEALTH_RESULTS) { $env:HEALTH_RESULTS | ConvertFrom-Json } else { $null }
-            services      = if ($env:SERVICE_METADATA) { $env:SERVICE_METADATA | ConvertFrom-Json } else { $null }
-            findings      = if ($env:VALIDATION_FINDINGS) { $env:VALIDATION_FINDINGS | ConvertFrom-Json } else { $null }
-            outcome       = "${{ job.status }}"
+            build_commit     = $env:BUILD_COMMIT
+            build_time       = $env:BUILD_TIME
+            build_timestamp  = $env:BUILD_TIMESTAMP
+            environment      = $env:ENVIRONMENT
+            ref              = "${{ github.ref }}"
+            actor            = "${{ github.actor }}"
+            dry_run          = ($env:DRY_RUN -eq "true")
+            restart_req      = ($env:RESTART_SERVICES -eq "true")
+            king_local       = "${{ steps.king_local.outputs.KING_LOCAL_PATH }}"
+            health           = if ($env:HEALTH_RESULTS) { $env:HEALTH_RESULTS | ConvertFrom-Json } else { $null }
+            services         = if ($env:SERVICE_METADATA) { $env:SERVICE_METADATA | ConvertFrom-Json } else { $null }
+            findings         = if ($env:VALIDATION_FINDINGS) { $env:VALIDATION_FINDINGS | ConvertFrom-Json } else { $null }
+            outcome          = "${{ job.status }}"
           }
 
           $entry | ConvertTo-Json -Depth 5 | Out-File -FilePath $logFile -Encoding utf8
           Write-Host "Deployment log written to: $logFile"
-          # Keep only the 30 most recent deploy logs
           Get-ChildItem $logDir -Filter "deploy-*.json" |
             Sort-Object LastWriteTime -Descending |
             Select-Object -Skip 30 |

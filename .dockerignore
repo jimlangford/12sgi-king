@@ -3,18 +3,15 @@
 # 12sgi-king tree streams to the Docker daemon on every build -- including king_private_src/ (the
 # private corporate data room / cap table / investor / charter that .gitignore marks NEVER-public),
 # config/ (Stripe + secret configs), .env*, and the private cross-thread bus .dispatch_log.jsonl.
-# The shipped image only COPYs services/, so today none of that lands in a layer -- but streaming the
-# private/secret tree into the build VM every build is needless exposure, and one careless future
-# `COPY . .` would bake secrets into an image. Deny-by-default: exclude everything, re-include only
-# what the build needs.
+# Deny-by-default: exclude everything, re-include only what the build needs.
 *
 
 # Re-include ONLY the build inputs the services/Dockerfile actually uses.
 !services/
+!element_lotus_public/
 
 # Even inside services/, never ship caches or local state.
 services/**/__pycache__/
 services/**/*.pyc
 services/**/*.db
 services/**/.env*
-!element_lotus_public/

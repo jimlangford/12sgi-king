@@ -1,11 +1,12 @@
 """
-king-watchdog.py — keep all govOS services alive.
+king-watchdog.py — keep all govOS services alive + Gordon AI coordinator.
 
 Monitors:
   - Docker containers (studio-assets, neo4j, auth)
   - king-bridge (port 8109)
   - Ollama (port 11434)
-  - Static file server (port 8888)
+  - Board API (port 8799)
+  - Gordon AI coordinator (background)
 
 Restarts anything that goes down. Logs to watchdog.log.
 Run: python king-watchdog.py
@@ -14,6 +15,7 @@ import json
 import os
 import subprocess
 import sys
+import threading
 import time
 import urllib.request
 from datetime import datetime
@@ -82,21 +84,13 @@ def ensure_process(label, cmd, ready_url, cwd=HERE):
         )
         time.sleep(3)
 
-PROCESS_SERVICES = [
-    {
-        'label':     'board-api',
-        'cmd':       [sys.executable, '-m', 'uvicorn',
-                      'services.board_api.main:app',
-                      '--host', '127.0.0.1', '--port', '8799'],
-        'ready_url': 'http://localhost:8799/health',
-    },
-    {
-        'label':     'king-bridge',
-        'cmd':       [sys.executable, '-m', 'uvicorn',
-                      'services.king_bridge.app.main:app',
-                      '--host', '127.0.0.1', '--port', '8109'],
-        'ready_url': 'http://localhost:8109/api/v2/ready',
-    },
+# king-bridge and board-api run as Docker containers (docker-compose.v2.yml).
+# Watchdog health-checks them but does NOT try to start them as subprocesses.
+PROCESS_SERVICES = []
+
+HTTP_HEALTH_CHECKS = [
+    {'label': 'king-bridge',  'url': 'http://localhost:8109/api/v2/ready'},
+    {'label': 'board-api',    'url': 'http://localhost:8799/health'},
 ]
 
 def check_docker():
@@ -114,26 +108,59 @@ def check_docker():
 def check_processes():
     for svc in PROCESS_SERVICES:
         ensure_process(svc['label'], svc['cmd'], svc.get('ready_url'))
+    # Health-check Docker-managed services (not started here; just monitored)
+    for chk in HTTP_HEALTH_CHECKS:
+        if not http_ready(chk['url']):
+            log(f"WARNING: {chk['label']} not responding at {chk['url']} -- check docker compose logs")
 
 def check_ollama():
     if not http_ready('http://localhost:11434/api/tags', timeout=3):
         log('WARNING: Ollama not responding on :11434 — king-bridge will run degraded')
 
-def tailscale_serve_hint():
-    """Log the tailscale serve commands if not already set up."""
+def tailscale_serve_setup():
+    """Set up Tailscale serve rules for the king stack."""
     try:
         out = subprocess.check_output(['tailscale', 'serve', 'status'], text=True, stderr=subprocess.DEVNULL)
-        if '8109' not in out:
-            log('HINT: run `tailscale serve --bg http://8109` to expose king-bridge on Tailscale')
-        if '8888' not in out:
-            log('HINT: run `tailscale serve --bg http://8888` to expose static pages on Tailscale')
-    except Exception:
-        pass
+        serves = {
+            '8109': 'king-bridge (API + AI)',
+            '8799': 'board-api (owner console)',
+            '8888': 'static pages (govOS)',
+        }
+        for port, desc in serves.items():
+            if port not in out:
+                log(f'SETUP REQUIRED: run `tailscale serve --bg http://{port}` for {desc}')
+            else:
+                log(f'OK: Tailscale serve {port} ({desc})')
+    except Exception as e:
+        log(f'WARNING: Tailscale not available or error checking serve status: {e}')
+
+def start_gordon_coordinator():
+    """Start Gordon AI coordinator in a background thread."""
+    try:
+        from services.gordon_coordinator import GordonCoordinator
+        coordinator = GordonCoordinator()
+        log('STARTING: Gordon AI coordinator (background daemon)')
+        thread = threading.Thread(
+            target=coordinator.run_continuous_loop,
+            kwargs={'interval': 30, 'duration_hours': None},
+            daemon=True
+        )
+        thread.start()
+        return coordinator
+    except ImportError as e:
+        log(f'WARNING: Gordon coordinator not available: {e}')
+        return None
+    except Exception as e:
+        log(f'ERROR starting Gordon coordinator: {e}')
+        return None
 
 def main():
     log('=== king-watchdog started ===')
     log(f'Monitoring: {len(DOCKER_SERVICES)} Docker + {len(PROCESS_SERVICES)} processes')
-    tailscale_serve_hint()
+    tailscale_serve_setup()
+    
+    # Start Gordon AI coordinator
+    gordon = start_gordon_coordinator()
 
     # Initial start
     check_docker()
