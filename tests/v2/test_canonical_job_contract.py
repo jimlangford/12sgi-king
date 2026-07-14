@@ -97,6 +97,27 @@ class TestCanonicalJobContract(unittest.TestCase):
             tenant_profiles["media"]["example_state_path"],
         )
 
+    def test_media_profile_declares_phase_2_1_states_job_types_and_capability_routing(self):
+        contract = json.loads((ROOT / "config" / "canonical_job_contract.v2.json").read_text(encoding="utf-8"))
+        media = contract["tenant_state_profiles"]["media"]
+        self.assertIn("qc_pending", media["states"])
+        self.assertIn("approval_pending", media["states"])
+        self.assertIn("published", media["terminal_states"])
+        self.assertIn("scene_render", media["job_type_profiles"])
+        self.assertIn("publish_media", media["job_type_profiles"])
+        self.assertIn("image_generation", media["capability_routing"])
+        self.assertIn("short_video_generation", media["capability_routing"])
+        self.assertEqual(media["capability_routing"]["short_video_generation"]["preferred"], "ltx")
+        self.assertEqual(media["capability_routing"]["long_video_generation"]["preferred"], "wan")
+
+    def test_rtx4070_8gb_gpu_profile_is_declared(self):
+        profile = json.loads((ROOT / "config" / "gpu_profiles" / "rtx4070_8gb.json").read_text(encoding="utf-8"))
+        self.assertEqual(profile["profile_id"], "rtx4070_8gb")
+        self.assertEqual(profile["vram_total_mb"], 8192)
+        self.assertEqual(profile["vram_safe_limit_mb"], 7600)
+        self.assertEqual(profile["max_concurrent_large_models"], 1)
+        self.assertTrue(profile["model_residency_preferred"])
+
     def test_gpu_domain_rejects_media_only_state_names(self):
         from services.job_envelope import build_job_envelope, transition_job_envelope
 

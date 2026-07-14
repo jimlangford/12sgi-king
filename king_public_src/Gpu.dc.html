@@ -77,6 +77,11 @@
       Loading…
     </div>
 
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin:18px 0 14px;">Media Production</div>
+    <div id="gpu-media-summary" style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">
+      Loading…
+    </div>
+
   </div>
 </div>
 
@@ -202,6 +207,27 @@
           '<span style="color:var(--ink-faint,#756b56); font-size:10px;">' + (e.job_id || '').substring(0, 8) + '…</span>' +
           '</div>';
       }).join('');
+    });
+
+    _get('/gpu/media/overview', function(data) {
+      var el = _el('gpu-media-summary');
+      if (!data || !data.tenant) {
+        el.textContent = 'Media metrics unavailable.';
+        return;
+      }
+      var current = data.current_render || {};
+      var nextBatch = data.next_compatible_batch || {};
+      var vram = data.vram_usage || {};
+      var byState = data.scenes_by_state || {};
+      var statesLine = Object.keys(byState).slice(0, 8).map(function(k){ return k + ':' + byState[k]; }).join(' · ');
+      el.innerHTML =
+        '<div style=\"color:var(--ink-dim,#b3a98f); margin-bottom:6px;\">active productions ' + (data.active_productions || 0) +
+        ' · shots queued ' + (data.shots_queued || 0) + '</div>' +
+        '<div style=\"margin-bottom:6px;\">current render: ' + (current.id || 'none') + ' · ' + (current.selected_engine || 'idle') + '</div>' +
+        '<div style=\"margin-bottom:6px;\">loaded model: ' + (data.loaded_model || 'none') + ' · VRAM ' + (vram.used_mb == null ? '?' : vram.used_mb) + '/' + (vram.total_mb == null ? '?' : vram.total_mb) + ' MB</div>' +
+        '<div style=\"margin-bottom:6px;\">next compatible batch: ' + (nextBatch.selected_engine || 'none') + ' · size ' + (nextBatch.count || 0) + '</div>' +
+        '<div style=\"margin-bottom:6px;\">QC ' + (data.qc_queue || 0) + ' · approval ' + (data.approval_queue || 0) + ' · publish ' + (data.publish_queue || 0) + '</div>' +
+        '<div style=\"color:var(--ink-faint,#756b56);\">states: ' + (statesLine || 'none') + '</div>';
     });
   }
 
