@@ -1145,17 +1145,46 @@ def main():
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
 
     with _lane("bids_copy"):
-        # [bids] copy the whole Maui County bid/RFP detail tree (bids_watch.py -> reports/mauios/bids/,
-        # sourced from mauicounty.gov CivicEngage). news_record.html + the money pages link individual
-        # bid pages by their exact "bid <id> <title>.html" filename (e.g. bid 3753 ... SMA Bou.html).
-        # The tree was NEVER copied into site/, so every bid link was dead. Public sourced record ->
-        # ships whole so ALL bids are browsable (private-first goal: "find that data by all means").
-        # Added 2026-07-14 (audit-quad-os, Maui ingest repatch).
+        # [bids] Maui County bid/RFP detail pages (bids_watch.py -> reports/mauios/bids/, sourced from
+        # mauicounty.gov CivicEngage). Pages like news_record.html link specific bids by their exact
+        # "bids/bid <id> <title>.html" path. The full archive is ~3,830 files -> dumping it ALL into
+        # site/ (which the build rmtree-wipes every run) is slow + Windows-race-prone AND leaves 3,829
+        # orphan pages reachable only by guessing the URL (not "findable" in any real sense). Instead
+        # ship EXACTLY the bids a built page actually references: the link resolves, nothing is orphaned,
+        # the build stays fast and robust. Self-maintaining — whatever pages link, those bids ship. The
+        # full archive stays in reports/mauios/bids (owner source). Added 2026-07-14 (audit-quad-os,
+        # Maui ingest repatch; runs after EXTRA_PAGES so the referencing pages already exist in site/).
         _bids_src = os.path.join(MAUIOS, "bids")
         if os.path.isdir(_bids_src):
-            _bids_dst = os.path.join(SITE, "bids")
-            shutil.copytree(_bids_src, _bids_dst, dirs_exist_ok=True)
-            print(f"  + bids/: {len([f for f in os.listdir(_bids_src) if f.lower().endswith('.html')])} Maui bid/RFP pages")
+            import glob as _glob
+            import urllib.parse as _uq
+            _bref = re.compile(r'''(?:href|src)=["']([^"']*bids/[^"']+\.html)["']''', re.I)
+            _wanted = set()
+            for _hp in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
+                try:
+                    _t = open(_hp, encoding="utf-8", errors="ignore").read()
+                except Exception:
+                    continue
+                for _href in _bref.findall(_t):
+                    _rel = _uq.unquote(_href.split("bids/", 1)[1]).split("#")[0].split("?")[0]
+                    if _rel:
+                        _wanted.add(_rel)
+            _copied, _missing = 0, []
+            if _wanted:
+                _bids_dst = os.path.join(SITE, "bids")
+                os.makedirs(_bids_dst, exist_ok=True)
+                for _bn in sorted(_wanted):
+                    _bs = os.path.join(_bids_src, _bn)
+                    if os.path.isfile(_bs):
+                        _bd = os.path.join(_bids_dst, _bn)
+                        os.makedirs(os.path.dirname(_bd), exist_ok=True)
+                        shutil.copy(_bs, _bd)
+                        _copied += 1
+                    else:
+                        _missing.append(_bn)
+            _arch = len([f for f in os.listdir(_bids_src) if f.lower().endswith(".html")])
+            print(f"  + bids/: {_copied} referenced bid page(s) shipped (archive has {_arch})"
+                  + (f" — MISSING from archive: {_missing[:3]}" if _missing else ""))
 
     with _lane("sage_game"):
         # [sage] publish the self-contained 2D SAGE education game at /sage/ (Jimmy 2026-07-03:
@@ -1166,7 +1195,10 @@ def main():
             _gdst = os.path.join(SITE, "sage")
             if os.path.isdir(_gdst):
                 shutil.rmtree(_gdst, ignore_errors=True)
-            shutil.copytree(_gsrc, _gdst)
+            # dirs_exist_ok: rmtree(ignore_errors=True) can leave a half-deleted dir behind a transient
+            # Windows file lock, and plain copytree then dies on it — the intermittent sage_game lane
+            # failure (fixed 2026-07-15; same robust pattern the bids_copy lane already uses).
+            shutil.copytree(_gsrc, _gdst, dirs_exist_ok=True)
             print("  + sage/: 2D SAGE game (%d card assets, static, always-up)"
                   % len([f for f in os.listdir(os.path.join(_gsrc, "assets", "cards"))
                          if f.endswith(".jpg")] if os.path.isdir(os.path.join(_gsrc, "assets", "cards")) else []))
@@ -1180,7 +1212,8 @@ def main():
             _ghdst = os.path.join(SITE, "games")
             if os.path.isdir(_ghdst):
                 shutil.rmtree(_ghdst, ignore_errors=True)
-            shutil.copytree(_ghsrc, _ghdst)
+            # dirs_exist_ok: same transient-lock hardening as the sage_game lane above (2026-07-15)
+            shutil.copytree(_ghsrc, _ghdst, dirs_exist_ok=True)
             _gh_files = [f for f in os.listdir(_ghsrc) if f.endswith(".html")]
             print("  + games/: TribeGameStudios hub (%d HTML games, static, always-up)" % len(_gh_files))
 
