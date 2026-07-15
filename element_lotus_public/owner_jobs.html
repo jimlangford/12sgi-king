@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Owner Job Tracking — 12 Stones Global</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #e7eef8;
+      --line: #bacde6;
+      --ink: #13243d;
+      --ink-dim: #41536b;
+      --ink-faint: #5b6e86;
+      --accent: #00356b;
+      --accent-2: #1259a3;
+      --accent-ink: #ffffff;
+      --ok: #1f8a5b;
+      --warn: #b07d1a;
+      --err: #c0322c;
+      --mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .wrap {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--mono);
+    }
+    
+    .status-badge.running {
+      background: rgba(180, 125, 26, 0.15);
+      color: var(--warn);
+    }
+    
+    .status-badge.completed {
+      background: rgba(31, 138, 91, 0.15);
+      color: var(--ok);
+    }
+    
+    .status-badge.failed {
+      background: rgba(192, 50, 44, 0.15);
+      color: var(--err);
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    
+    .jobs-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .jobs-table th {
+      background: var(--panel);
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 650;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-dim);
+    }
+    
+    .jobs-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    
+    .jobs-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .jobs-table tr:hover {
+      background: rgba(0, 53, 107, 0.03);
+    }
+    
+    .job-id {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent-2);
+    }
+    
+    .status-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .status-pill.running {
+      background: rgba(180, 125, 26, 0.2);
+      color: var(--warn);
+    }
+    
+    .status-pill.completed {
+      background: rgba(31, 138, 91, 0.2);
+      color: var(--ok);
+    }
+    
+    .status-pill.failed {
+      background: rgba(192, 50, 44, 0.2);
+      color: var(--err);
+    }
+    
+    .status-pill.approved {
+      background: rgba(31, 138, 91, 0.15);
+      color: var(--ok);
+      border: 1px solid var(--ok);
+    }
+    
+    .status-pill.rejected {
+      background: rgba(192, 50, 44, 0.15);
+      color: var(--err);
+      border: 1px solid var(--err);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .btn {
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.14s;
+    }
+    
+    .btn:hover {
+      border-color: var(--accent);
+      background: rgba(0, 53, 107, 0.05);
+    }
+    
+    .btn.approve {
+      background: rgba(31, 138, 91, 0.1);
+      border-color: var(--ok);
+      color: var(--ok);
+    }
+    
+    .btn.approve:hover {
+      background: rgba(31, 138, 91, 0.2);
+    }
+    
+    .btn.reject {
+      background: rgba(192, 50, 44, 0.1);
+      border-color: var(--err);
+      color: var(--err);
+    }
+    
+    .btn.reject:hover {
+      background: rgba(192, 50, 44, 0.2);
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-header {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    
+    .modal-body {
+      margin-bottom: 16px;
+    }
+    
+    .form-group {
+      margin-bottom: 14px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    
+    .modal-footer {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--ink-dim);
+    }
+    
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--line);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>🤖 Owner Job Tracking</h1>
+    <div id="autoRefresh" style="margin-left: auto; font-size: 12px; color: var(--ink-faint);">
+      🔄 Auto-refreshing every 5s
+    </div>
+  </div>
+  
+  <div class="stats" id="statsContainer">
+    <div class="loading"><span class="spinner"></span></div>
+  </div>
+  
+  <div style="margin-bottom: 20px;">
+    <h2 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-faint); font-weight: 600;">Recent Jobs</h2>
+    <div id="jobsContainer" style="position: relative;">
+      <div class="loading"><span class="spinner"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Approval Modal -->
+<div id="approvalModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">Approve or Reject Job</div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Job ID</label>
+        <input id="modalJobId" type="text" readonly>
+      </div>
+      <div class="form-group">
+        <label>Decision</label>
+        <div style="display: flex; gap: 10px; margin-top: 8px;">
+          <label style="flex: 1; display: flex; align-items: center; gap: 8px; margin: 0; font-weight: normal;">
+            <input type="radio" name="decision" value="approve" checked>
+            Approve
+          </label>
+          <label style="flex: 1; display: flex; align-items: center; gap: 8px; margin: 0; font-weight: normal;">
+            <input type="radio" name="decision" value="reject">
+            Reject
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Note / Reason</label>
+        <textarea id="modalReason" rows="3" placeholder="Optional note"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn approve" onclick="submitApproval()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  var BRIDGE_API = "https://12sgianonymous.tail760750.ts.net/king/api/v2";
+  var INTERNAL_TOKEN = "dev-internal-token";
+  var currentApprovalJobId = null;
+  
+  async function fetchJobs() {
+    try {
+      var resp = await fetch(BRIDGE_API + "/owner/jobs?limit=50", {
+        headers: { "X-Service-Token": INTERNAL_TOKEN }
+      });
+      if (!resp.ok) throw new Error("API error: " + resp.status);
+      return await resp.json();
+    } catch (e) {
+      console.error("Fetch error:", e);
+      return null;
+    }
+  }
+  
+  function formatDuration(ms) {
+    if (!ms) return "—";
+    if (ms < 1000) return ms + "ms";
+    return (ms / 1000).toFixed(1) + "s";
+  }
+  
+  function formatTime(isoStr) {
+    if (!isoStr) return "—";
+    var d = new Date(isoStr);
+    return d.toLocaleTimeString();
+  }
+  
+  function renderStats(stats) {
+    var html = `
+      <div class="stat-card">
+        <div class="stat-value">${stats.total_jobs || 0}</div>
+        <div class="stat-label">Total Jobs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${stats.by_status.completed || 0}</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${stats.by_status.running || 0}</div>
+        <div class="stat-label">Running</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${stats.by_status.approved || 0}</div>
+        <div class="stat-label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${Math.round(stats.avg_autonomy_score || 0)}</div>
+        <div class="stat-label">Avg Autonomy</div>
+      </div>
+    `;
+    document.getElementById("statsContainer").innerHTML = html;
+  }
+  
+  function statusClass(status) {
+    if (status.includes("running")) return "running";
+    if (status.includes("completed")) return "completed";
+    if (status.includes("failed")) return "failed";
+    if (status.includes("approved")) return "approved";
+    if (status.includes("rejected")) return "rejected";
+    return "";
+  }
+  
+  function renderJobs(jobs) {
+    if (!jobs || jobs.length === 0) {
+      return "<div class=\"loading\">No jobs yet</div>";
+    }
+    
+    var rows = jobs.map(function(job) {
+      var canApprove = job.status === "completed";
+      var actionHtml = canApprove ? `
+        <div class="action-buttons">
+          <button class="btn approve" onclick="openApprovalModal('${job.job_id}', 'approve')">Approve</button>
+          <button class="btn reject" onclick="openApprovalModal('${job.job_id}', 'reject')">Reject</button>
+        </div>
+      ` : "";
+      
+      return `
+        <tr>
+          <td class="job-id">${job.job_id.slice(0, 8)}</td>
+          <td>${job.archetype}</td>
+          <td>${job.action.slice(0, 40)}</td>
+          <td><span class="status-pill ${statusClass(job.status)}">${job.status}</span></td>
+          <td>${job.autonomy_score}/100</td>
+          <td>${formatTime(job.completed_at || job.started_at)}</td>
+          <td>${formatDuration(job.duration_ms)}</td>
+          <td>${actionHtml}</td>
+        </tr>
+      `;
+    }).join("");
+    
+    return `
+      <table class="jobs-table">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Archetype</th>
+            <th>Action</th>
+            <th>Status</th>
+            <th>Autonomy</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    `;
+  }
+  
+  function openApprovalModal(jobId, decision) {
+    currentApprovalJobId = jobId;
+    document.getElementById("modalJobId").value = jobId;
+    document.querySelector('input[name="decision"][value="' + decision + '"]').checked = true;
+    document.getElementById("approvalModal").classList.add("show");
+  }
+  
+  function closeModal() {
+    document.getElementById("approvalModal").classList.remove("show");
+    currentApprovalJobId = null;
+  }
+  
+  async function submitApproval() {
+    if (!currentApprovalJobId) return;
+    
+    var decision = document.querySelector('input[name="decision"]:checked').value;
+    var reason = document.getElementById("modalReason").value;
+    
+    try {
+      var resp = await fetch(BRIDGE_API + "/owner/jobs/" + currentApprovalJobId + "/approval", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Service-Token": INTERNAL_TOKEN
+        },
+        body: JSON.stringify({ decision: decision, reason: reason })
+      });
+      
+      if (resp.ok) {
+        closeModal();
+        document.getElementById("modalReason").value = "";
+        refresh();
+      } else {
+        alert("Error: " + resp.statusText);
+      }
+    } catch (e) {
+      alert("Error: " + e.message);
+    }
+  }
+  
+  async function refresh() {
+    var data = await fetchJobs();
+    if (data) {
+      renderStats(data.stats);
+      document.getElementById("jobsContainer").innerHTML = renderJobs(data.jobs);
+    }
+  }
+  
+  // Initial load + auto-refresh
+  refresh();
+  setInterval(refresh, 5000);
+  
+  // Close modal on outside click
+  document.getElementById("approvalModal").addEventListener("click", function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>

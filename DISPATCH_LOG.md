@@ -5,6 +5,52 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
+
+**Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review
+
+**INSPECTED:** Issue #323 (`Build private /go Owner Console for V2`). `go/` directory: all 7 subpages (`docker.html`, `ollama.html`, `llm-watch.html`, `comfyui.html`, `github.html`, `system.html`, `logs.html`) already exist and are feature-complete with error cards (what/cause/severity/steps/safe-fix-buttons/logs/test-again/escalation). `go.html` hub links to them via `href="go/docker.html"` etc. Gap: neither `build_site.py` nor `deploy-v2-king-server.yml` was copying the `go/` subdirectory, so clicking any subpage link from `go.html` would 404.
+
+**CHANGED:**
+- `build_site.py` — added `go/` subpages copy to `site/go/` after the `go.html` copy; subpages fail-closed on the public mirror (no /board/api/* = only an unreachable error card shown)
+- `.github/workflows/deploy-v2-king-server.yml` — "Copy /go Owner Console and board files to king-local" step now also copies `go/*.html` to `king-local/go/`; health check step now verifies all 7 go/ panel files are present
+
+**PRESERVED:** All 7 go/ subpages content untouched. No secrets. All PRIVATE/Tailscale labels and board API paths unchanged. go.html hub untouched.
+
+**VERIFY:** `python -m compileall -q .` → clean. `KA_SITE=/tmp/go-launch-check python build_site.py` → go.html + go/ subpages in output.
+
+**NEXT:** Merge PR → run `deploy-v2-king-server` workflow to push go/ subpages to king-local → all 7 Owner Console panels live on Tailscale at ts.net/go/docker.html etc.
+## 2026-07-12 — Maui branch working-space pages: Jetpack OAuth2 confirmed as the standard auth path, thread closed on repo side
+
+**Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
+
+**INSPECTED:** Jimmy confirmed the Jetpack OAuth2 path (`JETPACK_TOKEN`/`JETPACK_SITE_ID`) is the
+standard/intended auth mechanism for this WordPress.com-hosted site, over the Application Password
+path. This matches the earlier finding that WordPress.com sites may not accept `wp/v2` App
+Password writes the way self-hosted/Atomic sites do.
+
+**CHANGED:** `docs/WORDPRESS_PUBLIC_LAYER.md` — added a concrete, step-by-step "how to get
+`JETPACK_TOKEN`" section (register app at developer.wordpress.com/apps → one-time browser
+authorize → exchange code for token via one local curl → `gh secret set` both values → dispatch
+dry-run). WordPress.com OAuth2 access tokens obtained this way don't expire on a fixed schedule, so
+this is genuinely a one-time setup step, not a recurring one. Also noted the same token pair
+unblocks `wp-publish.yml`'s existing (already-correct) Jetpack fallback for release posts.
+
+**PRESERVED:** No credential was requested, generated, or handled in this session — the OAuth2
+authorize/exchange steps are documented for the owner to run locally, never through this chat.
+
+**VERIFY:** Everything achievable from this session's side is built, merged to `main` (PR #362,
+#363), and dry-run verified twice (fails safely with no credentials, exactly as designed). No
+further repo-side action is pending on this thread.
+
+**NEXT:** Owner runs the 6-step setup in `docs/WORDPRESS_PUBLIC_LAYER.md` → "Auth: Jetpack OAuth2
+is the standard path" locally, then dispatches `wp-branch-pages-sync.yml` (dry_run=true first, then
+false) to push the 4 Maui pages live. After that's validated, the same generator can be extended to
+the remaining 4 tenants (Honolulu, Kauai, State of Hawaii, New York). This thread is closed on the
+repo/automation side pending that owner action.
+
+---
+
 ## 2026-07-12 — Maui branch working-space pages: merged to main, dry-run verified, blocked only on WP secrets
 
 **Thread:** WordPress access-levels review  **From:** Copilot CLI  **To:** Jimmy
@@ -192,6 +238,7 @@ decision).
 **VERIFY:** `gh api repos/jimlangford/12sgi-king/actions/runners` returned no runners at all. `gh run list --workflow=deploy-v2-king-server.yml --limit 5` — 5/5 recent runs `failure`, 0s duration.
 
 **NEXT (owner action required — cannot be done from this cloud session):** the self-hosted Actions runner on king-server needs to be online for a "live run" to actually execute there. Once it is: `gh workflow run deploy-v2-king-server.yml` (or just let the next push trigger it, if a push trigger is later enabled) will sync `go.html`/board files and validate the V2 stack. Separately — and not part of that workflow by design, since it's a one-time/rerunnable data load, not a service — run `python watchers/education_to_graph.py` directly on king-server to load the LOTUS grade-band graph into the live Neo4j.
+
 
 ---
 
@@ -540,3 +587,29 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 - **#209–#203 (×multiple) Recolor off-palette pages to Yale-blue** — Owner approves recolor of `jurisdictions.html` and any other off-palette pages. Engineering lane.
 **Note:** These approvals unblock engineering self-heal on #291, #290, #278, #309, and the recolor set. Creative/output lanes (#298, #299) proceed but require human review before publish per workboard protocol.
 **Result:** Approvals logged. Engineering items proceed; creative/output items enter review queue.
+\n\n
+## 2026-07-13 15:44 HST — Gordon integration, owner policy reset, beta completion sprint
+
+**Thread:** gordon-beta-completion  **From:** Gordon (Docker AI, via Claude/MCP)  **To:** James / king-server
+
+**POLICY (owner in-session 2026-07-13):** Creative/output lanes auto-approve. Owner sign-off only before public social media. Studios = business departments (no corporate gate). Casework = public daily (prayer for the moon). Personal case data = private. Artwork/music/films = private in production, public on release.
+
+**CHANGED:**
+- config/owner_policy.json (new) — auto_approve_creative/output=true; social_media_gate; studio=department model
+- services/v2_workboard.py — SOCIAL_MEDIA_PLATFORMS set + requires_owner_signoff() helper; corporate gate removed from comments
+- services/auth/app/auth_sprint1.py (new) — Apple, Microsoft, magic_link, passkey auth endpoints
+- gordon.html (new PRIVATE) — Gordon command page: API status, Postiz status, chat, system buttons, WP Jetpack setup links
+- go.html — goGordon added to setState() unlock list
+- gordon_setup.py (new) — one-time setup status checker
+- Projects/genai-stack/gordon_neo4j_knowledge.py — live-queried Neo4j schema
+
+**POSTIZ:** Free, necessary, already in docker-compose.postiz.yml. Start: docker compose -f docker-compose.postiz.yml up -d. One-time: open http://localhost:4008, connect Meta+LinkedIn, copy integration IDs to config/own_channels.json.
+
+**WORDPRESS/JETPACK:** Google OAuth2 + Jetpack is correct path. 0 GitHub secrets still set. Owner runs: register app at developer.wordpress.com/apps, exchange for JETPACK_TOKEN, gh secret set JETPACK_TOKEN + JETPACK_SITE_ID, dispatch wp-branch-pages-sync.yml dry_run=true.
+
+**VERIFY:** python -m compileall -q . clean. python gordon_setup.py shows correct status. No secrets committed.
+
+**NEXT:** Start Postiz + genai-stack + v2 stack on king-server. Set WP/Jetpack secrets. Run python gordon_setup.py to verify. Pull latest: git pull origin main.
+
+---
+

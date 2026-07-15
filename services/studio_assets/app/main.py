@@ -139,17 +139,14 @@ def _assert_mounts_readonly() -> None:
             violations.append(mount)
             continue
         if not os.path.isdir(mount):
-            # Not present (e.g. running unit tests outside the container). Can't prune what isn't
-            # mounted; log and continue rather than false-fail.
             print(f"[studio-assets] WARN mount not present, skipping RO probe: {mount}", file=sys.stderr)
             continue
         probe = os.path.join(mount, ".studio_asset_ro_probe")
         try:
             fd = os.open(probe, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
         except OSError:
-            checked.append(mount)  # write refused == read-only == good
+            checked.append(mount)
             continue
-        # Write SUCCEEDED -> mount is writable -> catastrophic. Clean up and fail closed.
         os.close(fd)
         try:
             os.unlink(probe)
@@ -234,8 +231,6 @@ def _norm_host(p: str) -> str:
 
 
 def host_to_container(host_path: str) -> str | None:
-    """Map an absolute Windows host path (as stored in asset_index.json `rel`) to the mounted
-    container path, or None if it falls outside any mount."""
     if not host_path:
         return None
     hp = _norm_host(host_path)
@@ -257,7 +252,6 @@ def _label_for_host(host_path: str) -> str | None:
 
 
 def container_to_host(container_path: str, mount: str) -> str:
-    """Best-effort inverse: build a display host path for a scanned container file."""
     for prefix, m, _label in _PATH_MAP:
         if m == mount:
             rest = container_path[len(mount):].lstrip("/").replace("/", "\\")
@@ -290,7 +284,6 @@ def _upsert(conn, row: dict) -> None:
 
 
 def ingest_index() -> int:
-    """Ingest the asset-quad-os lane's existing catalog (authoritative, carries thumbnails)."""
     if not os.path.isfile(INDEX_JSON):
         print(f"[studio-assets] no asset_index.json at {INDEX_JSON}; skipping index ingest", file=sys.stderr)
         return 0
@@ -343,8 +336,6 @@ def ingest_index() -> int:
 
 
 def scan_supplemental() -> int:
-    """Stat-only supplemental scan of finalized vaults the index misses (e.g. the flat mp4/ vault).
-    Metadata only — never opens a file for reading. Skips anything already catalogued by host path."""
     now = int(time.time())
     added = 0
     seen = 0
@@ -368,7 +359,7 @@ def scan_supplemental() -> int:
                     if host_path in known:
                         continue
                     try:
-                        st = os.stat(cpath)  # metadata only; no byte read
+                        st = os.stat(cpath)
                     except OSError:
                         continue
                     key = hashlib.sha1(host_path.encode("utf-8")).hexdigest()[:16]
@@ -407,7 +398,6 @@ def scan_supplemental() -> int:
 
 
 def _emit(action: str, event: str, payload: dict) -> None:
-    """Report to the board like a lane (best-effort; a bus hiccup never breaks the service)."""
     try:
         from services.v2_workboard import emit_workboard_job
 
@@ -415,7 +405,7 @@ def _emit(action: str, event: str, payload: dict) -> None:
             source=WORKBOARD_SOURCE,
             action=action,
             event=event,
-            lane="engineering",  # IO-only asset indexing self-heals; no human gate
+            lane="engineering",
             payload=payload,
         )
     except Exception:
@@ -666,7 +656,7 @@ async def lifespan(_app: FastAPI):
         stats["neo4j"] = graph
         stats["neo4j_clips"] = clip_graph
         _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats)
-    except Exception as exc:  # never let a bad ingest stop the read API from serving
+    except Exception as exc:
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
     yield
 
@@ -674,6 +664,14 @@ async def lifespan(_app: FastAPI):
 app = FastAPI(title="govOS v2 Studio-Asset Service", version=VERSION, lifespan=lifespan)
 
 API = "/api/v2"
+
+# ── Project management API ────────────────────────────────────────────────────
+try:
+    from services.studio_assets.app.project_api import router as _project_router
+    app.include_router(_project_router)
+except Exception as _proj_err:
+    print(f"[studio-assets] project_api not loaded: {_proj_err}", file=sys.stderr)
+
 
 
 def _require_maintenance_auth(authorization: str | None) -> dict | None:
@@ -698,7 +696,7 @@ def _row(r: sqlite3.Row) -> dict:
         d["provenance"] = {}
     d.pop("provenance_json", None)
     d.pop("thumb_file", None)
-    d.pop("container_path", None)  # internal; not exposed
+    d.pop("container_path", None)
     return d
 
 
@@ -872,6 +870,7 @@ def list_assets(
     tenant: str | None = Query(default=None),
     character_id: str | None = Query(default=None),
     style: str | None = Query(default=None),
+    tenant_id: str | None = Query(default=None, description="filter by studio project folder (e.g. film_12stones)"),
     limit: int = Query(default=100, ge=1, le=1000),
     offset: int = Query(default=0, ge=0),
 ):
@@ -894,6 +893,9 @@ def list_assets(
     if style:
         where.append("style_id = :style")
         params["style"] = style
+    if tenant_id:
+        where.append("host_path LIKE :tenant_folder")
+        params["tenant_folder"] = f"%{tenant_id}%"
     clause = (" WHERE " + " AND ".join(where)) if where else ""
     params["limit"] = limit
     params["offset"] = offset
@@ -954,7 +956,6 @@ def get_thumb(key: str):
 
 
 def _path_is_allowed(path: str) -> bool:
-    """Path-traversal guard: only serve files that resolve INSIDE a configured read-only mount."""
     try:
         real = os.path.realpath(path)
     except OSError:
@@ -968,7 +969,6 @@ def get_file(key: str):
     cpath = r["container_path"]
     if not cpath or not _path_is_allowed(cpath) or not os.path.isfile(cpath):
         raise HTTPException(status_code=404, detail={"error": "file not available", "key": key})
-    # Pre-probe with retry so a file a render still holds open returns 503, not a torn read.
     for attempt in range(3):
         try:
             with open(cpath, "rb") as fh:

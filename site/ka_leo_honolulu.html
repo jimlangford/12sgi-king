@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ka Leo o ka 'Aina - Honolulu &mdash; Kilo Aupuni</title>
+<style>
+ body{margin:0;background:#0c100e;color:#e8e4d8;font-family:Georgia,'Iowan Old Style',serif;line-height:1.6}
+ .wrap{max-width:880px;margin:0 auto;padding:34px 24px 70px}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.4px;color:#d9b24c;text-transform:uppercase}
+ h1{font-size:29px;font-weight:600;margin:8px 0 4px}
+ .lead{font-size:14px;color:#cfc9b6;max-width:74ch}
+ .phil{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 8px}
+ @media(max-width:620px){.phil{grid-template-columns:1fr}}
+ .phil div{border:1px solid rgba(217,178,76,.25);border-radius:11px;padding:12px 15px;font-size:12.5px;color:#bdb8a4}
+ .phil b{color:#e8e4d8}
+ .disc{font-size:12px;color:#9a957f;font-style:italic;border-left:2px solid rgba(217,178,76,.4);padding:7px 12px;margin:16px 0}
+ .kl-card{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px;margin:14px 0;background:rgba(255,255,255,.02)}
+ .kl-hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+ .kl-name{font-size:17px;font-weight:600} .kl-tot{font-family:Consolas,monospace;font-size:12px;color:#9a957f}
+ .kl-voice{display:flex;gap:14px;align-items:baseline;margin:11px 0;font-size:13.5px;color:#cfc9b6}
+ .kl-x{font-family:Consolas,monospace;font-size:30px;font-weight:700;color:#e06a4a;line-height:1;flex-shrink:0}
+ .kl-sub{font-size:12px;color:#9a957f;margin:4px 0} .kl-emp{color:#9a957f}
+ .kl-q{font-size:12.5px;color:#bdb8a4;background:rgba(217,178,76,.05);border-radius:8px;padding:9px 12px;margin:9px 0}
+ .kl-aloha{font-size:13px;color:#9fd9bf;border-left:3px solid #2a6b4e;padding:8px 13px;margin-top:9px;line-height:1.65}
+ .kl-aloha b{color:#c8efd9}
+ a{color:#d9b24c} footer{margin-top:34px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}
+</style><link rel="stylesheet" href="../govos.css">
+</head><body>
+<nav class="govos-nav" data-tenant="hi-honolulu"><a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span><b>govOS</b><span class="sub">Kilo Aupuni</span></a><button class="gn-burger" aria-label="Menu">&#9776;</button><div class="gn-menu"><span class="gn-here">viewing: <b>Honolulu</b></span><div class="gn-group"><button class="gn-top">Across govOS<span class="ar">&#9662;</span></button><div class="gn-panel"><a class="" href="jurisdictions.html">Jurisdictions — all governments</a><a class="" href="datasets.html">Open data</a><a class="" href="agenda_explainer.html">Agenda explainer</a><a class="" href="sage_bridge.html">Sage</a><a class="" href="olelo_glossary.html">&#699;&#332;lelo</a><a href="king/civic/templates/title19-system/Title19%20System.html">Title 19 system</a></div></div><a class="gn-lead" href="testify.html">&#9878; Testify</a><a class="gn-link" href="request_records.html">Request Records</a><a class="gn-cta" href="take_action.html">Take part</a></div></nav>
+<div class="govos-narrative" style="max-width:1100px;margin:14px auto 0;padding:12px 18px;border-left:3px solid #9fd9bf;border-radius:8px;background:rgba(159,217,191,.06);font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;color:#e3ecdf"><b style="color:#9fd9bf">In plain words:</b> Where donation money makes one voice louder here. Yours counts too.</div>
+<div class="tenant-nav" role="navigation" aria-label="Government navigation"><div class="tn-grp"><span class="tn-lbl">Government</span><select id="tnav-gov" aria-label="Choose a government"><option value="12stonescharter">⚖ 12 Stones Charter</option><option value="hi-maui">Maui County</option><option value="hi-state">State of Hawaiʻi</option><option value="hi-hawaii">Hawaiʻi County</option><option value="hi-kauai">Kauaʻi County</option><option value="hi-honolulu" selected>Honolulu</option><option value="ny">New York</option></select></div><div class="tn-grp"><span class="tn-lbl">View</span><select id="tnav-view" aria-label="Choose a report for this government"></select></div><span class="tn-here">on <b>Honolulu</b></span></div><div class="wrap">
+<div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; Honolulu (City &amp; County) &middot; aloha &middot; pono</div>
+<h1>Ka Leo o ka &#699;&#256;ina &mdash; The Louder Voice</h1>
+<p class="lead">In a democracy every resident has one voice. Money can make some voices far louder. This page measures,
+from the public campaign record, <b>how much louder</b> for the Honolulu City Council &mdash; not to accuse anyone, but to invite each
+seat to return its pair to balance. Rigor in the numbers; aloha in the asking.</p>
+<div class="phil">
+ <div><b>Underneath &mdash; the record stands up.</b> Every figure is real public campaign-finance data (Hawai&#699;i Campaign
+   Spending Commission, dataset jexd-xbcg), fetched and summed this run, reproducible, built to withstand the hardest look.</div>
+ <div><b>On the surface &mdash; aloha.</b> The same record is offered as an invitation: the Kumulipo binds each thing to its
+   pair; a seat out of balance (hewa) can be made pono again. We name the pattern, never the person&rsquo;s guilt.</div>
+</div>
+<div class="disc">Source: Hawai&#699;i Campaign Spending Commission contributions (public record, dataset
+<a href="https://hicscdata.hawaii.gov/d/jexd-xbcg">jexd-xbcg</a>), the Honolulu City Council. &ldquo;Louder voice&rdquo; = the largest <i>outside</i> donor (self/family
+money separated by surname) measured against an ordinary resident&rsquo;s $50 contribution and against the average gift
+to that candidate. Amounts cast + cleaned in code (nulls and &gt;$2M outliers dropped); contributions summed per donor.
+Giving and receiving lawful contributions is legal; this maps how loud each voice is, as a question.</div>
+<div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Tommy Waters</span><span class="kl-tot">$1,032,769 raised &middot; 954 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">280&times;</span>
+    <span>One donor &mdash; <b>$14,000</b> from Operating Engs. Local Union No. 3 District 17 PAC &mdash; speaks as loud as about
+    <b>280 residents</b> each giving $50, and 13&times; the average gift here.
+    The top ten donors are <b>9%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $23,500 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 280&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Tommy Waters</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Tyler Dos Santos-Tam</span><span class="kl-tot">$612,641 raised &middot; 769 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">240&times;</span>
+    <span>One donor &mdash; <b>$12,000</b> from Camp, Christine &mdash; speaks as loud as about
+    <b>240 residents</b> each giving $50, and 15&times; the average gift here.
+    The top ten donors are <b>15%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $16,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 240&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Tyler Dos Santos-Tam</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Augusto Tulba</span><span class="kl-tot">$240,365 raised &middot; 314 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">204&times;</span>
+    <span>One donor &mdash; <b>$10,225</b> from Lundquist, David R. &mdash; speaks as loud as about
+    <b>204 residents</b> each giving $50, and 13&times; the average gift here.
+    The top ten donors are <b>26%</b> of every dollar raised.</span></div>
+  
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 204&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Augusto Tulba</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Trevor Ozawa</span><span class="kl-tot">$767,318 raised &middot; 748 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">190&times;</span>
+    <span>One donor &mdash; <b>$9,500</b> from Camp, Christine &mdash; speaks as loud as about
+    <b>190 residents</b> each giving $50, and 9&times; the average gift here.
+    The top ten donors are <b>11%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $10,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 190&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Trevor Ozawa</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Ron Menor</span><span class="kl-tot">$626,843 raised &middot; 493 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">180&times;</span>
+    <span>One donor &mdash; <b>$9,000</b> from Kobayashi, Bert A. &mdash; speaks as loud as about
+    <b>180 residents</b> each giving $50, and 7&times; the average gift here.
+    The top ten donors are <b>12%</b> of every dollar raised.</span></div>
+  
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 180&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Ron Menor</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Radiant Cordero</span><span class="kl-tot">$319,277 raised &middot; 355 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">170&times;</span>
+    <span>One donor &mdash; <b>$8,500</b> from Kobayashi, Patrick &mdash; speaks as loud as about
+    <b>170 residents</b> each giving $50, and 9&times; the average gift here.
+    The top ten donors are <b>23%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $21,900 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 170&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Radiant Cordero</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Andria Tupola</span><span class="kl-tot">$540,971 raised &middot; 1,174 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">160&times;</span>
+    <span>One donor &mdash; <b>$8,000</b> from Rompel, Micheal &mdash; speaks as loud as about
+    <b>160 residents</b> each giving $50, and 17&times; the average gift here.
+    The top ten donors are <b>12%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $8,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 160&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Andria Tupola</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Esther Kiaaina</span><span class="kl-tot">$291,808 raised &middot; 309 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">160&times;</span>
+    <span>One donor &mdash; <b>$8,000</b> from Hawaii Regional Council of Carpenters &mdash; speaks as loud as about
+    <b>160 residents</b> each giving $50, and 8&times; the average gift here.
+    The top ten donors are <b>21%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $3,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 160&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Esther Kiaaina</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Val Okimoto</span><span class="kl-tot">$270,065 raised &middot; 290 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">160&times;</span>
+    <span>One donor &mdash; <b>$8,000</b> from Aihara, Kyle &mdash; speaks as loud as about
+    <b>160 residents</b> each giving $50, and 9&times; the average gift here.
+    The top ten donors are <b>21%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $4,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 160&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Val Okimoto</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Matt Weyer</span><span class="kl-tot">$253,423 raised &middot; 303 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">160&times;</span>
+    <span>One donor &mdash; <b>$8,000</b> from Hawaii Regional Council of Carpenters &mdash; speaks as loud as about
+    <b>160 residents</b> each giving $50, and 10&times; the average gift here.
+    The top ten donors are <b>23%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $14,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 160&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Matt Weyer</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Scott Nishimoto</span><span class="kl-tot">$280,302 raised &middot; 295 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">120&times;</span>
+    <span>One donor &mdash; <b>$6,000</b> from Hiyakumoto, Greg H. &mdash; speaks as loud as about
+    <b>120 residents</b> each giving $50, and 6&times; the average gift here.
+    The top ten donors are <b>17%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $16,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 120&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Scott Nishimoto</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Kymberly Pine</span><span class="kl-tot">$207,890 raised &middot; 257 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">120&times;</span>
+    <span>One donor &mdash; <b>$6,000</b> from Hawaii Operating Engineers Industry Stabilization &mdash; speaks as loud as about
+    <b>120 residents</b> each giving $50, and 7&times; the average gift here.
+    The top ten donors are <b>20%</b> of every dollar raised.</span></div>
+  
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 120&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Kymberly Pine</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Robert Bunda</span><span class="kl-tot">$291,866 raised &middot; 221 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">100&times;</span>
+    <span>One donor &mdash; <b>$5,000</b> from Borja, Juan Jr. &mdash; speaks as loud as about
+    <b>100 residents</b> each giving $50, and 4&times; the average gift here.
+    The top ten donors are <b>14%</b> of every dollar raised.</span></div>
+  
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 100&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Robert Bunda</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Heidi Tsuneyoshi</span><span class="kl-tot">$285,114 raised &middot; 335 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">100&times;</span>
+    <span>One donor &mdash; <b>$5,000</b> from Local Union 1186 IBEW PAC FUND &mdash; speaks as loud as about
+    <b>100 residents</b> each giving $50, and 6&times; the average gift here.
+    The top ten donors are <b>14%</b> of every dollar raised.</span></div>
+  
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 100&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Heidi Tsuneyoshi</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Calvin Say</span><span class="kl-tot">$240,693 raised &middot; 232 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">100&times;</span>
+    <span>One donor &mdash; <b>$5,000</b> from Kobayashi, Bert A. Jr. &mdash; speaks as loud as about
+    <b>100 residents</b> each giving $50, and 5&times; the average gift here.
+    The top ten donors are <b>17%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $16,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 100&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Calvin Say</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div><div class="kl-card">
+  <div class="kl-hd"><span class="kl-name">Ikaika Anderson</span><span class="kl-tot">$239,650 raised &middot; 214 gifts &middot; Honolulu Council</span></div>
+  <div class="kl-voice"><span class="kl-x">80&times;</span>
+    <span>One donor &mdash; <b>$4,000</b> from Alexander &amp; Baldwin, Inc. HIPAC &mdash; speaks as loud as about
+    <b>80 residents</b> each giving $50, and 4&times; the average gift here.
+    The top ten donors are <b>17%</b> of every dollar raised.</span></div>
+  <div class="kl-sub">Set aside here: $2,000 from the candidate&rsquo;s own / family funds or running-mate &amp; party committees &mdash; so the question is about <i>outside</i> interest money.</div>
+  <div class="kl-q"><b>The question (for the record):</b> when one voice is heard 80&times; louder than a
+    resident&rsquo;s, whose answer does the vote carry &mdash; the people&rsquo;s, or the funder&rsquo;s? Public campaign-finance record; a question, not a finding.</div>
+  <div class="kl-aloha">E <b>Ikaika Anderson</b>, aloha. The Kumulipo remembers what each thing is paired to. To let a
+    resident&rsquo;s voice be heard as clearly as the largest donor&rsquo;s is to return this pair to <b>pono</b> &mdash; paradise
+    momentum, not the inertia of the same money and the same vote. The <b>&#699;&#257;ina</b> is sacred and it is watching with aloha;
+    the choice to balance it is yours, and it is honored.</div>
+</div>
+<p style="margin-top:20px"><a href="ka_leo_voice.html">the Maui louder voice</a>
+&middot; <a href="money_state.html">state campaign money</a>
+&middot; <a href="money_honolulu.html">Honolulu money</a></p>
+<footer>generated 2026-06-15 07:06 HST &middot; ka-leo-hi v1 &middot; source: HI Campaign Spending Commission (jexd-xbcg, public record) &middot; Kilo Aupuni &middot; aloha &middot; pono &middot; govOS</footer>
+</div><div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div><div class="govos-olelo-foot" style="max-width:1100px;margin:26px auto 8px;padding:9px 16px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:#9a957f;text-align:center">🌺 ʻŌlelo Hawaiʻi here is offered with humility and held under community review with ʻŌiwi resources at Maui County. <a href="olelo_glossary.html" style="color:#cdb4f0">See the glossary &rarr;</a></div><script src="../govos-shell.js" defer></script>
+</body></html>

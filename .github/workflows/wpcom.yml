@@ -1,16 +1,18 @@
 name: Publish Website
 
+# Runs ONLY on manual dispatch. Previously triggered on every push to main,
+# burning ubuntu-hosted minutes on every commit and causing billing lockout.
+# The self-hosted deploy (deploy-v2-king-server.yml) is the real deployment
+# path — it costs zero minutes and can never be billing-gated.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+
 jobs:
   Publish-Website:
     name: Publish-Website
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Upload the artifact
         uses: actions/upload-artifact@v4
         with:

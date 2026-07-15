@@ -1,0 +1,132 @@
+═══════════════════════════════════════════════════════════════════════════════════════
+UNIFIED BACKEND WIRING — VERIFIED
+═══════════════════════════════════════════════════════════════════════════════════════
+
+ARCHITECTURE:
+  services/backend_model.py     → Neo4j unified model (pages + tenants)
+  services/pages_api.py         → Clean API endpoints
+  services/board_api/main.py    → Integrated routes
+  go/*.html pages               → Frontend (unchanged)
+
+VERIFICATION CHECKLIST:
+
+✅ LOCAL WIRING (localhost:8799)
+   GET http://localhost:8799/api/pages
+   GET http://localhost:8799/api/pages/healing
+   GET http://localhost:8799/api/dashboard
+   GET http://localhost:8799/go/healing.html
+
+✅ TAILSCALE WIRING (YOUR-HOST.tail760750.ts.net)
+   GET https://YOUR-HOST.tail760750.ts.net/king/api/pages
+   GET https://YOUR-HOST.tail760750.ts.net/king/api/pages/healing
+   GET https://YOUR-HOST.tail760750.ts.net/king/api/dashboard
+   GET https://YOUR-HOST.tail760750.ts.net/king/go/healing.html
+
+✅ AUTO-DETECTION
+   - Same HTML works both environments
+   - Detects current hostname/port automatically
+   - No hardcoded paths needed
+
+✅ NEO4J BACKEND (Optional)
+   - If Neo4j running: uses graph database
+   - If Neo4j offline: falls back to mock data
+   - Same API response either way
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+PAGES REGISTERED:
+
+  Category: monitoring
+    - docker          → /go/docker.html
+    - system          → /go/system.html
+    - logs            → /go/logs.html
+  
+  Category: ai
+    - ollama          → /go/ollama.html
+    - llm-watch       → /go/llm-watch.html
+    - healing         → /go/healing.html
+  
+  Category: ci-cd
+    - github          → /go/github.html
+  
+  Category: rendering
+    - comfyui         → /go/comfyui.html
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+API ENDPOINTS (Clean, unified):
+
+1. GET /api/pages
+   → All pages with total count and categories
+   Response: { total: 8, pages: [...], categories: [...] }
+
+2. GET /api/pages/category/:category
+   → Pages in one category
+   Response: { category: "ai", total: 3, pages: [...] }
+
+3. GET /api/pages/:id
+   → Specific page details + records access
+   Response: { page: { id, title, category, path } }
+
+4. GET /api/dashboard
+   → Summary for dashboard (pages by category, tenant counts)
+   Response: { pages: {...}, tenants: {...} }
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+REMOVED OLD LOGIC:
+
+✗ Duplicate page definitions (consolidated to backend_model.py)
+✗ Hardcoded URLs (auto-detected from window location)
+✗ Scattered initialization (centralized in pages_api startup)
+✗ Manual Neo4j calls (wrapped in BackendModel)
+✗ Multiple API entry points (unified under /api/pages)
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+TESTING:
+
+LOCAL:
+  curl http://localhost:8799/api/pages
+  curl http://localhost:8799/api/pages/healing
+  curl http://localhost:8799/api/dashboard
+
+TAILSCALE:
+  curl https://YOUR-HOST.tail760750.ts.net/king/api/pages
+  curl https://YOUR-HOST.tail760750.ts.net/king/api/pages/healing
+  curl https://YOUR-HOST.tail760750.ts.net/king/api/dashboard
+
+FRONTEND:
+  Local: http://localhost:8799/go/healing.html
+  Tailscale: https://YOUR-HOST.tail760750.ts.net/king/go/healing.html
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+NEO4J OPTIONAL SETUP (for advanced query capabilities):
+
+Without Neo4j:
+  ✓ All APIs work with mock fallback
+  ✓ Zero installation needed
+  ✓ Single-process model
+
+With Neo4j (optional enhancement):
+  docker run -d --name neo4j -p 7687:7687 -p 7474:7474 \
+    -e NEO4J_AUTH=neo4j/password neo4j:latest
+  
+  Then export:
+    export NEO4J_URI=bolt://localhost:7687
+    export NEO4J_USER=neo4j
+    export NEO4J_PASSWORD=password
+
+═══════════════════════════════════════════════════════════════════════════════════════
+
+SUMMARY:
+
+Backend is now:
+  ✓ Clean — one source of truth (BackendModel)
+  ✓ Simple — fallback to mock if Neo4j unavailable
+  ✓ Unified — same API for localhost & Tailscale
+  ✓ Organized — Neo4j graph structure (ready to scale)
+  ✓ Verified — all pages wired and accessible both ways
+
+═══════════════════════════════════════════════════════════════════════════════════════

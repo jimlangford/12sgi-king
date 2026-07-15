@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TribeGameStudios · 12sgi</title>
+<meta name="description" content="TribeGameStudios · 12sgi — the game studio of 12 Stones Global. SAGE, Konane, Weiqi, Hawaiian Konami, and the SAGE ↔ Mahjong crosswalk. Pure static, always-up.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpolygon%20points='50,7%2088,28.5%2088,71.5%2050,93%2012,71.5%2012,28.5'%20fill='none'%20stroke='%23e3ad33'%20stroke-width='9'/%3E%3C/svg%3E">
+<style>
+/* TribeGameStudios hub — 12sgi-design canon: warm volcanic near-black, one gold accent.
+   Zero external deps. Pure static. */
+:root{
+  --bg:#161209;
+  --s1:#231d10;
+  --s2:#2e2716;
+  --s3:#3e351f;
+  --line:#5a4f33;
+  --gold:#e3ad33;
+  --gold-hi:#f4c95d;
+  --ink:#f7f1e3;
+  --ink-2:#d8cdb0;
+  --ink-3:#ab9e7f;
+  --mauka:#4ade80;
+  --kula:#fbbf24;
+  --makai:#38bdf8;
+  --uni:#ffffff;
+  --hewa:#c96f4a;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-card:9px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+
+/* ── header ── */
+header{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;
+  border-bottom:1px solid var(--line);
+  background:var(--s1);
+  flex-wrap:wrap;
+}
+.hexmark{font-size:28px;color:var(--gold);line-height:1}
+.wordmark strong{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.02em}
+.wordmark .sub{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.studio-eyebrow{
+  font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--ink-3);margin-left:auto;
+}
+
+/* ── hero ── */
+.hero{
+  padding:48px 24px 32px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--gold);margin-bottom:12px}
+.hero p{font-size:15px;color:var(--ink-2);max-width:600px;margin:0 auto 24px}
+.canon-strip{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;
+}
+.canon-strip span{
+  padding:4px 10px;border:1px solid var(--line);border-radius:20px;
+  background:var(--s1);
+}
+
+/* ── catalog grid ── */
+.catalog{
+  padding:32px 24px 48px;
+  max-width:960px;margin:0 auto;
+}
+.catalog h2{
+  font-size:12px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--ink-3);margin-bottom:20px;
+  border-bottom:1px solid var(--line);padding-bottom:8px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+}
+.card{
+  background:var(--s1);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  padding:20px;
+  display:flex;flex-direction:column;gap:12px;
+  text-decoration:none;color:var(--ink);
+  transition:border-color 120ms,background 120ms;
+  position:relative;
+}
+.card:hover{border-color:var(--gold);background:var(--s2)}
+.card-icon{font-size:32px;line-height:1}
+.card-title{font-weight:700;font-size:16px;color:var(--gold-hi)}
+.card-subtitle{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+.card-desc{font-size:13px;color:var(--ink-2);flex:1}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{
+  font-size:10px;text-transform:uppercase;letter-spacing:.07em;
+  padding:2px 7px;border-radius:3px;
+}
+.tag-mauka{background:#1a3d22;color:var(--mauka)}
+.tag-kula{background:#3d2f0a;color:var(--kula)}
+.tag-makai{background:#0a2a3d;color:var(--makai)}
+.tag-uni{background:#2a2a2a;color:var(--uni)}
+.tag-sage{background:#2e2716;color:var(--gold)}
+.tag-cross{background:#241a2e;color:#c084fc}
+.card-cta{
+  font-size:12px;font-weight:600;
+  color:var(--gold);text-transform:uppercase;letter-spacing:.06em;
+  margin-top:4px;
+}
+.card.featured{border-color:var(--gold);background:var(--s2)}
+.card.featured::before{
+  content:"★ SAGE CANON";
+  position:absolute;top:-1px;right:12px;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--bg);background:var(--gold);
+  padding:2px 8px;border-radius:0 0 5px 5px;
+}
+
+/* ── crosswalk table ── */
+.crosswalk{
+  padding:0 24px 48px;
+  max-width:960px;margin:0 auto;
+}
+.crosswalk h2{
+  font-size:12px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--ink-3);margin-bottom:16px;
+  border-bottom:1px solid var(--line);padding-bottom:8px;
+}
+.cw-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-bottom:12px;flex-wrap:wrap;
+}
+.cw-col{
+  background:var(--s1);border:1px solid var(--line);
+  border-radius:var(--r-card);padding:14px 16px;
+}
+.cw-col h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:8px}
+.cw-item{font-size:13px;color:var(--ink-2);margin-bottom:4px}
+.cw-item strong{color:var(--gold)}
+
+/* ── footer ── */
+footer{
+  padding:16px 24px;
+  border-top:1px solid var(--line);
+  font-size:11px;color:var(--ink-3);
+  text-align:center;
+}
+footer a{color:var(--gold);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:600px){
+  .cw-row{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<header>
+  <span class="hexmark">⬡</span>
+  <div class="wordmark">
+    <strong>TribeGameStudios</strong>
+    <span class="sub">by 12sgi</span>
+  </div>
+  <span class="studio-eyebrow">Games · Culture · ʻĀina</span>
+</header>
+
+<section class="hero">
+  <h1>Five games. One canon.</h1>
+  <p>
+    Every title in this studio shares the same 54-node SAGE spine —
+    Hawaiian land zones, Kumulipo phases, and the 4-lineage structure
+    that links ahupuaʻa stewardship to cultural games from Hawaiʻi, China, and across the Pacific.
+  </p>
+  <div class="canon-strip">
+    <span>54 SAGE nodes</span>
+    <span>4 lineages</span>
+    <span>4 winds · 4 zones</span>
+    <span>108 ÷ 2 = 54 tiles</span>
+    <span>Ao · Pō cycle</span>
+  </div>
+</section>
+
+<section class="catalog">
+  <h2>Game catalog</h2>
+  <div class="grid">
+
+    <!-- SAGE -->
+    <a class="card featured" href="../sage/" aria-label="Play SAGE · the ahupuaʻa game">
+      <div class="card-icon">⬡</div>
+      <div>
+        <div class="card-title">SAGE</div>
+        <div class="card-subtitle">the ahupuaʻa game</div>
+      </div>
+      <div class="card-desc">
+        Steward one ahupuaʻa across the 13-moon kaulana mahina cycle.
+        54 nodes — real practices, real funding pathways. Plant, fish, testify.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-mauka">Mauka</span>
+        <span class="tag tag-kula">Kula</span>
+        <span class="tag tag-makai">Makai</span>
+        <span class="tag tag-uni">Universal</span>
+      </div>
+      <div class="card-cta">Play →</div>
+    </a>
+
+    <!-- Konane -->
+    <a class="card" href="konane.html" aria-label="Play Konane — Hawaiian jump-capture">
+      <div class="card-icon">⚫</div>
+      <div>
+        <div class="card-title">Konane</div>
+        <div class="card-subtitle">Hawaiian jump-capture</div>
+      </div>
+      <div class="card-desc">
+        Papamū board. ʻIliʻili stones. Jump and capture like the aliʻi played it.
+        Black opens by removing one stone; both players must capture or forfeit.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-kula">2-player</span>
+        <span class="tag tag-mauka">Hawaiian</span>
+      </div>
+      <div class="card-cta">Play →</div>
+    </a>
+
+    <!-- Weiqi -->
+    <a class="card" href="weiqi.html" aria-label="Play Weiqi (Go)">
+      <div class="card-icon">⊙</div>
+      <div>
+        <div class="card-title">Weiqi</div>
+        <div class="card-subtitle">Go · offered to China</div>
+      </div>
+      <div class="card-desc">
+        9×9 board. Full rules: capture by surrounding, suicide forbidden, superko enforced.
+        Chinese area scoring + 7.5 komi. Offered as a cultural bridge.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-makai">2-player</span>
+        <span class="tag tag-uni">Chinese area scoring</span>
+      </div>
+      <div class="card-cta">Play →</div>
+    </a>
+
+    <!-- Hawaiian Konami -->
+    <a class="card" href="hawaiian_konami.html" aria-label="Hawaiian Konami — code-unlock reveal">
+      <div class="card-icon">🌺</div>
+      <div>
+        <div class="card-title">Hawaiian Konami</div>
+        <div class="card-subtitle">code-unlock · concurrency reveal</div>
+      </div>
+      <div class="card-desc">
+        Enter the sequence. Unlock the SAGE canon hidden in plain sight —
+        54 nodes, 4 lineages, the Kumulipo Ao/Pō cycle revealed through
+        the classic code-unlock pattern.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-sage">SAGE canon</span>
+        <span class="tag tag-cross">reveal</span>
+      </div>
+      <div class="card-cta">Unlock →</div>
+    </a>
+
+    <!-- Mahjong Crosswalk -->
+    <a class="card" href="mahjong_crosswalk.html" aria-label="SAGE ↔ Mahjong crosswalk lens">
+      <div class="card-icon">🀄</div>
+      <div>
+        <div class="card-title">SAGE ↔ Mahjong</div>
+        <div class="card-subtitle">crosswalk lens</div>
+      </div>
+      <div class="card-desc">
+        54 SAGE nodes = 108 ÷ 2 Mahjong suit tiles.
+        4 lineages = 4 winds (East · South · West · North).
+        Explore the crosswalk between ahupuaʻa stewardship and the tile-wind canon.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-sage">54 nodes</span>
+        <span class="tag tag-cross">108 tiles</span>
+        <span class="tag tag-uni">4 winds</span>
+      </div>
+      <div class="card-cta">Explore →</div>
+    </a>
+
+    <!-- Moon Calendar -->
+    <a class="card" href="moon_cal.html" aria-label="Moon Calendar · Kaulana Mahina">
+      <div class="card-icon">🌙</div>
+      <div>
+        <div class="card-title">Moon Calendar</div>
+        <div class="card-subtitle">Kaulana Mahina · civic game turns</div>
+      </div>
+      <div class="card-desc">
+        The 30 nights of the Hawaiian moon as civic game turns. Kū nights — stand and testify.
+        ʻOle nights — listen and hold. Māhealani (full moon) — major civic moment.
+        See which meetings fall on which night.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-mauka">Kaulana Mahina</span>
+        <span class="tag tag-makai">30 pō</span>
+        <span class="tag tag-sage">Ao · Pō</span>
+      </div>
+      <div class="card-cta">Read →</div>
+    </a>
+
+  </div>
+</section>
+
+<section class="crosswalk">
+  <h2>Shared SAGE canon · the through-line</h2>
+  <div class="cw-row">
+    <div class="cw-col">
+      <h3>SAGE ↔ Mahjong</h3>
+      <div class="cw-item"><strong>54 nodes</strong> = 108 suit tiles ÷ 2 (Bamboo · Circles · Characters × 36 each)</div>
+      <div class="cw-item"><strong>4 lineages</strong> = 4 winds (East · South · West · North)</div>
+      <div class="cw-item"><strong>Mauka lineage</strong> → East wind (morning, rising)</div>
+      <div class="cw-item"><strong>Kula lineage</strong> → South wind (noon, heat)</div>
+      <div class="cw-item"><strong>Makai lineage</strong> → West wind (evening, ocean)</div>
+      <div class="cw-item"><strong>Universal lineage</strong> → North wind (night, stars)</div>
+    </div>
+    <div class="cw-col">
+      <h3>SAGE ↔ Konane</h3>
+      <div class="cw-item"><strong>54 nodes</strong> span Ao · Pō phases — same duality as black / white ʻiliʻili</div>
+      <div class="cw-item"><strong>Capture move</strong> = removing a Hewa (broken-pair) node</div>
+      <div class="cw-item"><strong>Papamū board</strong> = the ahupuaʻa grid: Mauka top, Makai bottom</div>
+      <div class="cw-item"><strong>Win condition</strong> = opponent cannot move = pono restored</div>
+    </div>
+  </div>
+  <div class="cw-row">
+    <div class="cw-col">
+      <h3>SAGE ↔ Weiqi</h3>
+      <div class="cw-item"><strong>Liberties</strong> = open governance pathways; surround = policy capture</div>
+      <div class="cw-item"><strong>Komi 7.5</strong> = acknowledgment that Black (the opener) holds first-mover advantage</div>
+      <div class="cw-item"><strong>Superko</strong> = no repeating a board position — same as no repeating a failed policy</div>
+      <div class="cw-item"><strong>Territory + stones</strong> = Chinese area scoring mirrors civic land + people</div>
+    </div>
+    <div class="cw-col">
+      <h3>Kumulipo Ao · Pō cycle</h3>
+      <div class="cw-item"><strong>Ao (day)</strong> — choices made: game play + civic action</div>
+      <div class="cw-item"><strong>Pō (night)</strong> — HINA uses the creative system to balance the equation those choices created</div>
+      <div class="cw-item"><strong>13 moons</strong> = 13 rounds of SAGE = one kaulana mahina year</div>
+      <div class="cw-item"><strong>54 nodes</strong> = one full SAGE deck = one full Mahjong suit half</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  TribeGameStudios · 12 Stones Global · <a href="../sage/">SAGE game</a> ·
+  Pure static · always-up on GitHub Pages ·
+  Public · no secrets · no server required
+</footer>
+
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

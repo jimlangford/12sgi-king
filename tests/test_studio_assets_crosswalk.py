@@ -47,6 +47,25 @@ class StudioAssetCrosswalkTests(unittest.TestCase):
         self.assertEqual(row["style_id"], "animated")
         self.assertEqual(row["aspect"], "9:16")
 
+    def test_asset_listing_keeps_structured_and_legacy_tenant_filters(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            db = os.path.join(tmp, "assets.db")
+            index = os.path.join(tmp, "index.json")
+            with open(index, "w", encoding="utf-8") as handle:
+                json.dump({"items": [{
+                    "key": "asset-1", "name": "clip.mp4", "rel": "X:/film_keys/clip.mp4",
+                    "size": 12, "mtime": 1,
+                    "meta": {"tenant": "film_keys", "character_id": "KAI", "style": "animated"},
+                }]}, handle)
+            with mock.patch.object(main, "DB_PATH", db), mock.patch.object(main, "INDEX_JSON", index):
+                main._init_db()
+                main.ingest_index()
+                result = main.list_assets(q=None, label=None, ext=None, tenant="film_keys",
+                                          character_id="KAI", style="animated", tenant_id="film_keys",
+                                          limit=10, offset=0)
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(result["assets"][0]["key"], "asset-1")
+
     def test_neo4j_reset_is_structurally_scoped(self):
         source = inspect.getsource(main.sync_crosswalk_graph)
         self.assertIn("MATCH (n:StudioAssetNode) DETACH DELETE n", source)

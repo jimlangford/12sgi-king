@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<style id="mobile-heal">img,video,svg{max-width:100%;height:auto}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Watch the Brain Work — elementLOTUS</title>
+<style>
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:46px;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:2px;z-index:100;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px}
+nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
+.brand{color:var(--gold)!important;font-weight:700;letter-spacing:.06em;margin-right:10px;font-size:15px}
+/* LAYOUT */
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+/* POST CARD (list view) */
+.post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
+.post-card:hover{border-color:var(--gold)}
+.post-date{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.post-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.post-title a{color:var(--text)}
+.post-title a:hover{color:var(--gold)}
+.post-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.post-summary{font-size:14px;color:var(--text);line-height:1.6;opacity:.9}
+.post-tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.read-link{margin-top:14px;font-size:13px;color:var(--gold)}
+/* POST FULL (article view) */
+.article-head{margin-bottom:32px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.article-body{margin-top:28px}
+.article-body p{margin-bottom:18px;font-size:15px;line-height:1.75}
+.article-body h2{font-size:18px;font-weight:700;color:var(--gold);margin:28px 0 10px;letter-spacing:.02em}
+.article-body blockquote{border-left:3px solid var(--gold);padding:10px 18px;margin:22px 0;color:var(--muted);font-style:italic;font-size:15px;background:var(--surf2);border-radius:0 6px 6px 0}
+.lede{font-size:17px;line-height:1.8;color:var(--text);margin-bottom:22px;font-weight:400}
+.cta-block{background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-top:30px;font-size:14px;line-height:1.65;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.back:hover{color:var(--gold)}
+/* VISUALS — gold-Aurora picture + animation (list thumbnail, article hero, body image) */
+.post-thumb{display:block;margin:0 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0}
+.post-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .3s ease}
+.post-card:hover .post-thumb img{transform:scale(1.02)}
+.article-hero{margin:0 0 30px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--bg);line-height:0;box-shadow:0 10px 44px rgba(0,0,0,.45)}
+.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.body-img{margin:26px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg)}
+.body-img img{display:block;width:100%;height:auto}
+.body-img figcaption{font-size:12px;color:var(--muted);padding:9px 14px;background:var(--surf2);text-align:center;letter-spacing:.02em}
+</style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<nav>
+  <a href="king/" class="brand">KING</a>
+  <a href="blog.html" style="color:var(--gold)">Blog</a>
+</nav>
+<div class="wrap"><a href="blog.html" class="back">← All posts</a>
+
+<div class="article-head">
+  <div class="article-title">Watch the Brain Work</div>
+  <div class="article-subtitle">Ke Ea — lead-up series</div>
+  <div class="article-meta">2026-06-26 · elementLOTUS · Kilo Aupuni</div>
+</div>
+<div class="article-body"><p class="lede">There is a kind of trust that only comes from being able to see.</p>
+<p>Not a press release about transparency. Not a report issued months later. The thing itself, happening — the public record being read, the meetings being heard, the questions being asked of the money and the votes, in the open, while it happens.</p>
+<p>That is what we've been building: a way to watch the work as it works.</p>
+<h2>What it is</h2>
+<p>Think of it as a window into a brain that does one job — keep watch over the people's government — and never looks away. When a meeting airs, it listens. When the public record moves, it stirs. You can see it think.</p>
+<p>And here is the part that matters most to us: it does not only watch for what is wrong. It also names what is beautiful. When ʻōlelo Hawaiʻi is spoken in the chamber — when a value like kuleana or mālama ʻāina is carried into the record by someone who came to testify — the window names it, gently, and remembers the standard it points back to. The accountable and the sacred, side by side, because they were never really separate.</p>
+<h2>Honest about what it is, and isn't</h2>
+<p>It is a witness, not a verdict. Everything it shows about the government is drawn from the public record and framed as a question, never an accusation. The careful, private work — the parts that need a careful hand before anyone speaks them aloud — stays private, exactly where it should. What you see in the open is sourced, and meant to be checked.</p>
+<p>We would rather show you a true thing plainly than a polished thing that overreaches. The honesty is the point.</p>
+<h2>Why a window, and not just a document</h2>
+<p>Because a document can be ignored, and a live thing is harder to look away from. Because the people whose island this is deserve to see their government as it actually moves — its votes, its agendas, the names who testify — and to feel, watching it, that someone is keeping faith with the record.</p>
+<p>A brain kept open is a kind of aloha. It says: you are not alone in paying attention.</p>
+<p>In the next note we'll show you how you can bring these layers onto any meeting you're already watching. For now — it's working, and it's almost ready to share.</p>
+<p>— elementLOTUS · Kilo Aupuni</p></div></div>
+<script src="../govos-shell.js" defer></script>
+</body></html>

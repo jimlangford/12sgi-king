@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Docker · Owner Console</title>
+<!-- PRIVATE: Tailscale-only. Served from king :8799. Not part of the public GitHub Pages site. -->
+<style>
+ :root{
+   --bg:#ffffff;--panel:#e7eef8;--panel-2:#dae5f3;--panel-3:#ccddef;--line:#bacde6;
+   --ink:#13243d;--ink-dim:#41536b;--ink-faint:#5b6e86;
+   --accent:#00356b;--accent-2:#1259a3;--accent-ink:#ffffff;--accent-wash:rgba(0,53,107,.06);
+   --gold:#b8860b;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
+   --mono:'JetBrains Mono',Consolas,monospace;
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+      min-height:100vh;padding:20px 16px 40px;-webkit-font-smoothing:antialiased}
+ .wrap{width:100%;max-width:820px;margin:0 auto}
+ .back{font-family:var(--mono);font-size:11.5px;color:var(--accent-2);text-decoration:none;display:inline-block;margin-bottom:14px}
+ .back:hover{text-decoration:underline}
+ .head{display:flex;align-items:center;gap:11px;margin:0 0 4px}
+ .seal{width:40px;height:40px;border-radius:10px;background:var(--accent);color:var(--accent-ink);flex:none;
+       display:flex;align-items:center;justify-content:center;font-size:19px}
+ .brand{font-size:18px;font-weight:800}
+ .syslabel{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+ .sub{font-size:13px;color:var(--ink-dim);margin:10px 0 14px;line-height:1.55}
+ .status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;padding:8px 13px;
+         border-radius:10px;background:var(--panel);border:1px solid var(--line);margin-bottom:14px;color:var(--ink-dim)}
+ .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);animation:pulse 1.2s infinite;flex:none}
+ .dot.up{background:var(--ok);animation:none}.dot.down{background:var(--err);animation:none}
+ @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+ .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:18px 2px 9px;font-weight:600}
+ .card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:9px}
+ .t{font-size:14px;font-weight:650}.b{font-size:12px;color:var(--ink-dim);margin-top:3px;line-height:1.4}
+ .badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
+        padding:2px 8px;border-radius:6px;font-weight:700;margin-right:5px}
+ .badge-ok{background:rgba(31,138,91,.15);color:var(--ok)}
+ .badge-warn{background:rgba(176,125,26,.15);color:var(--warn)}
+ .badge-err{background:rgba(192,50,44,.15);color:var(--err)}
+ .badge-dim{background:var(--panel-3);color:var(--ink-faint)}
+ .container-row{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+ .container-meta{font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.7;flex:1;min-width:160px}
+ .foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:22px;line-height:1.7;
+       text-align:center;border-top:1px solid var(--line);padding-top:13px}
+ button.fix-btn{font-family:var(--mono);font-size:11.5px;padding:6px 13px;border-radius:8px;cursor:pointer;
+                border:1px solid var(--line);background:var(--panel);color:var(--accent-2);white-space:nowrap}
+ button.fix-btn:hover{border-color:var(--accent)}
+ button.retry-btn{font-family:var(--mono);font-size:11.5px;padding:7px 16px;border-radius:8px;
+                  background:var(--panel);border:1px solid var(--line);cursor:pointer;color:var(--accent-2)}
+ button.retry-btn:hover{border-color:var(--accent)}
+ a.fix-link{font-family:var(--mono);font-size:11.5px;padding:6px 13px;border-radius:8px;
+            border:1px solid var(--line);background:var(--panel);color:var(--accent-2);
+            text-decoration:none;white-space:nowrap;display:inline-block}
+ a.fix-link:hover{border-color:var(--accent)}
+ details>summary{font-family:var(--mono);font-size:11px;cursor:pointer;color:var(--accent-2);
+                  user-select:none;padding:2px 0}
+ pre.log-pre{font-family:var(--mono);font-size:10.5px;background:var(--panel);border-radius:7px;
+             padding:9px 11px;overflow-x:auto;white-space:pre-wrap;margin:5px 0 0;
+             max-height:180px;overflow-y:auto;border:1px solid var(--line)}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head><body>
+<div class="wrap">
+  <a class="back" href="/go">← /go</a>
+
+  <div class="head">
+    <div class="seal">🐳</div>
+    <div><div class="brand">Docker</div><div class="syslabel">Container status · Owner Console</div></div>
+  </div>
+  <p class="sub">Container health across the king stack — Tailscale-only. Fails closed on the public mirror.</p>
+
+  <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">checking containers…</span></div>
+
+  <div id="content" style="display:none">
+    <div class="sect">Containers</div>
+    <div id="containerCards"></div>
+    <div class="sect">Compose</div>
+    <div class="card" id="composeCard">
+      <div class="t">docker-compose.v2.yml</div>
+      <div class="b" id="composeInfo">—</div>
+    </div>
+  </div>
+
+  <div id="errSection" style="display:none">
+    <div class="sect">Issues detected</div>
+    <div id="errCards"></div>
+  </div>
+
+  <div class="foot">PRIVATE · Docker · Owner Console · 12 Stones Global · Tailscale only</div>
+</div>
+<script>
+'use strict';
+var API='/board/api/docker';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+function severityStyle(sev){
+  var m={critical:['#c0322c','CRITICAL'],high:['#c04a22','HIGH'],medium:['#b07d1a','MEDIUM'],low:['#b8860b','LOW']};
+  return m[sev]||['#6d7f97','INFO'];
+}
+
+function errCard(o){
+  var ss=severityStyle(o.sev), col=ss[0], lbl=ss[1];
+  var fixes=(o.fixes||[]).map(function(f){
+    if(f.copy) return '<button class="fix-btn" onclick="copyCmd(\''+f.copy.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')">'+esc(f.lbl)+'</button>';
+    if(f.href) return '<a class="fix-link" href="'+esc(f.href)+'" target="_blank" rel="noopener">'+esc(f.lbl)+' →</a>';
+    return '';
+  }).join(' ');
+  return '<div style="border-left:3px solid '+col+';background:rgba(192,50,44,.05);border-radius:10px;padding:13px 15px;margin-bottom:12px">'
+    +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:9px">'
+    +'<span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;font-weight:700;background:'+col+';color:#fff">'+lbl+'</span>'
+    +'<span class="t">'+esc(o.what)+'</span></div>'
+    +'<div class="b" style="margin-bottom:7px"><b>Likely cause:</b> '+esc(o.cause)+'</div>'
+    +'<div class="b" style="margin-bottom:7px"><b>Order of operations:</b><ol style="margin:4px 0 0 18px;padding:0">'+(o.steps||[]).map(function(s){return '<li style="margin-bottom:3px">'+esc(s)+'</li>';}).join('')+'</ol></div>'
+    +(fixes?'<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px">'+fixes+'</div>':'')
+    +(o.logs?'<details style="margin-bottom:9px"><summary>▶ Logs</summary><pre class="log-pre">'+esc(o.logs)+'</pre></details>':'')
+    +'<div class="b" style="margin-bottom:9px"><b>Escalation:</b> '+esc(o.escalate)+'</div>'
+    +'<button class="retry-btn" onclick="loadData()">↺ Test again</button>'
+    +'</div>';
+}
+
+function copyCmd(cmd){
+  if(navigator.clipboard){navigator.clipboard.writeText(cmd).then(function(){alert('Copied to clipboard:\n'+cmd);});}
+  else{alert('Command:\n'+cmd);}
+}
+
+function statusBadge(s){
+  if(!s) return '<span class="badge badge-dim">unknown</span>';
+  var lower=s.toLowerCase();
+  if(lower.indexOf('run')>=0) return '<span class="badge badge-ok">running</span>';
+  if(lower.indexOf('exit')>=0||lower.indexOf('stop')>=0) return '<span class="badge badge-err">'+esc(s)+'</span>';
+  if(lower.indexOf('restart')>=0||lower.indexOf('creat')>=0) return '<span class="badge badge-warn">'+esc(s)+'</span>';
+  return '<span class="badge badge-dim">'+esc(s)+'</span>';
+}
+
+function healthBadge(h){
+  if(!h) return '';
+  var lower=h.toLowerCase();
+  if(lower==='healthy') return '<span class="badge badge-ok">healthy</span>';
+  if(lower==='unhealthy') return '<span class="badge badge-err">unhealthy</span>';
+  if(lower==='starting') return '<span class="badge badge-warn">starting</span>';
+  return '<span class="badge badge-dim">'+esc(h)+'</span>';
+}
+
+function renderContainers(containers){
+  if(!containers||!containers.length){
+    return '<div class="card"><div class="b" style="color:var(--ink-faint)">No containers found — Docker daemon may be running but compose is not up.</div></div>';
+  }
+  return containers.map(function(c){
+    var issues=[];
+    var lower=(c.status||'').toLowerCase();
+    if(lower.indexOf('exit')>=0||lower.indexOf('stop')>=0){
+      issues.push(errCard({
+        what:'Container stopped: '+c.name,
+        cause:'The container exited unexpectedly or was stopped. Check for OOM kills, crash loops, or a failed entrypoint.',
+        sev:'high',
+        steps:[
+          'Run: docker logs '+c.name+' --tail 50',
+          'Check for exit code: docker inspect '+c.name+' | grep ExitCode',
+          'Review compose file for env var issues or missing volumes',
+          'Restart with: docker compose -f docker-compose.v2.yml up -d '+c.name
+        ],
+        fixes:[
+          {lbl:'Copy: view logs',copy:'docker logs '+c.name+' --tail 50'},
+          {lbl:'Copy: restart',copy:'docker compose -f docker-compose.v2.yml up -d '+c.name}
+        ],
+        logs:c.recent_logs||'',
+        escalate:'If the container keeps crashing, check resource limits (RAM/VRAM) and review the image configuration. File an issue if root cause is unclear.',
+        retryFn:'loadData'
+      }));
+    }
+    if(c.health&&c.health.toLowerCase()==='unhealthy'){
+      issues.push(errCard({
+        what:'Health check failing: '+c.name,
+        cause:'The container\'s health check endpoint is returning errors. The service may be partially started or misconfigured.',
+        sev:'medium',
+        steps:[
+          'View health check output: docker inspect --format "{{json .State.Health}}" '+c.name,
+          'Check the service port is bound: docker port '+c.name,
+          'Review service logs for startup errors: docker logs '+c.name+' --tail 30',
+          'Verify environment variables in docker-compose.v2.yml'
+        ],
+        fixes:[
+          {lbl:'Copy: inspect health',copy:'docker inspect --format "{{json .State.Health}}" '+c.name},
+          {lbl:'Copy: check port',copy:'docker port '+c.name}
+        ],
+        logs:c.recent_logs||'',
+        escalate:'If the health check consistently fails, the service configuration or dependencies may need review. Escalate to service owner.',
+        retryFn:'loadData'
+      }));
+    }
+    if(c.restart_count>5){
+      issues.push(errCard({
+        what:'Excessive restarts: '+c.name+' ('+c.restart_count+' restarts)',
+        cause:'Container is in a restart loop. This usually indicates a persistent crash, bad configuration, or a missing dependency.',
+        sev:'high',
+        steps:[
+          'Check recent logs: docker logs '+c.name+' --tail 100',
+          'Inspect exit code: docker inspect '+c.name+' | grep ExitCode',
+          'Check for dependency containers that must start first',
+          'Review resource usage: docker stats '+c.name+' --no-stream'
+        ],
+        fixes:[
+          {lbl:'Copy: view logs',copy:'docker logs '+c.name+' --tail 100'},
+          {lbl:'Copy: stats',copy:'docker stats '+c.name+' --no-stream'}
+        ],
+        logs:c.recent_logs||'',
+        escalate:'Persistent restart loops often indicate a configuration error or a resource constraint. Review compose file and system resources.',
+        retryFn:'loadData'
+      }));
+    }
+    return '<div class="card">'
+      +'<div class="container-row">'
+      +'<div style="flex:1;min-width:0">'
+      +'<div class="t">'+esc(c.name||'unnamed')+'</div>'
+      +'<div style="margin:5px 0">'+statusBadge(c.status)+healthBadge(c.health)+'</div>'
+      +'</div>'
+      +'<div class="container-meta">'
+      +(c.image?'image: '+esc(c.image)+'<br>':'')
+      +(c.uptime?'up: '+esc(c.uptime)+'<br>':'')
+      +(c.restart_count!=null?'restarts: '+c.restart_count+'<br>':'')
+      +(c.ports&&c.ports.length?'ports: '+c.ports.map(esc).join(', ')+'<br>':'')
+      +'</div></div>'
+      +issues.join('')
+      +'</div>';
+  }).join('');
+}
+
+function showUnreachable(){
+  var dot=document.getElementById('dot'), st=document.getElementById('stext');
+  dot.className='dot down'; st.textContent='board API unreachable — check Tailscale';
+  var sec=document.getElementById('errSection'), cards=document.getElementById('errCards');
+  sec.style.display='block';
+  cards.innerHTML=errCard({
+    what:'Docker API unreachable',
+    cause:'The board API at /board/api/docker did not respond. Either the king server is offline, Tailscale is disconnected, or you are viewing this page on the public mirror.',
+    sev:'critical',
+    steps:[
+      'Verify Tailscale is connected on this device',
+      'Open https://12sgianonymous.tail760750.ts.net/king/ to test connectivity',
+      'Check that the king server is running (port 8799)',
+      'Verify nginx is running and /board proxy is configured'
+    ],
+    fixes:[
+      {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
+      {lbl:'Test king server',href:'https://12sgianonymous.tail760750.ts.net/king/'}
+    ],
+    logs:'',
+    escalate:'If Tailscale is connected and the server is running, check nginx error logs. Verify the /board location block proxies to port 8782.',
+    retryFn:'loadData'
+  });
+}
+
+function loadData(){
+  var dot=document.getElementById('dot'), st=document.getElementById('stext');
+  dot.className='dot'; st.textContent='checking containers…';
+  document.getElementById('content').style.display='none';
+  document.getElementById('errSection').style.display='none';
+  document.getElementById('errCards').innerHTML='';
+
+  fetch(API,{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():Promise.reject(new Error('HTTP '+r.status));})
+    .then(function(d){
+      var containers=d.containers||[];
+      var daemonOk=d.daemon_ok!==false;
+      var hasErrors=!daemonOk||containers.some(function(c){
+        var lower=(c.status||'').toLowerCase();
+        return lower.indexOf('exit')>=0||lower.indexOf('stop')>=0||c.restart_count>5||(c.health&&c.health.toLowerCase()==='unhealthy');
+      });
+
+      if(!daemonOk){
+        dot.className='dot down'; st.textContent='Docker daemon not responding';
+        var sec=document.getElementById('errSection'), cards=document.getElementById('errCards');
+        sec.style.display='block';
+        cards.innerHTML=errCard({
+          what:'Docker daemon not responding',
+          cause:'Docker Desktop or the Docker engine is not running on this machine.',
+          sev:'critical',
+          steps:[
+            'Start Docker Desktop (macOS/Windows) or run: sudo systemctl start docker',
+            'Wait 30 seconds then retry',
+            'Check Docker status: docker info',
+            'Review system logs for Docker daemon errors'
+          ],
+          fixes:[
+            {lbl:'Copy: start Docker',copy:'sudo systemctl start docker'},
+            {lbl:'Copy: check status',copy:'docker info'}
+          ],
+          logs:d.daemon_error||'',
+          escalate:'If Docker fails to start, check available disk space and system resources. A corrupted Docker disk image may require a reset.',
+          retryFn:'loadData'
+        });
+        return;
+      }
+
+      dot.className=hasErrors?'dot':'dot up';
+      st.textContent=hasErrors
+        ?containers.filter(function(c){var l=(c.status||'').toLowerCase();return l.indexOf('exit')>=0||l.indexOf('stop')>=0;}).length+' container(s) need attention'
+        :'All '+containers.length+' container(s) running';
+
+      document.getElementById('containerCards').innerHTML=renderContainers(containers);
+      var ci=document.getElementById('composeInfo');
+      if(ci) ci.textContent=(d.compose_file||'docker-compose.v2.yml')+' · '+(d.compose_status||'active')+' · '+(containers.length||0)+' services defined';
+      document.getElementById('content').style.display='block';
+    })
+    .catch(function(){showUnreachable();});
+}
+
+loadData();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body></html>

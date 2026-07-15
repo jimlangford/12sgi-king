@@ -18,19 +18,19 @@
   },
   "source_pages": [
     {
-      "tenant": "hi-maui",
-      "name": "Maui County",
-      "path": "oversight_hi-maui.html"
-    },
-    {
       "tenant": "hi-state",
-      "name": "State of Hawaii",
+      "name": "Hawaii State",
       "path": "oversight_hi-state.html"
     },
     {
       "tenant": "hi-hawaii",
       "name": "Hawaii County",
       "path": "oversight_hi-hawaii.html"
+    },
+    {
+      "tenant": "hi-maui",
+      "name": "Maui County",
+      "path": "oversight_hi-maui.html"
     },
     {
       "tenant": "hi-kauai",

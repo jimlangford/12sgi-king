@@ -1245,6 +1245,22 @@ def main():
                 _kgo = _kgo.replace("</head>", _ftm_script("../") + "</head>", 1) if "ftm-data" not in _kgo else _kgo
                 with open(os.path.join(SITE, "king", "go.html"), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_kgo)
+            # go/ subpages — private Owner Console panels (docker, ollama, llm-watch, comfyui,
+            # github, system, logs). Each page fails closed on the public mirror: content only
+            # renders when /board/api/* is reachable (Tailscale + king server). Safe to publish
+            # because they contain no secrets and present only an "unreachable" error card on
+            # the public mirror. go/X.html must live next to go.html so relative links resolve.
+            _go_src_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go")
+            if os.path.isdir(_go_src_dir):
+                _go_dest_dir = os.path.join(SITE, "go")
+                os.makedirs(_go_dest_dir, exist_ok=True)
+                _go_sub_copied = []
+                for _gsub in sorted(os.listdir(_go_src_dir)):
+                    if _gsub.endswith(".html"):
+                        shutil.copy(os.path.join(_go_src_dir, _gsub), os.path.join(_go_dest_dir, _gsub))
+                        _go_sub_copied.append(_gsub)
+                if _go_sub_copied:
+                    print("  + go/ subpages: %d Owner Console panels (fail-closed on mirror)" % len(_go_sub_copied))
             print("  + go.html: live/mirror failover launcher (root + king/)")
         _go_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go")
         if os.path.isdir(_go_dir):

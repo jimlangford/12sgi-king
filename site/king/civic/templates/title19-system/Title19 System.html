@@ -1,0 +1,158 @@
+<!-- @template name="Title 19 System — dual charter (County + Sovereign)" description="The unified Maui County Title 19 system hub, shown through BOTH charters side-by-side: the Maui County Charter + Title 19 (operative law, cited) on top of James's 12 Stones Sovereign Charter (foundation, his analysis). Factual Title 19 cited as law; sovereign column labeled James Langford's foundational charter perspective, never county law." -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Title 19 System — both charters side-by-side · govOS · Kilo Aupuni</title>
+<link rel="stylesheet" href="../../styles.css?v=2026-06-17">
+<style>
+ :root{--bg:#ffffff;--panel:#e7eef8;--panel2:#dae5f3;--line:#bacde6;--ink:#13243d;--ink-dim:#41536b;
+   --ink-faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
+   --sov:#5b3fa8;--sov-bg:rgba(91,63,168,.07);--sov-line:#b7a6e0;--food:#1f8a5b;--edu:#1259a3;--truth:#b07d1a;}
+ *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Iowan Old Style',serif;line-height:1.6}
+ .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 80px}
+ .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:Consolas,monospace;font-size:11.5px}
+ .top a{color:var(--accent2);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase;margin-top:12px}
+ h1{font-size:28px;font-weight:600;margin:6px 0 4px;line-height:1.15}
+ .lead{font-size:15.5px;color:var(--ink-dim);max-width:84ch}
+ .free{display:inline-block;background:var(--ok);color:#fff;font-family:Consolas,monospace;font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 10px;border-radius:6px;text-transform:uppercase}
+ h2{font-size:13px;font-family:Consolas,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);margin:30px 0 8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+ /* layered stack: county ON TOP of sovereign foundation */
+ .stack{margin:14px 0 6px}
+ .slab{border-radius:12px;padding:13px 16px;position:relative}
+ .slab .k{font-family:Consolas,monospace;font-size:10px;letter-spacing:.6px;text-transform:uppercase;font-weight:700;display:block;margin-bottom:3px}
+ .slab .ti{font-size:16.5px;font-weight:600} .slab .su{font-size:12.5px;margin-top:3px}
+ .slab.county{background:linear-gradient(180deg,#eaf1fb,#dce8f7);border:1px solid var(--accent);color:var(--ink);z-index:2}
+ .slab.county .k{color:var(--accent)}
+ .seam{text-align:center;font-family:Consolas,monospace;font-size:10.5px;color:var(--ink-faint);letter-spacing:.5px;margin:3px 0}
+ .slab.sov{background:var(--sov-bg);border:1px solid var(--sov);color:var(--sov);margin-top:-2px}
+ .slab.sov .k{color:var(--sov)} .slab.sov .su{color:#4b3a78}
+ .foundnote{font-size:12px;color:var(--ink-faint);font-style:italic;margin-top:6px;text-align:center}
+ /* component tools grid */
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px;margin-top:12px}
+ .mod{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px 16px;text-decoration:none;color:inherit}
+ .mod:hover{border-color:var(--accent)} .mod.soon{background:#f5f7fb;border-style:dashed}
+ .mod .h{display:flex;align-items:center;gap:8px;justify-content:space-between}
+ .mod .t{font-weight:600;font-size:15.5px;color:var(--ink)} .mod .d{font-size:12.6px;color:var(--ink-dim);margin-top:4px}
+ .state{font-family:Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+ .state.live{color:var(--ok)} .state.soon{color:var(--warn)}
+ .exp{display:inline-block;font-family:Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);border-radius:9px;padding:1px 7px;margin-left:5px}
+ /* dual-charter side-by-side ledger */
+ .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:14px 0 4px;font-family:Consolas,monospace;font-size:11.5px}
+ .legend .c{display:inline-flex;align-items:center;gap:6px} .legend .sw{width:13px;height:13px;border-radius:3px;display:inline-block}
+ .toggle{margin-left:auto;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--ink-dim)}
+ .toggle .sw2{width:42px;height:24px;border-radius:13px;background:var(--sov);position:relative;transition:background .15s}
+ .toggle .sw2::after{content:"";position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+ body.lawonly .toggle .sw2{background:var(--line)} body.lawonly .toggle .sw2::after{left:3px}
+ .dual{display:grid;grid-template-columns:1fr;gap:11px;margin-top:10px}
+ .row{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+ .row .area{background:#f3f7fc;padding:8px 13px;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line)}
+ .rel{font-family:Consolas,monospace;font-size:9.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:9px;color:#fff}
+ .rel.found{background:var(--sov)} .rel.diverge{background:var(--err)} .rel.partial{background:var(--warn)} .rel.align{background:var(--ok)}
+ .cols{display:grid;grid-template-columns:1fr 1fr}
+ .col{padding:11px 14px;font-size:13.5px}
+ .col.county{background:#fbfdff;border-right:1px solid var(--line)}
+ .col.sov{background:var(--sov-bg)}
+ .col .ch{font-family:Consolas,monospace;font-size:9.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;display:block;margin-bottom:4px}
+ .col.county .ch{color:var(--accent)} .col.sov{color:#3f3070} .col.sov .ch{color:var(--sov)}
+ .pill{font-family:Consolas,monospace;font-size:9px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;padding:1px 6px;border-radius:8px;color:#fff;white-space:nowrap}
+ .p-food{background:var(--food)} .p-edu{background:var(--edu)} .p-truth{background:var(--truth)} .p-sov{background:var(--sov)}
+ body.lawonly .col.sov{display:none} body.lawonly .cols{grid-template-columns:1fr} body.lawonly .rel{display:none}
+ .src{font-family:Consolas,monospace;font-size:11.5px;color:var(--ink-faint)} .src a{color:var(--accent2)} .src::before{content:"Source: ";font-weight:700;color:var(--ink-dim)}
+ .lbl{font-size:12.5px;color:var(--ink-faint);font-style:italic;margin:8px 0}
+ .tier3{border:1px dashed var(--accent);border-radius:10px;background:rgba(0,53,107,.04);padding:11px 14px;margin-top:14px;font-size:13px;color:var(--ink-dim)}
+ a{color:var(--accent2)}
+ footer{font-family:Consolas,monospace;font-size:10.5px;color:var(--ink-faint);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+ @media(max-width:560px){ .cols{grid-template-columns:1fr} .col.county{border-right:0;border-bottom:1px solid var(--line)} }
+ @media(max-width:430px){ h1{font-size:22px} .wrap{padding:14px 12px 70px} }
+</style><link rel="stylesheet" href="../../../../../govos.css">
+</head><body><div class="wrap">
+ <div class="top"><a href="../../../../index.html">← govOS home</a><a href="../../../../tenant_hi-maui.html">Maui County · govOS tenant</a><a href="../title19-service/Title19%20Service.html">Title 19 Service</a><a href="../title19-substantial-change/Title19%20Substantial%20Change.html">Substantial Change</a><a href="../mauios-gov/MauiOS%20Government%20OS.html">govOS Charter Hub</a><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Title 19 (Municode) ↗</a></div>
+ <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS · Title 19 system · dual charter</div>
+ <h1>Title 19 System — both charters, side-by-side <span class="free">Free · no account</span></h1>
+ <p class="lead">One front door to everything Title 19 (Zoning) for Maui County, shown through <b>both charters at once</b>. The <b>actual government</b> — the <b>Maui County Charter</b> and Title 19 as enforced — is the operative system. It sits <b>on top of</b> the <b>foundation</b>: James Langford's <b>12 Stones Sovereign Charter</b> (Food Security · Education · Truth · Sovereign Charter, under the aloha of Christ). For each Title 19 area you see the county's operative law <i>and</i> the sovereign foundation next to it — where they align, where the county system diverges from the foundation, and what the sovereign charter would have it do. <b>The county column is cited as law; the sovereign column is James's foundational analysis, never county law.</b></p>
+
+ <h2>The two layers — the county system sits on the sovereign foundation</h2>
+ <div class="stack">
+  <div class="slab county"><span class="k">▲ The actual government · operative law</span><div class="ti">Maui County Charter + Title 19</div><div class="su">Charter Art. 8 (Dept. of Planning) · §8-8.5 general plan · Council enacts Title 19 · Planning Commissions (Ch. 2.28) administer · Zoning Admin &amp; Enforcement Division enforces. <b>The system they put on top.</b></div></div>
+  <div class="seam">▼ rests on ▼</div>
+  <div class="slab sov"><span class="k">▼ The foundation · James's sovereign charter</span><div class="ti">12 Stones Sovereign Charter</div><div class="su">Food Security · Education · Truth · Sovereign Charter — under the aloha of Christ. <b>The foundational principles the county system is layered on top of.</b> (James Langford's charter — analysis, not county law.)</div></div>
+ </div>
+ <p class="foundnote">Read upward: the county system is what government actually does today; the sovereign charter is the ground it stands on. The mapping below holds them side-by-side.</p>
+
+ <h2>The system — every Title 19 tool, one place</h2>
+ <div class="grid">
+  <a class="mod" href="../title19-service/Title19%20Service.html"><div class="h"><span class="t">Plain-Language Service</span><span class="state live">live</span></div><div class="d">Navigator: process, who-pays, community plans, agriculture, table of uses, planning bodies.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html"><div class="h"><span class="t">Live Parcel Lookup</span><span class="state live">live</span></div><div class="d">Enter a TMK → every designation (zoning · community plan · SMA · state land use · ag lands) live from Hawaiʻi GIS.</div></a>
+  <a class="mod" href="../title19-substantial-change/Title19%20Substantial%20Change.html"><div class="h"><span class="t">Substantial Change Procedure</span><span class="state live">live</span></div><div class="d">When a change to an approved project needs a new public hearing — with a working decision aid.</div></a>
+  <a class="mod" href="../title19-crosswalk/Title19%20Crosswalk.html"><div class="h"><span class="t">Charter ⇄ Law Crosswalk</span><span class="state live">live</span></div><div class="d">The 12 Stones Charter bound to Title 19 + the legal hierarchy, line by line.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html"><div class="h"><span class="t">Table of Uses</span><span class="state live">live <span class="exp">expanding</span></span></div><div class="d">Permitted / conditional / prohibited per district — Ag &amp; Rural sourced, expanding to all.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html"><div class="h"><span class="t">Form-Based Code Model</span><span class="state live">model</span></div><div class="d">A proposed transect translation of use-based Title 19. Demonstration, not adopted law.</div></a>
+  <a class="mod" href="../title19-substantial-change/Title19%20Substantial%20Change.html"><div class="h"><span class="t">Public-Hearing Process</span><span class="state live">live</span></div><div class="d">Application → Director review → notice → hearing → decision, with the Hāna referral path.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html#ag"><div class="h"><span class="t">Rules &amp; Admin Rules <span class="exp">ag-first</span></span><span class="state live">live</span></div><div class="d">Ch. 19.30A Agricultural use table + Ch. 19.29 Rural, itemized &amp; section-cited (through 2025 ords). Full ~600pp + admin-rule text expanding.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html#enforcement"><div class="h"><span class="t">Enforcement &amp; Civil Fines</span><span class="state live">live</span></div><div class="d">Ch. 19.530 civil fines + criminal penalties + the SMA/shoreline no-warning split (HRS §205A-32), cited.</div></a>
+  <a class="mod" href="../title19-service/Title19%20Service.html#rulestocode"><div class="h"><span class="t">Rules → Code Codification <span class="exp">analysis</span></span><span class="state live">live</span></div><div class="d">Labeled analysis: administrative rules that ought to be codified into the ordinance.</div></a>
+  <div class="mod soon"><div class="h"><span class="t">Verification + AI Permit Assistant <span class="exp">Tier 3</span></span><span class="state soon">gated</span></div><div class="d">Verified account tools: saved applications + permit assistant. Gated; <b>no live billing</b>.</div></div>
+ </div>
+
+ <h2>Both charters, side-by-side — per Title 19 area</h2>
+ <div class="legend">
+  <span class="c"><span class="sw" style="background:var(--accent)"></span> County (operative law, cited)</span>
+  <span class="c"><span class="sw" style="background:var(--sov)"></span> Sovereign (foundation · James's analysis)</span>
+  <label class="toggle" onclick="toggleLaw(event)"><span class="sw2"></span><span id="tlbl">showing both</span></label>
+ </div>
+ <div class="dual">
+
+  <div class="row"><div class="area">Plan authority &amp; conformance <span class="rel found">foundation</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>Charter <b>§8-8.5</b>: the general plan = countywide policy plan + Maui Island Plan + community plans; <b>all zoning &amp; subdivision must conform</b> to it. The Council enacts Title 19; the Planning Dept (Charter Art. 8) drafts; Planning Commissions administer.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span>The whole county structure <b>rests on</b> the sovereign charter beneath it. <span class="pill p-sov">Sovereign</span> The foundation defines the purpose the operative system is meant to serve.</div>
+  </div></div>
+
+  <div class="row"><div class="area">Agriculture &amp; food <span class="rel diverge">diverge</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>Agricultural district <b>Ch. 19.30A</b> + Rural <b>Ch. 19.29</b>; uses must conform to the general plan; enforced by the Zoning Administration &amp; Enforcement Division.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-food">Food Security</span> Protect + activate working lands for local provisioning. The County's own rewrite audit says "ag zoning isn't working" — the foundation would put food production first.</div>
+  </div></div>
+
+  <div class="row"><div class="area">Housing &amp; community design <span class="rel diverge">diverge</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>Community plans (<b>Ch. 2.80B</b>) guide future use; zoning must conform to the general plan (§8-8.5); the Planning Dept drafts, the Council adopts.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-sov">Sovereign</span> <span class="pill p-edu">Education</span> Design communities for the people's flourishing; give the plans real force rather than letting interim/stacked zoning override them.</div>
+  </div></div>
+
+  <div class="row"><div class="area">Process &amp; transparency <span class="rel partial">partial</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>Planning Commission(s) (<b>Ch. 2.28</b>) hold noticed public hearings; SMA under the Coastal Zone Management law; the Planning Director determines minor vs substantial change.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-truth">Truth</span> Changes that affect the public must be re-noticed and re-heard — nothing slips through as "minor." Aligns with the hearing process; diverges where "minor" skips the public.</div>
+  </div></div>
+
+  <div class="row"><div class="area">Enforcement &amp; civil fines <span class="rel diverge">diverge</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>The Zoning Administration &amp; Enforcement Division cites violations; Title 19 sets the civil-fine schedule. <span class="exp">fine schedule expanding</span></div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-truth">Truth</span> <span class="pill p-sov">Sovereign</span> Enforce equitably; fines should fund the remedy, not price out the small landowner.</div>
+  </div></div>
+
+  <div class="row"><div class="area">Who pays / fees <span class="rel diverge">diverge</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>The applicant pays application + study fees per the Title 19 fee schedule; County staff conduct review.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-sov">Sovereign</span> Where the County <b>imposes</b> a requirement (study, upgrade, condition), the County should bear that cost — not download it onto the resident. <i>(James's ⚖️ position.)</i></div>
+  </div></div>
+
+  <div class="row"><div class="area">Maps &amp; parcel access <span class="rel align">align</span></div><div class="cols">
+   <div class="col county"><span class="ch">▲ Maui County (law)</span>Designations are published via County/State GIS + the real-property (qPublic) record; the Planning Dept maintains GIS.</div>
+   <div class="col sov"><span class="ch">▼ Sovereign (foundation)</span><span class="pill p-truth">Truth</span> <span class="pill p-edu">Education</span> The public can know their land — free, on demand. The live parcel lookup already serves this; the layers align.</div>
+  </div></div>
+
+ </div>
+ <p class="src">County column: <a href="https://www.mauicounty.gov/DocumentView.asp?DID=8411" target="_blank" rel="noopener">Maui County Charter</a> (Art. 8 Dept. of Planning; <b>§8-8.5</b> general plan), <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT2ADPE_CH2.28PLCO" target="_blank" rel="noopener">Ch. 2.28 Planning Commissions</a>, <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT2ADPE_CH2.80BGEPLCOPL" target="_blank" rel="noopener">Ch. 2.80B General Plan &amp; Community Plans</a>, <a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Title 19 (Zoning)</a>, and the <a href="https://www.mauicounty.gov/1123/Division---Zoning-Admin-Enforcement" target="_blank" rel="noopener">Zoning Administration &amp; Enforcement Division</a>. <span class="exp">verify exact subsections</span> Sovereign column: James Langford's <a href="../mauios-gov/MauiOS%20Government%20OS.html">12 Stones Sovereign Charter</a> — <b>analysis offered as a foundational perspective, clearly distinct from adopted county law.</b></p>
+
+ <div class="tier3"><b>Free now (no account):</b> the navigator, parcel lookup, substantial-change aid, crosswalk, and this hub are all <b>Tier 1 — free</b>. <b>Tier 3 (verified tools)</b> — saved applications + AI permit assistant — will be <b>verification-gated</b>, opt-in, never a lock-out. <b>No live billing is enabled.</b></div>
+
+ <footer>govOS · Kilo Aupuni · 12 Stones Global · the Title 19 system through BOTH charters · county column sourced to the Maui County Charter + Title 19 (cited as law) · sovereign column = James Langford's foundational charter analysis, not county law · first version 2026-06-17, expanding · not legal advice · public records only</footer>
+</div>
+<script>
+function toggleLaw(e){
+  if(e) e.preventDefault();
+  var lawonly=document.body.classList.toggle("lawonly");
+  document.getElementById("tlbl").textContent = lawonly ? "county law only" : "showing both";
+  try{ localStorage.setItem("t19.lawonly", lawonly?"1":"0"); }catch(_){}
+}
+try{ if(localStorage.getItem("t19.lawonly")==="1"){ document.body.classList.add("lawonly"); document.getElementById("tlbl").textContent="county law only"; } }catch(_){}
+</script>
+<script src="../../../../../govos-shell.js" defer></script>
+</body></html>

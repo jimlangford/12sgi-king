@@ -65,7 +65,8 @@
  footer{font-family:Consolas,monospace;font-size:10.5px;color:var(--ink-faint);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
  @media(max-width:560px){ .cols{grid-template-columns:1fr} .col.county{border-right:0;border-bottom:1px solid var(--line)} }
  @media(max-width:430px){ h1{font-size:22px} .wrap{padding:14px 12px 70px} }
-</style></head><body><div class="wrap">
+</style><link rel="stylesheet" href="../../../../govos.css">
+</head><body><div class="wrap">
  <div class="top"><a href="../../../../index.html">← govOS home</a><a href="../../../../tenant_hi-maui.html">Maui County · govOS tenant</a><a href="../title19-service/Title19%20Service.html">Title 19 Service</a><a href="../title19-substantial-change/Title19%20Substantial%20Change.html">Substantial Change</a><a href="../mauios-gov/MauiOS%20Government%20OS.html">govOS Charter Hub</a><a href="https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances" target="_blank" rel="noopener">Title 19 (Municode) ↗</a></div>
  <div class="eyebrow">12 Stones Global · Kilo Aupuni · govOS · Title 19 system · dual charter</div>
  <h1>Title 19 System — both charters, side-by-side <span class="free">Free · no account</span></h1>
@@ -153,4 +154,5 @@ function toggleLaw(e){
 }
 try{ if(localStorage.getItem("t19.lawonly")==="1"){ document.body.classList.add("lawonly"); document.getElementById("tlbl").textContent="county law only"; } }catch(_){}
 </script>
+<script src="../../../../govos-shell.js" defer></script>
 </body></html>

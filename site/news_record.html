@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News vs Record - 12 Stones Global - Kilo Aupuni</title>
+<style>
+ body{margin:0;background:#0c100e;color:#e8e4d8;font-family:Georgia,serif;line-height:1.55}
+ .wrap{max-width:1040px;margin:0 auto;padding:34px 22px 70px}
+ .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.3px;color:#d9b24c;text-transform:uppercase}
+ h1{font-size:27px;margin:8px 0 4px}
+ .lead{font-size:14px;color:#bdb8a4;max-width:84ch}
+ .disc{font-size:12px;color:#9a957f;font-style:italic;border-left:2px solid rgba(224,106,74,.55);padding:9px 13px;margin:16px 0;background:rgba(224,106,74,.05)}
+ .rec{border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:17px 18px;margin:22px 0;background:rgba(255,255,255,.012)}
+ .rhd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:13px}
+ .issue{font-size:19px;font-weight:700;color:#f0cf7a}
+ .rmeta{font-family:Consolas,monospace;font-size:10.5px;color:#9a957f;margin-top:3px;text-transform:uppercase;letter-spacing:.6px}
+ .pa{font-family:Consolas,monospace;font-size:10px;letter-spacing:.7px;padding:4px 10px;border-radius:11px;white-space:nowrap;font-weight:700}
+ .pa.ans{background:rgba(86,192,138,.16);color:#6fd29b}
+ .pa.part{background:rgba(217,178,76,.15);color:#e3c161}
+ .pa.hewa{background:rgba(224,106,74,.16);color:#ef8a6c}
+ .cols{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}
+ @media(max-width:760px){.cols{grid-template-columns:1fr}}
+ .col{border-radius:10px;padding:13px 14px}
+ .truth{background:rgba(86,192,138,.05);border:1px solid rgba(86,192,138,.22)}
+ .angle{background:rgba(224,106,74,.045);border:1px solid rgba(224,106,74,.20)}
+ .chl{font-family:Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:.8px;color:#6fd29b;margin-bottom:9px}
+ .angleh{color:#ef8a6c}
+ .lbl{display:block;font-weight:400;font-size:9.5px;letter-spacing:.3px;color:#9a957f;text-transform:none;margin-top:2px;font-style:italic}
+ ul.facts{margin:6px 0;padding-left:18px;font-size:13px;color:#dcd7c8} ul.facts li{margin:6px 0}
+ .tst{font-size:12px;color:#cfc9ba;margin:4px 0}
+ .tlab{font-family:Consolas,monospace;font-size:9.5px;letter-spacing:.5px;padding:1px 6px;border-radius:7px;margin-right:6px}
+ .tlab.sup{background:rgba(86,192,138,.15);color:#6fd29b} .tlab.opp{background:rgba(224,106,74,.15);color:#ef8a6c}
+ .position{font-size:12.5px;color:#e3dfd2;margin-top:11px;border-top:1px dashed rgba(255,255,255,.13);padding-top:9px}
+ .ptag{font-family:Consolas,monospace;font-size:9.5px;letter-spacing:.6px;color:#d9b24c;display:block;margin-bottom:3px;text-transform:uppercase}
+ .srcs{margin-top:10px} .srchd,.minihd{font-family:Consolas,monospace;font-size:9.5px;letter-spacing:.6px;color:#9a957f;text-transform:uppercase;margin:7px 0 4px}
+ .srcrow{margin:3px 0}
+ .src{font-family:Consolas,monospace;font-size:10.5px;color:#d9b24c;text-decoration:none} .src:hover{text-decoration:underline}
+ .src.nolink{color:#a59e86}
+ .outlet{font-size:12.5px;color:#cfc9ba;font-weight:600}
+ .hl{font-size:13.5px;color:#e8e4d8;font-style:italic;margin:6px 0}
+ .frame{font-size:12px;color:#bdb8a4;margin:5px 0 9px}
+ .mini ul{margin:3px 0 8px;padding-left:17px;font-size:11.5px;color:#bdb8a4} .mini li{margin:3px 0}
+ .mini ul.omit li{color:#cfa18f}
+ .check{margin-top:13px;font-size:12px;color:#dcd7c8;background:rgba(217,178,76,.06);border:1px solid rgba(217,178,76,.18);border-radius:9px;padding:9px 12px}
+ .cklab{font-family:Consolas,monospace;font-size:9.5px;letter-spacing:.7px;color:#d9b24c;text-transform:uppercase;margin-right:7px}
+ .kumi{margin-top:9px;font-size:12px;color:#b9c8bd;font-style:italic;border-left:2px solid rgba(86,192,138,.4);padding:6px 12px;background:rgba(86,192,138,.04)}
+ .klab{font-family:Consolas,monospace;font-style:normal;font-size:9.5px;letter-spacing:.7px;color:#6fd29b;text-transform:uppercase;margin-right:7px}
+ .xwrap{margin-top:11px;border-top:1px solid rgba(255,255,255,.08);padding-top:9px}
+ .xhd{font-family:Consolas,monospace;font-size:9.5px;letter-spacing:.6px;color:#9a957f;text-transform:uppercase;margin-bottom:5px}
+ .xrow{margin:3px 0}
+ .xlink{font-family:Consolas,monospace;font-size:11px;color:#8fc7e8;text-decoration:none;border-bottom:1px dotted rgba(143,199,232,.4)}
+ .xlink:hover{color:#bfe0f5}
+ .xnote{font-size:11px;color:#9a957f;font-family:Georgia,serif;font-style:italic}
+ footer{margin-top:38px;border-top:1px solid rgba(255,255,255,.1);padding-top:13px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}
+</style><link rel="stylesheet" href="../govos.css">
+</head><body>
+<nav class="govos-nav" data-tenant="hi-maui"><a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span><b>govOS</b><span class="sub">Kilo Aupuni</span></a><button class="gn-burger" aria-label="Menu">&#9776;</button><div class="gn-menu"><span class="gn-here">viewing: <b>Maui County</b></span><div class="gn-group"><button class="gn-top">Across govOS<span class="ar">&#9662;</span></button><div class="gn-panel"><a class="" href="jurisdictions.html">Jurisdictions — all governments</a><a class="" href="datasets.html">Open data</a><a class="" href="agenda_explainer.html">Agenda explainer</a><a class="" href="sage_bridge.html">Sage</a><a class="" href="olelo_glossary.html">&#699;&#332;lelo</a><a href="king/civic/templates/title19-system/Title19%20System.html">Title 19 system</a></div></div><a class="gn-lead" href="testify.html">&#9878; Testify</a><a class="gn-link" href="request_records.html">Request Records</a><a class="gn-cta" href="take_action.html">Take part</a></div></nav>
+<div class="govos-narrative" style="max-width:1100px;margin:14px auto 0;padding:12px 18px;border-left:3px solid #9fd9bf;border-radius:8px;background:rgba(159,217,191,.06);font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;color:#e3ecdf"><b style="color:#9fd9bf">In plain words:</b> Part of the govOS civic record — public information, gathered so any Maui or Hawaiian person can see it plainly.</div>
+<div class="tenant-nav" role="navigation" aria-label="Government navigation"><div class="tn-grp"><span class="tn-lbl">Government</span><select id="tnav-gov" aria-label="Choose a government"><option value="" selected disabled>Choose a government…</option><option value="12stonescharter">⚖ 12 Stones Charter</option><option value="hi-maui">Maui County</option><option value="hi-state">State of Hawaiʻi</option><option value="hi-hawaii">Hawaiʻi County</option><option value="hi-kauai">Kauaʻi County</option><option value="hi-honolulu">Honolulu</option><option value="ny">New York</option></select></div><div class="tn-grp"><span class="tn-lbl">View</span><select id="tnav-view" aria-label="Choose a report for this government"></select></div><span class="tn-here">pick a government to begin</span></div><div class="wrap">
+<div class="eyebrow">12 Stones Global &middot; Kilo Aupuni &middot; news vs record</div>
+<h1>News &amp; the Record &mdash; the balancing pair</h1>
+<p class="lead">Every story sits as a pair: <b>our truth</b> &mdash; the primary record, sourced and cited &mdash;
+laid beside <b>their angle</b>, the outlet's framing, captured and <i>labeled</i>. The sourced facts lead;
+the framing is tracked alongside, never presented as fact. The Kumulipo checksum tells you whether the
+two agree (<b>Pono</b>) or the frame tilts past the record (<b>Hewa</b>) &mdash; and you can see it, because both sit side by side.</p>
+<div class="disc">Outlet framing is labeled &ldquo;how the news told it &mdash; not fact.&rdquo; The 12 Stones read is labeled
+&ldquo;position / analysis &mdash; not law.&rdquo; Sourced-only. Lead with the primary source.</div>
+
+<section class="rec">
+  <div class="rhd">
+    <div>
+      <div class="issue">Mākena (Makena) State Park improvements</div>
+      <div class="rmeta">maui &middot; event 2026-06-23 &middot; DEFERRED — state to report back 2026-07-14</div>
+    </div>
+    <span class="pa part">PARTIAL</span>
+  </div>
+
+  <div class="cols">
+    <div class="col truth">
+      <div class=" chl">OUR TRUTH <span class="lbl">primary-sourced fact + 12 Stones position (analysis, not law)</span></div>
+      <ul class="facts"><li>On Tue 2026-06-23 the Maui Planning Commission DEFERRED a decision on the proposed Makena State Park improvements after divided testimony; the meeting ran ~9:00 AM to after 6:00 PM.</li><li>The State (DLNR) proposal: two permanent restrooms (replacing porta-potties); two outdoor showers + a water-refill station; paving the gravel shoulders of the north/south access driveways; toll booths / pay stations charging OUT-OF-STATE visitors (FREE for residents).</li><li>Commissioners deferred AND asked the state to explore alternatives — including non-asphalt, eco-friendly PERMEABLE pavement for stormwater runoff.</li><li>The state is to report back at the next meeting, 2026-07-14.</li></ul>
+      <div class="tst"><span class="tlab sup">testified for</span> Sam Garcia Jr., Tiare Lawrence, Kai Nishiki</div><div class="tst"><span class="tlab opp">testified against</span> Ryan Quinn, Kimberly Ferrari, Earl Bialeck</div>
+      <div class="position"><span class="ptag">12 Stones position</span> 12 Stones reads the DEFER-for-alternatives outcome as PONO: the commission heard the people and chose to malama the place over paving it. The questions worth keeping ahead of any single frame — (1) Does permeable/eco pavement protect the stormwater + the reef the way asphalt would not? (2) In a drought, are outdoor showers + a refill station the right water trade? (3) The resident-free / out-of-state-visitor toll is a sovereignty-aligned management lever — who decides, and does the revenue return to the aina? Sourced facts first; values, not accusations.</div>
+      <div class="srcs"><div class="srchd">Primary sources</div><div class="srcrow"><span class="src nolink">Maui Planning Commission agenda + minutes, meeting of 2026-06-23 (Maui County Planning Dept — to link/confirm at the agenda portal)</span></div><div class="srcrow"><span class="src nolink">DLNR / Division of State Parks — Makena State Park master plan &amp; improvement docs</span></div></div>
+    </div>
+
+    <div class="col angle">
+      <div class="chl angleh">THEIR ANGLE <span class="lbl">outlet framing — how the news told it, not fact</span></div>
+      <div class="outlet">Hawaii News Now (Gray Media — KHNL/KGMB) &middot; Chelsea Davis</div>
+      <div class="hl">&ldquo;Maui Planning Commission defers decision on Makena State Park improvements&rdquo;</div>
+      <div class="frame">divided / heated testimony; leads on the sanitation need + tourism management</div>
+      <div class="mini"><div class="minihd">emphasized</div><ul><li>sanitation (porta-potties -&gt; permanent restrooms)</li><li>tourism/visitor management</li><li>the management case for the improvements</li></ul></div>
+      <div class="mini"><div class="minihd">underweighted / omitted</div><ul class="omit"><li>the drought / water-waste objection&#x27;s weight</li><li>that the commission AGREED with the opposition enough to defer + demand eco alternatives</li><li>the resident-vs-out-of-state-visitor toll equity angle as a sovereignty lever</li></ul></div>
+      <div class="srcrow"><a class="src" href="https://www.hawaiinewsnow.com/2026/06/24/maui-planning-commission-defers-decision-makena-state-park-improvements/" target="_blank" rel="noopener">read the article &#8599;</a></div>
+    </div>
+  </div>
+
+  <div class="check"><span class="cklab">Kumulipo checksum</span> PARTIAL — the outlet&#x27;s &#x27;divided testimony&#x27; frame is accurate, but it underweights that the commission SIDED toward the wild/eco objection (deferred + demanded permeable alternatives). The truth side restores that balance.</div>
+  <div class="kumi"><span class="klab">Kumulipo</span> Makena is makai (Kanaloa&#x27;s edge, the land-meets-sea boundary) — the same wa-4 &#x27;crawl to shore / water-earth boundary&#x27; theme: what we build at that boundary is the test of pono.</div>
+  
+</section>
+
+<section class="rec">
+  <div class="rhd">
+    <div>
+      <div class="issue">Maui SMA (Special Management Area) coastal-development rules overhaul</div>
+      <div class="rmeta">maui &middot; event 2026-06-18 &middot; PENDING — Hawaiʻi Supreme Court took the case under advisement after 2026-06-18 oral argument</div>
+    </div>
+    <span class="pa part">PARTIAL</span>
+  </div>
+
+  <div class="cols">
+    <div class="col truth">
+      <div class=" chl">OUR TRUTH <span class="lbl">primary-sourced fact + 12 Stones position (analysis, not law)</span></div>
+      <ul class="facts"><li>On Thu 2026-06-18 the Hawaiʻi Supreme Court heard oral argument on whether Maui County exceeded its authority when it overhauled its Special Management Area (SMA) permitting rules. Case: Maui Tomorrow Foundation v. Maui Planning Commission &amp; County of Maui.</li><li>Maui&#x27;s 2024 revised SMA rules created 15 categorical EXEMPTIONS from SMA permitting for activities the County classifies as minor or routine.</li><li>Maui Circuit Judge Kirstin Hamman ruled in Nov 2024 that the revised rules &#x27;impermissibly delegate Commission obligations to SMA users&#x27;; the County appealed and the Supreme Court took the case directly, bypassing the Intermediate Court of Appeals.</li><li>The County (Deputy Corporation Counsel Brian Bilberry) argues the exemptions mirror state law and merely guide owners on minor/routine activities (analogized to washing machines, countertops, a laundry room), still carry a $205 assessment fee, and are &#x27;not development.&#x27;</li><li>Maui Tomorrow (attorney Lance Collins) argues the revision removed the safeguard that an activity is exempt ONLY if the County first finds no significant or cumulative coastal harm — turning a conditional exemption into an automatic one, with no notice, process, or review (&#x27;wholesale deregulation&#x27;).</li><li>Justices were skeptical of the County: Ginoza asked &#x27;What is the proper role of the commission here?&#x27;; CJ Devens noted the burden appears shifted onto the public; Eddins said the amended rules &#x27;eliminated any mechanism for the authority&#x27; to find cumulative impact.</li><li>Gov. Josh Green signed legislation this month amending the state Coastal Zone Management (CZM) statute to clarify that certain excluded activities do not require an SMA permit; the County says this supports its position.</li><li>The court took the matter under advisement (no decision date set). Panel: CJ Devens, JJ McKenna, Eddins, Ginoza, and Circuit Judge Paul Wong sitting by designation.</li></ul>
+      
+      <div class="position"><span class="ptag">12 Stones position</span> 12 Stones reads this as the pono test at the shoreline. The SMA exists so that someone with the duty to look asks, BEFORE the work happens, whether it harms the coast or adds to cumulative damage. The live question is not whether a washing machine needs a permit — it is whether a categorical exemption removes the FINDING of no-harm that made the activity safe to exempt in the first place. Questions to hold ahead of any single frame: (1) Does the revised rule still require a no-significant/no-cumulative-harm finding, or does it presume it? (2) Who carries the burden — the developer to show no harm, or the public to prove harm after the fact? (3) Does mirroring state CZM language actually authorize the county&#x27;s exemptions, or just describe them? Sourced facts first; this is analysis, not law — and the court has not yet ruled.</div>
+      <div class="srcs"><div class="srchd">Primary sources</div><div class="srcrow"><a class="src" href="https://www.courts.state.hi.us/courts/oral_arguments" target="_blank" rel="noopener">Hawaiʻi Supreme Court — oral argument 2026-06-18, Maui Tomorrow Foundation v. Maui Planning Commission (opinion pending) &#8599;</a></div><div class="srcrow"><a class="src" href="https://www.mauicounty.gov/121/Planning-Department" target="_blank" rel="noopener">Maui County 2024 revised SMA rules — the 15 categorical exemptions (Maui Planning Dept / Maui Planning Commission rule amendments) &#8599;</a></div><div class="srcrow"><span class="src nolink">2nd Circuit Court ruling, Judge Kirstin Hamman, Nov 2024 (impermissible-delegation holding)</span></div><div class="srcrow"><span class="src nolink">Hawaiʻi Coastal Zone Management Act, HRS Chapter 205A (SMA permitting authority) + 2026 amending act signed by Gov. Green</span></div></div>
+    </div>
+
+    <div class="col angle">
+      <div class="chl angleh">THEIR ANGLE <span class="lbl">outlet framing — how the news told it, not fact</span></div>
+      <div class="outlet">Courthouse News Service &middot; Jeremy Yurow</div>
+      <div class="hl">&ldquo;Maui rewrote coastal development rules, and advocates say it handed developers the keys&rdquo;</div>
+      <div class="frame">Legal-news outlet, largely factual; the headline leads with the advocates&#x27; frame (&#x27;handed developers the keys&#x27;) — i.e. the loss-of-oversight / deregulation angle — while fairly presenting the County&#x27;s &#x27;minor, routine activities&#x27; argument lower down.</div>
+      <div class="mini"><div class="minihd">emphasized</div><ul><li>environmental / coastal-oversight loss as the lede</li><li>advocates&#x27; &#x27;wholesale deregulation&#x27; characterization</li><li>the justices&#x27; skeptical questioning of the County</li></ul></div>
+      <div class="mini"><div class="minihd">underweighted / omitted</div><ul class="omit"><li>the County&#x27;s full mirror-of-state-law rationale gets less headline weight than the advocates&#x27; frame</li><li>the $205 assessment-fee / case-by-case screening the County says still applies</li><li>that the court has NOT ruled — the headline reads as a settled outcome when it is under advisement</li></ul></div>
+      <div class="srcrow"><a class="src" href="https://www.courthousenews.com/maui-rewrote-coastal-development-rules-and-advocates-say-it-handed-developers-the-keys/" target="_blank" rel="noopener">read the article &#8599;</a></div>
+    </div>
+  </div>
+
+  <div class="check"><span class="cklab">Kumulipo checksum</span> PARTIAL — Courthouse News reports the facts accurately, but the headline (&#x27;handed developers the keys&#x27;) adopts the advocates&#x27; conclusion and reads as a settled outcome. The record restores two things the frame underweights: the County&#x27;s mirror-of-state-law rationale, AND that the court has NOT ruled — it is under advisement. Pair is detectable: lay the headline beside the docket and the tilt shows.</div>
+  <div class="kumi"><span class="klab">Kumulipo</span> SMA is the makai boundary — Kanaloa&#x27;s edge, where water meets land (wā-4, the crawl to shore). What we permit to be built at that boundary, and whether anyone with the kuleana looks before it is built, is the exact pono test the chant marks at the land-sea seam.</div>
+  <div class="xwrap"><div class="xhd">Cross-linked to the record</div><div class="xrow"><a class="xlink" href="title19.html">Title 19 — Maui zoning / land-use service</a> <span class="xnote">the SMA sits inside the same coastal land-use code this corpus tracks</span></div><div class="xrow"><a class="xlink" href="dept_corp_counsel_maui.html">Dept: Corporation Counsel (Maui) — SMA opinion backup</a> <span class="xnote">the County&#x27;s legal position is argued by Deputy Corp Counsel</span></div><div class="xrow"><a class="xlink" href="crosswalk_maui.html">Maui code crosswalk</a> <span class="xnote">where SMA / CZM authority maps in the county code</span></div><div class="xrow"><a class="xlink" href="bids/bid 3753 Assessment and Recommendation of a New Special Management Area SMA Bou.html">Bid 3753 — Assessment &amp; Recommendation of a New SMA Boundary</a> <span class="xnote">the County&#x27;s own SMA-boundary procurement record</span></div></div>
+</section>
+<footer>12 Stones Global &middot; kilo-aupuni &middot; generated 2026-06-26 &middot; sourced-only &middot; framing &#8800; fact &middot; position &#8800; law</footer>
+</div><div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div><div class="govos-olelo-foot" style="max-width:1100px;margin:26px auto 8px;padding:9px 16px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:#9a957f;text-align:center">🌺 ʻŌlelo Hawaiʻi here is offered with humility and held under community review with ʻŌiwi resources at Maui County. <a href="olelo_glossary.html" style="color:#cdb4f0">See the glossary &rarr;</a></div><script src="../govos-shell.js" defer></script>
+</body></html>

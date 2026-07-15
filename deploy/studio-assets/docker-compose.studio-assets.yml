@@ -66,6 +66,7 @@ services:
       # app-owned /data/db volume (the non-root `app` user can write there; a fresh /data/derived
       # named volume seeds root-owned and would deny the write). Decoupled from the guacamole
       # v2-dispatch volume to avoid any shared-volume coupling.
+      STUDIO_REGISTRY_PATH: /repo/tenant_registry.json
       WORKBOARD_DISPATCH_LOG: /data/db/studio_assets_dispatch.jsonl
       WORKBOARD_TARGET_THREAD: workboard-quad-os
       STUDIO_ASSETS_REQUIRE_AUTH: "0"   # loopback + Tailscale trust boundary; flip to 1 once OAuth is wired
@@ -87,6 +88,8 @@ services:
       studio-neo4j:
         condition: service_healthy
     volumes:
+      # ---- repo root (read-only: tenant_registry.json) ----
+      - { type: bind, read_only: true, source: "../../tenant_registry.json", target: /repo/tenant_registry.json }
       # ---- writable (private) ----
       - type: volume
         source: studio_assets_db

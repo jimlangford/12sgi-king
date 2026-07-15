@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<!-- GPU Router v3 panel — owner-gated within the Naga shell.
+     Shows VRAM bar, engine lanes (ollama/voice/embedding), and live event feed.
+     Data source: gpu-router at KING_GPU_URL (default http://localhost:8107). -->
+<div data-surface="gpu" data-screen-label="GPU · CPU Router"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+
+  <!-- Panel header -->
+  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f);">
+    <span style="font-size:18px; color:var(--accent,#e3ad33);">⚡</span>
+    <div>
+      <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">12sgi · GPU Router v3</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Engine Lanes · Event Bus</div>
+    </div>
+    <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(227,173,51,0.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:3px 10px;">owner · private</span>
+  </div>
+
+  <div style="max-width:800px; padding:0 clamp(14px,2.5vw,28px) 60px; margin:0 auto;">
+
+    <!-- Router health / VRAM bar -->
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:22px 0 6px; margin-bottom:14px;">Router Status</div>
+
+    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:14px 16px; margin-bottom:10px;" id="gpu-health-card">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span id="gpu-status-dot" style="width:10px;height:10px;border-radius:50%;background:#756b56;display:inline-block;"></span>
+        <span id="gpu-status-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-dim,#b3a98f);">connecting…</span>
+        <span id="gpu-version" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);"></span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:12px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);">
+        <div><div>Commit</div><div id="gpu-commit" style="color:var(--ink-dim,#b3a98f); word-break:break-all;">—</div></div>
+        <div><div>Build</div><div id="gpu-build-ts" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Environment</div><div id="gpu-environment" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+      </div>
+      <!-- VRAM bar (synthetic — shows GPU runtime availability) -->
+      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-bottom:4px;">GPU Runtime (Ollama)</div>
+      <div style="background:#1e1c16; border-radius:4px; height:8px; overflow:hidden; margin-bottom:10px;">
+        <div id="gpu-vram-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#e3ad33,#9fd9bf); border-radius:4px; transition:width .4s;"></div>
+      </div>
+      <!-- Voice engine status -->
+      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-bottom:4px;">Voice Engine (espeak-ng)</div>
+      <div id="gpu-voice-status" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-dim,#b3a98f);">checking…</div>
+    </div>
+
+    <!-- Engine lanes grid -->
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin-bottom:14px;">Engine Lanes</div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:10px; margin-bottom:4px;" id="gpu-lanes-grid">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Active queue -->
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin-bottom:14px;">Active Queue</div>
+
+    <div id="gpu-queue-list" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">
+      Loading…
+    </div>
+
+    <!-- Event feed -->
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin-bottom:14px;">Event Feed</div>
+
+    <div id="gpu-events-list" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">
+      Loading…
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // Base URL for the gpu-router — allow local override.
+  var BASE = (window.KING_GPU_URL || 'http://localhost:8107') + '/api/v2';
+  var token = (typeof window !== 'undefined' && window.localStorage)
+    ? localStorage.getItem('king.ownerToken') : null;
+
+  var AUTH = token ? { 'Authorization': 'Bearer ' + token } : {};
+
+  // Lane colour map.
+  var LANE_COLORS = {
+    ollama:    '#e3ad33',
+    comfyui:   '#cdb4f0',
+    voice:     '#9fd9bf',
+    embedding: '#6abf86',
+  };
+
+  function _get(path, cb) {
+    fetch(BASE + path, { headers: AUTH })
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(cb)
+      .catch(function(e) { console.warn('gpu-router:', path, e); });
+  }
+
+  function _el(id) { return document.getElementById(id); }
+
+  function _refreshHealth() {
+    _get('/health', function(data) {
+      var dot = _el('gpu-status-dot');
+      var lbl = _el('gpu-status-label');
+      var ver = _el('gpu-version');
+      var commit = _el('gpu-commit');
+      var buildTs = _el('gpu-build-ts');
+      var env = _el('gpu-environment');
+      var bar = _el('gpu-vram-bar');
+      var vs  = _el('gpu-voice-status');
+      var grid = _el('gpu-lanes-grid');
+
+      dot.style.background = '#6abf86';
+      lbl.textContent = 'healthy · ' + (data.jobs ? data.jobs.pending + ' pending · ' + data.jobs.running + ' running' : '');
+      ver.textContent = 'v' + (data.version || '');
+      commit.textContent = data.commit_sha || 'unknown';
+      buildTs.textContent = data.build_timestamp || 'unknown';
+      env.textContent = data.environment || 'unknown';
+
+      // VRAM bar: 100% green when Ollama is running (no direct VRAM API from router).
+      var ollama_active = (data.lanes && (data.lanes.ollama || {}).running > 0);
+      bar.style.width = ollama_active ? '60%' : '10%';
+      bar.style.background = ollama_active ? 'linear-gradient(90deg,#e3ad33,#9fd9bf)' : '#34301f';
+
+      // Voice engine.
+      var ve = (data.voice_engine || 'unavailable');
+      vs.textContent = ve;
+      vs.style.color = ve === 'unavailable' ? '#c97b7b' : '#6abf86';
+
+      // Lanes grid.
+      grid.innerHTML = '';
+      var lanes = data.lanes || {};
+      var allLanes = ['ollama', 'voice', 'embedding', 'comfyui'];
+      allLanes.forEach(function(lane) {
+        var info = lanes[lane] || { pending: 0, running: 0 };
+        var color = LANE_COLORS[lane] || '#b3a98f';
+        var card = document.createElement('div');
+        card.style.cssText = 'background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;';
+        card.innerHTML = '<div style="font-family:JetBrains Mono,monospace; font-size:20px; font-weight:700; color:' + color + ';">' +
+          (info.pending + info.running) +
+          '</div>' +
+          '<div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:2px;">' + lane + '</div>' +
+          '<div style="font-family:JetBrains Mono,monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">' +
+          info.running + ' running · ' + info.pending + ' pending</div>';
+        grid.appendChild(card);
+      });
+    });
+
+    // Fetch queue.
+    _get('/gpu/queue', function(data) {
+      var el = _el('gpu-queue-list');
+      var items = (data.queue || []);
+      if (!items.length) {
+        el.textContent = 'Queue empty — all workers idle.';
+        el.style.color = 'var(--ink-faint,#756b56)';
+        return;
+      }
+      el.innerHTML = items.map(function(j) {
+        var color = LANE_COLORS[j.job_type] || '#b3a98f';
+        return '<div style="display:flex; gap:8px; padding:5px 0; border-bottom:1px solid rgba(255,255,255,.04);">' +
+          '<span style="color:' + color + '; min-width:72px;">' + (j.job_type || 'ollama') + '</span>' +
+          '<span style="color:var(--ink-dim,#b3a98f); min-width:56px;">' + (j.status || '') + '</span>' +
+          '<span style="color:var(--ink-faint,#756b56); min-width:80px;">' + (j.client_id || '') + '</span>' +
+          '<span style="color:var(--ink-faint,#756b56); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px;">' + (j.model || '') + '</span>' +
+          '</div>';
+      }).join('');
+    });
+
+    // Fetch events.
+    _get('/gpu/events?limit=20', function(data) {
+      var el = _el('gpu-events-list');
+      var evs = (data.events || []);
+      if (!evs.length) {
+        el.textContent = 'No events yet.';
+        return;
+      }
+      el.innerHTML = evs.map(function(e) {
+        var color = e.event_type.includes('error') || e.event_type.includes('timeout') ? '#c97b7b'
+          : e.event_type.includes('done') ? '#6abf86' : '#b3a98f';
+        var ts = (e.ts || '').replace('T', ' ').substring(0, 19) + ' UTC';
+        return '<div style="display:flex; gap:8px; padding:4px 0; border-bottom:1px solid rgba(255,255,255,.04);">' +
+          '<span style="color:var(--ink-faint,#756b56); min-width:140px; font-size:10px;">' + ts + '</span>' +
+          '<span style="color:' + (LANE_COLORS[e.engine] || '#b3a98f') + '; min-width:64px;">' + (e.engine || '') + '</span>' +
+          '<span style="color:' + color + '; min-width:80px;">' + (e.event_type || '') + '</span>' +
+          '<span style="color:var(--ink-faint,#756b56); font-size:10px;">' + (e.job_id || '').substring(0, 8) + '…</span>' +
+          '</div>';
+      }).join('');
+    });
+  }
+
+  // Initial load + polling.
+  _refreshHealth();
+  setInterval(_refreshHealth, 8000);
+})();
+</script>
+
+</x-dc>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

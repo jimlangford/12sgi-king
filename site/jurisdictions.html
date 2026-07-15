@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jurisdictions · govOS</title>
+  <style>
+    :root {
+      --bg: #081420;
+      --surface: #0f2a42;
+      --accent: #5a97e6;
+      --text: #eaf2fc;
+      --text-dim: #a7c0dd;
+      --gold: #e3ad33;
+      --border: rgba(90, 151, 230, 0.24);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html {
+      background: var(--bg);
+    }
+    
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .header {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header h1 {
+      font-size: 36px;
+      margin: 0 0 12px 0;
+      color: var(--text);
+    }
+    
+    .header p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 700px;
+      margin: 0;
+    }
+    
+    .section {
+      padding: 50px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .section h2 {
+      font-size: 24px;
+      margin: 0 0 30px 0;
+      color: var(--text);
+    }
+    
+    .jurisdictions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    
+    .jurisdiction-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .jurisdiction-card:hover {
+      border-color: var(--accent);
+      background: rgba(47, 116, 208, 0.08);
+      transform: translateY(-2px);
+    }
+    
+    .jurisdiction-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .jurisdiction-icon {
+      font-size: 24px;
+    }
+    
+    .jurisdiction-info h3 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .jurisdiction-info p {
+      margin: 4px 0 0 0;
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    
+    .jurisdiction-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .meta-badge {
+      background: rgba(90, 151, 230, 0.15);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+    }
+    
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 24px;
+      }
+      
+      .jurisdictions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>All Jurisdictions</h1>
+      <p>Every government tracked in govOS. Pick a jurisdiction to explore officials, contracts, agendas, and the money behind decisions.</p>
+    </div>
+
+    <!-- Hawaii Jurisdictions -->
+    <section class="section">
+      <h2>Hawaiʻi</h2>
+      <div class="jurisdictions-grid" id="hawaiiGrid">
+        <div class="loading"><div class="spinner"></div>Loading...</div>
+      </div>
+    </section>
+
+    <!-- US Jurisdictions -->
+    <section class="section">
+      <h2>United States</h2>
+      <div class="jurisdictions-grid" id="usGrid">
+        <div class="loading"><div class="spinner"></div>Loading...</div>
+      </div>
+    </section>
+
+    <!-- International Jurisdictions -->
+    <section class="section">
+      <h2>International</h2>
+      <div class="jurisdictions-grid" id="intlGrid">
+        <div class="loading"><div class="spinner"></div>Loading...</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 James RCS Langford · 12 Stones Global · govOS Civic Transparency</p>
+    </footer>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:8108/api/v2';
+    
+    const jurisdictions = {
+      hawaii: [
+        {id: 'hi-state', name: 'State of Hawaiʻi', icon: '🏛️', reports: ['officials', 'money', 'contracts']},
+        {id: 'hi-maui', name: 'Maui County', icon: '🏝️', reports: ['officials', 'money', 'contracts', 'agendas', 'votes']},
+        {id: 'hi-hawaii', name: 'Hawaiʻi County', icon: '🏝️', reports: ['money', 'contracts', 'agendas']},
+        {id: 'hi-kauai', name: 'Kauaʻi County', icon: '🏝️', reports: ['money', 'contracts', 'agendas']},
+        {id: 'hi-honolulu', name: 'Honolulu', icon: '🏙️', reports: ['money', 'contracts', 'agendas']},
+      ],
+      us: [
+        {id: 'ny', name: 'New York', icon: '🗽', reports: ['officials', 'money', 'contracts']},
+        {id: 'nyc', name: 'New York City', icon: '🌃', reports: ['money', 'contracts', 'agendas']},
+      ],
+      intl: [
+        {id: 'london', name: 'London', icon: '🇬🇧', reports: ['charter', 'agendas']},
+        {id: 'tokyo', name: 'Tokyo', icon: '🇯🇵', reports: ['charter', 'agendas']},
+        {id: 'hongkong', name: 'Hong Kong SAR', icon: '🇭🇰', reports: ['charter', 'agendas']},
+        {id: 'singapore', name: 'Singapore', icon: '🇸🇬', reports: ['charter', 'agendas']},
+        {id: 'zurich', name: 'Zürich', icon: '🇨🇭', reports: ['charter', 'agendas']},
+        {id: 'frankfurt', name: 'Frankfurt', icon: '🇩🇪', reports: ['charter', 'agendas']},
+        {id: 'paris', name: 'Paris', icon: '🇫🇷', reports: ['charter', 'agendas']},
+        {id: 'dubai', name: 'Dubai', icon: '🇦🇪', reports: ['charter', 'agendas']},
+      ]
+    };
+    
+    const reportLabels = {
+      officials: 'Officials',
+      money: 'Campaign Money',
+      contracts: 'Contracts',
+      agendas: 'Agendas',
+      votes: 'Votes',
+      charter: 'Charter & Law'
+    };
+    
+    function renderJurisdictions(region, containerId) {
+      const container = document.getElementById(containerId);
+      const items = jurisdictions[region];
+      
+      if (!items || items.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-dim);">No jurisdictions available.</p>';
+        return;
+      }
+      
+      container.innerHTML = items.map(j => `
+        <a href="reports.html?tenant=${j.id}" class="jurisdiction-card">
+          <div class="jurisdiction-header">
+            <div class="jurisdiction-icon">${j.icon}</div>
+            <div class="jurisdiction-info">
+              <h3>${j.name}</h3>
+              <p>${j.id}</p>
+            </div>
+          </div>
+          <div class="jurisdiction-meta">
+            ${j.reports.map(r => `<div class="meta-badge">${reportLabels[r]}</div>`).join('')}
+          </div>
+        </a>
+      `).join('');
+    }
+    
+    // Render all regions
+    renderJurisdictions('hawaii', 'hawaiiGrid');
+    renderJurisdictions('us', 'usGrid');
+    renderJurisdictions('intl', 'intlGrid');
+  </script>
+<script src="../govos-shell.js" defer></script>
+</body>
+</html>

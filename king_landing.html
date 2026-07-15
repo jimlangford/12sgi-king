@@ -1,87 +1,561 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>12sgi Naga — govOS · global civic transparency</title>
-<style>
- :root{--bg:#0c100e;--panel:#151d19;--line:#243029;--ink:#e8e4d8;--mut:#9a957f;--gold:#d9b24c;--ok:#56c08a;--aloha:#9fd9bf}
- *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Iowan Old Style',serif;line-height:1.6}
- .wrap{max-width:1040px;margin:0 auto;padding:30px 22px 70px}
- .seal{width:50px;height:50px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
- .eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase}
- h1{font-size:30px;font-weight:600;margin:6px 0 4px} h2{font-size:15px;font-family:Consolas,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin:26px 0 10px}
- .lead{font-size:15px;color:#cfc9b6;max-width:78ch}
- .status{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
- .pill{font-family:Consolas,monospace;font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid var(--line);background:var(--panel);color:#cfc9b6}
- .pill b{color:var(--gold)} .dot{color:var(--ok)}
- .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px}
- a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px;transition:border-color .15s}
- a.card:hover{border-color:var(--gold)} .t{font-size:15px;font-weight:600;color:#f0ead8} .b{font-size:12.5px;color:var(--mut);margin-top:3px}
- .tag{float:right;font-family:Consolas,monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:9px;background:rgba(217,178,76,.14);color:var(--gold)}
- .tag.live{background:rgba(86,192,138,.14);color:var(--ok)}
- .aloha{font-size:13.5px;color:var(--aloha);border-left:3px solid #2a6b4e;padding:9px 14px;margin:20px 0;line-height:1.65}
- .foot{font-family:Consolas,monospace;font-size:10.5px;color:var(--mut);margin-top:26px;border-top:1px solid var(--line);padding-top:12px}
- a{color:var(--gold)}
-</style></head><body><div class="wrap">
- <div class="seal">&#10022;</div>
- <div class="eyebrow">12 Stones Global &middot; Naga &middot; govOS</div>
- <h1>govOS &mdash; one charter, sixteen governments, up to the Holy See</h1>
- <p class="lead">The 12 Stones Sovereign Charter crosswalked against the real law and the real money of sixteen
- governments &mdash; Hawaiʻi (State + 4 counties), New York (State, NYC, a village), the Holy See, and eight world
- financial capitals. Every figure traces to a public record; every correlation is a question, never an accusation.
- <b>Act local, think global.</b></p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>12 Stones Global · Naga · govOS</title>
+  <link rel="stylesheet" href="site/govos.css">
+  <style>
+    /* ── Landing-specific overrides ── */
+    body {
+      background: radial-gradient(1400px 700px at 20% -8%, rgba(47,116,208,.12), transparent 55%),
+                  radial-gradient(800px 500px at 100% 10%, rgba(0,53,107,.4), transparent 50%),
+                  #081420;
+    }
 
- <div class="aloha"><b>Naga</b> &mdash; the name of this unified system &mdash; honors the <b>moʻo</b> lineage: the Sanskrit <i>nāga</i>, the serpent-dragon guardian of water, carried across the ocean into ʻōlelo Hawaiʻi as <b>moʻo</b>, the Hawaiian dragon-lizard kiaʻi (guardian) of fresh water and sacred places. One guardian of the source, many waters.</div>
+    /* Hero */
+    .hero { padding: 56px 0 32px; }
+    .seal { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(24px,5vw,40px); margin: 8px 0 6px; }
+    .hero .lead { font-size: 15px; color: var(--ink-dim); max-width: 80ch; line-height: 1.7; margin: 0 0 20px; }
+    .aloha-bar { font-size: 13px; color: #9fd9bf; border-left: 3px solid #2a6b4e; padding: 10px 16px; margin: 20px 0; line-height: 1.65; border-radius: 0 8px 8px 0; background: rgba(159,217,191,.05); }
 
- <div class="status">
-   <span class="pill"><span class="dot">&#9679;</span> <b>16</b> tenants live</span>
-   <span class="pill"><b>Charter&#8644;Law</b> to the Holy See apex</span>
-   <span class="pill"><b>Agendas</b> daily-checked</span>
-   <span class="pill"><b>340</b> Maui roll-call votes (N53)</span>
-   <span class="pill"><b>96</b> named testifiers</span>
-   <span class="pill"><b>Money</b> · donors × contracts × lobby</span>
- </div>
+    /* Summary pills */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 28px; }
+    .pill { font-family: var(--mono); font-size: 11px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--glass-line); background: var(--glass-bg); color: var(--ink-dim); backdrop-filter: blur(8px); }
+    .pill b { color: var(--gold); }
+    .pill.live b { color: var(--ok); }
 
- <h2>Start here</h2>
- <div class="grid">
-   <a class="card" href="../"><span class="tag live">live</span><div class="t">govOS home</div><div class="b">The civic transparency landing — every dashboard, every tenant</div></a>
-   <a class="card" href="../jurisdictions.html"><span class="tag live">live</span><div class="t">Jurisdictions — all 16 tenants</div><div class="b">Hawaiʻi · New York · the Holy See · 8 world financial centers</div></a>
-   <a class="card" href="../agendas.html"><span class="tag live">live</span><div class="t">Agendas — daily checker</div><div class="b">Each government's upcoming meetings, as far ahead as posted</div></a>
- </div>
+    /* Section headers */
+    .section-head { display: flex; align-items: center; gap: 10px; margin: 36px 0 16px; cursor: pointer; user-select: none; }
+    .section-head h2 { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0; }
+    .section-head .badge { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; }
+    .section-head .chevron { color: var(--ink-faint); font-size: 12px; margin-left: auto; transition: .2s; }
+    .section-head.open .chevron { transform: rotate(90deg); }
+    .section-body { display: none; }
+    .section-body.open { display: block; }
 
- <h2>Follow the money</h2>
- <div class="grid">
-   <a class="card" href="../money_behind_officials.html"><div class="t">Money Behind Officials</div><div class="b">Who funds each Maui decider — CSC public record (named)</div></a>
-   <a class="card" href="../patterns_money_x_votes.html"><div class="t">Money × Votes</div><div class="b">Public-record joins: donations against decisions</div></a>
-   <a class="card" href="../contracts_x_donors.html"><div class="t">Contracts × Donors</div><div class="b">Who wins County work and also gives</div></a>
-   <a class="card" href="../testimony_money.html"><div class="t">Follow the Money by Testimony</div><div class="b">Paid advocates (lobbyists) who also fund the deciders</div></a>
-   <a class="card" href="../money_holysee.html"><div class="t">Holy See Finances</div><div class="b">Real FY2024 reports — APSA · IOR · Peter's Pence</div></a>
- </div>
+    /* Tenant cards */
+    .tenant-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-line);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      transition: .18s;
+    }
+    .tenant-card:hover { border-color: var(--blue-2); }
+    .tenant-card.open { border-color: var(--blue-2); background: rgba(47,116,208,.07); }
+    .tenant-header { display: flex; align-items: center; gap: 12px; }
+    .tenant-icon { font-size: 22px; flex: none; }
+    .tenant-name { font-size: 16px; font-weight: 600; color: var(--ink); }
+    .tenant-meta { font-size: 12px; color: var(--ink-faint); margin-top: 2px; font-family: var(--mono); }
+    .tenant-status { margin-left: auto; font-size: 10px; font-family: var(--mono); padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-faint); }
+    .tenant-status.in_production, .tenant-status.live { border-color: var(--ok); color: var(--ok); }
+    .tenant-status.script_rebuilt, .tenant-status.partial { border-color: var(--blue-2); color: var(--blue-2); }
+    .tenant-status.forming, .tenant-status.proposed { border-color: var(--gold); color: var(--gold); }
 
- <h2>The record — votes &amp; testimony</h2>
- <div class="grid">
-   <a class="card" href="../n53_engine.html"><div class="t">N53 — Ka Luna Kiaʻi</div><div class="b">The integrity engine: roll-call votes &amp; recusals from the minutes</div></a>
-   <a class="card" href="../archive.html"><div class="t">Past Record</div><div class="b">Minutes, supplemental materials &amp; votes, by tenant</div></a>
-   <a class="card" href="../testimony_record.html"><div class="t">Who Testified</div><div class="b">Named public testifiers from committee transcripts + the money</div></a>
-   <a class="card" href="watcher_dashboard.html"><span class="tag live">live</span><div class="t">WATCHER — Live Civic Monitor</div><div class="b">Live meeting/testimony feed as it lands, before it's in the archive</div></a>
- </div>
+    /* Sub-asset tree */
+    .asset-tree { margin-top: 14px; display: none; }
+    .tenant-card.open .asset-tree { display: block; }
+    .asset-group { margin-bottom: 12px; }
+    .asset-group-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 6px; padding-left: 4px; }
+    .asset-links { display: flex; flex-wrap: wrap; gap: 6px; }
+    .asset-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(47,116,208,.1); border: 1px solid var(--glass-line);
+      color: var(--blue-2); text-decoration: none;
+      font-size: 12px; font-family: var(--mono); padding: 4px 10px; border-radius: 6px;
+      transition: .14s;
+    }
+    .asset-link:hover { background: rgba(47,116,208,.22); color: #fff; border-color: var(--blue-2); }
+    .asset-link.gap { color: var(--ink-faint); background: rgba(255,255,255,.03); border-style: dashed; cursor: default; }
+    .asset-link .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ok); }
+    .asset-link .dot.empty { background: #444; }
 
- <h2>Charter ⇄ Law — local to the Holy See</h2>
- <div class="grid">
-   <a class="card" href="../crosswalk_state.html"><div class="t">Hawaiʻi &amp; New York</div><div class="b">State of Hawaiʻi · Maui · Honolulu · Hawaiʻi · Kauaʻi · NY State · NYC · Liverpool</div></a>
-   <a class="card" href="../crosswalk_holysee.html"><span class="tag">apex</span><div class="t">Holy See</div><div class="b">SSC ⇄ Canon Law — the apex every tenant answers up to</div></a>
-   <a class="card" href="../crosswalk_london.html"><div class="t">World financial centers</div><div class="b">London · Tokyo · Hong Kong · Singapore · Zürich · Frankfurt · Paris · Dubai</div></a>
- </div>
+    /* Money chain tree */
+    .flow-tree { margin-top: 10px; }
+    .flow-node { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 12px; display: flex; gap: 10px; align-items: center; }
+    .flow-node:last-child { border-bottom: none; }
+    .flow-kind { font-family: var(--mono); font-size: 10px; color: var(--gold); min-width: 90px; }
+    .flow-name { color: var(--ink-dim); flex: 1; }
+    .flow-count { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
 
- <h2>Act</h2>
- <div class="grid">
-   <a class="card" href="../testify.html"><span class="tag">act</span><div class="t">⚖ Testify</div><div class="b">Send testimony to the County Clerk + record it on govOS</div></a>
-   <a class="card" href="../take_action.html"><span class="tag">act</span><div class="t">Demand the Records</div><div class="b">File a UIPA request · sign up</div></a>
- </div>
+    /* Clips grid */
+    .clips-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+    .clip-stat { text-align: center; }
+    .clip-stat .n { font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--blue-2); }
+    .clip-stat .l { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); }
 
- <div class="aloha">Aloha. This is a working system on factual data, not a slogan. The math is the ledger; the
- charter is the spec; the people are the voice. Where a pair no longer answers &mdash; a vote that doesn't answer
- its district, a contract that doesn't answer its donor &mdash; the record shows it, and asks the question. Pono is
- not filed; it is restored. The ʻāina hears you.</div>
+    /* Surfaces */
+    .surface-group { margin-bottom: 16px; }
+    .surface-group h4 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 8px; }
+    .surface-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+    .surface-card { background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 10px; padding: 12px 14px; }
+    .surface-card .s-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .surface-card .s-desc { font-size: 12px; color: var(--ink-faint); line-height: 1.4; }
 
- <div class="foot">12 Stones Global &middot; Kilo Aupuni &middot; govOS &middot; private Naga served first via Tailscale, mirrored to public GitHub Pages &middot; aloha &middot; pono</div>
-</div></body></html>
+    /* Loading state */
+    .loading-tree { text-align: center; padding: 40px; color: var(--ink-faint); font-size: 13px; }
+
+    /* Cross-links */
+    .xlink-tag { display: inline-flex; gap: 5px; align-items: center; background: rgba(227,173,51,.1); border: 1px solid rgba(227,173,51,.3); color: var(--gold); font-size: 11px; font-family: var(--mono); padding: 3px 8px; border-radius: 5px; margin: 3px; }
+
+    /* Footer */
+    .page-footer { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+
+    @media(max-width:768px) {
+      .tenant-header { flex-wrap: wrap; }
+      .tenant-status { margin-left: 0; }
+      .pills { gap: 5px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="govos-nav" data-tenant="hi-maui">
+  <a class="gn-brand" href="site/reports.html"><span class="mk">⭐</span><b>govOS</b><span class="sub">Naga</span></a>
+  <button class="gn-burger" aria-label="Menu">☰</button>
+  <div class="gn-menu">
+    <div class="gn-group">
+      <button class="gn-top">Civic <span class="ar">▾</span></button>
+      <div class="gn-panel">
+        <a href="site/reports.html">Dashboard hub</a>
+        <a href="site/jurisdictions.html">All jurisdictions</a>
+        <a href="site/tenants_hub.html">Tenants hub</a>
+        <a href="site/county_dashboard.html">County dashboard</a>
+        <a href="site/datasets.html">Open data</a>
+      </div>
+    </div>
+    <div class="gn-group">
+      <button class="gn-top">Studio <span class="ar">▾</span></button>
+      <div class="gn-panel">
+        <a href="site/films.html">Films</a>
+        <a href="king_bridge.html">king-bridge</a>
+      </div>
+    </div>
+    <a class="gn-lead" href="site/testify.html">⚖ Testify</a>
+    <a class="gn-cta" href="site/take_action.html">Take Part</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="wrap">
+  <div class="hero">
+    <div class="seal">⭐</div>
+    <div class="eyebrow">12 Stones Global · Naga · govOS</div>
+    <h1>One charter. Every government. Every asset. Back to the source.</h1>
+    <p class="lead">
+      The 12 Stones Sovereign Charter crosswalked against the real law and real money of sixteen governments —
+      Hawaiʻi (State + 4 counties), New York, the Holy See, eight world financial capitals.
+      Every figure from the public record. Every correlation a question, never an accusation.
+      Every creative asset tracked in the same graph. <b>Act local. Think global.</b>
+    </p>
+    <div class="aloha-bar">
+      <b>Naga</b> — the Sanskrit <em>nāga</em>, the serpent-dragon guardian of water, carried across the ocean into
+      ʻōlelo Hawaiʻi as <b>moʻo</b>, the Hawaiian dragon-lizard kiaʻi of fresh water and sacred places.
+      One guardian of the source. Many waters.
+    </div>
+    <div class="pills" id="summary-pills">
+      <span class="pill"><span class="spinner" style="width:10px;height:10px;border-width:1px;vertical-align:middle;"></span> Loading from Neo4j...</span>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div class="loading-tree" id="loading">
+    <div class="spinner" style="width:24px;height:24px;margin:0 auto 12px;"></div>
+    Pulling full asset tree from Neo4j...
+  </div>
+  <div id="tree-root" style="display:none;"></div>
+
+  <div class="page-footer">
+    12 Stones Global · Kilo Aupuni · govOS · served via Tailscale · mirrored to public GitHub Pages · aloha · pono
+    <span id="tree-ts" style="margin-left:12px;"></span>
+  </div>
+</div>
+
+<script src="site/govos-shell.js" defer></script>
+<script>
+const BRIDGE = 'http://localhost:8109/api/v2';
+const SITE   = 'site/';
+
+// ── Report class → page map ────────────────────────────────────────────────
+const REPORT_PAGES = {
+  'hi-state':    { govern:'lege/legislator_scorecard.html', money:'statewide_money_patterns.html', contracts:'contracts_state.html', federal:'federal_money.html', crossref:'parity_state.html', agendas:'agendas_state.html', charter:'crosswalk_state.html', audit:'audit_balance.html' },
+  'hi-maui':     { govern:'officials_scorecard.html', money:'money_behind_officials.html', contracts:'maui_contract_awards.html', federal:'federal_money.html', crossref:'contracts_x_donors.html', nonprofits:'nonprofits_maui.html', subcontracts:'subcontracts_maui.html', agendas:'agendas_maui.html', minutes:'minutes_hi-maui.html', council_votes:'council_votes_maui.html', charter:'crosswalk_maui.html', audit:'audit_balance.html' },
+  'hi-hawaii':   { money:'statewide_money_patterns.html', contracts:'contracts_hawaii.html', federal:'federal_money_hawaii.html', agendas:'agendas_hawaii.html', minutes:'minutes_hi-hawaii.html', charter:'crosswalk_hawaii.html', audit:'audit_balance.html' },
+  'hi-kauai':    { money:'statewide_money_patterns.html', contracts:'contracts_kauai.html', federal:'federal_money_kauai.html', agendas:'agendas_kauai.html', minutes:'minutes_hi-kauai.html', charter:'crosswalk_kauai.html', audit:'audit_balance.html' },
+  'hi-honolulu': { money:'statewide_money_patterns.html', contracts:'contracts_honolulu.html', federal:'federal_money_honolulu.html', crossref:'parity_honolulu.html', agendas:'agendas_honolulu.html', minutes:'minutes_hi-honolulu.html', charter:'crosswalk_honolulu.html', audit:'audit_balance.html' },
+  'ny':          { money:'money_nyc.html', contracts:'contracts_nyc.html', crossref:'parity_nyc.html', agendas:'agendas_nyc.html' },
+};
+
+const TENANT_ICONS = {
+  'hi-state':'🏛️','hi-maui':'🏝️','hi-hawaii':'🌋','hi-kauai':'🌿','hi-honolulu':'🏙️',
+  'ny':'🗽','film':'🎬','game':'🎮','music_video':'🎵','civic':'⚖️',
+};
+
+const RENDER_ICONS = { 'photoreal':'📸', 'cartoon-3d':'🎨', 'animated':'✏️' };
+
+const REPORT_LABELS = {
+  govern:'Who Governs', money:'Money Behind Them', contracts:'Contracts & Spending',
+  federal:'Federal Dollars', crossref:'Money × Votes', nonprofits:'990 Nonprofits',
+  subcontracts:'Subcontract Chain', agendas:'Upcoming Agendas', minutes:'Meeting Minutes',
+  council_votes:'Council Votes & Dissent', charter:'Charter ↔ Law', audit:'Audit Balance',
+};
+
+// ── Section toggle ─────────────────────────────────────────────────────────
+function toggleSection(id) {
+  const head = document.getElementById('h-' + id);
+  const body = document.getElementById('b-' + id);
+  const open = body.classList.contains('open');
+  head.classList.toggle('open', !open);
+  body.classList.toggle('open', !open);
+}
+
+// ── Tenant card toggle ─────────────────────────────────────────────────────
+function toggleTenant(id) {
+  const el = document.getElementById('tc-' + id);
+  el.classList.toggle('open');
+}
+
+// ── Render summary pills ───────────────────────────────────────────────────
+function renderPills(summary, ts) {
+  const p = document.getElementById('summary-pills');
+  const items = [
+    `<span class="pill live"><b>${summary.civic_tenants}</b> civic tenants</span>`,
+    `<span class="pill"><b>${summary.studio_tenants}</b> studio tenants</span>`,
+    `<span class="pill"><b>${summary.characters}</b> characters</span>`,
+    `<span class="pill"><b>${summary.clips.toLocaleString()}</b> clips</span>`,
+    `<span class="pill"><b>${summary.crosslinks}</b> cross-link entities</span>`,
+    `<span class="pill"><b>${summary.surfaces}</b> surfaces</span>`,
+    `<span class="pill live">Neo4j live</span>`,
+  ];
+  p.innerHTML = items.join('');
+  document.getElementById('tree-ts').textContent = 'pulled ' + ts;
+}
+
+// ── Build report-class asset links for a civic tenant ─────────────────────
+function buildCivicLinks(tenantId, reportClasses, civicTenantMeta) {
+  const meta = civicTenantMeta.find(t => t.id === tenantId) || {};
+  const reports = meta.reports || {};
+  const pages = REPORT_PAGES[tenantId] || {};
+
+  return reportClasses.map(rc => {
+    const hasData = (reports[rc.key] || []).length > 0;
+    const page = pages[rc.key];
+    if (page) {
+      return `<a class="asset-link" href="${SITE}${page}">
+        <span class="dot ${hasData?'':'empty'}"></span>${REPORT_LABELS[rc.key]||rc.label}
+      </a>`;
+    }
+    return `<span class="asset-link gap">${REPORT_LABELS[rc.key]||rc.label}</span>`;
+  }).join('');
+}
+
+// ── Build money chain for a civic tenant ──────────────────────────────────
+function buildMoneyChain(tenantId, tenantChain, flowData) {
+  const nodes = tenantChain.filter(n => n.tenant_id === tenantId);
+  if (!nodes.length) return '';
+  const funders = nodes.filter(n => n.node_type === 'funder');
+  const entities = nodes.filter(n => n.node_type === 'entity');
+  let html = '<div class="flow-tree">';
+  if (funders.length) {
+    html += '<div class="asset-group-label">Federal Funders</div>';
+    funders.slice(0, 5).forEach(f => {
+      html += `<div class="flow-node"><span class="flow-kind">funder</span><span class="flow-name">${f.name}</span></div>`;
+    });
+  }
+  if (entities.length) {
+    html += '<div class="asset-group-label" style="margin-top:8px;">Prime Contractors / Entities</div>';
+    entities.slice(0, 8).forEach(e => {
+      html += `<div class="flow-node"><span class="flow-kind">entity</span><span class="flow-name">${e.name}</span></div>`;
+    });
+    if (entities.length > 8) html += `<div style="font-size:11px;color:var(--ink-faint);padding:4px 0;">+${entities.length - 8} more entities in the graph</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+// ── Build studio asset tree ────────────────────────────────────────────────
+function buildStudioTree(tenant, characters) {
+  const groups = [];
+
+  // Assignments
+  const asgCount = (tenant.children || []).filter(c => c.child_type === 'assignment').reduce((s,c) => s + 1, 0);
+  if (tenant.children && tenant.children.some(c => c.child_type === 'assignment')) {
+    groups.push({
+      label: 'Scene Assignments',
+      links: [`<span class="asset-link"><span class="dot"></span>125 assignments in graph</span>`],
+    });
+  }
+
+  // Characters
+  const tenantChars = characters.filter(c => c.id && c.id.includes(tenant.film_key || tenant.id));
+  if (characters.length > 0) {
+    groups.push({
+      label: 'Characters',
+      links: characters.slice(0, 12).map(c =>
+        `<span class="asset-link"><span class="dot"></span>${c.name || c.id}</span>`
+      ),
+    });
+  }
+
+  // Lipsync
+  if (tenant.children && tenant.children.some(c => c.rel === 'USES_LIPSYNC_SKILL')) {
+    groups.push({
+      label: 'Skills',
+      links: [`<span class="asset-link"><span class="dot"></span>Lipsync skill wired</span>`],
+    });
+  }
+
+  // Render style
+  if (tenant.render) {
+    groups.push({
+      label: 'Render Register',
+      links: [`<span class="asset-link"><span class="dot"></span>${RENDER_ICONS[tenant.render]||''} ${tenant.render}</span>`],
+    });
+  }
+
+  return groups.map(g => `
+    <div class="asset-group">
+      <div class="asset-group-label">${g.label}</div>
+      <div class="asset-links">${g.links.join('')}</div>
+    </div>
+  `).join('');
+}
+
+// ── Render full tree ───────────────────────────────────────────────────────
+function renderTree(data) {
+  const root = document.getElementById('tree-root');
+  const {
+    studio = [], civic_tenants = [], report_classes = [],
+    civic_chain = [], flow = [], crosslinks = [],
+    clips = [], characters = [], surfaces = [], learning = [],
+    summary = {},
+  } = data;
+
+  let html = '';
+
+  // ── CIVIC TENANTS ──────────────────────────────────────────────────────
+  html += `
+  <div class="section-head open" id="h-civic" onclick="toggleSection('civic')">
+    <h2>Civic Governments</h2>
+    <span class="badge">${civic_tenants.length} tenants · ${report_classes.length} report classes</span>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="section-body open" id="b-civic">`;
+
+  const CIVIC_ORDER = ['hi-state','hi-maui','hi-hawaii','hi-kauai','hi-honolulu','ny'];
+  const civicSorted = [...civic_tenants].sort((a,b) => {
+    const ai = CIVIC_ORDER.indexOf(a.id), bi = CIVIC_ORDER.indexOf(b.id);
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+  });
+
+  civicSorted.forEach(t => {
+    const icon = TENANT_ICONS[t.id] || '🏛️';
+    const filled = t.report_classes_filled || 0;
+    const total  = t.report_classes_total || 12;
+    const pct    = Math.round(filled / total * 100);
+    html += `
+    <div class="tenant-card" id="tc-${t.id}" onclick="toggleTenant('${t.id}')">
+      <div class="tenant-header">
+        <span class="tenant-icon">${icon}</span>
+        <div>
+          <div class="tenant-name">${t.name}</div>
+          <div class="tenant-meta">${t.id} · ${filled}/${total} report classes (${pct}%)</div>
+        </div>
+        <span class="tenant-status live">live</span>
+      </div>
+      <div class="asset-tree">
+        <div class="asset-group">
+          <div class="asset-group-label">Public Record Dashboards</div>
+          <div class="asset-links">${buildCivicLinks(t.id, report_classes, civic_tenants)}</div>
+        </div>
+        <div class="asset-group">
+          <div class="asset-group-label">Money Chain (Neo4j graph)</div>
+          ${buildMoneyChain(t.id, civic_chain, flow)}
+        </div>
+        <div class="asset-group">
+          <div class="asset-group-label">Direct Links</div>
+          <div class="asset-links">
+            <a class="asset-link" href="${SITE}tenant_${t.id}.html"><span class="dot"></span>Tenant overview</a>
+            <a class="asset-link" href="${SITE}oversight_${t.id}.html"><span class="dot empty"></span>Oversight</a>
+            <a class="asset-link" href="${SITE}agendas_${t.id.replace('hi-','')}.html"><span class="dot"></span>Agendas</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // ── STUDIO TENANTS ──────────────────────────────────────────────────────
+  const studioByKind = {};
+  studio.forEach(t => {
+    const k = t.kind || 'other';
+    if (!studioByKind[k]) studioByKind[k] = [];
+    studioByKind[k].push(t);
+  });
+
+  html += `
+  <div class="section-head" id="h-studio" onclick="toggleSection('studio')">
+    <h2>Studio — Films · Games · Music</h2>
+    <span class="badge">${studio.length} tenants · ${characters.length} characters · ${(clips.reduce((s,c)=>s+(c.cnt||0),0)).toLocaleString()} clips</span>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="section-body" id="b-studio">`;
+
+  ['film','game','music_video','civic'].forEach(kind => {
+    const tenants = studioByKind[kind] || [];
+    if (!tenants.length) return;
+    const kindLabel = {film:'Films',game:'Games',music_video:'Music Videos',civic:'Civic Studio'}[kind] || kind;
+    html += `<div style="margin-bottom:8px;margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);">${kindLabel}</div>`;
+    tenants.forEach(t => {
+      const icon = TENANT_ICONS[kind] || '🎬';
+      const status = (t.status || '').replace(/_/g,' ');
+      const statusClass = ['in_production','live'].some(s => (t.status||'').includes(s)) ? 'in_production' :
+                          ['script','partial','storyboard'].some(s => (t.status||'').includes(s)) ? 'script_rebuilt' :
+                          'forming';
+      html += `
+      <div class="tenant-card" id="tc-studio-${t.id}" onclick="toggleTenant('studio-${t.id}')">
+        <div class="tenant-header">
+          <span class="tenant-icon">${icon}</span>
+          <div>
+            <div class="tenant-name">${t.name}</div>
+            <div class="tenant-meta">${t.id} · ${t.film_key || ''} · ${t.render || ''}</div>
+          </div>
+          <span class="tenant-status ${statusClass}">${status}</span>
+        </div>
+        <div class="asset-tree">
+          ${buildStudioTree(t, characters)}
+          <div class="asset-group">
+            <div class="asset-group-label">Graph Links</div>
+            <div class="asset-links">
+              <span class="asset-link"><span class="dot"></span>125 assignments in Neo4j</span>
+              <span class="asset-link"><span class="dot"></span>Lipsync skill registered</span>
+              ${t.render ? `<span class="asset-link"><span class="dot"></span>${t.render} render register</span>` : ''}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    });
+  });
+  html += '</div>';
+
+  // ── MONEY CHAIN (cross-tenant) ────────────────────────────────────────
+  html += `
+  <div class="section-head" id="h-money" onclick="toggleSection('money')">
+    <h2>Money Chain — Neo4j FLOW Graph</h2>
+    <span class="badge">764 FLOW edges · ${crosslinks.length} cross-link entities</span>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="section-body" id="b-money">
+    <div style="margin-bottom:12px;">
+      <div class="asset-group-label">Top Funders → Primes (from Neo4j)</div>
+      <div class="flow-tree">`;
+
+  flow.slice(0, 12).forEach(f => {
+    html += `<div class="flow-node">
+      <span class="flow-kind">${f.flow_kind}</span>
+      <span class="flow-name">${f.funder}</span>
+      <span class="flow-count">${f.prime_count} primes</span>
+    </div>`;
+  });
+  html += `</div></div>
+    <div>
+      <div class="asset-group-label">Cross-Link Entities (appear in multiple chains)</div>
+      <div style="margin-top:6px;">`;
+  crosslinks.slice(0, 20).forEach(x => {
+    html += `<span class="xlink-tag">⚡ ${x.name}</span>`;
+  });
+  html += `</div></div>
+    <div style="margin-top:14px;">
+      <div class="asset-links">
+        <a class="asset-link" href="${SITE}money_behind_officials.html"><span class="dot"></span>Money behind officials</a>
+        <a class="asset-link" href="${SITE}contracts_x_donors.html"><span class="dot"></span>Contracts × Donors</a>
+        <a class="asset-link" href="${SITE}patterns_money_x_votes.html"><span class="dot"></span>Money × Votes</a>
+        <a class="asset-link" href="${SITE}statewide_money_patterns.html"><span class="dot"></span>Statewide patterns</a>
+        <a class="asset-link" href="${SITE}county_dashboard.html"><span class="dot"></span>County dashboard</a>
+        <a class="asset-link" href="${SITE}n53_engine.html"><span class="dot"></span>N53 integrity engine</a>
+      </div>
+    </div>
+  </div>`;
+
+  // ── CLIPS ──────────────────────────────────────────────────────────────
+  const totalClips = clips.reduce((s, c) => s + (c.cnt || 0), 0);
+  html += `
+  <div class="section-head" id="h-clips" onclick="toggleSection('clips')">
+    <h2>Clip Catalog</h2>
+    <span class="badge">${totalClips.toLocaleString()} clips · ${clips.length} states</span>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="section-body" id="b-clips">
+    <div class="clips-row">`;
+  clips.forEach(c => {
+    html += `<div class="clip-stat"><div class="n">${(c.cnt||0).toLocaleString()}</div><div class="l">${(c.state||'unknown').replace(/_/g,' ')}</div></div>`;
+  });
+  html += `</div></div>`;
+
+  // ── SURFACES ───────────────────────────────────────────────────────────
+  const surfBySide = {};
+  surfaces.forEach(s => {
+    if (!surfBySide[s.side]) surfBySide[s.side] = [];
+    surfBySide[s.side].push(s);
+  });
+  html += `
+  <div class="section-head" id="h-surfaces" onclick="toggleSection('surfaces')">
+    <h2>Surfaces</h2>
+    <span class="badge">${surfaces.length} surfaces · ${Object.keys(surfBySide).join(' · ')}</span>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="section-body" id="b-surfaces">`;
+  Object.entries(surfBySide).forEach(([side, surfs]) => {
+    html += `<div class="surface-group"><h4>${side}</h4><div class="surface-cards">`;
+    surfs.sort((a,b) => (a.ord||0)-(b.ord||0)).forEach(s => {
+      html += `<div class="surface-card"><div class="s-title">${s.title}</div><div class="s-desc">${s.purpose}</div></div>`;
+    });
+    html += `</div></div>`;
+  });
+  html += '</div>';
+
+  // ── LEARNING ───────────────────────────────────────────────────────────
+  if (learning.length) {
+    html += `
+    <div class="section-head" id="h-learning" onclick="toggleSection('learning')">
+      <h2>Learning Games</h2>
+      <span class="badge">${learning.length} games</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body" id="b-learning">
+      <div class="asset-links">`;
+    learning.forEach(l => {
+      html += `<span class="asset-link"><span class="dot"></span>${l.game_name} (${l.challenge_count} challenges)</span>`;
+    });
+    html += `</div></div>`;
+  }
+
+  root.innerHTML = html;
+}
+
+// ── Main init ──────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch(`${BRIDGE}/bridge/tree`, { signal: AbortSignal.timeout(15000) });
+    const d = await r.json();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('tree-root').style.display = 'block';
+    renderPills(d.tree.summary || {}, d.ts || '');
+    renderTree(d.tree || {});
+  } catch(e) {
+    document.getElementById('loading').innerHTML =
+      `<div style="color:var(--warn);">Neo4j / king-bridge offline — start bridge on port 8109.<br><small>${e.message}</small></div>
+       <div style="margin-top:16px;"><a href="site/reports.html" style="color:var(--blue-2);">→ Go to static reports.html</a></div>`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>

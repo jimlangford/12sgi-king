@@ -798,11 +798,16 @@ class TestWorkboardPulse(unittest.TestCase):
         self.assertEqual(p['waiting_gpu'], 0)
 
     def test_pending_approval_counted(self):
-        emit_workboard_job(
-            source='s', action='doc', event='DOC',
-            status='pending-approval', lane='creative',
-            log_path=self.log_path,
-        )
+        # Patch owner_policy to ensure auto-approve is OFF so the job stays
+        # in pending-approval and waiting_owner reflects it correctly.
+        import unittest.mock, services.v2_workboard as wb
+        empty_policy = self._tmp.name + '/no_policy.json'
+        with unittest.mock.patch.object(wb, 'OWNER_POLICY_PATH', wb.Path(empty_policy)):
+            emit_workboard_job(
+                source='s', action='doc', event='DOC',
+                status='pending-approval', lane='creative',
+                log_path=self.log_path,
+            )
         p = workboard_pulse(log_path=self.log_path)
         self.assertEqual(p['waiting_owner'], 1)
 

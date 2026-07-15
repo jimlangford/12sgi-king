@@ -1,0 +1,304 @@
+╔════════════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                        ║
+║                    🤖  GORDON AI HEALING DASHBOARD - COMPLETE  🤖                     ║
+║                                                                                        ║
+║                          Working Links & Configuration                                ║
+║                                                                                        ║
+╚════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+🔗 DASHBOARD LINKS
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+📍 LOCAL (while developing/testing on your machine):
+
+   http://localhost:8799/go/healing.html
+
+
+📍 TAILSCALE (access from anywhere on your Tailscale network):
+
+   https://YOUR-MACHINE-NAME.tail760750.ts.net/king/go/healing.html
+
+   Replace "YOUR-MACHINE-NAME" with your actual Tailscale hostname
+   Example: https://king-machine.tail760750.ts.net/king/go/healing.html
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+🚀 QUICK START
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+Step 1: Start Gordon
+  $ cd 12sgi-king
+  $ python king-watchdog.py
+
+Step 2: Open Dashboard
+  Local:    http://localhost:8799/go/healing.html
+  Tailscale: https://YOUR-HOST.tail760750.ts.net/king/go/healing.html
+
+Step 3: Create a Tenant
+  $ curl -X POST http://localhost:8799/gordon/healing/cycle/my-tenant
+
+Step 4: Watch Healing Happen
+  • Dashboard auto-refreshes every 15 seconds
+  • Healing runs automatically every 30 seconds per tenant
+  • Health score updates in real-time
+  • Guidance updates as issues are found/fixed
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+🎛️  DASHBOARD UI ELEMENTS
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+┌─ STATUS BAR (Top) ────────────────────────────────────────────────────────────────────┐
+│ 🟢 Shows overall system health                                                        │
+│ • Count of healthy/degraded/critical tenants                                          │
+│ • Auto-updates every 15 seconds                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ TENANT TABS ────────────────────────────────────────────────────────────────────────┐
+│ • One tab per tenant                                                                   │
+│ • Click to switch between tenants                                                      │
+│ • Shows first 25 characters of tenant ID                                              │
+│ • Active tab highlighted in accent color                                              │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ HEALTH CARD (Main Display) ──────────────────────────────────────────────────────────┐
+│ ┌─────────────────────────────────────────────────────────────────────────────────┐  │
+│ │ Health Badge: 87                          Tenant ID: my-tenant 🟢               │  │
+│ │ Status: HEALTHY                                                                  │  │
+│ │ Progress Bar: [████████░░░░░░░░░░░░░░░░░░░░░░░░░░░] 87%                        │  │
+│ │                                                                                   │  │
+│ │ Scans  Repairs  Guides  Last                                                     │  │
+│ │  42      37      15     2m                                                       │  │
+│ │                                                                                   │  │
+│ │ ┌─ GUIDANCE ────────────────────────────────────────────────────────────────┐   │  │
+│ │ │ Code Quality:                                                              │   │  │
+│ │ │   Fix 3 syntax errors                                                      │   │  │
+│ │ │   Install: requests (missing), pandas (missing)                            │   │  │
+│ │ │   Add exception handling (2 places)                                        │   │  │
+│ │ │                                                                             │   │  │
+│ │ │ System Health:                                                             │   │  │
+│ │ │   GPU VRAM: 78% (OK)                                                        │   │  │
+│ │ │   Disk: 65% full (OK)                                                       │   │  │
+│ │ │   All services: RUNNING ✓                                                  │   │  │
+│ │ └──────────────────────────────────────────────────────────────────────────────┘   │  │
+│ │                                                                                   │  │
+│ │ [🔧 Heal]  [📊 Details]                                                          │  │
+│ └─────────────────────────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+🎨 DESIGN
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+Modern cohesive design matching your existing go/ pages:
+  ✓ Yale blue civic palette (#00356b, #1259a3)
+  ✓ Clean card-based layout
+  ✓ Real-time metrics grid (Scans, Repairs, Guides, Last)
+  ✓ Responsive: works on mobile, tablet, desktop
+  ✓ Hover effects and smooth transitions
+  ✓ Dark text on light background (high contrast)
+  ✓ Monospace fonts for technical values
+  ✓ Color-coded status (🟢 healthy, 🟡 degraded, 🔴 critical)
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+🔄 AUTO-DETECTION (Same Rules, Both Environments)
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+The dashboard JavaScript automatically detects:
+  1. Current protocol (http:// or https://)
+  2. Current hostname (localhost or your-tailscale-domain)
+  3. Current port (8799 locally, implicit 443 on Tailscale)
+  4. Builds correct API URL
+
+LOCAL EXAMPLE:
+  Window URL: http://localhost:8799/go/healing.html
+  → API calls to: http://localhost:8799/gordon/healing/...
+
+TAILSCALE EXAMPLE:
+  Window URL: https://king-machine.tail760750.ts.net/king/go/healing.html
+  → API calls to: https://king-machine.tail760750.ts.net/king/gordon/healing/...
+
+RESULT: HTML works identically in both environments without changes!
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+📡 API ENDPOINTS (Same Response Schema Both Environments)
+═══════════════════════════════════════════════════════════════════════════════════════════
+
+Replace APIBASE with:
+  LOCAL: http://localhost:8799
+  TAILSCALE: https://your-machine.tail760750.ts.net/king
+
+GET /gordon/healing/dashboard
+  → Get status of all tenants
+  Response: { tenants: [{id, health_score, status, ...}] }
+
+GET /gordon/healing/tenant/{tenant_id}
+  → Get specific tenant status and history
+
+POST /gordon/healing/cycle/{tenant_id}
+  → Run full healing cycle (diagnose + repair + guide)
+
+GET /gordon/healing/guidance/{tenant_id}
+  → Get current guidance for tenant
+
+GET /gordon/healing/summary
+  → Quick summary of all tenants
+
+curl EXAMPLES:
+
+  # Get all tenants (LOCAL)
+  curl http://localhost:8799/gordon/healing/dashboard | jq
+
+  # Get all tenants (TAILSCALE)
+  curl https://host.tail760750.ts.net/king/gordon/healing/dashboard | jq
+
+  # Run healing cycle (LOCAL)
+  curl -X POST http://localhost:8799/gordon/healing/cycle/test-tenant
+
+  # Run healing cycle (TAILSCALE)
+  curl -X POST https://host.tail760750.ts.net/king/gordon/healing/cycle/test-tenant
+
+  # Get guidance (LOCAL)
+  curl http://localhost:8799/gordon/healing/guidance/test-tenant | jq .actions
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+⚙️  BACKGROUND HEALING (Always Running)
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+Every 30 seconds per tenant:
+
+  [1/3] DIAGNOSIS
+       • Scan Python code for 5 error types
+       • Check system health (Docker, GPU, disk)
+       • Review task queue
+       → Calculate health score (0-100)
+
+  [2/3] REPAIR
+       • Auto-fix safe commands (docker restart, prune)
+       • Process queued tasks (retry failures)
+       • Search web for solutions (free DuckDuckGo)
+
+  [3/3] GUIDANCE
+       • Display what was fixed
+       • Show what needs attention
+       • Recommend next steps
+
+DASHBOARD UPDATES: Every 15 seconds (configurable)
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════
+✨ FEATURES
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+DETECTION & FIXES:
+  ✓ Python code errors (syntax, imports, logic, exceptions, resources)
+  ✓ System issues (Docker, GPU, disk, services)
+  ✓ Task failures (auto-retry up to 3x)
+
+AUTO-HEALING:
+  ✓ Docker container restarts
+  ✓ System pruning
+  ✓ Service health checks
+  ✓ Task queue processing
+
+GUIDANCE:
+  ✓ Real-time recommendations
+  ✓ Priority-based action order
+  ✓ Next steps for manual intervention
+
+TRACKING:
+  ✓ Per-tenant health score (0-100)
+  ✓ Diagnostic history (count)
+  ✓ Repairs applied (count)
+  ✓ Guidance issued (count)
+  ✓ Full event logs (JSONL)
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════
+📚 DOCUMENTATION
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+Read these files for complete details:
+
+  HEALING_README.py      → Full system documentation
+  HEALING_LINKS.py       → Link reference & API guide
+  12sgi-king/go/healing.html    → The dashboard itself
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════
+🔐 SECURITY & ACCESS
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+LOCAL:
+  ✓ http://localhost:8799 — accessible only on your machine
+  ✓ No authentication needed for local development
+
+TAILSCALE:
+  ✓ https://your-machine.tail760750.ts.net — encrypted over Tailscale network
+  ✓ Only devices on your Tailscale network can access
+  ✓ HTTPS with Tailscale's cert management
+  ✓ Private — never exposed to internet
+
+BOTH:
+  ✓ Runs locally on your machine (king-watchdog.py)
+  ✓ No cloud services, no external dependencies
+  ✓ Full data privacy
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════
+🎯 NEXT STEPS
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+1. Start the system:
+   python king-watchdog.py
+
+2. Open the dashboard:
+   http://localhost:8799/go/healing.html
+
+3. Create a tenant:
+   curl -X POST http://localhost:8799/gordon/healing/cycle/my-tenant
+
+4. Watch it heal itself:
+   • Refresh dashboard
+   • Click on tenant tab
+   • See health score update in real-time
+
+5. Access remotely via Tailscale:
+   https://YOUR-HOST.tail760750.ts.net/king/go/healing.html
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════
+🎓 UNDERSTANDING THE HEALTH SCORE
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+Health Score (0-100):
+  
+  🟢 HEALTHY (80-100)
+     All checks passing, system running optimally
+     Example: 95 — System is in excellent shape
+  
+  🟡 DEGRADED (50-79)
+     Some issues detected but nothing critical
+     Auto-fixes applied, manual review recommended
+     Example: 64 — A few things need attention
+  
+  🔴 CRITICAL (0-49)
+     Major issues detected, urgent intervention needed
+     Code syntax errors, system resource constraints
+     Example: 35 — System needs immediate attention
+
+Score increases as issues are fixed (auto or manual)
+Score decreases as new issues are detected
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════
+
+                    You're all set! Start healing your system. 🚀
+
+═════════════════════════════════════════════════════════════════════════════════════════════

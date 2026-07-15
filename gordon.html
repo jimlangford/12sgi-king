@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gordon — 12SGI Command</title>
+  <style>
+    :root {
+      --bg:#0a1628; --panel:rgba(255,255,255,.05); --panel-hover:rgba(255,255,255,.09);
+      --line:rgba(255,255,255,.1); --ink:#e8edf5; --ink-dim:#8a9bb5; --ink-faint:#556070;
+      --accent:#00356b; --accent-2:#1259a3; --accent-bright:#2f74d0;
+      --gold:#e3ad33; --ok:#1f8a5b; --warn:#b07d1a; --err:#c0322c;
+      --gordon:#7c3aed; --gordon-2:#9d5cf5;
+      --mono:'JetBrains Mono',Consolas,monospace;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--ink);
+         font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+         min-height:100vh;padding:20px 16px 48px;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:640px;margin:0 auto}
+
+    /* Header */
+    .header{display:flex;align-items:center;gap:14px;margin-bottom:6px;padding-bottom:14px;
+            border-bottom:1px solid var(--line)}
+    .gordon-seal{width:48px;height:48px;border-radius:12px;
+                 background:linear-gradient(135deg,var(--gordon),var(--gordon-2));
+                 display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+    .header-text h1{font-size:22px;font-weight:800;letter-spacing:-.3px}
+    .header-text .sub{font-size:12px;color:var(--ink-dim);margin-top:2px;font-family:var(--mono)}
+
+    /* Status bar */
+    .status-bar{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:10px;
+                background:var(--panel);border:1px solid var(--line);margin:16px 0 8px;
+                font-family:var(--mono);font-size:11.5px;color:var(--ink-dim)}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);flex:none}
+    .dot.up{background:var(--ok)} .dot.err{background:var(--err)}
+
+    /* Section labels */
+    .sect{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-faint);
+          font-weight:600;margin:22px 0 10px 2px}
+
+    /* Button grid */
+    .btn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:4px}
+    .btn{display:flex;flex-direction:column;gap:6px;padding:14px 15px;border-radius:12px;
+         background:var(--panel);border:1px solid var(--line);color:var(--ink);
+         cursor:pointer;text-align:left;transition:all .15s;position:relative}
+    .btn:hover{background:var(--panel-hover);border-color:var(--accent-bright);transform:translateY(-1px)}
+    .btn.running{border-color:var(--ok);opacity:.8}
+    .btn.error{border-color:var(--err)}
+    .btn .icon{font-size:22px}
+    .btn .label{font-size:14px;font-weight:600}
+    .btn .desc{font-size:11.5px;color:var(--ink-dim);line-height:1.4}
+    .btn .badge{position:absolute;top:10px;right:10px;font-size:9.5px;font-family:var(--mono);
+                padding:2px 7px;border-radius:8px;border:1px solid var(--line);color:var(--ink-faint)}
+    .btn.gordon-btn{border-color:rgba(124,58,237,.4);background:rgba(124,58,237,.1)}
+    .btn.gordon-btn:hover{border-color:var(--gordon-2);background:rgba(124,58,237,.18)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
+    .btn.primary:hover{filter:brightness(1.12)}
+
+    /* Result panel */
+    #result-panel{display:none;margin-top:16px;padding:14px;border-radius:12px;
+                  background:var(--panel);border:1px solid var(--line)}
+    #result-panel .rhead{display:flex;align-items:center;gap:8px;margin-bottom:10px;
+                          font-size:12px;font-weight:600;font-family:var(--mono)}
+    #result-panel pre{font-size:11.5px;line-height:1.6;font-family:var(--mono);
+                       color:var(--ink-dim);white-space:pre-wrap;word-break:break-word;
+                       max-height:320px;overflow-y:auto}
+    .close-btn{margin-left:auto;background:none;border:none;color:var(--ink-faint);
+               font-size:18px;cursor:pointer;padding:0 4px}
+
+    /* Gordon chat */
+    #gordon-chat{margin-top:8px}
+    .chat-form{display:flex;gap:8px;flex-wrap:wrap}
+    .chat-input{flex:1;min-width:180px;background:rgba(255,255,255,.06);border:1px solid var(--line);
+                color:var(--ink);border-radius:9px;padding:10px 13px;font-family:inherit;
+                font-size:14px;outline:none}
+    .chat-input:focus{border-color:var(--gordon-2)}
+    .chat-send{background:linear-gradient(135deg,var(--gordon),var(--gordon-2));color:#fff;
+               border:none;border-radius:9px;padding:10px 18px;font-family:inherit;
+               font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+    .action-sel{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink);
+                border-radius:9px;padding:9px 12px;font-family:inherit;font-size:13px;cursor:pointer}
+    .chat-history{margin-top:14px;max-height:360px;overflow-y:auto}
+    .chat-msg{padding:10px 13px;border-radius:9px;margin-bottom:8px;font-size:13px;line-height:1.55}
+    .chat-msg.gordon{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25)}
+    .chat-msg.user{background:rgba(18,89,163,.12);border:1px solid rgba(18,89,163,.25);text-align:right}
+    .chat-msg .who{font-size:10.5px;font-family:var(--mono);color:var(--ink-faint);margin-bottom:5px}
+
+    /* Postiz status */
+    .postiz-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;
+                background:var(--panel);border:1px solid var(--line);margin-bottom:9px}
+    .postiz-row .pname{font-weight:600;font-size:14px;flex:1}
+    .postiz-row .pstatus{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:7px}
+    .pstatus.ok{background:rgba(31,138,91,.15);border:1px solid var(--ok);color:var(--ok)}
+    .pstatus.wait{background:rgba(176,125,26,.12);border:1px solid var(--warn);color:var(--warn)}
+    .pstatus.err{background:rgba(192,50,44,.1);border:1px solid var(--err);color:var(--err)}
+
+    /* Spinner */
+    .spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);
+          border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;
+           font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-align:center;line-height:1.8}
+    a{color:var(--accent-bright)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="gordon-seal">🐳</div>
+    <div class="header-text">
+      <h1>Gordon</h1>
+      <div class="sub">12SGI Command · Docker AI · Tailscale-private</div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="dot" id="gordon-dot"></span>
+    <span id="gordon-status-text">Checking Gordon API (port 8504)…</span>
+  </div>
+
+  <!-- ── Gordon Chat ───────────────────────────────────────────────── -->
+  <div class="sect">Ask Gordon</div>
+  <div id="gordon-chat">
+    <form class="chat-form" id="chat-form">
+      <select class="action-sel" id="action-sel">
+        <option value="query">query</option>
+        <option value="redesign">redesign</option>
+        <option value="modify">modify</option>
+        <option value="diagnostics">diagnostics</option>
+      </select>
+      <input class="chat-input" id="chat-input" type="text"
+             placeholder="Ask Gordon: fix a service, redesign a page, run diagnostics…" autocomplete="off">
+      <button class="chat-send" type="submit">Ask</button>
+    </form>
+    <div class="chat-history" id="chat-history"></div>
+  </div>
+
+  <!-- ── System Actions ────────────────────────────────────────────── -->
+  <div class="sect">System Actions</div>
+  <div class="btn-grid">
+
+    <button class="btn primary" onclick="runAction('diagnostics')">
+      <span class="icon">🔍</span>
+      <span class="label">Full Diagnostics</span>
+      <span class="desc">All services, git repos, disk, environment</span>
+    </button>
+
+    <button class="btn" onclick="runAction('start-v2')">
+      <span class="icon">🚀</span>
+      <span class="label">Start v2 Stack</span>
+      <span class="desc">Bring up tenant, documents, storage, AI, health, GPU router</span>
+      <span class="badge">v2</span>
+    </button>
+
+    <button class="btn" onclick="runAction('start-genai')">
+      <span class="icon">🤖</span>
+      <span class="label">Start genai-stack</span>
+      <span class="desc">Gordon API + LLM support (port 8504)</span>
+    </button>
+
+    <button class="btn" onclick="runAction('start-postiz')">
+      <span class="icon">📣</span>
+      <span class="label">Start Postiz</span>
+      <span class="desc">Own-channel social posting (port 4008)</span>
+    </button>
+
+    <button class="btn" onclick="runAction('git-status')">
+      <span class="icon">📦</span>
+      <span class="label">Git Status</span>
+      <span class="desc">Check genai-stack + 12sgi-king repos</span>
+    </button>
+
+    <button class="btn" onclick="runAction('git-push')">
+      <span class="icon">⬆</span>
+      <span class="label">Git Push Work</span>
+      <span class="desc">Commit and push all pending changes</span>
+    </button>
+
+    <button class="btn" onclick="runAction('surface-health')">
+      <span class="icon">🛡</span>
+      <span class="label">Surface Health</span>
+      <span class="desc">Run surface_health.py — all 24 monitors</span>
+    </button>
+
+    <button class="btn" onclick="runAction('self-heal')">
+      <span class="icon">🔧</span>
+      <span class="label">Self-Heal</span>
+      <span class="desc">Run surface_health.py --heal on all down services</span>
+    </button>
+
+  </div>
+
+  <!-- ── Gordon Admin Actions ─────────────────────────────────────── -->
+  <div class="sect">Gordon Admin</div>
+  <div class="btn-grid">
+
+    <button class="btn gordon-btn" onclick="gordonAction('redesign', 'Redesign the govOS dashboard with dark mode and Tailwind')">
+      <span class="icon">🎨</span>
+      <span class="label">Redesign Dashboard</span>
+      <span class="desc">Request a dark mode govOS redesign</span>
+    </button>
+
+    <button class="btn gordon-btn" onclick="gordonAction('modify', 'Add request logging and error handling to all FastAPI services')">
+      <span class="icon">📝</span>
+      <span class="label">Add Logging</span>
+      <span class="desc">Wire logging across all v2 services</span>
+    </button>
+
+    <button class="btn gordon-btn" onclick="gordonAction('modify', 'Start all King-Server v2 services in docker-compose.v2.yml')">
+      <span class="icon">🐳</span>
+      <span class="label">Start King-Server v2</span>
+      <span class="desc">Gordon starts all 7 v2 services</span>
+    </button>
+
+    <button class="btn gordon-btn" onclick="gordonAction('query', 'What is the best way to complete the govOS v2 beta with all 7 sprints?')">
+      <span class="icon">💡</span>
+      <span class="label">Beta Plan</span>
+      <span class="desc">Gordon's recommendation for v2 beta completion</span>
+    </button>
+
+  </div>
+
+  <!-- ── Social / Postiz ────────────────────────────────────────────── -->
+  <div class="sect">Social — Postiz Status</div>
+
+  <div class="postiz-row">
+    <span>🐳 Postiz (own channels)</span>
+    <span class="pname">localhost:4008</span>
+    <span class="pstatus wait" id="postiz-status">checking…</span>
+  </div>
+
+  <div class="btn-grid" style="margin-top:6px">
+    <a class="btn" href="http://localhost:4008" target="_blank" rel="noopener">
+      <span class="icon">🔗</span>
+      <span class="label">Open Postiz UI</span>
+      <span class="desc">Connect Facebook, Instagram, LinkedIn OAuth</span>
+    </a>
+    <button class="btn" onclick="runAction('postiz-status')">
+      <span class="icon">📊</span>
+      <span class="label">Channel Status</span>
+      <span class="desc">Check which channels are connected</span>
+    </button>
+    <a class="btn" href="https://developers.facebook.com/apps/" target="_blank" rel="noopener">
+      <span class="icon">📘</span>
+      <span class="label">Meta Dev Portal</span>
+      <span class="desc">Create Facebook/Instagram app</span>
+    </a>
+    <a class="btn" href="https://www.linkedin.com/developers/apps" target="_blank" rel="noopener">
+      <span class="icon">💼</span>
+      <span class="label">LinkedIn Dev Portal</span>
+      <span class="desc">Create LinkedIn app for Postiz</span>
+    </a>
+  </div>
+
+  <!-- ── WordPress / Jetpack ─────────────────────────────────────── -->
+  <div class="sect">WordPress — Jetpack OAuth2</div>
+  <div class="btn-grid">
+    <a class="btn" href="https://developer.wordpress.com/apps/" target="_blank" rel="noopener">
+      <span class="icon">🌐</span>
+      <span class="label">WP Developer Apps</span>
+      <span class="desc">Register Jetpack OAuth2 app to get token</span>
+    </a>
+    <button class="btn" onclick="runAction('wp-status')">
+      <span class="icon">📋</span>
+      <span class="label">Check WP Secrets</span>
+      <span class="desc">Verify WP_URL, WP_USER, JETPACK_TOKEN are set</span>
+    </button>
+    <button class="btn" onclick="runAction('wp-sync-dry')">
+      <span class="icon">🔄</span>
+      <span class="label">WP Sync (Dry Run)</span>
+      <span class="desc">Dry-run branch page sync to WordPress</span>
+    </button>
+    <button class="btn" onclick="runAction('wp-sync-live')">
+      <span class="icon">✅</span>
+      <span class="label">WP Sync (Live)</span>
+      <span class="desc">Push branch pages live to WordPress</span>
+    </button>
+  </div>
+
+  <!-- ── Studio Projects ─────────────────────────────── -->
+  <div class="sect">Studio Projects</div>
+  <div class="status-bar">
+    <span class="dot" id="studio-dot"></span>
+    <span id="studio-status-text">Checking studio-assets (port 8108)…</span>
+  </div>
+  <div id="studio-project-list" style="margin-bottom:10px"></div>
+  <div class="btn-grid">
+    <button class="btn" onclick="studioRefresh()">
+      <span class="icon">🔄</span><span class="label">Refresh</span>
+      <span class="desc">Reload project list</span>
+    </button>
+    <button class="btn primary" onclick="studioAddPrompt()">
+      <span class="icon">➕</span><span class="label">Add Project</span>
+      <span class="desc">Register a new studio tenant</span>
+    </button>
+    <button class="btn" onclick="studioReindex()">
+      <span class="icon">🗂</span><span class="label">Reindex Vault</span>
+      <span class="desc">Rescan 62 GB asset vault</span>
+    </button>
+    <button class="btn" onclick="studioStats()">
+      <span class="icon">📊</span><span class="label">Vault Stats</span>
+      <span class="desc">Asset counts by label</span>
+    </button>
+  </div>
+
+  <!-- ── Result Panel ─────────────────────────────── -->─────────── -->
+  <div id="result-panel">
+    <div class="rhead">
+      <span id="result-title">Result</span>
+      <button class="close-btn" onclick="document.getElementById('result-panel').style.display='none'">×</button>
+    </div>
+    <pre id="result-body"></pre>
+  </div>
+
+  <footer>
+    Gordon · Docker AI Assistant · 12SGI command interface<br>
+    Private — Tailscale only · <a href="go.html">← go.html</a> · <a href="https://12sgianonymous.tail760750.ts.net/king/" target="_blank">Naga live →</a>
+  </footer>
+
+</div>
+<script>
+const GORDON_API = 'http://localhost:8504';
+const BOARD_API  = '/board/api';
+
+// ── Gordon status check ─────────────────────────────────────────────────
+async function checkGordon() {
+  const dot  = document.getElementById('gordon-dot');
+  const text = document.getElementById('gordon-status-text');
+  try {
+    const r = await fetch(GORDON_API + '/admin/gordon/status', { signal: AbortSignal.timeout(3000) });
+    if (r.ok) {
+      const d = await r.json();
+      dot.className = 'dot up';
+      text.textContent = 'Gordon online — ' + (d.owner || 'authenticated') + ' · ' + (d.access_method || '');
+    } else {
+      dot.className = 'dot err';
+      text.textContent = 'Gordon API returned ' + r.status;
+    }
+  } catch(e) {
+    dot.className = 'dot err';
+    text.textContent = 'Gordon offline (port 8504 closed) — start genai-stack first';
+  }
+}
+
+// ── Postiz status check ─────────────────────────────────────────────────
+async function checkPostiz() {
+  const el = document.getElementById('postiz-status');
+  try {
+    await fetch('http://localhost:4008', { mode:'no-cors', signal: AbortSignal.timeout(2500) });
+    el.textContent = 'online';
+    el.className = 'pstatus ok';
+  } catch(e) {
+    el.textContent = 'offline';
+    el.className = 'pstatus err';
+  }
+}
+
+// ── Show result panel ────────────────────────────────────────────────────
+function showResult(title, text) {
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-body').textContent = text;
+  document.getElementById('result-panel').style.display = 'block';
+  document.getElementById('result-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── Gordon API call ──────────────────────────────────────────────────────
+async function gordonCall(text, action) {
+  const r = await fetch(GORDON_API + '/admin/gordon', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, action }),
+    signal: AbortSignal.timeout(30000),
+  });
+  return r.json();
+}
+
+// ── Gordon chat ──────────────────────────────────────────────────────────
+const history = document.getElementById('chat-history');
+
+function addMsg(who, text) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg ' + who;
+  el.innerHTML = '<div class="who">' + (who === 'gordon' ? '🐳 Gordon' : '👤 You') + '</div>'
+               + '<div>' + esc(text) + '</div>';
+  history.appendChild(el);
+  history.scrollTop = history.scrollHeight;
+}
+
+document.getElementById('chat-form').addEventListener('submit', async function(ev) {
+  ev.preventDefault();
+  const text = document.getElementById('chat-input').value.trim();
+  const action = document.getElementById('action-sel').value;
+  if (!text) return;
+  addMsg('user', text);
+  document.getElementById('chat-input').value = '';
+  const thinking = document.createElement('div');
+  thinking.className = 'chat-msg gordon';
+  thinking.innerHTML = '<div class="who">🐳 Gordon</div><div><span class="spin"></span> thinking…</div>';
+  history.appendChild(thinking);
+  history.scrollTop = history.scrollHeight;
+  try {
+    const d = await gordonCall(text, action);
+    history.removeChild(thinking);
+    addMsg('gordon', d.guidance || d.message || JSON.stringify(d, null, 2));
+  } catch(e) {
+    history.removeChild(thinking);
+    addMsg('gordon', '⚠ Gordon offline — ' + e.message + '. Start genai-stack with: docker compose up -d');
+  }
+});
+
+// ── Gordon action buttons ─────────────────────────────────────────────────
+async function gordonAction(action, text) {
+  addMsg('user', '[' + action + '] ' + text);
+  document.getElementById('chat-input').value = '';
+  const thinking = document.createElement('div');
+  thinking.className = 'chat-msg gordon';
+  thinking.innerHTML = '<div class="who">🐳 Gordon</div><div><span class="spin"></span> working…</div>';
+  history.appendChild(thinking);
+  history.scrollTop = history.scrollHeight;
+  try {
+    const d = await gordonCall(text, action);
+    history.removeChild(thinking);
+    addMsg('gordon', d.guidance || d.message || JSON.stringify(d, null, 2));
+  } catch(e) {
+    history.removeChild(thinking);
+    addMsg('gordon', '⚠ Gordon offline — ' + e.message);
+  }
+}
+
+// ── System action buttons ─────────────────────────────────────────────────
+const ACTION_MAP = {
+  'diagnostics':    ['diagnose', 'Run full system diagnostics via Gordon'],
+  'start-v2':       ['run', 'cd 12sgi-king && docker compose -f docker-compose.v2.yml up -d'],
+  'start-genai':    ['run', 'cd Projects/genai-stack && docker compose up -d'],
+  'start-postiz':   ['run', 'docker compose -f 12sgi-king/docker-compose.postiz.yml up -d'],
+  'git-status':     ['git-status', 'Check both repositories'],
+  'git-push':       ['git-push', 'Push all pending changes'],
+  'surface-health': ['run-script', 'python 12sgi-king/watchers/surface_health.py'],
+  'self-heal':      ['run-script', 'python 12sgi-king/watchers/surface_health.py --heal'],
+  'postiz-status':  ['run-script', 'python 12sgi-king/watchers/own_channel_post.py --status'],
+  'wp-status':      ['wp-check', 'Check WordPress secrets'],
+  'wp-sync-dry':    ['wp-sync', 'dry_run=true'],
+  'wp-sync-live':   ['wp-sync', 'dry_run=false'],
+};
+
+async function runAction(key) {
+  const [type, arg] = ACTION_MAP[key] || ['unknown', key];
+
+  if (type === 'diagnose') {
+    showResult('Diagnostics', 'Starting diagnostics…');
+    try {
+      const d = await gordonCall('Assess the full system status and git repositories', 'diagnostics');
+      const summary = d.summary || {};
+      const issues  = d.issues  || {};
+      let out = '=== GORDON SYSTEM ASSESSMENT ===\n\n';
+      out += 'Overall: ' + (d.overall_health || '?').toUpperCase() + '\n';
+      out += 'Services: ' + (summary.services_up || 0) + '/' + (summary.services_total || 0) + '\n';
+      out += 'Disk: ' + (summary.disk_usage_percent || 0) + '%' + (summary.disk_critical ? ' ⚠ CRITICAL' : '') + '\n\n';
+      if ((issues.critical || []).length) {
+        out += '🚨 CRITICAL:\n' + issues.critical.map(x => '  ✗ ' + x).join('\n') + '\n\n';
+      }
+      if ((issues.warning || []).length) {
+        out += '⚠ WARNINGS:\n' + issues.warning.map(x => '  · ' + x).join('\n') + '\n\n';
+      }
+      if ((d.recommendations || []).length) {
+        out += '💡 RECOMMENDATIONS:\n' + d.recommendations.map((x,i) => (i+1)+'. '+x).join('\n') + '\n';
+      }
+      showResult('Diagnostics', out);
+    } catch(e) {
+      showResult('Diagnostics', 'Gordon offline — ' + e.message + '\n\nRun manually:\n  python system_status_report.py');
+    }
+    return;
+  }
+
+  if (type === 'git-status') {
+    showResult('Git Status', 'Checking repositories…');
+    try {
+      const d = await gordonCall('Check the full git status of both repositories', 'diagnostics');
+      const git = (d.full_diagnostics || {}).git || {};
+      let out = '';
+      for (const [repo, info] of Object.entries(git)) {
+        out += '── ' + repo + ' ──\n';
+        out += '  Branch:  ' + (info.branch || 'unknown') + '\n';
+        out += '  Commit:  ' + (info.latest_commit || 'unknown') + '\n';
+        out += '  Clean:   ' + (info.dirty ? '⚠ DIRTY' : '✓ clean') + '\n';
+        if (info.modified_files && info.modified_files.length) {
+          out += '  Changed: ' + info.modified_files.join(', ') + '\n';
+        }
+        out += '\n';
+      }
+      showResult('Git Status', out || 'No git info returned — Gordon may be offline');
+    } catch(e) {
+      showResult('Git Status', 'Could not reach Gordon: ' + e.message);
+    }
+    return;
+  }
+
+  if (type === 'wp-check') {
+    showResult('WordPress Secrets', [
+      'Check these secrets are set in GitHub Actions:',
+      '',
+      '  WP_URL          — your WordPress.com site URL',
+      '  WP_USER         — your WordPress.com login',
+      '  WP_APP_PASSWORD — App Password from WordPress.com',
+      '  JETPACK_TOKEN   — OAuth2 token from developer.wordpress.com/apps',
+      '  JETPACK_SITE_ID — Jetpack site ID',
+      '',
+      'Set via: gh secret set WP_URL (then paste value)',
+      '',
+      'Setup guide: docs/WORDPRESS_PUBLIC_LAYER.md',
+      'Jetpack steps: docs/WORDPRESS_PUBLIC_LAYER.md#jetpack-oauth2',
+    ].join('\n'));
+    return;
+  }
+
+  if (type === 'wp-sync') {
+    showResult('WordPress Sync', [
+      'To run WordPress branch page sync:',
+      '',
+      'Via GitHub Actions (recommended):',
+      '  gh workflow run wp-branch-pages-sync.yml \\',
+      '    -f tenant=maui -f branch=all -f ' + arg,
+      '',
+      'This requires WP secrets to be set first.',
+      'See docs/WORDPRESS_PUBLIC_LAYER.md for setup.',
+    ].join('\n'));
+    return;
+  }
+
+  // Generic: show what command to run
+  showResult(key, 'Run this command on king-server:\n\n  ' + arg + '\n\nOr ask Gordon to do it:\n  Action: modify\n  Text: "' + arg + '"');
+}
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\n/g,'<br>');
+}
+
+// ── Studio project management ─────────────────────────────────────────────
+var STUDIO_API = 'http://localhost:8108/api/v2';
+
+function _sc(s){return{in_production:'#1f8a5b',script_rebuilt:'#1f8a5b',designed_producible_now:'#1f8a5b',trailer_only:'#b07d1a',script_partial:'#b07d1a',rd_private:'#8a9bb5',blessing_gated_preproduction:'#8a9bb5'}[s]||'#8a9bb5';}
+function _ki(k){return{film:'🎞',game:'✦',music_video:'🎵',short:'📹',series:'📺',documentary:'🏛'}[k]||'📄';}
+
+async function studioRefresh(){
+  var dot=document.getElementById('studio-dot');
+  var txt=document.getElementById('studio-status-text');
+  var list=document.getElementById('studio-project-list');
+  try{
+    var r=await fetch(STUDIO_API+'/projects',{signal:AbortSignal.timeout(5000)});
+    var d=await r.json();
+    dot.className='dot up';
+    txt.textContent='studio-assets online · '+d.count+' projects · port 8108';
+    list.innerHTML='';
+    (d.projects||[]).forEach(function(p){
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:var(--panel);border:1px solid rgba(255,255,255,.08);margin-bottom:6px;flex-wrap:wrap';
+      var sc=_sc(p.status);
+      row.innerHTML=
+        '<span style="font-size:15px;flex:none">'+_ki(p.kind)+'</span>'+
+        '<span style="font-size:13px;font-weight:600;flex:1;min-width:100px;color:var(--ink)">'+esc(p.name)+'</span>'+
+        '<span style="font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:6px;border:1px solid '+sc+';color:'+sc+'">'+esc(p.status.replace(/_/g,' '))+'</span>'+
+        '<button data-id="'+esc(p.id)+'" data-act="reset" onclick="studioAct(this)" style="font-size:11px;padding:3px 9px;border:1px solid rgba(255,255,255,.15);border-radius:5px;background:transparent;color:var(--ink-dim);cursor:pointer">Reset</button>'+
+        '<button data-id="'+esc(p.id)+'" data-act="restart" onclick="studioAct(this)" style="font-size:11px;padding:3px 9px;border:1px solid #b07d1a;border-radius:5px;background:transparent;color:#b07d1a;cursor:pointer">Restart</button>';
+      list.appendChild(row);
+    });
+  }catch(e){
+    dot.className='dot err';
+    txt.textContent='studio-assets offline — '+e.message;
+    list.innerHTML='<div style="font-size:12px;color:var(--ink-faint);padding:6px 0">Start: docker compose -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml up -d --build</div>';
+  }
+}
+
+async function studioAct(btn){
+  var tid=btn.getAttribute('data-id'), act=btn.getAttribute('data-act');
+  if(!confirm((act==='restart'?'Full restart':'Reset storyboard')+' for '+tid+'?'))return;
+  btn.disabled=true; btn.textContent='…';
+  try{
+    var r=await fetch(STUDIO_API+'/projects/'+tid+'/'+act,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({note:'owner action from gordon.html'}),
+      signal:AbortSignal.timeout(8000)
+    });
+    var d=await r.json();
+    showResult(act+' — '+tid, JSON.stringify(d,null,2));
+    studioRefresh();
+  }catch(e){
+    showResult('Error',e.message);
+  }
+  btn.disabled=false; btn.textContent=act.charAt(0).toUpperCase()+act.slice(1);
+}
+
+async function studioAddPrompt(){
+  var id=prompt('New project ID (snake_case):'); if(!id||!id.trim())return;
+  var name=prompt('Project name:'); if(!name||!name.trim())return;
+  var kind=prompt('Kind (film/game/music_video/short/series/documentary):','film');
+  var render=prompt('Render (photoreal/cartoon-3d/animated/live-action/mixed):','photoreal');
+  var status=prompt('Initial status:','proposed_internal');
+  try{
+    var r=await fetch(STUDIO_API+'/projects',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:id.trim(),name:name.trim(),kind:kind||'film',render:render||'photoreal',status:status||'proposed_internal'}),
+      signal:AbortSignal.timeout(8000)
+    });
+    var d=await r.json();
+    showResult('Add Project — '+(d.name||id), JSON.stringify(d,null,2));
+    studioRefresh();
+  }catch(e){ showResult('Error',e.message); }
+}
+
+async function studioReindex(){
+  showResult('Reindex Vault','Requesting reindex…');
+  try{
+    var r=await fetch(STUDIO_API+'/reindex',{method:'POST',signal:AbortSignal.timeout(30000)});
+    var d=await r.json();
+    showResult('Vault Reindex Complete','Total:    '+d.total+'\nIndexed:  '+d.from_index+'\nScanned:  '+d.from_scan);
+  }catch(e){ showResult('Reindex Error',e.message); }
+}
+
+async function studioStats(){
+  showResult('Vault Stats','Loading…');
+  try{
+    var r=await fetch(STUDIO_API+'/stats',{signal:AbortSignal.timeout(6000)});
+    var d=await r.json();
+    var out='Total: '+d.total+' assets · '+d.total_gb+' GB\n\nBy label:\n';
+    (d.by_label||[]).forEach(function(b){out+='  '+b.label.padEnd(20)+b.n+' files · '+(b.bytes/1e9).toFixed(2)+' GB\n';});
+    out+='\nBy type:\n';
+    (d.by_ext||[]).slice(0,12).forEach(function(b){out+='  .'+b.ext.padEnd(10)+b.n+'\n';});
+    showResult('Vault Stats',out);
+  }catch(e){ showResult('Stats Error',e.message); }
+}
+
+// Init studio
+studioRefresh();
+setInterval(studioRefresh, 60000);
+
+// ── Init ─────────────────────────────────────────────────────────────────
+checkGordon();
+checkPostiz();
+setInterval(checkGordon, 30000);
+setInterval(checkPostiz, 30000);
+</script>
+</body>
+</html>

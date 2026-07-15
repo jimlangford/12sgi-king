@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!-- PRIVATE: owner ops board — served via Tailscale (king-local). All surfaces unlocked. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Naga Ops Board · 12sgi</title>
+<style>
+  :root {
+    --bg: #0c0b09;
+    --panel: #16140f;
+    --panel2: #1f1c14;
+    --line: #34301f;
+    --ink: #efe9da;
+    --ink-dim: #b3a98f;
+    --ink-faint: #756b56;
+    --accent: #e3ad33;
+    --accent2: #f4c95d;
+    --accent-dim: rgba(227,173,51,0.14);
+    --ok: #6abf86;
+    --warn: #d29922;
+    --danger: #e5736b;
+    --mono: 'JetBrains Mono', Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent2); }
+
+  /* ── layout ── */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* ── top bar ── */
+  .topbar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px; background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .seal { font-size: 20px; color: var(--accent); flex: none; }
+  .brand { font-weight: 700; font-size: 16px; }
+  .brand-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px;
+    text-transform: uppercase; color: var(--ink-faint); }
+  .badge-private {
+    margin-left: auto; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: var(--accent-dim); color: var(--accent2);
+    border: 1px solid var(--accent); border-radius: 20px;
+    padding: 3px 10px;
+  }
+
+  /* ── section headers ── */
+  .sect {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--ink-faint);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0 6px; margin-bottom: 10px;
+  }
+
+  /* ── status row ── */
+  .status-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 480px) {
+    .status-row { grid-template-columns: 1fr 1fr; }
+  }
+  .stat {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .stat-n { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--accent); }
+  .stat-n.ok { color: var(--ok); }
+  .stat-n.warn { color: var(--warn); }
+  .stat-l { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .stat-sub { font-family: var(--mono); font-size: 10px; color: var(--ink-dim); margin-top: 4px; }
+
+  /* ── surface cards ── */
+  .surfaces {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  }
+  @media (min-width: 560px) {
+    .surfaces { grid-template-columns: repeat(3, 1fr); }
+  }
+  .surf {
+    display: flex; flex-direction: column;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 14px 12px;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    text-decoration: none; color: var(--ink);
+  }
+  .surf:hover, .surf:active {
+    border-color: var(--accent); background: var(--panel2);
+    color: var(--accent2);
+  }
+  .surf-icon { font-size: 22px; margin-bottom: 8px; }
+  .surf-label { font-weight: 600; font-size: 13px; }
+  .surf-reg {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--ink-faint); margin-top: 4px;
+  }
+  .surf-reg.ops { color: var(--accent); }
+  .surf-reg.reach { color: var(--warn); }
+
+  /* ── film list ── */
+  .film-list { display: flex; flex-direction: column; gap: 6px; }
+  .film-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; padding: 9px 13px; font-size: 13px;
+  }
+  .film-idx { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); min-width: 20px; }
+
+  /* ── tools ── */
+  .tools { display: flex; flex-direction: column; gap: 8px; }
+  .tool {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .tool-name { font-weight: 600; font-size: 13px; }
+  .tool-cmd { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
+  .tool-badge {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 20px; flex: none;
+  }
+  .tool-badge.ok { background: rgba(106,191,134,.15); color: var(--ok); border: 1px solid var(--ok); }
+  .tool-badge.info { background: var(--accent-dim); color: var(--accent2); border: 1px solid var(--accent); }
+
+  /* ── workboard ── */
+  .wb-row {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 13px 15px;
+  }
+  .wb-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); flex: none; }
+  .wb-text { font-size: 13px; flex: 1; }
+  .wb-time { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+
+  /* ── footer ── */
+  .foot {
+    border-top: 1px solid var(--line); margin-top: 30px; padding-top: 12px;
+    font-family: var(--mono); font-size: 10px; color: var(--ink-faint);
+    letter-spacing: 0.5px; text-align: center;
+  }
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="seal">✦</span>
+  <div>
+    <div class="brand">12sgi · Naga</div>
+    <div class="brand-sub">Ops Board</div>
+  </div>
+  <span class="badge-private">owner · private</span>
+</div>
+
+<div class="wrap">
+
+  <div class="sect">System Status</div>
+  <div class="status-row">
+    <div class="stat">
+      <div class="stat-n ok" id="wb-count">0</div>
+      <div class="stat-l">Open workboard jobs</div>
+      <div class="stat-sub" id="wb-time">batch-closed 2026-07-08</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n ok">21</div>
+      <div class="stat-l">Build lanes passing</div>
+      <div class="stat-sub">0 failed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n ok">33</div>
+      <div class="stat-l">Tests passing</div>
+      <div class="stat-sub">0 skipped · 0 failed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" style="color:var(--accent)">79</div>
+      <div class="stat-l">Films produced</div>
+      <div class="stat-sub">1 quadcast song</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" style="color:var(--accent)">17</div>
+      <div class="stat-l">MCC title modules</div>
+      <div class="stat-sub">digital twin complete</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" style="color:var(--ink-faint)" id="live-dot">●</div>
+      <div class="stat-l">Live server</div>
+      <div class="stat-sub" id="live-label">offline or local</div>
+    </div>
+  </div>
+
+  <div class="sect">Surfaces — all unlocked</div>
+  <div class="surfaces">
+    <a class="surf" href="./index.html">
+      <div class="surf-icon">🌺</div>
+      <div class="surf-label">govOS</div>
+      <div class="surf-reg">public · civic</div>
+    </a>
+    <a class="surf" href="./civic/templates/agenda-explainer/Agenda Explainer.html">
+      <div class="surf-icon">🏛</div>
+      <div class="surf-label">Council &amp; Agendas</div>
+      <div class="surf-reg">public · civic</div>
+    </a>
+    <a class="surf" href="./Game.dc.html">
+      <div class="surf-icon">🂡</div>
+      <div class="surf-label">Sage Game</div>
+      <div class="surf-reg">public · game</div>
+    </a>
+    <a class="surf" href="https://12sgianonymous.tail760750.ts.net/" target="_blank">
+      <div class="surf-icon">🎛</div>
+      <div class="surf-label">Studio</div>
+      <div class="surf-reg">private · tailscale</div>
+    </a>
+    <a class="surf" href="https://12sgianonymous.tail760750.ts.net/king/system_status.html" target="_blank">
+      <div class="surf-icon">◉</div>
+      <div class="surf-label">System Status</div>
+      <div class="surf-reg ops">ops · tailscale</div>
+    </a>
+    <a class="surf" href="https://12sgianonymous.tail760750.ts.net/board" target="_blank">
+      <div class="surf-icon">⌖</div>
+      <div class="surf-label">Work Board</div>
+      <div class="surf-reg ops">ops · tailscale</div>
+    </a>
+    <a class="surf" href="./watcher_dashboard.html">
+      <div class="surf-icon">👁</div>
+      <div class="surf-label">Watcher</div>
+      <div class="surf-reg">public · civic</div>
+    </a>
+    <a class="surf" href="https://12sgianonymous.tail760750.ts.net/king/go.html" target="_blank">
+      <div class="surf-icon">📡</div>
+      <div class="surf-label">Push · Reach</div>
+      <div class="surf-reg reach">reach · tailscale</div>
+    </a>
+    <a class="surf" href="../go.html">
+      <div class="surf-icon">🚀</div>
+      <div class="surf-label">Go Launcher</div>
+      <div class="surf-reg">nav · all surfaces</div>
+    </a>
+  </div>
+
+  <div class="sect">Workboard Log</div>
+  <div class="wb-row">
+    <div class="wb-dot"></div>
+    <div class="wb-text">No open jobs — log is clean</div>
+    <div class="wb-time" id="wb-stamp">2026-07-08 02:30 UTC</div>
+  </div>
+
+  <div class="sect">Quick Tools</div>
+  <div class="tools">
+    <div class="tool">
+      <div>
+        <div class="tool-name">Batch-close workboard</div>
+        <div class="tool-cmd">bash scripts/batch_close_workboard.sh</div>
+      </div>
+      <span class="tool-badge ok">ready</span>
+    </div>
+    <div class="tool">
+      <div>
+        <div class="tool-name">Run tests</div>
+        <div class="tool-cmd">python -m pytest tests/ -q</div>
+      </div>
+      <span class="tool-badge ok">33 pass</span>
+    </div>
+    <div class="tool">
+      <div>
+        <div class="tool-name">Build site (safe)</div>
+        <div class="tool-cmd">KA_SITE=/tmp/check python build_site.py</div>
+      </div>
+      <span class="tool-badge ok">clean</span>
+    </div>
+    <div class="tool">
+      <div>
+        <div class="tool-name">Reconcile check</div>
+        <div class="tool-cmd">python tools/reconcile.py --gate seed_reports html --route-only</div>
+      </div>
+      <span class="tool-badge info">gate</span>
+    </div>
+    <div class="tool">
+      <div>
+        <div class="tool-name">Compile check</div>
+        <div class="tool-cmd">python -m compileall -q .</div>
+      </div>
+      <span class="tool-badge ok">clean</span>
+    </div>
+  </div>
+
+  <div class="sect">Latest Films (79 total)</div>
+  <div class="film-list" id="film-list">
+    <div class="film-item"><span class="film-idx">1</span>12 Stones Feature Conductor</div>
+    <div class="film-item"><span class="film-idx">2</span>12 Stones Film</div>
+    <div class="film-item"><span class="film-idx">3</span>Keys Of Starforge Partial 8Of9</div>
+    <div class="film-item"><span class="film-idx">4</span>Luna Chronicles Partial 6Of8</div>
+    <div class="film-item"><span class="film-idx">5</span>12 Stones Feature V Auto</div>
+    <div class="film-item"><span class="film-idx">6</span>From The Tahp Jimmy Langford Fin</div>
+    <div class="film-item"><span class="film-idx">7</span>Cure (Remastered)</div>
+    <div class="film-item"><span class="film-idx">8</span>Mokuula Awakening Partial 3Of8</div>
+  </div>
+
+  <div class="foot">
+    12 Stones Global &middot; Kilo Aupuni &middot; Naga Ops Board &middot;
+    private — served via Tailscale &middot; aloha &middot; pono<br>
+    <span id="board-ts"></span>
+  </div>
+</div>
+
+<script>
+// Stamp with local time
+(function() {
+  var el = document.getElementById('board-ts');
+  if (el) {
+    var d = new Date();
+    el.textContent = 'loaded ' + d.toLocaleString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+    });
+  }
+})();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>

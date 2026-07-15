@@ -64,6 +64,28 @@ _APPROVAL_STATUSES = {"pending-approval"}
 APPROVAL_TYPES = {"editorial", "legal", "corporate", "rights"}
 _DEFAULT_APPROVAL_TYPES = ("editorial",)
 
+# Social media platforms requiring owner sign-off before posting.
+# All other destinations (civic, casework, prayer feed, king_local, govOS) publish freely.
+# Studios are departments of working businesses — no corporate gate (owner decision 2026-07-13).
+SOCIAL_MEDIA_PLATFORMS = {"facebook", "instagram", "linkedin", "youtube", "tiktok", "x", "twitter"}
+
+
+def requires_owner_signoff(payload: dict) -> bool:
+    """Return True only if a job targets a public-facing social media platform.
+
+    Civic reports, casework (except personal case data), daily prayer content,
+    and all internal/king_local destinations publish freely without owner sign-off.
+    Studios are business departments; no corporate gate applies.
+    """
+    platform = (payload.get("platform") or "").lower()
+    targets = payload.get("targets") or []
+    if platform in SOCIAL_MEDIA_PLATFORMS:
+        return True
+    if any(str(t).lower() in SOCIAL_MEDIA_PLATFORMS for t in targets):
+        return True
+    return False
+
+
 # Owner opt-in override: config/owner_policy.json can set auto_approve_creative /
 # auto_approve_output to true. This is an explicit, auditable, reversible owner decision
 # (see docs/SOCIAL_CONNECTORS.md "Owner Auto-Approval Mode") — default (no file, or flag

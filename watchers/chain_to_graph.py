@@ -6,10 +6,15 @@ The one good idea borrowed from docker/genai-stack (a graph+vector store) — on
   - NO LangChain, NO second Ollama, NO pip driver: talks to Neo4j over its HTTP Cypher endpoint via urllib.
   - ZERO Claude tokens to run. Reuses reports/mauios/money_chain_maui.json (already built, sourced).
 
+AuraDB Free dual-write (2026-07-13):
+  - When NEO4J_AURA_URI is set in .env.v2, simultaneously writes civic data to AuraDB Free (backup+cloud mirror)
+  - AuraDB is not required — gracefully skipped if missing credentials
+  - Civic data is ~6.5k nodes / ~18k relationships, fits 25x over AuraDB Free limits (200k/400k/512MB)
+
 Once loaded you can ask the graph what static JSON can't: multi-hop "up and down the chain" —
   which funder -> which prime -> which subrecipient -> is that sub ALSO a 990 nonprofit / a county vendor / a donor?
 
-  python tools/kilo-aupuni/chain_to_graph.py            # (re)load the Maui chain into Neo4j
+  python tools/kilo-aupuni/chain_to_graph.py            # (re)load the Maui chain into local + AuraDB
   python tools/kilo-aupuni/chain_to_graph.py --ask      # + print a few example up/down-the-chain queries
 """
 import os, sys, json, argparse, urllib.request, urllib.error
@@ -44,6 +49,10 @@ def _chain_path():
 
 
 NEO = os.environ.get("NEO4J_HTTP", "http://127.0.0.1:7474/db/neo4j/tx/commit")
+AURA_URI = os.environ.get("NEO4J_AURA_URI", "").strip()
+AURA_USER = os.environ.get("NEO4J_AURA_USER", "neo4j")
+AURA_PASSWORD = os.environ.get("NEO4J_AURA_PASSWORD", "").strip()
+_AURA_DRIVER = None
 
 
 def say(m):
@@ -54,20 +63,61 @@ def say(m):
         pass
 
 
-def cypher(statements, timeout=90):
-    """POST one or more Cypher statements to Neo4j's HTTP transactional endpoint (no auth = local prototype)."""
+def cypher(statements, endpoint=None, use_aura=False, timeout=90):
+    """
+    POST one or more Cypher statements to Neo4j's HTTP transactional endpoint (no auth = local prototype).
+    If use_aura=True, attempts bolt driver connection. Falls back to local HTTP if not available.
+    """
+    target = endpoint or NEO
     body = json.dumps({"statements": statements}).encode("utf-8")
-    req = urllib.request.Request(NEO, data=body,
+    req = urllib.request.Request(target, data=body,
                                  headers={"Content-Type": "application/json", "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             out = json.loads(r.read().decode("utf-8", "replace"))
     except urllib.error.URLError as e:
-        say("Neo4j not reachable at %s (%s). Is the lotus-neo4j container up?" % (NEO, str(e)[:120]))
+        msg = "Neo4j not reachable"
+        if use_aura:
+            msg = "AuraDB not reachable"
+        say("%s at %s (%s)." % (msg, target, str(e)[:120]))
         return None
     if out.get("errors"):
         say("Cypher errors: %s" % json.dumps(out["errors"])[:400])
     return out
+
+
+def _aura_connect():
+    """Open bolt+s connection to AuraDB if available. Returns session or None."""
+    global _AURA_DRIVER
+    if not AURA_URI or not AURA_PASSWORD:
+        return None
+    try:
+        from neo4j import GraphDatabase
+        _AURA_DRIVER = GraphDatabase.driver(AURA_URI, auth=(AURA_USER, AURA_PASSWORD))
+        session = _AURA_DRIVER.session()
+        # Quick ping
+        session.run("RETURN 1")
+        return session
+    except ImportError:
+        say("neo4j-driver not installed — skipping AuraDB dual-write (pip install neo4j to enable)")
+        return None
+    except Exception as e:
+        say("AuraDB connection failed: %s (continuing with local only)" % str(e)[:150])
+        return None
+
+
+def _aura_cypher(session, statements):
+    """Execute Cypher batch on AuraDB via bolt driver session."""
+    if not session:
+        return None
+    try:
+        for stmt in statements:
+            result = session.run(stmt["statement"], **(stmt.get("parameters") or {}))
+            result.consume()  # Ensure it runs
+        return {"ok": True}
+    except Exception as e:
+        say("AuraDB batch write failed: %s" % str(e)[:150])
+        return None
 
 
 def _rows(result_block):
@@ -118,21 +168,54 @@ def load():
         say("ABORT: graph reset left %r node(s) behind — refusing to load (would double)." % (remaining,))
         return False
 
+    # CONNECT TO AURA FOR DUAL-WRITE (2026-07-13)
+    aura_session = _aura_connect()
+    if aura_session:
+        say("AuraDB connection OK — dual-write enabled")
+    else:
+        say("AuraDB dual-write disabled (credentials missing or connection failed)")
+
+    # LOCAL NEO4J: create constraint and load nodes
     cypher([{"statement": "CREATE CONSTRAINT node_id IF NOT EXISTS FOR (x:Node) REQUIRE x.id IS UNIQUE"}])
     cypher([{"statement":
              "UNWIND $rows AS n MERGE (x:Node {id:n.id}) "
              "SET x.name=n.label, x.type=n.type, x.key=n.key, x.crosslink=n.crosslink",
              "parameters": {"rows": nodes}}])
-    # id-keyed MERGE (matches graph_vectors.py's already-correct upsert pattern) — defense-in-depth even
-    # though the graph is now verified empty above; a stable eid means a stray re-run can never silently
-    # duplicate a relationship.
+    
+    # AURA: duplicate constraint + nodes
+    if aura_session:
+        try:
+            aura_session.run("CREATE CONSTRAINT node_id IF NOT EXISTS FOR (x:Node) REQUIRE x.id IS UNIQUE")
+            aura_session.run(
+                "UNWIND $rows AS n MERGE (x:Node {id:n.id}) "
+                "SET x.name=n.label, x.type=n.type, x.key=n.key, x.crosslink=n.crosslink",
+                rows=nodes
+            )
+        except Exception as e:
+            say("AuraDB node write failed: %s (continuing with local)" % str(e)[:150])
+
+    # LOCAL NEO4J: load edges (id-keyed MERGE to prevent duplicates)
     cypher([{"statement":
              "UNWIND $rows AS e MATCH (a:Node {id:e.src}) MATCH (b:Node {id:e.dst}) "
              "MERGE (a)-[r:FLOW {eid:e.eid}]->(b) "
              "SET r.kind=e.kind, r.amount=e.amount, r.label=e.label, r.source=e.source, "
              "r.source_url=e.source_url, r.source_type=e.source_type, r.verify=e.verify",
              "parameters": {"rows": edges}}])
+    
+    # AURA: duplicate edges
+    if aura_session:
+        try:
+            aura_session.run(
+                "UNWIND $rows AS e MATCH (a:Node {id:e.src}) MATCH (b:Node {id:e.dst}) "
+                "MERGE (a)-[r:FLOW {eid:e.eid}]->(b) "
+                "SET r.kind=e.kind, r.amount=e.amount, r.label=e.label, r.source=e.source, "
+                "r.source_url=e.source_url, r.source_type=e.source_type, r.verify=e.verify",
+                rows=edges
+            )
+        except Exception as e:
+            say("AuraDB edge write failed: %s (continuing with local)" % str(e)[:150])
 
+    # LOCAL: verify load
     v = cypher([
         {"statement": "MATCH (n:Node) RETURN count(n)"},
         {"statement": "MATCH ()-[r:FLOW]->() RETURN count(r)"},
@@ -142,12 +225,35 @@ def load():
         nc = _rows({"results": [v["results"][0]]})[0][0]
         ec = _rows({"results": [v["results"][1]]})[0][0]
         xc = _rows({"results": [v["results"][2]]})[0][0]
-        say("LOADED: %s nodes, %s FLOW edges, %s cross-layer entities. Graph is live at http://localhost:7474" % (nc, ec, xc))
+        say("LOCAL: %s nodes, %s FLOW edges, %s cross-layer entities. Graph live at http://localhost:7474" % (nc, ec, xc))
         if ec != len(edges):
             say("WARNING: loaded edge count (%s) != source edge count (%d) — investigate before trusting the graph."
                 % (ec, len(edges)))
-        return True
-    return False
+    else:
+        say("LOCAL verification failed")
+        return False
+
+    # AURA: verify load (if connected)
+    if aura_session:
+        try:
+            nc_result = aura_session.run("MATCH (n:Node) RETURN count(n)").single()
+            nc = nc_result[0] if nc_result else 0
+            ec_result = aura_session.run("MATCH ()-[r:FLOW]->() RETURN count(r)").single()
+            ec = ec_result[0] if ec_result else 0
+            xc_result = aura_session.run("MATCH (n:Node {crosslink:true}) RETURN count(n)").single()
+            xc = xc_result[0] if xc_result else 0
+            say("AURA:  %s nodes, %s FLOW edges, %s cross-layer entities" % (nc, ec, xc))
+        except Exception as e:
+            say("AURA verification failed: %s" % str(e)[:150])
+    
+    # Clean up
+    if aura_session:
+        try:
+            aura_session.close()
+        except Exception:
+            pass
+
+    return True
 
 
 def ask():

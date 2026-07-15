@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Calendar · Kaulana Mahina · TribeGameStudios</title>
+<meta name="description" content="Kaulana Mahina — the 30-night Hawaiian moon calendar as a civic game lens. See which pō night tonight is, which meetings fall on Kū (stand-testify) or Māhealani (full light), and how the 13-moon year maps the Sage zones. TribeGameStudios · 12sgi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='38'%20fill='%230c100e'%20stroke='%23e3ad33'%20stroke-width='7'/%3E%3Ccircle%20cx='62'%20cy='50'%20r='28'%20fill='%230c100e'/%3E%3C/svg%3E">
+<style>
+/* Moon Calendar · 12sgi-design canon — volcanic near-black, gold accent. Zero external deps. */
+:root{
+  --bg:#0d1109; --s1:#161d11; --s2:#1e2715; --s3:#283320;
+  --line:#3a4830;
+  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --ink:#f0ead8; --ink-2:#cfc9b6; --ink-3:#8fa889;
+  --mauka:#4ade80; --kula:#fbbf24; --makai:#38bdf8; --uni:#c084fc;
+  --moon-gold:#f4c95d; --moon-silver:#ddd8cc;
+  --stand:#6abf86; --sacred:#c084fc; --hold:#7a8f78;
+  --full:#f0e68c; --flow:#9fd9bf;
+  --r:9px;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:'JetBrains Mono','Cascadia Code',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+
+/* ── header ── */
+header{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s1);
+  flex-wrap:wrap;
+}
+.hexmark{font-size:22px;color:var(--gold)}
+.wordmark strong{font-size:17px;font-weight:700;color:var(--gold)}
+.wordmark .sub{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.back-link{font-size:12px;color:var(--gold);text-decoration:none;margin-left:auto}
+.back-link:hover{text-decoration:underline}
+
+/* ── hero bar ── */
+.hero{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  padding:20px 22px 16px;border-bottom:1px solid var(--line);
+  background:var(--s1);
+}
+.hero-moon{font-size:52px;line-height:1;flex-shrink:0}
+.hero-text h1{font-size:clamp(18px,3.5vw,28px);font-weight:700;color:var(--gold);margin-bottom:3px}
+.hero-meta{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-3);
+}
+.hero-meta span{
+  padding:2px 8px;border:1px solid var(--line);border-radius:20px;background:var(--s2);
+}
+
+/* ── today banner ── */
+.today-banner{
+  margin:16px 20px;padding:14px 16px;
+  border:1px solid rgba(154,212,180,.4);border-radius:var(--r);
+  background:rgba(154,212,180,.06);
+}
+.today-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--flow);margin-bottom:6px;
+}
+.today-offering{font-size:13.5px;color:var(--ink);line-height:1.6;font-style:italic;}
+.today-creative{font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.5;}
+
+/* ── layout ── */
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 60px}
+
+/* ── section headers ── */
+.section-head{
+  font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--ink-3);border-bottom:1px solid var(--line);padding-bottom:5px;
+  margin:22px 0 12px;
+}
+
+/* ── moon phase arc ── */
+.phase-wrap{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--s1);margin-bottom:18px;
+}
+.phase-svg-wrap{flex-shrink:0}
+.phase-info{flex:1;min-width:160px}
+.phase-label{font-size:16px;font-weight:700;color:var(--moon-gold);margin-bottom:4px}
+.phase-detail{font-family:var(--mono);font-size:11px;color:var(--ink-3);line-height:1.7}
+
+/* ── anahulu section ── */
+.anahulu-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink-3);padding:6px 0 8px;margin-top:4px;
+  border-top:1px solid var(--line);
+}
+.anahulu-label:first-child{border-top:none}
+
+/* ── 30-pō grid ── */
+.po-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:7px;margin-bottom:8px;
+}
+.po-cell{
+  border:1px solid var(--line);border-radius:8px;padding:9px 11px;
+  background:var(--s1);min-height:80px;cursor:default;
+  transition:border-color 120ms,background 120ms;
+}
+.po-cell:hover{border-color:var(--gold);background:var(--s2)}
+.po-cell.today{border-color:var(--gold)!important;background:rgba(227,173,51,.1)!important}
+.po-cell.has-meeting{border-color:rgba(154,212,180,.5);background:rgba(154,212,180,.05)}
+.po-cell.frame-full-light{border-color:rgba(240,230,140,.4);background:rgba(240,230,140,.04)}
+.po-cell.frame-sacred{border-color:rgba(192,132,252,.35);background:rgba(192,132,252,.04)}
+.po-num{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:2px}
+.po-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.po-nature{font-size:10px;color:var(--ink-2);line-height:1.35;margin-bottom:4px}
+.po-frame{
+  display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.4px;
+  text-transform:uppercase;padding:1px 5px;border-radius:3px;
+}
+.pf-stand-testify{background:#1a3d22;color:var(--stand)}
+.pf-full-light{background:#2d2a0a;color:var(--full)}
+.pf-sacred{background:#1e1130;color:var(--sacred)}
+.pf-listen-hold,.pf-listen{background:#1a1f19;color:var(--hold)}
+.pf-flow{background:#0e1f1a;color:var(--flow)}
+.po-meeting{
+  margin-top:6px;font-size:10px;color:var(--flow);
+  border-left:2px solid var(--flow);padding-left:5px;line-height:1.3;
+}
+.po-meeting a{color:var(--flow);text-decoration:none;word-break:break-word}
+.po-meeting a:hover{text-decoration:underline}
+.po-today-offer{
+  margin-top:5px;font-size:9.5px;color:var(--ink-2);
+  font-style:italic;line-height:1.35;
+}
+
+/* ── 13-moon year strip ── */
+.year-strip{
+  display:flex;gap:5px;flex-wrap:wrap;margin:8px 0;
+}
+.year-moon{
+  border:1px solid var(--line);border-radius:6px;padding:6px 9px;
+  background:var(--s1);text-align:center;min-width:54px;
+  transition:border-color 120ms;
+}
+.year-moon:hover{border-color:var(--gold)}
+.year-moon.current{border-color:var(--gold);background:rgba(227,173,51,.08)}
+.ym-num{font-family:var(--mono);font-size:13px;font-weight:700}
+.ym-zone{font-size:9px;color:var(--ink-3);margin-top:1px;text-transform:uppercase;letter-spacing:.04em}
+.ym-month{font-size:9px;color:var(--ink-3);margin-top:1px}
+
+/* ── game lens panel ── */
+.game-lens{
+  padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--s1);font-size:13px;color:var(--ink-2);line-height:1.6;
+}
+.game-lens h3{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em}
+.lens-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.lens-frame{
+  flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;
+  min-width:100px;text-align:center;
+}
+.lens-desc{font-size:12px;color:var(--ink-2)}
+
+/* ── disclaimer ── */
+.disclaimer{
+  font-family:var(--mono);font-size:10px;color:var(--ink-3);
+  padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);
+  margin-top:20px;line-height:1.6;background:var(--s1);
+}
+
+/* ── footer ── */
+footer{
+  padding:14px 20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:center;
+}
+footer a{color:var(--gold);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:540px){
+  .po-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .year-strip{gap:3px}
+  .year-moon{min-width:44px;padding:4px 6px}
+}
+</style>
+<link rel="stylesheet" href="../../govos.css">
+</head>
+<body>
+
+<header>
+  <span class="hexmark">🌙</span>
+  <div class="wordmark">
+    <strong>TribeGameStudios</strong>
+    <span class="sub">by 12sgi</span>
+  </div>
+  <a class="back-link" href="index.html">← all games</a>
+</header>
+
+<!-- hero bar — filled by JS -->
+<div class="hero" id="mc-hero">
+  <div class="hero-moon" id="mc-hero-glyph">🌙</div>
+  <div class="hero-text">
+    <h1>Kaulana Mahina · Moon Calendar</h1>
+    <p id="mc-hero-sub" style="font-size:13px;color:var(--ink-2);margin-top:3px;">
+      The 30 nights of the Hawaiian moon as civic game turns.
+    </p>
+    <div class="hero-meta" id="mc-hero-meta"></div>
+  </div>
+</div>
+
+<!-- today offering banner -->
+<div class="today-banner" id="mc-today-banner" style="display:none">
+  <div class="today-eyebrow" id="mc-today-eyebrow"></div>
+  <div class="today-offering" id="mc-today-offering"></div>
+  <div class="today-creative" id="mc-today-creative"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- phase arc -->
+  <div class="section-head">Tonight · moon phase</div>
+  <div class="phase-wrap" id="mc-phase-wrap">
+    <div class="phase-svg-wrap" id="mc-phase-svg"></div>
+    <div class="phase-info">
+      <div class="phase-label" id="mc-phase-label">—</div>
+      <div class="phase-detail" id="mc-phase-detail"></div>
+    </div>
+  </div>
+
+  <!-- 30-pō grid -->
+  <div class="section-head">The 30 nights of the lunation</div>
+  <div id="mc-grid"></div>
+
+  <!-- game lens -->
+  <div class="section-head">Game lens · civic turn types</div>
+  <div class="game-lens">
+    <h3>How to read the nights as game turns</h3>
+    <div class="lens-row">
+      <span class="lens-frame pf-stand-testify">Stand · Testify</span>
+      <span class="lens-desc">Kū nights (3–6) and peak light (13, 15, 20) — Ao action. Play a card, show up, voice the pono.</span>
+    </div>
+    <div class="lens-row">
+      <span class="lens-frame pf-listen-hold">Listen · Hold</span>
+      <span class="lens-desc">ʻOle nights (7–10, 21–23) — Pō balancing. Listen to the record; do not force the hand tonight.</span>
+    </div>
+    <div class="lens-row">
+      <span class="lens-frame pf-full-light">Full Light</span>
+      <span class="lens-desc">Māhealani (pō 16) — everything is visible. A major civic moment; testify in the open.</span>
+    </div>
+    <div class="lens-row">
+      <span class="lens-frame pf-sacred">Sacred</span>
+      <span class="lens-desc">Akua, Kāne, Lono, Kāloakūkahi — bring reverence, not contention. Ceremony over debate.</span>
+    </div>
+    <div class="lens-row">
+      <span class="lens-frame pf-flow">Flow</span>
+      <span class="lens-desc">Medicine nights (Lāʻau), Huna, Mōhalu — let things unfold. Frame testimony to heal, not wound.</span>
+    </div>
+  </div>
+
+  <!-- 13-moon year strip -->
+  <div class="section-head">13-moon year · Sage zone mapping</div>
+  <div class="year-strip" id="mc-year-strip"></div>
+  <p style="font-size:11px;color:var(--ink-3);margin-top:8px;line-height:1.5;">
+    Each of the 13 lunar months of the Hawaiian year is associated with a Sage zone (Mauka · Kula · Makai · Universal).
+    The highlighted moon is the current lunation. Schematic: confirm with a kumu for the observed reckoning.
+  </p>
+
+  <div class="disclaimer">
+    Kaulana mahina — computed from mean lunation (±1 night vs observed). The true reckoning is observed by the kumu.
+    Civic offerings are framed as suggestions, never directives. Sacred pō bindings offered with humility; not attested without cultural review.
+    Moon-of-year mapping is schematic. 12sgi · Kilo Aupuni · aloha · pono.
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html">TribeGameStudios</a> ·
+  <a href="../sage/">SAGE game</a> ·
+  <a href="konane.html">Konane</a> ·
+  <a href="weiqi.html">Weiqi</a> ·
+  Moon Calendar · Kaulana Mahina · 12sgi · aloha
+</footer>
+
+<script>
+/* Kaulana Mahina moon calendar — pure JS, zero external deps.
+   Moon math mirrors moon_calendar.py exactly (same constants + formula). */
+
+// ── constants ──────────────────────────────────────────────────────────────
+const SYNODIC = 29.530588853;
+const REF_JD  = 2451550.1;
+
+const PO = [
+  ["Hilo","Hoʻonui","first thin crescent; new beginnings, planting","a night of beginnings — plant the intention; learn the item before you speak","listen"],
+  ["Hoaka","Hoʻonui","faint light; casting of shadows, caution","go gently — gather the facts before the vote casts its shadow","listen"],
+  ["Kūkahi","Hoʻonui","Kū — upright, standing; good for planting & work","stand and be counted — a good night to testify","stand-testify"],
+  ["Kūlua","Hoʻonui","Kū — upright, productive","stand together — add your voice to the record","stand-testify"],
+  ["Kūkolu","Hoʻonui","Kū — upright, productive","keep standing — the upright nights favor those who show up","stand-testify"],
+  ["Kūpau","Hoʻonui","Kū — the last of the upright nights","finish what you stood for — submit the testimony","stand-testify"],
+  ["ʻOlekūkahi","Hoʻonui","ʻOle — 'nothing'; low tides, rest, not for forcing","a night to listen, not force — read the agenda, ready the question","listen-hold"],
+  ["ʻOlekūlua","Hoʻonui","ʻOle — rest, weeding, clearing","clear the noise — separate the money from the merit","listen-hold"],
+  ["ʻOlekūkolu","Hoʻonui","ʻOle — rest, low productivity","patience — let the record speak before you do","listen-hold"],
+  ["ʻOlepau","Hoʻonui","ʻOle — the last quiet night","rest closes; tomorrow the light grows — prepare to act","listen-hold"],
+  ["Huna","Poepoe","hidden; root crops, the unseen made ready","look for what's hidden in the item — the unanswered pair","flow"],
+  ["Mōhalu","Poepoe","unfolding; flowers, fruit set","let your testimony unfold — name the question plainly","flow"],
+  ["Hua","Poepoe","fruit, seed, abundance begins","the fruit forms — this is when showing up bears the most","stand-testify"],
+  ["Akua","Poepoe","sacred to the akua; ceremony, reverence","a sacred night — bring reverence, not contention, to the chamber","sacred"],
+  ["Hoku","Poepoe","near-full; fullness, peak fishing & planting","the people's voice is near its fullest — gather the neighbors","stand-testify"],
+  ["Māhealani","Poepoe","FULL MOON; abundance, clarity, everything thrives","full light — testify in the open; nothing hidden answers best now","full-light"],
+  ["Kulu","Poepoe","the moon 'drips'/begins to wane; release","release what's settled; carry forward what still needs answering","flow"],
+  ["Lāʻaukūkahi","Poepoe","Lāʻau — medicine, healing herbs","a healing night — frame the testimony to restore, not to wound","flow"],
+  ["Lāʻaukūlua","Poepoe","Lāʻau — medicine, gathering of cures","gather the remedy — the law that already answers the wrong","flow"],
+  ["Lāʻaupau","Poepoe","Lāʻau — the last medicine night","apply the cure — the records request, the testimony, the vote","stand-testify"],
+  ["ʻOlekūkahi","Hoʻēmi","ʻOle — rest returns, low tides","rest and watch — not every night is for forcing the hand","listen-hold"],
+  ["ʻOlekūlua","Hoʻēmi","ʻOle — quiet, weeding","weed the agenda — which items truly serve the people?","listen-hold"],
+  ["ʻOlepau","Hoʻēmi","ʻOle — the last quiet of the waning","stillness before the sacred nights — listen for the broken pair","listen-hold"],
+  ["Kāloakūkahi","Hoʻēmi","Kāloa — sacred to Kanaloa (ocean); long crops, fishing","the ocean's nights — think of the makai, the ʻāina, the long horizon","sacred"],
+  ["Kāloakūlua","Hoʻēmi","Kāloa — Kanaloa; deep waters, endurance","endure — the long crops and long fights both reward patience","flow"],
+  ["Kāloapau","Hoʻēmi","Kāloa — the last of Kanaloa's nights","close the deep work — what did the vote answer to?","flow"],
+  ["Kāne","Hoʻēmi","KAPU to Kāne — fresh water, sun, life; ceremony, no contention","sacred to Kāne — a night for collective good and clean water, not quarrel","sacred"],
+  ["Lono","Hoʻēmi","KAPU to Lono — rain, harvest, peace; Makahiki spirit","sacred to Lono — bring the harvest spirit: shared abundance, not capture","sacred"],
+  ["Mauli","Hoʻēmi","last sliver, 'last breath' of the moon; reflection","reflect — what pair still does not answer? mark it for the next light","listen"],
+  ["Muku","Hoʻēmi","dark moon, 'cut off'; rest, the close before renewal","the dark before renewal — rest, then begin the cycle in pono","listen"],
+];
+
+// 13-moon year zones (schematic: confirm with kumu)
+const YEAR_ZONES = [
+  "Mauka","Kula","Makai","Universal","Mauka","Kula","Makai",
+  "Universal","Mauka","Kula","Makai","Universal","Universal"
+];
+const YEAR_MONTHS = [
+  "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","+"
+];
+const ZONE_COLOR = {Mauka:"#4ade80",Kula:"#fbbf24",Makai:"#38bdf8",Universal:"#c084fc"};
+
+// ── moon math ──────────────────────────────────────────────────────────────
+function jd(y,m,d){
+  if(m<=2){y--;m+=12;}
+  const a=Math.floor(y/100),b=2-a+Math.floor(a/4);
+  return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+b-1524.5;
+}
+function moonAge(date){
+  const J=jd(date.getFullYear(),date.getMonth()+1,date.getDate());
+  return((J-REF_JD)%SYNODIC+SYNODIC)%SYNODIC;
+}
+function poIndex(date){return Math.min(29,Math.floor(moonAge(date)));}
+function yearMoon(date){
+  const jan1=new Date(date.getFullYear(),0,1);
+  const j=jd(date.getFullYear(),date.getMonth()+1,date.getDate());
+  const j1=jd(jan1.getFullYear(),1,1);
+  return(Math.floor((j-j1)/SYNODIC)%13)+1;
+}
+function phaseLabel(age){
+  if(age<1.5||age>28.5) return"new / dark";
+  if(age>=13.5&&age<=16.5) return"full moon";
+  return age<14.76?"waxing":"waning";
+}
+function phaseGlyph(age){
+  const f=age/SYNODIC;
+  if(f<0.02||f>0.97) return"🌑";
+  if(f<0.25) return"🌒";
+  if(f<0.27) return"🌓";
+  if(f<0.49) return"🌔";
+  if(f<0.52) return"🌕";
+  if(f<0.75) return"🌖";
+  if(f<0.77) return"🌗";
+  return"🌘";
+}
+
+// ── SVG moon arc ──────────────────────────────────────────────────────────
+function moonSVG(age, size){
+  size=size||80;
+  const r=size/2-4, cx=size/2, cy=size/2;
+  const illum=0.5*(1-Math.cos(2*Math.PI*age/SYNODIC));
+  const waning=age>14.76;
+  // inner ellipse rx mapped to illumination
+  const rx2=r*Math.abs(1-2*illum);
+  const arcSweep=waning?0:1;
+  const innerSweep=illum<0.5?(waning?0:1):(waning?1:0);
+  const uid="mc-"+Math.random().toString(36).slice(2,7);
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="${uid}">
+        <path d="M ${cx} ${cy-r} A ${r} ${r} 0 1 ${arcSweep} ${cx} ${cy+r} Z"/>
+      </clipPath>
+    </defs>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0a0f08" stroke="#3a4830" stroke-width="1.5"/>
+    <g clip-path="url(#${uid})">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="#e3ad33" opacity=".9"/>
+      <path d="M ${cx} ${cy-r} A ${rx2} ${r} 0 1 ${innerSweep} ${cx} ${cy+r} Z" fill="#0a0f08"/>
+    </g>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#3a483044" stroke-width=".5"/>
+  </svg>`;
+}
+
+// ── render ─────────────────────────────────────────────────────────────────
+function esc(s){
+  const d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;
+}
+
+function frameCls(frame){
+  return'pf-'+frame.replace(/\s+/g,'-');
+}
+function frameLabel(frame){
+  const map={
+    'stand-testify':'Stand · Testify','full-light':'Full Light',
+    'listen-hold':'Listen · Hold','listen':'Listen','sacred':'Sacred','flow':'Flow'
+  };
+  return map[frame]||frame;
+}
+
+function render(){
+  const now=new Date();
+  const age=moonAge(now);
+  const poIdx=poIndex(now); // 0-based
+  const po=PO[poIdx];
+  const phase=phaseLabel(age);
+  const glyph=phaseGlyph(age);
+  const yn=yearMoon(now);
+
+  // hero
+  document.getElementById('mc-hero-glyph').textContent=glyph;
+  document.getElementById('mc-hero-sub').textContent=
+    'pō '+(poIdx+1)+' · '+po[0]+' · '+po[1]+'  ·  '+phase;
+  document.getElementById('mc-hero-meta').innerHTML=
+    '<span>moon age: '+age.toFixed(1)+'d</span>'+
+    '<span>lunation: ~'+SYNODIC.toFixed(1)+'d</span>'+
+    '<span>game frame: '+frameLabel(po[4])+'</span>'+
+    '<span>moon of year: '+yn+'/13</span>';
+
+  // today banner
+  const banner=document.getElementById('mc-today-banner');
+  const eyebrow=document.getElementById('mc-today-eyebrow');
+  const offering=document.getElementById('mc-today-offering');
+  banner.style.display='block';
+  eyebrow.textContent='🌙  Tonight · pō '+(poIdx+1)+' '+po[0]+' ('+po[1]+') · '+phase;
+  offering.textContent=po[3];
+
+  // phase
+  document.getElementById('mc-phase-svg').innerHTML=moonSVG(age,80);
+  document.getElementById('mc-phase-label').textContent=glyph+' '+phase;
+  document.getElementById('mc-phase-detail').innerHTML=
+    'Moon age: '+age.toFixed(2)+' days<br>'+
+    'Illumination: ~'+(0.5*(1-Math.cos(2*Math.PI*age/SYNODIC))*100).toFixed(0)+'%<br>'+
+    'Pō: '+(poIdx+1)+' of 30 · '+po[0]+' ('+po[1]+')<br>'+
+    'Game frame: '+frameLabel(po[4]);
+
+  // 30-pō grid
+  const groups=[
+    {label:"Hoʻonui — waxing (pō 1–10)",range:[0,10]},
+    {label:"Poepoe — full / round (pō 11–20)",range:[10,20]},
+    {label:"Hoʻēmi — waning (pō 21–30)",range:[20,30]},
+  ];
+  let gridHTML='';
+  for(const g of groups){
+    gridHTML+='<div class="anahulu-label">'+esc(g.label)+'</div><div class="po-grid">';
+    for(let i=g.range[0];i<g.range[1];i++){
+      const p=PO[i];
+      const isToday=i===poIdx;
+      const frame=p[4];
+      let cls='po-cell';
+      if(isToday) cls+=' today';
+      if(frame==='full-light') cls+=' frame-full-light';
+      if(frame==='sacred') cls+=' frame-sacred';
+      const todayBit=isToday
+        ?'<div class="po-today-offer">'+esc(p[3].slice(0,60))+'…</div>':
+        '';
+      gridHTML+=`<div class="${cls}">
+        <div class="po-num">pō ${i+1}${isToday?' · 🌙 tonight':''}</div>
+        <div class="po-name">${esc(p[0])}</div>
+        <div class="po-nature">${esc(p[2].slice(0,50))}</div>
+        <div class="po-frame ${frameCls(frame)}">${frameLabel(frame)}</div>
+        ${todayBit}
+      </div>`;
+    }
+    gridHTML+='</div>';
+  }
+  document.getElementById('mc-grid').innerHTML=gridHTML;
+
+  // 13-moon year strip
+  let yearHTML='';
+  for(let i=1;i<=13;i++){
+    const zone=YEAR_ZONES[i-1]||'';
+    const color=ZONE_COLOR[zone]||'#7a8f78';
+    const mo=YEAR_MONTHS[i-1]||'';
+    const isCur=i===yn;
+    yearHTML+=`<div class="year-moon${isCur?' current':''}">
+      <div class="ym-num" style="color:${isCur?'#e3ad33':color}">${i}</div>
+      <div class="ym-zone" style="color:${color}">${zone.slice(0,4)}</div>
+      <div class="ym-month">${mo}</div>
+    </div>`;
+  }
+  document.getElementById('mc-year-strip').innerHTML=yearHTML;
+}
+
+render();
+</script>
+<script src="../../govos-shell.js" defer></script>
+</body>
+</html>
