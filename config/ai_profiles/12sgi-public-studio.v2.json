@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-public-studio",
+  "base_model": "local-reasoning-model",
+  "system_policy": "public-studio-v1",
+  "allowed_tools": ["public.*"],
+  "knowledge_scopes": ["studio-public"],
+  "max_context_tokens": 4096,
+  "gpu_priority": "background",
+  "forbidden_actions": ["publish.release", "ops.*", "workboard.*"]
+}

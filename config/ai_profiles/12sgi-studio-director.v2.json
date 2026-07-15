@@ -1,0 +1,13 @@
+{
+  "profile_id": "12sgi-studio-director",
+  "base_model": "local-reasoning-model",
+  "system_policy": "director-v2",
+  "allowed_tools": [
+    "studio.*", "writing.*", "director.*", "storyboard.*",
+    "records.search", "records.get", "assets.get"
+  ],
+  "knowledge_scopes": ["media", "active-project"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["publish.release", "storyboard.approve_revision"]
+}

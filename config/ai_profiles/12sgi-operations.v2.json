@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-operations",
+  "base_model": "local-reasoning-model",
+  "system_policy": "ops-v1",
+  "allowed_tools": ["ops.*", "workboard.*", "records.search"],
+  "knowledge_scopes": ["all"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["ops.propose_repair"]
+}

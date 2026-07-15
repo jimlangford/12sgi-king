@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-writing-room",
+  "base_model": "local-reasoning-model",
+  "system_policy": "writing-v1",
+  "allowed_tools": ["writing.*", "records.search", "records.get"],
+  "knowledge_scopes": ["media", "active-project"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["writing.lock_script"]
+}
