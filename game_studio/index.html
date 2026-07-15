@@ -285,6 +285,25 @@ footer a:hover{text-decoration:underline}
       <div class="card-cta">Explore →</div>
     </a>
 
+    <!-- ʻohana mailing list (games free · multiplayer circles coming) -->
+    <div class="card" style="cursor:default">
+      <div class="card-icon">🪷</div>
+      <div>
+        <div class="card-title">Join the ʻohana list</div>
+        <div class="card-subtitle">games are free · multiplayer is coming</div>
+      </div>
+      <div class="card-desc">
+        Every game here is free to play. Multiplayer circles — live turns with friends —
+        are on the way. Leave your email and be first to know.
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <input id="oh-em" type="email" placeholder="you@example.com" style="flex:1;min-width:0;padding:9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px">
+          <button onclick="event.preventDefault();ohanaJoin('oh-em','oh-msg')" style="padding:9px 14px;border-radius:7px;border:0;background:var(--gold);color:#161209;font-weight:700;cursor:pointer">join</button>
+        </div>
+        <div id="oh-msg" style="margin-top:6px;font-size:11px;color:var(--gold)"></div>
+      </div>
+    </div>
+
+
     <!-- Moon Calendar -->
     <a class="card" href="moon_cal.html" aria-label="Moon Calendar · Kaulana Mahina">
       <div class="card-icon">🌙</div>
@@ -353,5 +372,23 @@ footer a:hover{text-decoration:underline}
 </footer>
 
 <script src="../govos-shell.js" defer></script>
+
+<script>
+/* ʻohana list capture — free games stay free; the list hears when multiplayer circles open.
+   POSTs to the public King funnel (CORS-open, dedupes server-side). Safe DOM, no deps. */
+function ohanaJoin(inputId, msgId){
+  var em = document.getElementById(inputId).value.trim();
+  var msg = document.getElementById(msgId);
+  if (em.indexOf('@') < 1){ msg.textContent = 'enter a real email'; return; }
+  msg.textContent = '...';
+  fetch('https://king.tail760750.ts.net:8443/newsletter/signup', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({email: em, source: 'games', tenant: 'tribegamestudios'})
+  }).then(function(r){ return r.json(); }).then(function(j){
+    msg.textContent = j.ok ? (j.already ? 'already with us — mahalo!' : 'welcome to the ʻohana 🪷') : (j.error || 'try again');
+    if (j.ok) document.getElementById(inputId).value = '';
+  }).catch(function(){ msg.textContent = 'could not reach the list — try again later'; });
+}
+</script>
 </body>
 </html>

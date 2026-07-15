@@ -94,6 +94,14 @@ footer a{color:var(--gold);text-decoration:none}
 <div id="overlay"><div class="card">
   <h2 id="ov-title">Pau! 🪷</h2>
   <p id="ov-text">The whole journey, matched — all 54 nodes, both halves made whole.</p>
+  <div style="margin:0 0 14px;text-align:left">
+    <div style="font-size:12px;color:var(--ink-2);margin-bottom:6px">Games are free. Want in when <b style="color:var(--gold)">multiplayer circles</b> open?</div>
+    <div style="display:flex;gap:6px">
+      <input id="mj-em" type="email" placeholder="you@example.com" style="flex:1;min-width:0;padding:9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px">
+      <button onclick="ohanaJoin('mj-em','mj-msg')" style="padding:9px 12px;border-radius:7px;border:1px solid var(--line);background:var(--s2);color:var(--gold);font-weight:700;cursor:pointer">join</button>
+    </div>
+    <div id="mj-msg" style="margin-top:5px;font-size:11px;color:var(--gold)"></div>
+  </div>
   <button id="ov-btn">play again</button>
 </div></div>
 
@@ -238,6 +246,24 @@ footer a{color:var(--gold);text-decoration:none}
   }
   newGame();
 })();
+</script>
+
+<script>
+/* ʻohana list capture — free games stay free; the list hears when multiplayer circles open.
+   POSTs to the public King funnel (CORS-open, dedupes server-side). Safe DOM, no deps. */
+function ohanaJoin(inputId, msgId){
+  var em = document.getElementById(inputId).value.trim();
+  var msg = document.getElementById(msgId);
+  if (em.indexOf('@') < 1){ msg.textContent = 'enter a real email'; return; }
+  msg.textContent = '...';
+  fetch('https://king.tail760750.ts.net:8443/newsletter/signup', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({email: em, source: 'games', tenant: 'tribegamestudios'})
+  }).then(function(r){ return r.json(); }).then(function(j){
+    msg.textContent = j.ok ? (j.already ? 'already with us — mahalo!' : 'welcome to the ʻohana 🪷') : (j.error || 'try again');
+    if (j.ok) document.getElementById(inputId).value = '';
+  }).catch(function(){ msg.textContent = 'could not reach the list — try again later'; });
+}
 </script>
 </body>
 </html>
