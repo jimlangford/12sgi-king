@@ -80,7 +80,7 @@ ERROR_PATTERNS = [
         80,
         [
             r"(yaml\..*error|parse error|invalid yaml)",
-            r"(mapping values are not allowed|expected.*:",
+            r"(mapping values are not allowed|expected.*:)",
             r"(cannot unpack|indentation is not a multiple)",
             r"error parsing.*\.yml",
         ]
