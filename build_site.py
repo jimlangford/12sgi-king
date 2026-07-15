@@ -616,6 +616,28 @@ def build_maui_nav_page():
     print("  + maui.html: mirrors tenant_hi-maui.html verbatim (%d bytes) — no separate Maui rendering path" % len(body))
 
 
+def _ensure_civic_document(pth, rel):
+    """Headless civic fragments (many generators emit a bare `<nav>…<footer>` with no <head>/<body>)
+    can't receive the govos.css/govos-shell.js stamp — rebuild_page injects the <link> at </head> and the
+    <script> at </body>, and if neither tag exists the shared shell silently never lands, leaving an
+    UNSTYLED nav (audit found 93 such pages). Wrap those into a proper document so the stamp reaches them,
+    matching the 357 pages that already pair `govos-nav` + govos.css/js. Skip real documents (already have
+    </head>), king-app DataComponents (*.dc.html, imported headless by app.html), and non-civic subtrees
+    (king/ sage/ games/ go/ + template partials carry their own structure). Added 2026-07-15 (audit-quad-os,
+    from-scratch civic rebuild — the ASSET dimension: one shared nav shell on every civic page)."""
+    low = rel.lower()
+    if low.endswith(".dc.html") or low.split("/")[0] in ("king", "sage", "games", "go") or "civic/templates" in low:
+        return False
+    txt = pth.read_text(encoding="utf-8", errors="replace")
+    if "</head>" in txt.lower():
+        return False   # already a full document
+    wrapped = ('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+               '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+               '</head><body>\n' + txt + '\n</body></html>')
+    pth.write_text(wrapped, encoding="utf-8", newline="\n")
+    return True
+
+
 # ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
 #    tenant_registry). On any report that exists per-tenant, surface a "choose a government" row so you can
 #    select a different tenant FROM THE SAME REPORT. Reads the ONE registry (tenant_registry.json) — no
@@ -1627,7 +1649,16 @@ Sources are linked on every page.</div>
         _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
         _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
                    if ".git" not in p.parts and "__pycache__" not in p.parts]
+        # ASSET dimension: give headless civic fragments a real <head>/<body> FIRST, so the stamp below
+        # can inject the shared govos.css/govos-shell.js into them (else 93 pages ship an unstyled nav).
+        _wrapped = 0
+        for _p in _sfiles:
+            _rel = str(_p.relative_to(_rs.SITE_DIR)).replace("\\", "/")
+            if _ensure_civic_document(_p, _rel):
+                _wrapped += 1
         _changed = sum(1 for _p in _sfiles if _rs.rebuild_page(_p, verbose=False))
+        if _wrapped:
+            print("  + wrapped %d headless civic fragment(s) into full documents (shared shell now reaches them)" % _wrapped)
         # maui.html mirrors tenant_hi-maui.html byte-for-byte (one-writer rule, 2026-07-09) — re-mirror
         # AFTER the stamp so identity is guaranteed by construction, not by stamp determinism.
         build_maui_nav_page()
