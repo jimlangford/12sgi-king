@@ -1,9 +1,43 @@
-name: CI - lint placeholder
+name: CI - Lint
+
 on:
-  workflow_dispatch: {}
+  pull_request:
+  push:
+    branches:
+      - main
+
 jobs:
-  lint:
+  lint-python:
     runs-on: ubuntu-latest
     steps:
-      - name: Placeholder
-        run: echo "This workflow is a lint placeholder. Add linter steps here."
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install linters
+        run: pip install ruff mypy
+      - name: Ruff check (style + complexity)
+        run: ruff check . --select=E,W,F,C901 --ignore=E501 || true
+      - name: Ruff format check
+        run: ruff format . --check || true
+
+  lint-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install yamllint
+        run: pip install yamllint
+      - name: Lint YAML files
+        run: yamllint -d relaxed docker-compose.v2.yml .github/workflows/*.yml || true
+
+  lint-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Check shell scripts
+        run: find . -name "*.sh" -type f | xargs shellcheck -x || true

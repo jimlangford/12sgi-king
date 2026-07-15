@@ -1,0 +1,13 @@
+[2026-07-14 17:07 UTC] === king-watchdog started ===
+[2026-07-14 17:07 UTC] Monitoring: 3 Docker + 2 processes
+[2026-07-14 17:07 UTC] SETUP REQUIRED: run `tailscale serve --bg http://8109` for king-bridge (API + AI)
+[2026-07-14 17:07 UTC] OK: Tailscale serve 8799 (board-api (owner console))
+[2026-07-14 17:07 UTC] SETUP REQUIRED: run `tailscale serve --bg http://8888` for static pages (govOS)
+[2026-07-14 17:08 UTC] START board-api: C:\Users\12sgi\AppData\Local\Programs\Python\Python311\python.exe -m uvicorn services.board_api.main:app --host 127.0.0.1 --port 8799
+[2026-07-14 17:08 UTC] START king-bridge: C:\Users\12sgi\AppData\Local\Programs\Python\Python311\python.exe -m uvicorn services.king_bridge.app.main:app --host 127.0.0.1 --port 8109
+[2026-07-14 17:08 UTC] === king-watchdog started ===
+[2026-07-14 17:08 UTC] Monitoring: 3 Docker + 2 processes
+[2026-07-14 17:08 UTC] SETUP REQUIRED: run `tailscale serve --bg http://8109` for king-bridge (API + AI)
+[2026-07-14 17:08 UTC] OK: Tailscale serve 8799 (board-api (owner console))
+[2026-07-14 17:08 UTC] SETUP REQUIRED: run `tailscale serve --bg http://8888` for static pages (govOS)
+[2026-07-14 17:08 UTC] START board-api: C:\Users\12sgi\AppData\Local\Programs\Python\Python311\python.exe -m uvicorn services.board_api.main:app --host 127.0.0.1 --port 8799
