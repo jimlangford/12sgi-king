@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20260714",
+      "slug": "dev-digest-20260714",
+      "title": "Development Digest — the new-moon build",
+      "subtitle": "What grew today: a one-tap door, an honest health light, a calmer machine, and a moon checked against the sky.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "On Hilo, the new-moon night, a small letter about the day's quiet work — a home-screen app for the whole system, a health light taught to tell the truth, one clear steward for the machine, and the moon clock verified true to the real sky.",
+      "body": "**Development Digest — Hilo, the new moon**\n**July 14, 2026 · Maui**\n\nTonight the sky is Hilo — the first dark night, the thin beginning, the night for planting an intention before you speak it. So this is a small letter about what grew today, offered in that spirit: quiet work, done to serve.\n\n## A door that opens like an app\nThe whole system now lives behind a single home-screen tile. One tap, and it opens full-screen — the studio, the games, the boards, the record — with no dead ends and no getting locked out mid-step. It was built to feel simple in the hand, the way a good tool should.\n\n## Teaching the system to tell the truth about itself\nOne of the health lights had been glowing \"trouble\" for days — but nothing was actually wrong. It was counting *\"not set up yet\"* as *\"broken.\"* We taught it the difference. It reports honestly now: what's truly working, what simply isn't wired yet, and only real faults raise a flag. An honest witness, even of itself.\n\n## One card, one traffic cop\nThe same small graphics card does the thinking and the picture-making. Today the work was making sure only one clear steward decides who uses it and when — so nothing collides, nothing crowds, and the machine stays calm under load. Less a new feature than a kind of housekeeping: keeping the house in order so the real work can breathe.\n\n## The moon, checked against the sky\nAnd we checked the moon clock against the real heavens — the math against the actual night. It agreed: Hilo, the new moon, 0% lit, the night of beginnings. It matters that the calendar we keep is *true*, not just convenient. The land keeps its own time; our job is to listen well.\n\n## The people's record kept growing\nUnderneath all of it, the quiet civic work continued on its own — the public money tracked to the public dollar, the public questions kept in plain sight, sourced and offered as questions, never as verdicts. That pillar comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it's a little more honest, a little easier to hold, and a little truer to the sky than it was this morning. On the new moon, that feels like enough to plant.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "sage-1783647024",
       "slug": "sage-moon-day-20260709",
       "title": "The Moon Now Moves in SAGE — the ahupuaʻa game",
