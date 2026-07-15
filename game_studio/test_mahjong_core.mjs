@@ -13,12 +13,32 @@ function eq(a, b, msg) { if (a !== b) throw new Error((msg || "") + ` expected $
 // deterministic rng for reproducible tests
 function seeded(seed) { let s = seed; return () => (s = (s * 1103515245 + 12345) % 2147483648) / 2147483648; }
 
-t("zoneOf maps all 54 nodes to canon zones", () => {
-  eq(M.zoneOf(1), "fire"); eq(M.zoneOf(9), "fire");
-  eq(M.zoneOf(10), "mauka"); eq(M.zoneOf(19), "mauka");
-  eq(M.zoneOf(20), "kula"); eq(M.zoneOf(38), "kula");
-  eq(M.zoneOf(39), "makai"); eq(M.zoneOf(52), "makai");
-  eq(M.zoneOf(53), "override"); eq(M.zoneOf(54), "synergy");
+t("zoneOf maps all 54 nodes to crosswalk canon (Mauka/Kula/Makai/Universal)", () => {
+  eq(M.zoneOf(1), "mauka"); eq(M.zoneOf(14), "mauka");
+  eq(M.zoneOf(15), "kula"); eq(M.zoneOf(27), "kula");
+  eq(M.zoneOf(28), "makai"); eq(M.zoneOf(41), "makai");
+  eq(M.zoneOf(42), "universal"); eq(M.zoneOf(54), "universal");
+});
+
+t("suit/rank/glyph/wind follow the crosswalk mahjong-graphics mapping", () => {
+  eq(M.suitOf(1), "bamboo"); eq(M.suitOf(18), "bamboo");
+  eq(M.suitOf(19), "circles"); eq(M.suitOf(36), "circles");
+  eq(M.suitOf(37), "chars"); eq(M.suitOf(54), "chars");
+  eq(M.rankOf(1), 1); eq(M.rankOf(9), 9); eq(M.rankOf(10), 1); eq(M.rankOf(54), 9);
+  eq(M.glyphOf(1), String.fromCodePoint(0x1F010), "bamboo-1 🀐");
+  eq(M.glyphOf(19), String.fromCodePoint(0x1F019), "circles-1 🀙");
+  eq(M.glyphOf(37), String.fromCodePoint(0x1F007), "chars-1 🀇");
+  eq(M.glyphOf(54), String.fromCodePoint(0x1F00F), "chars-9 🀏");
+  eq(M.windOf(1), "east"); eq(M.windOf(20), "south"); eq(M.windOf(30), "west"); eq(M.windOf(50), "north");
+});
+
+t("dealt tiles carry the full graphic layer (suit/rank/glyph/wind/phase)", () => {
+  const g = M.deal(seeded(11));
+  g.tiles.forEach(x => {
+    if (x.suit !== M.suitOf(x.node) || x.rank !== M.rankOf(x.node) ||
+        x.glyph !== M.glyphOf(x.node) || x.wind !== M.windOf(x.node)) 
+      throw new Error("graphic fields inconsistent on N" + x.node);
+  });
 });
 
 t("buildLayout has exactly 108 slots (54 = 108/2)", () => {

@@ -5,15 +5,38 @@
 (function (root) {
   "use strict";
 
-  // ── SAGE zones (canon: CLAUDE.md 54-song arc) ─────────────────────────────
+  // ── SAGE zones + the Mahjong graphic layer (canon: mahjong_crosswalk.html —
+  // "We use the Mahjong graphics with ours", Jimmy 2026-07-15) ────────────────
+  // Zones/winds: Mauka N01–14 (East) · Kula N15–27 (South) · Makai N28–41 (West)
+  // · Universal N42–54 (North). Suits: Bamboo N01–18 · Circles N19–36 ·
+  // Characters N37–54, rank = ((n-1) % 9) + 1 — two nodes share each suit-rank
+  // face (the 54 = 108/2 equation); the SAGE card art tells them apart.
   function zoneOf(n) {
-    if (n <= 9)  return "fire";     // N01–09 Universal Opening + Fire (Pele/Kāne)
-    if (n <= 19) return "mauka";    // N10–19 Mauka (Lono)
-    if (n <= 38) return "kula";     // N20–38 Farmlands/Kula (Kāne/Lono)
-    if (n <= 52) return "makai";    // N39–52 Makai (Kanaloa)
-    if (n === 53) return "override"; // N53 Override Joker
-    return "synergy";                // N54 Universal Synergy
+    if (n <= 14) return "mauka";
+    if (n <= 27) return "kula";
+    if (n <= 41) return "makai";
+    return "universal";
   }
+
+  function windOf(n) {
+    return { mauka: "east", kula: "south", makai: "west", universal: "north" }[zoneOf(n)];
+  }
+
+  function suitOf(n) {
+    if (n <= 18) return "bamboo";
+    if (n <= 36) return "circles";
+    return "chars";
+  }
+
+  function rankOf(n) { return ((n - 1) % 9) + 1; }
+
+  // Unicode mahjong tiles: Chars 🀇=U+1F007, Bamboo 🀐=U+1F010, Circles 🀙=U+1F019
+  function glyphOf(n) {
+    var base = { chars: 0x1F007, bamboo: 0x1F010, circles: 0x1F019 }[suitOf(n)];
+    return String.fromCodePoint(base + rankOf(n) - 1);
+  }
+
+  function phaseOf(n) { return n % 2 === 1 ? "ao" : "po"; }
 
   // ── Layout: 108 aligned-grid slots over 4 layers (60+32+12+4) ─────────────
   // Aligned grid keeps the free-tile rule exact: a slot is FREE when no occupied
@@ -102,8 +125,10 @@
       }
       if (!ok) continue;
       var tiles = slots.map(function (s) {
+        var nn = assign[s.id];
         return { id: s.id, layer: s.layer, col: s.col, row: s.row,
-                 node: assign[s.id], zone: zoneOf(assign[s.id]), removed: false };
+                 node: nn, zone: zoneOf(nn), suit: suitOf(nn), rank: rankOf(nn),
+                 glyph: glyphOf(nn), wind: windOf(nn), phase: phaseOf(nn), removed: false };
       });
       return { slots: slots, tiles: tiles };
     }
@@ -162,7 +187,12 @@
       for (var i = faces.length - 1; i > 0; i--) {
         var j = Math.floor(rng() * (i + 1)), t = faces[i]; faces[i] = faces[j]; faces[j] = t;
       }
-      for (i = 0; i < live.length; i++) { live[i].node = faces[i]; live[i].zone = zoneOf(faces[i]); }
+      for (i = 0; i < live.length; i++) {
+        var f = faces[i];
+        live[i].node = f; live[i].zone = zoneOf(f); live[i].suit = suitOf(f);
+        live[i].rank = rankOf(f); live[i].glyph = glyphOf(f); live[i].wind = windOf(f);
+        live[i].phase = phaseOf(f);
+      }
       if (findHint(game)) return true;
     }
     return findHint(game) !== null;
@@ -179,7 +209,8 @@
     return remaining(game) === 0;
   }
 
-  var api = { zoneOf: zoneOf, buildLayout: buildLayout, deal: deal, tileFree: tileFree,
+  var api = { zoneOf: zoneOf, suitOf: suitOf, rankOf: rankOf, glyphOf: glyphOf, windOf: windOf,
+              phaseOf: phaseOf, buildLayout: buildLayout, deal: deal, tileFree: tileFree,
               canMatch: canMatch, applyMatch: applyMatch, findHint: findHint,
               remaining: remaining, shuffleRemaining: shuffleRemaining, solve: solve,
               isFree: isFree, freeSlots: freeSlots };
