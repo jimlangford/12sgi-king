@@ -204,6 +204,11 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # Wailuku (county seat) + Lahaina (Royal Capital 1820-1845). standalone-aurora = opts out of the
                # govOS Georgia stamp; real money-graph data from Neo4j, sourced + question-framed.
                "who_paid_the_vote.html",
+               # the ethics+education lens rolled UP to the State (parent) and BACK DOWN to every county
+               # (Jimmy 2026-07-15 "all the way up and back") — who_paid_gen.py, each with its own celestial
+               # anchors (present seat ↔ historic royal seat) + that tenant's VERIFIED donor data.
+               "who_paid_the_vote_hi-state.html", "who_paid_the_vote_hi-hawaii.html",
+               "who_paid_the_vote_hi-honolulu.html", "who_paid_the_vote_hi-kauai.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
