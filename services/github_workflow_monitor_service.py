@@ -100,10 +100,18 @@ async def main():
         logger.info("GitHub workflow monitor is disabled (GITHUB_WORKFLOW_MONITOR_ENABLED=false)")
         return 0
     
-    # Check for GitHub token
+    # Check for GitHub token. Under `restart: unless-stopped` an exit here just
+    # crash-loops the container forever (2026-07-15, found live: same error every
+    # ~30s). Idle instead -- log once, then wait for the token to appear so the
+    # container self-heals the moment it's configured, no manual restart needed.
     if not os.environ.get("GITHUB_TOKEN"):
-        logger.error("GITHUB_TOKEN is required but not set")
-        return 1
+        if args.once:
+            logger.error("GITHUB_TOKEN is required but not set")
+            return 1
+        logger.warning("GITHUB_TOKEN not set -- idling (will start monitoring once it's configured)")
+        while not os.environ.get("GITHUB_TOKEN"):
+            await asyncio.sleep(args.interval)
+        logger.info("GITHUB_TOKEN detected -- starting monitor")
     
     service = WorkflowMonitorService(dry_run=args.dry_run)
     
