@@ -36,6 +36,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 import tempfile
 import time
 import urllib.error
@@ -53,6 +54,16 @@ STORE_SCHEMA_VERSION = "1.0"
 
 # Local store — machine-only, never committed
 _DEFAULT_STORE = HOME / ".king" / "studio_projects.json"
+
+# Workboard + event bus — best-effort; import failures never block studio operations.
+try:
+    if str(REPO) not in sys.path:
+        sys.path.insert(0, str(REPO))
+    from services.v2_workboard import emit_workboard_job as _emit_workboard
+    from services.event_bus import publish_event as _publish_platform_event
+except Exception:
+    _emit_workboard = None  # type: ignore[assignment]
+    _publish_platform_event = None  # type: ignore[assignment]
 
 # Workboard log (same default as private_spine / v2_workboard)
 _DEFAULT_WORKBOARD = REPO / ".dispatch_log.jsonl"
@@ -363,7 +374,123 @@ def update_project_status(
     return None
 
 
-def refresh(store_path: Path | None = None) -> bool:
+def release_project(
+    project_id: str,
+    *,
+    release_notes: str | None = None,
+    social_caption: str | None = None,
+    store_path: Path | None = None,
+) -> dict | None:
+    """Mark a project as released and queue public-surface actions.
+
+    This is the canonical entry point for the studio release pipeline:
+      1. Sets project status → 'released' in the local store + Neo4j.
+      2. Emits a ``studio.project.released`` platform event for the event bus.
+      3. Queues an *output* lane workboard job (social announcement draft) so
+         the owner can review it before anything posts publicly.
+      4. Updates ``production_status.json`` in the repo root with latest films.
+
+    Per owner policy (config/owner_policy.json):
+      - Social media posts require owner sign-off before public posting.
+      - Studio productions are PRIVATE while in production, PUBLIC on release.
+
+    Returns the updated project dict, or None if not found.
+    """
+    updated = update_project_status(project_id, "released", store_path=store_path)
+    if not updated:
+        return None
+
+    project_title = updated.get("title") or project_id
+    project_type = updated.get("project_type") or "Project"
+    released_at = _iso_now()
+
+    # Platform event — traceable audit trail for the release transition.
+    if _publish_platform_event:
+        try:
+            _publish_platform_event(
+                event_type="studio.project.released",
+                producer="studio_project",
+                entity_id=project_id,
+                payload={
+                    "title": project_title,
+                    "project_type": project_type,
+                    "released_at": released_at,
+                    "release_notes": release_notes or "",
+                },
+            )
+        except Exception:
+            pass
+
+    # Output-lane workboard job — owner must approve before social post goes out.
+    if _emit_workboard:
+        try:
+            caption = social_caption or (
+                f"🎬 {project_title} — now released. "
+                f"#{project_type.lower().replace(' ', '')} #12sgi #aloha"
+            )
+            _emit_workboard(
+                source="studio-release-pipeline",
+                action="studio.project.released",
+                event=f"RELEASE: {project_title} ({project_type})",
+                lane="output",
+                payload={
+                    "project_id": project_id,
+                    "title": project_title,
+                    "project_type": project_type,
+                    "released_at": released_at,
+                    "social_caption": caption,
+                    "release_notes": release_notes or "",
+                },
+            )
+        except Exception:
+            pass
+
+    # Update production_status.json — best-effort, non-blocking.
+    _update_production_status(project_title, project_type, released_at)
+
+    return updated
+
+
+def _update_production_status(title: str, project_type: str, released_at: str) -> None:
+    """Append the newly released title to production_status.json in the repo root."""
+    status_path = REPO / "production_status.json"
+    try:
+        try:
+            with status_path.open(encoding="utf-8") as f:
+                data: dict = json.load(f)
+        except Exception:
+            data = {}
+
+        if project_type in {"Film", "film"}:
+            count_key = "films_produced"
+            recents_key = "latest_films"
+        elif project_type in {"Music", "music"}:
+            count_key = "quadcast_songs"
+            recents_key = "latest_music"
+        else:
+            count_key = "projects_released"
+            recents_key = "latest_releases"
+
+        data[count_key] = int(data.get(count_key) or 0) + 1
+        recents: list = list(data.get(recents_key) or [])
+        recents.insert(0, title)
+        data[recents_key] = recents[:10]  # keep last 10
+        data["updated"] = released_at[:16].replace("T", " ") + " UTC"
+
+        _atomic_write_json(status_path, data)
+    except Exception:
+        pass
+
+
+def _atomic_write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    with tmp.open("w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    tmp.replace(path)
+
+
     """Sync all local projects to Neo4j. Soft-skip on graph unavailable."""
     projects = list_projects(store_path)
     if not projects:

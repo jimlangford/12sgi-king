@@ -26,10 +26,18 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 app = FastAPI(title="govOS v2 Tenant Service", version=VERSION)
 
 
+CASE_STATUSES = {"open", "in_progress", "pending_review", "closed", "archived"}
+
+
 class CaseCreateRequest(BaseModel):
     tenant_id: str
     title: str
     status: str = "open"
+    notes: str | None = None
+
+
+class CaseStatusUpdateRequest(BaseModel):
+    status: str
     notes: str | None = None
 
 
@@ -249,3 +257,54 @@ def get_case(case_id: str, authorization: str | None = Header(default=None)):
         auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
     enforce_resource_tenant(service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"])
     return _to_case(row)
+
+
+@app.patch(f"{API_PREFIX}/cases/{{case_id}}/status")
+def update_case_status(
+    case_id: str,
+    payload: CaseStatusUpdateRequest,
+    authorization: str | None = Header(default=None),
+):
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_SERVICE_TOKEN,
+        request_timeout=REQUEST_TIMEOUT,
+        required_scopes={"tenant:write"},
+    )
+    new_status = payload.status if payload.status in CASE_STATUSES else "open"
+    with _db() as conn:
+        row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
+        if not row:
+            auth_error(404, "resource_not_found", "Case was not found", {"case_id": case_id})
+        enforce_resource_tenant(
+            service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"]
+        )
+        previous_status = row["status"]
+        if payload.notes is not None:
+            conn.execute(
+                "UPDATE cases SET status = ?, notes = ? WHERE id = ?",
+                (new_status, payload.notes, case_id),
+            )
+        else:
+            conn.execute(
+                "UPDATE cases SET status = ? WHERE id = ?",
+                (new_status, case_id),
+            )
+        conn.commit()
+        updated_row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
+
+    _publish_event(
+        event_type="case.status_changed",
+        producer="tenant",
+        entity_id=case_id,
+        payload={
+            "tenant_id": row["tenant_id"],
+            "previous_status": previous_status,
+            "new_status": new_status,
+            "changed_by": claims.get("sub", "unknown"),
+        },
+    )
+
+    return _to_case(updated_row)

@@ -18,12 +18,21 @@ INTEGRITY / SAGE_GROUNDING: nodes are mapped by GOVERNANCE ROLE (functional, rea
 node is the APPROVED node_map value; the wā<->civic-Hewa sacred binding stays "voiced by N53, cultural
 review pending" where not attested — never an automated sacred guess. Hewa is real public-record data.
 """
-import os, json, re, html
+import os, json, re, html, sys
 from datetime import datetime, timezone, timedelta
 try:
     import moon_calendar          # kaulana mahina: agenda date -> pō night + aloha offering
 except Exception:
     moon_calendar = None
+
+# Workboard dispatch — best-effort; never blocks the bridge run.
+try:
+    _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if _REPO_ROOT not in sys.path:
+        sys.path.insert(0, _REPO_ROOT)
+    from services.v2_workboard import emit_hina_creative_job as _emit_hina
+except Exception:
+    _emit_hina = None  # type: ignore[assignment]
 
 HOME    = os.path.expanduser("~")
 TOOL_DIR= os.path.dirname(os.path.abspath(__file__))
@@ -165,6 +174,29 @@ def main():
     open(OUTH, "w", encoding="utf-8", newline="\n").write(render(bridge))
     print("sage-bridge: 54 nodes · pono %d / opportunity %d / hewa %d · %d live agenda signals"
           % (summary["pono"], summary["opportunity"], summary["hewa"], len(ag)))
+
+    # Ao→Pō wire: for each hewa node, emit a HINA creative lane job so the nightly Creative
+    # system knows what imbalance to answer.  We emit for the primary hewa node (top of the list)
+    # to avoid flooding the workboard on high-hewa days; others appear in the bridge JSON.
+    if _emit_hina:
+        hewa_nodes = [n for n in nodes if n["balance"] == "hewa"]
+        if hewa_nodes and today_overlap:
+            primary = hewa_nodes[0]
+            try:
+                _emit_hina(
+                    offering_date=today,
+                    hina_node_id=int(primary.get("node") or 0),
+                    akua=str(primary.get("akua") or today_overlap.get("akua") or ""),
+                    wa_phase=str(primary.get("phase") or today_overlap.get("ao_po") or "Pō"),
+                    particles=str(today_overlap.get("creative_offering") or ""),
+                    civic_source=str(primary.get("hewa_evidence") or "civic-parity-hewa"),
+                    source="sage-bridge-nightly",
+                )
+                print("sage-bridge: HINA Pō dispatch → node %s (%s) for %s"
+                      % (primary.get("node"), primary.get("akua"), today))
+            except Exception as exc:
+                print("sage-bridge: HINA dispatch skipped (%s)" % exc)
+
     return 0
 
 def _overlap_panel(t):
