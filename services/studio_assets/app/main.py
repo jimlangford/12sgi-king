@@ -433,6 +433,8 @@ except Exception as _gm_err:
     print(f"[studio-assets] game_api not loaded: {_gm_err}", file=_sys.stderr)
 
 
+def _row(r) -> dict:
+    """Convert a sqlite3.Row to a clean API-safe dict (strips internal fields)."""
     d = dict(r)
     d["has_thumb"] = bool(d.get("thumb_file") and os.path.isfile(d["thumb_file"]))
     d.pop("thumb_file", None)
