@@ -91,22 +91,34 @@ def asset_prefix(html_path):
     depth = len(rel.parts) - 1
     return '../' * depth
 
+def _dedupe(html, tag):
+    """Keep the FIRST occurrence of an exact stamped tag, drop any later duplicates.
+    Bug fixed 2026-07-15 (audit-quad-os, review wf_2eed4d6e-c1d verify pass): pages that entered the
+    stamp with a pre-existing govos link AND a generator-emitted one had BOTH rewritten to the same
+    correct tag by re.sub — 95 live pages shipped with two identical <link>s. Dedupe after stamping."""
+    first = html.find(tag)
+    if first == -1:
+        return html
+    head = html[:first + len(tag)]
+    tail = html[first + len(tag):].replace(tag + '\n', '').replace(tag, '')
+    return head + tail
+
 def inject_css(html, prefix):
     correct = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
     # Replace any existing govos.css link (any relative prefix) with the correct depth-aware one.
     # Bug fixed 2026-07-14: old code skipped if 'govos.css' present — never corrected wrong prefix.
     fixed = re.sub(r'<link\b[^>]+href="[^"]*govos\.css"[^>]*/?>',  correct, html)
-    if fixed != html:
-        return fixed
-    return html.replace('</head>', correct + '\n</head>', 1)
+    if fixed == html:
+        fixed = html.replace('</head>', correct + '\n</head>', 1)
+    return _dedupe(fixed, correct)
 
 def inject_js(html, prefix):
     correct = '<script src="{}govos-shell.js" defer></script>'.format(prefix)
     # Replace any existing govos-shell.js script (any relative prefix) with the correct one.
     fixed = re.sub(r'<script\b[^>]+src="[^"]*govos-shell\.js"[^>]*></script>', correct, html)
-    if fixed != html:
-        return fixed
-    return html.replace('</body>', correct + '\n</body>', 1)
+    if fixed == html:
+        fixed = html.replace('</body>', correct + '\n</body>', 1)
+    return _dedupe(fixed, correct)
 
 def inject_tenant_switcher(html, tenant_id):
     """
