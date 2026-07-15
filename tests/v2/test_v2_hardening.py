@@ -51,6 +51,11 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
         services_pkg = sys.modules.get('services')
         if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
             delattr(services_pkg, 'service_metadata')
+        # Evict auth submodules that capture AUTH_DB_PATH at import time so each dynamic load
+        # picks up the fresh AUTH_DB_PATH from env_overrides rather than a stale cached path
+        # (which may point to a TemporaryDirectory that was already cleaned up).
+        for _mod in ('services.auth.app.passkeys', 'services.auth.app.magiclinks'):
+            sys.modules.pop(_mod, None)
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)

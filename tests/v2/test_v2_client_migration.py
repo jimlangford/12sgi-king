@@ -31,6 +31,15 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
                 os.environ.pop(key, None)
         if env_overrides:
             os.environ.update(env_overrides)
+        # Evict modules that capture env vars (DB paths, secrets) at import time so each
+        # dynamic load picks up fresh values rather than a stale cached state (e.g. a path
+        # pointing to a TemporaryDirectory that has already been cleaned up).
+        sys.modules.pop('services.service_metadata', None)
+        services_pkg = sys.modules.get('services')
+        if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
+            delattr(services_pkg, 'service_metadata')
+        for _mod in ('services.auth.app.passkeys', 'services.auth.app.magiclinks'):
+            sys.modules.pop(_mod, None)
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
