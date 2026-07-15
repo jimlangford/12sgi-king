@@ -20,6 +20,27 @@ KNOWN_SCOPES = {
     "gpu:read",
     "ops:owner",
     "auth:introspect",
+    # AI Gateway domain scopes
+    "gateway:chat",
+    "records:read",
+    "records:write",
+    "projects:read",
+    "projects:write",
+    "workboard:read",
+    "workboard:write",
+    "storyboards:read",
+    "storyboards:write",
+    "storyboards:archive",
+    "publishing:read",
+    "publishing:publish",
+    "graph:read",
+    "civic:read",
+    "civic:write",
+    "game:read",
+    "game:write",
+    "actions:approve",
+    "actions:reject",
+    "audit:read",
 }
 ALLOWED_WILDCARD_SCOPES = {
     scope.strip()
