@@ -176,14 +176,18 @@ class TestWorkboardEventEmission(unittest.TestCase):
         self.assertEqual(events[0]["producer"], "v2_workboard")
 
     def test_approve_workboard_job_fires_approved_event(self):
-        entry = self.wb.emit_workboard_job(
-            source="test",
-            action="approve-me",
-            event="evt",
-            lane="creative",
-            status="pending-approval",
-            log_path=self._log_path,
-        )
+        import unittest.mock as _mock
+        # Patch auto_approve_enabled so emit_workboard_job doesn't pre-fire
+        # an approval event before the explicit approve call under test.
+        with _mock.patch.object(self.wb, "auto_approve_enabled", return_value=False):
+            entry = self.wb.emit_workboard_job(
+                source="test",
+                action="approve-me",
+                event="evt",
+                lane="creative",
+                status="pending-approval",
+                log_path=self._log_path,
+            )
         self.wb.approve_workboard_job(
             entry["job"]["id"],
             approver="owner",

@@ -342,7 +342,7 @@ class TestDeployWorkflowHardening(unittest.TestCase):
         self.assertIn("docker compose -f docker-compose.v2.yml config", text)
         self.assertLess(
             text.index("- name: Validate V2 compose plan and print inventory"),
-            text.index("- name: Restart V2 Docker services"),
+            text.index("- name: Deploy V2 Docker services"),
         )
 
     def test_workflow_declares_explicit_service_inventory_and_ports(self):
