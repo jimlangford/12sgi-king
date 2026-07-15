@@ -38,6 +38,7 @@ x-common-env: &common-env
   NEO4J_PASSWORD: ${NEO4J_PASSWORD:-dev-only-neo4j-password-change-me}
   NEO4J_DATABASE: ${NEO4J_DATABASE:-neo4j}
   NEO4J_REQUIRED_FOR_RENDER_DISPATCH: ${NEO4J_REQUIRED_FOR_RENDER_DISPATCH:-false}
+  SOVEREIGN_LOCAL_ONLY: ${SOVEREIGN_LOCAL_ONLY:-true}
 
 services:
   auth:
@@ -100,6 +101,7 @@ services:
     environment:
       <<: *common-env
       STORAGE_DB_PATH: /data/db/govos_v2_storage.db
+      STORAGE_REFERENCE_POLICY: ${STORAGE_REFERENCE_POLICY:-DROPBOX_OR_LOCAL_PATH}
     volumes:
       - v2-db:/data/db
       - v2-dispatch:/data/dispatch
@@ -133,6 +135,7 @@ services:
   neo4j:
     image: neo4j:5-community
     environment:
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
       NEO4J_AUTH: "${NEO4J_USERNAME:-neo4j}/${NEO4J_PASSWORD:-dev-only-neo4j-password-change-me}"
       NEO4J_server_http_listen__address: 0.0.0.0:7474
       NEO4J_server_bolt_listen__address: 0.0.0.0:7687
