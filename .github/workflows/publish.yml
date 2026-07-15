@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}        # run on demand from the Actions tab
   push:
     branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", "narratives.json", "seed_reports/**", "king_public_src/**", "go.html", "platform.html", "packages.json", "tenant_registry.json", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", "civic_shell.py", "tenant_directory.py", "blog_engine.py", "blog_posts_seed.json", ".github/workflows/**" ]
+    paths: [ "watchers/**", "build_site.py", "rebuild_site.py", "govos.css", "govos-shell.js", "narratives.json", "seed_reports/**", "king_public_src/**", "go.html", "platform.html", "packages.json", "tenant_registry.json", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", "civic_shell.py", "tenant_directory.py", "blog_engine.py", "blog_posts_seed.json", ".github/workflows/**" ]
 
 permissions:
   contents: read

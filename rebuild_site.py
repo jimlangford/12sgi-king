@@ -22,7 +22,11 @@ import sys
 import argparse
 import pathlib
 
-SITE_DIR = pathlib.Path(__file__).parent
+# SITE_DIR must point at the built site/ directory so asset_prefix() calculates depth
+# relative to site/ (depth-0 for root pages, depth-1 for king/, depth-2 for king/civic/).
+# Bug fixed 2026-07-14: was parent (repo root), making every root page get depth=1 → "../"
+# prefix → looked for govos-shell.js one level above site/, where it doesn't exist.
+SITE_DIR = pathlib.Path(__file__).parent / "site"
 
 # ── Patterns to strip (old inline blobs) ──────────────────────────────────────
 
@@ -88,17 +92,21 @@ def asset_prefix(html_path):
     return '../' * depth
 
 def inject_css(html, prefix):
-    tag = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
-    if 'govos.css' in html:
-        return html
-    # Insert before </head>
-    return html.replace('</head>', tag + '\n</head>', 1)
+    correct = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
+    # Replace any existing govos.css link (any relative prefix) with the correct depth-aware one.
+    # Bug fixed 2026-07-14: old code skipped if 'govos.css' present — never corrected wrong prefix.
+    fixed = re.sub(r'<link\b[^>]+href="[^"]*govos\.css"[^>]*/?>',  correct, html)
+    if fixed != html:
+        return fixed
+    return html.replace('</head>', correct + '\n</head>', 1)
 
 def inject_js(html, prefix):
-    tag = '<script src="{}govos-shell.js" defer></script>'.format(prefix)
-    if 'govos-shell.js' in html:
-        return html
-    return html.replace('</body>', tag + '\n</body>', 1)
+    correct = '<script src="{}govos-shell.js" defer></script>'.format(prefix)
+    # Replace any existing govos-shell.js script (any relative prefix) with the correct one.
+    fixed = re.sub(r'<script\b[^>]+src="[^"]*govos-shell\.js"[^>]*></script>', correct, html)
+    if fixed != html:
+        return fixed
+    return html.replace('</body>', correct + '\n</body>', 1)
 
 def inject_tenant_switcher(html, tenant_id):
     """
@@ -197,8 +205,18 @@ def main():
 
     verbose = not args.quiet
 
+    # ── site/-only guard (review 2026-07-14: latent clobber hazard) ──
+    # This script rewrites HTML in place. It must NEVER be able to touch anything outside the
+    # built site/ tree (an earlier revision globbed the repo root — 800+ non-site pages at risk).
+    site_dir = SITE_DIR.resolve()
+    if site_dir.name != 'site' or not site_dir.is_dir():
+        sys.exit(f'rebuild_site: refusing to run — SITE_DIR must be the built site/ directory (got {site_dir})')
+
     if args.file:
-        files = [SITE_DIR / args.file]
+        target = (SITE_DIR / args.file).resolve()
+        if site_dir not in target.parents:
+            sys.exit(f'rebuild_site: refusing --file outside site/: {target}')
+        files = [target]
     else:
         files = sorted(SITE_DIR.glob('**/*.html'))
         # Exclude git/cache dirs

@@ -1523,6 +1523,34 @@ Sources are linked on every page.</div>
         _rc = recolor_tree(SITE)
         print(f"  + recolor: Yale-blue civic palette applied to {_rc} html/css files (all tenants; data/JS untouched)")
 
+    with _lane("govos_shell_stamp"):
+        # [unify 2026-07-14] ONE builder ships the stamp. rebuild_site.py used to stamp site/ locally
+        # (shared govos.css + govos-shell.js injected, the repeated inline nav/CSS/JS blobs stripped)
+        # AFTER a build — but this builder rmtree-wipes site/ at the top of main(), so every CI deploy
+        # rebuilt UNSTAMPED pages and the stamping never reached 12sgi.com (review finding 2026-07-14).
+        # Fix: the stamp is now a build lane. The canonical shared assets live at the REPO ROOT
+        # (govos.css / govos-shell.js — site/ copies are wiped every run) and are copied in first;
+        # if either is missing we raise BEFORE stamping, so a failed lane leaves the self-contained
+        # inline pages intact (never links to a css that isn't there). Runs before the king-local
+        # mirror so the private superset inherits the stamped pages too (private-first).
+        _here = os.path.dirname(os.path.abspath(__file__))
+        for _an in ("govos.css", "govos-shell.js"):
+            _asrc = os.path.join(_here, _an)
+            if not os.path.exists(_asrc):
+                raise RuntimeError("canonical %s missing at repo root - stamp skipped, pages keep inline blobs" % _an)
+            shutil.copy(_asrc, os.path.join(SITE, _an))
+        import pathlib as _pl
+        import rebuild_site as _rs
+        _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
+        _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
+                   if ".git" not in p.parts and "__pycache__" not in p.parts]
+        _stamped = sum(1 for _p in _sfiles if _rs.rebuild_page(_p, verbose=False))
+        # maui.html mirrors tenant_hi-maui.html byte-for-byte (one-writer rule, 2026-07-09) — re-mirror
+        # AFTER the stamp so identity is guaranteed by construction, not by stamp determinism.
+        build_maui_nav_page()
+        print("  + govos shell stamp: %d/%d pages carry shared govos.css + govos-shell.js (inline blobs stripped)"
+              % (_stamped, len(_sfiles)))
+
     with _lane("king_local_mirror"):
         # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
         # of the public build — same civic dashboards + data, plus the owner-only surfaces it
