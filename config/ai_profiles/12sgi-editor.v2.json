@@ -1,0 +1,13 @@
+{
+  "profile_id": "12sgi-editor",
+  "base_model": "local-reasoning-model",
+  "system_policy": "editor-v1",
+  "allowed_tools": [
+    "animation.*", "editor.*", "storyboard.list", "storyboard.get",
+    "fcp.*", "logic.*"
+  ],
+  "knowledge_scopes": ["media", "active-project"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["publish.release"]
+}

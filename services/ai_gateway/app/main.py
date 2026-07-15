@@ -100,7 +100,15 @@ _DEFAULT_PROFILES: list[dict] = [
         "profile_id": "12sgi-owner",
         "base_model": "local-reasoning-model",
         "system_policy": "owner-v1",
-        "allowed_tools": ["*"],
+        # Explicit domain list — forces new admin domains to be deliberately
+        # admitted rather than becoming immediately available via wildcard.
+        "allowed_tools": [
+            "civic.*", "studio.*", "writing.*", "director.*",
+            "storyboard.*", "animation.*", "editor.*", "gpu.*",
+            "workboard.*", "records.*", "assets.*", "graph.*",
+            "documents.*", "storage.*", "ops.*", "publish.*",
+            "fcp.*", "logic.*", "game.*",
+        ],
         "knowledge_scopes": ["all"],
         "max_context_tokens": 8192,
         "gpu_priority": "interactive-high",
@@ -1294,4 +1302,10 @@ def health():
 @app.on_event("startup")
 def _startup():
     init_db()
-    _log.info("AI Gateway started — tool registry: %s", TOOL_REGISTRY_PATH)
+    tools = _load_tool_registry()
+    if not tools:
+        raise RuntimeError(
+            "AI Gateway cannot start without a valid non-empty tool registry. "
+            f"Registry path: {TOOL_REGISTRY_PATH}"
+        )
+    _log.info("AI Gateway started — tool registry: %s (%d tools)", TOOL_REGISTRY_PATH, len(tools))

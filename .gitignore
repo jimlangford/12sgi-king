@@ -10,6 +10,9 @@ config/*
 !config/canonical_job_contract.v2.json
 !config/gpu_profiles/
 !config/gpu_profiles/rtx4070_8gb.json
+!config/ai_tool_registry.v2.json
+!config/ai_profiles/
+!config/ai_profiles/*.json
 
 # generated locally (CI builds it fresh; deploy uploads it)
 site/

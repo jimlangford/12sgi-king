@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-records",
+  "base_model": "local-reasoning-model",
+  "system_policy": "records-v1",
+  "allowed_tools": ["records.*", "assets.*", "graph.*", "documents.*"],
+  "knowledge_scopes": ["active-tenant"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["publish.release", "ops.propose_repair"]
+}

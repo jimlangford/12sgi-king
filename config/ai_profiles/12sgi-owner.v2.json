@@ -1,0 +1,30 @@
+{
+  "profile_id": "12sgi-owner",
+  "base_model": "local-reasoning-model",
+  "system_policy": "owner-v1",
+  "allowed_tools": [
+    "civic.*",
+    "studio.*",
+    "writing.*",
+    "director.*",
+    "storyboard.*",
+    "animation.*",
+    "editor.*",
+    "gpu.*",
+    "workboard.*",
+    "records.*",
+    "assets.*",
+    "graph.*",
+    "documents.*",
+    "storage.*",
+    "ops.*",
+    "publish.*",
+    "fcp.*",
+    "logic.*",
+    "game.*"
+  ],
+  "knowledge_scopes": ["all"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-high",
+  "forbidden_actions": []
+}
