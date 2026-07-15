@@ -1,7 +1,7 @@
 name: Deploy v2 node to king-server (private, self-hosted)
 
 # PRIVATE — this workflow runs exclusively on the self-hosted runner installed on king-server
-# (Tailscale host 12sgianonymous.tail760750.ts.net).
+# (Tailscale host king.tail760750.ts.net).
 #
 # Security rules:
 #   - No SSH.  No rsync.  No inbound ports.  No Tailscale Funnel for SSH/Docker/Ollama.

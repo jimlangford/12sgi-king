@@ -29,7 +29,7 @@ def cfg():
         return json.load(open(CFG, encoding="utf-8"))
     except Exception:
         return {"mode": "tailscale",
-                "approve_base": "https://12sgianonymous.tail760750.ts.net/king",
+                "approve_base": "https://king.tail760750.ts.net/king",
                 "public_base": "https://12sgi.com", "owner_email": "jimlangford@me.com"}
 
 
@@ -39,7 +39,7 @@ def urls(c, item):
         b = c.get("public_base", "https://12sgi.com")
         return ("%s/approve.html?id=%s&t=%s&a=send" % (b, iid, tok),
                 "%s/approve.html?id=%s&t=%s&a=reject" % (b, iid, tok))
-    b = c.get("approve_base", "https://12sgianonymous.tail760750.ts.net/king")
+    b = c.get("approve_base", "https://king.tail760750.ts.net/king")
     return ("%s/approve?id=%s&t=%s" % (b, iid, tok),
             "%s/reject?id=%s&t=%s" % (b, iid, tok))
 

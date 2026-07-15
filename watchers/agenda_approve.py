@@ -35,7 +35,7 @@ FINALS  = os.path.join(ROOT, "finals", "shorts")
 DISPATCH= os.path.join(ROOT, "app", "server", "dispatch.py")
 PY      = sys.executable
 NW      = 0x08000000 if os.name == "nt" else 0
-TS_HOST = "https://12sgianonymous.tail760750.ts.net"
+TS_HOST = "https://king.tail760750.ts.net"
 
 
 # ---------------------------------------------------------------------------

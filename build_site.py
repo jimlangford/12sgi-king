@@ -194,6 +194,16 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                "money_behind_officials_hi-kauai.html", "money_behind_officials_hi-state.html",
                "money_kauai_shell.html", "minutes_hi-state.html",
                "audit_balance_nys.html", "federal_money_nys.html",
+               # maui_services.html — the "one front door" hub (2026-07-15): mirrors mauicounty.gov's
+               # service structure by LINKING OUT to the county's authoritative transactions (pay/permits/
+               # DMV/UIPA/jobs/alerts — we index, never clone) alongside our public-record + accountability
+               # pages. Closes the feature-parity gap the mauicounty.gov comparison surfaced.
+               "maui_services.html",
+               # who_paid_the_vote.html — AURORA·GOLD educational surface (2026-07-15): "who paid for the vote"
+               # taught at every reading level (keiki->analyst) over a ghosted celestial star map aligned to
+               # Wailuku (county seat) + Lahaina (Royal Capital 1820-1845). standalone-aurora = opts out of the
+               # govOS Georgia stamp; real money-graph data from Neo4j, sourced + question-framed.
+               "who_paid_the_vote.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
@@ -1064,12 +1074,19 @@ def main():
         for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
             src = mauios_src(rel)
             if os.path.exists(src):
-                with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
-                    _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
+                _raw = open(src, encoding="utf-8", errors="replace").read()
+                # A page marked `standalone-aurora` carries its OWN complete design (AURORA·GOLD) and must
+                # NOT receive the govOS civic nav / switcher / narrative / ʻōlelo injections, nor the
+                # govos.css stamp below — it is a self-contained surface with its own back-link.
+                if "standalone-aurora" in _raw[:400]:
+                    _h = _raw
+                else:
+                    _h = inject_nav(_raw, rel)
                     _h = inject_switcher(_h, rel)      # per-tenant report: choose a government switcher
                     _h = add_narrative(_h, rel)
                     _h = add_records_cta(_h, rel)
                     _h = add_olelo_notice(_h)
+                with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_h)
     with _lane("data_files"):
         _present_data = []
@@ -1651,12 +1668,22 @@ Sources are linked on every page.</div>
                    if ".git" not in p.parts and "__pycache__" not in p.parts]
         # ASSET dimension: give headless civic fragments a real <head>/<body> FIRST, so the stamp below
         # can inject the shared govos.css/govos-shell.js into them (else 93 pages ship an unstyled nav).
+        # standalone-aurora pages carry their own complete design and opt OUT of the shared shell entirely.
+        _standalone = set()
+        for _p in _sfiles:
+            try:
+                if "standalone-aurora" in _p.read_text(encoding="utf-8", errors="replace")[:400]:
+                    _standalone.add(_p)
+            except Exception:
+                pass
         _wrapped = 0
         for _p in _sfiles:
+            if _p in _standalone:
+                continue
             _rel = str(_p.relative_to(_rs.SITE_DIR)).replace("\\", "/")
             if _ensure_civic_document(_p, _rel):
                 _wrapped += 1
-        _changed = sum(1 for _p in _sfiles if _rs.rebuild_page(_p, verbose=False))
+        _changed = sum(1 for _p in _sfiles if _p not in _standalone and _rs.rebuild_page(_p, verbose=False))
         if _wrapped:
             print("  + wrapped %d headless civic fragment(s) into full documents (shared shell now reaches them)" % _wrapped)
         # maui.html mirrors tenant_hi-maui.html byte-for-byte (one-writer rule, 2026-07-09) — re-mirror
@@ -1771,7 +1798,7 @@ Sources are linked on every page.</div>
         # ABOVE, keeps the real ts.net for the owner). The :8443 funnel -> the public API base (or '#' until live);
         # the bare host -> 12sgi.com (the public King at /king exists there). Closes the go.html ts.net leak the
         # king/-only leak-gate didn't catch. NEVER touches king-local (private).
-        _TSNET = "12sgianonymous.tail760750.ts.net"
+        _TSNET = "king.tail760750.ts.net"
         import glob as _glob
         _n = 0
         for _h in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):

@@ -248,7 +248,7 @@ def main():
 
     out = generate()
     if out:
-        print(f"Blog live at: https://12sgianonymous.tail760750.ts.net/king/blog")
+        print(f"Blog live at: https://king.tail760750.ts.net/king/blog")
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ Integrations:
   - Tenant service: POST /api/v2/civic-signals (new) — store public civic events
   - Metrics API: GET /api/v2/civic/public-metrics (new) — live dashboard data
   - Element Lotus: element_lotus_public/civic.html auto-renders (updated)
-  - Tailscale: generates URLs like https://12sgianonymous.tail760750.ts.net/civic/...
+  - Tailscale: generates URLs like https://king.tail760750.ts.net/civic/...
   - Event bus: publishes civic.event.rendered, civic.metrics.updated
 
 Run:
@@ -37,7 +37,7 @@ Environment:
   TENANT_SERVICE_URL     — default http://tenant:8102
   CIVIC_CALENDAR_QUEUE   — default config/civic_calendar_queue.json
   DISPATCH_LOG           — default /data/dispatch/govos_v2_dispatch.jsonl
-  TAILSCALE_HOST         — default 12sgianonymous.tail760750.ts.net
+  TAILSCALE_HOST         — default king.tail760750.ts.net
   OWNER_EMAIL            — for Tailscale link notifications
 """
 
@@ -56,7 +56,7 @@ from typing import Optional
 TENANT_SERVICE_URL = os.environ.get("TENANT_SERVICE_URL", "http://tenant:8102")
 CIVIC_CALENDAR_QUEUE = os.environ.get("CIVIC_CALENDAR_QUEUE", "config/civic_calendar_queue.json")
 DISPATCH_LOG = os.environ.get("WORKBOARD_DISPATCH_LOG", "/data/dispatch/govos_v2_dispatch.jsonl")
-TAILSCALE_HOST = os.environ.get("TAILSCALE_HOST", "12sgianonymous.tail760750.ts.net")
+TAILSCALE_HOST = os.environ.get("TAILSCALE_HOST", "king.tail760750.ts.net")
 INTERNAL_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
 TIMEOUT = 10
 
@@ -205,9 +205,9 @@ def generate_tailscale_urls(signals: dict) -> list[str]:
     Generate Tailscale URLs for newly rendered civic pages.
 
     Returns list of URLs like:
-    - https://12sgianonymous.tail760750.ts.net/civic/
-    - https://12sgianonymous.tail760750.ts.net/civic/meetings/
-    - https://12sgianonymous.tail760750.ts.net/civic/deadlines/
+    - https://king.tail760750.ts.net/civic/
+    - https://king.tail760750.ts.net/civic/meetings/
+    - https://king.tail760750.ts.net/civic/deadlines/
     """
     urls = []
 
