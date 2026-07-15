@@ -30,7 +30,13 @@ TD_CSS = _tdir.CSS
 # have their own yet, never fabricated.
 TENANT_TOKENS = {
     "hi-maui": ["maui"], "hi-state": ["state"], "hi-hawaii": ["hawaii"],
-    "hi-kauai": ["kauai"], "hi-honolulu": ["honolulu"], "ny": ["nyc", "nys"],
+    "hi-kauai": ["kauai"], "hi-honolulu": ["honolulu"],
+    # was keyed "ny" -- DEAD, since watchers/tenants.json's real tenant id for New York is "nyc"
+    # (single combined "New York (NYC + NY State)" entry) -- main() only ever calls gen()/
+    # directory_sections() with tid="nyc", so this token list never matched, and officials_nyc.html/
+    # officials_nys.html/federal_money_nyc.html sat un-discovered (code_audit/orphan_check orphans).
+    # Fixed 2026-07-15 (audit-quad-os, Beta-3 G-HEAL closure, second pass).
+    "nyc": ["nyc", "nys"],
 }
 CURATED_EXTRA = {
     "hi-maui": [
@@ -47,6 +53,16 @@ CURATED_EXTRA = {
         ("lobby_money_watch.html", "Lobby + money", "Money × votes"),
         ("parity_check.html", "Pairs that no longer answer", "Money × votes"),
         ("audit_balance.html", "Audit balance", "Audit & oversight"),
+    ],
+    # minutes_ny.html / govos_audit_ny.html: built under tenant_depth.py's OWN "ny" id convention
+    # (its cell_status()/FILES dict use a single unified "ny" tenant, separate from tenants.json's
+    # "nyc" id used here) -- neither filename carries the "nyc"/"nys" token so the auto-discovery
+    # glob above can't find them. Curated in directly rather than renaming the built files or
+    # reconciling the two id schemes (higher-risk, out of scope for this closure).
+    # Added 2026-07-15 (audit-quad-os, Beta-3 G-HEAL closure, second pass).
+    "nyc": [
+        ("minutes_ny.html", "Meeting minutes", "The record"),
+        ("govos_audit_ny.html", "Audit balance", "Audit & oversight"),
     ],
 }
 # (needle-in-filename, category label) tried in order, first match wins — same rules for every tenant.

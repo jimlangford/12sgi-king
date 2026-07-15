@@ -64,9 +64,15 @@ FILES = {
     "hi-honolulu": {"govern":[], "money":["statewide_money_patterns.html"], "contracts":["contracts_honolulu.html"],
                     "federal":["federal_money_honolulu.html"], "crossref":["parity_honolulu.html"],
                     "agendas":["agendas_honolulu.html"], "charter":["crosswalk_honolulu.html"], "audit":["audit_balance.html"]},
-    "ny":          {"govern":[], "money":["money_nyc.html"], "contracts":["contracts_nyc.html","contracts_nys.html"],
-                    "federal":[], "crossref":["parity_nyc.html"], "agendas":["agendas_nyc.html"],
-                    "charter":[], "audit":[]},
+    # govern/federal/audit were [] though officials_nyc.html/officials_nys.html/federal_money_nyc.html/
+    # govos_audit_ny.html all exist and are real (>700 bytes, not stubs) -- built but never wired in,
+    # so status_of()/cell_status() scored these dimensions "gap" and the audit-profile card showed less
+    # coverage than actually exists. Fixed 2026-07-15 (audit-quad-os, Beta-3 G-HEAL closure, second pass).
+    "ny":          {"govern":["officials_nyc.html","officials_nys.html"], "money":["money_nyc.html"],
+                    "contracts":["contracts_nyc.html","contracts_nys.html"],
+                    "federal":["federal_money_nyc.html"], "crossref":["parity_nyc.html"],
+                    "agendas":["agendas_nyc.html"],
+                    "charter":[], "audit":["govos_audit_ny.html"]},
 }
 NAMES = {"hi-maui":"Maui County","hi-state":"State of Hawaiʻi","hi-hawaii":"Hawaiʻi County",
          "hi-kauai":"Kauaʻi County","hi-honolulu":"Honolulu","ny":"New York"}
