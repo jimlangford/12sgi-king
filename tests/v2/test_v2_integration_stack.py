@@ -330,6 +330,60 @@ class TestV2IntegrationStack(unittest.TestCase):
         self.assertEqual(status, 404)
         self.assertEqual(body['detail']['error']['code'], 'resource_not_found')
 
+    def test_case_status_update_emits_event(self):
+        token = self._create_session(subject="u-status", tenant_id="tenant-status", scopes=["tenant:write", "tenant:read"])
+        auth_headers = {'Authorization': 'Bearer ' + token}
+
+        status, created = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-status', 'title': 'Status update test case', 'status': 'open'},
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 201)
+        case_id = created['id']
+        self.assertEqual(created['status'], 'open')
+
+        status, updated = http_json(
+            'PATCH',
+            f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
+            {'status': 'in_progress', 'notes': 'Moving to active work'},
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(updated['status'], 'in_progress')
+        self.assertEqual(updated['notes'], 'Moving to active work')
+
+        status, final = http_json(
+            'PATCH',
+            f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
+            {'status': 'closed'},
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(final['status'], 'closed')
+
+    def test_case_status_update_cross_tenant_is_blocked(self):
+        owner_token = self._create_session(subject="u-owner-s", tenant_id="tenant-s", scopes=["tenant:write"])
+        other_token = self._create_session(subject="u-other-s", tenant_id="tenant-other-s", scopes=["tenant:write", "tenant:read"])
+
+        status, created = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-s', 'title': 'Cross-tenant status test'},
+            headers={'Authorization': 'Bearer ' + owner_token},
+        )
+        self.assertEqual(status, 201)
+
+        status, body = http_json(
+            'PATCH',
+            f"{self.urls['tenant']}/api/v2/cases/{created['id']}/status",
+            {'status': 'closed'},
+            headers={'Authorization': 'Bearer ' + other_token},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body['detail']['error']['code'], 'forbidden')
+
     def test_cross_tenant_access_is_blocked(self):
         tenant_a_token = self._create_session(subject="u-a", tenant_id="tenant-a", scopes=["tenant:write", "tenant:read"])
         tenant_b_token = self._create_session(subject="u-b", tenant_id="tenant-b", scopes=["tenant:read"])

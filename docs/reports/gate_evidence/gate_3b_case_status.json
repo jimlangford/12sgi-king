@@ -1,0 +1,48 @@
+{
+  "gate": "3b",
+  "title": "Case Status Hardening",
+  "file": "services/tenant/app/main.py",
+  "generated": "2026-07-15",
+  "status": "PASS",
+  "checks": {
+    "legal_transitions": {
+      "result": "IMPLEMENTED",
+      "detail": "VALID_TRANSITIONS graph enforces allowed moves per status. Illegal transitions return HTTP 409 with allowed_transitions in error body. Silently-coercing unknown status to 'open' removed; unknown status now returns HTTP 422."
+    },
+    "required_metadata": {
+      "result": "IMPLEMENTED",
+      "detail": "CaseStatusUpdateRequest now requires actor (str), reason (str), and accepts optional correlation_id (str|None). All three are propagated to the case_status_events audit table and to the published platform event."
+    },
+    "idempotency": {
+      "result": "IMPLEMENTED",
+      "detail": "Same-status PATCH returns HTTP 200 with current state immediately, writes no DB row, and emits no platform event — making reruns safe."
+    },
+    "duplicate_event_prevention": {
+      "result": "IMPLEMENTED",
+      "detail": "case_status_events table (append-only, one row per accepted transition) prevents duplicate audit rows. The idempotency guard upstream ensures the event-bus publish is only called on actual status changes."
+    },
+    "audit_table": {
+      "result": "IMPLEMENTED",
+      "detail": "case_status_events schema: id, case_id, from_status, to_status, actor, reason, correlation_id, notes, occurred_at. Added to init_db() via CREATE TABLE IF NOT EXISTS."
+    }
+  },
+  "tests": {
+    "file": "tests/test_release_pipeline.py",
+    "class": "TestCaseStatusUpdateModel",
+    "count": 6,
+    "result": "ALL PASS",
+    "cases": [
+      "test_case_status_set_contains_expected_statuses",
+      "test_case_status_update_request_requires_actor_and_reason",
+      "test_case_status_update_request_accepts_correlation_id",
+      "test_valid_transitions_graph_covers_all_statuses",
+      "test_valid_transitions_targets_are_subsets_of_case_statuses",
+      "test_patch_route_registered_on_app"
+    ]
+  },
+  "rollback": {
+    "instructions": "The case_status_events table is additive (IF NOT EXISTS). Rolling back the code change removes transition enforcement and metadata requirements but does not drop the table or lose existing audit rows. DB migration is backward-compatible."
+  },
+  "owner_approval_required": false,
+  "notes": "Gate 3b code changes are complete. Runtime evidence (live HTTP call with timestamped response) requires a running tenant service and is a pending owner action (see DISPATCH_LOG.md entry 2026-07-15 A-F)."
+}

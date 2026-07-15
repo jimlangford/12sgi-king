@@ -1,0 +1,57 @@
+{
+  "gate": "7",
+  "title": "Studio Release — Released ≠ Public, Rollback Metadata, Approval Gate",
+  "file": "watchers/studio_project.py",
+  "generated": "2026-07-15",
+  "status": "PASS",
+  "checks": {
+    "released_not_equal_public": {
+      "result": "IMPLEMENTED",
+      "detail": "Both the platform event payload and the workboard job payload carry is_public=False and publication_requires_approval=True. The docstring explicitly documents RELEASE ≠ PUBLIC. No code path transitions a project to public without owner action."
+    },
+    "owner_approval_required": {
+      "result": "VERIFIED",
+      "detail": "Social announcement uses lane='output' in emit_workboard_job. The output lane requires approve_workboard_job() before any post leaves the system (v2_workboard.py pending_approvals() contract). Auto-approval is off by default (owner_policy.json)."
+    },
+    "previous_status_preserved": {
+      "result": "IMPLEMENTED",
+      "detail": "release_project() reads the store before calling update_project_status() and captures previous_status from the existing project record. Both the platform event and workboard job carry previous_status."
+    },
+    "rollback_metadata": {
+      "result": "IMPLEMENTED",
+      "detail": "rollback_metadata dict: {rollback_action: 'update_project_status', rollback_target_status: <previous_status>, rollback_note: 'Call update_project_status(id, previous_status) to revert'}. Propagated into both event and job payloads."
+    },
+    "social_output_as_draft": {
+      "result": "VERIFIED",
+      "detail": "Workboard job is queued in lane='output' with is_public=False. The output lane is the review gate — no content posts without pending_approvals() clearance and approve_workboard_job()."
+    }
+  },
+  "tests": {
+    "file": "tests/test_release_pipeline.py",
+    "class": "TestReleaseProject",
+    "count": 10,
+    "result": "ALL PASS",
+    "cases": [
+      "test_release_sets_status_to_released",
+      "test_release_returns_none_for_unknown_project",
+      "test_release_emits_platform_event",
+      "test_release_queues_output_workboard_job",
+      "test_release_updates_production_status_json",
+      "test_release_generates_default_caption_when_none_given",
+      "test_released_is_not_automatically_public",
+      "test_release_preserves_previous_status",
+      "test_release_includes_rollback_metadata",
+      "test_social_output_stays_in_output_lane_as_draft"
+    ]
+  },
+  "deferred": {
+    "automated_studio_releases": "DEFERRED — release_project() queues a draft. Nothing is posted without owner approve_workboard_job() call.",
+    "sage_citizen_accounts": "DEFERRED — out of v1 scope."
+  },
+  "rollback": {
+    "instructions": "To roll back a released project: call update_project_status(project_id, previous_status) using the rollback_target_status from the platform event or workboard job payload. The workboard output-lane job can be rejected via reject_workboard_job() to prevent social posting."
+  },
+  "owner_approval_required": true,
+  "owner_action": "For any released project to become publicly visible, the owner must call approve_workboard_job(job_id) on the queued output-lane job, or use the Naga console pending_approvals panel.",
+  "notes": "Gate 7 code hardening complete. Runtime evidence (actual release of a project with approval flow end-to-end) requires king-server with workboard running. That is pending owner action (see DISPATCH_LOG.md A — deploy workflow enable)."
+}
