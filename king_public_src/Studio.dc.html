@@ -31,6 +31,20 @@
     <p style="margin:0 auto; max-width:640px; font-size:12.5px; color:var(--codex-mut,#9fb0c0);">Writing Room → Director → Kandinsky Storyboard → Continuity → LTX / Kandinsky Animation → Editor → FCP → Logic → Game</p>
   </div>
 
+  <!-- ── Project selector bar ── -->
+  <div style="max-width:1100px; margin:0 auto 20px; padding:12px 16px; background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--codex-mut,#9fb0c0); flex-shrink:0;">Project:</span>
+    <select id="studio-project-select" onchange="onStudioProjectChange(this.value)"
+      style="flex:1; min-width:160px; max-width:360px; font-family:inherit; font-size:12px; padding:5px 8px; background:var(--codex-backdrop,#0a0e14); color:var(--codex-ink,#eaf1f5); border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; cursor:pointer;">
+      <option value="">— select project —</option>
+    </select>
+    <button onclick="openNewProjectDialog()"
+      style="font:inherit; font-size:11px; padding:5px 12px; border:1px solid var(--codex-gold,#d9b24c); border-radius:6px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer; white-space:nowrap;">+ New Project</button>
+    <span id="studio-active-project-badge" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.4px; text-transform:uppercase; background:rgba(217,178,76,0.12); color:var(--codex-gold,#d9b24c); border:1px solid rgba(217,178,76,0.3); border-radius:20px; padding:2px 10px;"></span>
+    <a id="studio-timeline-link" href="#" onclick="openTimeline(); return false;"
+      style="display:none; margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.4px; text-transform:uppercase; color:var(--codex-sea-2,#5fc0d8); text-decoration:none;">Timeline ↗</a>
+  </div>
+
   <!-- Department tabs -->
   <div style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:22px;">
     <sc-for list="{{ deptTabs }}" as="t">
@@ -70,6 +84,7 @@
         </sc-for>
       </div>
       <button onClick="{{ newScript }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ New Script</button>
+      <button onclick="openRecordsForDept('writing')" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:8px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer; margin-left:8px;">Records ↗</button>
     </div>
   </sc-if>
 
@@ -108,6 +123,7 @@
           </div>
         </sc-for>
       </div>
+      <button onclick="openRecordsForDept('storyboard')" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:8px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer;">Records ↗</button>
     </div>
   </sc-if>
 
@@ -133,6 +149,7 @@
         </sc-for>
       </div>
       <button onClick="{{ newTimeline }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ Create Timeline</button>
+      <button onclick="openRecordsForDept('fcp')" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:8px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer; margin-left:8px;">Records ↗</button>
     </div>
   </sc-if>
 
@@ -159,6 +176,7 @@
         </sc-for>
       </div>
       <button onClick="{{ newSession }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ Create Session</button>
+      <button onclick="openRecordsForDept('logic')" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:8px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer; margin-left:8px;">Records ↗</button>
     </div>
   </sc-if>
 
@@ -184,6 +202,7 @@
         </sc-for>
       </div>
       <button onClick="{{ newGame }}" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.1); color:var(--codex-gold,#d9b24c); cursor:pointer;">+ New Game Project</button>
+      <button onclick="openRecordsForDept('game')" style="font:inherit; font-size:12px; padding:8px 18px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:8px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer; margin-left:8px;">Records ↗</button>
     </div>
   </sc-if>
 
@@ -201,13 +220,140 @@
 // PRIVATE surface — not published to public site
 // All API calls go to the local studio-assets server (127.0.0.1:8108 / Tailscale)
 
-const STUDIO_BASE = (typeof window !== 'undefined' && window.STUDIO_API_BASE) || 'http://127.0.0.1:8108';
+const STUDIO_BASE   = (typeof window !== 'undefined' && window.STUDIO_API_BASE) || 'http://127.0.0.1:8108';
+const OWNER_NODE    = (typeof window !== 'undefined' && window.OWNER_NODE_BASE) || 'http://127.0.0.1:8088';
+const RECORDS_URL   = (typeof window !== 'undefined' && window.RECORDS_URL) || 'Records.dc.html';
 
 function studioFetch(path, opts) {
   const token = (typeof localStorage !== 'undefined' && localStorage.getItem('king.ownerToken')) || '';
   const headers = Object.assign({ 'Content-Type': 'application/json' }, opts && opts.headers || {});
   if (token) headers['Authorization'] = 'Bearer ' + token;
   return fetch(STUDIO_BASE + path, Object.assign({}, opts, { headers }));
+}
+
+function ownerFetch(path, opts) {
+  const token = (typeof localStorage !== 'undefined' && localStorage.getItem('king.ownerToken')) || '';
+  const headers = Object.assign({ 'Content-Type': 'application/json' }, opts && opts.headers || {});
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  return fetch(OWNER_NODE + path, Object.assign({}, opts, { headers }));
+}
+
+// ── Project Brain ─────────────────────────────────────────────────────────────
+// Active project is persisted to localStorage as 'king.activeProject'
+// so it survives panel switches without a round-trip.
+
+function _getActiveProject() {
+  try {
+    const raw = localStorage.getItem('king.activeProject');
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function _setActiveProject(project) {
+  try {
+    if (project) {
+      localStorage.setItem('king.activeProject', JSON.stringify(project));
+    } else {
+      localStorage.removeItem('king.activeProject');
+    }
+  } catch(e) {}
+}
+
+function onStudioProjectChange(project_id) {
+  if (!project_id) {
+    _setActiveProject(null);
+    _updateProjectBadge(null);
+    return;
+  }
+  ownerFetch('/studio/projects').then(r => r.json()).then(data => {
+    const found = (data.projects || []).find(p => p.project_id === project_id);
+    if (found) {
+      _setActiveProject(found);
+      _updateProjectBadge(found);
+    }
+  }).catch(() => {});
+}
+
+function _updateProjectBadge(project) {
+  const badge = document.getElementById('studio-active-project-badge');
+  const link  = document.getElementById('studio-timeline-link');
+  if (badge) {
+    if (project) {
+      badge.style.display = 'inline-block';
+      badge.textContent   = project.title + ' · ' + (project.type || 'Film');
+    } else {
+      badge.style.display = 'none';
+      badge.textContent   = '';
+    }
+  }
+  if (link) {
+    link.style.display = project ? 'inline' : 'none';
+  }
+}
+
+function openNewProjectDialog() {
+  const title = window.prompt('Project title:');
+  if (!title || !title.trim()) return;
+  const typeOpts = ['Film', 'Music', 'Game', 'Civic', 'Architecture', 'Education'];
+  const typeStr = window.prompt('Project type (' + typeOpts.join('/') + '):', 'Film');
+  const ptype = typeOpts.includes(typeStr) ? typeStr : 'Film';
+  ownerFetch('/studio/projects', {
+    method: 'POST',
+    body: JSON.stringify({ title: title.trim(), type: ptype, status: 'active' }),
+  }).then(r => r.json()).then(data => {
+    if (data && data.project) {
+      _setActiveProject(data.project);
+      loadStudioProjects();
+    }
+  }).catch(e => {
+    window.alert('Could not create project (owner node unreachable): ' + e);
+  });
+}
+
+function openTimeline() {
+  const p = _getActiveProject();
+  if (!p) { window.alert('Select a project first.'); return; }
+  window.location.href = 'index.html#timeline';
+}
+
+function openRecordsForDept(dept) {
+  // Navigate to Records.dc.html with the dept context pre-selected.
+  // The project_id is passed so Records can include it in the system prompt.
+  const p = _getActiveProject();
+  const params = new URLSearchParams({ dept });
+  if (p) params.set('project_id', p.project_id);
+  window.location.href = RECORDS_URL + '?' + params.toString();
+}
+
+function loadStudioProjects() {
+  ownerFetch('/studio/projects').then(r => r.json()).then(data => {
+    const sel = document.getElementById('studio-project-select');
+    if (!sel) return;
+    const active = _getActiveProject();
+    const projects = data.projects || [];
+    sel.innerHTML = '<option value="">— select project —</option>';
+    projects.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.project_id;
+      opt.textContent = p.title + ' (' + (p.type || 'Film') + ')';
+      if (active && active.project_id === p.project_id) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    if (active && projects.some(p => p.project_id === active.project_id)) {
+      _updateProjectBadge(active);
+    } else {
+      _updateProjectBadge(null);
+    }
+  }).catch(() => {});
+}
+
+// Init project selector on load
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadStudioProjects);
+  } else {
+    loadStudioProjects();
+  }
 }
 
 // Department tab state

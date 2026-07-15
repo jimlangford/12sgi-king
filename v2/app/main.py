@@ -45,6 +45,7 @@ from services.service_metadata import with_service_metadata
 from services.connectors import registry as _connector_registry
 from watchers import graph_refresh
 from watchers import pulse_geometry
+from watchers import studio_project
 
 SERVICE_NAME = "owner-node"
 VERSION = os.environ.get("VERSION", "2.0.0")
@@ -555,6 +556,109 @@ def connector_wordpress_app_password(
         site_url=body.site_url,
     )
     return {"stored": True, **card}
+
+
+# ── Studio Project Brain ──────────────────────────────────────────────────────
+#
+# Projects are the first-class objects that scope all studio department work.
+# All routes are owner-only (private/Tailscale boundary).
+# project_id is included as a conventional payload key in workboard jobs:
+#   emit_workboard_job(..., payload={"project_id": "<uuid>", ...})
+# The timeline endpoint reads those entries to build the scene/phase view.
+
+class ProjectCreateRequest(BaseModel):
+    title: str
+    type: str = "Film"
+    status: str = "active"
+
+
+class ProjectStatusRequest(BaseModel):
+    status: str
+
+
+@app.get("/studio/projects")
+def list_studio_projects():
+    """Return all Studio Projects from the local owner store.
+
+    Projects are machine-local (``~/.king/studio_projects.json``).
+    They are also synced to Neo4j layer='studio_projects' when the graph
+    is reachable, but this endpoint always reads from the local store first.
+    No auth required — the owner node is already Tailscale-gated.
+    """
+    projects = studio_project.list_projects()
+    return {
+        "count": len(projects),
+        "project_types": sorted(studio_project.PROJECT_TYPES),
+        "project_statuses": sorted(studio_project.PROJECT_STATUSES),
+        "projects": projects,
+    }
+
+
+@app.post("/studio/projects")
+def create_studio_project(
+    body: ProjectCreateRequest,
+    owner: dict = Depends(_require_owner),
+):
+    """Create a new Studio Project.
+
+    Requires a valid owner OAuth token.
+    Persists to ``~/.king/studio_projects.json`` and pushes a Project node
+    to Neo4j (soft-skip if graph is unavailable).
+
+    Returns the new project dict with project_id, title, type, status, created_at.
+    """
+    if not body.title.strip():
+        raise HTTPException(status_code=400, detail={"error": "title is required"})
+    project = studio_project.create_project(
+        title=body.title,
+        project_type=body.type,
+        status=body.status,
+    )
+    return {"created": True, "project": project}
+
+
+@app.patch("/studio/projects/{project_id}/status")
+def update_studio_project_status(
+    project_id: str,
+    body: ProjectStatusRequest,
+    owner: dict = Depends(_require_owner),
+):
+    """Update the status of an existing Studio Project.
+
+    Requires a valid owner OAuth token.
+    Valid statuses: active, development, production, post, released, archived.
+    """
+    updated = studio_project.update_project_status(project_id, body.status)
+    if not updated:
+        raise HTTPException(status_code=404, detail={"error": "project not found"})
+    return {"updated": True, "project": updated}
+
+
+@app.get("/studio/projects/{project_id}/timeline")
+def get_studio_project_timeline(project_id: str):
+    """Return the production timeline for a Studio Project.
+
+    Reads the workboard dispatch log for entries whose payload carries
+    ``project_id``, groups them by scene/phase, and maps each to the eight
+    pipeline stages: Script · Storyboard · Kandinsky · LTX · Editor · Logic · FCP · Release.
+
+    Each scene row returns stage cells with glyph (✓/▶/○/✗), status, and job_ids.
+    Clicking a cell in the Timeline panel navigates to the relevant Naga panel.
+
+    No auth required — the owner node is already Tailscale-gated.
+    """
+    timeline = studio_project.timeline_for_project(project_id)
+    return timeline
+
+
+@app.post("/studio/projects/sync")
+def sync_studio_projects_to_graph(owner: dict = Depends(_require_owner)):
+    """Push all local Studio Projects to the Neo4j graph (layer='studio_projects').
+
+    Requires a valid owner OAuth token. Soft-skip if graph is unavailable.
+    """
+    ok = studio_project.refresh()
+    return {"synced": ok, "layer": studio_project.LAYER}
 
 
 if __name__ == "__main__":

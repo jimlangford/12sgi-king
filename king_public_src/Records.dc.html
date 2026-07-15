@@ -51,6 +51,7 @@
       <button id="rec-ctx-graph"  onclick="setRecordsContext('graph')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Graph Nodes</button>
       <button id="rec-ctx-board"  onclick="setRecordsContext('board')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Workboard</button>
       <span id="rec-url-chip" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:2px 9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:240px;"></span>
+      <span id="rec-dept-chip" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; background:rgba(95,192,216,0.1); color:var(--sea-2,#5fc0d8); border:1px solid rgba(95,192,216,0.25); border-radius:20px; padding:2px 9px; white-space:nowrap;"></span>
     </div>
 
     <!-- ── Scoped context block ── -->
@@ -139,9 +140,90 @@ var _recContextDefs = {
       'and uncertainty. Do not alter or publish records without explicit approval.',
     ].join('\n'),
   },
+  // ── Studio department scopes ────────────────────────────────────────────────
+  writing: {
+    label: 'Writing Room',
+    desc: 'scripts, dialogue, characters, story architecture',
+    prompt: [
+      'You are the Writing AI for 12 Stones Studio Records.',
+      'Current asset scope: Writing Room',
+      'Your knowledge covers: scripts, dialogue, character arcs, story architecture,',
+      'premise documents, beat sheets, scene outlines, table-read notes, and cultural review.',
+      'Use only records available to the authenticated owner context.',
+      'Preserve provenance, version history, and cultural boundaries.',
+      'Do not alter locked scripts or publish drafts without explicit approval.',
+    ].join('\n'),
+  },
+  storyboard: {
+    label: 'Storyboards',
+    desc: 'shot plans, storyboard frames, continuity, blocking',
+    prompt: [
+      'You are the Director AI for 12 Stones Studio Records.',
+      'Current asset scope: Storyboards & Director',
+      'Your knowledge covers: shot plans, storyboard frames, lens library,',
+      'camera grammar, blocking, continuity notes, and visual storytelling.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter locked storyboard revisions without explicit approval.',
+    ].join('\n'),
+  },
+  fcp: {
+    label: 'Editor / FCP',
+    desc: 'edit decisions, FCP timelines, cuts, transitions',
+    prompt: [
+      'You are the Editor AI for 12 Stones Studio Records.',
+      'Current asset scope: Editor / Final Cut Pro',
+      'Your knowledge covers: edit decisions, approved/rejected takes, FCP timelines,',
+      'transitions, QC notes, continuity, and FCPXML interchange data.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter archived cut versions without explicit approval.',
+    ].join('\n'),
+  },
+  logic: {
+    label: 'Logic / Audio',
+    desc: 'audio sessions, ADR, music cues, Foley, stem exports',
+    prompt: [
+      'You are the Audio AI for 12 Stones Studio Records.',
+      'Current asset scope: Logic Pro / Audio',
+      'Your knowledge covers: Logic sessions, ADR lists, Foley cues, music cues,',
+      'stem exports, mix notes, and audio cue sheets.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter archived mix versions without explicit approval.',
+    ].join('\n'),
+  },
+  game: {
+    label: 'Game Dev',
+    desc: 'levels, NPCs, dialogue trees, quests, Unreal blueprints',
+    prompt: [
+      'You are the Game AI for 12 Stones Studio Records.',
+      'Current asset scope: Game Development',
+      'Your knowledge covers: game levels, NPCs, dialogue trees, quest graphs,',
+      'Unreal Engine DataTables, Sequencer manifests, blueprint notes, and cinematic assets.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter production-locked game assets without explicit approval.',
+    ].join('\n'),
+  },
 };
 var _recCurrentCtx = 'civic';
 var _recWebuiUrl = '/openwebui/';
+
+// ── URL parameter resolution ───────────────────────────────────────────────
+// ?dept=writing|storyboard|fcp|logic|game  — pre-select a studio department scope
+// ?project_id=<uuid>                        — include project context in the prompt
+function _readUrlParams() {
+  if (typeof window === 'undefined') return {};
+  var params = {};
+  try {
+    var search = window.location.search.slice(1);
+    search.split('&').forEach(function(p) {
+      var kv = p.split('=');
+      if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+    });
+  } catch(e) {}
+  return params;
+}
+
+// All scope IDs (original + studio dept)
+var _allScopeIds = ['civic', 'media', 'graph', 'board', 'writing', 'storyboard', 'fcp', 'logic', 'game'];
 
 // ── URL resolution ─────────────────────────────────────────────────────────
 // Resolution order:
@@ -159,11 +241,17 @@ function _resolveOpenWebuiUrl() {
 function _localFallback() { return 'http://127.0.0.1:3000'; }
 
 // ── Context selector ───────────────────────────────────────────────────────
-function setRecordsContext(ctx) {
+function setRecordsContext(ctx, projectId) {
   _recCurrentCtx = ctx || 'civic';
   var def = _recContextDefs[_recCurrentCtx] || _recContextDefs.civic;
 
-  // Update button highlight
+  // If a project_id is provided, append it to the prompt
+  var prompt = def.prompt;
+  if (projectId) {
+    prompt = prompt + '\nActive project_id: ' + projectId;
+  }
+
+  // Update button highlight (original scope buttons only — studio depts have no buttons)
   ['civic','media','graph','board'].forEach(function(k) {
     var btn = document.getElementById('rec-ctx-' + k);
     if (!btn) return;
@@ -178,9 +266,21 @@ function setRecordsContext(ctx) {
     }
   });
 
+  // For studio dept scopes, add a visible dept chip near the header
+  var deptChip = document.getElementById('rec-dept-chip');
+  if (deptChip) {
+    var studioScope = _allScopeIds.indexOf(ctx) >= 4; // writing, storyboard, fcp, logic, game
+    if (studioScope && def.label) {
+      deptChip.style.display = 'inline-block';
+      deptChip.textContent = '🎬 ' + def.label;
+    } else {
+      deptChip.style.display = 'none';
+    }
+  }
+
   // Update context text block
   var pre = document.getElementById('rec-context-text');
-  if (pre) pre.textContent = def.prompt;
+  if (pre) pre.textContent = prompt;
 
   // Clear feedback
   var fb = document.getElementById('rec-send-feedback');
@@ -189,16 +289,17 @@ function setRecordsContext(ctx) {
 
 // ── Copy Context ───────────────────────────────────────────────────────────
 function recCopyContext() {
-  var def = _recContextDefs[_recCurrentCtx] || _recContextDefs.civic;
+  var pre = document.getElementById('rec-context-text');
+  var text = pre ? pre.textContent : (_recContextDefs[_recCurrentCtx] || _recContextDefs.civic).prompt;
   var btn = document.getElementById('rec-copy-btn');
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(def.prompt).then(function() {
+    navigator.clipboard.writeText(text).then(function() {
       if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function(){ if(btn) btn.textContent = 'Copy Context'; }, 2000); }
     }).catch(function() {
-      _recFallbackCopy(def.prompt, btn);
+      _recFallbackCopy(text, btn);
     });
   } else {
-    _recFallbackCopy(def.prompt, btn);
+    _recFallbackCopy(text, btn);
   }
 }
 
@@ -218,7 +319,8 @@ function _recFallbackCopy(text, btn) {
 // directly into the iframe. "Send Context" copies the prompt to the clipboard
 // and shows an honest instruction to paste it into Open WebUI.
 function recSendContext() {
-  var def = _recContextDefs[_recCurrentCtx] || _recContextDefs.civic;
+  var pre = document.getElementById('rec-context-text');
+  var text = pre ? pre.textContent : (_recContextDefs[_recCurrentCtx] || _recContextDefs.civic).prompt;
   var fb  = document.getElementById('rec-send-feedback');
   var copy = function(success) {
     if (fb) {
@@ -274,7 +376,12 @@ function _initRecordsPanel() {
     };
   }
 
-  setRecordsContext('civic');
+  // Read URL params: ?dept=<scope>&project_id=<uuid>
+  var params = _readUrlParams();
+  var deptParam = params['dept'] || '';
+  var projectId = params['project_id'] || '';
+  var initialCtx = (_allScopeIds.indexOf(deptParam) >= 0) ? deptParam : 'civic';
+  setRecordsContext(initialCtx, projectId || undefined);
 }
 
 // Fire once the dc shell has rendered this panel into the DOM.

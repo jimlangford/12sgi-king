@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:10px;left:12px;z-index:9999;background:rgba(0,53,107,.92);color:#fff;text-decoration:none;font:600 13px system-ui,sans-serif;padding:6px 12px;border-radius:8px">&larr; govOS</a>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<!-- Studio Timeline panel — owner-gated within the Naga shell.
+     Shows the production pipeline per scene for the active project.
+     Each row = one scene; each column = one pipeline stage.
+     Stage state: ✓ done  ▶ running  ○ pending  ✗ failed
+     Clicking a stage cell navigates to the relevant Naga panel.
+
+     Data source: GET /studio/projects/:id/timeline on the owner node,
+     which reads the workboard dispatch log for jobs tagged with project_id.
+
+     PRIVATE · owner-only · never published to public site/. -->
+
+<div data-surface="timeline" data-screen-label="Studio Timeline"
+  style="min-height:100%; background:var(--codex-backdrop,#0a0e14); color:var(--codex-ink,#eaf1f5); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
+
+  <!-- Panel header -->
+  <div style="text-align:center; margin-bottom:18px;">
+    <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--codex-gold,#d9b24c);">12 Stones Global · Studio</div>
+    <h1 style="margin:6px 0 4px; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(20px,3vw,28px); font-weight:600; color:var(--codex-gold-2,#f3d589);">Production Timeline</h1>
+    <p style="margin:0 auto; max-width:640px; font-size:12.5px; color:var(--codex-mut,#9fb0c0);">Scene-level view across all pipeline stages · <span id="tl-project-name" style="color:var(--codex-sea-2,#5fc0d8);">no project selected</span></p>
+  </div>
+
+  <!-- Project picker -->
+  <div style="max-width:1200px; margin:0 auto 18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--codex-mut,#9fb0c0);">Project:</span>
+    <select id="tl-project-select" onchange="onTimelineProjectChange(this.value)"
+      style="flex:1; min-width:160px; max-width:360px; font-family:inherit; font-size:12px; padding:5px 8px; background:var(--codex-backdrop,#0a0e14); color:var(--codex-ink,#eaf1f5); border:1px solid var(--codex-line,#1f2c3a); border-radius:6px; cursor:pointer;">
+      <option value="">— select project —</option>
+    </select>
+    <button onclick="refreshTimeline()" id="tl-refresh-btn"
+      style="font:inherit; font-size:11px; padding:5px 12px; border:1px solid var(--codex-sea,#3a8fb7); border-radius:6px; background:rgba(95,192,216,0.08); color:var(--codex-sea-2,#5fc0d8); cursor:pointer;">↻ Refresh</button>
+    <span id="tl-scene-count" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--codex-mut,#9fb0c0);"></span>
+  </div>
+
+  <!-- Timeline table -->
+  <div id="tl-container" style="max-width:1200px; margin:0 auto; overflow-x:auto;">
+
+    <!-- Empty state -->
+    <div id="tl-empty" style="padding:40px 0; text-align:center; color:var(--codex-mut,#9fb0c0);">
+      <div style="font-size:32px; margin-bottom:12px; opacity:0.35;">🎬</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.8px; text-transform:uppercase;">Select a project to view its production timeline.</div>
+      <div style="font-size:12px; margin-top:10px; color:var(--codex-faint,#647688);">Jobs tagged with <code style="color:var(--codex-sea-2,#5fc0d8);">project_id</code> in the workboard appear here as scene rows.</div>
+    </div>
+
+    <!-- Stage header (rendered by JS) -->
+    <div id="tl-stage-header" style="display:none;"></div>
+
+    <!-- Scene rows (rendered by JS) -->
+    <div id="tl-scenes"></div>
+
+  </div>
+
+  <!-- Legend -->
+  <div style="max-width:1200px; margin:24px auto 0; display:flex; gap:18px; flex-wrap:wrap; font-size:11.5px; color:var(--codex-mut,#9fb0c0);">
+    <span><span style="color:var(--codex-gold-2,#f3d589);">✓</span> Done</span>
+    <span><span style="color:var(--codex-sea-2,#5fc0d8);">▶</span> Running</span>
+    <span><span style="color:var(--codex-faint,#647688);">○</span> Pending</span>
+    <span><span style="color:#e06c75;">✗</span> Failed</span>
+    <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.2px;">PRIVATE · owner only · Phase 2.2</span>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/javascript">
+// Timeline.dc.html — Studio Production Timeline
+// PRIVATE surface — not published to public site
+// Reads from GET /studio/projects/:id/timeline on the owner node
+
+var OWNER_NODE = (typeof window !== 'undefined' && window.OWNER_NODE_BASE) || 'http://127.0.0.1:8088';
+var _tlActiveProjectId = null;
+
+// Stage glyph styles
+var _glyphStyle = {
+  '✓': 'color:var(--codex-gold-2,#f3d589);',
+  '▶': 'color:var(--codex-sea-2,#5fc0d8);',
+  '○': 'color:var(--codex-faint,#647688); opacity:0.55;',
+  '✗': 'color:#e06c75;',
+};
+
+function ownerFetch(path) {
+  var token = (typeof localStorage !== 'undefined' && localStorage.getItem('king.ownerToken')) || '';
+  var headers = { 'Content-Type': 'application/json' };
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  return fetch(OWNER_NODE + path, { headers: headers });
+}
+
+// ── Project loader ────────────────────────────────────────────────────────────
+function loadTimelineProjects() {
+  ownerFetch('/studio/projects').then(function(r) { return r.json(); }).then(function(data) {
+    var sel = document.getElementById('tl-project-select');
+    if (!sel) return;
+    var projects = data.projects || [];
+    sel.innerHTML = '<option value="">— select project —</option>';
+    projects.forEach(function(p) {
+      var opt = document.createElement('option');
+      opt.value = p.project_id;
+      opt.textContent = p.title + ' (' + (p.type || 'Film') + ')';
+      if (p.project_id === _tlActiveProjectId) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    // Restore from localStorage if available
+    if (!_tlActiveProjectId) {
+      try {
+        var raw = localStorage.getItem('king.activeProject');
+        if (raw) {
+          var ap = JSON.parse(raw);
+          if (ap && ap.project_id) {
+            _tlActiveProjectId = ap.project_id;
+            sel.value = _tlActiveProjectId;
+            loadTimelineForProject(_tlActiveProjectId);
+          }
+        }
+      } catch(e) {}
+    } else {
+      loadTimelineForProject(_tlActiveProjectId);
+    }
+  }).catch(function() {});
+}
+
+function onTimelineProjectChange(project_id) {
+  _tlActiveProjectId = project_id || null;
+  if (!project_id) {
+    clearTimeline();
+    return;
+  }
+  loadTimelineForProject(project_id);
+}
+
+function refreshTimeline() {
+  if (_tlActiveProjectId) loadTimelineForProject(_tlActiveProjectId);
+}
+
+// ── Timeline renderer ─────────────────────────────────────────────────────────
+function clearTimeline() {
+  var empty = document.getElementById('tl-empty');
+  var header = document.getElementById('tl-stage-header');
+  var scenes = document.getElementById('tl-scenes');
+  var name = document.getElementById('tl-project-name');
+  var count = document.getElementById('tl-scene-count');
+  if (empty) empty.style.display = 'block';
+  if (header) { header.style.display = 'none'; header.innerHTML = ''; }
+  if (scenes) scenes.innerHTML = '';
+  if (name) name.textContent = 'no project selected';
+  if (count) count.textContent = '';
+}
+
+function loadTimelineForProject(project_id) {
+  var btn = document.getElementById('tl-refresh-btn');
+  if (btn) btn.textContent = '…';
+  ownerFetch('/studio/projects/' + project_id + '/timeline')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      renderTimeline(data);
+      if (btn) btn.textContent = '↻ Refresh';
+    })
+    .catch(function() {
+      if (btn) btn.textContent = '↻ Refresh';
+      var scenes = document.getElementById('tl-scenes');
+      if (scenes) scenes.innerHTML = '<div style="padding:20px; color:#e06c75; font-size:12px;">Could not reach owner node (' + OWNER_NODE + '). Is it running?</div>';
+    });
+}
+
+function renderTimeline(data) {
+  var stages   = data.stages || [];
+  var scenes   = data.scenes || [];
+  var project  = data.project || {};
+
+  // Update header info
+  var nameEl = document.getElementById('tl-project-name');
+  var countEl = document.getElementById('tl-scene-count');
+  if (nameEl) nameEl.textContent = project.title || project.project_id || '—';
+  if (countEl) countEl.textContent = scenes.length + ' scene' + (scenes.length === 1 ? '' : 's');
+
+  // Stage column header
+  var headerEl = document.getElementById('tl-stage-header');
+  if (headerEl) {
+    headerEl.style.display = 'grid';
+    headerEl.style.gridTemplateColumns = '140px repeat(' + stages.length + ', 1fr)';
+    headerEl.style.gap = '4px';
+    headerEl.style.marginBottom = '6px';
+    headerEl.innerHTML =
+      '<div style="font-family:\'JetBrains Mono\',monospace; font-size:10px; text-transform:uppercase; color:var(--codex-faint,#647688);">Scene</div>' +
+      stages.map(function(s) {
+        return '<div style="font-family:\'JetBrains Mono\',monospace; font-size:10px; text-transform:uppercase; color:var(--codex-mut,#9fb0c0); text-align:center; padding:4px 2px;">' + s.label + '</div>';
+      }).join('');
+  }
+
+  // Scene rows
+  var scenesEl = document.getElementById('tl-scenes');
+  var emptyEl  = document.getElementById('tl-empty');
+  if (!scenesEl) return;
+
+  if (scenes.length === 0) {
+    if (emptyEl) emptyEl.style.display = 'block';
+    if (headerEl) headerEl.style.display = 'none';
+    scenesEl.innerHTML = '';
+    return;
+  }
+
+  if (emptyEl) emptyEl.style.display = 'none';
+
+  scenesEl.innerHTML = scenes.map(function(scene) {
+    var cells = stages.map(function(stage) {
+      var cell = (scene.stages || {})[stage.id] || { glyph: '○', done: false, running: false };
+      var glyph = cell.glyph || '○';
+      var style = _glyphStyle[glyph] || '';
+      var panel = stage.panel || 'studiodepts';
+      var dept  = stage.dept || '';
+      var deptParam = dept ? ('&dept=' + dept) : '';
+      // clicking navigates to the relevant Naga panel
+      var onclick = 'navigateToPanel(\'' + panel + '\'' + (dept ? ',\'' + dept + '\'' : '') + ')';
+      return '<div onclick="' + onclick + '" style="text-align:center; padding:8px 4px; cursor:pointer; border-radius:6px; background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); transition:background 0.15s;" onmouseenter="this.style.background=\'rgba(95,192,216,0.08)\'" onmouseleave="this.style.background=\'var(--codex-panel,#141b26)\'">' +
+        '<span style="font-size:16px; ' + style + '">' + glyph + '</span>' +
+        '</div>';
+    });
+
+    return '<div style="display:grid; grid-template-columns:140px repeat(' + stages.length + ', 1fr); gap:4px; margin-bottom:4px; align-items:center;">' +
+      '<div style="font-size:12px; font-weight:600; color:var(--codex-ink,#eaf1f5); padding:4px 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="' + scene.scene_id + '">' + scene.label + '</div>' +
+      cells.join('') +
+      '</div>';
+  }).join('');
+}
+
+// ── Navigation helper ─────────────────────────────────────────────────────────
+// Navigates back to the Naga index and routes to the specified panel.
+// For studio dept panels, also sets the active dept in localStorage.
+function navigateToPanel(panel, dept) {
+  if (dept) {
+    try { localStorage.setItem('king.studioDept', dept); } catch(e) {}
+  }
+  window.location.href = 'index.html#' + panel;
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadTimelineProjects);
+  } else {
+    loadTimelineProjects();
+  }
+}
+</script>
+<script src="../govos-shell.js" defer></script>
+</body>
+</html>
