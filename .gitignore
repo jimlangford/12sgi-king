@@ -2,6 +2,7 @@
 legiscan_key.txt
 *.key
 .env
+.env.v2
 config/
 
 # generated locally (CI builds it fresh; deploy uploads it)

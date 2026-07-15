@@ -19,6 +19,32 @@
 #   * Container hardening: read_only rootfs + tmpfs /tmp, cap_drop ALL, no-new-privileges.
 
 services:
+  studio-neo4j:
+    image: neo4j:5.26
+    environment:
+      # This graph is loopback-only and shared by local civic, fleet, and Studio loaders.
+      # No-auth keeps the existing stdlib HTTP clients compatible; never publish these ports publicly.
+      NEO4J_AUTH: none
+      NEO4J_db_tx__log_rotation_retention__policy: "false"
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - studio_neo4j_data:/data
+      - studio_neo4j_logs:/logs
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 25s
+    labels:
+      com.12sgi.lane: "studio-assets"
+      com.12sgi.role: "tenant-aware Studio crosswalk graph"
+
   studio-assets:
     build:
       context: ../..                 # 12sgi-king repo root — so `services.v2_workboard` imports
@@ -26,12 +52,16 @@ services:
     image: govos-v2-studio-assets:local
     command: ["python", "-m", "uvicorn", "services.studio_assets.app.main:app", "--host", "0.0.0.0", "--port", "8108"]
     environment:
-      VERSION: "1.0.0"
+      VERSION: "1.2.0"
       STUDIO_ASSETS_DB_PATH: /data/db/studio_assets.db
       STUDIO_INDEX_JSON: /data/index/asset_index.json
       STUDIO_THUMBS_DIR: /data/index/thumbnails
-      STUDIO_ASSET_MOUNTS: "/data/assets/mp4,/data/assets/finals,/data/assets/audio,/data/assets/hero,/data/assets/exports,/data/assets/jimmy_lora,/data/assets/comfy_output,/data/assets/comfy_input,/data/assets/batch,/data/index"
+      STUDIO_ASSET_MOUNTS: "/data/assets/mp4,/data/assets/finals,/data/assets/audio,/data/assets/hero,/data/assets/exports,/data/assets/jimmy_lora,/data/assets/comfy_output,/data/assets/comfy_input,/data/assets/batch,/data/index,/data/crosswalk/studio_asset_crosswalk.json,/data/crosswalk/studio_clip_crosswalk.json,/data/crosswalk/character_bibles"
       STUDIO_SCAN_ROOTS: "/data/assets/mp4,/data/assets/finals,/data/assets/audio,/data/assets/hero,/data/assets/exports"
+      STUDIO_CROSSWALK_JSON: /data/crosswalk/studio_asset_crosswalk.json
+      STUDIO_CLIP_CROSSWALK_JSON: /data/crosswalk/studio_clip_crosswalk.json
+      STUDIO_CHARACTER_BIBLES_DIR: /data/crosswalk/character_bibles
+      STUDIO_NEO4J_HTTP: http://studio-neo4j:7474/db/neo4j/tx/commit
       # Report to the board like a lane, into this project's OWN dispatch log — placed in the
       # app-owned /data/db volume (the non-root `app` user can write there; a fresh /data/derived
       # named volume seeds root-owned and would deny the write). Decoupled from the guacamole
@@ -40,6 +70,8 @@ services:
       WORKBOARD_DISPATCH_LOG: /data/db/studio_assets_dispatch.jsonl
       WORKBOARD_TARGET_THREAD: workboard-quad-os
       STUDIO_ASSETS_REQUIRE_AUTH: "0"   # loopback + Tailscale trust boundary; flip to 1 once OAuth is wired
+      AUTH_INTROSPECTION_URL: ${AUTH_INTROSPECTION_URL:-http://host.docker.internal:8101/api/v2/auth/introspect}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-}
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONUNBUFFERED: "1"
     ports:
@@ -52,6 +84,9 @@ services:
     cap_drop:
       - ALL
     restart: unless-stopped
+    depends_on:
+      studio-neo4j:
+        condition: service_healthy
     volumes:
       # ---- repo root (read-only: tenant_registry.json) ----
       - { type: bind, read_only: true, source: "../../tenant_registry.json", target: /repo/tenant_registry.json }
@@ -71,10 +106,13 @@ services:
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/JIMMY_LORA",   target: /data/assets/jimmy_lora }
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/batch",        target: /data/assets/batch }
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/reports/_status", target: /data/index }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/config/studio_asset_crosswalk.json", target: /data/crosswalk/studio_asset_crosswalk.json }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/config/studio_clip_crosswalk.json", target: /data/crosswalk/studio_clip_crosswalk.json }
+      - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/Claude/Projects/Video System elementLOTUS/config/character_bibles", target: /data/crosswalk/character_bibles }
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/output",  target: /data/assets/comfy_output }
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/input",   target: /data/assets/comfy_input }
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8108/api/v2/live', timeout=3)"]
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8108/api/v2/ready', timeout=3)"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -86,3 +124,5 @@ services:
 volumes:
   studio_assets_db:
   studio_assets_derived:
+  studio_neo4j_data:
+  studio_neo4j_logs:

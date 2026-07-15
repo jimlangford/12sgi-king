@@ -57,3 +57,23 @@ jobs:
           pip install coverage
           coverage run -m pytest tests/v2/ --tb=short
           coverage report --fail-under=50 || true
+
+  studio-assets-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -r services/studio_assets/requirements.txt
+
+      - name: Run Studio asset crosswalk tests
+        run: python -m unittest tests.test_studio_assets_crosswalk
