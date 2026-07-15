@@ -197,6 +197,15 @@
       <sc-if value="{{ showEvents }}" hint-placeholder-val="{{ false }}">
         <dc-import name="Events" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
+      <sc-if value="{{ showRecords }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Records" embedded="{{ true }}" hint-size="100%,100vh"></dc-import>
+      </sc-if>
+      <sc-if value="{{ showStudiodepts }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Studio" embedded="{{ true }}" hint-size="100%,100vh"></dc-import>
+      </sc-if>
+      <sc-if value="{{ showTimeline }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="Timeline" embedded="{{ true }}" hint-size="100%,100vh"></dc-import>
+      </sc-if>
       <sc-if value="{{ showMore }}" hint-placeholder-val="{{ false }}">
         <dc-import name="More" embedded="{{ true }}" hint-size="100%,600px"></dc-import>
       </sc-if>
@@ -397,6 +406,9 @@ class Component extends DCLogic {
       { id:'launch',    label:'Launch Center',     short:'Launch',  icon:'📡', modes:['private'], core:false, owner:true  },
       { id:'connectors',label:'Connectors',        short:'Connect', icon:'🔗', modes:['private'], core:false, owner:true  },
       { id:'hub',       label:'Hub · Witness',     short:'Hub',     icon:'◈', modes:['private'], core:false, owner:true  },
+      { id:'records',   label:'Records & Assets',  short:'Records', icon:'📂', modes:['private'], core:false, owner:true  },
+      { id:'studiodepts',label:'Studio Depts',      short:'Studio',  icon:'🎬', modes:['private'], core:true,  owner:true  },
+      { id:'timeline',  label:'Studio Timeline',    short:'Timeline',icon:'🎞', modes:['private'], core:false, owner:true  },
       { id:'more',      label:'More',              short:'More',    icon:'⋯', modes:['public', 'private'], core:true, owner:false },
     ];
     const unlocked = this.state.owner;
@@ -408,7 +420,7 @@ class Component extends DCLogic {
     // PUBLIC build: only these surfaces' files are deployed here. The rest stay as the
     // owner-access panel even if "unlocked", so they never try to load a missing file (404).
     // (The full studio surfaces live in the local owner app, not the public site.)
-    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'ownerhome', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors', 'events', 'more'];
+    const AVAIL = ['mauios', 'council', 'game', 'dashboard', 'ownerhome', 'watcher', 'aupuni', 'graph', 'ops', 'gpu', 'hub', 'mooncal', 'launch', 'connectors', 'events', 'records', 'timeline', 'more'];
     const avail = id => AVAIL.indexOf(id) >= 0;
     // Task-first: show only core tasks in main nav; route low-frequency surfaces through "More".
     const navItems = modeItems.filter(it => it.core).map(it => ({
@@ -469,6 +481,9 @@ class Component extends DCLogic {
       showLaunch: activeId === 'launch' && unlocked && avail('launch'),
       showConnectors: activeId === 'connectors' && unlocked && avail('connectors'),
       showEvents: activeId === 'events' && unlocked && avail('events'),
+      showRecords: activeId === 'records' && unlocked && avail('records'),
+      showStudiodepts: activeId === 'studiodepts' && unlocked,
+      showTimeline: activeId === 'timeline' && unlocked && avail('timeline'),
       showMore: activeId === 'more' && avail('more'),
     };
   }

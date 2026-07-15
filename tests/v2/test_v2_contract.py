@@ -663,6 +663,42 @@ class TestPulseGeometryApiSurface(unittest.TestCase):
         self.assertIn('/graph/status', panel)
         self.assertIn('/graph/refresh', panel)
 
+    def test_owner_shell_declares_records_panel(self):
+        """Records & Assets panel must be fully wired in the owner shell."""
+        shell = (ROOT / 'king_public_src' / 'index.html').read_text(encoding='utf-8')
+        panel = (ROOT / 'king_public_src' / 'Records.dc.html').read_text(encoding='utf-8')
+        # ITEMS entry — private, owner-only
+        self.assertIn("id:'records'", shell)
+        self.assertIn("owner:true", shell)
+        # AVAIL registry entry
+        self.assertIn("'records'", shell)
+        # renderVals computed
+        self.assertIn('showRecords', shell)
+        # dc-import surface host block
+        self.assertIn('<dc-import name="Records"', shell)
+        # Panel must not be a core nav item (goes through More, not direct nav)
+        import re
+        records_item = re.search(r"\{[^}]*id:'records'[^}]*\}", shell)
+        self.assertIsNotNone(records_item, "records ITEMS entry not found")
+        self.assertIn('core:false', records_item.group())
+        # Panel has the four context selectors
+        for ctx in ('civic', 'media', 'graph', 'board'):
+            self.assertIn("setRecordsContext('%s')" % ctx, panel)
+        # Context prompt text includes required provenance instruction
+        self.assertIn('source attribution', panel)
+        self.assertIn('provenance', panel)
+        # Copy / Send / Open buttons present
+        self.assertIn('recCopyContext', panel)
+        self.assertIn('recSendContext', panel)
+        self.assertIn('recOpenChat', panel)
+        # Send Context is honest about cross-origin limitation
+        self.assertIn('Context copied', panel)
+        self.assertIn('paste into Open WebUI', panel)
+        # URL resolution order is correct: no raw localhost default at top level
+        self.assertIn('window.OPEN_WEBUI_URL', panel)
+        self.assertIn('window.KING_OPEN_WEBUI_URL', panel)
+        self.assertIn('/openwebui/', panel)
+
     def test_graph_refresh_handler_returns_status_payload(self):
         if importlib.util.find_spec('fastapi') is None:
             raise unittest.SkipTest('fastapi is not installed in this environment')

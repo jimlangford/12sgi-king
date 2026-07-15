@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../govos.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+
+<!-- Records & Assets panel — owner-gated within the Naga shell.
+     Embeds Open WebUI as an iframe so the owner can work records/assets
+     with a local AI co-pilot without leaving the console.
+
+     URL resolution order (configure via window globals in go.html or king-server):
+       1. window.OPEN_WEBUI_URL          — explicit override (e.g. https://ai.12sgi.com)
+       2. window.KING_OPEN_WEBUI_URL     — king-server injection
+       3. /openwebui/                    — reverse-proxy path on the same origin (normal remote/Tailscale use)
+       4. http://127.0.0.1:3000         — local-machine fallback ONLY; not valid on iPad/remote
+
+     Context handoff: because iframe and Naga are different origins, the chat cannot be
+     prefilled directly. Instead, each selector builds a scoped system-prompt block the
+     owner copies and pastes into Open WebUI. "Send Context" = clipboard + honest notice.
+
+     PRIVATE · owner-only · never published to public site/. -->
+
+<div data-surface="records" data-screen-label="Records &amp; Assets"
+  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+
+  <!-- Panel header -->
+  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f);">
+    <span style="font-size:18px; color:var(--accent,#e3ad33);">📂</span>
+    <div>
+      <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">12sgi · Records &amp; Assets</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Open WebUI · Asset Management</div>
+    </div>
+    <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(227,173,51,0.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:3px 10px;">owner · private</span>
+  </div>
+
+  <div style="display:flex; flex-direction:column; height:calc(100vh - 57px);">
+
+    <!-- ── Asset context selector bar ── -->
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f); background:var(--panel,#16140f);">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-right:4px;">Scope:</span>
+      <button id="rec-ctx-civic"  onclick="setRecordsContext('civic')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Civic Records</button>
+      <button id="rec-ctx-media"  onclick="setRecordsContext('media')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Media Assets</button>
+      <button id="rec-ctx-graph"  onclick="setRecordsContext('graph')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Graph Nodes</button>
+      <button id="rec-ctx-board"  onclick="setRecordsContext('board')"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Workboard</button>
+      <span id="rec-url-chip" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:2px 9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:240px;"></span>
+      <span id="rec-dept-chip" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; background:rgba(95,192,216,0.1); color:var(--sea-2,#5fc0d8); border:1px solid rgba(95,192,216,0.25); border-radius:20px; padding:2px 9px; white-space:nowrap;"></span>
+    </div>
+
+    <!-- ── Scoped context block ── -->
+    <div id="rec-context-block" style="margin:0; padding:10px clamp(14px,2.5vw,28px); background:var(--panel,#16140f); border-bottom:1px solid var(--line,#34301f);">
+      <div style="display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
+        <pre id="rec-context-text" style="flex:1; min-width:0; margin:0; font-family:'JetBrains Mono',monospace; font-size:10.5px; line-height:1.6; color:var(--ink-dim,#b3a98f); background:var(--app-backdrop,#0c0b09); border:1px solid var(--line,#34301f); border-radius:7px; padding:10px 13px; white-space:pre-wrap; word-break:break-word;"></pre>
+        <div style="display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+          <button id="rec-copy-btn"  onclick="recCopyContext()"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:6px 13px; border-radius:7px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer; white-space:nowrap;">Copy Context</button>
+          <button id="rec-send-btn"  onclick="recSendContext()"  style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:6px 13px; border-radius:7px; border:1px solid var(--accent,#e3ad33); background:rgba(227,173,51,0.12); color:var(--accent,#e3ad33); cursor:pointer; white-space:nowrap;">Send Context</button>
+          <button id="rec-open-btn"  onclick="recOpenChat()"    style="font-family:inherit; font-size:11px; letter-spacing:0.8px; text-transform:uppercase; padding:6px 13px; border-radius:7px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer; white-space:nowrap;">Open Chat ↗</button>
+        </div>
+      </div>
+      <!-- Feedback line (shown after Send Context) -->
+      <div id="rec-send-feedback" style="display:none; margin-top:7px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ok,#6abf86); letter-spacing:0.5px;"></div>
+    </div>
+
+    <!-- ── Open WebUI iframe ── -->
+    <div style="flex:1; position:relative; overflow:hidden;">
+      <iframe id="rec-webui-frame"
+        allow="microphone; camera; clipboard-write"
+        style="position:absolute; inset:0; width:100%; height:100%; border:none; background:#0c0b09;">
+      </iframe>
+      <!-- Placeholder shown while src is resolving or unavailable -->
+      <div id="rec-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:32px; text-align:center; pointer-events:none;">
+        <div style="font-size:36px; opacity:0.35;">📂</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.8px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Connecting to Open WebUI…</div>
+        <div id="rec-placeholder-url" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);"></div>
+        <div style="font-size:11.5px; color:var(--ink-dim,#b3a98f); max-width:420px; line-height:1.6;">
+          Configure the service URL via <code style="color:var(--accent-2,#f4c95d);">window.OPEN_WEBUI_URL</code>
+          or <code style="color:var(--accent-2,#f4c95d);">window.KING_OPEN_WEBUI_URL</code>
+          or proxy it at <code style="color:var(--accent-2,#f4c95d);">/openwebui/</code> on your king-server origin.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Records panel — no DCLogic renderVals needed; DOM wired directly.
+
+// ── Context definitions per scope ─────────────────────────────────────────
+var _recContextDefs = {
+  civic: {
+    label: 'Civic Records',
+    desc: 'civic data, reports, audit records',
+    prompt: [
+      'You are working within the private 12 Stones Records surface.',
+      'Current asset scope: Civic Records',
+      'Use only records available to the authenticated owner context.',
+      'Preserve source attribution, record IDs, provenance, dates, tenant boundaries,',
+      'and uncertainty. Do not alter or publish records without explicit approval.',
+    ].join('\n'),
+  },
+  media: {
+    label: 'Media Assets',
+    desc: 'audio, video, image production files',
+    prompt: [
+      'You are working within the private 12 Stones Records surface.',
+      'Current asset scope: Media Assets',
+      'Use only records available to the authenticated owner context.',
+      'Preserve source attribution, record IDs, provenance, dates, tenant boundaries,',
+      'and uncertainty. Do not alter or publish records without explicit approval.',
+    ].join('\n'),
+  },
+  graph: {
+    label: 'Graph Nodes',
+    desc: 'Neo4j civic + spine provenance',
+    prompt: [
+      'You are working within the private 12 Stones Records surface.',
+      'Current asset scope: Graph Nodes',
+      'Use only records available to the authenticated owner context.',
+      'Preserve source attribution, record IDs, provenance, dates, tenant boundaries,',
+      'and uncertainty. Do not alter or publish records without explicit approval.',
+    ].join('\n'),
+  },
+  board: {
+    label: 'Workboard',
+    desc: 'engineering/creative/output job queue',
+    prompt: [
+      'You are working within the private 12 Stones Records surface.',
+      'Current asset scope: Workboard',
+      'Use only records available to the authenticated owner context.',
+      'Preserve source attribution, record IDs, provenance, dates, tenant boundaries,',
+      'and uncertainty. Do not alter or publish records without explicit approval.',
+    ].join('\n'),
+  },
+  // ── Studio department scopes ────────────────────────────────────────────────
+  writing: {
+    label: 'Writing Room',
+    desc: 'scripts, dialogue, characters, story architecture',
+    prompt: [
+      'You are the Writing AI for 12 Stones Studio Records.',
+      'Current asset scope: Writing Room',
+      'Your knowledge covers: scripts, dialogue, character arcs, story architecture,',
+      'premise documents, beat sheets, scene outlines, table-read notes, and cultural review.',
+      'Use only records available to the authenticated owner context.',
+      'Preserve provenance, version history, and cultural boundaries.',
+      'Do not alter locked scripts or publish drafts without explicit approval.',
+    ].join('\n'),
+  },
+  storyboard: {
+    label: 'Storyboards',
+    desc: 'shot plans, storyboard frames, continuity, blocking',
+    prompt: [
+      'You are the Director AI for 12 Stones Studio Records.',
+      'Current asset scope: Storyboards & Director',
+      'Your knowledge covers: shot plans, storyboard frames, lens library,',
+      'camera grammar, blocking, continuity notes, and visual storytelling.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter locked storyboard revisions without explicit approval.',
+    ].join('\n'),
+  },
+  fcp: {
+    label: 'Editor / FCP',
+    desc: 'edit decisions, FCP timelines, cuts, transitions',
+    prompt: [
+      'You are the Editor AI for 12 Stones Studio Records.',
+      'Current asset scope: Editor / Final Cut Pro',
+      'Your knowledge covers: edit decisions, approved/rejected takes, FCP timelines,',
+      'transitions, QC notes, continuity, and FCPXML interchange data.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter archived cut versions without explicit approval.',
+    ].join('\n'),
+  },
+  logic: {
+    label: 'Logic / Audio',
+    desc: 'audio sessions, ADR, music cues, Foley, stem exports',
+    prompt: [
+      'You are the Audio AI for 12 Stones Studio Records.',
+      'Current asset scope: Logic Pro / Audio',
+      'Your knowledge covers: Logic sessions, ADR lists, Foley cues, music cues,',
+      'stem exports, mix notes, and audio cue sheets.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter archived mix versions without explicit approval.',
+    ].join('\n'),
+  },
+  game: {
+    label: 'Game Dev',
+    desc: 'levels, NPCs, dialogue trees, quests, Unreal blueprints',
+    prompt: [
+      'You are the Game AI for 12 Stones Studio Records.',
+      'Current asset scope: Game Development',
+      'Your knowledge covers: game levels, NPCs, dialogue trees, quest graphs,',
+      'Unreal Engine DataTables, Sequencer manifests, blueprint notes, and cinematic assets.',
+      'Use only records available to the authenticated owner context.',
+      'Do not alter production-locked game assets without explicit approval.',
+    ].join('\n'),
+  },
+};
+var _recCurrentCtx = 'civic';
+var _recWebuiUrl = '/openwebui/';
+
+// ── URL parameter resolution ───────────────────────────────────────────────
+// ?dept=writing|storyboard|fcp|logic|game  — pre-select a studio department scope
+// ?project_id=<uuid>                        — include project context in the prompt
+function _readUrlParams() {
+  if (typeof window === 'undefined') return {};
+  var params = {};
+  try {
+    var search = window.location.search.slice(1);
+    search.split('&').forEach(function(p) {
+      var kv = p.split('=');
+      if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+    });
+  } catch(e) {}
+  return params;
+}
+
+// All scope IDs (original + studio dept)
+var _allScopeIds = ['civic', 'media', 'graph', 'board', 'writing', 'storyboard', 'fcp', 'logic', 'game'];
+
+// ── URL resolution ─────────────────────────────────────────────────────────
+// Resolution order:
+//   1. window.OPEN_WEBUI_URL       — explicit override (e.g. https://ai.12sgi.com)
+//   2. window.KING_OPEN_WEBUI_URL  — king-server injection
+//   3. /openwebui/                 — same-origin proxy (normal remote/Tailscale use)
+//   4. http://127.0.0.1:3000      — local-machine ONLY; not valid on iPad/remote
+function _resolveOpenWebuiUrl() {
+  return (
+    (typeof window !== 'undefined' && window.OPEN_WEBUI_URL) ||
+    (typeof window !== 'undefined' && window.KING_OPEN_WEBUI_URL) ||
+    '/openwebui/'
+  );
+}
+function _localFallback() { return 'http://127.0.0.1:3000'; }
+
+// ── Context selector ───────────────────────────────────────────────────────
+function setRecordsContext(ctx, projectId) {
+  _recCurrentCtx = ctx || 'civic';
+  var def = _recContextDefs[_recCurrentCtx] || _recContextDefs.civic;
+
+  // If a project_id is provided, append it to the prompt
+  var prompt = def.prompt;
+  if (projectId) {
+    prompt = prompt + '\nActive project_id: ' + projectId;
+  }
+
+  // Update button highlight (original scope buttons only — studio depts have no buttons)
+  ['civic','media','graph','board'].forEach(function(k) {
+    var btn = document.getElementById('rec-ctx-' + k);
+    if (!btn) return;
+    if (k === _recCurrentCtx) {
+      btn.style.background = 'rgba(227,173,51,0.14)';
+      btn.style.color = 'var(--accent,#e3ad33)';
+      btn.style.borderColor = 'var(--accent,#e3ad33)';
+    } else {
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--ink-dim,#b3a98f)';
+      btn.style.borderColor = 'var(--line,#34301f)';
+    }
+  });
+
+  // For studio dept scopes, add a visible dept chip near the header
+  var deptChip = document.getElementById('rec-dept-chip');
+  if (deptChip) {
+    var studioScope = _allScopeIds.indexOf(ctx) >= 4; // writing, storyboard, fcp, logic, game
+    if (studioScope && def.label) {
+      deptChip.style.display = 'inline-block';
+      deptChip.textContent = '🎬 ' + def.label;
+    } else {
+      deptChip.style.display = 'none';
+    }
+  }
+
+  // Update context text block
+  var pre = document.getElementById('rec-context-text');
+  if (pre) pre.textContent = prompt;
+
+  // Clear feedback
+  var fb = document.getElementById('rec-send-feedback');
+  if (fb) { fb.style.display = 'none'; fb.textContent = ''; }
+}
+
+// ── Copy Context ───────────────────────────────────────────────────────────
+function recCopyContext() {
+  var pre = document.getElementById('rec-context-text');
+  var text = pre ? pre.textContent : (_recContextDefs[_recCurrentCtx] || _recContextDefs.civic).prompt;
+  var btn = document.getElementById('rec-copy-btn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function(){ if(btn) btn.textContent = 'Copy Context'; }, 2000); }
+    }).catch(function() {
+      _recFallbackCopy(text, btn);
+    });
+  } else {
+    _recFallbackCopy(text, btn);
+  }
+}
+
+function _recFallbackCopy(text, btn) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function(){ if(btn) btn.textContent = 'Copy Context'; }, 2000); } }
+  catch(e) { if (btn) { btn.textContent = 'Copy failed'; setTimeout(function(){ if(btn) btn.textContent = 'Copy Context'; }, 2000); } }
+  document.body.removeChild(ta);
+}
+
+// ── Send Context ───────────────────────────────────────────────────────────
+// Because Naga and Open WebUI are different origins, we cannot inject text
+// directly into the iframe. "Send Context" copies the prompt to the clipboard
+// and shows an honest instruction to paste it into Open WebUI.
+function recSendContext() {
+  var pre = document.getElementById('rec-context-text');
+  var text = pre ? pre.textContent : (_recContextDefs[_recCurrentCtx] || _recContextDefs.civic).prompt;
+  var fb  = document.getElementById('rec-send-feedback');
+  var copy = function(success) {
+    if (fb) {
+      fb.style.display = 'block';
+      fb.textContent = success
+        ? 'Context copied — paste into Open WebUI (cross-origin; direct inject not available)'
+        : 'Copy failed — select text above and copy manually, then paste into Open WebUI';
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(def.prompt).then(function(){ copy(true); }).catch(function(){ copy(false); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = def.prompt;
+    ta.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;';
+    document.body.appendChild(ta); ta.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+    copy(ok);
+  }
+}
+
+// ── Open Chat in New Tab ───────────────────────────────────────────────────
+function recOpenChat() {
+  window.open(_recWebuiUrl, '_blank', 'noopener,noreferrer');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+function _initRecordsPanel() {
+  _recWebuiUrl = _resolveOpenWebuiUrl();
+  var frame = document.getElementById('rec-webui-frame');
+  var chip  = document.getElementById('rec-url-chip');
+  var phUrl = document.getElementById('rec-placeholder-url');
+
+  if (chip)  chip.textContent = _recWebuiUrl;
+  if (phUrl) phUrl.textContent = _recWebuiUrl;
+
+  if (frame) {
+    frame.src = _recWebuiUrl;
+    frame.onload = function() {
+      var ph = document.getElementById('rec-placeholder');
+      if (ph) ph.style.display = 'none';
+    };
+    frame.onerror = function() {
+      // /openwebui/ is unavailable — try local loopback (local machine only).
+      if (_recWebuiUrl !== _localFallback()) {
+        var fb = document.getElementById('rec-placeholder-url');
+        if (fb) fb.textContent = 'Trying local fallback: ' + _localFallback();
+        _recWebuiUrl = _localFallback();
+        frame.src = _recWebuiUrl;
+        if (chip) chip.textContent = _recWebuiUrl + ' (fallback)';
+      }
+    };
+  }
+
+  // Read URL params: ?dept=<scope>&project_id=<uuid>
+  var params = _readUrlParams();
+  var deptParam = params['dept'] || '';
+  var projectId = params['project_id'] || '';
+  var initialCtx = (_allScopeIds.indexOf(deptParam) >= 0) ? deptParam : 'civic';
+  setRecordsContext(initialCtx, projectId || undefined);
+}
+
+// Fire once the dc shell has rendered this panel into the DOM.
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _initRecordsPanel);
+  } else {
+    _initRecordsPanel();
+  }
+}
+</script>
+<script src="../govos-shell.js" defer></script>
+</body>
+</html>

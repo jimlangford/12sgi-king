@@ -25,6 +25,7 @@ COPY services/storage/requirements.txt /tmp/req-storage.txt
 COPY services/ai/requirements.txt /tmp/req-ai.txt
 COPY services/health/requirements.txt /tmp/req-health.txt
 COPY services/gpu_router/requirements.txt /tmp/req-gpu-router.txt
+COPY services/ai_gateway/requirements.txt /tmp/req-ai-gateway.txt
 RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
     && pip install --no-cache-dir -r /tmp/requirements.txt
 
@@ -43,7 +44,7 @@ RUN useradd -u 10001 -m -s /usr/sbin/nologin app \
     && chown -R app:app /data /repo
 USER app
 
-EXPOSE 8000 8101 8102 8103 8104 8105 8107
+EXPOSE 8000 8101 8102 8103 8104 8105 8107 8110
 
 # Overridden per-service by docker-compose.v2.yml `command:`.
 CMD ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]

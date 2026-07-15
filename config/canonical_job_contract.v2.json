@@ -76,14 +76,32 @@
         "published",
         "failed",
         "timeout",
-        "cancelled"
+        "cancelled",
+        "director_analysis",
+        "shot_plan_ready",
+        "camera_plan_ready",
+        "storyboard_queued",
+        "storyboard_rendering",
+        "storyboard_ready",
+        "continuity_review",
+        "storyboard_approved",
+        "motion_plan_ready",
+        "animation_queued",
+        "animation_rendering",
+        "animation_ready",
+        "editor_review",
+        "take_approved",
+        "interpolation_queued",
+        "final_qc",
+        "edit_ready"
       ],
       "terminal_states": [
         "published",
         "failed",
         "timeout",
         "cancelled",
-        "rejected"
+        "rejected",
+        "edit_ready"
       ],
       "capabilities": [
         "image_generation",
@@ -93,7 +111,11 @@
         "audio_generation",
         "voice_generation",
         "quality_check",
-        "publishing"
+        "publishing",
+        "image_to_video",
+        "interpolation",
+        "director_planning",
+        "editor_review"
       ],
       "capability_routing": {
         "image_generation": {
@@ -127,6 +149,26 @@
         "publishing": {
           "preferred": "publish_pipeline_local",
           "fallback": "publish_pipeline_manual"
+        },
+        "image_to_video": {
+          "preferred": "ltx",
+          "fallback": "wan_vace_1_3b"
+        },
+        "interpolation": {
+          "preferred": "rife_local",
+          "fallback": "film_local"
+        },
+        "director_planning": {
+          "preferred": "director_local",
+          "fallback": "scene_builder_local"
+        },
+        "editor_review": {
+          "preferred": "editor_local",
+          "fallback": "editor_local"
+        },
+        "kandinsky_animation": {
+          "preferred": "kandinsky5_local",
+          "fallback": "ltx"
         }
       },
       "job_type_profiles": {
@@ -154,7 +196,10 @@
             "published",
             "failed",
             "timeout",
-            "cancelled"
+            "cancelled",
+            "continuity_review",
+            "storyboard_approved",
+            "edit_ready"
           ],
           "required_inputs": [
             "prompt",
@@ -550,6 +595,128 @@
           "gpu_requirement": "none",
           "approval_required": true,
           "publish_eligibility": "approval_and_qc"
+        },
+        "director_shot_plan": {
+          "permitted_states": [
+            "planned",
+            "script_ready",
+            "director_analysis",
+            "shot_plan_ready",
+            "camera_plan_ready",
+            "approved",
+            "rejected",
+            "failed",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "script",
+            "scene_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "shot_plan_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "director_planning",
+          "fallback_capability": "director_planning",
+          "gpu_requirement": "none",
+          "approval_required": true,
+          "publish_eligibility": "approval_only"
+        },
+        "animation_shot": {
+          "permitted_states": [
+            "planned",
+            "motion_plan_ready",
+            "animation_queued",
+            "claimed",
+            "loading_model",
+            "animation_rendering",
+            "animation_ready",
+            "qc_pending",
+            "qc_passed",
+            "qc_failed",
+            "editor_review",
+            "take_approved",
+            "approved",
+            "rejected",
+            "interpolation_queued",
+            "final_qc",
+            "edit_ready",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "source_artifact",
+            "shot_id",
+            "workflow_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "provenance_hash",
+            "artifact_uri",
+            "camera_compliance"
+          ],
+          "preferred_capability": "image_to_video",
+          "fallback_capability": "image_to_video",
+          "gpu_requirement": "rtx4070_8gb",
+          "approval_required": true,
+          "publish_eligibility": "approval_and_qc"
+        },
+        "interpolation_shot": {
+          "permitted_states": [
+            "planned",
+            "interpolation_queued",
+            "claimed",
+            "loading_model",
+            "rendering",
+            "rendered",
+            "final_qc",
+            "edit_ready",
+            "failed",
+            "timeout",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "source_artifact",
+            "shot_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "output_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "interpolation",
+          "fallback_capability": "interpolation",
+          "gpu_requirement": "none",
+          "approval_required": false,
+          "publish_eligibility": "n/a"
+        },
+        "edit_decision": {
+          "permitted_states": [
+            "planned",
+            "editor_review",
+            "take_approved",
+            "edit_ready",
+            "rejected",
+            "failed",
+            "cancelled"
+          ],
+          "required_inputs": [
+            "takes_manifest",
+            "shot_id",
+            "capability"
+          ],
+          "completion_evidence": [
+            "edit_decision_hash",
+            "artifact_uri"
+          ],
+          "preferred_capability": "editor_review",
+          "fallback_capability": "editor_review",
+          "gpu_requirement": "none",
+          "approval_required": true,
+          "publish_eligibility": "approval_only"
         }
       },
       "transitions_by_job_type": {
@@ -603,7 +770,8 @@
             ],
             "qc_passed": [
               "approval_pending",
-              "publish_ready"
+              "publish_ready",
+              "continuity_review"
             ],
             "approval_pending": [
               "approved",
@@ -635,7 +803,17 @@
               "queued",
               "cancelled"
             ],
-            "cancelled": []
+            "cancelled": [],
+            "continuity_review": [
+              "storyboard_approved",
+              "qc_failed",
+              "failed"
+            ],
+            "storyboard_approved": [
+              "edit_ready",
+              "cancelled"
+            ],
+            "edit_ready": []
           }
         },
         "character_reference": {
@@ -1211,6 +1389,199 @@
             ],
             "cancelled": []
           }
+        },
+        "director_shot_plan": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "script_ready",
+              "cancelled"
+            ],
+            "script_ready": [
+              "director_analysis",
+              "cancelled"
+            ],
+            "director_analysis": [
+              "shot_plan_ready",
+              "failed",
+              "cancelled"
+            ],
+            "shot_plan_ready": [
+              "camera_plan_ready",
+              "failed"
+            ],
+            "camera_plan_ready": [
+              "approved",
+              "rejected",
+              "failed"
+            ],
+            "approved": [],
+            "rejected": [
+              "script_ready",
+              "cancelled"
+            ],
+            "failed": [
+              "script_ready",
+              "cancelled"
+            ],
+            "cancelled": []
+          }
+        },
+        "animation_shot": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "motion_plan_ready",
+              "cancelled"
+            ],
+            "motion_plan_ready": [
+              "animation_queued",
+              "cancelled"
+            ],
+            "animation_queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed",
+              "cancelled"
+            ],
+            "loading_model": [
+              "animation_rendering",
+              "failed",
+              "timeout"
+            ],
+            "animation_rendering": [
+              "animation_ready",
+              "failed",
+              "timeout"
+            ],
+            "animation_ready": [
+              "qc_pending",
+              "failed"
+            ],
+            "qc_pending": [
+              "qc_passed",
+              "qc_failed",
+              "failed"
+            ],
+            "qc_failed": [
+              "motion_plan_ready",
+              "animation_queued",
+              "cancelled"
+            ],
+            "qc_passed": [
+              "editor_review"
+            ],
+            "editor_review": [
+              "take_approved",
+              "rejected"
+            ],
+            "take_approved": [
+              "interpolation_queued",
+              "edit_ready"
+            ],
+            "interpolation_queued": [
+              "final_qc",
+              "failed"
+            ],
+            "final_qc": [
+              "edit_ready",
+              "qc_failed",
+              "failed"
+            ],
+            "approved": [
+              "edit_ready"
+            ],
+            "rejected": [
+              "motion_plan_ready",
+              "animation_queued",
+              "cancelled"
+            ],
+            "edit_ready": [],
+            "failed": [
+              "animation_queued",
+              "cancelled"
+            ],
+            "timeout": [
+              "animation_queued",
+              "cancelled"
+            ],
+            "cancelled": []
+          }
+        },
+        "interpolation_shot": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "interpolation_queued",
+              "cancelled"
+            ],
+            "interpolation_queued": [
+              "claimed",
+              "cancelled"
+            ],
+            "claimed": [
+              "loading_model",
+              "failed"
+            ],
+            "loading_model": [
+              "rendering",
+              "failed",
+              "timeout"
+            ],
+            "rendering": [
+              "rendered",
+              "failed",
+              "timeout"
+            ],
+            "rendered": [
+              "final_qc",
+              "failed"
+            ],
+            "final_qc": [
+              "edit_ready",
+              "failed"
+            ],
+            "edit_ready": [],
+            "failed": [
+              "interpolation_queued",
+              "cancelled"
+            ],
+            "timeout": [
+              "interpolation_queued",
+              "cancelled"
+            ],
+            "cancelled": []
+          }
+        },
+        "edit_decision": {
+          "initial": "planned",
+          "allowed_transitions": {
+            "planned": [
+              "editor_review",
+              "cancelled"
+            ],
+            "editor_review": [
+              "take_approved",
+              "rejected",
+              "failed"
+            ],
+            "take_approved": [
+              "edit_ready"
+            ],
+            "edit_ready": [],
+            "rejected": [
+              "editor_review",
+              "cancelled"
+            ],
+            "failed": [
+              "editor_review",
+              "cancelled"
+            ],
+            "cancelled": []
+          }
         }
       },
       "recovery_paths": {
@@ -1246,7 +1617,33 @@
         "audio_generation",
         "voiceover",
         "release_package",
-        "publish_media"
+        "publish_media",
+        "director_shot_plan",
+        "animation_shot",
+        "edit_decision"
+      ],
+      "pipeline_example_state_path": [
+        "script_ready",
+        "director_analysis",
+        "shot_plan_ready",
+        "camera_plan_ready",
+        "storyboard_queued",
+        "storyboard_rendering",
+        "storyboard_ready",
+        "continuity_review",
+        "storyboard_approved",
+        "motion_plan_ready",
+        "animation_queued",
+        "animation_rendering",
+        "animation_ready",
+        "editor_review",
+        "take_approved",
+        "interpolation_queued",
+        "final_qc",
+        "edit_ready"
+      ],
+      "batch_policy_notes": [
+        "kandinsky_animation is owner-preferred local animation engine; specify capability=kandinsky_animation to route animation_shot to Kandinsky5 instead of LTX"
       ]
     },
     "gpu": {

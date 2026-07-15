@@ -205,10 +205,10 @@ services:
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}
-      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108"
+      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108,ai-gateway=ai-gateway:8110"
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports: ["127.0.0.1:8106:8000"]
-    depends_on: [auth, tenant, documents, storage, ai, gpu-router, king-bridge]
+    depends_on: [auth, tenant, documents, storage, ai, gpu-router, king-bridge, ai-gateway]
     restart: unless-stopped
 
   gpu-runtime:
@@ -277,6 +277,27 @@ services:
       timeout: 10s
       retries: 3
       start_period: 15s
+
+  ai-gateway:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.ai_gateway.app.main:app", "--host", "0.0.0.0", "--port", "8110"]
+    environment:
+      <<: *common-env
+      AI_GATEWAY_DB_PATH: /data/db/govos_v2_ai_gateway.db
+      GPU_ROUTER_URL: http://gpu-router:8107
+      GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8110:8110"]
+    depends_on: [auth, gpu-router]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8110/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   github-workflow-monitor:
     build: { context: ., dockerfile: services/Dockerfile }
