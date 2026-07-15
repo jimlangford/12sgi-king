@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAGE Mahjong · TribeGameStudios</title>
+<meta name="description" content="SAGE Mahjong — 108 tiles, 54 nodes, every deal solvable. Match the journey pair by pair. TribeGameStudios · 12sgi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🀄%3C/text%3E%3C/svg%3E">
+<style>
+/* SAGE Mahjong · 12sgi-design canon: warm volcanic near-black, one gold accent. Zero external deps. */
+:root{
+  --bg:#161209; --s1:#231d10; --s2:#2e2716; --s3:#3e351f; --line:#5a4f33;
+  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --ink:#f7f1e3; --ink-2:#d8cdb0; --ink-3:#ab9e7f;
+  --fire:#f87171; --mauka:#4ade80; --kula:#fbbf24; --makai:#38bdf8; --override:#c084fc; --synergy:#ffffff;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+header{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--s1);flex-wrap:wrap}
+.wordmark strong{font-size:17px;font-weight:700;color:var(--gold)}
+.wordmark .sub{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-left:8px}
+.hlinks{margin-left:auto;display:flex;gap:14px}
+.hlinks a{font-size:12px;color:var(--gold);text-decoration:none}
+.hlinks a:hover{text-decoration:underline}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 18px;flex-wrap:wrap}
+.bar .stat{font-size:12px;color:var(--ink-2);background:var(--s1);border:1px solid var(--line);border-radius:7px;padding:6px 10px}
+.bar .stat b{color:var(--gold-hi)}
+.bar button{
+  font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;
+  color:var(--ink);background:var(--s2);border:1px solid var(--line);border-radius:7px;padding:7px 12px;
+}
+.bar button:hover{border-color:var(--gold);color:var(--gold-hi)}
+#board-wrap{position:relative;margin:6px auto 40px;overflow:auto;max-width:100%;padding:6px 10px 20px}
+#board{position:relative;margin:0 auto;transform-origin:top left}
+.tile{
+  position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:6px;border:1px solid var(--line);cursor:pointer;user-select:none;
+  background:linear-gradient(160deg,var(--s3),var(--s2));
+  box-shadow:2px 3px 0 rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform 90ms, box-shadow 90ms, opacity 160ms;
+}
+.tile .n{font-weight:800;font-size:15px;line-height:1.1}
+.tile .z{font-size:8.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
+.tile.zfire .n,.tile.zfire .z{color:var(--fire)} .tile.zfire{border-color:#7a3b34}
+.tile.zmauka .n,.tile.zmauka .z{color:var(--mauka)} .tile.zmauka{border-color:#2f5a3b}
+.tile.zkula .n,.tile.zkula .z{color:var(--kula)} .tile.zkula{border-color:#6b5a1e}
+.tile.zmakai .n,.tile.zmakai .z{color:var(--makai)} .tile.zmakai{border-color:#28536b}
+.tile.zoverride .n,.tile.zoverride .z{color:var(--override)} .tile.zoverride{border-color:#5a3b7a}
+.tile.zsynergy .n,.tile.zsynergy .z{color:var(--synergy)} .tile.zsynergy{border-color:#8a8a8a}
+.tile.blocked{filter:brightness(.62) saturate(.6);cursor:default}
+.tile.sel{outline:2px solid var(--gold);outline-offset:1px;transform:translateY(-3px);box-shadow:3px 6px 0 rgba(0,0,0,.6)}
+.tile.hint{outline:2px dashed var(--gold-hi);outline-offset:1px}
+.tile.gone{opacity:0;pointer-events:none;transform:scale(.7)}
+#overlay{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  background:rgba(10,8,4,.82);z-index:50;text-align:center;padding:24px;
+}
+#overlay .card{background:var(--s1);border:1px solid var(--gold);border-radius:14px;padding:34px 40px;max-width:420px}
+#overlay h2{color:var(--gold);font-size:24px;margin-bottom:8px}
+#overlay p{color:var(--ink-2);font-size:14px;margin-bottom:18px}
+#overlay button{font-size:14px;font-weight:700;cursor:pointer;color:#161209;background:var(--gold);border:0;border-radius:9px;padding:12px 22px}
+footer{padding:14px 18px 30px;text-align:center;font-size:11px;color:var(--ink-3)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark"><strong>SAGE Mahjong</strong><span class="sub">TribeGameStudios</span></div>
+  <nav class="hlinks">
+    <a href="mahjong_crosswalk.html">the crosswalk lens</a>
+    <a href="index.html">← all games</a>
+  </nav>
+</header>
+
+<div class="bar">
+  <span class="stat">pairs left <b id="pairs">54</b></span>
+  <span class="stat">time <b id="clock">0:00</b></span>
+  <span class="stat">moves <b id="moves">0</b></span>
+  <button id="btn-hint">hint</button>
+  <button id="btn-shuffle">shuffle</button>
+  <button id="btn-new">new game</button>
+</div>
+
+<div id="board-wrap"><div id="board"></div></div>
+
+<div id="overlay"><div class="card">
+  <h2 id="ov-title">Pau! 🪷</h2>
+  <p id="ov-text">The whole journey, matched — all 54 nodes, both halves made whole.</p>
+  <button id="ov-btn">play again</button>
+</div></div>
+
+<footer>108 tiles · 54 nodes · every deal is solvable — 54 = 108 ÷ 2, the <a href="mahjong_crosswalk.html">crosswalk</a> holds the map. 🪷 built local, owned by you.</footer>
+
+<script src="mahjong_core.js"></script>
+<script>
+(function(){
+  "use strict";
+  var M = window.MahjongCore;
+  var TW = 52, TH = 66, GX = 4, GY = 6, LX = 5, LY = 6; // tile box + per-layer 3D offsets
+  var game = null, selected = null, moves = 0, t0 = null, timer = null;
+  var boardEl = document.getElementById("board");
+  var ovBtn = document.getElementById("ov-btn");
+
+  function fmt(s){ return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+  function tick(){ if(t0) document.getElementById("clock").textContent = fmt(Math.floor((Date.now()-t0)/1000)); }
+  function setText(id, v){ document.getElementById(id).textContent = v; }
+
+  // safe DOM tile builder — textContent only, no markup injection anywhere
+  function tileEl(t, free){
+    var el = document.createElement("div");
+    el.className = "tile z" + t.zone + (t.removed ? " gone" : "") + (!free && !t.removed ? " blocked" : "");
+    var n = document.createElement("span"); n.className = "n";
+    n.textContent = "N" + String(t.node).padStart(2, "0");
+    var z = document.createElement("span"); z.className = "z";
+    z.textContent = t.zone;
+    el.appendChild(n); el.appendChild(z);
+    return el;
+  }
+
+  function render(){
+    boardEl.replaceChildren();
+    var maxX = 0, maxY = 0;
+    game.tiles.forEach(function(t){
+      var free = M.tileFree(t, game);
+      var el = tileEl(t, free);
+      var x = t.col * (TW + GX) + t.layer * LX;
+      var y = t.row * (TH + GY) - t.layer * LY;
+      el.style.left = x + "px";
+      el.style.top = (y + 20) + "px";
+      el.style.width = TW + "px";
+      el.style.height = TH + "px";
+      el.style.zIndex = String(t.layer * 200 + Math.round(t.row * 10) + 10);
+      el.dataset.id = t.id;
+      if (!t.removed) el.addEventListener("click", function(){ pick(t.id); });
+      boardEl.appendChild(el);
+      if (x + TW > maxX) maxX = x + TW;
+      if (y + TH + 20 > maxY) maxY = y + TH + 20;
+    });
+    boardEl.style.width = (maxX + 10) + "px";
+    boardEl.style.height = (maxY + 10) + "px";
+    setText("pairs", M.remaining(game) / 2);
+    setText("moves", moves);
+    fitBoard();
+  }
+
+  function fitBoard(){
+    var wrap = document.getElementById("board-wrap");
+    var avail = wrap.clientWidth - 20;
+    var w = parseInt(boardEl.style.width, 10) || 1;
+    var s = Math.min(1, avail / w);
+    boardEl.style.transform = "scale(" + s + ")";
+    boardEl.style.marginBottom = s < 1 ? (-(1 - s) * parseInt(boardEl.style.height, 10)) + "px" : "0";
+  }
+  window.addEventListener("resize", fitBoard);
+
+  function elOf(id){ return boardEl.querySelector("[data-id='" + id + "']"); }
+
+  function pick(id){
+    var t = game.tiles[id];
+    if (t.removed || !M.tileFree(t, game)) return;
+    clearHints();
+    if (selected === id){ elOf(id).classList.remove("sel"); selected = null; return; }
+    if (selected === null){ selected = id; elOf(id).classList.add("sel"); return; }
+    var a = game.tiles[selected];
+    if (M.canMatch(a, t) && M.applyMatch(game, selected, id)){
+      moves++;
+      selected = null;
+      render();
+      if (M.remaining(game) === 0) win();
+      else if (!M.findHint(game)) stuck();
+    } else {
+      var prev = elOf(selected);
+      if (prev) prev.classList.remove("sel");
+      selected = id; elOf(id).classList.add("sel");
+    }
+  }
+
+  function clearHints(){
+    boardEl.querySelectorAll(".hint").forEach(function(e){ e.classList.remove("hint"); });
+  }
+
+  document.getElementById("btn-hint").addEventListener("click", function(){
+    clearHints();
+    var h = M.findHint(game);
+    if (h){ elOf(h[0]).classList.add("hint"); elOf(h[1]).classList.add("hint"); }
+  });
+
+  document.getElementById("btn-shuffle").addEventListener("click", function(){
+    if (!game || M.remaining(game) === 0) return;
+    M.shuffleRemaining(game);
+    selected = null; render();
+  });
+
+  document.getElementById("btn-new").addEventListener("click", newGame);
+
+  function stuck(){
+    setText("ov-title", "No moves left");
+    setText("ov-text", "The path closed — shuffle the remaining tiles and keep going.");
+    ovBtn.textContent = "shuffle & continue";
+    ovBtn.onclick = function(){
+      document.getElementById("overlay").style.display = "none";
+      ovBtn.textContent = "play again";
+      ovBtn.onclick = newGame;
+      M.shuffleRemaining(game); render();
+    };
+    document.getElementById("overlay").style.display = "flex";
+  }
+
+  function win(){
+    clearInterval(timer); t0 = null;
+    setText("ov-title", "Pau! 🪷");
+    setText("ov-text", "All 54 nodes matched in " + moves + " moves — " +
+      document.getElementById("clock").textContent + ". Universal Synergy.");
+    ovBtn.textContent = "play again";
+    ovBtn.onclick = newGame;
+    document.getElementById("overlay").style.display = "flex";
+  }
+
+  function newGame(){
+    document.getElementById("overlay").style.display = "none";
+    game = M.deal(); selected = null; moves = 0;
+    t0 = Date.now(); clearInterval(timer); timer = setInterval(tick, 500);
+    setText("clock", "0:00");
+    render();
+  }
+  newGame();
+})();
+</script>
+</body>
+</html>
