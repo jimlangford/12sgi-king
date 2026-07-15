@@ -116,6 +116,15 @@ OWNER_PASSKEY_EMAILS = _csv_env_set(
     "jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,jrcsl@12sgi.com",
     casefold=True,
 )
+# Magic-link owner allowlist. Referenced by the magiclink request/claim endpoints (and the
+# read-only owner/allowlist view), but was never defined at module scope — a latent NameError that
+# stayed hidden only because the SMTP-not-configured 501 gate short-circuits before the check. It
+# would have 500'd the moment SMTP creds were set. Defined here with the same default as .env.v2.
+OWNER_MAGIC_EMAILS = _csv_env_set(
+    "OWNER_MAGIC_EMAILS",
+    "jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,jrcsl@12sgi.com",
+    casefold=True,
+)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -791,6 +800,69 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "scopes": stored_scopes,
         },
         "exp": row["expires_at"],
+    }
+
+
+def _require_owner(authorization: str | None) -> dict:
+    """Verify the caller presents an ACTIVE Owner session; return the owner's JWT claims.
+
+    Mirrors the owner-gate the diagnostics endpoint already uses: bearer present -> token verifies
+    -> a stored session exists with role Owner and is not expired -> the JWT claim role is Owner.
+    Raises 401 (missing / inactive session) or 403 (not Owner), exactly like the rest of the service.
+    """
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+    token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, claims = _decode_and_verify_token(token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    session = _session_for_token(token)
+    if not session or (session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    return claims
+
+
+@app.get(f"{API_PREFIX}/auth/owner/allowlist")
+def get_owner_allowlist(authorization: str | None = Header(default=None)):
+    """Owner-only, READ-ONLY: the current owner-authentication allowlists (Tier 1.6).
+
+    Returns the GitHub logins and Google / passkey / magic-link e-mail addresses permitted to
+    authenticate as Owner, as loaded from the OWNER_* environment variables at startup. This
+    endpoint never mutates the allowlists — runtime mutation is a separate, deliberate design
+    decision (a persistent override store + hot-reload + a safeguard so the env-configured owner
+    can never be locked out). The Admin Console reads this to display the live allowlists.
+    """
+    _require_owner(authorization)
+    return {
+        "github_logins": sorted(OWNER_GITHUB_LOGINS),
+        "google_emails": sorted(OWNER_GOOGLE_EMAILS),
+        "passkey_emails": sorted(OWNER_PASSKEY_EMAILS),
+        "magic_emails": sorted(OWNER_MAGIC_EMAILS),
+        "source": "environment (OWNER_* vars, loaded at startup)",
+        "mutable_at_runtime": False,
     }
 
 
