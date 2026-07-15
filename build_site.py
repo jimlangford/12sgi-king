@@ -176,6 +176,12 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # verified, but never added to PAGES/EXTRA_PAGES, so they never reached SITE at all (the actual
                # root cause of "I don't see all the pages for that tenant" — not a missing nav link, a missing copy).
                "nonprofits_maui.html", "subcontracts_maui.html", "money_chain_maui.html",
+               # subcontractors_maui.html = the ALIAS subcontract_chain.py writes alongside subcontracts_maui.html
+               # (county_awards.dim_links + the Maui tenant tiles link the "subcontractors_" spelling). The primary
+               # ships above; the alias was never in a copy list -> broken link from maui.html/tenant_hi-maui.html/
+               # money_chain_maui.html. Real federal USASpending subaward data (Maui FIPS 15009), already staged.
+               # Added 2026-07-14 (audit-quad-os, Maui ingest repatch).
+               "subcontractors_maui.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
@@ -1138,6 +1144,19 @@ def main():
                 shutil.copytree(s, os.path.join(SITE, sub))
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
 
+    with _lane("bids_copy"):
+        # [bids] copy the whole Maui County bid/RFP detail tree (bids_watch.py -> reports/mauios/bids/,
+        # sourced from mauicounty.gov CivicEngage). news_record.html + the money pages link individual
+        # bid pages by their exact "bid <id> <title>.html" filename (e.g. bid 3753 ... SMA Bou.html).
+        # The tree was NEVER copied into site/, so every bid link was dead. Public sourced record ->
+        # ships whole so ALL bids are browsable (private-first goal: "find that data by all means").
+        # Added 2026-07-14 (audit-quad-os, Maui ingest repatch).
+        _bids_src = os.path.join(MAUIOS, "bids")
+        if os.path.isdir(_bids_src):
+            _bids_dst = os.path.join(SITE, "bids")
+            shutil.copytree(_bids_src, _bids_dst, dirs_exist_ok=True)
+            print(f"  + bids/: {len([f for f in os.listdir(_bids_src) if f.lower().endswith('.html')])} Maui bid/RFP pages")
+
     with _lane("sage_game"):
         # [sage] publish the self-contained 2D SAGE education game at /sage/ (Jimmy 2026-07-03:
         # the CF tunnel that served the game was flaky/down, breaking every public link -> host it
@@ -1544,12 +1563,15 @@ Sources are linked on every page.</div>
         _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
         _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
                    if ".git" not in p.parts and "__pycache__" not in p.parts]
-        _stamped = sum(1 for _p in _sfiles if _rs.rebuild_page(_p, verbose=False))
+        _changed = sum(1 for _p in _sfiles if _rs.rebuild_page(_p, verbose=False))
         # maui.html mirrors tenant_hi-maui.html byte-for-byte (one-writer rule, 2026-07-09) — re-mirror
         # AFTER the stamp so identity is guaranteed by construction, not by stamp determinism.
         build_maui_nav_page()
-        print("  + govos shell stamp: %d/%d pages carry shared govos.css + govos-shell.js (inline blobs stripped)"
-              % (_stamped, len(_sfiles)))
+        # Honest counter (fixed 2026-07-15): rebuild_page returns CHANGED-this-run, which reads as 0 on an
+        # already-stamped tree and looked like a silent failure. Count pages actually CARRYING the stamp.
+        _carrying = sum(1 for _p in _sfiles if "govos.css" in _p.read_text(encoding="utf-8", errors="replace"))
+        print("  + govos shell stamp: %d/%d pages carry shared govos.css + govos-shell.js (%d changed this run)"
+              % (_carrying, len(_sfiles), _changed))
 
     with _lane("king_local_mirror"):
         # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
