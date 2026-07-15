@@ -21,6 +21,15 @@ from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 from services.event_bus import publish_event as _publish_event
+from services.auth.app.passkeys import (
+    init_passkeys_db,
+    PasskeyRegisterBeginRequest, PasskeyRegisterBeginResponse,
+    PasskeyRegisterCompleteRequest, PasskeyRegisterCompleteResponse,
+    PasskeySigninBeginRequest, PasskeySigninBeginResponse,
+    PasskeySigninCompleteRequest, PasskeySigninCompleteResponse,
+    passkey_register_begin, passkey_register_complete,
+    passkey_signin_begin, passkey_signin_complete,
+)
 
 _log = logging.getLogger(__name__)
 
@@ -96,6 +105,14 @@ OAUTH_REDIRECT_BASE = os.environ.get("OAUTH_REDIRECT_BASE", "https://12sgi.com/k
 # Comma-separated list of allowed GitHub logins and Google e-mail addresses.
 OWNER_GITHUB_LOGINS = _csv_env_set("OWNER_GITHUB_LOGINS", "jimlangford", casefold=True)
 OWNER_GOOGLE_EMAILS = _csv_env_set("OWNER_GOOGLE_EMAILS", casefold=True)
+# Fail-closed by design (2026-07-15): passkeys are an OWNER auth method like GitHub/Google, not open
+# signup. Empty default means NO passkey can register until an owner email is explicitly allowlisted —
+# mirrors OWNER_GITHUB_LOGINS/OWNER_GOOGLE_EMAILS exactly, not the draft's unconditional role="Owner".
+OWNER_PASSKEY_EMAILS = _csv_env_set(
+    "OWNER_PASSKEY_EMAILS",
+    "jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,jrcsl@12sgi.com",
+    casefold=True,
+)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -446,6 +463,7 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
 
 
 init_db()
+init_passkeys_db()
 
 
 @app.get(f"{API_PREFIX}/live")
@@ -497,6 +515,73 @@ def jwks():
                 "k": "***redacted***",
             }
         ]
+    }
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/register/begin", response_model=PasskeyRegisterBeginResponse)
+def passkey_register_begin_endpoint(payload: PasskeyRegisterBeginRequest):
+    # Fail-closed gate (2026-07-15): only pre-approved owner emails may register a passkey at all —
+    # mirrors the GitHub/Google allowlist check, since this is owner auth, not open signup.
+    if payload.email.casefold() not in OWNER_PASSKEY_EMAILS:
+        raise HTTPException(status_code=403, detail={"error": {"code": "not_authorised", "message": "This email is not authorised for passkey registration"}})
+    try:
+        return passkey_register_begin(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_register_begin_failed", "message": str(exc)}})
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/register/complete", response_model=PasskeyRegisterCompleteResponse)
+def passkey_register_complete_endpoint(payload: PasskeyRegisterCompleteRequest):
+    try:
+        result = passkey_register_complete(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_register_complete_failed", "message": str(exc)}})
+    _publish_event(
+        event_type="auth.passkey.registered", producer="auth",
+        entity_id=_redact_claim_identifier(f"passkey:{payload.user_id}"),
+        payload={"credential_id": result.credential_id},
+    )
+    return result
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/signin/begin", response_model=PasskeySigninBeginResponse)
+def passkey_signin_begin_endpoint(payload: PasskeySigninBeginRequest):
+    try:
+        return passkey_signin_begin(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_signin_begin_failed", "message": str(exc)}})
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/signin/complete", response_model=AuthSessionResponse)
+def passkey_signin_complete_endpoint(payload: PasskeySigninCompleteRequest):
+    try:
+        result = passkey_signin_complete(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_signin_complete_failed", "message": str(exc)}})
+
+    # Gate the SESSION's role, not just registration — defense in depth, matches OAuth callbacks:
+    # registration already required an allowlisted email, but re-check here too so a future bug in
+    # register_begin's gate can never silently grant Owner via a stale/leftover credential.
+    if result.email.casefold() not in OWNER_PASSKEY_EMAILS:
+        raise HTTPException(status_code=403, detail={"error": {"code": "not_authorised", "message": "This account is not authorised for owner access"}})
+
+    subject = f"passkey:{result.user_id}"
+    role = "Owner"
+    scopes = _default_scopes(role)
+    ttl = 8 * 3600
+    token, exp = _issue_and_store_session(
+        subject=subject, provider="passkey", email=result.email,
+        tenant_id="", role=role, scopes=scopes, ttl_seconds=ttl,
+    )
+    audit_auth_event("auth", "passkey_signin", details={"subject": _redact_claim_identifier(subject), "role": role})
+    return {
+        "access_token": token,
+        "token_type": "Bearer",
+        "expires_in": ttl,
+        "claims": {"sub": subject, "tenant_id": "", "role": role, "scopes": scopes,
+                    "exp": exp, "iss": AUTH_ISSUER, "aud": AUTH_AUDIENCE},
+        "user": {"id": subject, "provider": "passkey", "email": result.email, "tenant_id": "",
+                  "role": role, "scopes": scopes},
     }
 
 
