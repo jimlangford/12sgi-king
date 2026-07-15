@@ -23,7 +23,10 @@ This document defines the shared v2 contract for backend and frontend integratio
 - Tenant service: case model CRUD (`/api/v2/cases*`)
 - Documents service: generation metadata (`/api/v2/documents*`)
 - Storage service: object metadata (`/api/v2/storage/objects*`)
-- AI service: tenant assistant guidance (`/api/v2/ai/assist`)
+- AI service:
+  - tenant assistant guidance (`/api/v2/ai/assist`)
+  - render routing/queue dispatch (`/api/v2/ai/render/dispatch`)
+  - Neo4j semantic string-edge upsert (`/api/v2/ai/graph/string-edge`)
 
 ## Frontend integration targets
 

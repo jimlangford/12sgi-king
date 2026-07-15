@@ -27,6 +27,27 @@ export WORKBOARD_DISPATCH_LOG="/tmp/govos_v2_dispatch.jsonl"
 export WORKBOARD_TARGET_THREAD="workboard-quad-os"
 ```
 
+Optional flip-ready render routing (hybrid ComfyUI/GPU-worker):
+
+```bash
+export RENDER_ROUTING_MODE="hybrid"                 # hybrid | native_only | queue_only
+export COMFYUI_NATIVE_URL="http://127.0.0.1:8188"   # optional direct native route
+export COMFYUI_NATIVE_READY_URL="http://127.0.0.1:8188/system_stats"
+export COMFYUI_GPU_WORKER_QUEUE="comfyui-gpu-worker"   # queue lane name
+export GPU_WORKER_HEARTBEAT_URL=""                     # optional queue worker heartbeat URL
+```
+
+Optional Neo4j graph persistence for render dispatch:
+
+```bash
+export NEO4J_ENABLED="true"
+export NEO4J_URL="http://127.0.0.1:7474"
+export NEO4J_USERNAME="neo4j"
+export NEO4J_PASSWORD="change-me"
+export NEO4J_DATABASE="neo4j"
+export NEO4J_REQUIRED_FOR_RENDER_DISPATCH="false"
+```
+
 ## 2) Start backend services
 
 ```bash
@@ -89,7 +110,9 @@ Defaults point to localhost service ports above. You can override with globals:
 3. Generate document for the case with the same `Authorization` header.
 4. Create/list storage objects with the same `Authorization` header.
 5. Ask AI guidance for the same case with the same `Authorization` header.
-6. Check `/api/v1/ready` and `/api/v1/health` from health service and verify all v2 services are reachable.
+6. Queue render work via `POST /api/v2/ai/render/dispatch` and verify route/target + workboard dispatch entry.
+7. Upsert a graph string-edge via `POST /api/v2/ai/graph/string-edge` and verify `graph.string_edge.upserted` in dispatch.
+8. Check `/api/v1/ready` and `/api/v1/health` from health service and verify all v2 services are reachable.
 
 ## 6) Run integration tests
 

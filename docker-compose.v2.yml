@@ -26,6 +26,18 @@ x-common-env: &common-env
   DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
   WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
   WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+  # Flip-ready render routing + graph persistence.
+  RENDER_ROUTING_MODE: ${RENDER_ROUTING_MODE:-hybrid}
+  COMFYUI_NATIVE_URL: ${COMFYUI_NATIVE_URL:-}
+  COMFYUI_NATIVE_READY_URL: ${COMFYUI_NATIVE_READY_URL:-}
+  COMFYUI_GPU_WORKER_QUEUE: ${COMFYUI_GPU_WORKER_QUEUE:-comfyui-gpu-worker}
+  GPU_WORKER_HEARTBEAT_URL: ${GPU_WORKER_HEARTBEAT_URL:-}
+  NEO4J_ENABLED: ${NEO4J_ENABLED:-true}
+  NEO4J_URL: ${NEO4J_URL:-http://neo4j:7474}
+  NEO4J_USERNAME: ${NEO4J_USERNAME:-neo4j}
+  NEO4J_PASSWORD: ${NEO4J_PASSWORD:-dev-only-neo4j-password-change-me}
+  NEO4J_DATABASE: ${NEO4J_DATABASE:-neo4j}
+  NEO4J_REQUIRED_FOR_RENDER_DISPATCH: ${NEO4J_REQUIRED_FOR_RENDER_DISPATCH:-false}
 
 services:
   auth:
@@ -118,6 +130,27 @@ services:
       timeout: 5s
       retries: 3
 
+  neo4j:
+    image: neo4j:5-community
+    environment:
+      NEO4J_AUTH: "${NEO4J_USERNAME:-neo4j}/${NEO4J_PASSWORD:-dev-only-neo4j-password-change-me}"
+      NEO4J_server_http_listen__address: 0.0.0.0:7474
+      NEO4J_server_bolt_listen__address: 0.0.0.0:7687
+      NEO4J_server_memory_heap_initial__size: ${NEO4J_HEAP_INIT:-256m}
+      NEO4J_server_memory_heap_max__size: ${NEO4J_HEAP_MAX:-512m}
+    volumes:
+      - v2-neo4j-data:/data
+      - v2-neo4j-logs:/logs
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -a bolt://localhost:7687 -u ${NEO4J_USERNAME:-neo4j} -p ${NEO4J_PASSWORD:-dev-only-neo4j-password-change-me} \"RETURN 1\" >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   health:
     build: { context: ., dockerfile: services/Dockerfile }
     # Bound to 8106, not 8000 — 8000 was already occupied by another local process on this host.
@@ -126,9 +159,11 @@ services:
       SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105"
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports: ["127.0.0.1:8106:8000"]
-    depends_on: [auth, tenant, documents, storage, ai]
+    depends_on: [auth, tenant, documents, storage, ai, neo4j]
     restart: unless-stopped
 
 volumes:
   v2-db:
   v2-dispatch:
+  v2-neo4j-data:
+  v2-neo4j-logs:

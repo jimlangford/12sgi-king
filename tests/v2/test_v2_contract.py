@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-ROOT = Path('/home/runner/work/12sgi-king/12sgi-king')
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class TestV2ContractFiles(unittest.TestCase):
@@ -13,6 +13,8 @@ class TestV2ContractFiles(unittest.TestCase):
             '/api/v2/documents/generate',
             '/api/v2/storage/objects',
             '/api/v2/ai/assist',
+            '/api/v2/ai/render/dispatch',
+            '/api/v2/ai/graph/string-edge',
         ]
         for route in required:
             self.assertIn(route, text)

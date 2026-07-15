@@ -8,7 +8,7 @@ Implemented v2 backend service scaffolds:
 - Tenant (`/services/tenant`) — `/api/v2/cases*`
 - Documents (`/services/documents`) — `/api/v2/documents*`
 - Storage (`/services/storage`) — `/api/v2/storage/objects*`
-- AI (`/services/ai`) — `/api/v2/ai/assist`
+- AI (`/services/ai`) — `/api/v2/ai/assist`, `/api/v2/ai/render/dispatch`, `/api/v2/ai/graph/string-edge`
 - Health gateway (`/services/health`) — `/api/v1/*` probes + surface aggregation
 
 Frontend integration scaffolds:

@@ -194,6 +194,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AiAssistResponse'
+  /api/v2/ai/render/dispatch:
+    post:
+      summary: Route and queue render work for ComfyUI/GPU worker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderDispatchRequest'
+      responses:
+        '200':
+          description: Render work queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderDispatchResponse'
+  /api/v2/ai/graph/string-edge:
+    post:
+      summary: Upsert a semantic string-edge into the Neo4j graph + workboard queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphStringEdgeRequest'
+      responses:
+        '200':
+          description: String edge upserted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphStringEdgeResponse'
 components:
   schemas:
     ErrorResponse:
@@ -373,3 +405,103 @@ components:
           type: array
           items:
             type: string
+    RenderDispatchRequest:
+      type: object
+      required: [prompt]
+      properties:
+        prompt:
+          type: string
+        case_id:
+          type: string
+        tenant_id:
+          type: string
+        project_id:
+          type: string
+        workflow_id:
+          type: string
+        priority:
+          type: string
+          default: normal
+        route_hint:
+          type: string
+          enum: [native, queue]
+        assets:
+          type: array
+          items:
+            type: string
+    RenderDispatchResponse:
+      type: object
+      required: [dispatch_id, status, route, target, queue_entry_id]
+      properties:
+        dispatch_id:
+          type: string
+        status:
+          type: string
+          example: queued
+        route:
+          type: string
+          enum: [native_comfyui, gpu_worker_queue]
+        target:
+          type: string
+        queue_entry_id:
+          type: string
+        graph:
+          type: object
+          additionalProperties: true
+        routing:
+          type: object
+          additionalProperties: true
+    GraphNodeRef:
+      type: object
+      required: [kind, id]
+      properties:
+        kind:
+          type: string
+          description: one of tenant, project, case, workflow, render_dispatch, scene, shot, asset, prompt, model
+        id:
+          type: string
+    GraphStringEdgeRequest:
+      type: object
+      required: [source, relation, target]
+      properties:
+        source:
+          $ref: '#/components/schemas/GraphNodeRef'
+        relation:
+          type: string
+          enum: [CONNECTS_TO, INFLUENCES, USES_ASSET, USES_MODEL, PART_OF, PRECEDES, DERIVES_FROM, LINKS_TO]
+        target:
+          $ref: '#/components/schemas/GraphNodeRef'
+        weight:
+          type: number
+          default: 1
+        context:
+          type: object
+          additionalProperties: true
+        case_id:
+          type: string
+        tenant_id:
+          type: string
+        project_id:
+          type: string
+    GraphStringEdgeResponse:
+      type: object
+      required: [string_edge_id, status, source, relation, target, weight, queue_entry_id]
+      properties:
+        string_edge_id:
+          type: string
+        status:
+          type: string
+          example: upserted
+        source:
+          $ref: '#/components/schemas/GraphNodeRef'
+        relation:
+          type: string
+        target:
+          $ref: '#/components/schemas/GraphNodeRef'
+        weight:
+          type: number
+        graph:
+          type: object
+          additionalProperties: true
+        queue_entry_id:
+          type: string

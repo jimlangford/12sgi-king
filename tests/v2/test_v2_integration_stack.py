@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from urllib import error, request
 
-ROOT = Path('/home/runner/work/12sgi-king/12sgi-king')
+ROOT = Path(__file__).resolve().parents[2]
 BASE_PORT = int(os.environ.get('V2_TEST_BASE_PORT', '19101'))
 
 
@@ -166,7 +166,12 @@ class TestV2IntegrationStack(unittest.TestCase):
             'ai',
             'services/ai',
             cls.ports['ai'],
-            {'AI_DB_PATH': str(base / 'ai.db')},
+            {
+                'AI_DB_PATH': str(base / 'ai.db'),
+                'RENDER_ROUTING_MODE': 'queue_only',
+                'COMFYUI_GPU_WORKER_QUEUE': 'comfyui-gpu-worker',
+                'NEO4J_ENABLED': 'false',
+            },
         )
         surfaces = ','.join(
             [
@@ -316,6 +321,73 @@ class TestV2IntegrationStack(unittest.TestCase):
         self.assertEqual(status, 503)
         self.assertEqual(body['status'], 'not-ready')
         self.assertFalse(body['dependencies']['auth'])
+
+    def test_render_dispatch_queues_workboard_job(self):
+        before = len(self._dispatch_entries())
+        token = self._create_session()
+        auth_headers = {'Authorization': 'Bearer ' + token}
+
+        status, case = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-1', 'title': 'Render package', 'notes': 'Route render'},
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 201)
+
+        status, body = http_json(
+            'POST',
+            f"{self.urls['ai']}/api/v2/ai/render/dispatch",
+            {
+                'case_id': case['id'],
+                'tenant_id': 'tenant-1',
+                'project_id': 'project-a',
+                'prompt': 'Render scene 12 with storyboard continuity',
+                'assets': ['shot12.png', 'style-lora-v5.safetensors'],
+            },
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body['status'], 'queued')
+        self.assertEqual(body['route'], 'gpu_worker_queue')
+
+        queued = self._dispatch_entries()[before:]
+        self.assertTrue(any((entry.get('job') or {}).get('action') == 'render.dispatch.queued' for entry in queued))
+
+    def test_string_edge_upsert_queues_workboard_job(self):
+        before = len(self._dispatch_entries())
+        token = self._create_session()
+        auth_headers = {'Authorization': 'Bearer ' + token}
+
+        status, case = http_json(
+            'POST',
+            f"{self.urls['tenant']}/api/v2/cases",
+            {'tenant_id': 'tenant-1', 'title': 'Graph package', 'notes': 'String edge'},
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 201)
+
+        status, body = http_json(
+            'POST',
+            f"{self.urls['ai']}/api/v2/ai/graph/string-edge",
+            {
+                'source': {'kind': 'scene', 'id': 'scene-12'},
+                'relation': 'INFLUENCES',
+                'target': {'kind': 'shot', 'id': 'shot-12b'},
+                'weight': 0.9,
+                'tenant_id': 'tenant-1',
+                'project_id': 'project-a',
+                'case_id': case['id'],
+                'context': {'reason': 'continuity bridge'},
+            },
+            headers=auth_headers,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body['status'], 'upserted')
+        self.assertEqual(body['relation'], 'INFLUENCES')
+
+        queued = self._dispatch_entries()[before:]
+        self.assertTrue(any((entry.get('job') or {}).get('action') == 'graph.string_edge.upserted' for entry in queued))
 
 
 if __name__ == '__main__':
