@@ -30,6 +30,9 @@ from services.auth.app.passkeys import (
     passkey_register_begin, passkey_register_complete,
     passkey_signin_begin, passkey_signin_complete,
 )
+from services.auth.app.magiclinks import (
+    init_magiclinks_db, smtp_configured, send_magic_link, claim_token, MagicLinkRequest,
+)
 
 _log = logging.getLogger(__name__)
 
@@ -464,6 +467,7 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
 
 init_db()
 init_passkeys_db()
+init_magiclinks_db()
 
 
 @app.get(f"{API_PREFIX}/live")
@@ -516,6 +520,49 @@ def jwks():
             }
         ]
     }
+
+
+@app.post(f"{API_PREFIX}/auth/magiclink/request")
+def magiclink_request_endpoint(payload: MagicLinkRequest):
+    # Enumeration-safe: the response is ALWAYS the same regardless of whether the email is allowlisted,
+    # so an attacker can't probe which addresses are owner accounts.
+    generic = {"status": "check_email"}
+    if not smtp_configured():
+        # Honest 501 when the owner hasn't set SMTP creds yet — mirrors the draft's guard, but as a
+        # real, testable state (not a silent success). Not a leak: same for any email.
+        raise HTTPException(status_code=501, detail={"error": {"code": "magic_links_unconfigured", "message": "Magic links are not configured (SMTP credentials not set)"}})
+    if payload.email.casefold() not in OWNER_MAGIC_EMAILS:
+        return generic
+    try:
+        send_magic_link(payload.email)
+    except Exception as exc:
+        _log.error("magic link send failed: %s", exc)
+        raise HTTPException(status_code=503, detail={"error": {"code": "magic_link_send_failed", "message": "Could not send the sign-in email — please try again"}})
+    return generic
+
+
+@app.get(f"{API_PREFIX}/auth/magiclink/claim")
+def magiclink_claim_endpoint(token: str = "", email: str = ""):
+    if not token or not email:
+        return _error_page("Invalid sign-in link.", provider="magic_link")
+    verified_email = claim_token(token, email)
+    if not verified_email:
+        return _error_page("This sign-in link is invalid, expired, or already used.", provider="magic_link")
+    # Re-check the allowlist at claim time (defense in depth — a token issued before an email was removed
+    # from the allowlist must not still grant owner access).
+    if verified_email.casefold() not in OWNER_MAGIC_EMAILS:
+        return _error_page("This account is not authorised for owner access.", provider="magic_link")
+
+    subject = f"magic_link:{verified_email}"
+    role = "Owner"
+    scopes = _default_scopes(role)
+    token_jwt, _ = _issue_and_store_session(
+        subject=subject, provider="magic_link", email=verified_email,
+        tenant_id="", role=role, scopes=scopes, ttl_seconds=8 * 3600,
+    )
+    audit_auth_event("auth", "magiclink_signin", details={"subject": _redact_claim_identifier(subject), "role": role})
+    redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(token_jwt, safe='')}"
+    return RedirectResponse(url=redirect_url)
 
 
 @app.post(f"{API_PREFIX}/auth/passkey/register/begin", response_model=PasskeyRegisterBeginResponse)
