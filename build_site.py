@@ -182,6 +182,18 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # money_chain_maui.html. Real federal USASpending subaward data (Maui FIPS 15009), already staged.
                # Added 2026-07-14 (audit-quad-os, Maui ingest repatch).
                "subcontractors_maui.html",
+               # ── OTHER-TENANT civic pages (hi-hawaii/honolulu/kauai/state + NY). Data was STAGED but never
+               # copied — same gap as the Maui pages above. The generators were fixed 2026-07-14 (audit-quad-os)
+               # so each page carries its OWN tenant name/facts, not Maui's: contracts_x_donors + money_behind
+               # titles were mislabeled "Maui", and money_behind's Lahaina/$1.639B disaster-lens is now gated to
+               # Maui only (it's a Maui fact, false under another county). Stale hi-*_contract_awards.html orphans
+               # were deleted instead — the correct contracts_<slug>.html already ship above.
+               "contracts_x_donors_hi-hawaii.html", "contracts_x_donors_hi-honolulu.html",
+               "contracts_x_donors_hi-kauai.html", "contracts_x_donors_hi-state.html",
+               "money_behind_officials_hi-hawaii.html", "money_behind_officials_hi-honolulu.html",
+               "money_behind_officials_hi-kauai.html", "money_behind_officials_hi-state.html",
+               "money_kauai_shell.html", "minutes_hi-state.html",
+               "audit_balance_nys.html", "federal_money_nys.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
@@ -1044,6 +1056,20 @@ def main():
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
                 _present_data.append((os.path.basename(rel), src))
+        # prosecutor_public_feed.html fetches ./prosecutor_public_feed.json at the SITE ROOT (relative,
+        # same-dir), but the DATA loop above only lands it in site/data/ -> the page's fetch 404s. Copy it
+        # to root too so the feed resolves. Added 2026-07-14 (audit-quad-os, other-tenant repatch).
+        _pf = mauios_src("prosecutor_public_feed.json")
+        if os.path.exists(_pf):
+            shutil.copy(_pf, os.path.join(SITE, "prosecutor_public_feed.json"))
+        # tenant_hi-state links lege/legislator_scorecard.html at the SUBDIR path, but the build otherwise
+        # ships only the flattened lege_legislator_scorecard.html -> the subdir link 404s (the flatten
+        # gotcha). Ship the subdir copy too so the link resolves; the govos_shell_stamp lane (recursive
+        # glob) stamps it with the correct ../ asset prefix. Added 2026-07-14 (audit-quad-os, repatch).
+        _lege = mauios_src(os.path.join("lege", "legislator_scorecard.html"))
+        if os.path.exists(_lege):
+            os.makedirs(os.path.join(SITE, "lege"), exist_ok=True)
+            shutil.copy(_lege, os.path.join(SITE, "lege", "legislator_scorecard.html"))
 
     with _lane("open_data_catalog"):
         # [open-data] DCAT catalog (data.json) + a human Open Data front door (datasets.html). Indexes ONLY
@@ -1137,11 +1163,16 @@ def main():
                 print("  ! blog skipped: %s" % str(_be)[:120])
 
     with _lane("links_copy"):
-        # [links] copy linked supporting folders so per-official "full profile" pages resolve
-        for sub in ("donors",):
+        # [links] copy linked supporting folders so per-official "full profile" pages resolve.
+        # "donors" is Maui's; each other tenant's money_behind_officials_<t>.html links its own
+        # donors_<t>/ dir (donor_watch.py derives the href from basename(OUT_DIR)). Copy them all.
+        # Extended 2026-07-14 (audit-quad-os, other-tenant repatch — closed 32 broken donor-profile links).
+        import glob as _glob
+        _donor_dirs = ["donors"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "donors_*")) if os.path.isdir(p))
+        for sub in _donor_dirs:
             s = os.path.join(MAUIOS, sub)
             if os.path.isdir(s):
-                shutil.copytree(s, os.path.join(SITE, sub))
+                shutil.copytree(s, os.path.join(SITE, sub), dirs_exist_ok=True)
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
 
     with _lane("bids_copy"):
