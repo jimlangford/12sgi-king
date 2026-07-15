@@ -123,7 +123,17 @@ _CORS_ORIGINS = [
     if o.strip()
 ]
 
-app = FastAPI(title="govOS v2 Auth Service", version=VERSION)
+app = FastAPI(
+    title="govOS v2 Auth Service",
+    version=VERSION,
+    description="Owner authentication for govOS v2: GitHub/Google OAuth, Passkeys (WebAuthn), "
+                "Magic Links, session issuance + introspection. All endpoints under /api/v2.",
+    # Tier 1.7 (2026-07-15): expose Swagger UI + OpenAPI schema at the /api/v2 prefix (per the
+    # continuation-guide spec), not the FastAPI default root paths.
+    docs_url=f"{API_PREFIX}/docs",
+    redoc_url=f"{API_PREFIX}/redoc",
+    openapi_url=f"{API_PREFIX}/openapi.json",
+)
 
 app.add_middleware(
     CORSMiddleware,
