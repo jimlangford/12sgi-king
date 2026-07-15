@@ -28,6 +28,16 @@ app = FastAPI(title="govOS v2 Tenant Service", version=VERSION)
 
 CASE_STATUSES = {"open", "in_progress", "pending_review", "closed", "archived"}
 
+# Legal status-transition graph.  key = current status → set of allowed next statuses.
+# Requesting the same status as current is idempotent (handled separately, not via this map).
+VALID_TRANSITIONS: dict[str, set[str]] = {
+    "open":           {"in_progress", "pending_review", "closed", "archived"},
+    "in_progress":    {"pending_review", "closed", "archived"},
+    "pending_review": {"open", "in_progress", "closed", "archived"},
+    "closed":         {"open", "archived"},
+    "archived":       {"open"},
+}
+
 
 class CaseCreateRequest(BaseModel):
     tenant_id: str
@@ -38,6 +48,9 @@ class CaseCreateRequest(BaseModel):
 
 class CaseStatusUpdateRequest(BaseModel):
     status: str
+    actor: str                   # identity of the person/service requesting the change
+    reason: str                  # human-readable reason for the transition
+    correlation_id: str | None = None   # optional external trace / ticket reference
     notes: str | None = None
 
 
@@ -70,6 +83,23 @@ def init_db() -> None:
                 notes TEXT,
                 created_at TEXT NOT NULL,
                 created_by TEXT NOT NULL
+            )
+            """
+        )
+        # Append-only audit trail for status transitions.  One row per accepted transition;
+        # idempotent same-status requests do NOT produce a row here.
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS case_status_events (
+                id TEXT PRIMARY KEY,
+                case_id TEXT NOT NULL,
+                from_status TEXT NOT NULL,
+                to_status TEXT NOT NULL,
+                actor TEXT NOT NULL,
+                reason TEXT NOT NULL,
+                correlation_id TEXT,
+                notes TEXT,
+                occurred_at TEXT NOT NULL
             )
             """
         )
@@ -273,7 +303,18 @@ def update_case_status(
         request_timeout=REQUEST_TIMEOUT,
         required_scopes={"tenant:write"},
     )
-    new_status = payload.status if payload.status in CASE_STATUSES else "open"
+
+    # Reject unknown target status up front (do not silently coerce to "open").
+    if payload.status not in CASE_STATUSES:
+        auth_error(
+            422,
+            "invalid_status",
+            f"'{payload.status}' is not a valid case status",
+            {"valid_statuses": sorted(CASE_STATUSES)},
+        )
+
+    new_status = payload.status
+
     with _db() as conn:
         row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
         if not row:
@@ -282,6 +323,25 @@ def update_case_status(
             service_name=SERVICE_NAME, claims=claims, resource_tenant_id=row["tenant_id"]
         )
         previous_status = row["status"]
+
+        # Idempotency: same-status request is a no-op — return current state, emit no event.
+        if new_status == previous_status:
+            return _to_case(row)
+
+        # Enforce legal transition graph.
+        allowed = VALID_TRANSITIONS.get(previous_status, set())
+        if new_status not in allowed:
+            auth_error(
+                409,
+                "invalid_transition",
+                f"Transition from '{previous_status}' to '{new_status}' is not allowed",
+                {"from": previous_status, "to": new_status,
+                 "allowed_transitions": sorted(allowed)},
+            )
+
+        occurred_at = _now_utc()
+
+        # Apply the status update.
         if payload.notes is not None:
             conn.execute(
                 "UPDATE cases SET status = ?, notes = ? WHERE id = ?",
@@ -292,6 +352,26 @@ def update_case_status(
                 "UPDATE cases SET status = ? WHERE id = ?",
                 (new_status, case_id),
             )
+
+        # Append an immutable audit event — one row per accepted transition.
+        conn.execute(
+            """
+            INSERT INTO case_status_events
+                (id, case_id, from_status, to_status, actor, reason, correlation_id, notes, occurred_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                str(uuid4()),
+                case_id,
+                previous_status,
+                new_status,
+                payload.actor,
+                payload.reason,
+                payload.correlation_id,
+                payload.notes,
+                occurred_at,
+            ),
+        )
         conn.commit()
         updated_row = conn.execute("SELECT * FROM cases WHERE id = ?", (case_id,)).fetchone()
 
@@ -303,7 +383,11 @@ def update_case_status(
             "tenant_id": row["tenant_id"],
             "previous_status": previous_status,
             "new_status": new_status,
+            "actor": payload.actor,
+            "reason": payload.reason,
+            "correlation_id": payload.correlation_id,
             "changed_by": claims.get("sub", "unknown"),
+            "occurred_at": occurred_at,
         },
     )
 

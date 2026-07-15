@@ -381,21 +381,33 @@ def release_project(
     social_caption: str | None = None,
     store_path: Path | None = None,
 ) -> dict | None:
-    """Mark a project as released and queue public-surface actions.
+    """Mark a project as released and queue a reviewable social draft.
 
-    This is the canonical entry point for the studio release pipeline:
+    RELEASE ≠ PUBLIC.  This function does three things:
       1. Sets project status → 'released' in the local store + Neo4j.
-      2. Emits a ``studio.project.released`` platform event for the event bus.
-      3. Queues an *output* lane workboard job (social announcement draft) so
-         the owner can review it before anything posts publicly.
-      4. Updates ``production_status.json`` in the repo root with latest films.
+      2. Emits a ``studio.project.released`` platform event (audit trail only).
+      3. Queues an *output* lane workboard job as a DRAFT so the owner can
+         review and approve before anything is posted publicly.
+      4. Updates ``production_status.json`` in the repo root.
 
-    Per owner policy (config/owner_policy.json):
-      - Social media posts require owner sign-off before public posting.
-      - Studio productions are PRIVATE while in production, PUBLIC on release.
+    Nothing is published automatically.  The output-lane job must be approved
+    via ``approve_workboard_job()`` before any social content leaves the system.
+    The platform event payload carries ``is_public=False`` and rollback metadata
+    so the transition can be reversed by calling ``update_project_status()`` with
+    the ``previous_status`` value.
 
     Returns the updated project dict, or None if not found.
     """
+    # Capture previous status before any mutation for rollback metadata.
+    data = _load_store(store_path)
+    existing = next(
+        (p for p in (data.get("projects") or []) if p.get("project_id") == project_id),
+        None,
+    )
+    if not existing:
+        return None
+    previous_status = existing.get("status", "unknown")
+
     updated = update_project_status(project_id, "released", store_path=store_path)
     if not updated:
         return None
@@ -404,7 +416,18 @@ def release_project(
     project_type = updated.get("project_type") or "Project"
     released_at = _iso_now()
 
-    # Platform event — traceable audit trail for the release transition.
+    # Rollback instructions embedded in every event for traceability.
+    rollback_metadata = {
+        "rollback_action": "update_project_status",
+        "rollback_target_status": previous_status,
+        "rollback_note": (
+            f"Call update_project_status('{project_id}', '{previous_status}') "
+            f"to revert this release."
+        ),
+    }
+
+    # Platform event — audit trail for the release transition.
+    # is_public=False makes explicit that released ≠ automatically public.
     if _publish_platform_event:
         try:
             _publish_platform_event(
@@ -414,14 +437,19 @@ def release_project(
                 payload={
                     "title": project_title,
                     "project_type": project_type,
+                    "previous_status": previous_status,
                     "released_at": released_at,
                     "release_notes": release_notes or "",
+                    "is_public": False,
+                    "publication_requires_approval": True,
+                    **rollback_metadata,
                 },
             )
         except Exception:
             pass
 
-    # Output-lane workboard job — owner must approve before social post goes out.
+    # Output-lane workboard job — social draft that requires owner approval before
+    # any content is posted publicly.  Lane="output" enforces the review gate.
     if _emit_workboard:
         try:
             caption = social_caption or (
@@ -437,9 +465,13 @@ def release_project(
                     "project_id": project_id,
                     "title": project_title,
                     "project_type": project_type,
+                    "previous_status": previous_status,
                     "released_at": released_at,
                     "social_caption": caption,
                     "release_notes": release_notes or "",
+                    "is_public": False,
+                    "publication_requires_approval": True,
+                    **rollback_metadata,
                 },
             )
         except Exception:

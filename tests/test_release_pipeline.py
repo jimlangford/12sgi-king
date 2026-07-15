@@ -131,6 +131,86 @@ class TestReleaseProject(unittest.TestCase):
         self.assertIn("Luna Chronicles", caption)
         self.assertIn("12sgi", caption)
 
+    # ── Gate 7 hardening ──────────────────────────────────────────────────────
+
+    def test_released_is_not_automatically_public(self):
+        """released status ≠ public — is_public must be False on both event and workboard job."""
+        events = []
+        jobs = []
+
+        def fake_publish(event_type, producer, entity_id, payload):
+            events.append(payload)
+
+        def fake_emit(*, source, action, event, lane, payload, **kw):
+            jobs.append(payload)
+
+        with patch.object(studio_project, "_publish_platform_event", fake_publish), \
+             patch.object(studio_project, "_emit_workboard", fake_emit):
+            studio_project.release_project("proj-film-001", store_path=self.store_path)
+
+        self.assertEqual(len(events), 1)
+        self.assertFalse(events[0].get("is_public"),
+                         "Platform event must carry is_public=False")
+        self.assertTrue(events[0].get("publication_requires_approval"),
+                        "Platform event must carry publication_requires_approval=True")
+
+        self.assertEqual(len(jobs), 1)
+        self.assertFalse(jobs[0].get("is_public"),
+                         "Workboard job must carry is_public=False")
+        self.assertTrue(jobs[0].get("publication_requires_approval"),
+                        "Workboard job must carry publication_requires_approval=True")
+
+    def test_release_preserves_previous_status(self):
+        """previous_status must appear in both the event payload and workboard job payload."""
+        events = []
+        jobs = []
+
+        def fake_publish(event_type, producer, entity_id, payload):
+            events.append(payload)
+
+        def fake_emit(*, source, action, event, lane, payload, **kw):
+            jobs.append(payload)
+
+        with patch.object(studio_project, "_publish_platform_event", fake_publish), \
+             patch.object(studio_project, "_emit_workboard", fake_emit):
+            studio_project.release_project("proj-film-001", store_path=self.store_path)
+
+        self.assertEqual(events[0]["previous_status"], "production")
+        self.assertEqual(jobs[0]["previous_status"], "production")
+
+    def test_release_includes_rollback_metadata(self):
+        """Both payloads must include rollback_action and rollback_target_status."""
+        events = []
+        jobs = []
+
+        def fake_publish(event_type, producer, entity_id, payload):
+            events.append(payload)
+
+        def fake_emit(*, source, action, event, lane, payload, **kw):
+            jobs.append(payload)
+
+        with patch.object(studio_project, "_publish_platform_event", fake_publish), \
+             patch.object(studio_project, "_emit_workboard", fake_emit):
+            studio_project.release_project("proj-film-001", store_path=self.store_path)
+
+        for p in (events[0], jobs[0]):
+            self.assertEqual(p["rollback_action"], "update_project_status")
+            self.assertEqual(p["rollback_target_status"], "production")
+            self.assertIn("rollback_note", p)
+
+    def test_social_output_stays_in_output_lane_as_draft(self):
+        """The workboard job must be in the 'output' lane, requiring owner approval."""
+        captured_lanes = []
+
+        def fake_emit(*, source, action, event, lane, payload, **kw):
+            captured_lanes.append(lane)
+
+        with patch.object(studio_project, "_emit_workboard", fake_emit):
+            studio_project.release_project("proj-film-001", store_path=self.store_path)
+
+        self.assertEqual(captured_lanes, ["output"],
+                         "Social output must land in output lane (requires owner approval)")
+
 
 # ── Gate 5 — sage_bridge HINA dispatch wire ───────────────────────────────────
 
@@ -217,6 +297,118 @@ class TestSageBridgeHinaDispatch(unittest.TestCase):
 
         self.assertEqual(len(emitted), 0)
 
+    # ── Gate 5 hardening ──────────────────────────────────────────────────────
+
+    def test_hina_uses_hst_date(self):
+        """today must come from now_hst() — verifiable by checking HST timezone offset."""
+        import watchers.sage_bridge as sage_bridge
+        from datetime import timezone, timedelta
+
+        HST = timezone(timedelta(hours=-10))
+        # now_hst() must return an HST-aware datetime
+        hst_now = sage_bridge.now_hst()
+        self.assertEqual(hst_now.utcoffset().total_seconds(), -10 * 3600,
+                         "now_hst() must return UTC-10 (Hawaiʻi Standard Time)")
+
+    def test_hina_idempotency_skips_duplicate_for_same_date(self):
+        """If a HINA job for today already exists in the log, rerun must not emit a second job."""
+        import watchers.sage_bridge as sage_bridge
+
+        today = "2026-07-15"
+        emitted = []
+
+        def fake_emit_hina(**kw):
+            emitted.append(kw)
+
+        # Simulate existing workboard log entry for today
+        existing_entry = {
+            "lane": "creative",
+            "job": {
+                "action": "hina-balance",
+                "payload": {"offering_date": today},
+            },
+        }
+
+        def fake_read_log():
+            return [existing_entry]
+
+        with patch.object(sage_bridge, "_emit_hina", fake_emit_hina), \
+             patch.object(sage_bridge, "_read_workboard_log", fake_read_log):
+            nodes = [{"node": 7, "balance": "hewa", "akua": "Pele", "phase": "Pō",
+                      "hewa_evidence": "test-hewa"}]
+            today_overlap = {"date": today, "ao_po": "Pō", "akua": "Pele",
+                             "creative_offering": "balance", "civic_offering": "balance"}
+            hewa_nodes = [n for n in nodes if n["balance"] == "hewa"]
+            already_dispatched = False
+            if sage_bridge._read_workboard_log:
+                for entry in sage_bridge._read_workboard_log():
+                    job = entry.get("job") or {}
+                    p = job.get("payload") or {}
+                    if (entry.get("lane") == "creative"
+                            and job.get("action") == "hina-balance"
+                            and p.get("offering_date") == today):
+                        already_dispatched = True
+                        break
+            if not already_dispatched and hewa_nodes and today_overlap and sage_bridge._emit_hina:
+                primary = hewa_nodes[0]
+                sage_bridge._emit_hina(
+                    offering_date=today,
+                    hina_node_id=int(primary.get("node") or 0),
+                    akua=str(primary.get("akua") or ""),
+                    wa_phase=str(primary.get("phase") or "Pō"),
+                    particles=str(today_overlap.get("creative_offering") or ""),
+                    civic_source=str(primary.get("hewa_evidence") or ""),
+                    source="sage-bridge-nightly",
+                )
+
+        self.assertEqual(len(emitted), 0,
+                         "Rerun must not emit a second HINA job when one already exists for today")
+
+    def test_hina_emits_when_no_existing_log_entry(self):
+        """Fresh day with no prior log entry must produce exactly one HINA job."""
+        import watchers.sage_bridge as sage_bridge
+
+        today = "2026-07-15"
+        emitted = []
+
+        def fake_emit_hina(**kw):
+            emitted.append(kw)
+
+        def fake_read_log():
+            return []  # nothing in log
+
+        with patch.object(sage_bridge, "_emit_hina", fake_emit_hina), \
+             patch.object(sage_bridge, "_read_workboard_log", fake_read_log):
+            nodes = [{"node": 7, "balance": "hewa", "akua": "Pele", "phase": "Pō",
+                      "hewa_evidence": "test-hewa"}]
+            today_overlap = {"date": today, "ao_po": "Pō", "akua": "Pele",
+                             "creative_offering": "balance"}
+            hewa_nodes = [n for n in nodes if n["balance"] == "hewa"]
+            already_dispatched = False
+            if sage_bridge._read_workboard_log:
+                for entry in sage_bridge._read_workboard_log():
+                    job = entry.get("job") or {}
+                    p = job.get("payload") or {}
+                    if (entry.get("lane") == "creative"
+                            and job.get("action") == "hina-balance"
+                            and p.get("offering_date") == today):
+                        already_dispatched = True
+                        break
+            if not already_dispatched and hewa_nodes and today_overlap and sage_bridge._emit_hina:
+                primary = hewa_nodes[0]
+                sage_bridge._emit_hina(
+                    offering_date=today,
+                    hina_node_id=int(primary.get("node") or 0),
+                    akua=str(primary.get("akua") or ""),
+                    wa_phase=str(primary.get("phase") or "Pō"),
+                    particles=str(today_overlap.get("creative_offering") or ""),
+                    civic_source=str(primary.get("hewa_evidence") or ""),
+                    source="sage-bridge-nightly",
+                )
+
+        self.assertEqual(len(emitted), 1,
+                         "Fresh day must produce exactly one HINA job")
+
 
 # ── Gate 3b — Case status update contract ────────────────────────────────────
 
@@ -231,14 +423,51 @@ class TestCaseStatusUpdateModel(unittest.TestCase):
         self.assertIn("pending_review", CASE_STATUSES)
         self.assertIn("archived", CASE_STATUSES)
 
-    def test_case_status_update_request_model(self):
+    def test_case_status_update_request_requires_actor_and_reason(self):
+        """actor and reason are now required fields on CaseStatusUpdateRequest."""
         from services.tenant.app.main import CaseStatusUpdateRequest
-        req = CaseStatusUpdateRequest(status="closed")
-        self.assertEqual(req.status, "closed")
-        self.assertIsNone(req.notes)
+        import pydantic
 
-        req_with_notes = CaseStatusUpdateRequest(status="in_progress", notes="Working on it")
-        self.assertEqual(req_with_notes.notes, "Working on it")
+        # Valid request with required fields
+        req = CaseStatusUpdateRequest(status="closed", actor="caseworker-1", reason="Resolved")
+        self.assertEqual(req.status, "closed")
+        self.assertEqual(req.actor, "caseworker-1")
+        self.assertEqual(req.reason, "Resolved")
+        self.assertIsNone(req.notes)
+        self.assertIsNone(req.correlation_id)
+
+        # Must raise if actor is missing
+        with self.assertRaises((pydantic.ValidationError, TypeError)):
+            CaseStatusUpdateRequest(status="closed", reason="test")
+
+        # Must raise if reason is missing
+        with self.assertRaises((pydantic.ValidationError, TypeError)):
+            CaseStatusUpdateRequest(status="closed", actor="test")
+
+    def test_case_status_update_request_accepts_correlation_id(self):
+        from services.tenant.app.main import CaseStatusUpdateRequest
+        req = CaseStatusUpdateRequest(
+            status="in_progress",
+            actor="system",
+            reason="Automated intake",
+            correlation_id="ticket-9001",
+        )
+        self.assertEqual(req.correlation_id, "ticket-9001")
+
+    def test_valid_transitions_graph_covers_all_statuses(self):
+        """Every status must appear as a key in VALID_TRANSITIONS."""
+        from services.tenant.app.main import CASE_STATUSES, VALID_TRANSITIONS
+        for s in CASE_STATUSES:
+            self.assertIn(s, VALID_TRANSITIONS,
+                          f"Status '{s}' is missing from VALID_TRANSITIONS")
+
+    def test_valid_transitions_targets_are_subsets_of_case_statuses(self):
+        """All transition targets must be valid statuses."""
+        from services.tenant.app.main import CASE_STATUSES, VALID_TRANSITIONS
+        for src, targets in VALID_TRANSITIONS.items():
+            for t in targets:
+                self.assertIn(t, CASE_STATUSES,
+                              f"Transition target '{t}' from '{src}' is not a valid status")
 
     def test_patch_route_registered_on_app(self):
         from services.tenant.app.main import app

@@ -5,6 +5,106 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-07-15 — Release-readiness hardening: pending owner actions A–F
+
+**Thread:** release-gate-hardening  **From:** Copilot agent  **To:** owner  **Status:** PENDING — no destructive or administrative operations taken
+
+**INSPECTED:** Gate 3b (case status), Gate 5 (HINA dispatch), Gate 7 (studio release). Code hardened, 21 unit tests pass, gate evidence files written to docs/reports/gate_evidence/.
+
+**CODE CHANGED:** services/tenant/app/main.py · watchers/sage_bridge.py · watchers/studio_project.py · tests/test_release_pipeline.py
+
+**PRESERVED:** No secrets, no runtime changes, no administrative operations, no destructive actions. All six items below require explicit owner action.
+
+---
+
+### OWNER ACTION A — Deploy Workflow Enable + Dry Run
+**Type:** ADMINISTRATIVE — do not execute automatically.
+**Blocked on:** Owner must enable the `deploy-v2-king-server` workflow in GitHub Actions (Settings → Actions → Allow all actions), then dispatch it with `dry_run=true` first.
+**Why blocked:** Workflow was found disabled/never-run. Enabling it on a live server without a dry run first risks partial deploys.
+**Safe sequence:**
+1. GitHub → Actions → `deploy-v2-king-server` → Enable workflow
+2. Dispatch: `dry_run=true`, branch=`main`
+3. Review logs for any service that fails health check
+4. Dispatch again: `dry_run=false` only after step 3 is clean
+**Gate evidence:** Timestamped workflow run log required before marking Gates 1–4 runtime-verified.
+**Rollback:** Re-disable workflow; revert to previous deployment tag via `git revert` on deploy commit.
+
+---
+
+### OWNER ACTION B — pythonw Process Remediation
+**Type:** RUNTIME — do not terminate processes automatically.
+**Blocked on:** Owner must inventory current pythonw processes by PID, executable path, and arguments before deciding which to terminate or restart.
+**Why blocked:** No inventory taken; terminating the wrong process could kill a running watcher or king-server subprocess.
+**Safe sequence:**
+1. On king-server: `wmic process where "name='pythonw.exe'" get ProcessId,ExecutablePath,CommandLine` (Windows) or `ps aux | grep pythonw` (WSL/Linux)
+2. Cross-reference PIDs against running king services (king-watchdog, watchers, services/)
+3. Terminate only orphaned or duplicate processes; restart with the correct startup script
+**Gate evidence:** PID inventory screenshot/log required as runtime evidence before this action is closed.
+**Rollback:** Restart terminated process using `startup.bat` or `startup.sh` as appropriate.
+
+---
+
+### OWNER ACTION C — Targeted Disk Cleanup
+**Type:** DESTRUCTIVE — requires separate confirmation, never automatic.
+**Blocked on:** Owner must run a Docker disk usage inventory first.
+**Why blocked:** `docker system prune -a` or `prune volumes` must never run without an explicit, separate confirmation from the owner after reviewing the inventory.
+**Safe sequence:**
+1. `docker system df` — review current usage by type (images, containers, volumes, build cache)
+2. `docker images --filter "dangling=true"` — identify removable images
+3. `docker volume ls --filter "dangling=true"` — identify unused volumes
+4. Review which images are rollback candidates (tag format `*-prev` or dated tags)
+5. Only after inventory: run targeted `docker image rm <id>` or `docker volume rm <id>` commands for confirmed orphans
+6. Rollback images must be preserved until Gates 1–4 have runtime evidence
+**Rollback:** Rollback images tagged before this cleanup are the restore point. Inventory must be captured before any removal.
+
+---
+
+### OWNER ACTION D — nginx Board Proxy
+**Type:** SERVER CONFIG — do not modify nginx config automatically.
+**Blocked on:** Owner must confirm the target upstream (board API port), SSL cert path, and whether Tailscale or public-facing is intended.
+**Why blocked:** nginx config touches the public/private boundary. A misconfigured proxy could expose internal board routes publicly.
+**Reference:** `docs/nginx-tailnet-proxy.example.conf` contains the example config.
+**Safe sequence:**
+1. Review `docs/nginx-tailnet-proxy.example.conf`
+2. Confirm target upstream port (king-server board API, typically :8100 or :8000)
+3. Confirm Tailscale-only vs. public-facing (PUBLIC vs. PRIVATE boundary label)
+4. Apply config to nginx with `nginx -t` dry-run before reload
+5. `nginx -s reload`
+**Gate evidence:** nginx access log showing successful proxied request to /board/ endpoint.
+**Rollback:** `cp nginx.conf.bak nginx.conf && nginx -s reload`
+
+---
+
+### OWNER ACTION E — publish_watch Launcher
+**Type:** RUNTIME — do not start watchers automatically.
+**Blocked on:** Owner must confirm which watchers are currently running and which are expected to run before starting publish_watch.
+**Why blocked:** Duplicate watcher instances cause duplicate workboard events. A running instance must be identified first (see Owner Action B inventory).
+**Safe sequence:**
+1. Complete Owner Action B inventory first
+2. Confirm no existing publish_watch process is running
+3. Start: `python watchers/publish_watch.py` or via king-watchdog if registered
+4. Verify first run produces exactly one workboard entry per expected source (no duplicates)
+**Gate evidence:** publish_watch stdout log showing clean single-emit run.
+**Rollback:** Kill the new PID; no data is lost (workboard log is append-only; duplicate entries can be rejected via reject_workboard_job).
+
+---
+
+### OWNER ACTION F — Jetpack Secrets and WordPress Dry Run
+**Type:** SECRET MANAGEMENT + ADMINISTRATIVE — do not set secrets or trigger publishes automatically.
+**Blocked on:** Owner must obtain the Jetpack OAuth2 token pair locally (see docs/WORDPRESS_PUBLIC_LAYER.md "how to get JETPACK_TOKEN") and set them as repo secrets.
+**Why blocked:** WordPress.com credentials must never pass through agent chat. Setup is documented as a local, owner-only operation.
+**Safe sequence:**
+1. Follow docs/WORDPRESS_PUBLIC_LAYER.md steps 1–6 to obtain `JETPACK_TOKEN` and `JETPACK_SITE_ID`
+2. `gh secret set JETPACK_TOKEN` (local terminal, prompts for value, never pasted here)
+3. `gh secret set JETPACK_SITE_ID`
+4. Dispatch `wp-branch-pages-sync.yml` with `dry_run=true` first
+5. Review dry-run output; confirm no live writes
+6. Dispatch with `dry_run=false` only after step 5 is clean
+**Gate evidence:** Successful dry-run workflow log + confirmation of secrets set (secret names visible in repo settings, values never exposed).
+**Rollback:** `gh secret delete JETPACK_TOKEN JETPACK_SITE_ID` if a misconfiguration is found before the live run.
+
+---
+
 ## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
 
 **Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review
