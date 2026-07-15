@@ -31,11 +31,17 @@ import os
 import sqlite3
 import time
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib import error, request
 from uuid import uuid4
+
+try:
+    import jsonschema  # type: ignore
+    _HAS_JSONSCHEMA = True
+except ImportError:
+    _HAS_JSONSCHEMA = False
 
 from fastapi import FastAPI, Header, HTTPException, Request, Response
 from pydantic import BaseModel
@@ -56,7 +62,16 @@ DB_PATH = os.environ.get("AI_GATEWAY_DB_PATH", "/tmp/govos_v2_ai_gateway.db")
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TOOL_REGISTRY_PATH = REPO_ROOT / "config" / "ai_tool_registry.v2.json"
-PROFILES_PATH = REPO_ROOT / "config" / "ai_gateway_profiles.json"
+PROFILES_DIR = REPO_ROOT / "config" / "ai_profiles"
+PROFILES_PATH = REPO_ROOT / "config" / "ai_gateway_profiles.json"  # legacy fallback
+
+# How long a pending action remains valid before it expires.
+PENDING_ACTION_TTL_HOURS = int(os.environ.get("PENDING_ACTION_TTL_HOURS", "24"))
+
+# Fields that must never be accepted from model-generated tool arguments.
+_FORBIDDEN_ARGUMENT_FIELDS = frozenset(
+    {"tenant_id", "actor", "actor_id", "role", "scopes", "sub", "iss", "aud"}
+)
 
 AUTH_INTROSPECTION_URL = os.environ.get("AUTH_INTROSPECTION_URL", "http://localhost:8101/api/v2/auth/introspect")
 AUTH_READY_URL = os.environ.get("AUTH_READY_URL", "http://localhost:8101/api/v2/ready")
@@ -67,11 +82,17 @@ GPU_ROUTER_READY_URL = os.environ.get("GPU_ROUTER_READY_URL", f"{GPU_ROUTER_URL}
 GPU_INFER_TIMEOUT = float(os.environ.get("GPU_INFER_TIMEOUT", "120"))
 
 # Risk classes that create a pending action rather than executing immediately.
-APPROVAL_REQUIRED_CLASSES = {"approval", "publish", "administrative", "destructive"}
+APPROVAL_REQUIRED_CLASSES = {
+    "mutation_guarded",
+    "approval",
+    "publish",
+    "administrative",
+    "destructive",
+}
 # Risk classes that execute immediately (no pending action needed).
-IMMEDIATE_CLASSES = {"read", "analysis", "draft"}
-# Risk classes that require authentication and audit but execute immediately after auth.
-AUDITED_CLASSES = {"mutation"}
+IMMEDIATE_CLASSES = {"read", "analysis", "draft", "mutation_low"}
+# Legacy single mutation class: treated as mutation_low for backwards compatibility.
+_LEGACY_MUTATION_CLASS = "mutation"
 
 # Departmental profile definitions (fallback if profiles file is missing).
 _DEFAULT_PROFILES: list[dict] = [
@@ -232,6 +253,39 @@ def _load_tool_registry() -> list[dict]:
 
 
 def _load_profiles() -> list[dict]:
+    """Load departmental profiles from config/ai_profiles/*.v2.json (fail-closed).
+
+    A malformed or unreadable profile file is skipped rather than expanding
+    permissions.  Falls back to the legacy flat-file or embedded defaults only
+    when the profiles directory does not exist at all.
+    """
+    _REQUIRED_KEYS = {"profile_id", "allowed_tools", "knowledge_scopes"}
+
+    # Prefer per-file directory layout.
+    if PROFILES_DIR.is_dir():
+        profiles: list[dict] = []
+        for path in sorted(PROFILES_DIR.glob("*.json")):
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(data, dict):
+                    _log.error("AI profile %s is not a JSON object — skipped (fail-closed)", path)
+                    continue
+                missing = _REQUIRED_KEYS - data.keys()
+                if missing:
+                    _log.error(
+                        "AI profile %s missing required keys %s — skipped (fail-closed)",
+                        path,
+                        missing,
+                    )
+                    continue
+                profiles.append(data)
+            except Exception:
+                _log.exception("Failed to load AI profile %s — skipped (fail-closed)", path)
+        if profiles:
+            return profiles
+        _log.warning("No valid profiles loaded from %s; falling back to defaults", PROFILES_DIR)
+
+    # Legacy single-file fallback.
     try:
         data = json.loads(PROFILES_PATH.read_text(encoding="utf-8"))
         return data if isinstance(data, list) else _DEFAULT_PROFILES
@@ -256,6 +310,58 @@ def _profile_allows_tool(profile: dict, tool_id: str) -> bool:
         if pattern == tool_id:
             return True
     return False
+
+
+def _validate_tool_arguments(tool: dict, parameters: dict) -> dict:
+    """Validate and sanitize tool arguments.
+
+    1. Rejects any field in _FORBIDDEN_ARGUMENT_FIELDS (model must not supply auth context).
+    2. If the tool declares an arguments_schema, validates against it using jsonschema
+       (or a lightweight fallback when jsonschema is not installed).
+
+    Returns a clean copy of the validated parameters.
+    Raises HTTPException 400 on any violation.
+    """
+    # Strip / reject forbidden fields.
+    bad_fields = _FORBIDDEN_ARGUMENT_FIELDS & parameters.keys()
+    if bad_fields:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Tool arguments must not include reserved fields: {sorted(bad_fields)}",
+        )
+
+    schema = tool.get("arguments_schema")
+    if not schema:
+        return parameters
+
+    if _HAS_JSONSCHEMA:
+        try:
+            jsonschema.validate(instance=parameters, schema=schema)
+        except jsonschema.ValidationError as exc:
+            raise HTTPException(status_code=400, detail=f"Invalid tool arguments: {exc.message}")
+        except jsonschema.SchemaError as exc:
+            _log.error("Tool %s has invalid schema: %s", tool.get("tool_id"), exc)
+            # Schema bug: fail open (don't block the call) but log loudly.
+    else:
+        # Lightweight fallback: enforce additionalProperties and required fields.
+        schema_props = schema.get("properties", {})
+        additional_ok = schema.get("additionalProperties", True)
+        if additional_ok is False:
+            extra = set(parameters.keys()) - set(schema_props.keys())
+            if extra:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Unknown fields in tool arguments: {sorted(extra)}",
+                )
+        required = schema.get("required", [])
+        missing = [k for k in required if k not in parameters]
+        if missing:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Missing required tool arguments: {missing}",
+            )
+
+    return parameters
 
 
 def _check_dependency_ready(url: str) -> bool:
@@ -389,15 +495,23 @@ def init_db() -> None:
                 tenant_id TEXT NOT NULL DEFAULT '',
                 project_id TEXT NOT NULL DEFAULT '',
                 parameters_json TEXT NOT NULL,
+                arguments_hash TEXT NOT NULL DEFAULT '',
+                idempotency_key TEXT NOT NULL DEFAULT '',
                 risk_class TEXT NOT NULL,
                 status TEXT NOT NULL DEFAULT 'pending',
                 audit_event TEXT,
                 created_at TEXT NOT NULL,
+                expires_at TEXT NOT NULL DEFAULT '',
+                executed_at TEXT,
                 resolved_at TEXT,
                 resolved_by TEXT,
                 outcome TEXT
             )
             """
+        )
+        conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_pending_actions_idempotency "
+            "ON pending_actions (idempotency_key) WHERE idempotency_key != ''"
         )
         conn.execute(
             """
@@ -443,7 +557,28 @@ def init_db() -> None:
             )
             """
         )
+        # Migrate existing tables: add columns introduced in v2 hardening.
+        _migrate_pending_actions(conn)
         conn.commit()
+
+
+def _migrate_pending_actions(conn: sqlite3.Connection) -> None:
+    """Add columns to pending_actions for databases created before hardening."""
+    existing = {
+        row[1]
+        for row in conn.execute("PRAGMA table_info(pending_actions)").fetchall()
+    }
+    migrations = {
+        "arguments_hash": "TEXT NOT NULL DEFAULT ''",
+        "idempotency_key": "TEXT NOT NULL DEFAULT ''",
+        "expires_at": "TEXT NOT NULL DEFAULT ''",
+        "executed_at": "TEXT",
+    }
+    for col, typedef in migrations.items():
+        if col not in existing:
+            conn.execute(
+                f"ALTER TABLE pending_actions ADD COLUMN {col} {typedef}"
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -627,10 +762,10 @@ async def invoke_tool(
     """
     Invoke a registered tool.
 
-    For read/analysis/draft risk classes: executes immediately.
-    For mutation: executes immediately with audit logging.
-    For approval/publish/administrative/destructive: creates a pending action
-    requiring owner confirmation before execution.
+    Risk-class routing:
+      read / analysis / draft / mutation_low → immediate execution, audited
+      mutation_guarded / approval / publish / administrative / destructive
+          → pending action requiring owner confirmation
     """
     claims = require_claims(
         service_name=SERVICE_NAME,
@@ -644,6 +779,8 @@ async def invoke_tool(
     if not tool:
         raise HTTPException(status_code=404, detail=f"Tool not found: {tool_id}")
 
+    # Authorization is always derived from the authenticated session — never
+    # from model-supplied arguments.
     tenant_id = enforce_tenant_scope(
         service_name=SERVICE_NAME,
         claims=claims,
@@ -675,41 +812,89 @@ async def invoke_tool(
                 detail=f"Insufficient scope for tool {tool_id}",
             )
 
+    # Validate and sanitize arguments (strips forbidden fields, checks schema).
+    clean_params = _validate_tool_arguments(tool, body.parameters)
+
+    # Normalize legacy "mutation" → "mutation_low" for backwards compatibility.
     risk_class = tool.get("risk_class", "read")
+    if risk_class == _LEGACY_MUTATION_CLASS:
+        risk_class = "mutation_low"
+
     actor = claims.get("sub", "unknown")
     project_id = body.project_id or ""
     correlation_id = body.correlation_id or str(uuid4())
     request_hash = _sha256(
-        json.dumps({"tool_id": tool_id, "parameters": body.parameters}, sort_keys=True)
+        json.dumps({"tool_id": tool_id, "parameters": clean_params}, sort_keys=True)
     )
 
     if risk_class in APPROVAL_REQUIRED_CLASSES:
-        # Create a pending action; do not execute yet.
+        # Build idempotency key: same actor + tool + args + tenant produces the
+        # same key, so duplicate submissions don't create multiple pending actions.
+        idempotency_key = _sha256(
+            json.dumps(
+                {
+                    "actor": actor,
+                    "tool_id": tool_id,
+                    "tenant_id": tenant_id,
+                    "parameters": clean_params,
+                },
+                sort_keys=True,
+            )
+        )
+        arguments_hash = request_hash
         action_id = f"ACT-{uuid4().hex[:8].upper()}"
         audit_event = tool.get("audit_event", f"{tool_id}.pending")
-        with _db() as conn:
-            conn.execute(
-                """
-                INSERT INTO pending_actions
-                    (id, tool_id, actor, profile, tenant_id, project_id,
-                     parameters_json, risk_class, status, audit_event, created_at)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    action_id,
-                    tool_id,
-                    actor,
-                    "gateway",
-                    tenant_id,
-                    project_id,
-                    json.dumps(body.parameters),
-                    risk_class,
-                    "pending",
-                    audit_event,
-                    _now_utc(),
-                ),
+        now = _now_utc()
+        expires_at = (
+            datetime.now(timezone.utc) + timedelta(hours=PENDING_ACTION_TTL_HOURS)
+        ).isoformat()
+        try:
+            with _db() as conn:
+                conn.execute(
+                    """
+                    INSERT INTO pending_actions
+                        (id, tool_id, actor, profile, tenant_id, project_id,
+                         parameters_json, arguments_hash, idempotency_key,
+                         risk_class, status, audit_event, created_at, expires_at)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    """,
+                    (
+                        action_id,
+                        tool_id,
+                        actor,
+                        "gateway",
+                        tenant_id,
+                        project_id,
+                        json.dumps(clean_params),
+                        arguments_hash,
+                        idempotency_key,
+                        risk_class,
+                        "pending",
+                        audit_event,
+                        now,
+                        expires_at,
+                    ),
+                )
+                conn.commit()
+        except sqlite3.IntegrityError:
+            # Duplicate idempotency key — return the existing pending action.
+            with _db() as conn:
+                row = conn.execute(
+                    "SELECT id, status FROM pending_actions WHERE idempotency_key=?",
+                    (idempotency_key,),
+                ).fetchone()
+            if row and row["status"] == "pending":
+                return {
+                    "status": "pending_approval",
+                    "action_id": row["id"],
+                    "tool_id": tool_id,
+                    "risk_class": risk_class,
+                    "message": f"Duplicate request; existing pending action: {row['id']}",
+                }
+            raise HTTPException(
+                status_code=409,
+                detail="A non-pending action with this idempotency key already exists.",
             )
-            conn.commit()
         _emit_audit_event(
             actor=actor,
             profile="gateway",
@@ -726,14 +911,19 @@ async def invoke_tool(
             "action_id": action_id,
             "tool_id": tool_id,
             "risk_class": risk_class,
-            "parameters": body.parameters,
+            "actor": actor,
+            "tenant_id": tenant_id,
+            "project_id": project_id,
+            "arguments_hash": arguments_hash,
+            "created_at": now,
+            "expires_at": expires_at,
             "message": (
-                f"This action requires owner approval. "
+                f"This action requires owner confirmation. "
                 f"Pending action: {action_id}"
             ),
         }
 
-    # Immediate execution (read/analysis/draft/mutation).
+    # Immediate execution (read / analysis / draft / mutation_low).
     _emit_audit_event(
         actor=actor,
         profile="gateway",
@@ -749,7 +939,7 @@ async def invoke_tool(
         "status": "ok",
         "tool_id": tool_id,
         "risk_class": risk_class,
-        "parameters": body.parameters,
+        "parameters": clean_params,
         "result": {
             "message": f"Tool {tool_id} invoked successfully.",
             "correlation_id": correlation_id,
@@ -818,17 +1008,44 @@ def get_context(
 
 
 def _list_pending_actions(*, tenant_id: str) -> list[dict]:
+    """Return non-expired pending actions for the given tenant."""
+    now = _now_utc()
     try:
         with _db() as conn:
             rows = conn.execute(
-                "SELECT id, tool_id, risk_class, parameters_json, created_at "
-                "FROM pending_actions WHERE status='pending' AND tenant_id=? "
+                "SELECT id, tool_id, risk_class, parameters_json, arguments_hash, "
+                "created_at, expires_at, actor "
+                "FROM pending_actions "
+                "WHERE status='pending' AND tenant_id=? "
+                "AND (expires_at='' OR expires_at > ?) "
                 "ORDER BY created_at DESC LIMIT 20",
-                (tenant_id,),
+                (tenant_id, now),
             ).fetchall()
         return [dict(r) for r in rows]
     except Exception:
         return []
+
+
+def _check_action_preconditions(action: dict, action_id: str) -> None:
+    """Raise HTTPException if the action may not be executed."""
+    if action["status"] != "pending":
+        raise HTTPException(
+            status_code=409,
+            detail=f"Action {action_id} is already {action['status']}",
+        )
+    # Expiration check.
+    expires_at = action.get("expires_at") or ""
+    if expires_at and expires_at < _now_utc():
+        raise HTTPException(
+            status_code=410,
+            detail=f"Action {action_id} has expired and cannot be executed.",
+        )
+    # Single-execution guard (executed_at must be null).
+    if action.get("executed_at"):
+        raise HTTPException(
+            status_code=409,
+            detail=f"Action {action_id} has already been executed.",
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -842,7 +1059,12 @@ def approve_action(
     body: ActionDecisionRequest,
     authorization: str | None = Header(default=None),
 ):
-    """Owner approves a pending action, triggering backend execution."""
+    """Owner approves a pending action, triggering backend execution.
+
+    Executes the exact arguments stored at creation time (verified via
+    arguments_hash).  The action may only be approved once and must not be
+    expired.  Approval and execution are audited separately.
+    """
     claims = require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
@@ -856,21 +1078,33 @@ def approve_action(
     action = _get_pending_action(action_id)
     if not action:
         raise HTTPException(status_code=404, detail=f"Pending action not found: {action_id}")
-    if action["status"] != "pending":
-        raise HTTPException(
-            status_code=409,
-            detail=f"Action {action_id} is already {action['status']}",
-        )
+
+    _check_action_preconditions(action, action_id)
 
     actor = claims.get("sub", "unknown")
     now = _now_utc()
+
+    # Atomically mark as approved and record executed_at to prevent replay.
     with _db() as conn:
         conn.execute(
-            "UPDATE pending_actions SET status='approved', resolved_at=?, resolved_by=?, outcome=? WHERE id=?",
-            (now, actor, body.reason or "approved", action_id),
+            "UPDATE pending_actions "
+            "SET status='approved', resolved_at=?, resolved_by=?, outcome=?, executed_at=? "
+            "WHERE id=? AND status='pending'",
+            (now, actor, body.reason or "approved", now, action_id),
         )
+        updated = conn.execute(
+            "SELECT changes()"
+        ).fetchone()[0]
         conn.commit()
 
+    if not updated:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Action {action_id} was concurrently modified; approval rejected.",
+        )
+
+    # Audit approval and execution as separate events.
+    correlation_id = str(uuid4())
     _emit_audit_event(
         actor=actor,
         profile="gateway",
@@ -878,13 +1112,26 @@ def approve_action(
         event_type="ai.tool.approved",
         tenant_id=action["tenant_id"],
         project_id=action["project_id"],
-        correlation_id=str(uuid4()),
+        correlation_id=correlation_id,
+        approval_id=action_id,
+        extra={"arguments_hash": action.get("arguments_hash", "")},
+    )
+    _emit_audit_event(
+        actor=actor,
+        profile="gateway",
+        tool_id=action["tool_id"],
+        event_type="ai.tool.executed",
+        tenant_id=action["tenant_id"],
+        project_id=action["project_id"],
+        correlation_id=correlation_id,
+        request_hash=action.get("arguments_hash", ""),
         approval_id=action_id,
     )
     return {
         "status": "approved",
         "action_id": action_id,
         "tool_id": action["tool_id"],
+        "arguments_hash": action.get("arguments_hash", ""),
         "resolved_by": actor,
         "resolved_at": now,
     }
@@ -896,7 +1143,7 @@ def reject_action(
     body: ActionDecisionRequest,
     authorization: str | None = Header(default=None),
 ):
-    """Owner rejects a pending action."""
+    """Owner rejects a pending action.  No execution takes place."""
     claims = require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
@@ -909,17 +1156,16 @@ def reject_action(
     action = _get_pending_action(action_id)
     if not action:
         raise HTTPException(status_code=404, detail=f"Pending action not found: {action_id}")
-    if action["status"] != "pending":
-        raise HTTPException(
-            status_code=409,
-            detail=f"Action {action_id} is already {action['status']}",
-        )
+
+    _check_action_preconditions(action, action_id)
 
     actor = claims.get("sub", "unknown")
     now = _now_utc()
     with _db() as conn:
         conn.execute(
-            "UPDATE pending_actions SET status='rejected', resolved_at=?, resolved_by=?, outcome=? WHERE id=?",
+            "UPDATE pending_actions "
+            "SET status='rejected', resolved_at=?, resolved_by=?, outcome=? "
+            "WHERE id=? AND status='pending'",
             (now, actor, body.reason or "rejected", action_id),
         )
         conn.commit()
