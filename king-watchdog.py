@@ -4,8 +4,9 @@ king-watchdog.py — keep all govOS services alive + Gordon AI coordinator.
 Monitors:
   - Docker containers (studio-assets, neo4j, auth)
   - king-bridge (port 8109)
+  - board-api (port 8799)
+  - studio-assets (port 8108)
   - Ollama (port 11434)
-  - Board API (port 8799)
   - Gordon AI coordinator (background)
 
 Restarts anything that goes down. Logs to watchdog.log.
@@ -58,9 +59,14 @@ def docker_restart(name):
 
 # ── Service definitions ───────────────────────────────────────────────────────
 DOCKER_SERVICES = [
-    {'name': 'studio-assets-studio-assets-1', 'health': 'http://localhost:8108/api/v2/ready'},
-    {'name': 'studio-assets-studio-neo4j-1',  'health': None},
     {'name': '12sgi-king-auth-1',             'health': 'http://localhost:8101/api/v2/ready'},
+    {'name': '12sgi-king-board-api-1',        'health': 'http://127.0.0.1:8799/health'},
+    {'name': '12sgi-king-king-bridge-1',      'health': 'http://localhost:8109/api/v2/ready'},
+]
+
+EXTERNAL_HEALTH_CHECKS = [
+    {'label': 'studio-assets', 'url': 'http://localhost:8108/api/v2/health'},
+    {'label': 'ollama',        'url': 'http://localhost:11434/api/tags'},
 ]
 
 # Processes we manage (cmd, ready_url, label)
@@ -84,14 +90,9 @@ def ensure_process(label, cmd, ready_url, cwd=HERE):
         )
         time.sleep(3)
 
-# king-bridge and board-api run as Docker containers (docker-compose.v2.yml).
-# Watchdog health-checks them but does NOT try to start them as subprocesses.
+# All services now run as Docker containers (docker-compose.v2.yml).
+# Watchdog health-checks them but does NOT start them as subprocesses.
 PROCESS_SERVICES = []
-
-HTTP_HEALTH_CHECKS = [
-    {'label': 'king-bridge',  'url': 'http://localhost:8109/api/v2/ready'},
-    {'label': 'board-api',    'url': 'http://localhost:8799/health'},
-]
 
 def check_docker():
     for svc in DOCKER_SERVICES:
@@ -108,14 +109,11 @@ def check_docker():
 def check_processes():
     for svc in PROCESS_SERVICES:
         ensure_process(svc['label'], svc['cmd'], svc.get('ready_url'))
-    # Health-check Docker-managed services (not started here; just monitored)
-    for chk in HTTP_HEALTH_CHECKS:
-        if not http_ready(chk['url']):
-            log(f"WARNING: {chk['label']} not responding at {chk['url']} -- check docker compose logs")
 
-def check_ollama():
-    if not http_ready('http://localhost:11434/api/tags', timeout=3):
-        log('WARNING: Ollama not responding on :11434 — king-bridge will run degraded')
+def check_external():
+    for chk in EXTERNAL_HEALTH_CHECKS:
+        if not http_ready(chk['url'], timeout=3):
+            log(f"WARNING: {chk['label']} not responding at {chk['url']}")
 
 def tailscale_serve_setup():
     """Set up Tailscale serve rules for the king stack."""
@@ -124,7 +122,6 @@ def tailscale_serve_setup():
         serves = {
             '8109': 'king-bridge (API + AI)',
             '8799': 'board-api (owner console)',
-            '8888': 'static pages (govOS)',
         }
         for port, desc in serves.items():
             if port not in out:
@@ -156,24 +153,22 @@ def start_gordon_coordinator():
 
 def main():
     log('=== king-watchdog started ===')
-    log(f'Monitoring: {len(DOCKER_SERVICES)} Docker + {len(PROCESS_SERVICES)} processes')
+    log(f'Monitoring: {len(DOCKER_SERVICES)} Docker services + {len(EXTERNAL_HEALTH_CHECKS)} external endpoints')
     tailscale_serve_setup()
     
     # Start Gordon AI coordinator
     gordon = start_gordon_coordinator()
 
-    # Initial start
+    # Initial check
     check_docker()
     check_processes()
-    check_ollama()
+    check_external()
 
     while True:
         try:
             check_docker()
             check_processes()
-            # Every 5 minutes also check Ollama
-            if int(time.time()) % 300 < POLL_S:
-                check_ollama()
+            check_external()
             time.sleep(POLL_S)
         except KeyboardInterrupt:
             log('watchdog stopped by user')

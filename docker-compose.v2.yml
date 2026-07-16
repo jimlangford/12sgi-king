@@ -374,7 +374,7 @@ services:
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}
-      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108
+      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,board-api=board-api:8799,studio-assets=host.docker.internal:8108
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports:
     - 127.0.0.1:8106:8000
@@ -482,6 +482,43 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+  board-api:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.board_api.main:app
+    - --host
+    - 127.0.0.1
+    - --port
+    - '8799'
+    environment:
+      OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
+      COMFYUI_BASE: ${COMFYUI_BASE:-http://host.docker.internal:8188}
+      KING_BRIDGE: ${KING_BRIDGE:-http://host.docker.internal:8109}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_REPO: ${GITHUB_REPO:-jimlangford/12sgi-king}
+      DEPLOY_LOG_DIR: /repo/logs/v2-deploy
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+    volumes:
+    - v2-dispatch:/data/dispatch
+    - .:/repo
+    ports:
+    - 127.0.0.1:8799:8799
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://127.0.0.1:8799/health', timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   king-bridge:
     build:
       context: .
