@@ -22,32 +22,15 @@ x-common-env:
   NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
   NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
 services:
-  neo4j:
-    image: neo4j:5-community
-    environment:
-      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
-      NEO4J_AUTH: none
-      NEO4J_server_default__listen__address: 0.0.0.0
-      NEO4J_server_memory_pagecache_size: ${NEO4J_PAGECACHE_SIZE:-256M}
-      NEO4J_server_memory_heap_initial__size: ${NEO4J_HEAP_SIZE:-256M}
-      NEO4J_server_memory_heap_max__size: ${NEO4J_HEAP_SIZE:-256M}
-    volumes:
-    - v2-neo4j-data:/data
-    - v2-neo4j-logs:/logs
-    ports:
-    - 127.0.0.1:7474:7474
-    - 127.0.0.1:7687:7687
-    restart: unless-stopped
-    mem_limit: ${NEO4J_MEM_LIMIT:-640m}
-    mem_reservation: ${NEO4J_MEM_RESERVATION:-256m}
-    healthcheck:
-      test:
-      - CMD-SHELL
-      - wget -q -O /dev/null http://localhost:7474 || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
+  # ---------------------------------------------------------------------------
+  # neo4j MOVED OUT (Jimmy 2026-07-15: "isolate neo4j so a v2 deploy can never wipe the brain").
+  # neo4j (the ~10.4k-node whole-system graph, 14 native consumers) now lives in its OWN compose:
+  #     docker-compose.neo4j.yml   (container: quados-neo4j, same external volume 12sgi-king_v2-neo4j-data)
+  # It is DELIBERATELY absent here so `docker compose -f docker-compose.v2.yml up/down/-v` can never
+  # recreate or wipe it. v2 services still reach it via NEO4J_HTTP=http://host.docker.internal:7474 or
+  # the shared external volume; the brain's lifecycle is standalone. Board item wb1784180689000 = this.
+  # DO NOT re-add a neo4j service here. To restart the graph: docker compose -f docker-compose.neo4j.yml up -d
+  # ---------------------------------------------------------------------------
   auth:
     build:
       context: .
@@ -564,8 +547,8 @@ services:
     - v2-dispatch:/data/dispatch
     ports:
     - 127.0.0.1:8109:8109
-    depends_on:
-    - neo4j
+    # depends_on neo4j REMOVED 2026-07-15 -- neo4j is now standalone (docker-compose.neo4j.yml),
+    # not part of this project. king-bridge reaches it via NEO4J_HTTP; no compose-level dep.
     restart: unless-stopped
     healthcheck:
       test:
