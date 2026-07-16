@@ -56,6 +56,7 @@ PAGES = [
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
+    ("bill9_money_vs_will.html",          "Bill 9 - the Vote, the Money","The Council's 5-3 final vote to phase out transient vacation rentals in apartment districts, set beside the real-estate money behind the three NO votes. Public records (roll-call + campaign finance), framed as questions, never accusations. Neo4j-backed."),
     ("testifiers_maui.html",             "Who Testifies x Money",        "Named public testifiers from the minutes, cross-referenced to campaign donors and the real-estate record. Public records, framed as questions."),
     ("federal_money.html",               "Federal Dollars - Maui & State","Federal contracts + grants landing in Hawai&#699;i, the Maui share called out, broken down by awarding agency. Public records, framed as questions."),
     ("beta_requests.html",               "govOS Beta - Build It With Your Council","Maui Council members request features (Stripe Identity - free, no charge), guided by constituents who sign up by district. Shapes the software; the public record stays public."),
