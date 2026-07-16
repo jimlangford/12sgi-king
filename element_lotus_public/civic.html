@@ -28,13 +28,13 @@
 <div class="shell">
   <header class="topbar">
     <div class="brand"><div class="mark">⚖</div><div class="wordmark"><strong>Civic / govOS</strong><span>Live transparency dashboard</span></div></div>
-    <nav class="nav"><a href="index.html">Home</a><a href="games/">Games</a><a href="films.html">Films</a><a href="music.html">Music</a><a href="contact.html">Contact</a></nav>
+    <nav class="nav"><a href="index.html">Home</a><a href="../site/games/">Games</a><a href="films.html">Films</a><a href="music.html">Music</a><a href="contact.html">Contact</a></nav>
   </header>
   <section class="hero">
     <div class="eyebrow">Public civic lane</div>
     <h1>govOS is here — tracking government with transparency and intention.</h1>
     <p>Follow meetings, jurisdictions, and cases. Submit testimony. Request government records. Participate in the civic work.</p>
-    <div class="actions"><a class="btn primary" href="reports.html">Open the civic hub</a><a class="btn secondary" href="jurisdictions.html">Browse jurisdictions</a></div>
+    <div class="actions"><a class="btn primary" href="../site/reports.html">Open the civic hub</a><a class="btn secondary" href="../site/jurisdictions.html">Browse jurisdictions</a></div>
   </section>
 
   <section class="section" id="metrics-section">
@@ -50,19 +50,19 @@
   <section class="section">
     <h2>Participation & transparency</h2>
     <div class="card-grid">
-      <article class="card"><div class="kicker">Testify</div><h3>Public testimony</h3><p>Submit written or oral testimony on government decisions.</p><a href="testify.html">Testify →</a></article>
-      <article class="card"><div class="kicker">Jurisdictions</div><h3>Government by place</h3><p>Find your elected officials and government bodies by location.</p><a href="jurisdictions.html">Browse →</a></article>
-      <article class="card"><div class="kicker">Records</div><h3>Request public records</h3><p>Access government records and documents under public records laws.</p><a href="datasets.html">Request →</a></article>
+      <article class="card"><div class="kicker">Testify</div><h3>Public testimony</h3><p>Submit written or oral testimony on government decisions.</p><a href="../testify.html">Testify →</a></article>
+      <article class="card"><div class="kicker">Jurisdictions</div><h3>Government by place</h3><p>Find your elected officials and government bodies by location.</p><a href="../site/jurisdictions.html">Browse →</a></article>
+      <article class="card"><div class="kicker">Records</div><h3>Request public records</h3><p>Access government records and documents under public records laws.</p><a href="../site/datasets.html">Request →</a></article>
     </div>
   </section>
 
   <section class="section split">
     <div class="panel"><h2>Boundary</h2><p>Civic pages stay public and transparent. Owner operations, workboards, and internal systems remain private.</p></div>
-    <div class="panel"><h2>Return to studio</h2><p><a href="index.html">Back to Element Lotus home →</a><br><a href="games/">Games hub →</a><br><a href="films.html">Film lane →</a></p></div>
+    <div class="panel"><h2>Return to studio</h2><p><a href="index.html">Back to Element Lotus home →</a><br><a href="../site/games/">Games hub →</a><br><a href="films.html">Film lane →</a></p></div>
   </section>
 
   <footer class="footer">
-    <nav><a href="index.html">Home</a><a href="reports.html">Civic hub</a><a href="jurisdictions.html">Jurisdictions</a><a href="testify.html">Testify</a></nav>
+    <nav><a href="index.html">Home</a><a href="../site/reports.html">Civic hub</a><a href="../site/jurisdictions.html">Jurisdictions</a><a href="../testify.html">Testify</a></nav>
     PUBLIC civic lane · Auto-rendered from live civic schedule
   </footer>
   <div class="last-update" id="last-update"></div>
@@ -95,9 +95,9 @@
     } catch (error) {
       console.error('Failed to load civic metrics:', error);
       document.getElementById('metrics-content').innerHTML = 
-        `<p class="error">Could not load civic metrics. <a href="reports.html">Visit the civic hub →</a></p>`;
+        `<p class="error">Could not load civic metrics. <a href="../site/reports.html">Visit the civic hub →</a></p>`;
       document.getElementById('events-content').innerHTML = 
-        `<p class="error">Could not load civic calendar. <a href="reports.html">Visit the civic hub →</a></p>`;
+        `<p class="error">Could not load civic calendar. <a href="../site/reports.html">Visit the civic hub →</a></p>`;
     }
   }
   
@@ -146,7 +146,7 @@
             <div class="date">${ev.date || '(no date)'}</div>
             <div class="title">${ev.type === 'deadline' ? '⏰' : '📋'} ${ev.title || ev.body}</div>
             ${ev.description ? `<p>${ev.description}</p>` : ''}
-            <a href="reports.html">View details →</a>
+            <a href="../site/reports.html">View details →</a>
           </article>
         `).join('')}
       </div>
