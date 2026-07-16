@@ -82,8 +82,8 @@ jobs:
       V2_HEALTH_PORT: "8106"
       V2_GPU_ROUTER_PORT: "8107"
       V2_KING_BRIDGE_PORT: "8109"
-      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-runtime,gpu-router,ai,storage,health,king-bridge"
-      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109"
+      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-router,ai,storage,health,king-bridge,board-api,connector-runner,github-workflow-monitor"
+      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109,board-api=8799"
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
       RESTART_SERVICES: ${{ github.event_name == 'push' && 'true' || github.event.inputs.restart_services || 'true' }}
@@ -306,7 +306,8 @@ jobs:
             @{ name="ai";           port=$env:V2_AI_PORT;          path="/api/v2/ready"; expected_status=200 },
             @{ name="health";       port=$env:V2_HEALTH_PORT;      path="/api/v1/ready"; expected_status=200 },
             @{ name="gpu-router";   port=$env:V2_GPU_ROUTER_PORT;  path="/api/v2/ready"; expected_status=200 },
-            @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 }
+            @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 },
+            @{ name="board-api";    port="8799";                   path="/health";       expected_status=200 }
           )
 
           $results = @{}
