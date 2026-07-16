@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
 </head>
 <body>
 <x-dc>
@@ -18,16 +18,16 @@
      DECISION / POLICY / HANDOFF / OWNERSHIP / INFO.
      Auto-refreshes every 30 s when the server is live. -->
 <div data-surface="hub" data-screen-label="Hub · System Witness"
-  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
+  style="min-height:100%; background:var(--app-backdrop,#081420); color:var(--ink,#eaf2fc); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;">
 
   <!-- Panel header -->
-  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#34301f);">
+  <div style="display:flex; align-items:center; gap:10px; padding:14px clamp(14px,2.5vw,28px); border-bottom:1px solid var(--line,#1f3d5f);">
     <span style="font-size:18px; color:var(--accent,#e3ad33);">◈</span>
     <div>
       <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">System Witness</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Hub · dispatch log feed</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#6d89ab);">Hub · dispatch log feed</div>
     </div>
-    <span id="hub-live-badge" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(255,255,255,.04); color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:20px; padding:3px 10px;">connecting…</span>
+    <span id="hub-live-badge" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(255,255,255,.04); color:var(--ink-faint,#6d89ab); border:1px solid var(--line,#1f3d5f); border-radius:20px; padding:3px 10px;">connecting…</span>
     <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:2px 8px; white-space:nowrap;">owner · private</span>
   </div>
 
@@ -36,22 +36,22 @@
     <!-- Filter tabs -->
     <div id="hub-filter-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;">
       <button data-pfx="ALL"      onclick="hubSetFilter('ALL')"      style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--accent,#e3ad33); background:rgba(227,173,51,.14); color:var(--accent,#e3ad33); cursor:pointer;" class="hub-tab-active">All</button>
-      <button data-pfx="BLOCKER"  onclick="hubSetFilter('BLOCKER')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Blocker</button>
-      <button data-pfx="FINDING"  onclick="hubSetFilter('FINDING')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Finding</button>
-      <button data-pfx="SHIPPED"  onclick="hubSetFilter('SHIPPED')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Shipped</button>
-      <button data-pfx="DECISION" onclick="hubSetFilter('DECISION')" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Decision</button>
-      <button data-pfx="INFO"     onclick="hubSetFilter('INFO')"     style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#34301f); background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">Other</button>
+      <button data-pfx="BLOCKER"  onclick="hubSetFilter('BLOCKER')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#1f3d5f); background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">Blocker</button>
+      <button data-pfx="FINDING"  onclick="hubSetFilter('FINDING')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#1f3d5f); background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">Finding</button>
+      <button data-pfx="SHIPPED"  onclick="hubSetFilter('SHIPPED')"  style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#1f3d5f); background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">Shipped</button>
+      <button data-pfx="DECISION" onclick="hubSetFilter('DECISION')" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#1f3d5f); background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">Decision</button>
+      <button data-pfx="INFO"     onclick="hubSetFilter('INFO')"     style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--line,#1f3d5f); background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">Other</button>
     </div>
 
     <!-- Feed list -->
     <div id="hub-feed" style="display:flex; flex-direction:column; gap:6px;">
-      <div style="color:var(--ink-faint,#756b56); font-size:13px; padding:32px 0; text-align:center;">Connecting to server…</div>
+      <div style="color:var(--ink-faint,#6d89ab); font-size:13px; padding:32px 0; text-align:center;">Connecting to server…</div>
     </div>
 
     <!-- Footer -->
-    <div style="margin-top:20px; padding-top:12px; border-top:1px solid var(--line,#34301f); display:flex; gap:14px; align-items:center; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);">
+    <div style="margin-top:20px; padding-top:12px; border-top:1px solid var(--line,#1f3d5f); display:flex; gap:14px; align-items:center; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab);">
       <span id="hub-footer-count">—</span>
-      <button onclick="hubRefresh()" style="background:none; border:1px solid var(--line,#34301f); border-radius:7px; padding:4px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent,#e3ad33); cursor:pointer;">↻ Refresh now</button>
+      <button onclick="hubRefresh()" style="background:none; border:1px solid var(--line,#1f3d5f); border-radius:7px; padding:4px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent,#e3ad33); cursor:pointer;">↻ Refresh now</button>
       <span style="margin-left:auto;">Auto-refreshes every 30 s while server is live</span>
     </div>
 
@@ -68,13 +68,13 @@
 const PREFIX_COLORS = {
   BLOCKER:   { bg: 'rgba(192,57,43,.18)', border: '#c0392b', text: '#e05c4e' },
   FINDING:   { bg: 'rgba(227,173,51,.12)', border: '#a07520', text: '#e3ad33' },
-  SHIPPED:   { bg: 'rgba(106,191,134,.12)', border: '#3a7a50', text: '#6abf86' },
+  SHIPPED:   { bg: 'rgba(106,191,134,.12)', border: '#3a7a50', text: '#4bbf7b' },
   DECISION:  { bg: 'rgba(100,149,237,.12)', border: '#4a6fa5', text: '#7baae0' },
-  POLICY:    { bg: 'rgba(100,149,237,.08)', border: '#34301f',  text: '#7baae0' },
+  POLICY:    { bg: 'rgba(100,149,237,.08)', border: '#1f3d5f',  text: '#7baae0' },
   HANDOFF:   { bg: 'rgba(180,130,220,.10)', border: '#5a3a7a', text: '#b48adc' },
-  OWNERSHIP: { bg: 'rgba(180,130,220,.08)', border: '#34301f',  text: '#b48adc' },
-  DONE:      { bg: 'rgba(106,191,134,.07)', border: '#34301f',  text: '#6abf86' },
-  INFO:      { bg: 'rgba(255,255,255,.03)', border: '#34301f',  text: '#b3a98f' },
+  OWNERSHIP: { bg: 'rgba(180,130,220,.08)', border: '#1f3d5f',  text: '#b48adc' },
+  DONE:      { bg: 'rgba(106,191,134,.07)', border: '#1f3d5f',  text: '#4bbf7b' },
+  INFO:      { bg: 'rgba(255,255,255,.03)', border: '#1f3d5f',  text: '#a7c0dd' },
 };
 
 function _esc(s) {
@@ -95,7 +95,7 @@ function _stripPrefix(event, prefix) {
 
 function _laneTag(lane) {
   if (!lane) return '';
-  return `<span style="margin-left:6px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border:1px solid var(--line,#34301f); border-radius:10px; padding:1px 6px;">${_esc(lane)}</span>`;
+  return `<span style="margin-left:6px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:1px 6px;">${_esc(lane)}</span>`;
 }
 
 let _allEntries = [];
@@ -106,8 +106,8 @@ function hubSetFilter(pfx) {
   document.querySelectorAll('#hub-filter-bar button').forEach(b => {
     const active = b.getAttribute('data-pfx') === pfx;
     b.style.background    = active ? 'rgba(227,173,51,.14)' : 'transparent';
-    b.style.color         = active ? 'var(--accent,#e3ad33)' : 'var(--ink-dim,#b3a98f)';
-    b.style.borderColor   = active ? 'var(--accent,#e3ad33)' : 'var(--line,#34301f)';
+    b.style.color         = active ? 'var(--accent,#e3ad33)' : 'var(--ink-dim,#a7c0dd)';
+    b.style.borderColor   = active ? 'var(--accent,#e3ad33)' : 'var(--line,#1f3d5f)';
   });
   _renderFeed(_allEntries, pfx);
 }
@@ -124,7 +124,7 @@ function _renderFeed(entries, filter) {
   });
 
   if (!visible.length) {
-    el.innerHTML = '<div style="color:var(--ink-faint,#756b56); font-size:13px; padding:32px 0; text-align:center;">No entries for this filter.</div>';
+    el.innerHTML = '<div style="color:var(--ink-faint,#6d89ab); font-size:13px; padding:32px 0; text-align:center;">No entries for this filter.</div>';
     return;
   }
 
@@ -134,8 +134,8 @@ function _renderFeed(entries, filter) {
     return `<div style="background:${c.bg}; border:1px solid ${c.border}; border-radius:9px; padding:10px 13px; display:flex; gap:10px; align-items:flex-start;">
       <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:${c.text}; border:1px solid ${c.border}; border-radius:10px; padding:2px 7px; white-space:nowrap; margin-top:1px; flex-shrink:0;">${_esc(e.prefix)}</span>
       <div style="flex:1; min-width:0;">
-        <div style="font-size:13px; color:var(--ink,#efe9da); line-height:1.45; word-break:break-word;">${_esc(body)}</div>
-        <div style="margin-top:4px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);">${_esc(e.iso || '')} · ${_esc(e.source || '')}${_laneTag(e.lane)}</div>
+        <div style="font-size:13px; color:var(--ink,#eaf2fc); line-height:1.45; word-break:break-word;">${_esc(body)}</div>
+        <div style="margin-top:4px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab);">${_esc(e.iso || '')} · ${_esc(e.source || '')}${_laneTag(e.lane)}</div>
       </div>
     </div>`;
   }).join('');
@@ -153,17 +153,17 @@ class Component extends DCLogic {
           this.setState({ liveBase: s.base });
           this._fetch(s.base);
           const badge = document.getElementById('hub-live-badge');
-          if (badge) { badge.textContent = s.baseLabel || 'live'; badge.style.color = '#6abf86'; badge.style.borderColor = '#3a7a50'; }
+          if (badge) { badge.textContent = s.baseLabel || 'live'; badge.style.color = '#4bbf7b'; badge.style.borderColor = '#3a7a50'; }
         } else if (s.status !== 'connecting') {
           const badge = document.getElementById('hub-live-badge');
-          if (badge) { badge.textContent = 'server offline'; badge.style.color = '#756b56'; badge.style.borderColor = '#34301f'; }
+          if (badge) { badge.textContent = 'server offline'; badge.style.color = '#6d89ab'; badge.style.borderColor = '#1f3d5f'; }
           const el = document.getElementById('hub-feed');
-          if (el) el.innerHTML = '<div style="color:var(--ink-faint,#756b56); font-size:13px; padding:32px 0; text-align:center;">Server offline — hub feed requires the live owner node.</div>';
+          if (el) el.innerHTML = '<div style="color:var(--ink-faint,#6d89ab); font-size:13px; padding:32px 0; text-align:center;">Server offline — hub feed requires the live owner node.</div>';
         }
       });
     } else {
       const el = document.getElementById('hub-feed');
-      if (el) el.innerHTML = '<div style="color:var(--ink-faint,#756b56); font-size:13px; padding:32px 0; text-align:center;">KingLive not available — open from the owner machine.</div>';
+      if (el) el.innerHTML = '<div style="color:var(--ink-faint,#6d89ab); font-size:13px; padding:32px 0; text-align:center;">KingLive not available — open from the owner machine.</div>';
     }
   }
 
@@ -193,7 +193,7 @@ class Component extends DCLogic {
         console.warn('hub-feed fetch failed:', err);
         const el = document.getElementById('hub-feed');
         if (el && !_allEntries.length) {
-          el.innerHTML = '<div style="color:var(--ink-faint,#756b56); font-size:13px; padding:32px 0; text-align:center;">Feed unavailable — check server.</div>';
+          el.innerHTML = '<div style="color:var(--ink-faint,#6d89ab); font-size:13px; padding:32px 0; text-align:center;">Feed unavailable — check server.</div>';
         }
       });
   }
@@ -203,6 +203,6 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="../../govos-shell.js" defer></script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>

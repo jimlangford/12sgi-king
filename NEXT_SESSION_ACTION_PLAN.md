@@ -188,7 +188,7 @@ SYSTEM IDENTIFICATION:
   Project: 12sgi-king (govOS v2 beta)
   Owner: James Langford (JRCSL)
   Status: PRODUCTION (not sandbox)
-  Tailscale domain: https://12sgianonymous.tail760750.ts.net
+  Tailscale domain: https://king.tail760750.ts.net
 
 CURRENT SERVICES:
   8 running (auth, king-bridge, studio-assets, neo4j, ollama, + more)

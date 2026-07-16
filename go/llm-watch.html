@@ -192,13 +192,13 @@ function showUnreachable(){
     sev:'critical',
     steps:[
       'Verify Tailscale is connected on this device',
-      'Test king connectivity at https://12sgianonymous.tail760750.ts.net/king/',
+      'Test king connectivity at https://king.tail760750.ts.net/king/',
       'Check that the king server board API is running on port 8782',
       'Verify Ollama is running: ollama list'
     ],
     fixes:[
       {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
-      {lbl:'Test king',href:'https://12sgianonymous.tail760750.ts.net/king/'},
+      {lbl:'Test king',href:'https://king.tail760750.ts.net/king/'},
       {lbl:'Copy: check Ollama',copy:'ollama list'}
     ],
     logs:'',

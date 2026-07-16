@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../styles.css?v=2026-06-15">
 <script src="../../../support.js"></script>
-<link rel="stylesheet" href="../../../../../govos.css">
+<link rel="stylesheet" href="../../../../govos.css">
 </head>
 <body>
 <a href="../../../index.html" style="position:fixed;top:10px;left:12px;z-index:9999;background:rgba(0,53,107,.92);color:#fff;text-decoration:none;font:600 13px system-ui,sans-serif;padding:6px 12px;border-radius:8px">&larr; govOS</a>
@@ -15,18 +15,18 @@
   <script src="../../../data.js"></script>
 </helmet>
 
-<div data-surface="codex" data-screen-label="Sage Game · codex" style="min-height:100%; background:var(--codex-backdrop,#0a0e14); color:var(--codex-ink,#eaf1f5); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
+<div data-surface="codex" data-screen-label="Sage Game · codex" style="min-height:100%; background:var(--codex-backdrop,#081420); color:var(--codex-ink,#eaf1f5); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
 
   <div style="text-align:center; margin-bottom:6px;">
-    <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--codex-gold,#d9b24c);">12 Stones Global · The Sage Game</div>
-    <h1 style="margin:6px 0 4px; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3.2vw,32px); font-weight:600; color:var(--codex-gold-2,#f3d589);">The 54-Node Deck</h1>
+    <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--codex-gold,#e3ad33);">12 Stones Global · The Sage Game</div>
+    <h1 style="margin:6px 0 4px; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3.2vw,32px); font-weight:600; color:var(--codex-gold-2,#5a97e6);">The 54-Node Deck</h1>
     <p style="margin:0 auto; max-width:560px; font-size:13px; color:var(--codex-mut,#9fb0c0);">Every card is a node. Every node carries a song. Deck complete 54/54 — registry ↔ UE5 in sync. Zone reads two ways by canon: the quadrant governs the acts, the setting governs the render.</p>
   </div>
 
   <!-- zone filter -->
   <div style="display:flex; justify-content:center; gap:7px; flex-wrap:wrap; margin:16px 0 22px;">
     <sc-for list="{{ zoneTabs }}" as="t" hint-placeholder-count="5">
-      <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.go }}" style="padding:7px 15px; border:1px solid var(--codex-gold,#d9b24c); border-radius:20px; background:rgba(217,178,76,0.12); color:var(--codex-gold,#d9b24c); font:inherit; font-size:12.5px; cursor:pointer;">{{ t.label }}</button></sc-if>
+      <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.go }}" style="padding:7px 15px; border:1px solid var(--codex-gold,#e3ad33); border-radius:20px; background:rgba(227,173,51,0.12); color:var(--codex-gold,#e3ad33); font:inherit; font-size:12.5px; cursor:pointer;">{{ t.label }}</button></sc-if>
       <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.go }}" style="padding:7px 15px; border:1px solid var(--codex-line,#1f2c3a); border-radius:20px; background:transparent; color:var(--codex-mut,#9fb0c0); font:inherit; font-size:12.5px; cursor:pointer;">{{ t.label }}</button></sc-if>
     </sc-for>
   </div>
@@ -57,8 +57,8 @@
   <!-- render ↔ game build chain (sage_sync_check v1.2, 06-12) -->
   <section style="max-width:1180px; margin:26px auto 0; background:var(--codex-panel,#141b26); border:1px solid var(--codex-line,#1f2c3a); border-radius:12px; padding:16px 18px;">
     <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;">
-      <h2 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:17px; font-weight:600; color:var(--codex-gold-2,#f3d589);">Render ↔ game build chain</h2>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--codex-sea-2,#5fc0d8);">{{ syncState }}</span>
+      <h2 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:17px; font-weight:600; color:var(--codex-gold-2,#5a97e6);">Render ↔ game build chain</h2>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--codex-sea-2,#5a97e6);">{{ syncState }}</span>
       <span style="font-size:11px; color:var(--codex-faint,#647688);">{{ syncDetail }}</span>
     </div>
     <p style="margin:6px 0 12px; max-width:760px; font-size:12.5px; line-height:1.55; color:var(--codex-mut,#9fb0c0);">{{ baseline }}</p>
@@ -66,7 +66,7 @@
       <sc-for list="{{ pipeline }}" as="p" hint-placeholder-count="4">
         <div style="background:var(--codex-panel-2,#19222f); border:1px solid var(--codex-line,#1f2c3a); border-radius:8px; padding:10px 13px;">
           <div style="font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--codex-mut,#9fb0c0);">{{ p.idx }} · {{ p.step }}</div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--codex-gold,#d9b24c); margin:4px 0;">{{ p.tool }}</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--codex-gold,#e3ad33); margin:4px 0;">{{ p.tool }}</div>
           <div style="font-size:11.5px; line-height:1.5; color:var(--codex-mut,#9fb0c0);">{{ p.note }}</div>
         </div>
       </sc-for>
@@ -77,12 +77,12 @@
         <span style="font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums;">{{ scenesLabel }}</span>
       </div>
       <div style="height:7px; background:#0e1420; border:1px solid var(--codex-line,#1f2c3a); border-radius:4px; overflow:hidden;">
-        <div style="height:100%; width:39%; background:var(--codex-sea,#3a8fb7);"></div>
+        <div style="height:100%; width:39%; background:var(--codex-sea,#2f74d0);"></div>
       </div>
     </div>
     <div style="display:flex; flex-direction:column; gap:5px;">
       <sc-for list="{{ gaps }}" as="g" hint-placeholder-count="3">
-        <div style="display:flex; gap:9px; align-items:baseline; font-size:12px; color:var(--codex-mut,#9fb0c0);"><span style="color:var(--codex-gold,#d9b24c);">⚑</span><span>{{ g }}</span></div>
+        <div style="display:flex; gap:9px; align-items:baseline; font-size:12px; color:var(--codex-mut,#9fb0c0);"><span style="color:var(--codex-gold,#e3ad33);">⚑</span><span>{{ g }}</span></div>
       </sc-for>
     </div>
   </section>
@@ -102,10 +102,10 @@
             <sc-if value="{{ mZKula }}" hint-placeholder-val="{{ false }}"><div style="font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--codex-kula,#d2a04a);">Kula zone · node {{ mNn }}</div></sc-if>
             <sc-if value="{{ mZMakai }}" hint-placeholder-val="{{ false }}"><div style="font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--codex-makai,#3f9ec4);">Makai zone · node {{ mNn }}</div></sc-if>
             <sc-if value="{{ mZUniv }}" hint-placeholder-val="{{ false }}"><div style="font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--codex-univ,#cdd6e0);">Universal zone · node {{ mNn }}</div></sc-if>
-            <h2 style="margin:5px 0 8px; font-family:var(--font-serif-display,Georgia,serif); font-size:21px; font-weight:600; color:var(--codex-gold-2,#f3d589);">{{ mName }}</h2>
+            <h2 style="margin:5px 0 8px; font-family:var(--font-serif-display,Georgia,serif); font-size:21px; font-weight:600; color:var(--codex-gold-2,#5a97e6);">{{ mName }}</h2>
             <p style="margin:0 0 12px; font-size:13px; line-height:1.6; color:var(--codex-mut,#9fb0c0);">{{ mDesc }}</p>
             <div style="background:var(--codex-panel-2,#19222f); border:1px solid var(--codex-line,#1f2c3a); border-radius:8px; padding:10px 13px; margin-bottom:12px;">
-              <div style="font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--codex-sea-2,#5fc0d8); margin-bottom:3px;">Soundtrack layer</div>
+              <div style="font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--codex-sea-2,#5a97e6); margin-bottom:3px;">Soundtrack layer</div>
               <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--codex-ink,#eaf1f5);">♪ {{ mSong }}</div>
               <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--codex-faint,#647688); margin-top:2px;">{{ mDur }} · {{ mRendered }}</div>
             </div>
@@ -122,7 +122,7 @@
               </div>
             </div>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button onClick="{{ closeModal }}" style="padding:8px 16px; border:1px solid var(--codex-gold,#d9b24c); border-radius:8px; background:rgba(217,178,76,0.12); color:var(--codex-gold,#d9b24c); font:inherit; font-size:12.5px; cursor:pointer;">Return to deck</button>
+              <button onClick="{{ closeModal }}" style="padding:8px 16px; border:1px solid var(--codex-gold,#e3ad33); border-radius:8px; background:rgba(227,173,51,0.12); color:var(--codex-gold,#e3ad33); font:inherit; font-size:12.5px; cursor:pointer;">Return to deck</button>
             </div>
           </div>
         </div>
@@ -188,6 +188,6 @@ class Component extends DCLogic {
 }
 
 </script>
-<script src="../../../../../govos-shell.js" defer></script>
+<script src="../../../../govos-shell.js" defer></script>
 </body>
 </html>

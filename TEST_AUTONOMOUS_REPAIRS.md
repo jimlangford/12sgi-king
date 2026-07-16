@@ -11,7 +11,7 @@ docker compose -f docker-compose.v2.yml up -d king-bridge
 ```
 
 ### 2. Access Owner Job Dashboard
-Navigate to: `https://12sgianonymous.tail760750.ts.net/owner_jobs.html`
+Navigate to: `https://king.tail760750.ts.net/owner_jobs.html`
 
 Should show:
 - Stats: 0 total jobs (initially empty)

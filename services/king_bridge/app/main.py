@@ -49,6 +49,7 @@ Security: owner-only (no external auth required on loopback; INTERNAL_SERVICE_TO
   header required for non-loopback callers). Private data never leaves the machine.
 """
 
+import hmac
 import json
 import os
 import sqlite3
@@ -97,6 +98,10 @@ DB_PATH         = os.environ.get("KING_BRIDGE_DB", "/data/db/king_bridge.db")
 INFER_TIMEOUT   = int(os.environ.get("KING_BRIDGE_INFER_TIMEOUT", "120"))
 POLL_MAX        = int(os.environ.get("KING_BRIDGE_POLL_MAX", "10"))
 INTERNAL_TOKEN  = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
+# Enforcement is active only when the token is actually configured in the
+# environment (the compose stack sets a real one). The dev fallback above is
+# never enforced, so bare local runs keep working.
+_TOKEN_CONFIGURED = bool(os.environ.get("INTERNAL_SERVICE_TOKEN", "").strip())
 AUTONOMY_ENABLED = os.environ.get("KING_BRIDGE_AUTONOMY_ENABLED", "true").lower() == "true"
 AUTONOMY_THRESHOLD = int(os.environ.get("KING_BRIDGE_AUTONOMY_THRESHOLD", "70"))
 
@@ -363,8 +368,19 @@ def _process_job(entry: dict) -> dict:
         ))
         conn.commit()
 
-    if lane == "engineering" and grounded:
-        resolve_workboard_job(job_id, outcome=f"king-bridge:{model}", source=SERVICE_NAME)
+    if lane == "engineering":
+        if grounded:
+            resolve_workboard_job(job_id, outcome=f"king-bridge:{model}", source=SERVICE_NAME)
+        else:
+            # Ungrounded results used to leave the job open, so every poll
+            # reprocessed it forever. Tombstone it with an explicit
+            # ungrounded:true marker instead — idempotent, flagged for
+            # owner review, no infinite reprocess loop.
+            resolve_workboard_job(
+                job_id,
+                outcome=f"king-bridge:{model} ungrounded:true (model unavailable, flagged for review)",
+                source=SERVICE_NAME,
+            )
 
     publish_event(
         "king_bridge.job.completed",
@@ -423,8 +439,27 @@ def _iso_now() -> str:
 
 
 def _require_internal(x_service_token: str | None):
-    if x_service_token and x_service_token == INTERNAL_TOKEN:
+    """Enforce X-Service-Token on mutating/inference endpoints.
+
+    Allowlist (read-only, tokenless — the browser dashboard king_bridge.html
+    fetches these with no headers): GET /ready, /bridge/models, /bridge/pulse,
+    /bridge/jobs, /bridge/tree, /owner/jobs*. Those endpoints deliberately
+    never call this function.
+
+    Enforced (mutating / inference spend): POST /bridge/job, /bridge/poll,
+    /bridge/chat, GET /bridge/chat, POST /board/message,
+    POST /owner/jobs/{id}/approval.
+
+    When INTERNAL_SERVICE_TOKEN is unset in the environment (bare dev run),
+    enforcement is skipped; when configured, a missing token is 401 and a
+    mismatched token is 403.
+    """
+    if not _TOKEN_CONFIGURED:
         return
+    if not x_service_token:
+        raise HTTPException(status_code=401, detail="X-Service-Token required")
+    if not hmac.compare_digest(x_service_token, INTERNAL_TOKEN):
+        raise HTTPException(status_code=403, detail="invalid X-Service-Token")
 
 
 # ── Static HTML surfaces ──────────────────────────────────────────────────────
@@ -551,6 +586,12 @@ def poll(x_service_token: str | None = Header(default=None)):
     tombstoned = set()
     open_jobs  = {}
 
+    # Only these statuses are genuinely awaiting work. The connector-runner
+    # (and other services) emit status noise with kind:"job" but status
+    # done/failed, and kind:"status"/"event" entries — none of those are
+    # pending inference jobs and must not be (re)processed.
+    _OPEN_STATUSES = {"queued", "in-progress", "pending-approval"}
+
     for e in entries:
         job = e.get("job") or {}
         if e.get("kind") == "tombstone":
@@ -558,6 +599,14 @@ def poll(x_service_token: str | None = Header(default=None)):
             if cid:
                 tombstoned.add(cid)
         elif e.get("kind") == "job":
+            if e.get("status") not in _OPEN_STATUSES:
+                continue  # done/failed/etc. status echoes are not pending jobs
+            if (
+                e.get("bridged") is True
+                or job.get("bridged") is True
+                or (job.get("payload") or {}).get("bridged") is True
+            ):
+                continue  # already bridged elsewhere — skip
             jid = job.get("id")
             if jid:
                 open_jobs[jid] = e

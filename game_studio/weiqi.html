@@ -411,5 +411,31 @@ initGame();
 })();
 </script>
 <script src="../govos-shell.js" defer></script>
+
+<script src="circle_core.js"></script>
+<script>
+/* weiqi circle module — TWO players, every stone or pass flips the turn. seat 0 = black. */
+(function () {
+  'use strict';
+  CircleCore.init({
+    gameId: 'weiqi',
+    getState: function () {
+      return JSON.stringify({ board: board.slice(), history: history.slice(), turn: turn,
+                              capBlack: capBlack, capWhite: capWhite,
+                              consPassCount: consPassCount, gameOver: gameOver });
+    },
+    setState: function (s) {
+      var o = JSON.parse(s);
+      board = o.board.slice(); history = (o.history || []).slice(); turn = o.turn;
+      capBlack = o.capBlack || 0; capWhite = o.capWhite || 0;
+      consPassCount = o.consPassCount || 0; gameOver = !!o.gameOver;
+      render(); updateUI();
+    },
+    moverSeat: function (o) { return o.turn === 1 ? 0 : 1; },
+    seatLabel: function (i) { return i === 0 ? 'black' : 'white'; }
+  });
+})();
+</script>
+
 </body>
 </html>

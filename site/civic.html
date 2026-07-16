@@ -1,249 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Civic Lane · govOS</title>
-  <style>
-    :root {
-      --bg: #081420;
-      --surface: #0f2a42;
-      --accent: #5a97e6;
-      --text: #eaf2fc;
-      --text-dim: #a7c0dd;
-      --gold: #e3ad33;
-      --border: rgba(90, 151, 230, 0.24);
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    html {
-      background: var(--bg);
-    }
-    
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
-      line-height: 1.6;
-    }
-    
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 40px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .brand-icon {
-      font-size: 32px;
-    }
-    
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .brand-text h1 {
-      margin: 0;
-      font-size: 24px;
-      color: var(--text);
-    }
-    
-    .brand-text span {
-      font-size: 12px;
-      color: var(--gold);
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-    
-    .hero {
-      padding: 60px 0;
-    }
-    
-    .hero h2 {
-      font-size: 32px;
-      margin: 0 0 20px 0;
-      color: var(--text);
-    }
-    
-    .hero p {
-      font-size: 16px;
-      color: var(--text-dim);
-      max-width: 700px;
-      line-height: 1.7;
-    }
-    
-    .section {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-    }
-    
-    .section h3 {
-      font-size: 18px;
-      margin: 0 0 20px 0;
-      color: var(--text);
-    }
-    
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      text-decoration: none;
-      color: inherit;
-      transition: 0.2s;
-      display: block;
-    }
-    
-    .card:hover {
-      border-color: var(--accent);
-      background: rgba(47, 116, 208, 0.08);
-      transform: translateY(-2px);
-    }
-    
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin: 0 0 8px 0;
-    }
-    
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-dim);
-      margin: 0;
-      line-height: 1.5;
-    }
-    
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    
-    .split-panel h4 {
-      margin: 0 0 12px 0;
-      font-size: 16px;
-      color: var(--text);
-    }
-    
-    .split-panel p {
-      margin: 0 0 12px 0;
-      font-size: 14px;
-      color: var(--text-dim);
-    }
-    
-    .split-panel a {
-      display: block;
-      color: var(--accent);
-      text-decoration: none;
-      margin-bottom: 8px;
-      font-size: 13px;
-    }
-    
-    .split-panel a:hover {
-      text-decoration: underline;
-    }
-    
-    footer {
-      margin-top: 60px;
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 12px;
-    }
-    
-    @media (max-width: 768px) {
-      .split {
-        grid-template-columns: 1fr;
-        gap: 30px;
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Element Lotus · civic / govOS</title>
+<meta name="description" content="Live civic events and transparency dashboard.">
+<link rel="stylesheet" href="studio.css">
+<link rel="stylesheet" href="govos.css">
+<style>
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+  .metric-card { background: var(--cs-panel); padding: 20px; border-radius: 8px; text-align: center; }
+  .metric-card .number { font-size: 32px; font-weight: 800; color: var(--cs-accent); }
+  .metric-card .label { font-size: 13px; color: var(--cs-ink-dim); margin-top: 8px; }
+  .event-list { display: flex; flex-direction: column; gap: 12px; }
+  .event { background: var(--cs-panel2); padding: 16px; border-radius: 6px; border-left: 4px solid var(--cs-accent2); }
+  .event .date { font-family: var(--cs-mono); font-size: 12px; color: var(--cs-ink-faint); font-weight: 600; }
+  .event .title { font-size: 15px; font-weight: 700; color: var(--cs-ink); margin: 6px 0; }
+  .event p { font-size: 13px; color: var(--cs-ink-dim); margin: 8px 0; line-height: 1.5; }
+  .event a { color: var(--cs-accent2); text-decoration: none; font-size: 12px; font-weight: 600; }
+  .event a:hover { text-decoration: underline; }
+  .loading { text-align: center; color: var(--cs-ink-faint); }
+  .error { color: #c33; padding: 16px; background: rgba(200,50,50,0.1); border-radius: 6px; }
+  .last-update { font-size: 11px; color: var(--cs-ink-faint); margin-top: 24px; text-align: right; }
+</style>
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style></head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="mark">⚖</div><div class="wordmark"><strong>Civic / govOS</strong><span>Live transparency dashboard</span></div></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="games/">Games</a><a href="films.html">Films</a><a href="music.html">Music</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Public civic lane</div>
+    <h1>govOS is here — tracking government with transparency and intention.</h1>
+    <p>Follow meetings, jurisdictions, and cases. Submit testimony. Request government records. Participate in the civic work.</p>
+    <div class="actions"><a class="btn primary" href="reports.html">Open the civic hub</a><a class="btn secondary" href="jurisdictions.html">Browse jurisdictions</a></div>
+  </section>
+
+  <section class="section" id="metrics-section">
+    <h2>Civic events dashboard</h2>
+    <div id="metrics-content" class="loading">Loading civic metrics...</div>
+  </section>
+
+  <section class="section">
+    <h2>Upcoming meetings & events</h2>
+    <div id="events-content" class="loading">Loading civic calendar...</div>
+  </section>
+
+  <section class="section">
+    <h2>Participation & transparency</h2>
+    <div class="card-grid">
+      <article class="card"><div class="kicker">Testify</div><h3>Public testimony</h3><p>Submit written or oral testimony on government decisions.</p><a href="testify.html">Testify →</a></article>
+      <article class="card"><div class="kicker">Jurisdictions</div><h3>Government by place</h3><p>Find your elected officials and government bodies by location.</p><a href="jurisdictions.html">Browse →</a></article>
+      <article class="card"><div class="kicker">Records</div><h3>Request public records</h3><p>Access government records and documents under public records laws.</p><a href="datasets.html">Request →</a></article>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="panel"><h2>Boundary</h2><p>Civic pages stay public and transparent. Owner operations, workboards, and internal systems remain private.</p></div>
+    <div class="panel"><h2>Return to studio</h2><p><a href="index.html">Back to Element Lotus home →</a><br><a href="games/">Games hub →</a><br><a href="films.html">Film lane →</a></p></div>
+  </section>
+
+  <footer class="footer">
+    <nav><a href="index.html">Home</a><a href="reports.html">Civic hub</a><a href="jurisdictions.html">Jurisdictions</a><a href="testify.html">Testify</a></nav>
+    PUBLIC civic lane · Auto-rendered from live civic schedule
+  </footer>
+  <div class="last-update" id="last-update"></div>
+</div>
+
+<script>
+  // Fetch and render live civic metrics from /api/v2/civic/public-metrics
+  async function loadCivicMetrics() {
+    try {
+      // Try both localhost (dev) and Tailscale (production)
+      let url = '/api/v2/civic/public-metrics';
+      let response;
+      
+      try {
+        response = await fetch(url, { timeout: 5000 });
+      } catch (e) {
+        // Fallback to Tailscale URL if available
+        url = 'https://12sgi.com/api/v2/civic/public-metrics';
+        response = await fetch(url, { timeout: 5000 });
       }
       
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      
+      renderMetrics(data);
+      renderEvents(data);
+      
+      const updated = new Date(data.last_updated).toLocaleString();
+      document.getElementById('last-update').textContent = `Last updated: ${updated}`;
+    } catch (error) {
+      console.error('Failed to load civic metrics:', error);
+      document.getElementById('metrics-content').innerHTML = 
+        `<p class="error">Could not load civic metrics. <a href="reports.html">Visit the civic hub →</a></p>`;
+      document.getElementById('events-content').innerHTML = 
+        `<p class="error">Could not load civic calendar. <a href="reports.html">Visit the civic hub →</a></p>`;
     }
-  </style>
-<link rel="stylesheet" href="../govos.css">
-</head>
-<body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="brand-icon">⚖️</div>
-      <div class="brand-text">
-        <h1>Civic / govOS</h1>
-        <span>Secondary public lane</span>
+  }
+  
+  function renderMetrics(data) {
+    const total = data.total_civic_events || 0;
+    const meetings = (data.upcoming_meetings || []).length;
+    const deadlines = (data.testimony_deadlines || []).length;
+    
+    const html = `
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="number">${total}</div>
+          <div class="label">Total civic events</div>
+        </div>
+        <div class="metric-card">
+          <div class="number">${meetings}</div>
+          <div class="label">Meetings scheduled</div>
+        </div>
+        <div class="metric-card">
+          <div class="number">${deadlines}</div>
+          <div class="label">Testimony deadlines</div>
+        </div>
       </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-      <h2>govOS is still here — just not as the front-page identity.</h2>
-      <p>The civic work remains public, sourced, and important. This page reframes it as one dedicated lane within the wider Element Lotus / 12 Stones Global system, with direct paths into dashboards and jurisdictions when that is the visitor's actual need.</p>
-    </section>
-
-    <!-- What Stays Public -->
-    <section class="section">
-      <h3>What Stays Public</h3>
-      <div class="grid">
-        <a href="reports.html" class="card">
-          <h4 class="card-title">Dashboards</h4>
-          <p class="card-desc">The civic hub: public dashboards, archives, and transparency lenses for every jurisdiction.</p>
-        </a>
-        <a href="jurisdictions.html" class="card">
-          <h4 class="card-title">Jurisdictions</h4>
-          <p class="card-desc">Government-by-government entry. Pick a specific place, tenant, or public-record surface.</p>
-        </a>
-        <a href="testify.html" class="card">
-          <h4 class="card-title">Take Part</h4>
-          <p class="card-desc">Testimony and records-request flows — public participation without taking over the studio shell.</p>
-        </a>
+    `;
+    document.getElementById('metrics-content').innerHTML = html;
+  }
+  
+  function renderEvents(data) {
+    const meetings = data.upcoming_meetings || [];
+    const deadlines = data.testimony_deadlines || [];
+    const allEvents = [
+      ...meetings.map(m => ({ ...m, type: 'meeting' })),
+      ...deadlines.map(d => ({ ...d, type: 'deadline' }))
+    ].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+    
+    if (allEvents.length === 0) {
+      document.getElementById('events-content').innerHTML = 
+        `<p>No upcoming civic events scheduled.</p>`;
+      return;
+    }
+    
+    const html = `
+      <div class="event-list">
+        ${allEvents.slice(0, 15).map(ev => `
+          <article class="event">
+            <div class="date">${ev.date || '(no date)'}</div>
+            <div class="title">${ev.type === 'deadline' ? '⏰' : '📋'} ${ev.title || ev.body}</div>
+            ${ev.description ? `<p>${ev.description}</p>` : ''}
+            <a href="reports.html">View details →</a>
+          </article>
+        `).join('')}
       </div>
-    </section>
-
-    <!-- Boundary & Return -->
-    <section class="section split">
-      <div class="split-panel">
-        <h4>Boundary</h4>
-        <p>Civic pages stay public. Owner dashboards, Tailscale surfaces, local mirrors, and operational tooling remain private and are not republished into this shell.</p>
-      </div>
-      <div class="split-panel">
-        <h4>Return to Studio</h4>
-        <a href="index.html">Back to Element Lotus home →</a>
-        <a href="games/">Games hub →</a>
-        <a href="films.html">Film lane →</a>
-        <a href="music.html">Music →</a>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p>PUBLIC civic lane. Studio shell and govOS now live side by side with clearer separation.</p>
-      <p>&copy; 2026 James RCS Langford · 12 Stones Global</p>
-    </footer>
-  </div>
-<script src="../govos-shell.js" defer></script>
-</body>
+    `;
+    document.getElementById('events-content').innerHTML = html;
+  }
+  
+  // Load on page load, then refresh every 5 minutes
+  document.addEventListener('DOMContentLoaded', loadCivicMetrics);
+  setInterval(loadCivicMetrics, 300000);
+</script>
+<script src="govos-shell.js" defer></script>
+<footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer></body>
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
 </head>
 <body>
 <x-dc>
@@ -16,37 +16,37 @@
 </helmet>
 
 <div data-surface="dashboard" data-screen-label="Home · Dashboard"
-  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,28px); max-width:1080px;">
+  style="min-height:100%; background:var(--app-backdrop,#081420); color:var(--ink,#eaf2fc); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,28px); max-width:1080px;">
 
   <!-- ─── Page header ─── -->
   <div style="margin-bottom:22px;">
-    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-bottom:6px;">12sgi · Naga · {{ todayISO }}</div>
-    <h1 style="margin:0; font-size:clamp(20px,3.2vw,28px); font-weight:700; letter-spacing:-0.5px; color:var(--ink,#efe9da);">System Home</h1>
-    <p style="margin:4px 0 0; font-size:13px; color:var(--ink-dim,#b3a98f); line-height:1.5;">Ao · Pō · workboard · civic lane · studio — all at a glance.</p>
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); margin-bottom:6px;">12sgi · Naga · {{ todayISO }}</div>
+    <h1 style="margin:0; font-size:clamp(20px,3.2vw,28px); font-weight:700; letter-spacing:-0.5px; color:var(--ink,#eaf2fc);">System Home</h1>
+    <p style="margin:4px 0 0; font-size:13px; color:var(--ink-dim,#a7c0dd); line-height:1.5;">Ao · Pō · workboard · civic lane · studio — all at a glance.</p>
   </div>
 
   <!-- ─── System pulse row ─── -->
-  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">System Pulse</div>
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); border-bottom:1px solid var(--line,#1f3d5f); padding-bottom:6px; margin-bottom:12px;">System Pulse</div>
   <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:22px;">
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:{{ serverColor }};">{{ serverGlyph }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Live server</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">{{ serverLabel }}</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Live server</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">{{ serverLabel }}</div>
     </div>
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:{{ jobsRunningColor }};">{{ jobsRunning }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Jobs Running</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">{{ waitingGpu }} waiting on GPU</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Jobs Running</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">{{ waitingGpu }} waiting on GPU</div>
     </div>
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:{{ waitingOwnerColor }};">{{ waitingOwner }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Waiting on Owner</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">{{ deployReady }} deploy ready</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Waiting on Owner</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">{{ deployReady }} deploy ready</div>
     </div>
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:{{ autoHealedColor }};">{{ autoHealedToday }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Auto-Healed Today</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">{{ criticalLabel }}</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Auto-Healed Today</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">{{ criticalLabel }}</div>
     </div>
   </div>
 
@@ -54,94 +54,94 @@
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px;">
 
     <!-- Civic lane -->
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:12px; padding:16px 16px 14px;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-bottom:12px;">Civic lane · Ao</div>
-      <div style="font-size:13px; color:var(--ink-dim,#b3a98f); margin-bottom:10px;">Maui County · today</div>
-      <div style="background:var(--panel-2,#1f1c14); border:1px solid var(--line,#34301f); border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:12px; padding:16px 16px 14px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); margin-bottom:12px;">Civic lane · Ao</div>
+      <div style="font-size:13px; color:var(--ink-dim,#a7c0dd); margin-bottom:10px;">Maui County · today</div>
+      <div style="background:var(--panel-2,#1f1c14); border:1px solid var(--line,#1f3d5f); border-radius:8px; padding:10px 12px; margin-bottom:10px;">
         <div style="font-size:12px; font-weight:600; color:var(--accent,#e3ad33);">Next forecast item</div>
-        <div style="font-size:13px; color:var(--ink,#efe9da); margin-top:4px;">{{ nextForecastTitle }}</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:3px;">{{ nextForecastMeta }}</div>
+        <div style="font-size:13px; color:var(--ink,#eaf2fc); margin-top:4px;">{{ nextForecastTitle }}</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:3px;">{{ nextForecastMeta }}</div>
       </div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#b3a98f);">{{ ytdAgendas }} agendas YTD · {{ recusals }} recusal on file</div>
-      <div style="margin-top:10px; font-size:12px; color:var(--ink-faint,#756b56);">Watchers: {{ watcherCount }} active</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#a7c0dd);">{{ ytdAgendas }} agendas YTD · {{ recusals }} recusal on file</div>
+      <div style="margin-top:10px; font-size:12px; color:var(--ink-faint,#6d89ab);">Watchers: {{ watcherCount }} active</div>
     </div>
 
     <!-- Studio / HINA lane -->
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:12px; padding:16px 16px 14px;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); margin-bottom:12px;">Studio lane · Pō / HINA</div>
-      <div style="background:var(--panel-2,#1f1c14); border:1px solid var(--line,#34301f); border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:12px; padding:16px 16px 14px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); margin-bottom:12px;">Studio lane · Pō / HINA</div>
+      <div style="background:var(--panel-2,#1f1c14); border:1px solid var(--line,#1f3d5f); border-radius:8px; padding:10px 12px; margin-bottom:10px;">
         <div style="font-size:12px; font-weight:600; color:var(--accent,#e3ad33);">Today · node {{ todayNode }}</div>
-        <div style="font-size:13px; color:var(--ink,#efe9da); margin-top:4px;">{{ todayNodeName }}</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:3px;">{{ todayZone }} · HINA sched_hour 23</div>
+        <div style="font-size:13px; color:var(--ink,#eaf2fc); margin-top:4px;">{{ todayNodeName }}</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:3px;">{{ todayZone }} · HINA sched_hour 23</div>
       </div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#b3a98f);">Pending approvals: <span style="color:var(--ok,#6abf86);">0</span></div>
-      <div style="margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#b3a98f);">Face-lock: <span style="color:var(--ok,#6abf86);">intact</span></div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#a7c0dd);">Pending approvals: <span style="color:var(--ok,#4bbf7b);">0</span></div>
+      <div style="margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim,#a7c0dd);">Face-lock: <span style="color:var(--ok,#4bbf7b);">intact</span></div>
     </div>
 
   </div>
 
   <!-- ─── Films + Sage deck strip ─── -->
-  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Studio · Sage</div>
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); border-bottom:1px solid var(--line,#1f3d5f); padding-bottom:6px; margin-bottom:12px;">Studio · Sage</div>
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:22px;">
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--accent,#e3ad33);">79</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Films produced</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">1 quadcast song</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Films produced</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">1 quadcast song</div>
     </div>
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--accent,#e3ad33);">54/54</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Deck complete</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">registry ↔ UE5 in sync</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Deck complete</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">registry ↔ UE5 in sync</div>
     </div>
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px;">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:12px 14px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--accent,#e3ad33);">{{ scenes }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Scenes in UE5</div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#b3a98f); margin-top:4px;">of {{ scenesTotal }} total</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Scenes in UE5</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim,#a7c0dd); margin-top:4px;">of {{ scenesTotal }} total</div>
     </div>
   </div>
 
   <!-- ─── Quick reference ─── -->
-  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding-bottom:6px; margin-bottom:12px;">Quick actions</div>
+  <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-faint,#6d89ab); border-bottom:1px solid var(--line,#1f3d5f); padding-bottom:6px; margin-bottom:12px;">Quick actions</div>
   <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:22px;">
-    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:11px 14px;">
       <div>
         <div style="font-weight:600; font-size:13px;">Self-heal workboard</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:2px;">python -m services.v2_workboard</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:2px;">python -m services.v2_workboard</div>
       </div>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#6abf86); border:1px solid var(--ok,#6abf86);">ready</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#4bbf7b); border:1px solid var(--ok,#4bbf7b);">ready</span>
     </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:11px 14px;">
       <div>
         <div style="font-weight:600; font-size:13px;">Run tests</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:2px;">python -m pytest tests/ -q</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:2px;">python -m pytest tests/ -q</div>
       </div>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#6abf86); border:1px solid var(--ok,#6abf86);">13 pass</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#4bbf7b); border:1px solid var(--ok,#4bbf7b);">13 pass</span>
     </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:11px 14px;">
       <div>
         <div style="font-weight:600; font-size:13px;">Build site (safe)</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:2px;">KA_SITE=/tmp/check python build_site.py</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:2px;">KA_SITE=/tmp/check python build_site.py</div>
       </div>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#6abf86); border:1px solid var(--ok,#6abf86);">clean</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(106,191,134,.15); color:var(--ok,#4bbf7b); border:1px solid var(--ok,#4bbf7b);">clean</span>
     </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:11px 14px;">
       <div>
         <div style="font-weight:600; font-size:13px;">Civic v2 catchup</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:2px;">python tools/civic_v2_catchup.py --dry-run</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:2px;">python tools/civic_v2_catchup.py --dry-run</div>
       </div>
       <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(227,173,51,.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33);">bridge</span>
     </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:11px 14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f); border-radius:10px; padding:11px 14px;">
       <div>
         <div style="font-weight:600; font-size:13px;">Reconcile check</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); margin-top:2px;">python tools/reconcile.py --gate seed_reports html --route-only</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); margin-top:2px;">python tools/reconcile.py --gate seed_reports html --route-only</div>
       </div>
       <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:rgba(227,173,51,.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33);">gate</span>
     </div>
   </div>
 
   <!-- ─── Footer ─── -->
-  <div style="border-top:1px solid var(--line,#34301f); padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56); letter-spacing:0.5px; text-align:center;">
+  <div style="border-top:1px solid var(--line,#1f3d5f); padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab); letter-spacing:0.5px; text-align:center;">
     12 Stones Global · Kilo Aupuni · Naga v4.1.0 · aloha · pono · {{ loadedAt }}
   </div>
 
@@ -227,7 +227,7 @@ class Component extends DCLogic {
     const forecast = (council.forecast || []).filter(f => !f.dead)[0] || null;
     const ls = this.state.liveStatus || 'connecting';
 
-    const serverColorMap = { live: '#6abf86', offline: '#d29922', connecting: '#756b56' };
+    const serverColorMap = { live: '#4bbf7b', offline: '#e3ad33', connecting: '#6d89ab' };
     const serverGlyphMap = { live: '●', offline: '●', connecting: '○' };
     const serverLabelMap = { live: this.state.liveLabel || 'live', offline: 'offline or local', connecting: 'finding server…' };
 
@@ -242,9 +242,9 @@ class Component extends DCLogic {
     const critical         = p ? p.critical          : 0;
 
     // Color logic: critical=red, owner-waiting=amber, otherwise green/dim
-    const jobsRunningColor    = p && p.jobs_running > 0    ? '#e3ad33' : '#6abf86';
-    const waitingOwnerColor   = p && p.waiting_owner > 0   ? '#e3ad33' : '#6abf86';
-    const autoHealedColor     = p && p.auto_healed_today > 0 ? '#6abf86' : '#756b56';
+    const jobsRunningColor    = p && p.jobs_running > 0    ? '#e3ad33' : '#4bbf7b';
+    const waitingOwnerColor   = p && p.waiting_owner > 0   ? '#e3ad33' : '#4bbf7b';
+    const autoHealedColor     = p && p.auto_healed_today > 0 ? '#4bbf7b' : '#6d89ab';
     const criticalLabel       = p && p.critical > 0
       ? `⚠ ${p.critical} critical` : `${deployReady} deploy ready`;
 
@@ -252,7 +252,7 @@ class Component extends DCLogic {
       todayISO: _isoToday(),
       loadedAt: 'loaded ' + new Date().toLocaleTimeString(),
 
-      serverColor: serverColorMap[ls] || '#756b56',
+      serverColor: serverColorMap[ls] || '#6d89ab',
       serverGlyph: serverGlyphMap[ls] || '○',
       serverLabel: serverLabelMap[ls] || '',
 
@@ -276,6 +276,6 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="../../govos-shell.js" defer></script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>

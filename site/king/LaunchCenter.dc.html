@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
 </head>
 <body>
 <x-dc>
@@ -15,19 +15,19 @@
 </helmet>
 
 <div data-surface="launch" data-screen-label="Launch Center · Publishing"
-  style="min-height:100%; background:var(--app-backdrop,#0c0b09); color:var(--ink,#efe9da);
+  style="min-height:100%; background:var(--app-backdrop,#081420); color:var(--ink,#eaf2fc);
     font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px;
     padding:clamp(14px,2.5vw,28px); max-width:1120px;">
 
   <!-- ─── Header ─── -->
   <div style="margin-bottom:20px;">
     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px;
-      text-transform:uppercase; color:var(--ink-faint,#756b56); margin-bottom:6px;">
+      text-transform:uppercase; color:var(--ink-faint,#6d89ab); margin-bottom:6px;">
       12sgi · Launch Center · {{ todayISO }}
     </div>
     <h1 style="margin:0; font-size:clamp(20px,3vw,26px); font-weight:700; letter-spacing:-0.5px;
-      color:var(--ink,#efe9da);">Launch Center</h1>
-    <p style="margin:4px 0 0; font-size:13px; color:var(--ink-dim,#b3a98f); line-height:1.5;">
+      color:var(--ink,#eaf2fc);">Launch Center</h1>
+    <p style="margin:4px 0 0; font-size:13px; color:var(--ink-dim,#a7c0dd); line-height:1.5;">
       One approval · many destinations. WordPress is the editorial gate; MCP carries approved actions.
     </p>
   </div>
@@ -36,44 +36,44 @@
   <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
     gap:10px; margin-bottom:22px;">
 
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
       border-radius:10px; padding:12px 14px; cursor:pointer;"
       onClick="{{ goTabDrafts }}">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;
-        color:var(--warn,#d29922);">{{ countDrafts }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Drafts</div>
+        color:var(--warn,#e3ad33);">{{ countDrafts }}</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Drafts</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px;
-        color:var(--ink-dim,#b3a98f); margin-top:4px;">awaiting review</div>
+        color:var(--ink-dim,#a7c0dd); margin-top:4px;">awaiting review</div>
     </div>
 
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
       border-radius:10px; padding:12px 14px; cursor:pointer;"
       onClick="{{ goTabReady }}">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;
-        color:var(--ok,#6abf86);">{{ countReady }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Ready</div>
+        color:var(--ok,#4bbf7b);">{{ countReady }}</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Ready</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px;
-        color:var(--ink-dim,#b3a98f); margin-top:4px;">approved · awaiting send</div>
+        color:var(--ink-dim,#a7c0dd); margin-top:4px;">approved · awaiting send</div>
     </div>
 
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
       border-radius:10px; padding:12px 14px; cursor:pointer;"
       onClick="{{ goTabPublished }}">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;
         color:var(--accent,#e3ad33);">{{ countPublished }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Published</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Published</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px;
-        color:var(--ink-dim,#b3a98f); margin-top:4px;">live on ≥1 platform</div>
+        color:var(--ink-dim,#a7c0dd); margin-top:4px;">live on ≥1 platform</div>
     </div>
 
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
       border-radius:10px; padding:12px 14px; cursor:pointer;"
       onClick="{{ goTabAttention }}">
       <div style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;
         color:{{ attentionColor }};">{{ countAttention }}</div>
-      <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-top:3px;">Needs Attention</div>
+      <div style="font-size:11px; color:var(--ink-faint,#6d89ab); margin-top:3px;">Needs Attention</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px;
-        color:var(--ink-dim,#b3a98f); margin-top:4px;">failed · missing creds</div>
+        color:var(--ink-dim,#a7c0dd); margin-top:4px;">failed · missing creds</div>
     </div>
 
   </div>
@@ -85,15 +85,15 @@
         <button onClick="{{ tab.go }}"
           style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:1px;
             text-transform:uppercase; padding:5px 14px; border-radius:20px; border:1px solid var(--accent,#e3ad33);
-            background:var(--accent-dim,rgba(227,173,51,0.14)); color:var(--accent-2,#f4c95d); cursor:pointer;">
+            background:var(--accent-dim,rgba(227,173,51,0.14)); color:var(--accent-2,#5a97e6); cursor:pointer;">
           {{ tab.label }} ({{ tab.count }})
         </button>
       </sc-if>
       <sc-if value="{{ tab.inactive }}" hint-placeholder-val="{{ true }}">
         <button onClick="{{ tab.go }}"
           style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:1px;
-            text-transform:uppercase; padding:5px 14px; border-radius:20px; border:1px solid var(--line,#34301f);
-            background:transparent; color:var(--ink-dim,#b3a98f); cursor:pointer;">
+            text-transform:uppercase; padding:5px 14px; border-radius:20px; border:1px solid var(--line,#1f3d5f);
+            background:transparent; color:var(--ink-dim,#a7c0dd); cursor:pointer;">
           {{ tab.label }} ({{ tab.count }})
         </button>
       </sc-if>
@@ -102,8 +102,8 @@
 
   <!-- ─── Empty state ─── -->
   <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
-      border-radius:12px; padding:32px; text-align:center; color:var(--ink-dim,#b3a98f);">
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
+      border-radius:12px; padding:32px; text-align:center; color:var(--ink-dim,#a7c0dd);">
       <div style="font-size:32px; margin-bottom:12px;">📭</div>
       <div style="font-size:14px; font-weight:600; margin-bottom:6px;">No items in this view</div>
       <div style="font-size:12.5px;">Register content items via
@@ -115,17 +115,17 @@
 
   <!-- ─── Item cards ─── -->
   <sc-for list="{{ cards }}" as="card" hint-placeholder-count="3">
-    <div style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f);
+    <div style="background:var(--panel,#0f2540); border:1px solid var(--line,#1f3d5f);
       border-radius:14px; padding:18px 18px 14px; margin-bottom:14px;">
 
       <!-- Card header -->
       <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
         <div style="font-size:26px; line-height:1; flex:none;">{{ card.typeIcon }}</div>
         <div style="flex:1; min-width:0;">
-          <div style="font-size:15px; font-weight:700; color:var(--ink,#efe9da);
+          <div style="font-size:15px; font-weight:700; color:var(--ink,#eaf2fc);
             white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ card.title }}</div>
           <div style="font-family:'JetBrains Mono',monospace; font-size:10px;
-            color:var(--ink-faint,#756b56); margin-top:3px;">{{ card.itemId }} · {{ card.updatedAt }}</div>
+            color:var(--ink-faint,#6d89ab); margin-top:3px;">{{ card.itemId }} · {{ card.updatedAt }}</div>
         </div>
         <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px;
           text-transform:uppercase; padding:3px 10px; border-radius:20px;
@@ -147,16 +147,16 @@
 
       <!-- WordPress row -->
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;
-        background:var(--panel-2,#1f1c14); border:1px solid var(--line,#34301f);
+        background:var(--panel-2,#1f1c14); border:1px solid var(--line,#1f3d5f);
         border-radius:8px; padding:9px 12px; flex-wrap:wrap;">
         <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px;
-          text-transform:uppercase; color:var(--ink-faint,#756b56); flex:none;">WordPress</span>
+          text-transform:uppercase; color:var(--ink-faint,#6d89ab); flex:none;">WordPress</span>
         <span style="font-family:'JetBrains Mono',monospace; font-size:11px;
           color:{{ card.wpStatusColor }}; flex:none;">{{ card.wpStatusLabel }}</span>
         <sc-if value="{{ card.hasWpDraft }}" hint-placeholder-val="{{ false }}">
           <a href="{{ card.wpDraftUrl }}" target="_blank" rel="noopener"
             style="font-family:'JetBrains Mono',monospace; font-size:11px;
-              color:var(--accent-2,#f4c95d); text-decoration:underline; flex:none;">
+              color:var(--accent-2,#5a97e6); text-decoration:underline; flex:none;">
             Draft #{{ card.wpDraftId }} ↗
           </a>
         </sc-if>
@@ -176,7 +176,7 @@
       <!-- Approval row -->
       <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; align-items:center;">
         <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px;
-          text-transform:uppercase; color:var(--ink-faint,#756b56);">Approvals</span>
+          text-transform:uppercase; color:var(--ink-faint,#6d89ab);">Approvals</span>
         <sc-for list="{{ card.approvalBadges }}" as="badge" hint-placeholder-count="2">
           <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px;
             padding:2px 9px; border-radius:12px;
@@ -191,8 +191,8 @@
         <sc-if value="{{ card.hasWpDraft }}" hint-placeholder-val="{{ false }}">
           <a href="{{ card.wpDraftUrl }}" target="_blank" rel="noopener"
             style="font-family:inherit; font-size:12px; font-weight:600; padding:7px 14px;
-              border:1px solid var(--line,#34301f); border-radius:8px;
-              background:var(--panel-2,#1f1c14); color:var(--ink,#efe9da);
+              border:1px solid var(--line,#1f3d5f); border-radius:8px;
+              background:var(--panel-2,#1f1c14); color:var(--ink,#eaf2fc);
               cursor:pointer; text-decoration:none;">
             Preview ↗
           </a>
@@ -201,8 +201,8 @@
         <sc-if value="{{ card.showApproveBtn }}" hint-placeholder-val="{{ false }}">
           <button onClick="{{ card.approve }}"
             style="font-family:inherit; font-size:12px; font-weight:600; padding:7px 16px;
-              border:1px solid var(--ok,#6abf86); border-radius:8px;
-              background:rgba(106,191,134,.15); color:var(--ok,#6abf86); cursor:pointer;">
+              border:1px solid var(--ok,#4bbf7b); border-radius:8px;
+              background:rgba(106,191,134,.15); color:var(--ok,#4bbf7b); cursor:pointer;">
             ✓ Approve
           </button>
         </sc-if>
@@ -212,28 +212,28 @@
             style="font-family:inherit; font-size:12px; font-weight:600; padding:7px 16px;
               border:1px solid var(--accent,#e3ad33); border-radius:8px;
               background:var(--accent-dim,rgba(227,173,51,0.14));
-              color:var(--accent-2,#f4c95d); cursor:pointer;">
+              color:var(--accent-2,#5a97e6); cursor:pointer;">
             📡 Send to Platforms
           </button>
         </sc-if>
 
         <button onClick="{{ card.copyId }}"
           style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:7px 12px;
-            border:1px solid var(--line,#34301f); border-radius:8px;
-            background:transparent; color:var(--ink-faint,#756b56); cursor:pointer;">
+            border:1px solid var(--line,#1f3d5f); border-radius:8px;
+            background:transparent; color:var(--ink-faint,#6d89ab); cursor:pointer;">
           Copy ID
         </button>
 
         <sc-if value="{{ card.hasProvenance }}" hint-placeholder-val="{{ false }}">
           <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px;
-            padding:7px 12px; color:var(--ink-faint,#756b56);"
+            padding:7px 12px; color:var(--ink-faint,#6d89ab);"
             title="{{ card.provenanceTip }}">⟡ {{ card.commitShort }}</span>
         </sc-if>
       </div>
 
       <!-- CLI hint -->
       <div style="margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:10.5px;
-        color:var(--ink-faint,#756b56); background:#0f0d09; border:1px solid var(--line,#34301f);
+        color:var(--ink-faint,#6d89ab); background:#0f0d09; border:1px solid var(--line,#1f3d5f);
         border-radius:7px; padding:8px 11px; overflow-x:auto;">
         <sc-if value="{{ card.showApproveBtn }}" hint-placeholder-val="{{ false }}">
           approve: python -m services.v2_workboard --approve {{ card.jobId }} --approver owner
@@ -247,8 +247,8 @@
   </sc-for>
 
   <!-- ─── Footer ─── -->
-  <div style="border-top:1px solid var(--line,#34301f); padding-top:12px; margin-top:8px;
-    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#756b56);
+  <div style="border-top:1px solid var(--line,#1f3d5f); padding-top:12px; margin-top:8px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-faint,#6d89ab);
     letter-spacing:0.5px; text-align:center;">
     12 Stones Global · Launch Center · WordPress = editorial gate · one approval · many destinations · {{ loadedAt }}
   </div>
@@ -280,11 +280,11 @@ const _TYPE_ICONS = {
 };
 
 const _STATUS_COLORS = {
-  none:      { color: '#756b56', bg: 'transparent',               border: '#34301f' },
-  queued:    { color: '#b3a98f', bg: 'rgba(179,169,143,.10)',      border: '#756b56' },
-  draft:     { color: '#d29922', bg: 'rgba(210,153,34,.14)',       border: '#d29922' },
-  published: { color: '#6abf86', bg: 'rgba(106,191,134,.15)',      border: '#6abf86' },
-  failed:    { color: '#e5736b', bg: 'rgba(229,115,107,.14)',      border: '#e5736b' },
+  none:      { color: '#6d89ab', bg: 'transparent',               border: '#1f3d5f' },
+  queued:    { color: '#a7c0dd', bg: 'rgba(179,169,143,.10)',      border: '#6d89ab' },
+  draft:     { color: '#e3ad33', bg: 'rgba(210,153,34,.14)',       border: '#e3ad33' },
+  published: { color: '#4bbf7b', bg: 'rgba(106,191,134,.15)',      border: '#4bbf7b' },
+  failed:    { color: '#f0663f', bg: 'rgba(229,115,107,.14)',      border: '#f0663f' },
 };
 
 function _platBadge(name, status) {
@@ -296,7 +296,7 @@ function _platBadge(name, status) {
 }
 
 function _assetCheck(label, done) {
-  const s = done ? _STATUS_COLORS.published : { color: '#756b56', bg: 'transparent', border: '#34301f' };
+  const s = done ? _STATUS_COLORS.published : { color: '#6d89ab', bg: 'transparent', border: '#1f3d5f' };
   return { label, glyph: done ? '✓' : '○', color: s.color, bg: s.bg, borderColor: s.border };
 }
 
@@ -312,10 +312,10 @@ function _cardStatus(item) {
   const anyPublished = Object.values(item.platforms || {}).some(v => v === 'published') ||
                        (item.wordpress || {}).status === 'published';
   const anyFailed = Object.values(item.platforms || {}).some(v => v === 'failed');
-  if (anyFailed)    return { label: 'Needs Attention', color: '#e5736b', bg: 'rgba(229,115,107,.14)' };
-  if (anyPublished) return { label: 'Published',       color: '#6abf86', bg: 'rgba(106,191,134,.15)' };
+  if (anyFailed)    return { label: 'Needs Attention', color: '#f0663f', bg: 'rgba(229,115,107,.14)' };
+  if (anyPublished) return { label: 'Published',       color: '#4bbf7b', bg: 'rgba(106,191,134,.15)' };
   if (allApproved)  return { label: 'Ready',           color: '#e3ad33', bg: 'rgba(227,173,51,.14)'  };
-  return              { label: 'Draft',               color: '#d29922', bg: 'rgba(210,153,34,.14)'  };
+  return              { label: 'Draft',               color: '#e3ad33', bg: 'rgba(210,153,34,.14)'  };
 }
 
 function _buildCard(item, self) {
@@ -348,7 +348,7 @@ function _buildCard(item, self) {
     ],
 
     wpStatusLabel: wp.status || 'none',
-    wpStatusColor: wp.status === 'published' ? '#6abf86' : wp.status === 'draft' ? '#d29922' : '#756b56',
+    wpStatusColor: wp.status === 'published' ? '#4bbf7b' : wp.status === 'draft' ? '#e3ad33' : '#6d89ab',
     hasWpDraft:    !!(wp.draft_id),
     wpDraftId:     wp.draft_id || '',
     wpDraftUrl:    wp.draft_url || '#',
@@ -436,7 +436,7 @@ class Component extends DCLogic {
       countReady:     readyItems.length,
       countPublished: pubItems.length,
       countAttention: attnItems.length,
-      attentionColor: attnItems.length > 0 ? '#e5736b' : '#756b56',
+      attentionColor: attnItems.length > 0 ? '#f0663f' : '#6d89ab',
 
       goTabDrafts:    () => self.setState({ tab: 'drafts'    }),
       goTabReady:     () => self.setState({ tab: 'ready'     }),
@@ -451,6 +451,6 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="../../govos-shell.js" defer></script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>

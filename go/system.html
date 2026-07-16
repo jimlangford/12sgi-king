@@ -177,13 +177,13 @@ function showUnreachable(){
     sev:'critical',
     steps:[
       'Verify Tailscale is connected on this device',
-      'Open https://12sgianonymous.tail760750.ts.net/king/ to test connectivity',
+      'Open https://king.tail760750.ts.net/king/ to test connectivity',
       'Check that the king server is running on port 8799',
       'Check board API on port 8782'
     ],
     fixes:[
       {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
-      {lbl:'Test king',href:'https://12sgianonymous.tail760750.ts.net/king/'}
+      {lbl:'Test king',href:'https://king.tail760750.ts.net/king/'}
     ],
     logs:'',
     escalate:'If Tailscale is connected and the server is running, check nginx logs and the board API. The /board/api/system endpoint may need to be implemented in the board server.',

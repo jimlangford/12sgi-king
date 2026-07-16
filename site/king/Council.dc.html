@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
 </head>
 <body>
 <x-dc>
@@ -13,29 +13,29 @@
   <script src="./data.js"></script>
 </helmet>
 
-<div data-surface="mauios" data-screen-label="Council & Agendas · civic" style="min-height:100%; background:var(--mauios-backdrop,#0c100e); color:var(--mauios-ink,#eef3ef); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
+<div data-surface="mauios" data-screen-label="Council & Agendas · civic" style="min-height:100%; background:var(--mauios-backdrop,#081420); color:var(--mauios-ink,#eaf2fc); font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif; font-size:14px; padding:clamp(14px,2.5vw,30px);">
 
   <div style="text-align:center; margin-bottom:18px;">
-    <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:14px; border:1px solid rgba(217,178,76,0.45); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--mauios-gold,#d9b24c);">🏛</div>
-    <h1 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3vw,30px); font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">Council &amp; Agendas</h1>
-    <p style="margin:5px auto 0; max-width:560px; font-size:13px; color:var(--mauios-mut,#9fb1a6);">Get ahead of every vote · {{ sunshine }} · forecast off council-watch</p>
+    <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:14px; border:1px solid rgba(227,173,51,0.45); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--mauios-gold,#e3ad33);">🏛</div>
+    <h1 style="margin:0; font-family:var(--font-serif-display,'Source Serif 4',Georgia,serif); font-size:clamp(22px,3vw,30px); font-weight:600; color:var(--mauios-gold-2,#5a97e6);">Council &amp; Agendas</h1>
+    <p style="margin:5px auto 0; max-width:560px; font-size:13px; color:var(--mauios-mut,#6d89ab);">Get ahead of every vote · {{ sunshine }} · forecast off council-watch</p>
   </div>
 
   <!-- stat strip -->
   <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:11px; max-width:1040px; margin:0 auto 18px;">
-    <div style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:13px 15px;">
+    <div style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:13px 15px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.7px; text-transform:uppercase; color:var(--mauios-faint,#6f8278);">Agendas YTD</div>
       <div style="font-family:var(--font-serif-display,Georgia,serif); font-size:23px; font-weight:600; margin-top:5px;">{{ ytd }}</div>
     </div>
-    <div style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:13px 15px;">
+    <div style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:13px 15px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.7px; text-transform:uppercase; color:var(--mauios-faint,#6f8278);">Forecast queue</div>
       <div style="font-family:var(--font-serif-display,Georgia,serif); font-size:23px; font-weight:600; margin-top:5px;">{{ forecastN }}</div>
     </div>
-    <div style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:13px 15px;">
+    <div style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:13px 15px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.7px; text-transform:uppercase; color:var(--mauios-faint,#6f8278);">Committees</div>
       <div style="font-family:var(--font-serif-display,Georgia,serif); font-size:23px; font-weight:600; margin-top:5px;">{{ committeeN }}</div>
     </div>
-    <div style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:13px 15px;">
+    <div style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:13px 15px;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.7px; text-transform:uppercase; color:var(--mauios-faint,#6f8278);">Recusals on file</div>
       <div style="font-family:var(--font-serif-display,Georgia,serif); font-size:23px; font-weight:600; margin-top:5px;">{{ recusals }}</div>
     </div>
@@ -44,44 +44,44 @@
   <div style="max-width:1040px; margin:0 auto;">
     <!-- forecast queue -->
     <div style="display:flex; align-items:baseline; gap:10px; margin:6px 0 11px;">
-      <h2 style="margin:0; font-family:var(--font-serif-display,Georgia,serif); font-size:17px; font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">Forecast queue</h2>
+      <h2 style="margin:0; font-family:var(--font-serif-display,Georgia,serif); font-size:17px; font-weight:600; color:var(--mauios-gold-2,#5a97e6);">Forecast queue</h2>
       <span style="font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--mauios-faint,#6f8278);">sorted by the Sunshine clock</span>
     </div>
     <div style="display:flex; flex-direction:column; gap:8px;">
       <sc-for list="{{ forecast }}" as="f" hint-placeholder-count="5">
-        <a href="{{ explainerHref }}" style="display:grid; grid-template-columns:86px 1fr auto; gap:14px; align-items:center; text-decoration:none; color:var(--mauios-ink,#eef3ef); background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:11px; padding:12px 15px; box-shadow:var(--mauios-shadow);" style-hover="border-color:var(--mauios-gold,#d9b24c);">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6); border:1px solid var(--mauios-line,#243029); border-radius:5px; padding:3px 7px; text-align:center;">{{ f.type }}</span>
+        <a href="{{ explainerHref }}" style="display:grid; grid-template-columns:86px 1fr auto; gap:14px; align-items:center; text-decoration:none; color:var(--mauios-ink,#eaf2fc); background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:11px; padding:12px 15px; box-shadow:var(--mauios-shadow);" style-hover="border-color:var(--mauios-gold,#e3ad33);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--mauios-mut,#6d89ab); border:1px solid var(--mauios-line,#1f3d5f); border-radius:5px; padding:3px 7px; text-align:center;">{{ f.type }}</span>
           <span>
             <span style="font-size:13.5px; font-weight:600;">{{ f.title }}</span>
             <sc-if value="{{ f.flag }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:0.4px; text-transform:uppercase; color:var(--mauios-pele,#d9622b); border:1px solid rgba(217,98,43,0.4); border-radius:4px; padding:1px 5px; margin-left:8px;">⚑ flag · question</span></sc-if>
             <span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--mauios-faint,#6f8278); margin-top:3px;">{{ f.body }} · Art.{{ f.charter }} · {{ f.file }}</span>
           </span>
           <sc-if value="{{ f.soon }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mauios-pele,#d9622b); white-space:nowrap;">⏱ {{ f.daysLabel }}</span></sc-if>
-          <sc-if value="{{ f.notSoon }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mauios-mut,#9fb1a6); white-space:nowrap;">{{ f.daysLabel }}</span></sc-if>
+          <sc-if value="{{ f.notSoon }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mauios-mut,#6d89ab); white-space:nowrap;">{{ f.daysLabel }}</span></sc-if>
         </a>
       </sc-for>
     </div>
 
     <!-- committees + ledger -->
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px;">
-      <section style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:16px 18px;">
-        <h2 style="margin:0 0 11px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Standing committees</h2>
+      <section style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:16px 18px;">
+        <h2 style="margin:0 0 11px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#6d89ab);">Standing committees</h2>
         <div style="display:flex; flex-direction:column; gap:7px;">
           <sc-for list="{{ committees }}" as="c" hint-placeholder-count="7">
             <div style="display:flex; gap:11px; align-items:baseline;">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--mauios-gold,#d9b24c); width:50px; flex:none;">{{ c.ab }}</span>
-              <span style="font-size:12.5px; color:var(--mauios-ink,#eef3ef);">{{ c.nm }}</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--mauios-gold,#e3ad33); width:50px; flex:none;">{{ c.ab }}</span>
+              <span style="font-size:12.5px; color:var(--mauios-ink,#eaf2fc);">{{ c.nm }}</span>
             </div>
           </sc-for>
         </div>
       </section>
-      <section style="background:var(--mauios-panel,#151d19); border:1px solid var(--mauios-line,#243029); border-radius:12px; padding:16px 18px;">
-        <h2 style="margin:0 0 11px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#9fb1a6);">Ordinance ledger</h2>
+      <section style="background:var(--mauios-panel,#0f2540); border:1px solid var(--mauios-line,#1f3d5f); border-radius:12px; padding:16px 18px;">
+        <h2 style="margin:0 0 11px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mauios-mut,#6d89ab);">Ordinance ledger</h2>
         <div style="display:flex; flex-direction:column; gap:8px;">
           <sc-for list="{{ ledger }}" as="o" hint-placeholder-count="4">
             <div style="display:flex; gap:11px; align-items:baseline; justify-content:space-between;">
-              <span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--mauios-gold-2,#f0cf7a);">{{ o.id }}</span> <span style="font-size:12.5px; color:var(--mauios-mut,#9fb1a6);">{{ o.t }}</span></span>
-              <sc-if value="{{ o.passed }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.4px; text-transform:uppercase; color:var(--mauios-ok,#56c08a); white-space:nowrap;">{{ o.status }}</span></sc-if>
+              <span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--mauios-gold-2,#5a97e6);">{{ o.id }}</span> <span style="font-size:12.5px; color:var(--mauios-mut,#6d89ab);">{{ o.t }}</span></span>
+              <sc-if value="{{ o.passed }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.4px; text-transform:uppercase; color:var(--mauios-ok,#4bbf7b); white-space:nowrap;">{{ o.status }}</span></sc-if>
               <sc-if value="{{ o.flagged }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.4px; text-transform:uppercase; color:var(--mauios-pele,#d9622b); white-space:nowrap;">{{ o.status }}</span></sc-if>
               <sc-if value="{{ o.dead }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.4px; text-transform:uppercase; color:var(--mauios-faint,#6f8278); white-space:nowrap;">{{ o.status }}</span></sc-if>
             </div>
@@ -92,14 +92,14 @@
 
     <!-- actions -->
     <div style="display:flex; gap:11px; flex-wrap:wrap; margin-top:18px;">
-      <a href="{{ explainerHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-gold,#d9b24c); color:#241c06; font-weight:600; font-size:13px; border-radius:10px; padding:11px 16px;">▶ Agenda explainer</a>
-      <a href="{{ crosswalkHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#f0cf7a); font-size:13px; border:1px solid var(--mauios-line,#243029); border-radius:10px; padding:11px 16px;">⚖ Charter ⇄ Law Crosswalk</a>
-      <a href="{{ codeHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#f0cf7a); font-size:13px; border:1px solid var(--mauios-line,#243029); border-radius:10px; padding:11px 16px;">§ County Code &amp; Rules</a>
+      <a href="{{ explainerHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-gold,#e3ad33); color:#241c06; font-weight:600; font-size:13px; border-radius:10px; padding:11px 16px;">▶ Agenda explainer</a>
+      <a href="{{ crosswalkHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#5a97e6); font-size:13px; border:1px solid var(--mauios-line,#1f3d5f); border-radius:10px; padding:11px 16px;">⚖ Charter ⇄ Law Crosswalk</a>
+      <a href="{{ codeHref }}" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none; background:var(--mauios-panel-2,#1a2420); color:var(--mauios-gold-2,#5a97e6); font-size:13px; border:1px solid var(--mauios-line,#1f3d5f); border-radius:10px; padding:11px 16px;">§ County Code &amp; Rules</a>
     </div>
 
-    <div style="margin-top:16px; padding:12px 15px; background:rgba(86,192,138,0.05); border:1px solid rgba(86,192,138,0.25); border-left:3px solid var(--mauios-ok,#56c08a); border-radius:11px;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.9px; text-transform:uppercase; color:var(--mauios-ok,#56c08a); margin-bottom:4px;">Integrity</div>
-      <p style="margin:0; font-size:12.5px; color:var(--mauios-mut,#9fb1a6);">{{ integrity }}</p>
+    <div style="margin-top:16px; padding:12px 15px; background:rgba(86,192,138,0.05); border:1px solid rgba(86,192,138,0.25); border-left:3px solid var(--mauios-ok,#4bbf7b); border-radius:11px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.9px; text-transform:uppercase; color:var(--mauios-ok,#4bbf7b); margin-bottom:4px;">Integrity</div>
+      <p style="margin:0; font-size:12.5px; color:var(--mauios-mut,#6d89ab);">{{ integrity }}</p>
     </div>
   </div>
 </div>
@@ -135,6 +135,6 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="../../govos-shell.js" defer></script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>

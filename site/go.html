@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8">
+<html lang="en"><head><meta charset="UTF-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>12 Stones Global · Quadcast OS</title>
 <style>
- /* Quad-OS Yale-blue civic palette (12sgi-design). Light/civic. Redesigned 2026-06-18: de-Maui'd front door,
-    four quadrants + the platform tiers, multi-tenant + global. Mobile-first. */
+ /* Quad-OS Yale-blue civic palette (12sgi-design). Light/civic. Redesigned 2026-07-13: new column layout */
  :root{
    --bg:#ffffff; --panel:#e7eef8; --panel-2:#dae5f3; --panel-3:#ccddef; --line:#bacde6;
    --ink:#13243d; --ink-dim:#41536b; --ink-faint:#5b6e86;
@@ -16,26 +15,39 @@
  body{margin:0;background:var(--bg);color:var(--ink);
       font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
       min-height:100vh;padding:20px 16px 36px;-webkit-font-smoothing:antialiased}
- .wrap{width:100%;max-width:580px;margin:0 auto}
- .head{display:flex;align-items:center;gap:11px;margin:6px 0 4px}
+ 
+ /* NEW: Two-column layout for desktop, stacked for mobile */
+ .wrap{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+ @media(max-width:900px){.wrap{grid-template-columns:1fr}}
+ 
+ .header{grid-column:1/-1;display:flex;align-items:center;gap:11px;margin:6px 0 4px}
  .seal{width:40px;height:40px;border-radius:10px;background:var(--accent);color:var(--accent-ink);flex:none;
        display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;letter-spacing:-.5px}
  .brand{font-size:18px;font-weight:800}
  .syslabel{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-2);font-weight:600}
- .sub{font-size:13px;color:var(--ink-dim);margin:11px 0 14px;line-height:1.55}
- .status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;padding:8px 13px;border-radius:10px;
+ .sub{grid-column:1/-1;font-size:13px;color:var(--ink-dim);margin:11px 0 14px;line-height:1.55}
+ .status{grid-column:1/-1;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;padding:8px 13px;border-radius:10px;
          background:var(--panel);border:1px solid var(--line);margin-bottom:13px;color:var(--ink-dim)}
  .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);animation:pulse 1.2s infinite}
  .dot.up{background:var(--ok);animation:none}.dot.down{background:var(--err);animation:none}
  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+ 
+ /* NEW: Left column — Quick Actions + Quadrants */
+ .col-left{display:flex;flex-direction:column;gap:14px}
+ 
  .dash{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;
-       background:var(--accent);color:var(--accent-ink);border-radius:11px;padding:12px 15px;margin-bottom:18px}
+       background:var(--accent);color:var(--accent-ink);border-radius:11px;padding:12px 15px;margin-bottom:0}
  .dash .dt{font-size:14px;font-weight:650}.dash .db{font-size:11.5px;opacity:.85;margin-top:2px}
  .dash .pct{font-size:23px;font-weight:700;font-family:var(--mono)}
  .dash.ghost{opacity:.55} .dash.ghost:hover{opacity:.85}
- .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:18px 2px 9px;font-weight:600}
+ .dash:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,53,107,.15)}
+ 
+ .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:14px 0 8px;font-weight:600;padding:0 2px}
+ 
+ /* NEW: Quadrants in 2x2 grid instead of single column */
+ .quads-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
  .quad{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
-       border-radius:12px;padding:13px 15px;margin-bottom:10px;transition:border-color .14s,transform .14s}
+       border-radius:12px;padding:13px 15px;transition:border-color .14s,transform .14s}
  .quad:hover{border-color:var(--accent);transform:translateY(-1px)}
  .quad.ghost{opacity:.42;filter:saturate(.45)} .quad.ghost:hover{opacity:.64}
  .qtop{display:flex;align-items:center;gap:10px}.qi{font-size:19px;width:26px;text-align:center}
@@ -45,28 +57,41 @@
  .qb{font-size:12px;color:var(--ink-dim);line-height:1.45}
  .tag{float:right;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;font-weight:600}
  .tag.live{background:rgba(31,138,91,.13);color:var(--ok)} .tag.mir{background:var(--accent-wash);color:var(--accent-2)}
- /* the platform — tier ladder */
+ 
+ /* NEW: Right column — Platform + govOS + Owner Console */
+ .col-right{display:flex;flex-direction:column;gap:14px}
+ 
  .tier{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;text-decoration:none;color:inherit;background:var(--panel);
-       border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin-bottom:9px;transition:border-color .14s}
+       border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin-bottom:0;transition:border-color .14s}
  .tier:hover{border-color:var(--accent)} .tier .nm{font-weight:650;font-size:14px;flex:1}
  .tier .px{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700;white-space:nowrap}
  .tier .dd{font-size:11.5px;color:var(--ink-dim);width:100%;margin-top:3px;line-height:1.4}
+ 
+ /* Tier section wrapper */
+ .tiers-section{display:flex;flex-direction:column;gap:8px}
+ 
  a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
-        border-radius:11px;padding:12px 14px;margin-bottom:9px;transition:border-color .14s}
+        border-radius:11px;padding:12px 14px;margin-bottom:0;transition:border-color .14s}
  a.card:hover{border-color:var(--accent)} a.card.dim{opacity:.5}
  .t{font-size:14px;font-weight:600}.b{font-size:12px;color:var(--ink-dim);margin-top:3px;line-height:1.4}
- .ftm-head{display:flex;align-items:center;gap:9px;margin:0 2px 10px}
- .ftm-lbl{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
- .ftm-head select{flex:1;font-family:inherit;font-size:13.5px;color:var(--accent);background:#fff;border:1px solid var(--line);
-   border-radius:9px;padding:8px 11px;cursor:pointer;max-width:320px}.ftm-head select:hover{border-color:var(--accent)}
- #ftm-cards .b .none{color:var(--ink-faint);font-style:italic}
- .foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:18px;line-height:1.7;
+ 
+ /* Owner console grid */
+ .console-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-bottom:4px}
+ .console-grid a.card{text-align:center;padding:12px 8px}
+ .console-grid .t{font-size:12px}
+ .console-grid .b{font-size:10px}
+ 
+ /* Live system section */
+ .live-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+ 
+ /* Footer */
+ .foot{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:18px;line-height:1.7;
        text-align:center;border-top:1px solid var(--line);padding-top:13px}
  a{color:var(--accent-2)}
-</style><script id="ftm-data">window.__FTM__={"order": ["hi-maui", "hi-state", "hi-hawaii", "hi-kauai", "hi-honolulu", "ny"], "tenants": {"hi-maui": {"name": "Maui County", "trail": [["Money behind them", "money_behind_officials.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "maui_contract_awards.html", "Who this government pays — contract awards"], ["Money &times; votes", "contracts_x_donors.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-state": {"name": "State of Hawaiʻi", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_state.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_state.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-hawaii": {"name": "Hawaiʻi County", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_hawaii.html", "Who this government pays — contract awards"], ["Federal dollars", "federal_money_hawaii.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-kauai": {"name": "Kauaʻi County", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_kauai.html", "Who this government pays — contract awards"], ["Federal dollars", "federal_money_kauai.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-honolulu": {"name": "Honolulu", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_honolulu.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_honolulu.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money_honolulu.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "ny": {"name": "New York", "trail": [["Money behind them", "money_nyc.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_nyc.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_nyc.html", "Where giving and deciding line up — framed as questions"]]}}};</script><link rel="stylesheet" href="../govos.css">
-</head><body><div class="wrap">
+</style><link rel="stylesheet" href="govos.css">
+<script id="ftm-data">window.__FTM__={"order": ["hi-maui", "hi-state", "hi-hawaii", "hi-kauai", "hi-honolulu", "ny"], "tenants": {"hi-maui": {"name": "Maui County", "trail": [["Money behind them", "money_behind_officials.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "maui_contract_awards.html", "Who this government pays — contract awards"], ["Money &times; votes", "contracts_x_donors.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-state": {"name": "State of Hawaiʻi", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_state.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_state.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-hawaii": {"name": "Hawaiʻi County", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_hawaii.html", "Who this government pays — contract awards"], ["Federal dollars", "federal_money_hawaii.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-kauai": {"name": "Kauaʻi County", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_kauai.html", "Who this government pays — contract awards"], ["Federal dollars", "federal_money_kauai.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "hi-honolulu": {"name": "Honolulu", "trail": [["Money behind them", "statewide_money_patterns.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_honolulu.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_honolulu.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money_honolulu.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "audit_balance.html", "The money&times;votes equation scorecard"]]}, "ny": {"name": "New York", "trail": [["Money behind them", "money_nyc.html", "Who funds each decider — public campaign-finance record"], ["Contracts &amp; spending", "contracts_nyc.html", "Who this government pays — contract awards"], ["Money &times; votes", "parity_nyc.html", "Where giving and deciding line up — framed as questions"], ["Federal dollars", "federal_money_nyc.html", "Federal money flowing into the jurisdiction"], ["Audit balance", "govos_audit_ny.html", "The money&times;votes equation scorecard"]]}}};</script><style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style></head><body><div class="wrap">
 
-  <div class="head">
+  <div class="header">
     <div class="seal">12</div>
     <div><div class="brand">12 Stones Global</div><div class="syslabel">Quadcast OS · one system</div></div>
   </div>
@@ -75,156 +100,171 @@
 
   <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">checking the live system…</span></div>
 
-  <a class="dash ghost" href="quadrant_progress.html" id="dashLink">
-    <div><div class="dt">Progress dashboard</div><div class="db">Self-healed + scored hourly across the four quadrants · log →</div></div>
-    <div class="pct" id="overallPct">61%</div>
-  </a>
+  <!-- LEFT COLUMN: Quick Actions + Quadrants + Civic -->
+  <div class="col-left">
+    <a class="dash ghost" href="https://12sgi.com/king/quadrant_progress.html" id="dashLink">
+      <div><div class="dt">📊 Progress dashboard</div><div class="db">Self-healed hourly across four quadrants</div></div>
+      <div class="pct" id="overallPct">61%</div>
+    </a>
 
-  <!-- Renders to review — PRIVATE go page surface. Data fetched at runtime from the studio review queue
-       (Tailscale / -> :8770). Fails CLOSED: the whole section stays hidden on the public mirror where the
-       queue is unreachable, so no render labels/links are ever baked into the static (leak-safe). -->
-  <div id="reviewSect" style="display:none">
-    <div class="sect">🔔 Renders to review</div>
-    <div id="reviewQueue"></div>
-  </div>
-
-  <!-- Owner Actions — v2 workboard pending approvals (creative + output lanes). Fetches from
-       /board/api/pending-approvals -> services/v2_workboard.pending_approvals() -> :8782.
-       Fails CLOSED: section hidden when board is unreachable (public mirror / server offline). -->
-  <div id="opsSect" style="display:none">
-    <div class="sect">🔑 Owner Actions</div>
-    <div id="opsCards"></div>
-  </div>
-
-  <!-- Command Center — the Work Board MERGED into the go page (Jimmy: "1 & 3 need to be one"). Fetches
-       the board over Tailscale (/board -> :8782). Fails CLOSED: hidden on the public mirror / when the
-       board is unreachable, so no private board data is ever baked into the static. -->
-  <div id="ccSect" style="display:none">
-    <div class="sect">🛠 Command Center</div>
-    <div id="ccLanes" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
-    <div class="card" style="cursor:default">
-      <div class="t">Message Claude</div>
-      <div class="b" style="margin-bottom:8px">Send a request straight to the executor — it queues on the board and gets acted on.</div>
-      <form id="ccMsgForm" style="display:flex;gap:8px;flex-wrap:wrap">
-        <input id="ccMsg" type="text" required placeholder="e.g. add an STR-permit tracker to my dashboard" aria-label="Message Claude"
-               style="flex:1;min-width:180px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
-        <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 16px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Send</button>
-      </form>
-      <div id="ccMsgNote" class="b" style="margin-top:6px"></div>
+    <div id="reviewSect" style="display:none">
+      <div class="sect">🔔 Renders to review</div>
+      <div id="reviewQueue"></div>
     </div>
-    <div id="ccFeed" style="margin-top:10px"></div>
+
+    <div id="opsSect" style="display:none">
+      <div class="sect">🔑 Owner Actions</div>
+      <div id="opsCards"></div>
+    </div>
+
+    <div class="sect">The four quadrants</div>
+    <div class="quads-grid">
+      <a class="quad ghost" id="qMV" href="https://12sgi.com/" data-q="music_video">
+        <div class="qtop"><span class="qi">🎬</span><span class="qn">Music Video</span><span class="qpct" data-pct>71%</span></div>
+        <div class="qbar"><span data-bar style="width:71%"></span></div>
+        <div class="qb">True likeness → SDXL → i2v. <span class="tag live">studio</span></div></a>
+      <a class="quad ghost" id="qFilm" href="https://12sgi.com/" data-q="film">
+        <div class="qtop"><span class="qi">🎞</span><span class="qn">Film</span><span class="qpct" data-pct>26%</span></div>
+        <div class="qbar"><span data-bar style="width:26%"></span></div>
+        <div class="qb">Four-film universe. <span class="tag live">studio</span></div></a>
+      <a class="quad ghost" id="qGame" href="https://12sgi.com/king/" data-q="game">
+        <div class="qtop"><span class="qi">✦</span><span class="qn">Sage</span><span class="qpct" data-pct>86%</span></div>
+        <div class="qbar"><span data-bar style="width:86%"></span></div>
+        <div class="qb">54-node journey. <span class="tag live">king</span></div></a>
+      <a class="quad" href="https://12sgi.com/civic/" data-q="govos">
+        <div class="qtop"><span class="qi">⚖</span><span class="qn">Civic</span><span class="qpct" data-pct>62%</span></div>
+        <div class="qbar"><span data-bar style="width:62%"></span></div>
+        <div class="qb">Live events. <span class="tag mir">public</span></div></a>
+    </div>
+
+    <div class="sect">Owner Console — Private</div>
+    <div class="console-grid">
+      <a class="card dim" id="goDocker" href="https://12sgi.com/king/go/docker">
+        <div style="font-size:20px;margin-bottom:4px">🐳</div>
+        <div class="t">Docker</div>
+        <div class="b">containers</div>
+      </a>
+      <a class="card dim" id="goOllama" href="https://12sgi.com/king/go/ollama">
+        <div style="font-size:20px;margin-bottom:4px">🦙</div>
+        <div class="t">Ollama</div>
+        <div class="b">LLM</div>
+      </a>
+      <a class="card dim" id="goLlmWatch" href="https://12sgi.com/king/go/llm-watch">
+        <div style="font-size:20px;margin-bottom:4px">📡</div>
+        <div class="t">LLM Watch</div>
+        <div class="b">requests</div>
+      </a>
+      <a class="card dim" id="goComfyui" href="https://12sgi.com/king/go/comfyui">
+        <div style="font-size:20px;margin-bottom:4px">🎨</div>
+        <div class="t">ComfyUI</div>
+        <div class="b">renders</div>
+      </a>
+      <a class="card dim" id="goGithub" href="https://12sgi.com/king/go/github">
+        <div style="font-size:20px;margin-bottom:4px">⚙</div>
+        <div class="t">GitHub</div>
+        <div class="b">CI</div>
+      </a>
+      <a class="card dim" id="goSystem" href="https://12sgi.com/king/go/system">
+        <div style="font-size:20px;margin-bottom:4px">🖥</div>
+        <div class="t">System</div>
+        <div class="b">health</div>
+      </a>
+      <a class="card dim" id="goLogs" href="https://12sgi.com/king/go/logs">
+        <div style="font-size:20px;margin-bottom:4px">📋</div>
+        <div class="t">Logs</div>
+        <div class="b">viewer</div>
+      </a>
+      <a class="card dim" id="goGordon" href="https://12sgi.com/king/go/healing">
+        <div style="font-size:20px;margin-bottom:4px">🤖</div>
+        <div class="t">Healing</div>
+        <div class="b">auto-repair</div>
+      </a>
+    </div>
   </div>
 
-  <div class="sect">The four quadrants</div>
-  <a class="quad ghost" id="qMV" href="https://12sgianonymous.tail760750.ts.net/" data-q="music_video">
-    <div class="qtop"><span class="qi">🎬</span><span class="qn">Music Video</span><span class="qpct" data-pct>71%</span></div>
-    <div class="qbar"><span data-bar style="width:71%"></span></div>
-    <div class="qb">Your true likeness, locked to every render — catalog → SDXL keyframe → Wan2.2 i2v. <span class="tag live">studio</span></div></a>
-  <a class="quad ghost" id="qFilm" href="https://12sgianonymous.tail760750.ts.net/" data-q="film">
-    <div class="qtop"><span class="qi">🎞</span><span class="qn">Film</span><span class="qpct" data-pct>26%</span></div>
-    <div class="qbar"><span data-bar style="width:26%"></span></div>
-    <div class="qb">A four-film universe, rebuilt locally — frame by frame. <span class="tag live">studio</span></div></a>
-  <a class="quad ghost" id="qGame" href="https://12sgianonymous.tail760750.ts.net/king/" data-q="game">
-    <div class="qtop"><span class="qi">✦</span><span class="qn">Game · Sage</span><span class="qpct" data-pct>86%</span></div>
-    <div class="qbar"><span data-bar style="width:86%"></span></div>
-    <div class="qb">The 54-node Sage journey across four zone-spheres — Mauka · Kula · Makai · Universal. <span class="tag live">king</span></div></a>
-  <a class="quad" href="reports.html" data-q="govos">
-    <div class="qtop"><span class="qi">⚖</span><span class="qn">govOS</span><span class="qpct" data-pct>62%</span></div>
-    <div class="qbar"><span data-bar style="width:62%"></span></div>
-    <div class="qb">Civic transparency — votes · money · permits · patterns, across every tenant. <span class="tag mir">public</span></div></a>
+  <!-- RIGHT COLUMN: Platform + govOS + Live System -->
+  <div class="col-right">
+    <div class="sect">Platform & Subscriptions</div>
+    <div class="tiers-section">
+      <a class="tier" href="https://12sgi.com/king/feature_board.html"><span class="nm">Free</span><span class="px">$0</span>
+        <span class="dd">Sign in · public govOS board · Studio core tools.</span></a>
+      <a class="tier" href="https://buy.stripe.com/aFa3cx6Lt8RZaZC1t92ZO02"><span class="nm">Pro</span><span class="px">$29/mo</span>
+        <span class="dd">Full Studio · private dashboards · posting lanes.</span></a>
+      <a class="tier" href="https://buy.stripe.com/3cI9AV5Hpc4b5FiefV2ZO03"><span class="nm">Studio / Org</span><span class="px">$99/mo</span>
+        <span class="dd">Multi-user · team library · org tenants.</span></a>
+      <a class="tier" href="https://buy.stripe.com/fZu8wR6Lt9W3c3G7Rx2ZO01"><span class="nm">Council Pro</span><span class="px">$999/mo</span>
+        <span class="dd">Verified member · Oversight Calc · all civic tools.</span></a>
+    </div>
 
-  <div class="sect">The platform — studio &amp; govOS</div>
-  <a class="tier" href="feature_board.html"><span class="nm">Free</span><span class="px">$0</span>
-    <span class="dd">Sign in · public govOS board · Studio core tools · Command Center read-only.</span></a>
-  <a class="tier" href="https://buy.stripe.com/aFa3cx6Lt8RZaZC1t92ZO02"><span class="nm">Pro</span><span class="px">$29/mo</span>
-    <span class="dd">Full Studio production (MV/Film, uncapped local renders) · full govOS private dashboards · posting lanes · Message Claude (send a request to the system executor). Buy now →</span></a>
-  <a class="tier" href="https://buy.stripe.com/3cI9AV5Hpc4b5FiefV2ZO03"><span class="nm">Studio / Org</span><span class="px">$99/mo</span>
-    <span class="dd">Everything in Pro · multi-user / per-seat · team library &amp; work board · org tenants + admin. Buy now →</span></a>
-  <a class="tier" href="https://buy.stripe.com/fZu8wR6Lt9W3c3G7Rx2ZO01"><span class="nm">Council Pro</span><span class="px">$999/mo</span>
-    <span class="dd">Verified council member · Oversight Calculator · auto Corp Counsel packet + UIPA list · all civic calculators, private. Buy now →</span></a>
-  <a class="tier" href="https://buy.stripe.com/3cI4gBedVgkr5Fi9ZF2ZO04"><span class="nm">Render Credits</span><span class="px">$10</span>
-    <span class="dd">Metered cloud-render credits for heavy GPU work — top up any tier. Buy now →</span></a>
-  <a class="card" href="platform.html"><span class="tag mir">platform</span><div class="t">The full platform</div><div class="b">Quadrants · subscriptions · onboard a tenant</div></a>
+    <div class="sect">govOS · Civic Transparency</div>
+    <a class="card" href="https://12sgi.com/king/reports.html"><span class="tag mir">govOS</span><div class="t">Home dashboard</div><div class="b">Votes · money · permits · patterns — every tenant</div></a>
+    <a class="card" href="https://12sgi.com/king/jurisdictions.html"><span class="tag mir">index</span><div class="t">All jurisdictions</div><div class="b">Every government on govOS, in one index</div></a>
+    <a class="card" href="https://12sgi.com/king/testify.html"><span class="tag mir">act</span><div class="t">⚖ Testify</div><div class="b">Submit testimony to your government's clerk</div></a>
+    <a class="card" href="https://12sgi.com/king/datasets.html"><span class="tag mir">data</span><div class="t">Open data</div><div class="b">Every figure, downloadable · DCAT catalog</div></a>
 
-  <div class="sect">govOS · pick a government</div>
-  <a class="card" href="reports.html"><span class="tag mir">govOS</span><div class="t">govOS — home</div><div class="b">Votes · money · permits · patterns · contracts · scorecards — every tenant</div></a>
-  <div class="ftm-head"><span class="ftm-lbl">Government</span><select id="ftm-gov" aria-label="Pick a government"></select></div>
-  <div id="ftm-cards"></div>
-  <a class="card" href="jurisdictions.html"><span class="tag mir">index</span><div class="t">All jurisdictions</div><div class="b">Every government on govOS, in one index</div></a>
+    <div class="sect">Live System — Private (Tailscale)</div>
+    <div class="live-section">
+      <a class="card dim" id="liveStudio" href="https://12sgi.com/"><span class="tag live">live</span><div class="t">Element Lotus Studio</div><div class="b">Full production controls</div></a>
+      <a class="card dim" id="liveKing" href="https://12sgi.com/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces · owner ops</div></a>
+      <a class="card dim" id="liveBoard" href="https://12sgi.com/board"><span class="tag live">live</span><div class="t">Work Board</div><div class="b">Command center · all lanes</div></a>
+      <a class="card dim" id="liveStatus" href="https://12sgi.com/king/system_status.html"><span class="tag live">live</span><div class="t">System status</div><div class="b">Real-time self-heal · GPU/CPU/VRAM</div></a>
+    </div>
 
-  <div class="sect">Act</div>
-  <a class="card" href="testify.html"><span class="tag mir">act</span><div class="t">⚖ Testify</div><div class="b">Write testimony → send it to your government's clerk + record it on govOS</div></a>
-  <a class="card" href="datasets.html"><span class="tag mir">open data</span><div class="t">Open data — don't take our word for it</div><div class="b">Every figure behind the dashboards, downloadable · DCAT catalog</div></a>
-  <a class="card" href="take_action.html"><span class="tag mir">join</span><div class="t">Request the records</div><div class="b">A public-records request for the contract logs, offered in aloha · join in</div></a>
-  <a class="card" href="partner.html"><span class="tag mir">partner</span><div class="t">Partner with us — 501(c)(3) sponsor</div><div class="b">Seeking an aligned 501(c)(3) to fiscal-sponsor our food, housing, culture &amp; education work</div></a>
+    <!-- Backend, every door (Jimmy 2026-07-15: "PUSH ALL BACK END To my go page ALL OF IT NO EXCEPTIONS").
+         AURORA-GOLD v3 backend. Private links; the public build sanitizer strips ts.net hosts as usual. -->
+    <div class="sect">Backend — every door (AURORA·GOLD)</div>
+    <div class="live-section">
+      <a class="card dim" id="beBoard" href="https://12sgi.com/board/"><span class="tag live">backend</span><div class="t">♛ Work Board</div><div class="b">Flow · health · robots — one queue, every lane</div></a>
+      <a class="card dim" id="beOwner" href="https://12sgi.com/board/owner"><span class="tag live">backend</span><div class="t">Owner actions</div><div class="b">One-tap approvals · can't-fix-unattended items</div></a>
+      <a class="card dim" id="beCorporate" href="https://12sgi.com/board/corporate"><span class="tag live">backend</span><div class="t">Corporate register</div><div class="b">Entity register · governance — owner-only</div></a>
+      <a class="card dim" id="beConsole" href="https://12sgi.com/board/console/"><span class="tag live">backend</span><div class="t">King Console</div><div class="b">Lanes · timeline · civic board · gallery · voices</div></a>
+      <a class="card dim" id="beRenderBox" href="https://12sgi.com/board/render-box"><span class="tag live">backend</span><div class="t">Render Box</div><div class="b">Render wizard · job intake</div></a>
+      <a class="card dim" id="beAupuni" href="https://12sgi.com/board/aupuni/"><span class="tag live">backend</span><div class="t">Aupuni lobby</div><div class="b">The one lobby — proxied, same trust boundary</div></a>
+      <a class="card dim" id="beQuados" href="https://12sgi.com/king/quados"><span class="tag live">backend</span><div class="t">QuadOS dashboard</div><div class="b">The system, observed</div></a>
+      <a class="card dim" id="beDispatch" href="https://12sgi.com/king/dispatch"><span class="tag live">backend</span><div class="t">Dispatch feed</div><div class="b">The coordination bus, live</div></a>
+    </div>
 
-  <div class="sect">Stay in the loop</div>
-  <div class="card" style="cursor:default">
-    <div class="t">Civic newsletter — the weekly watch</div>
-    <div class="b" style="margin-bottom:9px">Money &amp; votes, agendas, and what we filed — to your inbox. Aloha, no spam, unsubscribe anytime.</div>
-    <form id="nlForm" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input id="nlEmail" type="email" required placeholder="you@email.com" autocomplete="email" aria-label="Email address"
-             style="flex:1;min-width:170px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
-      <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 18px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Subscribe</button>
-    </form>
-    <div id="nlMsg" style="font-size:12px;color:var(--ink-dim);margin-top:8px;min-height:16px"></div>
+    <div id="ccSect" style="display:none">
+      <div class="sect">🛠 Command Center</div>
+      <div id="ccLanes" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
+      <a class="card" href="https://12sgi.com/owner_jobs.html"><span class="tag live">owner</span><div class="t">🤖 Job Tracking</div><div class="b">Monitor AI autonomous repairs + approvals</div></a>
+      <div class="card" style="cursor:default">
+        <div class="t">Message Claude</div>
+        <div class="b" style="margin-bottom:8px">Send a request straight to the executor — it queues on the board and gets acted on.</div>
+        <form id="ccMsgForm" style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="ccMsg" type="text" required placeholder="e.g. add a tracker" aria-label="Message Claude"
+                 style="flex:1;min-width:140px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
+          <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 14px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Send</button>
+        </form>
+        <div id="ccMsgNote" class="b" style="margin-top:6px"></div>
+      </div>
+      <div id="ccFeed" style="margin-top:10px"></div>
+    </div>
+
+    <div class="sect">Stay in the loop</div>
+    <div class="card" style="cursor:default">
+      <div class="t">Civic newsletter</div>
+      <div class="b" style="margin-bottom:9px">Money & votes, agendas, and what we filed — to your inbox.</div>
+      <form id="nlForm" style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="nlEmail" type="email" required placeholder="you@email.com" autocomplete="email" aria-label="Email address"
+               style="flex:1;min-width:140px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)">
+        <button type="submit" style="font-family:inherit;font-size:14px;font-weight:650;padding:10px 14px;border:0;border-radius:9px;background:var(--accent);color:var(--accent-ink);cursor:pointer">Subscribe</button>
+      </form>
+      <div id="nlMsg" style="font-size:12px;color:var(--ink-dim);margin-top:8px;min-height:16px"></div>
+    </div>
   </div>
-
-  <!-- Owner Console — PRIVATE sub-pages (Tailscale-only). Each page fails closed on the public mirror.
-       Links are always rendered; content on each sub-page only shows when /board/api/* is reachable. -->
-  <div class="sect">Owner console · private</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:4px">
-    <a class="card dim" id="goDocker" href="go/docker" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">🐳</div>
-      <div class="t" style="font-size:13px">Docker</div>
-      <div class="b" style="font-size:11px">containers</div>
-    </a>
-    <a class="card dim" id="goOllama" href="go/ollama" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">🦙</div>
-      <div class="t" style="font-size:13px">Ollama</div>
-      <div class="b" style="font-size:11px">LLM server</div>
-    </a>
-    <a class="card dim" id="goLlmWatch" href="go/llm-watch" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">📡</div>
-      <div class="t" style="font-size:13px">LLM Watch</div>
-      <div class="b" style="font-size:11px">requests</div>
-    </a>
-    <a class="card dim" id="goComfyui" href="go/comfyui" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">🎨</div>
-      <div class="t" style="font-size:13px">ComfyUI</div>
-      <div class="b" style="font-size:11px">render queue</div>
-    </a>
-    <a class="card dim" id="goGithub" href="go/github" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">⚙</div>
-      <div class="t" style="font-size:13px">GitHub</div>
-      <div class="b" style="font-size:11px">CI status</div>
-    </a>
-    <a class="card dim" id="goSystem" href="go/system" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">🖥</div>
-      <div class="t" style="font-size:13px">System</div>
-      <div class="b" style="font-size:11px">health</div>
-    </a>
-    <a class="card dim" id="goLogs" href="go/logs" style="text-align:center;padding:14px 10px">
-      <div style="font-size:22px;margin-bottom:5px">📋</div>
-      <div class="t" style="font-size:13px">Logs</div>
-      <div class="b" style="font-size:11px">viewer</div>
-    </a>
-  </div>
-
-  <div class="sect">Live system · private (your server, via Tailscale)</div>
-  <a class="card dim" id="liveKing" href="https://12sgianonymous.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces incl. owner ops — govOS · Council · Sage · studio</div></a>
-  <a class="card dim" id="liveStudio" href="https://12sgianonymous.tail760750.ts.net/"><span class="tag live">live</span><div class="t">elementLOTUS Studio</div><div class="b">Full production controls — library, lyrics, tabs, renders</div></a>
-  <a class="card dim" id="liveStatus" href="https://12sgianonymous.tail760750.ts.net/king/system_status.html"><span class="tag live">live</span><div class="t">System status — hardware &amp; software</div><div class="b">Real-time self-heal — GPU/CPU/VRAM, training, locks, every surface. Auto-refresh.</div></a>
-  <a class="card dim" id="liveBoard" href="https://12sgianonymous.tail760750.ts.net/board"><span class="tag live">live</span><div class="t">Work Board · Command Center</div><div class="b">One pane over all four quadrants — roadmap by lane, dispatch feed, renders to review, message Claude.</div></a>
 
   <div class="foot">Live = your server via Tailscale (private). Mirror = GitHub Pages (public, read-only).<br>&copy; 2026 James RCS Langford · 12 Stones Global · all rights reserved</div>
 </div>
+
 <script>
- var LIVE="https://12sgianonymous.tail760750.ts.net/king/";
+ var LIVE="https://12sgi.com/king/";
+ var BRIDGE_API="https://12sgi.com/king/api/v2";
+ var INTERNAL_TOKEN="dev-internal-token";
  function setState(up){
    var dot=document.getElementById('dot'), st=document.getElementById('stext');
    if(up){ dot.className='dot up'; st.textContent='live system online — studio surfaces open for full control';
-     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
+     ['liveStudio','liveKing','liveStatus','liveBoard','qMV','qFilm','qGame','dashLink','goDocker','goOllama','goLlmWatch','goComfyui','goGithub','goSystem','goLogs','goGordon'].forEach(function(id){var e=document.getElementById(id);if(e){e.classList.remove('dim');e.classList.remove('ghost');}});
    } else { dot.className='dot down'; st.textContent='live system offline (server/Tailscale off) — civic mirror is always on'; }
  }
  (function(){ var done=false, ctl=new AbortController();
@@ -234,7 +274,7 @@
      .catch(function(){ if(!done){done=true; clearTimeout(t); setState(false);} });
  })();
  (function(){
-   fetch('quadrant_progress.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+   fetch('https://12sgi.com/king/quadrant_progress.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
      if(!d||!d.quadrants)return; var m={}; d.quadrants.forEach(function(q){m[q.id]=q.pct;});
      if(typeof d.overall_pct==='number'){var o=document.getElementById('overallPct'); if(o)o.textContent=d.overall_pct+'%';}
      document.querySelectorAll('.quad[data-q]').forEach(function(card){
@@ -245,191 +285,34 @@
    }).catch(function(){});
  })();
  (function(){
-   var F=window.__FTM__; var sel=document.getElementById('ftm-gov'), box=document.getElementById('ftm-cards');
-   if(!F||!sel||!box){return;}
-   var order=F.order||Object.keys(F.tenants||{});
-   sel.innerHTML=order.map(function(t){return '<option value="'+t+'">'+(F.tenants[t]||{}).name+'</option>';}).join('');
-   function render(t){ var d=F.tenants[t]||{}; var trail=d.trail||[]; box.innerHTML='';
-     if(!trail.length){ var o=document.createElement('a'); o.className='card'; o.setAttribute('href','tenant_'+t+'.html');
-       o.innerHTML='<span class="tag mir">govOS</span><div class="t">'+(d.name||t)+' — overview</div><div class="b"><span class="none">money pages fill in as this government’s records are ingested</span></div>';
-       box.appendChild(o); return; }
-     trail.forEach(function(r){ var a=document.createElement('a'); a.className='card'; a.href=r[1];
-       a.innerHTML='<span class="tag mir">govOS</span><div class="t">'+r[0]+'</div><div class="b">'+(r[2]||'')+'</div>'; box.appendChild(a); }); }
-   var saved; try{saved=localStorage.getItem('govos.tenant');}catch(e){}
-   var cur=(saved&&F.tenants[saved])?saved:(order[0]||''); sel.value=cur; render(cur);
-   sel.addEventListener('change',function(){var t=this.value; try{localStorage.setItem('govos.tenant',t);}catch(e){} render(t);});
- })();
- (function(){
-   var sect=document.getElementById('reviewSect'), el=document.getElementById('reviewQueue');
-   if(!sect||!el) return;
-   // newest-first; row = tap-through to owner_link (Tailscale reviewboard, full control for Jimmy).
-   // Source from the King origin: this page is served at ts.net/king/go.html (-> :8799), and the
-   // studio's own /api/* is shadowed by the /api -> :8810 backend route over Tailscale. So fetch the
-   // King's re-served queue (relative 'api/review-queue' -> /king/api/review-queue). On the public
-   // GitHub Pages mirror that 404s -> fetch fails -> the whole section stays hidden (leak-safe).
-   var SRC=['api/review-queue','/king/api/review-queue'];
-   var vcol={pass:'var(--ok)',redo:'var(--warn)',pending:'var(--ink-faint)'};
-   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-   function render(rq){
-     var items=(rq&&rq.items)||[];
-     items=items.slice().sort(function(a,b){return (b.ts||0)-(a.ts||0);});
-     if(!items.length) return;                       // fail closed — leave hidden on the public mirror
-     var rows=items.slice(0,12).map(function(o){
-       var c=vcol[o.verdict]||'var(--ink-faint)';
-       var href=o.owner_link||o.client_link||'#';
-       return '<a class="card" style="border-left:3px solid '+c+';display:flex;align-items:center;gap:10px" href="'+esc(href)+'" target="_blank" rel="noopener">'
-         +'<span class="tag mir" style="float:none">'+(o.kind==='mv'?'MV':'SB')+'</span>'
-         +'<span class="t" style="flex:1">'+esc(o.label)+'</span>'
-         +(o.auto==='flag'?'<span style="font-size:11px;color:var(--warn)">⚠ flag</span>':'')
-         +'<span class="b" style="margin:0">'+esc(o.rendered_at||'')+'</span>'
-         +'<span style="font-size:12px;color:var(--accent-2);white-space:nowrap">review →</span></a>';
-     }).join('');
-     el.innerHTML='<div class="sub" style="margin:4px 0 9px">'+(rq.count!=null?rq.count:items.length)
-       +' in queue · newest first <span style="color:var(--ink-faint)">(tap to open the review board)</span></div>'+rows;
-     sect.style.display='block';
-   }
-   function tryNext(i){ if(i>=SRC.length) return;
-     fetch(SRC[i],{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(render).catch(function(){tryNext(i+1);});
-   }
-   tryNext(0);
- })();
- (function(){
-   // Owner Actions — v2 workboard pending approvals (creative + output lanes).
-   // Fails CLOSED: section stays hidden when /board/api/pending-approvals is unreachable
-   // (public mirror, offline server). Approve/Reject POST back to the board API.
-   // Source: services/v2_workboard.pending_approvals()
-   var sect=document.getElementById('opsSect'), el=document.getElementById('opsCards');
-   if(!sect||!el) return;
-   function esc2(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-   fetch('/board/api/pending-approvals',{cache:'no-store'})
-     .then(function(r){return r.ok?r.json():Promise.reject();})
-     .then(function(d){
-       var items=Array.isArray(d)?d:(d.items||d.pending||[]);
-       if(!items.length) return;
-       el.innerHTML=items.map(function(entry){
-         var job=entry.job||{};
-         var lane=entry.lane||'creative';
-         var col=lane==='output'?'var(--warn)':'#7a3fb0';
-         var pri=entry.priority||'normal';
-         var priCol=(pri==='high'||pri==='critical')?'var(--err)':'var(--accent-2)';
-         var title=esc2((entry.event||job.action||'').slice(0,90));
-         var jid=job.id||'';
-         var jidShort=jid?jid.slice(0,8)+'…':'';
-         return '<div style="border-left:3px solid '+col+';background:var(--accent-wash);border-radius:10px;padding:13px 15px;margin-bottom:10px">'
-           +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap">'
-           +'<span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;font-weight:700;background:'+col+';color:#fff">'+lane.toUpperCase()+'</span>'
-           +'<span class="t" style="flex:1;min-width:0">'+title+'</span>'
-           +'<span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:6px;border:1px solid var(--line);color:'+priCol+'">'+esc2(pri)+'</span>'
-           +'</div>'
-           +'<div class="b" style="margin-bottom:9px">'+esc2(entry.source||'')
-             +(entry.iso?' · '+esc2(entry.iso):'')
-             +(jidShort?' · <span style="opacity:.6;font-family:var(--mono);font-size:10.5px">'+esc2(jidShort)+'</span>':'')
-           +'</div>'
-           +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
-           +'<button onclick="approveJob(\''+jid+'\',this)" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--ok);background:rgba(31,138,91,.12);color:var(--ok);cursor:pointer;white-space:nowrap">✓ Approve</button>'
-           +'<button onclick="rejectJob(\''+jid+'\',this)" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--err);background:rgba(192,50,44,.08);color:var(--err);cursor:pointer;white-space:nowrap">✕ Reject</button>'
-           +'<a href="https://12sgianonymous.tail760750.ts.net/board" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;background:var(--accent);color:var(--accent-ink);text-decoration:none;white-space:nowrap">Board →</a>'
-           +'</div></div>';
-       }).join('');
-       sect.style.display='block';
-     }).catch(function(){});
- })();
- function approveJob(jobId,btn){
-   if(!jobId) return;
-   // inline error — no alert() popup (#309 no-popups)
-   var errEl=document.getElementById('aperr-'+jobId);
-   if(!errEl){
-     errEl=document.createElement('span');
-     errEl.id='aperr-'+jobId;
-     errEl.style.cssText='font-family:var(--mono);font-size:10.5px;color:var(--err);display:none;margin-left:8px;vertical-align:middle';
-     btn.parentElement.appendChild(errEl);
-   }
-   btn.disabled=true; btn.textContent='…'; errEl.style.display='none';
-   fetch('/board/api/approve-job',{method:'POST',headers:{'Content-Type':'application/json'},
-         body:JSON.stringify({job_id:jobId,approver:'owner'})})
-     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
-     .then(function(){btn.textContent='✓ Approved';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';})
-     .catch(function(){btn.disabled=false;btn.textContent='✓ Approve';errEl.textContent='Board offline — try again.';errEl.style.display='inline';});
- }
- function rejectJob(jobId,btn){
-   if(!jobId) return;
-   // inline reason input instead of window.prompt() (#309 no-popups)
-   var rRow=document.getElementById('rrow-'+jobId);
-   if(rRow){rRow.style.display=rRow.style.display==='none'?'flex':'none';return;}
-   rRow=document.createElement('div');
-   rRow.id='rrow-'+jobId;
-   rRow.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px';
-   var inp=document.createElement('input');
-   inp.type='text';inp.placeholder='Reason (optional)';
-   inp.style.cssText='font-family:var(--mono);font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2,var(--bg));color:var(--ink);flex:1;min-width:120px';
-   var conf=document.createElement('button');
-   conf.textContent='Confirm';
-   conf.style.cssText='font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid var(--err);background:rgba(192,50,44,.08);color:var(--err);cursor:pointer';
-   var can=document.createElement('button');
-   can.textContent='Cancel';
-   can.style.cssText='font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:transparent;color:var(--ink-dim,var(--ink));cursor:pointer';
-   can.onclick=function(){rRow.style.display='none';};
-   var errEl2=document.createElement('span');
-   errEl2.style.cssText='font-family:var(--mono);font-size:10.5px;color:var(--err);display:none;flex-basis:100%';
-   conf.onclick=function(){
-     var reason=(inp.value||'').trim()||'rejected by owner';
-     btn.disabled=true;btn.textContent='…';conf.disabled=true;errEl2.style.display='none';
-     fetch('/board/api/reject-job',{method:'POST',headers:{'Content-Type':'application/json'},
-           body:JSON.stringify({job_id:jobId,reason:reason,rejector:'owner'})})
-       .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
-       .then(function(){btn.textContent='✕ Rejected';var c=btn.parentElement&&btn.parentElement.parentElement;if(c)c.style.opacity='.45';rRow.style.display='none';})
-       .catch(function(){btn.disabled=false;btn.textContent='✕ Reject';conf.disabled=false;errEl2.textContent='Board offline — try again.';errEl2.style.display='block';});
-   };
-   rRow.appendChild(inp);rRow.appendChild(conf);rRow.appendChild(can);rRow.appendChild(errEl2);
-   btn.parentElement.parentElement.appendChild(rRow);
- }
- (function(){
-   // Civic newsletter opt-in -> public charging/signup backend over Tailscale Funnel (:8443 -> :8810).
-   // Absolute URL because go.html is served from king (:8799) and the public Pages mirror, not the backend origin.
-   var f=document.getElementById('nlForm'), em=document.getElementById('nlEmail'), msg=document.getElementById('nlMsg');
-   if(!f) return;
-   var EP='https://12sgianonymous.tail760750.ts.net:8443/newsletter/signup';
-   f.addEventListener('submit',function(e){
+   var form=document.getElementById('ccMsgForm'), inp=document.getElementById('ccMsg'), note=document.getElementById('ccMsgNote');
+   if(!form)return;
+   form.addEventListener('submit',function(e){
      e.preventDefault();
-     var v=(em.value||'').trim();
-     if(v.indexOf('@')<0){msg.style.color='var(--err)';msg.textContent='Enter a valid email.';return;}
-     msg.style.color='var(--ink-dim)';msg.textContent='Subscribing…';
-     var t=''; try{t=localStorage.getItem('govos.tenant')||'';}catch(_e){}
-     fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},
-               body:JSON.stringify({email:v,tenant:t,source:'go.html'})})
-       .then(function(r){return r.json();})
-       .then(function(d){ if(d&&d.ok){msg.style.color='var(--ok)';
-           msg.textContent=d.already?'You’re already on the list — mahalo.':'Subscribed — mahalo. Watch your inbox.'; f.reset();}
-         else {msg.style.color='var(--err)';msg.textContent=(d&&d.error)||'Could not subscribe — try again.';} })
-       .catch(function(){msg.style.color='var(--err)';msg.textContent='Could not reach the server — try again later.';});
-   });
- })();
- (function(){
-   // Command Center — pull the Work Board into the go page (Tailscale /board -> :8782). Same-origin on the
-   // tailnet host; 404s on the public mirror -> the whole section stays hidden (fail closed, no data baked).
-   var sect=document.getElementById('ccSect'); if(!sect) return;
-   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-   var laneCol={WORKBOARD:'#a23fb0',SERVER:'#1f8a5b',CIVIC:'#1259a3',AUDIT:'#b07d1a',STUDIO:'#7a3fb0',SYSTEM:'#6d7f97'};
-   fetch('/board/api/all',{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
-     var rm=(d.roadmap||[]).filter(function(x){return x.user && !x.done;});
-     var counts={}; rm.forEach(function(x){var s=(x.system||'SYSTEM');counts[s]=(counts[s]||0)+1;});
-     document.getElementById('ccLanes').innerHTML=['WORKBOARD','SERVER','CIVIC','AUDIT','STUDIO','SYSTEM'].map(function(s){
-       return '<span style="font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--line);color:'+(laneCol[s]||'var(--ink-dim)')+'">'+s.charAt(0)+s.slice(1).toLowerCase()+' <b>'+(counts[s]||0)+'</b></span>';
-     }).join('')+'<a href="https://12sgianonymous.tail760750.ts.net/board" target="_blank" style="font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none">open board →</a>';
-     var f=(d.feed||[]).slice(0,6);
-     document.getElementById('ccFeed').innerHTML=f.length?'<div class="b" style="margin:2px 0 4px;color:var(--ink-faint)">recent activity</div>'+f.map(function(e){
-       return '<div class="b" style="border-left:2px solid var(--line);padding:2px 0 2px 8px;margin:3px 0"><b>'+esc(e.source||'')+'</b> '+esc((e.text||'').slice(0,90))+'</div>';}).join(''):'';
-     sect.style.display='block';
-   }).catch(function(){});
-   var form=document.getElementById('ccMsgForm');
-   if(form) form.addEventListener('submit',function(ev){ev.preventDefault();
-     var v=(document.getElementById('ccMsg').value||'').trim(); if(!v)return;
-     var note=document.getElementById('ccMsgNote'); note.style.color='var(--ink-dim)'; note.textContent='Sending…';
-     fetch('/board/api/message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:v})})
-       .then(function(r){return r.json();}).then(function(){note.style.color='var(--ok)';note.textContent='Sent — queued to the executor.';document.getElementById('ccMsg').value='';})
-       .catch(function(){note.style.color='var(--err)';note.textContent='Could not reach the board (works on your private network only).';});
+     var msg=inp.value.trim();
+     if(!msg)return;
+     var btn=form.querySelector('button');
+     btn.disabled=true; btn.textContent='Sending…';
+     inp.disabled=true; note.textContent='';
+     fetch(BRIDGE_API+'/board/message',{
+       method:'POST',
+       headers:{'Content-Type':'application/json','X-Service-Token':INTERNAL_TOKEN},
+       body:JSON.stringify({message:msg,context:'owner-console'})
+     }).then(function(r){return r.json();}).then(function(d){
+       if(d.status==='queued'){
+         note.textContent='✓ Queued (job '+d.job_id.slice(0,8)+') — check dispatch log';
+         inp.value='';
+         setTimeout(function(){note.textContent='';},3000);
+       } else {
+         note.textContent='Error: '+(d.detail||d.error||'failed');
+       }
+     }).catch(function(e){
+       note.textContent='Network error: '+e.message;
+     }).finally(function(){
+       btn.disabled=false; btn.textContent='Send'; inp.disabled=false; inp.focus();
+     });
    });
  })();
 </script>
-<script src="../govos-shell.js" defer></script>
-</body></html>
+<script src="govos-shell.js" defer></script>
+<footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer></body></html>

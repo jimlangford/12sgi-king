@@ -388,6 +388,12 @@ services:
     - king-bridge
     restart: unless-stopped
   gpu-runtime:
+    # RETIRED from the default stack (audit-quad-os 2026-07-15, review wf_42ab0998-444, Jimmy 'i want
+    # everything fixed'): this container held ZERO models while reserving the whole 8GB co-tenant GPU,
+    # and gpu-router's GPU_RUNTIME_URL already defaults to the host Ollama (which has all king-* models).
+    # Kept defined under the 'legacy-gpu' profile for deliberate revival:
+    #   docker compose --profile legacy-gpu -f docker-compose.v2.yml up -d gpu-runtime
+    profiles: ["legacy-gpu"]
     image: ollama/ollama:latest
     deploy:
       resources:
@@ -404,8 +410,9 @@ services:
     restart: unless-stopped
     healthcheck:
       test:
-      - CMD-SHELL
-      - wget -q -O /dev/null http://localhost:11434/api/tags || exit 1
+      - CMD
+      - ollama
+      - list
       interval: 30s
       timeout: 10s
       retries: 5
@@ -447,7 +454,12 @@ services:
       NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
       NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
       GPU_ROUTER_DB_PATH: /data/db/govos_v2_gpu_router.db
-      GPU_RUNTIME_URL: http://gpu-runtime:11434
+      # 2026-07-15 (Jimmy: make the router the REAL GPU governor): point at the HOST ollama, which
+      # holds all 46 real king-* models. The in-stack gpu-runtime container is empty (0 models), so
+      # the router was serialising a door nobody used. host.docker.internal:11434 = the real brain,
+      # reachable from this container (verified). The router's _gpu_worker_lock now serialises the
+      # actual GPU. Override with GPU_RUNTIME_URL env to switch back to the container path.
+      GPU_RUNTIME_URL: ${GPU_RUNTIME_URL:-http://host.docker.internal:11434}
       GPU_CLIENT_PRIORITIES: ${GPU_CLIENT_PRIORITIES:-govos-core:1,maui-tenant:2,studio:3,civic-signal:4,workboard:5,reports:6}
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:
@@ -457,7 +469,8 @@ services:
     - 127.0.0.1:8107:8107
     depends_on:
     - auth
-    - gpu-runtime
+    # gpu-runtime dependency removed 2026-07-15 (service retired to the legacy-gpu profile;
+    # GPU_RUNTIME_URL defaults to the host Ollama which holds all king-* models)
     restart: unless-stopped
     healthcheck:
       test:

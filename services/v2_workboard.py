@@ -571,19 +571,28 @@ def all_required_approvals_met(
 
 def selfheal_engineering_jobs(
     log_path: Path | None = None,
-    outcome: str = "self-healed",
+    outcome: str = "stale-requeued",
 ) -> int:
-    """Self-heal all stalled engineering lane jobs that have no tombstone yet.
+    """Close out stalled engineering lane jobs that have no tombstone yet.
 
-    Engineering jobs (auth, storage, AI analysis, data ingest) are approved to
-    fix themselves forward — this is the one-place implementation of that rule.
+    HONESTY NOTE: this function performs NO actual work on the jobs — it only
+    tombstones stalled queue entries so they stop clogging the board.  It must
+    therefore never record an outcome that implies the work was done.  Any
+    heal-flavored outcome (e.g. the legacy "self-healed") is coerced to
+    "stale-requeued": the job is closed as stale and should be re-emitted by
+    its owner service if the work is still wanted (verify-before-done doctrine).
 
     Creative and output lane jobs are deliberately skipped: they require human
     approval before any content leaves the private system.  Calling this
     function will never close a creative or output job.
 
-    Returns the count of newly resolved engineering jobs.
+    Returns the count of newly tombstoned engineering jobs.
     """
+    # Coerce fake-done outcomes at this single choke point so legacy callers
+    # (v2 /selfheal endpoint, CLI, tests) passing "self-healed" cannot mint
+    # done-with-no-work-performed tombstones.
+    if "heal" in (outcome or "").lower():
+        outcome = "stale-requeued"
     path = log_path or DISPATCH_LOG
     entries = read_workboard_log(path)
 

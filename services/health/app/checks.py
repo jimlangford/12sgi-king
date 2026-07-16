@@ -54,8 +54,26 @@ def check_tailscale_sync():
     try:
         out = subprocess.check_output(['tailscale','status'], stderr=subprocess.DEVNULL, timeout=5)
         return {"ok": True, "msg": 'connected'}
+    except FileNotFoundError:
+        # No tailscale binary in this container namespace — the HOST owns the tailnet, not this
+        # service. That's not-applicable here, NOT a failure. ok=None keeps it from degrading the
+        # whole stack (2026-07-15 fix: was ok=False, which false-flagged 'degraded' forever).
+        return {"ok": None, "msg": 'not-applicable-in-container'}
     except Exception as e:
         return {"ok": False, "msg": 'tailscale-unavailable'}
+
+# Neo4j reachability — real check (2026-07-15; replaces a hardcoded 'not-configured' placeholder).
+# neo4j runs auth-less in the v2 stack; the server-discovery root returning 200 == database up.
+def check_database_sync():
+    url = os.environ.get('NEO4J_HTTP', 'http://neo4j:7474/db/neo4j/tx/commit')
+    base = url.split('/db/', 1)[0] if '/db/' in url else url.rstrip('/')
+    try:
+        r = requests.get(base, timeout=5)
+        if r.status_code == 200:
+            return {"ok": True}
+        return {"ok": False, "msg": f"status:{r.status_code}"}
+    except Exception as e:
+        return {"ok": False, "msg": str(e)}
 
 async def run_all_checks():
     surfaces = load_surfaces_from_env()
@@ -66,7 +84,7 @@ async def run_all_checks():
     surf_results = await run_surfaces_checks(surfaces)
     for k,v in surf_results.items():
         results[k] = v
-    # Placeholder checks for DB/storage etc. Default unknown
-    results['database'] = {"ok": None, "msg": "not-configured"}
+    # Database is now a REAL check; storage stays honestly not-configured until a backend is wired.
+    results['database'] = check_database_sync()
     results['storage'] = {"ok": None, "msg": "not-configured"}
     return results

@@ -238,13 +238,13 @@ function showUnreachable(){
     sev:'critical',
     steps:[
       'Verify Tailscale is connected on this device',
-      'Open https://12sgianonymous.tail760750.ts.net/king/ to test connectivity',
+      'Open https://king.tail760750.ts.net/king/ to test connectivity',
       'Check that the king server is running (port 8799)',
       'Verify nginx is running and /board proxy is configured'
     ],
     fixes:[
       {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
-      {lbl:'Test king server',href:'https://12sgianonymous.tail760750.ts.net/king/'}
+      {lbl:'Test king server',href:'https://king.tail760750.ts.net/king/'}
     ],
     logs:'',
     escalate:'If Tailscale is connected and the server is running, check nginx error logs. Verify the /board location block proxies to port 8782.',

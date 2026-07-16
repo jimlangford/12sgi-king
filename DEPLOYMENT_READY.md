@@ -134,7 +134,7 @@ GITHUB_AUTO_REPAIR_DRY_RUN=false       # Test mode
 ## 📈 Monitor Job Dashboard
 
 All repairs tracked and visible at:
-- **URL**: https://12sgianonymous.tail760750.ts.net/owner_jobs.html
+- **URL**: https://king.tail760750.ts.net/owner_jobs.html
 - **View**: All autonomous repairs with timestamps
 - **Approve/Reject**: Each repair waits for owner sign-off
 

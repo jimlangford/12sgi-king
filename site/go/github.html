@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GitHub · Owner Console</title>
 <!-- PRIVATE: Tailscale-only. Served from king :8799. Not part of the public GitHub Pages site. -->
@@ -63,8 +63,8 @@
              padding:9px 11px;overflow-x:auto;white-space:pre-wrap;margin:5px 0 0;
              max-height:180px;overflow-y:auto;border:1px solid var(--line)}
 </style>
-<link rel="stylesheet" href="../../govos.css">
-</head><body>
+<link rel="stylesheet" href="../govos.css">
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style></head><body>
 <div class="wrap">
   <a class="back" href="/go">← /go</a>
 
@@ -96,7 +96,7 @@
 </div>
 <script>
 'use strict';
-var API='/board/api/github';
+var API='./api/github';
 var REPO='jimlangford/12sgi-king';
 var REPO_URL='https://github.com/'+REPO;
 
@@ -104,7 +104,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 
 function severityStyle(sev){
   var m={critical:['#c0322c','CRITICAL'],high:['#c04a22','HIGH'],medium:['#b07d1a','MEDIUM'],low:['#b8860b','LOW']};
-  return m[sev]||['#6d7f97','INFO'];
+  return m[sev]||['#6d89ab','INFO'];
 }
 
 function errCard(o){
@@ -219,7 +219,7 @@ function showUnreachable(){
     sev:'critical',
     steps:[
       'Verify Tailscale is connected',
-      'Test king connectivity at https://12sgianonymous.tail760750.ts.net/king/',
+      'Test king connectivity at https://12sgi.com/king/',
       'Check that the board API has a GitHub token configured',
       'Verify the token has read access to jimlangford/12sgi-king'
     ],
@@ -298,5 +298,5 @@ function loadData(){
 
 loadData();
 </script>
-<script src="../../govos-shell.js" defer></script>
-</body></html>
+<script src="../govos-shell.js" defer></script>
+<footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer></body></html>
