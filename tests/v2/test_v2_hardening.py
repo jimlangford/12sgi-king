@@ -47,10 +47,21 @@ def _load_module(path, name, env_overrides=None, env_clear_keys=None):
                 os.environ.pop(key, None)
         if env_overrides:
             os.environ.update(env_overrides)
-        sys.modules.pop('services.service_metadata', None)
-        services_pkg = sys.modules.get('services')
-        if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
-            delattr(services_pkg, 'service_metadata')
+        # FIX (2026-07-16, CI failure "sqlite3.OperationalError: unable to open database file"):
+        # main.py always gets a fresh exec_module() below, but anything IT imports via a regular
+        # `from services.X import Y` statement is served from sys.modules on every later call --
+        # including services.auth.app.passkeys/magiclinks, whose DB_PATH is a module-level
+        # `os.environ.get("AUTH_DB_PATH", ...)` constant computed ONCE at first import. Every
+        # later test's fresh env_overrides were silently ignored; passkeys/magiclinks kept using
+        # the FIRST test's (by-then-deleted) tempdir path, hence "unable to open database file".
+        # Must clear all service submodules any of the tested main.py files import this way.
+        for _mod in ('services.service_metadata', 'services.authz', 'services.event_bus',
+                     'services.auth.app.passkeys', 'services.auth.app.magiclinks'):
+            sys.modules.pop(_mod, None)
+            _attr = _mod.rsplit('.', 1)[-1]
+            _parent = sys.modules.get(_mod.rsplit('.', 1)[0]) if '.' in _mod else None
+            if _parent is not None and hasattr(_parent, _attr):
+                delattr(_parent, _attr)
         spec = importlib.util.spec_from_file_location(name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
