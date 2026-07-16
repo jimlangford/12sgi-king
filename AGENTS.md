@@ -10,6 +10,100 @@ Preserve intention before changing mechanism.
 
 Do not treat unusual infrastructure as broken just because it does not match a generic web deployment pattern. Cloudflare, GitHub Pages, Tailscale, local `Documents/Claude/...` paths, `king-local`, private reports, public sanitizers, and mirror scripts may all be intentional parts of the system.
 
+## Site Layout — Navigation Rules (CRITICAL)
+
+The repo is served as a **subdirectory** of the public hostname. Every AI that writes or
+reviews HTML/JS links **must** follow these path rules or links will 404 in production.
+
+### File-serving map
+
+| Disk location | Served at | Notes |
+|---|---|---|
+| `site/*.html` | public web root (e.g. `https://12sgi.com/reports.html`) | built output; DO NOT link to bare filenames from repo-root pages |
+| `king_public_src/*.html` | `/king/` (private Tailscale + GitHub Pages) | relative links inside `king_public_src/` stay relative; links to `site/` pages use `../site/foo.html` |
+| `element_lotus_public/*.html` | ElementLotus public site root | links to `site/` pages use `../site/foo.html`; `games/` and `sage/` live at `../site/games/` and `../site/sage/` |
+| `go/*.html` | `/go/` (private Tailscale) | self-contained; internal links stay relative |
+| `site/king/` | `/king/` on GitHub Pages | built copy of `king_public_src/`; do not edit directly |
+| `site/go/` | `/go/` on GitHub Pages | built copy of `go/`; do not edit directly |
+
+### Linking rules by source file location
+
+**Root-level HTML files** (`404.html`, `education.html`, `grants.html`, `take_action.html`,
+`testify.html`, etc.) — civic pages live in `site/`. Links must use the `site/` prefix:
+```html
+<!-- CORRECT -->
+<a href="site/reports.html">Dashboard</a>
+<a href="site/jurisdictions.html">Jurisdictions</a>
+
+<!-- WRONG — file does not exist at repo root -->
+<a href="reports.html">Dashboard</a>
+```
+
+**`govos-shell.js`** — injected nav and PAGE_INDEX hrefs follow the same rule. Civic pages
+get the `site/` prefix; root-level action pages (`take_action.html`, `education.html`) do not:
+```js
+// CORRECT
+'<a href="site/reports.html">...'
+href: 'site/jurisdictions.html'
+
+// WRONG
+href: 'reports.html'
+```
+
+**`king_public_src/*.html`** — to reach civic pages in `site/`, go up one level then into `site/`:
+```html
+<!-- CORRECT -->
+<a href="../site/reports.html">Dashboard</a>
+<a href="../site/tenants_hub.html">Tenants Hub</a>
+<!-- Links within king_public_src stay relative -->
+<a href="commentary_seat.html">Commentary Seat</a>
+<!-- NOT ../king/commentary_seat.html -->
+```
+
+**`element_lotus_public/*.html`** — same pattern; `games/` and `sage/` do NOT exist in
+`element_lotus_public/`; they live in `site/`:
+```html
+<!-- CORRECT -->
+<a href="../site/games/">Games</a>
+<a href="../site/sage/">Sage</a>
+<a href="../site/reports.html">Dashboard</a>
+
+<!-- WRONG -->
+<a href="games/">Games</a>
+<a href="reports.html">Dashboard</a>
+```
+
+**`go/*.html`** — self-contained private pages; use relative paths within `go/`;
+do not link to `site/` pages from here (they are private owner surfaces).
+
+### Key civic pages location reference
+
+All of the following exist under `site/`, NOT at repo root:
+`reports.html`, `jurisdictions.html`, `datasets.html`, `agendas.html`, `testify.html`,
+`news_record.html`, `civic_daily.html`, `meetings_calendar.html`, `studio.html`,
+`money_behind_officials.html`, `ka_leo_voice.html`, `parity_check.html`,
+`accountability_record.html`, `wildfire_recovery_watch.html`, `tenants_hub.html`,
+`agenda_explainer.html`, `sage_bridge.html`, `olelo_glossary.html`, `request_records.html`,
+`n53_engine.html`, `testimony_record.html`, `county_dashboard.html`.
+
+`take_action.html`, `grants.html`, `education.html`, `king_landing.html`, `go.html`
+exist at **repo root** (not in `site/`).
+
+### Build pipeline note
+
+`build_site.py` copies source files into `site/` at build time. The checked-in files under
+`king_public_src/`, `go/`, and `element_lotus_public/` are the source of truth. Never edit
+`site/` files directly — they are overwritten on every build.
+
+### `.claude/launch.json` preview note
+
+The Claude preview server (`king-preview`) serves `king_public_src/` on port 4321. When
+testing locally via this preview, paths inside `king_public_src/` resolve correctly
+but `../site/` paths will 404 unless you also run a server at the parent level. Use
+`python -m http.server 8888 --directory ./` from repo root for full path testing.
+
+---
+
 ## Boundary Labels
 
 Use these labels in reports and handoffs:
@@ -27,6 +121,7 @@ Use these labels in reports and handoffs:
 - Do not rewrite setup docs just because the visible workflow appears to use a different deployment path.
 - Do not flatten the system into a standard static-site template.
 - Keep changes narrow, reversible, and aligned with existing comments and scripts.
+- **Do not add bare filenames as href targets** (e.g. `href="reports.html"`) in root-level or `element_lotus_public/` HTML. Civic pages live in `site/`. See Navigation Rules above.
 
 ## Lane Discipline & Cross-System Diplomacy
 
