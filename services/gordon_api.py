@@ -15,7 +15,7 @@ Usage: included in board_api.main:app
 
 from fastapi import APIRouter, Query, HTTPException
 from pydantic import BaseModel
-from typing import Optional, dict, list
+from typing import Optional
 import subprocess
 import json
 

@@ -16,7 +16,7 @@ import uuid
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
-from typing import dict, list
+
 
 
 class TaskStatus(Enum):
