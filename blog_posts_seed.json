@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20260715",
+      "slug": "dev-digest-20260715",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-15",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**July 15, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (2% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Unformed entities operate as DIVISIONS of 12 Stones Global Inc\n- Project/archive/redo layer wired into the pipeline (additive, guarded)\n- The project/archive/redo layer is live in tools/studio/\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "dev-digest-20260714",
       "slug": "dev-digest-20260714",
       "title": "Development Digest — Hilo",
