@@ -24,15 +24,21 @@ Historical root: ALOHAnet became operational at the University of Hawai'i in 197
 - Treat social and business connectors as `BRIDGE` systems; follow `docs/SOCIAL_CONNECTORS.md` before enabling or changing publishing automation.
 - Report in a way Claude Code, Codex, GitHub, and future agents can continue cleanly.
 
-## The Apex — the universal energy systems serving the human
+## The Apex — service to the human, and the Holy See as apex tenant
 
-> **CANON (James R.C.S. Langford, 2026-07-16 — supersedes the "Church as apex" framing).** The Apex does
-> **not** serve the Church. It serves the **human**, through the **universal known energy systems** — present
-> at our **edges** and **rooted at the tenant level**, aware of **tenant overlap**. The elemental / Laniakea
-> energy law (Fire/Pele, Earth/Lono, Water/Kanaloa, Air/Kāne, Aether/Laniakea) is the apex, tenant-rooted,
-> serving the person. The legal crosswalk below (US → International → ICC → ICJ → Holy See) is retained ONLY
-> as the **legal citation spine** — a source hierarchy for crosswalking law, NOT the apex, NOT a pinnacle
-> above tenants, and the Holy See is a citation terminus for legal text, not the thing being served.
+> **CANON (James R.C.S. Langford, 2026-07-16).** Two distinct, non-conflicting senses of "apex":
+>
+> **(1) The apex of SERVICE.** The system serves the **human**, through the **universal known energy
+> systems** — present at our **edges**, **rooted at the tenant level**, and aware of **tenant overlap**
+> (the elemental / Laniakea energy law: Fire/Pele, Earth/Lono, Water/Kanaloa, Air/Kāne, Aether/Laniakea).
+> What the Apex serves is the person, not the Church.
+>
+> **(2) The apex TENANT.** The **Church is the Church, and an apex tenant through the Holy See** — its
+> standing as the terminal apex layer of the legal-jurisdiction crosswalk below (where every tenant's
+> crosswalk terminates) is retained and honored, unchanged.
+>
+> Service-apex = the human via the energy systems; jurisdictional apex-tenant = the Holy See. Distinct
+> lenses, both true.
 
 Every tenant's law is crosswalked against the **12 Stones Sovereign Charter (SSC v5)** through ONE shared
 hierarchy (`watchers/charter_crosswalk.py`, output `crosswalk_<tenant>.html`) — never a per-tenant fork
