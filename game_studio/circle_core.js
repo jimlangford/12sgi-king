@@ -4,6 +4,14 @@
    turn overlay, kilo-paced polling, and turn posting. Server: /games/api/<game>/* (or a
    legacy apiBase). Feature-detects the King — silent on static hosting. Dynamic values
    enter the DOM via textContent only.
+
+   INVITE A FRIEND (Jimmy 2026-07-15 "Make invite a friend feature during beta"): every
+   circle already carries a join code. This turns that code into a one-tap shareable link
+   (native share sheet on mobile, copy fallback) — `<game-url>?circle=<CODE>`. A friend who
+   opens the link auto-joins: signed in -> straight into the circle; signed out -> sign in
+   (carrying returnTo=this link so the King brings them right back), then auto-join. A pending
+   invite is also stashed in localStorage as a belt-and-suspenders resume.
+
    config = {
      gameId,                 // e.g. "konane"
      apiBase,                // default "/games/api/<gameId>/"
@@ -19,6 +27,7 @@
   var C = {};
   var cfg = null, me = null, circle = null, pollTimer = null, watchTimer = null;
   var KEY = null;
+  var PKEY = 'circle_pending_invite';  // global (not per-game) so it survives a sign-in round-trip
 
   function $(s) { return document.querySelector(s); }
   function el(tag, css, text) {
@@ -35,6 +44,61 @@
   }
   function store() { try { localStorage.setItem(KEY, JSON.stringify(circle)); } catch (e) {} }
   function loadStored() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+
+  // ---- invite plumbing ----------------------------------------------------
+  function inviteURL() {
+    var code = (circle && circle.code) || '';
+    return location.origin + location.pathname + '?circle=' + encodeURIComponent(code);
+  }
+  function signInHref() {
+    // carry returnTo so the King sends the friend back to THIS invite after sign-in
+    return '/login?rt=' + encodeURIComponent(location.pathname + location.search);
+  }
+  function urlCode() {
+    try { var c = new URLSearchParams(location.search).get('circle'); return c ? c.toUpperCase().trim() : null; }
+    catch (e) { return null; }
+  }
+  function setPending(code) { try { localStorage.setItem(PKEY, JSON.stringify({ g: cfg.gameId, code: code, when: Date.now() })); } catch (e) {} }
+  function getPending() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PKEY) || 'null');
+      if (p && p.g === cfg.gameId && p.code && (Date.now() - (p.when || 0) < 3600000)) return p.code; // 1h TTL
+    } catch (e) {}
+    return null;
+  }
+  function clearPending() { try { localStorage.removeItem(PKEY); } catch (e) {} }
+  function pendingInvite() { return urlCode() || getPending(); }
+  function scrubUrl() { try { history.replaceState({}, '', location.pathname); } catch (e) {} }
+
+  function copyInvite(url, okMsg) {
+    var done = function () { toastish(okMsg || 'invite link copied — send it to a friend'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done).catch(function () { showLinkRow(url); });
+    } else { showLinkRow(url); }
+  }
+  function doInvite() {
+    var url = inviteURL();
+    var share = { title: 'Join my ' + cfg.gameId + ' circle', text: 'Play ' + cfg.gameId +
+      ' with me on TribeGameStudios — free multiplayer beta:', url: url };
+    if (navigator.share) {
+      navigator.share(share).then(function () { toastish('invite shared 🌿'); })
+        .catch(function () { copyInvite(url); });  // user dismissed the sheet -> fall back to copy
+    } else {
+      copyInvite(url);
+    }
+  }
+  // last-resort manual copy: drop a selectable link row into the panel
+  function showLinkRow(url) {
+    var p = $('#circle-panel'); if (!p) { toastish(url); return; }
+    if ($('#circle-linkrow')) return;
+    var row = el('input', 'width:100%;box-sizing:border-box;margin-top:6px;background:#0d140a;color:#cfe8c8;' +
+      'border:1px solid #3c5a38;border-radius:8px;padding:6px;font:11px monospace');
+    row.id = 'circle-linkrow'; row.readOnly = true; row.value = url;
+    row.addEventListener('focus', function () { row.select(); });
+    p.appendChild(row); row.focus();
+    toastish('tap the link, then copy it');
+  }
+  // -------------------------------------------------------------------------
 
   var BTN = 'background:#1d2a1c;color:#cfe8c8;border:1px solid #3c5a38;border-radius:8px;padding:6px;cursor:pointer;width:100%';
 
@@ -69,6 +133,27 @@
     setTimeout(function () { t.remove(); }, 4200);
   }
 
+  // a friend arrived via an invite link but isn't signed in yet — walk them in
+  function inviteSignInOverlay() {
+    unlock();
+    var o = el('div', 'position:fixed;inset:0;z-index:880;background:rgba(6,10,6,.86);display:flex;' +
+      'align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#e8dfc8;' +
+      'font:600 15px system-ui;text-align:center;padding:22px');
+    o.id = 'circle-hold';
+    o.appendChild(el('div', 'font-size:30px', '🌿'));
+    o.appendChild(el('div', 'font-size:17px;color:#e3ad33', 'A friend invited you to a ' + cfg.gameId + ' circle'));
+    o.appendChild(el('div', 'font-size:12px;color:#b9ac8d;max-width:280px', 'Sign in once (free) and we’ll drop you straight into their game. Every game here stays free to play.'));
+    var go = el('button', 'margin-top:6px;background:#e3ad33;color:#101007;border:0;border-radius:10px;' +
+      'padding:11px 20px;font:700 14px system-ui;cursor:pointer', 'Sign in & join the circle');
+    go.addEventListener('click', function () { location.href = signInHref(); });
+    o.appendChild(go);
+    var later = el('button', 'background:none;border:1px solid #556;color:#99a;border-radius:8px;' +
+      'padding:5px 12px;font-size:11px;cursor:pointer', 'not now');
+    later.addEventListener('click', function () { o.remove(); chip('🌿 circle — sign in', function () { location.href = signInHref(); }); });
+    o.appendChild(later);
+    document.body.appendChild(o);
+  }
+
   function panel() {
     var old = $('#circle-panel'); if (old) old.remove();
     var p = el('div', 'position:fixed;top:40px;right:8px;z-index:910;background:#14200f;color:#dfe8cf;' +
@@ -82,7 +167,12 @@
       info.appendChild(el('div', '', 'players: ' + (circle.players || []).length +
         (cfg.seatLabel ? ' · you: ' + cfg.seatLabel(circle.seat) : '')));
       p.appendChild(info);
-      var leave = el('button', BTN + ';background:#2a1d1a;color:#e0c9b8;border-color:#5a463c;margin-top:6px', 'leave the circle');
+      // INVITE A FRIEND — native share / copy the join link
+      var binv = el('button', BTN + ';background:#243b1f;color:#e3ad33;border-color:#4a6b34;font-weight:700', '🌿 invite a friend');
+      binv.addEventListener('click', doInvite);
+      p.appendChild(binv);
+      p.appendChild(el('div', 'margin:6px 0 0;color:#9aa88f;font-size:11px', 'they open the link, sign in once, and land in this circle'));
+      var leave = el('button', BTN + ';background:#2a1d1a;color:#e0c9b8;border-color:#5a463c;margin-top:8px', 'leave the circle');
       leave.addEventListener('click', function () {
         circle = null;
         try { localStorage.removeItem(KEY); } catch (e) {}
@@ -93,12 +183,12 @@
       p.appendChild(leave);
     } else {
       p.appendChild(el('div', 'margin:6px 0;color:#9aa88f', 'play together — turns pass around the circle'));
-      var bnew = el('button', BTN, 'start a circle');
+      var bnew = el('button', BTN, 'start a circle & invite a friend');
       bnew.addEventListener('click', function () {
         jpost('match/new', {}).then(function (m) {
           if (!m.ok) return toastish(m.error || 'could not start');
           circle = m; store(); p.remove(); enter();
-          toastish('circle open — share the code: ' + (m.code || ''));
+          copyInvite(inviteURL(), 'circle open — invite link copied, send it to a friend 🌿');
         });
       });
       p.appendChild(bnew);
@@ -177,6 +267,7 @@
   };
   C.inCircle = function () { return !!(circle && circle.id); };
   C.view = function () { return circle; };
+  C.invite = function () { if (C.inCircle()) doInvite(); };  // adapters can wire an in-game "invite" button
 
   function enter() {
     chip('🌿 circle ' + (circle.code || ''), panel);
@@ -186,14 +277,31 @@
     if (cfg.onCircle) cfg.onCircle(true, circle);
   }
 
+  // auto-join a code from an invite link (or a stashed pending invite after sign-in)
+  function joinFromInvite(code) {
+    jpost('match/join', { code: code }).then(function (m) {
+      clearPending(); scrubUrl();
+      if (!m.ok) { chip('🌿 circle', panel); return toastish(m.error || 'that circle has filled or ended — start your own'); }
+      circle = m; store(); enter();
+      if (m.state && cfg.setState) { try { cfg.setState(m.state); } catch (e) {} }
+      toastish('you joined the circle 🌿');
+    }).catch(function () { chip('🌿 circle', panel); });
+  }
+
   function boot() {
     jget('me').then(function (r) {
       if (!r || r.ok !== true) return;
       me = r.logged_in ? r.who : null;
       if (!me) {
-        chip('🌿 circle — sign in', function () { location.href = '/login'; });
+        // a friend opened an invite link but isn't signed in — walk them in, keep the code
+        var invited = urlCode();
+        if (invited) { setPending(invited); inviteSignInOverlay(); return; }
+        chip('🌿 circle — sign in', function () { location.href = signInHref(); });
         return;
       }
+      // signed in: an invite waiting (fresh URL or resumed after sign-in) wins
+      var pend = pendingInvite();
+      if (pend) { chip('🌿 circle …', panel); joinFromInvite(pend); return; }
       circle = loadStored();
       if (circle && circle.id) {
         jget('match?id=' + encodeURIComponent(circle.id)).then(function (m) {
