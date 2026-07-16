@@ -1,4 +1,3 @@
-import importlib.util
 import os
 import sqlite3
 import sys
@@ -12,44 +11,14 @@ from fastapi.testclient import TestClient
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from tests.v2._test_helpers import load_module as _load_module  # noqa: E402  (see that module's docstring)
+
 GPU_MAIN = ROOT / "services" / "gpu_router" / "app" / "main.py"
 AUTH_MAIN = ROOT / "services" / "auth" / "app" / "main.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "deploy-v2-king-server.yml"
 GPU_PANEL = ROOT / "king_public_src" / "Gpu.dc.html"
 OWNER_SHELL = ROOT / "king_public_src" / "index.html"
 DEPLOYMENT_DOC = ROOT / "docs" / "DEPLOYMENT.md"
-
-
-def _load_module(path, name, env_overrides=None, env_clear_keys=None):
-    saved = dict(os.environ)
-    try:
-        if env_clear_keys:
-            for key in env_clear_keys:
-                os.environ.pop(key, None)
-        if env_overrides:
-            os.environ.update(env_overrides)
-        # FIX (2026-07-16, CI failure "sqlite3.OperationalError: unable to open database file"):
-        # main.py always gets a fresh exec_module() below, but anything IT imports via a regular
-        # `from services.X import Y` statement is served from sys.modules on every later call --
-        # including services.auth.app.passkeys/magiclinks, whose DB_PATH is a module-level
-        # `os.environ.get("AUTH_DB_PATH", ...)` constant computed ONCE at first import. Every
-        # later test's fresh env_overrides were silently ignored; passkeys/magiclinks kept using
-        # the FIRST test's (by-then-deleted) tempdir path, hence "unable to open database file".
-        # Must clear all service submodules any of the tested main.py files import this way.
-        for _mod in ("services.service_metadata", "services.authz", "services.event_bus",
-                     "services.auth.app.passkeys", "services.auth.app.magiclinks"):
-            sys.modules.pop(_mod, None)
-            _attr = _mod.rsplit(".", 1)[-1]
-            _parent = sys.modules.get(_mod.rsplit(".", 1)[0]) if "." in _mod else None
-            if _parent is not None and hasattr(_parent, _attr):
-                delattr(_parent, _attr)
-        spec = importlib.util.spec_from_file_location(name, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
-    finally:
-        os.environ.clear()
-        os.environ.update(saved)
 
 
 class GpuRouterHarness(unittest.TestCase):
