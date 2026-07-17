@@ -1868,6 +1868,21 @@ Sources are linked on every page.</div>
         if _n:
             print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
                   % (_pub or "(opening-soon)", _n))
+    with _lane("link_prefix_fix"):
+        # DEPLOY-TIME LINK NORMALIZER (James 2026-07-17 "go thru every link no errors"): repo-root /
+        # king_public_src / element_lotus_public pages are authored with location-relative prefixes
+        # (site/…, ../…) that break once flattened into site/; and the public sanitize above turns
+        # owner-only backend routes into 12sgi.com/board etc. (404). This runs LAST over site/ and
+        # fixes both classes so no internal link 404s on the public mirror. Idempotent, href/src only.
+        try:
+            import sys as _sys
+            _tp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools")
+            if _tp not in _sys.path: _sys.path.insert(0, _tp)
+            import fix_link_prefixes as _flp
+            _lt, _lf = _flp.fix_site(SITE)
+            print("  + link normalize: %d href/src fixed across %d page(s) (no broken internal links)" % (_lt, _lf))
+        except Exception as _e:
+            print("  ! link normalize skipped:", str(_e)[:120])
     with _lane("reconcile"):
         # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
         try:
