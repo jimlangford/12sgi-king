@@ -139,10 +139,23 @@ jobs:
           Write-Host "✓ All $($required.Count) required V2 files present"
 
       # ── 3. V2 contract smoke tests (no live services required) ─────────────────
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      # NOTE: actions/setup-python@v5 hangs indefinitely on this self-hosted Windows runner
+      # (observed: 20-min stall -> job cancelled). The runner already has system Python, so use it.
+      - name: Set up Python (system Python on king-server)
+        shell: pwsh
+        run: |
+          $py = (Get-Command python -ErrorAction SilentlyContinue).Source
+          if (-not $py) {
+            $fallback = "C:\Users\12sgi\AppData\Local\Programs\Python\Python311"
+            if (Test-Path "$fallback\python.exe") {
+              "$fallback"          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+              "$fallback\Scripts"  | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+              $py = "$fallback\python.exe"
+            }
+          }
+          if (-not $py) { Write-Error "No system Python found on king-server"; exit 1 }
+          Write-Host "Using system Python: $py"
+          & $py --version
 
       - name: Install test dependencies
         shell: pwsh
