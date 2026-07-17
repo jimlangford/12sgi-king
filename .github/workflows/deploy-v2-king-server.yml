@@ -319,8 +319,9 @@ jobs:
             @{ name="ai";           port=$env:V2_AI_PORT;          path="/api/v2/ready"; expected_status=200 },
             @{ name="health";       port=$env:V2_HEALTH_PORT;      path="/api/v1/ready"; expected_status=200 },
             @{ name="gpu-router";   port=$env:V2_GPU_ROUTER_PORT;  path="/api/v2/ready"; expected_status=200 },
-            @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 },
-            @{ name="board-api";    port="8799";                   path="/health";       expected_status=200 }
+            @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 }
+            # board-api removed from the V2 fleet health check: the native king_serve.py owns host :8799
+            # (native is canonical) and is monitored separately — it is not a V2 build-commit fleet member.
           )
 
           $results = @{}

@@ -489,8 +489,8 @@ services:
     volumes:
     - v2-dispatch:/data/dispatch
     - .:/repo
-    ports:
-    - 127.0.0.1:8799:8799
+    # host port binding removed: the native king_serve.py owns host 127.0.0.1:8799 (native is canonical).
+    # V2 peers reach board-api over the compose network; host :8799 stays with native king_serve.
     restart: unless-stopped
     healthcheck:
       test:
