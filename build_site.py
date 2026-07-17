@@ -1883,6 +1883,48 @@ Sources are linked on every page.</div>
             print("  + link normalize: %d href/src fixed across %d page(s) (no broken internal links)" % (_lt, _lf))
         except Exception as _e:
             print("  ! link normalize skipped:", str(_e)[:120])
+    with _lane("owner_ops_purge"):
+        # [SECURITY] Owner-ops surfaces are PRIVATE (king :8799 / Tailscale only) and must NEVER be public.
+        # The old sanitize-and-keep still exposed the Owner Console UI + internal ports (:8799/:8770) live on
+        # 12sgi.com (Jimmy 2026-07-17 SECURITY item, verified public 200). HARD-DROP them from the PUBLIC build
+        # so they can never ship: the /go/* owner-console routes, the go.html launcher, and the owner Vue
+        # shells (king/app.html, king/go.html). king/ civic pages + king/index.html landing STAY (intended
+        # public). This removes from the OUTPUT only; the private-king sources are untouched.
+        import shutil as _sh, glob as _glob
+        _purge = [os.path.join(SITE, "go"), os.path.join(SITE, "go.html"),
+                  os.path.join(SITE, "king", "app.html"), os.path.join(SITE, "king", "go.html"),
+                  os.path.join(SITE, "king", "live.js")]   # orphaned owner-shell script (on-machine :8770 fallback)
+        # the owner Vue app's DataComponents (*.dc.html) are imported headless by app.html — now that the
+        # owner shell is gone they are orphaned + carry owner-console labels; drop them from PUBLIC too.
+        _purge += _glob.glob(os.path.join(SITE, "king", "*.dc.html"))
+        _gone = []
+        for _p in _purge:
+            if os.path.isdir(_p):
+                _sh.rmtree(_p, ignore_errors=True); _gone.append(os.path.basename(_p) + "/")
+            elif os.path.exists(_p):
+                try:
+                    os.remove(_p); _gone.append(os.path.relpath(_p, SITE))
+                except OSError:
+                    pass
+        # ROBUST self-declaration sweep: drop ANY public page that marks itself private/owner-only/
+        # Tailscale-only in its head (belt beyond the explicit list — caught ops_board / connect_accounts /
+        # social_drafts, owner surfaces that carry a "PRIVATE: ... Tailscale/owner" comment). Whitelisting
+        # the public set would be even safer; this at least guarantees a self-declared-private page never ships.
+        import re as _re
+        _priv_re = _re.compile(r"PRIVATE:[^\n]*(?:Tailscale|owner|king-local|not part of the public)"
+                               r"|owner ops board|Tailscale-only", _re.I)
+        for _root, _dirs, _files in os.walk(SITE):
+            for _fn in _files:
+                if not _fn.lower().endswith(".html"):
+                    continue
+                _fp = os.path.join(_root, _fn)
+                try:
+                    if _priv_re.search(open(_fp, encoding="utf-8", errors="ignore").read(4000)):
+                        os.remove(_fp); _gone.append(os.path.relpath(_fp, SITE))
+                except OSError:
+                    pass
+        print("  + owner-ops purge: dropped %d private surface(s) from PUBLIC build [%s]"
+              % (len(_gone), ", ".join(sorted(set(_gone))[:12]) or "none present"))
     with _lane("reconcile"):
         # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
         try:
