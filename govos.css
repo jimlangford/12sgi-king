@@ -514,3 +514,10 @@ p { margin: 0 0 1em; color: var(--ink-dim); }
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Legibility 2026-07-16 (audit-quad-os): the charter side-by-side / Title-19 crosswalk pages put the county
+   LAW text on a LIGHT panel (.col.county / .slab.county, bg ~#eaf1fb) while the dark-studio default sets
+   --ink light (#eaf2fc) -> white-on-white / unreadable. Scope --ink DARK onto those light panels so the law
+   text reads; the dark sovereign panels + colored badges keep their own colors. Site-wide across every
+   charter-crosswalk page (Title 19 + crosswalk_* tenants). */
+.col.county, .slab.county { --ink: #13243d; }
