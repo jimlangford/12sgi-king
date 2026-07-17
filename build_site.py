@@ -1629,9 +1629,19 @@ Sources are linked on every page.</div>
             _studio_root if os.path.exists(_studio_root) else (
                 _govos_fallback if os.path.exists(_govos_fallback) else _go_built))
         if os.path.exists(_idx_src):
-            shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
+            _front = open(_idx_src, encoding="utf-8", errors="replace").read()
             if _idx_src == _edu_root:
-                shutil.copy(_idx_src, os.path.join(SITE, "education.html"))
+                # LINK FIX (2026-07-16): education.html is authored at the REPO ROOT (links prefixed
+                # `site/…` so they resolve there), but it is deployed FROM site/ AS the root index — so
+                # every `site/…` nav link 404s on 12sgi.com. Strip the prefix on href/src only; the
+                # target pages are siblings in the deployed root. Source stays untouched.
+                for _a in ('href="site/', "href='site/", 'src="site/', "src='site/"):
+                    _front = _front.replace(_a, _a[:-5])   # drop the trailing "site/"
+            with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8", newline="\n") as _f:
+                _f.write(_front)
+            if _idx_src == _edu_root:
+                with open(os.path.join(SITE, "education.html"), "w", encoding="utf-8", newline="\n") as _f:
+                    _f.write(_front)
             print("  + index.html = %s (public front door: civic education leads; go.html stays the private launcher)" % os.path.basename(_idx_src))
     with _lane("cname"):
         # GitHub Pages custom domain for the public mirror / interactive artifacts at 12sgi.com.
