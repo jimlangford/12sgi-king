@@ -1699,6 +1699,12 @@ Sources are linked on every page.</div>
                 raise RuntimeError("canonical %s missing at repo root - stamp skipped, pages keep inline blobs" % _an)
             shutil.copy(_asrc, os.path.join(SITE, _an))
         import pathlib as _pl
+        # rebuild_site.py sits next to this file. If build_site is ever IMPORTED (e.g. publish_audit.py) or
+        # run from a foreign cwd, this dir may not be on sys.path -> `No module named 'rebuild_site'` silently
+        # fails the stamp lane (pages then link a govos.css that never lands). Pin _here on sys.path so the
+        # import is invocation-independent -- the stamp can never silently no-op. (audit-quad-os 2026-07-16)
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
         import rebuild_site as _rs
         _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
         _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
@@ -1741,7 +1747,17 @@ Sources are linked on every page.</div>
         KLOCAL = os.path.expanduser(os.path.join("~", "AppData", "Local", "king-extract", "deploy", "king-local"))
         if os.path.isdir(KLOCAL):
             import glob
-            for h in glob.glob(os.path.join(SITE, "*.html")):
+            # PRIVATE = SUPERSET OF PUBLIC (fix 2026-07-16, audit-quad-os): mirror EVERY top-level artifact,
+            # not just *.html. The shared civic assets (govos.css / govos-shell.js / legibility_fix.css /
+            # studio.css / data.json / slate-data.js) are linked RELATIVE by every civic page
+            # (href="govos.css" -> /king/govos.css). An html-only mirror left private king-local serving
+            # those assets 404, so EVERY civic page rendered UNSTYLED on the private King (Jimmy's Tailscale
+            # view) while public GitHub Pages -- which uploads all of site/ -- was fine. Copy all top-level
+            # files so private carries the pages AND their stylesheet/scripts. (The parallel schtask deploy,
+            # deploy_king_local_civic.ps1, carries the same fix so both king-local writers stay in sync.)
+            for h in glob.glob(os.path.join(SITE, "*")):
+                if not os.path.isfile(h):
+                    continue
                 b = os.path.basename(h)
                 # SINGLE SOURCE: local root == public root (the civic landing front door).
                 # The King System app lives at /king/ on BOTH (one tap from the landing).
