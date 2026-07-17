@@ -84,6 +84,7 @@ from services.v2_workboard import (
 from services.ai_autonomy import classify_task, build_autonomy_system_prompt, record_autonomous_execution
 from services.owner_job_tracker import get_tracker, JobStatus, ApprovalType
 from services.event_bus import publish_event
+from services.service_metadata import with_service_metadata
 
 # ── Config ────────────────────────────────────────────────────────────────────
 API_PREFIX      = "/api/v2"
@@ -497,17 +498,15 @@ def ready(response: Response):
 
     is_ready = ollama_ok and neo_ok and db_ok
     response.status_code = 200 if is_ready else 503
-    return {
+    return with_service_metadata({
         "status": "ready" if is_ready else "not-ready",
-        "service": SERVICE_NAME,
-        "version": VERSION,
         "dependencies": {
             "ollama": ollama_ok,
             "neo4j_local": neo_local_ok,
             "aura_configured": aura_available,
             "database": db_ok,
         },
-    }
+    }, SERVICE_NAME, VERSION)
 
 
 # ── Models ────────────────────────────────────────────────────────────────────
