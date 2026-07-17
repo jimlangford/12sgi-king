@@ -50,11 +50,15 @@
 /* 3) LEGIBILITY BASELINE + END THE COMPETING STYLES -----------------------------------------
    A floor for contrast. Body text light on the dark ground; links clearly distinct; kill the
    invisible-text failure mode where a stylesheet set color:#000 on a dark section. */
-body{ color:var(--leg-ink); }
+/* Honor each page's OWN --ink token so light-background civic pages (which set --ink dark,
+   e.g. federal_money --ink:#13243d) get DARK, legible headings, while dark pages (govos.css
+   --ink:#eaf2fc, or no --ink -> the cream fallback) keep light text. Fixes washed-out gold/cream
+   titles on white civic pages (James 2026-07-17) without regressing the dark surfaces. */
+body{ color:var(--ink, var(--leg-ink)); }
 p, li, td, th, span, label, dd, dt, small{ color:inherit; }
-h1,h2,h3,h4,h5{ color:#f7f1df; }
-a{ color:#e6c766; text-decoration-color:rgba(230,199,102,.5); }
-a:hover{ color:#f4dc8a; }
+h1,h2,h3,h4,h5{ color:var(--ink, #f7f1df); }
+a{ color:var(--accent2, #e6c766); text-decoration-color:rgba(230,199,102,.5); }
+a:hover{ color:var(--accent2, #f4dc8a); }
 /* common competing utility classes that force dark text on dark backgrounds -> make them legible */
 .text-dark, .text-black, .muted-dark{ color:var(--leg-ink-dim) !important; }
 /* inputs/buttons often inherit black-on-dark; keep them readable */
