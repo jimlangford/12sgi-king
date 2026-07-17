@@ -316,7 +316,8 @@
 
   C.init = function (config) {
     cfg = config || {};
-    cfg.apiBase = cfg.apiBase || ('/games/api/' + cfg.gameId + '/');
+    // /king prefix survives the Tailscale mount-strip; loopback serves at root.
+    cfg.apiBase = cfg.apiBase || (((location.pathname.indexOf('/king/') === 0) ? '/king' : '') + '/games/api/' + cfg.gameId + '/');
     KEY = 'circle_' + cfg.gameId + '_v1';
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();
