@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 20
 
     env:
-      KING_LOCAL: "${{ runner.temp }}\\..\\..\\..\\AppData\\Local\\king-extract\\deploy\\king-local"
+      KING_LOCAL: "C:\\Users\\12sgi\\AppData\\Local\\king-extract\\deploy\\king-local"
       V2_AUTH_PORT: "8101"
       V2_TENANT_PORT: "8102"
       V2_DOCUMENTS_PORT: "8103"
