@@ -58,6 +58,26 @@
   footer a{color:var(--ink-dim)}
 </style>
 <link rel="stylesheet" href="govos.css">
+<style>
+  /* SELF-THEME GUARD (James 2026-07-17): this page is a self-contained LIGHT design, but govos.css
+     (loaded above for the govOS shell bar) redefines --ink / --ink-dim / --bg to its DARK theme,
+     which washed out this page's own white-header nav links and its secondary button. Re-assert
+     education.html's own readable colors on its OWN elements only, with !important so cascade order
+     no longer matters. Scoped to education selectors (header.top / .hero / .card / .btn / .tab) so
+     the injected govOS shell bar is untouched. */
+  body{ background:#ffffff !important; color:#132339 !important; }
+  header.top{ background:rgba(255,255,255,.96) !important; border-bottom:1px solid #dfe6ee !important; }
+  header.top .brand{ color:#132339 !important; }
+  header.top .brand b{ color:#b8892f !important; }
+  header.top nav.pills a{ color:#4c5c70 !important; }
+  header.top nav.pills a.active{ color:#0e4a84 !important; }
+  h1,h2,h3,h4,h5{ color:#132339 !important; }
+  .eyebrow{ color:#b8892f !important; }
+  .hero p.lead, .card .m, .tab, .stds span, .soon, footer, footer a{ color:#4c5c70 !important; }
+  .btn.primary{ background:#0e4a84 !important; color:#ffffff !important; }
+  .btn.secondary{ color:#0e4a84 !important; background:#eef4fb !important; border:1.5px solid #0e4a84 !important; }
+  a{ color:#0e4a84; }
+</style>
 </head>
 <body>
 
