@@ -28,23 +28,23 @@ def now_hst():
 
 
 CSS = """<style>
-body{font-family:'Segoe UI',system-ui,sans-serif;max-width:960px;margin:1.3rem auto;padding:0 1.2rem 3rem;color:#13243d;background:#fff;font-size:16px;line-height:1.55}
+body{font-family:'Segoe UI',system-ui,sans-serif;max-width:960px;margin:1.3rem auto;padding:0 1.2rem 3rem;color:#eaf2fc;background:#081420;font-size:16px;line-height:1.55}
 h1{font-size:1.5rem;margin:.3rem 0}
-.sub{color:#41536b;font-size:.9rem;line-height:1.55;max-width:80ch}
-.disc{background:#0f2540;border:1px solid #1f3d5f;border-radius:10px;padding:.7rem 1rem;color:#41536b;font-size:.85rem;margin:.8rem 0 1.1rem}
+.sub{color:#9fb2c8;font-size:.9rem;line-height:1.55;max-width:80ch}
+.disc{background:#0f2540;border:1px solid #1f3d5f;border-radius:10px;padding:.7rem 1rem;color:#9fb2c8;font-size:.85rem;margin:.8rem 0 1.1rem}
 .src{font-family:Consolas,monospace;font-size:.8rem;color:#5b6e86;margin:.3rem 0 .9rem}
 table{border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.4rem}
-td,th{padding:.45rem .65rem;border-bottom:1px solid #e3e9f1;text-align:left;vertical-align:top}
-.d{font-family:Consolas,monospace;color:#1259a3;white-space:nowrap;width:1%}
-.nm{font-weight:650;color:#00356b}
-.role{color:#1f8a5b;font-size:.82rem;font-family:Consolas,monospace}
+td,th{padding:.45rem .65rem;border-bottom:1px solid #1f3d5f;text-align:left;vertical-align:top}
+.d{font-family:Consolas,monospace;color:#6cb0f0;white-space:nowrap;width:1%}
+.nm{font-weight:650;color:#7fb2ff}
+.role{color:#4ec98a;font-size:.82rem;font-family:Consolas,monospace}
 .party{color:#5b6e86;font-size:.8rem}
-.body-hd{font-size:1.1rem;font-weight:650;margin:1.4rem 0 .2rem;color:#00356b;border-bottom:2px solid #1f3d5f;padding-bottom:.35rem}
+.body-hd{font-size:1.1rem;font-weight:650;margin:1.4rem 0 .2rem;color:#7fb2ff;border-bottom:2px solid #1f3d5f;padding-bottom:.35rem}
 th{color:#5b6e86;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase}
-a{color:#1259a3}
+a{color:#6cb0f0}
 .gap{background:#fff8f0;border:1px solid #f0c080;border-radius:8px;padding:.55rem .9rem;color:#6d4c00;font-size:.85rem;margin:.7rem 0}
 .ok{background:#f0f8f1;border:1px solid #aad4b2;border-radius:8px;padding:.55rem .9rem;color:#1f5c2a;font-size:.85rem;margin:.7rem 0}
-footer{margin-top:2.2rem;border-top:1px solid #e3e9f1;padding-top:.7rem;font-family:Consolas,monospace;font-size:.78rem;color:#9a957f}
+footer{margin-top:2.2rem;border-top:1px solid #1f3d5f;padding-top:.7rem;font-family:Consolas,monospace;font-size:.78rem;color:#9a957f}
 </style>"""
 
 
@@ -564,7 +564,7 @@ def build_audit_html(tid, dim_status):
         badge = _status_badge(st)
         if st in ("live", "sourced"):
             done_count += 1
-        rows.append(f'<tr><td style="font-weight:650;color:#00356b">{esc(label)}</td><td>{badge}</td><td style="color:#41536b;font-size:.88rem">{note}</td></tr>')
+        rows.append(f'<tr><td style="font-weight:650;color:#7fb2ff">{esc(label)}</td><td>{badge}</td><td style="color:#9fb2c8;font-size:.88rem">{note}</td></tr>')
 
     rows_html = "\n".join(rows)
     pct = round(100 * done_count / len(DIM_LABELS))
@@ -578,7 +578,7 @@ def build_audit_html(tid, dim_status):
 <div class=disc>This scorecard shows which civic testimony dimensions have real sourced data, which are pending, and which are not applicable for this jurisdiction. The goal is Maui County depth across all dimensions. Sources are honest-empty (plainly labelled 'pending') until data is ingested — no fabrication, no cross-tenant fallback.</div>
 <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 1.2rem">
   <div style="flex:0 0 180px;height:12px;border-radius:99px;background:#dbe5f0;overflow:hidden"><div style="width:{pct}%;height:12px;background:{bar_color};border-radius:99px"></div></div>
-  <span style="font-family:Consolas,monospace;font-size:.88rem;color:#41536b"><b>{done_count} of {len(DIM_LABELS)}</b> dimensions answered ({pct}%)</span>
+  <span style="font-family:Consolas,monospace;font-size:.88rem;color:#9fb2c8"><b>{done_count} of {len(DIM_LABELS)}</b> dimensions answered ({pct}%)</span>
 </div>
 <table>
   <thead><tr><th>dimension</th><th>status</th><th>source / note</th></tr></thead>

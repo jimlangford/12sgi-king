@@ -219,7 +219,7 @@ def _html(p):
         "h1{font-size:1.35rem;margin:.2rem 0}.sub{color:#5b6b78;font-size:.9rem;margin-bottom:1rem}"
         "table{border-collapse:collapse;width:100%%;font-size:.82rem}th,td{padding:.45rem .5rem;border-bottom:1px solid #e7edf2}"
         "th{text-align:left;color:#42535f;font-weight:600;font-size:.74rem}.m{color:#8b99a6;font-size:.72rem}"
-        "thead th{position:sticky;top:0;background:#fff}</style>"
+        "thead th{position:sticky;top:0;background:#081420}</style>"
         "<h1>Testimony depth by government</h1>"
         "<div class=sub>Every tenant is measured against Maui County's depth (the reference: %d of %d civic-testimony "
         "dimensions). ✓ = sourced &amp; published · ○ = present but thin · — = gap (work to do). "

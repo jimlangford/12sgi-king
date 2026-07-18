@@ -94,7 +94,7 @@ try:
     _QS = True
 except Exception as e:
     _QS = False
-    _QUADOS_STYLE = "<style>body{font-family:system-ui,sans-serif;color:#13243d;background:#fff;padding:1rem}</style>"
+    _QUADOS_STYLE = "<style>body{font-family:system-ui,sans-serif;color:#eaf2fc;background:#081420;padding:1rem}</style>"
     def _moon_banner(r, ao_po=None): return ""
     print("moon_letter: _quados_style unavailable —", e)
 
@@ -221,7 +221,7 @@ def _moon_html(m: dict) -> str:
   <div style='font-size:.92rem;color:#3a3766;margin:.35rem 0;line-height:1.5;'>
     <b>Traditional nature:</b> {nature}
   </div>
-  <div style='background:#fff;border:1px solid #c9cfe8;border-radius:8px;
+  <div style='background:#081420;border:1px solid #c9cfe8;border-radius:8px;
     padding:.55rem .9rem;margin:.5rem 0;font-size:.92rem;color:#2e2a5c;line-height:1.5;'>
     <b>&#127773; Civic aloha offering for this pō:</b><br>
     {offering}
@@ -260,8 +260,8 @@ def _rhetoric_html(speech: dict) -> str:
     """Render speech style panel — COUNTABLE asks vs statements, non-defamatory."""
     if not speech:
         return (
-            "<div style='background:#e7eef8;border-radius:8px;padding:.8rem 1rem;"
-            "font-size:.88rem;color:#41536b;margin:.6rem 0;'>"
+            "<div style='background:#0f2540;border-radius:8px;padding:.8rem 1rem;"
+            "font-size:.88rem;color:#9fb2c8;margin:.6rem 0;'>"
             "Speech-style analysis requires a meeting transcript. "
             "Run <code>meeting_newsletter.py --transcript &lt;path&gt;</code> to add it.</div>"
         )
@@ -275,27 +275,27 @@ def _rhetoric_html(speech: dict) -> str:
         style_lbl = d.get("style", "—")
         bar_color = "#1f8a5b" if q_pct >= 35 else "#b07d1a" if q_pct >= 15 else "#8b2e2e"
         sample = "".join(
-            f"<div style='color:#41536b;font-size:11px;margin:.1rem 0;font-style:italic;'>"
+            f"<div style='color:#9fb2c8;font-size:11px;margin:.1rem 0;font-style:italic;'>"
             f"&#8220;{esc(sq)}&#8221;</div>"
             for sq in d.get("sample_questions", [])[:2]
         )
         rows += f"""
-<div style='margin:.5rem 0;padding:.8rem 1rem;background:#e7eef8;
+<div style='margin:.5rem 0;padding:.8rem 1rem;background:#0f2540;
   border-left:3px solid {bar_color};border-radius:7px;'>
-  <div style='font-weight:700;color:#13243d;'>{esc(sur)}
-    <span style='font-weight:400;font-size:.83rem;color:#41536b;'>— {esc(style_lbl)}</span>
+  <div style='font-weight:700;color:#eaf2fc;'>{esc(sur)}
+    <span style='font-weight:400;font-size:.83rem;color:#9fb2c8;'>— {esc(style_lbl)}</span>
   </div>
   <div style='display:flex;gap:16px;margin:.3rem 0;font-size:.83rem;'>
-    <span style='color:#1f8a5b;'>&#10067; {q} questions</span>
-    <span style='color:#41536b;'>&#128226; {s} statements</span>
+    <span style='color:#4ec98a;'>&#10067; {q} questions</span>
+    <span style='color:#9fb2c8;'>&#128226; {s} statements</span>
     <span>{_bar(q_pct)} {q_pct}% questions</span>
   </div>
   {sample}
 </div>"""
     if not rows:
         return (
-            "<div style='background:#e7eef8;border-radius:8px;padding:.8rem 1rem;"
-            "font-size:.88rem;color:#41536b;margin:.6rem 0;'>"
+            "<div style='background:#0f2540;border-radius:8px;padding:.8rem 1rem;"
+            "font-size:.88rem;color:#9fb2c8;margin:.6rem 0;'>"
             "No speaker blocks found in transcript (needs 'CHAIR Smith:' format).</div>"
         )
     return f"""
@@ -315,8 +315,8 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
     """Race-car format: each official with their top donors, all sourced or marked unverified."""
     if not donors:
         return (
-            "<div style='background:#e7eef8;border-radius:8px;padding:.9rem 1rem;"
-            "font-size:.88rem;color:#41536b;'>Donor data not loaded — run donor_watch.py.</div>"
+            "<div style='background:#0f2540;border-radius:8px;padding:.9rem 1rem;"
+            "font-size:.88rem;color:#9fb2c8;'>Donor data not loaded — run donor_watch.py.</div>"
         )
     rows = ""
     sourced_count = 0
@@ -348,13 +348,13 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
             emp_html = ('<span style="color:#5b6e86;font-size:10px;">' + emp_note + '</span>') if emp_note else ''
             sponsor_tags += (
                 f"<div style='display:inline-flex;align-items:baseline;gap:6px;"
-                f"background:#e7eef8;border:1px solid #bacde6;border-radius:5px;"
+                f"background:#0f2540;border:1px solid #bacde6;border-radius:5px;"
                 f"padding:3px 8px;font-size:12px;margin:2px;'>"
-                f"<span style='color:#13243d;font-weight:600;'>{esc(dname[:36])}</span>"
-                f"<span style='color:#1f8a5b;font-weight:700;'>{_fmt_money(amt)}</span>"
+                f"<span style='color:#eaf2fc;font-weight:600;'>{esc(dname[:36])}</span>"
+                f"<span style='color:#4ec98a;font-weight:700;'>{_fmt_money(amt)}</span>"
                 f"{emp_html}"
-                f"<span style='color:#00356b;font-size:10px;'>"
-                f"[<a href='{CSC_SOURCE}' style='color:#00356b;'>CSC</a>]"
+                f"<span style='color:#7fb2ff;font-size:10px;'>"
+                f"[<a href='{CSC_SOURCE}' style='color:#7fb2ff;'>CSC</a>]"
                 f"</span></div>"
             )
 
@@ -370,9 +370,9 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
 
         anchor = "member-" + re.sub(r"[^\w]", "-", key.lower())
         rows += f"""
-<div id='{anchor}' style='margin:.8rem 0;padding:.9rem 1.1rem;background:#e7eef8;
+<div id='{anchor}' style='margin:.8rem 0;padding:.9rem 1.1rem;background:#0f2540;
   border:1px solid #bacde6;border-left:4px solid #00356b;border-radius:10px;'>
-  <div style='font:700 14px/1.2 "Segoe UI",system-ui,sans-serif;color:#13243d;'>
+  <div style='font:700 14px/1.2 "Segoe UI",system-ui,sans-serif;color:#eaf2fc;'>
     &#127948; {esc(name)}
   </div>
   <div style='font-size:.78rem;color:#5b6e86;margin:.2rem 0 .5rem;'>{esc(label)}</div>
@@ -381,14 +381,14 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
   </div>
   <div style='font-size:.75rem;color:#5b6e86;margin-top:.4rem;'>
     Total raised: <b>{_fmt_money(total)}</b> from {rows_ct} contributions &middot;
-    Source: <a href='{CSC_SOURCE}' style='color:#1259a3;'>
+    Source: <a href='{CSC_SOURCE}' style='color:#6cb0f0;'>
     Hawaiʻi Campaign Spending Commission (hicscdata.hawaii.gov)</a> &middot;
     Donor proximity to a vote is a <b>question for oversight</b>, never an accusation.
   </div>
 </div>"""
 
     sourced_note = (
-        f"<div style='font-size:.75rem;color:#5b6e86;background:#e7eef8;"
+        f"<div style='font-size:.75rem;color:#5b6e86;background:#0f2540;"
         f"border-radius:7px;padding:.5rem .9rem;margin:.5rem 0;'>"
         f"&#10003; <b>{sourced_count} donor ties sourced</b> — all from Hawaiʻi Campaign Spending "
         f"Commission (hicscdata.hawaii.gov), a primary public record. "
@@ -405,9 +405,9 @@ def _agenda_html(items: list, ev: dict | None, donors: dict, member_keys: list) 
     if not items and not ev:
         legistar_url = "https://mauicounty.legistar.com/Calendar.aspx"
         return (
-            f"<p style='font-size:.9rem;color:#41536b;'>"
+            f"<p style='font-size:.9rem;color:#9fb2c8;'>"
             f"Agenda data for this date is not yet ingested. "
-            f"<a href='{legistar_url}' style='color:#1259a3;'>View live agendas on Legistar &rarr;</a></p>"
+            f"<a href='{legistar_url}' style='color:#6cb0f0;'>View live agendas on Legistar &rarr;</a></p>"
         )
 
     html_out = "<div>"
@@ -435,9 +435,9 @@ def _agenda_html(items: list, ev: dict | None, donors: dict, member_keys: list) 
         action_color = "#1f8a5b" if passed else "#8b2e2e" if failed else "#1259a3"
 
         html_out += (
-            f"<div style='margin:.7rem 0;padding:.8rem 1rem;background:#e7eef8;"
+            f"<div style='margin:.7rem 0;padding:.8rem 1rem;background:#0f2540;"
             f"border-radius:8px;border-left:3px solid {border_color};'>"
-            f"<div style='font-size:.9rem;font-weight:600;color:#13243d;'>"
+            f"<div style='font-size:.9rem;font-weight:600;color:#eaf2fc;'>"
             f"<span style='color:#5b6e86;font-size:.78rem;margin-right:5px;'>{esc(str(n))}.</span>"
             f"{esc(t)}</div>"
         )
@@ -454,8 +454,8 @@ def _agenda_html(items: list, ev: dict | None, donors: dict, member_keys: list) 
                 for k in member_keys:
                     if k.lower().split("-")[0].split()[0] in nl or nl in k.lower():
                         anchor = "member-" + re.sub(r"[^\w]", "-", k.lower())
-                        return f"<a href='#{anchor}' style='color:#1f8a5b;font-weight:600;'>{esc(vname)}</a>"
-                return f"<span style='color:#1f8a5b;'>{esc(vname)}</span>"
+                        return f"<a href='#{anchor}' style='color:#4ec98a;font-weight:600;'>{esc(vname)}</a>"
+                return f"<span style='color:#4ec98a;'>{esc(vname)}</span>"
 
             ayes    = votes.get("ayes", [])
             noes    = votes.get("noes", [])
@@ -464,7 +464,7 @@ def _agenda_html(items: list, ev: dict | None, donors: dict, member_keys: list) 
                 linked = ", ".join(_voter_link(vn) for vn in ayes)
                 html_out += (
                     f"<div style='font-size:.8rem;margin:.2rem 0;'>"
-                    f"<b style='color:#1f8a5b;'>Ayes ({len(ayes)})</b> — "
+                    f"<b style='color:#4ec98a;'>Ayes ({len(ayes)})</b> — "
                     f"<span style='color:#5b6e86;font-size:.75rem;'>sponsors above &#8593;</span><br>"
                     f"<span style='margin-left:8px;'>{linked}</span></div>"
                 )
@@ -540,7 +540,7 @@ def _positive_html(tenant_id: str) -> str:
         link_html = ""
         if it.get("link"):
             link_html = (
-                f" <a href='{esc(it['link'])}' style='color:#1259a3;font-size:.8rem;'>"
+                f" <a href='{esc(it['link'])}' style='color:#6cb0f0;font-size:.8rem;'>"
                 f"{esc(it.get('link_label','More'))} &rarr;</a>"
             )
         rows += (
@@ -622,7 +622,7 @@ def build(tenant: str = "maui", target_date: date | None = None,
     if ev:
         meeting_title_line = (
             f"<div style='font-size:.82rem;color:#5b6e86;margin:.3rem 0;'>"
-            f"<a href='{esc(legistar_url)}' style='color:#1259a3;'>{esc(body_name)}</a>"
+            f"<a href='{esc(legistar_url)}' style='color:#6cb0f0;'>{esc(body_name)}</a>"
             f"{(' · ' + esc(ev_date_str)) if ev_date_str else ''}"
             f"{(' at ' + esc(ev_time)) if ev_time else ''}"
             f"</div>"
@@ -640,8 +640,8 @@ def build(tenant: str = "maui", target_date: date | None = None,
 <title>Hawaiian Moon Calendar Letter — {esc(date_label)} | Maui County | 12SGI Kilo Aupuni</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin:0;background:#f4f7fb;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;color:#13243d;">
-<div style="max-width:680px;margin:0 auto;background:#fff;padding-bottom:2rem;">
+<body style="margin:0;background:#f4f7fb;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;color:#eaf2fc;">
+<div style="max-width:680px;margin:0 auto;background:#081420;padding-bottom:2rem;">
 
 <!-- HEADER -->
 <div style="background:#00356b;color:#fff;padding:1.4rem 1.6rem;">
@@ -655,7 +655,7 @@ def build(tenant: str = "maui", target_date: date | None = None,
   <div style="font-size:.95rem;opacity:.9;margin:.2rem 0;">
     {esc(date_label)} &middot; Maui County civic digest
   </div>
-  {meeting_title_line.replace('color:#5b6e86', 'color:rgba(255,255,255,.75)').replace('color:#1259a3', 'color:#a8c4e0')}
+  {meeting_title_line.replace('color:#5b6e86', 'color:rgba(255,255,255,.75)').replace('color:#6cb0f0', 'color:#a8c4e0')}
   <div style="font-size:.75rem;opacity:.75;margin-top:.5rem;line-height:1.4;">
     A <em>draft for Jimmy Langford&#8217;s review</em> — not yet published.
     Every donor tie is sourced from public records. Framed as questions, never accusations.
@@ -665,34 +665,34 @@ def build(tenant: str = "maui", target_date: date | None = None,
 <div style="padding:1.2rem 1.6rem;">
 
 <!-- SECTION 1: MOON + SUN TIMING (the aloha frame) -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.2rem 0 .5rem;">
   &#9790; Moon Timing &mdash; Kaulana Mahina
 </h2>
 {moon_html}
 
 <!-- SECTION 2: MEETING DIGEST -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.4rem 0 .5rem;">
   &#128203; Meeting Digest
 </h2>
-<div style="font-size:.9rem;color:#41536b;line-height:1.6;margin-bottom:.8rem;">
+<div style="font-size:.9rem;color:#9fb2c8;line-height:1.6;margin-bottom:.8rem;">
   {('The most recent Maui Council/Committee meeting in our system: <b>' + esc(body_name) + '</b>'
     + ((' on ' + esc(ev_date_str)) if ev_date_str else '') + '.')
    if ev else
    ('Maui County Council meetings are tracked from the <a href="' + LEGISTAR_URL +
-    '" style="color:#1259a3;">Legistar public API</a>. '
+    '" style="color:#6cb0f0;">Legistar public API</a>. '
     'No meeting was found for this date in the feed — the agenda below links to the live calendar.')}
 </div>
-{('<p style="font-size:.88rem;color:#41536b;"><a href="' + esc(legistar_url) + '" style="color:#1259a3;">'
+{('<p style="font-size:.88rem;color:#9fb2c8;"><a href="' + esc(legistar_url) + '" style="color:#6cb0f0;">'
   'Full agenda on Legistar &rarr;</a></p>') if ev else ''}
 
 <!-- SECTION 3: RHETORIC READ (asks vs pushes) -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.4rem 0 .5rem;">
   &#127897; Conversation Style &mdash; Questions vs Statements
 </h2>
-<p style="font-size:.88rem;color:#41536b;line-height:1.5;margin:.4rem 0 .6rem;">
+<p style="font-size:.88rem;color:#9fb2c8;line-height:1.5;margin:.4rem 0 .6rem;">
   Every councilmember&#8217;s speech style can be measured: how many clarifying <b>questions</b>
   did they ask vs. how many <b>declarative statements</b> did they push? Questions invite evidence;
   statements push a narrative. This is a COUNTABLE observation — the reader judges the pattern.
@@ -700,11 +700,11 @@ def build(tenant: str = "maui", target_date: date | None = None,
 {rhetoric_html}
 
 <!-- SECTION 4: SPONSORS — race-car donor panel -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.4rem 0 .5rem;">
   &#127950; Committee Members &amp; Their Sponsors
 </h2>
-<p style="font-size:.9rem;color:#41536b;line-height:1.6;margin:.4rem 0 .7rem;">
+<p style="font-size:.9rem;color:#9fb2c8;line-height:1.6;margin:.4rem 0 .7rem;">
   Like race car drivers who wear their sponsors on their suits — every official who speaks at a
   public meeting comes <b>funded by someone</b>. Here is the public record of who funds each voice
   at this table. Source: Hawaiʻi Campaign Spending Commission. Donor proximity to a vote is
@@ -714,24 +714,24 @@ def build(tenant: str = "maui", target_date: date | None = None,
 {sponsors_html}
 
 <!-- SECTION 5: AGENDA + COMMITTEE ITEMS -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.4rem 0 .5rem;">
   &#128197; Agenda &amp; Committee Items
 </h2>
 {agenda_html}
 <p style="font-size:.82rem;color:#5b6e86;margin-top:.4rem;">
-  <a href="{esc(LEGISTAR_URL)}" style="color:#1259a3;">All upcoming Maui County agendas (Legistar) &rarr;</a>
+  <a href="{esc(LEGISTAR_URL)}" style="color:#6cb0f0;">All upcoming Maui County agendas (Legistar) &rarr;</a>
   &middot;
-  <a href="https://mauicounty.granicusideas.com/meetings" style="color:#1259a3;">
+  <a href="https://mauicounty.granicusideas.com/meetings" style="color:#6cb0f0;">
     eComment — submit testimony &rarr;</a>
 </p>
 
 <!-- SECTION 6: POSITIVE HIGHLIGHTS -->
-<h2 style="color:#00356b;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
+<h2 style="color:#7fb2ff;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;
   border-bottom:2px solid #dae5f3;padding-bottom:.4rem;margin:1.4rem 0 .5rem;">
   &#127803; What&#8217;s Good &mdash; Sourced Positive Items
 </h2>
-<p style="font-size:.88rem;color:#41536b;line-height:1.5;margin:.4rem 0 .6rem;">
+<p style="font-size:.88rem;color:#9fb2c8;line-height:1.5;margin:.4rem 0 .6rem;">
   Aloha requires naming the good as clearly as naming the gap. Here is what the public record
   shows is working — sourced from official county descriptions and public data.
 </p>
@@ -741,10 +741,10 @@ def build(tenant: str = "maui", target_date: date | None = None,
 <div style="border-top:1px solid #dae5f3;margin-top:1.6rem;padding-top:.9rem;
   font-size:.75rem;color:#5b6e86;line-height:1.7;">
   <b>Sources:</b>
-  <a href="{esc(LEGISTAR_URL)}" style="color:#1259a3;">Maui County Legistar</a> &middot;
-  <a href="{esc(CSC_URL)}" style="color:#1259a3;">Hawaiʻi Campaign Spending Commission</a> &middot;
-  <a href="https://www.usaspending.gov/" style="color:#1259a3;">USASpending.gov</a> &middot;
-  <a href="https://www.mauicounty.gov/" style="color:#1259a3;">mauicounty.gov</a><br>
+  <a href="{esc(LEGISTAR_URL)}" style="color:#6cb0f0;">Maui County Legistar</a> &middot;
+  <a href="{esc(CSC_URL)}" style="color:#6cb0f0;">Hawaiʻi Campaign Spending Commission</a> &middot;
+  <a href="https://www.usaspending.gov/" style="color:#6cb0f0;">USASpending.gov</a> &middot;
+  <a href="https://www.mauicounty.gov/" style="color:#6cb0f0;">mauicounty.gov</a><br>
   Kaulana mahina source: Malo, Kepelino, UH Hawaiʻinuiākea (astronomical forecast ±1 night; confirm with a kumu).<br>
   No legal determinations. Every correlation is a <b>question to verify</b>, not a finding.<br>
   <b>12SGI &middot; Kilo Aupuni</b> &middot; Christ energy = aloha in action &middot; rigor in the numbers, aloha in the asking.<br>

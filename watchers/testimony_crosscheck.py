@@ -303,7 +303,7 @@ def write_html(out):
         "<p class=fine>Generated %s. Sources: Bill 9 packet scans (mauicounty.civicclerk), Hawaiʻi CSC "
         "campaign finance, HANDS county awards. Lawful advocacy &mdash; a question to the record, never a claim.</p>"
         "</div>" % (esc(out["integrity"]), cc, blocks, esc(out["generated"])))
-    css = ("<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1f2d3a;background:#fff}"
+    css = ("<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#eaf2fc;background:#081420}"
            ".lead{font-size:1.04rem;color:#33414f}.integrity{background:#eef5ff;border-left:3px solid #0e4a84;"
            "padding:.6rem .9rem;border-radius:8px;font-size:.9rem;margin:.6rem 0}"
            "table{border-collapse:collapse;width:100%;margin:.4rem 0 1rem;font-size:.86rem}"

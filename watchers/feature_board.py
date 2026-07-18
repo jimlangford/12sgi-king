@@ -105,7 +105,7 @@ def build(tenant="hi-maui"):
         'Builders stand up their own county tenant. Read access on public records — confirm every figure at its source.</p>'
         + _tier_ladder_html() +
         '<h2 style="color:#0e4a84;margin-top:1.3rem">The board</h2>'
-        '<style>.dept{border:1px solid #d6e2f0;border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;background:#fff}'
+        '<style>.dept{border:1px solid #d6e2f0;border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;background:#081420}'
         '.dh{font-weight:700;color:#0e4a84;margin-bottom:.3rem}.reqs{list-style:none;padding:0;margin:0}'
         '.reqs li{border-top:1px solid #eef3f9;padding:.45rem 0}.rt{font-weight:600}.rd{font-size:.9rem;color:#33414f}'
         '.rm{font-size:.78rem;color:#5a6b7b;margin-top:.15rem}.pill{background:#eaf2fb;color:#0e4a84;border-radius:20px;'
