@@ -5,13 +5,15 @@
 # WHY A SEPARATE PROJECT (not a service added to docker-compose.v2.yml):
 #   Bring it up as its OWN compose project so `up` here can NEVER recreate/restart the running
 #   govOS-v2 containers (auth/tenant/documents/storage/ai/health) or disturb a live GPU render:
-#       docker compose -p studio-assets -f docker-compose.studio-assets.yml up -d --no-recreate --build
+#       docker compose --env-file .env.v2 -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml up -d --build --remove-orphans
 #       docker compose -p studio-assets -f docker-compose.studio-assets.yml logs -f
 #       docker compose -p studio-assets -f docker-compose.studio-assets.yml down
 #
 # NON-INTERFERENCE (enforced here):
 #   * Publishes ONLY 127.0.0.1:8108 (loopback + Tailscale trust boundary). 8101-8106 untouched;
 #     8107 (reserved in-file for the not-running gpu-router) deliberately left alone.
+#   * Reuses the main govOS Neo4j through host.docker.internal. Studio owns only its scoped labels;
+#     no second database, host-port collision, or duplicate civic/Studio graph exists.
 #   * IO-only: NO deploy.resources.reservations.devices / GPU — cannot contend for the 8 GB card.
 #   * Every studio-asset tree is a READ-ONLY bind (read_only: true) — the VAULT can never be
 #     pruned/mutated. The app also fail-closed write-probes each mount at boot.
@@ -19,32 +21,6 @@
 #   * Container hardening: read_only rootfs + tmpfs /tmp, cap_drop ALL, no-new-privileges.
 
 services:
-  studio-neo4j:
-    image: neo4j:5.26
-    environment:
-      # This graph is loopback-only and shared by local civic, fleet, and Studio loaders.
-      # No-auth keeps the existing stdlib HTTP clients compatible; never publish these ports publicly.
-      NEO4J_AUTH: none
-      NEO4J_db_tx__log_rotation_retention__policy: "false"
-    ports:
-      - "127.0.0.1:7474:7474"
-      - "127.0.0.1:7687:7687"
-    volumes:
-      - studio_neo4j_data:/data
-      - studio_neo4j_logs:/logs
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 12
-      start_period: 25s
-    labels:
-      com.12sgi.lane: "studio-assets"
-      com.12sgi.role: "tenant-aware Studio crosswalk graph"
-
   studio-assets:
     build:
       context: ../..                 # 12sgi-king repo root — so `services.v2_workboard` imports
@@ -52,7 +28,7 @@ services:
     image: govos-v2-studio-assets:local
     command: ["python", "-m", "uvicorn", "services.studio_assets.app.main:app", "--host", "0.0.0.0", "--port", "8108"]
     environment:
-      VERSION: "1.2.0"
+      VERSION: "1.3.0"
       STUDIO_ASSETS_DB_PATH: /data/db/studio_assets.db
       STUDIO_INDEX_JSON: /data/index/asset_index.json
       STUDIO_THUMBS_DIR: /data/index/thumbnails
@@ -61,17 +37,21 @@ services:
       STUDIO_CROSSWALK_JSON: /data/crosswalk/studio_asset_crosswalk.json
       STUDIO_CLIP_CROSSWALK_JSON: /data/crosswalk/studio_clip_crosswalk.json
       STUDIO_CHARACTER_BIBLES_DIR: /data/crosswalk/character_bibles
-      STUDIO_NEO4J_HTTP: http://studio-neo4j:7474/db/neo4j/tx/commit
+      STUDIO_NEO4J_HTTP: ${STUDIO_NEO4J_HTTP:-http://host.docker.internal:7474/db/neo4j/tx/commit}
       # Report to the board like a lane, into this project's OWN dispatch log — placed in the
       # app-owned /data/db volume (the non-root `app` user can write there; a fresh /data/derived
       # named volume seeds root-owned and would deny the write). Decoupled from the guacamole
       # v2-dispatch volume to avoid any shared-volume coupling.
-      STUDIO_REGISTRY_PATH: /repo/tenant_registry.json
+      STUDIO_REGISTRY_SOURCE_PATH: /repo/tenant_registry.json
+      STUDIO_REGISTRY_PATH: /data/db/tenant_registry.json
       WORKBOARD_DISPATCH_LOG: /data/db/studio_assets_dispatch.jsonl
       WORKBOARD_TARGET_THREAD: workboard-quad-os
-      STUDIO_ASSETS_REQUIRE_AUTH: "0"   # loopback + Tailscale trust boundary; flip to 1 once OAuth is wired
+      STUDIO_ASSETS_REQUIRE_AUTH: ${STUDIO_ASSETS_REQUIRE_AUTH:-1}
       AUTH_INTROSPECTION_URL: ${AUTH_INTROSPECTION_URL:-http://host.docker.internal:8101/api/v2/auth/introspect}
-      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-}
+      AUTH_READY_URL: ${AUTH_READY_URL:-http://host.docker.internal:8101/api/v2/ready}
+      # Must come from the same .env.v2 used by docker-compose.v2.yml. The readiness probe verifies
+      # service trust through introspection, so a mismatched fallback cannot report healthy.
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONUNBUFFERED: "1"
     ports:
@@ -84,9 +64,6 @@ services:
     cap_drop:
       - ALL
     restart: unless-stopped
-    depends_on:
-      studio-neo4j:
-        condition: service_healthy
     volumes:
       # ---- repo root (read-only: tenant_registry.json) ----
       - { type: bind, read_only: true, source: "../../tenant_registry.json", target: /repo/tenant_registry.json }
@@ -116,7 +93,9 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 20s
+      # A first shared-graph projection stages ~15k relationships on the memory-capped local Neo4j.
+      # Subsequent fingerprint-matched starts are fast, but the first release start gets honest grace.
+      start_period: 180s
     labels:
       com.12sgi.lane: "studio-assets"
       com.12sgi.role: "read-only studio-asset manager/serving layer"
@@ -124,5 +103,3 @@ services:
 volumes:
   studio_assets_db:
   studio_assets_derived:
-  studio_neo4j_data:
-  studio_neo4j_logs:

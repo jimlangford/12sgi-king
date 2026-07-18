@@ -4,6 +4,11 @@ This repository is not only a public website. It is a layered operating system w
 
 Before changing files, read `CANON.md` as the compact standing memory for JRCSL / 12SGI / Elemental Lotus work. Apply it quietly; do not spend response space restating it unless a boundary or handoff depends on it.
 
+Also read `docs/ACTIVE_AGENT_HANDOFF.md` before editing. It is the public-safe, repo-readable
+answer to "what is another agent working on right now?" The active release owner updates it before
+handoff or merge. Do not overwrite an active owner branch without coordinating through that file
+and the dispatch log.
+
 ## Core Principle
 
 Preserve intention before changing mechanism.
@@ -53,6 +58,9 @@ system's job:
   directly, or append a plain, factual entry to `DISPATCH_LOG.md` naming the open question so the
   next agent or the owner can resolve it. This keeps the system pono (in balance) instead of one
   agent overriding another's lane.
+- **No invisible agent work:** every multi-file release effort must leave its branch, scope,
+  validation, and next action in `docs/ACTIVE_AGENT_HANDOFF.md`. Chat context alone is not a
+  handoff, because Claude Code, Codex, Copilot, Docker/local AI, and future agents do not share it.
 
 ## Reporting Format
 

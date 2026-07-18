@@ -225,6 +225,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'role': role,
                 'scopes': scopes,
             },
+            headers={'X-Service-Token': self.service_token},
         )
         self.assertEqual(status, 200)
         return body['access_token']
@@ -360,6 +361,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'role': 'Resident',
                 'scopes': ['tenant:read'],
             },
+            headers={'X-Service-Token': self.service_token},
         )
         self.assertEqual(status, 400)
         self.assertEqual(body['detail']['error']['code'], 'missing_tenant_claim')
@@ -396,6 +398,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'role': 'Resident',
                 'scopes': ['ops:owner'],
             },
+            headers={'X-Service-Token': self.service_token},
         )
         self.assertEqual(status, 400)
         self.assertEqual(body['detail']['error']['code'], 'invalid_scope')
@@ -411,6 +414,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'tenant_id': 'tenant-s',
                 'scopes': [],
             },
+            headers={'X-Service-Token': self.service_token},
         )
         self.assertEqual(status, 400)
         self.assertEqual(body['detail']['error']['code'], 'invalid_scope')
@@ -428,6 +432,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 'scopes': ['tenant:read'],
                 'audience': 'wrong-audience',
             },
+            headers={'X-Service-Token': self.service_token},
         )
         self.assertEqual(status, 200)
         wrong_audience_token = body['access_token']

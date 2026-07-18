@@ -101,6 +101,10 @@ services:
       SMTP_USER: ${SMTP_USER:-}
       SMTP_PASS: ${SMTP_PASS:-}
       SMTP_FROM: ${SMTP_FROM:-noreply@12sgi.com}
+      SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
+      SMTP_ALLOW_UNAUTHENTICATED: ${SMTP_ALLOW_UNAUTHENTICATED:-false}
+      MAGIC_LINK_TTL_SECONDS: ${MAGIC_LINK_TTL_SECONDS:-900}
+      MAGIC_LINK_MIN_INTERVAL_SECONDS: ${MAGIC_LINK_MIN_INTERVAL_SECONDS:-60}
       AUTH_PUBLIC_URL: ${AUTH_PUBLIC_URL:-https://auth.12sgi.com}
       OAUTH_REDIRECT_BASE: ${OAUTH_REDIRECT_BASE:-https://12sgi.com/king/}
       OWNER_GITHUB_LOGINS: ${OWNER_GITHUB_LOGINS:-jimlangford}
@@ -331,7 +335,7 @@ services:
       AI_DB_PATH: /data/db/govos_v2_ai.db
       GPU_ROUTER_URL: http://gpu-router:8107
       GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
-      GPU_DEFAULT_MODEL: ${GPU_DEFAULT_MODEL:-llama3}
+      GPU_DEFAULT_MODEL: ${GPU_DEFAULT_MODEL:-llama3.2}
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:
     - v2-db:/data/db
@@ -404,7 +408,7 @@ services:
     healthcheck:
       test:
       - CMD-SHELL
-      - wget -q -O /dev/null http://localhost:11434/api/tags || exit 1
+      - ollama list >/dev/null 2>&1 || exit 1
       interval: 30s
       timeout: 10s
       retries: 5
@@ -446,7 +450,7 @@ services:
       NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
       NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
       GPU_ROUTER_DB_PATH: /data/db/govos_v2_gpu_router.db
-      GPU_RUNTIME_URL: http://gpu-runtime:11434
+      GPU_RUNTIME_URL: ${GPU_RUNTIME_URL:-http://gpu-runtime:11434}
       GPU_CLIENT_PRIORITIES: ${GPU_CLIENT_PRIORITIES:-govos-core:1,maui-tenant:2,studio:3,civic-signal:4,workboard:5,reports:6}
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:

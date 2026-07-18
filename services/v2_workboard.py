@@ -316,6 +316,19 @@ def approve_workboard_job(
     if atype not in APPROVAL_TYPES:
         atype = "editorial"
     path = log_path or DISPATCH_LOG
+    for existing in reversed(read_workboard_log(path)):
+        existing_job = existing.get("job") or {}
+        existing_type = existing.get("approval_type") or existing_job.get("payload", {}).get(
+            "approval_type",
+            "editorial",
+        )
+        if (
+            existing.get("kind") == "tombstone"
+            and existing.get("status") == "approved"
+            and existing_job.get("correlation_id") == job_id
+            and existing_type == atype
+        ):
+            return existing
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -343,6 +356,7 @@ def approve_workboard_job(
         "v2_workboard",
         payload={"approver": approver, "note": note or ""},
         entity_id=job_id,
+        idempotency_key=f"approval:{job_id}:{atype}",
     )
     return tombstone
 
@@ -491,6 +505,42 @@ def emit_hina_creative_job(
     )
 
 
+def _resolution_state(entries: list[dict]) -> tuple[dict[str, dict], dict[str, set[str]], set[str], set[str]]:
+    """Resolve terminal jobs and all-required approval gates from an append-only log."""
+    originals: dict[str, dict] = {}
+    approved_types: dict[str, set[str]] = {}
+    terminal_ids: set[str] = set()
+    for entry in entries:
+        job = entry.get("job") or {}
+        if entry.get("kind") == "job":
+            job_id = job.get("id")
+            if job_id:
+                originals[job_id] = entry
+            continue
+        if entry.get("kind") != "tombstone":
+            continue
+        job_id = job.get("correlation_id")
+        if not job_id:
+            continue
+        if entry.get("status") == "approved":
+            approval_type = entry.get("approval_type") or job.get("payload", {}).get(
+                "approval_type",
+                "editorial",
+            )
+            approved_types.setdefault(job_id, set()).add(approval_type)
+        else:
+            terminal_ids.add(job_id)
+
+    fully_approved_ids = {
+        job_id
+        for job_id, entry in originals.items()
+        if set(entry.get("approval_types") or _DEFAULT_APPROVAL_TYPES).issubset(
+            approved_types.get(job_id, set())
+        )
+    }
+    return originals, approved_types, terminal_ids, fully_approved_ids
+
+
 def pending_approvals(log_path: Path | None = None) -> list[dict]:
     """Return all creative and output lane jobs that have not yet been resolved.
 
@@ -498,21 +548,13 @@ def pending_approvals(log_path: Path | None = None) -> list[dict]:
     Engineering lane jobs are excluded — they self-heal and never need this queue.
     """
     entries = read_workboard_log(log_path)
-    resolved_ids: set[str] = set()
-    pending: dict[str, dict] = {}
-
-    for entry in entries:
-        job = entry.get("job") or {}
-        if entry.get("kind") == "tombstone":
-            cid = job.get("correlation_id")
-            if cid:
-                resolved_ids.add(cid)
-        elif entry.get("lane") in {"creative", "output"} and entry.get("kind") == "job":
-            jid = job.get("id")
-            if jid:
-                pending[jid] = entry
-
-    return [entry for jid, entry in pending.items() if jid not in resolved_ids]
+    originals, _, terminal_ids, fully_approved_ids = _resolution_state(entries)
+    resolved_ids = terminal_ids | fully_approved_ids
+    return [
+        entry
+        for job_id, entry in originals.items()
+        if entry.get("lane") in {"creative", "output"} and job_id not in resolved_ids
+    ]
 
 
 def approvals_cleared(job_id: str, log_path: Path | None = None) -> list[str]:
@@ -645,7 +687,7 @@ def workboard_pulse(log_path: Path | None = None) -> dict:
       waiting_owner     — creative/output jobs in pending-approval (human gate)
       auto_healed_today — engineering tombstones resolved today (UTC) with a
                           self-heal outcome
-      deploy_ready      — output lane jobs with an "approved" tombstone
+      deploy_ready      — output lane jobs with every required approval gate cleared
       critical          — log entries whose event field starts with "BLOCKER"
                           and that have no subsequent RESOLVED entry
 
@@ -657,12 +699,10 @@ def workboard_pulse(log_path: Path | None = None) -> dict:
     entries = read_workboard_log(log_path)
     today_prefix = time.strftime("%Y-%m-%d", time.gmtime())  # UTC date
 
-    # Collect all job ids that have tombstones (resolved/approved/rejected/archived)
-    tombstoned_ids: set[str] = set()
+    originals, _, terminal_ids, fully_approved_ids = _resolution_state(entries)
+    tombstoned_ids = terminal_ids | fully_approved_ids
     # Engineering healed today
     auto_healed_today = 0
-    # Deploy-ready: output lane + approved tombstone
-    deploy_ready_ids: set[str] = set()
     # Blocked event tracking: key = identifier string → True if unresolved
     blocker_events: dict[str, bool] = {}
 
@@ -672,9 +712,6 @@ def workboard_pulse(log_path: Path | None = None) -> dict:
         iso = entry.get("iso") or ""
 
         if entry.get("kind") == "tombstone":
-            cid = job.get("correlation_id")
-            if cid:
-                tombstoned_ids.add(cid)
             # Count self-healed engineering today
             outcome = job.get("payload", {}).get("outcome") or ""
             if (
@@ -683,11 +720,6 @@ def workboard_pulse(log_path: Path | None = None) -> dict:
                 and iso.startswith(today_prefix)
             ):
                 auto_healed_today += 1
-            # Track approved output lane jobs
-            if entry.get("status") == "approved":
-                orig_id = job.get("correlation_id")
-                if orig_id:
-                    deploy_ready_ids.add(orig_id)
             # RESOLVED prefix clears a BLOCKER
             if ev.startswith("RESOLVED:") or ev.startswith("DONE") or ev.startswith("SHIPPED"):
                 pass  # tombstone presence covers resolution for jobs
@@ -736,14 +768,11 @@ def workboard_pulse(log_path: Path | None = None) -> dict:
             if cid:
                 rejected_archived.add(cid)
     # Only count output lane originals
-    output_original_ids: set[str] = {
-        (e.get("job") or {}).get("id")
-        for e in entries
-        if e.get("kind") == "job" and e.get("lane") == "output"
-        and (e.get("job") or {}).get("id")
+    output_original_ids = {
+        job_id for job_id, entry in originals.items() if entry.get("lane") == "output"
     }
     deploy_ready = len(
-        deploy_ready_ids & output_original_ids - rejected_archived
+        fully_approved_ids & output_original_ids - rejected_archived
     )
 
     critical = len(blocker_events)

@@ -35,6 +35,9 @@ class TestV2ContractFiles(unittest.TestCase):
             '/api/v2/auth/introspect',
             '/api/v2/auth/renew',
             '/api/v2/auth/debug',
+            '/api/v2/auth/providers',
+            '/api/v2/auth/magic-link',
+            '/api/v2/auth/magic-link/verify',
             '/api/v2/auth/github',
             '/api/v2/auth/github/callback',
             '/api/v2/auth/google',
@@ -338,6 +341,44 @@ class TestWorkboardLanes(unittest.TestCase):
 
         approve_workboard_job(job_id, 'owner', log_path=self.log_path)
         self.assertEqual(len(pending_approvals(log_path=self.log_path)), 0)
+
+    def test_duplicate_approval_gate_is_idempotent(self):
+        job = emit_workboard_job(
+            source='svc', action='publish.staged', event='PUBLISH',
+            lane='output', log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+
+        first = approve_workboard_job(job_id, 'owner-auto', log_path=self.log_path)
+        second = approve_workboard_job(job_id, 'owner', log_path=self.log_path)
+
+        self.assertEqual(second['job']['id'], first['job']['id'])
+        approval_rows = [
+            entry for entry in read_workboard_log(self.log_path)
+            if entry.get('status') == 'approved'
+            and entry.get('job', {}).get('correlation_id') == job_id
+        ]
+        self.assertEqual(len(approval_rows), 1)
+
+    def test_all_required_approval_gates_must_clear(self):
+        job = emit_workboard_job(
+            source='svc', action='publish.staged', event='PUBLISH',
+            lane='output', status='pending-approval',
+            approval_types=['editorial', 'rights'], log_path=self.log_path,
+        )
+        job_id = job['job']['id']
+
+        approve_workboard_job(job_id, 'editor', approval_type='editorial', log_path=self.log_path)
+        self.assertEqual([entry['job']['id'] for entry in pending_approvals(self.log_path)], [job_id])
+        pulse = workboard_pulse(self.log_path)
+        self.assertEqual(pulse['waiting_owner'], 1)
+        self.assertEqual(pulse['deploy_ready'], 0)
+
+        approve_workboard_job(job_id, 'rights-owner', approval_type='rights', log_path=self.log_path)
+        self.assertEqual(pending_approvals(self.log_path), [])
+        pulse = workboard_pulse(self.log_path)
+        self.assertEqual(pulse['waiting_owner'], 0)
+        self.assertEqual(pulse['deploy_ready'], 1)
 
     def test_reject_creative_job(self):
         job = emit_workboard_job(

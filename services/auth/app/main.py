@@ -6,17 +6,21 @@ import html as _html
 import json
 import logging
 import os
+import re
 import secrets
+import smtplib
 import sqlite3
+import ssl
 import urllib.parse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
+from email.message import EmailMessage
 from uuid import uuid4
 
 import requests as _requests
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
@@ -85,6 +89,13 @@ def _csv_env_set(name: str, default: str = "", *, casefold: bool = False) -> set
     return values
 
 
+def _bool_env(name: str, default: bool = False) -> bool:
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "")
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "")
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
@@ -96,6 +107,29 @@ OAUTH_REDIRECT_BASE = os.environ.get("OAUTH_REDIRECT_BASE", "https://12sgi.com/k
 # Comma-separated list of allowed GitHub logins and Google e-mail addresses.
 OWNER_GITHUB_LOGINS = _csv_env_set("OWNER_GITHUB_LOGINS", "jimlangford", casefold=True)
 OWNER_GOOGLE_EMAILS = _csv_env_set("OWNER_GOOGLE_EMAILS", casefold=True)
+OWNER_MAGIC_EMAILS = _csv_env_set(
+    "OWNER_MAGIC_EMAILS",
+    ",".join(sorted(OWNER_GOOGLE_EMAILS)),
+    casefold=True,
+)
+MAGIC_LINK_TTL_SECONDS = max(300, min(3600, int(os.environ.get("MAGIC_LINK_TTL_SECONDS", "900"))))
+MAGIC_LINK_MIN_INTERVAL_SECONDS = max(
+    0,
+    min(900, int(os.environ.get("MAGIC_LINK_MIN_INTERVAL_SECONDS", "60"))),
+)
+SMTP_HOST = os.environ.get("SMTP_HOST", "").strip()
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
+SMTP_USER = os.environ.get("SMTP_USER", "").strip()
+SMTP_PASS = os.environ.get("SMTP_PASS", "")
+SMTP_FROM = os.environ.get("SMTP_FROM", "noreply@12sgi.com").strip()
+SMTP_STARTTLS = _bool_env("SMTP_STARTTLS", default=True)
+SMTP_ALLOW_UNAUTHENTICATED = _bool_env("SMTP_ALLOW_UNAUTHENTICATED", default=False)
+MAGIC_EMAIL_CONFIGURED = bool(
+    SMTP_HOST
+    and SMTP_FROM
+    and ((SMTP_USER and SMTP_PASS) or SMTP_ALLOW_UNAUTHENTICATED)
+    and OWNER_MAGIC_EMAILS
+)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -138,6 +172,10 @@ class AuthIntrospectionRequest(BaseModel):
 
 class AuthClaimsDiagnosticRequest(BaseModel):
     token: str | None = None
+
+
+class MagicLinkRequest(BaseModel):
+    email: str
 
 
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
@@ -286,6 +324,23 @@ def init_db() -> None:
                 issued_at TEXT NOT NULL,
                 expires_at INTEGER NOT NULL
             )
+            """
+        )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS magic_links (
+                token_hash TEXT PRIMARY KEY,
+                email TEXT NOT NULL,
+                created_at INTEGER NOT NULL,
+                expires_at INTEGER NOT NULL,
+                used_at INTEGER
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_magic_links_email_created
+            ON magic_links (email, created_at DESC)
             """
         )
         for ddl in (
@@ -445,6 +500,136 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
         ).fetchone()
 
 
+_EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
+def _normalise_email(raw: str) -> str:
+    email = str(raw or "").strip().casefold()
+    return email if _EMAIL_PATTERN.fullmatch(email) else ""
+
+
+def _magic_token_hash(token: str) -> str:
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def _create_magic_link(email: str) -> tuple[str, int] | None:
+    """Persist a hashed, single-use token unless this address is rate limited."""
+    now = int(_now_utc().timestamp())
+    token = secrets.token_urlsafe(32)
+    token_hash = _magic_token_hash(token)
+    expires_at = now + MAGIC_LINK_TTL_SECONDS
+    with _db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        recent = conn.execute(
+            "SELECT created_at FROM magic_links WHERE email = ? ORDER BY created_at DESC LIMIT 1",
+            (email,),
+        ).fetchone()
+        if recent and now - int(recent["created_at"]) < MAGIC_LINK_MIN_INTERVAL_SECONDS:
+            conn.commit()
+            return None
+        conn.execute(
+            "UPDATE magic_links SET used_at = ? WHERE email = ? AND used_at IS NULL",
+            (now, email),
+        )
+        conn.execute(
+            """
+            INSERT INTO magic_links (token_hash, email, created_at, expires_at, used_at)
+            VALUES (?, ?, ?, ?, NULL)
+            """,
+            (token_hash, email, now, expires_at),
+        )
+        conn.execute(
+            "DELETE FROM magic_links WHERE expires_at < ? OR (used_at IS NOT NULL AND used_at < ?)",
+            (now - 86400, now - 86400),
+        )
+        conn.commit()
+    return token, expires_at
+
+
+def _consume_magic_link(token: str) -> tuple[str, str]:
+    """Atomically consume a magic link and return (status, email)."""
+    if not token or len(token) > 512:
+        return "invalid", ""
+    now = int(_now_utc().timestamp())
+    token_hash = _magic_token_hash(token)
+    with _db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        row = conn.execute(
+            "SELECT email, expires_at, used_at FROM magic_links WHERE token_hash = ?",
+            (token_hash,),
+        ).fetchone()
+        if not row:
+            conn.commit()
+            return "invalid", ""
+        if row["used_at"] is not None:
+            conn.commit()
+            return "used", ""
+        if int(row["expires_at"]) < now:
+            conn.execute(
+                "UPDATE magic_links SET used_at = ? WHERE token_hash = ? AND used_at IS NULL",
+                (now, token_hash),
+            )
+            conn.commit()
+            return "expired", ""
+        updated = conn.execute(
+            """
+            UPDATE magic_links SET used_at = ?
+            WHERE token_hash = ? AND used_at IS NULL AND expires_at >= ?
+            """,
+            (now, token_hash, now),
+        ).rowcount
+        conn.commit()
+    if updated != 1:
+        return "used", ""
+    return "ok", str(row["email"])
+
+
+def _send_magic_email(email: str, magic_url: str) -> bool:
+    if not MAGIC_EMAIL_CONFIGURED:
+        return False
+    message = EmailMessage()
+    message["From"] = SMTP_FROM
+    message["To"] = email
+    message["Subject"] = "Your 12SGI sign-in link"
+    minutes = max(1, MAGIC_LINK_TTL_SECONDS // 60)
+    message.set_content(
+        f"Use this link to sign in to 12SGI. It expires in {minutes} minutes:\n\n"
+        f"{magic_url}\n\n"
+        "If you did not request this link, you can ignore this email.\n"
+    )
+    safe_url = _html.escape(magic_url, quote=True)
+    message.add_alternative(
+        "<!DOCTYPE html><html><body style='font-family:system-ui,sans-serif;padding:32px;max-width:480px'>"
+        "<h2 style='color:#1259a3'>12SGI Sign-In</h2>"
+        f"<p>This link expires in {minutes} minutes.</p>"
+        f"<p><a href='{safe_url}' style='background:#1259a3;color:#fff;padding:12px 24px;"
+        "border-radius:6px;text-decoration:none;display:inline-block'>Sign in to 12SGI</a></p>"
+        "<p style='color:#666;font-size:12px'>If you did not request this link, ignore this email.</p>"
+        "</body></html>",
+        subtype="html",
+    )
+    try:
+        if SMTP_PORT == 465:
+            smtp_client = smtplib.SMTP_SSL(
+                SMTP_HOST,
+                SMTP_PORT,
+                timeout=15,
+                context=ssl.create_default_context(),
+            )
+        else:
+            smtp_client = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=15)
+        with smtp_client as smtp:
+            if SMTP_PORT != 465 and SMTP_STARTTLS:
+                smtp.starttls(context=ssl.create_default_context())
+            if SMTP_USER:
+                smtp.login(SMTP_USER, SMTP_PASS)
+            smtp.send_message(message)
+        return True
+    except Exception as exc:
+        _log.error("Magic-link email delivery failed: %s", type(exc).__name__)
+        return False
+
+
 init_db()
 
 
@@ -500,8 +685,27 @@ def jwks():
     }
 
 
+def _require_service_trust(x_service_token: str | None) -> None:
+    if not x_service_token or not secrets.compare_digest(x_service_token, INTERNAL_SERVICE_TOKEN):
+        audit_auth_event("auth", "service_auth_failure", {"reason": "invalid_service_token"})
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "error": {
+                    "code": "forbidden",
+                    "message": "Service trust token is invalid",
+                    "details": {},
+                }
+            },
+        )
+
+
 @app.post(f"{API_PREFIX}/auth/session", response_model=AuthSessionResponse)
-def create_session(payload: AuthSessionRequest):
+def create_session(
+    payload: AuthSessionRequest,
+    x_service_token: str | None = Header(default=None),
+):
+    _require_service_trust(x_service_token)
     if payload.provider not in ALLOWED_PROVIDERS:
         raise HTTPException(
             status_code=400,
@@ -572,18 +776,7 @@ def create_session(payload: AuthSessionRequest):
 
 @app.post(f"{API_PREFIX}/auth/introspect")
 def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str | None = Header(default=None)):
-    if not x_service_token or not secrets.compare_digest(x_service_token, INTERNAL_SERVICE_TOKEN):
-        audit_auth_event("auth", "service_auth_failure", {"reason": "invalid_service_token"})
-        raise HTTPException(
-            status_code=403,
-            detail={
-                "error": {
-                    "code": "forbidden",
-                    "message": "Service trust token is invalid",
-                    "details": {},
-                }
-            },
-        )
+    _require_service_trust(x_service_token)
 
     try:
         _, jwt_claims = _decode_and_verify_token(payload.token)
@@ -824,6 +1017,105 @@ def oauth_github_callback(code: str = "", state: str = "", error: str = ""):
     return RedirectResponse(url=redirect_url)
 
 
+# ── Owner sign-in providers ──────────────────────────────────────────────────
+
+@app.get(f"{API_PREFIX}/auth/providers")
+def owner_auth_providers():
+    """Return public, non-secret sign-in capabilities for WordPress and Studio."""
+    return {
+        "google": {
+            "available": bool(GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET and OWNER_GOOGLE_EMAILS),
+            "start_url": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google",
+            "callback_uri": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google/callback",
+        },
+        "magic_email": {
+            "available": MAGIC_EMAIL_CONFIGURED,
+            "request_url": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/magic-link",
+            "verify_url": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/magic-link/verify",
+            "ttl_seconds": MAGIC_LINK_TTL_SECONDS,
+        },
+        "redirect_base": OAUTH_REDIRECT_BASE,
+    }
+
+
+_MAGIC_LINK_ACCEPTED = {
+    "accepted": True,
+    "message": "If that email is authorized, a sign-in link has been sent.",
+}
+
+
+@app.post(f"{API_PREFIX}/auth/magic-link")
+def request_magic_link(payload: MagicLinkRequest):
+    """Send an allowlisted owner a durable, single-use sign-in link."""
+    if not MAGIC_EMAIL_CONFIGURED:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "error": {
+                    "code": "provider_not_ready",
+                    "message": "Magic email sign-in is not configured",
+                }
+            },
+        )
+    email = _normalise_email(payload.email)
+    if not email:
+        raise HTTPException(
+            status_code=400,
+            detail={"error": {"code": "invalid_email", "message": "A valid email address is required"}},
+        )
+    if email not in OWNER_MAGIC_EMAILS:
+        audit_auth_event("auth", "magic_link_requested", {"authorized": False})
+        return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
+
+    issued = _create_magic_link(email)
+    if not issued:
+        audit_auth_event("auth", "magic_link_rate_limited", {"email": _redact_claim_identifier(email)})
+        return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
+    token, _ = issued
+    callback_url = (
+        f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/magic-link/verify?"
+        + urllib.parse.urlencode({"token": token})
+    )
+    delivered = _send_magic_email(email, callback_url)
+    if not delivered:
+        now = int(_now_utc().timestamp())
+        with _db() as conn:
+            conn.execute(
+                "UPDATE magic_links SET used_at = ? WHERE token_hash = ? AND used_at IS NULL",
+                (now, _magic_token_hash(token)),
+            )
+            conn.commit()
+    audit_auth_event(
+        "auth",
+        "magic_link_requested",
+        {"authorized": True, "delivered": delivered, "email": _redact_claim_identifier(email)},
+    )
+    return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
+
+
+@app.get(f"{API_PREFIX}/auth/magic-link/verify")
+def verify_magic_link(token: str = ""):
+    """Consume a magic link and issue an eight-hour owner session."""
+    status, email = _consume_magic_link(token)
+    if status == "expired":
+        return _error_page("This sign-in link has expired. Request a new one.", provider="magic_link")
+    if status != "ok":
+        return _error_page("This sign-in link is invalid or has already been used.", provider="magic_link")
+    if email not in OWNER_MAGIC_EMAILS:
+        return _error_page("This email is no longer authorized for owner access.", provider="magic_link")
+    session_token, _ = _issue_and_store_session(
+        subject=f"magic:{email}",
+        provider="magic_link",
+        email=email,
+        tenant_id="",
+        role="Owner",
+        scopes=_default_scopes("Owner"),
+        ttl_seconds=8 * 3600,
+    )
+    redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(session_token, safe='')}"
+    return RedirectResponse(url=redirect_url)
+
+
 # ── Google OAuth ──────────────────────────────────────────────────────────────
 
 @app.get(f"{API_PREFIX}/auth/google")
@@ -871,15 +1163,20 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         return _error_page("Could not complete sign-in with Google — please try again.", log_detail=str(exc), provider="google")
 
     id_token_raw = token_data.get("id_token", "")
+    if not id_token_raw:
+        return _error_page("Google did not return identity information.", provider="google")
     try:
-        # Decode without verification — we trust Google's signed redirect.
-        payload_b64 = id_token_raw.split(".")[1]
-        # Restore standard base64 padding.
-        padding = (4 - len(payload_b64) % 4) % 4
-        id_payload = json.loads(base64.b64decode(payload_b64 + "=" * padding).decode("utf-8"))
+        verify_resp = _requests.get(
+            "https://oauth2.googleapis.com/tokeninfo",
+            params={"id_token": id_token_raw},
+            timeout=10,
+        )
+        verify_resp.raise_for_status()
+        id_payload = verify_resp.json()
         email = (id_payload.get("email") or "").strip()
         sub = (id_payload.get("sub") or "").strip()
         aud = (id_payload.get("aud") or "").strip()
+        issuer = (id_payload.get("iss") or "").strip()
         email_verified = id_payload.get("email_verified")
         token_exp = int(id_payload.get("exp") or 0)
     except Exception as exc:
@@ -889,6 +1186,8 @@ def oauth_google_callback(code: str = "", state: str = "", error: str = ""):
         return _error_page("Google did not return the required account details.", provider="google")
     if aud != GOOGLE_CLIENT_ID:
         return _error_page("Google sign-in did not match this configured app.", provider="google")
+    if issuer not in {"accounts.google.com", "https://accounts.google.com"}:
+        return _error_page("Google sign-in was issued by an unexpected authority.", provider="google")
     if email_verified is not True and str(email_verified).strip().lower() != "true":
         return _error_page("This Google account e-mail is not verified.", provider="google")
     if token_exp and token_exp <= int(_now_utc().timestamp()):
@@ -925,12 +1224,18 @@ def oauth_debug():
             "callback_uri": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/github/callback",
         },
         "google": {
-            "configured": bool(GOOGLE_CLIENT_ID),
+            "configured": bool(GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET and OWNER_GOOGLE_EMAILS),
             "callback_uri": f"{AUTH_PUBLIC_URL.rstrip('/')}{API_PREFIX}/auth/google/callback",
+        },
+        "magic_email": {
+            "configured": MAGIC_EMAIL_CONFIGURED,
+            "smtp_configured": MAGIC_EMAIL_CONFIGURED,
+            "ttl_seconds": MAGIC_LINK_TTL_SECONDS,
         },
         "redirect_base": OAUTH_REDIRECT_BASE,
         "owner_github_login_count": len(OWNER_GITHUB_LOGINS),
         "owner_google_email_count": len(OWNER_GOOGLE_EMAILS),
+        "owner_magic_email_count": len(OWNER_MAGIC_EMAILS),
     }
 
 

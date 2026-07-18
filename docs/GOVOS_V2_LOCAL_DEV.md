@@ -236,7 +236,7 @@ curl http://127.0.0.1:8105/api/v2/ready
 
 ```bash
 # Smoke test model
-docker exec -it 12sgi-king-gpu-runtime-1 ollama pull llama3
+docker exec -it 12sgi-king-gpu-runtime-1 ollama pull llama3.2
 
 # Reasoning model (after stack is stable on the 8 GB card)
 docker exec -it 12sgi-king-gpu-runtime-1 ollama pull qwen3:8b

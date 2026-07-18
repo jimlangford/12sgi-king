@@ -66,10 +66,13 @@ Passwordless authentication, OAuth provider integration, JWT signing, token intr
 | GET | `/api/v2/ready` | Readiness probe (DB check) | No |
 | GET | `/api/v2/health` | Health (session count) | No |
 | GET | `/api/v2/auth/debug` | OAuth config status (no secrets exposed) | No |
+| GET | `/api/v2/auth/providers` | WordPress / Studio provider discovery | No |
 | GET | `/api/v2/auth/jwks` | JWT public key set | No |
 | POST | `/api/v2/auth/session` | Create session (email/provider) | Service token |
 | POST | `/api/v2/auth/introspect` | Verify + introspect JWT | Service token |
 | POST | `/api/v2/auth/diagnostics/claims` | Diagnostic token decode | Owner role |
+| POST | `/api/v2/auth/magic-link` | Request allowlisted owner magic email | No |
+| GET | `/api/v2/auth/magic-link/verify` | Consume single-use magic link | No |
 | GET | `/api/v2/auth/github` | GitHub OAuth redirect | No |
 | GET | `/api/v2/auth/github/callback` | GitHub OAuth callback | No |
 | GET | `/api/v2/auth/google` | Google OAuth redirect | No |
@@ -105,6 +108,10 @@ SMTP_PORT                        # SMTP port (default: 587)
 SMTP_USER                        # SMTP authentication user
 SMTP_PASS                        # SMTP authentication password
 SMTP_FROM                        # Sender address (default: noreply@12sgi.com)
+SMTP_STARTTLS                    # Upgrade SMTP connection with TLS (default: true)
+SMTP_ALLOW_UNAUTHENTICATED       # Trusted local relay only (default: false)
+MAGIC_LINK_TTL_SECONDS           # Magic-link lifetime (default: 900)
+MAGIC_LINK_MIN_INTERVAL_SECONDS  # Per-address request interval (default: 60)
 AUTH_PUBLIC_URL                  # Public auth service URL (for OAuth callbacks)
 OAUTH_REDIRECT_BASE              # Console redirect after OAuth
 CORS_ORIGINS                     # Comma-separated allowed origins
@@ -120,11 +127,11 @@ GOVOS_ALLOW_DEV_SECRETS          # Allow published dev secrets (local dev only)
 
 **Status Indicators:**
 - ✅ GitHub OAuth: Fully implemented
-- ✅ Google OAuth: Fully implemented
+- ✅ Google OAuth: Google-verified claims + owner allowlist
+- ✅ Magic Links: Durable hashed tokens, SMTP delivery, replay protection
 - ⏳ Apple Sign-In: Stubbed in ALLOWED_PROVIDERS; endpoints not yet implemented
 - ⏳ Microsoft Entra: Stubbed in ALLOWED_PROVIDERS; endpoints not yet implemented
 - ⏳ Passkeys (WebAuthn): Listed in ALLOWED_PROVIDERS; not yet implemented
-- ⏳ Magic Links: Listed in ALLOWED_PROVIDERS; SMTP config ready; not yet implemented
 
 **Documentation:**
 - Setup: `docs/OAUTH_SETUP.md`
@@ -353,7 +360,7 @@ TENANT_SERVICE_URL
 TENANT_READY_URL
 GPU_ROUTER_URL                    # GPU Router endpoint (default: http://gpu-router:8107)
 GPU_ROUTER_READY_URL
-GPU_DEFAULT_MODEL                 # Default Ollama model (default: llama3)
+GPU_DEFAULT_MODEL                 # Default Ollama model (default: llama3.2, 3B/2GB)
 GPU_INFER_TIMEOUT                 # Max inference time in seconds (default: 120)
 INTERNAL_SERVICE_TOKEN
 DEPENDENCY_TIMEOUT_SECONDS

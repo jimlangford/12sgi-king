@@ -26,7 +26,13 @@ paths:
           description: Health details
   /api/v2/auth/session:
     post:
-      summary: Create auth session
+      summary: Create an internal service-authenticated session
+      parameters:
+        - in: header
+          name: X-Service-Token
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -40,6 +46,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthSessionResponse'
+        '403':
+          description: Service trust token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/auth/diagnostics/claims:
     post:
       summary: Owner-only non-secret claim diagnostics
@@ -136,6 +148,55 @@ paths:
       responses:
         '200':
           description: OAuth debug info (no secrets exposed)
+  /api/v2/auth/providers:
+    get:
+      summary: Discover public Google and magic-email sign-in capabilities
+      responses:
+        '200':
+          description: Provider availability and public endpoint URLs (no secrets exposed)
+  /api/v2/auth/magic-link:
+    post:
+      summary: Request a single-use owner sign-in link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '202':
+          description: Request accepted without disclosing allowlist membership
+        '400':
+          description: Invalid email address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Magic-email delivery is not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v2/auth/magic-link/verify:
+    get:
+      summary: Consume a single-use magic link and start an owner session
+      parameters:
+        - in: query
+          name: token
+          required: true
+          schema:
+            type: string
+      responses:
+        '307':
+          description: Redirect back to the owner console with token fragment
+        '400':
+          description: Link is invalid, expired, used, or no longer authorized
   /api/v2/auth/github:
     get:
       summary: Start GitHub OAuth owner sign-in

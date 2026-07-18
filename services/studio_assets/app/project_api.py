@@ -4,24 +4,29 @@ Mounted into the studio-assets FastAPI app at /api/v2/projects/*.
 Provides: add, reset, restart, status, list — mirroring tools/studio_project.py
 but callable over HTTP from gordon.html, the go console, or any internal service.
 
-All mutations emit workboard jobs (append-only, auditable).
-Registry file (tenant_registry.json) is mounted read-only in the container, so
-add/reset/restart that mutate the registry call back to king-bridge or write
-directly if the REGISTRY_PATH env points to a writable location.
+All mutations emit workboard jobs (append-only, auditable). The canonical
+tenant_registry.json stays read-only in the container. Mutations persist to an
+app-owned registry overlay and merge with the canonical source on every read.
 
-Security: loopback + Tailscale trust boundary. No external auth required on 8108.
+Security: reads stay on the loopback/Tailscale boundary; every mutation requires an
+owner bearer token with the ``ops:owner`` scope when Studio auth is enabled.
 """
 import json
 import os
+import re
 import sys
+import tempfile
+import threading
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+
+from services.studio_assets.app.security import require_studio_owner
 
 # ── Repo imports ──────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve()
@@ -40,10 +45,14 @@ except Exception:
     _WB_AVAILABLE = False
 
 # ── Config ────────────────────────────────────────────────────────────────────
-REGISTRY_PATH = Path(os.environ.get("STUDIO_REGISTRY_PATH", str(_REPO / "tenant_registry.json")))
+REGISTRY_SOURCE_PATH = Path(
+    os.environ.get("STUDIO_REGISTRY_SOURCE_PATH", str(_REPO / "tenant_registry.json"))
+)
+REGISTRY_PATH = Path(os.environ.get("STUDIO_REGISTRY_PATH", str(REGISTRY_SOURCE_PATH)))
 NEO4J_HTTP    = os.environ.get("NEO4J_HTTP", "http://host.docker.internal:7474/db/neo4j/tx/commit")
 AUTH_URL      = os.environ.get("AUTH_SESSION_URL", "http://host.docker.internal:8101/api/v2/auth/session")
 AUTH_READY    = os.environ.get("AUTH_READY_URL",   "http://host.docker.internal:8101/api/v2/ready")
+INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "")
 TIMEOUT       = int(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "5"))
 
 VALID_KINDS    = {"film","game","music_video","short","series","documentary","other"}
@@ -60,6 +69,8 @@ _ROLE_MAP = {
     "forming": "Resident", "proposed_internal": "Resident",
     "blessing_gated_preproduction": "Resident",
 }
+_TENANT_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
+_REGISTRY_LOCK = threading.RLock()
 
 router = APIRouter(prefix="/api/v2/projects", tags=["studio-projects"])
 
@@ -92,14 +103,93 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def _read_registry(path: Path) -> dict:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or not isinstance(data.get("creative_tenants", []), list):
+        raise ValueError(f"invalid Studio registry: {path}")
+    return data
+
+
+def _merge_registry(source: dict, local: dict) -> dict:
+    """Merge Studio-owned additions/status changes over the regenerated source registry."""
+    merged = dict(source)
+    source_rows = [dict(row) for row in source.get("creative_tenants", [])]
+    source_by_id = {row.get("id"): row for row in source_rows if row.get("id")}
+    for local_row in local.get("creative_tenants", []):
+        tenant_id = local_row.get("id")
+        if not tenant_id:
+            continue
+        if tenant_id not in source_by_id:
+            row = dict(local_row)
+            source_rows.append(row)
+            source_by_id[tenant_id] = row
+        elif local_row.get("_studio_status_updated_at"):
+            source_by_id[tenant_id]["status"] = local_row.get(
+                "status", source_by_id[tenant_id].get("status")
+            )
+            source_by_id[tenant_id]["_studio_status_updated_at"] = local_row[
+                "_studio_status_updated_at"
+            ]
+    merged["creative_tenants"] = source_rows
+    counts = dict(merged.get("counts") or {})
+    counts["creative"] = len(source_rows)
+    merged["counts"] = counts
+    return merged
+
+
 def _load_registry() -> dict:
-    return json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+    with _REGISTRY_LOCK:
+        source = _read_registry(REGISTRY_SOURCE_PATH)
+        if REGISTRY_PATH == REGISTRY_SOURCE_PATH or not REGISTRY_PATH.exists():
+            return source
+        return _merge_registry(source, _read_registry(REGISTRY_PATH))
 
 
 def _save_registry(reg: dict) -> None:
-    REGISTRY_PATH.write_text(
-        json.dumps(reg, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
+    if REGISTRY_PATH == REGISTRY_SOURCE_PATH:
+        raise RuntimeError("Studio registry mutations require a writable overlay path")
+    REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    handle, temp_name = tempfile.mkstemp(
+        prefix=f".{REGISTRY_PATH.name}.", dir=REGISTRY_PATH.parent, text=True
     )
+    try:
+        with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as stream:
+            json.dump(reg, stream, indent=1, ensure_ascii=False)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temp_name, REGISTRY_PATH)
+    except Exception:
+        try:
+            os.unlink(temp_name)
+        except OSError:
+            pass
+        raise
+
+
+def _normalise_tenant_id(value: str) -> str:
+    tenant_id = (value or "").strip().replace(" ", "_").lower()
+    if not _TENANT_ID_PATTERN.fullmatch(tenant_id):
+        raise HTTPException(
+            status_code=400,
+            detail={"error": "id must be 1-64 lowercase letters, digits, underscores, or hyphens"},
+        )
+    return tenant_id
+
+
+def _normalise_status(value: str) -> str:
+    status = (value or "").strip().lower()
+    if status not in VALID_STATUSES:
+        raise HTTPException(
+            status_code=400,
+            detail={"error": f"status must be one of {sorted(VALID_STATUSES)}"},
+        )
+    return status
+
+
+def _require_matching_id(body_id: str, tenant_id: str) -> None:
+    if _normalise_tenant_id(body_id) != tenant_id:
+        raise HTTPException(status_code=400, detail={"error": "body id must match path tenant_id"})
 
 
 def _emit(source: str, action: str, event: str, lane: str, status: str, payload: dict) -> str:
@@ -154,8 +244,15 @@ def _auth_verify(tenant_id: str, role: str) -> bool:
         "email":"seed@king-server.internal","tenant_id":tenant_id,
         "role":role,"scopes":scopes,"expires_in":300,
     }).encode()
-    req = urllib.request.Request(AUTH_URL, data=body,
-                                  headers={"Content-Type":"application/json"}, method="POST")
+    req = urllib.request.Request(
+        AUTH_URL,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "X-Service-Token": INTERNAL_SERVICE_TOKEN,
+        },
+        method="POST",
+    )
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             return bool(json.loads(r.read()).get("access_token"))
@@ -207,36 +304,38 @@ def get_project(tenant_id: str):
     return {**tenant, "open_job_count": len(open_jobs), "open_job_ids": open_jobs}
 
 
-@router.post("", status_code=201)
+@router.post("", status_code=201, dependencies=[Depends(require_studio_owner)])
 def add_project(req: AddProjectRequest):
     """Add a new studio project to the registry."""
-    tid = req.id.strip().replace(" ", "_").lower()
-    if not tid:
-        raise HTTPException(status_code=400, detail={"error": "id is required"})
-
-    reg = _load_registry()
-    if any(t["id"] == tid for t in reg.get("creative_tenants", [])):
-        raise HTTPException(status_code=409, detail={"error": f"tenant_id '{tid}' already exists"})
+    tid = _normalise_tenant_id(req.id)
 
     kind   = req.kind.strip().lower()
     render = req.render.strip().lower()
-    status = req.status.strip().lower()
+    status = _normalise_status(req.status)
 
     if kind not in VALID_KINDS:
         raise HTTPException(status_code=400, detail={"error": f"kind must be one of {sorted(VALID_KINDS)}"})
     if render not in VALID_RENDERS:
         raise HTTPException(status_code=400, detail={"error": f"render must be one of {sorted(VALID_RENDERS)}"})
 
+    name = (req.name or "").strip()
+    if not name or len(name) > 160:
+        raise HTTPException(status_code=400, detail={"error": "name must be 1-160 characters"})
+
     role = _ROLE_MAP.get(status, "Resident")
     tenant = {
-        "id": tid, "name": req.name or tid, "kind": kind,
+        "id": tid, "name": name, "kind": kind,
         "quadrant": kind, "render_register": render,
         "status": status, "_added_at": _now(),
     }
 
-    reg["creative_tenants"].append(tenant)
-    reg["counts"]["creative"] = len(reg["creative_tenants"])
-    _save_registry(reg)
+    with _REGISTRY_LOCK:
+        reg = _load_registry()
+        if any(t["id"] == tid for t in reg.get("creative_tenants", [])):
+            raise HTTPException(status_code=409, detail={"error": f"tenant_id '{tid}' already exists"})
+        reg.setdefault("creative_tenants", []).append(tenant)
+        reg.setdefault("counts", {})["creative"] = len(reg["creative_tenants"])
+        _save_registry(reg)
 
     neo_ok   = _neo_merge(tenant)
     verified = _auth_verify(tid, role)
@@ -259,9 +358,11 @@ def add_project(req: AddProjectRequest):
     }
 
 
-@router.post("/{tenant_id}/reset")
+@router.post("/{tenant_id}/reset", dependencies=[Depends(require_studio_owner)])
 def reset_project(tenant_id: str, req: ResetRequest):
     """Reset a project's storyboard — clears neo4j storyboard nodes + tombstones open jobs."""
+    tenant_id = _normalise_tenant_id(tenant_id)
+    _require_matching_id(req.id, tenant_id)
     reg = _load_registry()
     tenant = next((t for t in reg.get("creative_tenants", []) if t["id"] == tenant_id), None)
     if not tenant:
@@ -289,23 +390,29 @@ def reset_project(tenant_id: str, req: ResetRequest):
     }
 
 
-@router.post("/{tenant_id}/restart")
+@router.post("/{tenant_id}/restart", dependencies=[Depends(require_studio_owner)])
 def restart_project(tenant_id: str, req: RestartRequest):
     """Full restart — reset storyboard + optional status update + re-seed auth + creative lane job."""
-    reg = _load_registry()
-    tenants = reg.get("creative_tenants", [])
-    idx = next((i for i, t in enumerate(tenants) if t["id"] == tenant_id), None)
-    if idx is None:
-        raise HTTPException(status_code=404, detail={"error": f"project '{tenant_id}' not found"})
+    tenant_id = _normalise_tenant_id(tenant_id)
+    _require_matching_id(req.id, tenant_id)
+    with _REGISTRY_LOCK:
+        reg = _load_registry()
+        tenants = reg.get("creative_tenants", [])
+        idx = next((i for i, t in enumerate(tenants) if t["id"] == tenant_id), None)
+        if idx is None:
+            raise HTTPException(status_code=404, detail={"error": f"project '{tenant_id}' not found"})
 
-    tenant = dict(tenants[idx])
-    new_status = (req.status or "").strip() or tenant.get("status", "in_production")
+        tenant = dict(tenants[idx])
+        new_status = _normalise_status(req.status or tenant.get("status", "in_production"))
 
-    if new_status != tenant.get("status"):
-        tenants[idx]["status"] = new_status
-        reg["creative_tenants"] = tenants
-        _save_registry(reg)
-        tenant["status"] = new_status
+        if new_status != tenant.get("status"):
+            updated_at = _now()
+            tenants[idx]["status"] = new_status
+            tenants[idx]["_studio_status_updated_at"] = updated_at
+            reg["creative_tenants"] = tenants
+            _save_registry(reg)
+            tenant["status"] = new_status
+            tenant["_studio_status_updated_at"] = updated_at
 
     role     = _ROLE_MAP.get(new_status, "Resident")
     neo_ok   = _neo_clear(tenant_id)
