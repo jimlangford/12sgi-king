@@ -331,7 +331,7 @@ def build_civic_html(findings):
         '   this style, flipping body text to a light dark-theme color -> this light-cell table went\n'
         '   invisible (light text on light cells). Force this page own dark table text with html body\n'
         '   specificity + !important so the injected CSS cannot override it. */\n'
-        'html body{color:#1a2233 !important;background:#ffffff !important}\n'
+        'html body{background:#ffffff !important}\n'
         'html body h1{color:#0e4a84 !important}\n'
         'html body p.lead{color:#3a4a5a !important}html body .note{color:#5a6b7b !important}\n'
         'html body table th{background:#0e4a84 !important;color:#ffffff !important}\n'
