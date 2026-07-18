@@ -125,7 +125,7 @@ def _bar(pct, w=120):
     filled = max(2, int(pct / 100 * w))
     color = "#1f8a5b" if pct >= 35 else "#b07d1a" if pct >= 15 else "#8b2e2e"
     return (
-        f"<div style='display:inline-block;width:{w}px;height:10px;background:#dae5f3;border-radius:5px;vertical-align:middle;overflow:hidden;'>"
+        f"<div style='display:inline-block;width:{w}px;height:10px;background:#0f2540;border-radius:5px;vertical-align:middle;overflow:hidden;'>"
         f"<div style='width:{filled}px;height:10px;background:{color};border-radius:5px;'></div></div>"
     )
 
@@ -362,7 +362,7 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
         if re_total and total:
             pct = round(re_total / float(total) * 100)
             re_badge = (
-                f"<span style='background:#fdf0f0;color:#8b2e2e;border:1px solid #e8c4c4;"
+                f"<span style='background:#0f2540;color:#8b2e2e;border:1px solid #e8c4c4;"
                 f"border-radius:5px;padding:3px 8px;font-size:11px;margin:2px;display:inline-block;'>"
                 f"&#127959; Development/real-estate sector: {_fmt_money(re_total)} ({pct}% of total)"
                 f"</span>"
@@ -529,7 +529,7 @@ def _positive_html(tenant_id: str) -> str:
 
     if not items:
         return (
-            "<div style='background:#e7f3ec;border:1px solid #bfe0cc;border-left:3px solid #1f8a5b;"
+            "<div style='background:#0f2540;border:1px solid #bfe0cc;border-left:3px solid #1f8a5b;"
             "border-radius:8px;padding:.8rem 1rem;font-size:.9rem;color:#1f5a3c;'>"
             "Positive highlights for this tenant are building — check back as we add sourced data."
             "</div>"
@@ -544,7 +544,7 @@ def _positive_html(tenant_id: str) -> str:
                 f"{esc(it.get('link_label','More'))} &rarr;</a>"
             )
         rows += (
-            f"<div style='margin:.5rem 0;padding:.6rem .9rem;background:#e7f3ec;"
+            f"<div style='margin:.5rem 0;padding:.6rem .9rem;background:#0f2540;"
             f"border-left:2px solid #1f8a5b;border-radius:6px;'>"
             f"<div style='font-weight:600;color:#13402a;font-size:.9rem;'>{esc(it['label'])}</div>"
             f"<div style='color:#1f5a3c;font-size:.88rem;line-height:1.5;margin-top:.2rem;'>"

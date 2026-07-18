@@ -218,7 +218,7 @@ def _html(out):
            "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:900px;margin:1.4rem auto;padding:0 1rem;color:#1f2d3a}"
            "h1{color:#7fb2ff;font-size:1.3rem}.lead{color:#33414f}.mtg{border:1px solid #26456a;border-radius:10px;padding:.6rem .9rem;margin:.7rem 0}"
            ".mh{color:#7fb2ff;margin-bottom:.3rem}.item{border-top:1px solid #eef3f9;padding:.45rem 0}.t{font-weight:600}"
-           ".att{font-size:.78rem;color:#8b99a6}.lens{font-size:.86rem;color:#1f6f54;margin-top:.2rem}.fine{color:#5a6b7b}</style>"
+           ".att{font-size:.78rem;color:#8b99a6}.lens{font-size:.86rem;color:#1f6f54;margin-top:.2rem}.fine{color:#9fb2c8}</style>"
            "<h1>Agenda intel — reading the packets to get ahead</h1>"
            "<p class=lead>Upcoming agenda items and their attached files, read early. Where the packet names a "
            "party who funds the deciders, we raise a question for pono &mdash; before the vote, sourced, never an "

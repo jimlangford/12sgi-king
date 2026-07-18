@@ -70,7 +70,7 @@ def esc(s): return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">"
 _IND_CSS = (".ind{margin:.5rem 0 1.1rem}.ind .ih{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;"
     "color:#6d7f97;font-weight:600;margin-bottom:.45rem}.ind .row{display:grid;grid-template-columns:210px 1fr 58px;"
     "gap:10px;align-items:center;margin:.3rem 0;font-size:.86rem}.ind .nm{color:#13243d;overflow:hidden;"
-    "text-overflow:ellipsis;white-space:nowrap}.ind .tr{background:#dae5f3;border-radius:99px;height:13px;overflow:hidden}"
+    "text-overflow:ellipsis;white-space:nowrap}.ind .tr{background:#0f2540;border-radius:99px;height:13px;overflow:hidden}"
     ".ind .tr i{display:block;height:13px;border-radius:99px;background:linear-gradient(90deg,#00356b,#1259a3)}"
     ".ind .pc{font-family:Consolas,monospace;font-weight:700;color:#00356b;text-align:right}"
     "@media(max-width:560px){.ind .row{grid-template-columns:130px 1fr 48px}}")

@@ -132,7 +132,7 @@ def build():
         for it in pub_items:
             dept_rows += ("<div style='border-left:3px solid #1f6f54;padding:.5rem .8rem;margin:.6rem 0'>"
                           "<b style='font-size:.95rem'>%s</b>"
-                          "<p style='font-size:.88rem;color:#3a4a5a;margin:.25rem 0 0'>%s</p>"
+                          "<p style='font-size:.88rem;color:#9fb2c8;margin:.25rem 0 0'>%s</p>"
                           "%s</div>" % (
                           esc(it["headline"]), esc(it["angle"]),
                           ("<a href='%s' style='font-size:.8rem;color:#7fb2ff'>Source &#8599;</a>" % esc(it["source_href"])
@@ -142,7 +142,7 @@ def build():
         for it in gated_items:
             dept_rows += ("<div style='border-left:3px solid #c07b2a;padding:.5rem .8rem;margin:.6rem 0'>"
                           "<b style='font-size:.95rem'>%s</b>"
-                          "<p style='font-size:.88rem;color:#3a4a5a;margin:.25rem 0 0'>%s</p>"
+                          "<p style='font-size:.88rem;color:#9fb2c8;margin:.25rem 0 0'>%s</p>"
                           "<span style='font-size:.78rem;color:#8a6020;font-style:italic'>Public question — "
                           "verify before relying on it.</span> "
                           "%s</div>" % (
@@ -171,11 +171,11 @@ def build():
         "<h2 style='color:#7fb2ff;font-size:1.05rem'>By the numbers</h2>"
         "<table style='border-collapse:collapse;width:100%%;font-size:.92rem'>"
         "<style>.l{padding:.4rem .2rem;border-bottom:1px solid #eef3f9}.v{padding:.4rem .2rem;border-bottom:1px solid #eef3f9;"
-        "text-align:right;font-weight:700;color:#1f6f54}.fine{color:#5a6b7b;font-size:.85rem;padding:.5rem .2rem}</style>%s</table>"
+        "text-align:right;font-weight:700;color:#1f6f54}.fine{color:#9fb2c8;font-size:.85rem;padding:.5rem .2rem}</style>%s</table>"
         "%s"
         "<h2 style='color:#7fb2ff;font-size:1.05rem;margin-top:1.1rem'>Dig in yourself</h2>"
         "<ul style='font-size:.95rem;line-height:1.7;padding-left:1.1rem'>%s</ul>"
-        "<p style='font-size:.85rem;color:#5a6b7b;border-top:1px solid #eef3f9;padding-top:.8rem;margin-top:1.2rem'>"
+        "<p style='font-size:.85rem;color:#9fb2c8;border-top:1px solid #eef3f9;padding-top:.8rem;margin-top:1.2rem'>"
         "Sourced from public records — Hawaiʻi Campaign Spending Commission, USASpending.gov, county agendas &amp; "
         "contracts. Christ energy = aloha in action; rigor in the numbers, aloha in the asking.</p>"
         "<p style='font-size:.78rem;color:#8a97a6'>You're receiving this because you signed up at the free level on "

@@ -95,17 +95,17 @@ def build():
             % (esc(g), li))
 
     htmlbody = """<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#222">
-  <p style="background:#fff4ef;border:1px solid #f0c4b4;border-radius:8px;padding:10px 14px;font-size:12px;color:#9a4a2a;margin:0 0 14px">
+  <p style="background:#0f2540;border:1px solid #f0c4b4;border-radius:8px;padding:10px 14px;font-size:12px;color:#9a4a2a;margin:0 0 14px">
   🔒 Private — these links resolve only on your Tailscale-authenticated devices. Prosecutorial detail stays on the laptop and never leaves it.</p>
   <h1 style="font-size:22px;margin:6px 0">Daily reports — %s</h1>
   <p style="font-size:14px;color:#444;line-height:1.5">Every report the system finds and refines each day, in one place. The index link below always points to the latest.</p>
   <p style="margin:14px 0"><a href="%s" style="background:#0b6e4f;color:#fff;text-decoration:none;padding:11px 18px;border-radius:8px;font-weight:600;font-size:15px;display:inline-block">📂 Open the daily reports index</a></p>
-  <div style="background:#f6f8f7;border-radius:8px;padding:12px 16px;font-size:13.5px;color:#333;line-height:1.6">
+  <div style="background:#0f2540;border-radius:8px;padding:12px 16px;font-size:13.5px;color:#333;line-height:1.6">
     <b>Prosecutor snapshot (%s):</b> %d tenants covered · %d money-votes items · %d committee dissent motions · %d cross-checked testimony · <b>%s</b>.<br>
     <span style="color:#666">Detail (named records, figures, allegations framed as questions) stays behind the private links.</span>
   </div>
   %s
-  <p style="font-size:12px;color:#888;margin-top:22px;border-top:1px solid #eee;padding-top:10px">Refreshed daily by the Prosecutor lane (works for JRCSL). Sourced + allegation-framed; gaps named and routed to UIPA; never fabricated. Aloha, solution-side.</p>
+  <p style="font-size:12px;color:#9aa8b8;margin-top:22px;border-top:1px solid #eee;padding-top:10px">Refreshed daily by the Prosecutor lane (works for JRCSL). Sourced + allegation-framed; gaps named and routed to UIPA; never fabricated. Aloha, solution-side.</p>
 </div>""" % (esc(date), esc(index_url), esc(date), len(tenants), mv, dis, tst, esc(newn), "".join(seclist))
 
     os.makedirs(OUT, exist_ok=True)

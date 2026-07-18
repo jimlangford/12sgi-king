@@ -160,7 +160,7 @@ def _html(out):
            "h1{color:#7fb2ff;font-size:1.3rem}.lead{color:#33414f}.item{border-bottom:1px solid #eef3f9;padding:.6rem 0}"
            ".t{font-weight:600}a{color:#0b6bcb;text-decoration:none}.pri{background:#241d0e;border:1px solid #5c4a1e;"
            "color:#e3c98a;border-radius:99px;padding:.05rem .55rem;font-size:.72rem;margin-left:.4rem}"
-           ".lens{font-size:.86rem;color:#1f6f54;margin-top:.25rem}.fine{color:#5a6b7b}</style>"
+           ".lens{font-size:.86rem;color:#1f6f54;margin-top:.25rem}.fine{color:#9fb2c8}</style>"
            "<h1>Press watch — getting ahead of the agenda</h1>"
            "<p class=lead>The county's own announcements, read early so the people can be there in time. Every "
            "item links to the source; each is a question for pono, never an accusation. Affordable housing and "

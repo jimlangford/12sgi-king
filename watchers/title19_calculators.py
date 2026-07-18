@@ -47,7 +47,7 @@ CALC_CSS = (
     ".badge.ok{background:rgba(31,138,91,.12);color:#1f6e4a;border:1px solid rgba(31,138,91,.4)}"
     ".badge.confirm{background:rgba(217,138,12,.12);color:#9a6a00;border:1px solid rgba(217,138,12,.4)}"
     ".dc a{font-size:.82rem} .dc .note{font-size:.8rem;color:var(--faint);margin-top:.35rem;line-height:1.4}"
-    ".total{border:2px solid var(--accent);border-radius:14px;padding:1rem 1.2rem;margin:1.1rem 0;background:#eef3fb}"
+    ".total{border:2px solid var(--accent);border-radius:14px;padding:1rem 1.2rem;margin:1.1rem 0;background:#0f2540}"
     ".total .amt{font-size:1.9rem;font-weight:800;color:var(--accent)}"
     ".total .lab{font-size:.85rem;color:var(--dim)}")
 

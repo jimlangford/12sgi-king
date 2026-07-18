@@ -304,13 +304,13 @@ def write_html(out):
         "campaign finance, HANDS county awards. Lawful advocacy &mdash; a question to the record, never a claim.</p>"
         "</div>" % (esc(out["integrity"]), cc, blocks, esc(out["generated"])))
     css = ("<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#eaf2fc;background:#081420}"
-           ".lead{font-size:1.04rem;color:#33414f}.integrity{background:#eef5ff;border-left:3px solid #0e4a84;"
+           ".lead{font-size:1.04rem;color:#33414f}.integrity{background:#0f2540;border-left:3px solid #0e4a84;"
            "padding:.6rem .9rem;border-radius:8px;font-size:.9rem;margin:.6rem 0}"
            "table{border-collapse:collapse;width:100%;margin:.4rem 0 1rem;font-size:.86rem}"
            "th,td{border:1px solid #dce6f1;padding:.32rem .5rem;text-align:left;vertical-align:top}"
            "th{background:#0f2540;color:#7fb2ff}.ind{border-top:2px solid #e3edf8;margin-top:1.2rem}"
-           ".cc{padding-left:1.1rem}.cc li{margin:.35rem 0}.cc .ok{}.cc .lead{color:#5a6b7b}"
-           ".fine{color:#5a6b7b;font-size:.82rem}h3{color:#7fb2ff;margin-bottom:.2rem}h4{margin:.7rem 0 .2rem;color:#33414f}</style>")
+           ".cc{padding-left:1.1rem}.cc li{margin:.35rem 0}.cc .ok{}.cc .lead{color:#9fb2c8}"
+           ".fine{color:#9fb2c8;font-size:.82rem}h3{color:#7fb2ff;margin-bottom:.2rem}h4{margin:.7rem 0 .2rem;color:#33414f}</style>")
     doc = ("<!doctype html><html lang=en><head><meta charset=utf-8>"
            "<meta name=viewport content='width=device-width,initial-scale=1'>"
            "<title>Cross-checked testimony &mdash; govOS</title>%s</head><body>%s</body></html>" % (css, body))

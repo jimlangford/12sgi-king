@@ -204,7 +204,7 @@ def main():
 def _esc(s): return str(s).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 def _html(p):
     mark = {"ok":"<span style='color:#1f9d55'>✓</span>", "thin":"<span style='color:#d9822b'>○</span>",
-            "gap":"<span style='color:#c0392b'>—</span>"}
+            "gap":"<span style='color:#f0857a'>—</span>"}
     head = "".join("<th title='%s'>%s</th>" % (_esc(d["desc"]), _esc(d["label"])) for d in p["dimensions"])
     body = ""
     for t in p["tenants"]:

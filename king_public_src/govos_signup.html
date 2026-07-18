@@ -69,7 +69,7 @@
       <a href="../site/maui_parcel_map.html" style="font-size:12.5px;font-weight:650;color:var(--accent2);white-space:nowrap;padding:6px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel)">Open full map ↗</a>
     </div>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <div id="crown-map" style="height:340px;width:100%;background:#dde8f0"></div>
+    <div id="crown-map" style="height:340px;width:100%;background:#0f2540"></div>
     <div style="padding:10px 22px 14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);border-top:1px solid var(--line)">
       Sources: Hawaiʻi Statewide GIS Program — DHHL Official (layer 8) · Government Lands/Public Land Trust (layer 23) · OpenStreetMap basemap.
       Formal land-status records only. Does not indicate private owner ethnicity — that is private and not knowable from public data.
@@ -80,7 +80,7 @@
   <script>
   (function(){
     var el=document.getElementById('crown-map');
-    function showFallback(msg){el.style.cssText='height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#dde8f0;color:#41536b;font-family:system-ui,sans-serif';
+    function showFallback(msg){el.style.cssText='height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#0f2540;color:#41536b;font-family:system-ui,sans-serif';
       el.innerHTML='<div><div style="font-size:.95rem;font-weight:700;color:#00356b;margin-bottom:.3rem">Map briefly unavailable</div><div style="font-size:.82rem;max-width:34ch;line-height:1.5">'+(msg||'The live GIS service is not responding. Please refresh.')+'</div></div>';}
     if(typeof L==='undefined'||!L.esri){showFallback('Map library could not load.');return;}
     try{

@@ -63,7 +63,7 @@ def build():
     for m in meetings:
         st = SC.status(m); dl = st["deadline"]; el = st["elements"]
         color = _STATUS_COLOR.get(dl.get("status"), "#5a6b7b")
-        risk = ' <b style="color:#c0392b">AUTO-CANCEL RISK</b>' if dl.get("auto_cancel_risk") else ""
+        risk = ' <b style="color:#f0857a">AUTO-CANCEL RISK</b>' if dl.get("auto_cancel_risk") else ""
         miss = (" — missing: " + ", ".join(esc(x) for x in el["missing"])) if el["missing"] else " — all present"
         notice = SC.notice_text(m)
         nem = SC.notification_email(m); npk = SC.newspaper_package(m)
@@ -91,7 +91,7 @@ def build():
         'mail client with everything filled in — you click send. This tool prepares; the County Clerk performs '
         'the official county-calendar posting + filing.</p>'
         '<style>.mtg{border:1px solid #26456a;border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;background:#081420}'
-        '.mh{font-weight:700;color:#7fb2ff}.cd{font-size:.92rem;margin:.3rem 0}.fine{color:#5a6b7b;font-size:.82rem;margin:.25rem 0}'
+        '.mh{font-weight:700;color:#7fb2ff}.cd{font-size:.92rem;margin:.3rem 0}.fine{color:#9fb2c8;font-size:.82rem;margin:.25rem 0}'
         '.notice{white-space:pre-wrap;background:#0f2540;border:1px solid #1f3d5f;border-radius:8px;padding:.6rem;font-size:.8rem;overflow:auto}'
         '.btns{margin:.5rem 0}.btn{display:inline-block;background:#0e4a84;color:#fff;font-weight:700;border-radius:8px;'
         'padding:.5rem .9rem;text-decoration:none;margin:.2rem .4rem .2rem 0}.btn.alt{background:#1f6f54}'

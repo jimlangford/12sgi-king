@@ -577,7 +577,7 @@ def build_audit_html(tid, dim_status):
 <div class=sub><b>{esc(jurisdiction)}</b></div>
 <div class=disc>This scorecard shows which civic testimony dimensions have real sourced data, which are pending, and which are not applicable for this jurisdiction. The goal is Maui County depth across all dimensions. Sources are honest-empty (plainly labelled 'pending') until data is ingested — no fabrication, no cross-tenant fallback.</div>
 <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 1.2rem">
-  <div style="flex:0 0 180px;height:12px;border-radius:99px;background:#dbe5f0;overflow:hidden"><div style="width:{pct}%;height:12px;background:{bar_color};border-radius:99px"></div></div>
+  <div style="flex:0 0 180px;height:12px;border-radius:99px;background:#0f2540;overflow:hidden"><div style="width:{pct}%;height:12px;background:{bar_color};border-radius:99px"></div></div>
   <span style="font-family:Consolas,monospace;font-size:.88rem;color:#9fb2c8"><b>{done_count} of {len(DIM_LABELS)}</b> dimensions answered ({pct}%)</span>
 </div>
 <table>

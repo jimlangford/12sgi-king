@@ -390,7 +390,7 @@ def build(event_id=None, target_date=None, body_substr=None, transcript_text="")
             f"<div style='color:#7ec8f0;font-size:13px;font-weight:700;letter-spacing:.05em;margin-bottom:6px;'>{esc(name)}</div>"
             f"<div style='color:#8a97a6;font-size:11px;margin-bottom:8px;'>{esc(label)}</div>"
             f"<div style='margin-top:4px;'>{sponsor_tags}{re_badge}</div>"
-            f"<div style='color:#5a6b7b;font-size:11px;margin-top:6px;'>Total raised: {esc(format_money(total))} from {prof.get('rows','?')} contributions — "
+            f"<div style='color:#9fb2c8;font-size:11px;margin-top:6px;'>Total raised: {esc(format_money(total))} from {prof.get('rows','?')} contributions — "
             f"<a href='https://hicscdata.hawaii.gov/' style='color:#5a8aac;'>source: HI Campaign Spending Commission</a></div>"
             f"</div>"
         )
@@ -428,7 +428,7 @@ def build(event_id=None, target_date=None, body_substr=None, transcript_text="")
             noe_names = ", ".join(f"<span style='color:#f59a9a;'>{esc(n)}</span>" for n in noes)
             rows.append(
                 f"<div style='margin:.3rem 0;font-size:.85rem;'>"
-                f"<span style='color:#c0392b;font-weight:700;'>✗ Noes ({len(noes)})</span><br>"
+                f"<span style='color:#f0857a;font-weight:700;'>✗ Noes ({len(noes)})</span><br>"
                 f"<span style='margin-left:12px;'>{noe_names}</span></div>"
             )
         if abstain:
@@ -457,7 +457,7 @@ def build(event_id=None, target_date=None, body_substr=None, transcript_text="")
                 f"<div style='margin:12px 0;padding:12px 14px;background:#081624;border-radius:6px;"
                 f"border-left:3px solid {'#2e8b57' if passed else '#c0392b' if failed else '#1e6fa0'};'>"
                 f"<div style='font-size:.9rem;color:#c8d8e8;font-weight:600;'>"
-                f"<span style='color:#5a6b7b;font-size:.8rem;margin-right:6px;'>{esc(str(it['n'] or i))}.</span>"
+                f"<span style='color:#9fb2c8;font-size:.8rem;margin-right:6px;'>{esc(str(it['n'] or i))}.</span>"
                 f"{esc(it['title'])}</div>"
             )
             if action:
@@ -506,7 +506,7 @@ never an accusation. The aloha response is not silence — it is <em>clear eyes 
 
 <h2 style='color:#7ec8f0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid #1a2e42;padding-bottom:.4rem;margin-top:1.4rem;'>
 🏎 Committee Members & Their Sponsors</h2>
-{sponsor_rows if sponsor_rows else '<p style="color:#5a6b7b;">Sponsor data not yet loaded — run donor_watch.py to populate.</p>'}
+{sponsor_rows if sponsor_rows else '<p style="color:#9fb2c8;">Sponsor data not yet loaded — run donor_watch.py to populate.</p>'}
 
 <h2 style='color:#7ec8f0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid #1a2e42;padding-bottom:.4rem;margin-top:1.6rem;'>
 📋 Agenda Items</h2>
@@ -518,7 +518,7 @@ never an accusation. The aloha response is not silence — it is <em>clear eyes 
   <div style='color:#f3d589;font-weight:700;margin-bottom:4px;'>{moon['phase']} · Pō {esc(moon['name'])} ({moon['age_pct']}% through the lunation)</div>
   <div style='color:#a8c4e0;font-size:.9rem;margin-bottom:6px;'><em>Traditional nature:</em> {esc(moon['nature'])}</div>
   <div style='color:#7ec8f0;font-size:.9rem;'><em>Civic aloha offering:</em> {esc(moon['civic'])}</div>
-  <div style='color:#5a6b7b;font-size:.78rem;margin-top:8px;'>Kaulana mahina is observational; this is astronomical forecast (±1 night). Source: Malo, Kepelino, UH Hawaiʻinuiākea.</div>
+  <div style='color:#9fb2c8;font-size:.78rem;margin-top:8px;'>Kaulana mahina is observational; this is astronomical forecast (±1 night). Source: Malo, Kepelino, UH Hawaiʻinuiākea.</div>
 </div>
 
 {speech_html}

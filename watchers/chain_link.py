@@ -357,7 +357,7 @@ h2{color:#7fb2ff;font-size:1.08rem;margin:1.6rem 0 .5rem;border-bottom:1px solid
 .note{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid #b8860b;border-radius:10px;
  padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#e3c98a;line-height:1.5}
 .pv{font:600 10.5px/1 'JetBrains Mono',Consolas,monospace;padding:2px 7px;border-radius:99px;white-space:nowrap;margin-left:6px;vertical-align:middle}
-.pv-s{background:#e2f0e8;color:#4ec98a;border:1px solid #b9dcc7}
+.pv-s{background:#0f2540;color:#4ec98a;border:1px solid #b9dcc7}
 .pv-t{background:#241d0e;color:#e3c98a;border:1px solid #5c4a1e}
 .legend{font-size:.82rem;color:#9fb2c8;margin:.4rem 0 0}
 .card{border:1px solid #26456a;border-radius:12px;padding:.85rem 1rem;margin:.7rem 0;background:#0f2540}

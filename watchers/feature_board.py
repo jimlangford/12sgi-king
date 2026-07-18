@@ -108,7 +108,7 @@ def build(tenant="hi-maui"):
         '<style>.dept{border:1px solid #26456a;border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;background:#081420}'
         '.dh{font-weight:700;color:#7fb2ff;margin-bottom:.3rem}.reqs{list-style:none;padding:0;margin:0}'
         '.reqs li{border-top:1px solid #eef3f9;padding:.45rem 0}.rt{font-weight:600}.rd{font-size:.9rem;color:#33414f}'
-        '.rm{font-size:.78rem;color:#5a6b7b;margin-top:.15rem}.pill{background:#eaf2fb;color:#7fb2ff;border-radius:20px;'
+        '.rm{font-size:.78rem;color:#9fb2c8;margin-top:.15rem}.pill{background:#0f2540;color:#7fb2ff;border-radius:20px;'
         'padding:.05rem .5rem;font-size:.7rem;margin-left:.4rem}.tiers{display:flex;gap:.8rem;flex-wrap:wrap;margin:.8rem 0}'
         '.tier{flex:1;min-width:230px;border:1px solid #26456a;border-radius:10px;padding:.6rem .8rem;background:#0f2540}'
         '.th{font-weight:700;color:#7fb2ff}.price{font-weight:700;color:#1f6f54;margin:.2rem 0}'
@@ -116,7 +116,7 @@ def build(tenant="hi-maui"):
         '.btn{display:inline-block;background:#0e4a84;color:#fff;font-weight:700;'
         'border-radius:9px;padding:.6rem 1.1rem;text-decoration:none;margin:.5rem 0}'
         '.warn{background:#241d0e;border-left:3px solid #d9a400;padding:.6rem .9rem;border-radius:8px;margin:.6rem 0}'
-        '.fine{color:#5a6b7b;font-size:.84rem;margin-top:.3rem}</style>'
+        '.fine{color:#9fb2c8;font-size:.84rem;margin-top:.3rem}</style>'
         + board_html +
         '<div class=fine style="margin-top:1rem">Sourced + honest: departments and priorities come from the real '
         'Maui County Council committee structure. Requests are public; paid build requests stay private. '
