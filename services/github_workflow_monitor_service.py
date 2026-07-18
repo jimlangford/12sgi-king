@@ -39,7 +39,8 @@ class WorkflowMonitorService:
     def __init__(self, dry_run: bool = False):
         self.dry_run = dry_run
         self.monitor = GitHubWorkflowMonitor()
-        self.monitor.executor.dry_run = dry_run
+        if self.monitor.executor is not None:
+            self.monitor.executor.dry_run = dry_run
         self.running = False
     
     async def run_cycle(self):
