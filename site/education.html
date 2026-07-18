@@ -58,7 +58,40 @@
   footer a{color:var(--ink-dim)}
 </style>
 <link rel="stylesheet" href="govos.css">
-<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style></head>
+<style>
+  /* SELF-THEME GUARD (James 2026-07-17): this page is a self-contained LIGHT design, but govos.css
+     (loaded above for the govOS shell bar) redefines --ink / --ink-dim / --bg to its DARK theme,
+     which washed out this page's own white-header nav links and its secondary button. Re-assert
+     education.html's own readable colors on its OWN elements only, with !important so cascade order
+     no longer matters. Scoped to education selectors (header.top / .hero / .card / .btn / .tab) so
+     the injected govOS shell bar is untouched. */
+  body{ background:#ffffff !important; color:#132339 !important; }
+  header.top{ background:rgba(255,255,255,.96) !important; border-bottom:1px solid #dfe6ee !important; }
+  header.top .brand{ color:#132339 !important; }
+  header.top .brand b{ color:#b8892f !important; }
+  header.top nav.pills a{ color:#4c5c70 !important; }
+  header.top nav.pills a.active{ color:#0e4a84 !important; }
+  h1,h2,h3,h4,h5{ color:#132339 !important; }
+  .eyebrow{ color:#b8892f !important; }
+  .hero p.lead, .card .m, .tab, .stds span, .soon, footer, footer a{ color:#4c5c70 !important; }
+  .btn.primary{ background:#0e4a84 !important; color:#ffffff !important; }
+  .btn.secondary{ color:#0e4a84 !important; background:#eef4fb !important; border:1.5px solid #0e4a84 !important; }
+  a{ color:#0e4a84; }
+  /* card / panel backgrounds: govos.css also darkened --panel/--line, hiding card body text on dark
+     grey. Force education's own light surfaces so the dark card text is legible. */
+  /* NOTE: legibility_fix.css also styles .card/.panel/.tile dark with !important and is injected
+     AFTER this block, so it wins on equal specificity. Use `body .card` (higher specificity) to win. */
+  body .card, body .pillar, body .activity, body .soon{ background:#f6f8fb !important; border:1px solid #dfe6ee !important; color:#4c5c70 !important; }
+  body .card h3, body .pillar h4, body .activity h5{ color:#132339 !important; }
+  body .card .m, body .card p, body .pillar p, body .activity p{ color:#4c5c70 !important; }
+  body .watch{ background:#f2f9f4 !important; border:1.5px solid #2e7d4f !important; }
+  body .stds span{ background:#f6f8fb !important; border:1px solid #dfe6ee !important; color:#4c5c70 !important; }
+  body .pono-box{ background:#fbf6ea !important; border:1px solid #e6d6ac !important; }
+  .tabs{ border-bottom:1px solid #dfe6ee !important; }
+  .tab.active{ color:#0e4a84 !important; border-bottom-color:#0e4a84 !important; }
+</style>
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style><link rel="stylesheet" href="legibility_fix.css">
+</head>
 <body>
 
 <header class="top">
@@ -70,7 +103,6 @@
       <a href="news_record.html">News vs Record</a>
       <a href="education.html" class="active">Education</a>
       <a href="studio.html">Studio</a>
-      <a href="https://12sgi.com/king/" style="color:#b8860b;font-weight:700">🔑 Sign in</a>
     </nav>
   </div>
 </header>
@@ -110,6 +142,20 @@
       </div>
     </div>
   </section>
+  <section style="padding-top:0">
+    <div class="eyebrow">Well-being &middot; a tool for every learner</div>
+    <div class="grid3">
+      <div class="card watch" style="grid-column:1 / -1">
+        <h3>&#127802; The Quad &mdash; a reflection tool anyone can use</h3>
+        <div class="m">A simple, private way through a hard thing: <b>calm the mind, open the heart, trust the gut.</b>
+          Sort what&rsquo;s real from what a tired mind wove on top; move it through something you make or someone you
+          love; find your one true next step. <b>Nothing you type ever leaves your own screen.</b> Work it alone, or
+          bring it to a counselor, a friend, a kupuna. Born from real use.</div>
+        <a class="go" href="https://elementlotus.com/the-quad/">Open The Quad &rarr;</a>
+      </div>
+    </div>
+  </section>
+
 
   <section>
     <div class="eyebrow">Lux et Veritas PONO</div>

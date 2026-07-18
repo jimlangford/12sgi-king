@@ -307,10 +307,10 @@ a{{color:var(--accent2)}}h1{{font-size:1.5rem;margin:.3rem 0}}h2{{color:var(--ac
 .sub{{color:var(--dim);font-size:.95rem;line-height:1.55}}
 .kpis{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:1rem 0}}@media(max-width:640px){{.kpis{{grid-template-columns:1fr 1fr}}}}
 .kp{{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem}}.kv{{font:700 18px/1.1 'JetBrains Mono',Consolas,monospace;color:var(--accent)}}.kl{{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}}
-.note{{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid var(--gold);border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#5a4a16;line-height:1.5}}
+.note{{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid var(--gold);border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#e3c98a;line-height:1.5}}
 .prov{{display:inline-block;font:600 10px/1 'JetBrains Mono',Consolas,monospace;text-transform:uppercase;letter-spacing:.4px;padding:2px 6px;border-radius:99px;margin-left:6px;vertical-align:middle}}
 .prov-s{{background:#e2f3ea;color:var(--ok);border:1px solid #a9dcc2}}
-.prov-t{{background:#fbf1dd;color:var(--gold);border:1px solid #e6d3a3}}
+.prov-t{{background:#241d0e;color:var(--gold);border:1px solid #5c4a1e}}
 table{{border-collapse:collapse;width:100%;font-size:.85rem;margin-top:.4rem}}
 td,th{{padding:.45rem .5rem;border-bottom:1px solid #e3e9f1;text-align:left;vertical-align:top}}
 th{{font-size:.7rem;text-transform:uppercase;letter-spacing:.4px;color:var(--faint);font-weight:700}}

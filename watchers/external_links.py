@@ -186,7 +186,7 @@ def main():
         ".eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:#7fb2ff;text-transform:uppercase}"
         ".badge{display:inline-block;font-weight:700;border-radius:8px;padding:4px 12px;color:#fff;background:%s}"
         "table{width:100%%;border-collapse:collapse;margin-top:14px;font-size:13px}"
-        "th,td{text-align:left;padding:7px 9px;border-bottom:1px solid #bacde6;vertical-align:top}"
+        "th,td{text-align:left;padding:7px 9px;border-bottom:1px solid #26456a;vertical-align:top}"
         "th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;color:#8ea3ba}"
         ".note{font-size:12.5px;color:#8ea3ba;margin-top:10px}</style></head><body><div class=wrap>"
         "<div class=eyebrow>govOS · Kilo Aupuni · self-heal</div>"

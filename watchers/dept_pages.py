@@ -88,13 +88,13 @@ def _dept_contracts(dept_id, awards):
     return rows, total
 
 CSS = (
-    "body{margin:0;background:#f4f7fb;color:#eaf2fc;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.55}"
+    "body{margin:0;background:#0f2540;color:#eaf2fc;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.55}"
     ".wrap{max-width:980px;margin:0 auto;padding:20px 18px 80px}"
     ".eyebrow{font-family:Consolas,'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.6px;color:#7fb2ff;text-transform:uppercase}"
     "h1{font-size:26px;margin:6px 0 2px}.icon{font-size:30px;margin-right:8px}"
     ".lede{font-size:15px;color:#33485f;max-width:70ch;margin:6px 0 18px}"
     ".links{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}"
-    ".links a{display:inline-block;text-decoration:none;border:1px solid #bacde6;border-radius:10px;padding:9px 14px;color:#7fb2ff;background:#081420;font-size:14px}"
+    ".links a{display:inline-block;text-decoration:none;border:1px solid #26456a;border-radius:10px;padding:9px 14px;color:#7fb2ff;background:#081420;font-size:14px}"
     ".links a:hover{border-color:#7fb2ff;background:#eef4fc}"
     ".links a b{display:block;font-size:11px;color:#5b6e86;font-weight:600;text-transform:uppercase;letter-spacing:.4px}"
     ".kpi{display:flex;gap:22px;flex-wrap:wrap;margin:6px 0 14px}"
@@ -110,9 +110,9 @@ CSS = (
     ".method{background:#eef4fc;border-left:3px solid #00356b;padding:9px 13px;border-radius:0 8px 8px 0;font-size:12.5px;color:#33485f;margin:10px 0}"
     ".empty{color:#5b6e86;font-style:italic;padding:14px 4px}"
     "a.back{display:inline-block;margin:0 0 12px;color:#7fb2ff;text-decoration:none;font-size:13px}"
-    ".disc{background:#fff7e6;border:1px solid #e6cf8f;border-left:3px solid #c98a00;border-radius:8px;padding:9px 13px;font-size:12.5px;color:#5a4a1e;margin:10px 0 16px}"
+    ".disc{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid #c98a00;border-radius:8px;padding:9px 13px;font-size:12.5px;color:#e3c98a;margin:10px 0 16px}"
     ".caps{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 20px}"
-    ".caps a,.caps span{display:inline-block;border:1px solid #bacde6;border-radius:10px;padding:9px 13px;font-size:13.5px;text-decoration:none;color:#7fb2ff;background:#081420}"
+    ".caps a,.caps span{display:inline-block;border:1px solid #26456a;border-radius:10px;padding:9px 13px;font-size:13.5px;text-decoration:none;color:#7fb2ff;background:#081420}"
     ".caps a b,.caps span b{display:block;font-size:11px;color:#5b6e86;font-weight:600;text-transform:uppercase;letter-spacing:.4px}"
     ".caps span.soon{opacity:.65;border-style:dashed;background:#0f2540;color:#5b6e86}"
 )

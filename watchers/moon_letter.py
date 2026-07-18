@@ -348,7 +348,7 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
             emp_html = ('<span style="color:#5b6e86;font-size:10px;">' + emp_note + '</span>') if emp_note else ''
             sponsor_tags += (
                 f"<div style='display:inline-flex;align-items:baseline;gap:6px;"
-                f"background:#0f2540;border:1px solid #bacde6;border-radius:5px;"
+                f"background:#0f2540;border:1px solid #26456a;border-radius:5px;"
                 f"padding:3px 8px;font-size:12px;margin:2px;'>"
                 f"<span style='color:#eaf2fc;font-weight:600;'>{esc(dname[:36])}</span>"
                 f"<span style='color:#4ec98a;font-weight:700;'>{_fmt_money(amt)}</span>"
@@ -371,7 +371,7 @@ def _sponsors_html(donors: dict, member_keys: list) -> str:
         anchor = "member-" + re.sub(r"[^\w]", "-", key.lower())
         rows += f"""
 <div id='{anchor}' style='margin:.8rem 0;padding:.9rem 1.1rem;background:#0f2540;
-  border:1px solid #bacde6;border-left:4px solid #00356b;border-radius:10px;'>
+  border:1px solid #26456a;border-left:4px solid #00356b;border-radius:10px;'>
   <div style='font:700 14px/1.2 "Segoe UI",system-ui,sans-serif;color:#eaf2fc;'>
     &#127948; {esc(name)}
   </div>
@@ -640,7 +640,7 @@ def build(tenant: str = "maui", target_date: date | None = None,
 <title>Hawaiian Moon Calendar Letter — {esc(date_label)} | Maui County | 12SGI Kilo Aupuni</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin:0;background:#f4f7fb;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;color:#eaf2fc;">
+<body style="margin:0;background:#0f2540;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;color:#eaf2fc;">
 <div style="max-width:680px;margin:0 auto;background:#081420;padding-bottom:2rem;">
 
 <!-- HEADER -->

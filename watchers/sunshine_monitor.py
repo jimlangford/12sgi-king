@@ -299,7 +299,7 @@ def build_civic_html(findings):
         notice_cell = (str(n) + " days") if n is not None else "—"
         pub_cell    = f["agenda_published_hst"] or "—"
         lurl        = f["legistar_url"] or ""
-        src         = ('<a href="' + _esc(lurl) + '" target="_blank" rel="noopener noreferrer" style="color:#0e4a84">Legistar ↗</a>') if lurl else "—"
+        src         = ('<a href="' + _esc(lurl) + '" target="_blank" rel="noopener noreferrer" style="color:#7fb2ff">Legistar ↗</a>') if lurl else "—"
         row = (
             '<tr style="background:' + bg + '">'
             '<td style="font-size:.82rem;max-width:260px">' + _esc(f["body"]) + '</td>'
@@ -320,8 +320,8 @@ def build_civic_html(findings):
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
         '<title>Sunshine Law Compliance — Maui County Council — kilo-aupuni</title>\n'
         '<style>\n'
-        'body{font-family:system-ui,sans-serif;color:#1a2233;margin:0;padding:1rem}\n'
-        'h1{color:#0e4a84;font-size:1.2rem;margin-bottom:.3rem}\n'
+        'body{font-family:system-ui,sans-serif;color:#c8d6e6;margin:0;padding:1rem}\n'
+        'h1{color:#7fb2ff;font-size:1.2rem;margin-bottom:.3rem}\n'
         'p.lead{font-size:.88rem;color:#3a4a5a;margin:.3rem 0 .8rem}\n'
         'table{border-collapse:collapse;width:100%;font-size:.83rem}\n'
         'th{background:#0e4a84;color:#fff;padding:.4rem .6rem;text-align:left;font-weight:600}\n'
@@ -332,12 +332,12 @@ def build_civic_html(findings):
         '   invisible (light text on light cells). Force this page own dark table text with html body\n'
         '   specificity + !important so the injected CSS cannot override it. */\n'
         'html body{background:#ffffff !important}\n'
-        'html body h1{color:#0e4a84 !important}\n'
+        'html body h1{color:#7fb2ff !important}\n'
         'html body p.lead{color:#3a4a5a !important}html body .note{color:#5a6b7b !important}\n'
         'html body table th{background:#0e4a84 !important;color:#ffffff !important}\n'
-        'html body table td{color:#1a2233 !important;background:#ffffff !important;border-bottom:1px solid #e3edf6 !important}\n'
-        'html body table tr:nth-child(even) td{background:#f6f9fc !important}\n'
-        'html body p a, html body td a, html body .note a{color:#0e4a84 !important}\n'
+        'html body table td{color:#c8d6e6 !important;background:#ffffff !important;border-bottom:1px solid #e3edf6 !important}\n'
+        'html body table tr:nth-child(even) td{background:#0f2540 !important}\n'
+        'html body p a, html body td a, html body .note a{color:#7fb2ff !important}\n'
         '</style>\n</head>\n<body>\n'
         '<h1>Sunshine Law Compliance Monitor — Maui County Council Committee Meetings</h1>\n'
         '<p class="lead">'

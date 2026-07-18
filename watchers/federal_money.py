@@ -289,7 +289,7 @@ a{{color:var(--accent2)}}h1{{font-size:1.5rem;margin:.3rem 0}}h2{{color:var(--ac
 .sub{{color:var(--dim);font-size:.95rem;line-height:1.55}}
 .kpis{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1rem 0}}@media(max-width:560px){{.kpis{{grid-template-columns:1fr}}}}
 .kp{{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem}}.kv{{font:700 18px/1.1 'JetBrains Mono',Consolas,monospace;color:var(--accent)}}.kl{{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}}
-.note{{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid #b8860b;border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#5a4a16;line-height:1.5}}
+.note{{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid #b8860b;border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#e3c98a;line-height:1.5}}
 .lnk{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;font-size:.92rem;line-height:1.9}}
 .rcp{{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid #e3e9f1;padding:.5rem .1rem;font-size:.92rem}}
 .rcp .rn{{color:var(--ink);min-width:0;overflow-wrap:anywhere;flex:1}}.rcp .ra{{font-family:Consolas,monospace;color:var(--accent);display:flex;flex-direction:column;align-items:flex-end;text-align:right;flex-shrink:0}}.rcp .rd{{color:var(--faint);font-size:.78rem;white-space:normal}}

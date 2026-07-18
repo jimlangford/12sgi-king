@@ -52,7 +52,7 @@ def render(item, approve_url, reject_url):
             "(Approving sends it from jrcsl@12sgi.com to the recipient above. The link is single-use.)"
             % (item.get("to"), item.get("subject"), body_prev, approve_url, reject_url))
     htmlbody = """<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#222">
-  <p style="background:#fff8e6;border:1px solid #e8d28a;border-radius:8px;padding:10px 14px;font-size:13px;color:#7a5a10;margin:0 0 14px">
+  <p style="background:#241d0e;border:1px solid #e8d28a;border-radius:8px;padding:10px 14px;font-size:13px;color:#e3c98a;margin:0 0 14px">
   ✋ <b>Approval needed</b> — this will be sent on your behalf only after you approve. Single-use links.</p>
   <table style="width:100%%;background:#f6f8f7;border-radius:8px;font-size:13.5px;color:#333">
     <tr><td style="padding:10px 14px"><b>To:</b> %s<br><b>Subject:</b> %s<br><b>From:</b> jrcsl@12sgi.com</td></tr>

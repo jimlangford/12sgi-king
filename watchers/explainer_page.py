@@ -96,7 +96,7 @@ input,textarea,select{font:inherit;color:var(--ink);background:#fff;border:1px s
 .tag{display:inline-block;font-size:.74rem;font-weight:600;border-radius:99px;padding:.16rem .6rem;border:1px solid var(--line);background:#fff;color:var(--accent)}
 .asp{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #dbe5f1;padding:.5rem .1rem}
 .asp input{width:auto;margin-top:.25rem}.asp .l{font-weight:600;color:var(--ink)}.asp .d{color:var(--dim);font-size:.85rem}
-.feat{background:#fbf6ea;border-color:#e6d8a8}
+.feat{background:#241d0e;border-color:#5c4a1e}
 .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;border:0;border-radius:10px;padding:.6rem 1.1rem;font-size:.95rem;cursor:pointer}
 .btn:hover{background:var(--accent2)}.muted{color:var(--faint);font-size:.85rem}
 .cb{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:11px;padding:.8rem 1rem;margin:1rem 0;color:var(--dim);line-height:1.55;font-size:.92rem}

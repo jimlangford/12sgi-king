@@ -142,7 +142,7 @@ def main():
         "letter-spacing:1.5px;color:#7fb2ff;text-transform:uppercase}"
         ".badge{display:inline-block;font-weight:700;border-radius:8px;padding:4px 12px;color:#fff;background:%s}"
         "table{width:100%%;border-collapse:collapse;margin-top:14px;font-size:14px}"
-        "th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #bacde6}"
+        "th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #26456a}"
         "th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;color:#8ea3ba}"
         ".note{font-size:12.5px;color:#8ea3ba;margin-top:10px}</style></head><body><div class=wrap>"
         "<div class=eyebrow>govOS · Kilo Aupuni · self-heal</div>"

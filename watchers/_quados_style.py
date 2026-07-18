@@ -14,7 +14,7 @@ STYLE = """<style>
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;line-height:1.55;padding:22px}
 .wrap{max-width:940px;margin:0 auto}
 h1{font-size:22px;margin:.2rem 0;color:var(--ink)} h2{color:var(--accent);font-size:1.06rem;margin:1rem 0 .3rem}
-.priv{display:inline-block;font:600 10.5px/1 Consolas,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--err);border:1px solid #e6bcbc;background:#fdeeee;border-radius:6px;padding:3px 9px;margin-left:8px;vertical-align:middle}
+.priv{display:inline-block;font:600 10.5px/1 Consolas,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--err);border:1px solid #6a3030;background:#2a1416;border-radius:6px;padding:3px 9px;margin-left:8px;vertical-align:middle}
 .sub{color:var(--dim);font-size:13px;margin:6px 0 12px;line-height:1.5}
 .moon{background:linear-gradient(180deg,#eef1fb,#f6f8fc);border:1px solid #d3d8ef;border-left:3px solid var(--moon);border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;color:#3a3766;font-size:.92rem}
 .moon .ml{font:600 10.5px/1 Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b5fb0}.moon b{color:var(--moon)}
@@ -30,7 +30,7 @@ h1{font-size:22px;margin:.2rem 0;color:var(--ink)} h2{color:var(--accent);font-s
 .gave{font-size:.9rem;color:var(--accent2);margin:.35rem 0}
 .q{font-size:.95rem;color:var(--ink);margin:.45rem 0;line-height:1.5}
 .top{margin:.2rem 0 .4rem;padding-left:1.1rem;color:var(--dim);font-size:.85rem}.top li{margin:.15rem 0}
-.cb{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid var(--gold);border-radius:10px;padding:.6rem .9rem;color:#5a4a16;font-size:.9rem;margin-top:.5rem;line-height:1.5}.cb b{color:#3f3410}
+.cb{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid var(--gold);border-radius:10px;padding:.6rem .9rem;color:#e3c98a;font-size:.9rem;margin-top:.5rem;line-height:1.5}.cb b{color:#3f3410}
 .foot{color:var(--faint);font-size:11px;margin-top:1.2rem;line-height:1.6}
 a{color:var(--accent2)}
 /* industry % bars (donor/federal breakdowns) */

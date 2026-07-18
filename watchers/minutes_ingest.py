@@ -209,7 +209,7 @@ def _write_provenance_html(base):
         "h1{font-size:1.45rem;margin:.3rem 0}h2{color:#7fb2ff;font-size:1.02rem;margin:1.3rem 0 .4rem}.sub{color:#9fb2c8;font-size:.9rem}"
         ".kpi{font:700 1.05rem/1.2 Consolas,monospace;color:#7fb2ff;margin:.6rem 0}"
         ".disc{background:#0f2540;border:1px solid #1f3d5f;border-radius:10px;padding:.7rem 1rem;color:#9fb2c8;font-size:.85rem;margin:.9rem 0}"
-        ".priv{background:#fbf3dd;border:1px solid #e6d8a8;border-left:3px solid #b8860b;border-radius:10px;padding:.6rem 1rem;color:#5a4a16;font-size:.82rem;margin:.7rem 0}"
+        ".priv{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid #b8860b;border-radius:10px;padding:.6rem 1rem;color:#e3c98a;font-size:.82rem;margin:.7rem 0}"
         "table{border-collapse:collapse;width:100%;font-size:.85rem;margin:.4rem 0}td,th{padding:.4rem .55rem;border-bottom:1px solid #1f3d5f;text-align:left;vertical-align:top}"
         "th{color:#9fb2c8;font-size:.72rem;text-transform:uppercase;letter-spacing:.4px}.n{font-family:Consolas,monospace;text-align:right}.d{font-family:Consolas,monospace;white-space:nowrap}.z{color:#9aa8ba}a{color:#6cb0f0}"
         "</style>"

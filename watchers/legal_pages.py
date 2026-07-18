@@ -47,7 +47,7 @@ def page(title, body, c):
  .wrap{max-width:820px;margin:0 auto;padding:26px 20px 70px}
  h1{font-size:26px;color:#7fb2ff;margin:.2em 0 .1em} h2{font-size:18px;color:#7fb2ff;margin:1.5em 0 .3em}
  h3{font-size:15px;margin:1.1em 0 .2em} .eff{color:#5a6b7b;font-size:13px;margin-bottom:1.2em}
- p,li{color:#22364f} a{color:#6cb0f0} .box{background:#f3f7fc;border:1px solid #cfe0f2;border-radius:9px;padding:12px 16px;margin:14px 0;font-size:14px}
+ p,li{color:#22364f} a{color:#6cb0f0} .box{background:#0f2540;border:1px solid #26456a;border-radius:9px;padding:12px 16px;margin:14px 0;font-size:14px}
  .nav{font-size:13px;color:#5a6b7b;margin-bottom:14px} .nav a{margin-right:12px}
  footer{margin-top:30px;border-top:1px solid #1f3d5f;padding-top:12px;color:#5a6b7b;font-size:12.5px}
 </style></head><body><div class="wrap">

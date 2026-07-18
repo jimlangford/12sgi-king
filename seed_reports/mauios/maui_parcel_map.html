@@ -10,7 +10,7 @@
  #bar input{flex:1;min-width:150px;padding:.35rem .5rem;border-radius:7px;border:1px solid #1f3d5f;background:#081420;color:#eaf2fc;font-size:.85rem}
  #bar button{padding:.35rem .7rem;border-radius:7px;border:0;background:#00356b;color:#fff;font-weight:600;cursor:pointer;font-size:.85rem}
  #map{height:calc(100% - 84px);width:100%}
- #hint{font-size:.72rem;color:#6b7a89;padding:.3rem .9rem;background:#f6f8fa}
+ #hint{font-size:.72rem;color:#6b7a89;padding:.3rem .9rem;background:#0f2540}
  .lp b{color:#7fb2ff}.lp a{color:#7fb2ff}
 </style><link rel="stylesheet" href="../../govos.css">
 </head><body>
@@ -31,7 +31,7 @@
 <script>
 // GRACEFUL FALLBACK — never a dead/blank frame if a cross-origin resource (CDN / tiles / GIS) is down.
 function showMapFallback(msg){var m=document.getElementById('map');if(!m)return;while(m.firstChild)m.removeChild(m.firstChild);
-  var b=document.createElement('div');b.style.cssText='height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#f3f7fc;color:#cfd6cc;font-family:system-ui,sans-serif';
+  var b=document.createElement('div');b.style.cssText='height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#0f2540;color:#cfd6cc;font-family:system-ui,sans-serif';
   var i=document.createElement('div');var h=document.createElement('div');h.style.cssText='font-size:1rem;font-weight:700;color:#d9b24c;margin-bottom:.4rem';h.textContent='Map briefly unavailable';
   var p=document.createElement('div');p.style.cssText='font-size:.85rem;max-width:38ch;line-height:1.5';p.textContent=msg||'The live public mapping service isn’t responding right now. Please refresh in a moment.';
   i.appendChild(h);i.appendChild(p);b.appendChild(i);m.appendChild(b);}

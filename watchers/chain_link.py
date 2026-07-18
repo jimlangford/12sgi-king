@@ -347,33 +347,33 @@ CSS = """
  font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;line-height:1.55}
 .eyebrow{letter-spacing:.1em;text-transform:uppercase;color:#6cb0f0;font-weight:600;font-size:.8rem}
 h1{font-size:1.55rem;margin:.3rem 0}
-h2{color:#7fb2ff;font-size:1.08rem;margin:1.6rem 0 .5rem;border-bottom:1px solid #bacde6;padding-bottom:.3rem}
+h2{color:#7fb2ff;font-size:1.08rem;margin:1.6rem 0 .5rem;border-bottom:1px solid #26456a;padding-bottom:.3rem}
 .sub{color:#9fb2c8;font-size:.95rem}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:1rem 0}
 @media(max-width:640px){.kpis{grid-template-columns:1fr 1fr}}
-.kp{background:#0f2540;border:1px solid #bacde6;border-radius:11px;padding:.7rem .85rem}
+.kp{background:#0f2540;border:1px solid #26456a;border-radius:11px;padding:.7rem .85rem}
 .kv{font:700 18px/1.1 'JetBrains Mono',Consolas,monospace;color:#7fb2ff}
 .kl{font-size:11px;color:#8ea3ba;text-transform:uppercase;letter-spacing:.4px;margin-top:4px}
-.note{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid #b8860b;border-radius:10px;
- padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#5a4a16;line-height:1.5}
+.note{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid #b8860b;border-radius:10px;
+ padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#e3c98a;line-height:1.5}
 .pv{font:600 10.5px/1 'JetBrains Mono',Consolas,monospace;padding:2px 7px;border-radius:99px;white-space:nowrap;margin-left:6px;vertical-align:middle}
 .pv-s{background:#e2f0e8;color:#4ec98a;border:1px solid #b9dcc7}
-.pv-t{background:#f3e9dc;color:#9a6a12;border:1px solid #e2c893}
+.pv-t{background:#241d0e;color:#e3c98a;border:1px solid #5c4a1e}
 .legend{font-size:.82rem;color:#9fb2c8;margin:.4rem 0 0}
-.card{border:1px solid #bacde6;border-radius:12px;padding:.85rem 1rem;margin:.7rem 0;background:#fbfdff}
+.card{border:1px solid #26456a;border-radius:12px;padding:.85rem 1rem;margin:.7rem 0;background:#0f2540}
 .card .nm{font-weight:700;color:#eaf2fc;font-size:1.02rem}
 .chips{margin:.5rem 0 .35rem;display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-size:.82rem;background:#0f2540;border:1px solid #bacde6;border-radius:9px;padding:.28rem .55rem;color:#eaf2fc}
+.chip{font-size:.82rem;background:#0f2540;border:1px solid #26456a;border-radius:9px;padding:.28rem .55rem;color:#eaf2fc}
 .chip a{color:#6cb0f0;text-decoration:none}.chip a:hover{text-decoration:underline}
 .chip .m{font-family:Consolas,monospace;color:#7fb2ff;font-weight:700}
-.q{font-size:.86rem;color:#5a4a16;font-style:italic}
+.q{font-size:.86rem;color:#e3c98a;font-style:italic}
 .chain{display:grid;grid-template-columns:1fr;gap:2px;border-bottom:1px solid #1f3d5f;padding:.6rem .1rem}
 .chain .flow{font-size:.92rem}
 .chain .a{color:#7fb2ff;font-weight:600}
 .chain .arrow{color:#9fb4cf;font-family:Consolas,monospace;margin:0 6px}
 .chain .m{font-family:Consolas,monospace;color:#7fb2ff}
-.chain .tags{font-size:.78rem;color:#9a6a12;margin-top:2px}
-.lnk{background:#0f2540;border:1px solid #bacde6;border-radius:10px;padding:.6rem .9rem;margin:1rem 0;font-size:.92rem;line-height:1.9}
+.chain .tags{font-size:.78rem;color:#e3c98a;margin-top:2px}
+.lnk{background:#0f2540;border:1px solid #26456a;border-radius:10px;padding:.6rem .9rem;margin:1rem 0;font-size:.92rem;line-height:1.9}
 a{color:#6cb0f0}
 """
 

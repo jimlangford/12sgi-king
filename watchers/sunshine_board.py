@@ -85,17 +85,17 @@ def build():
                esc(miss), esc(notice), news_btn, notif_btn))
     body = (
         '<div style="max-width:900px;margin:0 auto;padding:1.2rem 1rem">'
-        '<h1 style="color:#0e4a84">Sunshine compliance &amp; distribution</h1>'
+        '<h1 style="color:#7fb2ff">Sunshine compliance &amp; distribution</h1>'
         '<p class=lead>Speed HRS §92 compliance: every upcoming meeting with its 6-day notice deadline, the '
         'required-elements check, the ready-to-file notice, and one-click distribution. The buttons open your '
         'mail client with everything filled in — you click send. This tool prepares; the County Clerk performs '
         'the official county-calendar posting + filing.</p>'
-        '<style>.mtg{border:1px solid #d6e2f0;border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;background:#081420}'
-        '.mh{font-weight:700;color:#0e4a84}.cd{font-size:.92rem;margin:.3rem 0}.fine{color:#5a6b7b;font-size:.82rem;margin:.25rem 0}'
-        '.notice{white-space:pre-wrap;background:#f6f9fc;border:1px solid #1f3d5f;border-radius:8px;padding:.6rem;font-size:.8rem;overflow:auto}'
+        '<style>.mtg{border:1px solid #26456a;border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;background:#081420}'
+        '.mh{font-weight:700;color:#7fb2ff}.cd{font-size:.92rem;margin:.3rem 0}.fine{color:#5a6b7b;font-size:.82rem;margin:.25rem 0}'
+        '.notice{white-space:pre-wrap;background:#0f2540;border:1px solid #1f3d5f;border-radius:8px;padding:.6rem;font-size:.8rem;overflow:auto}'
         '.btns{margin:.5rem 0}.btn{display:inline-block;background:#0e4a84;color:#fff;font-weight:700;border-radius:8px;'
         'padding:.5rem .9rem;text-decoration:none;margin:.2rem .4rem .2rem 0}.btn.alt{background:#1f6f54}'
-        'details summary{cursor:pointer;color:#0e4a84;font-size:.85rem;margin:.3rem 0}</style>'
+        'details summary{cursor:pointer;color:#7fb2ff;font-size:.85rem;margin:.3rem 0}</style>'
         + ("".join(cards) or "<div class=fine>No upcoming meetings staged.</div>") +
         '<div class=fine style="margin-top:1rem">Assist only — confirm with the County Clerk / Corporation '
         'Counsel; OIP Attorney of the Day (808) 586-1400 for edge cases. Calendar days; meeting day excluded; '

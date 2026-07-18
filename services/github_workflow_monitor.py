@@ -32,7 +32,13 @@ import json
 import logging
 
 from services.ai_autonomy import classify_task
-from services.github_auto_repair import AutonomousRepairExecutor, RepairStatus
+try:
+    from services.github_auto_repair import AutonomousRepairExecutor, RepairStatus
+except ImportError:
+    # github_auto_repair was removed (2026-07). Run the monitor WITHOUT autonomous repair rather than
+    # crash-loop the container on a missing import. Repairs degrade to "not available"; monitoring stays up.
+    AutonomousRepairExecutor = None
+    RepairStatus = None
 from services.github_workflow_repair import WorkflowYamlRepair
 from services.owner_job_tracker import get_tracker, JobStatus
 
@@ -151,7 +157,7 @@ class GitHubWorkflowMonitor:
         self.repo = repo
         self.gh = None
         self.repo_obj = None
-        self.executor = AutonomousRepairExecutor(dry_run=False)
+        self.executor = AutonomousRepairExecutor(dry_run=False) if AutonomousRepairExecutor else None
         self.tracker = get_tracker()
         
         if HAS_PYGITHUB and token:
@@ -308,7 +314,12 @@ class GitHubWorkflowMonitor:
         if not self.should_repair(error_type, autonomy):
             logger.info(f"Not repairing {error_type} (autonomy={autonomy})")
             return False
-        
+
+        if self.executor is None:
+            # autonomous repair module unavailable (see optional import above) — monitor only, no repair.
+            logger.warning(f"auto-repair unavailable (github_auto_repair removed); not repairing {error_type}")
+            return False
+
         # Extract file path if available
         error_file = self.extract_error_file(logs, error_type)
         

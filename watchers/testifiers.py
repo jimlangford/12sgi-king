@@ -182,7 +182,7 @@ def page(slug,disp,tid,people,gen,mr,ao_po,re_persons,re_orgs,donors,orgnames):
          ".tf .af{color:var(--accent2);font-size:.85rem}.tf .ti{color:var(--dim);font-size:.84rem;margin-top:.3rem;font-family:Consolas,monospace}"
          ".tf .bds{margin:.4rem 0 .1rem;display:flex;flex-wrap:wrap;gap:6px}"
          ".bdg{display:inline-block;font-size:.74rem;font-weight:600;text-decoration:none;border-radius:99px;padding:.18rem .6rem;border:1px solid}"
-         ".bd-d{background:#fbf6ea;color:#5a4a16;border-color:#e6d8a8}.bd-r{background:#eef6f0;color:#1f5a3c;border-color:#bfe0cc}"
+         ".bd-d{background:#241d0e;color:#e3c98a;border-color:#5c4a1e}.bd-r{background:#eef6f0;color:#1f5a3c;border-color:#bfe0cc}"
          ".bd-o{background:#0f2540;color:#00356b;border-color:#1f3d5f}</style>")
     cb=("<div class=cb>&#9790;&#9728; <b>Curse-breaker.</b> Showing up to testify is the most ordinary, honorable "
         "civic act there is &mdash; a neighbor speaking to their government in the open. The only question this page "

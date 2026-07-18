@@ -294,12 +294,12 @@ def write_html(out):
     blocks = "".join(industry_block(ind, ind.replace("_", " ").title()) for ind in out["industries"])
     body = (
         "<div style='max-width:920px;margin:0 auto;padding:1.2rem 1rem'>"
-        "<h1 style='color:#0e4a84'>Cross-checked testimony &mdash; real estate, construction, et al.</h1>"
+        "<h1 style='color:#7fb2ff'>Cross-checked testimony &mdash; real estate, construction, et al.</h1>"
         "<p class=lead>Industry advocacy that is on the public record, cross-checked against the campaign "
         "money to the deciders and the county contracts &mdash; corroborated across at least two "
         "independent public sources. Every line is a question for further reporting, not a finding.</p>"
         "<div class=integrity>%s</div>"
-        "<h2 style='color:#0e4a84'>The cross-checks</h2><ul class=cc>%s</ul>%s"
+        "<h2 style='color:#7fb2ff'>The cross-checks</h2><ul class=cc>%s</ul>%s"
         "<p class=fine>Generated %s. Sources: Bill 9 packet scans (mauicounty.civicclerk), Hawaiʻi CSC "
         "campaign finance, HANDS county awards. Lawful advocacy &mdash; a question to the record, never a claim.</p>"
         "</div>" % (esc(out["integrity"]), cc, blocks, esc(out["generated"])))
@@ -308,9 +308,9 @@ def write_html(out):
            "padding:.6rem .9rem;border-radius:8px;font-size:.9rem;margin:.6rem 0}"
            "table{border-collapse:collapse;width:100%;margin:.4rem 0 1rem;font-size:.86rem}"
            "th,td{border:1px solid #dce6f1;padding:.32rem .5rem;text-align:left;vertical-align:top}"
-           "th{background:#f3f8ff;color:#0e4a84}.ind{border-top:2px solid #e3edf8;margin-top:1.2rem}"
+           "th{background:#0f2540;color:#7fb2ff}.ind{border-top:2px solid #e3edf8;margin-top:1.2rem}"
            ".cc{padding-left:1.1rem}.cc li{margin:.35rem 0}.cc .ok{}.cc .lead{color:#5a6b7b}"
-           ".fine{color:#5a6b7b;font-size:.82rem}h3{color:#0e4a84;margin-bottom:.2rem}h4{margin:.7rem 0 .2rem;color:#33414f}</style>")
+           ".fine{color:#5a6b7b;font-size:.82rem}h3{color:#7fb2ff;margin-bottom:.2rem}h4{margin:.7rem 0 .2rem;color:#33414f}</style>")
     doc = ("<!doctype html><html lang=en><head><meta charset=utf-8>"
            "<meta name=viewport content='width=device-width,initial-scale=1'>"
            "<title>Cross-checked testimony &mdash; govOS</title>%s</head><body>%s</body></html>" % (css, body))

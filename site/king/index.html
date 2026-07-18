@@ -112,33 +112,34 @@
       .pills { gap: 5px; }
     }
   </style>
+<link rel="stylesheet" href="../legibility_fix.css">
 </head>
 <body>
 
 <!-- Nav -->
 <nav class="govos-nav" data-tenant="hi-maui">
-  <a class="gn-brand" href="site/reports.html"><span class="mk">⭐</span><b>govOS</b><span class="sub">Naga</span></a>
+  <a class="gn-brand" href="../reports.html"><span class="mk">⭐</span><b>govOS</b><span class="sub">Naga</span></a>
   <button class="gn-burger" aria-label="Menu">☰</button>
   <div class="gn-menu">
     <div class="gn-group">
       <button class="gn-top">Civic <span class="ar">▾</span></button>
       <div class="gn-panel">
-        <a href="site/reports.html">Dashboard hub</a>
-        <a href="site/jurisdictions.html">All jurisdictions</a>
-        <a href="site/tenants_hub.html">Tenants hub</a>
-        <a href="site/county_dashboard.html">County dashboard</a>
-        <a href="site/datasets.html">Open data</a>
+        <a href="../reports.html">Dashboard hub</a>
+        <a href="../jurisdictions.html">All jurisdictions</a>
+        <a href="../tenants_hub.html">Tenants hub</a>
+        <a href="../county_dashboard.html">County dashboard</a>
+        <a href="../datasets.html">Open data</a>
       </div>
     </div>
     <div class="gn-group">
       <button class="gn-top">Studio <span class="ar">▾</span></button>
       <div class="gn-panel">
-        <a href="site/films.html">Films</a>
-        <a href="king_bridge.html">king-bridge</a>
+        <a href="../films.html">Films</a>
+        <a href="./">king-bridge</a>
       </div>
     </div>
-    <a class="gn-lead" href="site/testify.html">⚖ Testify</a>
-    <a class="gn-cta" href="site/take_action.html">Take Part</a>
+    <a class="gn-lead" href="../testify.html">⚖ Testify</a>
+    <a class="gn-cta" href="../take_action.html">Take Part</a>
   </div>
 </nav>
 
@@ -551,7 +552,7 @@ async function init() {
   } catch(e) {
     document.getElementById('loading').innerHTML =
       `<div style="color:var(--warn);">Neo4j / king-bridge offline — start bridge on port 8109.<br><small>${e.message}</small></div>
-       <div style="margin-top:16px;"><a href="site/reports.html" style="color:var(--blue-2);">→ Go to static reports.html</a></div>`;
+       <div style="margin-top:16px;"><a href="../reports.html" style="color:var(--blue-2);">→ Go to static reports.html</a></div>`;
   }
 }
 
