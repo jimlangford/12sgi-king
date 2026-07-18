@@ -337,7 +337,7 @@ def build_civic_html(findings):
         'html body table th{background:#0e4a84 !important;color:#ffffff !important}\n'
         'html body table td{color:#1a2233 !important;background:#ffffff !important;border-bottom:1px solid #e3edf6 !important}\n'
         'html body table tr:nth-child(even) td{background:#f6f9fc !important}\n'
-        'html body a, html body td a{color:#0e4a84 !important}\n'
+        'html body p a, html body td a, html body .note a{color:#0e4a84 !important}\n'
         '</style>\n</head>\n<body>\n'
         '<h1>Sunshine Law Compliance Monitor — Maui County Council Committee Meetings</h1>\n'
         '<p class="lead">'
