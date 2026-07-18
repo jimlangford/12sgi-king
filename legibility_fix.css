@@ -69,3 +69,4 @@ button{ color:#f3efe4; }
 section, .section, .surface{ color:var(--leg-ink); }
 /* rebuild trigger 2026-07-17: ship education.html self-theme guard */
 /* rebuild trigger 2: education card/panel light surfaces */
+/* rebuild trigger 3: card specificity over legibility_fix */
