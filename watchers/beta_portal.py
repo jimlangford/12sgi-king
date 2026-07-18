@@ -74,7 +74,7 @@ def main():
     else:
         reqform="<div class=soon>The council request form opens with verification.</div>"
 
-    style=("<style>:root{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--gold:#b8860b}"
+    style=("<style>:root{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--gold:#e3ad33}"
       "*{box-sizing:border-box}body{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:920px;margin:0 auto;padding:18px 16px 46px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}"
       "a{color:var(--accent2)}h1{font-size:1.6rem;margin:.3rem 0}h2{color:var(--accent);font-size:1.12rem;margin:1.4rem 0 .5rem}.sub{color:var(--dim);font-size:.95rem;line-height:1.55}"
       ".eyebrow{letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600;font-size:.8rem}"

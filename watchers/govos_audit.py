@@ -73,7 +73,7 @@ def load_jsonl(fn):
     return rows
 
 
-CSS = """<style>:root{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#5b6e86;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--ask:#b8860b}
+CSS = """<style>:root{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#7f93aa;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--ask:#b8860b}
 *{box-sizing:border-box}body{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:920px;margin:0 auto;padding:18px 16px 48px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}
 a{color:var(--accent2)}h1{font-size:1.55rem;margin:.3rem 0}h2{color:var(--accent);font-size:1.08rem;margin:1.6rem 0 .5rem;border-top:1px solid var(--line);padding-top:1rem}
 .sub{color:var(--dim);font-size:.95rem;line-height:1.55}

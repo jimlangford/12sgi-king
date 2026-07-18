@@ -283,7 +283,7 @@ def _write_html(p):
                                 if os.path.exists(os.path.join(_md, fn)))
     html = f"""<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#00356b">
 <title>Federal dollars — Maui &amp; the State of Hawaiʻi | govOS</title>
-<style>:root{{--bg:#fff;--panel:#e7eef8;--line:#1f3d5f;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b}}
+<style>:root{{--bg:#081420;--panel:#0f2540;--line:#1f3d5f;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b}}
 *{{box-sizing:border-box}}body{{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:900px;margin:0 auto;padding:18px 16px 44px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}}
 a{{color:var(--accent2)}}h1{{font-size:1.5rem;margin:.3rem 0}}h2{{color:var(--accent);font-size:1.05rem;margin:1.2rem 0 .4rem}}
 .sub{{color:var(--dim);font-size:.95rem;line-height:1.55}}
