@@ -85,6 +85,7 @@ jobs:
       V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-router,ai,storage,health,king-bridge,board-api,connector-runner,github-workflow-monitor"
       V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109,board-api=8799"
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
+      V2_ENV_FILE: "C:\\Users\\12sgi\\Documents\\Claude\\12sgi-king\\.env.v2"
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
       RESTART_SERVICES: ${{ github.event_name == 'push' && 'true' || github.event.inputs.restart_services || 'true' }}
 
@@ -108,6 +109,40 @@ jobs:
           Write-Host "Platform version: $platformVersion"
           Write-Host "Build commit:     ${{ github.sha }}"
           Write-Host "Build time:       $buildTime"
+
+      - name: Validate private compose environment
+        shell: pwsh
+        run: |
+          if (-not (Test-Path -LiteralPath $env:V2_ENV_FILE)) {
+            Write-Error "Private compose environment is missing at the configured runner path"
+            exit 1
+          }
+
+          $values = @{}
+          foreach ($line in (Get-Content -LiteralPath $env:V2_ENV_FILE)) {
+            if ($line -match '^\s*([^#][^=]*)=(.*)$') {
+              $name = $matches[1].Trim()
+              $value = $matches[2].Trim().Trim('"').Trim("'")
+              $values[$name] = $value
+            }
+          }
+
+          foreach ($name in @("INTERNAL_SERVICE_TOKEN", "AUTH_SIGNING_SECRET")) {
+            if (-not $values.ContainsKey($name) -or $values[$name].Length -lt 32) {
+              Write-Error "$name is missing or too short in the private compose environment"
+              exit 1
+            }
+          }
+          if ($values["INTERNAL_SERVICE_TOKEN"] -eq "dev-internal-token" -or
+              $values["AUTH_SIGNING_SECRET"] -eq "dev-signing-secret") {
+            Write-Error "Published development secrets are not allowed in the private deployment"
+            exit 1
+          }
+          if ($values["GOVOS_ALLOW_DEV_SECRETS"] -ne "0") {
+            Write-Error "GOVOS_ALLOW_DEV_SECRETS must be 0 in the private deployment"
+            exit 1
+          }
+          Write-Host "Private compose environment verified (required values present; values not printed)"
 
       # ── 2. Validate V2 files ───────────────────────────────────────────────────
       - name: Validate V2 service files are present
@@ -255,7 +290,7 @@ jobs:
           foreach ($port in ($env:V2_API_PORT_INVENTORY -split ',')) {
             Write-Host "  - $port"
           }
-          $config = docker compose -f docker-compose.v2.yml config 2>&1
+          $config = docker compose --env-file "$env:V2_ENV_FILE" -f docker-compose.v2.yml config 2>&1
           if ($LASTEXITCODE -ne 0) {
             Write-Error "docker compose validation failed:`n$($config | Out-String)"
             exit 1
@@ -274,7 +309,7 @@ jobs:
             exit 1
           }
           Write-Host "Building and starting the approved V2 service stack..."
-          docker compose -f docker-compose.v2.yml up -d --build
+          docker compose --env-file "$env:V2_ENV_FILE" -f docker-compose.v2.yml up -d --build
           if ($LASTEXITCODE -ne 0) {
             Write-Error "docker compose deployment failed with exit code $LASTEXITCODE"
             exit $LASTEXITCODE
@@ -282,12 +317,46 @@ jobs:
           Write-Host "Waiting for containers to initialize..."
           Start-Sleep -Seconds 15
           Write-Host "Current V2 container state:"
-          docker compose -f docker-compose.v2.yml ps
+          docker compose --env-file "$env:V2_ENV_FILE" -f docker-compose.v2.yml ps
           if ($LASTEXITCODE -ne 0) {
             Write-Error "Unable to read the deployed V2 container state"
             exit $LASTEXITCODE
           }
           Write-Host "✓ V2 Docker services built and started"
+
+      - name: Wait for V2 services to become ready
+        if: env.RESTART_SERVICES == 'true' && env.DRY_RUN != 'true'
+        shell: pwsh
+        run: |
+          $urls = @(
+            "http://127.0.0.1:$env:V2_AUTH_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_TENANT_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_DOCUMENTS_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_STORAGE_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_AI_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_HEALTH_PORT/api/v1/ready",
+            "http://127.0.0.1:$env:V2_GPU_ROUTER_PORT/api/v2/ready",
+            "http://127.0.0.1:$env:V2_KING_BRIDGE_PORT/api/v2/ready"
+          )
+          $deadline = [datetime]::UtcNow.AddSeconds(120)
+          do {
+            $pending = @()
+            foreach ($url in $urls) {
+              try {
+                $response = Invoke-WebRequest -Uri $url -TimeoutSec 5 -SkipHttpErrorCheck -ErrorAction Stop
+                if ([int]$response.StatusCode -ne 200) { $pending += $url }
+              } catch {
+                $pending += $url
+              }
+            }
+            if ($pending.Count -eq 0) {
+              Write-Host "All V2 readiness endpoints returned HTTP 200"
+              exit 0
+            }
+            Write-Host "Waiting on $($pending.Count) readiness endpoint(s)..."
+            Start-Sleep -Seconds 5
+          } while ([datetime]::UtcNow -lt $deadline)
+          Write-Warning "Readiness warm-up timed out; the detailed health gate will report remaining failures"
 
       # ── 7. Health-check all services including king-bridge ────────────────────
       - name: Health-check V2 localhost services
