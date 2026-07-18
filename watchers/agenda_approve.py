@@ -35,7 +35,7 @@ FINALS  = os.path.join(ROOT, "finals", "shorts")
 DISPATCH= os.path.join(ROOT, "app", "server", "dispatch.py")
 PY      = sys.executable
 NW      = 0x08000000 if os.name == "nt" else 0
-TS_HOST = "https://12sgianonymous.tail760750.ts.net"
+TS_HOST = "https://king.tail760750.ts.net"
 
 
 # ---------------------------------------------------------------------------
@@ -132,7 +132,7 @@ def _email(slug: str, reel_dir: str, meta: dict):
 
         # Council member pills
         people_html = " ".join(
-            '<span style="display:inline-block;background:#eef2f8;color:#0f4d92;'
+            '<span style="display:inline-block;background:#0f2540;color:#0f4d92;'
             'border-radius:12px;padding:2px 9px;font-size:12px;margin:2px">%s</span>' % esc(n)
             for n in people
         ) if people else ""
@@ -148,7 +148,7 @@ def _email(slug: str, reel_dir: str, meta: dict):
   </div>
 
   <!-- Hook -->
-  <div style="background:#f4f8ff;border-left:4px solid #0f4d92;padding:12px 18px;font-size:15px;
+  <div style="background:#0f2540;border-left:4px solid #0f4d92;padding:12px 18px;font-size:15px;
               font-style:italic;color:#1a3a6b">%s</div>
 
   <!-- Storyboard beats -->
@@ -187,7 +187,7 @@ def _email(slug: str, reel_dir: str, meta: dict):
 """ % (
             esc(title), esc(tenant), esc(date_str), size_kb,
             esc(hook),
-            ('<table style="width:100%;border-collapse:collapse;margin:0;background:#fafcff">'
+            ('<table style="width:100%;border-collapse:collapse;margin:0;background:#0f2540">'
              + beat_rows + '</table>') if beat_rows else "",
             esc(description).replace("\n", "<br>"),
             ('<div style="padding:10px 18px">' + people_html + '</div>') if people_html else "",

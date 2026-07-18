@@ -1,6 +1,6 @@
 {
-  "source": "/home/runner/work/12sgi-king/12sgi-king/element_lotus_public",
-  "output": "/home/runner/work/12sgi-king/12sgi-king/content/wordpress/element_lotus",
+  "source": "C:\\Users\\12sgi\\Documents\\Codex\\2026-07-11\\github-plugin-github-openai-curated-remote\\work\\12sgi-king\\element_lotus_public",
+  "output": "C:\\Users\\12sgi\\Documents\\Codex\\2026-07-11\\github-plugin-github-openai-curated-remote\\work\\12sgi-king\\content\\wordpress\\element_lotus",
   "css": "additional-css.css",
   "pages": [
     {
@@ -48,7 +48,7 @@
       "slug": "/civic/",
       "template": "default",
       "title": "Element Lotus · civic / govOS",
-      "description": "Secondary civic lane for govOS within the Element Lotus studio-first shell.",
+      "description": "Live civic events and transparency dashboard.",
       "output": "civic.html"
     }
   ]

@@ -465,5 +465,36 @@ initBoard();
 })();
 </script>
 <script src="../govos-shell.js" defer></script>
+
+<script src="circle_core.js"></script>
+<script>
+/* konane circle module — TWO players, every remove/jump passes the turn. seat 0 = black. */
+(function () {
+  'use strict';
+  CircleCore.init({
+    gameId: 'konane',
+    getState: function () {
+      return JSON.stringify({ board: board.slice(), phase: phase, turn: turn,
+                              capBlack: capBlack, capWhite: capWhite, gameOver: gameOver });
+    },
+    setState: function (s) {
+      var o = JSON.parse(s);
+      board = o.board.slice(); phase = o.phase; turn = o.turn;
+      capBlack = o.capBlack || 0; capWhite = o.capWhite || 0; gameOver = !!o.gameOver;
+      selected = null; validMoves = [];
+      render(); updateUI();
+    },
+    moverSeat: function (o) {
+      // whose MOVE it is inside the game state: remove phases map to their color's seat
+      if (o.phase === 'REMOVE_BLACK') return 0;
+      if (o.phase === 'REMOVE_WHITE') return 1;
+      return o.turn === 1 ? 0 : 1;
+    },
+    seatLabel: function (i) { return i === 0 ? 'black (ʻeleʻele)' : 'white (keʻokeʻo)'; }
+  });
+})();
+</script>
+
+<script src="supporter.js"></script>
 </body>
 </html>

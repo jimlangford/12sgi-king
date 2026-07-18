@@ -137,8 +137,8 @@ def generate_checkout_url(email="", success_url="", cancel_url=""):
     payload = json.dumps({
         "price_id": price_id,
         "email": email,
-        "success_url": success_url or "https://12sgianonymous.tail760750.ts.net/king/commentary?subscribed=1",
-        "cancel_url": cancel_url or "https://12sgianonymous.tail760750.ts.net/king/commentary?cancelled=1",
+        "success_url": success_url or "https://king.tail760750.ts.net/king/commentary?subscribed=1",
+        "cancel_url": cancel_url or "https://king.tail760750.ts.net/king/commentary?cancelled=1",
         "metadata": {"tier": COMMENTARY_PLAN_ID},
     }).encode()
     try:

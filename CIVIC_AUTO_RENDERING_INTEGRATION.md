@@ -32,9 +32,9 @@
 
 ### 4. Tailscale URL Generation & Posting
 - **civic_rendering_auto.py** generates Tailscale URLs:
-  - https://12sgianonymous.tail760750.ts.net/civic/
-  - https://12sgianonymous.tail760750.ts.net/civic/meetings/
-  - https://12sgianonymous.tail760750.ts.net/civic/deadlines/
+  - https://king.tail760750.ts.net/civic/
+  - https://king.tail760750.ts.net/civic/meetings/
+  - https://king.tail760750.ts.net/civic/deadlines/
 - Posts completion event to dispatch log (appears in owner console)
 - Owner can instantly click to view rendered pages
 
@@ -337,9 +337,9 @@ open http://localhost/element_lotus_public/civic.html
 ```
 civic_rendering_auto.py
 ├─ Generates Tailscale URLs:
-│  ├─ https://12sgianonymous.tail760750.ts.net/civic/
-│  ├─ https://12sgianonymous.tail760750.ts.net/civic/meetings/
-│  └─ https://12sgianonymous.tail760750.ts.net/civic/deadlines/
+│  ├─ https://king.tail760750.ts.net/civic/
+│  ├─ https://king.tail760750.ts.net/civic/meetings/
+│  └─ https://king.tail760750.ts.net/civic/deadlines/
 │
 └─ Posts dispatch event:
    {

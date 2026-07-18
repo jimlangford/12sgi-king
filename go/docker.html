@@ -6,10 +6,10 @@
 <!-- PRIVATE: Tailscale-only. Served from king :8799. Not part of the public GitHub Pages site. -->
 <style>
  :root{
-   --bg:#ffffff;--panel:#e7eef8;--panel-2:#dae5f3;--panel-3:#ccddef;--line:#bacde6;
-   --ink:#13243d;--ink-dim:#41536b;--ink-faint:#5b6e86;
-   --accent:#00356b;--accent-2:#1259a3;--accent-ink:#ffffff;--accent-wash:rgba(0,53,107,.06);
-   --gold:#b8860b;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
+   --bg:#081420;--panel:#0f2540;--panel-2:#dae5f3;--panel-3:#ccddef;--line:#26456a;
+   --ink:#eaf2fc;--ink-dim:#41536b;--ink-faint:#5b6e86;
+   --accent:#4a9eff;--accent-2:#1259a3;--accent-ink:#ffffff;--accent-wash:rgba(0,53,107,.06);
+   --gold:#e3ad33;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
    --mono:'JetBrains Mono',Consolas,monospace;
  }
  *{box-sizing:border-box}
@@ -238,13 +238,13 @@ function showUnreachable(){
     sev:'critical',
     steps:[
       'Verify Tailscale is connected on this device',
-      'Open https://12sgianonymous.tail760750.ts.net/king/ to test connectivity',
+      'Open https://king.tail760750.ts.net/king/ to test connectivity',
       'Check that the king server is running (port 8799)',
       'Verify nginx is running and /board proxy is configured'
     ],
     fixes:[
       {lbl:'Tailscale admin',href:'https://login.tailscale.com/admin/machines'},
-      {lbl:'Test king server',href:'https://12sgianonymous.tail760750.ts.net/king/'}
+      {lbl:'Test king server',href:'https://king.tail760750.ts.net/king/'}
     ],
     logs:'',
     escalate:'If Tailscale is connected and the server is running, check nginx error logs. Verify the /board location block proxies to port 8782.',

@@ -251,7 +251,10 @@ async def health():
     checks = await run_all_checks()
     release = read_release_metadata()
     out = {
-        "status": "healthy" if all(v.get('ok', False) for v in checks.values()) else "degraded",
+        # Only a real failure (ok is False) degrades the stack; ok=None means not-configured /
+        # not-applicable (e.g. tailscale-in-container, unwired storage) and is NEUTRAL, not a fault.
+        # (2026-07-15 fix: was `all(ok, False)` which counted None as failure -> permanent 'degraded'.)
+        "status": "degraded" if any(v.get('ok') is False for v in checks.values()) else "healthy",
         "timestamp": _utc_timestamp(),
         "services": checks,
     }

@@ -91,7 +91,7 @@ GITHUB_AUTO_REPAIR_DRY_RUN=false
 
 All repairs are tracked in the Owner Job Dashboard:
 
-- **URL**: https://12sgianonymous.tail760750.ts.net/owner_jobs.html
+- **URL**: https://king.tail760750.ts.net/owner_jobs.html
 - **Displays**: All autonomous repairs with status
 - **Approve/Reject**: Each completed repair waits for owner approval
 
@@ -241,7 +241,7 @@ docker compose -f docker-compose.v2.yml up -d github-workflow-monitor
 
 The Owner Job Dashboard automatically displays all autonomous repairs:
 
-1. **Navigate to**: https://12sgianonymous.tail760750.ts.net/owner_jobs.html
+1. **Navigate to**: https://king.tail760750.ts.net/owner_jobs.html
 2. **Filter by archetype**: `github_workflow_yaml_repair`, `github_lint_repair`, etc.
 3. **Approve/Reject**: Each completed repair requires owner approval
 4. **View Details**: Click job ID to see repair diff and result

@@ -8,7 +8,7 @@ Total memories tracked: 40 active entries
 Production system: 12sgi-king (govOS v2 beta)
 Status: RUNNING (real processes, real data)
 Owner: James Langford (JRCSL, jimlangford@me.com)
-Tailscale domain: https://12sgianonymous.tail760750.ts.net
+Tailscale domain: https://king.tail760750.ts.net
 
 ═══════════════════════════════════════════════════════════════════════════════════════════════
 THREAD 1: CORE SYSTEM ARCHITECTURE (12sgi-king govOS v2)
@@ -73,7 +73,7 @@ HEALING CYCLE (30 seconds per tenant):
 
 DASHBOARD LINKS:
   Local: http://localhost:8799/go/healing.html
-  Tailscale: https://12sgianonymous.tail760750.ts.net/king/go/healing.html
+  Tailscale: https://king.tail760750.ts.net/king/go/healing.html
 
 API ENDPOINTS:
   GET /gordon/healing/dashboard

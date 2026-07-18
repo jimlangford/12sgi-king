@@ -25,6 +25,15 @@ from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 from services.event_bus import publish_event as _publish_event
+from services.auth.app.passkeys import (
+    init_passkeys_db,
+    PasskeyRegisterBeginRequest, PasskeyRegisterBeginResponse,
+    PasskeyRegisterCompleteRequest, PasskeyRegisterCompleteResponse,
+    PasskeySigninBeginRequest, PasskeySigninBeginResponse,
+    PasskeySigninCompleteRequest, PasskeySigninCompleteResponse,
+    passkey_register_begin, passkey_register_complete,
+    passkey_signin_begin, passkey_signin_complete,
+)
 
 _log = logging.getLogger(__name__)
 
@@ -130,6 +139,13 @@ MAGIC_EMAIL_CONFIGURED = bool(
     and ((SMTP_USER and SMTP_PASS) or SMTP_ALLOW_UNAUTHENTICATED)
     and OWNER_MAGIC_EMAILS
 )
+# Passkey registration requires an existing Owner session. The allowlist further constrains which
+# owner e-mails may bind a credential and defaults only to explicitly configured Google owners.
+OWNER_PASSKEY_EMAILS = _csv_env_set(
+    "OWNER_PASSKEY_EMAILS",
+    ",".join(sorted(OWNER_GOOGLE_EMAILS)),
+    casefold=True,
+)
 # CORS: allow requests from the console origins.
 _CORS_ORIGINS = [
     o.strip()
@@ -137,7 +153,17 @@ _CORS_ORIGINS = [
     if o.strip()
 ]
 
-app = FastAPI(title="govOS v2 Auth Service", version=VERSION)
+app = FastAPI(
+    title="govOS v2 Auth Service",
+    version=VERSION,
+    description="Owner authentication for govOS v2: GitHub/Google OAuth, Passkeys (WebAuthn), "
+                "Magic Links, session issuance + introspection. All endpoints under /api/v2.",
+    # Tier 1.7 (2026-07-15): expose Swagger UI + OpenAPI schema at the /api/v2 prefix (per the
+    # continuation-guide spec), not the FastAPI default root paths.
+    docs_url=f"{API_PREFIX}/docs",
+    redoc_url=f"{API_PREFIX}/redoc",
+    openapi_url=f"{API_PREFIX}/openapi.json",
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -631,6 +657,7 @@ def _send_magic_email(email: str, magic_url: str) -> bool:
 
 
 init_db()
+init_passkeys_db()
 
 
 @app.get(f"{API_PREFIX}/live")
@@ -698,6 +725,91 @@ def _require_service_trust(x_service_token: str | None) -> None:
                 }
             },
         )
+
+
+# Compatibility aliases for the Tier 1 draft paths. Both use the durable hashed-token flow below.
+@app.post(f"{API_PREFIX}/auth/magiclink/request")
+def magiclink_request_endpoint(payload: MagicLinkRequest):
+    return request_magic_link(payload)
+
+
+@app.get(f"{API_PREFIX}/auth/magiclink/claim")
+def magiclink_claim_endpoint(token: str = "", email: str = ""):
+    del email
+    return verify_magic_link(token)
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/register/begin", response_model=PasskeyRegisterBeginResponse)
+def passkey_register_begin_endpoint(
+    payload: PasskeyRegisterBeginRequest,
+    authorization: str | None = Header(default=None),
+):
+    _require_owner(authorization)
+    if payload.email.casefold() not in OWNER_PASSKEY_EMAILS:
+        raise HTTPException(status_code=403, detail={"error": {"code": "not_authorised", "message": "This email is not authorised for passkey registration"}})
+    try:
+        return passkey_register_begin(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_register_begin_failed", "message": str(exc)}})
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/register/complete", response_model=PasskeyRegisterCompleteResponse)
+def passkey_register_complete_endpoint(
+    payload: PasskeyRegisterCompleteRequest,
+    authorization: str | None = Header(default=None),
+):
+    _require_owner(authorization)
+    try:
+        result = passkey_register_complete(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_register_complete_failed", "message": str(exc)}})
+    _publish_event(
+        event_type="auth.passkey.registered", producer="auth",
+        entity_id=_redact_claim_identifier(f"passkey:{payload.user_id}"),
+        payload={"credential_id": result.credential_id},
+    )
+    return result
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/signin/begin", response_model=PasskeySigninBeginResponse)
+def passkey_signin_begin_endpoint(payload: PasskeySigninBeginRequest):
+    try:
+        return passkey_signin_begin(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_signin_begin_failed", "message": str(exc)}})
+
+
+@app.post(f"{API_PREFIX}/auth/passkey/signin/complete", response_model=AuthSessionResponse)
+def passkey_signin_complete_endpoint(payload: PasskeySigninCompleteRequest):
+    try:
+        result = passkey_signin_complete(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail={"error": {"code": "passkey_signin_complete_failed", "message": str(exc)}})
+
+    # Gate the SESSION's role, not just registration — defense in depth, matches OAuth callbacks:
+    # registration already required an allowlisted email, but re-check here too so a future bug in
+    # register_begin's gate can never silently grant Owner via a stale/leftover credential.
+    if result.email.casefold() not in OWNER_PASSKEY_EMAILS:
+        raise HTTPException(status_code=403, detail={"error": {"code": "not_authorised", "message": "This account is not authorised for owner access"}})
+
+    subject = f"passkey:{result.user_id}"
+    role = "Owner"
+    scopes = _default_scopes(role)
+    ttl = 8 * 3600
+    token, exp = _issue_and_store_session(
+        subject=subject, provider="passkey", email=result.email,
+        tenant_id="", role=role, scopes=scopes, ttl_seconds=ttl,
+    )
+    audit_auth_event("auth", "passkey_signin", details={"subject": _redact_claim_identifier(subject), "role": role})
+    return {
+        "access_token": token,
+        "token_type": "Bearer",
+        "expires_in": ttl,
+        "claims": {"sub": subject, "tenant_id": "", "role": role, "scopes": scopes,
+                    "exp": exp, "iss": AUTH_ISSUER, "aud": AUTH_AUDIENCE},
+        "user": {"id": subject, "provider": "passkey", "email": result.email, "tenant_id": "",
+                  "role": role, "scopes": scopes},
+    }
 
 
 @app.post(f"{API_PREFIX}/auth/session", response_model=AuthSessionResponse)
@@ -842,6 +954,69 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
             "scopes": stored_scopes,
         },
         "exp": row["expires_at"],
+    }
+
+
+def _require_owner(authorization: str | None) -> dict:
+    """Verify the caller presents an ACTIVE Owner session; return the owner's JWT claims.
+
+    Mirrors the owner-gate the diagnostics endpoint already uses: bearer present -> token verifies
+    -> a stored session exists with role Owner and is not expired -> the JWT claim role is Owner.
+    Raises 401 (missing / inactive session) or 403 (not Owner), exactly like the rest of the service.
+    """
+    if not authorization or not authorization.startswith("Bearer "):
+        audit_auth_event("auth", "denied_access", {"reason": "missing_bearer"})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Missing or invalid bearer token", "details": {}}},
+        )
+    token = authorization.split(" ", 1)[1].strip()
+    try:
+        _, claims = _decode_and_verify_token(token)
+    except HTTPException:
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    session = _session_for_token(token)
+    if not session or (session["role"] or "") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    if int(session["expires_at"]) <= int(_now_utc().timestamp()):
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "unauthorized", "message": "Session is not active", "details": {}}},
+        )
+    if claims.get("role") != "Owner":
+        audit_auth_event("auth", "denied_access", {"reason": "owner_claim_required"})
+        raise HTTPException(
+            status_code=403,
+            detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
+        )
+    return claims
+
+
+@app.get(f"{API_PREFIX}/auth/owner/allowlist")
+def get_owner_allowlist(authorization: str | None = Header(default=None)):
+    """Owner-only, READ-ONLY: the current owner-authentication allowlists (Tier 1.6).
+
+    Returns the GitHub logins and Google / passkey / magic-link e-mail addresses permitted to
+    authenticate as Owner, as loaded from the OWNER_* environment variables at startup. This
+    endpoint never mutates the allowlists — runtime mutation is a separate, deliberate design
+    decision (a persistent override store + hot-reload + a safeguard so the env-configured owner
+    can never be locked out). The Admin Console reads this to display the live allowlists.
+    """
+    _require_owner(authorization)
+    return {
+        "github_logins": sorted(OWNER_GITHUB_LOGINS),
+        "google_emails": sorted(OWNER_GOOGLE_EMAILS),
+        "passkey_emails": sorted(OWNER_PASSKEY_EMAILS),
+        "magic_emails": sorted(OWNER_MAGIC_EMAILS),
+        "source": "environment (OWNER_* vars, loaded at startup)",
+        "mutable_at_runtime": False,
     }
 
 

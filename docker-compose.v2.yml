@@ -22,31 +22,15 @@ x-common-env:
   NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
   NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
 services:
-  neo4j:
-    image: neo4j:5-community
-    environment:
-      NEO4J_AUTH: none
-      NEO4J_server_default__listen__address: 0.0.0.0
-      NEO4J_server_memory_pagecache_size: ${NEO4J_PAGECACHE_SIZE:-256M}
-      NEO4J_server_memory_heap_initial__size: ${NEO4J_HEAP_SIZE:-256M}
-      NEO4J_server_memory_heap_max__size: ${NEO4J_HEAP_SIZE:-256M}
-    volumes:
-    - v2-neo4j-data:/data
-    - v2-neo4j-logs:/logs
-    ports:
-    - 127.0.0.1:7474:7474
-    - 127.0.0.1:7687:7687
-    restart: unless-stopped
-    mem_limit: ${NEO4J_MEM_LIMIT:-640m}
-    mem_reservation: ${NEO4J_MEM_RESERVATION:-256m}
-    healthcheck:
-      test:
-      - CMD-SHELL
-      - wget -q -O /dev/null http://localhost:7474 || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
+  # ---------------------------------------------------------------------------
+  # neo4j MOVED OUT (Jimmy 2026-07-15: "isolate neo4j so a v2 deploy can never wipe the brain").
+  # neo4j (the ~10.4k-node whole-system graph, 14 native consumers) now lives in its OWN compose:
+  #     docker-compose.neo4j.yml   (container: quados-neo4j, same external volume 12sgi-king_v2-neo4j-data)
+  # It is DELIBERATELY absent here so `docker compose -f docker-compose.v2.yml up/down/-v` can never
+  # recreate or wipe it. v2 services still reach it via NEO4J_HTTP=http://host.docker.internal:7474 or
+  # the shared external volume; the brain's lifecycle is standalone. Board item wb1784180689000 = this.
+  # DO NOT re-add a neo4j service here. To restart the graph: docker compose -f docker-compose.neo4j.yml up -d
+  # ---------------------------------------------------------------------------
   auth:
     build:
       context: .
@@ -377,7 +361,9 @@ services:
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}
-      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108
+      # board-api (native king_serve, host :8799) and studio-assets (external Codex stack) are monitored
+      # separately, not as V2 fleet members — trimmed so the V2 health aggregator reflects the V2 stack.
+      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109
       SURFACES_HEALTH_PATH: /api/v2/ready
     ports:
     - 127.0.0.1:8106:8000
@@ -391,6 +377,12 @@ services:
     - king-bridge
     restart: unless-stopped
   gpu-runtime:
+    # RETIRED from the default stack (audit-quad-os 2026-07-15, review wf_42ab0998-444, Jimmy 'i want
+    # everything fixed'): this container held ZERO models while reserving the whole 8GB co-tenant GPU,
+    # and gpu-router's GPU_RUNTIME_URL already defaults to the host Ollama (which has all king-* models).
+    # Kept defined under the 'legacy-gpu' profile for deliberate revival:
+    #   docker compose --profile legacy-gpu -f docker-compose.v2.yml up -d gpu-runtime
+    profiles: ["legacy-gpu"]
     image: ollama/ollama:latest
     deploy:
       resources:
@@ -407,8 +399,9 @@ services:
     restart: unless-stopped
     healthcheck:
       test:
-      - CMD-SHELL
-      - ollama list >/dev/null 2>&1 || exit 1
+      - CMD
+      - ollama
+      - list
       interval: 30s
       timeout: 10s
       retries: 5
@@ -450,7 +443,12 @@ services:
       NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
       NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
       GPU_ROUTER_DB_PATH: /data/db/govos_v2_gpu_router.db
-      GPU_RUNTIME_URL: ${GPU_RUNTIME_URL:-http://gpu-runtime:11434}
+      # 2026-07-15 (Jimmy: make the router the REAL GPU governor): point at the HOST ollama, which
+      # holds all 46 real king-* models. The in-stack gpu-runtime container is empty (0 models), so
+      # the router was serialising a door nobody used. host.docker.internal:11434 = the real brain,
+      # reachable from this container (verified). The router's _gpu_worker_lock now serialises the
+      # actual GPU. Override with GPU_RUNTIME_URL env to switch back to the container path.
+      GPU_RUNTIME_URL: ${GPU_RUNTIME_URL:-http://host.docker.internal:11434}
       GPU_CLIENT_PRIORITIES: ${GPU_CLIENT_PRIORITIES:-govos-core:1,maui-tenant:2,studio:3,civic-signal:4,workboard:5,reports:6}
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:
@@ -460,7 +458,8 @@ services:
     - 127.0.0.1:8107:8107
     depends_on:
     - auth
-    - gpu-runtime
+    # gpu-runtime dependency removed 2026-07-15 (service retired to the legacy-gpu profile;
+    # GPU_RUNTIME_URL defaults to the host Ollama which holds all king-* models)
     restart: unless-stopped
     healthcheck:
       test:
@@ -472,6 +471,43 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+  board-api:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.board_api.main:app
+    - --host
+    - 127.0.0.1
+    - --port
+    - '8799'
+    environment:
+      OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
+      COMFYUI_BASE: ${COMFYUI_BASE:-http://host.docker.internal:8188}
+      KING_BRIDGE: ${KING_BRIDGE:-http://host.docker.internal:8109}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_REPO: ${GITHUB_REPO:-jimlangford/12sgi-king}
+      DEPLOY_LOG_DIR: /repo/logs/v2-deploy
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+    volumes:
+    - v2-dispatch:/data/dispatch
+    - .:/repo
+    # host port binding removed: the native king_serve.py owns host 127.0.0.1:8799 (native is canonical).
+    # V2 peers reach board-api over the compose network; host :8799 stays with native king_serve.
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://127.0.0.1:8799/health', timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   king-bridge:
     build:
       context: .
@@ -517,8 +553,8 @@ services:
     - v2-dispatch:/data/dispatch
     ports:
     - 127.0.0.1:8109:8109
-    depends_on:
-    - neo4j
+    # depends_on neo4j REMOVED 2026-07-15 -- neo4j is now standalone (docker-compose.neo4j.yml),
+    # not part of this project. king-bridge reaches it via NEO4J_HTTP; no compose-level dep.
     restart: unless-stopped
     healthcheck:
       test:

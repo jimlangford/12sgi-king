@@ -5,7 +5,7 @@
 #
 #   python build_site.py            # -> ./site
 #   KA_SITE=/path python build_site.py
-import os, re, shutil, json, sys, time
+import os, re, shutil, json, sys, time, subprocess
 from datetime import datetime, timezone, timedelta
 
 HOME    = os.path.expanduser("~")
@@ -56,6 +56,7 @@ PAGES = [
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
+    ("bill9_money_vs_will.html",          "Bill 9 - the Vote, the Money","The Council's 5-3 final vote to phase out transient vacation rentals in apartment districts, set beside the real-estate money behind the three NO votes. Public records (roll-call + campaign finance), framed as questions, never accusations. Neo4j-backed."),
     ("testifiers_maui.html",             "Who Testifies x Money",        "Named public testifiers from the minutes, cross-referenced to campaign donors and the real-estate record. Public records, framed as questions."),
     ("federal_money.html",               "Federal Dollars - Maui & State","Federal contracts + grants landing in Hawai&#699;i, the Maui share called out, broken down by awarding agency. Public records, framed as questions."),
     ("beta_requests.html",               "govOS Beta - Build It With Your Council","Maui Council members request features (Stripe Identity - free, no charge), guided by constituents who sign up by district. Shapes the software; the public record stays public."),
@@ -176,6 +177,39 @@ EXTRA_PAGES = [# interactive parcel/TMK map (live Hawaii Statewide GIS) — embe
                # verified, but never added to PAGES/EXTRA_PAGES, so they never reached SITE at all (the actual
                # root cause of "I don't see all the pages for that tenant" — not a missing nav link, a missing copy).
                "nonprofits_maui.html", "subcontracts_maui.html", "money_chain_maui.html",
+               # subcontractors_maui.html = the ALIAS subcontract_chain.py writes alongside subcontracts_maui.html
+               # (county_awards.dim_links + the Maui tenant tiles link the "subcontractors_" spelling). The primary
+               # ships above; the alias was never in a copy list -> broken link from maui.html/tenant_hi-maui.html/
+               # money_chain_maui.html. Real federal USASpending subaward data (Maui FIPS 15009), already staged.
+               # Added 2026-07-14 (audit-quad-os, Maui ingest repatch).
+               "subcontractors_maui.html",
+               # ── OTHER-TENANT civic pages (hi-hawaii/honolulu/kauai/state + NY). Data was STAGED but never
+               # copied — same gap as the Maui pages above. The generators were fixed 2026-07-14 (audit-quad-os)
+               # so each page carries its OWN tenant name/facts, not Maui's: contracts_x_donors + money_behind
+               # titles were mislabeled "Maui", and money_behind's Lahaina/$1.639B disaster-lens is now gated to
+               # Maui only (it's a Maui fact, false under another county). Stale hi-*_contract_awards.html orphans
+               # were deleted instead — the correct contracts_<slug>.html already ship above.
+               "contracts_x_donors_hi-hawaii.html", "contracts_x_donors_hi-honolulu.html",
+               "contracts_x_donors_hi-kauai.html", "contracts_x_donors_hi-state.html",
+               "money_behind_officials_hi-hawaii.html", "money_behind_officials_hi-honolulu.html",
+               "money_behind_officials_hi-kauai.html", "money_behind_officials_hi-state.html",
+               "money_kauai_shell.html", "minutes_hi-state.html",
+               "audit_balance_nys.html", "federal_money_nys.html",
+               # maui_services.html — the "one front door" hub (2026-07-15): mirrors mauicounty.gov's
+               # service structure by LINKING OUT to the county's authoritative transactions (pay/permits/
+               # DMV/UIPA/jobs/alerts — we index, never clone) alongside our public-record + accountability
+               # pages. Closes the feature-parity gap the mauicounty.gov comparison surfaced.
+               "maui_services.html",
+               # who_paid_the_vote.html — AURORA·GOLD educational surface (2026-07-15): "who paid for the vote"
+               # taught at every reading level (keiki->analyst) over a ghosted celestial star map aligned to
+               # Wailuku (county seat) + Lahaina (Royal Capital 1820-1845). standalone-aurora = opts out of the
+               # govOS Georgia stamp; real money-graph data from Neo4j, sourced + question-framed.
+               "who_paid_the_vote.html",
+               # the ethics+education lens rolled UP to the State (parent) and BACK DOWN to every county
+               # (Jimmy 2026-07-15 "all the way up and back") — who_paid_gen.py, each with its own celestial
+               # anchors (present seat ↔ historic royal seat) + that tenant's VERIFIED donor data.
+               "who_paid_the_vote_hi-state.html", "who_paid_the_vote_hi-hawaii.html",
+               "who_paid_the_vote_hi-honolulu.html", "who_paid_the_vote_hi-kauai.html",
                # testifiers_maui.html + council_votes_maui.html are now carded dashboards in PAGES (fuller treatment)
                # public outreach: seeking a 501(c)(3) fiscal-sponsor partner (2026-06-15)
                "partner.html",
@@ -598,6 +632,28 @@ def build_maui_nav_page():
     print("  + maui.html: mirrors tenant_hi-maui.html verbatim (%d bytes) — no separate Maui rendering path" % len(body))
 
 
+def _ensure_civic_document(pth, rel):
+    """Headless civic fragments (many generators emit a bare `<nav>…<footer>` with no <head>/<body>)
+    can't receive the govos.css/govos-shell.js stamp — rebuild_page injects the <link> at </head> and the
+    <script> at </body>, and if neither tag exists the shared shell silently never lands, leaving an
+    UNSTYLED nav (audit found 93 such pages). Wrap those into a proper document so the stamp reaches them,
+    matching the 357 pages that already pair `govos-nav` + govos.css/js. Skip real documents (already have
+    </head>), king-app DataComponents (*.dc.html, imported headless by app.html), and non-civic subtrees
+    (king/ sage/ games/ go/ + template partials carry their own structure). Added 2026-07-15 (audit-quad-os,
+    from-scratch civic rebuild — the ASSET dimension: one shared nav shell on every civic page)."""
+    low = rel.lower()
+    if low.endswith(".dc.html") or low.split("/")[0] in ("king", "sage", "games", "go") or "civic/templates" in low:
+        return False
+    txt = pth.read_text(encoding="utf-8", errors="replace")
+    if "</head>" in txt.lower():
+        return False   # already a full document
+    wrapped = ('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+               '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+               '</head><body>\n' + txt + '\n</body></html>')
+    pth.write_text(wrapped, encoding="utf-8", newline="\n")
+    return True
+
+
 # ── per-tenant report TEMPLATE + inline TENANT-SWITCHER (Jimmy 2026-06-16, built on the consolidated
 #    tenant_registry). On any report that exists per-tenant, surface a "choose a government" row so you can
 #    select a different tenant FROM THE SAME REPORT. Reads the ONE registry (tenant_registry.json) — no
@@ -865,10 +921,15 @@ def recolor_tree(root):
             p = os.path.join(dp, fn)
             try:
                 t = open(p, encoding="utf-8", errors="ignore").read()
-                r = recolor(t)
+                # AURORA-KEEP (Jimmy 2026-07-16 "go.html -> aurora-gold"): a page that declares its own
+                # AURORA·GOLD palette opts OUT of the Yale-blue recolor + civic-chrome footer, but — unlike
+                # standalone-aurora — STILL receives the shared govos shell (nav/js) it depends on. Mobile-heal
+                # still applies. Marker in the first 600 chars.
+                _aurora_keep = ext == "html" and "aurora-keep" in t[:600]
+                r = t if _aurora_keep else recolor(t)
                 if ext == "html":
                     r = ensure_mobile(r)
-                    if os.path.relpath(p, root).split(os.sep)[0] != "king":
+                    if not _aurora_keep and os.path.relpath(p, root).split(os.sep)[0] != "king":
                         r = unify_font(r)   # match the home page: flat civic pages -> Segoe sans (King ceremonial register keeps its serif)
                         r = ensure_civic_chrome(r)   # unify look to the home page: civic_shell tokens + shared footer (gn- nav stays)
                 if r != t:
@@ -1001,6 +1062,22 @@ def main():
         shutil.rmtree(SITE)
     os.makedirs(SITE, exist_ok=True)
     os.makedirs(os.path.join(SITE, "data"), exist_ok=True)
+    with _lane("civic_money_maps"):
+        # DURABLE re-injection (Jimmy 2026-07-16 "put maps on every civic page ... where the money goes"):
+        # the money pages are regenerated by their own generators (donor_watch etc.), which WIPES the
+        # injected animated "where the money goes / comes from" map. Re-inject over reports/mauios HERE,
+        # BEFORE the copy lanes below carry the pages into SITE -> king-local, so every deploy ships them.
+        # civic_money_maps --all is idempotent + self-healing (strips a map from any page that no longer has
+        # money content). Isolated in a subprocess so a failure NEVER breaks the build (money maps are additive).
+        try:
+            _cmm = os.path.join(PROJECT, "tools", "kilo-aupuni", "civic_money_maps.py")
+            if os.path.exists(_cmm):
+                _r = subprocess.run([sys.executable, "-X", "utf8", _cmm, "--all"], capture_output=True,
+                                    text=True, timeout=180, cwd=PROJECT, env=dict(os.environ, PYTHONUTF8="1"))
+                _tail = (_r.stdout or "").rstrip().splitlines()
+                print("  + civic money maps: " + (_tail[-1] if _tail else "ran") + ("" if _r.returncode == 0 else " (rc=%d)" % _r.returncode))
+        except Exception as _cmme:
+            print("  ! civic money maps skipped (build continues): %s" % str(_cmme)[:120])
     with _lane("dashboards"):
         present = []
         for rel, name, blurb in PAGES:
@@ -1024,12 +1101,19 @@ def main():
         for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
             src = mauios_src(rel)
             if os.path.exists(src):
-                with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
-                    _h = inject_nav(open(src, encoding="utf-8", errors="replace").read(), rel)
+                _raw = open(src, encoding="utf-8", errors="replace").read()
+                # A page marked `standalone-aurora` carries its OWN complete design (AURORA·GOLD) and must
+                # NOT receive the govOS civic nav / switcher / narrative / ʻōlelo injections, nor the
+                # govos.css stamp below — it is a self-contained surface with its own back-link.
+                if "standalone-aurora" in _raw[:400]:
+                    _h = _raw
+                else:
+                    _h = inject_nav(_raw, rel)
                     _h = inject_switcher(_h, rel)      # per-tenant report: choose a government switcher
                     _h = add_narrative(_h, rel)
                     _h = add_records_cta(_h, rel)
                     _h = add_olelo_notice(_h)
+                with open(os.path.join(SITE, rel), "w", encoding="utf-8", newline="\n") as f:
                     f.write(_h)
     with _lane("data_files"):
         _present_data = []
@@ -1038,6 +1122,20 @@ def main():
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(SITE, "data", os.path.basename(rel)))
                 _present_data.append((os.path.basename(rel), src))
+        # prosecutor_public_feed.html fetches ./prosecutor_public_feed.json at the SITE ROOT (relative,
+        # same-dir), but the DATA loop above only lands it in site/data/ -> the page's fetch 404s. Copy it
+        # to root too so the feed resolves. Added 2026-07-14 (audit-quad-os, other-tenant repatch).
+        _pf = mauios_src("prosecutor_public_feed.json")
+        if os.path.exists(_pf):
+            shutil.copy(_pf, os.path.join(SITE, "prosecutor_public_feed.json"))
+        # tenant_hi-state links lege/legislator_scorecard.html at the SUBDIR path, but the build otherwise
+        # ships only the flattened lege_legislator_scorecard.html -> the subdir link 404s (the flatten
+        # gotcha). Ship the subdir copy too so the link resolves; the govos_shell_stamp lane (recursive
+        # glob) stamps it with the correct ../ asset prefix. Added 2026-07-14 (audit-quad-os, repatch).
+        _lege = mauios_src(os.path.join("lege", "legislator_scorecard.html"))
+        if os.path.exists(_lege):
+            os.makedirs(os.path.join(SITE, "lege"), exist_ok=True)
+            shutil.copy(_lege, os.path.join(SITE, "lege", "legislator_scorecard.html"))
 
     with _lane("open_data_catalog"):
         # [open-data] DCAT catalog (data.json) + a human Open Data front door (datasets.html). Indexes ONLY
@@ -1131,12 +1229,59 @@ def main():
                 print("  ! blog skipped: %s" % str(_be)[:120])
 
     with _lane("links_copy"):
-        # [links] copy linked supporting folders so per-official "full profile" pages resolve
-        for sub in ("donors",):
+        # [links] copy linked supporting folders so per-official "full profile" pages resolve.
+        # "donors" is Maui's; each other tenant's money_behind_officials_<t>.html links its own
+        # donors_<t>/ dir (donor_watch.py derives the href from basename(OUT_DIR)). Copy them all.
+        # Extended 2026-07-14 (audit-quad-os, other-tenant repatch — closed 32 broken donor-profile links).
+        import glob as _glob
+        _donor_dirs = ["donors"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "donors_*")) if os.path.isdir(p))
+        for sub in _donor_dirs:
             s = os.path.join(MAUIOS, sub)
             if os.path.isdir(s):
-                shutil.copytree(s, os.path.join(SITE, sub))
+                shutil.copytree(s, os.path.join(SITE, sub), dirs_exist_ok=True)
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
+
+    with _lane("bids_copy"):
+        # [bids] Maui County bid/RFP detail pages (bids_watch.py -> reports/mauios/bids/, sourced from
+        # mauicounty.gov CivicEngage). Pages like news_record.html link specific bids by their exact
+        # "bids/bid <id> <title>.html" path. The full archive is ~3,830 files -> dumping it ALL into
+        # site/ (which the build rmtree-wipes every run) is slow + Windows-race-prone AND leaves 3,829
+        # orphan pages reachable only by guessing the URL (not "findable" in any real sense). Instead
+        # ship EXACTLY the bids a built page actually references: the link resolves, nothing is orphaned,
+        # the build stays fast and robust. Self-maintaining — whatever pages link, those bids ship. The
+        # full archive stays in reports/mauios/bids (owner source). Added 2026-07-14 (audit-quad-os,
+        # Maui ingest repatch; runs after EXTRA_PAGES so the referencing pages already exist in site/).
+        _bids_src = os.path.join(MAUIOS, "bids")
+        if os.path.isdir(_bids_src):
+            import glob as _glob
+            import urllib.parse as _uq
+            _bref = re.compile(r'''(?:href|src)=["']([^"']*bids/[^"']+\.html)["']''', re.I)
+            _wanted = set()
+            for _hp in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
+                try:
+                    _t = open(_hp, encoding="utf-8", errors="ignore").read()
+                except Exception:
+                    continue
+                for _href in _bref.findall(_t):
+                    _rel = _uq.unquote(_href.split("bids/", 1)[1]).split("#")[0].split("?")[0]
+                    if _rel:
+                        _wanted.add(_rel)
+            _copied, _missing = 0, []
+            if _wanted:
+                _bids_dst = os.path.join(SITE, "bids")
+                os.makedirs(_bids_dst, exist_ok=True)
+                for _bn in sorted(_wanted):
+                    _bs = os.path.join(_bids_src, _bn)
+                    if os.path.isfile(_bs):
+                        _bd = os.path.join(_bids_dst, _bn)
+                        os.makedirs(os.path.dirname(_bd), exist_ok=True)
+                        shutil.copy(_bs, _bd)
+                        _copied += 1
+                    else:
+                        _missing.append(_bn)
+            _arch = len([f for f in os.listdir(_bids_src) if f.lower().endswith(".html")])
+            print(f"  + bids/: {_copied} referenced bid page(s) shipped (archive has {_arch})"
+                  + (f" — MISSING from archive: {_missing[:3]}" if _missing else ""))
 
     with _lane("sage_game"):
         # [sage] publish the self-contained 2D SAGE education game at /sage/ (Jimmy 2026-07-03:
@@ -1147,7 +1292,10 @@ def main():
             _gdst = os.path.join(SITE, "sage")
             if os.path.isdir(_gdst):
                 shutil.rmtree(_gdst, ignore_errors=True)
-            shutil.copytree(_gsrc, _gdst)
+            # dirs_exist_ok: rmtree(ignore_errors=True) can leave a half-deleted dir behind a transient
+            # Windows file lock, and plain copytree then dies on it — the intermittent sage_game lane
+            # failure (fixed 2026-07-15; same robust pattern the bids_copy lane already uses).
+            shutil.copytree(_gsrc, _gdst, dirs_exist_ok=True)
             print("  + sage/: 2D SAGE game (%d card assets, static, always-up)"
                   % len([f for f in os.listdir(os.path.join(_gsrc, "assets", "cards"))
                          if f.endswith(".jpg")] if os.path.isdir(os.path.join(_gsrc, "assets", "cards")) else []))
@@ -1161,7 +1309,8 @@ def main():
             _ghdst = os.path.join(SITE, "games")
             if os.path.isdir(_ghdst):
                 shutil.rmtree(_ghdst, ignore_errors=True)
-            shutil.copytree(_ghsrc, _ghdst)
+            # dirs_exist_ok: same transient-lock hardening as the sage_game lane above (2026-07-15)
+            shutil.copytree(_ghsrc, _ghdst, dirs_exist_ok=True)
             _gh_files = [f for f in os.listdir(_ghsrc) if f.endswith(".html")]
             print("  + games/: TribeGameStudios hub (%d HTML games, static, always-up)" % len(_gh_files))
 
@@ -1480,9 +1629,19 @@ Sources are linked on every page.</div>
             _studio_root if os.path.exists(_studio_root) else (
                 _govos_fallback if os.path.exists(_govos_fallback) else _go_built))
         if os.path.exists(_idx_src):
-            shutil.copy(_idx_src, os.path.join(SITE, "index.html"))
+            _front = open(_idx_src, encoding="utf-8", errors="replace").read()
             if _idx_src == _edu_root:
-                shutil.copy(_idx_src, os.path.join(SITE, "education.html"))
+                # LINK FIX (2026-07-16): education.html is authored at the REPO ROOT (links prefixed
+                # `site/…` so they resolve there), but it is deployed FROM site/ AS the root index — so
+                # every `site/…` nav link 404s on 12sgi.com. Strip the prefix on href/src only; the
+                # target pages are siblings in the deployed root. Source stays untouched.
+                for _a in ('href="site/', "href='site/", 'src="site/', "src='site/"):
+                    _front = _front.replace(_a, _a[:-5])   # drop the trailing "site/"
+            with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8", newline="\n") as _f:
+                _f.write(_front)
+            if _idx_src == _edu_root:
+                with open(os.path.join(SITE, "education.html"), "w", encoding="utf-8", newline="\n") as _f:
+                    _f.write(_front)
             print("  + index.html = %s (public front door: civic education leads; go.html stays the private launcher)" % os.path.basename(_idx_src))
     with _lane("cname"):
         # GitHub Pages custom domain for the public mirror / interactive artifacts at 12sgi.com.
@@ -1523,6 +1682,62 @@ Sources are linked on every page.</div>
         _rc = recolor_tree(SITE)
         print(f"  + recolor: Yale-blue civic palette applied to {_rc} html/css files (all tenants; data/JS untouched)")
 
+    with _lane("govos_shell_stamp"):
+        # [unify 2026-07-14] ONE builder ships the stamp. rebuild_site.py used to stamp site/ locally
+        # (shared govos.css + govos-shell.js injected, the repeated inline nav/CSS/JS blobs stripped)
+        # AFTER a build — but this builder rmtree-wipes site/ at the top of main(), so every CI deploy
+        # rebuilt UNSTAMPED pages and the stamping never reached 12sgi.com (review finding 2026-07-14).
+        # Fix: the stamp is now a build lane. The canonical shared assets live at the REPO ROOT
+        # (govos.css / govos-shell.js — site/ copies are wiped every run) and are copied in first;
+        # if either is missing we raise BEFORE stamping, so a failed lane leaves the self-contained
+        # inline pages intact (never links to a css that isn't there). Runs before the king-local
+        # mirror so the private superset inherits the stamped pages too (private-first).
+        _here = os.path.dirname(os.path.abspath(__file__))
+        for _an in ("govos.css", "govos-shell.js", "legibility_fix.css"):
+            _asrc = os.path.join(_here, _an)
+            if not os.path.exists(_asrc):
+                raise RuntimeError("canonical %s missing at repo root - stamp skipped, pages keep inline blobs" % _an)
+            shutil.copy(_asrc, os.path.join(SITE, _an))
+        import pathlib as _pl
+        # rebuild_site.py sits next to this file. If build_site is ever IMPORTED (e.g. publish_audit.py) or
+        # run from a foreign cwd, this dir may not be on sys.path -> `No module named 'rebuild_site'` silently
+        # fails the stamp lane (pages then link a govos.css that never lands). Pin _here on sys.path so the
+        # import is invocation-independent -- the stamp can never silently no-op. (audit-quad-os 2026-07-16)
+        if _here not in sys.path:
+            sys.path.insert(0, _here)
+        import rebuild_site as _rs
+        _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
+        _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
+                   if ".git" not in p.parts and "__pycache__" not in p.parts]
+        # ASSET dimension: give headless civic fragments a real <head>/<body> FIRST, so the stamp below
+        # can inject the shared govos.css/govos-shell.js into them (else 93 pages ship an unstyled nav).
+        # standalone-aurora pages carry their own complete design and opt OUT of the shared shell entirely.
+        _standalone = set()
+        for _p in _sfiles:
+            try:
+                if "standalone-aurora" in _p.read_text(encoding="utf-8", errors="replace")[:400]:
+                    _standalone.add(_p)
+            except Exception:
+                pass
+        _wrapped = 0
+        for _p in _sfiles:
+            if _p in _standalone:
+                continue
+            _rel = str(_p.relative_to(_rs.SITE_DIR)).replace("\\", "/")
+            if _ensure_civic_document(_p, _rel):
+                _wrapped += 1
+        _changed = sum(1 for _p in _sfiles if _p not in _standalone and _rs.rebuild_page(_p, verbose=False))
+        if _wrapped:
+            print("  + wrapped %d headless civic fragment(s) into full documents (shared shell now reaches them)" % _wrapped)
+        # maui.html mirrors tenant_hi-maui.html byte-for-byte (one-writer rule, 2026-07-09) — re-mirror
+        # AFTER the stamp so identity is guaranteed by construction, not by stamp determinism.
+        build_maui_nav_page()
+        # Honest counter (fixed 2026-07-15): rebuild_page returns CHANGED-this-run, which reads as 0 on an
+        # already-stamped tree and looked like a silent failure. Count pages actually CARRYING the stamp.
+        _carrying = sum(1 for _p in _sfiles if "govos.css" in _p.read_text(encoding="utf-8", errors="replace"))
+        print("  + govos shell stamp: %d/%d pages carry shared govos.css + govos-shell.js (%d changed this run)"
+              % (_carrying, len(_sfiles), _changed))
+
     with _lane("king_local_mirror"):
         # [private-mirror] Unification: the LOCAL/owner King (king-local) must be a SUPERSET
         # of the public build — same civic dashboards + data, plus the owner-only surfaces it
@@ -1532,7 +1747,17 @@ Sources are linked on every page.</div>
         KLOCAL = os.path.expanduser(os.path.join("~", "AppData", "Local", "king-extract", "deploy", "king-local"))
         if os.path.isdir(KLOCAL):
             import glob
-            for h in glob.glob(os.path.join(SITE, "*.html")):
+            # PRIVATE = SUPERSET OF PUBLIC (fix 2026-07-16, audit-quad-os): mirror EVERY top-level artifact,
+            # not just *.html. The shared civic assets (govos.css / govos-shell.js / legibility_fix.css /
+            # studio.css / data.json / slate-data.js) are linked RELATIVE by every civic page
+            # (href="govos.css" -> /king/govos.css). An html-only mirror left private king-local serving
+            # those assets 404, so EVERY civic page rendered UNSTYLED on the private King (Jimmy's Tailscale
+            # view) while public GitHub Pages -- which uploads all of site/ -- was fine. Copy all top-level
+            # files so private carries the pages AND their stylesheet/scripts. (The parallel schtask deploy,
+            # deploy_king_local_civic.ps1, carries the same fix so both king-local writers stay in sync.)
+            for h in glob.glob(os.path.join(SITE, "*")):
+                if not os.path.isfile(h):
+                    continue
                 b = os.path.basename(h)
                 # SINGLE SOURCE: local root == public root (the civic landing front door).
                 # The King System app lives at /king/ on BOTH (one tap from the landing).
@@ -1626,7 +1851,7 @@ Sources are linked on every page.</div>
         # ABOVE, keeps the real ts.net for the owner). The :8443 funnel -> the public API base (or '#' until live);
         # the bare host -> 12sgi.com (the public King at /king exists there). Closes the go.html ts.net leak the
         # king/-only leak-gate didn't catch. NEVER touches king-local (private).
-        _TSNET = "12sgianonymous.tail760750.ts.net"
+        _TSNET = "king.tail760750.ts.net"
         import glob as _glob
         _n = 0
         for _h in _glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
@@ -1643,6 +1868,63 @@ Sources are linked on every page.</div>
         if _n:
             print("  + public sanitize: VBASE=%r + stripped private ts.net host on %d public page(s); king-local untouched"
                   % (_pub or "(opening-soon)", _n))
+    with _lane("link_prefix_fix"):
+        # DEPLOY-TIME LINK NORMALIZER (James 2026-07-17 "go thru every link no errors"): repo-root /
+        # king_public_src / element_lotus_public pages are authored with location-relative prefixes
+        # (site/…, ../…) that break once flattened into site/; and the public sanitize above turns
+        # owner-only backend routes into 12sgi.com/board etc. (404). This runs LAST over site/ and
+        # fixes both classes so no internal link 404s on the public mirror. Idempotent, href/src only.
+        try:
+            import sys as _sys
+            _tp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools")
+            if _tp not in _sys.path: _sys.path.insert(0, _tp)
+            import fix_link_prefixes as _flp
+            _lt, _lf = _flp.fix_site(SITE)
+            print("  + link normalize: %d href/src fixed across %d page(s) (no broken internal links)" % (_lt, _lf))
+        except Exception as _e:
+            print("  ! link normalize skipped:", str(_e)[:120])
+    with _lane("owner_ops_purge"):
+        # [SECURITY] Owner-ops surfaces are PRIVATE (king :8799 / Tailscale only) and must NEVER be public.
+        # The old sanitize-and-keep still exposed the Owner Console UI + internal ports (:8799/:8770) live on
+        # 12sgi.com (Jimmy 2026-07-17 SECURITY item, verified public 200). HARD-DROP them from the PUBLIC build
+        # so they can never ship: the /go/* owner-console routes, the go.html launcher, and the owner Vue
+        # shells (king/app.html, king/go.html). king/ civic pages + king/index.html landing STAY (intended
+        # public). This removes from the OUTPUT only; the private-king sources are untouched.
+        import shutil as _sh, glob as _glob
+        _purge = [os.path.join(SITE, "go"), os.path.join(SITE, "go.html"),
+                  os.path.join(SITE, "king", "app.html"), os.path.join(SITE, "king", "go.html"),
+                  os.path.join(SITE, "king", "live.js")]   # orphaned owner-shell script (on-machine :8770 fallback)
+        # the owner Vue app's DataComponents (*.dc.html) are imported headless by app.html — now that the
+        # owner shell is gone they are orphaned + carry owner-console labels; drop them from PUBLIC too.
+        _purge += _glob.glob(os.path.join(SITE, "king", "*.dc.html"))
+        _gone = []
+        for _p in _purge:
+            if os.path.isdir(_p):
+                _sh.rmtree(_p, ignore_errors=True); _gone.append(os.path.basename(_p) + "/")
+            elif os.path.exists(_p):
+                try:
+                    os.remove(_p); _gone.append(os.path.relpath(_p, SITE))
+                except OSError:
+                    pass
+        # ROBUST self-declaration sweep: drop ANY public page that marks itself private/owner-only/
+        # Tailscale-only in its head (belt beyond the explicit list — caught ops_board / connect_accounts /
+        # social_drafts, owner surfaces that carry a "PRIVATE: ... Tailscale/owner" comment). Whitelisting
+        # the public set would be even safer; this at least guarantees a self-declared-private page never ships.
+        import re as _re
+        _priv_re = _re.compile(r"PRIVATE:[^\n]*(?:Tailscale|owner|king-local|not part of the public)"
+                               r"|owner ops board|Tailscale-only", _re.I)
+        for _root, _dirs, _files in os.walk(SITE):
+            for _fn in _files:
+                if not _fn.lower().endswith(".html"):
+                    continue
+                _fp = os.path.join(_root, _fn)
+                try:
+                    if _priv_re.search(open(_fp, encoding="utf-8", errors="ignore").read(4000)):
+                        os.remove(_fp); _gone.append(os.path.relpath(_fp, SITE))
+                except OSError:
+                    pass
+        print("  + owner-ops purge: dropped %d private surface(s) from PUBLIC build [%s]"
+              % (len(_gone), ", ".join(sorted(set(_gone))[:12]) or "none present"))
     with _lane("reconcile"):
         # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
         try:

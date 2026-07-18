@@ -15,7 +15,7 @@ touches data or scripts.
 import os, re
 
 # --- the home page's design tokens (verbatim from site/index.html :root) ---
-TOKENS = (":root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;"
+TOKENS = (":root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#26456a;--cs-ink:#13243d;"
           "--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;"
           "--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace}")
 

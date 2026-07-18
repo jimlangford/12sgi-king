@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TribeGameStudios · 12sgi</title>
 <meta name="description" content="TribeGameStudios · 12sgi — the game studio of 12 Stones Global. SAGE, Konane, Weiqi, Hawaiian Konami, and the SAGE ↔ Mahjong crosswalk. Pure static, always-up.">
@@ -16,7 +16,7 @@
   --s3:#3e351f;
   --line:#5a4f33;
   --gold:#e3ad33;
-  --gold-hi:#f4c95d;
+  --gold-hi:#5a97e6;
   --ink:#f7f1e3;
   --ink-2:#d8cdb0;
   --ink-3:#ab9e7f;
@@ -157,7 +157,8 @@ footer a:hover{text-decoration:underline}
   .grid{grid-template-columns:1fr}
 }
 </style>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style><link rel="stylesheet" href="../legibility_fix.css">
 </head>
 <body>
 
@@ -191,7 +192,7 @@ footer a:hover{text-decoration:underline}
   <div class="grid">
 
     <!-- SAGE -->
-    <a class="card featured" href="../sage/" aria-label="Play SAGE · the ahupuaʻa game">
+    <a class="card featured" href="../sage/index.html" aria-label="Play SAGE · the ahupuaʻa game">
       <div class="card-icon">⬡</div>
       <div>
         <div class="card-title">SAGE</div>
@@ -265,17 +266,17 @@ footer a:hover{text-decoration:underline}
       <div class="card-cta">Unlock →</div>
     </a>
 
-    <!-- Mahjong Crosswalk -->
-    <a class="card" href="mahjong_crosswalk.html" aria-label="SAGE ↔ Mahjong crosswalk lens">
+    <!-- SAGE Mahjong (playable) -->
+    <a class="card" href="mahjong.html" aria-label="SAGE Mahjong — playable tile-matching game">
       <div class="card-icon">🀄</div>
       <div>
-        <div class="card-title">SAGE ↔ Mahjong</div>
-        <div class="card-subtitle">crosswalk lens</div>
+        <div class="card-title">SAGE Mahjong</div>
+        <div class="card-subtitle">playable · 108 tiles</div>
       </div>
       <div class="card-desc">
-        54 SAGE nodes = 108 ÷ 2 Mahjong suit tiles.
-        4 lineages = 4 winds (East · South · West · North).
-        Explore the crosswalk between ahupuaʻa stewardship and the tile-wind canon.
+        Match the journey pair by pair — 108 tiles, the 54 nodes twice over,
+        every deal solvable. Hints, shuffle, and the zones in their true colors.
+        The lore lives in the crosswalk lens, linked in-game.
       </div>
       <div class="card-tags">
         <span class="tag tag-sage">54 nodes</span>
@@ -284,6 +285,27 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="card-cta">Explore →</div>
     </a>
+
+    <!-- ʻohana mailing list (games free · multiplayer circles coming) -->
+    <div class="card" style="cursor:default">
+      <div class="card-icon">🪷</div>
+      <div>
+        <div class="card-title">Join the ʻohana list</div>
+        <div class="card-subtitle">free games · free multiplayer beta</div>
+      </div>
+      <div class="card-desc">
+        Every game here is free to play. Multiplayer circles — live turns with friends —
+        are in <b style="color:var(--gold)">free beta</b> right now.
+        <a href="https://elementlotus.com/product/multiplayer-circles-pass-free-beta/" style="color:var(--gold)">Get the free pass →</a>
+        and leave your email so we can shape the beta together.
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <input id="oh-em" type="email" placeholder="you@example.com" style="flex:1;min-width:0;padding:9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px">
+          <button onclick="event.preventDefault();ohanaJoin('oh-em','oh-msg')" style="padding:9px 14px;border-radius:7px;border:0;background:var(--gold);color:#161209;font-weight:700;cursor:pointer">join</button>
+        </div>
+        <div id="oh-msg" style="margin-top:6px;font-size:11px;color:var(--gold)"></div>
+      </div>
+    </div>
+
 
     <!-- Moon Calendar -->
     <a class="card" href="moon_cal.html" aria-label="Moon Calendar · Kaulana Mahina">
@@ -347,11 +369,29 @@ footer a:hover{text-decoration:underline}
 </section>
 
 <footer>
-  TribeGameStudios · 12 Stones Global · <a href="../sage/">SAGE game</a> ·
+  TribeGameStudios · 12 Stones Global · <a href="../sage/index.html">SAGE game</a> ·
   Pure static · always-up on GitHub Pages ·
   Public · no secrets · no server required
 </footer>
 
-<script src="../../govos-shell.js" defer></script>
-</body>
+<script src="../govos-shell.js" defer></script>
+
+<script>
+/* ʻohana list capture — free games stay free; the list hears when multiplayer circles open.
+   POSTs to the public King funnel (CORS-open, dedupes server-side). Safe DOM, no deps. */
+function ohanaJoin(inputId, msgId){
+  var em = document.getElementById(inputId).value.trim();
+  var msg = document.getElementById(msgId);
+  if (em.indexOf('@') < 1){ msg.textContent = 'enter a real email'; return; }
+  msg.textContent = '...';
+  fetch('#/newsletter/signup', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({email: em, source: 'games', tenant: 'tribegamestudios'})
+  }).then(function(r){ return r.json(); }).then(function(j){
+    msg.textContent = j.ok ? (j.already ? 'already with us — mahalo!' : 'welcome to the ʻohana 🪷') : (j.error || 'try again');
+    if (j.ok) document.getElementById(inputId).value = '';
+  }).catch(function(){ msg.textContent = 'could not reach the list — try again later'; });
+}
+</script>
+<footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer></body>
 </html>

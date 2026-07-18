@@ -16,7 +16,7 @@ import time
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import dict, list
+
 
 from services.web_search import search_error_solution, get_best_practices
 

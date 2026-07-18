@@ -178,7 +178,7 @@ def main():
         "letter-spacing:1.5px;color:#00356b;text-transform:uppercase}"
         ".badge{display:inline-block;font-weight:700;border-radius:8px;padding:4px 12px;color:#fff;background:%s}"
         "table{width:100%%;border-collapse:collapse;margin-top:14px;font-size:14px}"
-        "th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #bacde6;vertical-align:top}"
+        "th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #26456a;vertical-align:top}"
         "th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;color:#5b6e86}"
         ".note{font-size:12.5px;color:#5b6e86;margin-top:10px}</style></head><body><div class=wrap>"
         "<div class=eyebrow>govOS &middot; Kilo Aupuni &middot; self-heal</div>"

@@ -23,7 +23,7 @@ KING_SERVE = os.path.join(HOME, "AppData", "Local", "king-extract", "king_serve.
 LOGS = os.path.join(PROJ, "logs")
 FILE = "prosecutor_dashboard.html"
 LOCAL = "http://127.0.0.1:8799/%s" % FILE                     # what /king proxies to (laptop ground truth)
-TAILSCALE = "https://12sgianonymous.tail760750.ts.net/king/%s" % FILE  # the link Jimmy taps
+TAILSCALE = "https://king.tail760750.ts.net/king/%s" % FILE  # the link Jimmy taps
 NW = 0x08000000 if os.name == "nt" else 0
 
 

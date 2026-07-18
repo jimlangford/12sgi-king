@@ -16,7 +16,7 @@ https://auth.12sgi.com   ← Cloudflare Tunnel → king-server localhost:8101
 https://12sgi.com/king/#token=...   ← console picks up token, stores to localStorage
 ```
 
-The auth service runs in Docker on king-server (Tailscale host `12sgianonymous`).  
+The auth service runs in Docker on king-server (Tailscale host `king`).  
 A Cloudflare Tunnel exposes it publicly at `auth.12sgi.com` — no inbound ports required.
 
 ---
@@ -183,7 +183,7 @@ If Tailscale is still active and you want to test locally before setting up the 
 
 1. Set `KING_AUTH_URL` on the page (in browser console):
    ```js
-   window.KING_AUTH_URL = 'http://12sgianonymous.tail760750.ts.net:8101';
+   window.KING_AUTH_URL = 'http://king.tail760750.ts.net:8101';
    ```
 2. Or add `<script>window.KING_AUTH_URL='http://...'</script>` to `king_public_src/index.html` for local builds.
 3. The OAuth providers require HTTPS for callbacks, so for pure Tailscale testing you'll need to set up a local HTTPS proxy (e.g., `caddy reverse-proxy --from https://auth.local.ts --to :8101`).

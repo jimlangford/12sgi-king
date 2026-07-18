@@ -114,7 +114,7 @@ def dossier(nm, blob, mr, ao_po, gen):
          ".tl .tv{font-family:Consolas,monospace;color:var(--accent);text-align:right;font-size:.8rem}"
          ".card{border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.7rem 0;background:var(--panel)}"
          ".op{color:var(--dim);font-size:.92rem;line-height:1.5}.ti{color:#1f5a3c;font-family:Consolas,monospace;font-size:.8rem}"
-         ".mtg{border-left:3px solid var(--accent);background:#f6f9fd;border-radius:8px;padding:.5rem .8rem;margin:.4rem 0}"
+         ".mtg{border-left:3px solid var(--accent);background:#0f2540;border-radius:8px;padding:.5rem .8rem;margin:.4rem 0}"
          ".mtg .mh{font-size:.92rem;color:var(--accent)}.mtg .ms{color:var(--dim);font-size:.84rem;font-style:italic;margin-top:.2rem;line-height:1.5}</style>")
     body=("<div class=wrap><div class=sub style='letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600'>"
           "govOS &middot; dossier &middot; asked in aloha</div><h1>%s</h1>"%esc(nm)

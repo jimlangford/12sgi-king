@@ -1,7 +1,7 @@
 name: Deploy V2 to king-server (private, self-hosted)
 
 # PRIVATE — this workflow runs exclusively on the self-hosted runner installed on king-server
-# (Tailscale host 12sgianonymous.tail760750.ts.net).
+# (Tailscale host king.tail760750.ts.net).
 #
 # Security rules:
 #   - No SSH.  No rsync.  No inbound ports.  No Tailscale Funnel for SSH/Docker/Ollama.
@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 20
 
     env:
-      KING_LOCAL: "${{ runner.temp }}\\..\\..\\..\\AppData\\Local\\king-extract\\deploy\\king-local"
+      KING_LOCAL: "C:\\Users\\12sgi\\AppData\\Local\\king-extract\\deploy\\king-local"
       V2_AUTH_PORT: "8101"
       V2_TENANT_PORT: "8102"
       V2_DOCUMENTS_PORT: "8103"
@@ -82,8 +82,8 @@ jobs:
       V2_HEALTH_PORT: "8106"
       V2_GPU_ROUTER_PORT: "8107"
       V2_KING_BRIDGE_PORT: "8109"
-      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-runtime,gpu-router,ai,storage,health,king-bridge"
-      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109"
+      V2_SERVICE_INVENTORY: "neo4j,auth,tenant,documents,gpu-router,ai,storage,health,king-bridge,board-api,connector-runner,github-workflow-monitor"
+      V2_API_PORT_INVENTORY: "auth=8101,tenant=8102,documents=8103,storage=8104,ai=8105,health=8106,gpu-router=8107,king-bridge=8109,board-api=8799"
       DEPLOY_LOG_DIR: "C:\\Users\\12sgi\\Documents\\Claude\\logs\\v2-deploy"
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
       RESTART_SERVICES: ${{ github.event_name == 'push' && 'true' || github.event.inputs.restart_services || 'true' }}
@@ -139,10 +139,23 @@ jobs:
           Write-Host "✓ All $($required.Count) required V2 files present"
 
       # ── 3. V2 contract smoke tests (no live services required) ─────────────────
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      # NOTE: actions/setup-python@v5 hangs indefinitely on this self-hosted Windows runner
+      # (observed: 20-min stall -> job cancelled). The runner already has system Python, so use it.
+      - name: Set up Python (system Python on king-server)
+        shell: pwsh
+        run: |
+          $py = (Get-Command python -ErrorAction SilentlyContinue).Source
+          if (-not $py) {
+            $fallback = "C:\Users\12sgi\AppData\Local\Programs\Python\Python311"
+            if (Test-Path "$fallback\python.exe") {
+              "$fallback"          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+              "$fallback\Scripts"  | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+              $py = "$fallback\python.exe"
+            }
+          }
+          if (-not $py) { Write-Error "No system Python found on king-server"; exit 1 }
+          Write-Host "Using system Python: $py"
+          & $py --version
 
       - name: Install test dependencies
         shell: pwsh
@@ -307,6 +320,8 @@ jobs:
             @{ name="health";       port=$env:V2_HEALTH_PORT;      path="/api/v1/ready"; expected_status=200 },
             @{ name="gpu-router";   port=$env:V2_GPU_ROUTER_PORT;  path="/api/v2/ready"; expected_status=200 },
             @{ name="king-bridge";  port=$env:V2_KING_BRIDGE_PORT; path="/api/v2/ready"; expected_status=200 }
+            # board-api removed from the V2 fleet health check: the native king_serve.py owns host :8799
+            # (native is canonical) and is monitored separately — it is not a V2 build-commit fleet member.
           )
 
           $results = @{}

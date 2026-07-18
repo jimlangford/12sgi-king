@@ -1,4 +1,3 @@
-import importlib.util
 import json
 import os
 import re
@@ -15,29 +14,14 @@ from fastapi import HTTPException
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from tests.v2._test_helpers import load_module as _load_module  # noqa: E402  (see that module's docstring)
+
 AUTH_MAIN = ROOT / "services" / "auth" / "app" / "main.py"
 GOVOS_APP = ROOT / "apps" / "govos" / "public" / "app.js"
 TENANT_APP = ROOT / "apps" / "tenant" / "public" / "app.js"
 CIVIC_APP = ROOT / "apps" / "civic-signal" / "public" / "app.js"
 LOCAL_DEV_DOC = ROOT / "docs" / "GOVOS_V2_LOCAL_DEV.md"
 MIGRATION_DOC = ROOT / "docs" / "V2_CLAIM_CLIENT_MIGRATION.md"
-
-
-def _load_module(path, name, env_overrides=None, env_clear_keys=None):
-    saved = dict(os.environ)
-    try:
-        if env_clear_keys:
-            for key in env_clear_keys:
-                os.environ.pop(key, None)
-        if env_overrides:
-            os.environ.update(env_overrides)
-        spec = importlib.util.spec_from_file_location(name, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
-    finally:
-        os.environ.clear()
-        os.environ.update(saved)
 
 
 class TestClaimClientMigration(unittest.TestCase):

@@ -126,7 +126,7 @@ def page(src, recs, err, sysname):
         "th,td{padding:.45rem .5rem;border-bottom:1px solid #eef2f5;text-align:left;vertical-align:top}"
         "th{color:#42535f;font-size:.74rem;text-transform:uppercase;letter-spacing:.05em}"
         ".dt{white-space:nowrap;color:#42535f}.st{color:#6b7a89;font-size:.8rem}.note{color:#56646f;font-size:.88rem}"
-        ".building{background:#f6f8fa;border:1px dashed #cdd7df;border-radius:12px;padding:1rem 1.1rem;color:#5b6b78}"
+        ".building{background:#0f2540;border:1px dashed #26456a;border-radius:12px;padding:1rem 1.1rem;color:#9fb2c8}"
         "</style>"
         "<div class=eyebrow><a href='tenants_hub.html'>govOS</a> · %s</div>"
         "<h1>%s — the public record</h1>"

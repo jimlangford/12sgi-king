@@ -270,7 +270,7 @@ def _board_civic_events(today):
             "end":      _hst_iso(due, 9),
             "color":    COLOR_REVIEW,
             "desc":     ("Civic board item due.\n\nLane: %s\nStatus: %s\n\n%s"
-                         "\n\nWork Board: https://12sgianonymous.tail760750.ts.net/board"
+                         "\n\nWork Board: https://king.tail760750.ts.net/board"
                          "\n\ngovOS civic calendar · kilo-aupuni"
                          % (it.get("lane",""),it.get("status",""),it.get("body","")[:300])),
             "location": "",

@@ -301,16 +301,16 @@ def render_html(records, stats, payload):
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#00356b">
 <title>Maui nonprofits — the 990 record | govOS</title>
-<style>:root{{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--gold:#b8860b}}
+<style>:root{{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--gold:#e3ad33}}
 *{{box-sizing:border-box}}body{{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:1080px;margin:0 auto;padding:18px 16px 44px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}}
 a{{color:var(--accent2)}}h1{{font-size:1.5rem;margin:.3rem 0}}h2{{color:var(--accent);font-size:1.05rem;margin:1.2rem 0 .4rem}}
 .sub{{color:var(--dim);font-size:.95rem;line-height:1.55}}
 .kpis{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:1rem 0}}@media(max-width:640px){{.kpis{{grid-template-columns:1fr 1fr}}}}
 .kp{{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem}}.kv{{font:700 18px/1.1 'JetBrains Mono',Consolas,monospace;color:var(--accent)}}.kl{{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}}
-.note{{background:#fbf6ea;border:1px solid #e6d8a8;border-left:3px solid var(--gold);border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#5a4a16;line-height:1.5}}
+.note{{background:#241d0e;border:1px solid #5c4a1e;border-left:3px solid var(--gold);border-radius:10px;padding:.7rem 1rem;margin:.9rem 0;font-size:.9rem;color:#e3c98a;line-height:1.5}}
 .prov{{display:inline-block;font:600 10px/1 'JetBrains Mono',Consolas,monospace;text-transform:uppercase;letter-spacing:.4px;padding:2px 6px;border-radius:99px;margin-left:6px;vertical-align:middle}}
-.prov-s{{background:#e2f3ea;color:var(--ok);border:1px solid #a9dcc2}}
-.prov-t{{background:#fbf1dd;color:var(--gold);border:1px solid #e6d3a3}}
+.prov-s{{background:#0e2a20;color:var(--ok);border:1px solid #a9dcc2}}
+.prov-t{{background:#241d0e;color:var(--gold);border:1px solid #5c4a1e}}
 table{{border-collapse:collapse;width:100%;font-size:.85rem;margin-top:.4rem}}
 td,th{{padding:.45rem .5rem;border-bottom:1px solid #e3e9f1;text-align:left;vertical-align:top}}
 th{{font-size:.7rem;text-transform:uppercase;letter-spacing:.4px;color:var(--faint);font-weight:700}}

@@ -141,9 +141,9 @@ CREATE TABLE civic_signals (
 
 **Tailscale URLs Generated**:
 ```
-https://12sgianonymous.tail760750.ts.net/civic/
-https://12sgianonymous.tail760750.ts.net/civic/meetings/
-https://12sgianonymous.tail760750.ts.net/civic/deadlines/
+https://king.tail760750.ts.net/civic/
+https://king.tail760750.ts.net/civic/meetings/
+https://king.tail760750.ts.net/civic/deadlines/
 ```
 
 **Owner Experience**:

@@ -14,7 +14,7 @@ Usage:
 """
 
 import os
-from typing import dict, list, Optional
+from typing import Optional
 from neo4j import GraphDatabase
 from datetime import datetime, timezone
 

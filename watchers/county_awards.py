@@ -119,6 +119,12 @@ def hub(stats):
         elif t["status"] == "world":
             parts = []
             if os.path.exists(os.path.join(MAUIOS, t["page"])): parts.append('<a href="%s">charter &#8644; law</a>' % t["page"])
+            # money_<id>.html was real+built (money_dubai/frankfurt/hongkong/london/paris/singapore/
+            # tokyo/zurich.html, all >4KB, not stubs) but this branch never checked for it -- same
+            # class of gap as the apex tenant already fixed above it. Added 2026-07-15 (audit-quad-os,
+            # Beta-3 G-HEAL closure, third pass).
+            mo = f'money_{t["id"]}.html'
+            if os.path.exists(os.path.join(MAUIOS, mo)): parts.append('<a href="%s">finances</a>' % mo)
             ag = f'agendas_{t["id"]}.html'
             if os.path.exists(os.path.join(MAUIOS, ag)): parts.append('<a href="%s">agendas</a>' % ag)
             ar = f'archive_{t["id"]}.html'

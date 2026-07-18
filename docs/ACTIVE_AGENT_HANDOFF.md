@@ -2,7 +2,7 @@
 
 Updated: 2026-07-18 HST
 Owner: Codex
-Status: integrating
+Status: validated
 
 ## Current Release Work
 
@@ -16,8 +16,10 @@ Status: integrating
 ## Validation So Far
 
 - Private Studio: 62 tests pass; changed Python compiles; changed JSON parses.
-- Public focused release suite: 149 tests plus 3 subtests pass before final integration with `main`.
+- Public focused release suite: 182 tests plus 5 subtests pass after integration with `main`.
+- Public full suite: 256 tests plus 13 subtests pass.
 - Docker Compose plans validate for govOS v2 and the standalone Studio asset service.
+- The current Element Lotus WordPress bundle is regenerated and parity-checked against the public shell.
 
 ## Coordination Rule
 
@@ -27,5 +29,5 @@ without first recording a coordinated handoff.
 
 ## Next
 
-Merge current `origin/main`, rerun the full test and Compose checks, push a fresh PR, wait for required
-checks, merge, then update this file with the public merge commit and final evidence.
+Push the reconciled branch, open a fresh PR, wait for required checks, merge, then record the public
+merge commit and final evidence in the shared private Studio state and dispatch log.

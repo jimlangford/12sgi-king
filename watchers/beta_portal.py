@@ -74,14 +74,14 @@ def main():
     else:
         reqform="<div class=soon>The council request form opens with verification.</div>"
 
-    style=("<style>:root{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--gold:#b8860b}"
+    style=("<style>:root{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--gold:#e3ad33}"
       "*{box-sizing:border-box}body{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:920px;margin:0 auto;padding:18px 16px 46px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}"
       "a{color:var(--accent2)}h1{font-size:1.6rem;margin:.3rem 0}h2{color:var(--accent);font-size:1.12rem;margin:1.4rem 0 .5rem}.sub{color:var(--dim);font-size:.95rem;line-height:1.55}"
       ".eyebrow{letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600;font-size:.8rem}"
       ".lane{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;margin:.9rem 0}"
       ".btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;border-radius:10px;padding:.6rem 1rem;margin:.5rem 0;font-size:.95rem}"
       ".btn:hover{background:var(--accent2)}.fine{color:var(--faint);font-size:.82rem;margin-top:.2rem}"
-      ".soon{background:#fbf6ea;border:1px solid #e6d8a8;border-radius:10px;padding:.6rem .9rem;color:#5a4a16;font-size:.9rem}"
+      ".soon{background:#241d0e;border:1px solid #5c4a1e;border-radius:10px;padding:.6rem .9rem;color:#e3c98a;font-size:.9rem}"
       ".grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:.6rem 0}"
       ".dc{border:1px solid var(--line);border-radius:11px;padding:.6rem .8rem;background:#fff}.dc .dh{display:flex;justify-content:space-between;gap:8px;align-items:baseline}"
       ".dc .dh b{color:var(--accent)}.dc .dr{color:var(--faint);font-size:.8rem;font-family:Consolas,monospace}.dc ul{margin:.4rem 0 0;padding-left:1.1rem;font-size:.86rem;color:var(--dim)}.dc .empty{color:var(--faint);font-style:italic;list-style:none;margin-left:-1.1rem}"

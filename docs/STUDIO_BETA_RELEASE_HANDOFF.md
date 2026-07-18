@@ -44,8 +44,10 @@ are fallback or explicit owner-selected routes, not automatic first choices.
 - govOS contracts: 72 tests pass
 - govOS integration: 10 tests pass
 - govOS hardening: 27 tests pass
-- Studio asset/auth/GPU focused release suite: 149 tests + 3 subtests pass before final main merge
+- Studio asset/auth/GPU focused release suite: 182 tests + 5 subtests pass after final main merge
+- full public repository suite: 256 tests + 13 subtests pass
 - Docker Compose configuration validates
+- WordPress bundle generation and checked-in parity validate
 
 ## Environment-Gated Finish Checks
 

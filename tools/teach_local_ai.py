@@ -54,7 +54,7 @@ OWNER: JAMES LANGFORD (JRCSL)
 Name: James Langford
 Also known as: Jimmy, JRCSL, elementLOTUS
 Emails: jimlangford@me.com, elementlotus@gmail.com, jimmylangford@elementlotus.com, JRCSL@12sgi.com
-Access: Tailscale identity at 12sgianonymous.tail760750.ts.net
+Access: Tailscale identity at king.tail760750.ts.net
 Role: Owner — has full access to all tenants, all lanes, all data
 Auth: Tailscale identity (never lock James out; no lockout allowed)
 
@@ -100,7 +100,7 @@ SERVICES PLANNED (not yet running):
 
 DASHBOARD ACCESS:
   Local:     http://localhost:8799/go/healing.html
-  Tailscale: https://12sgianonymous.tail760750.ts.net/king/go/healing.html
+  Tailscale: https://king.tail760750.ts.net/king/go/healing.html
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 NEO4J GRAPH (your knowledge graph)

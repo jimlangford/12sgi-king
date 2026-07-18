@@ -457,7 +457,7 @@ def _deliver(commentary):
             msg["From"] = gmail_user
             msg["To"] = to
             msg.attach(MIMEText(
-                "govOS Commentary — %s — %s\n\nSee the attached HTML or log in at https://12sgianonymous.tail760750.ts.net/king/commentary\n\nPRIVATE — subscriber only." % (
+                "govOS Commentary — %s — %s\n\nSee the attached HTML or log in at https://king.tail760750.ts.net/king/commentary\n\nPRIVATE — subscriber only." % (
                     commentary.get("body",""), commentary.get("event_date","")), "plain"))
             msg.attach(MIMEText(html_body, "html"))
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:

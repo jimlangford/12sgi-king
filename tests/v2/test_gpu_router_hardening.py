@@ -1,4 +1,3 @@
-import importlib.util
 import os
 import sqlite3
 import sys
@@ -13,6 +12,8 @@ from fastapi.testclient import TestClient
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from tests.v2._test_helpers import load_module as _load_module  # noqa: E402  (see that module's docstring)
+
 GPU_MAIN = ROOT / "services" / "gpu_router" / "app" / "main.py"
 AUTH_MAIN = ROOT / "services" / "auth" / "app" / "main.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "deploy-v2-king-server.yml"
@@ -20,27 +21,6 @@ COMPOSE = ROOT / "docker-compose.v2.yml"
 GPU_PANEL = ROOT / "king_public_src" / "Gpu.dc.html"
 OWNER_SHELL = ROOT / "king_public_src" / "index.html"
 DEPLOYMENT_DOC = ROOT / "docs" / "DEPLOYMENT.md"
-
-
-def _load_module(path, name, env_overrides=None, env_clear_keys=None):
-    saved = dict(os.environ)
-    try:
-        if env_clear_keys:
-            for key in env_clear_keys:
-                os.environ.pop(key, None)
-        if env_overrides:
-            os.environ.update(env_overrides)
-        sys.modules.pop("services.service_metadata", None)
-        services_pkg = sys.modules.get("services")
-        if services_pkg is not None and hasattr(services_pkg, "service_metadata"):
-            delattr(services_pkg, "service_metadata")
-        spec = importlib.util.spec_from_file_location(name, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
-    finally:
-        os.environ.clear()
-        os.environ.update(saved)
 
 
 class GpuRouterHarness(unittest.TestCase):
@@ -371,10 +351,10 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
     def test_ollama_healthcheck_uses_a_binary_present_in_the_image(self):
         compose = COMPOSE.read_text()
         gpu_runtime = compose.split("  gpu-runtime:", 1)[1].split("  gpu-router:", 1)[0]
-        self.assertIn("ollama list", gpu_runtime)
+        self.assertIn("- CMD\n      - ollama\n      - list", gpu_runtime)
         self.assertNotIn("wget", gpu_runtime)
         self.assertIn("GPU_DEFAULT_MODEL:-llama3.2", compose)
-        self.assertIn("GPU_RUNTIME_URL:-http://gpu-runtime:11434", compose)
+        self.assertIn("GPU_RUNTIME_URL:-http://host.docker.internal:11434", compose)
 
 
 class TestDeployWorkflowHardening(unittest.TestCase):
@@ -389,12 +369,14 @@ class TestDeployWorkflowHardening(unittest.TestCase):
 
     def test_workflow_declares_explicit_service_inventory_and_ports(self):
         text = WORKFLOW.read_text()
+        # "gpu-runtime" removed 2026-07-15 (commit e6ffb43 "remove retired gpu-runtime from
+        # inventory") -- gpu-router is its replacement. This assertion was stale, still checking
+        # for a service the same PR that added board-api/connector-runner deliberately retired.
         for service in (
             "neo4j",
             "auth",
             "tenant",
             "documents",
-            "gpu-runtime",
             "gpu-router",
             "ai",
             "storage",

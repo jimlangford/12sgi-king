@@ -92,7 +92,7 @@ def render(tid,ms,feed_note):
       ".sub{color:#56646f;font-size:.9rem;margin:.3rem 0 1rem}details{border:1px solid #e7edf2;border-radius:10px;margin:.4rem 0;padding:.2rem .6rem}"
       "summary{cursor:pointer;font-weight:600;padding:.4rem 0}table{border-collapse:collapse;width:100%%;font-size:.85rem}"
       "td{padding:.3rem .5rem;border-bottom:1px solid #f0f3f6}.d{color:#42535f;white-space:nowrap;width:6rem}"
-      ".up{background:#f3faf5;border:1px solid #cde9d6;border-radius:10px;padding:.7rem 1rem;margin:1rem 0}.up li{margin:.15rem 0;font-size:.88rem}</style>"
+      ".up{background:#0e2a20;border:1px solid #1e5c3e;border-radius:10px;padding:.7rem 1rem;margin:1rem 0}.up li{margin:.15rem 0;font-size:.88rem}</style>"
       "<div class=eyebrow><a href='meetings_calendar.html'>govOS · meetings calendar</a></div>"
       "<h1>%s — every digitized meeting</h1>"
       "<div class=sub>The full public meeting record: <b>%d meetings</b> across <b>%d bodies</b>, %s. "

@@ -1,19 +1,236 @@
 <!doctype html>
 <html lang="en">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Tenant App v2</title><link rel="stylesheet" href="../../../govos.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>govOS · Tenant Case Console</title>
+    <!--
+      Tier 1.5 — Tenant App UI (audit-quad-os, 2026-07-15).
+      Replaces the demo stub with a real multi-view case console bound to the LIVE
+      tenant service (:8102): GET /api/v2/cases, POST /api/v2/cases, GET /api/v2/cases/{id}.
+      Self-contained by design — no external CSS/JS/CDN, so it renders identically no
+      matter how it is served (site/govos.css lives in another lane and its relative path
+      does not resolve from here). House design language (warm volcanic dark + Lotus gold)
+      is baked in below and is light/dark aware.
+    -->
+    <style>
+      :root {
+        --gold: #e3ad33;
+        --gold-dim: #b8862099;
+        --bg-deep: #15100b;
+        --bg-panel: #1e1811;
+        --bg-raise: #271f16;
+        --line: #3a2f22;
+        --ink: #f3ead9;
+        --ink-dim: #b6a68a;
+        --ink-mute: #8b7d68;
+        --ok: #6fbf73;
+        --warn: #e0a244;
+        --bad: #d9704f;
+        --info: #6ea8d8;
+        --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+        --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --radius: 10px;
+        --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      }
+      /* light mode: keep the gold, lift the surfaces */
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg-deep: #f6f1e7;
+          --bg-panel: #fffdf8;
+          --bg-raise: #fbf5e9;
+          --line: #e4d8c3;
+          --ink: #2b2318;
+          --ink-dim: #5c5140;
+          --ink-mute: #8a7d66;
+          --shadow: 0 8px 24px rgba(90, 70, 20, 0.12);
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        background: var(--bg-deep);
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--gold); }
+      .topbar {
+        display: flex; align-items: center; gap: 14px;
+        padding: 14px 22px;
+        background: linear-gradient(180deg, var(--bg-panel), var(--bg-deep));
+        border-bottom: 1px solid var(--line);
+        position: sticky; top: 0; z-index: 5;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.3px; }
+      .brand .lotus { color: var(--gold); font-size: 20px; }
+      .brand small { font-weight: 500; color: var(--ink-mute); font-size: 12px; }
+      .spacer { flex: 1; }
+      .whoami { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); text-align: right; }
+      .whoami b { color: var(--gold); }
+      main { max-width: 1040px; margin: 0 auto; padding: 22px; }
+
+      /* identity / session panel */
+      .auth {
+        background: var(--bg-panel); border: 1px solid var(--line);
+        border-radius: var(--radius); padding: 16px 18px; margin-bottom: 18px;
+      }
+      .auth h2 { margin: 0 0 4px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--ink-mute); }
+      .auth .hint { font-size: 12.5px; color: var(--ink-mute); margin: 0 0 12px; }
+      .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+      .field { display: flex; flex-direction: column; gap: 4px; }
+      .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-mute); }
+      input, select, textarea {
+        font-family: var(--sans); font-size: 14px;
+        background: var(--bg-raise); color: var(--ink);
+        border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+        min-width: 150px;
+      }
+      textarea { min-width: 100%; resize: vertical; }
+      input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); border-color: var(--gold); }
+      button {
+        font-family: var(--sans); font-size: 14px; font-weight: 600;
+        border-radius: 8px; padding: 9px 16px; cursor: pointer;
+        border: 1px solid var(--line); background: var(--bg-raise); color: var(--ink);
+        transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+      }
+      button:hover { border-color: var(--gold); }
+      button:active { transform: translateY(1px); }
+      button.primary { background: var(--gold); color: #1a1206; border-color: var(--gold); }
+      button.primary:hover { background: #f0bd4b; }
+      button.ghost { background: transparent; }
+      button.link { background: none; border: none; color: var(--gold); padding: 4px 6px; }
+      .collapsed { display: none; }
+
+      /* tabs */
+      .tabs { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+      .tabs .spacer { flex: 1; }
+
+      /* table */
+      .panel { background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; padding: 11px 14px; font-size: 14px; }
+      thead th {
+        font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px;
+        color: var(--ink-mute); background: var(--bg-raise); border-bottom: 1px solid var(--line);
+      }
+      tbody tr { border-top: 1px solid var(--line); cursor: pointer; }
+      tbody tr:hover { background: var(--bg-raise); }
+      td.mono { font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim); }
+
+      .badge {
+        display: inline-block; font-size: 11.5px; font-weight: 600;
+        padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line);
+        text-transform: capitalize;
+      }
+      .badge[data-status="open"] { color: var(--ok); border-color: #2f5a33; background: #6fbf7318; }
+      .badge[data-status="in_review"] { color: var(--info); border-color: #2f4a5a; background: #6ea8d818; }
+      .badge[data-status="awaiting_records"] { color: var(--warn); border-color: #5a4a2f; background: #e0a24418; }
+      .badge[data-status="closed"] { color: var(--ink-mute); border-color: var(--line); }
+
+      /* detail card */
+      .detail dl { display: grid; grid-template-columns: 160px 1fr; gap: 10px 18px; margin: 0; }
+      .detail dt { color: var(--ink-mute); font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; padding-top: 3px; }
+      .detail dd { margin: 0; font-size: 14.5px; }
+      .detail .notes { white-space: pre-wrap; background: var(--bg-raise); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+
+      .state { padding: 40px 16px; text-align: center; color: var(--ink-mute); }
+      .state.err { color: var(--bad); }
+      .p20 { padding: 20px; }
+
+      /* modal */
+      .modal-veil {
+        position: fixed; inset: 0; background: rgba(5, 3, 1, 0.6);
+        display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 20;
+      }
+      .modal {
+        background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px;
+        box-shadow: var(--shadow); width: 100%; max-width: 520px; padding: 22px;
+      }
+      .modal h3 { margin: 0 0 16px; font-size: 18px; }
+      .modal .field { margin-bottom: 14px; width: 100%; }
+      .modal .field input, .modal .field select { width: 100%; }
+      .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+
+      /* toast */
+      #toast {
+        position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(30px);
+        background: var(--bg-raise); border: 1px solid var(--line); border-left: 4px solid var(--gold);
+        color: var(--ink); padding: 12px 18px; border-radius: 10px; box-shadow: var(--shadow);
+        font-size: 14px; opacity: 0; pointer-events: none; transition: all 0.25s ease; z-index: 30; max-width: 90vw;
+      }
+      #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+      #toast.bad { border-left-color: var(--bad); }
+      #toast.ok { border-left-color: var(--ok); }
+    </style>
+  </head>
   <body>
-    <h1>Tenant app integration scaffold</h1>
-    <p>Uses tenant and AI services.</p>
-    <label>Subject</label><input id="subject" value="tenant-user-1" />
-    <label>Tenant ID</label><input id="tenantId" value="tenant-demo" />
-    <label>Role</label>
-    <select id="role"><option>Resident</option><option>Municipality</option><option>Partner</option></select>
-    <button id="createSession">Create session</button>
-    <button id="loadCases">Load cases</button>
-    <button id="askAi">Sample AI guidance</button>
-    <pre id="output"></pre>
+    <header class="topbar">
+      <div class="brand"><span class="lotus">✦</span> govOS <small>Tenant Case Console</small></div>
+      <div class="spacer"></div>
+      <div class="whoami" id="whoami">Not signed in</div>
+      <button class="ghost" id="signout" style="display:none">Sign out</button>
+    </header>
+
+    <main>
+      <!-- identity / session -->
+      <section class="auth" id="auth">
+        <h2>Session</h2>
+        <p class="hint" id="auth-hint">
+          Sign in via the console OAuth redirect (token arrives as <code>#token=…</code>), or mint a
+          local dev session below. Owner sees every tenant; a resident sees only their own.
+          <strong>Owner &amp; Municipality can create cases</strong>; Resident &amp; Partner are read-only.
+        </p>
+        <div class="row" id="devrow">
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" value="tenant-user-1" />
+          </div>
+          <div class="field">
+            <label for="tenantId">Tenant ID</label>
+            <input id="tenantId" value="hi-maui" />
+          </div>
+          <div class="field">
+            <label for="role">Role</label>
+            <select id="role">
+              <option>Owner</option>
+              <option selected>Resident</option>
+              <option>Municipality</option>
+              <option>Partner</option>
+            </select>
+          </div>
+          <button class="primary" id="createSession">Dev sign-in</button>
+          <button class="link" id="toggleManual" type="button">Paste a token…</button>
+        </div>
+        <div class="row collapsed" id="manualrow" style="margin-top:12px">
+          <div class="field" style="flex:1">
+            <label for="manualToken">Bearer token (JWT)</label>
+            <input id="manualToken" placeholder="eyJhbGciOi…" style="width:100%" />
+          </div>
+          <button id="useManual">Use token</button>
+        </div>
+      </section>
+
+      <!-- controls -->
+      <nav class="tabs">
+        <button class="primary" id="newCaseBtn">+ New case</button>
+        <button id="refreshBtn">↻ Refresh</button>
+        <div class="spacer"></div>
+        <div class="field" id="ownerFilterWrap" style="display:none">
+          <label for="tenantFilter">Filter by tenant (owner)</label>
+          <input id="tenantFilter" placeholder="all tenants" style="min-width:180px" />
+        </div>
+      </nav>
+
+      <section id="view">
+        <div class="panel"><div class="state">Sign in to load cases.</div></div>
+      </section>
+    </main>
+
+    <div id="modal-root"></div>
+    <div id="toast"></div>
+
     <script src="./app.js"></script>
-  <script src="../../../govos-shell.js" defer></script>
-</body>
+  </body>
 </html>

@@ -5,8 +5,8 @@
 <title>Title 19 System — both charters side-by-side · govOS · Kilo Aupuni</title>
 <link rel="stylesheet" href="../../styles.css?v=2026-06-17">
 <style>
- :root{--bg:#ffffff;--panel:#e7eef8;--panel2:#dae5f3;--line:#bacde6;--ink:#13243d;--ink-dim:#41536b;
-   --ink-faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
+ :root{--bg:#081420;--panel:#0f2540;--panel2:#16324e;--line:#26456a;--ink:#eaf2fc;--ink-dim:#41536b;
+   --ink-faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--warn:#b07d1a;--err:#c0322c;
    --sov:#5b3fa8;--sov-bg:rgba(91,63,168,.07);--sov-line:#b7a6e0;--food:#1f8a5b;--edu:#1259a3;--truth:#b07d1a;}
  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Iowan Old Style',serif;line-height:1.6}
  .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 80px}
@@ -31,7 +31,7 @@
  /* component tools grid */
  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px;margin-top:12px}
  .mod{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px 16px;text-decoration:none;color:inherit}
- .mod:hover{border-color:var(--accent)} .mod.soon{background:#f5f7fb;border-style:dashed}
+ .mod:hover{border-color:var(--accent)} .mod.soon{background:#0f2540;border-style:dashed}
  .mod .h{display:flex;align-items:center;gap:8px;justify-content:space-between}
  .mod .t{font-weight:600;font-size:15.5px;color:var(--ink)} .mod .d{font-size:12.6px;color:var(--ink-dim);margin-top:4px}
  .state{font-family:Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
@@ -46,12 +46,12 @@
  body.lawonly .toggle .sw2{background:var(--line)} body.lawonly .toggle .sw2::after{left:3px}
  .dual{display:grid;grid-template-columns:1fr;gap:11px;margin-top:10px}
  .row{border:1px solid var(--line);border-radius:12px;overflow:hidden}
- .row .area{background:#f3f7fc;padding:8px 13px;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line)}
+ .row .area{background:#0f2540;padding:8px 13px;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line)}
  .rel{font-family:Consolas,monospace;font-size:9.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:9px;color:#fff}
  .rel.found{background:var(--sov)} .rel.diverge{background:var(--err)} .rel.partial{background:var(--warn)} .rel.align{background:var(--ok)}
  .cols{display:grid;grid-template-columns:1fr 1fr}
  .col{padding:11px 14px;font-size:13.5px}
- .col.county{background:#fbfdff;border-right:1px solid var(--line)}
+ .col.county{background:#0f2540;border-right:1px solid var(--line)}
  .col.sov{background:var(--sov-bg)}
  .col .ch{font-family:Consolas,monospace;font-size:9.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;display:block;margin-bottom:4px}
  .col.county .ch{color:var(--accent)} .col.sov{color:#3f3070} .col.sov .ch{color:var(--sov)}

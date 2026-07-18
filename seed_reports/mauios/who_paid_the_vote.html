@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!-- standalone-aurora: skip govos stamp + nav (self-contained AURORA·GOLD educational surface) -->
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who paid for the vote? — a Maui civic lesson · govOS</title>
+<style>
+ :root{
+   --aurora-bg:#020817; --aurora-bg2:#071426;
+   --panel:rgba(8,20,38,.72); --panel2:rgba(11,30,54,.80);
+   --line:rgba(125,211,252,.22); --line2:rgba(45,212,191,.26);
+   --ink:#e6f6ff; --muted:#8bb5cf; --faint:#5f8196;
+   --blue:#38bdf8; --cyan:#67e8f9; --teal:#2dd4bf; --indigo:#818cf8;
+   --gold:#e3ad33; --gold2:#f4c95d; --gold-ink:#2a1d04;
+   --glass:rgba(255,255,255,.14);
+   --mono:"JetBrains Mono","Cascadia Code",Consolas,ui-monospace,monospace;
+   --sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
+ }
+ *{box-sizing:border-box}
+ html{background:var(--aurora-bg)}
+ body{margin:0;color:var(--ink);font-family:var(--sans);line-height:1.62;
+   background:
+     linear-gradient(120deg,rgba(14,165,233,.10),transparent 34%,rgba(45,212,191,.07) 60%,transparent 80%),
+     radial-gradient(1200px 700px at 78% -18%,rgba(56,189,248,.20),transparent 62%),
+     radial-gradient(900px 520px at 8% 118%,rgba(45,212,191,.12),transparent 66%),
+     linear-gradient(180deg,var(--aurora-bg2),var(--aurora-bg));
+   -webkit-font-smoothing:antialiased}
+ #sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.55}
+ .wrap{max-width:940px;margin:0 auto;padding:0 clamp(16px,4vw,30px) 90px}
+
+ .top{display:flex;align-items:center;justify-content:space-between;gap:14px;
+   padding:16px 2px;position:sticky;top:0;z-index:5;
+   background:linear-gradient(180deg,rgba(2,8,23,.92),rgba(2,8,23,.55) 70%,transparent);backdrop-filter:blur(8px)}
+ .brand{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--gold2);text-transform:uppercase}
+ .brand b{color:var(--ink)}
+ .back{font-family:var(--mono);font-size:12px;color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+   border-radius:999px;padding:5px 12px}
+ .back:hover{border-color:var(--cyan);color:#fff}
+
+ header.hero{padding:22px 0 6px}
+ .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan)}
+ h1{font-size:clamp(30px,6vw,54px);line-height:1.06;font-weight:700;margin:12px 0 0;letter-spacing:-.01em;
+   color:var(--gold2);text-shadow:0 0 26px rgba(227,173,51,.24);text-wrap:balance}
+ .lead{font-size:clamp(15px,2.1vw,19px);color:var(--muted);max-width:64ch;margin:16px 0 0;text-wrap:pretty}
+
+ .sky-cap{display:flex;flex-wrap:wrap;gap:8px 22px;margin:20px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+ .sky-cap b{color:var(--gold)} .sky-cap .k{color:var(--cyan)}
+
+ .rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);border:0;margin:30px 0}
+
+ /* level selector */
+ .levels{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
+ .lvl{font-family:var(--mono);font-size:12px;letter-spacing:.4px;color:var(--muted);cursor:pointer;
+   background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;
+   backdrop-filter:blur(10px);transition:.15s}
+ .lvl:hover{border-color:var(--cyan);color:var(--ink)}
+ .lvl[aria-selected="true"]{background:linear-gradient(180deg,rgba(244,201,93,.92),rgba(227,173,51,.82));
+   color:var(--gold-ink);border-color:rgba(244,201,93,.6);font-weight:600}
+ .lvl:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+ .lvl .age{opacity:.7;font-size:10px}
+
+ .panel{background:linear-gradient(180deg,var(--panel),rgba(5,14,28,.66));border:1px solid var(--line);
+   border-radius:14px;padding:clamp(20px,3vw,30px);margin:16px 0 0;
+   box-shadow:0 18px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04)}
+ .lesson{display:none}
+ .lesson[data-active="true"]{display:block;animation:fade .3s ease}
+ @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+ .lesson h2{font-size:clamp(19px,3vw,25px);margin:0 0 4px;color:var(--ink);font-weight:600;text-wrap:balance}
+ .lesson .who{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--cyan)}
+ .lesson p{font-size:clamp(14.5px,1.9vw,17px);color:var(--ink);margin:14px 0 0;max-width:66ch;text-wrap:pretty}
+ .lesson p.dim{color:var(--muted);font-size:14px}
+ .lesson .q{border-left:3px solid var(--gold);background:rgba(227,173,51,.06);padding:12px 16px;border-radius:0 10px 10px 0;
+   margin:18px 0 0;font-size:15.5px;color:var(--gold2)}
+ .lesson code{font-family:var(--mono);font-size:12.5px;background:rgba(2,8,23,.8);border:1px solid var(--line);
+   border-radius:6px;padding:2px 6px;color:var(--cyan)}
+ .lesson pre{font-family:var(--mono);font-size:12px;background:rgba(2,8,23,.85);border:1px solid var(--line2);
+   border-radius:10px;padding:13px 15px;overflow-x:auto;color:var(--teal);margin:16px 0 0;line-height:1.5}
+
+ /* the data */
+ .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0}
+ @media(max-width:640px){.facts{grid-template-columns:1fr}}
+ .fact{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+ .fact .n{font-family:var(--mono);font-size:clamp(24px,4.6vw,34px);font-weight:700;color:var(--gold2);
+   line-height:1;font-variant-numeric:tabular-nums}
+ .fact .l{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+ .fact.re .n{color:var(--teal)} .fact.q .n{color:var(--cyan)}
+
+ .bloc{margin:16px 0 0;display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line)}
+ .brow{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;background:rgba(8,20,38,.85);padding:11px 16px;font-size:13.5px}
+ .brow.h{background:rgba(11,30,54,.9)} .brow.h span{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint)}
+ .brow .amt{font-family:var(--mono);color:var(--gold);font-variant-numeric:tabular-nums;text-align:right}
+ .brow .re{font-family:var(--mono);color:var(--teal);font-variant-numeric:tabular-nums;text-align:right;font-size:12px}
+
+ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+   font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.75}
+ footer b{color:var(--muted)}
+ a{color:var(--cyan)}
+</style></head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="wrap">
+
+ <div class="top">
+   <span class="brand">govOS · Kilo Aupuni · <b>Maui County</b></span>
+   <a class="back" href="tenant_hi-maui.html">← Maui County</a>
+ </div>
+
+ <header class="hero">
+   <div class="eyebrow">a civic lesson · money × votes · sourced public record</div>
+   <h1>Who paid for the vote?</h1>
+   <p class="lead">The county tells you <i>what</i> was decided. It rarely tells you <i>who funded the people
+   deciding</i>. Here is that question — the same real record, explained for every reader, from a first-grader
+   to an analyst. Every figure is public. Every line is a question to verify, never an accusation.</p>
+   <div class="sky-cap">
+     <span><span class="k">the sky above ·</span> ka lani ma luna o Maui</span>
+     <span><b>Lahaina</b> — Lele, Royal Capital of the Hawaiian Kingdom, 1820–1845</span>
+     <span><b>Wailuku</b> — county seat today</span>
+   </div>
+ </header>
+
+ <hr class="rule">
+
+ <div class="eyebrow" style="color:var(--gold2)">Choose how it's told</div>
+ <div class="levels" role="tablist" aria-label="Reading level">
+   <button class="lvl" role="tab" aria-selected="true"  data-l="keiki">Keiki <span class="age">5–8</span></button>
+   <button class="lvl" role="tab" aria-selected="false" data-l="grade">Grade school <span class="age">8–11</span></button>
+   <button class="lvl" role="tab" aria-selected="false" data-l="middle">Middle school <span class="age">11–14</span></button>
+   <button class="lvl" role="tab" aria-selected="false" data-l="high">High school <span class="age">14–18</span></button>
+   <button class="lvl" role="tab" aria-selected="false" data-l="college">College &amp; adult</button>
+   <button class="lvl" role="tab" aria-selected="false" data-l="expert">Analyst</button>
+ </div>
+
+ <div class="panel">
+   <section class="lesson" data-l="keiki" data-active="true">
+     <div class="who">for keiki · ages 5–8</div>
+     <h2>Some grown-ups give money to help a leader</h2>
+     <p>On Maui, nine grown-ups sit on the Council. They make the rules — about parks, and water, and where
+     houses can go. To become a leader, they run a campaign, and campaigns cost money, so people give them money.
+     Giving is okay. It's kind to help.</p>
+     <p>This picture shows who gave money to our leaders. One group that builds houses gave money to <b>five of
+     the nine</b> leaders.</p>
+     <div class="q">Our one gentle question: when the leaders choose about land and houses, do they help
+     <i>everybody</i> on Maui — or mostly the people who gave them money? Asking is how we take care of each other.</div>
+   </section>
+
+   <section class="lesson" data-l="grade">
+     <div class="who">for grade school · ages 8–11</div>
+     <h2>Follow the money — it's allowed to ask</h2>
+     <p>Every campaign contribution in Hawaiʻi is written down in a public record anyone can read. When you add
+     them up for each of the nine Council members, patterns show up.</p>
+     <p>A <b>PAC</b> is a club that pools money to give to campaigns. The <b>Hawaiʻi Realtors PAC</b> — real-estate
+     agents — gave money to <b>5 of the 9</b> Council members. For one member, almost a third of her donations
+     came from real-estate businesses. None of this breaks the law.</p>
+     <div class="q">The smart question: when the Council votes on building and land, are they thinking about
+     everyone — or about the people who helped pay for their campaign? You can check the real records yourself.</div>
+   </section>
+
+   <section class="lesson" data-l="middle">
+     <div class="who">for middle school · ages 11–14</div>
+     <h2>Campaign money, and the land it clusters around</h2>
+     <p>In a place driven by land, tourism, and development, the dollars closest to power tend to be the dollars
+     closest to <b>land use, permits, and zoning</b>. That's what "follow the money" means: checking whether the
+     people funding a campaign also have business before the body that person votes on.</p>
+     <p>The record shows the Hawaiʻi Realtors PAC funded a <b>majority</b> of the Council (5 of 9). One member,
+     Councilmember Uu-Hodgins, drew <b>30.9%</b> of her donations from real-estate interests — the highest share
+     on the Council. Contributions like these are lawful and ordinary.</p>
+     <div class="q">It becomes a question worth asking when the same money shows up behind many of the deciders —
+     and it stays a <i>question</i>, checked against the vote record, not an accusation.</div>
+   </section>
+
+   <section class="lesson" data-l="high">
+     <div class="who">for high school · ages 14–18</div>
+     <h2>Concentration, near-unanimity, and how to verify</h2>
+     <p>Three things to hold together. <b>One:</b> concentration — a single real-estate PAC funding 5 of 9 members,
+     and real-estate money making up as much as ~31% of an individual member's war chest. <b>Two:</b> the vote
+     record — across 49 to 95 recorded votes each, every current member cast <b>zero "no" votes</b>. Near-unanimity
+     is common in many bodies and is <i>not</i> proof of anything by itself; but paired with concentrated funding,
+     it is exactly the pattern civic watchdogs watch.</p>
+     <p class="dim"><b>Three:</b> how you verify — pull the Campaign Spending Commission filings (donor, amount,
+     employer), pull the Council roll-calls, and check who recused. If the money and the votes are unrelated, the
+     record will show it. That's the point: a checkable question, not a verdict.</p>
+     <div class="q">Correlation is not causation. The value here isn't an answer — it's turning "who paid for the
+     vote?" from a slogan into something a student can actually verify against the public record.</div>
+   </section>
+
+   <section class="lesson" data-l="college">
+     <div class="who">for college &amp; adult readers</div>
+     <h2>The method, and its honest limits</h2>
+     <p>We join Hawaiʻi Campaign Spending Commission filings — donor → official, amount, employer, occupation —
+     against the Council's recorded votes, and build a graph: <b>9 representatives, 9 real-estate- and
+     vendor-tied donors, 26 funding edges</b>. The bloc signal is a single PAC (Hawaiʻi Realtors) appearing behind
+     a majority of the body; secondary donors (Lanaʻi Resorts, Ledcor Development, Hawaiʻi Hotel Alliance) recur
+     across several of the same members.</p>
+     <p class="dim">The limits are the honest part. A near-unanimous record (noes = 0 across all nine) can reflect
+     genuine consensus, skilled agenda-setting, committee filtering, or pressure — the data cannot distinguish
+     among them. Name-matching a donor to an official is mechanical and must be verified per identity. So the
+     output is not a finding; it's a <b>sourced, reproducible map</b> that makes the question answerable.</p>
+     <div class="q">This is oversight, not prosecution: everything shown is public record, framed as a question.
+     The private case file — if one ever exists — never publishes.</div>
+   </section>
+
+   <section class="lesson" data-l="expert">
+     <div class="who">for analysts · provenance &amp; reproduction</div>
+     <h2>Sources, the graph, and the caveats</h2>
+     <p class="dim">Sources: Hawaiʻi Campaign Spending Commission (Socrata dataset, per-official contribution
+     filings), USASpending.gov federal award records, and Maui County Council roll-calls. The money graph lives in
+     Neo4j (<code>12sgi-king-neo4j-1</code>) as <code>:Representative</code>, <code>:Donor</code>,
+     <code>:FUNDED</code>, and <code>:Parcel / OWNS_NEAR</code> for the real-estate geospatial tie.</p>
+     <pre>MATCH (d:Donor)-[x:FUNDED]-&gt;(r:Representative)
+RETURN d.name, r.name, x.amount
+ORDER BY x.amount DESC   // 26 edges — the money behind the votes</pre>
+     <p class="dim">Caveats to honor before drawing any conclusion: (1) <code>noes = 0</code> across all nine reps
+     is a data signal to interpret, not evidence of collusion. (2) Facts are split across two tenant IDs
+     (<code>hi-maui</code> + legacy <code>maui</code>) — union both when aggregating. (3) Donor→official
+     name-matches are candidates to verify, not confirmed identities. Every figure is public record; allegation
+     framing is mandatory; the prosecutorial file stays private.</p>
+   </section>
+ </div>
+
+ <hr class="rule">
+
+ <div class="eyebrow" style="color:var(--gold2)">The record, in numbers</div>
+ <div class="facts">
+   <div class="fact"><div class="n">5 <span style="font-size:16px;color:var(--muted)">of 9</span></div><div class="l">Council members funded by the Hawaiʻi Realtors PAC — a majority of the body</div></div>
+   <div class="fact re"><div class="n">30.9%</div><div class="l">of Councilmember Uu-Hodgins' donations came from real-estate interests — the Council's highest share</div></div>
+   <div class="fact q"><div class="n">0</div><div class="l">"no" votes cast by any current member across 49–95 recorded votes each — a question, not a verdict</div></div>
+ </div>
+
+ <div class="bloc">
+   <div class="brow h"><span>Maui official</span><span>total raised</span><span>real-estate</span></div>
+   <div class="brow"><span>Mayor Richard Bissen</span><span class="amt">$665,271</span><span class="re">14.0%</span></div>
+   <div class="brow"><span>Councilmember Tom Cook · S. Maui</span><span class="amt">$372,580</span><span class="re">22.6%</span></div>
+   <div class="brow"><span>Councilmember Yuki Lee Sugimura</span><span class="amt">$354,610</span><span class="re">13.4%</span></div>
+   <div class="brow"><span>Councilmember Nohelani Uu-Hodgins</span><span class="amt">$233,353</span><span class="re">30.9%</span></div>
+   <div class="brow"><span>Councilmember Alice Lee</span><span class="amt">$157,831</span><span class="re">21.1%</span></div>
+ </div>
+ <p style="font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:12px">Totals from Hawaiʻi Campaign Spending Commission filings · real-estate share = donations from real-estate / development donors. Lawful contributions; shown as a question to verify.</p>
+
+ <footer>
+   govOS · Kilo Aupuni · Maui County (tenant 001) &nbsp;·&nbsp; christ-aloha, solution-side<br>
+   built from public record — Hawaiʻi Campaign Spending Commission, USASpending awards, Council roll-calls · graphed in Neo4j (money × votes)<br>
+   <b>oversight questions, never accusations</b> · near-unanimity is not proof · the private prosecutorial file never publishes<br>
+   the sky honors <b>Lahaina</b> (Lele), Royal Capital 1820–1845, and <b>Wailuku</b>, the county seat · &copy; 2026 James RCS Langford
+ </footer>
+</div>
+
+<script>
+(function(){
+  // ── education-level tabs ─────────────────────────────────────────────
+  var tabs=[].slice.call(document.querySelectorAll('.lvl'));
+  var lessons=[].slice.call(document.querySelectorAll('.lesson'));
+  function show(l){
+    tabs.forEach(function(t){t.setAttribute('aria-selected', t.dataset.l===l ? 'true':'false');});
+    lessons.forEach(function(s){s.setAttribute('data-active', s.dataset.l===l ? 'true':'false');});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.l);});});
+
+  // ── ghosted celestial star map: the sky over Maui, Wailuku ↔ Lahaina ──
+  var c=document.getElementById('sky'), x=c.getContext('2d'), W,H,stars,DPR;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // deterministic PRNG so the sky is stable (mulberry32)
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  function build(){
+    DPR=Math.min(devicePixelRatio||1,2); W=c.width=innerWidth*DPR; H=c.height=innerHeight*DPR;
+    c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px';
+    var r=rng(20885156), n=Math.min(420, Math.round(innerWidth*innerHeight/7600)); stars=[];
+    for(var i=0;i<n;i++){
+      stars.push({x:r()*W, y:r()*H, m:Math.pow(r(),2.4), // magnitude bias → few bright, many faint
+        p:r()*Math.PI*2, s:0.6+r()*1.7});
+    }
+  }
+  // Maui geography (lat,long) → screen. Lahaina is WSW of Wailuku (~same lat, ~0.18° west).
+  function anchors(){
+    var cx=W*0.5, cy=H*0.62, scale=Math.min(W,H)*0.9;
+    // relative to a midpoint; west = left, north = up
+    var wail={lo:-156.5058, la:20.8893}, lah={lo:-156.6825, la:20.8783};
+    var mlo=(wail.lo+lah.lo)/2, mla=(wail.la+lah.la)/2;
+    function P(pt){return {x:cx+(pt.lo-mlo)*scale*3.4, y:cy-(pt.la-mla)*scale*3.4};}
+    return {w:P(wail), l:P(lah)};
+  }
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    // faint horizon / star-compass arc (Hawaiian wayfinding hint)
+    var a=anchors();
+    x.save();
+    // stars
+    for(var i=0;i<stars.length;i++){var st=stars[i];
+      var tw = reduce ? 1 : (0.72+0.28*Math.sin(t*0.0011+st.p));
+      var al = (0.10+st.m*0.6)*tw;
+      x.beginPath(); x.arc(st.x,st.y,st.s*DPR*(0.5+st.m),0,6.28);
+      x.fillStyle = st.m>0.8 ? 'rgba(210,235,255,'+al+')' : 'rgba(140,181,207,'+al+')';
+      x.fill();
+    }
+    // the line from the Royal Capital to the county seat
+    var grd=x.createLinearGradient(a.l.x,a.l.y,a.w.x,a.w.y);
+    grd.addColorStop(0,'rgba(227,173,51,.0)'); grd.addColorStop(.5,'rgba(227,173,51,.34)'); grd.addColorStop(1,'rgba(103,232,249,.30)');
+    x.strokeStyle=grd; x.lineWidth=1.2*DPR; x.setLineDash([4*DPR,5*DPR]);
+    x.beginPath(); x.moveTo(a.l.x,a.l.y); x.lineTo(a.w.x,a.w.y); x.stroke(); x.setLineDash([]);
+    // anchor stars (gold = the two capitals)
+    function anchor(p,label,c1){
+      var pulse = reduce?1:(0.8+0.2*Math.sin(t*0.002));
+      x.beginPath(); x.arc(p.x,p.y,3.4*DPR,0,6.28); x.fillStyle=c1; x.fill();
+      x.beginPath(); x.arc(p.x,p.y,9*DPR*pulse,0,6.28); x.strokeStyle=c1.replace(/[\d.]+\)$/,'.28)'); x.lineWidth=1*DPR; x.stroke();
+      x.font=(11*DPR)+'px "JetBrains Mono",monospace'; x.fillStyle='rgba(198,224,240,.55)';
+      x.fillText(label, p.x+13*DPR, p.y+4*DPR);
+    }
+    anchor(a.l,'Lahaina · Lele','rgba(244,201,93,1)');
+    anchor(a.w,'Wailuku','rgba(103,232,249,1)');
+    x.restore();
+  }
+  var raf,last=0;
+  function loop(t){ if(t-last>44){ draw(t); last=t; } if(!reduce) raf=requestAnimationFrame(loop); }
+  function start(){ build(); if(raf)cancelAnimationFrame(raf); if(reduce){draw(0);} else {raf=requestAnimationFrame(loop);} }
+  addEventListener('resize', start, {passive:true});
+  start();
+})();
+</script>
+</body></html>

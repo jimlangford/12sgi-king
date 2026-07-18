@@ -4,14 +4,14 @@
 <link rel=stylesheet href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
  html,body{margin:0;height:100%;font-family:system-ui,'Segoe UI',sans-serif;color:#eaf2fc}
- #bar{padding:.5rem .9rem;background:#0b0f0d;color:#13243d;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+ #bar{padding:.5rem .9rem;background:#0b0f0d;color:#eaf2fc;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
  #bar b{color:#d9b24c}
  #bar .new{background:#1f9d55;color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:.16rem .5rem;border-radius:99px}
- #bar input{flex:1;min-width:150px;padding:.35rem .5rem;border-radius:7px;border:1px solid #1f3d5f;background:#ffffff;color:#13243d;font-size:.85rem}
+ #bar input{flex:1;min-width:150px;padding:.35rem .5rem;border-radius:7px;border:1px solid #1f3d5f;background:#081420;color:#eaf2fc;font-size:.85rem}
  #bar button{padding:.35rem .7rem;border-radius:7px;border:0;background:#00356b;color:#fff;font-weight:600;cursor:pointer;font-size:.85rem}
  #map{height:calc(100% - 84px);width:100%}
- #hint{font-size:.72rem;color:#6b7a89;padding:.3rem .9rem;background:#f6f8fa}
- .lp b{color:#00356b}.lp a{color:#00356b}
+ #hint{font-size:.72rem;color:#6b7a89;padding:.3rem .9rem;background:#0f2540}
+ .lp b{color:#7fb2ff}.lp a{color:#7fb2ff}
 </style><link rel="stylesheet" href="../../govos.css">
 </head><body>
 <div id=bar>
@@ -31,7 +31,7 @@
 <script>
 // GRACEFUL FALLBACK — never a dead/blank frame if a cross-origin resource (CDN / tiles / GIS) is down.
 function showMapFallback(msg){var m=document.getElementById('map');if(!m)return;while(m.firstChild)m.removeChild(m.firstChild);
-  var b=document.createElement('div');b.style.cssText='height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#f3f7fc;color:#cfd6cc;font-family:system-ui,sans-serif';
+  var b=document.createElement('div');b.style.cssText='height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:#0f2540;color:#cfd6cc;font-family:system-ui,sans-serif';
   var i=document.createElement('div');var h=document.createElement('div');h.style.cssText='font-size:1rem;font-weight:700;color:#d9b24c;margin-bottom:.4rem';h.textContent='Map briefly unavailable';
   var p=document.createElement('div');p.style.cssText='font-size:.85rem;max-width:38ch;line-height:1.5';p.textContent=msg||'The live public mapping service isn’t responding right now. Please refresh in a moment.';
   i.appendChild(h);i.appendChild(p);b.appendChild(i);m.appendChild(b);}
@@ -158,8 +158,8 @@ if(OV.money){                                   // sourced concentration headlin
 if(OV.cost){                                    // OUR MODEL live quote to the fiscal calendar
   var cq=OV.cost,Cost=L.control({position:'bottomleft'});
   Cost.onAdd=function(){var d=L.DomUtil.create('div');
-    d.style.cssText='background:#fff;padding:.5rem .7rem;border-radius:9px;box-shadow:0 1px 5px rgba(0,0,0,.3);font-size:.74rem;max-width:236px;line-height:1.4';
-    d.appendChild(mk('div','font-weight:700;color:#00356b','Live quote — run this county on govOS'));
+    d.style.cssText='background:#081420;padding:.5rem .7rem;border-radius:9px;box-shadow:0 1px 5px rgba(0,0,0,.3);font-size:.74rem;max-width:236px;line-height:1.4';
+    d.appendChild(mk('div','font-weight:700;color:#7fb2ff','Live quote — run this county on govOS'));
     d.appendChild(mk('div',null,money(cq.monthly_quote)+'/mo · '+money(cq.fiscal_year_quote)+' to FY end ('+cq.fiscal_year.end+')'));
     d.appendChild(mk('div','color:#6b7a89',cq.upcoming_agenda_items_sourced+' upcoming agenda items (sourced) · '+cq.fiscal_year.months_remaining+' mo left in FY'));
     d.appendChild(mk('div','font-size:.65rem;color:#9aa6b1;margin-top:.25rem',"OUR MODEL — our published rates on the county's actual workload. Not the county's budget, not law."));

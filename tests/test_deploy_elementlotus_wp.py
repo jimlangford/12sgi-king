@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-ROOT = Path('/home/runner/work/12sgi-king/12sgi-king')
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from watchers import deploy_elementlotus_wp
@@ -18,6 +18,14 @@ class TestDeployElementLotusWp(unittest.TestCase):
         self.assertEqual(
             deploy_elementlotus_wp.rewrite_url('games/mahjong_crosswalk.html'),
             'https://12sgi.com/games/mahjong_crosswalk.html',
+        )
+        self.assertEqual(
+            deploy_elementlotus_wp.rewrite_url('../site/games/mahjong_crosswalk.html'),
+            'https://12sgi.com/games/mahjong_crosswalk.html',
+        )
+        self.assertEqual(
+            deploy_elementlotus_wp.rewrite_url('../govos-shell.js'),
+            'https://12sgi.com/govos-shell.js',
         )
         self.assertEqual(
             deploy_elementlotus_wp.rewrite_url('reports.html'),
@@ -57,6 +65,7 @@ class TestDeployElementLotusWp(unittest.TestCase):
             self.assertIn('https://12sgi.com/games/', fragment)
             self.assertIn('/about/', fragment)
             self.assertIn('https://12sgi.com/reports.html', fragment)
+            self.assertFalse(any(line != line.rstrip() for line in fragment.splitlines()))
             css_out = (out / 'additional-css.css').read_text(encoding='utf-8')
             self.assertIn('.element-lotus-shell{--bg:#000}', css_out)
             self.assertIn('.element-lotus-shell{margin:0}', css_out)
@@ -84,7 +93,7 @@ class TestDeployElementLotusWp(unittest.TestCase):
                         generated,
                         committed,
                         f"{name} is out of sync with element_lotus_public/. Run "
-                        "python /home/runner/work/12sgi-king/12sgi-king/watchers/deploy_elementlotus_wp.py "
+                        "python watchers/deploy_elementlotus_wp.py "
                         "and re-apply the bundle in WordPress.",
                     )
 

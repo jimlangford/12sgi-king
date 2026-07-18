@@ -6,8 +6,8 @@
 #   Bring it up as its OWN compose project so `up` here can NEVER recreate/restart the running
 #   govOS-v2 containers (auth/tenant/documents/storage/ai/health) or disturb a live GPU render:
 #       docker compose --env-file .env.v2 -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml up -d --build --remove-orphans
-#       docker compose -p studio-assets -f docker-compose.studio-assets.yml logs -f
-#       docker compose -p studio-assets -f docker-compose.studio-assets.yml down
+#       docker compose --env-file .env.v2 -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml logs -f
+#       docker compose --env-file .env.v2 -p studio-assets -f deploy/studio-assets/docker-compose.studio-assets.yml down
 #
 # NON-INTERFERENCE (enforced here):
 #   * Publishes ONLY 127.0.0.1:8108 (loopback + Tailscale trust boundary). 8101-8106 untouched;
@@ -50,7 +50,8 @@ services:
       AUTH_INTROSPECTION_URL: ${AUTH_INTROSPECTION_URL:-http://host.docker.internal:8101/api/v2/auth/introspect}
       AUTH_READY_URL: ${AUTH_READY_URL:-http://host.docker.internal:8101/api/v2/ready}
       # Must come from the same .env.v2 used by docker-compose.v2.yml. The readiness probe verifies
-      # service trust through introspection, so a mismatched fallback cannot report healthy.
+      # service trust through introspection, so a mismatched fallback cannot report healthy. The
+      # development default is local-only; every non-local deployment must provide a strong token.
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONUNBUFFERED: "1"
