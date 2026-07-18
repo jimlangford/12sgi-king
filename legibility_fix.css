@@ -68,3 +68,4 @@ button{ color:#f3efe4; }
 /* 4) A SMALL, CALM DEFAULT for any bare dark section so nothing is a black void with hidden text */
 section, .section, .surface{ color:var(--leg-ink); }
 /* rebuild trigger 2026-07-17: ship education.html self-theme guard */
+/* rebuild trigger 2: education card/panel light surfaces */
