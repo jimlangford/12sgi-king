@@ -27,7 +27,7 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 # GPU router — inference requests are forwarded here; falls back to stub when unavailable.
 GPU_ROUTER_URL = os.environ.get("GPU_ROUTER_URL", "http://gpu-router:8107")
 GPU_ROUTER_READY_URL = os.environ.get("GPU_ROUTER_READY_URL", f"{GPU_ROUTER_URL}/api/v2/ready")
-GPU_DEFAULT_MODEL = os.environ.get("GPU_DEFAULT_MODEL", "llama3")
+GPU_DEFAULT_MODEL = os.environ.get("GPU_DEFAULT_MODEL", "llama3.2")
 
 app = FastAPI(title="govOS v2 AI Service", version=VERSION)
 

@@ -40,9 +40,18 @@ class TestClaimClientMigration(unittest.TestCase):
         )
         from fastapi.testclient import TestClient  # local import to avoid global dependency during discovery
         self.client = TestClient(self.auth.app)
+        self.service_headers = {"X-Service-Token": "claim-client-service-token"}
 
     def tearDown(self):
         self.tmp.cleanup()
+
+    def test_session_mint_requires_service_trust(self):
+        resp = self.client.post(
+            "/api/v2/auth/session",
+            json={"provider": "passkey", "subject": "attacker", "role": "Owner"},
+        )
+        self.assertEqual(resp.status_code, 403)
+        self.assertEqual(resp.json()["detail"]["error"]["code"], "forbidden")
 
     def test_auth_session_response_includes_required_claim_fields(self):
         resp = self.client.post(
@@ -54,6 +63,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Municipality",
                 "scopes": ["tenant:read"],
             },
+            headers=self.service_headers,
         )
         self.assertEqual(resp.status_code, 200)
         claims = resp.json()["claims"]
@@ -70,6 +80,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Service",
                 "scopes": ["not:real"],
             },
+            headers=self.service_headers,
         )
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.json()["detail"]["error"]["code"], "invalid_scope")
@@ -84,6 +95,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Municipality",
                 "scopes": ["tenant:*"],
             },
+            headers=self.service_headers,
         )
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.json()["detail"]["error"]["code"], "invalid_scope")
@@ -158,6 +170,7 @@ class TestClaimClientMigration(unittest.TestCase):
         owner = self.client.post(
             "/api/v2/auth/session",
             json={"provider": "passkey", "subject": "owner-diag", "role": "Owner", "scopes": ["ops:owner"]},
+            headers=self.service_headers,
         )
         self.assertEqual(owner.status_code, 200)
         token = owner.json()["access_token"]
@@ -186,6 +199,7 @@ class TestClaimClientMigration(unittest.TestCase):
         owner = client.post(
             "/api/v2/auth/session",
             json={"provider": "passkey", "subject": "owner-1", "role": "Owner", "scopes": ["ops:owner"]},
+            headers=self.service_headers,
         )
         resident = client.post(
             "/api/v2/auth/session",
@@ -196,6 +210,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Resident",
                 "scopes": ["tenant:read"],
             },
+            headers=self.service_headers,
         )
         self.assertEqual(owner.status_code, 200)
         self.assertEqual(resident.status_code, 200)
@@ -237,6 +252,7 @@ class TestClaimClientMigration(unittest.TestCase):
         owner = client.post(
             "/api/v2/auth/session",
             json={"provider": "passkey", "subject": "owner-1", "role": "Owner", "scopes": ["ops:owner"]},
+            headers=self.service_headers,
         )
         token = owner.json()["access_token"]
         resp = client.post(
@@ -267,6 +283,7 @@ class TestClaimClientMigration(unittest.TestCase):
         owner = client.post(
             "/api/v2/auth/session",
             json={"provider": "passkey", "subject": "owner-audit", "role": "Owner", "scopes": ["ops:owner"]},
+            headers=self.service_headers,
         )
         from services import authz
 
@@ -330,22 +347,30 @@ class TestClaimClientMigration(unittest.TestCase):
 class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="v2-owner-oauth-")
+        self.auth_db = str(Path(self.tmp.name) / "auth.db")
+        self.auth_env = {
+            "AUTH_SIGNING_SECRET": "owner-oauth-secret",
+            "INTERNAL_SERVICE_TOKEN": "owner-oauth-service-token",
+            "AUTH_DB_PATH": self.auth_db,
+            "GITHUB_CLIENT_ID": "github-client-id",
+            "GITHUB_CLIENT_SECRET": "github-client-secret",
+            "GOOGLE_CLIENT_ID": "google-client-id",
+            "GOOGLE_CLIENT_SECRET": "google-client-secret",
+            "OWNER_GITHUB_LOGINS": " JimLangford , second-owner ",
+            "OWNER_GOOGLE_EMAILS": " Owner@Example.com , backup@example.com ",
+            "OWNER_MAGIC_EMAILS": " Owner@Example.com , backup@example.com ",
+            "SMTP_HOST": "smtp.example.com",
+            "SMTP_PORT": "587",
+            "SMTP_USER": "mailer@example.com",
+            "SMTP_PASS": "test-app-password",
+            "SMTP_FROM": "mailer@example.com",
+            "AUTH_PUBLIC_URL": "https://auth.example.com",
+            "OAUTH_REDIRECT_BASE": "https://console.example.com/king/",
+        }
         self.auth = _load_module(
             AUTH_MAIN,
             f"auth_owner_oauth_{time.time_ns()}",
-            env_overrides={
-                "AUTH_SIGNING_SECRET": "owner-oauth-secret",
-                "INTERNAL_SERVICE_TOKEN": "owner-oauth-service-token",
-                "AUTH_DB_PATH": str(Path(self.tmp.name) / "auth.db"),
-                "GITHUB_CLIENT_ID": "github-client-id",
-                "GITHUB_CLIENT_SECRET": "github-client-secret",
-                "GOOGLE_CLIENT_ID": "google-client-id",
-                "GOOGLE_CLIENT_SECRET": "google-client-secret",
-                "OWNER_GITHUB_LOGINS": " JimLangford , second-owner ",
-                "OWNER_GOOGLE_EMAILS": " Owner@Example.com , backup@example.com ",
-                "AUTH_PUBLIC_URL": "https://auth.example.com",
-                "OAUTH_REDIRECT_BASE": "https://console.example.com/king/",
-            },
+            env_overrides=self.auth_env,
             env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
         )
         from fastapi.testclient import TestClient
@@ -358,6 +383,22 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
     def test_owner_allowlists_are_trimmed_and_normalized(self):
         self.assertEqual(self.auth.OWNER_GITHUB_LOGINS, {"jimlangford", "second-owner"})
         self.assertEqual(self.auth.OWNER_GOOGLE_EMAILS, {"owner@example.com", "backup@example.com"})
+        self.assertEqual(self.auth.OWNER_MAGIC_EMAILS, {"owner@example.com", "backup@example.com"})
+
+    def test_wordpress_provider_discovery_exposes_google_and_magic_email(self):
+        resp = self.client.get("/api/v2/auth/providers")
+        self.assertEqual(resp.status_code, 200)
+        body = resp.json()
+        self.assertTrue(body["google"]["available"])
+        self.assertTrue(body["magic_email"]["available"])
+        self.assertEqual(
+            body["google"]["callback_uri"],
+            "https://auth.example.com/api/v2/auth/google/callback",
+        )
+        self.assertEqual(
+            body["magic_email"]["request_url"],
+            "https://auth.example.com/api/v2/auth/magic-link",
+        )
 
     def test_github_oauth_callback_accepts_case_insensitive_allowlist(self):
         state = self.auth._make_oauth_state("github")
@@ -393,22 +434,21 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
             "email": "owner@example.com",
             "sub": "google-subject",
             "aud": "wrong-client-id",
+            "iss": "https://accounts.google.com",
             "email_verified": True,
             "exp": int(time.time()) + 300,
         }
-        id_token = ".".join(
-            [
-                "header",
-                self.auth._b64url(json.dumps(payload).encode()),
-                "sig",
-            ]
-        )
 
         token_resp = mock.Mock()
         token_resp.raise_for_status.return_value = None
-        token_resp.json.return_value = {"id_token": id_token}
+        token_resp.json.return_value = {"id_token": "google-signed-id-token"}
+        verify_resp = mock.Mock()
+        verify_resp.raise_for_status.return_value = None
+        verify_resp.json.return_value = payload
 
-        with mock.patch.object(self.auth._requests, "post", return_value=token_resp):
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp), mock.patch.object(
+            self.auth._requests, "get", return_value=verify_resp
+        ):
             resp = self.client.get(
                 "/api/v2/auth/google/callback",
                 params={"code": "oauth-code", "state": state},
@@ -424,22 +464,21 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
             "email": "owner@example.com",
             "sub": "google-subject",
             "aud": "google-client-id",
+            "iss": "https://accounts.google.com",
             "email_verified": False,
             "exp": int(time.time()) + 300,
         }
-        id_token = ".".join(
-            [
-                "header",
-                self.auth._b64url(json.dumps(payload).encode()),
-                "sig",
-            ]
-        )
 
         token_resp = mock.Mock()
         token_resp.raise_for_status.return_value = None
-        token_resp.json.return_value = {"id_token": id_token}
+        token_resp.json.return_value = {"id_token": "google-signed-id-token"}
+        verify_resp = mock.Mock()
+        verify_resp.raise_for_status.return_value = None
+        verify_resp.json.return_value = payload
 
-        with mock.patch.object(self.auth._requests, "post", return_value=token_resp):
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp), mock.patch.object(
+            self.auth._requests, "get", return_value=verify_resp
+        ):
             resp = self.client.get(
                 "/api/v2/auth/google/callback",
                 params={"code": "oauth-code", "state": state},
@@ -448,6 +487,89 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
 
         self.assertEqual(resp.status_code, 400)
         self.assertIn("e-mail is not verified", resp.text)
+
+    def test_google_oauth_callback_accepts_google_verified_owner(self):
+        state = self.auth._make_oauth_state("google")
+        token_resp = mock.Mock()
+        token_resp.raise_for_status.return_value = None
+        token_resp.json.return_value = {"id_token": "google-signed-id-token"}
+        verify_resp = mock.Mock()
+        verify_resp.raise_for_status.return_value = None
+        verify_resp.json.return_value = {
+            "email": "Owner@Example.com",
+            "sub": "google-subject",
+            "aud": "google-client-id",
+            "iss": "accounts.google.com",
+            "email_verified": "true",
+            "exp": str(int(time.time()) + 300),
+        }
+        with mock.patch.object(self.auth._requests, "post", return_value=token_resp), mock.patch.object(
+            self.auth._requests, "get", return_value=verify_resp
+        ):
+            resp = self.client.get(
+                "/api/v2/auth/google/callback",
+                params={"code": "oauth-code", "state": state},
+                follow_redirects=False,
+            )
+        self.assertEqual(resp.status_code, 307)
+        token = urllib.parse.unquote(resp.headers["location"].split("#token=", 1)[1])
+        claims = self.auth._decode_and_verify_token(token)[1]
+        self.assertEqual(claims["sub"], "google:google-subject")
+        self.assertEqual(claims["role"], "Owner")
+
+    def test_magic_email_token_survives_restart_and_rejects_replay(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ):
+            requested = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "OWNER@example.com"},
+            )
+        self.assertEqual(requested.status_code, 202)
+        self.assertEqual(len(delivered_urls), 1)
+        parsed = urllib.parse.urlparse(delivered_urls[0])
+        token = urllib.parse.parse_qs(parsed.query)["token"][0]
+
+        restarted = _load_module(
+            AUTH_MAIN,
+            f"auth_owner_oauth_restart_{time.time_ns()}",
+            env_overrides=self.auth_env,
+            env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
+        )
+        from fastapi.testclient import TestClient
+
+        restarted_client = TestClient(restarted.app)
+        verified = restarted_client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(verified.status_code, 307)
+        session_token = urllib.parse.unquote(verified.headers["location"].split("#token=", 1)[1])
+        claims = restarted._decode_and_verify_token(session_token)[1]
+        self.assertEqual(claims["sub"], "magic:owner@example.com")
+        self.assertEqual(claims["role"], "Owner")
+
+        replay = restarted_client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(replay.status_code, 400)
+        self.assertIn("invalid or has already been used", replay.text)
+
+    def test_magic_email_does_not_disclose_allowlist_membership(self):
+        with mock.patch.object(self.auth, "_send_magic_email") as sender:
+            resp = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "not-authorized@example.com"},
+            )
+        self.assertEqual(resp.status_code, 202)
+        self.assertEqual(resp.json(), self.auth._MAGIC_LINK_ACCEPTED)
+        sender.assert_not_called()
 
 
 if __name__ == "__main__":

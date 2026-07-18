@@ -18,9 +18,9 @@ import sys
 # `from services.X import Y` statement -- which Python serves from sys.modules on every
 # call after the first, even though main.py itself gets a fresh exec_module() each time.
 #
-# CONFIRMED causes of the CI failure (traced via the actual traceback):
-#   services.auth.app.passkeys, services.auth.app.magiclinks -- both compute DB_PATH as
-#   a module-level `os.environ.get("AUTH_DB_PATH", ...)` constant at first import, so
+# CONFIRMED cause of the CI failure (traced via the actual traceback):
+#   services.auth.app.passkeys computes DB_PATH as a module-level
+#   `os.environ.get("AUTH_DB_PATH", ...)` constant at first import, so
 #   every test after the first silently reused the FIRST test's (by-then-deleted) tempdir
 #   instead of its own env override.
 # Added defensively (same pattern -- a module-level constant read from an env var at
@@ -33,7 +33,6 @@ CACHED_SERVICE_SUBMODULES = (
     "services.authz",
     "services.event_bus",
     "services.auth.app.passkeys",
-    "services.auth.app.magiclinks",
 )
 
 

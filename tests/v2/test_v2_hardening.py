@@ -24,6 +24,7 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from fastapi.testclient import TestClient
 
@@ -160,6 +161,31 @@ class TestAuthClaimValidation(unittest.TestCase):
             json={'token': token},
             headers={'X-Service-Token': 'claims-test-service-token'},
         )
+
+    def test_passkey_registration_requires_an_active_owner_session(self):
+        cases = (
+            (
+                '/api/v2/auth/passkey/register/begin',
+                {'user_id': 'owner-1', 'email': 'owner@example.com', 'display_name': 'Owner'},
+            ),
+            (
+                '/api/v2/auth/passkey/register/complete',
+                {'user_id': 'owner-1', 'credential_json': '{}', 'transports': []},
+            ),
+        )
+        for path, payload in cases:
+            with self.subTest(path=path):
+                response = self.client.post(path, json=payload)
+                self.assertEqual(response.status_code, 401)
+
+        resident_token = self._mint_token(role='Resident', scopes=['tenant:read'])
+        with mock.patch.object(self.module, 'OWNER_PASSKEY_EMAILS', {'owner@example.com'}):
+            response = self.client.post(
+                '/api/v2/auth/passkey/register/begin',
+                json={'user_id': 'owner-1', 'email': 'owner@example.com', 'display_name': 'Owner'},
+                headers={'Authorization': f'Bearer {resident_token}'},
+            )
+        self.assertEqual(response.status_code, 403)
 
     def test_expired_token_fails_introspection(self):
         token = self._mint_token(exp=int(self.module._now_utc().timestamp()) - 10)
@@ -666,7 +692,7 @@ class TestAuthDbPathIsolationAcrossLoads(unittest.TestCase):
     """Regression test for the 2026-07-16 CI failure (commit 4f35f13): loading
     services/auth/app/main.py fresh per test does NOT by itself isolate the AUTH_DB_PATH
     env override, because main.py's `from services.auth.app.passkeys import init_passkeys_db`
-    is a plain import -- Python caches services.auth.app.passkeys (and magiclinks) in
+    is a plain import -- Python caches services.auth.app.passkeys in
     sys.modules, so a SECOND load in the same process silently reused the FIRST load's
     DB_PATH (a tempdir that was often already deleted by then), instead of honoring its
     own env_overrides. This test loads auth's main.py twice, each with its own fresh
@@ -698,8 +724,8 @@ class TestAuthDbPathIsolationAcrossLoads(unittest.TestCase):
         )
 
         # Second load, different tempdir, same process -- this is exactly the scenario that
-        # silently broke before the sys.modules clearing fix: without it, passkeys.py/
-        # magiclinks.py stay cached from the first load and never re-read AUTH_DB_PATH.
+        # silently broke before the sys.modules clearing fix: without it, passkeys.py
+        # stays cached from the first load and never re-reads AUTH_DB_PATH.
         module_b = _load_module(
             AUTH_MAIN, f'auth_isolation_b_{time.time_ns()}',
             env_overrides={**common_env, 'AUTH_DB_PATH': db_path_b},

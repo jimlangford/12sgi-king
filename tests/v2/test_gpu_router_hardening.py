@@ -4,6 +4,7 @@ import sys
 import tempfile
 import time
 import unittest
+from contextlib import contextmanager
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -16,6 +17,7 @@ from tests.v2._test_helpers import load_module as _load_module  # noqa: E402  (s
 GPU_MAIN = ROOT / "services" / "gpu_router" / "app" / "main.py"
 AUTH_MAIN = ROOT / "services" / "auth" / "app" / "main.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "deploy-v2-king-server.yml"
+COMPOSE = ROOT / "docker-compose.v2.yml"
 GPU_PANEL = ROOT / "king_public_src" / "Gpu.dc.html"
 OWNER_SHELL = ROOT / "king_public_src" / "index.html"
 DEPLOYMENT_DOC = ROOT / "docs" / "DEPLOYMENT.md"
@@ -25,8 +27,14 @@ class GpuRouterHarness(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="gpu-router-hardening-")
         self.db_path = str(Path(self.tmp.name) / "gpu-router.db")
+        self.modules = []
+        self.clients = []
 
     def tearDown(self):
+        for client in reversed(self.clients):
+            client.close()
+        for module in reversed(self.modules):
+            module._stop_workers()
         self.tmp.cleanup()
 
     def load_gpu(self, **env):
@@ -47,18 +55,30 @@ class GpuRouterHarness(unittest.TestCase):
             "tenant_id": "",
             "scopes": ["gpu:infer", "gpu:read", "ops:owner"],
         }
+        self.modules.append(module)
         return module
 
+    def client_for(self, module):
+        if hasattr(module, "_stop_workers") and all(existing is not module for existing in self.modules):
+            self.modules.append(module)
+        client = TestClient(module.app)
+        self.clients.append(client)
+        return client
+
+    @contextmanager
     def connect(self):
         conn = sqlite3.connect(self.db_path, check_same_thread=False)
         conn.row_factory = sqlite3.Row
-        return conn
+        try:
+            yield conn
+        finally:
+            conn.close()
 
 
 class TestGpuRouterHardening(GpuRouterHarness):
     def test_health_reports_provenance_metadata(self):
         module = self.load_gpu()
-        client = TestClient(module.app)
+        client = self.client_for(module)
 
         body = client.get("/api/v2/health").json()
 
@@ -67,6 +87,20 @@ class TestGpuRouterHardening(GpuRouterHarness):
         self.assertEqual(body["commit_sha"], "abc123def456")
         self.assertEqual(body["build_timestamp"], "2026-07-10T23:30:00Z")
         self.assertEqual(body["environment"], "test")
+
+    def test_app_lifespan_restarts_workers_after_a_prior_shutdown(self):
+        module = self.load_gpu()
+        module._stop_workers()
+        self.assertFalse(module._gpu_thread.is_alive())
+        self.assertFalse(module._cpu_thread.is_alive())
+
+        with TestClient(module.app) as client:
+            self.assertEqual(client.get("/api/v2/live").status_code, 200)
+            self.assertTrue(module._gpu_thread.is_alive())
+            self.assertTrue(module._cpu_thread.is_alive())
+
+        self.assertFalse(module._gpu_thread.is_alive())
+        self.assertFalse(module._cpu_thread.is_alive())
 
     def test_auth_service_health_reports_provenance_metadata(self):
         module = _load_module(
@@ -82,7 +116,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             },
             env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
         )
-        client = TestClient(module.app)
+        client = self.client_for(module)
 
         body = client.get("/api/v2/health").json()
 
@@ -163,7 +197,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
     def test_idempotency_reuses_completed_job(self):
         module = self.load_gpu()
         module._run_job = lambda job: ("done", {"response": f"ok:{job['prompt']}"}, None)
-        client = TestClient(module.app)
+        client = self.client_for(module)
         headers = {"Authorization": "******", "X-Idempotency-Key": "idem-1"}
         payload = {"client_id": "studio", "tenant_id": "studio", "model": "llama3", "prompt": "Aloha"}
 
@@ -180,7 +214,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
     def test_conflicting_idempotency_payload_is_rejected(self):
         module = self.load_gpu()
         module._run_job = lambda job: ("done", {"response": "ok"}, None)
-        client = TestClient(module.app)
+        client = self.client_for(module)
         headers = {"Authorization": "******", "X-Idempotency-Key": "idem-1"}
 
         first = client.post(
@@ -206,7 +240,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             return ("done", {"response": "eventual"}, None)
 
         module._run_job = slow_success
-        client = TestClient(module.app)
+        client = self.client_for(module)
         headers = {"Authorization": "******", "X-Idempotency-Key": "idem-2"}
         payload = {"client_id": "studio", "tenant_id": "studio", "model": "llama3", "prompt": "slow"}
 
@@ -227,7 +261,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             f"gpu_router_auth_{time.time_ns()}",
             env_overrides={"GPU_ROUTER_DB_PATH": self.db_path},
         )
-        client = TestClient(module.app)
+        client = self.client_for(module)
 
         for path in ("/api/v2/gpu/queue", "/api/v2/gpu/usage", "/api/v2/gpu/events"):
             resp = client.get(path)
@@ -255,7 +289,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             "tenant_id": "",
             "scopes": ["gpu:infer", "gpu:read", "ops:owner"],
         }
-        client = TestClient(module.app)
+        client = self.client_for(module)
 
         queue = client.get("/api/v2/gpu/queue?tenant_id=tenant-a", headers={"Authorization": "******"}).json()
         usage = client.get("/api/v2/gpu/usage?tenant_id=tenant-a", headers={"Authorization": "******"}).json()
@@ -285,7 +319,7 @@ class TestGpuRouterHardening(GpuRouterHarness):
             "tenant_id": "tenant-a",
             "scopes": ["gpu:read"],
         }
-        client = TestClient(module.app)
+        client = self.client_for(module)
 
         queue = client.get("/api/v2/gpu/queue", headers={"Authorization": "******"}).json()
         usage = client.get("/api/v2/gpu/usage", headers={"Authorization": "******"}).json()
@@ -313,6 +347,14 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
         self.assertIn("gpu-environment", panel)
         self.assertIn("commit_sha", panel)
         self.assertIn("'gpu'", shell)
+
+    def test_ollama_healthcheck_uses_a_binary_present_in_the_image(self):
+        compose = COMPOSE.read_text()
+        gpu_runtime = compose.split("  gpu-runtime:", 1)[1].split("  gpu-router:", 1)[0]
+        self.assertIn("- CMD\n      - ollama\n      - list", gpu_runtime)
+        self.assertNotIn("wget", gpu_runtime)
+        self.assertIn("GPU_DEFAULT_MODEL:-llama3.2", compose)
+        self.assertIn("GPU_RUNTIME_URL:-http://host.docker.internal:11434", compose)
 
 
 class TestDeployWorkflowHardening(unittest.TestCase):

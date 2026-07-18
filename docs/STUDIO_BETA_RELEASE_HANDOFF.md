@@ -6,12 +6,14 @@ This branch completes the public govOS integration boundary for the local Studio
 
 - standalone Studio asset service on loopback port 8108
 - tenant/style/character render provenance in SQLite
-- scoped Studio asset and clip-learning projections in Neo4j
+- atomic label-swap Studio asset and clip-learning projections in the shared govOS Neo4j; failed
+  staging leaves the previous complete projection live and retries heal forward from JSON
 - crosswalk, assignment, asset, clip recommendation, health, and readiness APIs
-- owner-scoped auth enforcement for graph sync and reindex maintenance routes when enabled
+- owner-scoped auth enforcement for every project and maintenance mutation, enabled by default in Compose
 - read-only vault mounts and an independent Docker Compose project
 - Studio asset regression tests in GitHub Actions
 - `.env.v2` excluded from Git
+- routine Studio index/startup health logged as receipts instead of queued workboard jobs
 
 The service is read-mostly. Its maintenance POST routes update only private SQLite/Neo4j projections;
 the mounted Studio vault remains read-only.
@@ -21,13 +23,14 @@ the mounted Studio vault remains read-only.
 The application and workflow handoff is intentionally not published to this public repository. It is a
 separate local Git repository at:
 
-`C:\Users\12sgi\Documents\Codex\2026-07-11\github-plugin-github-openai-curated-remote\work\studio-release-stage`
+`C:\Users\12sgi\Documents\Claude\Projects\Video System elementLOTUS`
 
-Reviewed snapshot commit: `03346b3 release: snapshot reviewed Studio beta handoff`
+Reviewed private main commit: `0f5d526 integrate Studio SAGE civic and shared-agent release work`
 
 That snapshot includes the Studio/storyboard UI, LTX/Wan and lip-sync workflows, full-script timing,
 character bibles, tenant/style render assignments, clip learning, resource governance, WordPress member
-pages, 3D/Reallusion/Bambu planners, social staging, and tests. It has no remote by design.
+pages, 3D/Reallusion/Bambu planners, social staging, and tests. It is mirrored only to the owner's
+local private Git mirror; no private Studio source is published by this repository.
 
 ## Routing Contract
 
@@ -37,12 +40,14 @@ are fallback or explicit owner-selected routes, not automatic first choices.
 
 ## Verification
 
-- private Studio snapshot: 45 tests pass
+- private Studio main: 62 tests pass
 - govOS contracts: 72 tests pass
 - govOS integration: 10 tests pass
 - govOS hardening: 27 tests pass
-- Studio asset service: 8 tests pass
+- Studio asset/auth/GPU focused release suite: 182 tests + 5 subtests pass after final main merge
+- full public repository suite: 256 tests + 13 subtests pass
 - Docker Compose configuration validates
+- WordPress bundle generation and checked-in parity validate
 
 ## Environment-Gated Finish Checks
 
@@ -50,6 +55,6 @@ are fallback or explicit owner-selected routes, not automatic first choices.
    identity continuity, timing, archive receipts, and editorial exports.
 2. Keep external AI and Comfy Cloud disabled for that canary unless local execution fails or the owner
    explicitly selects cloud.
-3. When the OAuth/auth service is reachable from the container, inject `INTERNAL_SERVICE_TOKEN`, set
-   `STUDIO_ASSETS_REQUIRE_AUTH=1`, and smoke-test all three maintenance POST routes.
+3. Keep the Studio and auth services on the same `INTERNAL_SERVICE_TOKEN`; smoke-test missing,
+   invalid, and owner-scoped bearer behavior on every mutation after an auth configuration change.
 4. Re-run the WordPress account-page check after any plugin or permalink change.

@@ -47,7 +47,7 @@ from contextlib import asynccontextmanager, contextmanager
 from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.responses import FileResponse, JSONResponse
 
-from services.authz import require_claims
+from services.studio_assets.app import security
 
 # ── Config (all overridable via env; defaults match the compose stanza) ──────────────────────
 VERSION = os.environ.get("VERSION", "1.0.0")
@@ -111,14 +111,42 @@ _PATH_MAP = [
 ]
 _PATH_MAP.sort(key=lambda t: len(t[0]), reverse=True)
 
-REQUIRE_AUTH = os.environ.get("STUDIO_ASSETS_REQUIRE_AUTH", "0") == "1"
-AUTH_INTROSPECTION_URL = os.environ.get(
-    "AUTH_INTROSPECTION_URL", "http://host.docker.internal:8101/api/v2/auth/introspect"
-)
-INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "")
-AUTH_REQUEST_TIMEOUT = float(os.environ.get("AUTH_REQUEST_TIMEOUT", "5"))
+# asset_index.json contains both absolute Windows paths and project-relative paths. Keep a
+# canonical host path in SQLite so the index and supplemental scan cannot create two rows for the
+# same file. Longest relative prefixes win (reports/_status before reports).
+_RELATIVE_PATH_MAP = [
+    ("reports/_status", os.path.join(HOST_PROJ, "reports", "_status"), "/data/index", "index"),
+    ("mp4", os.path.join(HOST_PROJ, "mp4"), "/data/assets/mp4", "mp4"),
+    ("finals", os.path.join(HOST_PROJ, "finals"), "/data/assets/finals", "finals"),
+    ("audio", os.path.join(HOST_PROJ, "audio"), "/data/assets/audio", "audio"),
+    ("hero", os.path.join(HOST_PROJ, "hero"), "/data/assets/hero", "hero"),
+    ("exports", os.path.join(HOST_PROJ, "exports"), "/data/assets/exports", "exports"),
+    ("jimmy_lora", os.path.join(HOST_PROJ, "JIMMY_LORA"), "/data/assets/jimmy_lora", "jimmy_lora"),
+    ("batch", os.path.join(HOST_PROJ, "batch"), "/data/assets/batch", "batch"),
+]
+_RELATIVE_PATH_MAP.sort(key=lambda row: len(row[0]), reverse=True)
 
-WORKBOARD_SOURCE = "govos-v2-studio-assets"
+_LAST_INDEX_STATUS = {
+    "present": False,
+    "records": 0,
+    "unmapped": 0,
+    "missing": 0,
+    "offline_archived": 0,
+    "pruned": 0,
+}
+_LAST_SCAN_STATUS = {
+    "complete": False,
+    "records": 0,
+    "pruned": 0,
+    "missing_roots": list(SCAN_ROOTS),
+    "cap_hit": False,
+}
+_CATALOG_STATUS = {
+    "ready": False,
+    "unavailable": 0,
+    "index": dict(_LAST_INDEX_STATUS),
+    "scan": dict(_LAST_SCAN_STATUS),
+}
 
 
 # ── FAIL-CLOSED write-probe: prove every asset mount is read-only, or refuse to start ─────────
@@ -230,7 +258,7 @@ def _norm_host(p: str) -> str:
     return (p or "").replace("/", "\\").lower()
 
 
-def host_to_container(host_path: str) -> str | None:
+def _resolve_asset_path(host_path: str) -> tuple[str, str, str] | None:
     if not host_path:
         return None
     hp = _norm_host(host_path)
@@ -238,23 +266,44 @@ def host_to_container(host_path: str) -> str | None:
         pref = _norm_host(prefix)
         if hp == pref or hp.startswith(pref + "\\"):
             rest = host_path[len(prefix):].lstrip("\\/").replace("\\", "/")
-            return mount + ("/" + rest if rest else "")
+            canonical = prefix + ("\\" + rest.replace("/", "\\") if rest else "")
+            return canonical, mount + ("/" + rest if rest else ""), _label
+
+    # A drive-qualified or UNC path that missed the allowlist must not be treated as relative.
+    normalized = host_path.replace("\\", "/").lstrip("/")
+    if (len(normalized) >= 2 and normalized[1] == ":") or host_path.startswith(("\\\\", "//")):
+        return None
+    folded = normalized.casefold()
+    if folded == ".." or folded.startswith("../") or "/../" in folded:
+        return None
+    for relative_prefix, host_prefix, mount, label in _RELATIVE_PATH_MAP:
+        rel_folded = relative_prefix.casefold()
+        if folded == rel_folded or folded.startswith(rel_folded + "/"):
+            rest = normalized[len(relative_prefix):].lstrip("/")
+            canonical = host_prefix + ("\\" + rest.replace("/", "\\") if rest else "")
+            return canonical, mount + ("/" + rest if rest else ""), label
     return None
+
+
+def canonical_host_path(host_path: str) -> str:
+    resolved = _resolve_asset_path(host_path)
+    return resolved[0] if resolved else host_path
+
+
+def host_to_container(host_path: str) -> str | None:
+    resolved = _resolve_asset_path(host_path)
+    return resolved[1] if resolved else None
 
 
 def _label_for_host(host_path: str) -> str | None:
-    hp = _norm_host(host_path)
-    for prefix, _mount, label in _PATH_MAP:
-        pref = _norm_host(prefix)
-        if hp == pref or hp.startswith(pref + "\\"):
-            return label
-    return None
+    resolved = _resolve_asset_path(host_path)
+    return resolved[2] if resolved else None
 
 
 def container_to_host(container_path: str, mount: str) -> str:
     for prefix, m, _label in _PATH_MAP:
         if m == mount:
-            rest = container_path[len(mount):].lstrip("/").replace("/", "\\")
+            rest = container_path[len(mount):].lstrip("\\/").replace("/", "\\")
             return prefix + ("\\" + rest if rest else "")
     return container_path
 
@@ -271,7 +320,8 @@ def _upsert(conn, row: dict) -> None:
                 :scene,:shot,:aspect,:workflow,:provenance_json,:indexed_at)
         ON CONFLICT(key) DO UPDATE SET
             label=excluded.label, name=excluded.name, ext=excluded.ext,
-            container_path=excluded.container_path, size=excluded.size, mtime=excluded.mtime,
+            host_path=excluded.host_path, container_path=excluded.container_path,
+            size=excluded.size, mtime=excluded.mtime,
             thumb_file=excluded.thumb_file, archivable=excluded.archivable,
             archived=excluded.archived, source=excluded.source, tenant=excluded.tenant,
             character_id=excluded.character_id, style_id=excluded.style_id,
@@ -283,30 +333,49 @@ def _upsert(conn, row: dict) -> None:
     )
 
 
+def _metadata_text(value) -> str:
+    return "" if value is None else str(value)
+
+
 def ingest_index() -> int:
+    global _LAST_INDEX_STATUS
     if not os.path.isfile(INDEX_JSON):
         print(f"[studio-assets] no asset_index.json at {INDEX_JSON}; skipping index ingest", file=sys.stderr)
+        _LAST_INDEX_STATUS = {
+            "present": False, "records": 0, "unmapped": 0, "missing": 0,
+            "offline_archived": 0, "pruned": 0,
+        }
         return 0
     with open(INDEX_JSON, encoding="utf-8") as f:
         data = json.load(f)
     items = data.get("items", []) if isinstance(data, dict) else (data or [])
-    now = int(time.time())
+    generation = time.time_ns()
     n = 0
+    availability: dict[str, str] = {}
     with _db() as conn:
         for it in items:
-            host_path = it.get("rel") or ""
+            source_path = it.get("rel") or ""
+            host_path = canonical_host_path(source_path)
             meta = it.get("meta") if isinstance(it.get("meta"), dict) else {}
-            cpath = host_to_container(host_path)
+            cpath = host_to_container(source_path)
             thumb = it.get("thumb") or ""
             thumb_file = None
             if thumb:
                 thumb_file = os.path.join(THUMBS_DIR, os.path.basename(thumb.replace("\\", "/")))
-            name = it.get("name") or os.path.basename(host_path.replace("\\", "/"))
+            name = it.get("name") or os.path.basename(source_path.replace("\\", "/"))
+            key = it.get("key") or hashlib.sha1(source_path.encode("utf-8")).hexdigest()[:16]
+
+            # The supplemental scanner may already own the same canonical file under a different
+            # key. The authoritative index wins, without leaving a duplicate behind.
+            conn.execute(
+                "DELETE FROM assets WHERE host_path=? AND key<>? AND source IN ('index','scan')",
+                (host_path, key),
+            )
             _upsert(
                 conn,
                 {
-                    "key": it.get("key") or hashlib.sha1(host_path.encode("utf-8")).hexdigest()[:16],
-                    "label": it.get("label") or _label_for_host(host_path) or "renders",
+                    "key": key,
+                    "label": it.get("label") or _label_for_host(source_path) or "renders",
                     "name": name,
                     "ext": os.path.splitext(name)[1].lower().lstrip("."),
                     "host_path": host_path,
@@ -321,29 +390,63 @@ def ingest_index() -> int:
                     "character_id": meta.get("character_id") or "",
                     "style_id": meta.get("style") or meta.get("style_id") or meta.get("look") or "",
                     "assignment_id": meta.get("assignment_id") or "",
-                    "scene": str(meta.get("scene") or ""),
-                    "shot": str(meta.get("shot") or ""),
+                    "scene": _metadata_text(meta.get("scene")),
+                    "shot": _metadata_text(meta.get("shot")),
                     "aspect": meta.get("aspect") or "",
                     "workflow": meta.get("workflow") or "",
                     "provenance_json": json.dumps(meta, ensure_ascii=False, sort_keys=True) if meta else "",
-                    "indexed_at": now,
+                    "indexed_at": generation,
                 },
             )
+            if cpath and os.path.isfile(cpath):
+                availability[key] = "available"
+            elif it.get("archived"):
+                # Cold-archive pointers intentionally keep searchable metadata after their hot
+                # bytes move off disk. They are not a broken active delivery or a readiness fault.
+                availability[key] = "offline_archived"
+            elif not cpath:
+                availability[key] = "unmapped"
+            else:
+                availability[key] = "missing"
             n += 1
+        pruned = conn.execute(
+            "DELETE FROM assets WHERE source='index' AND indexed_at<>?", (generation,)
+        ).rowcount
         conn.commit()
-    print(f"[studio-assets] ingested {n} item(s) from asset_index.json", file=sys.stderr)
+        records = conn.execute("SELECT COUNT(*) FROM assets WHERE source='index'").fetchone()[0]
+    _LAST_INDEX_STATUS = {
+        "present": True,
+        "records": records,
+        "unmapped": sum(state == "unmapped" for state in availability.values()),
+        "missing": sum(state == "missing" for state in availability.values()),
+        "offline_archived": sum(state == "offline_archived" for state in availability.values()),
+        "pruned": pruned,
+    }
+    print(
+        f"[studio-assets] ingested {n} item(s), retained {records}, pruned {pruned} stale index row(s)",
+        file=sys.stderr,
+    )
     return n
 
 
 def scan_supplemental() -> int:
-    now = int(time.time())
-    added = 0
+    global _LAST_SCAN_STATUS
+    generation = time.time_ns()
+    scanned = 0
     seen = 0
+    pruned = 0
+    missing_roots = []
+    cap_hit = False
     with _db() as conn:
-        known = {r["host_path"] for r in conn.execute("SELECT host_path FROM assets").fetchall()}
+        indexed = {
+            _norm_host(r["host_path"])
+            for r in conn.execute("SELECT host_path FROM assets WHERE source='index'").fetchall()
+        }
         for root in SCAN_ROOTS:
             if not os.path.isdir(root):
+                missing_roots.append(root)
                 continue
+            root_complete = True
             for dirpath, _dirs, files in os.walk(root):
                 for fn in files:
                     if fn.startswith(".studio_asset_ro_probe"):
@@ -351,12 +454,13 @@ def scan_supplemental() -> int:
                     seen += 1
                     if seen > SCAN_MAX_FILES:
                         print(f"[studio-assets] scan cap {SCAN_MAX_FILES} hit; stopping", file=sys.stderr)
-                        conn.commit()
-                        return added
+                        cap_hit = True
+                        root_complete = False
+                        break
                     cpath = os.path.join(dirpath, fn)
                     mount = root
                     host_path = container_to_host(cpath, mount)
-                    if host_path in known:
+                    if _norm_host(host_path) in indexed:
                         continue
                     try:
                         st = os.stat(cpath)
@@ -387,42 +491,74 @@ def scan_supplemental() -> int:
                             "aspect": "",
                             "workflow": "",
                             "provenance_json": "",
-                            "indexed_at": now,
+                            "indexed_at": generation,
                         },
                     )
-                    known.add(host_path)
-                    added += 1
+                    scanned += 1
+                if cap_hit:
+                    break
+            if root_complete:
+                root_path = os.path.normcase(os.path.abspath(root))
+                stale_keys = []
+                for row in conn.execute(
+                    "SELECT key, container_path FROM assets WHERE source='scan' AND indexed_at<>?",
+                    (generation,),
+                ):
+                    try:
+                        candidate = os.path.normcase(os.path.abspath(row["container_path"]))
+                        if os.path.commonpath([root_path, candidate]) == root_path:
+                            stale_keys.append(row["key"])
+                    except (OSError, TypeError, ValueError):
+                        continue
+                if stale_keys:
+                    conn.executemany("DELETE FROM assets WHERE key=?", [(key,) for key in stale_keys])
+                    pruned += len(stale_keys)
+            if cap_hit:
+                break
         conn.commit()
-    print(f"[studio-assets] supplemental scan added {added} file(s)", file=sys.stderr)
-    return added
+        records = conn.execute("SELECT COUNT(*) FROM assets WHERE source='scan'").fetchone()[0]
+    _LAST_SCAN_STATUS = {
+        "complete": not cap_hit and not missing_roots,
+        "records": records,
+        "pruned": pruned,
+        "missing_roots": missing_roots,
+        "cap_hit": cap_hit,
+    }
+    print(
+        f"[studio-assets] supplemental scan retained {records}, pruned {pruned} stale row(s)",
+        file=sys.stderr,
+    )
+    return scanned
 
 
-def _emit(action: str, event: str, payload: dict) -> None:
+def _log_receipt(action: str, event: str, payload: dict) -> None:
+    """Keep routine service health out of the actionable workboard queue."""
     try:
-        from services.v2_workboard import emit_workboard_job
-
-        emit_workboard_job(
-            source=WORKBOARD_SOURCE,
-            action=action,
-            event=event,
-            lane="engineering",
-            payload=payload,
-        )
+        print(json.dumps({"kind": "studio-assets-receipt", "action": action,
+                          "event": event, "payload": payload}, ensure_ascii=False), file=sys.stderr)
     except Exception:
         pass
 
 
 def reindex() -> dict:
+    global _CATALOG_STATUS
     n_index = ingest_index()
     n_scan = scan_supplemental()
     with _db() as conn:
         total = conn.execute("SELECT COUNT(*) FROM assets").fetchone()[0]
-    _emit(
+    unavailable = _LAST_INDEX_STATUS["unmapped"] + _LAST_INDEX_STATUS["missing"]
+    _CATALOG_STATUS = {
+        "ready": bool(_LAST_INDEX_STATUS["present"] and _LAST_SCAN_STATUS["complete"] and unavailable == 0),
+        "unavailable": unavailable,
+        "index": dict(_LAST_INDEX_STATUS),
+        "scan": dict(_LAST_SCAN_STATUS),
+    }
+    _log_receipt(
         "studio.index.rescanned",
         f"STUDIO ASSET INDEX: {total} assets ({n_index} indexed + {n_scan} scanned)",
-        {"total": total, "from_index": n_index, "from_scan": n_scan},
+        {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS},
     )
-    return {"total": total, "from_index": n_index, "from_scan": n_scan}
+    return {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS}
 
 
 # ── Tenant/style/character crosswalk + scoped Neo4j projection ──────────────────────────────
@@ -513,39 +649,146 @@ def _graph_props(row: dict) -> dict:
     return result
 
 
+def _result_scalar(block: dict, default=0):
+    data = block.get("data") or []
+    return data[0].get("row", [default])[0] if data else default
+
+
+def _delete_projection_label(label: str, batch_size: int = 500) -> None:
+    for _attempt in range(1000):
+        result = _neo4j([{"statement": f"MATCH (n:{label}) RETURN count(n)"}])
+        blocks = result.get("results", [])
+        if not blocks or _result_scalar(blocks[0]) == 0:
+            return
+        _neo4j([{"statement": f"MATCH (n:{label}) WITH n LIMIT $limit DETACH DELETE n",
+                 "parameters": {"limit": batch_size}}])
+    raise RuntimeError(f"Neo4j cleanup did not converge for {label}")
+
+
+def _sync_projection(
+    data: dict,
+    *,
+    projection_id: str,
+    active_label: str,
+    stage_label: str,
+    retired_label: str,
+    relation_type: str,
+    constraint_name: str,
+    node_batch_size: int,
+    edge_batch_size: int,
+) -> dict:
+    nodes = [{"id": row["id"], "props": _graph_props(row)} for row in data.get("nodes", [])]
+    edges = [{"eid": row["eid"], "src": row["src"], "dst": row["dst"],
+              "kind": row["kind"], "props": _graph_props(row)} for row in data.get("edges", [])]
+    fingerprint = hashlib.sha256(json.dumps(
+        {"nodes": data.get("nodes", []), "edges": data.get("edges", [])},
+        ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+    ).encode("utf-8")).hexdigest()
+
+    current = _neo4j([
+        {"statement": "MATCH (s:StudioProjectionState {id:$id}) RETURN s.fingerprint",
+         "parameters": {"id": projection_id}},
+        {"statement": f"MATCH (n:{active_label}) RETURN count(n)"},
+        {"statement": f"MATCH (:{active_label})-[r:{relation_type}]->(:{active_label}) RETURN count(r)"},
+    ])
+    current_blocks = current.get("results", [])
+    current_fingerprint = _result_scalar(current_blocks[0], "") if len(current_blocks) > 0 else ""
+    current_nodes = _result_scalar(current_blocks[1]) if len(current_blocks) > 1 else 0
+    current_edges = _result_scalar(current_blocks[2]) if len(current_blocks) > 2 else 0
+    if current_fingerprint == fingerprint and [current_nodes, current_edges] == [len(nodes), len(edges)]:
+        try:
+            _delete_projection_label(retired_label)
+            _delete_projection_label(stage_label)
+        except Exception:
+            pass
+        return {"ok": True, "nodes": current_nodes, "edges": current_edges, "unchanged": True}
+
+    _neo4j([{"statement": f"CREATE CONSTRAINT {constraint_name} IF NOT EXISTS "
+                           f"FOR (n:{active_label}) REQUIRE n.id IS UNIQUE"}])
+    _delete_projection_label(stage_label)
+    _delete_projection_label(retired_label)
+    generation = f"{time.time_ns():x}"
+
+    for start in range(0, len(nodes), node_batch_size):
+        _neo4j([{
+            "statement": f"UNWIND $rows AS row MERGE (n:{stage_label} "
+                         "{id:row.id, projection_generation:$generation}) "
+                         "SET n = row.props, n.id=row.id, n.projection_generation=$generation",
+            "parameters": {"rows": nodes[start:start + node_batch_size], "generation": generation},
+        }])
+    for start in range(0, len(edges), edge_batch_size):
+        _neo4j([{
+            "statement": f"UNWIND $rows AS row MATCH (a:{stage_label} "
+                         "{id:row.src, projection_generation:$generation}) "
+                         f"MATCH (b:{stage_label} {{id:row.dst, projection_generation:$generation}}) "
+                         f"MERGE (a)-[r:{relation_type} "
+                         "{eid:row.eid, projection_generation:$generation}]->(b) "
+                         "SET r = row.props, r.eid=row.eid, r.kind=row.kind, "
+                         "r.projection_generation=$generation",
+            "parameters": {"rows": edges[start:start + edge_batch_size], "generation": generation},
+        }])
+
+    staged = _neo4j([
+        {"statement": f"MATCH (n:{stage_label} {{projection_generation:$generation}}) RETURN count(n)",
+         "parameters": {"generation": generation}},
+        {"statement": f"MATCH (:{stage_label} {{projection_generation:$generation}})"
+                      f"-[r:{relation_type} {{projection_generation:$generation}}]->"
+                      f"(:{stage_label} {{projection_generation:$generation}}) RETURN count(r)",
+         "parameters": {"generation": generation}},
+    ])
+    staged_counts = [_result_scalar(block) for block in staged.get("results", [])]
+    if staged_counts != [len(nodes), len(edges)]:
+        return {"ok": False, "error": "staged Neo4j projection is incomplete",
+                "nodes": staged_counts[0] if staged_counts else 0,
+                "edges": staged_counts[1] if len(staged_counts) > 1 else 0}
+
+    switched = _neo4j([
+        {"statement": f"MATCH (n:{active_label}) REMOVE n:{active_label} SET n:{retired_label}"},
+        {"statement": f"MATCH (n:{stage_label} {{projection_generation:$generation}}) "
+                      f"REMOVE n:{stage_label} SET n:{active_label} REMOVE n.projection_generation",
+         "parameters": {"generation": generation}},
+        {"statement": f"MATCH (:{active_label})-[r:{relation_type} "
+                      "{projection_generation:$generation}]->(:"
+                      f"{active_label}) REMOVE r.projection_generation",
+         "parameters": {"generation": generation}},
+        {"statement": "MERGE (s:StudioProjectionState {id:$id}) "
+                      "SET s.fingerprint=$fingerprint, s.updated_at=$updated_at",
+         "parameters": {"id": projection_id, "fingerprint": fingerprint,
+                        "updated_at": int(time.time())}},
+        {"statement": f"MATCH (n:{active_label}) RETURN count(n)"},
+        {"statement": f"MATCH (:{active_label})-[r:{relation_type}]->(:{active_label}) RETURN count(r)"},
+    ], timeout=90)
+    counts = [_result_scalar(block) for block in switched.get("results", [])[-2:]]
+    if counts != [len(nodes), len(edges)]:
+        return {"ok": False, "error": "Neo4j projection switch returned incomplete counts",
+                "nodes": counts[0] if counts else 0, "edges": counts[1] if len(counts) > 1 else 0}
+
+    cleanup_pending = False
+    try:
+        _delete_projection_label(retired_label)
+    except Exception:
+        cleanup_pending = True
+    return {"ok": True, "nodes": counts[0], "edges": counts[1],
+            "unchanged": False, "cleanup_pending": cleanup_pending}
+
+
 def sync_crosswalk_graph() -> dict:
     data = _crosswalk()
     if not data:
         return {"ok": False, "error": "crosswalk missing"}
     if not STUDIO_NEO4J_HTTP:
         return {"ok": False, "error": "Neo4j endpoint not configured"}
-    _neo4j([{"statement": "MATCH (n:StudioAssetNode) DETACH DELETE n"}])
-    verify_empty = _neo4j([{"statement": "MATCH (n:StudioAssetNode) RETURN count(n)"}])
-    remaining = verify_empty.get("results", [{}])[0].get("data", [{}])[0].get("row", [None])[0]
-    if remaining != 0:
-        return {"ok": False, "error": f"scoped reset left {remaining} node(s)"}
-    _neo4j([{"statement": "CREATE CONSTRAINT studio_asset_node_id IF NOT EXISTS "
-                           "FOR (n:StudioAssetNode) REQUIRE n.id IS UNIQUE"}])
-    nodes = [{"id": row["id"], "props": _graph_props(row)} for row in data.get("nodes", [])]
-    edges = [{"eid": row["eid"], "src": row["src"], "dst": row["dst"], "kind": row["kind"],
-              "props": _graph_props(row)} for row in data.get("edges", [])]
-    for start in range(0, len(nodes), 400):
-        _neo4j([{"statement": "UNWIND $rows AS row MERGE (n:StudioAssetNode {id:row.id}) "
-                              "SET n = row.props, n.id = row.id",
-                 "parameters": {"rows": nodes[start:start + 400]}}])
-    for start in range(0, len(edges), 400):
-        _neo4j([{"statement": "UNWIND $rows AS row MATCH (a:StudioAssetNode {id:row.src}) "
-                              "MATCH (b:StudioAssetNode {id:row.dst}) "
-                              "MERGE (a)-[r:STUDIO_REL {eid:row.eid}]->(b) "
-                              "SET r = row.props, r.eid=row.eid, r.kind=row.kind",
-                 "parameters": {"rows": edges[start:start + 400]}}])
-    check = _neo4j([
-        {"statement": "MATCH (n:StudioAssetNode) RETURN count(n)"},
-        {"statement": "MATCH ()-[r:STUDIO_REL]->() RETURN count(r)"},
-    ])
-    counts = [block.get("data", [{}])[0].get("row", [0])[0] if block.get("data") else 0
-              for block in check.get("results", [])]
-    return {"ok": counts == [len(nodes), len(edges)], "nodes": counts[0], "edges": counts[1]}
+    return _sync_projection(
+        data,
+        projection_id="studio-assets",
+        active_label="StudioAssetNode",
+        stage_label="StudioAssetStage",
+        retired_label="StudioAssetRetired",
+        relation_type="STUDIO_REL",
+        constraint_name="studio_asset_node_id",
+        node_batch_size=400,
+        edge_batch_size=400,
+    )
 
 
 def sync_clip_graph() -> dict:
@@ -554,33 +797,17 @@ def sync_clip_graph() -> dict:
         return {"ok": False, "error": "clip crosswalk missing"}
     if not STUDIO_NEO4J_HTTP:
         return {"ok": False, "error": "Neo4j endpoint not configured"}
-    _neo4j([{"statement": "MATCH (n:StudioClipNode) DETACH DELETE n"}])
-    verify_empty = _neo4j([{"statement": "MATCH (n:StudioClipNode) RETURN count(n)"}])
-    remaining = verify_empty.get("results", [{}])[0].get("data", [{}])[0].get("row", [None])[0]
-    if remaining != 0:
-        return {"ok": False, "error": f"scoped clip reset left {remaining} node(s)"}
-    _neo4j([{"statement": "CREATE CONSTRAINT studio_clip_node_id IF NOT EXISTS "
-                           "FOR (n:StudioClipNode) REQUIRE n.id IS UNIQUE"}])
-    nodes = [{"id": row["id"], "props": _graph_props(row)} for row in data.get("nodes", [])]
-    edges = [{"eid": row["eid"], "src": row["src"], "dst": row["dst"], "kind": row["kind"],
-              "props": _graph_props(row)} for row in data.get("edges", [])]
-    for start in range(0, len(nodes), 300):
-        _neo4j([{"statement": "UNWIND $rows AS row MERGE (n:StudioClipNode {id:row.id}) "
-                              "SET n = row.props, n.id = row.id",
-                 "parameters": {"rows": nodes[start:start + 300]}}])
-    for start in range(0, len(edges), 300):
-        _neo4j([{"statement": "UNWIND $rows AS row MATCH (a:StudioClipNode {id:row.src}) "
-                              "MATCH (b:StudioClipNode {id:row.dst}) "
-                              "MERGE (a)-[r:CLIP_REL {eid:row.eid}]->(b) "
-                              "SET r = row.props, r.eid=row.eid, r.kind=row.kind",
-                 "parameters": {"rows": edges[start:start + 300]}}])
-    check = _neo4j([
-        {"statement": "MATCH (n:StudioClipNode) RETURN count(n)"},
-        {"statement": "MATCH ()-[r:CLIP_REL]->() RETURN count(r)"},
-    ])
-    counts = [block.get("data", [{}])[0].get("row", [0])[0] if block.get("data") else 0
-              for block in check.get("results", [])]
-    return {"ok": counts == [len(nodes), len(edges)], "nodes": counts[0], "edges": counts[1]}
+    return _sync_projection(
+        data,
+        projection_id="studio-clips",
+        active_label="StudioClipNode",
+        stage_label="StudioClipStage",
+        retired_label="StudioClipRetired",
+        relation_type="CLIP_REL",
+        constraint_name="studio_clip_node_id",
+        node_batch_size=300,
+        edge_batch_size=300,
+    )
 
 
 def neo4j_ready() -> bool:
@@ -601,7 +828,7 @@ def neo4j_projection_status() -> dict:
     try:
         result = _neo4j([
             {"statement": "MATCH (n:StudioAssetNode) RETURN count(n)"},
-            {"statement": "MATCH ()-[r:STUDIO_REL]->() RETURN count(r)"},
+            {"statement": "MATCH (:StudioAssetNode)-[r:STUDIO_REL]->(:StudioAssetNode) RETURN count(r)"},
         ], timeout=5)
         counts = [block.get("data", [{}])[0].get("row", [0])[0] if block.get("data") else 0
                   for block in result.get("results", [])]
@@ -629,7 +856,7 @@ def clip_projection_status() -> dict:
     try:
         result = _neo4j([
             {"statement": "MATCH (n:StudioClipNode) RETURN count(n)"},
-            {"statement": "MATCH ()-[r:CLIP_REL]->() RETURN count(r)"},
+            {"statement": "MATCH (:StudioClipNode)-[r:CLIP_REL]->(:StudioClipNode) RETURN count(r)"},
         ], timeout=5)
         counts = [block.get("data", [{}])[0].get("row", [0])[0] if block.get("data") else 0
                   for block in result.get("results", [])]
@@ -655,7 +882,7 @@ async def lifespan(_app: FastAPI):
         stats["clips"] = (_clip_crosswalk().get("counts") or {})
         stats["neo4j"] = graph
         stats["neo4j_clips"] = clip_graph
-        _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats)
+        _log_receipt("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats)
     except Exception as exc:
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
     yield
@@ -675,16 +902,31 @@ except Exception as _proj_err:
 
 
 def _require_maintenance_auth(authorization: str | None) -> dict | None:
-    if not REQUIRE_AUTH:
-        return None
-    return require_claims(
-        service_name="studio-assets",
-        authorization=authorization,
-        introspection_url=AUTH_INTROSPECTION_URL,
-        internal_service_token=INTERNAL_SERVICE_TOKEN,
-        request_timeout=AUTH_REQUEST_TIMEOUT,
-        required_scopes={"ops:owner"},
-    )
+    return security.require_studio_owner(authorization)
+
+
+def auth_dependency_status() -> dict:
+    required = security.REQUIRE_AUTH
+    configured = bool(security.INTERNAL_SERVICE_TOKEN and security.AUTH_INTROSPECTION_URL)
+    if not required:
+        return {"required": False, "configured": configured, "ready": True}
+    if not configured:
+        return {"required": True, "configured": False, "ready": False}
+    try:
+        # A public /ready response only proves that auth is alive. Probe introspection with a
+        # deliberately inactive token to prove this service's X-Service-Token is trusted too.
+        request = urllib.request.Request(
+            security.AUTH_INTROSPECTION_URL,
+            data=json.dumps({"token": "studio-assets-readiness-probe"}).encode(),
+            headers={"Content-Type": "application/json",
+                     "X-Service-Token": security.INTERNAL_SERVICE_TOKEN},
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=security.AUTH_REQUEST_TIMEOUT) as response:
+            ready = response.status == 200
+    except (OSError, urllib.error.URLError):
+        ready = False
+    return {"required": True, "configured": True, "ready": ready}
 
 
 def _row(r: sqlite3.Row) -> dict:
@@ -712,17 +954,28 @@ def ready():
     try:
         with _db() as conn:
             conn.execute("SELECT 1").fetchone()
-        if not _crosswalk():
-            raise RuntimeError("crosswalk missing")
-        if not _clip_crosswalk():
-            raise RuntimeError("clip crosswalk missing")
+        crosswalk_ready = bool(_crosswalk())
+        clip_crosswalk_ready = bool(_clip_crosswalk())
         graph = neo4j_projection_status()
         clip_graph = clip_projection_status()
-        if STUDIO_NEO4J_HTTP and (not graph["ready"] or not clip_graph["ready"]):
-            raise RuntimeError("Neo4j projection unavailable or incomplete")
-        return {"status": "ready", "service": "studio-assets", "neo4j": graph,
-                "neo4j_clips": clip_graph}
-    except (sqlite3.Error, RuntimeError):
+        auth = auth_dependency_status()
+        is_ready = (
+            crosswalk_ready
+            and clip_crosswalk_ready
+            and _CATALOG_STATUS["ready"]
+            and auth["ready"]
+            and (not STUDIO_NEO4J_HTTP or (graph["ready"] and clip_graph["ready"]))
+        )
+        content = {
+            "status": "ready" if is_ready else "not-ready",
+            "service": "studio-assets",
+            "catalog": _CATALOG_STATUS,
+            "auth": auth,
+            "neo4j": graph,
+            "neo4j_clips": clip_graph,
+        }
+        return content if is_ready else JSONResponse(status_code=503, content=content)
+    except sqlite3.Error:
         return JSONResponse(status_code=503, content={"status": "not-ready", "service": "studio-assets"})
 
 
@@ -735,11 +988,13 @@ def health():
     clips = _clip_crosswalk()
     graph = neo4j_projection_status()
     clip_graph = clip_projection_status()
+    auth = auth_dependency_status()
     graph_ok = graph["ready"] and clip_graph["ready"] if STUDIO_NEO4J_HTTP else True
-    return {"status": "healthy" if crosswalk and clips and graph_ok else "degraded",
+    healthy = bool(crosswalk and clips and graph_ok and auth["ready"] and _CATALOG_STATUS["ready"])
+    return {"status": "healthy" if healthy else "degraded",
             "service": "studio-assets", "version": VERSION, "asset_count": total, "by_source": by_source,
             "crosswalk": crosswalk.get("counts", {}), "clips": clips.get("counts", {}),
-            "neo4j": graph, "neo4j_clips": clip_graph}
+            "catalog": _CATALOG_STATUS, "auth": auth, "neo4j": graph, "neo4j_clips": clip_graph}
 
 
 @app.get(f"{API}/stats")
@@ -815,10 +1070,21 @@ def crosswalk_styles():
     return {"styles": _crosswalk().get("styles", {})}
 
 
+def _maintenance_failure(operation: str, exc: Exception) -> JSONResponse:
+    print(f"[studio-assets] {operation} failed: {type(exc).__name__}", file=sys.stderr)
+    return JSONResponse(
+        status_code=503,
+        content={"ok": False, "error": f"{operation} unavailable", "error_type": type(exc).__name__},
+    )
+
+
 @app.post(f"{API}/crosswalk/sync")
 def post_crosswalk_sync(authorization: str | None = Header(default=None)):
     _require_maintenance_auth(authorization)
-    result = sync_crosswalk_graph()
+    try:
+        result = sync_crosswalk_graph()
+    except Exception as exc:
+        return _maintenance_failure("crosswalk sync", exc)
     if not result.get("ok"):
         return JSONResponse(status_code=503, content=result)
     return result
@@ -856,7 +1122,10 @@ def clip_recommendations(
 @app.post(f"{API}/clips/sync")
 def post_clip_sync(authorization: str | None = Header(default=None)):
     _require_maintenance_auth(authorization)
-    result = sync_clip_graph()
+    try:
+        result = sync_clip_graph()
+    except Exception as exc:
+        return _maintenance_failure("clip sync", exc)
     if not result.get("ok"):
         return JSONResponse(status_code=503, content=result)
     return result
@@ -940,9 +1209,10 @@ def get_asset_crosswalk(key: str):
                            if row.get("id") == asset["assignment_id"]), None)
     if not assignment and asset.get("tenant") and asset.get("character_id"):
         assignment = resolve_assignment(asset["tenant"], asset["character_id"], asset.get("style_id") or "")
+    assignment_id = asset.get("assignment_id") or (assignment or {}).get("id")
     return {"asset": asset, "assignment": assignment,
             "edges": [edge for edge in data.get("edges", [])
-                      if asset.get("assignment_id") and ("assignment:" + asset["assignment_id"]) in
+                      if assignment_id and ("assignment:" + assignment_id) in
                       {edge.get("src"), edge.get("dst")} ]}
 
 
@@ -988,4 +1258,7 @@ def post_reindex(authorization: str | None = Header(default=None)):
     """Re-ingest the existing catalog + re-stat the finalized vaults. Writes ONLY to this
     service's private SQLite — never mutates any asset. Safe, idempotent."""
     _require_maintenance_auth(authorization)
-    return reindex()
+    try:
+        return reindex()
+    except Exception as exc:
+        return _maintenance_failure("catalog reindex", exc)

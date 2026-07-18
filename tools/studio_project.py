@@ -26,6 +26,7 @@ Usage
 
 import argparse
 import json
+import os
 import sys
 import urllib.error
 import urllib.request
@@ -44,6 +45,7 @@ AUTH_URL        = "http://localhost:8101/api/v2/auth/session"
 AUTH_READY_URL  = "http://localhost:8101/api/v2/ready"
 NEO4J_HTTP      = "http://localhost:7474/db/neo4j/tx/commit"
 STUDIO_ASSETS   = "http://localhost:8108/api/v2"
+INTERNAL_SERVICE_TOKEN = os.environ.get("INTERNAL_SERVICE_TOKEN", "")
 TIMEOUT         = 5
 
 VALID_KINDS         = {"film", "game", "music_video", "short", "series", "documentary", "other"}
@@ -97,8 +99,15 @@ def _issue_token(tenant_id: str, role: str) -> bool:
         "email": "seed@king-server.internal", "tenant_id": tenant_id,
         "role": role, "scopes": scopes, "expires_in": 300,
     }).encode()
-    req = urllib.request.Request(AUTH_URL, data=body,
-                                  headers={"Content-Type": "application/json"}, method="POST")
+    req = urllib.request.Request(
+        AUTH_URL,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "X-Service-Token": INTERNAL_SERVICE_TOKEN,
+        },
+        method="POST",
+    )
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             return bool(json.loads(r.read()).get("access_token"))

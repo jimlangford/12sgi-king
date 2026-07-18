@@ -39,7 +39,7 @@ import subprocess
 import tempfile
 import threading
 import time
-from contextlib import contextmanager
+from contextlib import asynccontextmanager, contextmanager
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from urllib import error, request
@@ -113,7 +113,20 @@ def _load_priorities() -> dict[str, int]:
 CLIENT_PRIORITIES = _load_priorities()
 DEFAULT_PRIORITY = max(CLIENT_PRIORITIES.values()) + 1  # unknown clients go last
 
-app = FastAPI(title="govOS GPU Router v3", version=VERSION)
+@asynccontextmanager
+async def _app_lifespan(_: FastAPI):
+    start_workers = globals().get("_start_workers")
+    if start_workers:
+        start_workers()
+    try:
+        yield
+    finally:
+        stop_workers = globals().get("_stop_workers")
+        if stop_workers:
+            stop_workers()
+
+
+app = FastAPI(title="govOS GPU Router v3", version=VERSION, lifespan=_app_lifespan)
 
 # ──────────────────────────────────────────────
 # DB
@@ -329,6 +342,7 @@ _gpu_worker_lock = threading.Lock()   # serialise GPU (Ollama) calls
 _cpu_worker_lock = threading.Lock()   # serialise CPU (voice/embedding) calls
 _gpu_wakeup = threading.Event()       # signal GPU worker when a job is enqueued
 _cpu_wakeup = threading.Event()       # signal CPU worker when a job is enqueued
+_worker_shutdown = threading.Event()  # release workers and SQLite handles on shutdown
 
 def _find_idempotent_job(
     conn: sqlite3.Connection,
@@ -634,12 +648,14 @@ def _worker_loop(worker_name: str, lanes: set[str], lock: threading.Lock, wakeup
     it), which would silently stall a whole engine lane. On error we log and continue; _db()'s
     connections also carry PRAGMA busy_timeout to absorb the contention in the first place.
     """
-    while True:
+    while not _worker_shutdown.is_set():
         wakeup.wait(timeout=5)
         wakeup.clear()
+        if _worker_shutdown.is_set():
+            break
         try:
             with lock:
-                while True:
+                while not _worker_shutdown.is_set():
                     with _db() as conn:
                         job = _claim_next_pending_job(conn, lanes, worker_name)
                         if not job:
@@ -1077,18 +1093,36 @@ with _db() as _startup_conn:
 for _event in _startup_recovered:
     _log_event(_event["event_type"], _event["job_type"], _event["job_id"])
 
-# GPU worker: handles ollama + comfyui lanes.
-_gpu_thread = threading.Thread(
-    target=_worker_loop,
-    args=("gpu-worker", GPU_LANES, _gpu_worker_lock, _gpu_wakeup),
-    daemon=True,
-)
-_gpu_thread.start()
+_gpu_thread: threading.Thread | None = None
+_cpu_thread: threading.Thread | None = None
 
-# CPU worker: handles voice + embedding lanes concurrently with GPU work.
-_cpu_thread = threading.Thread(
-    target=_worker_loop,
-    args=("cpu-worker", CPU_LANES, _cpu_worker_lock, _cpu_wakeup),
-    daemon=True,
-)
-_cpu_thread.start()
+
+def _start_workers() -> None:
+    global _gpu_thread, _cpu_thread
+    if _gpu_thread and _gpu_thread.is_alive() and _cpu_thread and _cpu_thread.is_alive():
+        return
+    _worker_shutdown.clear()
+    _gpu_thread = threading.Thread(
+        target=_worker_loop,
+        args=("gpu-worker", GPU_LANES, _gpu_worker_lock, _gpu_wakeup),
+        daemon=True,
+    )
+    _cpu_thread = threading.Thread(
+        target=_worker_loop,
+        args=("cpu-worker", CPU_LANES, _cpu_worker_lock, _cpu_wakeup),
+        daemon=True,
+    )
+    _gpu_thread.start()
+    _cpu_thread.start()
+
+
+def _stop_workers(timeout: float = 5.0) -> None:
+    _worker_shutdown.set()
+    _gpu_wakeup.set()
+    _cpu_wakeup.set()
+    for thread in (_gpu_thread, _cpu_thread):
+        if thread and thread.is_alive() and thread is not threading.current_thread():
+            thread.join(timeout=timeout)
+
+
+_start_workers()
