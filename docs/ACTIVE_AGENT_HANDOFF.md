@@ -2,11 +2,12 @@
 
 Updated: 2026-07-18 HST
 Owner: Codex
-Status: validated
+Status: public-ready
 
 ## Current Release Work
 
 - Public branch: `agent/complete-studio-auth-release`
+- Public PR: `#380 Complete Studio auth and release integration`
 - Public scope: Google owner auth, magic email, Studio asset readiness, shared Neo4j projections,
   authenticated project mutations, local GPU routing, and multi-gate workboard approvals.
 - Private Studio main: `0f5d526 integrate Studio SAGE civic and shared-agent release work`
@@ -20,6 +21,8 @@ Status: validated
 - Public full suite: 256 tests plus 13 subtests pass.
 - Docker Compose plans validate for govOS v2 and the standalone Studio asset service.
 - The current Element Lotus WordPress bundle is regenerated and parity-checked against the public shell.
+- All eight GitHub checks pass on the reviewed release head: V2 and Studio tests, Python/YAML/shell
+  lint, accessibility, secret scan, and path labeling.
 
 ## Coordination Rule
 
@@ -29,5 +32,5 @@ without first recording a coordinated handoff.
 
 ## Next
 
-Push the reconciled branch, open a fresh PR, wait for required checks, merge, then record the public
-merge commit and final evidence in the shared private Studio state and dispatch log.
+Merge PR #380, record its merge commit in the shared private Studio state and dispatch log, then run
+the environment-gated paired-aspect episode canary before declaring the complete Studio beta shipped.
