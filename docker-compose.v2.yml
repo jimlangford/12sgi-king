@@ -1,0 +1,683 @@
+x-common-env:
+  GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+  INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+  AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+  AUTH_READY_URL: http://auth:8101/api/v2/ready
+  TENANT_SERVICE_URL: http://tenant:8102
+  TENANT_READY_URL: http://tenant:8102/api/v2/ready
+  DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+  PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+  BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+  BUILD_TIME: ${BUILD_TIME:-unknown}
+  COMMIT_SHA: ${COMMIT_SHA:-unknown}
+  BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+  ENVIRONMENT: ${ENVIRONMENT:-local}
+  WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+  WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+  NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+  GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+  GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+  NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+  NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+  NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+  NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+services:
+  # ---------------------------------------------------------------------------
+  # neo4j MOVED OUT (Jimmy 2026-07-15: "isolate neo4j so a v2 deploy can never wipe the brain").
+  # neo4j (the ~10.4k-node whole-system graph, 14 native consumers) now lives in its OWN compose:
+  #     docker-compose.neo4j.yml   (container: quados-neo4j, same external volume 12sgi-king_v2-neo4j-data)
+  # It is DELIBERATELY absent here so `docker compose -f docker-compose.v2.yml up/down/-v` can never
+  # recreate or wipe it. v2 services still reach it via NEO4J_HTTP=http://host.docker.internal:7474 or
+  # the shared external volume; the brain's lifecycle is standalone. Board item wb1784180689000 = this.
+  # DO NOT re-add a neo4j service here. To restart the graph: docker compose -f docker-compose.neo4j.yml up -d
+  # ---------------------------------------------------------------------------
+  auth:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.auth.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8101'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      AUTH_SIGNING_SECRET: ${AUTH_SIGNING_SECRET:-dev-only-signing-secret-change-me}
+      AUTH_DB_PATH: /data/db/govos_v2_auth.db
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      APPLE_CLIENT_ID: ${APPLE_CLIENT_ID:-}
+      APPLE_TEAM_ID: ${APPLE_TEAM_ID:-}
+      APPLE_KEY_ID: ${APPLE_KEY_ID:-}
+      APPLE_PRIVATE_KEY: ${APPLE_PRIVATE_KEY:-}
+      MICROSOFT_CLIENT_ID: ${MICROSOFT_CLIENT_ID:-}
+      MICROSOFT_CLIENT_SECRET: ${MICROSOFT_CLIENT_SECRET:-}
+      MICROSOFT_TENANT_ID: ${MICROSOFT_TENANT_ID:-common}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-noreply@12sgi.com}
+      SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
+      SMTP_ALLOW_UNAUTHENTICATED: ${SMTP_ALLOW_UNAUTHENTICATED:-false}
+      MAGIC_LINK_TTL_SECONDS: ${MAGIC_LINK_TTL_SECONDS:-900}
+      MAGIC_LINK_MIN_INTERVAL_SECONDS: ${MAGIC_LINK_MIN_INTERVAL_SECONDS:-60}
+      AUTH_PUBLIC_URL: ${AUTH_PUBLIC_URL:-https://auth.12sgi.com}
+      OAUTH_REDIRECT_BASE: ${OAUTH_REDIRECT_BASE:-https://12sgi.com/king/}
+      OWNER_GITHUB_LOGINS: ${OWNER_GITHUB_LOGINS:-jimlangford}
+      OWNER_GOOGLE_EMAILS: ${OWNER_GOOGLE_EMAILS:-jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,JRCSL@12sgi.com}
+      OWNER_APPLE_EMAILS: ${OWNER_APPLE_EMAILS:-jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,JRCSL@12sgi.com}
+      OWNER_MAGIC_EMAILS: ${OWNER_MAGIC_EMAILS:-jimlangford@me.com,elementlotus@gmail.com,jimmylangford@elementlotus.com,jrcsl@12sgi.com}
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://jimlangford.github.io,https://12sgi.com}
+      WEBAUTHN_RP_ID: ${WEBAUTHN_RP_ID:-12sgi.com}
+      WEBAUTHN_ORIGIN: ${WEBAUTHN_ORIGIN:-https://12sgi.com}
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8101:8101
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8101/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  tenant:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.tenant.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8102'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      TENANT_DB_PATH: /data/db/govos_v2_tenant.db
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8102:8102
+    depends_on:
+    - auth
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8102/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  documents:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.documents.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8103'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      DOCUMENTS_DB_PATH: /data/db/govos_v2_documents.db
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8103:8103
+    depends_on:
+    - auth
+    - tenant
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8103/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  storage:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.storage.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8104'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      STORAGE_DB_PATH: /data/db/govos_v2_storage.db
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8104:8104
+    depends_on:
+    - auth
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8104/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  ai:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.ai.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8105'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      AI_DB_PATH: /data/db/govos_v2_ai.db
+      GPU_ROUTER_URL: http://gpu-router:8107
+      GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
+      GPU_DEFAULT_MODEL: ${GPU_DEFAULT_MODEL:-llama3.2}
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8105:8105
+    depends_on:
+    - auth
+    - tenant
+    - gpu-router
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8105/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  health:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.health.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8000'
+    environment:
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+<<<<<<< main
+      SURFACES_LIST: "auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108,ai-gateway=ai-gateway:8110"
+      SURFACES_HEALTH_PATH: /api/v2/ready
+    ports: ["127.0.0.1:8106:8000"]
+    depends_on: [auth, tenant, documents, storage, ai, gpu-router, king-bridge, ai-gateway]
+=======
+      # board-api (native king_serve, host :8799) and studio-assets (external Codex stack) are monitored
+      # separately, not as V2 fleet members — trimmed so the V2 health aggregator reflects the V2 stack.
+      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109
+      SURFACES_HEALTH_PATH: /api/v2/ready
+    ports:
+    - 127.0.0.1:8106:8000
+    depends_on:
+    - auth
+    - tenant
+    - documents
+    - storage
+    - ai
+    - gpu-router
+    - king-bridge
+>>>>>>> origin/main
+    restart: unless-stopped
+  gpu-runtime:
+    # RETIRED from the default stack (audit-quad-os 2026-07-15, review wf_42ab0998-444, Jimmy 'i want
+    # everything fixed'): this container held ZERO models while reserving the whole 8GB co-tenant GPU,
+    # and gpu-router's GPU_RUNTIME_URL already defaults to the host Ollama (which has all king-* models).
+    # Kept defined under the 'legacy-gpu' profile for deliberate revival:
+    #   docker compose --profile legacy-gpu -f docker-compose.v2.yml up -d gpu-runtime
+    profiles: ["legacy-gpu"]
+    image: ollama/ollama:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities:
+            - gpu
+    volumes:
+    - v2-ollama:/root/.ollama
+    expose:
+    - '11434'
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - ollama
+      - list
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  gpu-router:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.gpu_router.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8107'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      GPU_ROUTER_DB_PATH: /data/db/govos_v2_gpu_router.db
+      # 2026-07-15 (Jimmy: make the router the REAL GPU governor): point at the HOST ollama, which
+      # holds all 46 real king-* models. The in-stack gpu-runtime container is empty (0 models), so
+      # the router was serialising a door nobody used. host.docker.internal:11434 = the real brain,
+      # reachable from this container (verified). The router's _gpu_worker_lock now serialises the
+      # actual GPU. Override with GPU_RUNTIME_URL env to switch back to the container path.
+      GPU_RUNTIME_URL: ${GPU_RUNTIME_URL:-http://host.docker.internal:11434}
+      GPU_CLIENT_PRIORITIES: ${GPU_CLIENT_PRIORITIES:-govos-core:1,maui-tenant:2,studio:3,civic-signal:4,workboard:5,reports:6}
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8107:8107
+    depends_on:
+    - auth
+    # gpu-runtime dependency removed 2026-07-15 (service retired to the legacy-gpu profile;
+    # GPU_RUNTIME_URL defaults to the host Ollama which holds all king-* models)
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8107/api/v2/ready',
+        timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  board-api:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.board_api.main:app
+    - --host
+    - 127.0.0.1
+    - --port
+    - '8799'
+    environment:
+      OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
+      COMFYUI_BASE: ${COMFYUI_BASE:-http://host.docker.internal:8188}
+      KING_BRIDGE: ${KING_BRIDGE:-http://host.docker.internal:8109}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_REPO: ${GITHUB_REPO:-jimlangford/12sgi-king}
+      DEPLOY_LOG_DIR: /repo/logs/v2-deploy
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+    volumes:
+    - v2-dispatch:/data/dispatch
+    - .:/repo
+    # host port binding removed: the native king_serve.py owns host 127.0.0.1:8799 (native is canonical).
+    # V2 peers reach board-api over the compose network; host :8799 stays with native king_serve.
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://127.0.0.1:8799/health', timeout=3)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  king-bridge:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - uvicorn
+    - services.king_bridge.app.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8109'
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      KING_BRIDGE_DB: /data/db/king_bridge.db
+      OLLAMA_BASE: ${OLLAMA_BASE:-http://host.docker.internal:11434}
+      KING_BRIDGE_INFER_TIMEOUT: ${KING_BRIDGE_INFER_TIMEOUT:-120}
+      KING_BRIDGE_POLL_MAX: ${KING_BRIDGE_POLL_MAX:-10}
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    ports:
+    - 127.0.0.1:8109:8109
+    # depends_on neo4j REMOVED 2026-07-15 -- neo4j is now standalone (docker-compose.neo4j.yml),
+    # not part of this project. king-bridge reaches it via NEO4J_HTTP; no compose-level dep.
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request as u; u.urlopen('http://localhost:8109/api/v2/ready',
+        timeout=5)
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+<<<<<<< main
+
+  ai-gateway:
+    build: { context: ., dockerfile: services/Dockerfile }
+    command: ["python", "-m", "uvicorn", "services.ai_gateway.app.main:app", "--host", "0.0.0.0", "--port", "8110"]
+    environment:
+      <<: *common-env
+      AI_GATEWAY_DB_PATH: /data/db/govos_v2_ai_gateway.db
+      GPU_ROUTER_URL: http://gpu-router:8107
+      GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
+      GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+    volumes:
+      - v2-db:/data/db
+      - v2-dispatch:/data/dispatch
+    ports: ["127.0.0.1:8110:8110"]
+    depends_on: [auth, gpu-router]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8110/api/v2/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+=======
+  connector-runner:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - services/connectors/runner.py
+    environment:
+      CONNECTOR_REFRESH_INTERVAL: ${CONNECTOR_REFRESH_INTERVAL:-3600}
+      CONNECTOR_TOKEN_DB: /data/db/connector_tokens.db
+      WORKBOARD_ENABLED: '1'
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    depends_on:
+    - auth
+    - king-bridge
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+>>>>>>> origin/main
+  github-workflow-monitor:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    command:
+    - python
+    - -m
+    - services.github_workflow_monitor_service
+    environment:
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
+      AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
+      AUTH_READY_URL: http://auth:8101/api/v2/ready
+      TENANT_SERVICE_URL: http://tenant:8102
+      TENANT_READY_URL: http://tenant:8102/api/v2/ready
+      DEPENDENCY_TIMEOUT_SECONDS: ${DEPENDENCY_TIMEOUT_SECONDS:-3}
+      PLATFORM_VERSION: ${PLATFORM_VERSION:-unknown}
+      BUILD_COMMIT: ${BUILD_COMMIT:-unknown}
+      BUILD_TIME: ${BUILD_TIME:-unknown}
+      COMMIT_SHA: ${COMMIT_SHA:-unknown}
+      BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      WORKBOARD_DISPATCH_LOG: /data/dispatch/govos_v2_dispatch.jsonl
+      WORKBOARD_TARGET_THREAD: ${WORKBOARD_TARGET_THREAD:-workboard-quad-os}
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://neo4j:7474/db/neo4j/tx/commit}
+      GRAPH_REFRESH_STATE_PATH: /data/dispatch/graph_refresh_state.json
+      GRAPH_STACK_VERSION: ${GRAPH_STACK_VERSION:-5.2}
+      NEO4J_AURA_URI: ${NEO4J_AURA_URI:-}
+      NEO4J_AURA_USER: ${NEO4J_AURA_USER:-neo4j}
+      NEO4J_AURA_PASSWORD: ${NEO4J_AURA_PASSWORD:-}
+      NEO4J_AURA_ENABLED: ${NEO4J_AURA_ENABLED:-false}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_OWNER: ${GITHUB_OWNER:-jimlangford}
+      GITHUB_REPO: ${GITHUB_REPO:-12sgi-king}
+      GITHUB_WORKFLOW_MONITOR_ENABLED: ${GITHUB_WORKFLOW_MONITOR_ENABLED:-true}
+      GITHUB_REPAIR_LOOKBACK_MINUTES: ${GITHUB_REPAIR_LOOKBACK_MINUTES:-60}
+      GITHUB_REPAIR_INTERVAL_SECONDS: ${GITHUB_REPAIR_INTERVAL_SECONDS:-300}
+      GITHUB_REPAIR_AUTONOMY_THRESHOLD: ${GITHUB_REPAIR_AUTONOMY_THRESHOLD:-75}
+      GITHUB_REPAIR_MAX_CONCURRENT: ${GITHUB_REPAIR_MAX_CONCURRENT:-3}
+      GITHUB_AUTO_REPAIR_DRY_RUN: ${GITHUB_AUTO_REPAIR_DRY_RUN:-false}
+      REPO_PATH: /repo
+    volumes:
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
+    - .:/repo
+    depends_on:
+    - king-bridge
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+volumes:
+  v2-db: null
+  v2-dispatch: null
+  v2-ollama: null
+  v2-neo4j-data: null
+  v2-neo4j-logs: null
