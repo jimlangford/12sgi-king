@@ -330,7 +330,7 @@ class Component extends DCLogic {
   }
 
   _renewToken() {
-    const KING_AUTH_URL = (typeof window !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.12sgi.com';
+    const KING_AUTH_URL = (typeof window !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.elementlotus.com';
     const raw = localStorage.getItem('king.ownerToken');
     if (!raw) return;
     fetch(`${KING_AUTH_URL}/api/v2/auth/renew`, {
@@ -381,7 +381,7 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const KING_AUTH_URL = (typeof window !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.12sgi.com';
+    const KING_AUTH_URL = (typeof window !== 'undefined' && window.KING_AUTH_URL) || 'https://auth.elementlotus.com';
     const s = this.state.surface;
     const isMobile = this.state.w < 860;
     // owner:true => private to the operator (shown in nav, locked for the public).

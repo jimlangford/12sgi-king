@@ -146,18 +146,18 @@ def _html(out):
     doc = ("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
            "<title>Money×Votes Casework — %s (PRIVATE)</title>"
            "<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:920px;margin:1.4rem auto;padding:0 1rem;color:#1f2d3a}"
-           "h1{color:#0e4a84;font-size:1.3rem}.integrity{background:#eef5ff;border-left:3px solid #0e4a84;padding:.6rem .9rem;"
+           "h1{color:#7fb2ff;font-size:1.3rem}.integrity{background:#0f2540;border-left:3px solid #0e4a84;padding:.6rem .9rem;"
            "border-radius:8px;font-size:.9rem}table{border-collapse:collapse;width:100%%;margin-top:1rem;font-size:.9rem}"
-           "th,td{border-bottom:1px solid #e3edf8;padding:.4rem .5rem;text-align:left}th{background:#f3f8ff;color:#0e4a84}"
-           ".q td{background:#fbfdff;border-bottom:2px solid #e3edf8}.q .q{color:#33414f}.a{color:#1f6f54;font-size:.86rem;margin-top:.2rem}"
-           ".pill{display:inline-block;background:#f3f8ff;border-radius:20px;padding:.1rem .6rem;margin-right:.4rem;font-size:.85rem}</style>"
+           "th,td{border-bottom:1px solid #e3edf8;padding:.4rem .5rem;text-align:left}th{background:#0f2540;color:#7fb2ff}"
+           ".q td{background:#0f2540;border-bottom:2px solid #e3edf8}.q .q{color:#33414f}.a{color:#1f6f54;font-size:.86rem;margin-top:.2rem}"
+           ".pill{display:inline-block;background:#0f2540;border-radius:20px;padding:.1rem .6rem;margin-right:.4rem;font-size:.85rem}</style>"
            "<h1>Money &times; Votes Casework — %s <span style='font-size:.8rem;color:#b3261e'>PRIVATE</span></h1>"
            "<div class=integrity>%s</div>"
            "<p><span class=pill>%d to examine</span><span class=pill>%d to note</span>"
            "<span class=pill>%d likely coincidence</span><span class=pill>$%s in awards flagged to examine</span></p>"
            "<table><tr><th>Vendor</th><th>Awards</th><th>Funded official</th><th>Donation</th>"
            "<th>Same-entity</th><th>Verdict</th></tr>%s</table>"
-           "<p style='color:#5a6b7b;font-size:.82rem;margin-top:1rem'>Generated %s · source %s · a question to the "
+           "<p style='color:#9fb2c8;font-size:.82rem;margin-top:1rem'>Generated %s · source %s · a question to the "
            "record, never a claim.</p>" % (
                esc(out["tenant"]), esc(out["tenant"]), esc(out["integrity"]), s["examine"], s["note"],
                s["likely_coincidence"], "{:,.0f}".format(s["total_award_examined"]), rows,

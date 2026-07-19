@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aloha ʻĀina — the land is chief</title>
 <style>
   /* Ceremonial / codex register on a warm-volcanic base. Variables namespaced --aa-* so the site
      build's injected govOS chrome tokens (:root) can never override the ceremonial palette. */
   .aa{
-    --aa-bg:#0b0a07; --aa-ink:#efe9da; --aa-mut:#c3b79c; --aa-faint:#8a7c60;
-    --aa-gold:#d9b24c; --aa-gold2:#f3d589; --aa-copper:#b8702e;
-    --aa-sea:#3a8fb7; --aa-sea2:#5fc0d8; --aa-sage:#8aa06a;
-    --aa-line:rgba(217,178,76,.16);
+    --aa-bg:#0b0a07; --aa-ink:#eaf2fc; --aa-mut:#a7c0dd; --aa-faint:#8a7c60;
+    --aa-gold:#e3ad33; --aa-gold2:#5a97e6; --aa-copper:#b8702e;
+    --aa-sea:#2f74d0; --aa-sea2:#5a97e6; --aa-sage:#8aa06a;
+    --aa-line:rgba(227,173,51,.16);
     --aa-serif:"Source Serif 4","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
     --aa-mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
     color:var(--aa-ink);font-family:var(--aa-serif);font-size:19px;line-height:1.72;
     background:
-      radial-gradient(1100px 640px at 22% -8%, rgba(217,178,76,.13), transparent 60%),
+      radial-gradient(1100px 640px at 22% -8%, rgba(227,173,51,.13), transparent 60%),
       radial-gradient(1000px 620px at 88% 108%, rgba(58,143,183,.12), transparent 60%),
       var(--aa-bg);
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;display:block}
   .aa *{box-sizing:border-box}
   .aa .wrap{max-width:720px;margin:0 auto;padding:44px 26px 84px}
   .aa .hero{padding:44px 0 8px;text-align:center}
-  .aa .mark{width:64px;height:64px;margin:0 auto 30px;display:block;filter:drop-shadow(0 0 18px rgba(217,178,76,.4));animation:aa-breathe 7s ease-in-out infinite}
+  .aa .mark{width:64px;height:64px;margin:0 auto 30px;display:block;filter:drop-shadow(0 0 18px rgba(227,173,51,.4));animation:aa-breathe 7s ease-in-out infinite}
   @keyframes aa-breathe{0%,100%{opacity:.9;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
   .aa .kicker{font-family:var(--aa-mono);font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--aa-gold);margin:0 0 24px;opacity:.9}
   .aa .oli{font-size:clamp(27px,5.4vw,42px);line-height:1.22;font-style:italic;font-weight:500;color:var(--aa-gold2);letter-spacing:-.01em;margin:0 auto;max-width:15ch;text-wrap:balance}
@@ -45,29 +45,30 @@
   .aa .bless{margin:76px 0 0;text-align:center}
   .aa .bless p{font-size:22px;line-height:1.55;color:var(--aa-ink);font-style:italic;margin:0 auto 30px;max-width:26ch;text-wrap:balance}
   .aa .paths{line-height:2.4}
-  .aa .paths a{display:inline-block;margin:0 14px;font-family:var(--aa-mono);font-size:13px;letter-spacing:.04em;color:var(--aa-gold);text-decoration:none;border-bottom:1px solid rgba(217,178,76,.35);padding-bottom:3px;transition:color .16s,border-color .16s}
+  .aa .paths a{display:inline-block;margin:0 14px;font-family:var(--aa-mono);font-size:13px;letter-spacing:.04em;color:var(--aa-gold);text-decoration:none;border-bottom:1px solid rgba(227,173,51,.35);padding-bottom:3px;transition:color .16s,border-color .16s}
   .aa .paths a:hover{color:var(--aa-gold2);border-color:var(--aa-gold2)}
   .aa a.inl{color:var(--aa-sea2);text-decoration:none;border-bottom:1px solid rgba(95,192,216,.4)}
   .aa a.inl:hover{color:var(--aa-gold2);border-color:var(--aa-gold2)}
   .aa .foot{font-family:var(--aa-mono);font-size:11.5px;line-height:1.9;color:var(--aa-faint);text-align:center;margin:70px 0 0;letter-spacing:.02em}
   @media(max-width:560px){.aa{font-size:18px}.aa .wrap{padding:32px 20px 64px}}
 </style>
-<link rel="stylesheet" href="../govos.css">
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style><link rel="stylesheet" href="govos.css">
+<link rel="stylesheet" href="legibility_fix.css">
 </head>
 <body>
 <nav class="govos-nav" data-tenant="hi-maui"><a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span><b>govOS</b><span class="sub">Kilo Aupuni</span></a><button class="gn-burger" aria-label="Menu">&#9776;</button><div class="gn-menu"><span class="gn-here">viewing: <b>Maui County</b></span><div class="gn-group"><button class="gn-top">Across govOS<span class="ar">&#9662;</span></button><div class="gn-panel"><a class="" href="jurisdictions.html">Jurisdictions — all governments</a><a class="" href="datasets.html">Open data</a><a class="" href="agenda_explainer.html">Agenda explainer</a><a class="" href="sage_bridge.html">Sage</a><a class="" href="olelo_glossary.html">&#699;&#332;lelo</a><a href="king/civic/templates/title19-system/Title19%20System.html">Title 19 system</a></div></div><a class="gn-lead" href="testify.html">&#9878; Testify</a><a class="gn-link" href="request_records.html">Request Records</a><a class="gn-cta" href="take_action.html">Take part</a></div></nav>
-<div class="govos-narrative" style="max-width:1100px;margin:14px auto 0;padding:12px 18px;border-left:3px solid #9fd9bf;border-radius:8px;background:rgba(159,217,191,.06);font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;color:#e3ecdf"><b style="color:#9fd9bf">In plain words:</b> Part of the govOS civic record — public information, gathered so any Maui or Hawaiian person can see it plainly.</div>
+<div class="govos-narrative" style="max-width:1100px;margin:14px auto 0;padding:12px 18px;border-left:3px solid #4bbf7b;border-radius:8px;background:rgba(75,191,123,.06);font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;color:#a7c0dd"><b style="color:#4bbf7b">In plain words:</b> Part of the govOS civic record — public information, gathered so any Maui or Hawaiian person can see it plainly.</div>
 <div class="tenant-nav" role="navigation" aria-label="Government navigation"><div class="tn-grp"><span class="tn-lbl">Government</span><select id="tnav-gov" aria-label="Choose a government"><option value="" selected disabled>Choose a government…</option><option value="12stonescharter">⚖ 12 Stones Charter</option><option value="hi-maui">Maui County</option><option value="hi-state">State of Hawaiʻi</option><option value="hi-hawaii">Hawaiʻi County</option><option value="hi-kauai">Kauaʻi County</option><option value="hi-honolulu">Honolulu</option><option value="ny">New York</option></select></div><div class="tn-grp"><span class="tn-lbl">View</span><select id="tnav-view" aria-label="Choose a report for this government"></select></div><span class="tn-here">pick a government to begin</span></div>
 <div class="aa">
  <div class="wrap">
   <div class="hero">
     <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g fill="none" stroke-linejoin="round">
-        <circle cx="32" cy="32" r="27" stroke="#efe9da" stroke-opacity=".28" stroke-width="1.2"/>
-        <path d="M32 3 L38 26 L61 32 L38 38 L32 61 L26 38 L3 32 L26 26 Z" fill="#d9b24c" fill-opacity=".92"/>
-        <path d="M32 12 L36 28 L52 32 L36 36 L32 52 L28 36 L12 32 L28 28 Z" fill="#f3d589" fill-opacity=".55"/>
+        <circle cx="32" cy="32" r="27" stroke="#eaf2fc" stroke-opacity=".28" stroke-width="1.2"/>
+        <path d="M32 3 L38 26 L61 32 L38 38 L32 61 L26 38 L3 32 L26 26 Z" fill="#e3ad33" fill-opacity=".92"/>
+        <path d="M32 12 L36 28 L52 32 L36 36 L32 52 L28 36 L12 32 L28 28 Z" fill="#5a97e6" fill-opacity=".55"/>
         <circle cx="32" cy="32" r="5.5" fill="#7b4ea0" fill-opacity=".9"/>
-        <circle cx="32" cy="32" r="2.4" fill="#efe9da"/>
+        <circle cx="32" cy="32" r="2.4" fill="#eaf2fc"/>
       </g>
     </svg>
     <p class="kicker">govOS · aloha ʻāina</p>
@@ -120,6 +121,6 @@
   <p class="foot">sourced · certified-operation counts from the USDA National Organic Program seed (2025-06-25) · civic record framed as questions, never verdicts · public data, in the open<br>Christ energy = aloha in action &nbsp;·&nbsp; 🌿</p>
  </div>
 </div>
-<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div><div class="govos-olelo-foot" style="max-width:1100px;margin:26px auto 8px;padding:9px 16px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:#9a957f;text-align:center">🌺 ʻŌlelo Hawaiʻi here is offered with humility and held under community review with ʻŌiwi resources at Maui County. <a href="olelo_glossary.html" style="color:#cdb4f0">See the glossary &rarr;</a></div><script src="../govos-shell.js" defer></script>
+<div class="sgi-copyright" style="text-align:center;font:11px/1.6 Consolas,monospace;color:#6d89ab;padding:20px 12px;border-top:1px solid rgba(90,151,230,.13);margin-top:34px">&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div><div class="govos-olelo-foot" style="max-width:1100px;margin:26px auto 8px;padding:9px 16px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:#6d89ab;text-align:center">🌺 ʻŌlelo Hawaiʻi here is offered with humility and held under community review with ʻŌiwi resources at Maui County. <a href="olelo_glossary.html" style="color:#b9a6ef">See the glossary &rarr;</a></div><footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer><script src="govos-shell.js" defer></script>
 </body>
 </html>

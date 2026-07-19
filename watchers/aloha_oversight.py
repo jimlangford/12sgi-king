@@ -144,7 +144,7 @@ def render_public(tenant, findings, held):
         "letter-spacing:.06em;text-transform:uppercase;color:var(--accent2);margin-bottom:.2rem}"
         ".rec li{font-size:.92rem;color:var(--dim);margin:.15rem 0}"
         ".ask{margin-top:.6rem;color:#33465c;font-size:.92rem}"
-        ".empty{border:1px dashed var(--line);border-radius:14px;padding:1.1rem;background:#f3f7fc}")
+        ".empty{border:1px dashed var(--line);border-radius:14px;padding:1.1rem;background:#0f2540}")
 
     return ("<!doctype html><meta charset=utf-8>"
             "<meta name=viewport content='width=device-width,initial-scale=1,viewport-fit=cover'>"

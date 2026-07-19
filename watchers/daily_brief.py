@@ -108,7 +108,7 @@ def main():
     th="".join("<div class=row><span class=sr>%s</span><span class=dt>%d events</span></div>"%(esc(s),c) for s,c in sorted(bythread.items(),key=lambda kv:-kv[1]))
     html=("<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=theme-color content='#00356b'>"
       "<title>Daily Brief — current across all threads (PRIVATE)</title><style>"
-      ":root{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3}"
+      ":root{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0}"
       "*{box-sizing:border-box}body{font-family:'Segoe UI',system-ui,sans-serif;max-width:860px;margin:0 auto;padding:18px 16px 44px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.5}"
       "h1{font-size:1.45rem;margin:.2rem 0}h2{font-size:1.02rem;color:var(--accent);margin:0 0 .5rem}.ct{font:700 12px/1 Consolas,monospace;color:#fff;background:var(--accent2);border-radius:99px;padding:.12rem .5rem;vertical-align:middle}"
       ".eyebrow{letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600;font-size:.78rem}.sub{color:var(--dim);font-size:.9rem}"

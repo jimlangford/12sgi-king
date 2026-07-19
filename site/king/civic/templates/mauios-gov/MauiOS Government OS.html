@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>govOS — Charter Government OS · 12 Stones Global</title>
 <template id="__bundler_thumbnail">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c100e"/><circle cx="50" cy="42" r="17" fill="none" stroke="#d9b24c" stroke-width="2"/><text x="50" y="48" font-family="Georgia,serif" font-size="16" fill="#f0cf7a" text-anchor="middle">⚖</text><text x="50" y="78" font-family="Georgia,serif" font-size="13" font-weight="600" fill="#d9b24c" text-anchor="middle">govOS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#081420"/><circle cx="50" cy="42" r="17" fill="none" stroke="#e3ad33" stroke-width="2"/><text x="50" y="48" font-family="Georgia,serif" font-size="16" fill="#5a97e6" text-anchor="middle">⚖</text><text x="50" y="78" font-family="Georgia,serif" font-size="13" font-weight="600" fill="#e3ad33" text-anchor="middle">govOS</text></svg>
 </template>
 <link rel="icon" href="../../assets/logo/favicon-32.png">
 <link rel="stylesheet" href="../../styles.css?v=2026-06-15">
@@ -34,20 +34,20 @@
 
   /* Masthead */
   header.top { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; padding: 24px 0 14px; }
-  header.top .crest { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(217,178,76,.4);
+  header.top .crest { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(227,173,51,.4);
     display: grid; place-items: center; font-size: 26px; color: var(--mauios-gold);
-    background: radial-gradient(120px 120px at 50% 0%, rgba(217,178,76,.12), transparent 70%); }
+    background: radial-gradient(120px 120px at 50% 0%, rgba(227,173,51,.12), transparent 70%); }
   .brand h1 { font-family: var(--font-serif-display); font-weight: 600; font-size: 29px; margin: 0; letter-spacing: .2px; }
   .brand .sub { color: var(--mauios-mut); font-size: 13px; margin-top: 5px; letter-spacing: .3px; }
   .jx { margin-left: auto; display: flex; flex-direction: column; gap: 7px; align-items: flex-end; }
-  .jpick { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(217,178,76,.4);
-    background: rgba(217,178,76,.07); border-radius: 11px; padding: 8px 13px; }
+  .jpick { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(227,173,51,.4);
+    background: rgba(227,173,51,.07); border-radius: 11px; padding: 8px 13px; }
   .jpick .s { font-size: 18px; color: var(--mauios-gold); }
   .jpick .jn { font-family: var(--font-serif-display); font-size: 15px; font-weight: 600; }
   .jpick .jid { font-family: var(--font-mono); font-size: 9.5px; color: var(--mauios-faint); letter-spacing: .4px; }
   .jpick .badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: .5px; text-transform: uppercase;
     color: var(--mauios-ok); border: 1px solid rgba(86,192,138,.4); border-radius: 6px; padding: 2px 7px; }
-  .jpick .badge.provisioning { color: var(--mauios-gold); border-color: rgba(217,178,76,.4); }
+  .jpick .badge.provisioning { color: var(--mauios-gold); border-color: rgba(227,173,51,.4); }
   .jpick { cursor: pointer; transition: border-color var(--dur-fast); }
   .jpick:hover { border-color: var(--mauios-gold); }
   .jx .swhint { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); letter-spacing: .4px; }
@@ -65,11 +65,11 @@
   .pip { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .5px; text-transform: uppercase;
     padding: 2px 7px; border-radius: 5px; white-space: nowrap; }
   .pip.live { color: var(--mauios-ok); background: rgba(86,192,138,.13); }
-  .pip.built { color: var(--mauios-gold-2); background: rgba(217,178,76,.13); }
+  .pip.built { color: var(--mauios-gold-2); background: rgba(227,173,51,.13); }
   .pip.wired { color: var(--mauios-makai); background: rgba(58,143,183,.14); }
   .pip.planned { color: var(--mauios-faint); background: rgba(111,130,120,.13); }
   .pip.model { color: var(--mauios-faint); background: rgba(111,130,120,.13); }
-  .pip.provisioning { color: var(--mauios-gold-2); background: rgba(217,178,76,.13); }
+  .pip.provisioning { color: var(--mauios-gold-2); background: rgba(227,173,51,.13); }
   .pip.active { color: var(--mauios-ok); background: rgba(86,192,138,.13); }
 
   /* Civic loop */
@@ -79,7 +79,7 @@
   .ls { position: relative; border: 1px solid var(--mauios-line); border-radius: 13px; padding: 15px 14px 14px;
     background: linear-gradient(180deg, var(--mauios-panel), var(--mauios-bg-2)); box-shadow: var(--mauios-shadow);
     text-decoration: none; display: block; transition: border-color var(--dur-fast), transform var(--dur-fast); }
-  a.ls:hover { border-color: rgba(217,178,76,.5); transform: translateY(-2px); }
+  a.ls:hover { border-color: rgba(227,173,51,.5); transform: translateY(-2px); }
   .ls .gl { font-size: 22px; color: var(--mauios-gold); }
   .ls .step { font-family: var(--font-mono); font-size: 9px; color: var(--mauios-faint); letter-spacing: 1px; margin-top: 8px; }
   .ls .ln { font-family: var(--font-serif-display); font-size: 17px; font-weight: 600; margin-top: 2px; }
@@ -103,11 +103,11 @@
   .mod { border: 1px solid var(--mauios-line); border-radius: 12px; padding: 13px 14px 12px; background: var(--mauios-panel);
     box-shadow: var(--mauios-shadow); display: flex; flex-direction: column; gap: 0; text-decoration: none;
     transition: border-color var(--dur-fast), transform var(--dur-fast); position: relative; min-height: 132px; }
-  a.mod:hover { border-color: rgba(217,178,76,.5); transform: translateY(-2px); }
+  a.mod:hover { border-color: rgba(227,173,51,.5); transform: translateY(-2px); }
   a.mod::after { content: "↗"; position: absolute; top: 12px; right: 13px; color: var(--mauios-gold); font-size: 12px; }
   .mod .mr1 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .mod .arts { display: flex; gap: 4px; flex-wrap: wrap; }
-  .mod .ab { font-family: var(--font-mono); font-size: 8.5px; color: var(--mauios-gold); border: 1px solid rgba(217,178,76,.28);
+  .mod .ab { font-family: var(--font-mono); font-size: 8.5px; color: var(--mauios-gold); border: 1px solid rgba(227,173,51,.28);
     border-radius: 4px; padding: 1px 5px; }
   .mod .mn { font-size: 14px; font-weight: 600; line-height: 1.25; margin-top: 2px; }
   .mod .mh { font-family: var(--font-serif-display); font-style: italic; font-size: 11.5px; color: var(--mauios-faint); margin-top: 1px; }
@@ -132,7 +132,7 @@
   .roster { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
   .rchip { display: flex; align-items: center; gap: 9px; border: 1px solid var(--mauios-line); border-radius: 11px; padding: 9px 13px; background: var(--mauios-panel); cursor: pointer; transition: border-color var(--dur-fast), background var(--dur-fast); }
   .rchip:hover { border-color: var(--mauios-faint); }
-  .rchip.on { border-color: var(--mauios-gold); background: rgba(217,178,76,.07); box-shadow: var(--mauios-shadow); }
+  .rchip.on { border-color: var(--mauios-gold); background: rgba(227,173,51,.07); box-shadow: var(--mauios-shadow); }
   .rchip .rs { font-size: 17px; color: var(--mauios-gold); }
   .rchip .rn { font-size: 13px; font-weight: 600; line-height: 1.1; }
   .rchip .rid { font-family: var(--font-mono); font-size: 8.5px; color: var(--mauios-faint); letter-spacing: .3px; margin-top: 2px; }
@@ -150,10 +150,10 @@
   .tdcol .lt { font-size: 12px; color: var(--mauios-mut); }
   .jurwrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; align-items: start; }
   @media (max-width: 880px) { .jurwrap { grid-template-columns: 1fr; } }
-  .tenant { border: 1px solid rgba(217,178,76,.4); border-radius: 15px; padding: 18px 20px;
+  .tenant { border: 1px solid rgba(227,173,51,.4); border-radius: 15px; padding: 18px 20px;
     background: linear-gradient(150deg, var(--mauios-panel), var(--mauios-bg-2)); box-shadow: var(--mauios-shadow); }
   .tenant .th { display: flex; align-items: center; gap: 12px; }
-  .tenant .crest2 { width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(217,178,76,.4); display: grid; place-items: center; font-size: 21px; color: var(--mauios-gold); }
+  .tenant .crest2 { width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(227,173,51,.4); display: grid; place-items: center; font-size: 21px; color: var(--mauios-gold); }
   .tenant .tn { font-family: var(--font-serif-display); font-size: 20px; font-weight: 600; }
   .tenant .tid { font-family: var(--font-mono); font-size: 10px; color: var(--mauios-faint); letter-spacing: .4px; margin-top: 2px; }
   .tenant .trow { display: grid; grid-template-columns: 110px 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.05); font-size: 12.5px; }
@@ -190,7 +190,8 @@
   footer .r { margin-left: auto; }
 </style>
 <style>@media (max-width:820px){body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px) !important}}</style>
-<link rel="stylesheet" href="../../../../../govos.css">
+<link rel="stylesheet" href="../../../../govos.css">
+<link rel="stylesheet" href="../../../../legibility_fix.css">
 </head>
 <body data-surface="mauios">
 <div class="wrap">
@@ -386,6 +387,6 @@
   document.getElementById("snap").textContent = "snapshot · " + G.meta.snapshot;
 })();
 </script>
-<script src="../../../../../govos-shell.js" defer></script>
+<script src="../../../../govos-shell.js" defer></script>
 </body>
 </html>

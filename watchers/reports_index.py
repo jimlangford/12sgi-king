@@ -19,7 +19,7 @@ PROJ = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System eleme
 ST = os.path.join(PROJ, "reports", "_status")
 KING_DIRS = [os.path.join(HOME, "AppData", "Local", "king-extract", "deploy", "king-local"),
              os.path.join(PROJ, "king-local")]
-BASE = "https://12sgianonymous.tail760750.ts.net/king/"
+BASE = "https://king.tail760750.ts.net/king/"
 esc = lambda s: html.escape(str(s if s is not None else ""))
 
 # Curated catalog of the daily-refined owner reports. (group, filename, title, one-line description)

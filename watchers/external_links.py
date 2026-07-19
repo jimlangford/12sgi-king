@@ -172,7 +172,7 @@ def main():
     rows = "".join(
         "<tr><td style='font-family:Consolas,monospace;font-size:12px;word-break:break-all'>%s</td>"
         "<td style='color:%s;font-weight:700'>%s</td><td style='font-family:Consolas,monospace'>%s</td>"
-        "<td style='font-size:11.5px;color:#6d7f97'>%s</td></tr>" % (
+        "<td style='font-size:11.5px;color:#8ea3ba'>%s</td></tr>" % (
             esc(r["url"]), color.get(r["state"], "#999"), r["state"].upper(), r["code"],
             esc(("heal → " + r["heal"]) if r["heal"] else r["note"]))
         for r in sorted(res, key=lambda x: {"broken": 0, "recheck": 1, "confirmed": 2}[x["state"]]))
@@ -181,17 +181,17 @@ def main():
         "<!DOCTYPE html><html lang=en><head><meta charset=UTF-8>"
         "<meta name=viewport content='width=device-width,initial-scale=1'>"
         "<title>External links · govOS self-heal</title><style>"
-        "body{margin:0;background:#fff;color:#13243d;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.5}"
+        "body{margin:0;background:#081420;color:#eaf2fc;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.5}"
         ".wrap{max-width:980px;margin:0 auto;padding:18px 16px 70px}h1{font-size:22px;margin:6px 0}"
-        ".eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:#00356b;text-transform:uppercase}"
+        ".eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:#7fb2ff;text-transform:uppercase}"
         ".badge{display:inline-block;font-weight:700;border-radius:8px;padding:4px 12px;color:#fff;background:%s}"
         "table{width:100%%;border-collapse:collapse;margin-top:14px;font-size:13px}"
-        "th,td{text-align:left;padding:7px 9px;border-bottom:1px solid #bacde6;vertical-align:top}"
-        "th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;color:#6d7f97}"
-        ".note{font-size:12.5px;color:#6d7f97;margin-top:10px}</style></head><body><div class=wrap>"
+        "th,td{text-align:left;padding:7px 9px;border-bottom:1px solid #26456a;vertical-align:top}"
+        "th{font-family:Consolas,monospace;font-size:11px;text-transform:uppercase;color:#8ea3ba}"
+        ".note{font-size:12.5px;color:#8ea3ba;margin-top:10px}</style></head><body><div class=wrap>"
         "<div class=eyebrow>govOS · Kilo Aupuni · self-heal</div>"
         "<h1>External links <span class=badge>%s</span></h1>"
-        "<p class=note>%d civic outbound links checked · <b style='color:#1f8a5b'>%d confirmed</b> · "
+        "<p class=note>%d civic outbound links checked · <b style='color:#4ec98a'>%d confirmed</b> · "
         "<b style='color:#b07d1a'>%d recheck</b> (transient — gov rate-limit/bot-block, last-good kept) · "
         "<b style='color:#c0322c'>%d broken</b>. Transient hiccups never fail the deploy; a known-dead "
         "link with a learned replacement is auto-healed on build.</p>"

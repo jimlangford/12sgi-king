@@ -158,7 +158,7 @@ def _html(p):
 h1{{font-size:1.5rem}} .sub{{color:#555}} table{{border-collapse:collapse;width:100%;margin:1rem 0}}
 th,td{{border-bottom:1px solid #e3e3e3;padding:.45rem .6rem;text-align:left}} .n{{text-align:right;font-variant-numeric:tabular-nums}}
 .verdict{{background:{badge};color:#fff;border-radius:10px;padding:.7rem 1.1rem;font-weight:600;margin:1rem 0}}
-h2{{font-size:1.05rem;margin-top:1.4rem}} .note{{background:#fff8e6;border-left:4px solid #e0b400;padding:.6rem 1rem;font-size:.9rem}}</style>
+h2{{font-size:1.05rem;margin-top:1.4rem}} .note{{background:#241d0e;border-left:4px solid #e0b400;padding:.6rem 1rem;font-size:.9rem}}</style>
 <h1>Balance the Equation - Maui &amp; State of Hawai&#699;i</h1>
 <div class=sub>In plain words: this tracks how much of the public record we have pulled in
 (council minutes, county contracts, federal dollars, campaign money) and how many money&#8596;votes

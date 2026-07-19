@@ -64,9 +64,15 @@ FILES = {
     "hi-honolulu": {"govern":[], "money":["statewide_money_patterns.html"], "contracts":["contracts_honolulu.html"],
                     "federal":["federal_money_honolulu.html"], "crossref":["parity_honolulu.html"],
                     "agendas":["agendas_honolulu.html"], "charter":["crosswalk_honolulu.html"], "audit":["audit_balance.html"]},
-    "ny":          {"govern":[], "money":["money_nyc.html"], "contracts":["contracts_nyc.html","contracts_nys.html"],
-                    "federal":[], "crossref":["parity_nyc.html"], "agendas":["agendas_nyc.html"],
-                    "charter":[], "audit":[]},
+    # govern/federal/audit were [] though officials_nyc.html/officials_nys.html/federal_money_nyc.html/
+    # govos_audit_ny.html all exist and are real (>700 bytes, not stubs) -- built but never wired in,
+    # so status_of()/cell_status() scored these dimensions "gap" and the audit-profile card showed less
+    # coverage than actually exists. Fixed 2026-07-15 (audit-quad-os, Beta-3 G-HEAL closure, second pass).
+    "ny":          {"govern":["officials_nyc.html","officials_nys.html"], "money":["money_nyc.html"],
+                    "contracts":["contracts_nyc.html","contracts_nys.html"],
+                    "federal":["federal_money_nyc.html"], "crossref":["parity_nyc.html"],
+                    "agendas":["agendas_nyc.html"],
+                    "charter":[], "audit":["govos_audit_ny.html"]},
 }
 NAMES = {"hi-maui":"Maui County","hi-state":"State of Hawaiʻi","hi-hawaii":"Hawaiʻi County",
          "hi-kauai":"Kauaʻi County","hi-honolulu":"Honolulu","ny":"New York"}
@@ -198,7 +204,7 @@ def main():
 def _esc(s): return str(s).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 def _html(p):
     mark = {"ok":"<span style='color:#1f9d55'>✓</span>", "thin":"<span style='color:#d9822b'>○</span>",
-            "gap":"<span style='color:#c0392b'>—</span>"}
+            "gap":"<span style='color:#f0857a'>—</span>"}
     head = "".join("<th title='%s'>%s</th>" % (_esc(d["desc"]), _esc(d["label"])) for d in p["dimensions"])
     body = ""
     for t in p["tenants"]:
@@ -210,10 +216,10 @@ def _html(p):
     html = ("<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=600>"
         "<title>Tenant testimony depth</title><style>"
         "body{font-family:system-ui,Segoe UI,sans-serif;max-width:1000px;margin:1.4rem auto;padding:0 1rem;color:#eaf2fc}"
-        "h1{font-size:1.35rem;margin:.2rem 0}.sub{color:#5b6b78;font-size:.9rem;margin-bottom:1rem}"
+        "h1{font-size:1.35rem;margin:.2rem 0}.sub{color:#9fb2c8;font-size:.9rem;margin-bottom:1rem}"
         "table{border-collapse:collapse;width:100%%;font-size:.82rem}th,td{padding:.45rem .5rem;border-bottom:1px solid #e7edf2}"
         "th{text-align:left;color:#42535f;font-weight:600;font-size:.74rem}.m{color:#8b99a6;font-size:.72rem}"
-        "thead th{position:sticky;top:0;background:#fff}</style>"
+        "thead th{position:sticky;top:0;background:#081420}</style>"
         "<h1>Testimony depth by government</h1>"
         "<div class=sub>Every tenant is measured against Maui County's depth (the reference: %d of %d civic-testimony "
         "dimensions). ✓ = sourced &amp; published · ○ = present but thin · — = gap (work to do). "

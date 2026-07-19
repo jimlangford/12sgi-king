@@ -288,7 +288,7 @@ def _heal_followup(s):
                     if _ops not in _s.path: _s.path.insert(0, _ops)
                     import notify_phone
                     notify_phone.notify("elementLOTUS needs you", "Autonomous monitor flagged: " + a[:160],
-                                        "https://12sgianonymous.tail760750.ts.net/status/system_status.html")
+                                        "https://king.tail760750.ts.net/status/system_status.html")
                 except Exception: pass
             seen[k] = time.time()  # stamp the type-key immediately so next cycle within 5 min is silent
     # write state keyed by type-prefix so fluctuating numbers don't defeat the dedup
@@ -402,7 +402,7 @@ table{{width:100%;border-collapse:collapse;font-size:.86rem}} td{{padding:.35rem
  <table><thead><tr><td class=muted>tenant</td><td class=muted>last update</td><td class=muted>when</td></tr></thead><tbody>{trow}</tbody></table></div>
 <div class=card><div class=k>Last deck render</div><div>{s.get('last_render') or '(none yet)'}</div></div>
 <div style="text-align:center;color:#8b949e;font-size:.75rem;padding:18px 0;border-top:1px solid #21262d;margin-top:14px">&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div>
-<script src="https://12sgianonymous.tail760750.ts.net/king/quados.js" defer></script>
+<script src="https://king.tail760750.ts.net/king/quados.js" defer></script>
 </body></html>"""
 
 def main():

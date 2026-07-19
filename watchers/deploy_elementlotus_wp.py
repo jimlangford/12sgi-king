@@ -83,6 +83,10 @@ def extract_page_parts(html_text: str) -> dict[str, str]:
 def rewrite_url(url: str) -> str:
     if not url or re.match(r"^(?:[a-z]+:|#|//)", url, re.I):
         return url
+    if url.startswith("../site/"):
+        return STATIC_BRIDGE + url[len("../site/"):]
+    if url.startswith("../"):
+        return STATIC_BRIDGE + url[len("../"):]
     if url in INTERNAL_PAGE_REWRITES:
         return INTERNAL_PAGE_REWRITES[url]
     if url in ABSOLUTE_REWRITES:
@@ -159,7 +163,7 @@ def prefix_css(css_text: str, prefix: str = CSS_PREFIX) -> str:
 
 def build_page_fragment(source_name: str, slug: str, template: str, html_text: str) -> dict[str, str]:
     parts = extract_page_parts(html_text)
-    body = rewrite_links(parts["body"])
+    body = "\n".join(line.rstrip() for line in rewrite_links(parts["body"]).splitlines())
     fragment = (
         f"<!-- wp:group {{\"tagName\":\"div\",\"className\":\"element-lotus-shell-wrap\"}} -->\n"
         f"<div class=\"element-lotus-shell-wrap\">\n"

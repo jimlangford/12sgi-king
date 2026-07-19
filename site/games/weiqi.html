@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weiqi · Go · TribeGameStudios</title>
 <meta name="description" content="Weiqi (Go) — 9×9 board, full rules: capture/suicide/superko, Chinese area scoring, 7.5 komi. TribeGameStudios · 12sgi. Offered to China as a cultural bridge.">
@@ -10,7 +10,7 @@
 /* Weiqi · 12sgi-design canon — warm volcanic + gold. Zero external deps. */
 :root{
   --bg:#161209; --s1:#231d10; --s2:#2e2716; --s3:#3e351f; --line:#5a4f33;
-  --gold:#e3ad33; --gold-hi:#f4c95d;
+  --gold:#e3ad33; --gold-hi:#5a97e6;
   --ink:#f7f1e3; --ink-2:#d8cdb0; --ink-3:#ab9e7f;
   --board-bg:#3a2f10; --board-line:#6b5825;
   --star-pt:#7a6433;
@@ -64,7 +64,8 @@ canvas{display:block;cursor:pointer;touch-action:none;border-radius:4px}
   font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.04em;
 }
 </style>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
+<style>:root{--cs-bg:#ffffff;--cs-panel:#e7eef8;--cs-panel2:#dae5f3;--cs-line:#bacde6;--cs-ink:#13243d;--cs-ink-dim:#41536b;--cs-ink-faint:#5b6e86;--cs-accent:#00356b;--cs-accent2:#1259a3;--cs-gold:#b8860b;--cs-ok:#1f8a5b;--cs-mono:'JetBrains Mono',Consolas,monospace} .cs-top{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:11px;font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif}.cs-seal{width:34px;height:34px;border-radius:9px;background:var(--cs-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;text-decoration:none}.cs-brand{font-weight:800;font-size:17px;color:var(--cs-ink);line-height:1.1}.cs-brand span{display:block;color:var(--cs-ink-faint);font-weight:600;font-size:11px;font-family:var(--cs-mono)}.cs-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;font-weight:600}.cs-nav a{color:var(--cs-accent2);text-decoration:none}.cs-nav a:hover{text-decoration:underline}.cs-bar{border-bottom:1px solid var(--cs-line);background:linear-gradient(180deg,rgba(0,53,107,.04),transparent)}.cs-foot{max-width:1040px;margin:40px auto 0;font-family:var(--cs-mono);font-size:11px;color:var(--cs-ink-faint);text-align:center;border-top:1px solid var(--cs-line);padding:24px 20px 38px;line-height:1.8}@media(max-width:560px){.cs-nav{gap:11px;font-size:12px}}</style><link rel="stylesheet" href="../legibility_fix.css">
 </head>
 <body>
 
@@ -410,6 +411,33 @@ initGame();
 
 })();
 </script>
-<script src="../../govos-shell.js" defer></script>
-</body>
+<script src="../govos-shell.js" defer></script>
+
+<script src="circle_core.js"></script>
+<script>
+/* weiqi circle module — TWO players, every stone or pass flips the turn. seat 0 = black. */
+(function () {
+  'use strict';
+  CircleCore.init({
+    gameId: 'weiqi',
+    getState: function () {
+      return JSON.stringify({ board: board.slice(), history: history.slice(), turn: turn,
+                              capBlack: capBlack, capWhite: capWhite,
+                              consPassCount: consPassCount, gameOver: gameOver });
+    },
+    setState: function (s) {
+      var o = JSON.parse(s);
+      board = o.board.slice(); history = (o.history || []).slice(); turn = o.turn;
+      capBlack = o.capBlack || 0; capWhite = o.capWhite || 0;
+      consPassCount = o.consPassCount || 0; gameOver = !!o.gameOver;
+      render(); updateUI();
+    },
+    moverSeat: function (o) { return o.turn === 1 ? 0 : 1; },
+    seatLabel: function (i) { return i === 0 ? 'black' : 'white'; }
+  });
+})();
+</script>
+
+<script src="supporter.js"></script>
+<footer class="cs-foot">govOS · 12 Stones Global &nbsp;·&nbsp; christ-aloha, solution-side &nbsp;·&nbsp; the public record, free for the people<br>&copy; 2026 James RCS Langford · all rights reserved</footer></body>
 </html>

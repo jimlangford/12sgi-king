@@ -3,7 +3,7 @@
 #   One windowless process: a background thread regenerates the dashboard every 15s,
 #   and an HTTP server on :8781 serves reports/_status/ (the private system dashboard).
 #   Reachable on the laptop (127.0.0.1:8781) AND over Tailscale
-#   (http://12sgianonymous.tail760750.ts.net:8781/system_status.html) = the go-page card.
+#   (http://king.tail760750.ts.net:8781/system_status.html) = the go-page card.
 #   Launched windowless via run_hidden.vbs + a logon scheduled task (no-popup policy).
 import os, sys, time, threading, importlib, http.server, socketserver
 
@@ -50,7 +50,7 @@ def refresh_loop():
                         import subprocess as _sp
                         _sp.run([sys.executable, os.path.join(os.path.dirname(TOOL_DIR), "ops", "owner_actions.py"),
                                  "--add", "Render card is full :: Your local AI brain is holding the graphics card, so video renders cannot run (and it can warm up). Tap to free the card.",
-                                 "--link", "http://12sgianonymous.tail760750.ts.net:8781/fix",
+                                 "--link", "http://king.tail760750.ts.net:8781/fix",
                                  "--lane", "server-quad-os", "--priority", "1"], capture_output=True, timeout=30)
                     except Exception:
                         pass
@@ -159,7 +159,7 @@ def _feed(n=8):
 
 _SURFACES = (
     # label,           port, tailnet-root-relative path (works from any /* proxy since Tailscale serve
-    # maps the whole 12sgianonymous.tail760750.ts.net domain, not just /status)
+    # maps the whole king.tail760750.ts.net domain, not just /status)
     ("Work Board",  8782, "/board"),
     ("King / NAGA", 8799, "/king"),
     ("Studio",      8770, "/studio"),

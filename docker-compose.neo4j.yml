@@ -1,0 +1,49 @@
+# STANDALONE neo4j -- the QUAD OS shared brain, ISOLATED from the v2 app stack.
+# Jimmy 2026-07-15: "isolate neo4j so a v2 deploy can never wipe the brain again."
+#
+# WHY: neo4j holds ~14,300 nodes (the whole-system graph; 14 native tools read/write it). It used to be
+# a service INSIDE docker-compose.v2.yml, so a `compose -f docker-compose.v2.yml up/down -v` recreated and
+# WIPED it (board item wb1784093106000). This standalone compose owns neo4j on its OWN lifecycle; the v2
+# compose no longer defines it (commented out there), so no v2 deploy can touch it.
+#
+# DATA SAFETY: reuses the SAME named volumes (external) that already hold the graph -- no migration, no copy.
+# native tools/ops/neo4j_container.py resolves the container by image/port, so the rename is transparent.
+#
+# Ops:  docker compose -f docker-compose.neo4j.yml up -d      # start / keep alive (restart:unless-stopped)
+#       docker compose -f docker-compose.neo4j.yml ps          # status
+#       (NEVER `down -v` unless you truly mean to destroy the brain; a plain `down` keeps the volume)
+services:
+  neo4j:
+    image: neo4j:5-community
+    container_name: quados-neo4j
+    environment:
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+      NEO4J_AUTH: none
+      NEO4J_server_default__listen__address: 0.0.0.0
+      NEO4J_server_memory_pagecache_size: 256M
+      NEO4J_server_memory_heap_initial__size: 256M
+      NEO4J_server_memory_heap_max__size: 256M
+    volumes:
+      - v2-neo4j-data:/data
+      - v2-neo4j-logs:/logs
+    ports:
+      - 127.0.0.1:7474:7474
+      - 127.0.0.1:7687:7687
+    restart: unless-stopped
+    mem_limit: 640m
+    mem_reservation: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:7474 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  # EXTERNAL = reuse the existing volumes that already hold the graph. Never recreated by this compose.
+  v2-neo4j-data:
+    external: true
+    name: 12sgi-king_v2-neo4j-data
+  v2-neo4j-logs:
+    external: true
+    name: 12sgi-king_v2-neo4j-logs

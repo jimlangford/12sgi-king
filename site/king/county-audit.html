@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"><style id="mobile-heal">img,video,svg{max-width:100%;height:auto}table,pre{max-width:100%}@media(max-width:680px){html{overflow-x:hidden}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}td,th{word-break:break-word;overflow-wrap:anywhere}pre{white-space:pre-wrap}}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>County Audit — govOS | 12 Stones Sovereign</title>
 <style>
@@ -42,7 +42,7 @@
   .sbadge.t .v{color:var(--teal)}.sbadge.g .v{color:var(--gold)}.sbadge.j .v{color:var(--jade)}.sbadge.r .v{color:var(--coral)}
   .trust-wrap{display:flex;align-items:center;gap:5px}
   .trust-wrap .tl{font-size:9px;color:var(--dim)}
-  .tbar{width:88px;height:7px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+  .tbar{width:88px;height:7px;background:rgba(90,151,230,.16);border-radius:3px;overflow:hidden}
   .tbar-fill{height:100%;background:linear-gradient(90deg,var(--jade),var(--teal));border-radius:3px;transition:width .5s}
   .tpct{font-size:11px;color:var(--jade);font-weight:bold}
   #ticker{grid-column:1/-1;background:rgba(255,107,107,.1);border-bottom:1px solid rgba(255,107,107,.25);font-size:8px;color:var(--coral);padding:2px 14px;overflow:hidden;white-space:nowrap}
@@ -130,7 +130,8 @@
   .nc-pill{display:inline-block;background:rgba(251,191,36,.1);color:var(--farmlands);font-size:8px;padding:2px 6px;border-radius:3px;margin:2px;border:1px solid rgba(251,191,36,.2)}
   ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--teal-dim);border-radius:2px}
 </style>
-<link rel="stylesheet" href="../../govos.css">
+<link rel="stylesheet" href="../govos.css">
+<link rel="stylesheet" href="../legibility_fix.css">
 </head>
 <body>
 <canvas id="bg"></canvas>
@@ -480,8 +481,8 @@ function renderMap(){
     <text x="124" y="13" fill="#4ade80" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT I — MAUKA ZONE</text>
     <text x="379" y="13" fill="#fbbf24" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT II — FARMLANDS + MAKAI</text>
     <text x="632" y="13" fill="#38bdf8" font-size="8.5" text-anchor="middle" font-family="monospace" letter-spacing="1">ACT III — ADVANCED SYSTEMS</text>
-    <line x1="252" y1="6" x2="252" y2="476" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>
-    <line x1="506" y1="6" x2="506" y2="476" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>`;
+    <line x1="252" y1="6" x2="252" y2="476" stroke="rgba(90,151,230,.13)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="506" y1="6" x2="506" y2="476" stroke="rgba(90,151,230,.13)" stroke-width="1" stroke-dasharray="4,4"/>`;
   const edgeHTML=EDGES.map(e=>{
     const p1=POS[e.f],p2=POS[e.t];if(!p1||!p2)return'';
     const done=G.done.has(e.f)&&G.done.has(e.t);
@@ -602,6 +603,6 @@ setTimeout(()=>log('🟡 N46 Sacred Forests: IoT invasive species alert triggere
 setTimeout(()=>log('🟡 N21 Coral Restoration: UV bleaching threshold exceeded — play Coral Bleaching Event card','warn'),4300);
 setTimeout(()=>log('🟡 N6 IoT Fire Detection: High temperature zone flagged — Lahaina sector','warn'),5000);
 </script>
-<script src="../../govos-shell.js" defer></script>
+<script src="../govos-shell.js" defer></script>
 </body>
 </html>

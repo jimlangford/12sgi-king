@@ -277,11 +277,11 @@ def prosecutor_intake(findings_to_flag):
 # ── public civic HTML table ───────────────────────────────────────────────────
 
 _STATUS_DISPLAY = {
-    "COMPLIANT":          ('<span style="color:#1a7f4a;font-weight:700">✓ Compliant</span>',    "#eaf7ef"),
-    "REVIEW_NEEDED":      ('<span style="color:#b07d00;font-weight:700">⚠ Review needed</span>', "#fffbe6"),
-    "FLAGGED":            ('<span style="color:#c0392b;font-weight:700">✗ Flagged</span>',       "#fdecea"),
-    "UPCOMING_UNPOSTED":  ('<span style="color:#5a6b7b">Agenda pending</span>',                  "#f5f8fc"),
-    "NO_AGENDA":          ('<span style="color:#888">No agenda posted</span>',                   "#f8f8f8"),
+    "COMPLIANT":          ('<span style="color:#4ec98a;font-weight:700">✓ Compliant</span>',    "#eaf7ef"),
+    "REVIEW_NEEDED":      ('<span style="color:#e3ad33;font-weight:700">⚠ Review needed</span>', "#fffbe6"),
+    "FLAGGED":            ('<span style="color:#f0857a;font-weight:700">✗ Flagged</span>',       "#fdecea"),
+    "UPCOMING_UNPOSTED":  ('<span style="color:#9fb2c8">Agenda pending</span>',                  "#f5f8fc"),
+    "NO_AGENDA":          ('<span style="color:#9aa8b8">No agenda posted</span>',                   "#f8f8f8"),
     "UNKNOWN":            ('<span style="color:#aaa">—</span>',                                  "#fff"),
 }
 
@@ -299,7 +299,7 @@ def build_civic_html(findings):
         notice_cell = (str(n) + " days") if n is not None else "—"
         pub_cell    = f["agenda_published_hst"] or "—"
         lurl        = f["legistar_url"] or ""
-        src         = ('<a href="' + _esc(lurl) + '" target="_blank" rel="noopener noreferrer" style="color:#0e4a84">Legistar ↗</a>') if lurl else "—"
+        src         = ('<a href="' + _esc(lurl) + '" target="_blank" rel="noopener noreferrer" style="color:#7fb2ff">Legistar ↗</a>') if lurl else "—"
         row = (
             '<tr style="background:' + bg + '">'
             '<td style="font-size:.82rem;max-width:260px">' + _esc(f["body"]) + '</td>'
@@ -308,7 +308,7 @@ def build_civic_html(findings):
             '<td style="white-space:nowrap">' + pub_cell + '</td>'
             '<td style="white-space:nowrap;text-align:center">' + notice_cell + '</td>'
             '<td>' + label + '</td>'
-            '<td style="font-size:.78rem;color:#5a6b7b">' + _esc(f["reason"]) + '</td>'
+            '<td style="font-size:.78rem;color:#9fb2c8">' + _esc(f["reason"]) + '</td>'
             '<td>' + src + '</td>'
             '</tr>'
         )
@@ -320,13 +320,21 @@ def build_civic_html(findings):
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
         '<title>Sunshine Law Compliance — Maui County Council — kilo-aupuni</title>\n'
         '<style>\n'
-        'body{font-family:system-ui,sans-serif;color:#1a2233;margin:0;padding:1rem}\n'
-        'h1{color:#0e4a84;font-size:1.2rem;margin-bottom:.3rem}\n'
-        'p.lead{font-size:.88rem;color:#3a4a5a;margin:.3rem 0 .8rem}\n'
+        'body{font-family:system-ui,sans-serif;color:#c8d6e6;margin:0;padding:1rem}\n'
+        'h1{color:#7fb2ff;font-size:1.2rem;margin-bottom:.3rem}\n'
+        'p.lead{font-size:.88rem;color:#9fb2c8;margin:.3rem 0 .8rem}\n'
         'table{border-collapse:collapse;width:100%;font-size:.83rem}\n'
         'th{background:#0e4a84;color:#fff;padding:.4rem .6rem;text-align:left;font-weight:600}\n'
         'td{padding:.35rem .5rem;border-bottom:1px solid #e3edf6;vertical-align:top}\n'
-        '.note{font-size:.75rem;color:#5a6b7b;margin-top:.6rem;border-top:1px solid #e3edf6;padding-top:.4rem}\n'
+        '.note{font-size:.75rem;color:#9fb2c8;margin-top:.6rem;border-top:1px solid #e3edf6;padding-top:.4rem}\n'
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
         '</style>\n</head>\n<body>\n'
         '<h1>Sunshine Law Compliance Monitor — Maui County Council Committee Meetings</h1>\n'
         '<p class="lead">'

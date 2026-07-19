@@ -16,7 +16,7 @@ https://auth.12sgi.com   ← Cloudflare Tunnel → king-server localhost:8101
 https://12sgi.com/king/#token=...   ← console picks up token, stores to localStorage
 ```
 
-The auth service runs in Docker on king-server (Tailscale host `12sgianonymous`).  
+The auth service runs in Docker on king-server (Tailscale host `king`).  
 A Cloudflare Tunnel exposes it publicly at `auth.12sgi.com` — no inbound ports required.
 
 ---
@@ -42,6 +42,14 @@ A Cloudflare Tunnel exposes it publicly at `auth.12sgi.com` — no inbound ports
 5. Click **Create**
 6. Copy the **Client ID** and **Client Secret**
 
+If Google supplied a downloaded web-client JSON file, import it without printing the secret:
+
+```powershell
+python tools/auth/import_google_credentials.py "$HOME\Downloads\credentials.json" --env-file .env.v2
+```
+
+The importer reports whether the downloaded configuration contains the required callback. If it says action is required, add `https://auth.12sgi.com/api/v2/auth/google/callback` under the web client's **Authorized redirect URIs**, then download the configuration again to confirm it.
+
 ---
 
 ## 2. Create .env.v2 on king-server
@@ -66,6 +74,14 @@ OAUTH_REDIRECT_BASE=https://12sgi.com/king/
 # Your GitHub login and/or Google email (comma-separated for multiple owners)
 OWNER_GITHUB_LOGINS=jimlangford
 OWNER_GOOGLE_EMAILS=you@gmail.com
+OWNER_MAGIC_EMAILS=you@gmail.com
+
+# Gmail SMTP uses an app password, not the normal Google account password.
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=you@gmail.com
+SMTP_PASS=<google-app-password>
+SMTP_FROM=you@gmail.com
 
 # CORS origins for the console front-end
 CORS_ORIGINS=https://jimlangford.github.io,https://12sgi.com
@@ -120,6 +136,9 @@ Verify:
 ```powershell
 curl https://auth.12sgi.com/api/v2/live
 # → {"status":"alive","service":"auth",...}
+
+curl https://auth.12sgi.com/api/v2/auth/providers
+# google.available and magic_email.available must both be true before launch
 ```
 
 ---
@@ -128,7 +147,7 @@ curl https://auth.12sgi.com/api/v2/live
 
 1. Open the Naga console (e.g., `https://12sgi.com/king/`)
 2. Click the 🔒 lock button in the sidebar
-3. Choose **Continue with GitHub** or **Continue with Google**
+3. Choose **Continue with Google** or enter an allowlisted email for a magic link
 4. Authorize — you'll be redirected back with the owner surfaces unlocked
 5. The session lasts **8 hours** and is stored in `localStorage`
 6. While the token is still valid, the console silently calls `POST /api/v2/auth/renew` before expiry so long editing sessions do not force a fresh OAuth round-trip
@@ -164,7 +183,7 @@ If Tailscale is still active and you want to test locally before setting up the 
 
 1. Set `KING_AUTH_URL` on the page (in browser console):
    ```js
-   window.KING_AUTH_URL = 'http://12sgianonymous.tail760750.ts.net:8101';
+   window.KING_AUTH_URL = 'http://king.tail760750.ts.net:8101';
    ```
 2. Or add `<script>window.KING_AUTH_URL='http://...'</script>` to `king_public_src/index.html` for local builds.
 3. The OAuth providers require HTTPS for callbacks, so for pure Tailscale testing you'll need to set up a local HTTPS proxy (e.g., `caddy reverse-proxy --from https://auth.local.ts --to :8101`).

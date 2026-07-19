@@ -13,7 +13,6 @@ open until this pass:
      problem on the laptop system. Responses are now tagged grounded:true/false, ungrounded
      fallbacks are explicitly flagged, and /health exposes an auditable grounded_ratio.
 """
-import importlib.util
 import json
 import hashlib
 import hmac
@@ -25,39 +24,18 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from fastapi.testclient import TestClient
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from tests.v2._test_helpers import load_module as _load_module  # noqa: E402  (see that module's docstring)
+
 AUTH_MAIN = ROOT / 'services' / 'auth' / 'app' / 'main.py'
 AI_MAIN = ROOT / 'services' / 'ai' / 'app' / 'main.py'
 HEALTH_MAIN = ROOT / 'services' / 'health' / 'app' / 'main.py'
-
-
-def _load_module(path, name, env_overrides=None, env_clear_keys=None):
-    """Load a service's main.py fresh under a controlled environment, so import-time guards (the
-    auth fail-closed secret check, the ai schema migration) run exactly as they would on process
-    boot. Restores the real environment afterward regardless of outcome."""
-    saved = dict(os.environ)
-    try:
-        if env_clear_keys:
-            for key in env_clear_keys:
-                os.environ.pop(key, None)
-        if env_overrides:
-            os.environ.update(env_overrides)
-        sys.modules.pop('services.service_metadata', None)
-        services_pkg = sys.modules.get('services')
-        if services_pkg is not None and hasattr(services_pkg, 'service_metadata'):
-            delattr(services_pkg, 'service_metadata')
-        spec = importlib.util.spec_from_file_location(name, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
-    finally:
-        os.environ.clear()
-        os.environ.update(saved)
 
 
 _AUTH_SECRET_KEYS = ('AUTH_SIGNING_SECRET', 'INTERNAL_SERVICE_TOKEN', 'GOVOS_ALLOW_DEV_SECRETS')
@@ -183,6 +161,31 @@ class TestAuthClaimValidation(unittest.TestCase):
             json={'token': token},
             headers={'X-Service-Token': 'claims-test-service-token'},
         )
+
+    def test_passkey_registration_requires_an_active_owner_session(self):
+        cases = (
+            (
+                '/api/v2/auth/passkey/register/begin',
+                {'user_id': 'owner-1', 'email': 'owner@example.com', 'display_name': 'Owner'},
+            ),
+            (
+                '/api/v2/auth/passkey/register/complete',
+                {'user_id': 'owner-1', 'credential_json': '{}', 'transports': []},
+            ),
+        )
+        for path, payload in cases:
+            with self.subTest(path=path):
+                response = self.client.post(path, json=payload)
+                self.assertEqual(response.status_code, 401)
+
+        resident_token = self._mint_token(role='Resident', scopes=['tenant:read'])
+        with mock.patch.object(self.module, 'OWNER_PASSKEY_EMAILS', {'owner@example.com'}):
+            response = self.client.post(
+                '/api/v2/auth/passkey/register/begin',
+                json={'user_id': 'owner-1', 'email': 'owner@example.com', 'display_name': 'Owner'},
+                headers={'Authorization': f'Bearer {resident_token}'},
+            )
+        self.assertEqual(response.status_code, 403)
 
     def test_expired_token_fails_introspection(self):
         token = self._mint_token(exp=int(self.module._now_utc().timestamp()) - 10)
@@ -683,6 +686,61 @@ class TestHealthReadinessHardening(unittest.TestCase):
         for body in (ready_body, fail_body):
             for key in ('service', 'version', 'commit_sha', 'build_timestamp', 'environment'):
                 self.assertIn(key, body)
+
+
+class TestAuthDbPathIsolationAcrossLoads(unittest.TestCase):
+    """Regression test for the 2026-07-16 CI failure (commit 4f35f13): loading
+    services/auth/app/main.py fresh per test does NOT by itself isolate the AUTH_DB_PATH
+    env override, because main.py's `from services.auth.app.passkeys import init_passkeys_db`
+    is a plain import -- Python caches services.auth.app.passkeys in
+    sys.modules, so a SECOND load in the same process silently reused the FIRST load's
+    DB_PATH (a tempdir that was often already deleted by then), instead of honoring its
+    own env_overrides. This test loads auth's main.py twice, each with its own fresh
+    tempdir, and asserts BOTH actually create their passkeys db at their OWN path -- the
+    exact behavior _test_helpers.load_module's sys.modules clearing exists to guarantee."""
+
+    def test_second_load_uses_its_own_db_path_not_the_first_loads(self):
+        tmp_a = tempfile.TemporaryDirectory(prefix='auth-db-isolation-a-')
+        tmp_b = tempfile.TemporaryDirectory(prefix='auth-db-isolation-b-')
+        self.addCleanup(tmp_a.cleanup)
+        self.addCleanup(tmp_b.cleanup)
+        db_path_a = str(Path(tmp_a.name) / 'auth.db')
+        db_path_b = str(Path(tmp_b.name) / 'auth.db')
+        self.assertNotEqual(db_path_a, db_path_b)
+
+        common_env = {
+            'AUTH_SIGNING_SECRET': 'isolation-test-secret',
+            'INTERNAL_SERVICE_TOKEN': 'isolation-test-service-token',
+        }
+
+        module_a = _load_module(
+            AUTH_MAIN, f'auth_isolation_a_{time.time_ns()}',
+            env_overrides={**common_env, 'AUTH_DB_PATH': db_path_a},
+            env_clear_keys=('GOVOS_ALLOW_DEV_SECRETS',),
+        )
+        self.assertTrue(
+            os.path.exists(db_path_a),
+            'first load did not create its passkeys db at its own AUTH_DB_PATH',
+        )
+
+        # Second load, different tempdir, same process -- this is exactly the scenario that
+        # silently broke before the sys.modules clearing fix: without it, passkeys.py
+        # stays cached from the first load and never re-reads AUTH_DB_PATH.
+        module_b = _load_module(
+            AUTH_MAIN, f'auth_isolation_b_{time.time_ns()}',
+            env_overrides={**common_env, 'AUTH_DB_PATH': db_path_b},
+            env_clear_keys=('GOVOS_ALLOW_DEV_SECRETS',),
+        )
+        self.assertTrue(
+            os.path.exists(db_path_b),
+            'second load did not create its own passkeys db -- it likely reused the first '
+            "load's cached DB_PATH (the exact regression this test guards against)",
+        )
+
+        # Both modules' own DB_PATH constant (read fresh at each load) must reflect the
+        # load that produced them, not whichever loaded last.
+        self.assertEqual(module_a.DB_PATH, db_path_a)
+        self.assertEqual(module_b.DB_PATH, db_path_b)
 
 
 if __name__ == '__main__':

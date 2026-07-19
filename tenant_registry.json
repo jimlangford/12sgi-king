@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-09 07:53 HST",
+ "generated": "2026-07-14 21:35 HST",
  "_note": "DERIVED registry — one source of truth for tenants + report classes. Canonical owners: civic=tenant_depth.py (DIMS/FILES/NAMES), creative=config/tenants.json. Regenerate via tenant_registry.py.",
  "report_classes": [
   {
@@ -244,9 +244,7 @@
     "agendas": [
      "agendas_honolulu.html"
     ],
-    "minutes": [
-     "minutes_hi-honolulu.html"
-    ],
+    "minutes": [],
     "council_votes": [],
     "charter": [
      "crosswalk_honolulu.html"
@@ -255,7 +253,7 @@
      "audit_balance.html"
     ]
    },
-   "report_classes_filled": 8,
+   "report_classes_filled": 7,
    "report_classes_total": 12
   },
   {
@@ -264,14 +262,18 @@
    "kind": "civic",
    "quadrant": "govos",
    "reports": {
-    "govern": [],
+    "govern": [
+     "officials_nyc.html"
+    ],
     "money": [
      "money_nyc.html"
     ],
     "contracts": [
      "contracts_nyc.html"
     ],
-    "federal": [],
+    "federal": [
+     "federal_money_nyc.html"
+    ],
     "crossref": [
      "parity_nyc.html"
     ],
@@ -283,9 +285,11 @@
     "minutes": [],
     "council_votes": [],
     "charter": [],
-    "audit": []
+    "audit": [
+     "govos_audit_ny.html"
+    ]
    },
-   "report_classes_filled": 4,
+   "report_classes_filled": 7,
    "report_classes_total": 12
   }
  ],
@@ -316,11 +320,11 @@
   },
   {
    "id": "film_keys",
-   "name": "KEYS OF THE STARFORGE",
+   "name": "Keys of the Starforge - Episode One: Resonance Awakened",
    "kind": "film",
    "quadrant": "film",
-   "render_register": "photoreal",
-   "status": "script_partial"
+   "render_register": "animated",
+   "status": "storyboarded_beta"
   },
   {
    "id": "film_seventh_stone",
@@ -385,11 +389,19 @@
    "quadrant": "film",
    "render_register": "photoreal",
    "status": "designed_producible_now"
+  },
+  {
+   "id": "govos",
+   "name": "govOS Civic Studio",
+   "kind": "civic",
+   "quadrant": "govos",
+   "render_register": "animated",
+   "status": "in_production"
   }
  ],
  "counts": {
   "civic": 6,
-  "creative": 12,
+  "creative": 13,
   "report_classes": 12
  }
 }

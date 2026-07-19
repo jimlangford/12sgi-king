@@ -117,7 +117,7 @@ def main():
     hits=sweep(); giving,tx=load_money()
     json.dump({"generated":gen,"hits":{k:v["by_tenant"] for k,v in hits.items()}},
               open(os.path.join(ST,"connections.json"),"w",encoding="utf-8"),indent=1,ensure_ascii=False)
-    sup="<style>.e .role{font:600 10.5px/1 Consolas,monospace;letter-spacing:.04em;text-transform:uppercase;color:#1f5a3c;background:#e7f3ec;border:1px solid #bfe0cc;border-radius:99px;padding:3px 9px}.op{color:var(--dim);font-size:.9rem;margin:.3rem 0;line-height:1.45}</style>"
+    sup="<style>.e .role{font:600 10.5px/1 Consolas,monospace;letter-spacing:.04em;text-transform:uppercase;color:#1f5a3c;background:#0f2540;border:1px solid #bfe0cc;border-radius:99px;padding:3px 9px}.op{color:var(--dim);font-size:.9rem;margin:.3rem 0;line-height:1.45}</style>"
     made=[]
     for slug,disp,tid,office in TEN:
         # orgs/persons whose name appears in THIS tenant's minutes, ranked by meeting count

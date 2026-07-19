@@ -29,7 +29,7 @@ def cfg():
         return json.load(open(CFG, encoding="utf-8"))
     except Exception:
         return {"mode": "tailscale",
-                "approve_base": "https://12sgianonymous.tail760750.ts.net/king",
+                "approve_base": "https://king.tail760750.ts.net/king",
                 "public_base": "https://12sgi.com", "owner_email": "jimlangford@me.com"}
 
 
@@ -39,7 +39,7 @@ def urls(c, item):
         b = c.get("public_base", "https://12sgi.com")
         return ("%s/approve.html?id=%s&t=%s&a=send" % (b, iid, tok),
                 "%s/approve.html?id=%s&t=%s&a=reject" % (b, iid, tok))
-    b = c.get("approve_base", "https://12sgianonymous.tail760750.ts.net/king")
+    b = c.get("approve_base", "https://king.tail760750.ts.net/king")
     return ("%s/approve?id=%s&t=%s" % (b, iid, tok),
             "%s/reject?id=%s&t=%s" % (b, iid, tok))
 
@@ -52,9 +52,9 @@ def render(item, approve_url, reject_url):
             "(Approving sends it from jrcsl@12sgi.com to the recipient above. The link is single-use.)"
             % (item.get("to"), item.get("subject"), body_prev, approve_url, reject_url))
     htmlbody = """<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#222">
-  <p style="background:#fff8e6;border:1px solid #e8d28a;border-radius:8px;padding:10px 14px;font-size:13px;color:#7a5a10;margin:0 0 14px">
+  <p style="background:#241d0e;border:1px solid #e8d28a;border-radius:8px;padding:10px 14px;font-size:13px;color:#e3c98a;margin:0 0 14px">
   ✋ <b>Approval needed</b> — this will be sent on your behalf only after you approve. Single-use links.</p>
-  <table style="width:100%%;background:#f6f8f7;border-radius:8px;font-size:13.5px;color:#333">
+  <table style="width:100%%;background:#0f2540;border-radius:8px;font-size:13.5px;color:#333">
     <tr><td style="padding:10px 14px"><b>To:</b> %s<br><b>Subject:</b> %s<br><b>From:</b> jrcsl@12sgi.com</td></tr>
   </table>
   <pre style="white-space:pre-wrap;background:#fff;border:1px solid #eee;border-radius:8px;padding:14px;font-size:13px;line-height:1.5;color:#222;font-family:Georgia,serif">%s</pre>

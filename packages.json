@@ -30,13 +30,13 @@
     {
       "id": "sage",
       "icon": "🎮",
-      "name": "Sage Gameplay",
-      "tagline": "Play the journey across the 54 nodes.",
+      "name": "Games · Sage",
+      "tagline": "Every game free to play. Live multiplayer when you want it.",
       "status": "available",
-      "body": "The Sage Game — Mauka to Makai, the lineages and the scrolls, the override and the synergy. A subscription to play, learn, and carry the cosmology.",
+      "body": "All TribeGameStudios games — SAGE (the 54-node journey, Mauka to Makai, the lineages and the scrolls), Konane, Weiqi and the growing catalog — are free to play, solo, always. The Multiplayer Circles Pass unlocks live circles: real-time turns with friends across the catalog. (Reconciled 2026-07-16 to the live WooCommerce store; prices are read from it, never hardcoded.)",
       "tiers": [
-        {"name": "Player", "price": "subscription", "for": "full access to the 54-node journey"},
-        {"name": "Ohana", "price": "subscription", "for": "shared play for a family or classroom"}
+        {"name": "Solo", "price": "free", "for": "every game, always"},
+        {"name": "Multiplayer Circles Pass", "price": "free during beta", "for": "live real-time circles with friends — post-beta pricing announced before anything changes"}
       ]
     },
     {

@@ -1,6 +1,74 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20260717",
+      "slug": "dev-digest-20260717",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**July 17, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (13% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- The SAGE 2.5D two-project-split fork is RESOLVED = INTERIM PATH\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260716",
+      "slug": "dev-digest-20260716",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-16",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**July 16, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (7% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- SGI COMPILE GATE CLEARED end-to-end headless via jobrunner - stage(17 files)+uproject merge+Build.bat+DT import+parity PASS\n- FOUR-DELIVERABLES CONTRACT IS NOW WORKING CODE, VERIFIED ON A REAL MESH\n- Civic money maps PROPAGATED + made DURABLE\n- The Hawaiian games played during MAKAHIKI, in 3D, added AS PART OF SAGE = the 3D destination; the 2.5D build ramps toward it\n- The Quad - a reusable well-being tool (calm the mind / open the heart / trust the gut), generalized from the owner's private wellbeing page\n- PUBLISH the civic site\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260715",
+      "slug": "dev-digest-20260715",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-15",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**July 15, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (2% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Unformed entities operate as DIVISIONS of 12 Stones Global Inc\n- Project/archive/redo layer wired into the pipeline (additive, guarded)\n- The project/archive/redo layer is live in tools/studio/\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260714",
+      "slug": "dev-digest-20260714",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**July 14, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (0% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Unified 12sgi-king site builders\n- NAGA backend AURORA-GOLD design spec committed a8b657f at docs/superpowers/specs/2026-07-14-naga-backend-aurora-gold-design.md\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "sage-1783647024",
       "slug": "sage-moon-day-20260709",
       "title": "The Moon Now Moves in SAGE — the ahupuaʻa game",

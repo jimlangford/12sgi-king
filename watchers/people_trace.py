@@ -103,7 +103,7 @@ def page(slug,disp,tid,orgs,gen,mr,ao_po):
          ".org .oh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}"
          ".org .oh b{color:var(--accent);font-size:1.02rem}.org .ot{font:600 12px/1 'JetBrains Mono',Consolas,monospace;color:var(--accent2)}"
          ".org .op{color:var(--dim);font-size:.9rem;margin-top:.35rem;line-height:1.45}"
-         ".org .ofx{font-size:.9rem;color:#13243d;background:#eef6f0;border:1px solid #bfe0cc;border-radius:8px;padding:.45rem .7rem;margin:.4rem 0;line-height:1.5}"
+         ".org .ofx{font-size:.9rem;color:#13243d;background:#0f2540;border:1px solid #bfe0cc;border-radius:8px;padding:.45rem .7rem;margin:.4rem 0;line-height:1.5}"
          ".org .ofx .ti{color:#1f5a3c;font-family:Consolas,monospace;font-size:.8rem}</style>")
     cb=("<div class=cb>&#9790;&#9728; <b>Curse-breaker.</b> Under tonight's %s, an organization&rsquo;s people giving "
         "together is lawful and ordinary &mdash; the question is only whether a later decision answers the public or "

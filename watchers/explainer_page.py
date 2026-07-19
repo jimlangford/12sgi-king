@@ -63,7 +63,7 @@ def _verify_base():
         return ""
 
 STYLE = """<style>
-:root{--bg:#fff;--panel:#e7eef8;--line:#bacde6;--ink:#13243d;--dim:#41536b;--faint:#6d7f97;--accent:#00356b;--accent2:#1259a3;--ok:#1f8a5b;--gold:#b8860b}
+:root{--bg:#081420;--panel:#0f2540;--line:#26456a;--ink:#eaf2fc;--dim:#9fb2c8;--faint:#6d7f97;--accent:#4a9eff;--accent2:#6cb0f0;--ok:#1f8a5b;--gold:#e3ad33}
 *{box-sizing:border-box}body{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;max-width:840px;margin:0 auto;padding:0 16px 48px;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55}
 a{color:var(--accent2)}h1{font-size:1.7rem;margin:.2rem 0}h2{color:var(--accent);font-size:1.12rem;margin:1.4rem 0 .5rem}
 .eyebrow{letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:600;font-size:.78rem}
@@ -71,7 +71,7 @@ a{color:var(--accent2)}h1{font-size:1.7rem;margin:.2rem 0}h2{color:var(--accent)
 /* curse-breaker hero: the moon wanes to dark, then the sun (Ao) breaks over it — light, not accusation */
 .sky{position:relative;height:140px;border-radius:16px;overflow:hidden;margin:.8rem 0;
  background:linear-gradient(180deg,#0b1733 0%,#16306b 45%,#3f6bb0 75%,#cfe0f4 100%)}
-.moon{position:absolute;left:18%;top:30px;width:54px;height:54px;border-radius:50%;background:#eef3fb;
+.moon{position:absolute;left:18%;top:30px;width:54px;height:54px;border-radius:50%;background:#0f2540;
  box-shadow:inset -16px -4px 0 0 #16306b,0 0 22px rgba(238,243,251,.7);animation:wax 9s ease-in-out infinite}
 @keyframes wax{0%{box-shadow:inset -16px -4px 0 0 #16306b,0 0 12px rgba(238,243,251,.4)}
  50%{box-shadow:inset 0 0 0 0 #16306b,0 0 26px rgba(255,247,224,.9)}
@@ -92,15 +92,15 @@ a{color:var(--accent2)}h1{font-size:1.7rem;margin:.2rem 0}h2{color:var(--accent)
 .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 input,textarea,select{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:.5rem .6rem;width:100%}
 .moonpanel{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.mdisc{width:46px;height:46px;border-radius:50%;background:#eef3fb;box-shadow:inset -12px -3px 0 0 #16306b;flex:0 0 auto}
+.mdisc{width:46px;height:46px;border-radius:50%;background:#0f2540;box-shadow:inset -12px -3px 0 0 #16306b;flex:0 0 auto}
 .tag{display:inline-block;font-size:.74rem;font-weight:600;border-radius:99px;padding:.16rem .6rem;border:1px solid var(--line);background:#fff;color:var(--accent)}
 .asp{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #dbe5f1;padding:.5rem .1rem}
 .asp input{width:auto;margin-top:.25rem}.asp .l{font-weight:600;color:var(--ink)}.asp .d{color:var(--dim);font-size:.85rem}
-.feat{background:#fbf6ea;border-color:#e6d8a8}
+.feat{background:#241d0e;border-color:#5c4a1e}
 .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;border:0;border-radius:10px;padding:.6rem 1.1rem;font-size:.95rem;cursor:pointer}
 .btn:hover{background:var(--accent2)}.muted{color:var(--faint);font-size:.85rem}
 .cb{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:11px;padding:.8rem 1rem;margin:1rem 0;color:var(--dim);line-height:1.55;font-size:.92rem}
-.quote{background:#eef6f0;border:1px solid #bfe0cc;border-radius:11px;padding:.7rem 1rem;margin:.6rem 0;color:#1f5a3c;font-size:.95rem}
+.quote{background:#0f2540;border:1px solid #bfe0cc;border-radius:11px;padding:.7rem 1rem;margin:.6rem 0;color:#1f5a3c;font-size:.95rem}
 .foot{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:.7rem;color:var(--faint);font-size:.78rem}
 </style>"""
 

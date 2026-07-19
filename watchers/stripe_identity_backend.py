@@ -373,7 +373,7 @@ class H(BaseHTTPRequestHandler):
             import urllib.parse as _up, urllib.request as _ur, secrets as _sec
             qs = up.parse_qs(u.query); code = qs.get("code", [""])[0]
             appid = os.environ.get("FACEBOOK_APP_ID", ""); secret = os.environ.get("FACEBOOK_APP_SECRET", "")
-            redir = os.environ.get("FB_REDIRECT_URI", "https://12sgianonymous.tail760750.ts.net:8443/auth/facebook/callback")
+            redir = os.environ.get("FB_REDIRECT_URI", "https://king.tail760750.ts.net:8443/auth/facebook/callback")
             email = ""
             try:
                 tok = json.loads(_ur.urlopen("https://graph.facebook.com/v19.0/oauth/access_token?" + _up.urlencode(
@@ -403,7 +403,7 @@ class H(BaseHTTPRequestHandler):
             envk = {"facebook": "FACEBOOK_APP_ID", "google": "GOOGLE_CLIENT_ID", "apple": "APPLE_CLIENT_ID"}.get(prov, "")
             appid = os.environ.get(envk, "") if envk else ""
             if prov == "facebook" and appid:
-                redir = os.environ.get("FB_REDIRECT_URI", "https://12sgianonymous.tail760750.ts.net:8443/auth/facebook/callback")
+                redir = os.environ.get("FB_REDIRECT_URI", "https://king.tail760750.ts.net:8443/auth/facebook/callback")
                 _scope = os.environ.get("FACEBOOK_SCOPE", "public_profile")   # business apps reject raw 'email'; add it back via FACEBOOK_SCOPE=email,public_profile once permitted (or config_id)
                 _cfg = os.environ.get("FACEBOOK_CONFIG_ID", "")
                 _p = {"client_id": appid, "redirect_uri": redir, "response_type": "code", "state": "fb"}

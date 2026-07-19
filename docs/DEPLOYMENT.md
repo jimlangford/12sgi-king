@@ -11,7 +11,7 @@ processes on custom ports, so the v2 services (`services/auth`, `services/tenant
 `services/documents`, `services/storage`, `services/ai`) cannot run there. That deploy path stays
 scoped to the WordPress/static side of the project.
 
-The real deploy target for v2 is **king-server** (the Tailscale host `12sgianonymous`, tailnet
+The real deploy target for v2 is **king-server** (the Tailscale host `king`, tailnet
 `tail760750.ts.net`) — the same private machine already running the workboard/self-heal automation.
 
 **V2 deploy path: self-hosted GitHub Actions runner (not SSH/rsync)**

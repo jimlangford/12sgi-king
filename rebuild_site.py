@@ -22,7 +22,11 @@ import sys
 import argparse
 import pathlib
 
-SITE_DIR = pathlib.Path(__file__).parent
+# SITE_DIR must point at the built site/ directory so asset_prefix() calculates depth
+# relative to site/ (depth-0 for root pages, depth-1 for king/, depth-2 for king/civic/).
+# Bug fixed 2026-07-14: was parent (repo root), making every root page get depth=1 → "../"
+# prefix → looked for govos-shell.js one level above site/, where it doesn't exist.
+SITE_DIR = pathlib.Path(__file__).parent / "site"
 
 # ── Patterns to strip (old inline blobs) ──────────────────────────────────────
 
@@ -87,18 +91,45 @@ def asset_prefix(html_path):
     depth = len(rel.parts) - 1
     return '../' * depth
 
-def inject_css(html, prefix):
-    tag = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
-    if 'govos.css' in html:
+def _dedupe(html, tag):
+    """Keep the FIRST occurrence of an exact stamped tag, drop any later duplicates.
+    Bug fixed 2026-07-15 (audit-quad-os, review wf_2eed4d6e-c1d verify pass): pages that entered the
+    stamp with a pre-existing govos link AND a generator-emitted one had BOTH rewritten to the same
+    correct tag by re.sub — 95 live pages shipped with two identical <link>s. Dedupe after stamping."""
+    first = html.find(tag)
+    if first == -1:
         return html
-    # Insert before </head>
-    return html.replace('</head>', tag + '\n</head>', 1)
+    head = html[:first + len(tag)]
+    tail = html[first + len(tag):].replace(tag + '\n', '').replace(tag, '')
+    return head + tail
+
+def inject_css(html, prefix):
+    correct = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
+    # Replace any existing govos.css link (any relative prefix) with the correct depth-aware one.
+    # Bug fixed 2026-07-14: old code skipped if 'govos.css' present — never corrected wrong prefix.
+    fixed = re.sub(r'<link\b[^>]+href="[^"]*govos\.css"[^>]*/?>',  correct, html)
+    if fixed == html:
+        fixed = html.replace('</head>', correct + '\n</head>', 1)
+    return _dedupe(fixed, correct)
 
 def inject_js(html, prefix):
-    tag = '<script src="{}govos-shell.js" defer></script>'.format(prefix)
-    if 'govos-shell.js' in html:
-        return html
-    return html.replace('</body>', tag + '\n</body>', 1)
+    correct = '<script src="{}govos-shell.js" defer></script>'.format(prefix)
+    # Replace any existing govos-shell.js script (any relative prefix) with the correct one.
+    fixed = re.sub(r'<script\b[^>]+src="[^"]*govos-shell\.js"[^>]*></script>', correct, html)
+    if fixed == html:
+        fixed = html.replace('</body>', correct + '\n</body>', 1)
+    return _dedupe(fixed, correct)
+
+def inject_legibility(html, prefix):
+    """R13 (James 2026-07-10 'fix all the black text box ... make sure all of the text is plainly
+    legible'): stamp legibility_fix.css as the LAST stylesheet in <head> — the drop-in relies on
+    winning the cascade. Same depth-aware replace/insert/dedupe discipline as the govos stamp.
+    Runs AFTER inject_css so it always lands below the govos link."""
+    correct = '<link rel="stylesheet" href="{}legibility_fix.css">'.format(prefix)
+    fixed = re.sub(r'<link\b[^>]+href="[^"]*legibility_fix\.css"[^>]*/?>', correct, html)
+    if fixed == html:
+        fixed = html.replace('</head>', correct + '\n</head>', 1)
+    return _dedupe(fixed, correct)
 
 def inject_tenant_switcher(html, tenant_id):
     """
@@ -167,9 +198,10 @@ def rebuild_page(html_path, dry_run=False, verbose=True):
     # 3. Determine prefix for asset paths
     prefix = asset_prefix(path)
 
-    # 4. Inject shared CSS + JS
+    # 4. Inject shared CSS + JS (legibility LAST so it wins the cascade — R13)
     html = inject_css(html, prefix)
     html = inject_js(html, prefix)
+    html = inject_legibility(html, prefix)
 
     # 5. Normalise CRLF → LF
     html = html.replace('\r\n', '\n').replace('\r', '\n')
@@ -197,8 +229,18 @@ def main():
 
     verbose = not args.quiet
 
+    # ── site/-only guard (review 2026-07-14: latent clobber hazard) ──
+    # This script rewrites HTML in place. It must NEVER be able to touch anything outside the
+    # built site/ tree (an earlier revision globbed the repo root — 800+ non-site pages at risk).
+    site_dir = SITE_DIR.resolve()
+    if site_dir.name != 'site' or not site_dir.is_dir():
+        sys.exit(f'rebuild_site: refusing to run — SITE_DIR must be the built site/ directory (got {site_dir})')
+
     if args.file:
-        files = [SITE_DIR / args.file]
+        target = (SITE_DIR / args.file).resolve()
+        if site_dir not in target.parents:
+            sys.exit(f'rebuild_site: refusing --file outside site/: {target}')
+        files = [target]
     else:
         files = sorted(SITE_DIR.glob('**/*.html'))
         # Exclude git/cache dirs

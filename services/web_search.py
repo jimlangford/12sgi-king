@@ -12,7 +12,7 @@ Usage:
 import json
 import urllib.request
 import urllib.parse
-from typing import list
+
 import time
 
 TIMEOUT = 5
