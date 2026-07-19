@@ -256,6 +256,23 @@ class StudioAssetCrosswalkTests(unittest.TestCase):
             status = main.clip_projection_status()
         self.assertTrue(status["ready"])
 
+    def test_startup_projection_runs_in_a_daemon_worker(self):
+        main._STARTUP_REFRESH.update({"state": "pending", "error": "", "started_at": 0,
+                                      "finished_at": 0})
+        with mock.patch.object(main, "reindex", return_value={"total": 12}), \
+                mock.patch.object(main, "STUDIO_NEO4J_HTTP", "http://neo4j"), \
+                mock.patch.object(main, "sync_crosswalk_graph", return_value={"ok": True}), \
+                mock.patch.object(main, "sync_clip_graph", return_value={"ok": True}), \
+                mock.patch.object(main, "_crosswalk", return_value={"counts": {}}), \
+                mock.patch.object(main, "_clip_crosswalk", return_value={"counts": {}}), \
+                mock.patch.object(main, "_log_receipt"):
+            worker = main._start_startup_refresh()
+            worker.join(timeout=2)
+
+        self.assertTrue(worker.daemon)
+        self.assertFalse(worker.is_alive())
+        self.assertEqual(main._STARTUP_REFRESH["state"], "ready")
+
     def test_clip_recommendations_filter_semantic_state_and_tracking_role(self):
         data = {"_schema": "studio-clip-learning-v1", "clips": [
             {"id": "one", "emotion": "hope", "role": "coverage",

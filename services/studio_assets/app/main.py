@@ -39,6 +39,7 @@ import mimetypes
 import os
 import sqlite3
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -871,9 +872,12 @@ def clip_projection_status() -> dict:
 
 
 # ── App ─────────────────────────────────────────────────────────────────────────────────────
-@asynccontextmanager
-async def lifespan(_app: FastAPI):
-    _init_db()
+_STARTUP_REFRESH = {"state": "pending", "error": "", "started_at": 0, "finished_at": 0}
+
+
+def _startup_refresh() -> None:
+    _STARTUP_REFRESH.update({"state": "running", "error": "", "started_at": int(time.time()),
+                             "finished_at": 0})
     try:
         stats = reindex()
         graph = sync_crosswalk_graph() if STUDIO_NEO4J_HTTP else {"ok": False, "error": "not configured"}
@@ -883,8 +887,24 @@ async def lifespan(_app: FastAPI):
         stats["neo4j"] = graph
         stats["neo4j_clips"] = clip_graph
         _log_receipt("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats)
+        state = "ready" if (not STUDIO_NEO4J_HTTP or (graph.get("ok") and clip_graph.get("ok"))) else "degraded"
+        _STARTUP_REFRESH.update({"state": state, "finished_at": int(time.time())})
     except Exception as exc:
+        _STARTUP_REFRESH.update({"state": "error", "error": str(exc)[:240],
+                                 "finished_at": int(time.time())})
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
+
+
+def _start_startup_refresh() -> threading.Thread:
+    worker = threading.Thread(target=_startup_refresh, name="studio-assets-startup-refresh", daemon=True)
+    worker.start()
+    return worker
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    _init_db()
+    _start_startup_refresh()
     yield
 
 
@@ -946,7 +966,8 @@ def _row(r: sqlite3.Row) -> dict:
 def live():
     return {"status": "alive", "service": "studio-assets", "version": VERSION, "port": 8108,
             "crosswalk_schema": _crosswalk().get("_schema"),
-            "clip_crosswalk_schema": _clip_crosswalk().get("_schema")}
+            "clip_crosswalk_schema": _clip_crosswalk().get("_schema"),
+            "startup_refresh": _STARTUP_REFRESH.get("state", "unknown")}
 
 
 @app.get(f"{API}/ready")

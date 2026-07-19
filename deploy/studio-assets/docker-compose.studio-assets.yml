@@ -90,12 +90,12 @@ services:
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/output",  target: /data/assets/comfy_output }
       - { type: bind, read_only: true, source: "C:/Users/12sgi/Documents/ComfyUI/input",   target: /data/assets/comfy_input }
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8108/api/v2/ready', timeout=3)"]
+      # Docker health is process liveness. /ready remains the deeper auth/catalog/Neo4j release gate.
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8108/api/v2/live', timeout=3)"]
       interval: 30s
       timeout: 5s
       retries: 3
-      # A first shared-graph projection stages ~15k relationships on the memory-capped local Neo4j.
-      # Subsequent fingerprint-matched starts are fast, but the first release start gets honest grace.
+      # Keep startup grace for index scans without making graph projection a container restart signal.
       start_period: 180s
     labels:
       com.12sgi.lane: "studio-assets"
