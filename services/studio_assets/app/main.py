@@ -533,38 +533,11 @@ def scan_supplemental() -> int:
     return scanned
 
 
-<<<<<<< main
-def _emit(action: str, event: str, payload: dict, *, status: str = "queued") -> None:
-    """Report to the board like a lane (best-effort; a bus hiccup never breaks the service)."""
-    try:
-        from services.v2_workboard import emit_workboard_job
-
-        envelope = build_job_envelope(
-            domain="studio-assets",
-            service="studio-assets",
-            action=action,
-            state=status,
-            payload=payload or {},
-            lane="engineering",
-            metadata={"emitter": WORKBOARD_SOURCE},
-        )
-        next_payload = dict(payload or {})
-        next_payload["job_envelope"] = envelope
-        emit_workboard_job(
-            source=WORKBOARD_SOURCE,
-            action=action,
-            event=event,
-            lane="engineering",  # IO-only asset indexing self-heals; no human gate
-            status=status,
-            payload=next_payload,
-        )
-=======
 def _log_receipt(action: str, event: str, payload: dict) -> None:
     """Keep routine service health out of the actionable workboard queue."""
     try:
         print(json.dumps({"kind": "studio-assets-receipt", "action": action,
                           "event": event, "payload": payload}, ensure_ascii=False), file=sys.stderr)
->>>>>>> origin/main
     except Exception:
         pass
 
@@ -585,10 +558,6 @@ def reindex() -> dict:
     _log_receipt(
         "studio.index.rescanned",
         f"STUDIO ASSET INDEX: {total} assets ({n_index} indexed + {n_scan} scanned)",
-<<<<<<< main
-        {"total": total, "from_index": n_index, "from_scan": n_scan},
-        status="done",
-=======
         {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS},
     )
     return {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS}
@@ -660,7 +629,6 @@ def _neo4j(statements: list[dict], timeout: int = 90) -> dict:
         STUDIO_NEO4J_HTTP,
         data=json.dumps({"statements": statements}).encode("utf-8"),
         headers=headers,
->>>>>>> origin/main
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         result = json.loads(response.read().decode("utf-8", "replace"))
@@ -913,10 +881,6 @@ def _startup_refresh() -> None:
                              "finished_at": 0})
     try:
         stats = reindex()
-<<<<<<< main
-        _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats, status="done")
-    except Exception as exc:  # never let a bad ingest stop the read API from serving
-=======
         graph = sync_crosswalk_graph() if STUDIO_NEO4J_HTTP else {"ok": False, "error": "not configured"}
         clip_graph = sync_clip_graph() if STUDIO_NEO4J_HTTP else {"ok": False, "error": "not configured"}
         stats["crosswalk"] = (_crosswalk().get("counts") or {})
@@ -929,7 +893,6 @@ def _startup_refresh() -> None:
     except Exception as exc:
         _STARTUP_REFRESH.update({"state": "error", "error": str(exc)[:240],
                                  "finished_at": int(time.time())})
->>>>>>> origin/main
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
 
 
