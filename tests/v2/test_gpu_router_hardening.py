@@ -1,8 +1,3 @@
-<<<<<<< main
-import importlib.util
-import json
-=======
->>>>>>> origin/main
 import os
 import sqlite3
 import sys
@@ -468,20 +463,12 @@ class TestGpuRouterDeploymentSurfaces(unittest.TestCase):
 class TestDeployWorkflowHardening(unittest.TestCase):
     def test_workflow_validates_compose_before_restart(self):
         text = WORKFLOW.read_text()
-<<<<<<< main
-        validate_cmd = "docker compose -f docker-compose.v2.yml config"
-        restart_cmd = "docker compose -f docker-compose.v2.yml up -d --build"
-        self.assertIn(validate_cmd, text)
-        self.assertIn(restart_cmd, text)
-        self.assertLess(text.index(validate_cmd), text.index(restart_cmd))
-=======
         self.assertIn("- name: Validate V2 compose plan and print inventory", text)
         self.assertIn("docker compose -f docker-compose.v2.yml config", text)
         self.assertLess(
             text.index("- name: Validate V2 compose plan and print inventory"),
             text.index("- name: Deploy V2 Docker services"),
         )
->>>>>>> origin/main
 
     def test_workflow_declares_explicit_service_inventory_and_ports(self):
         text = WORKFLOW.read_text()
