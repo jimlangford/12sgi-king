@@ -47,7 +47,6 @@ from contextlib import asynccontextmanager, contextmanager
 
 from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.responses import FileResponse, JSONResponse
-from services.job_envelope import build_job_envelope
 
 from services.studio_assets.app import security
 
@@ -533,38 +532,11 @@ def scan_supplemental() -> int:
     return scanned
 
 
-<<<<<<< main
-def _emit(action: str, event: str, payload: dict, *, status: str = "queued") -> None:
-    """Report to the board like a lane (best-effort; a bus hiccup never breaks the service)."""
-    try:
-        from services.v2_workboard import emit_workboard_job
-
-        envelope = build_job_envelope(
-            domain="studio-assets",
-            service="studio-assets",
-            action=action,
-            state=status,
-            payload=payload or {},
-            lane="engineering",
-            metadata={"emitter": WORKBOARD_SOURCE},
-        )
-        next_payload = dict(payload or {})
-        next_payload["job_envelope"] = envelope
-        emit_workboard_job(
-            source=WORKBOARD_SOURCE,
-            action=action,
-            event=event,
-            lane="engineering",  # IO-only asset indexing self-heals; no human gate
-            status=status,
-            payload=next_payload,
-        )
-=======
 def _log_receipt(action: str, event: str, payload: dict) -> None:
     """Keep routine service health out of the actionable workboard queue."""
     try:
         print(json.dumps({"kind": "studio-assets-receipt", "action": action,
                           "event": event, "payload": payload}, ensure_ascii=False), file=sys.stderr)
->>>>>>> origin/main
     except Exception:
         pass
 
@@ -585,10 +557,6 @@ def reindex() -> dict:
     _log_receipt(
         "studio.index.rescanned",
         f"STUDIO ASSET INDEX: {total} assets ({n_index} indexed + {n_scan} scanned)",
-<<<<<<< main
-        {"total": total, "from_index": n_index, "from_scan": n_scan},
-        status="done",
-=======
         {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS},
     )
     return {"total": total, "from_index": n_index, "from_scan": n_scan, "catalog": _CATALOG_STATUS}
@@ -660,7 +628,6 @@ def _neo4j(statements: list[dict], timeout: int = 90) -> dict:
         STUDIO_NEO4J_HTTP,
         data=json.dumps({"statements": statements}).encode("utf-8"),
         headers=headers,
->>>>>>> origin/main
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         result = json.loads(response.read().decode("utf-8", "replace"))
@@ -913,10 +880,6 @@ def _startup_refresh() -> None:
                              "finished_at": 0})
     try:
         stats = reindex()
-<<<<<<< main
-        _emit("studio.assets.online", f"STUDIO ASSETS ONLINE: {stats['total']} assets on :8108", stats, status="done")
-    except Exception as exc:  # never let a bad ingest stop the read API from serving
-=======
         graph = sync_crosswalk_graph() if STUDIO_NEO4J_HTTP else {"ok": False, "error": "not configured"}
         clip_graph = sync_clip_graph() if STUDIO_NEO4J_HTTP else {"ok": False, "error": "not configured"}
         stats["crosswalk"] = (_crosswalk().get("counts") or {})
@@ -929,7 +892,6 @@ def _startup_refresh() -> None:
     except Exception as exc:
         _STARTUP_REFRESH.update({"state": "error", "error": str(exc)[:240],
                                  "finished_at": int(time.time())})
->>>>>>> origin/main
         print(f"[studio-assets] startup ingest error (serving anyway): {exc}", file=sys.stderr)
 
 
@@ -958,36 +920,6 @@ except Exception as _proj_err:
     print(f"[studio-assets] project_api not loaded: {_proj_err}", file=sys.stderr)
 
 
-# ── Phase 2.2 Studio department APIs ─────────────────────────────────────────
-try:
-    from services.studio_assets.app.storyboard_api import router as _storyboard_router
-    app.include_router(_storyboard_router)
-except Exception as _sb_err:
-    print(f"[studio-assets] storyboard_api not loaded: {_sb_err}", file=_sys.stderr)
-
-try:
-    from services.studio_assets.app.script_api import router as _script_router
-    app.include_router(_script_router)
-except Exception as _sc_err:
-    print(f"[studio-assets] script_api not loaded: {_sc_err}", file=_sys.stderr)
-
-try:
-    from services.studio_assets.app.fcp_adapter import router as _fcp_router
-    app.include_router(_fcp_router)
-except Exception as _fcp_err:
-    print(f"[studio-assets] fcp_adapter not loaded: {_fcp_err}", file=_sys.stderr)
-
-try:
-    from services.studio_assets.app.logic_adapter import router as _logic_router
-    app.include_router(_logic_router)
-except Exception as _lg_err:
-    print(f"[studio-assets] logic_adapter not loaded: {_lg_err}", file=_sys.stderr)
-
-try:
-    from services.studio_assets.app.game_api import router as _game_router
-    app.include_router(_game_router)
-except Exception as _gm_err:
-    print(f"[studio-assets] game_api not loaded: {_gm_err}", file=_sys.stderr)
 
 def _require_maintenance_auth(authorization: str | None) -> dict | None:
     return security.require_studio_owner(authorization)
@@ -1017,8 +949,7 @@ def auth_dependency_status() -> dict:
     return {"required": True, "configured": True, "ready": ready}
 
 
-def _row(r) -> dict:
-    """Convert a sqlite3.Row to a clean API-safe dict (strips internal fields)."""
+def _row(r: sqlite3.Row) -> dict:
     d = dict(r)
     d["has_thumb"] = bool(d.get("thumb_file") and os.path.isfile(d["thumb_file"]))
     try:

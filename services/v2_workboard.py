@@ -5,8 +5,6 @@ import time
 from pathlib import Path
 from uuid import uuid4
 
-from services.job_envelope import build_job_envelope, transition_job_envelope
-
 # Platform event bus — best-effort; import failure must never break workboard.
 try:
     from services.event_bus import publish_event as _publish_platform_event
@@ -182,16 +180,6 @@ def emit_workboard_job(
     else:
         atypes = list(_DEFAULT_APPROVAL_TYPES)
     coerced_nodes = _coerce_dag_nodes(dag_nodes)
-    envelope = build_job_envelope(
-        domain="workboard",
-        service="v2_workboard",
-        action=action,
-        state=queue_status,
-        payload=payload or {},
-        lane=job_lane,
-        correlation_id=correlation_id,
-        metadata={"workboard_schema": WORKBOARD_SCHEMA},
-    )
     entry = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -211,7 +199,6 @@ def emit_workboard_job(
             "correlation_id": correlation_id,
             "payload": payload or {},
             "dag_nodes": coerced_nodes,
-            "envelope": envelope,
         },
     }
     path = log_path or DISPATCH_LOG
@@ -262,42 +249,6 @@ def read_workboard_log(log_path: Path | None = None) -> list[dict]:
     return entries
 
 
-def _effective_job_status(job_id: str, entries: list[dict]) -> str | None:
-    current: str | None = None
-    for entry in entries:
-        job = entry.get("job") or {}
-        if entry.get("kind") == "job" and job.get("id") == job_id:
-            current = entry.get("status")
-            continue
-        if entry.get("kind") == "tombstone" and job.get("correlation_id") == job_id:
-            current = entry.get("status")
-    return current
-
-
-def _latest_tombstone(
-    job_id: str,
-    entries: list[dict],
-    *,
-    status: str,
-    approval_type: str | None = None,
-) -> dict | None:
-    wanted = (status or "").strip().lower()
-    wanted_approval = (approval_type or "").strip().lower()
-    for entry in reversed(entries):
-        if entry.get("kind") != "tombstone":
-            continue
-        if (entry.get("status") or "").strip().lower() != wanted:
-            continue
-        job = entry.get("job") or {}
-        if job.get("correlation_id") != job_id:
-            continue
-        if wanted == "approved" and wanted_approval:
-            if (entry.get("approval_type") or "").strip().lower() != wanted_approval:
-                continue
-        return entry
-    return None
-
-
 def resolve_workboard_job(
     job_id: str,
     outcome: str,
@@ -315,20 +266,6 @@ def resolve_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    entries = read_workboard_log(path)
-    existing = _latest_tombstone(job_id, entries, status="done")
-    if existing:
-        return existing
-    previous_status = _effective_job_status(job_id, entries)
-    base_envelope = build_job_envelope(
-        domain="workboard",
-        service="v2_workboard",
-        action="resolved",
-        state=previous_status or "queued",
-        correlation_id=job_id,
-        metadata={"workboard_schema": WORKBOARD_SCHEMA, "source": source},
-    )
-    envelope = transition_job_envelope(base_envelope, "done", metadata_update={"outcome": outcome})
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -345,7 +282,6 @@ def resolve_workboard_job(
             "status": "done",
             "correlation_id": job_id,
             "payload": {"outcome": outcome},
-            "envelope": envelope,
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -380,22 +316,6 @@ def approve_workboard_job(
     if atype not in APPROVAL_TYPES:
         atype = "editorial"
     path = log_path or DISPATCH_LOG
-<<<<<<< main
-    entries = read_workboard_log(path)
-    existing = _latest_tombstone(job_id, entries, status="approved", approval_type=atype)
-    if existing:
-        return existing
-    previous_status = _effective_job_status(job_id, entries)
-    base_envelope = build_job_envelope(
-        domain="workboard",
-        service="v2_workboard",
-        action="approved",
-        state=previous_status or "pending-approval",
-        correlation_id=job_id,
-        metadata={"workboard_schema": WORKBOARD_SCHEMA, "source": approver},
-    )
-    envelope = transition_job_envelope(base_envelope, "approved", metadata_update={"approval_type": atype})
-=======
     for existing in reversed(read_workboard_log(path)):
         existing_job = existing.get("job") or {}
         existing_type = existing.get("approval_type") or existing_job.get("payload", {}).get(
@@ -409,7 +329,6 @@ def approve_workboard_job(
             and existing_type == atype
         ):
             return existing
->>>>>>> origin/main
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -427,7 +346,6 @@ def approve_workboard_job(
             "status": "approved",
             "correlation_id": job_id,
             "payload": {"approver": approver, "note": note or "", "approval_type": atype},
-            "envelope": envelope,
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -458,20 +376,6 @@ def reject_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    entries = read_workboard_log(path)
-    existing = _latest_tombstone(job_id, entries, status="rejected")
-    if existing:
-        return existing
-    previous_status = _effective_job_status(job_id, entries)
-    base_envelope = build_job_envelope(
-        domain="workboard",
-        service="v2_workboard",
-        action="rejected",
-        state=previous_status or "queued",
-        correlation_id=job_id,
-        metadata={"workboard_schema": WORKBOARD_SCHEMA, "source": rejector},
-    )
-    envelope = transition_job_envelope(base_envelope, "rejected", metadata_update={"reason": reason})
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -488,7 +392,6 @@ def reject_workboard_job(
             "status": "rejected",
             "correlation_id": job_id,
             "payload": {"rejector": rejector, "reason": reason},
-            "envelope": envelope,
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -523,20 +426,6 @@ def archive_workboard_job(
     Returns the tombstone entry dict.
     """
     path = log_path or DISPATCH_LOG
-    entries = read_workboard_log(path)
-    existing = _latest_tombstone(job_id, entries, status="archived")
-    if existing:
-        return existing
-    previous_status = _effective_job_status(job_id, entries)
-    base_envelope = build_job_envelope(
-        domain="workboard",
-        service="v2_workboard",
-        action="archived",
-        state=previous_status or "queued",
-        correlation_id=job_id,
-        metadata={"workboard_schema": WORKBOARD_SCHEMA, "source": archiver},
-    )
-    envelope = transition_job_envelope(base_envelope, "archived", metadata_update={"note": note or ""})
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),
@@ -553,7 +442,6 @@ def archive_workboard_job(
             "status": "archived",
             "correlation_id": job_id,
             "payload": {"archiver": archiver, "note": note or ""},
-            "envelope": envelope,
         },
     }
     path.parent.mkdir(parents=True, exist_ok=True)
