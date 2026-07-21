@@ -1,5 +1,6 @@
 # Kilo Aupuni watchers are stdlib-only except for PDF extraction (agendas/minutes/packets).
 pypdf>=4.0
+pyyaml>=6.0
 
 # Neo4j Python driver — required for AuraDB Free cloud sync (watchers/aura_sync.py)
 # and king-bridge AuraDB fallback. Not required for local-only Neo4j HTTP use.
