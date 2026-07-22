@@ -1,19 +1,23 @@
 {
   "_note": "The productized Quad-OS platform — subscription packages + multi-tenant onboarding. Presentation layer only; NO billing/credentials here. Drives platform.html. Public-safe: describes the OFFERINGS, never the private tools/data behind them (the grants library, prosecutorial back end, etc. stay owner-only).",
+  "_render": "platform.html quadrant/tier/tagline sections are GENERATED from this file by build_site.py platform_packages lane — edit here, never in the html.",
   "platform": "Quad-OS",
-  "tagline": "One civic + creative operating system. Many tenants. Built on Maui, under the aloha of Christ.",
-  "foundation": "Four pillars — Food · Education · Truth · Charter — served as one system.",
+  "tagline": "A studio-first public shell with games, films, music, and a separate civic lane. Built on Maui, under the aloha of Christ.",
+  "foundation": "Games and story lead the front door; govOS stays visible without owning the hero.",
+  "quadrants_heading": "Public lanes",
   "quadrants": [
-    {"icon": "🏛", "name": "govOS", "what": "Public-record civic transparency for any government — officials, money, votes, contracts, agendas, charter-to-law.", "audience": "counties · states · cities"},
-    {"icon": "🎬", "name": "Music Video", "what": "AI music-video production with the artist's true likeness — one photo + a song becomes a finished video.", "audience": "artists"},
-    {"icon": "🎞", "name": "Film", "what": "Feature films built shot-by-shot from a written script, the cast face-locked across every scene.", "audience": "storytellers"},
-    {"icon": "🎮", "name": "Game · Sage", "what": "The 54-node Sage Game — a playable journey across the Hawaiian lineages and the sovereignty scrolls.", "audience": "players · learners"}
+    {"icon": "🎮", "name": "Games", "what": "TribeGameStudios, SAGE, Konane, Weiqi, Hawaiian Konami, and the Mahjong crosswalk — one playable canon.", "audience": "players · learners"},
+    {"icon": "🎞", "name": "Film", "what": "Feature films built shot-by-shot from a written script, carried as a first-class public studio lane.", "audience": "storytellers"},
+    {"icon": "♫", "name": "Music", "what": "Songs, score, and catalog growth come before any downstream video treatment on the public shell.", "audience": "artists · listeners"},
+    {"icon": "🏛", "name": "govOS", "what": "Public-record civic transparency remains available as a dedicated lane — dashboards, jurisdictions, and charter-to-law.", "audience": "counties · states · cities"}
   ],
+  "tenant_heading": "Built for many — onboard a new tenant",
   "multi_tenant": {
     "headline": "Every government, every artist, every mission is a tenant.",
     "body": "Each tenant is tracked separately — its own data, its own reports, its own surfaces — so the work never bleeds between them. Onboarding a new county, a new state, or a new creator is the same repeatable step: register the tenant, point it at its sources, and its pages fill themselves.",
-    "examples": ["A county wanting its own transparency portal", "A state legislature money/votes lens", "An artist's full music-video + film pipeline", "A mission needing the grant engine"]
+    "examples": ["A county wanting its own transparency portal", "A state legislature money/votes lens", "A studio carrying games, films, and music under one canon", "A mission needing the grant engine"]
   },
+  "subscriptions_heading": "Subscriptions",
   "subscriptions": [
     {
       "id": "grants",

@@ -1129,7 +1129,12 @@ def main():
         # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills).
         # entity_*.html dossiers have dynamic names -> glob them in (+ the dossier index).
         import glob as _glob
-        _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+        # discover entity dossiers from the LIVE tree AND the committed seed (CI has only the seed),
+        # so entity_*.html builds in CI too, not just locally. (2026-07-22 audit-quad-os: fixed the
+        # seed-blind glob that 404'd every linked entity page on public.)
+        _ent = set(os.path.basename(q) for q in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+        _ent |= set(os.path.basename(q) for q in _glob.glob(os.path.join(SEED_MAUIOS, "entity_*.html")))
+        _dyn = ["entity_index.html"] + sorted(_ent)
         for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
             src = mauios_src(rel)
             if os.path.exists(src):
@@ -1266,9 +1271,16 @@ def main():
         # donors_<t>/ dir (donor_watch.py derives the href from basename(OUT_DIR)). Copy them all.
         # Extended 2026-07-14 (audit-quad-os, other-tenant repatch — closed 32 broken donor-profile links).
         import glob as _glob
-        _donor_dirs = ["donors"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "donors_*")) if os.path.isdir(p))
-        for sub in _donor_dirs:
+        # discover donor dirs from BOTH the live tree and the committed seed (CI = seed only), and copy
+        # from whichever has them (live preferred). Fixes the seed-blind glob that 404'd donor profiles
+        # linked from money_behind_officials*.html in CI. (2026-07-22 audit-quad-os.)
+        _dd = set(["donors"])
+        for _root in (MAUIOS, SEED_MAUIOS):
+            _dd |= set(os.path.basename(p) for p in _glob.glob(os.path.join(_root, "donors_*")) if os.path.isdir(p))
+        for sub in sorted(_dd):
             s = os.path.join(MAUIOS, sub)
+            if not os.path.isdir(s):
+                s = os.path.join(SEED_MAUIOS, sub)
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(SITE, sub), dirs_exist_ok=True)
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
@@ -1284,6 +1296,8 @@ def main():
         # full archive stays in reports/mauios/bids (owner source). Added 2026-07-14 (audit-quad-os,
         # Maui ingest repatch; runs after EXTRA_PAGES so the referencing pages already exist in site/).
         _bids_src = os.path.join(MAUIOS, "bids")
+        if not os.path.isdir(_bids_src):
+            _bids_src = os.path.join(SEED_MAUIOS, "bids")   # CI has only the seed
         if os.path.isdir(_bids_src):
             import glob as _glob
             import urllib.parse as _uq
@@ -1389,13 +1403,55 @@ def main():
     with _lane("platform_packages"):
         # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
         # when the laptop is up, else falls back to this GitHub mirror.
-        # Quad-OS platform/packages page (productized: quadrants + subscriptions + multi-tenant onboarding).
-        for _pf in ("platform.html", "packages.json"):
-            _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), _pf)
-            if os.path.exists(_p):
-                shutil.copy(_p, os.path.join(SITE, _pf))
-        if os.path.exists(os.path.join(SITE, "platform.html")):
-            print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
+        # Quad-OS platform/packages page — platform.html is RENDERED from packages.json (the single
+        # source of truth; the html<->json drift ended 2026-07-22). Everything between the
+        # <!-- PACKAGES:START --> / <!-- PACKAGES:END --> markers in the source platform.html is
+        # regenerated here from packages.json (tagline, lane/quadrant cards, tenant block,
+        # subscription tiers). All text is html-escaped; NO prices/copy are hardcoded here — they
+        # come only from packages.json. Edit packages.json, never the html section.
+        import html as _pkhtml
+        _pksrc = os.path.dirname(os.path.abspath(__file__))
+        _pkgp = os.path.join(_pksrc, "packages.json")
+        _platp = os.path.join(_pksrc, "platform.html")
+        if os.path.exists(_pkgp) and os.path.exists(_platp):
+            _pkg = json.load(open(_pkgp, encoding="utf-8"))
+            _pke = _pkhtml.escape
+            _pksec = ['<p class="tagline">%s</p><p class="found">%s</p>'
+                      % (_pke(_pkg.get("tagline", "")), _pke(_pkg.get("foundation", "")))]
+            _pkq = "".join('<div class="quad"><div class="qh"><span class="qi">%s</span><h3>%s</h3></div><p>%s</p><span class="aud">%s</span></div>'
+                           % (_pke(_q.get("icon", "")), _pke(_q.get("name", "")), _pke(_q.get("what", "")), _pke(_q.get("audience", "")))
+                           for _q in _pkg.get("quadrants", []))
+            _pksec.append('<div class="eyebrow">%s</div><div class="quads">%s</div>'
+                          % (_pke(_pkg.get("quadrants_heading", "Public lanes")), _pkq))
+            _pkmt = _pkg.get("multi_tenant", {})
+            _pksec.append('<div class="eyebrow">%s</div>' % _pke(_pkg.get("tenant_heading", "Built for many — onboard a new tenant")))
+            _pksec.append('<div class="tenant"><h2>%s</h2><p>%s</p><ul>%s</ul></div>'
+                          % (_pke(_pkmt.get("headline", "")), _pke(_pkmt.get("body", "")),
+                             "".join("<li>%s</li>" % _pke(_px) for _px in _pkmt.get("examples", []))))
+            _pkcards = []
+            for _psub in _pkg.get("subscriptions", []):
+                _pkst = _psub.get("status", "coming")
+                _pktiers = "".join('<div class="tier"><div class="tn">%s</div><div class="tp">%s</div><div class="tf">%s</div></div>'
+                                   % (_pke(_pt.get("name", "")), _pke(_pt.get("price", "")), _pke(_pt.get("for", "")))
+                                   for _pt in _psub.get("tiers", []))
+                _pkcards.append('<div class="sub"><div class="sh"><span class="si">%s</span><h3>%s</h3><span class="badge %s">%s</span></div>'
+                                '<p class="tag">%s</p><p class="body">%s</p><div class="tiers">%s</div></div>'
+                                % (_pke(_psub.get("icon", "")), _pke(_psub.get("name", "")),
+                                   "avail" if _pkst == "available" else "soon", _pke(_pkst),
+                                   _pke(_psub.get("tagline", "")), _pke(_psub.get("body", "")), _pktiers))
+            _pksec.append('<div class="eyebrow">%s</div>%s'
+                          % (_pke(_pkg.get("subscriptions_heading", "Subscriptions")), "".join(_pkcards)))
+            _plat = open(_platp, encoding="utf-8").read()
+            _pkS, _pkE = "<!-- PACKAGES:START -->", "<!-- PACKAGES:END -->"
+            _pki, _pkj = _plat.find(_pkS), _plat.find(_pkE)
+            if _pki != -1 and _pkj > _pki:
+                _plat = _plat[:_pki + len(_pkS)] + "\n " + "\n ".join(_pksec) + "\n " + _plat[_pkj:]
+                print("  + platform.html: rendered from packages.json (single source of truth)")
+            else:
+                print("  ! platform.html PACKAGES markers missing — shipped UNRENDERED (restore the markers)")
+            with open(os.path.join(SITE, "platform.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_plat)
+            shutil.copy(_pkgp, os.path.join(SITE, "packages.json"))
         _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
         if os.path.exists(_go):
             _goraw = open(_go, encoding="utf-8").read()
