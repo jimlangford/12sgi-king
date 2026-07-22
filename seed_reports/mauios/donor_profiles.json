@@ -13,8 +13,8 @@
    "Noncandidate Committee": 36000.0
   },
   "realestate": {
-   "count": 69,
-   "total": 93235.32,
+   "count": 70,
+   "total": 94235.32,
    "donors": [
     {
      "name": "Ledcor Development LP",
@@ -629,8 +629,8 @@
    "Candidate": 2382.2
   },
   "realestate": {
-   "count": 3,
-   "total": 4500.0,
+   "count": 4,
+   "total": 4750.0,
    "donors": [
     {
      "name": "Hawaii Realtors PAC",
@@ -649,6 +649,12 @@
      "amount": 1000.0,
      "employer": "Keller Williams Realty",
      "occupation": "Principle Broker"
+    },
+    {
+     "name": "Klimo-Janout, Sandy",
+     "amount": 250.0,
+     "employer": "Complete Tickets",
+     "occupation": "Salesperson"
     }
    ]
   },
