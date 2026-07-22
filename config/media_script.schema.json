@@ -1,0 +1,82 @@
+{
+  "schema_id": "media_script.schema",
+  "title": "Media Script",
+  "description": "Phase 2.2 Writing Room script record: a script advances through the writing workflow states defined in media_writing_roles.v2.json and terminates at script_locked.",
+  "type": "object",
+  "properties": {
+    "script_id": {"type": "string", "description": "Unique script identifier."},
+    "production_id": {"type": "string", "description": "Owning production."},
+    "title": {"type": "string"},
+    "logline": {"type": "string"},
+    "status": {
+      "type": "string",
+      "enum": [
+        "concept",
+        "premise_ready",
+        "architecture_ready",
+        "beat_sheet_ready",
+        "scene_outline_ready",
+        "first_draft",
+        "dialogue_review",
+        "continuity_review",
+        "cultural_review",
+        "table_read_review",
+        "approval_pending",
+        "approved",
+        "script_locked"
+      ]
+    },
+    "locked": {"type": "boolean", "description": "True once the script is locked; locked scripts cannot be overwritten."},
+    "revision": {"type": "integer", "minimum": 1},
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scene_id": {"type": "string"},
+          "slugline": {"type": "string"},
+          "scene_purpose": {"type": "string"},
+          "dialogue": {
+            "type": "array",
+            "items": {"$ref": "media_dialogue.schema.json"}
+          }
+        },
+        "required": ["scene_id", "slugline"]
+      }
+    },
+    "cultural_review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_review", "approved", "flagged", "requires_elder_consultation"]
+        },
+        "notes": {"type": "string"}
+      },
+      "description": "Cultural review state is preserved as-is; it is never auto-approved or fabricated."
+    },
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"}
+  },
+  "required": ["script_id", "production_id", "title", "status"],
+  "example": {
+    "script_id": "HWTF-SCRIPT-001",
+    "production_id": "prod-001",
+    "title": "Test Script",
+    "logline": "",
+    "status": "concept",
+    "locked": false,
+    "revision": 1,
+    "scenes": [
+      {
+        "scene_id": "S01",
+        "slugline": "EXT. HALEAKALA - PRE-DAWN",
+        "scene_purpose": "Establish",
+        "dialogue": []
+      }
+    ],
+    "cultural_review": {"status": "pending", "notes": ""},
+    "created_at": "2026-07-22T00:00:00Z",
+    "updated_at": "2026-07-22T00:00:00Z"
+  }
+}

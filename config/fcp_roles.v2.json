@@ -1,0 +1,56 @@
+{
+  "version": "2.0",
+  "description": "Final Cut Pro role assignments for 12SGI Studio timelines (FCPXML 1.11, Final Cut Pro 10.6+). Roles are assigned to clips on export so audio lanes stay organized in FCP.",
+  "roles": [
+    {
+      "role_id": "Video",
+      "kind": "video",
+      "description": "Primary picture lane for storyboard and animated shots."
+    },
+    {
+      "role_id": "Dialogue",
+      "kind": "audio",
+      "description": "On-camera character dialogue."
+    },
+    {
+      "role_id": "Narration",
+      "kind": "audio",
+      "description": "Narrator voice-over."
+    },
+    {
+      "role_id": "Music",
+      "kind": "audio",
+      "description": "Song and score music stems."
+    },
+    {
+      "role_id": "Effects",
+      "kind": "audio",
+      "description": "Designed sound effects."
+    },
+    {
+      "role_id": "Ambience",
+      "kind": "audio",
+      "description": "Background ambience beds."
+    },
+    {
+      "role_id": "Foley",
+      "kind": "audio",
+      "description": "Performed foley elements."
+    },
+    {
+      "role_id": "Room Tone",
+      "kind": "audio",
+      "description": "Room tone fill for dialogue smoothing."
+    },
+    {
+      "role_id": "Temporary Score",
+      "kind": "audio",
+      "description": "Temp score placed during assembly; replaced before lock."
+    },
+    {
+      "role_id": "Final Score",
+      "kind": "audio",
+      "description": "Final approved score from the Logic session."
+    }
+  ]
+}

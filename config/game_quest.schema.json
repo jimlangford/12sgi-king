@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "game_quest",
+  "description": "Schema for a game quest record. Quests belong to a level within a game project and can reference dialogue trees and cinematics; they export to Unreal DataTable rows.",
+  "type": "object",
+  "properties": {
+    "quest_id": {
+      "type": "string",
+      "description": "Quest record ID."
+    },
+    "game_id": {
+      "type": "string",
+      "description": "Owning game project."
+    },
+    "level_id": {
+      "type": "string",
+      "description": "Level this quest belongs to."
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["main", "side", "hidden"],
+      "default": "main"
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "objective_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "dialogue_tree_ids": {
+      "type": "array",
+      "description": "Dialogue trees attached to this quest.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cinematic_ids": {
+      "type": "array",
+      "description": "Cinematics attached to this quest.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": ["game_id", "title"],
+  "example": {
+    "quest_id": "QUEST-001",
+    "game_id": "GAME-001",
+    "level_id": "LEVEL-001",
+    "title": "The Ancestor Question",
+    "description": "",
+    "type": "main",
+    "objectives": [
+      {
+        "objective_id": "OBJ-001",
+        "text": "Speak with the Elder."
+      }
+    ],
+    "rewards": [],
+    "triggers": [],
+    "dialogue_tree_ids": ["DTREE-001"],
+    "cinematic_ids": ["CIN-001"],
+    "created_at": "2026-07-22T00:00:00+00:00"
+  }
+}

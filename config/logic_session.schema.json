@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "logic_session.schema.json",
+  "title": "Logic Session Manifest",
+  "description": "Phase 2.2 Logic Pro session manifest. Deterministic file-based interchange for the owner's local Logic Pro installation - no UI automation. Sessions carry cues, a tempo map, and the standard audio stem layout.",
+  "type": "object",
+  "required": ["id", "production_id", "sample_rate", "bit_depth", "frame_rate", "stems"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Session id, LGCX-prefixed.",
+      "pattern": "^LGCX-[A-F0-9]{10}$"
+    },
+    "production_id": {
+      "type": "string",
+      "description": "Owning production id."
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "sample_rate": {
+      "type": "integer",
+      "default": 48000
+    },
+    "bit_depth": {
+      "type": "integer",
+      "default": 24
+    },
+    "frame_rate": {
+      "type": "string",
+      "default": "24fps"
+    },
+    "cues": {
+      "type": "array",
+      "description": "Audio cues attached to this session. Items conform to audio_cue.schema.json.",
+      "items": {
+        "$ref": "audio_cue.schema.json"
+      },
+      "default": []
+    },
+    "tempo_map": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timecode", "bpm"],
+        "properties": {
+          "timecode": {
+            "type": "string",
+            "description": "SMPTE timecode HH:MM:SS:FF."
+          },
+          "bpm": {
+            "type": "number"
+          },
+          "time_signature": {
+            "type": "string",
+            "default": "4/4"
+          }
+        }
+      },
+      "default": []
+    },
+    "stems": {
+      "type": "array",
+      "description": "Audio package stem layout under /production/audio/.",
+      "items": {
+        "type": "object",
+        "required": ["stem", "path"],
+        "properties": {
+          "stem": {
+            "type": "string",
+            "enum": [
+              "dialogue",
+              "narration",
+              "adr",
+              "music",
+              "ambience",
+              "foley",
+              "effects",
+              "stems",
+              "mixes"
+            ]
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "default": 1
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "example": {
+    "id": "LGCX-0A1B2C3D4E",
+    "production_id": "prod-001",
+    "title": "HWTF Main Session",
+    "sample_rate": 48000,
+    "bit_depth": 24,
+    "frame_rate": "24fps",
+    "cues": [
+      {
+        "cue_id": "HWTF-MUS-014",
+        "scene_id": "HWTF-S04",
+        "start_timecode": "01:04:12:00",
+        "duration_seconds": 34.5,
+        "tempo_bpm": 72.0,
+        "key": "D minor",
+        "purpose": "ancestral tension",
+        "logic_marker": "MOKUULA THEME ENTRY",
+        "stem_requirements": ["music", "voice"]
+      }
+    ],
+    "tempo_map": [
+      {
+        "timecode": "01:04:12:00",
+        "bpm": 72.0,
+        "time_signature": "4/4"
+      }
+    ],
+    "stems": [
+      {"stem": "dialogue", "path": "audio/dialogue/"},
+      {"stem": "narration", "path": "audio/narration/"},
+      {"stem": "adr", "path": "audio/adr/"},
+      {"stem": "music", "path": "audio/music/"},
+      {"stem": "ambience", "path": "audio/ambience/"},
+      {"stem": "foley", "path": "audio/foley/"},
+      {"stem": "effects", "path": "audio/effects/"},
+      {"stem": "stems", "path": "audio/stems/"},
+      {"stem": "mixes", "path": "audio/mixes/"}
+    ],
+    "version": 1,
+    "archived": false
+  }
+}

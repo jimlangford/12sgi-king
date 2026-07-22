@@ -1,0 +1,52 @@
+{
+  "schema_id": "media_dialogue.schema",
+  "title": "Media Dialogue Block",
+  "description": "Phase 2.2 Writing Room dialogue block: a single character line with intent and delivery timing that flows downstream into shot plans, FCP roles, and Logic stems.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "description": "Unique dialogue block identifier."},
+    "scene_id": {"type": "string"},
+    "character": {"type": "string"},
+    "text": {"type": "string"},
+    "intent": {"type": "string", "description": "What the line is doing dramatically."},
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "pace": {"type": "string", "enum": ["slow", "measured", "normal", "quick", "rapid"]},
+        "volume": {"type": "string", "enum": ["whisper", "quiet", "normal", "loud", "shout"]},
+        "emotion": {"type": "string"},
+        "estimated_duration_seconds": {
+          "type": "number",
+          "minimum": 0.0,
+          "description": "Estimated spoken duration in seconds; feeds shot-plan timing."
+        }
+      }
+    },
+    "cultural_review_status": {
+      "type": "string",
+      "enum": ["pending", "in_review", "approved", "flagged", "requires_elder_consultation"],
+      "description": "Preserved as-is; uncertainty is flagged and held, never fabricated into approval."
+    },
+    "fcp_role": {
+      "type": "string",
+      "enum": ["Dialogue", "Narration", "ADR"],
+      "description": "Final Cut Pro audio role this block maps to on export."
+    }
+  },
+  "required": ["character", "text"],
+  "example": {
+    "id": "HWTF-S01-D004",
+    "scene_id": "S01",
+    "character": "NARRATOR",
+    "text": "They ask us a question.",
+    "intent": "invite reflection",
+    "delivery": {
+      "pace": "slow",
+      "volume": "quiet",
+      "emotion": "reflective",
+      "estimated_duration_seconds": 6.8
+    },
+    "cultural_review_status": "pending",
+    "fcp_role": "Narration"
+  }
+}

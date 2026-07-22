@@ -339,6 +339,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Owner",
                 "scopes": ["ops:owner"],
             },
+            headers=self.service_headers,
         )
         resident = client.post(
             "/api/v2/auth/session",
@@ -349,6 +350,7 @@ class TestClaimClientMigration(unittest.TestCase):
                 "role": "Resident",
                 "scopes": ["tenant:read"],
             },
+            headers=self.service_headers,
         )
         self.assertEqual(owner.status_code, 200)
         self.assertEqual(resident.status_code, 200)

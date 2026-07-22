@@ -380,7 +380,8 @@ def approve_workboard_job(
     if atype not in APPROVAL_TYPES:
         atype = "editorial"
     path = log_path or DISPATCH_LOG
-    for existing in reversed(read_workboard_log(path)):
+    entries = read_workboard_log(path)
+    for existing in reversed(entries):
         existing_job = existing.get("job") or {}
         existing_type = existing.get("approval_type") or existing_job.get("payload", {}).get(
             "approval_type",
@@ -393,6 +394,20 @@ def approve_workboard_job(
             and existing_type == atype
         ):
             return existing
+    # RESTORED 2026-07-22: the envelope construction below was dropped by the 07-21 merge-conflict
+    # cleanup, leaving `"envelope": envelope` referencing an undefined name (NameError on every
+    # approval). Recovered verbatim from bee9056 ("Implement shared canonical envelope"), which is
+    # the commit that introduced this function's envelope contract.
+    previous_status = _effective_job_status(job_id, entries)
+    base_envelope = build_job_envelope(
+        domain="workboard",
+        service="v2_workboard",
+        action="approved",
+        state=previous_status or "pending-approval",
+        correlation_id=job_id,
+        metadata={"workboard_schema": WORKBOARD_SCHEMA, "source": approver},
+    )
+    envelope = transition_job_envelope(base_envelope, "approved", metadata_update={"approval_type": atype})
     tombstone = {
         "ts": int(time.time()),
         "iso": _iso_now(),

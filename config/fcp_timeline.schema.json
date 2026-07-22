@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "fcp_timeline",
+  "description": "Schema for a Final Cut Pro timeline record in the Studio FCP adapter. Shots carry immutable asset IDs so FCPXML exports survive storyboard archival.",
+  "type": "object",
+  "properties": {
+    "timeline_id": {
+      "type": "string",
+      "description": "Timeline record ID (FCP-XXXXXXXXXX)."
+    },
+    "production_id": {
+      "type": "string",
+      "description": "Owning production."
+    },
+    "title": {
+      "type": "string"
+    },
+    "frame_rate": {
+      "type": "string",
+      "default": "24p"
+    },
+    "resolution": {
+      "type": "string",
+      "default": "1920x1080"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "shots": {
+      "type": "array",
+      "description": "Ordered shots on the timeline spine.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "shot_id": {
+            "type": "string"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "Immutable asset ID. Never regenerated; survives storyboard archive/restore and is carried verbatim into FCPXML."
+          },
+          "asset_hash": {
+            "type": "string",
+            "description": "Content hash of the source asset, preserved for provenance."
+          },
+          "start_seconds": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "duration_seconds": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "timeline_role": {
+            "type": "string",
+            "default": "Video"
+          },
+          "proxy_path": {
+            "type": "string"
+          },
+          "handles_frames": {
+            "type": "integer",
+            "default": 24
+          },
+          "marker_notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["shot_id", "asset_id", "asset_hash"]
+      }
+    },
+    "markers": {
+      "type": "array",
+      "description": "Timeline-level markers.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timecode_seconds": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": ["timecode_seconds"]
+      }
+    },
+    "roles": {
+      "type": "array",
+      "description": "Role assignments active on this timeline (see config/fcp_roles.v2.json).",
+      "items": {
+        "type": "string"
+      }
+    },
+    "color_notes": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": ["production_id", "shots", "markers"],
+  "example": {
+    "timeline_id": "FCP-001",
+    "production_id": "prod-001",
+    "title": "HWTF Assembly",
+    "frame_rate": "24p",
+    "resolution": "1920x1080",
+    "duration_seconds": 6.8,
+    "shots": [
+      {
+        "shot_id": "SH001",
+        "asset_id": "ASSET-IMMUTABLE-001",
+        "asset_hash": "hash001",
+        "start_seconds": 0.0,
+        "duration_seconds": 6.8,
+        "timeline_role": "Video",
+        "proxy_path": "proxies/SH001.mov",
+        "handles_frames": 24,
+        "marker_notes": []
+      }
+    ],
+    "markers": [
+      {
+        "timecode_seconds": 0.0,
+        "note": "Assembly start"
+      }
+    ],
+    "roles": ["Video", "Dialogue", "Narration", "Music"],
+    "color_notes": "",
+    "version": 1
+  }
+}

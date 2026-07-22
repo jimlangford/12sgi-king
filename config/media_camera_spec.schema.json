@@ -1,0 +1,140 @@
+{
+  "_about": "Phase 2.2 camera-spec schema. Authored 2026-07-22 from the executable specification in tests/v2/test_media_phase22.py::TestCameraSpecSchema (the original PR #372 artifact was never committed - config/ is gitignored and the author's local copy was lost).",
+  "version": "2.0",
+  "field_definitions": {
+    "shot_id": {
+      "type": "string",
+      "description": "Stable shot identifier, e.g. HWTF-S04-SH012."
+    },
+    "tenant": {
+      "type": "string",
+      "description": "Owning studio tenant id."
+    },
+    "production": {
+      "type": "string",
+      "description": "Production id this shot belongs to."
+    },
+    "scene": {
+      "type": "string",
+      "description": "Scene id the shot realizes."
+    },
+    "shot_type": {
+      "type": "string",
+      "enum": [
+        "storyboard_frame",
+        "character_reference",
+        "animation_shot",
+        "establishing",
+        "coverage",
+        "insert",
+        "atmospheric_insert"
+      ],
+      "description": "The kind of shot; drives engine routing and gating."
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Planned duration of the shot in seconds."
+    },
+    "storyboard_engine": {
+      "type": "string",
+      "enum": ["kandinsky5"],
+      "description": "Storyboard/keyframe generation is locked to the Kandinsky5 local engine."
+    },
+    "motion_engine": {
+      "type": "string",
+      "enum": ["ltx", "wan_vace_1_3b"],
+      "description": "Image-to-video engine. ltx is the primary; wan_vace_1_3b is experimental-only (disabled in engine roles, requires benchmark before any use)."
+    },
+    "camera": {
+      "type": "object",
+      "fields": {
+        "movement": {
+          "type": "string",
+          "enum": [
+            "static",
+            "slow_push_in",
+            "slow_pull_out",
+            "pan_left",
+            "pan_right",
+            "tilt_up",
+            "tilt_down",
+            "tracking",
+            "handheld_drift",
+            "orbit"
+          ],
+          "description": "The single camera movement for the shot."
+        },
+        "movement_strength": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Normalized movement intensity; 1.0 is the hard ceiling."
+        },
+        "framing": {
+          "type": "string",
+          "description": "Framing note, e.g. wide, medium, close-up."
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "description": "Composition notes (subject placement, foreground/background, lighting intent)."
+    },
+    "continuity": {
+      "type": "object",
+      "description": "Continuity anchors this shot must honor (wardrobe, time of day, screen direction)."
+    },
+    "transition": {
+      "type": "string",
+      "description": "Transition into the next shot, e.g. cut, dissolve, match_cut."
+    }
+  },
+  "editor_decision_schema": {
+    "fields": {
+      "camera_compliance": {
+        "type": "object",
+        "description": "Whether the rendered take honored the camera spec: declared engine vs observed engine signature plus movement compliance.",
+        "fields": {
+          "declared_engine": {"type": "string"},
+          "observed_engine_signature": {"type": ["string", "null"]},
+          "movement_compliant": {"type": "boolean"}
+        }
+      },
+      "motion_score": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+      "identity_score": {"type": ["number", "null"]}
+    }
+  },
+  "director_output_template": {
+    "fields": {
+      "shot_list": {
+        "type": "array",
+        "description": "Ordered camera specs for every shot in the scene."
+      },
+      "camera_movement_prohibitions": {
+        "type": "array",
+        "description": "Movements the director prohibits for this scene (e.g. no handheld_drift in ceremony scenes).",
+        "items": {"type": "string"}
+      },
+      "notes": {"type": "string"}
+    }
+  },
+  "example": {
+    "shot_id": "HWTF-S04-SH012",
+    "tenant": "elementlotus",
+    "production": "prod-001",
+    "scene": "HWTF-S04",
+    "shot_type": "establishing",
+    "duration_seconds": 6.8,
+    "storyboard_engine": "kandinsky5",
+    "motion_engine": "ltx",
+    "camera": {
+      "movement": "slow_push_in",
+      "movement_strength": 0.35,
+      "framing": "wide"
+    },
+    "composition": {"subject": "Haleakala ridge at dawn", "foreground": "silversword"},
+    "continuity": {"time_of_day": "dawn", "weather": "clear"},
+    "transition": "cut"
+  }
+}

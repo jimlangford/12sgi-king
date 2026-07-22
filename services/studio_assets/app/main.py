@@ -533,6 +533,43 @@ def scan_supplemental() -> int:
     return scanned
 
 
+WORKBOARD_SOURCE = "studio-assets"
+
+
+def _emit(action: str, event: str, payload: dict, *, status: str = "queued") -> None:
+    """Report to the board like a lane (best-effort; a bus hiccup never breaks the service).
+
+    RESTORED 2026-07-22: this function was deleted by the merge-conflict cleanup at 3cfc52e
+    ("Clean merge conflicts from auth and studio_assets") — the pre-image blob contained an
+    unresolved conflict marker mid-function and the cleanup removed the whole block instead of
+    resolving it, while tests/v2/test_canonical_job_contract.py::TestStudioAssetsCanonicalEnvelope
+    still exercises it. Body recovered verbatim from the pre-cleanup blob (3cfc52e^)."""
+    try:
+        from services.v2_workboard import emit_workboard_job
+
+        envelope = build_job_envelope(
+            domain="studio-assets",
+            service="studio-assets",
+            action=action,
+            state=status,
+            payload=payload or {},
+            lane="engineering",
+            metadata={"emitter": WORKBOARD_SOURCE},
+        )
+        next_payload = dict(payload or {})
+        next_payload["job_envelope"] = envelope
+        emit_workboard_job(
+            source=WORKBOARD_SOURCE,
+            action=action,
+            event=event,
+            lane="engineering",  # IO-only asset indexing self-heals; no human gate
+            status=status,
+            payload=next_payload,
+        )
+    except Exception:
+        pass
+
+
 def _log_receipt(action: str, event: str, payload: dict) -> None:
     """Keep routine service health out of the actionable workboard queue."""
     try:
