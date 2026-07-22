@@ -348,7 +348,8 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, updated = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
-            {'status': 'in_progress', 'notes': 'Moving to active work'},
+            {'status': 'in_progress', 'actor': 'u-status', 'reason': 'Case picked up for active work',
+             'notes': 'Moving to active work'},
             headers=auth_headers,
         )
         self.assertEqual(status, 200)
@@ -358,7 +359,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, final = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
-            {'status': 'closed'},
+            {'status': 'closed', 'actor': 'u-status', 'reason': 'Work complete'},
             headers=auth_headers,
         )
         self.assertEqual(status, 200)
@@ -379,7 +380,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, body = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{created['id']}/status",
-            {'status': 'closed'},
+            {'status': 'closed', 'actor': 'u-other-s', 'reason': 'Cross-tenant attempt (must be blocked)'},
             headers={'Authorization': 'Bearer ' + other_token},
         )
         self.assertEqual(status, 403)
