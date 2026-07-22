@@ -29,6 +29,11 @@ except Exception:
 # build rev: 2026-07-01 blog pages wired into public site/ output
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
+# Cache-bust stamp (2026-07-21, kilo-aupuni): every stylesheet link this builder emits directly
+# (the /go/ wrapper pages below) carries ?v=<build date> -- stale cached CSS silently UNSTYLES
+# civic pages (documented gotcha). The site-wide stamp lane (rebuild_site.inject_css /
+# inject_legibility) carries its own BUILD_V, so every page in site/ ends up stamped.
+BUILD_V = datetime.now(HST).date().isoformat()
 
 def mauios_src(rel):
     """Prefer the live local reports tree, but fall back to repo seed artifacts."""
@@ -56,14 +61,14 @@ def _write_go_extensionless_wrappers(base_dir, routes, asset_prefix):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Redirecting…</title>
 <script>location.replace('/go/%(route)s.html');</script>
-<link rel="stylesheet" href="%(asset_prefix)sgovos.css">
+<link rel="stylesheet" href="%(asset_prefix)sgovos.css?v=%(build_v)s">
 </head>
 <body>
   <p>Redirecting to <a href="/go/%(route)s.html">/go/%(route)s.html</a>…</p>
 <script src="%(asset_prefix)sgovos-shell.js" defer></script>
 </body>
 </html>
-""" % {"route": route, "asset_prefix": asset_prefix})
+""" % {"route": route, "asset_prefix": asset_prefix, "build_v": BUILD_V})
 
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
@@ -1946,6 +1951,7 @@ Sources are linked on every page.</div>
         # public). This removes from the OUTPUT only; the private-king sources are untouched.
         import shutil as _sh, glob as _glob
         _purge = [os.path.join(SITE, "go"), os.path.join(SITE, "go.html"),
+                  os.path.join(SITE, "king", "go"),   # redirect-stub dir: dead-end doors that still advertise ops names (docker/ollama/logs) publicly
                   os.path.join(SITE, "king", "app.html"), os.path.join(SITE, "king", "go.html"),
                   os.path.join(SITE, "king", "live.js")]   # orphaned owner-shell script (on-machine :8770 fallback)
         # the owner Vue app's DataComponents (*.dc.html) are imported headless by app.html — now that the

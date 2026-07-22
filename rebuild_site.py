@@ -21,12 +21,19 @@ import re
 import sys
 import argparse
 import pathlib
+import datetime
 
 # SITE_DIR must point at the built site/ directory so asset_prefix() calculates depth
 # relative to site/ (depth-0 for root pages, depth-1 for king/, depth-2 for king/civic/).
 # Bug fixed 2026-07-14: was parent (repo root), making every root page get depth=1 → "../"
 # prefix → looked for govos-shell.js one level above site/, where it doesn't exist.
 SITE_DIR = pathlib.Path(__file__).parent / "site"
+
+# Cache-bust stamp (2026-07-21, kilo-aupuni): every emitted govos.css / legibility_fix.css link
+# carries ?v=<build date>. Bare links let a cached stylesheet outlive a palette/layout change --
+# the documented "stale cached CSS silently UNSTYLES civic pages" gotcha (looks broken, isn't a
+# code bug). Computed once per run; build_site.py's wrapper emission carries its own copy.
+BUILD_V = datetime.date.today().isoformat()
 
 # ── Patterns to strip (old inline blobs) ──────────────────────────────────────
 
@@ -81,7 +88,7 @@ RE_TENANT_NAV_DIV = re.compile(
 
 # ── Inject targets ─────────────────────────────────────────────────────────────
 
-CSS_LINK = '<link rel="stylesheet" href="govos.css">'
+CSS_LINK = '<link rel="stylesheet" href="govos.css?v={}">'.format(BUILD_V)
 JS_SCRIPT = '<script src="govos-shell.js" defer></script>'
 
 # For pages in subdirectories, we need ../govos.css etc.
@@ -104,10 +111,12 @@ def _dedupe(html, tag):
     return head + tail
 
 def inject_css(html, prefix):
-    correct = '<link rel="stylesheet" href="{}govos.css">'.format(prefix)
-    # Replace any existing govos.css link (any relative prefix) with the correct depth-aware one.
-    # Bug fixed 2026-07-14: old code skipped if 'govos.css' present — never corrected wrong prefix.
-    fixed = re.sub(r'<link\b[^>]+href="[^"]*govos\.css"[^>]*/?>',  correct, html)
+    correct = '<link rel="stylesheet" href="{}govos.css?v={}">'.format(prefix, BUILD_V)
+    # Replace any existing govos.css link (any relative prefix, stamped or bare) with the correct
+    # depth-aware ?v=-stamped one. Bug fixed 2026-07-14: old code skipped if 'govos.css' present —
+    # never corrected wrong prefix. The (?:\?[^"]*)? arm matches an existing ?v= query so a
+    # previously-stamped link is REPLACED, never duplicated via the </head> fallback.
+    fixed = re.sub(r'<link\b[^>]+href="[^"]*govos\.css(?:\?[^"]*)?"[^>]*/?>',  correct, html)
     if fixed == html:
         fixed = html.replace('</head>', correct + '\n</head>', 1)
     return _dedupe(fixed, correct)
@@ -125,8 +134,8 @@ def inject_legibility(html, prefix):
     legible'): stamp legibility_fix.css as the LAST stylesheet in <head> — the drop-in relies on
     winning the cascade. Same depth-aware replace/insert/dedupe discipline as the govos stamp.
     Runs AFTER inject_css so it always lands below the govos link."""
-    correct = '<link rel="stylesheet" href="{}legibility_fix.css">'.format(prefix)
-    fixed = re.sub(r'<link\b[^>]+href="[^"]*legibility_fix\.css"[^>]*/?>', correct, html)
+    correct = '<link rel="stylesheet" href="{}legibility_fix.css?v={}">'.format(prefix, BUILD_V)
+    fixed = re.sub(r'<link\b[^>]+href="[^"]*legibility_fix\.css(?:\?[^"]*)?"[^>]*/?>', correct, html)
     if fixed == html:
         fixed = html.replace('</head>', correct + '\n</head>', 1)
     return _dedupe(fixed, correct)
