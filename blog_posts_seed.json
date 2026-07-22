@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20260721",
+      "slug": "dev-digest-20260721",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-21",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**July 21, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (51% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "dev-digest-20260720",
       "slug": "dev-digest-20260720",
       "title": "Development Digest — a waxing crescent",
