@@ -34,6 +34,10 @@ RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
 # Bring in only what the v2 backend needs at runtime (not the whole civic site/watchers tree).
 COPY services/ /repo/services/
 COPY element_lotus_public/ /repo/element_lotus_public/
+# entitlements.py does `from watchers import tier_access` (capabilities per tier). tier_access.py is a
+# self-contained stdlib-only module; copy ONLY it (not the whole civic watchers tree, per the note above).
+# Fixes the auth crash-loop: ModuleNotFoundError: No module named 'watchers' (Jimmy 2026-07-22 "NO BROKEN WORKERS").
+COPY watchers/tier_access.py /repo/watchers/tier_access.py
 
 # Non-root runtime (2026-07-09 fleet review V2-DOCK-3). uvicorn binds ports >1024 (8000/8101-8107)
 # and needs ZERO Linux capabilities, so nothing here requires root. Running as an unprivileged uid
