@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--HEAL-FORWARD-->
+<script>(function(){
+  /* HEAL-FORWARD cross-device shim (Jimmy 2026-07-22 "every link works over Tailscale"): Tailscale strips
+     the /king mount before proxying, so root-relative URLs escape to the wrong server on phone/iPad
+     (e.g. /api -> :8810). Keep every request INSIDE the mount. No-op locally. MUST survive redesigns. */
+  var m = location.pathname.match(/^\/(studio|board|king|comfy|status|aupuni|jrcsl|routes|prosecutor|login|git)(?=\/|$)/);
+  var PFX = m ? '/' + m[1] : (location.hostname.indexOf('.ts.net') >= 0 ? '/king' : '');
+  if(!PFX) return;
+  var SURF=/^\/(studio|board|king|comfy|status|aupuni|jrcsl|routes|prosecutor|login|git)(?=\/|$)/;
+  var need = function(u){ return typeof u==='string' && u.charAt(0)==='/' && u.charAt(1)!=='/' && !SURF.test(u); };
+  var of = window.fetch; if(of) window.fetch = function(u,o){ if(need(u)) u = PFX+u; return of.call(this,u,o); };
+  var fix = function(el){ if(!el.getAttribute) return; ['src','href','action'].forEach(function(a){ var v=el.getAttribute(a); if(need(v)) el.setAttribute(a, PFX+v); }); };
+  document.addEventListener('DOMContentLoaded', function(){ document.querySelectorAll('[src^="/"],[href^="/"],[action^="/"]').forEach(fix); });
+  new MutationObserver(function(ms){ ms.forEach(function(x){ (x.addedNodes||[]).forEach(function(n){ if(n.nodeType===1){ fix(n); n.querySelectorAll && n.querySelectorAll('[src^="/"],[href^="/"],[action^="/"]').forEach(fix); } }); }); }).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join · elementLOTUS</title>
+<!-- PAID-PAGES PHASE 0 SHELL (docs/PAID_PAGES_BUILDOUT_PLAN.md) — REVIEW-FIRST, unpublished until owner go.
+     Every price on this page is fetched LIVE from the WooCommerce Store API — no number is typed here, ever.
+     WooCommerce owns checkout (elementlotus.com); Stripe stays identity-only. Public civic records never gated.
+     All dynamic values render via textContent / DOM creation only — no innerHTML anywhere on this page. -->
+<style>
+  :root{ --gold:#e3ad33; --gold-hi:#f4c95d; --ink:#0c0b09; --s1:#16140f; --s2:#1e1b14; --line:#3a2d1a;
+         --text:#efe9da; --muted:#b3a98f; --dim:#756b56; --ok:#8fd39a; --warn:#e2917f; }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:
+       radial-gradient(1100px 520px at 18% -8%, #241a0d 0%, transparent 60%),
+       radial-gradient(900px 460px at 92% -6%, #101720 0%, transparent 55%), var(--ink);
+       color:var(--text);font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;padding:0 20px 80px}
+  .wrap{max-width:920px;margin:0 auto}
+  .eyebrow{margin:54px 0 8px;font-size:11px;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
+  h1{margin:0 0 10px;font-size:30px;letter-spacing:.2px}
+  .sub{margin:0 0 40px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:640px}
+  .sub a{color:var(--gold)}
+  .sect{margin:44px 0 14px;font-size:11px;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .pc{background:linear-gradient(180deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:14px;
+      padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+  .pc h3{margin:0;font-size:15.5px;letter-spacing:.2px}
+  .pc .price{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:22px;color:var(--gold)}
+  .pc .price.na{color:var(--dim);font-size:13px}
+  .pc .desc{color:var(--muted);font-size:13px;line-height:1.55;flex:1}
+  .pc a.cta{display:inline-block;text-align:center;background:var(--gold);color:#1a1206;border-radius:9px;
+      padding:11px 16px;font-weight:700;font-size:13.5px;text-decoration:none;letter-spacing:.3px}
+  .pc a.cta:hover{background:var(--gold-hi)}
+  .pc a.cta.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
+  .pc .tag{align-self:flex-start;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;
+      letter-spacing:.14em;color:var(--dim);border:1px solid var(--line);border-radius:99px;padding:3px 9px}
+  .pc .tag.live{color:var(--ok);border-color:#2d3d2a}
+  .free{background:linear-gradient(180deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:14px;
+      padding:20px 22px;color:var(--muted);font-size:13.5px;line-height:1.65}
+  .free b{color:var(--text)}
+  .free a{color:var(--gold)}
+  #store-note{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--dim);margin-top:14px}
+  footer{margin-top:56px;color:var(--dim);font-size:11.5px;line-height:1.6;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">membership · elementLOTUS</div>
+  <h1>Join the ʻohana</h1>
+  <p class="sub">Every price below is read live from the store — nothing is typed into this page.
+     Checkout happens on <a href="https://elementlotus.com">elementlotus.com</a>;
+     this page only shows what's real. The public civic record is never behind any of it.</p>
+
+  <div class="sect">live in the store now</div>
+  <div class="grid" id="store-grid">
+    <div class="pc" id="store-loading"><span class="tag">STORE</span>
+      <h3>reading the store…</h3>
+      <div class="desc">fetching live products from the Store API.</div>
+    </div>
+  </div>
+  <div id="store-note"></div>
+
+  <div class="sect">membership ladder · prices appear when the store publishes them</div>
+  <div class="grid" id="tier-grid">
+    <div class="pc" data-tier="civic_member"><span class="tag">L1</span>
+      <h3>Civic Member</h3><div class="price na" data-price>draft — no published price</div>
+      <div class="desc">The free floor is already yours — records requests + progress tracking cost nothing
+        (serve == charge). The paid L1 adds saved searches + record alerts across every tenant.</div>
+      <a class="cta ghost" href="https://elementlotus.com/my-account/" title="Woo owns sign-in + checkout">start free →</a>
+    </div>
+    <div class="pc" data-tier="studio_org"><span class="tag">L2</span>
+      <h3>Studio Org</h3><div class="price na" data-price>draft — no published price</div>
+      <div class="desc">Studio tools + render requests on top of everything L1 carries — for an ʻohana,
+        label, or hui producing with the pipeline.</div>
+      <a class="cta ghost" href="https://elementlotus.com/my-account/" title="Woo owns sign-in + checkout">my account →</a>
+    </div>
+    <div class="pc" data-tier="council_pro"><span class="tag">L3</span>
+      <h3>Council Pro</h3><div class="price na" data-price>draft — no published price</div>
+      <div class="desc">The council workspace + data exports + pro civic tools, above L1 + L2 —
+        for staff and researchers living in the record.</div>
+      <a class="cta ghost" href="https://elementlotus.com/my-account/" title="Woo owns sign-in + checkout">my account →</a>
+    </div>
+  </div>
+
+  <div class="sect">free, always</div>
+  <div class="free">
+    <b>The civic record is never gated.</b> Money, votes, permits, minutes — open to every citizen, no account.
+    · <b>Free civic membership</b> — <a href="https://elementlotus.com/my-account/">sign up</a> to file a records request and track it.
+    · <b>Invited roles</b> (counsel · legislative · executive · judicial) are free and invitation-only —
+    invited members <a href="https://elementlotus.com/my-account/">sign in here</a> with their role.
+    · <b>All TribeGameStudios games are free to play, always</b> — <a href="/games/">the game lab</a>.
+  </div>
+
+  <footer>prices render from the WooCommerce Store API at load · WooCommerce owns checkout · Stripe is identity-verification only ·
+  nothing on this page charges anything on its own · elementLOTUS — Christ energy = aloha in action</footer>
+</div>
+
+<script>
+/* PriceCards render LIVE store data. Ladder: Store API (cross-origin) -> /games/woo_catalog.json
+   (same-origin build snapshot) -> honest empty state that names the fix. No price is ever invented.
+   SAFETY: every card is built with createElement + textContent — untrusted store text never meets HTML. */
+(function(){
+  var API = "https://elementlotus.com/wp-json/wc/store/v1/products?per_page=100";
+  var note = document.getElementById("store-note");
+
+  function el(tag, cls, text){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  function money(p){ return p.is_free ? "free" : (p.price || ""); }
+
+  function card(tagText, tagLive, title, priceText, descText, ctaHref, ctaText){
+    var c = el("div", "pc");
+    c.appendChild(el("span", "tag" + (tagLive ? " live" : ""), tagText));
+    c.appendChild(el("h3", null, title));
+    if (priceText !== null) c.appendChild(el("div", "price", priceText));
+    c.appendChild(el("div", "desc", descText));
+    if (ctaHref){
+      var a = el("a", "cta", ctaText);
+      a.href = ctaHref; a.target = "_blank"; a.rel = "noopener";
+      c.appendChild(a);
+    }
+    return c;
+  }
+
+  function renderStore(products, sourceLabel){
+    var grid = document.getElementById("store-grid");
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+    if (!products.length){
+      grid.appendChild(card("STORE", false, "no published products", null,
+        "the store is reachable but empty — publish a product in WooCommerce and it appears here.", null, null));
+    } else {
+      products.forEach(function(p){
+        var desc = (p.short_description_text || "").slice(0, 180) || "details + checkout on elementlotus.com";
+        grid.appendChild(card("LIVE", true, p.name || "", money(p), desc,
+          p.permalink || "https://elementlotus.com",
+          p.is_free ? "get it free →" : ("get it — " + money(p) + " →")));
+      });
+    }
+    note.textContent = "prices: " + sourceLabel;
+    matchTiers(products);
+  }
+
+  function matchTiers(products){
+    /* a Woo product whose slug/name carries the tier key lights its ladder card live */
+    var cards = document.querySelectorAll("#tier-grid .pc");
+    Array.prototype.forEach.call(cards, function(cardEl){
+      var key = (cardEl.getAttribute("data-tier") || "").replace("_", " ");
+      var hit = products.filter(function(p){
+        var hay = ((p.slug || "") + " " + (p.name || "")).toLowerCase();
+        return key && hay.indexOf(key) !== -1;
+      })[0];
+      if (hit){
+        var pr = cardEl.querySelector("[data-price]");
+        pr.textContent = money(hit); pr.classList.remove("na");
+        var cta = cardEl.querySelector("a.cta");
+        cta.href = hit.permalink; cta.textContent = "get it — " + money(hit) + " →";
+        cta.classList.remove("ghost");
+      }
+    });
+  }
+
+  function renderUnreachable(){
+    var grid = document.getElementById("store-grid");
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+    grid.appendChild(card("STORE", false, "store unreachable", null,
+      "no prices to show — is elementlotus.com up? nothing is invented while it is down.", null, null));
+    note.textContent = "prices: unavailable (honest empty — no fallback numbers)";
+  }
+
+  function normStoreApi(rows){
+    return (rows || []).map(function(r){
+      var free = !r.prices || r.prices.price === "0" || parseFloat(r.prices.price) === 0;
+      var cur = (r.prices && r.prices.currency_symbol) || "$";
+      var minor = r.prices ? Math.pow(10, r.prices.currency_minor_unit || 2) : 100;
+      return { name: r.name, slug: r.slug, permalink: r.permalink, is_free: free,
+               price: free ? "free" : (cur + (parseFloat(r.prices.price) / minor).toFixed(2)),
+               short_description_text: String(r.short_description || "").replace(/<[^>]*>/g, "") };
+    });
+  }
+
+  fetch(API).then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(rows){ renderStore(normStoreApi(rows), "live Store API · " + new Date().toISOString().slice(0,10)); })
+    .catch(function(){
+      fetch("/games/woo_catalog.json").then(function(r){ if(!r.ok) throw 0; return r.json(); })
+        .then(function(cat){ renderStore(cat.products || [], "build snapshot · fetched " + String(cat.fetched_at || "").slice(0,10)); })
+        .catch(renderUnreachable);
+    });
+})();
+</script>
+</body>
+</html>

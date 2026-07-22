@@ -1452,6 +1452,12 @@ def main():
             with open(os.path.join(SITE, "platform.html"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(_plat)
             shutil.copy(_pkgp, os.path.join(SITE, "packages.json"))
+        # Join — the paid-pages shell (owner-approved go-live 2026-07-22). Standalone page; live Woo
+        # Store-API prices, checkout on elementlotus.com. Copied verbatim into SITE (leak-gate still runs).
+        _joinp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "join.html")
+        if os.path.exists(_joinp):
+            shutil.copy(_joinp, os.path.join(SITE, "join.html"))
+            print("  + join.html: paid-pages shell (live Woo prices)")
         _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
         if os.path.exists(_go):
             _goraw = open(_go, encoding="utf-8").read()
