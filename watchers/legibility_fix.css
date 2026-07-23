@@ -1,6 +1,119 @@
+/* ============================================================================================
+   legibility_fix.css  --  James (2026-07-10): "any references showing the Maui map underneath it
+   not just a black when we use our overlays ... fix all the black text box on the website ... make
+   sure all of the text is plainly legible, fix all styles that are competing with that."
 
-/* callout dark flip 2026-07-18 */
+   DROP-IN: include this LAST in the served <head> (after every other stylesheet) so it wins the
+   cascade and neutralizes competing rules. Scoped to the classes below; safe + reversible.
+   ============================================================================================ */
 
-/* sunshine dark 0644 */
+:root{
+  --leg-ink:#f3efe4;         /* legible light text on dark */
+  --leg-ink-dim:#cfc7b4;
+  --leg-panel:rgba(18,22,28,.72);   /* translucent panel, NOT opaque black */
+  --leg-panel-solid:rgba(24,28,34,.9);
+  --leg-edge:rgba(255,255,255,.14);
+}
 
-/* pale-panel dark flip 065146 */
+/* 1) THE MAP MUST SHOW THROUGH OVERLAYS -----------------------------------------------------
+   Any overlay over the Maui map (or any map/photo) uses a translucent GRADIENT, never solid black,
+   so the reference underneath stays visible. Map sits at z0; overlay at z1 with low alpha. */
+.map, .map-layer, .maui-map, [data-layer="map"]{ position:relative; z-index:0; filter:none !important; }
+.overlay, .map-overlay, .scrim, .veil, [data-layer="overlay"]{
+  background:linear-gradient(rgba(8,12,18,.30), rgba(8,12,18,.55)) !important;  /* was solid black */
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  z-index:1; pointer-events:none;
+}
+/* if an overlay carries text, keep the text readable without hiding the map: a soft local shadow */
+.overlay *, .map-overlay *{ text-shadow:0 1px 3px rgba(0,0,0,.75); color:var(--leg-ink) !important; }
+
+/* 2) NO MORE BLACK-ON-BLACK TEXT BOXES ------------------------------------------------------
+   Convert opaque black boxes to translucent panels with LIGHT, legible text. Covers the common
+   class names in the app + a hard guard against pure-black backgrounds anywhere. */
+.textbox, .text-box, .card, .panel, .box, .tile, .note, .callout, .info, .cell,
+.civic-card, .tenant-card, .ref, .reference, .quote, .stat, .kpi{
+  background:var(--leg-panel) !important;
+  color:var(--leg-ink) !important;
+  border:1px solid var(--leg-edge);
+  border-radius:10px;
+}
+/* hard guard: elements that were set to a black (or near-black) background get legible light text */
+[style*="background:#000"], [style*="background: #000"], [style*="background-color:#000"],
+[style*="background:black"], [style*="background: black"], .bg-black, .black-box{
+  color:var(--leg-ink) !important;
+}
+/* and never let text be black on those dark surfaces */
+[style*="background:#000"] *, [style*="background:black"] *, .bg-black *, .black-box *{
+  color:var(--leg-ink) !important;
+}
+
+/* 3) LEGIBILITY BASELINE + END THE COMPETING STYLES -----------------------------------------
+   A floor for contrast. Body text light on the dark ground; links clearly distinct; kill the
+   invisible-text failure mode where a stylesheet set color:#000 on a dark section. */
+/* Honor each page's OWN --ink token so light-background civic pages (which set --ink dark,
+   e.g. federal_money --ink:#13243d) get DARK, legible headings, while dark pages (govos.css
+   --ink:#eaf2fc, or no --ink -> the cream fallback) keep light text. Fixes washed-out gold/cream
+   titles on white civic pages (James 2026-07-17) without regressing the dark surfaces. */
+body{ color:var(--ink, var(--leg-ink)); }
+p, li, td, th, span, label, dd, dt, small{ color:inherit; }
+h1,h2,h3,h4,h5{ color:var(--ink, #f7f1df); }
+a{ color:var(--accent2, #e6c766); text-decoration-color:rgba(230,199,102,.5); }
+a:hover{ color:var(--accent2, #f4dc8a); }
+/* common competing utility classes that force dark text on dark backgrounds -> make them legible */
+.text-dark, .text-black, .muted-dark{ color:var(--leg-ink-dim) !important; }
+/* inputs/buttons often inherit black-on-dark; keep them readable */
+input, textarea, select{ color:#12161c; background:#f4efe2; }
+button{ color:#f3efe4; }
+
+/* 4) A SMALL, CALM DEFAULT for any bare dark section so nothing is a black void with hidden text */
+section, .section, .surface{ color:var(--leg-ink); }
+/* rebuild trigger 2026-07-17: ship education.html self-theme guard */
+/* rebuild trigger 2: education card/panel light surfaces */
+/* rebuild trigger 3: card specificity over legibility_fix */
+
+/* ============================================================================================
+   5) HIGH-CONTRAST LIGHT SURFACES — James (2026-07-23): "dark blue text not white on white or
+   black on black ... high contrast ... fix it once and for all everywhere. The CSS is approved
+   Aurora with the gold blue backgrounds." Any LIGHT card/panel gets dark-navy Aurora ink so
+   light-on-light can NEVER happen again. Loads last -> wins the cascade. Scoped to light surfaces
+   only, so the dark Aurora civic pages (light text on navy) are untouched. Studio purple effects
+   are not affected (not targeted here).
+   ============================================================================================ */
+:root{
+  --aurora-ink:#13243d;        /* dark navy body ink on light surfaces */
+  --aurora-blue:#00356b;       /* Aurora heading blue */
+  --aurora-link:#1259a3;
+  --aurora-lightpanel:#eef3fb; /* light Aurora panel */
+  --aurora-lightline:#bacde6;
+}
+/* the reported white-on-white: the education "pillar" cards (light panel, dark ink) */
+.pillar{ background:var(--aurora-lightpanel) !important; color:var(--aurora-ink) !important;
+         border:1px solid var(--aurora-lightline) !important; }
+.pillar h1,.pillar h2,.pillar h3,.pillar h4,.pillar h5,.pillar p,.pillar li,.pillar span,
+.pillar dd,.pillar dt,.pillar small{ color:var(--aurora-ink) !important; }
+.pillar h1,.pillar h2,.pillar h3,.pillar h4{ color:var(--aurora-blue) !important; }
+.pillar a{ color:var(--aurora-link) !important; }
+
+/* GENERAL GUARD: any element explicitly given a WHITE / near-white background gets dark navy ink,
+   dark-blue headings, and readable blue links — so no light card can render invisible text again. */
+[style*="background:#fff"],[style*="background: #fff"],[style*="background:#FFF"],
+[style*="background:white"],[style*="background: white"],
+[style*="background:#f7"],[style*="background: #f7"],[style*="background:#f8"],[style*="background: #f8"],
+[style*="background:#f9"],[style*="background: #f9"],[style*="background:#fafafa"],[style*="background:#f5"],
+[style*="background:#eef"],[style*="background: #eef"],[style*="background:#eff"],[style*="background:#f2f"],
+[style*="background-color:#fff"],[style*="background-color: #fff"],[style*="background-color:white"],
+.light-card,.card-light,.white-card,.paper,.lightsurface{
+  color:var(--aurora-ink) !important;
+}
+[style*="background:#fff"] h1,[style*="background:#fff"] h2,[style*="background:#fff"] h3,[style*="background:#fff"] h4,[style*="background:#fff"] h5,
+[style*="background:white"] h1,[style*="background:white"] h2,[style*="background:white"] h3,[style*="background:white"] h4,
+[style*="background:#f7"] h1,[style*="background:#f7"] h2,[style*="background:#f7"] h3,[style*="background:#f7"] h4,
+[style*="background:#eef"] h1,[style*="background:#eef"] h2,[style*="background:#eef"] h3,[style*="background:#eef"] h4,
+.light-card h1,.light-card h2,.light-card h3,.light-card h4,.white-card h1,.white-card h2,.white-card h3,.white-card h4,
+.paper h1,.paper h2,.paper h3,.paper h4{ color:var(--aurora-blue) !important; }
+[style*="background:#fff"] a,[style*="background:white"] a,[style*="background:#f7"] a,[style*="background:#eef"] a,
+.light-card a,.white-card a,.paper a{ color:var(--aurora-link) !important; }
+[style*="background:#fff"] p,[style*="background:#fff"] li,[style*="background:#fff"] span,[style*="background:#fff"] td,
+[style*="background:white"] p,[style*="background:white"] li,[style*="background:white"] span,
+[style*="background:#f7"] p,[style*="background:#f7"] li,[style*="background:#f7"] span,
+[style*="background:#eef"] p,[style*="background:#eef"] li,[style*="background:#eef"] span{ color:var(--aurora-ink) !important; }
