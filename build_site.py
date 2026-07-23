@@ -86,6 +86,7 @@ PAGES = [
     ("maui_contract_awards.html",        "Maui Contract Awards",         "Every public Notice of Award to a Maui County jurisdiction (HANDS) - the vendor side of the money."),
     ("statewide_money_patterns.html",    "Statewide Money (2008+)",      "Campaign money across all 4 counties + State; the donor network."),
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
+    ("who_funds_elections_maui.html",    "Who Funds Our Elections",      "Every reported contribution sorted by the giver's own stated INDUSTRY — which sectors spend most to shape who governs. Real estate & development leads the identifiable industries ($10M+ / 3,127 givers). Public records (HICSC campaign finance), classified from self-reported employer/occupation, framed as questions."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
     ("bill9_money_vs_will.html",          "Bill 9 - the Vote, the Money","The Council's 5-3 final vote to phase out transient vacation rentals in apartment districts, set beside the real-estate money behind the three NO votes. Public records (roll-call + campaign finance), framed as questions, never accusations. Neo4j-backed."),
