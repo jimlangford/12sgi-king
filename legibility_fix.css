@@ -54,8 +54,17 @@
    e.g. federal_money --ink:#13243d) get DARK, legible headings, while dark pages (govos.css
    --ink:#eaf2fc, or no --ink -> the cream fallback) keep light text. Fixes washed-out gold/cream
    titles on white civic pages (James 2026-07-17) without regressing the dark surfaces. */
-body{ color:var(--ink, var(--leg-ink)); }
+/* AUTHORITATIVE (James 2026-07-23 "black on black"): light civic pages set --ink DARK, so they get
+   dark ink; pages that set a near-black body color but sit on the shell's dark navy ground (e.g.
+   audit_balance body{color:#1a1a1a}, no background of their own) get LIGHT ink and become legible.
+   !important so cascade ORDER can't leave a page's own dark body-color winning. */
+body{ color:var(--ink, var(--leg-ink)) !important; }
 p, li, td, th, span, label, dd, dt, small{ color:inherit; }
+/* muted / subtitle text: a mid-tone that reads on BOTH the navy ground and light panels, so the
+   dim "#555" subtitles stop disappearing on dark pages (honors a page's own --dim if set). */
+.sub, .muted, .dim, .faint, .subtle, .secondary{ color:var(--dim, #93a9c6) !important; }
+/* coverage / data rows that inherited the near-black body color now follow the light body color */
+.n, .m, .m .c, .row, .cell, .kv, .kl, td, th{ color:inherit; }
 h1,h2,h3,h4,h5{ color:var(--ink, #f7f1df); }
 a{ color:var(--accent2, #e6c766); text-decoration-color:rgba(230,199,102,.5); }
 a:hover{ color:var(--accent2, #f4dc8a); }
