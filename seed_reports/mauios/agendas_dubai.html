@@ -25,8 +25,8 @@
 <p class="lead">Know what is being decided <b>before</b> it is decided. Upcoming public meetings as far
 ahead as this government posts them &mdash; so the community can show up, testify, and participate in time.</p>
 <div class="meta">Source: <a href="https://tec.gov.ae/en/web/tec/agendas" target="_blank" rel="noopener">The Executive Council of Dubai (TEC) — tec.gov.ae &#8599;</a> &nbsp;<span class="cf p">source identified · daily checker pending</span><br>Horizon: <b>unknown — no forward agenda calendar is published; only post-meeting decisions/outcomes are released after sessions occur</b> &middot; showing: <b>no meetings posted / source check needed</b></div>
-<div class="checked">&#10003; last checked 2026-07-23 07:18 HST &middot; daily</div>
-<div><div class="none">No upcoming meetings confirmed in the published window. Use the source link to check directly.</div></div>
+<div class="checked">&#10003; last checked 2026-07-23 07:51 HST &middot; daily</div>
+<div id="agenda-live" data-legistar=""><div class="none">No upcoming meetings confirmed in the published window. Use the source link to check directly.</div></div>
 <div class="disc">No machine-readable feed found — the daily checker re-checks the source page and re-stamps; meetings shown are the last verified snapshot. Note: ADVERSARIAL VERIFICATION (2026-06-15). The proposed record&#x27;s core finding is upheld: Dubai has no Western-style public legislative meeting-agenda feed. conf kept at &quot;p&quot; because NO candidate page could be loaded from this environment.
 
 URL CHECKS:
@@ -43,5 +43,34 @@ RECOMMENDATION for a daily checker: there is no agenda feed to poll. Treat Dubai
 
 Sources reachable this session: WebSearch results enumerating tec.gov.ae pages (agendas = strategic policy, not meeting agendas). Sources NOT reachable: tec.gov.ae (ECONNREFUSED), www.dubai.ae (HTTP 403).</div>
 <p style="margin-top:14px"><a href="crosswalk_dubai.html">charter ⇄ law</a> &middot; <a href="money_dubai.html">money</a> &middot; <a href="jurisdictions.html">all jurisdictions</a></p>
-<footer>generated 2026-07-23 07:18 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Dubai agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
-</div></body></html>
+<footer>generated 2026-07-23 07:51 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Dubai agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('agenda-live'); if(!box) return;
+  var client=box.getAttribute('data-legistar'); if(!client) return;
+  var t=new Date(); t.setHours(0,0,0,0);
+  var iso=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)+'T00:00:00';
+  var qs=new URLSearchParams();
+  qs.set('$orderby','EventDate'); qs.set('$top','20');
+  qs.set('$filter',"EventDate ge datetime'"+iso+"'");
+  var url='https://webapi.legistar.com/v1/'+client+'/Events?'+qs.toString();
+  fetch(url,{mode:'cors'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(rows){
+    if(!rows||!rows.length) return;
+    var esc=function(s){var d=document.createElement('div'); d.textContent=(s==null?'':String(s)); return d.innerHTML;};
+    var html='', n=0;
+    rows.forEach(function(r){
+      var d=(r.EventDate||'').slice(0,10); if(!d) return;
+      var body=r.EventBodyName||'', title=r.EventComment||r.EventBodyName||'Meeting', link=r.EventInSiteURL||'';
+      var tt= link ? '<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a>' : esc(title);
+      html+='<div class="mt"><span class="md">'+esc(d)+'</span><span class="mb">'+(body?' &middot; '+esc(body):'')+'</span><span class="mtt">'+tt+'</span></div>';
+      n++;
+    });
+    if(n){ box.innerHTML=html;
+      var c=document.querySelector('.checked');
+      if(c){ c.innerHTML='&#10003; live from the official Legistar feed &middot; refreshed in your browser just now'; }
+    }
+  }).catch(function(){});
+})();
+</script>
+</body></html>

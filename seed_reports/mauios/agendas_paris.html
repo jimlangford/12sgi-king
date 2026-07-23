@@ -25,8 +25,8 @@
 <p class="lead">Know what is being decided <b>before</b> it is decided. Upcoming public meetings as far
 ahead as this government posts them &mdash; so the community can show up, testify, and participate in time.</p>
 <div class="meta">Source: <a href="https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm" target="_blank" rel="noopener">Ville de Paris — the Conseil de Paris &quot;ordre du jour&quot; (order of the day) web application, the official system where the Mayor of Paris publishes session agendas, deliberation projects, and downloadable PDF documents. Reached via paris.fr (Municipalité &gt; Conseil de Paris &gt; Ordre du jour). &#8599;</a> &nbsp;<span class="cf v">source verified</span><br>Horizon: <b>Rolling, tied to the next plenary session. Three agenda versions are posted per session: a provisional list of deliberation projects on the Tuesday 12 days before the session, an updated agenda the Tuesday before, and the definitive version the Friday before. The Conseil de Paris meets roughly 4-10 times/year, so typically only the next session&#x27;s agenda is published at a time.</b> &middot; showing: <b>verified snapshot</b></div>
-<div class="checked">&#10003; last checked 2026-07-23 07:18 HST &middot; daily</div>
-<div><div class="mt"><span class="md">2026-06-16/2026-06-19</span><span class="mb"> · Conseil de Paris (plenary)</span><span class="mtt"><a href="https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm" target="_blank" rel="noopener">Séance du Conseil de Paris — ordre du jour définitif des mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026 (budget/6e Commission, débats organisés, projets de délibération, autres). Agenda items carry reference codes (e.g. &#x27;2026 DFA 19&#x27;, &#x27;2026 DASCO 37&#x27;) with downloadable PDFs.</a></span></div></div>
+<div class="checked">&#10003; last checked 2026-07-23 07:51 HST &middot; daily</div>
+<div id="agenda-live" data-legistar=""><div class="mt"><span class="md">2026-06-16/2026-06-19</span><span class="mb"> · Conseil de Paris (plenary)</span><span class="mtt"><a href="https://a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm" target="_blank" rel="noopener">Séance du Conseil de Paris — ordre du jour définitif des mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026 (budget/6e Commission, débats organisés, projets de délibération, autres). Agenda items carry reference codes (e.g. &#x27;2026 DFA 19&#x27;, &#x27;2026 DASCO 37&#x27;) with downloadable PDFs.</a></span></div></div>
 <div class="disc">No machine-readable feed found — the daily checker re-checks the source page and re-stamps; meetings shown are the last verified snapshot. Note: CONFIRMED (conf=v). WebFetched the agenda application at a06-v7.apps.paris.fr/a06/jsp/site/Portal.jsp?page=odjcpcm — it resolves and is the real ordre du jour system. It displayed the header &quot;Ordre du jour définitif du Conseil de Paris&quot; for the session of mardi 16, mercredi 17, jeudi 18 et vendredi 19 juin 2026, organized into sections (I budget/6e Commission, II débats organisés, III projets de délibération, IV autres) with item reference codes (e.g. &quot;2026 DFA 19&quot;, &quot;2026 DASCO 37&quot;) and downloadable PDF documents (&quot;Télécharger le fichier&quot;).
 
 Also WebFetched and confirmed the official paris.fr landing page https://www.paris.fr/pages/ordre-du-jour-du-conseil-de-paris-228 — it resolves, describes the 12-days/Tuesday/Friday three-version publication schedule, and links out to the Portal.jsp?page=odjcpcm agenda portal plus live streaming and video archive.
@@ -35,5 +35,34 @@ FEED: feed_type=html, feed_url blanked. Neither fetched page exposed any iCal (.
 
 UPCOMING: Only the June 16-19, 2026 session is confirmed on the fetched agenda page (listed). A July 2026 session surfaced in earlier web-search snippets but was NOT confirmed on a fetched page, so it is intentionally omitted per the no-invention rule.</div>
 <p style="margin-top:14px"><a href="crosswalk_paris.html">charter ⇄ law</a> &middot; <a href="money_paris.html">money</a> &middot; <a href="jurisdictions.html">all jurisdictions</a></p>
-<footer>generated 2026-07-23 07:18 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Paris agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
-</div></body></html>
+<footer>generated 2026-07-23 07:51 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Paris agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('agenda-live'); if(!box) return;
+  var client=box.getAttribute('data-legistar'); if(!client) return;
+  var t=new Date(); t.setHours(0,0,0,0);
+  var iso=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)+'T00:00:00';
+  var qs=new URLSearchParams();
+  qs.set('$orderby','EventDate'); qs.set('$top','20');
+  qs.set('$filter',"EventDate ge datetime'"+iso+"'");
+  var url='https://webapi.legistar.com/v1/'+client+'/Events?'+qs.toString();
+  fetch(url,{mode:'cors'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(rows){
+    if(!rows||!rows.length) return;
+    var esc=function(s){var d=document.createElement('div'); d.textContent=(s==null?'':String(s)); return d.innerHTML;};
+    var html='', n=0;
+    rows.forEach(function(r){
+      var d=(r.EventDate||'').slice(0,10); if(!d) return;
+      var body=r.EventBodyName||'', title=r.EventComment||r.EventBodyName||'Meeting', link=r.EventInSiteURL||'';
+      var tt= link ? '<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a>' : esc(title);
+      html+='<div class="mt"><span class="md">'+esc(d)+'</span><span class="mb">'+(body?' &middot; '+esc(body):'')+'</span><span class="mtt">'+tt+'</span></div>';
+      n++;
+    });
+    if(n){ box.innerHTML=html;
+      var c=document.querySelector('.checked');
+      if(c){ c.innerHTML='&#10003; live from the official Legistar feed &middot; refreshed in your browser just now'; }
+    }
+  }).catch(function(){});
+})();
+</script>
+</body></html>

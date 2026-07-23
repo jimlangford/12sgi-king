@@ -25,8 +25,8 @@
 <p class="lead">Know what is being decided <b>before</b> it is decided. Upcoming public meetings as far
 ahead as this government posts them &mdash; so the community can show up, testify, and participate in time.</p>
 <div class="meta">Source: <a href="https://www.parliament.gov.sg/parliamentary-business/order-paper" target="_blank" rel="noopener">Parliament of Singapore — Order Paper (parliament.gov.sg, Parliamentary Business section). The Order Paper lists the agenda of business for each day&#x27;s sitting and is published online one day before each sitting as a PDF. Upcoming sitting dates are announced via the homepage banner and the official Singapore Parliament Facebook page. &#8599;</a> &nbsp;<span class="cf v">source verified</span><br>Horizon: <b>Order Paper (full agenda) posted ~1 day before each sitting; next sitting date announced in advance via the homepage banner. Currently no upcoming sitting is published — homepage states &quot;Parliament is adjourned to a date to be fixed.&quot;</b> &middot; showing: <b>no meetings posted / source check needed</b></div>
-<div class="checked">&#10003; last checked 2026-07-23 07:18 HST &middot; daily</div>
-<div><div class="none">No upcoming meetings confirmed in the published window. Use the source link to check directly.</div></div>
+<div class="checked">&#10003; last checked 2026-07-23 07:51 HST &middot; daily</div>
+<div id="agenda-live" data-legistar=""><div class="none">No upcoming meetings confirmed in the published window. Use the source link to check directly.</div></div>
 <div class="disc">No machine-readable feed found — the daily checker re-checks the source page and re-stamps; meetings shown are the last verified snapshot. Note: VERIFIED. Re-fetched source_url https://www.parliament.gov.sg/parliamentary-business/order-paper (HTTP 200) — confirmed real agenda system: page states &quot;The Order Paper lists the agenda for the day&#x27;s sitting at the House. The latest Order Paper will be available online a day before the sitting.&quot; Re-fetched the homepage https://www.parliament.gov.sg/ (HTTP 200) which currently shows the banner &quot;Parliament is adjourned to a date to be fixed.&quot; No confirmed upcoming sitting is published, so &quot;upcoming&quot; is intentionally EMPTY (no invented dates).
 
 CORRECTION to prior note: the &quot;Sitting of Parliament&quot; page at https://www.parliament.gov.sg/parliamentary-business/sitting-of-parliament was claimed as fetched/200 but actually returns HTTP 404 — that path is wrong and has been removed from the recommendation. Do NOT rely on it.
@@ -35,5 +35,34 @@ NO machine-readable feed exists: no iCal (.ics), no RSS, no public API found on 
 
 DAILY-CHECKER RECOMMENDATION (feed_type=html): poll the Order Paper landing page and the homepage banner for the next announced sitting date, then construct the PDF URL for that date. The official Singapore Parliament Facebook page posts &quot;next Sitting of Parliament&quot; announcements as a secondary signal. Recent real sittings referenced in source listings include Feb–May 2026 (15th Parliament, First Session), but these are past, not upcoming, and are therefore not listed.</div>
 <p style="margin-top:14px"><a href="crosswalk_singapore.html">charter ⇄ law</a> &middot; <a href="money_singapore.html">money</a> &middot; <a href="jurisdictions.html">all jurisdictions</a></p>
-<footer>generated 2026-07-23 07:18 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Singapore agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
-</div></body></html>
+<footer>generated 2026-07-23 07:51 HST &middot; agenda-watch v1 &middot; daily checker (CI cron + local task) &middot; source: official Singapore agenda system &middot; Kilo Aupuni &middot; aloha &middot; pono</footer>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('agenda-live'); if(!box) return;
+  var client=box.getAttribute('data-legistar'); if(!client) return;
+  var t=new Date(); t.setHours(0,0,0,0);
+  var iso=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)+'T00:00:00';
+  var qs=new URLSearchParams();
+  qs.set('$orderby','EventDate'); qs.set('$top','20');
+  qs.set('$filter',"EventDate ge datetime'"+iso+"'");
+  var url='https://webapi.legistar.com/v1/'+client+'/Events?'+qs.toString();
+  fetch(url,{mode:'cors'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(rows){
+    if(!rows||!rows.length) return;
+    var esc=function(s){var d=document.createElement('div'); d.textContent=(s==null?'':String(s)); return d.innerHTML;};
+    var html='', n=0;
+    rows.forEach(function(r){
+      var d=(r.EventDate||'').slice(0,10); if(!d) return;
+      var body=r.EventBodyName||'', title=r.EventComment||r.EventBodyName||'Meeting', link=r.EventInSiteURL||'';
+      var tt= link ? '<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a>' : esc(title);
+      html+='<div class="mt"><span class="md">'+esc(d)+'</span><span class="mb">'+(body?' &middot; '+esc(body):'')+'</span><span class="mtt">'+tt+'</span></div>';
+      n++;
+    });
+    if(n){ box.innerHTML=html;
+      var c=document.querySelector('.checked');
+      if(c){ c.innerHTML='&#10003; live from the official Legistar feed &middot; refreshed in your browser just now'; }
+    }
+  }).catch(function(){});
+})();
+</script>
+</body></html>
