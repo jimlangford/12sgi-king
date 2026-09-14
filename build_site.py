@@ -942,6 +942,25 @@ def ensure_civic_chrome(html):
         html = html + foot
     return html
 
+def inject_legibility(html, depth=0):
+    """Drop legibility_fix.css in LAST (after every other stylesheet) so it wins the cascade -
+    James 2026-07-10: "make sure all of the text is plainly legible... the Maui map showing through
+    the overlays, not just black". The asset was already copied by the builder and named in the
+    header comment, but no injector existed, so it never reached a served page (audit R13 PARTIAL).
+    Idempotent; carries the BUILD_V cache-bust like every other civic stylesheet link."""
+    if "legibility_fix.css" in html:
+        return html
+    href = ("../" * depth) + "legibility_fix.css?v=" + BUILD_V
+    link = '<link rel="stylesheet" href="%s">' % href
+    m = re.search(r"</head>", html, re.I)
+    if m:
+        return html[:m.start()] + link + html[m.start():]
+    mb = re.search(r"<body[^>]*>", html, re.I)
+    if mb:
+        return html[:mb.end()] + link + html[mb.end():]
+    return html
+
+
 def recolor_tree(root):
     """The ONE heal pass over a built tree: recolor to Yale-blue AND ensure mobile-viewport, in place, every
     .html (+ .css recolor). Skips .js/.json (no logic touched). Same pass for public site/ and (via king_recolor)
@@ -963,6 +982,8 @@ def recolor_tree(root):
                 r = t if _aurora_keep else recolor(t)
                 if ext == "html":
                     r = ensure_mobile(r)
+                    # legibility LAST in the cascade, path-correct for the page's depth in the tree
+                    r = inject_legibility(r, len(os.path.relpath(p, root).split(os.sep)) - 1)
                     if not _aurora_keep and os.path.relpath(p, root).split(os.sep)[0] != "king":
                         r = unify_font(r)   # match the home page: flat civic pages -> Segoe sans (King ceremonial register keeps its serif)
                         r = ensure_civic_chrome(r)   # unify look to the home page: civic_shell tokens + shared footer (gn- nav stays)

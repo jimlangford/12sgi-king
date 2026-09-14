@@ -8,8 +8,8 @@
    ============================================================================================ */
 
 :root{
-  --leg-ink:#f3efe4;         /* legible light text on dark */
-  --leg-ink-dim:#cfc7b4;
+  --leg-ink:#f6faff;         /* legible HIGH-CONTRAST light text on dark (brightened 2026-07-24) */
+  --leg-ink-dim:#d6e2f2;     /* brighter muted light text (was #cfc7b4 — too low on dark) */
   --leg-panel:rgba(18,22,28,.72);   /* translucent panel, NOT opaque black */
   --leg-panel-solid:rgba(24,28,34,.9);
   --leg-edge:rgba(255,255,255,.14);
@@ -62,7 +62,7 @@ body{ color:var(--ink, var(--leg-ink)) !important; }
 p, li, td, th, span, label, dd, dt, small{ color:inherit; }
 /* muted / subtitle text: a mid-tone that reads on BOTH the navy ground and light panels, so the
    dim "#555" subtitles stop disappearing on dark pages (honors a page's own --dim if set). */
-.sub, .muted, .dim, .faint, .subtle, .secondary{ color:var(--dim, #93a9c6) !important; }
+.sub, .muted, .dim, .faint, .subtle, .secondary{ color:var(--dim, #b3c6e0) !important; }  /* brighter fallback (was #93a9c6 — too low-contrast on dark); pages set their own --dim on light surfaces */
 /* coverage / data rows that inherited the near-black body color now follow the light body color */
 .n, .m, .m .c, .row, .cell, .kv, .kl, td, th{ color:inherit; }
 h1,h2,h3,h4,h5{ color:var(--ink, #f7f1df); }
