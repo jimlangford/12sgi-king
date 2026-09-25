@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}        # run on demand from the Actions tab
   push:
     branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", "rebuild_site.py", "govos.css", "govos-shell.js", "legibility_fix.css", "narratives.json", "seed_reports/**", "king_public_src/**", "game_studio/**", "game_sage/**", "go.html", "platform.html", "packages.json", "tenant_registry.json", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", "civic_shell.py", "tenant_directory.py", "blog_engine.py", "blog_posts_seed.json", ".github/workflows/**" ]
+    paths: [ "watchers/**", "build_site.py", "rebuild_site.py", "govos.css", "govos-shell.js", "legibility_fix.css", "narratives.json", "seed_reports/**", "king_public_src/**", "game_studio/**", "site_manifest/**", ".github/workflows/publish.yml", "requirements.txt" ]
 
 permissions:
   contents: read
@@ -126,7 +126,7 @@ jobs:
           run "$P/agenda_watch.py" || true
           run "$P/agenda_explainer.py" || true   # shareable agenda fact-cards (needs agenda_watch first)
           run "$P/sage_bridge.py" || true        # CLOUD BRIDGE: live civic state -> 54-node Sage twin (needs parity_check + agenda_watch)
-          run "$P/olelo_watch.py" || true        # ʻŌlelo glossary + weekly verification digest (community review)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
+          run "$P/olelo_watch.py" || true        # ʻŌlelo glossary + weekly verification digest (community review)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps filenames ...
           run "$P/patterns.py" || true
           run "$P/kilo_aupuni.py" || true
 
@@ -146,6 +146,10 @@ jobs:
             python "$P/selfheal.py" || true   # validates: no leak, links resolve, no studio route, externals, orphans, mobile, moon, deps, olelo, bats
             cp "${{ env.WORKSPACE_P }}/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
           fi
+
+      - name: Add custom domain
+        run: |
+          printf '%s\n' '12sgi.com' > site/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
