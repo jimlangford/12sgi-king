@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20260930",
+      "slug": "dev-digest-20260930",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-30",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**September 30, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (78% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "dev-digest-20260929",
       "slug": "dev-digest-20260929",
       "title": "Development Digest — a waning gibbous",
