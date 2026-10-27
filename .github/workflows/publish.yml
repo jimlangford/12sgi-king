@@ -1,202 +1,65 @@
-name: kilo-aupuni publish
+name: local-first publish
 
-# Runs the civic-transparency watchers on GitHub's FREE runners (off your laptop),
-# rebuilds the static site, and deploys it to GitHub Pages. No Cloudflare token,
-# no separate project, no API keys except an optional LegiScan key. $0/month.
+# Local-first architecture: GitHub is a support layer only.
+# The active site is served from the local machine, behind localhost or Tailscale.
+# GitHub Pages is intentionally not the production deployment path for this repo.
 on:
-  schedule:
-    - cron: "20 15 * * *"     # daily ~05:20 HST (15:20 UTC)
-  workflow_dispatch: {}        # run on demand from the Actions tab
-  push:
-    branches: [ main ]
-    paths: [ "watchers/**", "build_site.py", "rebuild_site.py", "education.html", "govos.css", "govos-shell.js", "legibility_fix.css", "narratives.json", "seed_reports/**", "king_public_src/**", "game_studio/**", "game_sage/**", "go.html", "platform.html", "packages.json", "tenant_registry.json", "404.html", "take_action.html", "testify.html", "request_records.html", "production_status.json", "civic_shell.py", "tenant_directory.py", "blog_engine.py", "blog_posts_seed.json", ".github/workflows/**" ]
+  workflow_dispatch:
+    inputs:
+      build_site:
+        description: Build the site on the runner for validation
+        required: false
+        default: true
+        type: boolean
+      dry_run:
+        description: Validation-only run; do not treat this as a public deploy
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
-  build:
+  validate-local-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
+    timeout-minutes: 30
 
-      - uses: actions/setup-python@v5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps
-        run: pip install -r requirements.txt
-
-      - name: Lay out the runtime tree the watchers expect
-        env:
-          LEGISCAN_KEY: ${{ secrets.LEGISCAN_KEY }}
-          NYSENATE_KEY: ${{ secrets.NYSENATE_KEY }}
+      - name: Install Python dependencies
         run: |
-          set -e
-          P="${WORKSPACE_ROOT:-${{ github.workspace }}/runtime}"
-          mkdir -p "$P/tools/kilo-aupuni" "$P/config" "$P/tools/council-watch"
-          cp watchers/council_watch.py "$P/tools/council-watch/"
-          cp watchers/*.py "$P/tools/kilo-aupuni/"
-          cp watchers/departments.json watchers/energov_permit_template.json watchers/commission_inputs.json "$P/tools/kilo-aupuni/" 2>/dev/null || true
-          if [ -n "$LEGISCAN_KEY" ]; then printf '%s' "$LEGISCAN_KEY" > "$P/config/legiscan_key.txt"; fi
-          if [ -n "$NYSENATE_KEY" ]; then printf '%s' "$NYSENATE_KEY" > "$P/config/nysenate_key.txt"; fi
-          # Export P for use in subsequent steps
-          echo "WORKSPACE_P=$P" >> "$GITHUB_ENV"
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Seed the curated full-history report floor (so the published site is COMPLETE, not a thin fresh fetch)
+      - name: Build site for validation
+        if: ${{ inputs.build_site == true }}
         run: |
-          P="${{ env.WORKSPACE_P }}"
-          if [ -d seed_reports ]; then
-            mkdir -p "$P/reports/mauios/lege" "$P/reports/mauios/bill9" "$P/reports/council"
-            # no-clobber: a watcher's fresh run wins; the committed floor fills gaps + carries accumulated history
-            cp -rn seed_reports/mauios/.  "$P/reports/mauios/"  2>/dev/null || true
-            cp -rn seed_reports/council/. "$P/reports/council/" 2>/dev/null || true
-            echo "seeded floor:"; find "$P/reports" -type f | sed "s#$P/##" | sort
-          else
-            echo "no seed_reports/ committed — CI will build from a fresh fetch only"
-          fi
-
-      - name: Reconcile gate (hard-block on committed route duplicates in seed_reports)
-        run: python tools/reconcile.py --gate seed_reports html --route-only
-
-      - name: Run watchers (public APIs + pypdf only -- no laptop, no browser)
-        # Heavy external fetch ONLY on the cron / manual run. Content-snapshot pushes
-        # (seed_reports/king/status from the local 15-min publisher) skip straight to
-        # build+deploy off the committed snapshot -- fast, and no API hammering.
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        env:
-          PYTHONUTF8: "1"
-          PYTHONIOENCODING: "utf-8"
-        run: |
-          cd "${{ github.workspace }}"
-          P="${{ env.WORKSPACE_P }}/tools/kilo-aupuni"
-          C="${{ env.WORKSPACE_P }}/tools/council-watch"
-          # Each watcher is a REFRESH on top of the committed seed floor. Cap every one with
-          # `timeout` so a slow/hung network fetch can never stall the build -> the site
-          # always reaches the deploy step. A capped watcher just leaves the seeded version.
-          run() { echo "::group::$1"; timeout 240 python "$@" ; echo "(exit $?)"; echo "::endgroup::"; }
-          run "$C/council_watch.py" || true
-          run "$P/votes_watch.py" || true
-          run "$P/n53_ingest.py" || true   # N53 integrity engine — ingest minutes/votes/recusals corpus (needs votes_watch first)
-          run "$P/bids_watch.py" || true
-          run "$P/mapps_watch.py" || true
-          run "$P/rebuild_first.py" || true   # Who Rebuilt First (Lahaina/Kula fire-recovery permit line)
-          run "$P/request_records.py" || true # tenant-aware records-request page (each tenant own access law)
-          run "$P/donor_watch.py" || true
-          run "$P/statewide_money.py" || true
-          run "$P/hands_awards.py" || true
-          run "$P/ny_watch.py" || true      # New York tenants: NYC Open Data contracts (must run before county_awards)
-          run "$P/county_awards.py" || true # multi-tenant contract pages (State/Honolulu/etc.) from statewide HANDS + NY hub
-          run "$P/nyc_money_lobby_parity.py" || true # NYC money (CFB) + lobby (eLobbyist) + parity
-          run "$P/nys_money_parity.py" || true        # NY State money (BOE) + parity
-          run "$P/state_build.py" || true             # HI State money + parity
-          run "$P/_build_honolulu.py" || true         # Honolulu money + parity
-          # item-2 gap fillers (workflow 2) — run AFTER the base generators so the better pages win:
-          run "$P/lobby_hi_build.py" || true          # HI State + Honolulu lobby+money crosses
-          run "$P/nyc_parity_v2.py" || true           # NYC parity upgraded to contributor-level (overrides the thin one)
-          run "$P/liverpool_village_finance.py" || true # Liverpool village budget (overrides the Onondaga proxy)
-          run "$P/county_awards.py" || true           # re-run hub LAST so dimension links pick up every page
-          run "$P/vendor_donor_join.py" || true
-          run "$P/parity_check.py" || true   # Kumulipo parity: broken pairs from the money x votes join
-          run "$P/ka_leo.py" || true         # Ka Leo - the louder voice (Maui; donation -> amplified influence; aloha framing)
-          run "$P/ka_leo_nyc.py" || true     # Ka Leo NYC - real CFB aggregates (no fabricated donors)
-          run "$P/wildfire_watch.py" || true # wildfire recovery money, ranked by firm (needs hands_awards first)
-          run "$P/lobby_money_watch.py" || true # state lobbyist registry x donors: who lobbies AND pays the deciders (needs donor_watch first)
-          run "$P/testimony_watch.py" || true   # extract NAMED public testifiers from Maui committee minutes (Legistar transcripts) + link to money
-          run "$P/testimony_money.py" || true   # Follow the Money by Testimony: lobbyist advocacy x donations x contracts (needs lobby_money_watch + vendor_donor_join)
-          if [ -f "${{ env.WORKSPACE_P }}/config/legiscan_key.txt" ]; then
-            run "$P/lege_legiscan.py" --years 2024 2026 || true
-          fi
-          run "$P/commission_watch.py" || true
-          KA_FED_PAGES=3 run "$P/federal_money.py" || true   # federal $ into Maui + State of Hawaii (USASpending; page-capped for CI)
-          run "$P/hands_statewide.py" || true                # learn-all contracts, classified by tenant (Maui/State/other)
-          run "$P/tenant_pages.py" || true                   # per-tenant index pages + simplified tenant-picker landing (tenants_hub)
-          run "$P/audit_balance.py" || true                  # the money x votes "equation" scorecard (LAST; reads the others)
-          run "$P/bill9_testimony.py" || true
-          run "$P/charter_law_map.py" || true
-          run "$P/charter_crosswalk.py" || true  # per-tenant 12 Stones Charter <-> law crosswalk up through the Holy See
-          run "$P/vatican_finances.py" || true   # Holy See finances (real FY2024 reports) — the apex tenant's money page
-          run "$P/agenda_watch.py" || true
-          run "$P/agenda_explainer.py" || true   # shareable agenda fact-cards (needs agenda_watch first)
-          run "$P/sage_bridge.py" || true        # CLOUD BRIDGE: live civic state -> 54-node Sage twin (needs parity_check + agenda_watch)
-          run "$P/olelo_watch.py" || true        # ʻŌlelo glossary + weekly verification digest (community review)        # DAILY CHECKER — every tenant's upcoming meeting agendas (re-stamps + live-refreshes feeds)
-          run "$P/patterns.py" || true
-          run "$P/kilo_aupuni.py" || true
-
-      - name: Build static site
-        run: |
-          cd "${{ github.workspace }}"
           python build_site.py
 
-      - name: Self-check the built site (integrity page reflects exactly what ships)
+      - name: Validate local hosting URLs
         run: |
-          cd "${{ github.workspace }}"
-          P="${{ env.WORKSPACE_P }}/tools/kilo-aupuni"
-          # OUTBOUND link verification first (writes site/external_links.html + the json selfheal reads).
-          # Transient-tolerant: gov rate-limits/bot-blocks are 'recheck', never a deploy failure.
-          if [ -f "$P/external_links.py" ]; then python "$P/external_links.py" || true; fi
-          if [ -f "$P/selfheal.py" ]; then
-            python "$P/selfheal.py" || true   # validates: no leak, links resolve, no studio route, externals, orphans, mobile, moon, deps, olelo, bats
-            cp "${{ env.WORKSPACE_P }}/reports/mauios/selfheal.html" site/selfheal.html 2>/dev/null || true
-          fi
+          echo "Local-first hosting model"
+          echo "Local: http://127.0.0.1:8080/site/"
+          echo "Private Tailscale: http://<tailscale-ip>:8080/site/"
+          echo "Private Tailscale hostname: https://<node>.ts.net/"
+          echo "Public domain: https://12sgi.com/ (optional only after DNS points to the host public IP)"
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
-
-      # Private notify (Jimmy 2026-07-01 "go"). HEAL-FORWARD (2026-07-02): the original if:
-      # referenced `secrets.TAILSCALE_AUTH_KEY` directly in a job-level if: condition, which
-      # GitHub Actions rejects at workflow-validation time (0 jobs ever created -- broke the
-      # ENTIRE publish pipeline, not just this step). Secrets are readable in `run:`/`with:` but
-      # not as a bare if: expression -- resolve presence in a run: step's own shell first, then
-      # gate on that step's output instead. Both notify steps still no-op harmlessly until the
-      # TAILSCALE_AUTH_KEY repo secret is added (Settings -> Secrets and variables -> Actions ->
-      # New repository secret). continue-on-error on both: a failed private notify NEVER fails
-      # the public deploy, which already succeeded in the step above.
-      - name: Check for Tailscale key
-        id: tskey
+      - name: Local publish guidance
         run: |
-          if [ -n "${{ secrets.TAILSCALE_AUTH_KEY }}" ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-          fi
+          echo "This repository is configured for local-first hosting."
+          echo "GitHub is a support layer only. The live system remains on the local machine."
+          echo "Do not treat GitHub Pages as the production deploy target for this project."
+          echo "Deployments should be run locally via the local CI / service monitor stack."
 
-      - name: Connect to Tailscale (best-effort, private notify only)
-        if: ${{ success() && steps.tskey.outputs.present == 'true' }}
-        continue-on-error: true
-        uses: tailscale/github-action@v3
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
-          hostname: ci-runner
-
-      - name: Notify private King on success
-        if: ${{ success() && steps.tskey.outputs.present == 'true' }}
-        continue-on-error: true
+      - name: Optional dry-run completion
+        if: ${{ inputs.dry_run == true }}
         run: |
-          curl -s -m 15 -X POST http://100.124.152.3:8799/api/dispatch/log \
-            -H 'Content-Type: application/json' \
-            -d '{"message":"SHIPPED: CI build+deploy complete (kilo-aupuni publish, GitHub Pages live)","source":"kilo-aupuni"}' \
-            || echo "private notify failed (non-fatal) -- public deploy already succeeded"
+          echo "Validation complete. This was a dry run only."

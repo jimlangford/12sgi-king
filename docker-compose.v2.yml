@@ -591,6 +591,23 @@ services:
       options:
         max-size: 5m
         max-file: '2'
+  web-server:
+    image: nginx:latest
+    ports:
+    - 0.0.0.0:8080:80
+    volumes:
+    - ./site:/usr/share/nginx/html:ro
+    restart: unless-stopped
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost/reports.html
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   github-workflow-monitor:
     build:
       context: .

@@ -1,20 +1,53 @@
-# govOS v2 — repo README additions
+# 12sgi-king
 
-This repository includes govOS v2 service and frontend integration scaffolds.
+This repository is organized around a local-first architecture.
 
-Key points
-- Deployment infrastructure is intentionally frozen for Phase 1 (releases + rollback + health service + Tailscale integration).
-<<<<<<< main
-- v2 contract is published at `/home/runner/work/12sgi-king/12sgi-king/docs/api/v2-api-contract.yaml`.
-- Local integration guide is available at `/home/runner/work/12sgi-king/12sgi-king/docs/GOVOS_V2_LOCAL_DEV.md`.
-- Local-first collaboration contract is documented at `/home/runner/work/12sgi-king/12sgi-king/docs/LOCAL_AI_COPILOT_CONTRACT.md`.
-=======
-- v2 contract is published at `docs/api/v2-api-contract.yaml`.
-- Local integration guide is available at `docs/GOVOS_V2_LOCAL_DEV.md`.
->>>>>>> origin/main
-- Do NOT commit secrets or internal hostnames. Use environment and secret management at deployment time.
+## Architecture
 
-Getting started
-- Start backend services in `/services/*` using each service README.
-- Start static frontend app scaffolds in `/apps/*/public`.
-- Follow the Sprint roadmap in `docs/GOVOS_V2_ROADMAP.md`.
+- Local machine = primary host for runtime, AI, Neo4j, local CI, and deployment
+- GitHub = support layer for source control, PRs, issues, and repo backup
+- Tailscale = private network access layer for local services
+- Public DNS = optional only when you intentionally expose the site to the public internet
+
+## Local hosting model
+
+Use these URLs depending on access mode:
+
+- Local only:
+  http://127.0.0.1:8080/site/
+
+- Private Tailscale:
+  http://<tailscale-ip>:8080/site/
+  https://<node>.ts.net/
+
+- Public domain (optional):
+  https://12sgi.com/
+
+Only use the public domain after DNS points to the host's public IP and the firewall rules intentionally expose it.
+
+## Local CI / deployment
+
+Run the local deployment pipeline on your local system, not GitHub Actions:
+
+```bash
+python local_ci_cd_server.py
+python service_auto_recovery.py
+```
+
+This keeps the active system under local ownership while GitHub remains a support surface rather than a runtime host.
+
+## Repository role
+
+GitHub is for:
+- code storage
+- branching and pull requests
+- documentation and issue tracking
+- support workflows and backups
+
+GitHub is not the site host for the live system unless you intentionally choose to expose a public deployment.
+
+## Notes
+
+- Keep secrets and private data local.
+- Do not commit tokens, model weights, or personal records.
+- Prefer local-first deployment and private-only access.
