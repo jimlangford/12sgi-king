@@ -16,8 +16,19 @@ export function fingerprint(items) {
   return createHash('sha256').update(JSON.stringify(entries)).digest('hex');
 }
 
+/**
+ * The message used for matching. EXACT for every rule except `target-size`, whose message embeds measured pixel
+ * sizes (e.g. "96.3px by 16px", "diameter of 21.2px"). Those follow the runner's fallback-font metrics and were
+ * seen to change between two GitHub runs of identical code (85.9px vs 96.3px for the same link), which made the
+ * gate flake. For that one rule the pixel numbers are ignored; the page, rule and element (selector) must still
+ * match exactly, and so must the rest of the message, so a finding can neither appear nor disappear unnoticed.
+ */
+export function canonicalFailure(item) {
+  return item.rule === 'target-size' ? String(item.failure).replace(/\d+(?:\.\d+)?px/g, 'Npx') : item.failure;
+}
+
 export function compare(actual, baseline) {
-  const key = item => JSON.stringify([item.page, item.rule, item.target, item.failure]);
+  const key = item => JSON.stringify([item.page, item.rule, item.target, canonicalFailure(item)]);
   const remaining = new Map();
   for (const item of baseline) remaining.set(key(item), (remaining.get(key(item)) || 0) + 1);
   const regressions = [];

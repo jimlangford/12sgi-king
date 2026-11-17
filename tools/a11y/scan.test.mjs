@@ -163,6 +163,23 @@ test('a changed failure message on an existing node is a regression, not a pass'
   assert.equal(verdict.resolved, 1);
 });
 
+test('target-size ignores measured pixel values only; every other rule stays exact', () => {
+  const size = (w, space) => ({ page: 'a.html', rule: 'target-size', target: ['p > a'],
+    failure: `Fix any of the following:\n  Target has insufficient size (${w}px by 16px, should be at least 24px by 24px)\n  Safe clickable space has a diameter of ${space}px instead of at least 24px.` });
+  // same page, rule, element, wording: a different font metric is not a new finding
+  assert.equal(compare([size('96.3', '21.2')], [size('85.9', '21')]).regressions.length, 0);
+  assert.equal(compare([size('96.3', '21.2')], [size('85.9', '21')]).resolved, 0);
+  // a different element, page, or wording still fails, and a vanished finding is still stale
+  assert.equal(compare([{ ...size('96.3', '21.2'), target: ['p > b'] }], [size('85.9', '21')]).regressions.length, 1);
+  assert.equal(compare([{ ...size('96.3', '21.2'), page: 'b.html' }], [size('85.9', '21')]).regressions.length, 1);
+  assert.equal(compare([{ ...size('96.3', '21.2'), failure: 'Fix any of the following:\n  something else' }], [size('85.9', '21')]).regressions.length, 1);
+  assert.equal(compare([], [size('85.9', '21')]).resolved, 1);
+  assert.equal(compare([size('96.3', '21.2'), size('96.3', '21.2')], [size('85.9', '21')]).regressions.length, 1);
+  // other rules (contrast) keep exact numbers
+  const contrast = ratio => ({ page: 'a.html', rule: 'color-contrast', target: ['p'], failure: `contrast ratio ${ratio}px` });
+  assert.equal(compare([contrast('1.2')], [contrast('1.3')]).regressions.length, 1);
+});
+
 test('scan errors always fail the gate, even when every finding matches', () => {
   const baseline = baselineFor({ 'a.html': {} });
   const verdict = evaluate({ scanned: [scanned('a.html')], errors: ['b.html: timeout'], baseline, names: ['a.html'] });
