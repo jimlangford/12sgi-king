@@ -9,14 +9,15 @@ shared history, or touches tenant isolation or WordPress publishing.
 | Item | Result | Where verified |
 | --- | --- | --- |
 | Shared gate `python tools/local_ci.py` | 387 tests, see section 2 for the Windows result | Windows 11, Python 3.11.9, isolated venv |
-| Same gate on Python 3.12 | NOT re-run here (3.12 is not installed on this machine) | Reported only by the earlier Linux run |
+| Same gate on Python 3.12 | Not run on this machine (3.12 not installed). GitHub Linux ran 3.11 and 3.12: both SUCCESS on `06b744f` | GitHub Actions |
 | Public build honors `KA_SITE`, excludes private material | Verified (section 4) | Windows, redirected home, 499 pages |
 | Accessibility scan of every generated page | 499 of 499 pages scanned, 0 scan errors | Windows, real Chrome |
 | Accessibility gate logic (new page, stale entry, shards) | 16 scanner tests pass | Windows |
-| **GitHub results** | **NOTHING HAS RUN.** Every run on this branch is `action_required` | `gh run list`, section 5 |
+| **GitHub results, head `06b744f` (queried 22:26 UTC)** | Test (Python 3.11 and 3.12), Lint, Secret Scan, Label: SUCCESS. **Accessibility: FAILURE (shard 2 of 4)**, fixed in `af7795c` (section 5b) | `gh run view`, section 5 |
 
-CI is not green. It has not run. Do not read the earlier "all checks pass" lines in
-`ACTIVE_AGENT_HANDOFF.md` as covering this branch; they describe the studio release head.
+**CI is fully green on `af7795c`** (section 5b). The text below that mentions a failure describes the earlier head `06b744f`. (An earlier version of this file said
+nothing had run; that was true only before the runs were approved and is superseded.) Do not read the earlier
+"all checks pass" lines in `ACTIVE_AGENT_HANDOFF.md` as covering this branch; they describe the studio release head.
 
 ## 2. Owner-only actions (only the repository owner can do these)
 
@@ -83,9 +84,43 @@ and reads the private Studio project under `~/Documents/Claude/Projects/`. On Wi
 ## 5. Actual GitHub state (queried, not assumed)
 
 - Branch `copilot/fix-ci-cd-workflows` at `8fa5ab8`, three commits ahead of `main`, no divergence.
-- PR #387 (draft). All 15 runs listed were `completed` with conclusion `action_required` (no jobs executed).
+- PR #387 (draft). The first 15 runs (commits `dbdd638`, `707611a`, `8fa5ab8`) were `action_required` and executed nothing.
+  After approval, GitHub ran `75028e0` (Test, Secret Scan, Label pass; Lint and Accessibility FAIL) and `06b744f`
+  (Test 3.11 and 3.12, Lint, Secret Scan, Label pass; Accessibility shard 2 FAIL, shards 1, 3 and 4 pass).
+- Lint failed on `75028e0` with 7 ruff errors in test files that had been touched (6 unsorted imports, 1 unused
+  variable); the strict changed-file gate applies to any file you touch. Fixed in `06b744f`.
 - Billing is no longer a blocker: recent `main` runs in the CI workflows succeeded.
 
+### 5a. Why accessibility still fails: the baseline is font-metric sensitive
+
+The Windows-built baseline and Linux agreed on all but 3 of ~14,700 entries, and `06b744f` reconciled those. Shard 2 then
+failed on Linux with 6 new and 4 stale entries, all in two layout-dependent rules:
+
+- `target-size`: the axe message embeds measured pixel sizes ("71.2px by 19px"), which change with font metrics. The same
+  `films.html` entry appears in BOTH the new and stale lists; only the numbers differ.
+- `scrollable-region-focusable`: whether a table overflows depends on rendered text width.
+
+Exact-message matching is correct for deterministic rules (contrast ratios come from CSS) but too brittle for these two. The
+fix is a decision, not a quiet change: normalize the pixel numbers in `target-size` messages, and decide how to treat
+`scrollable-region-focusable` (for example a per-page presence check). Do not simply keep editing the baseline from each
+failed run. Linux CI is the authoritative environment; a Windows scan will differ by a handful of nodes.
+
+### 5b. Resolved: all five checks green on `af7795c` (queried 2026-11-17)
+
+- CI - Test (Python 3.11 and 3.12), CI - Lint, CI - Secret Scan, CI - Accessibility (4 shards plus `a11y-complete`) and
+  Label PR by changed paths: all `success`. PR #387 is still a draft and nothing was merged.
+- Why shard 2 had failed after `06b744f`: (1) the 16-test browser check was killed at its 40 s limit on a slower
+  runner (now 150 s); (2) `target-size` messages embed measured pixels that follow the runner's fallback fonts (the
+  same link measured 85.9px, then 96.3px, in two runs of identical code).
+- Decision taken, not a quiet baseline edit: `canonicalFailure()` in `tools/a11y/scan.mjs` ignores the measured pixel
+  numbers for the `target-size` rule ONLY. Page, rule, selector and the rest of the message must still match, a
+  vanished finding is still stale, and contrast and every other rule stay exact. Pinned by a unit test (17 scanner
+  tests pass, twice in a row). Recorded in `baseline.json` `review.matching`.
+- Still exact, and worth watching: `scrollable-region-focusable` (4 tables on two civic templates). It matched on
+  three consecutive Linux runs, so it is not flaking today. If it ever does, the right fix is a per-page presence
+  check, not a baseline edit from a failed run.
+- Baseline now equals the four Linux shard reports: 14,694 findings on 499 of 499 pages. Windows differs by a few
+  nodes; Linux CI is authoritative.
 ## 6. Workflow and Dependabot review
 
 - Dependabot: valid. 12 pip directories and 2 Docker directories exist and have manifests; GitHub Actions are
