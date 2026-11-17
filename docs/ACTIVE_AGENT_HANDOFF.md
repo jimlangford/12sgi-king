@@ -46,8 +46,8 @@ the environment-gated paired-aspect episode canary before declaring the complete
   pytest configuration, non-vacuous contract assertions, and cleanup on failed
   integration startup. The owner's follow-up local-workflow request is handled
   by `python tools/local_ci.py`, also called by GitHub; setup is in `README.md`.
-  This runner never installs packages or deploys. Lint, accessibility, secret scan, and Dependabot repairs
-  are part of this separate CI branch, not the Studio release.
+  This runner never installs packages or deploys. Lint, accessibility, secret scan,
+  and Dependabot repairs are part of this separate CI branch, not the Studio release.
 - PRESERVED: auth/Studio service implementation, local Neo4j/Ollama,
   Tailscale/Cloudflare paths, creative/output gates, and all deployment workflows.
   These checks do not change private deployment ordering or automatically
@@ -61,6 +61,22 @@ the environment-gated paired-aspect episode canary before declaring the complete
   workflow/Compose YAML, and maintained-automation ShellCheck gates passed.
   Five real-scanner regression tests passed; the tracked tree and reachable
   history were clean after exact documented false-positive exceptions.
+  CodeQL Actions/Python analysis reported zero alerts.
+- BLOCKER — accessibility is NOT merge-ready: the clean stdlib-only public build
+  produced 499 HTML files with all 29 lanes passing. Four browser/scanner tests
+  and four owner-publication tests passed. The eight-page pilot passed against
+  144 explicit existing findings. A later full-site benchmark audited 466 pages
+  in 187 seconds; 33 URL-encoding comparison errors were fixed afterward, but
+  full coverage was not revalidated. The current recursive/sharded scanner
+  migration and the eight-page pilot baseline are not yet a completed matched
+  pair. Do not treat the accessibility workflow as passing or merge this CI
+  branch until Claude completes an inspected all-page baseline and validates
+  every shard, including new-page failure and stale-baseline pruning.
+- NEXT (Claude Code, owner-requested handoff): inspect this branch and existing
+  local edits before applying anything. Run the shared local test runner in an
+  isolated environment; finish the accessibility migration without disabling
+  rules, hiding findings, or publishing generated/private material. The pilot
+  leaves 491 pages ungated; no full-site conformance claim is justified.
 - NEXT (owner): approve any GitHub runs requiring authorization; configure
   branch protection to require the resulting check names. Enable GitHub secret
   scanning/push protection and any custom patterns in repository settings.

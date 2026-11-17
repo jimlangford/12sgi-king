@@ -727,3 +727,8 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 - Owner follow-up: "Make a new one that works locally." Added a non-deploying,
   cross-platform `tools/local_ci.py` entry point; GitHub uses the same command.
   Existing local deployment servers and private service startup remain unchanged.
+- Owner follow-up: "Prepare a prompt for Claude code." Prompt supplied in chat;
+  persistent continuation is in `docs/ACTIVE_AGENT_HANDOFF.md`. Shared local
+  tests: 387 passed on both Python versions; CodeQL: zero alerts. Accessibility
+  full-site migration/baseline is incomplete and blocks merge; Claude must finish
+  and validate all shards. Do not infer completion from the passing eight-page pilot.
