@@ -44,7 +44,7 @@ def _load_gpu(db_path: str):
 
 class MediaPhase21Tests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="media-phase21-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="media-phase21-", ignore_cleanup_errors=True)
         self.db_path = str(Path(self.tmp.name) / "gpu-router.db")
         self.module = _load_gpu(self.db_path)
         self.client = TestClient(self.module.app)

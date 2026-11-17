@@ -274,7 +274,7 @@ class TestScriptAPI(unittest.TestCase):
     """TEST 1-6: Writing Room tests."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="script-api-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="script-api-", ignore_cleanup_errors=True)
         self.client, self.db = _make_script_client(self.tmp.name)
 
     def tearDown(self):
@@ -370,7 +370,7 @@ class TestStoryboardLockArchive(unittest.TestCase):
     """TEST 7-21: Storyboard lock/archive/restore/revision tests."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="storyboard-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="storyboard-", ignore_cleanup_errors=True)
         self.client, self.db = _make_storyboard_client(self.tmp.name)
 
     def tearDown(self):
@@ -561,7 +561,7 @@ class TestFCPAdapter(unittest.TestCase):
     """TEST 28: FCPXML retains immutable asset IDs."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="fcp-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="fcp-", ignore_cleanup_errors=True)
         self.client, self.db = _make_fcp_client(self.tmp.name)
 
     def tearDown(self):
@@ -623,7 +623,7 @@ class TestLogicAdapter(unittest.TestCase):
     """TEST 29: Logic manifest retains dialogue and cue lineage."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="logic-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="logic-", ignore_cleanup_errors=True)
         self.client, self.db = _make_logic_client(self.tmp.name)
 
     def tearDown(self):
@@ -706,7 +706,7 @@ class TestGameAPI(unittest.TestCase):
     """TEST 30: Unreal/Sequencer manifest retains storyboard and camera references."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="game-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="game-", ignore_cleanup_errors=True)
         self.client, self.db = _make_game_client(self.tmp.name)
 
     def tearDown(self):

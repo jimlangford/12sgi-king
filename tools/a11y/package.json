@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "scan": "node scan.mjs",
+    "scan:propose": "node scan.mjs --propose",
     "test": "node --test scan.test.mjs"
   },
   "dependencies": {

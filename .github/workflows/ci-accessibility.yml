@@ -11,10 +11,18 @@ permissions:
 
 jobs:
   a11y-scan:
+    name: a11y-scan (shard ${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        # Pages are assigned to a shard by a stable hash of their path, so the four shards together
+        # cover EVERY generated page exactly once (unit-tested in tools/a11y/scan.test.mjs).
+        shard: [1, 2, 3, 4]
     env:
       CHROME_BIN: /usr/bin/google-chrome
+      A11Y_SHARD: ${{ matrix.shard }}/4
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
@@ -61,17 +69,33 @@ jobs:
         working-directory: tools/a11y
         run: timeout 40s npm test
 
-      - name: Scan generated /site/ against explicit reviewed backlog
+      - name: Scan this shard of generated /site/ against the explicit reviewed backlog
         working-directory: tools/a11y
-        run: timeout 155s npm run scan
+        run: timeout 420s npm run scan
 
       - name: Upload reports only (never generated HTML or owner material)
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: public-static-accessibility-report
+          name: public-static-accessibility-report-shard-${{ matrix.shard }}
           path: |
             tools/a11y/.work/report.json
             tools/a11y/.work/summary.md
           if-no-files-found: warn
           retention-days: 7
+
+  # One stable check name for branch protection: green only if ALL four shards passed. A skipped, cancelled
+  # or failed shard can never read as success.
+  a11y-complete:
+    name: a11y-complete
+    needs: a11y-scan
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require every accessibility shard to pass
+        env:
+          SHARD_RESULT: ${{ needs.a11y-scan.result }}
+        run: |
+          echo "Accessibility shards: ${SHARD_RESULT}"
+          test "${SHARD_RESULT}" = "success"

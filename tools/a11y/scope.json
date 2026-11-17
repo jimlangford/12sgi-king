@@ -1,4 +1,14 @@
 {
-  "description": "INCOMPLETE PILOT: eight representative PUBLIC static pages only, not full-site coverage or WCAG conformance. Other generated HTML is not gated yet. Expand to all generated pages with a separately reviewed exact backlog before treating this as the final CI repair. No rules are disabled.",
-  "pages": ["index.html", "reports.html", "jurisdictions.html", "datasets.html", "agendas.html", "testify.html", "education.html", "studio.html"]
+  "description": "ALL generated PUBLIC static HTML pages (every .html under the sanitized public build), desktop initial rendered state only. This is a regression gate against an explicit reviewed backlog, NOT WCAG conformance. Owner-only surfaces never reach this build. No rules are disabled.",
+  "exclude": [],
+  "knownDefects": [
+    {
+      "page": "king/civic/templates/sage-realm/Sage Realm.html",
+      "missingStylesheetContains": [
+        "sage-realm/styles.css",
+        "sage-realm/tokens/"
+      ],
+      "reason": "Found 2026-11-17: the public build serves this page but 10 stylesheets it requests relative to its own folder (king/civic/templates/sage-realm/styles.css and tokens/*.css) return 404; the working copies live one level up in king/civic/. The page renders without those styles. Source: king_public_src/civic/templates/sage-realm/. Fix it there, then delete this entry and re-propose the baseline. The page is still accessibility-scanned in its current state."
+    }
+  ]
 }

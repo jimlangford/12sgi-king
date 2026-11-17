@@ -35,7 +35,10 @@ def http_json(method: str, url: str, payload: dict | None = None, headers: dict 
         return exc.code, data
 
 
-def wait_for_service(url: str, timeout: float = 20.0):
+def wait_for_service(url: str, timeout: float = 60.0):
+    # 60s (was 20s): each service is a fresh Python process importing FastAPI/pydantic. On a busy Windows machine
+    # (antivirus scan, a browser build running) that exceeded 20s and failed all 12 tests; alone they pass in ~13s.
+    # A longer ceiling costs nothing when services start promptly.
     end = time.time() + timeout
     last_error = None
     while time.time() < end:
