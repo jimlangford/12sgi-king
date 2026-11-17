@@ -62,22 +62,28 @@ the environment-gated paired-aspect episode canary before declaring the complete
   Five real-scanner regression tests passed; the tracked tree and reachable
   history were clean after exact documented false-positive exceptions.
   CodeQL Actions/Python analysis reported zero alerts.
-- BLOCKER — accessibility is NOT merge-ready: the clean stdlib-only public build
-  produced 499 HTML files with all 29 lanes passing. Four browser/scanner tests
-  and four owner-publication tests passed. The eight-page pilot passed against
-  144 explicit existing findings. A later full-site benchmark audited 466 pages
-  in 187 seconds; 33 URL-encoding comparison errors were fixed afterward, but
-  full coverage was not revalidated. The current recursive/sharded scanner
-  migration and the eight-page pilot baseline are not yet a completed matched
-  pair. Do not treat the accessibility workflow as passing or merge this CI
-  branch until Claude completes an inspected all-page baseline and validates
-  every shard, including new-page failure and stale-baseline pruning.
-- NEXT (Claude Code, owner-requested handoff): inspect this branch and existing
-  local edits before applying anything. Run the shared local test runner in an
-  isolated environment; finish the accessibility migration without disabling
-  rules, hiding findings, or publishing generated/private material. The pilot
-  leaves 491 pages ungated; no full-site conformance claim is justified.
-- NEXT (owner): approve any GitHub runs requiring authorization; configure
+- COMPLETED — Claude's full-site migration supersedes the earlier eight-page
+  pilot blocker. Copilot reviewed the implementation and queried GitHub on
+  2026-11-17 after 23:07 UTC: all five validation workflows passed on `5bca6d9`.
+  Accessibility run `44192297689` passed all four shards and `a11y-complete`;
+  every shard finished in under three minutes. The reviewed baseline contains
+  all 499 pages and 14,694 existing node findings, with no excluded pages.
+  New findings, missing/fixed baseline entries, scan errors, and removed pages
+  fail the gate. Seventeen scanner tests cover browser checks and gate behavior.
+  Only `target-size` message pixel measurements are normalized for runner font
+  variation; other messages, including contrast ratios, remain exact.
+- VERIFY (GitHub evidence): test run `44192297725` passed both Python versions;
+  the Python 3.12 log records 387 passed and 46% service coverage. Lint run
+  `44192298058`, secret scan `44192297700`, and labeling `44192298442` passed.
+  This completion review did not rerun Claude's completed tests/builds.
+- KNOWN DEBT: this is a desktop static accessibility regression gate, not WCAG
+  conformance. Existing findings, incomplete checks needing human review, and
+  the explicitly reported Sage Realm missing stylesheets remain documented in
+  `docs/CI_OWNER_ACTIONS.md` and the scanner baseline/scope. Fix shared templates
+  in separately coordinated work; never refresh the baseline merely to hide
+  regressions. Production deployment and post-merge `main` results are not
+  established by a passing PR.
+- NEXT (owner): review PR #387 for readiness and merge authorization; configure
   branch protection to require the resulting check names. Enable GitHub secret
   scanning/push protection and any custom patterns in repository settings.
   History scanning cannot prove that inaccessible/deleted remote refs are clean;

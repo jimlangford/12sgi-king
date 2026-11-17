@@ -14,18 +14,24 @@ shared history, or touches tenant isolation or WordPress publishing.
 | Accessibility scan of every generated page | 499 of 499 pages scanned, 0 scan errors | Windows, real Chrome |
 | Accessibility gate logic (new page, stale entry, shards) | 16 scanner tests pass | Windows |
 | **GitHub results, head `06b744f` (queried 22:26 UTC)** | Test (Python 3.11 and 3.12), Lint, Secret Scan, Label: SUCCESS. **Accessibility: FAILURE (shard 2 of 4)**, fixed in `af7795c` (section 5b) | `gh run view`, section 5 |
+| **Completion review, head `5bca6d9` (queried after 23:07 UTC)** | Test (both Python versions), Lint, Secret Scan, Accessibility (all four shards and aggregate), Label: **SUCCESS** | GitHub Actions API; runs listed below |
 
-**CI is fully green on `af7795c`** (section 5b). The text below that mentions a failure describes the earlier head `06b744f`. (An earlier version of this file said
+**CI is fully green on `5bca6d9`**, as well as `af7795c` (section 5b). Copilot's completion review verified
+test run `44192297725`, lint `44192298058`, secret scan `44192297700`, accessibility `44192297689`,
+and labeling `44192298442`. The Python 3.12 job log records 387 passing tests and 46% service coverage;
+all four accessibility shards completed in under three minutes. This is PR evidence, not a deployment
+or a post-merge `main` result. Claude's completed test/build work was not rerun during the review.
+
+The text below that mentions a failure describes the earlier head `06b744f`. (An earlier version of this file said
 nothing had run; that was true only before the runs were approved and is superseded.) Do not read the earlier
 "all checks pass" lines in `ACTIVE_AGENT_HANDOFF.md` as covering this branch; they describe the studio release head.
 
 ## 2. Owner-only actions (only the repository owner can do these)
 
-1. **Approve the pending workflow runs on PR #387.** All runs for commits `dbdd638`, `707611a` and `8fa5ab8` are
-   `action_required`: GitHub is waiting for approval (the PR is authored by a bot) and no job has executed.
-   Open the PR's Checks tab (or Actions) and choose "Approve and run workflows". Until then there is no
-   GitHub evidence either way. I could not inspect your Actions approval policy from here; it lives under
-   Settings, Actions, General, and its exact wording may differ.
+1. **Check approval requirements for future runs.** Historical runs for commits `dbdd638`, `707611a` and
+   `8fa5ab8` were `action_required`; newer runs executed and passed. There is no outstanding approval
+   blocker for the reviewed `5bca6d9` checks. If a future run requires approval, use the PR's Checks tab
+   or Actions to approve it. Repository approval policy remains an owner-controlled setting.
 2. **Mark PR #387 ready for review** after the runs pass. It is a draft.
 3. **Branch protection or a ruleset on `main`** (see the decision in section 3 before turning it on).
    Required status checks, once they have run at least once so GitHub lists them:
@@ -127,8 +133,8 @@ failed run. Linux CI is the authoritative environment; a Windows scan will diffe
   covered too. Per-service Dockerfiles below `services/` are not separately watched.
 - All four `ci-*.yml` files are now pinned to commit SHAs. Before this change `ci-test.yml` and `ci-lint.yml` used
   mutable tags (`@v4`, `@v5`).
-- `ci-secret-scan.yml` downloads gitleaks with a pinned SHA-256 check and scans the full history. Its 5 minute limit is
-  untested against this repository's history size; the first real run will tell.
+- `ci-secret-scan.yml` downloads gitleaks with a pinned SHA-256 check and scans reachable history.
+  Run `44192297700` completed successfully in under one minute, within its five-minute limit.
 - `ci-accessibility.yml` now runs four shards plus an `a11y-complete` summary job.
 
 ## 7. Known debt this branch reports and does not hide
