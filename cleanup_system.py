@@ -1,125 +1,71 @@
 #!/usr/bin/env python3
-"""
-Cleanup script — remove duplication and optimize disk/memory.
-Production system audit cleanup.
+"""Preview stale runtime artifacts; delete only with --execute. Never prune volumes."""
 
-Run: python cleanup_system.py --verify first, then --execute
-"""
-
-import os
-import shutil
+import argparse
 from pathlib import Path
-import sys
+import shutil
+import subprocess
+import time
 
 HERE = Path(__file__).resolve().parent
 
-# Files to delete (absolute disk duplication)
-DELETE_FILES = [
-    "docker-compose.v2.yml.clean",
-    "docker-compose.postiz.yml",
-    "HEALING_README.py",
-    "HEALING_LINKS.py",
-    "GORDON_README.py",
-    "fix_compose.py",
-    "fix_static.py",
-    "fix_yaml_validator.py",
-    "add_monitor_service.py",
-    "add_static.py",
-    "rebuild_site.py",
-    "SETUP.md",
-    "TEST_AUTONOMOUS_REPAIRS.md",
-    "services/github_auto_repair.py",
-    "services/github_error_scanner.py",
-    "services/github_repair_archetypes.py",
-]
 
-# Patterns to clean (.dispatch_cursor_*.txt)
-PATTERNS_TO_DELETE = [
-    ".dispatch_cursor_*.txt",
-]
+def candidates(root, min_age_hours=24, python_cache=False):
+    """Return old, untracked, non-symlink artifacts, failing closed without Git."""
+    tracked = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "-z"],
+        capture_output=True, check=True, timeout=30
+    )
+    tracked_paths = set(tracked.stdout.decode("utf-8").split("\0"))
+    paths = list(root.glob(".dispatch_cursor_*.txt"))
+    if python_cache:
+        paths.extend(p for p in root.rglob("*.pyc") if p.parent.name == "__pycache__")
+    cutoff = time.time() - min_age_hours * 3600
+    for path in sorted(set(paths)):
+        relative = path.relative_to(root)
+        if any(part in {".git", ".venv", "venv", "node_modules"} for part in relative.parts):
+            continue
+        if any(p.is_symlink() for p in (path, *path.parents)):
+            continue
+        if (relative.as_posix() not in tracked_paths and path.is_file()
+                and path.stat().st_mtime < cutoff):
+            yield path
 
-def verify():
-    """Preview what will be deleted."""
-    print("=" * 80)
-    print("CLEANUP VERIFICATION — What will be deleted:")
-    print("=" * 80)
-    
-    total_size = 0
-    file_count = 0
-    
-    for f in DELETE_FILES:
-        path = HERE / f
-        if path.exists():
-            size = path.stat().st_size
-            total_size += size
-            file_count += 1
-            print(f"  ✗ {f} ({size:,} bytes)")
-    
-    # Handle patterns
-    import glob
-    for pattern in PATTERNS_TO_DELETE:
-        matches = list(HERE.glob(pattern))
-        for match in matches:
-            if match.is_file():
-                size = match.stat().st_size
-                total_size += size
-                file_count += 1
-                print(f"  ✗ {match.name} ({size:,} bytes)")
-    
-    print(f"\nTotal: {file_count} files, {total_size:,} bytes ({total_size / 1024 / 1024:.1f} MB)")
-    print("\nRun with --execute to proceed")
 
-def execute():
-    """Actually delete files."""
-    print("=" * 80)
-    print("EXECUTING CLEANUP...")
-    print("=" * 80)
-    
-    deleted = []
-    
-    # Delete specific files
-    for f in DELETE_FILES:
-        path = HERE / f
-        if path.exists():
-            try:
-                if path.is_dir():
-                    shutil.rmtree(path)
-                else:
-                    path.unlink()
-                deleted.append(f)
-                print(f"  ✓ Deleted: {f}")
-            except Exception as e:
-                print(f"  ✗ Failed to delete {f}: {e}")
-    
-    # Handle patterns
-    import glob
-    for pattern in PATTERNS_TO_DELETE:
-        matches = list(HERE.glob(pattern))
-        for match in matches:
-            if match.is_file():
-                try:
-                    match.unlink()
-                    deleted.append(match.name)
-                    print(f"  ✓ Deleted: {match.name}")
-                except Exception as e:
-                    print(f"  ✗ Failed to delete {match.name}: {e}")
-    
-    print(f"\n✓ Cleanup complete: {len(deleted)} files deleted")
-    print("\nVerify system still works:")
-    print("  python king-watchdog.py")
-    print("  curl http://localhost:8799/health")
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--verify", action="store_true", help="Preview only (default)")
+    mode.add_argument("--execute", action="store_true", help="Delete listed stale artifacts")
+    parser.add_argument("--min-age-hours", type=int, default=24)
+    parser.add_argument("--python-cache", action="store_true", help="Include stale untracked bytecode")
+    parser.add_argument("--docker-cache", action="store_true",
+                        help="Also inspect/prune Docker build cache older than seven days")
+    args = parser.parse_args(argv)
+    if args.min_age_hours < 1:
+        parser.error("--min-age-hours must be at least 1")
+    try:
+        files = list(candidates(HERE, args.min_age_hours, args.python_cache))
+        total = sum(path.stat().st_size for path in files)
+        print(f"{'DELETE' if args.execute else 'PREVIEW'}: {len(files)} stale files, {total:,} bytes")
+        for path in files:
+            print(path.relative_to(HERE))
+            if args.execute:
+                path.unlink()
+        if args.docker_cache:
+            command = (["docker", "builder", "prune", "--force", "--filter", "until=168h"]
+                       if args.execute else ["docker", "system", "df"])
+            subprocess.run(command, check=True, timeout=300)
+        disk = shutil.disk_usage(HERE)
+        used = disk.used / disk.total * 100
+        print(f"Disk used: {used:.1f}%; free: {disk.free / 1024**3:.1f} GiB")
+        if used >= 85:
+            print("Owner action needed: disk remains at or above 85%; inspect Docker usage/backups.")
+        return 0
+    except (OSError, UnicodeError, subprocess.SubprocessError) as exc:
+        print(f"Cleanup stopped: {exc}")
+        return 1
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python cleanup_system.py [--verify|--execute]")
-        print("  --verify   Show what will be deleted (no changes)")
-        print("  --execute  Actually delete files")
-        sys.exit(1)
-    
-    if sys.argv[1] == "--verify":
-        verify()
-    elif sys.argv[1] == "--execute":
-        execute()
-    else:
-        print(f"Unknown option: {sys.argv[1]}")
-        sys.exit(1)
+    raise SystemExit(main())

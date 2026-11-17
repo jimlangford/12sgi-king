@@ -25,6 +25,7 @@ site/
 # python cruft + watcher state
 __pycache__/
 *.pyc
+logs/
 *_state.json
 _probe*.py
 

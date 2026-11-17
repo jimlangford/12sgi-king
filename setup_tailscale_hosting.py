@@ -1,310 +1,113 @@
 #!/usr/bin/env python3
-"""
-12sgi.com Hosting Setup - Tailscale Private Hosting
-Configure your domain to use Tailscale for completely independent hosting.
+"""Private deployment instructions, read-only verification, or explicit --start."""
 
-This script helps you:
-1. Keep 12sgi.com domain on Wix (billing/control)
-2. Point all traffic to your king-server (via Tailscale)
-3. Set up internal DNS records
-4. Verify everything is working
-"""
-
-import subprocess
-import socket
-import sys
+import argparse
+import ipaddress
 import json
 from pathlib import Path
-from datetime import datetime
+import subprocess
+from urllib.parse import urlsplit
 
-class TailscaleHostingSetup:
-    def __init__(self):
-        self.king_server_ip = "100.124.152.3"  # Your Tailscale IP
-        self.tailnet = "tail760750.ts.net"
-        self.domain = "12sgi.com"
-        
-    def get_local_ip(self):
-        """Get your local network IP."""
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.connect(("8.8.8.8", 80))
-            ip = s.getsockname()[0]
-            s.close()
-            return ip
-        except:
-            return "192.168.1.X"
-    
-    def show_setup_instructions(self):
-        """Display Wix DNS setup instructions."""
-        print("\n" + "="*70)
-        print("STEP 1: Configure Wix DNS Records")
-        print("="*70)
-        print()
-        print("Go to: https://www.wix.com/dashboard")
-        print("  1. Click your site (12sgi.com)")
-        print("  2. Go to: Settings → Domains")
-        print("  3. Click: Manage DNS")
-        print()
-        print("ADD THESE DNS RECORDS:")
-        print()
-        print("Type: A")
-        print(f"Name: @ (or 12sgi.com)")
-        print(f"Value: {self.king_server_ip}")
-        print("TTL: 3600 (1 hour)")
-        print()
-        print("Type: CNAME")
-        print("Name: www")
-        print(f"Value: {self.king_server_ip}")
-        print("TTL: 3600")
-        print()
-        print("Type: CNAME")
-        print("Name: api")
-        print(f"Value: {self.king_server_ip}")
-        print("TTL: 3600")
-        print()
-        print("Type: CNAME")
-        print("Name: site")
-        print(f"Value: {self.king_server_ip}")
-        print("TTL: 3600")
-        print()
-        print("="*70)
-        print("IMPORTANT: Remove any existing forward to elementlotus.com")
-        print("="*70)
-        print()
-        
-    def show_hosts_file_setup(self):
-        """Show local hosts file setup."""
-        local_ip = self.get_local_ip()
-        print("\n" + "="*70)
-        print("STEP 2: Configure Local Hosts File (For Testing)")
-        print("="*70)
-        print()
-        print("On your local machine, add this to your hosts file:")
-        print()
-        print(f"Windows: C:\\Windows\\System32\\drivers\\etc\\hosts")
-        print(f"macOS/Linux: /etc/hosts")
-        print()
-        print("Add these lines:")
-        print(f"{local_ip}      12sgi.local")
-        print(f"{local_ip}      www.12sgi.local")
-        print(f"{local_ip}      api.12sgi.local")
-        print(f"{local_ip}      site.12sgi.local")
-        print()
-        print("Then access locally: http://12sgi.local/site/")
-        print()
-        
-    def show_tailscale_access(self):
-        """Show Tailscale access information."""
-        print("\n" + "="*70)
-        print("STEP 3: Access Via Tailscale")
-        print("="*70)
-        print()
-        print(f"Your king-server Tailscale IP: {self.king_server_ip}")
-        print()
-        print("From any Tailscale device, access:")
-        print(f"  http://{self.king_server_ip}:8080/site/")
-        print(f"  http://{self.king_server_ip}:8799/api/")
-        print(f"  http://{self.king_server_ip}:7474  (Neo4j)")
-        print()
-        print("Or via hostname:")
-        print(f"  http://king.{self.tailnet}:8080/site/")
-        print()
-        
-    def show_remote_access_setup(self):
-        """Show how to access from outside Tailscale."""
-        print("\n" + "="*70)
-        print("STEP 4: Remote Access (Tailscale Funnel - Optional)")
-        print("="*70)
-        print()
-        print("If you want to expose services to internet via Tailscale:")
-        print()
-        print("On king-server:")
-        print("  tailscale funnel --bg http://localhost:8080")
-        print("  tailscale funnel --bg http://localhost:8799")
-        print()
-        print("Then access from anywhere with Tailscale installed:")
-        print(f"  https://king--{self.tailnet}/site/")
-        print()
-        print("Or via direct Tailscale URL:")
-        print(f"  https://[{self.king_server_ip}]:443/")
-        print()
-        
-    def show_verification_steps(self):
-        """Show how to verify everything works."""
-        print("\n" + "="*70)
-        print("STEP 5: Verification")
-        print("="*70)
-        print()
-        print("On king-server, run:")
-        print("  tailscale status")
-        print("  docker compose -f docker-compose.v2.yml ps")
-        print("  python verify_neo4j.py")
-        print()
-        print("From any Tailscale device:")
-        print(f"  curl http://{self.king_server_ip}:8080/site/")
-        print(f"  curl http://{self.king_server_ip}:8799/api/")
-        print()
-        print("Check your local machine (after hosts file update):")
-        print("  curl http://12sgi.local/site/")
-        print()
-        
-    def show_dns_propagation(self):
-        """Show DNS propagation check."""
-        print("\n" + "="*70)
-        print("STEP 6: DNS Propagation Check")
-        print("="*70)
-        print()
-        print("After updating Wix DNS, check propagation:")
-        print()
-        print("PowerShell:")
-        print("  nslookup 12sgi.com")
-        print("  nslookup www.12sgi.com")
-        print("  nslookup api.12sgi.com")
-        print()
-        print("Or online:")
-        print("  https://www.whatsmydns.net/")
-        print()
-        print("DNS typically takes 1-24 hours to propagate worldwide.")
-        print()
-        
-    def show_architecture(self):
-        """Show the complete architecture."""
-        print("\n" + "="*70)
-        print("YOUR HOSTING ARCHITECTURE")
-        print("="*70)
-        print()
-        print("┌─────────────────────────────────────────────┐")
-        print("│ 12sgi.com Domain (Wix)                      │")
-        print("└──────────────┬──────────────────────────────┘")
-        print("               │ DNS A Record Points To:")
-        print("               ↓")
-        print("┌──────────────────────────────────────────────┐")
-        print("│ Tailscale Private Network                    │")
-        print("│ tail760750.ts.net                            │")
-        print("└──────────────┬───────────────────────────────┘")
-        print("               │")
-        print("               ↓")
-        print("┌──────────────────────────────────────────────┐")
-        print("│ King-Server (100.124.152.3)                 │")
-        print("│                                              │")
-        print("│ ├─ Port 8080: Web Server (dashboards)       │")
-        print("│ ├─ Port 8799: Board API                     │")
-        print("│ ├─ Port 8101-8109: V2 Services              │")
-        print("│ ├─ Port 7474: Neo4j                         │")
-        print("│ └─ Port 9000: CI/CD Webhook                 │")
-        print("└──────────────────────────────────────────────┘")
-        print()
-        print("KEY BENEFITS:")
-        print("  ✅ No internet-exposed ports")
-        print("  ✅ Tailscale encryption (WireGuard)")
-        print("  ✅ Zero billing issues (Tailscale free tier)")
-        print("  ✅ Only devices in tailnet can access")
-        print("  ✅ Complete control of infrastructure")
-        print()
-        
-    def create_checklist(self):
-        """Create a checklist document."""
-        checklist = """# 12sgi.com Tailscale Hosting - Checklist
+import health_check
 
-## Pre-Setup
-- [ ] Have Wix dashboard access ready
-- [ ] Know your king-server Tailscale IP (100.124.152.3)
-- [ ] Tailscale is running on king-server
-- [ ] All Docker services are running
+ROOT = Path(__file__).resolve().parent
+COMPOSE = ["docker", "compose", "--env-file", str(ROOT / ".env.v2"),
+           "-f", str(ROOT / "docker-compose.v2.yml")]
+INSTRUCTIONS = """
+PRIVATE / BRIDGE: Tailscale Serve only; never enable Funnel.
+1. Copy .env.v2.example to private .env.v2; generate strong auth/internal secrets.
+   Keep GOVOS_ALLOW_DEV_SECRETS=0 and inference URLs on local/Tailscale hosts.
+2. Confirm tailscale status, tailnet ACLs, disk <85%, and existing Neo4j volumes.
+   Start the standalone database separately; never remove its volumes.
+3. Start the existing native board (127.0.0.1:8799) and Studio asset stack separately.
+4. Run python setup_tailscale_hosting.py --start (explicitly starts v2 only).
+5. Use nginx-tailscale.conf in HOST nginx (loopback 127.0.0.1:8081).
+   It includes nginx-board-config.conf; /board/api/ stays on host :8799.
+   Validate nginx -t with this config, then tailscale serve --bg http://127.0.0.1:8081.
+6. Use the HTTPS MagicDNS URL reported by tailscale serve status.
+   For 12sgi.com, use private DNS/hosts -> king-server's current Tailscale IPv4
+   (historically 100.124.152.3) AND provision valid TLS for 12sgi.com on the host proxy.
+   Wix A records may point @, www, api, auth at that IP, but only tailnet clients
+   can connect. A CNAME targets a hostname, NEVER an IP. Do not remove existing
+   public publishing/Cloudflare bridges without owner review. Serve's automatic
+   *.ts.net certificate does NOT cover 12sgi.com. Avoid advertising an IPv6 bypass.
+7. Run python health_check.py on king-server; test HTTPS and /board/api/ from a
+   second authorized tailnet device and verify access fails outside the tailnet.
 
-## DNS Configuration (Wix)
-- [ ] Go to Wix Dashboard
-- [ ] Find Settings → Domains → Manage DNS
-- [ ] Remove any existing elementlotus.com forward
-- [ ] Add A record: @ → 100.124.152.3
-- [ ] Add CNAME: www → 100.124.152.3
-- [ ] Add CNAME: api → 100.124.152.3
-- [ ] Add CNAME: site → 100.124.152.3
-- [ ] Save all records
-- [ ] Wait 1-24 hours for propagation
-
-## Local Testing (Optional)
-- [ ] Edit your hosts file (C:\\Windows\\System32\\drivers\\etc\\hosts)
-- [ ] Add: 192.168.X.X  12sgi.local www.12sgi.local api.12sgi.local
-- [ ] Test: http://12sgi.local/site/
-- [ ] Remove from hosts file after testing
-
-## Tailscale Verification
-- [ ] Run: tailscale status
-- [ ] Verify king-server is ONLINE
-- [ ] Run: docker compose ps
-- [ ] All services should be UP
-
-## Remote Access Test
-- [ ] From another Tailscale device
-- [ ] Connect to tailnet
-- [ ] Access: http://100.124.152.3:8080/site/
-- [ ] Access: http://100.124.152.3:8799/api/
-- [ ] Verify both work
-
-## DNS Propagation Check
-- [ ] Run: nslookup 12sgi.com
-- [ ] Should resolve to 100.124.152.3
-- [ ] Check: https://www.whatsmydns.net/
-- [ ] Should show your king-server IP
-
-## Final Verification
-- [ ] 12sgi.com resolves to king-server
-- [ ] All services accessible via Tailscale
-- [ ] No internet-facing services exposed
-- [ ] Local CI/CD system still deploying
-- [ ] Neo4j 14,300 nodes intact
-
-## Troubleshooting
-- [ ] DNS not resolving? Clear cache: ipconfig /flushdns
-- [ ] Can't connect? Check Tailscale: tailscale status
-- [ ] Services down? Run: docker compose logs
-- [ ] Webhook not working? Check port 9000: netstat -ano | findstr :9000
-
----
-
-**Status**: Ready for Wix DNS configuration
-**Next Step**: Update DNS records in Wix dashboard
+Read COMPLETE_INDEPENDENCE.md for exact startup, cleanup, and recovery procedures.
+This helper does not change DNS, firewall, Tailscale, nginx, or database configuration.
 """
-        
-        Path("TAILSCALE_HOSTING_CHECKLIST.md").write_text(checklist)
-        return checklist
-    
-    def run(self):
-        """Run complete setup."""
-        print("\n" + "="*70)
-        print("🚀 12sgi.com Tailscale Hosting Setup")
-        print("="*70)
-        
-        self.show_architecture()
-        self.show_setup_instructions()
-        self.show_hosts_file_setup()
-        self.show_tailscale_access()
-        self.show_remote_access_setup()
-        self.show_verification_steps()
-        self.show_dns_propagation()
-        
-        print("\n" + "="*70)
-        print("CREATING CHECKLIST")
-        print("="*70)
-        self.create_checklist()
-        print("✓ Saved: TAILSCALE_HOSTING_CHECKLIST.md")
-        
-        print("\n" + "="*70)
-        print("NEXT STEPS:")
-        print("="*70)
-        print()
-        print("1. Read: TAILSCALE_HOSTING_CHECKLIST.md")
-        print("2. Go to Wix and update DNS records")
-        print("3. Wait for DNS propagation (1-24 hours)")
-        print("4. Test from a Tailscale device")
-        print("5. Verify 12sgi.com works!")
-        print()
-        print("Questions? Check:")
-        print("  - TAILSCALE_DEPLOYMENT_COMPLETE.md")
-        print("  - TAILSCALE_SETUP_GUIDE.md")
-        print()
+
+
+def private_url(value):
+    parsed = urlsplit(value)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+        return False
+    host = parsed.hostname.lower()
+    if host in {"localhost", "host.docker.internal", "gpu-runtime"} or host.endswith(".ts.net"):
+        return True
+    try:
+        address = ipaddress.ip_address(host)
+        return (address.is_loopback or address in ipaddress.ip_network("100.64.0.0/10")
+                or address in ipaddress.ip_network("fd7a:115c:a1e0::/48"))
+    except ValueError:
+        return False
+
+
+def validate_config(config):
+    """Fail closed before startup; never print resolved configuration/secrets."""
+    services = config.get("services", {})
+    if not health_check.EXPECTED_SERVICES.issubset(services):
+        raise ValueError("Incomplete v2 Compose service configuration")
+    for service in services.values():
+        if service.get("network_mode") == "host":
+            raise ValueError("Host networking is not allowed in the private v2 stack")
+        for port in service.get("ports", []):
+            if not isinstance(port, dict) or port.get("host_ip") not in {"127.0.0.1", "::1"}:
+                raise ValueError("Every published service port must bind loopback")
+        env = service.get("environment", {})
+        if str(env.get("GOVOS_ALLOW_DEV_SECRETS", "0")) != "0":
+            raise ValueError("GOVOS_ALLOW_DEV_SECRETS must be 0")
+        for key in ("AUTH_SIGNING_SECRET", "INTERNAL_SERVICE_TOKEN"):
+            if key in env and (len(str(env[key] or "")) < 32
+                               or str(env[key]).startswith("dev-")):
+                raise ValueError(f"{key} must contain at least 32 characters")
+        if str(env.get("NEO4J_AURA_ENABLED", "false")).lower() not in {"false", "0", ""}:
+            raise ValueError("Cloud graph routing must be disabled for independent deployment")
+        for key in ("GPU_RUNTIME_URL", "OLLAMA_BASE"):
+            if key in env and not private_url(env[key]):
+                raise ValueError(f"{key} must target a local or Tailscale host")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--verify", action="store_true")
+    mode.add_argument("--start", action="store_true")
+    args = parser.parse_args(argv)
+    if args.verify:
+        return health_check.main()
+    if not args.start:
+        print(INSTRUCTIONS)
+        return 0
+    try:
+        for name, check in (("Tailscale", health_check.check_tailscale),
+                            ("Disk", health_check.check_disk), ("Neo4j data", health_check.check_neo4j)):
+            ok, message = check()
+            print(f"{name}: {message}")
+            if not ok:
+                return 1
+        result = subprocess.run([*COMPOSE, "config", "--format", "json"], cwd=ROOT,
+                                capture_output=True, text=True, timeout=30, check=True)
+        validate_config(json.loads(result.stdout))
+        subprocess.run([*COMPOSE, "up", "-d", "--wait", "--wait-timeout", "120"],
+                       cwd=ROOT, timeout=180, check=True)
+        return health_check.main()
+    except Exception as exc:
+        # Compose diagnostics/config can contain secrets; leave inspection to the owner locally.
+        print(f"Startup stopped ({type(exc).__name__}); inspect private configuration locally.")
+        return 1
+
 
 if __name__ == "__main__":
-    setup = TailscaleHostingSetup()
-    setup.run()
+    raise SystemExit(main())

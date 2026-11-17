@@ -3,6 +3,17 @@
 Lightweight coordination log for parallel work on the civic surfaces.
 Append newest entries at the top. Keep it factual: intent + result.
 
+## 2026-11-17 — Copilot independent Tailscale deployment maintenance
+
+**PRIVATE / BRIDGE** — Branch `copilot/fix-12sgi-king`. Owner requested local,
+Tailscale-only deployment fixes. Preserve Codex's active Studio/auth release and all
+creative/output gates. Configuration overlap is limited to loopback publishing and
+health surfaces in the v2 compose stack; no Studio/auth application changes intended.
+Cleanup must be dry-run by default, never remove Neo4j volumes, and never blanket-kill
+pythonw processes. Host disk/RAM, DNS/TLS, tailnet ACLs, and graph counts require owner
+verification on king-server; this runner cannot attest to them. Owner/release agent:
+review these configuration overlaps before merge; existing release ownership is unchanged.
+
 ---
 
 ## 2026-07-15 — Release-readiness hardening: pending owner actions A–F
@@ -712,4 +723,3 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 **NEXT:** Start Postiz + genai-stack + v2 stack on king-server. Set WP/Jetpack secrets. Run python gordon_setup.py to verify. Pull latest: git pull origin main.
 
 ---
-

@@ -34,3 +34,14 @@ without first recording a coordinated handoff.
 
 Merge PR #380, record its merge commit in the shared private Studio state and dispatch log, then run
 the environment-gated paired-aspect episode canary before declaring the complete Studio beta shipped.
+
+## Parallel Deployment Maintenance — 2026-11-17
+
+- Agent: Copilot; branch: `copilot/fix-12sgi-king`.
+- Scope: PRIVATE/BRIDGE Tailscale deployment configuration, host cleanup, local CI,
+  recovery, health verification, and focused regression tests. No auth, Studio application,
+  creative/output approval, public publishing, or Neo4j data changes.
+- Coordination: existing release ownership above remains intact; deployment configuration
+  overlaps are recorded in `DISPATCH_LOG.md` for owner review before merge.
+- Validation: pending; no king-server resource or database claims can be verified in this runner.
+- Next: review the focused deployment diff and run host-only checks before enabling services.

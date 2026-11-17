@@ -1,5 +1,5 @@
 x-common-env:
-  GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+  GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
   INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
   AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
   AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -45,7 +45,7 @@ services:
     - --port
     - '8101'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -128,7 +128,7 @@ services:
     - --port
     - '8102'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -183,7 +183,7 @@ services:
     - --port
     - '8103'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -239,7 +239,7 @@ services:
     - --port
     - '8104'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -294,7 +294,7 @@ services:
     - --port
     - '8105'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -361,10 +361,12 @@ services:
       COMMIT_SHA: ${COMMIT_SHA:-unknown}
       BUILD_TIMESTAMP: ${BUILD_TIMESTAMP:-unknown}
       ENVIRONMENT: ${ENVIRONMENT:-local}
-      # board-api (native king_serve, host :8799) and studio-assets (external Codex stack) are monitored
-      # separately, not as V2 fleet members — trimmed so the V2 health aggregator reflects the V2 stack.
-      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109
+      # Studio has its own lifecycle, but its readiness is part of deployment readiness.
+      SURFACES_LIST: auth=auth:8101,tenant=tenant:8102,documents=documents:8103,storage=storage:8104,ai=ai:8105,gpu-router=gpu-router:8107,king-bridge=king-bridge:8109,studio-assets=host.docker.internal:8108
       SURFACES_HEALTH_PATH: /api/v2/ready
+      NEO4J_HTTP: ${NEO4J_HTTP:-http://host.docker.internal:7474/db/neo4j/tx/commit}
+    extra_hosts:
+    - host.docker.internal:host-gateway
     ports:
     - 127.0.0.1:8106:8000
     depends_on:
@@ -420,7 +422,7 @@ services:
     - --port
     - '8107'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -522,7 +524,7 @@ services:
     - --port
     - '8109'
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready
@@ -594,7 +596,7 @@ services:
   web-server:
     image: nginx:latest
     ports:
-    - 0.0.0.0:8080:80
+    - 127.0.0.1:8080:80
     volumes:
     - ./site:/usr/share/nginx/html:ro
     restart: unless-stopped
@@ -617,7 +619,7 @@ services:
     - -m
     - services.github_workflow_monitor_service
     environment:
-      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-1}
+      GOVOS_ALLOW_DEV_SECRETS: ${GOVOS_ALLOW_DEV_SECRETS:-0}
       INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:-dev-internal-token}
       AUTH_INTROSPECTION_URL: http://auth:8101/api/v2/auth/introspect
       AUTH_READY_URL: http://auth:8101/api/v2/ready

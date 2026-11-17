@@ -1,108 +1,108 @@
 #!/usr/bin/env python3
-"""
-System health check and status monitor for 12sgi-king deployment.
-Verifies Claude integration, service health, and deployment status.
-"""
+"""Read-only host verification for the private Tailscale deployment."""
 
 import json
-import sys
-import subprocess
-import urllib.request
-import time
 from pathlib import Path
-from datetime import datetime
+import shutil
+import socket
+import subprocess
+import sys
+import urllib.request
 
-def run_cmd(cmd, timeout=10):
-    """Run shell command and return output."""
-    try:
-        result = subprocess.run(
-            cmd, 
-            capture_output=True, 
-            text=True, 
-            timeout=timeout,
-            shell=True
-        )
-        return result.returncode, result.stdout, result.stderr
-    except subprocess.TimeoutExpired:
-        return 124, "", "Command timed out"
-    except Exception as e:
-        return -1, "", str(e)
+from service_auto_recovery import ServiceMonitor
 
-def check_docker():
-    """Check Docker daemon status."""
-    code, out, err = run_cmd("docker version --format json")
-    if code != 0:
-        return False, "Docker daemon not responding"
-    return True, "Docker running"
+ROOT = Path(__file__).resolve().parent
+EXPECTED_SERVICES = {
+    "auth", "tenant", "documents", "storage", "ai", "health", "gpu-router",
+    "board-api", "king-bridge", "connector-runner", "github-workflow-monitor", "web-server",
+}
+ENDPOINTS = {
+    **{name: (port, "/api/v2/ready") for name, port in (
+        ("auth", 8101), ("tenant", 8102), ("documents", 8103), ("storage", 8104),
+        ("ai", 8105), ("gpu-router", 8107), ("studio-assets", 8108), ("king-bridge", 8109),
+    )},
+    "health": (8106, "/api/v1/ready"),
+    "native-board": (8799, "/health"),
+    "website": (8080, "/reports.html"),
+}
+
+
+def check_tailscale():
+    result = subprocess.run(["tailscale", "status", "--json"], capture_output=True,
+                            text=True, timeout=10, check=True)
+    status = json.loads(result.stdout)
+    addresses = status.get("Self", {}).get("TailscaleIPs", [])
+    ok = status.get("BackendState") == "Running" and bool(addresses)
+    return ok, "Tailnet connected" if ok else "Tailscale is not connected"
+
+
+def check_dns():
+    result = subprocess.run(["tailscale", "ip", "-4"], capture_output=True,
+                            text=True, timeout=10, check=True)
+    expected = result.stdout.strip()
+    addresses = {entry[4][0] for entry in socket.getaddrinfo("12sgi.com", 443)}
+    return addresses == {expected}, f"12sgi.com resolves to {', '.join(sorted(addresses))}"
+
+
+def check_disk():
+    usage = shutil.disk_usage(ROOT)
+    percent = usage.used / usage.total * 100
+    return percent < 85, f"{percent:.1f}% used (must be below 85%)"
+
 
 def check_compose_stack():
-    """Check docker-compose stack status."""
-    cmd = 'cd "C:\\Users\\12sgi\\actions-runner\\_work\\12sgi-king\\12sgi-king" && docker compose ps --format json'
-    code, out, err = run_cmd(cmd, timeout=20)
-    
-    if code != 0:
-        return False, f"Compose check failed: {err[:100]}"
-    
-    try:
-        containers = json.loads(out) if out else []
-        running = [c for c in containers if c.get("State") == "running"]
-        return len(running) > 0, f"{len(running)} services running"
-    except:
-        return False, "Could not parse compose output"
+    containers = ServiceMonitor().check_health()
+    services = {c.get("Service"): c for c in containers}
+    bad = [name for name in sorted(EXPECTED_SERVICES)
+           if name not in services or services[name].get("State") != "running"
+           or services[name].get("Health", "") not in {"", "healthy"}]
+    return not bad, ("Not ready: " + ", ".join(bad)) if bad else f"{len(EXPECTED_SERVICES)} services running"
+
 
 def check_service_health(port, path="/api/v2/ready", timeout=5):
-    """Check service health endpoint."""
-    url = f"http://127.0.0.1:{port}{path}"
-    try:
-        req = urllib.request.Request(url, method="GET")
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            if resp.status == 200:
-                return True, f"Port {port} responding"
-    except Exception as e:
-        return False, f"Port {port} unreachable: {str(e)[:50]}"
+    with urllib.request.urlopen(f"http://127.0.0.1:{port}{path}", timeout=timeout) as response:
+        if response.status != 200:
+            return False, f"HTTP {response.status}"
+        if path.endswith("/ready"):
+            payload = json.load(response)
+            return payload.get("status") == "ready", f"Port {port}: {payload.get('status')}"
+        return True, f"Port {port} responding"
+
+
+def check_neo4j():
+    # Read-only query: never restart/recreate the standalone database or its volumes.
+    request = urllib.request.Request(
+        "http://127.0.0.1:7474/db/neo4j/tx/commit",
+        data=json.dumps({"statements": [{"statement": "MATCH (n) RETURN count(n) AS nodes"}]}).encode(),
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(request, timeout=15) as response:
+        payload = json.load(response)
+    if payload.get("errors"):
+        return False, "Neo4j query failed; inspect database locally"
+    count = payload["results"][0]["data"][0]["row"][0]
+    return count >= 14300, f"{count:,} nodes (minimum 14,300)"
+
 
 def main():
-    """Run full health check."""
-    print(f"\n{'='*60}")
-    print(f"12sgi-king System Health Check")
-    print(f"Timestamp: {datetime.now().isoformat()}")
-    print(f"{'='*60}\n")
-    
     checks = [
-        ("Docker Daemon", lambda: check_docker()),
-        ("Compose Stack", lambda: check_compose_stack()),
-        ("Auth Service (8101)", lambda: check_service_health(8101)),
-        ("Tenant Service (8102)", lambda: check_service_health(8102)),
-        ("Health Service (8106)", lambda: check_service_health(8106, "/api/v1/ready")),
-        ("King-Bridge (8109)", lambda: check_service_health(8109)),
+        ("Tailscale", check_tailscale), ("Private DNS", check_dns),
+        ("Disk", check_disk), ("Compose stack", check_compose_stack),
+        ("Neo4j data", check_neo4j),
     ]
-    
-    results = {}
-    for name, check_fn in checks:
+    checks.extend((name, lambda p=port, route=path: check_service_health(p, route))
+                  for name, (port, path) in ENDPOINTS.items())
+    passed = 0
+    for name, check in checks:
         try:
-            ok, msg = check_fn()
-            status = "✓ PASS" if ok else "✗ FAIL"
-            print(f"{status} | {name}: {msg}")
-            results[name] = {"status": ok, "message": msg}
-        except Exception as e:
-            print(f"✗ ERROR | {name}: {str(e)[:80]}")
-            results[name] = {"status": False, "message": str(e)[:80]}
-    
-    # Summary
-    passed = sum(1 for r in results.values() if r["status"])
-    total = len(results)
-    
-    print(f"\n{'='*60}")
-    print(f"Summary: {passed}/{total} checks passed")
-    
-    if passed == total:
-        print("✓ System HEALTHY - All checks passed")
-        print("✓ Claude integration READY")
-        return 0
-    else:
-        print(f"✗ System DEGRADED - {total - passed} checks failed")
-        print("Recommendation: Review failed services and restart Docker Desktop if needed")
-        return 1
+            ok, message = check()
+        except Exception as exc:
+            ok, message = False, f"Check failed ({type(exc).__name__}); inspect locally"
+        print(f"{'PASS' if ok else 'FAIL'} | {name}: {message}")
+        passed += bool(ok)
+    print(f"{passed}/{len(checks)} checks passed; remote TLS/ACLs and RAM stability require host observation.")
+    return 0 if passed == len(checks) else 1
+
 
 if __name__ == "__main__":
     sys.exit(main())
