@@ -713,3 +713,23 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 
 ---
 
+## 2026-11-17 — Registered-user backend access: authorization decisions needed
+**Thread:** enable-registered-users-access-backend
+**INSPECTED:** `services/auth/app/main.py`, `services/authz.py`, `docker-compose.v2.yml`,
+`NGINX_PRODUCTION_CONFIG.conf`, `king_landing.html`, `CANON.md`, and
+`docs/ACTIVE_AGENT_HANDOFF.md`.
+**FINDINGS:** Auth currently supports Owner/Municipality/Partner/Resident/Service sessions,
+with owner-allowlisted sign-in and no general account-registration or tenant-provisioning
+flow. V2 tenant authorization relies on verified claims. Backend service ports are loopback
+bound; the public landing page is static, and the sample Nginx routes are not a safe
+internet-facing authenticated gateway.
+**OPEN QUESTIONS FOR OWNER:** Confirm the identity-registration and email-verification policy;
+how tenant IDs and elevated tenant-admin roles are granted; the exact public-user service
+methods/routes (especially whether any write access is intended); and the intended HTTPS
+gateway host/deployment path. The proposed `registered_user` / `tenant_admin` roles also need
+an explicit mapping to the existing auth roles/scopes.
+**PRESERVED:** No backend service was exposed, no auth allowlist or role policy was changed,
+and the active auth/release surfaces named in the handoff were left untouched.
+**NEXT:** Resolve these decisions with the owner, then implement the gateway with a narrow
+route allowlist, server-side token verification, tenant-scoped authorization, and focused
+security tests. Do not pass bearer tokens in iframe query strings.
