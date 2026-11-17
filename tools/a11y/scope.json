@@ -4,11 +4,20 @@
   "knownDefects": [
     {
       "page": "king/civic/templates/sage-realm/Sage Realm.html",
-      "missingStylesheetContains": [
-        "sage-realm/styles.css",
-        "sage-realm/tokens/"
+      "missingStylesheetPaths": [
+        "/site/king/civic/templates/sage-realm/styles.css",
+        "/site/king/civic/templates/sage-realm/tokens/codex.css",
+        "/site/king/civic/templates/sage-realm/tokens/colors.css",
+        "/site/king/civic/templates/sage-realm/tokens/cosmology.css",
+        "/site/king/civic/templates/sage-realm/tokens/film.css",
+        "/site/king/civic/templates/sage-realm/tokens/fonts.css",
+        "/site/king/civic/templates/sage-realm/tokens/mauios.css",
+        "/site/king/civic/templates/sage-realm/tokens/motion.css",
+        "/site/king/civic/templates/sage-realm/tokens/ops.css",
+        "/site/king/civic/templates/sage-realm/tokens/spacing.css",
+        "/site/king/civic/templates/sage-realm/tokens/typography.css"
       ],
-      "reason": "Found 2026-11-17: the public build serves this page but 10 stylesheets it requests relative to its own folder (king/civic/templates/sage-realm/styles.css and tokens/*.css) return 404; the working copies live one level up in king/civic/. The page renders without those styles. Source: king_public_src/civic/templates/sage-realm/. Fix it there, then delete this entry and re-propose the baseline. The page is still accessibility-scanned in its current state."
+      "reason": "Verified 2026-11-17: the public build serves this page but the 11 exact stylesheet paths listed here return 404. king_public_src/ds-base.js injects styles.css and ten token stylesheets relative to this page's folder; working copies live in king_public_src/civic/. The page is still accessibility-scanned in its current state. Fix the source paths, then prune each resolved allowance and re-propose the baseline."
     }
   ]
 }

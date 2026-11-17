@@ -30,8 +30,10 @@ nothing had run; that was true only before the runs were approved and is superse
 
 1. **Check approval requirements for future runs.** Historical runs for commits `dbdd638`, `707611a` and
    `8fa5ab8` were `action_required`; newer runs executed and passed. There is no outstanding approval
-   blocker for the reviewed `5bca6d9` checks. If a future run requires approval, use the PR's Checks tab
-   or Actions to approve it. Repository approval policy remains an owner-controlled setting.
+   blocker for the reviewed `5bca6d9` checks. The completion-review push `3318cb3` triggered
+   accessibility run `44196827567` with `action_required` and no executed jobs; approve the
+   latest PR checks before treating the final review head as GitHub-validated. Repository
+   approval policy remains an owner-controlled setting.
 2. **Mark PR #387 ready for review** after the runs pass. It is a draft.
 3. **Branch protection or a ruleset on `main`** (see the decision in section 3 before turning it on).
    Required status checks, once they have run at least once so GitHub lists them:
@@ -61,7 +63,8 @@ checks on pull requests, or keep PRs optional and rely on the checks only. I did
 **B. How the accessibility gate treats data that your publisher regenerates.** The publisher modifies
 `seed_reports/mauios/donors/*.html`, and those become public pages. The gate compares exact page, rule, selector
 and message. Pages built from data can therefore drift when the data refreshes, and every newly published page with
-findings fails by design (the new-page rule). Today 498 of 499 pages have findings, so almost any new page fails.
+findings fails by design (the new-page rule). The current baseline records findings on all 499 pages,
+so new pages using the same affected templates are likely to fail.
 Options, in my order of preference:
 1. Fix the shared page shell. About 11,000 of the findings are structural (content outside landmarks, missing
    `<main>`, duplicate or unlabeled landmarks) and come from shared templates. Fixing the shell removes most of the
@@ -127,6 +130,20 @@ failed run. Linux CI is the authoritative environment; a Windows scan will diffe
   check, not a baseline edit from a failed run.
 - Baseline now equals the four Linux shard reports: 14,694 findings on 499 of 499 pages. Windows differs by a few
   nodes; Linux CI is authoritative.
+
+### 5c. Completion review: exact stylesheet exceptions
+
+Copilot's review found that the known missing stylesheet exception matched a directory substring,
+which could accept a newly broken link. It now matches 11 exact normalized `/site/` paths instead.
+New missing files fail even inside the reviewed directory; each resolved exception must be pruned
+independently. No source HTML, rule selection, or accessibility finding baseline was changed.
+
+The implementation agent verified 21 scanner tests, a sanitized public build (499 pages, 29 lanes
+passed), and a direct browser audit of the affected Sage page: all 11 expected missing paths matched,
+with five unchanged accessibility findings and zero new/resolved baseline entries. Follow-up code
+review found no further significant issues. No full-site scan was repeated locally; approve the
+latest PR runs for remote verification of these review commits.
+
 ## 6. Workflow and Dependabot review
 
 - Dependabot: valid. 12 pip directories and 2 Docker directories exist and have manifests; GitHub Actions are
@@ -140,7 +157,7 @@ failed run. Linux CI is the authoritative environment; a Windows scan will diffe
 ## 7. Known debt this branch reports and does not hide
 
 - Accessibility: a regression budget, not conformance. See `tools/a11y/baseline.json` (`review.backlog`).
-- A real broken page: `king/civic/templates/sage-realm/Sage Realm.html` requests 10 stylesheets relative to its own
+- A real broken page: `king/civic/templates/sage-realm/Sage Realm.html` requests 11 stylesheets relative to its own
   folder (`styles.css`, `tokens/*.css`) that return 404. Recorded in `tools/a11y/scope.json` `knownDefects`;
   fix it in `king_public_src/civic/templates/sage-realm/`.
 - A real resource leak in `services/gpu_router/app/main.py` (a SQLite connection is opened and never closed).

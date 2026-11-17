@@ -26,6 +26,18 @@ before(async () => {
     <meta charset="utf-8"><title>Broken stylesheet fixture</title>
     <link rel="stylesheet" href="nope.css"></head><body>
     <main><h1>Page with a missing stylesheet</h1></main></body></html>`);
+  await mkdir(path.join(root, 'tokens'), { recursive: true });
+  await writeFile(path.join(root, 'tokens', 'resolved.css'), 'body { color: #000; }');
+  for (const [name, sheets] of Object.entries({
+    'normalized-css': ['tokens/../tokens/reviewed%20defect.css?v=1#theme'],
+    'new-css': ['tokens/reviewed.css', 'tokens/new.css?reviewed=/site/tokens/reviewed.css'],
+    'resolved-css': ['tokens/reviewed.css', 'tokens/resolved.css'],
+  })) {
+    await writeFile(path.join(root, `${name}.html`), `<!doctype html><html lang="en"><head>
+      <meta charset="utf-8"><title>Stylesheet fixture</title>
+      ${sheets.map(href => `<link rel="stylesheet" href="${href}">`).join('')}</head><body>
+      <main><h1>Reviewed stylesheets</h1></main></body></html>`);
+  }
   // Colour depends on the hour: pale (fails contrast) before noon Honolulu, dark from noon. A frozen noon clock
   // must therefore always render the dark, passing variant no matter when the test runs.
   await writeFile(path.join(root, 'clock.html'), `<!doctype html><html lang="en"><head>
@@ -59,10 +71,32 @@ test('real browser accepts accessible fixture and detects contrast, alt, semanti
 
 test('a missing stylesheet is an error unless it is a documented known defect, and a fixed defect must be pruned', async () => {
   await assert.rejects(audit(browser, origin, 'broken-css.html'), /missing local stylesheet/);
-  const tolerated = await audit(browser, origin, 'broken-css.html', ['nope.css']);
+  const tolerated = await audit(browser, origin, 'broken-css.html', ['/site/nope.css']);
   assert.equal(tolerated.knownDefects.length, 1, 'the page is still scanned and the defect is reported');
-  await assert.rejects(audit(browser, origin, 'broken-css.html', ['something-else.css']), /missing local stylesheet/);
-  await assert.rejects(audit(browser, origin, 'good.html', ['nope.css']), /no longer occurs/);
+  await assert.rejects(audit(browser, origin, 'broken-css.html', ['/site/something-else.css']), /missing local stylesheet/);
+  await assert.rejects(audit(browser, origin, 'good.html', ['/site/nope.css']), /no longer occurs/);
+});
+
+test('reviewed stylesheet paths match normalized decoded URL pathnames, ignoring query and fragment', async () => {
+  const result = await audit(browser, origin, 'normalized-css.html', ['/site/tokens/reviewed defect.css']);
+  assert.equal(result.knownDefects.length, 1);
+});
+
+test('a new missing stylesheet in a reviewed directory fails, even with an allowed path in its query', async () => {
+  await assert.rejects(audit(browser, origin, 'new-css.html', ['/site/tokens/reviewed.css']),
+    /missing local stylesheet .*\/tokens\/new\.css/);
+});
+
+test('each resolved stylesheet allowance fails even while another reviewed stylesheet remains missing', async () => {
+  await assert.rejects(audit(browser, origin, 'resolved-css.html',
+    ['/site/tokens/reviewed.css', '/site/tokens/resolved.css']),
+  /known stylesheet defect no longer occurs \(\/site\/tokens\/resolved\.css\)/);
+});
+
+test('stylesheet allowances must be exact normalized paths, never directory or substring exceptions', async () => {
+  for (const invalid of ['tokens/', '/site/tokens/', '/site/tokens/../nope.css', '/site/nope.css?v=1']) {
+    await assert.rejects(audit(browser, origin, 'broken-css.html', [invalid]), /exact normalized/);
+  }
 });
 
 test('the page clock is frozen so time-dependent pages give the same findings at any time of day', async () => {

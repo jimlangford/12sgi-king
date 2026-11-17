@@ -159,12 +159,22 @@ export async function serve(root) {
   return { server, origin: `http://127.0.0.1:${server.address().port}` };
 }
 
+function stylesheetPath(url) {
+  return path.posix.normalize(decodeURIComponent(new URL(url).pathname));
+}
+
 /**
- * `known` = substrings of stylesheet URLs that are a DOCUMENTED, reviewed defect for this page (scope.json
+ * `known` = exact normalized /site/ stylesheet pathnames that are a DOCUMENTED, reviewed defect (scope.json
  * knownDefects). The page is still scanned. Any OTHER missing stylesheet is an error, and a known defect that no
  * longer occurs is also an error ("fixed - prune the entry"), so an allowance can never outlive its defect.
  */
 export async function audit(browser, origin, name, known = []) {
+  for (const pathname of known) {
+    assert.ok(typeof pathname === 'string' && pathname.startsWith('/site/') && !pathname.endsWith('/') &&
+      pathname === stylesheetPath(new URL(pathname, origin)),
+    `${name}: known stylesheet defects need exact normalized /site/ pathnames`);
+  }
+  const allowed = new Set(known);
   const page = await browser.newPage();
   const blocked = new Set();
   const missingStyles = new Set();
@@ -223,9 +233,10 @@ export async function audit(browser, origin, name, known = []) {
     }
     assert.ok(stable, `${name}: accessibility results kept changing while scanning (unstable page)`);
     const missing = [...missingStyles].sort();
-    const unexpected = missing.filter(url => !known.some(part => url.includes(part)));
+    const observed = new Set(missing.map(stylesheetPath));
+    const unexpected = missing.filter(url => !allowed.has(stylesheetPath(url)));
     assert.equal(unexpected.length, 0, `${name}: missing local stylesheet ${unexpected.join(', ')}`);
-    const fixed = known.filter(part => !missing.some(url => url.includes(part)));
+    const fixed = known.filter(pathname => !observed.has(pathname));
     assert.equal(fixed.length, 0, `${name}: known stylesheet defect no longer occurs (${fixed.join(', ')}); prune it from scope.json knownDefects and re-propose the baseline`);
     assert.ok(result.passes.length > 0, `${name}: axe did not run`);
     return { page: name, findings: findings(name, result.violations),
@@ -276,13 +287,13 @@ async function main() {
   // Every generated HTML file is in scope. Documented exclusions are explicit, reasoned, and reported.
   const excluded = new Map((scope.exclude || []).map(item => [item.page, item.reason]));
   for (const [page, reason] of excluded) assert.ok(reason && reason.length > 20, `Exclusion for ${page} needs a real reason`);
-  // Known, reviewed page defects (still scanned; see audit()). Every entry needs a page, a URL fragment and a real reason.
+  // Known, reviewed page defects (still scanned; see audit()). Each stylesheet pathname is individually tracked.
   const knownDefects = new Map();
   for (const item of scope.knownDefects || []) {
-    assert.ok(item.page && Array.isArray(item.missingStylesheetContains) && item.missingStylesheetContains.length,
-      'knownDefects entries need page + missingStylesheetContains');
+    assert.ok(item.page && Array.isArray(item.missingStylesheetPaths) && item.missingStylesheetPaths.length,
+      'knownDefects entries need page + missingStylesheetPaths');
     assert.ok(item.reason && item.reason.length > 20, `knownDefect for ${item.page} needs a real reason`);
-    knownDefects.set(item.page, item.missingStylesheetContains);
+    knownDefects.set(item.page, item.missingStylesheetPaths);
   }
   const all = (await readdir(path.join(output, 'site'), { recursive: true }))
     .map(name => name.split(path.sep).join('/')).filter(name => name.endsWith('.html')).sort();

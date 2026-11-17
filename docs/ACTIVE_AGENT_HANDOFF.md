@@ -76,6 +76,17 @@ the environment-gated paired-aspect episode canary before declaring the complete
   the Python 3.12 log records 387 passed and 46% service coverage. Lint run
   `44192298058`, secret scan `44192297700`, and labeling `44192298442` passed.
   This completion review did not rerun Claude's completed tests/builds.
+- REVIEW FIX: replaced broad missing-stylesheet substring exceptions with 11
+  exact normalized paths. A new missing file in the same directory now fails,
+  and every individually resolved exception must be pruned. The implementation
+  agent verified 21 scanner tests, a sanitized 499-page/29-lane build, and the
+  actual Sage page (11 expected missing paths, five unchanged baseline findings).
+  No source HTML or accessibility baseline was changed. Follow-up review found
+  no further significant issues. The full-site scan was not repeated locally.
+- FINAL-HEAD STATUS: the review push `3318cb3` triggered GitHub approval-required
+  runs (for example accessibility `44196827567`); owner approval of the latest
+  PR checks is still required. Prior green evidence above is for `5bca6d9`,
+  not an assertion that the later review commits have executed in GitHub.
 - KNOWN DEBT: this is a desktop static accessibility regression gate, not WCAG
   conformance. Existing findings, incomplete checks needing human review, and
   the explicitly reported Sage Realm missing stylesheets remain documented in

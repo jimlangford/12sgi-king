@@ -748,3 +748,9 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
   local-first operation, and owner-controlled repository settings.
 - NEXT: owner review/merge decision for PR #387 and repository settings.
   Existing accessibility debt remains explicit; green is not WCAG conformance.
+- Review follow-up: tightened known missing-stylesheet allowances from directory
+  substrings to 11 exact normalized paths. The implementation agent verified
+  21 scanner tests, 499 public build pages/29 passing lanes, and the affected
+  Sage page with unchanged findings. Follow-up review found no further issues;
+  no source HTML, baseline, private service, or deployment behavior changed.
+  New GitHub checks require owner approval; prior green evidence is `5bca6d9`.
