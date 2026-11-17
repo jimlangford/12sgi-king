@@ -230,9 +230,9 @@ class MediaPhase21Tests(unittest.TestCase):
             old = os.environ.get("STUDIO_REGISTRY_PATH")
             os.environ["STUDIO_REGISTRY_PATH"] = str(registry)
             try:
-                import services.studio_assets.app.project_api as project_api
-
                 import importlib
+
+                import services.studio_assets.app.project_api as project_api
 
                 importlib.reload(project_api)
                 row = project_api.get_project("legacy")

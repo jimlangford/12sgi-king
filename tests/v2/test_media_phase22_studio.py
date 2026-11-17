@@ -46,8 +46,9 @@ def _make_storyboard_client(tmp_dir: str):
     import os
     db_path = str(Path(tmp_dir) / "storyboard.db")
     os.environ["STUDIO_STORYBOARD_DB_PATH"] = db_path
-    from services.studio_assets.app import storyboard_api
     import importlib
+
+    from services.studio_assets.app import storyboard_api
     importlib.reload(storyboard_api)
     from fastapi import FastAPI
     app = FastAPI()
@@ -59,8 +60,9 @@ def _make_script_client(tmp_dir: str):
     import os
     db_path = str(Path(tmp_dir) / "scripts.db")
     os.environ["STUDIO_SCRIPT_DB_PATH"] = db_path
-    from services.studio_assets.app import script_api
     import importlib
+
+    from services.studio_assets.app import script_api
     importlib.reload(script_api)
     from fastapi import FastAPI
     app = FastAPI()
@@ -72,8 +74,9 @@ def _make_fcp_client(tmp_dir: str):
     import os
     db_path = str(Path(tmp_dir) / "fcp.db")
     os.environ["STUDIO_FCP_DB_PATH"] = db_path
-    from services.studio_assets.app import fcp_adapter
     import importlib
+
+    from services.studio_assets.app import fcp_adapter
     importlib.reload(fcp_adapter)
     from fastapi import FastAPI
     app = FastAPI()
@@ -85,8 +88,9 @@ def _make_logic_client(tmp_dir: str):
     import os
     db_path = str(Path(tmp_dir) / "logic.db")
     os.environ["STUDIO_LOGIC_DB_PATH"] = db_path
-    from services.studio_assets.app import logic_adapter
     import importlib
+
+    from services.studio_assets.app import logic_adapter
     importlib.reload(logic_adapter)
     from fastapi import FastAPI
     app = FastAPI()
@@ -98,8 +102,9 @@ def _make_game_client(tmp_dir: str):
     import os
     db_path = str(Path(tmp_dir) / "game.db")
     os.environ["STUDIO_GAME_DB_PATH"] = db_path
-    from services.studio_assets.app import game_api
     import importlib
+
+    from services.studio_assets.app import game_api
     importlib.reload(game_api)
     from fastapi import FastAPI
     app = FastAPI()
@@ -479,7 +484,7 @@ class TestStoryboardLockArchive(unittest.TestCase):
         r = self.client.post(f"/api/v2/media/storyboards/{sb_id}/revisions",
                              json={"actor": "owner"})
         self.assertEqual(r.status_code, 200)
-        new_id = r.json()["storyboard_id"]
+        self.assertIn("storyboard_id", r.json())
         self.assertFalse(r.json()["locked"])
         self.assertEqual(r.json()["revision"], 2)
         # Original unchanged

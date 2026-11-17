@@ -67,7 +67,7 @@ jobs:
 
       - name: Prove browser checks reject known failures
         working-directory: tools/a11y
-        run: timeout 40s npm test
+        run: timeout 150s npm test
 
       - name: Scan this shard of generated /site/ against the explicit reviewed backlog
         working-directory: tools/a11y

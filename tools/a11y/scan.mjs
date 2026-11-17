@@ -285,7 +285,9 @@ async function main() {
   if (only) for (const page of only) assert.ok(names.includes(page), `A11Y_PAGES lists unknown page ${page}`);
   const selected = names.filter(name => inShard(name, shard) && (!only || only.has(name)));
   const concurrency = Math.max(1, Number(process.env.A11Y_CONCURRENCY || 4));
-  const limitMs = Number(process.env.A11Y_DEADLINE_MS || (shard ? 240000 : 1200000));
+  // A settled, double-checked shard takes ~200-250s on a slow machine; keep this just under the workflow's 420s
+  // `timeout` so a healthy scan is never killed by its own watchdog but a hung one still is.
+  const limitMs = Number(process.env.A11Y_DEADLINE_MS || (shard ? 400000 : 1800000));
   const { server, origin } = await serve(path.join(output, 'site'));
   let browser;
   const report = { engine: axe.version, tags, scope: scope.description, shard: shard ? `${shard.index}/${shard.total}` : 'all',
