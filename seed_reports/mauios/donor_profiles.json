@@ -2,25 +2,62 @@
  {
   "key": "Bissen",
   "label": "Richard Bissen - Mayor (incumbent), former judge",
-  "rows": 728,
-  "total": 665271.13,
+  "rows": 1273,
+  "total": 1207645.36,
   "candidate_names": [
    "Bissen, Richard"
   ],
   "by_type": {
-   "Individual": 606008.6299999998,
-   "Other Entity": 23262.5,
-   "Noncandidate Committee": 36000.0
+   "Other Entity": 101000.89,
+   "Individual": 1055984.4699999997,
+   "Noncandidate Committee": 50000.0,
+   "Immediate Family": 660.0
   },
   "realestate": {
-   "count": 70,
-   "total": 94235.32,
+   "count": 112,
+   "total": 157440.32,
    "donors": [
     {
+     "name": "Goodfellow, J Stephen",
+     "amount": 8000.0,
+     "employer": "Goodfellow Bros. Inc",
+     "occupation": "Contractor"
+    },
+    {
      "name": "Ledcor Development LP",
-     "amount": 4000.0,
+     "amount": 8000.0,
      "employer": "",
      "occupation": ""
+    },
+    {
+     "name": "Lanai Resorts, LLC",
+     "amount": 6000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Thibodeaux, Cinda",
+     "amount": 4000.0,
+     "employer": "TKH Construction",
+     "occupation": "Administrative Coordinator"
+    },
+    {
+     "name": "Kihune, Howard",
+     "amount": 4000.0,
+     "employer": "Owner",
+     "occupation": "Developer"
+    },
+    {
+     "name": "Hassan, Scott",
+     "amount": 4000.0,
+     "employer": "Suitable Technologies",
+     "occupation": "Software Developer"
+    },
+    {
+     "name": "Halsted, George",
+     "amount": 4000.0,
+     "employer": "self-employed",
+     "occupation": "Real Estate Management"
     },
     {
      "name": "Maui Land & Pineapple Co., Inc. State PAC",
@@ -33,12 +70,6 @@
      "amount": 4000.0,
      "employer": "Cohen Development Group",
      "occupation": "President"
-    },
-    {
-     "name": "Goodfellow, J Stephen",
-     "amount": 4000.0,
-     "employer": "Goodfellow Bros. Inc",
-     "occupation": "Contractor"
     },
     {
      "name": "Cheng, Preston",
@@ -57,125 +88,119 @@
      "amount": 4000.0,
      "employer": "DW Ventures",
      "occupation": "Contractor"
-    },
-    {
-     "name": "Carr, Stanford",
-     "amount": 3420.32,
-     "employer": "Stanford Carr Development, LLC",
-     "occupation": "Developer"
-    },
-    {
-     "name": "Hashizume, Eric H.",
-     "amount": 3000.0,
-     "employer": "Hawaiian Dredging Construction Co.",
-     "occupation": "Vice President"
-    },
-    {
-     "name": "Duvauchelle, Sandra",
-     "amount": 2500.0,
-     "employer": "Self-employed",
-     "occupation": "Contractor"
-    },
-    {
-     "name": "Kerner, Jay",
-     "amount": 2500.0,
-     "employer": "U.S. Realty Partners",
-     "occupation": "President/CEO"
-    },
-    {
-     "name": "Hilton Resorts Corporation",
-     "amount": 2000.0,
-     "employer": "",
-     "occupation": ""
     }
    ]
   },
-  "out_of_state_pct": 9,
+  "out_of_state_pct": 8,
   "recusals": [],
   "top_donors": [
    {
     "name": "Fielding, Alex",
-    "amount": 12000.0,
-    "n": 2,
+    "amount": 16000.0,
+    "n": 3,
     "employer": "Privateer Space",
     "occupation": "CEO"
    },
    {
-    "name": "Rompel, Mike",
+    "name": "Goodfellow, Tamar C.",
+    "amount": 8000.0,
+    "n": 4,
+    "employer": "N/A",
+    "occupation": "Retired"
+   },
+   {
+    "name": "Kane, Micah A.",
+    "amount": 8000.0,
+    "n": 3,
+    "employer": "Hawaii Community Foundation",
+    "occupation": "CEO/President"
+   },
+   {
+    "name": "Stenger, Tiffany",
     "amount": 8000.0,
     "n": 2,
-    "employer": "Dominos Pizza",
-    "occupation": "Business Owner"
-   },
-   {
-    "name": "Gehl, Jeff",
-    "amount": 5000.0,
-    "n": 2,
-    "employer": "P10",
-    "occupation": "Finance"
-   },
-   {
-    "name": "Anderson, Mary J.",
-    "amount": 4100.0,
-    "n": 3,
-    "employer": "Koholoa Brewery",
-    "occupation": "President"
-   },
-   {
-    "name": "Buck, Chad",
-    "amount": 4000.0,
-    "n": 1,
-    "employer": "HFA",
-    "occupation": "CEO"
+    "employer": "Alpha Inc.",
+    "occupation": "Vice President"
    },
    {
     "name": "Fielding, Amyen",
-    "amount": 4000.0,
-    "n": 1,
+    "amount": 8000.0,
+    "n": 2,
     "employer": "Self-employed",
     "occupation": "Therapist Author"
    },
    {
-    "name": "Hawaii Carpenters Political Action Fund",
-    "amount": 4000.0,
-    "n": 1,
-    "employer": "",
-    "occupation": ""
+    "name": "Weiss, Lee",
+    "amount": 8000.0,
+    "n": 2,
+    "employer": "self employed",
+    "occupation": "Physician"
    },
    {
-    "name": "Kinsey, Robert W.",
-    "amount": 4000.0,
-    "n": 4,
-    "employer": "N/A",
-    "occupation": "Retired"
+    "name": "Goodfellow, J Stephen",
+    "amount": 8000.0,
+    "n": 3,
+    "employer": "Goodfellow Bros. Inc",
+    "occupation": "Contractor"
+   },
+   {
+    "name": "Higa, Jason T.",
+    "amount": 8000.0,
+    "n": 3,
+    "employer": "FCH Enterprises",
+    "occupation": "CEO"
    }
   ]
  },
  {
   "key": "Sugimura",
   "label": "Yuki Lei Sugimura - Council Vice-Chair, BFED Chair; mayoral candidate",
-  "rows": 772,
-  "total": 354610.17,
+  "rows": 1312,
+  "total": 938229.86,
   "candidate_names": [
    "Sugimura, Yuki"
   ],
   "by_type": {
-   "Individual": 180454.66999999998,
-   "Other Entity": 141495.5,
-   "Candidate": 1250.0,
-   "Noncandidate Committee": 11350.0,
-   "Immediate Family": 19510.0,
+   "Individual": 609121.2200000001,
+   "Other Entity": 268448.64,
+   "Candidate": 5250.0,
+   "Immediate Family": 39510.0,
+   "Noncandidate Committee": 15350.0,
    "Political Party": 550.0
   },
   "realestate": {
-   "count": 64,
-   "total": 47484.94,
+   "count": 115,
+   "total": 137843.74,
    "donors": [
     {
      "name": "Lanai Resorts, LLC",
-     "amount": 4750.0,
+     "amount": 8750.0,
      "employer": "",
      "occupation": ""
+    },
+    {
+     "name": "Hawaii Realtors PAC",
+     "amount": 8000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Smith, Kent",
+     "amount": 5500.0,
+     "employer": "Self-Employed",
+     "occupation": "Contractor"
+    },
+    {
+     "name": "Sakamoto, Roy",
+     "amount": 4708.8,
+     "employer": "Coldwell Banker Island Properties",
+     "occupation": "Realtor"
+    },
+    {
+     "name": "Stoner, Robert",
+     "amount": 4650.0,
+     "employer": "S&F Land Co.",
+     "occupation": "Real Estate Developer"
     },
     {
      "name": "Goodfellow, J. Stephan",
@@ -184,125 +209,101 @@
      "occupation": "CONSTRUCTION"
     },
     {
-     "name": "Ledcor development LP",
+     "name": "Carr, Stanford",
+     "amount": 4000.0,
+     "employer": "Stanford Carr Development",
+     "occupation": "President"
+    },
+    {
+     "name": "Hilton Resorts Corp.",
      "amount": 4000.0,
      "employer": "",
      "occupation": ""
     },
     {
-     "name": "Hawaii Realtors PAC",
+     "name": "Striker, James",
      "amount": 4000.0,
-     "employer": "",
-     "occupation": ""
+     "employer": "Striker Construction",
+     "occupation": "Construction Contractor"
     },
     {
-     "name": "Hawaii Assoc. of Realtors PAC",
+     "name": "Howe, Grant",
      "amount": 4000.0,
-     "employer": "",
-     "occupation": ""
+     "employer": "Commercial Properties of Maui",
+     "occupation": "Realtor"
     },
     {
-     "name": "Stoner, Robert",
-     "amount": 2650.0,
-     "employer": "S&F Land Co.",
-     "occupation": "Real Estate Developer"
+     "name": "Baldwin, Jeremy",
+     "amount": 4000.0,
+     "employer": "Jeremy Baldwin",
+     "occupation": "Property Manager"
     },
     {
-     "name": "Goodfellow, Stephen",
-     "amount": 2500.0,
-     "employer": "Goodfellow Brothers",
-     "occupation": "Contractor"
-    },
-    {
-     "name": "Kashiwa, Wendy",
-     "amount": 2500.0,
-     "employer": "Self",
-     "occupation": "Real Estate Broker"
-    },
-    {
-     "name": "Maui Hotel & Lodging Assoc PAC",
-     "amount": 2065.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
-     "name": "Wailea Resort Development LP",
-     "amount": 2000.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
-     "name": "Maui Land & Pineapple Inc State PAC",
-     "amount": 1600.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
-     "name": "Hawaii Hotel Alliance",
-     "amount": 1500.0,
-     "employer": "",
-     "occupation": ""
+     "name": "Stoner, Earl",
+     "amount": 4000.0,
+     "employer": "STF Land Co.",
+     "occupation": "President"
     }
    ]
   },
-  "out_of_state_pct": 1,
+  "out_of_state_pct": 6,
   "recusals": [],
   "top_donors": [
    {
     "name": "Sugimura, Takashi",
-    "amount": 15010.0,
-    "n": 5,
-    "employer": "University of Hawaii, Maui College",
-    "occupation": "Educator"
-   },
-   {
-    "name": "Hawaii Carpenters PAC",
-    "amount": 8310.33,
-    "n": 5,
-    "employer": "",
-    "occupation": ""
+    "amount": 35010.0,
+    "n": 6,
+    "employer": "Not Employed",
+    "occupation": "Not Employed"
    },
    {
     "name": "Goodfellow, Tamar",
-    "amount": 7750.0,
-    "n": 5,
+    "amount": 11750.0,
+    "n": 6,
     "employer": "None",
     "occupation": "Retired"
    },
    {
-    "name": "Local Union 1186 IBEW PAC fund",
-    "amount": 7000.0,
+    "name": "Hawaii Carpenters PAC",
+    "amount": 10310.33,
+    "n": 6,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Lanai Resorts, LLC",
+    "amount": 8750.0,
+    "n": 6,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Erdman, Sumner",
+    "amount": 8000.0,
     "n": 5,
-    "employer": "",
-    "occupation": ""
+    "employer": "Ulapalakua Ranch",
+    "occupation": "President"
    },
    {
-    "name": "ILWU Local 142 Hawaii PAC account",
-    "amount": 6977.14,
-    "n": 6,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "United Public Workers PAC",
-    "amount": 6000.0,
-    "n": 6,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "HAWAII OPERATING ENGINEERS INDUSTRY STABILIZATION",
-    "amount": 5000.0,
+    "name": "Hawaii Realtors PAC",
+    "amount": 8000.0,
     "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Operating Engineers District 17 PAC",
-    "amount": 5000.0,
+    "name": "Hawaii Laborers PAC",
+    "amount": 8000.0,
     "n": 3,
     "employer": "",
     "occupation": ""
+   },
+   {
+    "name": "Kindred, Jonathan",
+    "amount": 8000.0,
+    "n": 3,
+    "employer": "Self Employed",
+    "occupation": "Farmer"
    }
   ]
  },
@@ -463,62 +464,68 @@
  {
   "key": "Cook",
   "label": "Tom Cook - Councilmember, South Maui",
-  "rows": 422,
-  "total": 372580.28,
+  "rows": 540,
+  "total": 471610.28,
   "candidate_names": [
    "Cook, Thomas"
   ],
   "by_type": {
-   "Individual": 221049.77000000002,
-   "Noncandidate Committee": 90200.0,
-   "Other Entity": 60898.63999999999,
-   "Candidate": 431.87
+   "Other Entity": 78148.63999999998,
+   "Individual": 282879.77,
+   "Noncandidate Committee": 109950.0,
+   "Candidate": 631.87
   },
   "realestate": {
-   "count": 80,
-   "total": 84267.57,
+   "count": 101,
+   "total": 105067.57,
    "donors": [
     {
      "name": "Lanai Resorts, LLC",
-     "amount": 6000.0,
+     "amount": 8000.0,
      "employer": "",
      "occupation": ""
     },
     {
      "name": "Gomes, Terrance",
-     "amount": 4200.0,
+     "amount": 6200.0,
      "employer": "Self",
      "occupation": "Contractor"
     },
     {
-     "name": "Ledcor Development LP",
-     "amount": 4000.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
      "name": "Hawaii Realtors PAC",
-     "amount": 4000.0,
+     "amount": 6000.0,
      "employer": "",
      "occupation": ""
     },
     {
-     "name": "Churchill, Ryan",
-     "amount": 4000.0,
+     "name": "Ledcor Development LP",
+     "amount": 6000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Dowling, Evertt R.",
+     "amount": 6000.0,
      "employer": "Self",
      "occupation": "Developer"
     },
     {
-     "name": "Dowling, Evertt R.",
-     "amount": 4000.0,
+     "name": "Churchill, Ryan",
+     "amount": 5000.0,
      "employer": "Self",
      "occupation": "Developer"
     },
     {
      "name": "Stoner, Robert E.",
-     "amount": 3853.34,
+     "amount": 4353.34,
      "employer": "S & F Land",
      "occupation": "Owner"
+    },
+    {
+     "name": "General Contractors Association of Hawaii",
+     "amount": 4000.0,
+     "employer": "",
+     "occupation": ""
     },
     {
      "name": "Hawaii Hotel Alliance",
@@ -543,70 +550,64 @@
      "amount": 2985.48,
      "employer": "Alpha Construction",
      "occupation": "President"
-    },
-    {
-     "name": "General Contractors Association of Hawaii",
-     "amount": 2500.0,
-     "employer": "",
-     "occupation": ""
     }
    ]
   },
-  "out_of_state_pct": 2,
+  "out_of_state_pct": 1,
   "recusals": [],
   "top_donors": [
    {
     "name": "Lanai Resorts, LLC",
-    "amount": 6000.0,
-    "n": 3,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "MTP dba Maui Tropical Plantation",
-    "amount": 6000.0,
-    "n": 3,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "Operating Engineers Local Union 3",
-    "amount": 6000.0,
-    "n": 3,
+    "amount": 8000.0,
+    "n": 4,
     "employer": "",
     "occupation": ""
    },
    {
     "name": "Goodfellow, Tamar C.",
-    "amount": 6000.0,
-    "n": 6,
+    "amount": 8000.0,
+    "n": 7,
     "employer": "Retired",
     "occupation": "Retired"
    },
    {
-    "name": "Hawaii Laborers Political Action Committee",
-    "amount": 5000.0,
-    "n": 3,
+    "name": "MTP dba Maui Tropical Plantation",
+    "amount": 8000.0,
+    "n": 4,
     "employer": "",
     "occupation": ""
    },
    {
     "name": "Gomes, Terrance",
-    "amount": 4200.0,
-    "n": 3,
+    "amount": 6200.0,
+    "n": 4,
     "employer": "Self",
     "occupation": "Contractor"
    },
    {
-    "name": "Meier, John",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "RETIRED",
-    "occupation": "RETIRED"
+    "name": "Hawaii Realtors PAC",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
    },
    {
     "name": "Ledcor Development LP",
-    "amount": 4000.0,
+    "amount": 6000.0,
+    "n": 4,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Dowling, Evertt R.",
+    "amount": 6000.0,
+    "n": 4,
+    "employer": "Self",
+    "occupation": "Developer"
+   },
+   {
+    "name": "Hawaii Regional Council of Carpenters",
+    "amount": 6000.0,
     "n": 3,
     "employer": "",
     "occupation": ""
@@ -616,15 +617,15 @@
  {
   "key": "Johnson",
   "label": "Gabe Johnson - Councilmember",
-  "rows": 124,
-  "total": 57224.15,
+  "rows": 129,
+  "total": 62732.54,
   "candidate_names": [
    "Johnson, Gabriel"
   ],
   "by_type": {
-   "Other Entity": 6440.0,
-   "Noncandidate Committee": 5461.34,
-   "Individual": 40480.61,
+   "Other Entity": 9498.3,
+   "Noncandidate Committee": 5911.43,
+   "Individual": 42480.61,
    "Immediate Family": 2460.0,
    "Candidate": 2382.2
   },
@@ -658,7 +659,7 @@
     }
    ]
   },
-  "out_of_state_pct": 7,
+  "out_of_state_pct": 8,
   "recusals": [],
   "top_donors": [
    {
@@ -667,6 +668,20 @@
     "n": 3,
     "employer": "SELF EMPLOYED",
     "occupation": "CANDIDATE"
+   },
+   {
+    "name": "Atherton, Mike",
+    "amount": 4000.0,
+    "n": 2,
+    "employer": "MTP Operating Company",
+    "occupation": "Business owner"
+   },
+   {
+    "name": "MAUI PONO NETWORK",
+    "amount": 2741.8900000000003,
+    "n": 5,
+    "employer": "",
+    "occupation": ""
    },
    {
     "name": "AURORA INVESTMENTS",
@@ -683,9 +698,9 @@
     "occupation": "Invasive Species Technician"
    },
    {
-    "name": "MAUI PONO NETWORK",
-    "amount": 2291.8,
-    "n": 4,
+    "name": "ILWU",
+    "amount": 2000.0,
+    "n": 1,
     "employer": "",
     "occupation": ""
    },
@@ -702,35 +717,21 @@
     "n": 1,
     "employer": "Pueo Farms",
     "occupation": "Business owner"
-   },
-   {
-    "name": "Williams, Michael",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Pueo Farms",
-    "occupation": "Retired"
-   },
-   {
-    "name": "Atherton, Mike",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "MTP Operating Company",
-    "occupation": "Business owner"
    }
   ]
  },
  {
   "key": "Paltin",
   "label": "Tamara Paltin - Councilmember, West Maui",
-  "rows": 201,
-  "total": 79006.87,
+  "rows": 217,
+  "total": 89250.08,
   "candidate_names": [
    "Paltin, Tamara"
   ],
   "by_type": {
-   "Noncandidate Committee": 10395.840000000002,
-   "Other Entity": 20913.45,
-   "Individual": 45647.58,
+   "Noncandidate Committee": 29389.050000000003,
+   "Other Entity": 11913.45,
+   "Individual": 45897.58,
    "Immediate Family": 2050.0
   },
   "realestate": {
@@ -804,15 +805,22 @@
   "top_donors": [
    {
     "name": "Operating Engineers Local Union No. 3 District 17",
-    "amount": 5000.0,
-    "n": 4,
+    "amount": 7000.0,
+    "n": 5,
     "employer": "",
     "occupation": ""
    },
    {
     "name": "Maui Pono Network PAC",
-    "amount": 4660.450000000001,
-    "n": 64,
+    "amount": 5653.66,
+    "n": 72,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Unite Here Local 5",
+    "amount": 4500.0,
+    "n": 5,
     "employer": "",
     "occupation": ""
    },
@@ -831,6 +839,13 @@
     "occupation": "CEO Pueo Farm"
    },
    {
+    "name": "Kaanapali Farm Services Inc",
+    "amount": 4000.0,
+    "n": 2,
+    "employer": "",
+    "occupation": ""
+   },
+   {
     "name": "Mader, Deborah",
     "amount": 4000.0,
     "n": 1,
@@ -843,35 +858,21 @@
     "n": 1,
     "employer": "Self-Employed",
     "occupation": "Small business owner"
-   },
-   {
-    "name": "Unite Here Local 5",
-    "amount": 3500.0,
-    "n": 4,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "Small, Sam",
-    "amount": 3500.0,
-    "n": 1,
-    "employer": "Self-Employed (Small Wonder Productions)",
-    "occupation": "Director/Editor/Writer"
    }
   ]
  },
  {
   "key": "Rawlins-Fernandez",
   "label": "Keani Rawlins-Fernandez - Councilmember, Molokai",
-  "rows": 220,
-  "total": 111197.03,
+  "rows": 225,
+  "total": 116190.24,
   "candidate_names": [
    "Rawlins-Fernandez, Keani"
   ],
   "by_type": {
+   "Noncandidate Committee": 8985.74,
+   "Other Entity": 19500.0,
    "Individual": 82204.5,
-   "Other Entity": 17500.0,
-   "Noncandidate Committee": 5992.530000000001,
    "Immediate Family": 3500.0,
    "Candidate": 2000.0
   },
@@ -945,16 +946,16 @@
     "occupation": "Retired"
    },
    {
-    "name": "Friends of Walter Ritte",
-    "amount": 4000.0,
-    "n": 2,
+    "name": "MTP Operating Company",
+    "amount": 5000.0,
+    "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Maui Pono Network",
-    "amount": 3624.1399999999994,
-    "n": 38,
+    "name": "Friends of Walter Ritte",
+    "amount": 4000.0,
+    "n": 2,
     "employer": "",
     "occupation": ""
    }
@@ -963,21 +964,28 @@
  {
   "key": "Sinenci",
   "label": "Shane Sinenci - Councilmember, East Maui",
-  "rows": 139,
-  "total": 47901.63,
+  "rows": 144,
+  "total": 52768.87,
   "candidate_names": [
    "Sinenci, Shane"
   ],
   "by_type": {
-   "Noncandidate Committee": 3208.0299999999997,
-   "Other Entity": 6579.62,
-   "Candidate": 2345.73,
-   "Individual": 35768.25
+   "Other Entity": 8579.619999999999,
+   "Noncandidate Committee": 5658.120000000001,
+   "Individual": 36185.4,
+   "Candidate": 2345.73
   },
   "realestate": {
-   "count": 0,
-   "total": 0,
-   "donors": []
+   "count": 1,
+   "total": 2000.0,
+   "donors": [
+    {
+     "name": "Hawaii Realtor Political Action",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    }
+   ]
   },
   "out_of_state_pct": 1,
   "recusals": [],
@@ -990,6 +998,13 @@
     "occupation": "Retired"
    },
    {
+    "name": "Maui Pono Network",
+    "amount": 3327.35,
+    "n": 17,
+    "employer": "",
+    "occupation": ""
+   },
+   {
     "name": "Burton, Jim",
     "amount": 3305.55,
     "n": 5,
@@ -997,18 +1012,25 @@
     "occupation": "retired"
    },
    {
-    "name": "Maui Pono Network",
-    "amount": 2877.2599999999998,
-    "n": 16,
-    "employer": "",
-    "occupation": ""
-   },
-   {
     "name": "Sinenci, Shane",
     "amount": 2245.73,
     "n": 7,
     "employer": "State of Hawaii",
     "occupation": "Educator"
+   },
+   {
+    "name": "Hawaii Realtor Political Action",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "ILWU Local 1452 Hawaii Political Action",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "",
+    "occupation": ""
    },
    {
     "name": "Grace, Lorraine",
@@ -1023,41 +1045,51 @@
     "n": 1,
     "employer": "retired",
     "occupation": "Retired"
-   },
-   {
-    "name": "MTP Operating Company, LLC dba Maui Tropical Plant",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "",
-    "occupation": ""
-   },
-   {
-    "name": "Elder, John",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Retired",
-    "occupation": "Retired"
    }
   ]
  },
  {
   "key": "Uu-Hodgins",
   "label": "Nohelani Uʻu-Hodgins - Councilmember",
-  "rows": 292,
-  "total": 233353.32,
+  "rows": 362,
+  "total": 291503.32,
   "candidate_names": [
    "Uu-Hodgins, Nohelani"
   ],
   "by_type": {
-   "Individual": 146635.5,
-   "Noncandidate Committee": 59617.81999999999,
-   "Other Entity": 22100.0,
+   "Noncandidate Committee": 83617.82,
+   "Individual": 176535.50000000003,
+   "Other Entity": 26350.0,
    "Immediate Family": 5000.0
   },
   "realestate": {
-   "count": 76,
-   "total": 72000.0,
+   "count": 93,
+   "total": 86250.0,
    "donors": [
+    {
+     "name": "Lanai Resorts",
+     "amount": 6000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Hawaii Realtors PAC",
+     "amount": 6000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Goodfellow, Steve",
+     "amount": 6000.0,
+     "employer": "Goodfellow Bros. LLC",
+     "occupation": "Contractor"
+    },
+    {
+     "name": "Fergus, Alex",
+     "amount": 5000.0,
+     "employer": "Fergus & Co.",
+     "occupation": "Commercial Real Estate"
+    },
     {
      "name": "Fergus, Michael",
      "amount": 4000.0,
@@ -1065,28 +1097,22 @@
      "occupation": "Commercial Real Estate"
     },
     {
-     "name": "Fergus, Alex",
-     "amount": 4000.0,
-     "employer": "Fergus & Co.",
-     "occupation": "Commercial Real Estate"
+     "name": "Dowling, Everett",
+     "amount": 3900.0,
+     "employer": "Dowling & Company",
+     "occupation": "Real Estate Development"
     },
     {
-     "name": "Lanai Resorts",
-     "amount": 4000.0,
+     "name": "General Contractors Association of Hawaii Politica",
+     "amount": 3500.0,
      "employer": "",
      "occupation": ""
     },
     {
-     "name": "Hawaii Realtors PAC",
-     "amount": 4000.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
-     "name": "Goodfellow, Steve",
-     "amount": 4000.0,
-     "employer": "Goodfellow Bros. LLC",
-     "occupation": "Contractor"
+     "name": "Ward, David L.",
+     "amount": 3000.0,
+     "employer": "F&W Land, LLC",
+     "occupation": "Real Estate Development"
     },
     {
      "name": "Lamb, Casey",
@@ -1095,37 +1121,19 @@
      "occupation": "Real Estate"
     },
     {
-     "name": "Dowling, Everett",
-     "amount": 2900.0,
-     "employer": "Dowling & Company",
-     "occupation": "Real Estate Development"
-    },
-    {
-     "name": "General Contractors Association of Hawaii Politica",
-     "amount": 2500.0,
-     "employer": "",
-     "occupation": ""
-    },
-    {
      "name": "Goode, David",
-     "amount": 2250.0,
+     "amount": 2500.0,
      "employer": "Ledcor Properties LP",
      "occupation": "Land Manager"
     },
     {
-     "name": "Fergus, Jake",
+     "name": "Churchhill, Ryan",
      "amount": 2000.0,
-     "employer": "Commercial Properties",
-     "occupation": "Owner"
+     "employer": "Pacific Rim Land",
+     "occupation": "President"
     },
     {
-     "name": "Dowling, Jack",
-     "amount": 2000.0,
-     "employer": "Dowling Company",
-     "occupation": "Development"
-    },
-    {
-     "name": "Hawaii Hotel Alliance",
+     "name": "Maui Hotel & Lodging Association",
      "amount": 2000.0,
      "employer": "",
      "occupation": ""
@@ -1136,178 +1144,195 @@
   "recusals": [],
   "top_donors": [
    {
-    "name": "Fergus, Michael",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "Fergus & Co.",
-    "occupation": "Commercial Real Estate"
-   },
-   {
-    "name": "Fergus, Alex",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "Fergus & Co.",
-    "occupation": "Commercial Real Estate"
-   },
-   {
     "name": "Lanai Resorts",
-    "amount": 4000.0,
-    "n": 2,
+    "amount": 6000.0,
+    "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
     "name": "Hawaii Realtors PAC",
-    "amount": 4000.0,
-    "n": 2,
+    "amount": 6000.0,
+    "n": 3,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Kindred, Jonathan",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "Not Employed",
-    "occupation": "Not Employed"
-   },
-   {
-    "name": "Kobayashi, Patrick",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "Kobayashi Group LLC",
-    "occupation": "Executive"
+    "name": "Goodfellow, Tamar",
+    "amount": 6000.0,
+    "n": 3,
+    "employer": "N/A",
+    "occupation": "N/A"
    },
    {
     "name": "Goodfellow, Steve",
-    "amount": 4000.0,
-    "n": 2,
+    "amount": 6000.0,
+    "n": 3,
     "employer": "Goodfellow Bros. LLC",
     "occupation": "Contractor"
    },
    {
-    "name": "Goodfellow, Tamar",
-    "amount": 4000.0,
-    "n": 2,
-    "employer": "N/A",
-    "occupation": "N/A"
+    "name": "Kaanapali Farm Services Inc.",
+    "amount": 5500.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Operating Engineers Local Union No 3",
+    "amount": 5000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Hawaii Operating Engineers Industry Stabilization",
+    "amount": 5000.0,
+    "n": 3,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Fergus, Alex",
+    "amount": 5000.0,
+    "n": 3,
+    "employer": "Fergus & Co.",
+    "occupation": "Commercial Real Estate"
    }
   ]
  },
  {
   "key": "Batangan",
   "label": "Kauanoe Batangan - Councilmember, Kahului",
-  "rows": 44,
-  "total": 19940.0,
+  "rows": 123,
+  "total": 74640.0,
   "candidate_names": [
    "Batangan, Kelson"
   ],
   "by_type": {
-   "Individual": 14380.0,
-   "Immediate Family": 2250.0,
-   "Other Entity": 1110.0,
-   "Noncandidate Committee": 2200.0
+   "Individual": 46880.0,
+   "Other Entity": 7560.0,
+   "Noncandidate Committee": 17950.0,
+   "Immediate Family": 2250.0
   },
   "realestate": {
-   "count": 0,
-   "total": 0,
-   "donors": []
+   "count": 10,
+   "total": 10500.0,
+   "donors": [
+    {
+     "name": "Lanai Resorts LLC",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Goodfellow, J. Stephen",
+     "amount": 2000.0,
+     "employer": "Goodfellow Bros.",
+     "occupation": "Construction Executive"
+    },
+    {
+     "name": "Hawaii Realtors Political Action Committee",
+     "amount": 2000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Stoner, Robert",
+     "amount": 1000.0,
+     "employer": "S&F Land Company",
+     "occupation": "Vice President"
+    },
+    {
+     "name": "ARDA-Resort Owners Coalition PAC",
+     "amount": 1000.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Goode, David",
+     "amount": 1000.0,
+     "employer": "LEDCOR Maui",
+     "occupation": "Director of Land Development"
+    },
+    {
+     "name": "Ward, Dave",
+     "amount": 1000.0,
+     "employer": "Frampton & Ward LLC",
+     "occupation": "Developer"
+    },
+    {
+     "name": "Maui Hotel & Lodging Association PAC",
+     "amount": 250.0,
+     "employer": "",
+     "occupation": ""
+    },
+    {
+     "name": "Luxury Island Life LLC",
+     "amount": 250.0,
+     "employer": "",
+     "occupation": ""
+    }
+   ]
   },
-  "out_of_state_pct": 18,
-  "recusals": [
-   {
-    "date": "2026-05-15",
-    "meeting": "County Council Meeting",
-    "item": "CC 26-11",
-    "dollars": [],
-    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
-   },
-   {
-    "date": "2026-06-19",
-    "meeting": "County Council Meeting",
-    "item": null,
-    "dollars": [],
-    "url": "https://mauicounty.portal.civicclerk.com/event/1383/files/minutes/5900"
-   },
-   {
-    "date": "2026-06-19",
-    "meeting": "County Council Meeting",
-    "item": null,
-    "dollars": [],
-    "url": "https://mauicounty.portal.civicclerk.com/event/1383/files/minutes/5900"
-   },
-   {
-    "date": "2026-06-05",
-    "meeting": "County Council Meeting",
-    "item": null,
-    "dollars": [
-     "$500,000"
-    ],
-    "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
-   },
-   {
-    "date": "2026-06-05",
-    "meeting": "County Council Meeting",
-    "item": "Bill 55",
-    "dollars": [],
-    "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
-   }
-  ],
+  "out_of_state_pct": 14,
+  "recusals": [],
   "top_donors": [
    {
-    "name": "Batangan, Elsie C.",
+    "name": "IBEW Local 1260 PAC",
     "amount": 2000.0,
-    "n": 1,
-    "employer": "Kuakini Medical Center",
-    "occupation": "Echo Sonographer"
+    "n": 2,
+    "employer": "",
+    "occupation": ""
    },
    {
-    "name": "Friends Of Joseph Souki",
+    "name": "Kaanapali Farm Services, Inc.",
     "amount": 2000.0,
     "n": 1,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Awai, Jennifer",
+    "name": "Local Union 1186 IBEW PAC Fund",
     "amount": 2000.0,
-    "n": 1,
-    "employer": "Kamehameha Schools",
-    "occupation": "Administrative Coordinator"
-   },
-   {
-    "name": "Eldredge, Lyla",
-    "amount": 2000.0,
-    "n": 1,
-    "employer": "Kamehameha Schools",
-    "occupation": "Teacher"
-   },
-   {
-    "name": "Eldredge, Ema-Jule",
-    "amount": 1000.0,
-    "n": 1,
-    "employer": "Catlin Gabel School",
-    "occupation": "Teacher"
-   },
-   {
-    "name": "Eldredge, Julia C.",
-    "amount": 1000.0,
-    "n": 1,
-    "employer": "Retired",
-    "occupation": "Retired"
-   },
-   {
-    "name": "Perry, Glenn R.",
-    "amount": 700.0,
     "n": 1,
     "employer": "",
     "occupation": ""
    },
    {
-    "name": "Matsui, Leon",
-    "amount": 600.0,
+    "name": "Hawaii Operating Engineers Industry Stabilization",
+    "amount": 2000.0,
     "n": 1,
     "employer": "",
     "occupation": ""
+   },
+   {
+    "name": "Lanai Resorts LLC",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "",
+    "occupation": ""
+   },
+   {
+    "name": "Barr, Lynn",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "Retired/Independent",
+    "occupation": "Healthcare Policy Expert"
+   },
+   {
+    "name": "Goodfellow, J. Stephen",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "Goodfellow Bros.",
+    "occupation": "Construction Executive"
+   },
+   {
+    "name": "Goodfellow, Tamar",
+    "amount": 2000.0,
+    "n": 1,
+    "employer": "N/A",
+    "occupation": "Volunteer Nonprofit Board Leadership"
    }
   ]
  }

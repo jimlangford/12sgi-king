@@ -1,7 +1,7 @@
 {
  "module": "kilo-aupuni",
  "version": "1.1",
- "run_iso": "2026-07-21 19:42:03 HST",
+ "run_iso": "2026-11-14 09:25:17 HST",
  "watchers_live": [
   "civicclerk",
   "donors",
@@ -28,40 +28,40 @@
   "federal-money"
  ],
  "metrics": {
-  "agendas_ingested": 44,
-  "agenda_span": "2026-01-05 .. 2026-07-24",
-  "bids_tracked": 7541,
-  "permits_tracked": 1549,
-  "permits_recovery_flagged": 272,
-  "officials_tracked": 9,
-  "recusals_tracked": 5,
-  "campaign_realestate_total": 346037.83,
+  "agendas_ingested": 67,
+  "agenda_span": "2026-01-05 .. 2026-11-13",
+  "bids_tracked": 11919,
+  "permits_tracked": 6512,
+  "permits_recovery_flagged": 1452,
+  "officials_tracked": 0,
+  "recusals_tracked": 0,
+  "campaign_realestate_total": 547151.63,
   "lens_activity_council": {
-   "Art.X · Budget": 39,
-   "Title 19 · Land use": 28,
-   "Water · Kane/Kanaloa": 23,
-   "Housing · Hale": 28,
-   "Recovery · Lahaina": 43,
-   "ʻĀina · Agriculture": 25,
-   "Charter · Governance": 22
+   "Art.X · Budget": 61,
+   "Title 19 · Land use": 48,
+   "Water · Kane/Kanaloa": 38,
+   "Housing · Hale": 41,
+   "Recovery · Lahaina": 65,
+   "ʻĀina · Agriculture": 41,
+   "Charter · Governance": 36
   },
   "lens_activity_bids": {
-   "Water / Kane-Kanaloa": 7541,
-   "Housing / Hale": 7539,
-   "Recovery / Lahaina": 7539,
-   "Infrastructure": 7539,
-   "Services / Consultants": 1147,
-   "Aina / Agriculture": 273,
-   "Art.X / Budget": 399,
-   "Title 19 / Land use": 73
+   "Water / Kane-Kanaloa": 11919,
+   "Housing / Hale": 11915,
+   "Recovery / Lahaina": 11915,
+   "Infrastructure": 11915,
+   "Services / Consultants": 1803,
+   "Aina / Agriculture": 442,
+   "Art.X / Budget": 659,
+   "Title 19 / Land use": 127
   },
   "lens_activity_permits": {
-   "Title 19 / Land use": 1403,
-   "Water / Kane-Kanaloa": 358,
-   "Commercial / Build": 167,
-   "Housing / Hale": 290,
-   "Aina / Agriculture": 191,
-   "Recovery / Lahaina": 272
+   "Title 19 / Land use": 5971,
+   "Water / Kane-Kanaloa": 1653,
+   "Commercial / Build": 839,
+   "Housing / Hale": 1501,
+   "Aina / Agriculture": 858,
+   "Recovery / Lahaina": 1452
   }
  }
 }
