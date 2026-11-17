@@ -27,6 +27,23 @@ Only use the public domain after DNS points to the host's public IP and the fire
 
 ## Local CI / deployment
 
+Run the same non-deploying test gate used by GitHub on Python 3.11 or 3.12:
+
+```bash
+python -m venv .venv
+# Linux/macOS:
+source .venv/bin/activate
+# Windows PowerShell instead: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements-ci.txt
+python tools/local_ci.py
+```
+
+After the one-time dependency installation, this gate needs no GitHub connection,
+Docker, Neo4j, Ollama, or external credentials. It runs the V2 and Studio asset
+tests with temporary databases and loopback services, returns nonzero on failure,
+and keeps coverage scratch files outside the repository. Add
+`--junitxml=/path/to/results.xml` to save a report. It never deploys.
+
 Run the local deployment pipeline on your local system, not GitHub Actions:
 
 ```bash

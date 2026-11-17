@@ -6,29 +6,72 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   a11y-scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 4
+    env:
+      CHROME_BIN: /usr/bin/google-chrome
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: Install pa11y
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/a11y/package-lock.json
+
+      - name: Install locked axe browser tools
+        working-directory: tools/a11y
         run: |
-          npm install -g pa11y pa11y-ci
+          mkdir -p .work
+          export TMPDIR="$PWD/.work"
+          npm ci --ignore-scripts --no-fund --no-audit
+          test -x "$CHROME_BIN"
+          "$CHROME_BIN" --version
 
-      - name: Scan HTML files for a11y issues (WCAG 2.2 AA)
+      - name: Build sanitized PUBLIC static output (no owner HOME)
         run: |
-          find . -name "*.html" -path "./king_public_src/*" -o -path "./apps/*" | while read f; do
-            echo "Scanning $f..."
-            pa11y "$f" --standard WCAG2AA || true
-          done
-        continue-on-error: true
+          mkdir -p tools/a11y/.work/empty-home
+          export HOME="$PWD/tools/a11y/.work/empty-home"
+          export USERPROFILE="$HOME"
+          export KA_SITE="$PWD/tools/a11y/.work/site"
+          timeout 90s python build_site.py > tools/a11y/.work/build.log
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          output = Path(os.environ["KA_SITE"])
+          info = json.loads((output / "buildinfo.json").read_text())
+          assert info.get("lanes") and not info.get("lanes_failed"), info
+          forbidden = ["go", "go.html", "king/app.html", "king/go.html", "king/live.js",
+                       "case_files.html", "owner_jobs.html", "king_private_src"]
+          assert not any((output / name).exists() for name in forbidden), "Private output detected"
+          print(f"PUBLIC build: {len(list(output.rglob('*.html')))} HTML pages, all lanes passed")
+          PY
 
-      - name: Install axe for deeper scan
-        run: npm install -g @axe-core/cli
+      - name: Prove browser checks reject known failures
+        working-directory: tools/a11y
+        run: timeout 40s npm test
 
-      - name: Axe accessibility scan
-        run: |
-          # Scan common entry points
-          axe file://$(pwd)/king_public_src/index.html --exit || true
-        continue-on-error: true
+      - name: Scan generated /site/ against explicit reviewed backlog
+        working-directory: tools/a11y
+        run: timeout 155s npm run scan
+
+      - name: Upload reports only (never generated HTML or owner material)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: public-static-accessibility-report
+          path: |
+            tools/a11y/.work/report.json
+            tools/a11y/.work/summary.md
+          if-no-files-found: warn
+          retention-days: 7

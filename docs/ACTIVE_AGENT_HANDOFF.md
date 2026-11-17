@@ -34,3 +34,36 @@ without first recording a coordinated handoff.
 
 Merge PR #380, record its merge commit in the shared private Studio state and dispatch log, then run
 the environment-gated paired-aspect episode canary before declaring the complete Studio beta shipped.
+
+## Separate Phase 1 CI Work — Copilot, 2026-11-17
+
+- Branch: `copilot/fix-ci-cd-workflows`. Scope coordinated in `DISPATCH_LOG.md`;
+  the Codex release ownership and next action above are unchanged.
+- INSPECTED: four `ci-*.yml` workflows, existing V2/Studio tests, and GitHub runs.
+  Main checks were green with suppressed failures; the initial PR runs reported
+  `action_required` without jobs or logs. Do not equate that state with code failure.
+- CHANGED: strict Python 3.11/3.12 test matrix, CI-only pinned dependencies,
+  pytest configuration, non-vacuous contract assertions, and cleanup on failed
+  integration startup. The owner's follow-up local-workflow request is handled
+  by `python tools/local_ci.py`, also called by GitHub; setup is in `README.md`.
+  This runner never installs packages or deploys. Lint, accessibility, secret scan, and Dependabot repairs
+  are part of this separate CI branch, not the Studio release.
+- PRESERVED: auth/Studio service implementation, local Neo4j/Ollama,
+  Tailscale/Cloudflare paths, creative/output gates, and all deployment workflows.
+  These checks do not change private deployment ordering or automatically
+  promote artifacts.
+- VERIFY: all 73 focused tests passed on Python 3.11 and 3.12 without Docker or
+  external services; dependency checks passed. Negative contract mutations and
+  a simulated failed integration startup were rejected/cleaned up as expected.
+  The final shared local runner passed all 387 V2/Studio/runner tests on both
+  Python versions (46% service coverage, reported without a fabricated threshold).
+  Changed-file Ruff/import sorting, the explicit full-tree correctness baseline,
+  workflow/Compose YAML, and maintained-automation ShellCheck gates passed.
+  Five real-scanner regression tests passed; the tracked tree and reachable
+  history were clean after exact documented false-positive exceptions.
+- NEXT (owner): approve any GitHub runs requiring authorization; configure
+  branch protection to require the resulting check names. Enable GitHub secret
+  scanning/push protection and any custom patterns in repository settings.
+  History scanning cannot prove that inaccessible/deleted remote refs are clean;
+  rotate/revoke any exposed credential before considering history remediation.
+  Never rewrite shared history or redeploy private services as part of this CI PR.

@@ -713,3 +713,17 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 
 ---
 
+## 2026-11-17 — Copilot Phase 1 CI stabilization
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner request: repair CI gates only.
+- Coordination: the Codex release listed in `docs/ACTIVE_AGENT_HANDOFF.md` remains
+  owned by Codex. This branch does not rewrite its auth, Studio, public pages,
+  private services, deployment bridges, or creative/output approval policy.
+- Scope: CI workflows, focused test infrastructure, lint configuration,
+  accessibility/secret checks, and dependency-update configuration.
+- Open question for owner: GitHub `action_required` runs have no executed jobs;
+  repository approvals/settings must be checked separately from code fixes.
+- Next: record validation and owner-only security/deployment actions in the handoff.
+- Owner follow-up: "Make a new one that works locally." Added a non-deploying,
+  cross-platform `tools/local_ci.py` entry point; GitHub uses the same command.
+  Existing local deployment servers and private service startup remain unchanged.

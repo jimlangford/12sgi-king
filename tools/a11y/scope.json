@@ -1,0 +1,4 @@
+{
+  "description": "INCOMPLETE PILOT: eight representative PUBLIC static pages only, not full-site coverage or WCAG conformance. Other generated HTML is not gated yet. Expand to all generated pages with a separately reviewed exact backlog before treating this as the final CI repair. No rules are disabled.",
+  "pages": ["index.html", "reports.html", "jurisdictions.html", "datasets.html", "agendas.html", "testify.html", "education.html", "studio.html"]
+}

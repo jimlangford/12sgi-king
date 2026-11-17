@@ -47,3 +47,4 @@ king_private_src/
 # runtime SQLite databases — generated locally, never commit
 .platform_events.db
 *.db
+.venv/

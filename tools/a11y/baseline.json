@@ -1,0 +1,72 @@
+{
+  "axeVersion": "4.14.1",
+  "pages": ["index.html", "reports.html", "jurisdictions.html", "datasets.html", "agendas.html", "testify.html", "education.html", "studio.html"],
+  "review": {
+    "date": "2026-11-17",
+    "scope": "Initial eight-page PUBLIC static regression budget, inspected against actual Chromium axe findings; not WCAG conformance or owner acceptance of these defects.",
+    "backlog": "144 existing node findings: 12 serious dataset contrast failures, one critical unlabeled testimony select, and 131 heading/landmark semantics findings. Repair source templates with their owners, remove resolved entries, then extend scope. No rule exclusions.",
+    "matching": "Exact page, rule, selector and failure message. Changed contrast values and added failing nodes are regressions. No automatic baseline update command.",
+    "limitations": "Desktop initial static rendered state only. No backend, remote resources, interaction, keyboard/screen-reader or full-site claim."
+  },
+  "failures": {
+    "heading-order": "Fix any of the following:\n  Heading order invalid",
+    "landmark-no-duplicate-contentinfo": "Fix any of the following:\n  Document has more than one contentinfo landmark",
+    "landmark-one-main": "Fix all of the following:\n  Document does not have a main landmark",
+    "landmark-unique": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable",
+    "region": "Fix any of the following:\n  Some page content is not contained by landmarks",
+    "color-contrast": "Fix any of the following:\n  Element has insufficient color contrast of 1.12 (foreground color: #eaf2fc, background color: #ffffff, font size: 11.0pt (14.72px), font weight: normal). Expected contrast ratio of 4.5:1",
+    "select-name": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+  },
+  "targets": {
+    "index.html": {
+      "heading-order": [[".watch.card:nth-child(1) > h3"], [".pillar:nth-child(1) > h4"], ["h5"]],
+      "landmark-no-duplicate-contentinfo": [["footer:nth-child(5)"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".govos-nav"], ["footer:nth-child(5)"]],
+      "region": [[".hero"], ["section:nth-child(1)"], ["section:nth-child(2)"], ["section:nth-child(3)"], ["section:nth-child(4) > .eyebrow"], ["section:nth-child(4) > .lead"], ["#k2"], ["section:nth-child(5)"], ["section:nth-child(6)"]]
+    },
+    "reports.html": {
+      "landmark-no-duplicate-contentinfo": [[".wrap > footer"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".wrap > footer"]],
+      "region": [[".eyebrow:nth-child(1)"], ["h1"], [".lead:nth-child(3)"], [".disc"], [".eyebrow:nth-child(5)"], [".lead:nth-child(6)"], [".grid:nth-child(7)"], [".eyebrow:nth-child(8)"], [".lead:nth-child(9)"], [".grid:nth-child(10)"], [".eyebrow:nth-child(11)"], [".grid:nth-child(12)"], [".eyebrow:nth-child(13)"], [".grid:nth-child(14)"], [".eyebrow:nth-child(15)"], [".grid:nth-child(16)"], [".eyebrow:nth-child(17)"], [".lead:nth-child(18)"], [".eyebrow:nth-child(19)"], ["p:nth-child(20)"], [".sgi-copyright"]]
+    },
+    "jurisdictions.html": {
+      "landmark-no-duplicate-contentinfo": [[".wrap > footer"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".wrap > footer"]],
+      "region": [[".govos-narrative"], [".eyebrow"], ["h1"], [".lead"], [".grid"], [".disc"], ["p:nth-child(6)"], [".sgi-copyright"], ["body > div:nth-child(7)"], [".govos-olelo-foot"]]
+    },
+    "datasets.html": {
+      "color-contrast": [[".ds:nth-child(5) > .dsd"], [".ds:nth-child(6) > .dsd"], [".ds:nth-child(7) > .dsd"], [".ds:nth-child(8) > .dsd"], [".ds:nth-child(9) > .dsd"], [".ds:nth-child(10) > .dsd"], [".ds:nth-child(11) > .dsd"], [".ds:nth-child(12) > .dsd"], [".ds:nth-child(13) > .dsd"], [".ds:nth-child(14) > .dsd"], [".ds:nth-child(15) > .dsd"], [".ds:nth-child(16) > .dsd"]],
+      "landmark-one-main": [["html"]],
+      "region": [["h1"], ["p:nth-child(2)"], ["p:nth-child(3)"], [".ds:nth-child(5)"], [".ds:nth-child(6)"], [".ds:nth-child(7)"], [".ds:nth-child(8)"], [".ds:nth-child(9)"], [".ds:nth-child(10)"], [".ds:nth-child(11)"], [".ds:nth-child(12)"], [".ds:nth-child(13)"], [".ds:nth-child(14)"], [".ds:nth-child(15)"], [".ds:nth-child(16)"], ["h2"], ["p:nth-child(18)"], [".sgi-copyright"], [".govos-olelo-foot"]]
+    },
+    "agendas.html": {
+      "landmark-no-duplicate-contentinfo": [[".wrap > footer"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".wrap > footer"]],
+      "region": [[".govos-narrative"], [".eyebrow"], ["h1"], [".lead"], [".wrap > div:nth-child(4)"], ["p:nth-child(5)"], [".sgi-copyright"], [".govos-olelo-foot"]]
+    },
+    "testify.html": {
+      "landmark-no-duplicate-contentinfo": [[".wrap > footer"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".wrap > footer"]],
+      "region": [[".home"], [".eyebrow"], ["h1"], [".lead"], [".deadline"], [".wrap > h2"], ["#testify > label:nth-child(1)"], ["#f_item"], [".row2:nth-child(3)"], ["label:nth-child(4)"], ["#f_text"], [".row2:nth-child(6)"], ["label:nth-child(9)"], ["#testify > h2"], ["#mailbtn"], [".btn[target=\"_blank\"][rel=\"noopener\"]:nth-child(3)"], [".note"], [".ctx"], [".aloha"], [".sgi-copyright"]],
+      "select-name": [["#f_pos"]]
+    },
+    "education.html": {
+      "heading-order": [[".watch.card:nth-child(1) > h3"], [".pillar:nth-child(1) > h4"], ["h5"]],
+      "landmark-no-duplicate-contentinfo": [["footer:nth-child(5)"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".govos-nav"], ["footer:nth-child(5)"]],
+      "region": [[".hero"], ["section:nth-child(1)"], ["section:nth-child(2)"], ["section:nth-child(3)"], ["section:nth-child(4) > .eyebrow"], ["section:nth-child(4) > .lead"], ["#k2"], ["section:nth-child(5)"], ["section:nth-child(6)"]]
+    },
+    "studio.html": {
+      "landmark-no-duplicate-contentinfo": [[".footer"]],
+      "landmark-one-main": [["html"]],
+      "landmark-unique": [[".footer"]],
+      "region": [[".hero"], [".band"], [".section:nth-child(4)"], [".split"], [".section:nth-child(6)"]]
+    }
+  }
+}

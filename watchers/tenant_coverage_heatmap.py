@@ -4,12 +4,13 @@
 # but the coverage picture itself (who's fully reported, who's a stub) had zero visual surface -- it just
 # sat inside a config file. This renders it as an actual heatmap. Public-safe: the registry is the SAME
 # data already embedded in every public tenant page's switcher, nothing new is exposed.
-import json, os
-from datetime import datetime, timezone, timedelta
+import json
+import os
+from datetime import datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-SITE = os.path.join(REPO, "site")
+SITE = os.environ.get("KA_SITE", os.path.join(REPO, "site"))
 REGISTRY = os.path.join(REPO, "tenant_registry.json")
 OUT_F = os.path.join(SITE, "tenant_coverage.html")
 HST = timezone(timedelta(hours=-10))
