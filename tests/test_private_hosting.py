@@ -3,15 +3,19 @@ import hashlib
 import hmac
 from http.client import HTTPConnection
 from http.server import HTTPServer
+from functools import partial
 import json
 import os
 from pathlib import Path
 import subprocess
+import shutil
 import tempfile
 import threading
 import time
 import unittest
 from unittest.mock import Mock, patch
+from urllib.error import HTTPError
+from urllib.request import urlopen
 
 import yaml
 
@@ -20,6 +24,7 @@ import health_check
 import local_ci_cd_server as ci
 import service_auto_recovery as recovery
 import setup_tailscale_hosting as hosting
+from serve import BuiltSiteHandler
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -117,6 +122,8 @@ class ConfigTests(unittest.TestCase):
         for key, value in (
             ("GOVOS_ALLOW_DEV_SECRETS", "1"), ("INTERNAL_SERVICE_TOKEN", "short"),
             ("NEO4J_AURA_ENABLED", "true"), ("GPU_RUNTIME_URL", "https://api.example.com"),
+            ("COMFYUI_BASE", "https://api.example.com"),
+            ("AUTH_SIGNING_SECRET", "dev-only-signing-secret-change-me"),
         ):
             config = copy.deepcopy(self.config)
             config["services"]["auth"]["environment"] = {key: value}
@@ -150,6 +157,28 @@ class ConfigTests(unittest.TestCase):
 
 
 class HealthTests(unittest.TestCase):
+    def test_dns_defaults_to_magicdns_and_accepts_tailnet_ipv6(self):
+        state = {"Self": {"DNSName": "king.example.ts.net.",
+                          "TailscaleIPs": ["100.124.152.3", "fd7a:115c:a1e0::3"]}}
+        with patch.dict(os.environ, {"DEPLOYMENT_HOSTNAME": ""}), patch.object(
+            health_check.subprocess, "run", return_value=Mock(stdout=json.dumps(state))
+        ), patch.object(health_check.socket, "getaddrinfo", return_value=[
+            (None, None, None, None, ("100.124.152.3", 443)),
+            (None, None, None, None, ("fd7a:115c:a1e0::3", 443)),
+        ]) as resolve:
+            self.assertTrue(health_check.check_dns()[0])
+        resolve.assert_called_once_with("king.example.ts.net", 443)
+
+    def test_selected_domain_must_not_have_public_bypass(self):
+        state = {"Self": {"TailscaleIPs": ["100.124.152.3"]}}
+        with patch.dict(os.environ, {"DEPLOYMENT_HOSTNAME": "12sgi.com"}), patch.object(
+            health_check.subprocess, "run", return_value=Mock(stdout=json.dumps(state))
+        ), patch.object(health_check.socket, "getaddrinfo", return_value=[
+            (None, None, None, None, ("100.124.152.3", 443)),
+            (None, None, None, None, ("203.0.113.1", 443)),
+        ]):
+            self.assertFalse(health_check.check_dns()[0])
+
     def test_missing_or_unhealthy_services_fail(self):
         healthy = [{"Service": name, "State": "running", "Health": "healthy"}
                    for name in health_check.EXPECTED_SERVICES]
@@ -257,6 +286,112 @@ class PipelineTests(unittest.TestCase):
         ):
             self.assertFalse(pipeline.run("a" * 40, update_code=False))
         pull.assert_not_called()
+
+
+class StaticServingTests(unittest.TestCase):
+    def test_only_built_files_are_served(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / "site"
+            site.mkdir()
+            (root / "private.txt").write_text("private")
+            (site / "reports.html").write_text("public")
+            (site / ".env").write_text("private")
+            (site / "escape").symlink_to(root / "private.txt")
+            handler = partial(BuiltSiteHandler, directory=str(site))
+            server = HTTPServer(("127.0.0.1", 0), handler)
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+            try:
+                origin = f"http://127.0.0.1:{server.server_port}"
+                with urlopen(origin + "/reports.html", timeout=3) as response:
+                    self.assertEqual(response.read(), b"public")
+                for path in ("/.env", "/../private.txt", "/escape"):
+                    with self.subTest(path=path), self.assertRaises(HTTPError) as error:
+                        urlopen(origin + path, timeout=3)
+                    self.assertEqual(error.exception.code, 404)
+            finally:
+                server.shutdown()
+                server.server_close()
+                thread.join()
+
+
+@unittest.skipUnless(shutil.which("nginx"), "nginx not installed")
+class ProxyTests(unittest.TestCase):
+    def test_private_api_and_owner_routes(self):
+        from http.server import BaseHTTPRequestHandler
+        import socket
+
+        class Fixture(BaseHTTPRequestHandler):
+            def do_GET(self):
+                self.send_response(200)
+                self.end_headers()
+                self.wfile.write(json.dumps({
+                    "port": self.server.server_port, "path": self.path,
+                    "proto": self.headers.get("X-Forwarded-Proto"),
+                }).encode())
+
+            def log_message(self, *args):
+                pass
+
+        board = HTTPServer(("127.0.0.1", 0), Fixture)
+        studio = HTTPServer(("127.0.0.1", 0), Fixture)
+        for server in (board, studio):
+            threading.Thread(target=server.serve_forever, daemon=True).start()
+        with socket.socket() as reservation:
+            reservation.bind(("127.0.0.1", 0))
+            port = reservation.getsockname()[1]
+        proxy = None
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                temp = Path(directory)
+                (temp / "logs").mkdir()
+                config = (ROOT / "nginx-tailscale.conf").read_text()
+                fragment = (ROOT / "nginx-board-config.conf").read_text()
+                config = config.replace("include nginx-board-config.conf;", fragment)
+                config = config.replace(":8081", f":{port}")
+                config = config.replace(":8799", f":{board.server_port}")
+                config = config.replace(":8108", f":{studio.server_port}")
+                path = temp / "nginx.conf"
+                path.write_text(config)
+                proxy = subprocess.Popen(
+                    ["nginx", "-p", directory + "/", "-c", str(path), "-g", "daemon off;"],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
+                )
+                origin = f"http://127.0.0.1:{port}"
+                for attempt in range(30):
+                    try:
+                        with urlopen(origin + "/board/api/system", timeout=1) as response:
+                            response.read()
+                        break
+                    except OSError:
+                        if attempt == 29:
+                            self.fail("nginx did not become ready")
+                        time.sleep(.1)
+                for route, expected in (
+                    ("/board/api/system?check=1", board.server_port),
+                    ("/go.html", board.server_port), ("/go/system.html", board.server_port),
+                    ("/king/app.html", board.server_port), ("/board/owner", board.server_port),
+                    ("/api/v2/projects", studio.server_port),
+                    ("/api/v2/media/scripts?limit=1", studio.server_port),
+                ):
+                    with self.subTest(route=route), urlopen(origin + route, timeout=3) as response:
+                        self.assertEqual(json.load(response),
+                                         {"port": expected, "path": route, "proto": "https"})
+                with self.assertRaises(HTTPError) as error:
+                    urlopen(origin + "/api/v2/unknown", timeout=3)
+                self.assertEqual(error.exception.code, 404)
+                proxy.terminate()
+                proxy.wait(timeout=5)
+        finally:
+            if proxy:
+                if proxy.poll() is None:
+                    proxy.terminate()
+                    proxy.wait(timeout=5)
+                proxy.stderr.close()
+            for server in (board, studio):
+                server.shutdown()
+                server.server_close()
 
 
 if __name__ == "__main__":

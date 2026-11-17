@@ -2,6 +2,7 @@
 """Read-only host verification for the private Tailscale deployment."""
 
 import json
+import os
 from pathlib import Path
 import shutil
 import socket
@@ -37,11 +38,16 @@ def check_tailscale():
 
 
 def check_dns():
-    result = subprocess.run(["tailscale", "ip", "-4"], capture_output=True,
+    result = subprocess.run(["tailscale", "status", "--json"], capture_output=True,
                             text=True, timeout=10, check=True)
-    expected = result.stdout.strip()
-    addresses = {entry[4][0] for entry in socket.getaddrinfo("12sgi.com", 443)}
-    return addresses == {expected}, f"12sgi.com resolves to {', '.join(sorted(addresses))}"
+    node = json.loads(result.stdout).get("Self", {})
+    hostname = (os.environ.get("DEPLOYMENT_HOSTNAME") or node.get("DNSName", "")).rstrip(".")
+    if not hostname:
+        return False, "Set DEPLOYMENT_HOSTNAME or enable MagicDNS"
+    expected = set(node.get("TailscaleIPs", []))
+    addresses = {entry[4][0] for entry in socket.getaddrinfo(hostname, 443)}
+    ok = bool(addresses) and addresses.issubset(expected)
+    return ok, f"{hostname} resolves to {', '.join(sorted(addresses))}"
 
 
 def check_disk():

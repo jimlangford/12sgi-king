@@ -89,7 +89,10 @@ tailscale serve status
 
 `nginx-tailscale.conf` binds only `127.0.0.1:8081`, includes the `/board/api/` proxy
 to native host `8799`, routes the v2 API namespaces to their local services, and
-serves the built website via `8080`. It must not be copied into a public vhost.
+serves the built website via `8080`. Owner `/go.html`, `/go/`, `/king/`, and `/board/`
+routes stay with the native private server on `8799`, not the sanitized public build.
+Verify that server's routes on the host before cutover; they are outside this checkout.
+This proxy configuration must not be copied into a public vhost.
 Tailnet ACLs must restrict clients to intended users/devices. **Do not enable Funnel**.
 Keep the CI webhook and database off this browser proxy.
 
@@ -103,6 +106,9 @@ nginx HTTPS listener bound **only to the Tailscale IP**, reusing the private rou
 Do not change existing public DNS/Cloudflare bridges until the owner approves cutover.
 Remove unintended AAAA records for this private hostname. Custom-domain TLS/DNS is a
 host administration step, not something this checkout can provision automatically.
+After cutover, export `$env:DEPLOYMENT_HOSTNAME='12sgi.com'` in the startup/health/CI
+shell (POSIX: `export DEPLOYMENT_HOSTNAME=12sgi.com`). Without this override,
+verification checks this node's MagicDNS name, leaving existing public DNS bridges intact.
 
 ### 4. Local CI and recovery
 
@@ -138,7 +144,7 @@ Nonzero means the deployment is not verified. Checks cover:
 | Built website | `127.0.0.1:8080/reports.html` |
 | Connector runner, workflow monitor, container board | Compose process/health state |
 | Neo4j | Read-only `MATCH (n) RETURN count(n) AS nodes`, minimum 14,300 |
-| Host | Tailscale state, `12sgi.com` resolution, disk usage below 85% |
+| Host | Tailscale state, selected hostname resolution to this node, disk below 85% |
 
 Studio is intentionally required by aggregator readiness; start its separate stack
 rather than hiding a failure. No `/health` entry is added to `SURFACES_LIST`: its format

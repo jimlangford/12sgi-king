@@ -43,5 +43,14 @@ the environment-gated paired-aspect episode canary before declaring the complete
   creative/output approval, public publishing, or Neo4j data changes.
 - Coordination: existing release ownership above remains intact; deployment configuration
   overlaps are recorded in `DISPATCH_LOG.md` for owner review before merge.
-- Validation: pending; no king-server resource or database claims can be verified in this runner.
-- Next: review the focused deployment diff and run host-only checks before enabling services.
+- Changed: loopback publishing; host nginx routes (including Studio project/media APIs and
+  private native owner routes); signed CI with local mode; safe stale-artifact/PID cleanup;
+  bounded recovery; Studio readiness; read-only host preflight/verification and runbook.
+- VERIFY: 61 focused/existing tests pass, including live nginx and static-path isolation tests.
+  Python compilation, v2/standalone-Neo4j Compose models, nginx configuration, and PowerShell
+  parsing pass. Secret scan clean; initial CodeQL Python analysis found no alerts.
+- Limits: broader tests require FastAPI and generated site artifacts absent here. No host
+  cleanup, DNS/TLS/ACL change, RAM observation, or live graph count was performed.
+- Next: owner/release agent reviews overlap before merge; follow `COMPLETE_INDEPENDENCE.md`
+  on king-server, verify native owner routes and separate Studio startup, and export
+  `DEPLOYMENT_HOSTNAME=12sgi.com` only when intentionally verifying custom-domain cutover.

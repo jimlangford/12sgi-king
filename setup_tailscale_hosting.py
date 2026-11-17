@@ -74,7 +74,7 @@ def validate_config(config):
                 raise ValueError(f"{key} must contain at least 32 characters")
         if str(env.get("NEO4J_AURA_ENABLED", "false")).lower() not in {"false", "0", ""}:
             raise ValueError("Cloud graph routing must be disabled for independent deployment")
-        for key in ("GPU_RUNTIME_URL", "OLLAMA_BASE"):
+        for key in ("GPU_RUNTIME_URL", "OLLAMA_BASE", "COMFYUI_BASE"):
             if key in env and not private_url(env[key]):
                 raise ValueError(f"{key} must target a local or Tailscale host")
 

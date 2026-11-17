@@ -14,6 +14,15 @@ pythonw processes. Host disk/RAM, DNS/TLS, tailnet ACLs, and graph counts requir
 verification on king-server; this runner cannot attest to them. Owner/release agent:
 review these configuration overlaps before merge; existing release ownership is unchanged.
 
+**VERIFY:** 61 focused/existing regressions pass, including real local nginx routes and
+static-file credential/symlink isolation. Compose, Python, nginx, and PowerShell syntax
+checks pass. No host cleanup or infrastructure cutover was executed. The native
+`king_serve.py` is not present in this checkout: owner must verify `/go.html`, `/go/`,
+`/king/`, `/board/`, and `/board/api/` against that private server before cutover.
+MagicDNS verification does not require changing public DNS; select `DEPLOYMENT_HOSTNAME`
+explicitly to test the custom-domain cutover. See the current runbook atop
+`COMPLETE_INDEPENDENCE.md`; older success checkmarks below it remain historical only.
+
 ---
 
 ## 2026-07-15 — Release-readiness hardening: pending owner actions A–F
