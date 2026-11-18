@@ -58,6 +58,9 @@ the environment-gated paired-aspect episode canary before declaring the complete
   tests: 27 passed. Focused Ruff E/W/F/I passed all five changed Python files.
   One-time provisioning used existing pinned dependencies; the runner itself
   never installs. Provisioning caches were removed from the checkout.
+- SECURITY REVIEW: changed-file secret scanning found no secrets before commit.
+  Post-commit CodeQL Actions/Python analysis reported zero alerts. These checks
+  do not replace the blocked full-history Gitleaks gate.
 - LOCAL RESULT: **failed, not approved for deployment**. The full 499-page
   browser scan completed with zero scan errors but found 35 new/changed
   findings and 40 resolved baseline entries, all on `prosecutor_public_feed.html`.
