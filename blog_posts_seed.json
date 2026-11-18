@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20261117",
+      "slug": "dev-digest-20261117",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**November 17, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (59% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- REEF REBUILD+RE-RENDER OWNER CONTROL\n- Created with full read-only access to the produced body of work (16 shared refs)\n- NEW independent project KEYS_OF_STARFORGE (KEYS OF THE STARFORGE: Episode One\n- NEW independent project SEVENTH_STONE (THE SEVENTH STONE\n- NEW independent project THE_MOVIE_HOW_WOULD_THEY_FEEL (THE MOVIE\n- NEW independent project KA_NOHO_KAAWALE (Ka Noho Kaʻawale\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "dev-digest-20261116",
       "slug": "dev-digest-20261116",
       "title": "Development Digest — the first quarter",
