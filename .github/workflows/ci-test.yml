@@ -32,7 +32,7 @@ jobs:
           python -m pip install -r requirements-ci.txt
           python -m pip check
       - name: Run V2 suite and Studio tests
-        run: python tools/local_ci.py --junitxml="${RUNNER_TEMP}/test-results.xml"
+        run: python tools/local_validation.py --stage test --output-dir "${RUNNER_TEMP}/local-test-validation"
       - name: Test summary
         if: always()
         env:

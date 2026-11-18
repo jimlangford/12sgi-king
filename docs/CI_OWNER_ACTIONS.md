@@ -4,6 +4,15 @@ Written 2026-11-17 by Claude Code for the Phase 1 CI branch (`copilot/fix-ci-cd-
 Scope: validation only. Nothing here deploys, starts the Docker stack, exposes a private service, rewrites
 shared history, or touches tenant isolation or WordPress publishing.
 
+**2026-11-18 local-first follow-up:** the new combined runner is
+`tools/local_validation.py` (setup in `README.md`). Its full local run passed
+440 tests, the isolated 499-page build, and 21 browser self-tests, but its overall
+result is **FAIL**: the full accessibility scan found 35 new/changed findings and
+40 resolved baseline entries on `prosecutor_public_feed.html`; comparison refs
+and Gitleaks are also unavailable in this checkout. The baseline was not changed.
+Current evidence and owner next actions are in `docs/ACTIVE_AGENT_HANDOFF.md`.
+The green GitHub results below are historical, not validation of the new runner.
+
 ## 1. What is verified, and where
 
 | Item | Result | Where verified |
@@ -74,6 +83,15 @@ Options, in my order of preference:
 3. Add an explicit per-rule tolerance for data-regenerated pages. I did not build this because it is a policy choice.
 
 ## 4. Redirected builds and private material (verified)
+
+For new validation runs, use `python tools/local_validation.py --stage build`
+or the default combined gate instead of assembling the environment by hand.
+This distinctly named local entry point is independent of historical blocked
+workflow runs. It invokes the existing builder with a restricted environment,
+redirects home/profile variables and `KA_SITE` into a fresh private run directory,
+and verifies build lane results and forbidden public paths. It never deploys.
+The accessibility stage scans that isolated build with existing baseline safeguards;
+it never proposes or copies a new baseline automatically.
 
 `build_site.py` has a lane that writes the PRIVATE King mirror to `~/AppData/Local/king-extract/deploy/king-local`
 and reads the private Studio project under `~/Documents/Claude/Projects/`. On Windows, Python resolves `~` from
@@ -146,6 +164,16 @@ latest PR runs for remote verification of these review commits.
 
 ## 6. Workflow and Dependabot review
 
+- Validation callers use `tools/local_validation.py` for selected test, lint,
+  secret, build, and accessibility stages. The test-only `tools/local_ci.py`,
+  existing browser scanner, and shared `tools/ci_checks.py` gates remain the
+  underlying validators. The manual `publish.yml` validation build also uses
+  the isolated entry point; actual private deployment workflows are unchanged.
+- Local receipts contain commit/dirty status, executed commands, exit results,
+  coverage, errors, and artifact paths. They are PRIVATE and never uploaded by
+  the workflows. Local success, GitHub approval/status (not queried by the local
+  runner), and deployment (not attempted) are recorded separately. Missing tools
+  or shallow history fail explicitly; the runner never installs or fetches them.
 - Dependabot: valid. 12 pip directories and 2 Docker directories exist and have manifests; GitHub Actions are
   covered too. Per-service Dockerfiles below `services/` are not separately watched.
 - All four `ci-*.yml` files are now pinned to commit SHAs. Before this change `ci-test.yml` and `ci-lint.yml` used

@@ -35,6 +35,54 @@ without first recording a coordinated handoff.
 Merge PR #380, record its merge commit in the shared private Studio state and dispatch log, then run
 the environment-gated paired-aspect episode canary before declaring the complete Studio beta shipped.
 
+## Local-first Validation Follow-up — Copilot, 2026-11-18
+
+- Branch: `copilot/fix-ci-cd-workflows` (continuation of PR #387).
+  Scope coordinated in `DISPATCH_LOG.md`; Codex's release ownership above
+  remains unchanged.
+- CHANGED: distinctly named `tools/local_validation.py` combines
+  existing validators with isolated builds and private receipts;
+  `tools/ci_checks.py` shares lint/secret policy with validation workflows.
+  Validation-only callers and local operating instructions use the new entry point.
+- PRESERVED: no baseline regeneration, source HTML changes, private deployment
+  changes, Docker/Tailscale exposure, runtime integration, automatic installs,
+  or automatic history fetching.
+- VERIFY: shared-gate implementation agent reports 30 regression tests passing,
+  pinned yamllint 1.38.0, maintained ShellCheck 0.9.0, and compilation passing.
+  YAML validation included the manual validation-build caller. Missing tools
+  fail by name. Read-only review found and resolved timeout-descendant cleanup
+  and committed-file local lint gaps; follow-up found no significant issues.
+- VERIFY (combined, Python 3.12 working tree): 440 tests passed, 45.73% service
+  coverage; all 29 public build lanes and 499 pages passed isolation checks.
+  Twenty-one real browser self-tests passed. Final focused runner/test-gate
+  tests: 27 passed. Focused Ruff E/W/F/I passed all five changed Python files.
+  One-time provisioning used existing pinned dependencies; the runner itself
+  never installs. Provisioning caches were removed from the checkout.
+- LOCAL RESULT: **failed, not approved for deployment**. The full 499-page
+  browser scan completed with zero scan errors but found 35 new/changed
+  findings and 40 resolved baseline entries, all on `prosecutor_public_feed.html`.
+  This is separate from the unchanged 14,694-finding reviewed baseline.
+  No baseline entries, exceptions, or HTML sources were changed to hide it.
+  A passing 136-page shard does not override this full-site failure.
+- PRIVATE evidence: the full working-tree receipt is in the external run
+  `run-173bf754c22641a2a547e5213241b424`, under the sibling
+  `.12sgi-local-validation-check` output directory. Reports, coverage, logs,
+  and isolated HTML remain outside source control and are not uploaded.
+- LOCAL LIMITATIONS: this checkout is shallow and has no default remote-branch
+  comparison ref. The local gates must fail rather than fetch or silently
+  ignore committed changes. Provision full history and an available reviewed
+  lint base manually; use `--base`/`--head` for explicit offline comparisons.
+  The default Python lint stage failed on missing comparison refs; the secret
+  stage failed on missing Gitleaks. A changed-file secret check passed, but that
+  is not a full-history scan.
+- NEXT: inspect the public-feed renderer (`watchers/prosecutor_public_feed.py`)
+  and the full report to establish the cause of the baseline divergence before
+  any coordinated source fix or manually reviewed baseline pruning. Do not
+  regenerate allowances. Provision Gitleaks and complete local refs/history,
+  rerun the full gate, then obtain separate GitHub approval/status evidence.
+  Historical GitHub green results below do not certify the new head; local
+  validation, GitHub approval, and deployment authorization remain distinct.
+
 ## Separate Phase 1 CI Work — Copilot, 2026-11-17
 
 - Branch: `copilot/fix-ci-cd-workflows`. Scope coordinated in `DISPATCH_LOG.md`;

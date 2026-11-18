@@ -5,6 +5,33 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-18 — Local-first combined validation entry point
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner approved implementation of the
+  local-AI CI plan. Scope: a new non-deploying `tools/local_validation.py`,
+  reusable existing validators, focused tests, CI validation callers, and docs.
+- PRESERVED: Codex release ownership, private Docker/deployment paths, runtime
+  services, public content, accessibility baseline and approval policy.
+- Local receipts and generated public validation output stay in private scratch
+  storage, never source control or public artifacts. The runner never installs
+  or fetches. One-time provisioning of existing pinned validation dependencies
+  is separate; no deployment/recovery server, local AI service, or publisher
+  is started.
+- VERIFY: 440 tests, 45.73% service coverage, 29 build lanes/499 pages,
+  21 browser self-tests, focused Ruff, YAML and ShellCheck passed. Follow-up
+  focused tests passed. Changed-file secret scan found no secrets.
+- RESULT: full local gate **FAIL**, honestly retained. The complete browser scan
+  found 35 new/changed and 40 resolved findings on `prosecutor_public_feed.html`
+  with zero scan errors; no baseline or source content was modified. Missing
+  default comparison refs and Gitleaks also failed their stages. Full history
+  is unavailable in this shallow checkout.
+- OPEN QUESTION / NEXT: establish the public-feed baseline divergence from the
+  saved full report and source renderer before any coordinated content fix or
+  manual pruning. Provision tools/history/base refs locally, rerun the full gate,
+  and obtain separate GitHub approval/status evidence. Receipts stay PRIVATE.
+
+---
+
 ## 2026-07-15 — Release-readiness hardening: pending owner actions A–F
 
 **Thread:** release-gate-hardening  **From:** Copilot agent  **To:** owner  **Status:** PENDING — no destructive or administrative operations taken

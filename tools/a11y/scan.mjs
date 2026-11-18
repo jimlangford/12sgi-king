@@ -251,7 +251,7 @@ export async function launch() {
   // A UNIQUE profile per launch. A shared profile made every later run fail with "The browser is already
   // running for ...chrome-profile" whenever an earlier run left a Chrome behind (seen on Windows: all 16 tests
   // failed, including the pure unit tests that never open a page). Old profiles are swept best-effort.
-  const work = path.join(here, '.work');
+  const work = path.resolve(process.env.A11Y_WORK_DIR || path.join(here, '.work'));
   await mkdir(work, { recursive: true });
   try {
     for (const name of await readdir(work)) {
@@ -268,12 +268,12 @@ export async function launch() {
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-background-networking'],
     userDataDir: path.join(work, `chrome-profile-${process.pid}-${Date.now()}`),
     // Keep Chromium scratch files inside this task's workspace.
-    env: { ...process.env, TMPDIR: path.join(here, '.work') },
+    env: { ...process.env, TMPDIR: process.env.TMPDIR || work },
   });
 }
 
 async function main() {
-  const output = path.join(here, '.work');
+  const output = path.resolve(process.env.A11Y_WORK_DIR || path.join(here, '.work'));
   await mkdir(output, { recursive: true });
   const scope = JSON.parse(await readFile(path.join(here, 'scope.json'), 'utf8'));
   const baseline = JSON.parse(await readFile(path.join(here, 'baseline.json'), 'utf8'));

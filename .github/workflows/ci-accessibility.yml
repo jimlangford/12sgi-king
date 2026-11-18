@@ -22,7 +22,6 @@ jobs:
         shard: [1, 2, 3, 4]
     env:
       CHROME_BIN: /usr/bin/google-chrome
-      A11Y_SHARD: ${{ matrix.shard }}/4
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
@@ -45,33 +44,11 @@ jobs:
           test -x "$CHROME_BIN"
           "$CHROME_BIN" --version
 
-      - name: Build sanitized PUBLIC static output (no owner HOME)
-        run: |
-          mkdir -p tools/a11y/.work/empty-home
-          export HOME="$PWD/tools/a11y/.work/empty-home"
-          export USERPROFILE="$HOME"
-          export KA_SITE="$PWD/tools/a11y/.work/site"
-          timeout 90s python build_site.py > tools/a11y/.work/build.log
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          output = Path(os.environ["KA_SITE"])
-          info = json.loads((output / "buildinfo.json").read_text())
-          assert info.get("lanes") and not info.get("lanes_failed"), info
-          forbidden = ["go", "go.html", "king/app.html", "king/go.html", "king/live.js",
-                       "case_files.html", "owner_jobs.html", "king_private_src"]
-          assert not any((output / name).exists() for name in forbidden), "Private output detected"
-          print(f"PUBLIC build: {len(list(output.rglob('*.html')))} HTML pages, all lanes passed")
-          PY
-
-      - name: Prove browser checks reject known failures
-        working-directory: tools/a11y
-        run: timeout 150s npm test
-
-      - name: Scan this shard of generated /site/ against the explicit reviewed backlog
-        working-directory: tools/a11y
-        run: timeout 420s npm run scan
+      - name: Build sanitized PUBLIC output, test browser checks, and scan this shard
+        run: >-
+          python tools/local_validation.py --stage build --stage accessibility
+          --shard "${{ matrix.shard }}/4"
+          --output-dir "${RUNNER_TEMP}/local-a11y-validation"
 
       - name: Upload reports only (never generated HTML or owner material)
         if: always()
@@ -79,8 +56,8 @@ jobs:
         with:
           name: public-static-accessibility-report-shard-${{ matrix.shard }}
           path: |
-            tools/a11y/.work/report.json
-            tools/a11y/.work/summary.md
+            ${{ runner.temp }}/local-a11y-validation/run-*/a11y/report.json
+            ${{ runner.temp }}/local-a11y-validation/run-*/a11y/summary.md
           if-no-files-found: warn
           retention-days: 7
 

@@ -27,7 +27,11 @@ Only use the public domain after DNS points to the host's public IP and the fire
 
 ## Local CI / deployment
 
-Run the same non-deploying test gate used by GitHub on Python 3.11 or 3.12:
+The primary non-deploying entry point is **`tools/local_validation.py`**, a new
+file independent of old blocked GitHub workflows. GitHub calls its selected
+stages only as corroborating checks; it does not control local validation.
+
+Prepare an isolated environment once (Python 3.11 or 3.12):
 
 ```bash
 python -m venv .venv
@@ -35,34 +39,55 @@ python -m venv .venv
 source .venv/bin/activate
 # Windows PowerShell instead: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements-ci.txt
-python tools/local_ci.py
+# Existing lint tools, also pinned in CI:
+python -m pip install ruff==0.17.5 yamllint==1.38.0
 ```
 
-After the one-time dependency installation, this gate needs no GitHub connection,
-Docker, Neo4j, Ollama, or external credentials. It runs the V2 and Studio asset
-tests with temporary databases and loopback services, returns nonzero on failure,
-and keeps coverage scratch files outside the repository. Add
-`--junitxml=/path/to/results.xml` to save a report. It never deploys.
+Also provision Git, ShellCheck, Gitleaks 8.24.3, Node 22+, Chrome/Chromium, and the
+locked browser dependencies (`npm ci --ignore-scripts --prefix tools/a11y`).
+Set `CHROME_BIN` to your browser executable when it is not in a standard location.
+Use your platform's package manager or the checksum-verified Gitleaks release
+used by the secret-scan workflow. Provisioning can require a network connection;
+the validation runner never installs, downloads, fetches, or deploys anything.
 
-Run the accessibility check on every generated public page (Node 22 and Chrome, no network needed):
+Run the combined gate after provisioning:
 
 ```bash
-cd tools/a11y && npm ci --ignore-scripts
-# 1. Build the PUBLIC site into a scratch folder. HOME, USERPROFILE, HOMEDRIVE, HOMEPATH, APPDATA and
-#    LOCALAPPDATA must ALL point at an empty folder, or the build can read your private project and write
-#    your private King mirror. See docs/CI_OWNER_ACTIONS.md section 4. KA_SITE=tools/a11y/.work/site
-# 2. Scan (set CHROME_BIN to your Chrome if it is not at the default path):
-npm test                      # scanner self-tests, including the gate rules
-npm run scan                  # every page; A11Y_SHARD=2/4 scans one quarter
-npm run scan:propose          # writes .work/proposed-baseline.json ONLY; inspect it, then copy it by hand
+python tools/local_validation.py
+# Focused checks use the same implementation, not separate policies:
+python tools/local_validation.py --stage test
+python tools/local_validation.py --stage build --stage accessibility
 ```
 
-The scan fails on any finding not in `tools/a11y/baseline.json`, on any baseline entry that is no longer
-observed (fixed findings must be pruned), and on pages the build no longer generates. The baseline is a
-regression budget for existing debt, not a conformance claim. Owner-only actions and open decisions are in
-`docs/CI_OWNER_ACTIONS.md`.
+The default includes tests, Python/YAML/shell lint, current-file and reachable-history
+secret scanning, an isolated public build, and browser accessibility validation.
+Missing tools, incomplete history, and failed checks return nonzero—not success.
+No Docker, Neo4j, Ollama, GitHub credentials, or external AI service is needed.
+Local AI may interpret the evidence but cannot override validator results.
+Provision complete reachable Git history once for the history scan. Strict local
+Python lint must also have a locally available comparison base; use `--base`
+with the reviewed base commit if the default remote-branch reference is unavailable.
+The runner never fetches missing history or silently limits lint to dirty files.
 
-Run the local deployment pipeline on your local system, not GitHub Actions:
+The runner prints the location of a **PRIVATE local receipt** and its artifacts,
+kept outside the checkout by default. Receipts distinguish local results, GitHub
+status (not queried), and deployment (not attempted). Do not commit or publish
+receipts, stage logs, or generated HTML. Use `--help` for stage and output options.
+
+Public builds redirect `KA_SITE` and all home/profile variables into scratch
+storage rather than reading the owner's project or writing the private King mirror.
+Do not invoke `build_site.py` directly with your normal owner environment for
+validation. See `docs/CI_OWNER_ACTIONS.md` section 4 for the boundary.
+
+`tools/local_ci.py` remains the reusable test-only gate underneath the combined
+runner. The accessibility scanner continues to fail on new findings, stale
+baseline entries, removed pages, and scan errors. Its baseline is existing debt,
+not WCAG conformance; the runner never regenerates it. Owner-only actions and
+open decisions remain in `docs/CI_OWNER_ACTIONS.md`.
+
+Deployment is a separate, owner-authorized operation, not a validation step.
+The existing local deployment entry points below are not invoked by the runner;
+do not start them merely because local checks pass:
 
 ```bash
 python local_ci_cd_server.py
