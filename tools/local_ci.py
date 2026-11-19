@@ -22,6 +22,8 @@ def main(argv=None):
         "tests/v2", "tests/test_studio_assets_crosswalk.py", "tests/test_local_ci.py",
         "tests/test_local_validation.py",
         "tests/test_ci_checks.py",
+        "tests/test_public_release.py",
+        "tests/test_fix_link_prefixes.py",
         "--cov=services", "--cov-report=term",
     ]
     if args.junitxml:

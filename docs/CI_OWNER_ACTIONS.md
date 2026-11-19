@@ -13,6 +13,34 @@ and Gitleaks are also unavailable in this checkout. The baseline was not changed
 Current evidence and owner next actions are in `docs/ACTIVE_AGENT_HANDOFF.md`.
 The green GitHub results below are historical, not validation of the new runner.
 
+**Public release follow-up (2026-11-19):** the owner has now approved implementation
+of automatic validated local updates, reviewed GitHub source backup, and a public
+static backup host. This is separate from the historical validation-only scope
+above. Repository tooling and activation guidance are documented in `README.md`;
+implementation, activation, and observed operational readiness must be reported
+separately. Do not start the old Docker deployment servers to enable static-site
+updates. WordPress publishing, DNS changes, and automatic traffic failover remain
+separate decisions.
+
+Before activating public release automation on the owner's machine:
+
+- Confirm the actual checkout/branch, clean approved commit, meaningful reviewed
+  comparison base, complete reachable history, and installed validation tools.
+- Confirm the existing static server's safe public serving directory and the
+  dedicated external release state path; never serve the repository or release
+  state parent. Keep private runtime and backup paths unchanged.
+- Resolve and revalidate the recorded accessibility divergence without weakening
+  the baseline. A failed gate leaves the existing good release in service.
+- Review the explicit scheduler command, approved inputs, source backup branch,
+  credential-manager setup, overlap protection, and tested rollback path.
+  Source backup sends committed reviewed source, not a private-system backup.
+- Inspect Pages settings before enabling the backup workflow. A repository's
+  existing primary/custom-domain Pages deployment must not be overwritten as a
+  supposed separate backup. Use only a verified separate backup URL.
+- Protect release approval variables/environments. Confirm the local deployed
+  commit and public backup deployed commit independently, including timestamps
+  and freshness. A source push is not proof of either deployment.
+
 ## 1. What is verified, and where
 
 | Item | Result | Where verified |

@@ -1,5 +1,54 @@
 # Active Agent Handoff
 
+## Active implementation — local primary and public static backup, 2026-11-19
+
+- Owner requested implementation of the prepared local-first plan. Copilot is
+  working on repository-side public release automation on
+  `copilot/fix-ci-cd-workflows`; the auth/Studio release ownership below is
+  unchanged. Local machine integration requires Claude on that machine.
+- CHANGED: `tools/public_release.py` provides full validation before promotion,
+  isolated detached worktrees, overlap protection, hash-verified retained
+  releases, atomic serving-pointer promotion/rollback, bounded source backup,
+  and PRIVATE per-phase status. The source backup requires an explicit reviewed
+  clean commit and branch; it never stages arbitrary files or force-pushes.
+- PUBLIC packaging: the existing isolated validator removes only explicit
+  non-runtime implementation/backup artifacts before accessibility scans the
+  output. `tools/public_build_hygiene.py` does not alter source files or the
+  private mirror. `tools/fix_link_prefixes.py` makes existing public root-relative
+  HTML links mount-independent before validation. Export checks reject private
+  paths/content and emit a minimal public commit marker without private logs.
+- GITHUB: `.github/workflows/public-static-backup.yml` is disabled unless owner
+  approval variables match the release. Read-only Pages checks require the
+  explicit default github.io backup URL and no custom domain; the workflow
+  must not replace a primary/custom-domain Pages deployment. Protected
+  environments and actual Pages settings still require owner verification.
+- Boundaries: no private Docker/server changes, DNS changes, WordPress posts,
+  traffic failover, creative/output auto-approval, or accessibility allowances.
+  Only isolated, validated PUBLIC output may become a hosting artifact.
+- ACTIVATION / NEXT (Claude): follow the exact CLI, state-path, rollback,
+  scheduler, source credential-manager, Pages environment/approval-variable,
+  and serving-root instructions in `README.md`. Locate and inspect the real
+  checkout first. Approve explicit prior-base and release SHAs rather than
+  blindly accepting changing HEAD. Do not start the old private deployment
+  servers or serve the release-state parent. Keep Windows state ACLs private.
+- VERIFY (implementation agent): `python tools/local_ci.py` passed **511 tests**.
+  Ruff, yamllint, compilation, and whitespace checks passed. An actual isolated
+  build produced **29 lanes / 499 pages**; structural/privacy export checks
+  accepted **722 public files** after the explicit artifact cleanup. Export
+  checks alone are not a successful full release gate or WCAG conformance.
+  Read-only review found no remaining significant issues; changed-file secret
+  scanning passed.
+- VERIFY (limits): this checkout still lacks Gitleaks/browser prerequisites for
+  the complete release gate. The previously recorded accessibility divergence
+  remains unresolved; no allowances were regenerated. A meaningful local base
+  and complete history must be provisioned where missing. No full-gate success
+  or current full-site browser result is claimed.
+- Status: **Approved for repository review and owner-machine preparation**;
+  not activated on the owner machine. No local scheduler/server was configured,
+  source backup invoked, Pages deployment triggered, DNS changed, or WordPress
+  post created here. Live URLs and owner-machine synchronization remain
+  unverified. A source push is not proof of a healthy served release.
+
 ## Claude restart priority — owner direction, 2026-11-19 UTC
 
 **Owner request:** "I want 12sgi to work locally with GitHub backup".

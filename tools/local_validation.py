@@ -15,6 +15,11 @@ import uuid
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+if __package__:
+    from . import public_build_hygiene
+else:
+    import public_build_hygiene
+
 ROOT = Path(__file__).resolve().parents[1]
 STAGES = (
     "test", "lint-python", "lint-yaml", "lint-shell", "secrets", "build", "accessibility",
@@ -268,6 +273,11 @@ def stage(name, run, shard, built, base=None, head=None):
         private_directory(run / "a11y")
         if command([sys.executable, "build_site.py"], command_env=build_environment(run)):
             try:
+                # Only isolated PUBLIC output, after the builder/private mirror
+                # completes and before accessibility validates this exact tree.
+                result["removed_build_artifacts"] = public_build_hygiene.purge_build_artifacts(
+                    run / "a11y" / "site"
+                )
                 result["coverage"] = check_build(run / "a11y" / "site")
                 result["artifacts"].append(str(run / "a11y" / "site" / "buildinfo.json"))
             except (OSError, ValueError, TypeError, AttributeError):

@@ -5,6 +5,39 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-19 — Implemented repository-side local/public backup release path
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner requested implementation of the
+  prepared plan. Scope: validated public-only local release promotion/rollback,
+  conflict-safe reviewed source backup integration, and GitHub static backup
+  hosting. The existing Codex auth/Studio release remains separately owned.
+- PRESERVED: private Docker/deployment servers, DNS, WordPress publication,
+  creative/output approvals, accessibility baseline, and private data paths.
+- VERIFY: this environment is the cloud checkout, not the owner's machine.
+  Latest inspected accessibility run `44556288033` requires approval and has
+  zero executed jobs; it supplies no new validation or deployment evidence.
+- CHANGED: `tools/public_release.py`, the default-disabled
+  `.github/workflows/public-static-backup.yml`, isolated public build hygiene,
+  mount-safe public links, regression tests, and existing README/owner handoff.
+  Local promotion/rollback is atomic; source backup is explicit and bounded;
+  Pages deployment rechecks approval and verifies the served public commit.
+- VERIFY: implementation agent reports **511 tests passed**, Ruff/YAML/
+  compilation/whitespace checks passed, and an isolated **29-lane / 499-page**
+  build. Structural/privacy export checks accepted **722 files**. Build cleanup
+  removes explicit non-runtime artifacts before browser validation, never from
+  sources/private mirrors. Read-only review and changed-file secret scan passed.
+- NOT VERIFIED: full release gate, live owner-machine version, local URL,
+  source-backup freshness, and public backup URL/deployed SHA. Missing
+  Gitleaks/browser prerequisites and the historical accessibility divergence
+  still prevent public-release approval; export checks are not a full gate.
+- NEXT: **Approved for repository review and owner-machine preparation**.
+  Claude should inventory the real checkout/runtime, provision prerequisites
+  and reviewed history/base, resolve accessibility divergence, validate, then
+  explicitly activate the safe serving root/scheduler and backup approvals per
+  `README.md`. Do not replace primary/custom-domain Pages hosting.
+
+---
+
 ## 2026-11-19 — Owner confirms public backup hosting
 
 - Owner requested automatic local publishing and GitHub updates, then confirmed
