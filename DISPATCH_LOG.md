@@ -26,6 +26,8 @@ Append newest entries at the top. Keep it factual: intent + result.
   build. Structural/privacy export checks accepted **722 files**. Build cleanup
   removes explicit non-runtime artifacts before browser validation, never from
   sources/private mirrors. Read-only review and changed-file secret scan passed.
+- SECURITY: implementation commit `2be4abca`; post-commit CodeQL Python/Actions
+  analysis found **zero alerts**. This commit is not a claimed deployed version.
 - NOT VERIFIED: full release gate, live owner-machine version, local URL,
   source-backup freshness, and public backup URL/deployed SHA. Missing
   Gitleaks/browser prerequisites and the historical accessibility divergence

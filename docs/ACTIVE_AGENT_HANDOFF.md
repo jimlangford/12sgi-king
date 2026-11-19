@@ -38,6 +38,9 @@
   checks alone are not a successful full release gate or WCAG conformance.
   Read-only review found no remaining significant issues; changed-file secret
   scanning passed.
+- SECURITY / source: implementation commit `2be4abca`; post-commit CodeQL
+  analyzed Python and Actions with **zero alerts**. This is repository evidence,
+  not a deployed commit or verification of owner-machine/backup freshness.
 - VERIFY (limits): this checkout still lacks Gitleaks/browser prerequisites for
   the complete release gate. The previously recorded accessibility divergence
   remains unresolved; no allowances were regenerated. A meaningful local base
