@@ -5,6 +5,24 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-19 — Owner confirms public backup hosting
+
+- Owner requested automatic local publishing and GitHub updates, then confirmed
+  public backup hosting as well. Local runtime remains primary.
+- CHANGED: recorded the expanded implementation scope in the Claude restart
+  handoff: validated public local updates, reviewed source backup, and a
+  separately reachable GitHub-hosted static educational-site backup.
+- PRESERVED: private services/data and creative/output approval gates; WordPress
+  publication and automatic DNS failover are not authorized by this confirmation.
+- VERIFY: documentation-only handoff update. No scheduler, Pages deployment,
+  DNS change, live publication, or owner-machine synchronization was performed.
+- NEXT (Claude): inspect existing local publishing and Pages settings; implement
+  conflict-safe source synchronization and validated public-only hosting, retain
+  last-known-good output on failure, and report actual URLs/commits/freshness.
+  Confirm domain routing separately; do not treat requested scope as a live pass.
+
+---
+
 ## 2026-11-19 — Claude restart: local operation with GitHub source backup
 
 - Owner direction: "I want 12sgi to work locally with GitHub backup".

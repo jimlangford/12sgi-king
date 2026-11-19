@@ -6,6 +6,38 @@
 This section is the restart entry point; historical release ownership below
 is preserved, not superseded by permission to merge or deploy.
 
+### Confirmed follow-up — automatic updates and public backup hosting
+
+The owner subsequently requested automatic local-site publishing and GitHub
+updates, then confirmed **public backup hosting too**. This expands the requested
+implementation beyond source backup; the older no-deployment instructions below
+describe the initial inventory, not a rejection of this new requirement.
+
+- LOCAL PRIMARY: automate updates to the existing local educational site using
+  reviewed public inputs and the existing validators. This is not permission
+  to auto-approve creative/output work, publish private content, or bypass a
+  failed check.
+- GITHUB SOURCE BACKUP: automate backup of reviewed source changes only. Use
+  explicit file scope, secret scanning, and conflict-safe synchronization;
+  never blanket-add local files, overwrite owner edits, or force-push.
+- PUBLIC BACKUP HOSTING: implement a separately reachable GitHub-hosted static
+  backup of validated PUBLIC educational pages and assets. Reuse an existing
+  Pages path if appropriate after checking repository settings and ownership.
+  Do not upload the checkout, private receipts, databases, models, credentials,
+  owner pages, or Tailscale services.
+- SAFETY: publish only a successfully validated release; retain the last known
+  good version on failure. Record source commit, validation evidence, deployment
+  URL, and backup freshness. A successful source push alone is not hosting
+  success, and a static backup does not provide private backend functionality.
+- SEPARATE DECISIONS: automatic DNS/traffic failover and the relationship between
+  12sgi.com and ElementLOTUS.com remain unconfirmed. This confirmation does not
+  authorize WordPress posts or changes to its existing approval policy.
+- STATUS: **Approved for implementation scope: local automatic updates and public
+  static backup hosting, owner direction.** Operational readiness remains pending
+  verification. This handoff update configures no scheduler, backup host, DNS,
+  or deployment; Claude must inspect the real local environment and existing
+  publishing paths before implementing and verifying them.
+
 ### Operating intent and scope
 
 - PRIVATE: the owner's machine remains the primary runtime, educational-data
