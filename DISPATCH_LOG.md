@@ -5,6 +5,27 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-19 — Claude restart: local operation with GitHub source backup
+
+- Owner direction: "I want 12sgi to work locally with GitHub backup".
+- CHANGED: added the restart-priority section at the top of
+  `docs/ACTIVE_AGENT_HANDOFF.md`, including local inventory, safe branch
+  reconciliation, existing validation, approval-scope reporting, and backup
+  boundaries. No new runtime or publishing mechanism was introduced.
+- PRESERVED: Codex release ownership, local/private infrastructure, validation
+  failures and accessibility baseline. GitHub source backup is not a backup
+  of private databases, models, content, or running state.
+- VERIFY: preparation checkout was clean at `8f623eec` on
+  `copilot/fix-ci-cd-workflows`; existing runner and owner-actions document exist.
+  No claim is made about the owner's checkout or running deployment.
+- NEXT (Claude on owner machine): read the new handoff first; inventory actual
+  versions and edits without changes, establish local readiness with evidence,
+  and coordinate any later integration. ElementLOTUS.com WordPress delivery
+  and the 12sgi.com routing relationship remain pending verification. No DNS
+  changes, automatic merges, deployments, restarts, or posts are authorized here.
+
+---
+
 ## 2026-11-18 — Local-first combined validation entry point
 
 - Branch: `copilot/fix-ci-cd-workflows`; owner approved implementation of the

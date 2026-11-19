@@ -1,5 +1,74 @@
 # Active Agent Handoff
 
+## Claude restart priority — owner direction, 2026-11-19 UTC
+
+**Owner request:** "I want 12sgi to work locally with GitHub backup".
+This section is the restart entry point; historical release ownership below
+is preserved, not superseded by permission to merge or deploy.
+
+### Operating intent and scope
+
+- PRIVATE: the owner's machine remains the primary runtime, educational-data
+  host, local AI/Neo4j environment, and validation authority.
+- BRIDGE: GitHub holds reviewed source, history, and coordination backups. It
+  is not required for local runtime operation. A source push does not back up
+  ignored databases, private content, model files, credentials, or running state.
+  Inventory existing private backup mechanisms before proposing any changes;
+  never upload those assets to this public repository.
+- PUBLIC: the owner identified ElementLOTUS.com as the WordPress site.
+  The relationship between that site, 12sgi.com, and locally hosted educational
+  pages still needs confirmation. Local operation does not require public DNS.
+  Leave DNS, Cloudflare/Tailscale bridges, and WordPress publishing unchanged.
+- Scope labels should say "Approved for" a specific use, with the approver,
+  commit, evidence, and limitations. The request names personal use but does not
+  define all other categories or grant deployment approval. Record unverified
+  scopes as "pending verification"; do not relabel failed checks as passing.
+
+### First actions for Claude Code on the owner's machine
+
+1. Read `CANON.md`, this file, `docs/CI_OWNER_ACTIONS.md`, and the newest
+   `DISPATCH_LOG.md` entries. Locate the real local checkout(s); do not assume
+   this cloud path is the owner's filesystem location.
+2. Before changing anything, record each relevant checkout's branch, commit,
+   dirty status, configured upstream, and any already-recorded running service
+   or build version. Inspect only; do not dump environment variables,
+   authenticated remote URLs, credentials, or private content into shared logs.
+   Cloud head at preparation: `8f623eec`, branch
+   `copilot/fix-ci-cd-workflows`; the handoff commit will be newer. This is not
+   evidence that the owner's checkout, main, or running system matches it.
+3. Preserve uncommitted edits and other agents' release ownership. Compare local
+   refs first; any needed fetch is an explicit network operation. Do not reset,
+   force-pull, merge, or overwrite the owner's work automatically. Review this
+   branch's changes before bringing them into the owner-approved local branch.
+4. Reuse the isolated environment and existing dependencies. Run the existing
+   `tools/local_validation.py` from the identified checkout, using an available
+   reviewed comparison base when required. It isolates public builds and home/
+   profile paths and saves PRIVATE receipts outside the checkout. Do not run
+   `build_site.py` directly in the owner's normal private environment.
+5. Establish local readiness with the actual validator results and read-only
+   checks of the already-running local site's educational links and assets.
+   Verify the existing approved serving root and loopback/private binding;
+   never serve the whole repository or a private directory as a public root.
+   Do not start deployment/recovery servers, restart Docker, expose Tailscale,
+   or publish a test WordPress post as part of this inventory.
+6. Report `INSPECTED`, `CHANGED`, `PRESERVED`, `VERIFY`, and `NEXT`, plus
+   "Approved for" scopes only where supported by explicit approval and evidence.
+   Keep local validation, GitHub source backup/check status, local runtime
+   status, public domain routing, and WordPress delivery as separate results.
+   Update this handoff and the dispatch log before passing work to another agent.
+
+### Evidence carried forward — not a new local-machine verification
+
+The prior cloud working-tree run passed 440 tests, the isolated 499-page build,
+and 21 browser self-tests. Its overall result remained FAIL: 35 new/changed
+accessibility findings and 40 resolved baseline entries on
+`prosecutor_public_feed.html`, missing default lint comparison refs, missing
+Gitleaks, and shallow history. Preserve those results and the unchanged baseline
+until properly investigated. This preparation runs no validators or services
+on the owner's machine and establishes no new approval for runtime or publishing.
+
+---
+
 Updated: 2026-07-18 HST
 Owner: Codex
 Status: public-ready
