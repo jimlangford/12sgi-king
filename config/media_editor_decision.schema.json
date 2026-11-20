@@ -1,0 +1,66 @@
+{
+  "schema_id": "media_editor_decision.schema",
+  "title": "Media Editor Decision",
+  "description": "Phase 2.2 editor decision record for a rendered take: scores and camera compliance are measured from the actual output, with declared vs observed engine fields so misrepresentation is detectable.",
+  "type": "object",
+  "properties": {
+    "decision_id": {"type": "string"},
+    "shot_id": {"type": "string"},
+    "take_id": {"type": "string"},
+    "decision": {
+      "type": "string",
+      "enum": ["accept", "retake", "reject", "hold"]
+    },
+    "motion_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Measured motion quality on the animated frames, normalized 0.0-1.0."
+    },
+    "identity_score": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Measured likeness score on animated frames; null when no identity target applies to the shot."
+    },
+    "camera_compliance": {
+      "type": "object",
+      "description": "Declared-vs-measured camera and engine compliance for the take.",
+      "properties": {
+        "declared_engine": {
+          "type": "string",
+          "description": "Engine the job claimed to use."
+        },
+        "observed_engine_signature": {
+          "type": "string",
+          "description": "Engine signature actually measured from the rendered output."
+        },
+        "declared_movement": {"type": "string"},
+        "observed_movement": {"type": "string"},
+        "compliant": {"type": "boolean"}
+      }
+    },
+    "notes": {"type": "string"},
+    "decided_by": {"type": "string"},
+    "decided_at": {"type": "string"}
+  },
+  "required": ["shot_id", "take_id", "decision"],
+  "example": {
+    "decision_id": "ED-0001",
+    "shot_id": "HWTF-S01-SH001",
+    "take_id": "TAKE-003",
+    "decision": "accept",
+    "motion_score": 0.82,
+    "identity_score": null,
+    "camera_compliance": {
+      "declared_engine": "ltx",
+      "observed_engine_signature": "ltx",
+      "declared_movement": "slow_push_in",
+      "observed_movement": "slow_push_in",
+      "compliant": true
+    },
+    "notes": "Motion smooth; no identity target in this establishing shot.",
+    "decided_by": "editor",
+    "decided_at": "2026-07-22T00:00:00Z"
+  }
+}

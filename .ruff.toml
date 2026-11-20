@@ -1,0 +1,14 @@
+# CI checks high-confidence correctness across tracked Python, with an explicit
+# legacy diagnostic baseline in ci-lint.yml. Policy/readiness tools and every
+# added/modified Python file get full E/W/F/I (whole files, not changed lines).
+# Legacy watchers/services are not bulk-reformatted.
+required-version = "==0.17.5"
+target-version = "py311"
+force-exclude = true
+extend-exclude = ["site", ".github/agents"]
+
+[lint]
+select = ["E", "W", "F", "I"]
+# Long civic URLs/prose are intentional. Formatting and C901 complexity migration
+# are separate work: neither is silently run with a successful exit on failure.
+ignore = ["E501"]

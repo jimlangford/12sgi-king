@@ -294,8 +294,8 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="card-desc">
         Every game here is free to play. Multiplayer circles — live turns with friends —
-        are in <b style="color:var(--gold)">free beta</b> right now.
-        <a href="https://elementlotus.com/product/multiplayer-circles-pass-free-beta/" style="color:var(--gold)">Get the free pass →</a>
+        are in <b style="color:var(--gold)" id="pass-price">free beta</b> right now.
+        <a href="https://elementlotus.com/product/multiplayer-circles-pass-free-beta/" style="color:var(--gold)" id="pass-link">Get the free pass →</a>
         and leave your email so we can shape the beta together.
         <div style="display:flex;gap:6px;margin-top:10px">
           <input id="oh-em" type="email" placeholder="you@example.com" style="flex:1;min-width:0;padding:9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px">
@@ -391,6 +391,23 @@ function ohanaJoin(inputId, msgId){
     if (j.ok) document.getElementById(inputId).value = '';
   }).catch(function(){ msg.textContent = 'could not reach the list — try again later'; });
 }
+
+/* Live Woo price for the Circles Pass (product 429). woo_catalog.json sits beside this page,
+   emitted by tools/ops/woo_catalog.py --public from the Store API — no price is ever hardcoded
+   (the static copy above is a build-time snapshot that stands as the fail-soft fallback). */
+(function(){
+  fetch('woo_catalog.json').then(function(r){ return r.json(); }).then(function(cat){
+    var p = (cat.products || []).filter(function(x){ return x.id === 429; })[0];
+    if (!p) return;
+    var price = document.getElementById('pass-price');
+    var link  = document.getElementById('pass-link');
+    if (price) price.textContent = p.is_free ? 'free beta' : p.price;
+    if (link && p.permalink){
+      link.href = p.permalink;
+      link.textContent = p.is_free ? 'Get the free pass →' : ('Get the pass — ' + p.price + ' →');
+    }
+  }).catch(function(){ /* offline/blocked: the static snapshot stands */ });
+})();
 </script>
 </body>
 </html>

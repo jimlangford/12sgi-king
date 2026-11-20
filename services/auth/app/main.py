@@ -25,9 +25,8 @@ from pydantic import BaseModel
 from services.service_metadata import with_service_metadata
 from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
 from services.event_bus import publish_event as _publish_event
-<<<<<<< main
+
 from services import entitlements as _entitlements
-=======
 from services.auth.app.passkeys import (
     init_passkeys_db,
     PasskeyRegisterBeginRequest, PasskeyRegisterBeginResponse,
@@ -37,7 +36,6 @@ from services.auth.app.passkeys import (
     passkey_register_begin, passkey_register_complete,
     passkey_signin_begin, passkey_signin_complete,
 )
->>>>>>> origin/main
 
 _log = logging.getLogger(__name__)
 
@@ -204,16 +202,14 @@ class AuthClaimsDiagnosticRequest(BaseModel):
     token: str | None = None
 
 
-<<<<<<< main
+
 class AuthIdentityLinkDiagnosticRequest(BaseModel):
     token: str | None = None
     provider: str | None = None
     subject: str | None = None
     email: str | None = None
-=======
 class MagicLinkRequest(BaseModel):
     email: str
->>>>>>> origin/main
 
 
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
@@ -548,7 +544,7 @@ def _session_for_token(token: str) -> sqlite3.Row | None:
         ).fetchone()
 
 
-<<<<<<< main
+
 def _entitlement_claims_for_identity(provider: str, subject: str, email: str) -> dict:
     try:
         resolved = _entitlements.resolve_identity_entitlement(
@@ -614,7 +610,6 @@ def _require_owner_session(authorization: str | None) -> tuple[str, dict]:
             detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
         )
     return owner_token, owner_claims
-=======
 _EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
@@ -743,7 +738,6 @@ def _send_magic_email(email: str, magic_url: str) -> bool:
     except Exception as exc:
         _log.error("Magic-link email delivery failed: %s", type(exc).__name__)
         return False
->>>>>>> origin/main
 
 
 init_db()

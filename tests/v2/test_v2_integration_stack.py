@@ -1,7 +1,5 @@
 import json
-import importlib.util
 import os
-import signal
 import subprocess
 import sys
 import tempfile
@@ -37,7 +35,10 @@ def http_json(method: str, url: str, payload: dict | None = None, headers: dict 
         return exc.code, data
 
 
-def wait_for_service(url: str, timeout: float = 20.0):
+def wait_for_service(url: str, timeout: float = 60.0):
+    # 60s (was 20s): each service is a fresh Python process importing FastAPI/pydantic. On a busy Windows machine
+    # (antivirus scan, a browser build running) that exceeded 20s and failed all 12 tests; alone they pass in ~13s.
+    # A longer ceiling costs nothing when services start promptly.
     end = time.time() + timeout
     last_error = None
     while time.time() < end:
@@ -54,11 +55,10 @@ def wait_for_service(url: str, timeout: float = 20.0):
 class TestV2IntegrationStack(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if importlib.util.find_spec('uvicorn') is None:
-            raise unittest.SkipTest('uvicorn is required to run full-stack v2 integration tests')
-
         cls.tempdir = tempfile.TemporaryDirectory(prefix='v2-stack-')
+        cls.addClassCleanup(cls.tempdir.cleanup)
         cls.processes = []
+        cls.addClassCleanup(cls._stop_services)
         cls.service_token = 'integration-service-token'
         # A real (non-default) signing secret -- exercises the same fail-closed startup guard
         # production runs under (services/auth/app/main.py refuses to boot on the published dev
@@ -83,7 +83,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         cls._start_full_stack()
 
     @classmethod
-    def tearDownClass(cls):
+    def _stop_services(cls):
         for proc in cls.processes:
             if proc.poll() is None:
                 proc.terminate()
@@ -92,7 +92,7 @@ class TestV2IntegrationStack(unittest.TestCase):
                 proc.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 proc.kill()
-        cls.tempdir.cleanup()
+                proc.wait(timeout=5)
 
     @classmethod
     def _start_service(cls, name: str, app_dir: str, port: int, extra_env: dict | None = None):
@@ -348,7 +348,8 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, updated = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
-            {'status': 'in_progress', 'notes': 'Moving to active work'},
+            {'status': 'in_progress', 'actor': 'u-status', 'reason': 'Case picked up for active work',
+             'notes': 'Moving to active work'},
             headers=auth_headers,
         )
         self.assertEqual(status, 200)
@@ -358,7 +359,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, final = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{case_id}/status",
-            {'status': 'closed'},
+            {'status': 'closed', 'actor': 'u-status', 'reason': 'Work complete'},
             headers=auth_headers,
         )
         self.assertEqual(status, 200)
@@ -379,7 +380,7 @@ class TestV2IntegrationStack(unittest.TestCase):
         status, body = http_json(
             'PATCH',
             f"{self.urls['tenant']}/api/v2/cases/{created['id']}/status",
-            {'status': 'closed'},
+            {'status': 'closed', 'actor': 'u-other-s', 'reason': 'Cross-tenant attempt (must be blocked)'},
             headers={'Authorization': 'Bearer ' + other_token},
         )
         self.assertEqual(status, 403)

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "game_project",
+  "description": "Schema for a game project record in the Studio game controls. A game project lives under a Studio production and owns levels, quests, cinematics, dialogue trees, and builds.",
+  "type": "object",
+  "hierarchy": {
+    "description": "Containment hierarchy for game production records, from the top-level game project down to a shippable build.",
+    "levels": ["game", "level", "quest", "cinematic", "build"]
+  },
+  "properties": {
+    "game_id": {
+      "type": "string",
+      "description": "Game project record ID."
+    },
+    "production_id": {
+      "type": "string",
+      "description": "Owning Studio production."
+    },
+    "title": {
+      "type": "string"
+    },
+    "engine": {
+      "type": "string",
+      "default": "unreal_engine_5",
+      "description": "Target game engine."
+    },
+    "status": {
+      "type": "string",
+      "default": "pre_production"
+    },
+    "chapters": {
+      "type": "array",
+      "description": "Ordered chapter groupings for levels.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chapter_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "shared_assets": {
+      "type": "array",
+      "description": "Asset IDs shared across the game project.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": ["production_id", "title"],
+  "example": {
+    "game_id": "GAME-001",
+    "production_id": "prod-001",
+    "title": "Starforge Chronicles",
+    "engine": "unreal_engine_5",
+    "status": "pre_production",
+    "chapters": [
+      {
+        "chapter_id": "CH01",
+        "title": "Chapter 1: The Summit"
+      }
+    ],
+    "shared_assets": [],
+    "created_at": "2026-07-22T00:00:00+00:00"
+  }
+}

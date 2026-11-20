@@ -27,7 +27,7 @@ jobs:
       POST_STATUS: ${{ inputs.post_status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Determine release notes
         id: notes

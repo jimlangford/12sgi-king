@@ -4,4 +4,4 @@ requests
 python-dotenv
 
 neo4j
-webauthn==3.0.0
+webauthn==3.0.1

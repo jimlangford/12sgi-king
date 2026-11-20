@@ -47,6 +47,7 @@ from contextlib import asynccontextmanager, contextmanager
 
 from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.responses import FileResponse, JSONResponse
+from services.job_envelope import build_job_envelope
 
 from services.studio_assets.app import security
 
@@ -532,6 +533,43 @@ def scan_supplemental() -> int:
     return scanned
 
 
+WORKBOARD_SOURCE = "studio-assets"
+
+
+def _emit(action: str, event: str, payload: dict, *, status: str = "queued") -> None:
+    """Report to the board like a lane (best-effort; a bus hiccup never breaks the service).
+
+    RESTORED 2026-07-22: this function was deleted by the merge-conflict cleanup at 3cfc52e
+    ("Clean merge conflicts from auth and studio_assets") — the pre-image blob contained an
+    unresolved conflict marker mid-function and the cleanup removed the whole block instead of
+    resolving it, while tests/v2/test_canonical_job_contract.py::TestStudioAssetsCanonicalEnvelope
+    still exercises it. Body recovered verbatim from the pre-cleanup blob (3cfc52e^)."""
+    try:
+        from services.v2_workboard import emit_workboard_job
+
+        envelope = build_job_envelope(
+            domain="studio-assets",
+            service="studio-assets",
+            action=action,
+            state=status,
+            payload=payload or {},
+            lane="engineering",
+            metadata={"emitter": WORKBOARD_SOURCE},
+        )
+        next_payload = dict(payload or {})
+        next_payload["job_envelope"] = envelope
+        emit_workboard_job(
+            source=WORKBOARD_SOURCE,
+            action=action,
+            event=event,
+            lane="engineering",  # IO-only asset indexing self-heals; no human gate
+            status=status,
+            payload=next_payload,
+        )
+    except Exception:
+        pass
+
+
 def _log_receipt(action: str, event: str, payload: dict) -> None:
     """Keep routine service health out of the actionable workboard queue."""
     try:
@@ -920,6 +958,36 @@ except Exception as _proj_err:
     print(f"[studio-assets] project_api not loaded: {_proj_err}", file=sys.stderr)
 
 
+# ── Phase 2.2 Studio department APIs ─────────────────────────────────────────
+try:
+    from services.studio_assets.app.storyboard_api import router as _storyboard_router
+    app.include_router(_storyboard_router)
+except Exception as _sb_err:
+    print(f"[studio-assets] storyboard_api not loaded: {_sb_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.script_api import router as _script_router
+    app.include_router(_script_router)
+except Exception as _sc_err:
+    print(f"[studio-assets] script_api not loaded: {_sc_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.fcp_adapter import router as _fcp_router
+    app.include_router(_fcp_router)
+except Exception as _fcp_err:
+    print(f"[studio-assets] fcp_adapter not loaded: {_fcp_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.logic_adapter import router as _logic_router
+    app.include_router(_logic_router)
+except Exception as _lg_err:
+    print(f"[studio-assets] logic_adapter not loaded: {_lg_err}", file=_sys.stderr)
+
+try:
+    from services.studio_assets.app.game_api import router as _game_router
+    app.include_router(_game_router)
+except Exception as _gm_err:
+    print(f"[studio-assets] game_api not loaded: {_gm_err}", file=_sys.stderr)
 
 def _require_maintenance_auth(authorization: str | None) -> dict | None:
     return security.require_studio_owner(authorization)
@@ -949,7 +1017,8 @@ def auth_dependency_status() -> dict:
     return {"required": True, "configured": True, "ready": ready}
 
 
-def _row(r: sqlite3.Row) -> dict:
+def _row(r) -> dict:
+    """Convert a sqlite3.Row to a clean API-safe dict (strips internal fields)."""
     d = dict(r)
     d["has_thumb"] = bool(d.get("thumb_file") and os.path.isfile(d["thumb_file"]))
     try:

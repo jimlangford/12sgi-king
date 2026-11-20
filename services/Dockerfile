@@ -5,7 +5,7 @@
 # (see services/tenant/app/main.py, services/documents/app/main.py, services/storage/app/main.py,
 # services/ai/app/main.py). One image, one dependency set; docker-compose.v2.yml picks which
 # service module to run per-container via CMD/entrypoint args.
-FROM python:3.12-slim
+FROM python:3.15-slim
 
 WORKDIR /repo
 
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Union of services/*/requirements.txt (fastapi, uvicorn[standard], requests, python-dotenv).
+# Current services: auth, tenant, documents, storage, ai, health, gpu-router, king-bridge, board-api, connector-runner, github-workflow-monitor.
 COPY services/auth/requirements.txt /tmp/req-auth.txt
 COPY services/tenant/requirements.txt /tmp/req-tenant.txt
 COPY services/documents/requirements.txt /tmp/req-documents.txt
@@ -25,17 +26,19 @@ COPY services/storage/requirements.txt /tmp/req-storage.txt
 COPY services/ai/requirements.txt /tmp/req-ai.txt
 COPY services/health/requirements.txt /tmp/req-health.txt
 COPY services/gpu_router/requirements.txt /tmp/req-gpu-router.txt
-<<<<<<< main
 COPY services/ai_gateway/requirements.txt /tmp/req-ai-gateway.txt
-=======
-COPY services/studio_assets/requirements.txt /tmp/req-studio-assets.txt
->>>>>>> origin/main
+COPY services/king_bridge/requirements.txt /tmp/req-king-bridge.txt
+COPY services/board_api/requirements.txt /tmp/req-board-api.txt
 RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
     && pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Bring in only what the v2 backend needs at runtime (not the whole civic site/watchers tree).
 COPY services/ /repo/services/
 COPY element_lotus_public/ /repo/element_lotus_public/
+# entitlements.py does `from watchers import tier_access` (capabilities per tier). tier_access.py is a
+# self-contained stdlib-only module; copy ONLY it (not the whole civic watchers tree, per the note above).
+# Fixes the auth crash-loop: ModuleNotFoundError: No module named 'watchers' (Jimmy 2026-07-22 "NO BROKEN WORKERS").
+COPY watchers/tier_access.py /repo/watchers/tier_access.py
 
 # Non-root runtime (2026-07-09 fleet review V2-DOCK-3). uvicorn binds ports >1024 (8000/8101-8107)
 # and needs ZERO Linux capabilities, so nothing here requires root. Running as an unprivileged uid
@@ -48,11 +51,7 @@ RUN useradd -u 10001 -m -s /usr/sbin/nologin app \
     && chown -R app:app /data /repo
 USER app
 
-<<<<<<< main
-EXPOSE 8000 8101 8102 8103 8104 8105 8107 8110
-=======
-EXPOSE 8000 8101 8102 8103 8104 8105 8107 8108
->>>>>>> origin/main
+EXPOSE 8000 8101 8102 8103 8104 8105 8107 8109 8110 8799
 
 # Overridden per-service by docker-compose.v2.yml `command:`.
 CMD ["python", "-m", "uvicorn", "services.health.app.main:app", "--host", "0.0.0.0", "--port", "8000"]

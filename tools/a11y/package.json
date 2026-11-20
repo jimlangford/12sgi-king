@@ -1,0 +1,14 @@
+{
+  "name": "public-static-accessibility",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scan": "node scan.mjs",
+    "scan:propose": "node scan.mjs --propose",
+    "test": "node --test scan.test.mjs"
+  },
+  "dependencies": {
+    "axe-core": "4.14.1",
+    "puppeteer-core": "25.18.1"
+  }
+}
