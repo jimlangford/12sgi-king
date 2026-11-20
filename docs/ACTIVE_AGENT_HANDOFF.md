@@ -10,14 +10,17 @@
   private backend routes remain unchanged.
 - PRESERVED: no general backend/Tailscale access, direct host publish for the game
   API, production cutover, or owner-machine operation was performed.
-- VERIFY: 31 focused auth/game tests and the repository test stage pass. The isolated
+- VERIFY: 33 focused auth/game tests and the repository test stage pass. The isolated
   public build, YAML lint, Compose config, targeted Ruff, Python compilation,
-  JavaScript syntax, and whitespace checks pass. The default strict Python lint
-  comparison needs an explicit local base; rerun it against `1aee338f` after commit.
-- NEXT: complete secret scanning, commit, CodeQL, and final review. Also confirm
-  the static host forwards `/games/api/` to the Compose web-server. GitHub Pages
-  static backup alone cannot run multiplayer; do not claim production availability
-  until the host route and live service are verified.
+  JavaScript syntax, whitespace, explicit-base Python lint, and secret checks pass.
+  Final read-only review found no significant remaining issues. Initial CodeQL
+  flagged polynomial backtracking in email validation; this was replaced with
+  bounded linear validation and covered by a regression test. The post-fix CodeQL
+  request timed out, so a clean CodeQL result is not established.
+- NEXT: obtain a successful CodeQL verification when available and confirm the static
+  host forwards `/games/api/` to the Compose web-server. GitHub Pages static backup
+  alone cannot run multiplayer; do not claim production availability until the host
+  route and live service are verified.
 
 ## Deployment branch merge coordination — 2026-11-20
 

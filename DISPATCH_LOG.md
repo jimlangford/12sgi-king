@@ -13,11 +13,15 @@ routes, and no-host-publish for the game API are preserved.
 
 **VERIFY:** 31 focused auth/game tests, repository test stage, isolated public build,
 YAML lint, Compose config, targeted Ruff, Python compilation, JavaScript syntax, and
-whitespace checks pass. No live public route or deployment was tested.
+whitespace checks pass; explicit-base Python lint and secret scan also pass. Final
+review found no significant remaining issues. Initial CodeQL flagged polynomial
+backtracking in email validation; bounded linear validation replaced the regex and a
+regression test passes. The post-fix CodeQL request timed out, so a clean CodeQL
+result is not established. No live public route or deployment was tested.
 
-**NEXT:** secret scan, commit, CodeQL, final review, and explicit-base Python lint.
-Before claiming live multiplayer, confirm the served static client and public host
-forwarding of `/games/api/` to the Compose web-server.
+**NEXT:** obtain successful CodeQL verification when available. Before claiming live
+multiplayer, confirm the served static client and public host forwarding of
+`/games/api/` to the Compose web-server.
 
 ## 2026-11-20 — Deployment branch merge conflict resolution
 
