@@ -2,8 +2,22 @@
 legiscan_key.txt
 *.key
 .env
+<<<<<<< main
+config/*
+!config/owner_policy.json
+!config/platform_version.json
+!config/tenant_registry.v2.json
+!config/tenant_transition_schema.v2.json
+!config/canonical_job_contract.v2.json
+!config/gpu_profiles/
+!config/gpu_profiles/rtx4070_8gb.json
+!config/ai_tool_registry.v2.json
+!config/ai_profiles/
+!config/ai_profiles/*.json
+=======
 .env.v2
 config/
+>>>>>>> origin/main
 
 # generated locally (CI builds it fresh; deploy uploads it)
 site/
@@ -33,3 +47,4 @@ king_private_src/
 # runtime SQLite databases — generated locally, never commit
 .platform_events.db
 *.db
+.venv/

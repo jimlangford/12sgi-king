@@ -5,6 +5,234 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-20 — Held workboard requests: repository-side triage
+
+- INSPECTED: canon, existing handoff/dispatch, workboard event-log and CLI
+  handling, report-only GPU policy, ComfyUI completion contract, design guidance,
+  and WordPress bundle/readiness history. Branch: `copilot/fix-ci-cd-workflows`.
+- CHANGED: `docs/ACTIVE_AGENT_HANDOFF.md` now records all six requests as
+  **awaiting decision**, with observed evidence, missing owner-local evidence,
+  responsible lanes, acceptance checks and safe read-only reconciliation steps.
+  This entry and the handoff are coordination, not live workboard ownership.
+- VERIFY: `.dispatch_log.jsonl` and `reports/_status/remote_threads.json` are
+  absent in this cloud checkout. No current 27-lane adoption, GPU/queue state,
+  guided-tour review, rendered scene, 13-thread reconciliation or WordPress
+  milestone completion can be inferred. Historical #299/bundle-ready entries
+  are not current READY/PUBLISHED evidence.
+- VERIFY (repository subcheck): `python -m unittest
+  tests.test_deploy_elementlotus_wp` passed **4 tests**; this is bundle-test
+  evidence only, not live publishing or milestone acceptance.
+- PRESERVED: all live workboard states, active agent ownership, GPU/model state,
+  private services/evidence, creative/output approval gates and WordPress.
+  No restart, model unload, publish, UI patch or milestone completion performed.
+- NEXT: owner-machine Claude must retrieve complete jobs and fresh lane reports,
+  coordinate with existing owners, then mark verified complete / needs action /
+  awaiting decision using actual evidence. Never use the bare workboard CLI
+  for inventory: its default action self-heals engineering jobs.
+
+---
+
+## 2026-11-19 — Implemented repository-side local/public backup release path
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner requested implementation of the
+  prepared plan. Scope: validated public-only local release promotion/rollback,
+  conflict-safe reviewed source backup integration, and GitHub static backup
+  hosting. The existing Codex auth/Studio release remains separately owned.
+- PRESERVED: private Docker/deployment servers, DNS, WordPress publication,
+  creative/output approvals, accessibility baseline, and private data paths.
+- VERIFY: this environment is the cloud checkout, not the owner's machine.
+  Latest inspected accessibility run `44556288033` requires approval and has
+  zero executed jobs; it supplies no new validation or deployment evidence.
+- CHANGED: `tools/public_release.py`, the default-disabled
+  `.github/workflows/public-static-backup.yml`, isolated public build hygiene,
+  mount-safe public links, regression tests, and existing README/owner handoff.
+  Local promotion/rollback is atomic; source backup is explicit and bounded;
+  Pages deployment rechecks approval and verifies the served public commit.
+- VERIFY: implementation agent reports **511 tests passed**, Ruff/YAML/
+  compilation/whitespace checks passed, and an isolated **29-lane / 499-page**
+  build. Structural/privacy export checks accepted **722 files**. Build cleanup
+  removes explicit non-runtime artifacts before browser validation, never from
+  sources/private mirrors. Read-only review and changed-file secret scan passed.
+- SECURITY: implementation commit `2be4abca`; post-commit CodeQL Python/Actions
+  analysis found **zero alerts**. This commit is not a claimed deployed version.
+- NOT VERIFIED: full release gate, live owner-machine version, local URL,
+  source-backup freshness, and public backup URL/deployed SHA. Missing
+  Gitleaks/browser prerequisites and the historical accessibility divergence
+  still prevent public-release approval; export checks are not a full gate.
+- NEXT: **Approved for repository review and owner-machine preparation**.
+  Claude should inventory the real checkout/runtime, provision prerequisites
+  and reviewed history/base, resolve accessibility divergence, validate, then
+  explicitly activate the safe serving root/scheduler and backup approvals per
+  `README.md`. Do not replace primary/custom-domain Pages hosting.
+
+---
+
+## 2026-11-19 — Owner confirms public backup hosting
+
+- Owner requested automatic local publishing and GitHub updates, then confirmed
+  public backup hosting as well. Local runtime remains primary.
+- CHANGED: recorded the expanded implementation scope in the Claude restart
+  handoff: validated public local updates, reviewed source backup, and a
+  separately reachable GitHub-hosted static educational-site backup.
+- PRESERVED: private services/data and creative/output approval gates; WordPress
+  publication and automatic DNS failover are not authorized by this confirmation.
+- VERIFY: documentation-only handoff update. No scheduler, Pages deployment,
+  DNS change, live publication, or owner-machine synchronization was performed.
+- NEXT (Claude): inspect existing local publishing and Pages settings; implement
+  conflict-safe source synchronization and validated public-only hosting, retain
+  last-known-good output on failure, and report actual URLs/commits/freshness.
+  Confirm domain routing separately; do not treat requested scope as a live pass.
+
+---
+
+## 2026-11-19 — Claude restart: local operation with GitHub source backup
+
+- Owner direction: "I want 12sgi to work locally with GitHub backup".
+- CHANGED: added the restart-priority section at the top of
+  `docs/ACTIVE_AGENT_HANDOFF.md`, including local inventory, safe branch
+  reconciliation, existing validation, approval-scope reporting, and backup
+  boundaries. No new runtime or publishing mechanism was introduced.
+- PRESERVED: Codex release ownership, local/private infrastructure, validation
+  failures and accessibility baseline. GitHub source backup is not a backup
+  of private databases, models, content, or running state.
+- VERIFY: preparation checkout was clean at `8f623eec` on
+  `copilot/fix-ci-cd-workflows`; existing runner and owner-actions document exist.
+  No claim is made about the owner's checkout or running deployment.
+- NEXT (Claude on owner machine): read the new handoff first; inventory actual
+  versions and edits without changes, establish local readiness with evidence,
+  and coordinate any later integration. ElementLOTUS.com WordPress delivery
+  and the 12sgi.com routing relationship remain pending verification. No DNS
+  changes, automatic merges, deployments, restarts, or posts are authorized here.
+
+---
+
+## 2026-11-18 — Local-first combined validation entry point
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner approved implementation of the
+  local-AI CI plan. Scope: a new non-deploying `tools/local_validation.py`,
+  reusable existing validators, focused tests, CI validation callers, and docs.
+- PRESERVED: Codex release ownership, private Docker/deployment paths, runtime
+  services, public content, accessibility baseline and approval policy.
+- Local receipts and generated public validation output stay in private scratch
+  storage, never source control or public artifacts. The runner never installs
+  or fetches. One-time provisioning of existing pinned validation dependencies
+  is separate; no deployment/recovery server, local AI service, or publisher
+  is started.
+- VERIFY: 440 tests, 45.73% service coverage, 29 build lanes/499 pages,
+  21 browser self-tests, focused Ruff, YAML and ShellCheck passed. Follow-up
+  focused tests passed. Changed-file secret scan found no secrets.
+- RESULT: full local gate **FAIL**, honestly retained. The complete browser scan
+  found 35 new/changed and 40 resolved findings on `prosecutor_public_feed.html`
+  with zero scan errors; no baseline or source content was modified. Missing
+  default comparison refs and Gitleaks also failed their stages. Full history
+  is unavailable in this shallow checkout.
+- OPEN QUESTION / NEXT: establish the public-feed baseline divergence from the
+  saved full report and source renderer before any coordinated content fix or
+  manual pruning. Provision tools/history/base refs locally, rerun the full gate,
+  and obtain separate GitHub approval/status evidence. Receipts stay PRIVATE.
+
+---
+
+## 2026-07-15 — Release-readiness hardening: pending owner actions A–F
+
+**Thread:** release-gate-hardening  **From:** Copilot agent  **To:** owner  **Status:** PENDING — no destructive or administrative operations taken
+
+**INSPECTED:** Gate 3b (case status), Gate 5 (HINA dispatch), Gate 7 (studio release). Code hardened, 21 unit tests pass, gate evidence files written to docs/reports/gate_evidence/.
+
+**CODE CHANGED:** services/tenant/app/main.py · watchers/sage_bridge.py · watchers/studio_project.py · tests/test_release_pipeline.py
+
+**PRESERVED:** No secrets, no runtime changes, no administrative operations, no destructive actions. All six items below require explicit owner action.
+
+---
+
+### OWNER ACTION A — Deploy Workflow Enable + Dry Run
+**Type:** ADMINISTRATIVE — do not execute automatically.
+**Blocked on:** Owner must enable the `deploy-v2-king-server` workflow in GitHub Actions (Settings → Actions → Allow all actions), then dispatch it with `dry_run=true` first.
+**Why blocked:** Workflow was found disabled/never-run. Enabling it on a live server without a dry run first risks partial deploys.
+**Safe sequence:**
+1. GitHub → Actions → `deploy-v2-king-server` → Enable workflow
+2. Dispatch: `dry_run=true`, branch=`main`
+3. Review logs for any service that fails health check
+4. Dispatch again: `dry_run=false` only after step 3 is clean
+**Gate evidence:** Timestamped workflow run log required before marking Gates 1–4 runtime-verified.
+**Rollback:** Re-disable workflow; revert to previous deployment tag via `git revert` on deploy commit.
+
+---
+
+### OWNER ACTION B — pythonw Process Remediation
+**Type:** RUNTIME — do not terminate processes automatically.
+**Blocked on:** Owner must inventory current pythonw processes by PID, executable path, and arguments before deciding which to terminate or restart.
+**Why blocked:** No inventory taken; terminating the wrong process could kill a running watcher or king-server subprocess.
+**Safe sequence:**
+1. On king-server: `wmic process where "name='pythonw.exe'" get ProcessId,ExecutablePath,CommandLine` (Windows) or `ps aux | grep pythonw` (WSL/Linux)
+2. Cross-reference PIDs against running king services (king-watchdog, watchers, services/)
+3. Terminate only orphaned or duplicate processes; restart with the correct startup script
+**Gate evidence:** PID inventory screenshot/log required as runtime evidence before this action is closed.
+**Rollback:** Restart terminated process using `startup.bat` or `startup.sh` as appropriate.
+
+---
+
+### OWNER ACTION C — Targeted Disk Cleanup
+**Type:** DESTRUCTIVE — requires separate confirmation, never automatic.
+**Blocked on:** Owner must run a Docker disk usage inventory first.
+**Why blocked:** `docker system prune -a` or `prune volumes` must never run without an explicit, separate confirmation from the owner after reviewing the inventory.
+**Safe sequence:**
+1. `docker system df` — review current usage by type (images, containers, volumes, build cache)
+2. `docker images --filter "dangling=true"` — identify removable images
+3. `docker volume ls --filter "dangling=true"` — identify unused volumes
+4. Review which images are rollback candidates (tag format `*-prev` or dated tags)
+5. Only after inventory: run targeted `docker image rm <id>` or `docker volume rm <id>` commands for confirmed orphans
+6. Rollback images must be preserved until Gates 1–4 have runtime evidence
+**Rollback:** Rollback images tagged before this cleanup are the restore point. Inventory must be captured before any removal.
+
+---
+
+### OWNER ACTION D — nginx Board Proxy
+**Type:** SERVER CONFIG — do not modify nginx config automatically.
+**Blocked on:** Owner must confirm the target upstream (board API port), SSL cert path, and whether Tailscale or public-facing is intended.
+**Why blocked:** nginx config touches the public/private boundary. A misconfigured proxy could expose internal board routes publicly.
+**Reference:** `docs/nginx-tailnet-proxy.example.conf` contains the example config.
+**Safe sequence:**
+1. Review `docs/nginx-tailnet-proxy.example.conf`
+2. Confirm target upstream port (king-server board API, typically :8100 or :8000)
+3. Confirm Tailscale-only vs. public-facing (PUBLIC vs. PRIVATE boundary label)
+4. Apply config to nginx with `nginx -t` dry-run before reload
+5. `nginx -s reload`
+**Gate evidence:** nginx access log showing successful proxied request to /board/ endpoint.
+**Rollback:** `cp nginx.conf.bak nginx.conf && nginx -s reload`
+
+---
+
+### OWNER ACTION E — publish_watch Launcher
+**Type:** RUNTIME — do not start watchers automatically.
+**Blocked on:** Owner must confirm which watchers are currently running and which are expected to run before starting publish_watch.
+**Why blocked:** Duplicate watcher instances cause duplicate workboard events. A running instance must be identified first (see Owner Action B inventory).
+**Safe sequence:**
+1. Complete Owner Action B inventory first
+2. Confirm no existing publish_watch process is running
+3. Start: `python watchers/publish_watch.py` or via king-watchdog if registered
+4. Verify first run produces exactly one workboard entry per expected source (no duplicates)
+**Gate evidence:** publish_watch stdout log showing clean single-emit run.
+**Rollback:** Kill the new PID; no data is lost (workboard log is append-only; duplicate entries can be rejected via reject_workboard_job).
+
+---
+
+### OWNER ACTION F — Jetpack Secrets and WordPress Dry Run
+**Type:** SECRET MANAGEMENT + ADMINISTRATIVE — do not set secrets or trigger publishes automatically.
+**Blocked on:** Owner must obtain the Jetpack OAuth2 token pair locally (see docs/WORDPRESS_PUBLIC_LAYER.md "how to get JETPACK_TOKEN") and set them as repo secrets.
+**Why blocked:** WordPress.com credentials must never pass through agent chat. Setup is documented as a local, owner-only operation.
+**Safe sequence:**
+1. Follow docs/WORDPRESS_PUBLIC_LAYER.md steps 1–6 to obtain `JETPACK_TOKEN` and `JETPACK_SITE_ID`
+2. `gh secret set JETPACK_TOKEN` (local terminal, prompts for value, never pasted here)
+3. `gh secret set JETPACK_SITE_ID`
+4. Dispatch `wp-branch-pages-sync.yml` with `dry_run=true` first
+5. Review dry-run output; confirm no live writes
+6. Dispatch with `dry_run=false` only after step 5 is clean
+**Gate evidence:** Successful dry-run workflow log + confirmation of secrets set (secret names visible in repo settings, values never exposed).
+**Rollback:** `gh secret delete JETPACK_TOKEN JETPACK_SITE_ID` if a misconfiguration is found before the live run.
+
+---
+
 ## 2026-07-11 — Complete launch: /go Owner Console subpages (issue #323)
 
 **Thread:** complete-go-console-launch  **From:** Copilot agent  **To:** owner review
@@ -613,3 +841,44 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 
 ---
 
+## 2026-11-17 — Copilot Phase 1 CI stabilization
+
+- Branch: `copilot/fix-ci-cd-workflows`; owner request: repair CI gates only.
+- Coordination: the Codex release listed in `docs/ACTIVE_AGENT_HANDOFF.md` remains
+  owned by Codex. This branch does not rewrite its auth, Studio, public pages,
+  private services, deployment bridges, or creative/output approval policy.
+- Scope: CI workflows, focused test infrastructure, lint configuration,
+  accessibility/secret checks, and dependency-update configuration.
+- Open question for owner: GitHub `action_required` runs have no executed jobs;
+  repository approvals/settings must be checked separately from code fixes.
+- Next: record validation and owner-only security/deployment actions in the handoff.
+- Owner follow-up: "Make a new one that works locally." Added a non-deploying,
+  cross-platform `tools/local_ci.py` entry point; GitHub uses the same command.
+  Existing local deployment servers and private service startup remain unchanged.
+- Owner follow-up: "Prepare a prompt for Claude code." Prompt supplied in chat;
+  persistent continuation is in `docs/ACTIVE_AGENT_HANDOFF.md`. Shared local
+  tests: 387 passed on both Python versions; CodeQL: zero alerts. Accessibility
+  full-site migration/baseline is incomplete and blocks merge; Claude must finish
+  and validate all shards. Do not infer completion from the passing eight-page pilot.
+
+## 2026-11-17 after 23:07 UTC — Copilot review of Claude's CI completion
+
+- INSPECTED: Claude's scanner, full-site baseline, local runner, workflows,
+  owner-actions document, and live GitHub checks on `5bca6d9`.
+- VERIFY: Test `44192297725`, Lint `44192298058`, Secret Scan `44192297700`,
+  Accessibility `44192297689` (four shards plus aggregate), and Label
+  `44192298442` all passed. Baseline: 499 pages, 14,694 existing findings.
+  Completed agent tests/builds were not rerun.
+- CHANGED: corrected stale pilot-blocker and pending-approval statements in the
+  active handoff and owner-actions document. The earlier blocker entry above is
+  historical and superseded; no runtime or deployment changes were made here.
+- PRESERVED: Codex release ownership, private services, deployment bridges,
+  local-first operation, and owner-controlled repository settings.
+- NEXT: owner review/merge decision for PR #387 and repository settings.
+  Existing accessibility debt remains explicit; green is not WCAG conformance.
+- Review follow-up: tightened known missing-stylesheet allowances from directory
+  substrings to 11 exact normalized paths. The implementation agent verified
+  21 scanner tests, 499 public build pages/29 passing lanes, and the affected
+  Sage page with unchanged findings. Follow-up review found no further issues;
+  no source HTML, baseline, private service, or deployment behavior changed.
+  New GitHub checks require owner approval; prior green evidence is `5bca6d9`.

@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Canvas · elementLOTUS</title>
+<!-- STUDIO CANVAS (James 2026-07-24: "I want to work the project on my own backend ... like I'm working
+     on a piece of paper I can erase, I can start over, if I approve something I can go back and reject it").
+     Self-contained. Works offline in the browser. Every action is instant. Auto-saves to localStorage AND
+     supports Export/Import so work is never lost. Media preview by URL or path; generation hooks are wired
+     but optional (the canvas control loop never depends on any service being up). -->
+<style>
+:root{
+ --bg:#081420; --panel:#0f2540; --panel2:#12294a; --line:#26456a; --line2:#1b3357;
+ --ink:#eef4fc; --dim:#c6d6ee; --faint:#9fb6d6;
+ --gold:#e3ad33; --gold2:#f2cf7a; --blue:#5a97e6; --ok:#5bd18b; --okbg:#12331f; --err:#ef8a6a; --errbg:#2a1a16;
+ --mono:"JetBrains Mono",Consolas,monospace; --sans:"Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+a{color:var(--gold2)}
+header{position:sticky;top:0;z-index:20;background:#0b1c30;border-bottom:1px solid var(--line);
+ display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 16px}
+header .brand{font-weight:800;font-size:16px;color:var(--ink);letter-spacing:.2px}
+header .brand span{color:var(--gold)}
+header .spacer{flex:1}
+.btn{font:600 13px var(--sans);color:var(--ink);background:var(--panel);border:1px solid var(--line);
+ border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--gold);color:var(--gold2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.gold{background:var(--gold);color:#20160a;border-color:var(--gold)}
+.btn.gold:hover{background:var(--gold2);color:#20160a}
+.btn.ghost{background:transparent}
+.btn.danger:hover{border-color:var(--err);color:var(--err)}
+.hint{color:var(--faint);font-size:12px}
+main{padding:16px;overflow-x:auto}
+.board{display:flex;gap:14px;align-items:flex-start;min-height:60vh}
+.lane{flex:0 0 300px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 14px}
+.lane h2{font:700 13px var(--sans);margin:2px 4px 10px;display:flex;align-items:center;gap:8px;
+ text-transform:uppercase;letter-spacing:.06em;color:var(--gold2)}
+.lane h2 .em{font-size:16px}
+.lane h2 .ct{margin-left:auto;font:600 11px var(--mono);color:var(--faint)}
+.card{background:var(--panel2);border:1px solid var(--line2);border-left:4px solid var(--blue);
+ border-radius:9px;padding:10px;margin:8px 0}
+.card.approved{border-left-color:var(--ok);background:linear-gradient(0deg,var(--okbg),var(--panel2) 60%)}
+.card.rejected{border-left-color:var(--err);opacity:.6}
+.card .title{font-weight:700;font-size:14px;color:var(--ink);outline:none;border:1px dashed transparent;border-radius:5px;padding:1px 3px}
+.card .title:focus{border-color:var(--line)}
+.card textarea{width:100%;background:#0b1d36;color:var(--dim);border:1px solid var(--line2);border-radius:6px;
+ font:13px var(--sans);padding:7px;margin:7px 0 0;resize:vertical;min-height:46px}
+.card .media{margin-top:8px}
+.card .media img,.card .media video{width:100%;border-radius:6px;display:block;background:#000}
+.card .media audio{width:100%;margin-top:4px}
+.card .mediaph{border:1px dashed var(--line);border-radius:6px;color:var(--faint);font-size:11.5px;
+ padding:10px;text-align:center;cursor:pointer}
+.card .status{font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-top:8px}
+.card.approved .status{color:var(--ok)} .card.rejected .status{color:var(--err)}
+.card .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.mini{font:600 11px var(--sans);border:1px solid var(--line);background:transparent;color:var(--dim);
+ border-radius:6px;padding:4px 8px;cursor:pointer}
+.mini:hover{border-color:var(--gold);color:var(--gold2)}
+.mini.ok:hover{border-color:var(--ok);color:var(--ok)}
+.mini.rej:hover{border-color:var(--err);color:var(--err)}
+.addcard{width:100%;text-align:center;border:1px dashed var(--line);background:transparent;color:var(--faint);
+ border-radius:8px;padding:8px;cursor:pointer;font:600 12px var(--sans);margin-top:4px}
+.addcard:hover{border-color:var(--gold);color:var(--gold2)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0b1c30;border:1px solid var(--line);
+ color:var(--ink);padding:9px 15px;border-radius:9px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1}
+.savedot{font:600 11px var(--mono);color:var(--faint)}
+kbd{font:600 11px var(--mono);background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+</style></head>
+<body>
+<header>
+ <div class="brand">◈ Studio <span>Canvas</span></div>
+ <span class="hint">Your paper — make, erase, approve, reject, start over. Auto-saved.</span>
+ <span class="spacer"></span>
+ <button class="btn ghost" id="undo" title="Undo (Ctrl+Z)">↶ Undo</button>
+ <button class="btn ghost" id="redo" title="Redo (Ctrl+Y)">↷ Redo</button>
+ <button class="btn ghost" id="export" title="Download the whole board as a file">⬇ Export</button>
+ <button class="btn ghost" id="import" title="Load a board file">⬆ Import</button>
+ <button class="btn danger ghost" id="reset" title="Clear everything and start fresh">Start over</button>
+ <span class="savedot" id="savedot">saved</span>
+</header>
+<main><div class="board" id="board"></div></main>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileimport" accept="application/json" style="display:none">
+
+<script>
+"use strict";
+var LANES = [
+ {key:"storyboard", label:"Storyboard", em:"🎬"},
+ {key:"video",      label:"Video",      em:"🎞️"},
+ {key:"animation",  label:"Animation",  em:"✨"},
+ {key:"audio",      label:"Audio",      em:"🎵"},
+ {key:"game",       label:"Game",       em:"🎮"}
+];
+var KEY = "elementlotus_studio_canvas_v1";
+var uid = function(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); };
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---- state + history (the "paper I can erase / go back") ---- */
+var board = load() || seed();
+var past = [], future = [];
+function seed(){
+ var b = {lanes:{}}; LANES.forEach(function(l){ b.lanes[l.key] = []; }); return b;
+}
+function snapshot(){ return JSON.stringify(board); }
+function commit(){ // push current onto history, then persist + render
+ past.push(snapshot()); if(past.length>200) past.shift(); future = [];
+ persist(); render();
+}
+function undo(){ if(!past.length) return; future.push(snapshot()); board = JSON.parse(past.pop()); persist(); render(); toast("Undone"); }
+function redo(){ if(!future.length) return; past.push(snapshot()); board = JSON.parse(future.pop()); persist(); render(); toast("Redone"); }
+function persist(){ try{ localStorage.setItem(KEY, snapshot()); saved(); }catch(e){ saved("export to save"); } }
+function load(){ try{ var s=localStorage.getItem(KEY); return s?JSON.parse(s):null; }catch(e){ return null; } }
+
+/* ---- card operations ---- */
+function addCard(lane){
+ board.lanes[lane].unshift({id:uid(), title:"New "+lane, notes:"", media:"", status:"draft"});
+ commit();
+ // focus the new title
+ setTimeout(function(){ var el=document.querySelector('[data-card="'+board.lanes[lane][0].id+'"] .title'); if(el){el.focus();document.execCommand&&document.getSelection().selectAllChildren(el);} },30);
+}
+function find(id){ for(var k in board.lanes){ var a=board.lanes[k]; for(var i=0;i<a.length;i++) if(a[i].id===id) return {lane:k,i:i,card:a[i]}; } return null; }
+function setStatus(id,st){ var f=find(id); if(!f) return; f.card.status=(f.card.status===st?"draft":st); commit(); toast(f.card.status==="approved"?"Approved — kept":f.card.status==="rejected"?"Rejected":"Back to draft"); }
+function erase(id){ var f=find(id); if(!f) return; board.lanes[f.lane].splice(f.i,1); commit(); toast("Erased"); }
+function dup(id){ var f=find(id); if(!f) return; var c=JSON.parse(JSON.stringify(f.card)); c.id=uid(); c.title=f.card.title+" (v2)"; c.status="draft"; board.lanes[f.lane].splice(f.i+1,0,c); commit(); toast("Duplicated"); }
+function edit(id,field,val){ var f=find(id); if(!f) return; if(f.card[field]===val) return; f.card[field]=val; persist(); /* no full history push on every keystroke */ }
+function editCommit(id,field,val){ var f=find(id); if(!f) return; if(f.card[field]===val) return; f.card[field]=val; commit(); }
+function setMedia(id){ var f=find(id); if(!f) return; var v=prompt("Paste an image / video / audio URL to preview (or a local file path as a note):", f.card.media||""); if(v===null) return; f.card.media=v.trim(); commit(); }
+
+/* ---- render ---- */
+function mediaHTML(m){
+ if(!m) return '<div class="mediaph" data-ph="1">+ add image / video / audio</div>';
+ var low=m.toLowerCase();
+ if(/^https?:\/\//.test(m)){
+   if(/\.(png|jpg|jpeg|gif|webp|avif)(\?|$)/.test(low)) return '<img loading="lazy" src="'+esc(m)+'" alt="">';
+   if(/\.(mp4|webm|mov|m4v)(\?|$)/.test(low)) return '<video src="'+esc(m)+'" controls preload="metadata"></video>';
+   if(/\.(mp3|wav|ogg|m4a|flac)(\?|$)/.test(low)) return '<audio src="'+esc(m)+'" controls></audio>';
+   return '<div class="mediaph" data-ph="1">🔗 '+esc(m)+'</div>';
+ }
+ return '<div class="mediaph" data-ph="1">📄 '+esc(m)+'</div>';
+}
+function cardHTML(c){
+ return '<div class="card '+esc(c.status)+'" data-card="'+c.id+'">'
+  + '<div class="title" contenteditable="true" spellcheck="false">'+esc(c.title)+'</div>'
+  + '<textarea placeholder="describe it — prompt, notes, lyric, beat...">'+esc(c.notes)+'</textarea>'
+  + '<div class="media">'+mediaHTML(c.media)+'</div>'
+  + '<div class="status">'+esc(c.status)+'</div>'
+  + '<div class="row">'
+  +   '<button class="mini ok" data-act="approve">✔ Approve</button>'
+  +   '<button class="mini rej" data-act="reject">✕ Reject</button>'
+  +   '<button class="mini" data-act="dup">⎘ branch</button>'
+  +   '<button class="mini" data-act="erase">erase</button>'
+  + '</div></div>';
+}
+function render(){
+ var b=$("board"); b.innerHTML="";
+ LANES.forEach(function(l){
+   var cards=board.lanes[l.key]||[];
+   var lane=document.createElement("div"); lane.className="lane";
+   lane.innerHTML='<h2><span class="em">'+l.em+'</span>'+l.label+'<span class="ct">'+cards.length+'</span></h2>'
+     + '<button class="addcard" data-add="'+l.key+'">+ make a '+l.label.toLowerCase()+'</button>'
+     + cards.map(cardHTML).join("");
+   b.appendChild(lane);
+ });
+ $("undo").disabled=!past.length; $("redo").disabled=!future.length;
+}
+
+/* ---- events (delegated) ---- */
+document.addEventListener("click",function(e){
+ var add=e.target.closest("[data-add]"); if(add){ addCard(add.getAttribute("data-add")); return; }
+ var ph=e.target.closest('[data-ph]'); if(ph){ var cc=e.target.closest("[data-card]"); if(cc) setMedia(cc.getAttribute("data-card")); return; }
+ var mini=e.target.closest(".mini"); if(mini){ var card=e.target.closest("[data-card]"); var id=card.getAttribute("data-card"); var a=mini.getAttribute("data-act");
+   if(a==="approve") setStatus(id,"approved"); else if(a==="reject") setStatus(id,"rejected"); else if(a==="dup") dup(id); else if(a==="erase") erase(id); return; }
+});
+document.addEventListener("blur",function(e){
+ var card=e.target.closest&&e.target.closest("[data-card]"); if(!card) return; var id=card.getAttribute("data-card");
+ if(e.target.classList.contains("title")) editCommit(id,"title",e.target.textContent.trim()||"Untitled");
+ else if(e.target.tagName==="TEXTAREA") editCommit(id,"notes",e.target.value);
+},true);
+document.addEventListener("keydown",function(e){
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"&&!e.shiftKey){ e.preventDefault(); undo(); }
+ else if((e.ctrlKey||e.metaKey)&&(e.key.toLowerCase()==="y"||(e.shiftKey&&e.key.toLowerCase()==="z"))){ e.preventDefault(); redo(); }
+});
+$("undo").onclick=undo; $("redo").onclick=redo;
+$("reset").onclick=function(){ if(confirm("Start over — clear the whole board? (Export first if you want to keep it.)")){ past.push(snapshot()); future=[]; board=seed(); persist(); render(); toast("Cleared — Undo brings it back"); } };
+$("export").onclick=function(){ var blob=new Blob([JSON.stringify(board,null,2)],{type:"application/json"});
+ var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="studio_canvas_"+new Date().toISOString().slice(0,10)+".json"; a.click(); toast("Exported"); };
+$("import").onclick=function(){ $("fileimport").click(); };
+$("fileimport").onchange=function(){ var f=this.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ var d=JSON.parse(r.result); if(!d.lanes) throw 0; past.push(snapshot()); future=[]; board=d; LANES.forEach(function(l){ if(!board.lanes[l.key]) board.lanes[l.key]=[]; }); persist(); render(); toast("Imported"); }catch(err){ toast("Not a valid board file"); } }; r.readAsText(f); this.value=""; };
+
+/* ---- helpers ---- */
+var toastT; function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show");},1400); }
+var saveT; function saved(msg){ var d=$("savedot"); d.textContent=msg||"saved ✓"; clearTimeout(saveT); saveT=setTimeout(function(){d.textContent="auto-saved";},1200); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+render();
+</script>
+</body></html>

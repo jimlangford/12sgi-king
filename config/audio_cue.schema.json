@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "audio_cue.schema.json",
+  "title": "Audio Cue",
+  "description": "Phase 2.2 audio cue record. A music or audio cue attached to a Logic session, carried through cue sheets, ADR lists, and Foley lists with full lineage (cue_id and scene_id preserved).",
+  "type": "object",
+  "required": ["cue_id", "scene_id", "start_timecode", "duration_seconds"],
+  "properties": {
+    "cue_id": {
+      "type": "string",
+      "description": "Stable cue identifier, e.g. HWTF-MUS-014. Retained through cue sheet export for lineage."
+    },
+    "scene_id": {
+      "type": "string",
+      "description": "Scene this cue belongs to, e.g. HWTF-S04."
+    },
+    "start_timecode": {
+      "type": "string",
+      "description": "SMPTE timecode HH:MM:SS:FF.",
+      "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "tempo_bpm": {
+      "type": ["number", "null"],
+      "default": null
+    },
+    "key": {
+      "type": ["string", "null"],
+      "description": "Musical key, e.g. D minor.",
+      "default": null
+    },
+    "purpose": {
+      "type": "string",
+      "default": ""
+    },
+    "logic_marker": {
+      "type": "string",
+      "description": "Marker label placed on the Logic marker track.",
+      "default": ""
+    },
+    "stem_requirements": {
+      "type": "array",
+      "description": "Stems this cue requires. Cues with adr appear on the ADR list; cues with foley appear on the Foley list.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  },
+  "example": {
+    "cue_id": "HWTF-MUS-014",
+    "scene_id": "HWTF-S04",
+    "start_timecode": "01:04:12:00",
+    "duration_seconds": 34.5,
+    "tempo_bpm": 72.0,
+    "key": "D minor",
+    "purpose": "ancestral tension",
+    "logic_marker": "MOKUULA THEME ENTRY",
+    "stem_requirements": ["music", "voice"]
+  }
+}

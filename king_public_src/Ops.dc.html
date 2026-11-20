@@ -25,6 +25,7 @@
       <div style="font-weight:700; font-size:15px; letter-spacing:0.3px;">12sgi · Naga</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink-faint,#756b56);">Ops Board</div>
     </div>
+    <span id="ops-platform-chip" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink-dim,#b3a98f); border:1px solid var(--line,#34301f); border-radius:20px; padding:3px 10px;">platform unknown</span>
     <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(227,173,51,0.14); color:var(--accent,#e3ad33); border:1px solid var(--accent,#e3ad33); border-radius:20px; padding:3px 10px;">owner · private</span>
   </div>
 
@@ -184,6 +185,24 @@ class Component extends DCLogic {
         hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
       });
     }
+    this._loadPlatformChip();
+  }
+
+  _loadPlatformChip() {
+    const base = window.KING_HEALTH_URL || '';
+    const target = (base ? base.replace(/\/$/, '') : '') + '/api/v2/health';
+    fetch(target)
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => {
+        const chip = document.getElementById('ops-platform-chip');
+        if (!chip) return;
+        const platform = data.platform_version || data.platform?.platform_version || 'unknown';
+        const manifest = data.platform_manifest_version || data.platform?.manifest_version || 'unknown';
+        const mismatch = !!data.platform_version_mismatch || !!data.platform?.version_disagreement;
+        chip.textContent = `platform ${platform} · m${manifest}`;
+        chip.style.color = mismatch ? 'var(--warn,#d8904c)' : 'var(--ink-dim,#b3a98f)';
+      })
+      .catch(() => {});
   }
 
   renderVals() {

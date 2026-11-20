@@ -1,0 +1,99 @@
+{
+  "schema": "tenant-transition-schema-v2",
+  "schema_version": "2.0.0",
+  "state_graph": {
+    "states": [
+      "draft",
+      "onboarding",
+      "active",
+      "paused",
+      "blocked",
+      "sunset"
+    ]
+  },
+  "tenant_family_transitions": {
+    "studio": {
+      "initial_state": "active",
+      "allowed_transitions": {
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked", "sunset"],
+        "blocked": ["onboarding", "paused", "active", "sunset"],
+        "onboarding": ["active", "blocked"],
+        "sunset": []
+      }
+    },
+    "civic": {
+      "initial_state": "active",
+      "allowed_transitions": {
+        "active": ["paused", "blocked"],
+        "paused": ["active", "blocked"],
+        "blocked": ["active", "paused", "sunset"],
+        "sunset": []
+      }
+    },
+    "media": {
+      "initial_state": "onboarding",
+      "allowed_transitions": {
+        "draft": ["onboarding"],
+        "onboarding": ["active", "blocked"],
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["onboarding", "active", "sunset"],
+        "sunset": []
+      }
+    },
+    "architecture": {
+      "initial_state": "onboarding",
+      "allowed_transitions": {
+        "draft": ["onboarding"],
+        "onboarding": ["active", "blocked"],
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["onboarding", "active", "sunset"],
+        "sunset": []
+      }
+    },
+    "housing": {
+      "initial_state": "onboarding",
+      "allowed_transitions": {
+        "draft": ["onboarding"],
+        "onboarding": ["active", "blocked"],
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["onboarding", "active", "sunset"],
+        "sunset": []
+      }
+    },
+    "agriculture": {
+      "initial_state": "onboarding",
+      "allowed_transitions": {
+        "draft": ["onboarding"],
+        "onboarding": ["active", "blocked"],
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["onboarding", "active", "sunset"],
+        "sunset": []
+      }
+    },
+    "research": {
+      "initial_state": "onboarding",
+      "allowed_transitions": {
+        "draft": ["onboarding"],
+        "onboarding": ["active", "blocked"],
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["onboarding", "active", "sunset"],
+        "sunset": []
+      }
+    },
+    "operations": {
+      "initial_state": "active",
+      "allowed_transitions": {
+        "active": ["paused", "blocked", "sunset"],
+        "paused": ["active", "blocked"],
+        "blocked": ["active", "paused", "sunset"],
+        "sunset": []
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-civic",
+  "base_model": "local-reasoning-model",
+  "system_policy": "civic-v1",
+  "allowed_tools": ["civic.*", "records.search", "records.get"],
+  "knowledge_scopes": ["civic", "active-tenant"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["civic.stage_public_report"]
+}

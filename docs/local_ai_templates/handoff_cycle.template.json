@@ -1,0 +1,27 @@
+{
+  "ts": "2026-07-14T00:00:00+00:00",
+  "packet_id": "packet-20260714-001",
+  "lane": "engineering",
+  "context_in": {
+    "sources": ["docs/GOVOS_V2_LOCAL_DEV.md"],
+    "assumptions": ["list assumptions"]
+  },
+  "decision_request": {
+    "request": "What decision is needed",
+    "clarification_count": 0
+  },
+  "execution_result": {
+    "outcome": "completed",
+    "started_at": "2026-07-14T00:00:00+00:00",
+    "completed_at": "2026-07-14T00:03:00+00:00"
+  },
+  "verification_result": {
+    "checks": ["python -m compileall -q ."],
+    "approval_status": "approved"
+  },
+  "next_action": {
+    "owner": "copilot",
+    "action": "None",
+    "requires_rework": false
+  }
+}

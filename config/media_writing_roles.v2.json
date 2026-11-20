@@ -1,0 +1,92 @@
+{
+  "config_id": "media_writing_roles.v2",
+  "description": "Phase 2.2 Writing Room: role definitions, job types, workflow states, and lock policy for scripts.",
+  "writing_roles": {
+    "showrunner": {
+      "display_name": "Showrunner",
+      "description": "Owns the overall vision of the production; final creative authority below the owner.",
+      "responsibilities": ["vision", "final_creative_signoff", "greenlight"]
+    },
+    "story_architect": {
+      "display_name": "Story Architect",
+      "description": "Designs story architecture, act structure, and beat sheets.",
+      "responsibilities": ["story_architecture", "beat_sheet", "arc_continuity"]
+    },
+    "screenwriter": {
+      "display_name": "Screenwriter",
+      "description": "Writes scene outlines and full screenplay scenes.",
+      "responsibilities": ["scene_outline", "screenplay_scene"]
+    },
+    "dialogue_writer": {
+      "display_name": "Dialogue Writer",
+      "description": "Writes and refines dialogue blocks, including delivery and timing estimates.",
+      "responsibilities": ["dialogue_pass", "delivery_timing"]
+    },
+    "continuity_editor": {
+      "display_name": "Continuity Editor",
+      "description": "Checks scene-to-scene continuity of characters, props, geography, and timeline.",
+      "responsibilities": ["continuity_pass"]
+    },
+    "cultural_guardian": {
+      "display_name": "Cultural Guardian",
+      "description": "Reviews scripts for cultural accuracy and respect; never fabricates cultural content.",
+      "responsibilities": ["cultural_review"],
+      "uncertainty_policy": "flag_and_hold",
+      "notes": "When cultural accuracy is uncertain, the item is flagged and held for elder consultation rather than guessed at."
+    },
+    "script_supervisor": {
+      "display_name": "Script Supervisor",
+      "description": "Tracks script state, revisions, approvals, and the lock lifecycle.",
+      "responsibilities": ["script_approval", "script_revision", "lock_management"]
+    },
+    "table_read_critic": {
+      "display_name": "Table Read Critic",
+      "description": "Reads the script aloud in character and critiques pacing, tone, and dialogue naturalness.",
+      "responsibilities": ["table_read_review"]
+    }
+  },
+  "writing_job_types": [
+    "story_architecture",
+    "beat_sheet",
+    "scene_outline",
+    "screenplay_scene",
+    "dialogue_pass",
+    "continuity_pass",
+    "cultural_review",
+    "table_read_review",
+    "script_approval",
+    "script_revision"
+  ],
+  "workflow_states": [
+    "concept",
+    "premise_ready",
+    "architecture_ready",
+    "beat_sheet_ready",
+    "scene_outline_ready",
+    "first_draft",
+    "dialogue_review",
+    "continuity_review",
+    "cultural_review",
+    "table_read_review",
+    "approval_pending",
+    "approved",
+    "script_locked"
+  ],
+  "lock_policy": {
+    "description": "A locked script is immutable content: it may be archived or revised into a new unlocked revision, but never overwritten in place.",
+    "locked_script_allows": [
+      "read",
+      "archive",
+      "restore",
+      "new_revision",
+      "export"
+    ],
+    "locked_script_prevents": [
+      "overwrite",
+      "advance",
+      "add_scene",
+      "edit_dialogue",
+      "delete"
+    ]
+  }
+}

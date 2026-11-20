@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "game_dialogue_tree",
+  "description": "Schema for a branching game dialogue tree. Each node links back to a Writing Room studio dialogue block via dialogue_id so game dialogue stays traceable to the approved script.",
+  "type": "object",
+  "properties": {
+    "tree_id": {
+      "type": "string",
+      "description": "Dialogue tree record ID."
+    },
+    "game_id": {
+      "type": "string",
+      "description": "Owning game project."
+    },
+    "scene_id": {
+      "type": "string",
+      "description": "Studio scene this tree belongs to."
+    },
+    "character": {
+      "type": "string",
+      "description": "Primary speaking character for this tree."
+    },
+    "nodes": {
+      "type": "array",
+      "description": "Dialogue nodes. Each node carries the studio dialogue_id it was authored from.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node_id": {
+            "type": "string"
+          },
+          "dialogue_id": {
+            "type": "string",
+            "description": "Studio dialogue block ID from the Writing Room; links game dialogue back to the approved script."
+          },
+          "text": {
+            "type": "string"
+          },
+          "character": {
+            "type": "string"
+          },
+          "emotion": {
+            "type": "string"
+          },
+          "conditions": {
+            "type": "array",
+            "description": "Gameplay conditions gating this node.",
+            "items": {
+              "type": "object"
+            }
+          },
+          "responses": {
+            "type": "array",
+            "description": "Player response branches; each points at a next node_id.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "next_node_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": ["node_id", "dialogue_id", "text"]
+      }
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": ["game_id", "character", "nodes"],
+  "example": {
+    "tree_id": "DTREE-001",
+    "game_id": "GAME-001",
+    "scene_id": "HWTF-S01",
+    "character": "ELDER",
+    "nodes": [
+      {
+        "node_id": "N001",
+        "dialogue_id": "HWTF-S01-D004",
+        "text": "They ask us a question.",
+        "character": "ELDER",
+        "emotion": "reflective",
+        "conditions": [],
+        "responses": []
+      }
+    ],
+    "created_at": "2026-07-22T00:00:00+00:00"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "version": "2.2",
+  "tenant": "media",
+  "description": "Phase 2.2 engine doctrine. One 8 GB card: 7600 MB safe limit, one large model resident at a time. Kandinsky5 batches storyboards and keyframes first; LTX animates only after storyboard approval; RIFE loads only after all takes are approved and its VRAM is measured live, never assumed. Wan 1.3B engines stay disabled; no Wan 14B model is ever scheduled; no per-shot engine alternation; nothing auto-publishes.",
+  "vram_safe_limit_mb": 7600,
+  "max_concurrent_large_models": 1,
+  "engine_roles": {
+    "kandinsky5": {
+      "role": "storyboard_image_and_keyframe",
+      "enabled": true,
+      "capabilities": ["image_generation", "kandinsky_animation"],
+      "permitted_job_types": ["storyboard_frame", "character_reference", "animation_shot"],
+      "vram_mb": 7300,
+      "batch_policy": "batch_all_storyboard_frames_before_any_motion_engine_loads"
+    },
+    "ltx": {
+      "role": "primary_image_to_video",
+      "enabled": true,
+      "capabilities": ["image_to_video"],
+      "permitted_job_types": ["animation_shot"],
+      "vram_mb": 7100,
+      "batch_policy": "load_only_after_storyboard_approved"
+    },
+    "wan_vace_1_3b": {
+      "role": "experimental_image_to_video_fallback",
+      "enabled": false,
+      "experimental": true,
+      "requires_benchmark": true,
+      "capabilities": ["image_to_video"],
+      "permitted_job_types": ["animation_shot"],
+      "vram_mb": 5200,
+      "batch_policy": "disabled_until_benchmarked"
+    },
+    "wan_t2v_1_3b": {
+      "role": "atmospheric_insert_only",
+      "enabled": false,
+      "experimental": true,
+      "requires_benchmark": true,
+      "capabilities": ["text_to_video"],
+      "permitted_job_types": ["atmospheric_insert"],
+      "prohibited_job_types": ["storyboard_frame", "character_reference", "animation_shot"],
+      "vram_mb": 5200,
+      "batch_policy": "disabled_until_benchmarked"
+    },
+    "rife_local": {
+      "role": "frame_interpolation",
+      "enabled": true,
+      "capabilities": ["interpolation"],
+      "permitted_job_types": ["interpolation_shot"],
+      "vram_mb": null,
+      "requires_live_measurement": true,
+      "batch_policy": "load_only_after_all_takes_approved"
+    },
+    "director_local": {
+      "role": "director_planning",
+      "enabled": true,
+      "capabilities": ["director_planning"],
+      "permitted_job_types": ["director_shot_plan"],
+      "batch_policy": "planning_only_no_gpu_model_load"
+    },
+    "editor_local": {
+      "role": "editor_review",
+      "enabled": true,
+      "capabilities": ["editor_review"],
+      "permitted_job_types": ["edit_decision"],
+      "batch_policy": "review_only_no_gpu_model_load"
+    }
+  },
+  "batch_routing_policy": {
+    "prohibited_patterns": [
+      "per_shot_engine_alternation",
+      "wan_14B_model_scheduling",
+      "auto_publish_from_pipeline"
+    ],
+    "sequence": [
+      {
+        "step": 1,
+        "engine": "kandinsky5",
+        "phase": "storyboard_batch",
+        "gate": "script_approved",
+        "description": "Batch every Kandinsky storyboard frame and keyframe before any motion engine loads."
+      },
+      {
+        "step": 2,
+        "engine": "ltx",
+        "phase": "animation_batch",
+        "gate": "storyboard_approved",
+        "description": "LTX image-to-video animation starts only after storyboard approval."
+      },
+      {
+        "step": 3,
+        "engine": "rife_local",
+        "phase": "interpolation_batch",
+        "gate": "take_approved",
+        "description": "RIFE interpolation loads only after all takes are approved; VRAM is measured live."
+      },
+      {
+        "step": 4,
+        "phase": "final_qc_handoff",
+        "gate": "edit_ready_do_not_publish",
+        "description": "Pipeline terminates at edit_ready. No automatic public publishing occurs."
+      }
+    ]
+  }
+}

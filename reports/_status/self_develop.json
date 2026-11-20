@@ -1,0 +1,22 @@
+{
+  "gates": {
+    "bill9_rollcall": {
+      "fingerprint": "aafa022df5e88f336f458c70dc398287cb1f5e4b813b61a087dadaee6c143944",
+      "suppress_count": 3,
+      "job_id": "e392e966-19be-4b38-b288-0c252c62235f",
+      "last_seen": "2026-07-14T10:40:59-1000"
+    }
+  },
+  "counters": {
+    "lifetime_passes": 0,
+    "qualification_streak": 0
+  },
+  "last_evaluated": "2026-07-14T10:40:59-1000",
+  "advance_ready": false,
+  "graduation_blocked_by": [
+    "bill9_rollcall"
+  ],
+  "health_score": 0,
+  "qualification_streak": 0,
+  "lifetime_passes": 0
+}

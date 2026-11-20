@@ -29,6 +29,11 @@ except Exception:
 # build rev: 2026-07-01 blog pages wired into public site/ output
 SITE    = os.environ.get("KA_SITE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "site"))
 HST     = timezone(timedelta(hours=-10))
+# Cache-bust stamp (2026-07-21, kilo-aupuni): every stylesheet link this builder emits directly
+# (the /go/ wrapper pages below) carries ?v=<build date> -- stale cached CSS silently UNSTYLES
+# civic pages (documented gotcha). The site-wide stamp lane (rebuild_site.inject_css /
+# inject_legibility) carries its own BUILD_V, so every page in site/ ends up stamped.
+BUILD_V = datetime.now(HST).date().isoformat()
 
 def mauios_src(rel):
     """Prefer the live local reports tree, but fall back to repo seed artifacts."""
@@ -37,6 +42,33 @@ def mauios_src(rel):
         return src
     seed = os.path.join(SEED_MAUIOS, rel)
     return seed if os.path.exists(seed) else src
+
+
+def _write_go_extensionless_wrappers(base_dir, routes, asset_prefix):
+    """Generate /<base>/<route>/index.html wrappers that redirect to /go/<route>.html."""
+    for route in routes:
+        route = (route or "").strip().strip("/")
+        if not route or route == "index":
+            continue
+        out_dir = os.path.join(base_dir, route)
+        os.makedirs(out_dir, exist_ok=True)
+        with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write("""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/go/%(route)s.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting…</title>
+<script>location.replace('/go/%(route)s.html');</script>
+<link rel="stylesheet" href="%(asset_prefix)sgovos.css?v=%(build_v)s">
+</head>
+<body>
+  <p>Redirecting to <a href="/go/%(route)s.html">/go/%(route)s.html</a>…</p>
+<script src="%(asset_prefix)sgovos-shell.js" defer></script>
+</body>
+</html>
+""" % {"route": route, "asset_prefix": asset_prefix, "build_v": BUILD_V})
 
 # headline dashboards (filename in mauios -> public name + blurb)
 PAGES = [
@@ -54,7 +86,9 @@ PAGES = [
     ("maui_contract_awards.html",        "Maui Contract Awards",         "Every public Notice of Award to a Maui County jurisdiction (HANDS) - the vendor side of the money."),
     ("statewide_money_patterns.html",    "Statewide Money (2008+)",      "Campaign money across all 4 counties + State; the donor network."),
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
+    ("who_funds_elections_maui.html",    "Who Funds Our Elections",      "Every reported contribution sorted by the giver's own stated INDUSTRY — which sectors spend most to shape who governs. Real estate & development leads the identifiable industries ($10M+ / 3,127 givers). Public records (HICSC campaign finance), classified from self-reported employer/occupation, framed as questions."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
+    ("candidates_2026_maui.html",        "2026 Candidates & Their Money", "Everyone who filed for Mayor + all 9 Council seats by the June 2 2026 deadline, set beside the campaign money on file for each (real-estate slice flagged). Sourced to the County Clerk filing list + HICSC; 'no money on file' usually means the report isn't posted yet, not that none was raised."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
     ("bill9_money_vs_will.html",          "Bill 9 - the Vote, the Money","The Council's 5-3 final vote to phase out transient vacation rentals in apartment districts, set beside the real-estate money behind the three NO votes. Public records (roll-call + campaign finance), framed as questions, never accusations. Neo4j-backed."),
     ("testifiers_maui.html",             "Who Testifies x Money",        "Named public testifiers from the minutes, cross-referenced to campaign donors and the real-estate record. Public records, framed as questions."),
@@ -908,6 +942,25 @@ def ensure_civic_chrome(html):
         html = html + foot
     return html
 
+def inject_legibility(html, depth=0):
+    """Drop legibility_fix.css in LAST (after every other stylesheet) so it wins the cascade -
+    James 2026-07-10: "make sure all of the text is plainly legible... the Maui map showing through
+    the overlays, not just black". The asset was already copied by the builder and named in the
+    header comment, but no injector existed, so it never reached a served page (audit R13 PARTIAL).
+    Idempotent; carries the BUILD_V cache-bust like every other civic stylesheet link."""
+    if "legibility_fix.css" in html:
+        return html
+    href = ("../" * depth) + "legibility_fix.css?v=" + BUILD_V
+    link = '<link rel="stylesheet" href="%s">' % href
+    m = re.search(r"</head>", html, re.I)
+    if m:
+        return html[:m.start()] + link + html[m.start():]
+    mb = re.search(r"<body[^>]*>", html, re.I)
+    if mb:
+        return html[:mb.end()] + link + html[mb.end():]
+    return html
+
+
 def recolor_tree(root):
     """The ONE heal pass over a built tree: recolor to Yale-blue AND ensure mobile-viewport, in place, every
     .html (+ .css recolor). Skips .js/.json (no logic touched). Same pass for public site/ and (via king_recolor)
@@ -929,6 +982,8 @@ def recolor_tree(root):
                 r = t if _aurora_keep else recolor(t)
                 if ext == "html":
                     r = ensure_mobile(r)
+                    # legibility LAST in the cascade, path-correct for the page's depth in the tree
+                    r = inject_legibility(r, len(os.path.relpath(p, root).split(os.sep)) - 1)
                     if not _aurora_keep and os.path.relpath(p, root).split(os.sep)[0] != "king":
                         r = unify_font(r)   # match the home page: flat civic pages -> Segoe sans (King ceremonial register keeps its serif)
                         r = ensure_civic_chrome(r)   # unify look to the home page: civic_shell tokens + shared footer (gn- nav stays)
@@ -1097,7 +1152,12 @@ def main():
         # extra per-tenant pages: copied + nav-injected, reached from the jurisdictions hub (not nav pills).
         # entity_*.html dossiers have dynamic names -> glob them in (+ the dossier index).
         import glob as _glob
-        _dyn = ["entity_index.html"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+        # discover entity dossiers from the LIVE tree AND the committed seed (CI has only the seed),
+        # so entity_*.html builds in CI too, not just locally. (2026-07-22 audit-quad-os: fixed the
+        # seed-blind glob that 404'd every linked entity page on public.)
+        _ent = set(os.path.basename(q) for q in _glob.glob(os.path.join(MAUIOS, "entity_*.html")))
+        _ent |= set(os.path.basename(q) for q in _glob.glob(os.path.join(SEED_MAUIOS, "entity_*.html")))
+        _dyn = ["entity_index.html"] + sorted(_ent)
         for rel in EXTRA_PAGES + [d for d in _dyn if d not in EXTRA_PAGES]:
             src = mauios_src(rel)
             if os.path.exists(src):
@@ -1234,9 +1294,16 @@ def main():
         # donors_<t>/ dir (donor_watch.py derives the href from basename(OUT_DIR)). Copy them all.
         # Extended 2026-07-14 (audit-quad-os, other-tenant repatch — closed 32 broken donor-profile links).
         import glob as _glob
-        _donor_dirs = ["donors"] + sorted(os.path.basename(p) for p in _glob.glob(os.path.join(MAUIOS, "donors_*")) if os.path.isdir(p))
-        for sub in _donor_dirs:
+        # discover donor dirs from BOTH the live tree and the committed seed (CI = seed only), and copy
+        # from whichever has them (live preferred). Fixes the seed-blind glob that 404'd donor profiles
+        # linked from money_behind_officials*.html in CI. (2026-07-22 audit-quad-os.)
+        _dd = set(["donors"])
+        for _root in (MAUIOS, SEED_MAUIOS):
+            _dd |= set(os.path.basename(p) for p in _glob.glob(os.path.join(_root, "donors_*")) if os.path.isdir(p))
+        for sub in sorted(_dd):
             s = os.path.join(MAUIOS, sub)
+            if not os.path.isdir(s):
+                s = os.path.join(SEED_MAUIOS, sub)
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(SITE, sub), dirs_exist_ok=True)
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
@@ -1252,6 +1319,8 @@ def main():
         # full archive stays in reports/mauios/bids (owner source). Added 2026-07-14 (audit-quad-os,
         # Maui ingest repatch; runs after EXTRA_PAGES so the referencing pages already exist in site/).
         _bids_src = os.path.join(MAUIOS, "bids")
+        if not os.path.isdir(_bids_src):
+            _bids_src = os.path.join(SEED_MAUIOS, "bids")   # CI has only the seed
         if os.path.isdir(_bids_src):
             import glob as _glob
             import urllib.parse as _uq
@@ -1357,13 +1426,61 @@ def main():
     with _lane("platform_packages"):
         # [redundancy] always-on failover launcher: routes to the live system (Tailscale)
         # when the laptop is up, else falls back to this GitHub mirror.
-        # Quad-OS platform/packages page (productized: quadrants + subscriptions + multi-tenant onboarding).
-        for _pf in ("platform.html", "packages.json"):
-            _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), _pf)
-            if os.path.exists(_p):
-                shutil.copy(_p, os.path.join(SITE, _pf))
-        if os.path.exists(os.path.join(SITE, "platform.html")):
-            print("  + platform.html: Quad-OS platform — quadrants · subscriptions · onboarding")
+        # Quad-OS platform/packages page — platform.html is RENDERED from packages.json (the single
+        # source of truth; the html<->json drift ended 2026-07-22). Everything between the
+        # <!-- PACKAGES:START --> / <!-- PACKAGES:END --> markers in the source platform.html is
+        # regenerated here from packages.json (tagline, lane/quadrant cards, tenant block,
+        # subscription tiers). All text is html-escaped; NO prices/copy are hardcoded here — they
+        # come only from packages.json. Edit packages.json, never the html section.
+        import html as _pkhtml
+        _pksrc = os.path.dirname(os.path.abspath(__file__))
+        _pkgp = os.path.join(_pksrc, "packages.json")
+        _platp = os.path.join(_pksrc, "platform.html")
+        if os.path.exists(_pkgp) and os.path.exists(_platp):
+            _pkg = json.load(open(_pkgp, encoding="utf-8"))
+            _pke = _pkhtml.escape
+            _pksec = ['<p class="tagline">%s</p><p class="found">%s</p>'
+                      % (_pke(_pkg.get("tagline", "")), _pke(_pkg.get("foundation", "")))]
+            _pkq = "".join('<div class="quad"><div class="qh"><span class="qi">%s</span><h3>%s</h3></div><p>%s</p><span class="aud">%s</span></div>'
+                           % (_pke(_q.get("icon", "")), _pke(_q.get("name", "")), _pke(_q.get("what", "")), _pke(_q.get("audience", "")))
+                           for _q in _pkg.get("quadrants", []))
+            _pksec.append('<div class="eyebrow">%s</div><div class="quads">%s</div>'
+                          % (_pke(_pkg.get("quadrants_heading", "Public lanes")), _pkq))
+            _pkmt = _pkg.get("multi_tenant", {})
+            _pksec.append('<div class="eyebrow">%s</div>' % _pke(_pkg.get("tenant_heading", "Built for many — onboard a new tenant")))
+            _pksec.append('<div class="tenant"><h2>%s</h2><p>%s</p><ul>%s</ul></div>'
+                          % (_pke(_pkmt.get("headline", "")), _pke(_pkmt.get("body", "")),
+                             "".join("<li>%s</li>" % _pke(_px) for _px in _pkmt.get("examples", []))))
+            _pkcards = []
+            for _psub in _pkg.get("subscriptions", []):
+                _pkst = _psub.get("status", "coming")
+                _pktiers = "".join('<div class="tier"><div class="tn">%s</div><div class="tp">%s</div><div class="tf">%s</div></div>'
+                                   % (_pke(_pt.get("name", "")), _pke(_pt.get("price", "")), _pke(_pt.get("for", "")))
+                                   for _pt in _psub.get("tiers", []))
+                _pkcards.append('<div class="sub"><div class="sh"><span class="si">%s</span><h3>%s</h3><span class="badge %s">%s</span></div>'
+                                '<p class="tag">%s</p><p class="body">%s</p><div class="tiers">%s</div></div>'
+                                % (_pke(_psub.get("icon", "")), _pke(_psub.get("name", "")),
+                                   "avail" if _pkst == "available" else "soon", _pke(_pkst),
+                                   _pke(_psub.get("tagline", "")), _pke(_psub.get("body", "")), _pktiers))
+            _pksec.append('<div class="eyebrow">%s</div>%s'
+                          % (_pke(_pkg.get("subscriptions_heading", "Subscriptions")), "".join(_pkcards)))
+            _plat = open(_platp, encoding="utf-8").read()
+            _pkS, _pkE = "<!-- PACKAGES:START -->", "<!-- PACKAGES:END -->"
+            _pki, _pkj = _plat.find(_pkS), _plat.find(_pkE)
+            if _pki != -1 and _pkj > _pki:
+                _plat = _plat[:_pki + len(_pkS)] + "\n " + "\n ".join(_pksec) + "\n " + _plat[_pkj:]
+                print("  + platform.html: rendered from packages.json (single source of truth)")
+            else:
+                print("  ! platform.html PACKAGES markers missing — shipped UNRENDERED (restore the markers)")
+            with open(os.path.join(SITE, "platform.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(_plat)
+            shutil.copy(_pkgp, os.path.join(SITE, "packages.json"))
+        # Join — the paid-pages shell (owner-approved go-live 2026-07-22). Standalone page; live Woo
+        # Store-API prices, checkout on elementlotus.com. Copied verbatim into SITE (leak-gate still runs).
+        _joinp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "join.html")
+        if os.path.exists(_joinp):
+            shutil.copy(_joinp, os.path.join(SITE, "join.html"))
+            print("  + join.html: paid-pages shell (live Woo prices)")
         _go = os.path.join(os.path.dirname(os.path.abspath(__file__)), "go.html")
         if os.path.exists(_go):
             _goraw = open(_go, encoding="utf-8").read()
@@ -1415,13 +1532,33 @@ def main():
         if os.path.isdir(_go_dir):
             shutil.copytree(_go_dir, os.path.join(SITE, "go"), dirs_exist_ok=True)
             print("  + go/: owner-console route pages (/go/*)")
+            _go_routes = sorted(
+                os.path.splitext(_name)[0]
+                for _name in os.listdir(_go_dir)
+                if _name.endswith(".html") and os.path.splitext(_name)[0] != "index"
+            )
+            if _go_routes:
+                _site_go = os.path.join(SITE, "go")
+                _write_go_extensionless_wrappers(_site_go, _go_routes, "../../")
+                if os.path.isdir(os.path.join(SITE, "king")):
+                    _site_king_go = os.path.join(SITE, "king", "go")
+                    os.makedirs(_site_king_go, exist_ok=True)
+                    _write_go_extensionless_wrappers(_site_king_go, _go_routes, "../../../")
+                print("  + go route wrappers: auto-generated %d extensionless index route(s) for go/ and king/go/" % len(_go_routes))
     with _lane("element_lotus_public_shell"):
         # [studio-shell] Public studio-first shell for Element Lotus / 12 Stones Global. Keeps the
         # interactive games on static Pages while WordPress can remain the narrative/brand shell.
+        # [PRIVATE GATE] Files listed here are owner-administration surfaces that must never appear
+        # in the public GitHub Pages artifact. They are served privately via king-bridge / Tailscale.
+        _EL_PRIVATE = {
+            "owner_jobs.html",   # owner job tracking + approval UI — private king-bridge route only
+        }
         _elsrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "element_lotus_public")
         if os.path.isdir(_elsrc):
             _copied = []
             for _name in sorted(os.listdir(_elsrc)):
+                if _name in _EL_PRIVATE:
+                    continue  # [PRIVATE GATE] never publish owner-admin pages to the public site
                 _src = os.path.join(_elsrc, _name)
                 if os.path.isfile(_src):
                     shutil.copy(_src, os.path.join(SITE, _name))
@@ -1762,6 +1899,13 @@ Sources are linked on every page.</div>
                 # SINGLE SOURCE: local root == public root (the civic landing front door).
                 # The King System app lives at /king/ on BOTH (one tap from the landing).
                 shutil.copy(h, os.path.join(KLOCAL, b))
+            # PRIVATE root default: on Tailscale, land on the consolidated launcher dashboard.
+            # PUBLIC root remains untouched (education front door) because this override is
+            # applied only inside king-local mirror output.
+            _k_go = os.path.join(KLOCAL, "go.html")
+            if os.path.exists(_k_go):
+                shutil.copy(_k_go, os.path.join(KLOCAL, "index.html"))
+                print("  + king-local PRIVATE root: index.html -> go.html (consolidated dashboard default)")
             # HEAL-FORWARD (2026-07-01, server-quad-os): the loop above just copied the STATIC public
             # blog.html/blog_post_*.html (relative links, trimmed nav) over whatever king_serve.py's own
             # generation had in king-local -- king_serve.py serves /king/blog as a raw static file (no
@@ -1892,6 +2036,7 @@ Sources are linked on every page.</div>
         # public). This removes from the OUTPUT only; the private-king sources are untouched.
         import shutil as _sh, glob as _glob
         _purge = [os.path.join(SITE, "go"), os.path.join(SITE, "go.html"),
+                  os.path.join(SITE, "king", "go"),   # redirect-stub dir: dead-end doors that still advertise ops names (docker/ollama/logs) publicly
                   os.path.join(SITE, "king", "app.html"), os.path.join(SITE, "king", "go.html"),
                   os.path.join(SITE, "king", "live.js")]   # orphaned owner-shell script (on-machine :8770 fallback)
         # the owner Vue app's DataComponents (*.dc.html) are imported headless by app.html — now that the

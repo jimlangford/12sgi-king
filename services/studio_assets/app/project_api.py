@@ -25,6 +25,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from services.job_envelope import build_job_envelope
 
 from services.studio_assets.app.security import require_studio_owner
 
@@ -195,9 +196,20 @@ def _require_matching_id(body_id: str, tenant_id: str) -> None:
 def _emit(source: str, action: str, event: str, lane: str, status: str, payload: dict) -> str:
     if not _WB_AVAILABLE:
         return ""
+    envelope = build_job_envelope(
+        domain="studio-assets",
+        service="studio-assets",
+        action=action,
+        state=status,
+        payload=payload or {},
+        lane=lane,
+        metadata={"emitter": source},
+    )
+    next_payload = dict(payload or {})
+    next_payload["job_envelope"] = envelope
     entry = emit_workboard_job(
         source=source, action=action, event=event,
-        lane=lane, status=status, payload=payload,
+        lane=lane, status=status, payload=next_payload,
     )
     return (entry.get("job") or {}).get("id", "")
 

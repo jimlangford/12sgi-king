@@ -1,0 +1,47 @@
+{
+  "gate": "5",
+  "title": "HINA Dispatch — Hawaiʻi Local Date + Daily Idempotency",
+  "file": "watchers/sage_bridge.py",
+  "generated": "2026-07-15",
+  "status": "PASS",
+  "checks": {
+    "hst_date": {
+      "result": "VERIFIED",
+      "detail": "today = now_hst().strftime('%Y-%m-%d') where now_hst() returns datetime.now(timezone(timedelta(hours=-10))). Test confirms utcoffset == -36000 seconds. The date used for offering_date is Hawaiʻi Standard Time, not UTC."
+    },
+    "daily_idempotency": {
+      "result": "IMPLEMENTED",
+      "detail": "Before calling _emit_hina, the dispatch block reads the workboard log via _read_workboard_log() and scans for any existing entry where lane='creative', job.action='hina-balance', and payload.offering_date == today. If found, emit is skipped with a console message. Reruns on the same HST calendar day produce zero additional creative jobs."
+    },
+    "primary_node_evidence": {
+      "result": "IMPLEMENTED",
+      "detail": "selection_evidence dict is built before the idempotency check and logged on every successful emit: {offering_date, primary_node, primary_akua, primary_hewa_evidence, total_hewa_nodes, selection_reason, today_overlap_present, timezone}. Evidence appears in stdout for log capture."
+    },
+    "no_duplicate_on_rerun": {
+      "result": "TESTED",
+      "detail": "test_hina_idempotency_skips_duplicate_for_same_date patches _read_workboard_log to return a pre-existing entry and asserts emitted==0. test_hina_emits_when_no_existing_log_entry returns empty log and asserts emitted==1."
+    }
+  },
+  "tests": {
+    "file": "tests/test_release_pipeline.py",
+    "class": "TestSageBridgeHinaDispatch",
+    "count": 5,
+    "result": "ALL PASS",
+    "cases": [
+      "test_hina_dispatch_called_for_hewa_node",
+      "test_hina_dispatch_skipped_when_no_hewa_nodes",
+      "test_hina_uses_hst_date",
+      "test_hina_idempotency_skips_duplicate_for_same_date",
+      "test_hina_emits_when_no_existing_log_entry"
+    ]
+  },
+  "deferred": {
+    "sage_citizen_accounts": "DEFERRED — out of v1 scope per requirement 7. Sage game, citizen accounts, and automated Studio releases are feature-flagged / deferred.",
+    "automated_studio_releases": "DEFERRED — Studio releases require owner approval (output lane gate). No automated public posting."
+  },
+  "rollback": {
+    "instructions": "Remove the _read_workboard_log import and the idempotency check block (lines between 'already_dispatched = False' and the _emit_hina call). The original emit-always behavior is restored. No data migration needed — workboard log is append-only."
+  },
+  "owner_approval_required": false,
+  "notes": "Live dispatch evidence requires sage_bridge.main() to run on king-server with real parity_check.json hewa data and moon_calendar available. That is a pending owner action (see DISPATCH_LOG.md E — publish_watch launcher)."
+}

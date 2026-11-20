@@ -1,0 +1,3180 @@
+[
+  {
+    "tool_id": "civic.search",
+    "name": "Search Civic Records",
+    "description": "Full-text search across civic records.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/civic/search",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    },
+    "audit_event": "tool.civic.search",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "civic.get",
+    "name": "Get Civic Record",
+    "description": "Retrieve a single civic record by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/civic/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.civic.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "civic.list_cases",
+    "name": "List Civic Cases",
+    "description": "List all active civic cases.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/civic/cases",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.civic.list_cases",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "civic.get_case",
+    "name": "Get Civic Case",
+    "description": "Retrieve a civic case by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/civic/cases/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.civic.get_case",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "civic.create_case",
+    "name": "Create Civic Case",
+    "description": "Open a new civic case.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/civic/cases",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "civic:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.civic.create_case",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "civic.update_case",
+    "name": "Update Civic Case",
+    "description": "Update status or fields of a civic case.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/civic/cases/{id}",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "civic:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.civic.update_case",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "civic.stage_public_report",
+    "name": "Stage Public Report",
+    "description": "Stage a civic record for public report publication.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/civic/reports/stage",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "civic:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "case_id": {
+          "type": "string"
+        },
+        "report_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "case_id"
+      ]
+    },
+    "audit_event": "tool.civic.stage_public_report",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "civic.delete_case",
+    "name": "Delete Civic Case",
+    "description": "Permanently delete a civic case.",
+    "http_method": "DELETE",
+    "endpoint": "/api/v2/civic/cases/{id}",
+    "risk_class": "destructive",
+    "required_scopes": [
+      "civic:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.civic.delete_case",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "studio.list_projects",
+    "name": "List Studio Projects",
+    "description": "List all studio projects.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/studio/projects",
+    "risk_class": "read",
+    "required_scopes": [
+      "projects:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.studio.list_projects",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "studio.get_project",
+    "name": "Get Studio Project",
+    "description": "Retrieve a studio project by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/studio/projects/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "projects:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.studio.get_project",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "studio.create_project",
+    "name": "Create Studio Project",
+    "description": "Create a new studio project.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/studio/projects",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "projects:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.studio.create_project",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "studio.update_project_status",
+    "name": "Update Project Status",
+    "description": "Change the phase or status of a studio project.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/studio/projects/{id}/status",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "projects:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ]
+    },
+    "audit_event": "tool.studio.update_project_status",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "studio.archive_project",
+    "name": "Archive Studio Project",
+    "description": "Archive a completed or inactive studio project.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/studio/projects/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "projects:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.studio.archive_project",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "writing.list_scripts",
+    "name": "List Scripts",
+    "description": "List all scripts for the active project.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/writing/scripts",
+    "risk_class": "read",
+    "required_scopes": [
+      "documents:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.writing.list_scripts",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "writing.get_script",
+    "name": "Get Script",
+    "description": "Retrieve a script by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/writing/scripts/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "documents:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.writing.get_script",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "writing.create_draft",
+    "name": "Create Script Draft",
+    "description": "Create a new script draft.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/writing/scripts",
+    "risk_class": "draft",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.writing.create_draft",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "writing.update_draft",
+    "name": "Update Script Draft",
+    "description": "Update content or metadata of a script draft.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/writing/scripts/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.writing.update_draft",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "writing.lock_script",
+    "name": "Lock Script",
+    "description": "Lock a script to prevent further editing.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/writing/scripts/{id}/lock",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.writing.lock_script",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "writing.get_revisions",
+    "name": "Get Script Revisions",
+    "description": "List revision history for a script.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/writing/scripts/{id}/revisions",
+    "risk_class": "read",
+    "required_scopes": [
+      "documents:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.writing.get_revisions",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "director.list_projects",
+    "name": "List Director Projects",
+    "description": "List projects assigned to the director.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/director/projects",
+    "risk_class": "read",
+    "required_scopes": [
+      "projects:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.director.list_projects",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "director.get_project_brief",
+    "name": "Get Project Brief",
+    "description": "Retrieve the creative brief for a project.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/director/projects/{id}/brief",
+    "risk_class": "read",
+    "required_scopes": [
+      "projects:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.director.get_project_brief",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "director.create_brief",
+    "name": "Create Project Brief",
+    "description": "Draft a new creative brief for a project.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/director/briefs",
+    "risk_class": "draft",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    },
+    "audit_event": "tool.director.create_brief",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "director.update_brief",
+    "name": "Update Project Brief",
+    "description": "Update a creative brief.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/director/briefs/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.director.update_brief",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "director.set_project_phase",
+    "name": "Set Project Phase",
+    "description": "Advance or change the production phase of a project.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/director/projects/{id}/phase",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "projects:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "phase": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "phase"
+      ]
+    },
+    "audit_event": "tool.director.set_project_phase",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "storyboard.list",
+    "name": "List Storyboards",
+    "description": "List storyboards for the active project.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/storyboards",
+    "risk_class": "read",
+    "required_scopes": [
+      "storyboards:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.storyboard.list",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storyboard.get",
+    "name": "Get Storyboard",
+    "description": "Retrieve a storyboard by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/storyboards/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storyboards:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.storyboard.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storyboard.create",
+    "name": "Create Storyboard",
+    "description": "Create a new storyboard.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storyboards",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storyboards:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.storyboard.create",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storyboard.update",
+    "name": "Update Storyboard",
+    "description": "Update storyboard panels or metadata.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/storyboards/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storyboards:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "panels": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.storyboard.update",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storyboard.approve_revision",
+    "name": "Approve Storyboard Revision",
+    "description": "Approve a pending storyboard revision.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storyboards/{id}/approve",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storyboards:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.storyboard.approve_revision",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "storyboard.lock",
+    "name": "Lock Storyboard",
+    "description": "Lock a storyboard for final review.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storyboards/{id}/lock",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storyboards:archive"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.storyboard.lock",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "storyboard.archive",
+    "name": "Archive Storyboard",
+    "description": "Archive a completed storyboard.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storyboards/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storyboards:archive"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.storyboard.archive",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "animation.list_sequences",
+    "name": "List Animation Sequences",
+    "description": "List animation sequences for the active project.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/animation/sequences",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.animation.list_sequences",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "animation.get_sequence",
+    "name": "Get Animation Sequence",
+    "description": "Retrieve an animation sequence by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/animation/sequences/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.animation.get_sequence",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "animation.create_sequence",
+    "name": "Create Animation Sequence",
+    "description": "Create a new animation sequence.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/animation/sequences",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "fps": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.animation.create_sequence",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "animation.submit_render",
+    "name": "Submit Render Job",
+    "description": "Submit an animation sequence for GPU rendering.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/animation/sequences/{id}/render",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "gpu:infer"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.animation.submit_render",
+    "timeout_seconds": 120,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "animation.cancel_render",
+    "name": "Cancel Render Job",
+    "description": "Cancel an in-progress animation render job.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/animation/renders/{id}/cancel",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "gpu:infer"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.animation.cancel_render",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "editor.list_sequences",
+    "name": "List Edit Sequences",
+    "description": "List edit sequences for the active project.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/editor/sequences",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.editor.list_sequences",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "editor.get_sequence",
+    "name": "Get Edit Sequence",
+    "description": "Retrieve an edit sequence by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/editor/sequences/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.editor.get_sequence",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "editor.create_cut",
+    "name": "Create Edit Cut",
+    "description": "Create a new editorial cut.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/editor/cuts",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "sequence_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.editor.create_cut",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "editor.update_cut",
+    "name": "Update Edit Cut",
+    "description": "Update an editorial cut.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/editor/cuts/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "timeline": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.editor.update_cut",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "editor.export_cut",
+    "name": "Export Edit Cut",
+    "description": "Export an editorial cut to a deliverable format.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/editor/cuts/{id}/export",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "format"
+      ]
+    },
+    "audit_event": "tool.editor.export_cut",
+    "timeout_seconds": 120,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "editor.archive_cut",
+    "name": "Archive Edit Cut",
+    "description": "Archive a completed editorial cut.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/editor/cuts/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.editor.archive_cut",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "fcp.list_projects",
+    "name": "List FCP Projects",
+    "description": "List Final Cut Pro projects.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/fcp/projects",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.fcp.list_projects",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "fcp.get_project",
+    "name": "Get FCP Project",
+    "description": "Retrieve a Final Cut Pro project by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/fcp/projects/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.fcp.get_project",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "fcp.import_media",
+    "name": "Import Media to FCP",
+    "description": "Import a media asset into an FCP project.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/fcp/projects/{id}/import",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "asset_id"
+      ]
+    },
+    "audit_event": "tool.fcp.import_media",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "fcp.export_timeline",
+    "name": "Export FCP Timeline",
+    "description": "Export an FCP project timeline to a deliverable.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/fcp/projects/{id}/export",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.fcp.export_timeline",
+    "timeout_seconds": 120,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "fcp.sync_project",
+    "name": "Sync FCP Project",
+    "description": "Sync an FCP project with the central storage.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/fcp/projects/{id}/sync",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.fcp.sync_project",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "logic.list_sessions",
+    "name": "List Logic Sessions",
+    "description": "List Logic Pro sessions.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/logic/sessions",
+    "risk_class": "read",
+    "required_scopes": [
+      "ai:assist"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.logic.list_sessions",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "logic.get_session",
+    "name": "Get Logic Session",
+    "description": "Retrieve a Logic Pro session by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/logic/sessions/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "ai:assist"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.logic.get_session",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "logic.create_session",
+    "name": "Create Logic Session",
+    "description": "Create a new Logic Pro session.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/logic/sessions",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "ai:assist"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "bpm": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.logic.create_session",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "logic.export_session",
+    "name": "Export Logic Session",
+    "description": "Export a Logic Pro session to a deliverable audio format.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/logic/sessions/{id}/export",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "ai:assist"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.logic.export_session",
+    "timeout_seconds": 120,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "logic.analyze_mix",
+    "name": "Analyze Mix",
+    "description": "Run AI analysis on a Logic Pro mix.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/logic/sessions/{id}/analyze",
+    "risk_class": "analysis",
+    "required_scopes": [
+      "ai:assist"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.logic.analyze_mix",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "gpu.list_jobs",
+    "name": "List GPU Jobs",
+    "description": "List GPU inference jobs.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/gpu/jobs",
+    "risk_class": "read",
+    "required_scopes": [
+      "gpu:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.gpu.list_jobs",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "gpu.get_job",
+    "name": "Get GPU Job",
+    "description": "Retrieve a GPU job by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/gpu/jobs/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "gpu:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.gpu.get_job",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "gpu.get_engine_status",
+    "name": "Get GPU Engine Status",
+    "description": "Get current status of all GPU engines.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/gpu/engines",
+    "risk_class": "read",
+    "required_scopes": [
+      "gpu:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {}
+    },
+    "audit_event": "tool.gpu.get_engine_status",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "gpu.submit_job",
+    "name": "Submit GPU Job",
+    "description": "Submit a new inference job to the GPU router.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/gpu/jobs",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "gpu:infer"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "job_type": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "job_type",
+        "payload"
+      ]
+    },
+    "audit_event": "tool.gpu.submit_job",
+    "timeout_seconds": 120,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "gpu.cancel_job",
+    "name": "Cancel GPU Job",
+    "description": "Cancel an in-progress GPU job.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/gpu/jobs/{id}/cancel",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "gpu:infer"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.gpu.cancel_job",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "workboard.list",
+    "name": "List Workboard Jobs",
+    "description": "List jobs on the workboard.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/workboard",
+    "risk_class": "read",
+    "required_scopes": [
+      "workboard:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.workboard.list",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "workboard.get",
+    "name": "Get Workboard Job",
+    "description": "Retrieve a workboard job by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/workboard/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "workboard:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.workboard.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "workboard.create",
+    "name": "Create Workboard Job",
+    "description": "Create a new workboard job.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/workboard",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "workboard:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "lane": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "lane",
+        "title"
+      ]
+    },
+    "audit_event": "tool.workboard.create",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "workboard.update",
+    "name": "Update Workboard Job",
+    "description": "Update a workboard job's metadata.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/workboard/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "workboard:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.workboard.update",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "workboard.resolve",
+    "name": "Resolve Workboard Job",
+    "description": "Mark a workboard job as resolved with an outcome.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/workboard/{id}/resolve",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "workboard:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "outcome"
+      ]
+    },
+    "audit_event": "tool.workboard.resolve",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "workboard.approve",
+    "name": "Approve Workboard Job",
+    "description": "Approve a pending workboard job.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/workboard/{id}/approve",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "workboard:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.workboard.approve",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "workboard.reject",
+    "name": "Reject Workboard Job",
+    "description": "Reject a pending workboard job.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/workboard/{id}/reject",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "workboard:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.workboard.reject",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "records.search",
+    "name": "Search Records",
+    "description": "Full-text search across records.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/records/search",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    },
+    "audit_event": "tool.records.search",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "records.get",
+    "name": "Get Record",
+    "description": "Retrieve a record by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/records/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.records.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "records.create",
+    "name": "Create Record",
+    "description": "Create a new record.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/records",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "records:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    "audit_event": "tool.records.create",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "records.update",
+    "name": "Update Record",
+    "description": "Update a record's fields.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/records/{id}",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "records:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "data"
+      ]
+    },
+    "audit_event": "tool.records.update",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "records.archive",
+    "name": "Archive Record",
+    "description": "Archive a record.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/records/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "records:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.records.archive",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "records.restore",
+    "name": "Restore Record",
+    "description": "Restore an archived record.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/records/{id}/restore",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "records:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.records.restore",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "records.get_provenance",
+    "name": "Get Record Provenance",
+    "description": "Retrieve the provenance chain for a record.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/records/{id}/provenance",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.records.get_provenance",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "records.delete",
+    "name": "Delete Record",
+    "description": "Permanently delete a record.",
+    "http_method": "DELETE",
+    "endpoint": "/api/v2/records/{id}",
+    "risk_class": "destructive",
+    "required_scopes": [
+      "records:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.records.delete",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "assets.list",
+    "name": "List Assets",
+    "description": "List assets in storage.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/assets",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.assets.list",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "assets.get",
+    "name": "Get Asset",
+    "description": "Retrieve an asset by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/assets/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.assets.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "assets.upload",
+    "name": "Upload Asset",
+    "description": "Upload a new asset.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/assets",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "filename"
+      ]
+    },
+    "audit_event": "tool.assets.upload",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "assets.update_metadata",
+    "name": "Update Asset Metadata",
+    "description": "Update asset metadata.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/assets/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.assets.update_metadata",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "assets.archive",
+    "name": "Archive Asset",
+    "description": "Archive an asset.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/assets/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.assets.archive",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "assets.delete",
+    "name": "Delete Asset",
+    "description": "Permanently delete an asset.",
+    "http_method": "DELETE",
+    "endpoint": "/api/v2/assets/{id}",
+    "risk_class": "destructive",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.assets.delete",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "graph.query",
+    "name": "Query Graph",
+    "description": "Execute a Cypher query against the knowledge graph.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/graph/query",
+    "risk_class": "read",
+    "required_scopes": [
+      "graph:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cypher": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "cypher"
+      ]
+    },
+    "audit_event": "tool.graph.query",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "graph.get_node",
+    "name": "Get Graph Node",
+    "description": "Retrieve a graph node by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/graph/nodes/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "graph:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.graph.get_node",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "graph.search",
+    "name": "Search Graph",
+    "description": "Semantic search over the knowledge graph.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/graph/search",
+    "risk_class": "analysis",
+    "required_scopes": [
+      "graph:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    },
+    "audit_event": "tool.graph.search",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "graph.create_node",
+    "name": "Create Graph Node",
+    "description": "Create a new node in the knowledge graph.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/graph/nodes",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "graph:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "label"
+      ]
+    },
+    "audit_event": "tool.graph.create_node",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "graph.link_nodes",
+    "name": "Link Graph Nodes",
+    "description": "Create a relationship edge between two graph nodes.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/graph/edges",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "graph:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "from_id": {
+          "type": "string"
+        },
+        "to_id": {
+          "type": "string"
+        },
+        "rel_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from_id",
+        "to_id",
+        "rel_type"
+      ]
+    },
+    "audit_event": "tool.graph.link_nodes",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "documents.list",
+    "name": "List Documents",
+    "description": "List documents.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/documents",
+    "risk_class": "read",
+    "required_scopes": [
+      "documents:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.documents.list",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "documents.get",
+    "name": "Get Document",
+    "description": "Retrieve a document by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/documents/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "documents:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.documents.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "documents.create",
+    "name": "Create Document",
+    "description": "Create a new document.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/documents",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.documents.create",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "documents.update",
+    "name": "Update Document",
+    "description": "Update a document.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/documents/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.documents.update",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "documents.lock",
+    "name": "Lock Document",
+    "description": "Lock a document to prevent further edits.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/documents/{id}/lock",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.documents.lock",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "documents.archive",
+    "name": "Archive Document",
+    "description": "Archive a document.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/documents/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.documents.archive",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "documents.delete",
+    "name": "Delete Document",
+    "description": "Permanently delete a document.",
+    "http_method": "DELETE",
+    "endpoint": "/api/v2/documents/{id}",
+    "risk_class": "destructive",
+    "required_scopes": [
+      "documents:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.documents.delete",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "storage.list",
+    "name": "List Storage Objects",
+    "description": "List objects in a storage bucket or prefix.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/storage",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.storage.list",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storage.get",
+    "name": "Get Storage Object",
+    "description": "Retrieve a storage object by key.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/storage/{key}",
+    "risk_class": "read",
+    "required_scopes": [
+      "storage:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "audit_event": "tool.storage.get",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storage.put",
+    "name": "Put Storage Object",
+    "description": "Upload or replace a storage object.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storage/{key}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "audit_event": "tool.storage.put",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storage.copy",
+    "name": "Copy Storage Object",
+    "description": "Copy a storage object to a new key.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/storage/{key}/copy",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "destination"
+      ]
+    },
+    "audit_event": "tool.storage.copy",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "storage.delete",
+    "name": "Delete Storage Object",
+    "description": "Permanently delete a storage object.",
+    "http_method": "DELETE",
+    "endpoint": "/api/v2/storage/{key}",
+    "risk_class": "destructive",
+    "required_scopes": [
+      "storage:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "audit_event": "tool.storage.delete",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "ops.status",
+    "name": "System Status",
+    "description": "Get overall system status.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/ops/status",
+    "risk_class": "read",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {}
+    },
+    "audit_event": "tool.ops.status",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "ops.list_services",
+    "name": "List Services",
+    "description": "List all deployed services and their health.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/ops/services",
+    "risk_class": "read",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {}
+    },
+    "audit_event": "tool.ops.list_services",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "ops.get_logs",
+    "name": "Get Service Logs",
+    "description": "Retrieve recent logs for a service.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/ops/services/{id}/logs",
+    "risk_class": "read",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lines": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.ops.get_logs",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "ops.propose_repair",
+    "name": "Propose Repair",
+    "description": "Propose an automated repair action for a failing service.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/ops/repairs",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "service_id": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "service_id",
+        "action"
+      ]
+    },
+    "audit_event": "tool.ops.propose_repair",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "ops.restart_service",
+    "name": "Restart Service",
+    "description": "Restart a deployed service.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/ops/services/{id}/restart",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.ops.restart_service",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "ops.force_deploy",
+    "name": "Force Deploy",
+    "description": "Force a deployment of a specific service version.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/ops/services/{id}/deploy",
+    "risk_class": "administrative",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ]
+    },
+    "audit_event": "tool.ops.force_deploy",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "ops.rotate_key",
+    "name": "Rotate Service Key",
+    "description": "Rotate a service credential or API key.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/ops/keys/{id}/rotate",
+    "risk_class": "administrative",
+    "required_scopes": [
+      "ops:owner"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.ops.rotate_key",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "publish.list_releases",
+    "name": "List Releases",
+    "description": "List published and staged releases.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/publish/releases",
+    "risk_class": "read",
+    "required_scopes": [
+      "publishing:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.publish.list_releases",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "publish.get_release",
+    "name": "Get Release",
+    "description": "Retrieve a release by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/publish/releases/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "publishing:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.publish.get_release",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "publish.create_draft",
+    "name": "Create Publish Draft",
+    "description": "Create a draft release for review.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/publish/drafts",
+    "risk_class": "draft",
+    "required_scopes": [
+      "publishing:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "audit_event": "tool.publish.create_draft",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "publish.stage",
+    "name": "Stage Release",
+    "description": "Stage a draft for publishing.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/publish/drafts/{id}/stage",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "publishing:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.publish.stage",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "publish.release",
+    "name": "Publish Release",
+    "description": "Publish a staged release to the public.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/publish/releases",
+    "risk_class": "publish",
+    "required_scopes": [
+      "publishing:publish"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "draft_id": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "draft_id"
+      ]
+    },
+    "audit_event": "tool.publish.release",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "publish.retract",
+    "name": "Retract Release",
+    "description": "Retract a published release.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/publish/releases/{id}/retract",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "publishing:publish"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.publish.retract",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "game.list_sessions",
+    "name": "List Game Sessions",
+    "description": "List SAGE game sessions.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/game/sessions",
+    "risk_class": "read",
+    "required_scopes": [
+      "game:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.game.list_sessions",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "game.get_session",
+    "name": "Get Game Session",
+    "description": "Retrieve a game session by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/game/sessions/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "game:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.game.get_session",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "game.create_session",
+    "name": "Create Game Session",
+    "description": "Create a new SAGE game session.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/game/sessions",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "game:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "player_id": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "player_id"
+      ]
+    },
+    "audit_event": "tool.game.create_session",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "game.update_session",
+    "name": "Update Game Session",
+    "description": "Update a game session's state.",
+    "http_method": "PATCH",
+    "endpoint": "/api/v2/game/sessions/{id}",
+    "risk_class": "mutation_low",
+    "required_scopes": [
+      "game:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.game.update_session",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "game.submit_score",
+    "name": "Submit Game Score",
+    "description": "Submit a score or outcome for a game session.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/game/sessions/{id}/score",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "game:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "score"
+      ]
+    },
+    "audit_event": "tool.game.submit_score",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "game.archive_session",
+    "name": "Archive Game Session",
+    "description": "Archive a completed game session.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/game/sessions/{id}/archive",
+    "risk_class": "mutation_guarded",
+    "required_scopes": [
+      "game:write"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.game.archive_session",
+    "timeout_seconds": 30,
+    "idempotency_required": true
+  },
+  {
+    "tool_id": "public.list_civic_notices",
+    "name": "List Public Civic Notices",
+    "description": "List publicly available civic notices.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/civic/notices",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.public.list_civic_notices",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.get_civic_notice",
+    "name": "Get Public Civic Notice",
+    "description": "Retrieve a public civic notice by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/civic/notices/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "civic:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.public.get_civic_notice",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.search_records",
+    "name": "Search Public Records",
+    "description": "Search public records.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/records/search",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    },
+    "audit_event": "tool.public.search_records",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.get_program",
+    "name": "Get Public Program",
+    "description": "Retrieve a public program by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/programs/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.public.get_program",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.list_programs",
+    "name": "List Public Programs",
+    "description": "List publicly available programs.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/programs",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.public.list_programs",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.get_studio_release",
+    "name": "Get Public Studio Release",
+    "description": "Retrieve a public studio release by ID.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/studio/releases/{id}",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "audit_event": "tool.public.get_studio_release",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "public.list_studio_releases",
+    "name": "List Public Studio Releases",
+    "description": "List public studio releases.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/public/studio/releases",
+    "risk_class": "read",
+    "required_scopes": [
+      "records:read"
+    ],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "audit_event": "tool.public.list_studio_releases",
+    "timeout_seconds": 30,
+    "idempotency_required": false
+  }
+]

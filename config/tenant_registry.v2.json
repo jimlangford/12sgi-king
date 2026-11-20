@@ -1,0 +1,63 @@
+{
+  "schema": "tenant-registry-v2",
+  "schema_version": "2.0.0",
+  "platform_version_manifest": "config/platform_version.json",
+  "generated_at": "2026-07-14T00:00:00Z",
+  "studio_parent": {
+    "id": "studio",
+    "name": "12SGI Studio",
+    "family": "studio",
+    "state": "active"
+  },
+  "tenant_families": [
+    {
+      "id": "civic",
+      "name": "Civic",
+      "parent_id": "studio",
+      "maturity": "production",
+      "state": "active"
+    },
+    {
+      "id": "media",
+      "name": "Media",
+      "parent_id": "studio",
+      "maturity": "pilot",
+      "state": "onboarding"
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "parent_id": "studio",
+      "maturity": "alpha",
+      "state": "onboarding"
+    },
+    {
+      "id": "housing",
+      "name": "Housing",
+      "parent_id": "studio",
+      "maturity": "alpha",
+      "state": "onboarding"
+    },
+    {
+      "id": "agriculture",
+      "name": "Agriculture",
+      "parent_id": "studio",
+      "maturity": "alpha",
+      "state": "onboarding"
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "parent_id": "studio",
+      "maturity": "pilot",
+      "state": "onboarding"
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "parent_id": "studio",
+      "maturity": "production",
+      "state": "active"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "_about": "Phase 2.2 local-skills registry. Authored 2026-07-22 from the executable specification in tests/v2/test_media_phase22.py::TestLocalSkillsRegistry (the original PR #372 artifact was never committed - config/ is gitignored and the author's local copy was lost).",
+  "version": "2.0",
+  "local_skills": {
+    "scene_builder": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Builds scene records (slugline, purpose, beats) from the locked script for downstream storyboarding.",
+      "output": "scene_record"
+    },
+    "director_camera_grammar": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Applies the director's camera grammar (movement, framing, prohibitions) to each planned shot per config/media_camera_spec.schema.json.",
+      "output": "camera_spec"
+    },
+    "storyboard_builder": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Turns approved scenes + camera specs into storyboard frame jobs for the Kandinsky5 local engine.",
+      "output": "kandinsky_job"
+    },
+    "continuity_guardian": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Checks storyboard frames and takes for continuity breaks (wardrobe, lighting, screen direction) before motion work.",
+      "output": "continuity_report"
+    },
+    "motion_prompt_builder": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Builds image-to-video motion prompts from approved storyboard frames for the LTX engine.",
+      "output": "ltx_motion_job"
+    },
+    "clip_engine_reverse": {
+      "enabled": true,
+      "lane": "engineering",
+      "description": "The opposite lens - measures finished clips to verify which engine actually produced them and flags engine conflicts.",
+      "source_module": "watchers/clip_engine_reverse.py",
+      "output": "clip_measurement"
+    },
+    "editor_selector": {
+      "enabled": true,
+      "lane": "creative",
+      "description": "Scores takes (motion, identity, camera compliance) and selects the take per shot per config/media_editor_decision.schema.json.",
+      "output": "editor_decision"
+    }
+  }
+}

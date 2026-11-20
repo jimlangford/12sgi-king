@@ -1,6 +1,1570 @@
 {
   "posts": [
     {
+      "id": "dev-digest-20261119",
+      "slug": "dev-digest-20261119",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-19",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**November 19, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (79% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Disk cleanup (owner: review shared Reallusion content for SAGE UE5 use, else remove)\n- System-decides automation (owner 2026-11-19: stop asking, local AI/system handles next steps)\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261118",
+      "slug": "dev-digest-20261118",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-18",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**November 18, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (69% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Maui agenda ingest self-heal\n- SAGE ahupua'a bands resolved by Kumulipo logic (Jimmy 2026-11-18)\n- Open SAGE in UE 5.7, allowlisted headless runs with live log, deck export, project browser, phases\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261117",
+      "slug": "dev-digest-20261117",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**November 17, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (59% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- REEF REBUILD+RE-RENDER OWNER CONTROL\n- Created with full read-only access to the produced body of work (16 shared refs)\n- NEW independent project KEYS_OF_STARFORGE (KEYS OF THE STARFORGE: Episode One\n- NEW independent project SEVENTH_STONE (THE SEVENTH STONE\n- NEW independent project THE_MOVIE_HOW_WOULD_THEY_FEEL (THE MOVIE\n- NEW independent project KA_NOHO_KAAWALE (Ka Noho Kaʻawale\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261116",
+      "slug": "dev-digest-20261116",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-16",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**November 16, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (49% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261115",
+      "slug": "dev-digest-20261115",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-15",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**November 15, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (38% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261114",
+      "slug": "dev-digest-20261114",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**November 14, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (28% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261113",
+      "slug": "dev-digest-20261113",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-13",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**November 13, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (19% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- For st1794601196118: [studio:civic_services] daily_brief\n- For st1794601203602: [studio:civic_services] agenda_intel\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261112",
+      "slug": "dev-digest-20261112",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-12",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**November 12, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (12% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261111",
+      "slug": "dev-digest-20261111",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-11",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**November 11, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (6% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261110",
+      "slug": "dev-digest-20261110",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-10",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**November 10, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (2% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261109",
+      "slug": "dev-digest-20261109",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-09",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**November 9, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (0% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261108",
+      "slug": "dev-digest-20261108",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-08",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**November 8, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (1% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261107",
+      "slug": "dev-digest-20261107",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-07",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**November 7, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (3% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261106",
+      "slug": "dev-digest-20261106",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-06",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**November 6, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (8% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261105",
+      "slug": "dev-digest-20261105",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-05",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**November 5, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (15% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261104",
+      "slug": "dev-digest-20261104",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-04",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**November 4, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (23% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261103",
+      "slug": "dev-digest-20261103",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-03",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**November 3, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (33% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261102",
+      "slug": "dev-digest-20261102",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-02",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**November 2, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (43% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261101",
+      "slug": "dev-digest-20261101",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-11-01",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**November 1, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (54% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261031",
+      "slug": "dev-digest-20261031",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-31",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**October 31, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (64% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261030",
+      "slug": "dev-digest-20261030",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-30",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**October 30, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (74% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261029",
+      "slug": "dev-digest-20261029",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-29",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**October 29, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (83% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261028",
+      "slug": "dev-digest-20261028",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-28",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**October 28, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (90% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261027",
+      "slug": "dev-digest-20261027",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-27",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**October 27, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (95% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261026",
+      "slug": "dev-digest-20261026",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-26",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**October 26, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (99% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261025",
+      "slug": "dev-digest-20261025",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-25",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**October 25, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (100% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261024",
+      "slug": "dev-digest-20261024",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-24",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**October 24, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (99% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261023",
+      "slug": "dev-digest-20261023",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-23",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**October 23, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (96% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261022",
+      "slug": "dev-digest-20261022",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-22",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**October 22, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (90% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261021",
+      "slug": "dev-digest-20261021",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-21",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**October 21, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (83% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261020",
+      "slug": "dev-digest-20261020",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-20",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**October 20, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (75% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261019",
+      "slug": "dev-digest-20261019",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-19",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**October 19, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (65% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261018",
+      "slug": "dev-digest-20261018",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-18",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**October 18, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (54% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261017",
+      "slug": "dev-digest-20261017",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**October 17, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (44% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261016",
+      "slug": "dev-digest-20261016",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-16",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**October 16, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (33% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261015",
+      "slug": "dev-digest-20261015",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-15",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**October 15, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (24% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261014",
+      "slug": "dev-digest-20261014",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**October 14, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (15% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261013",
+      "slug": "dev-digest-20261013",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-13",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**October 13, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (9% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261004",
+      "slug": "dev-digest-20261004",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-04",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**October 4, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (38% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261003",
+      "slug": "dev-digest-20261003",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-03",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**October 3, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (48% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261002",
+      "slug": "dev-digest-20261002",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-02",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**October 2, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (59% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20261001",
+      "slug": "dev-digest-20261001",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-10-01",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**October 1, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (69% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260930",
+      "slug": "dev-digest-20260930",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-30",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**September 30, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (78% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260929",
+      "slug": "dev-digest-20260929",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-29",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**September 29, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (86% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260928",
+      "slug": "dev-digest-20260928",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-28",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**September 28, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (93% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260925",
+      "slug": "dev-digest-20260925",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-25",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**September 25, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (100% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260924",
+      "slug": "dev-digest-20260924",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-24",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**September 24, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (98% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260923",
+      "slug": "dev-digest-20260923",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-23",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**September 23, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (93% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- For st1790195609971: [studio:civic_services] daily_brief\n- For st1790221421656: [studio:game] game_works\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260922",
+      "slug": "dev-digest-20260922",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-22",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**September 22, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (87% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260921",
+      "slug": "dev-digest-20260921",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-21",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**September 21, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (79% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260920",
+      "slug": "dev-digest-20260920",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-20",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**September 20, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (70% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260919",
+      "slug": "dev-digest-20260919",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-19",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**September 19, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (60% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260918",
+      "slug": "dev-digest-20260918",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-18",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**September 18, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (50% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260917",
+      "slug": "dev-digest-20260917",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**September 17, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (39% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260916",
+      "slug": "dev-digest-20260916",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-16",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**September 16, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (29% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260915",
+      "slug": "dev-digest-20260915",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-15",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**September 15, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (20% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260914",
+      "slug": "dev-digest-20260914",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**September 14, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (12% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260913",
+      "slug": "dev-digest-20260913",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-09-13",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**September 13, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (6% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260825",
+      "slug": "dev-digest-20260825",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-25",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**August 25, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (96% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260824",
+      "slug": "dev-digest-20260824",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-24",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**August 24, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (91% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260823",
+      "slug": "dev-digest-20260823",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-23",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**August 23, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (84% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260822",
+      "slug": "dev-digest-20260822",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-22",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**August 22, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (75% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260821",
+      "slug": "dev-digest-20260821",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-21",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**August 21, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (66% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260820",
+      "slug": "dev-digest-20260820",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-20",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**August 20, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (55% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260819",
+      "slug": "dev-digest-20260819",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-19",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**August 19, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (45% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260818",
+      "slug": "dev-digest-20260818",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**August 18, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (34% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260817",
+      "slug": "dev-digest-20260817",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-17",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**August 17, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (25% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260816",
+      "slug": "dev-digest-20260816",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-16",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**August 16, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (16% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260814",
+      "slug": "dev-digest-20260814",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-14",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**August 14, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (4% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260811",
+      "slug": "dev-digest-20260811",
+      "title": "Development Digest — Hilo",
+      "subtitle": "What grew today, offered on Hilo, the new moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-11",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Hilo, the new moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Hilo**\n**August 11, 2026 · Maui**\n\nTonight is Hilo, the new moon: the first dark night — the night to plant an intention before you speak it (1% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260810",
+      "slug": "dev-digest-20260810",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-10",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**August 10, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (5% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260809",
+      "slug": "dev-digest-20260809",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-09",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**August 9, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (11% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260808",
+      "slug": "dev-digest-20260808",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-08",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**August 8, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (18% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260807",
+      "slug": "dev-digest-20260807",
+      "title": "Development Digest — a waning crescent",
+      "subtitle": "What grew today, offered on a waning crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-07",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning crescent**\n**August 7, 2026 · Maui**\n\nTonight is a waning crescent: the old moon, thinning — the quiet before the next beginning (27% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260806",
+      "slug": "dev-digest-20260806",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-06",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**August 6, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (37% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260805",
+      "slug": "dev-digest-20260805",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-05",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**August 5, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (47% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260804",
+      "slug": "dev-digest-20260804",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-04",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**August 4, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (58% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260803",
+      "slug": "dev-digest-20260803",
+      "title": "Development Digest — the last quarter",
+      "subtitle": "What grew today, offered on the last quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-03",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the last quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the last quarter**\n**August 3, 2026 · Maui**\n\nTonight is the last quarter: the half-dark descent — the season for release and rest (68% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260802",
+      "slug": "dev-digest-20260802",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-02",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**August 2, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (77% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260801",
+      "slug": "dev-digest-20260801",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-08-01",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**August 1, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (86% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260731",
+      "slug": "dev-digest-20260731",
+      "title": "Development Digest — a waning gibbous",
+      "subtitle": "What grew today, offered on a waning gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-31",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waning gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waning gibbous**\n**July 31, 2026 · Maui**\n\nTonight is a waning gibbous: the first letting-go — the moon beginning its return (92% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260730",
+      "slug": "dev-digest-20260730",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-30",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**July 30, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (97% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260729",
+      "slug": "dev-digest-20260729",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-29",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**July 29, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (99% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260728",
+      "slug": "dev-digest-20260728",
+      "title": "Development Digest — Māhealani",
+      "subtitle": "What grew today, offered on Māhealani, the full moon.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-28",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on Māhealani, the full moon: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — Māhealani**\n**July 28, 2026 · Maui**\n\nTonight is Māhealani, the full moon: the height of light — the night things come to fruit (100% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260727",
+      "slug": "dev-digest-20260727",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-27",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**July 27, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (98% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260725",
+      "slug": "dev-digest-20260725",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-25",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**July 25, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (88% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- For wb1784966731000: Measure the likeness gate on the north star\n- For wb1785035213000: AUDIO-FIRST timeline for Reef @20260725-170652\n- For wb1785040861000: FILM: director's + editor's notes for REEF @20260725-184100\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260724",
+      "slug": "dev-digest-20260724",
+      "title": "Development Digest — a waxing gibbous",
+      "subtitle": "What grew today, offered on a waxing gibbous.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-24",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing gibbous: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing gibbous**\n**July 24, 2026 · Maui**\n\nTonight is a waxing gibbous: nearly full — the gathering before the height (80% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Maui County records-request PACKAGE assembled (3 drafts, all DRAFT-ONLY, owner files)\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260723",
+      "slug": "dev-digest-20260723",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-23",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**July 23, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (71% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- For st1784828925605: [studio:game] game_works\n- Docs/SAGE_3D_ABUNDANCE_PLAN.md now carries the CIVIC SPINE\n- Clips linked=5473 of 5587; characters built from past work=1; 5s\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260722",
+      "slug": "dev-digest-20260722",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-22",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**July 22, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (61% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Was DOWN and NO healer relaunched it\n- ONE LOOK + ATTACHED PROJECTS across the creative backend (audit-quad-os, Jimmy 2026-07-22 'why is the storyboard page brown\n- BACKEND NOW LINKS THE NEW STUDIO PAGES\n- For wb1784758292002: PROBE game lane executes on the board\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260721",
+      "slug": "dev-digest-20260721",
+      "title": "Development Digest — the first quarter",
+      "subtitle": "What grew today, offered on the first quarter.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-21",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on the first quarter: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — the first quarter**\n**July 21, 2026 · Maui**\n\nTonight is the first quarter: the half-lit climb — the moon leaning toward fullness (51% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260720",
+      "slug": "dev-digest-20260720",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-20",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**July 20, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (40% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
+      "id": "dev-digest-20260719",
+      "slug": "dev-digest-20260719",
+      "title": "Development Digest — a waxing crescent",
+      "subtitle": "What grew today, offered on a waxing crescent.",
+      "author": "elementLOTUS · Development",
+      "date": "2026-07-19",
+      "status": "published",
+      "tags": [
+        "development",
+        "build-log",
+        "aloha-aina",
+        "pono"
+      ],
+      "summary": "A daily development digest, opened on a waxing crescent: the day's real work, kept public-safe and offered as service.",
+      "body": "**Development Digest — a waxing crescent**\n**July 19, 2026 · Maui**\n\nTonight is a waxing crescent: the young moon, thickening — the season for tending what was planted (30% lit). A small letter, in that spirit, about what grew today — offered as service, not as a boast.\n\n## What grew today\n- Quiet housekeeping — the kind of work that leaves no headline, only a steadier floor.\n\n## The pillars first\nUnderneath the build, the quiet work continued on its own — the people's record kept in plain sight, the land's own time kept true. That comes first, and it never sleeps.\n\n---\n\nNothing here is finished; nothing ever is. But it is a little truer than it was this morning, and on this moon that feels like enough.\n\n*He aliʻi ka ʻāina; he kauwā ke kanaka.* The land is chief; we are its servants. Aloha.\n\n— elementLOTUS"
+    },
+    {
       "id": "dev-digest-20260718",
       "slug": "dev-digest-20260718",
       "title": "Development Digest — a waxing crescent",

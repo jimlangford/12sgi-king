@@ -1,0 +1,10 @@
+{
+  "profile_id": "12sgi-game",
+  "base_model": "local-reasoning-model",
+  "system_policy": "game-v1",
+  "allowed_tools": ["game.*", "records.search", "assets.*"],
+  "knowledge_scopes": ["game", "active-project"],
+  "max_context_tokens": 8192,
+  "gpu_priority": "interactive-low",
+  "forbidden_actions": ["publish.release"]
+}

@@ -43,6 +43,8 @@
         <div><div>Commit</div><div id="gpu-commit" style="color:var(--ink-dim,#b3a98f); word-break:break-all;">—</div></div>
         <div><div>Build</div><div id="gpu-build-ts" style="color:var(--ink-dim,#b3a98f);">—</div></div>
         <div><div>Environment</div><div id="gpu-environment" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Platform</div><div id="gpu-platform-version" style="color:var(--ink-dim,#b3a98f);">—</div></div>
+        <div><div>Manifest</div><div id="gpu-platform-manifest" style="color:var(--ink-dim,#b3a98f);">—</div></div>
       </div>
       <!-- VRAM bar (synthetic — shows GPU runtime availability) -->
       <div style="font-size:11px; color:var(--ink-faint,#756b56); margin-bottom:4px;">GPU Runtime (Ollama)</div>
@@ -72,6 +74,11 @@
     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin-bottom:14px;">Event Feed</div>
 
     <div id="gpu-events-list" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">
+      Loading…
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-faint,#756b56); border-bottom:1px solid var(--line,#34301f); padding:18px 0 6px; margin:18px 0 14px;">Media Production</div>
+    <div id="gpu-media-summary" style="background:var(--panel,#16140f); border:1px solid var(--line,#34301f); border-radius:10px; padding:12px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint,#756b56);">
       Loading…
     </div>
 
@@ -114,6 +121,8 @@
       var commit = _el('gpu-commit');
       var buildTs = _el('gpu-build-ts');
       var env = _el('gpu-environment');
+      var platformVersion = _el('gpu-platform-version');
+      var manifestVersion = _el('gpu-platform-manifest');
       var bar = _el('gpu-vram-bar');
       var vs  = _el('gpu-voice-status');
       var grid = _el('gpu-lanes-grid');
@@ -124,6 +133,11 @@
       commit.textContent = data.commit_sha || 'unknown';
       buildTs.textContent = data.build_timestamp || 'unknown';
       env.textContent = data.environment || 'unknown';
+      var mismatch = !!data.platform_version_mismatch || !!(data.platform && data.platform.version_disagreement);
+      platformVersion.textContent = data.platform_version || (data.platform && data.platform.platform_version) || 'unknown';
+      manifestVersion.textContent = data.platform_manifest_version || (data.platform && data.platform.manifest_version) || 'unknown';
+      platformVersion.style.color = mismatch ? '#d8904c' : 'var(--ink-dim,#b3a98f)';
+      manifestVersion.style.color = mismatch ? '#d8904c' : 'var(--ink-dim,#b3a98f)';
 
       // VRAM bar: 100% green when Ollama is running (no direct VRAM API from router).
       var ollama_active = (data.lanes && (data.lanes.ollama || {}).running > 0);
@@ -193,6 +207,27 @@
           '<span style="color:var(--ink-faint,#756b56); font-size:10px;">' + (e.job_id || '').substring(0, 8) + '…</span>' +
           '</div>';
       }).join('');
+    });
+
+    _get('/gpu/media/overview', function(data) {
+      var el = _el('gpu-media-summary');
+      if (!data || !data.tenant) {
+        el.textContent = 'Media metrics unavailable.';
+        return;
+      }
+      var current = data.current_render || {};
+      var nextBatch = data.next_compatible_batch || {};
+      var vram = data.vram_usage || {};
+      var byState = data.scenes_by_state || {};
+      var statesLine = Object.keys(byState).slice(0, 8).map(function(k){ return k + ':' + byState[k]; }).join(' · ');
+      el.innerHTML =
+        '<div style=\"color:var(--ink-dim,#b3a98f); margin-bottom:6px;\">active productions ' + (data.active_productions || 0) +
+        ' · shots queued ' + (data.shots_queued || 0) + '</div>' +
+        '<div style=\"margin-bottom:6px;\">current render: ' + (current.id || 'none') + ' · ' + (current.selected_engine || 'idle') + '</div>' +
+        '<div style=\"margin-bottom:6px;\">loaded model: ' + (data.loaded_model || 'none') + ' · VRAM ' + (vram.used_mb == null ? '?' : vram.used_mb) + '/' + (vram.total_mb == null ? '?' : vram.total_mb) + ' MB</div>' +
+        '<div style=\"margin-bottom:6px;\">next compatible batch: ' + (nextBatch.selected_engine || 'none') + ' · size ' + (nextBatch.count || 0) + '</div>' +
+        '<div style=\"margin-bottom:6px;\">QC ' + (data.qc_queue || 0) + ' · approval ' + (data.approval_queue || 0) + ' · publish ' + (data.publish_queue || 0) + '</div>' +
+        '<div style=\"color:var(--ink-faint,#756b56);\">states: ' + (statesLine || 'none') + '</div>';
     });
   }
 
