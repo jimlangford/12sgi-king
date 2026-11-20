@@ -25,7 +25,9 @@ Tailscale services.
 - `GET /games/api/{game}/me` — return login status and a pseudonymous player label.
 - `GET /games/api/{game}/lobby` — list up to 25 waiting circles in the shared lobby.
 - `POST /games/api/{game}/match/new` — create a waiting circle.
-- `POST /games/api/{game}/match/join` — join a waiting circle with its code.
+- `POST /games/api/{game}/match/join` — join a waiting circle with its code; per-player
+  attempts are rate limited (`GAME_JOIN_RATE_LIMIT_PER_MINUTE` and
+  `GAME_JOIN_RATE_LIMIT_PER_HOUR`).
 - `GET /games/api/{game}/match?id={match_id}` — read a circle as a member.
 - `POST /games/api/{game}/match/turn` — advance one turn using the current revision.
 

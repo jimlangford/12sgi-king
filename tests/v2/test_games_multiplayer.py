@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tests.v2._test_helpers import load_module
+from tests.v2._test_helpers import load_module  # noqa: E402
 
 GAMES_MAIN = ROOT / "services" / "games" / "app" / "main.py"
 
@@ -26,6 +26,8 @@ class TestGameCircles(unittest.TestCase):
                 "GAMES_DB_PATH": self.db_path,
                 "INTERNAL_SERVICE_TOKEN": "game-api-service-token",
                 "GAME_LOBBY_TENANT_ID": "tribegamestudios",
+                "GAME_JOIN_RATE_LIMIT_PER_MINUTE": "2",
+                "GAME_JOIN_RATE_LIMIT_PER_HOUR": "10",
             },
             env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
         )
@@ -185,6 +187,36 @@ class TestGameCircles(unittest.TestCase):
             headers=self._headers("player-a"),
         )
         self.assertEqual(oversized.status_code, 413)
+
+    def test_join_code_attempts_are_rate_limited_per_player(self):
+        created = self.app_client.post(
+            "/games/api/konane/match/new",
+            headers=self._headers("player-a"),
+        )
+        self.assertEqual(created.status_code, 201)
+        headers = self._headers("player-b")
+        for code in ("234567", "234568"):
+            response = self.app_client.post(
+                "/games/api/konane/match/join",
+                json={"code": code},
+                headers=headers,
+            )
+            self.assertEqual(response.status_code, 404)
+
+        limited = self.app_client.post(
+            "/games/api/konane/match/join",
+            json={"code": "234569"},
+            headers=headers,
+        )
+        self.assertEqual(limited.status_code, 429)
+        self.assertEqual(limited.json()["detail"]["error"], "join_rate_limited")
+
+        other_player = self.app_client.post(
+            "/games/api/konane/match/join",
+            json={"code": "234569"},
+            headers=self._headers("player-a"),
+        )
+        self.assertEqual(other_player.status_code, 404)
 
 
 if __name__ == "__main__":

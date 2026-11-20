@@ -3,6 +3,22 @@
 Lightweight coordination log for parallel work on the civic surfaces.
 Append newest entries at the top. Keep it factual: intent + result.
 
+## 2026-11-20 — Verified-email game-player onboarding and shared circles
+
+**PUBLIC / BRIDGE** — On `copilot/enable-registered-users-access-backend`, add
+verified-email magic-link accounts limited to `game:read`/`game:write`, plus an
+internal Compose game API for Konane/Weiqi. PRs #380 and #385 were confirmed merged
+before this follow-on. Existing account roles, Owner allowlisting, private Tailscale
+routes, and no-host-publish for the game API are preserved.
+
+**VERIFY:** 31 focused auth/game tests, repository test stage, isolated public build,
+YAML lint, Compose config, targeted Ruff, Python compilation, JavaScript syntax, and
+whitespace checks pass. No live public route or deployment was tested.
+
+**NEXT:** secret scan, commit, CodeQL, final review, and explicit-base Python lint.
+Before claiming live multiplayer, confirm the served static client and public host
+forwarding of `/games/api/` to the Compose web-server.
+
 ## 2026-11-20 — Deployment branch merge conflict resolution
 
 **PRIVATE / BRIDGE** — Owner requested latest-main integration for PR #385 on

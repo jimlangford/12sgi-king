@@ -22,20 +22,30 @@ from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel
-from services.service_metadata import with_service_metadata
-from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
-from services.event_bus import publish_event as _publish_event
 
 from services import entitlements as _entitlements
 from services.auth.app.passkeys import (
+    PasskeyRegisterBeginRequest,
+    PasskeyRegisterBeginResponse,
+    PasskeyRegisterCompleteRequest,
+    PasskeyRegisterCompleteResponse,
+    PasskeySigninBeginRequest,
+    PasskeySigninBeginResponse,
+    PasskeySigninCompleteRequest,
     init_passkeys_db,
-    PasskeyRegisterBeginRequest, PasskeyRegisterBeginResponse,
-    PasskeyRegisterCompleteRequest, PasskeyRegisterCompleteResponse,
-    PasskeySigninBeginRequest, PasskeySigninBeginResponse,
-    PasskeySigninCompleteRequest, PasskeySigninCompleteResponse,
-    passkey_register_begin, passkey_register_complete,
-    passkey_signin_begin, passkey_signin_complete,
+    passkey_register_begin,
+    passkey_register_complete,
+    passkey_signin_begin,
+    passkey_signin_complete,
 )
+from services.authz import (
+    DEFAULT_SCOPES_BY_ROLE,
+    KNOWN_SCOPES,
+    VALID_ROLES,
+    audit_auth_event,
+)
+from services.event_bus import publish_event as _publish_event
+from services.service_metadata import with_service_metadata
 
 _log = logging.getLogger(__name__)
 
@@ -130,7 +140,7 @@ MAGIC_LINK_MIN_INTERVAL_SECONDS = max(
 )
 MAGIC_LINK_IP_HOURLY_LIMIT = max(
     1,
-    min(100, int(os.environ.get("MAGIC_LINK_IP_HOURLY_LIMIT", "20"))),
+    min(100, int(os.environ.get("MAGIC_LINK_IP_HOURLY_LIMIT", "100"))),
 )
 GAME_SESSION_TTL_SECONDS = max(
     300,
@@ -1557,6 +1567,7 @@ def verify_magic_link(token: str = ""):
                   tenant_id = excluded.tenant_id,
                   updated_at = excluded.updated_at,
                   verified_at = excluded.verified_at
+                WHERE users.role = 'RegisteredUser'
                 """,
                 (subject, email, tenant_id, role, now, now, now),
             )

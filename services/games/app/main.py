@@ -5,7 +5,6 @@ import json
 import os
 import secrets
 import sqlite3
-import string
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -31,6 +30,13 @@ PLAYER_LIMIT = 2
 MATCH_TTL = timedelta(hours=24)
 MAX_STATE_BYTES = 64 * 1024
 CODE_ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"
+JOIN_RATE_LIMIT_PER_MINUTE = max(
+    1, min(300, int(os.environ.get("GAME_JOIN_RATE_LIMIT_PER_MINUTE", "20")))
+)
+JOIN_RATE_LIMIT_PER_HOUR = max(
+    JOIN_RATE_LIMIT_PER_MINUTE,
+    min(3600, int(os.environ.get("GAME_JOIN_RATE_LIMIT_PER_HOUR", "200"))),
+)
 
 app = FastAPI(title="TribeGameStudios Multiplayer API", version=VERSION)
 
@@ -68,6 +74,12 @@ def _db():
             );
             CREATE INDEX IF NOT EXISTS idx_game_matches_lobby
                 ON game_matches (tenant_id, game_id, status, created_at);
+            CREATE TABLE IF NOT EXISTS game_join_attempts (
+                player_id TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_game_join_attempts_player_created
+                ON game_join_attempts (player_id, created_at);
             """
         )
         conn.execute("PRAGMA foreign_keys = ON")
@@ -133,6 +145,29 @@ def _member(conn: sqlite3.Connection, match_id: str, player_id: str):
         """,
         (match_id, player_id),
     ).fetchone()
+
+
+def _record_join_attempt(conn: sqlite3.Connection, player_id: str, now: str) -> None:
+    minute_ago = (_now() - timedelta(minutes=1)).isoformat()
+    hour_ago = (_now() - timedelta(hours=1)).isoformat()
+    conn.execute(
+        "DELETE FROM game_join_attempts WHERE created_at < ?",
+        (hour_ago,),
+    )
+    attempts = conn.execute(
+        "SELECT COUNT(*) FROM game_join_attempts WHERE player_id = ? AND created_at >= ?",
+        (player_id, minute_ago),
+    ).fetchone()[0]
+    hourly_attempts = conn.execute(
+        "SELECT COUNT(*) FROM game_join_attempts WHERE player_id = ? AND created_at >= ?",
+        (player_id, hour_ago),
+    ).fetchone()[0]
+    if attempts >= JOIN_RATE_LIMIT_PER_MINUTE or hourly_attempts >= JOIN_RATE_LIMIT_PER_HOUR:
+        raise HTTPException(status_code=429, detail={"error": "join_rate_limited"})
+    conn.execute(
+        "INSERT INTO game_join_attempts (player_id, created_at) VALUES (?, ?)",
+        (player_id, now),
+    )
 
 
 def _view(conn: sqlite3.Connection, match: sqlite3.Row, claims: dict) -> dict:
@@ -303,6 +338,7 @@ def join_match(game_id: str, body: JoinRequest,
     now = _now().isoformat()
     with _db() as conn:
         conn.execute("BEGIN IMMEDIATE")
+        _record_join_attempt(conn, claims["player_id"], now)
         match = conn.execute(
             """
             SELECT * FROM game_matches
@@ -312,6 +348,7 @@ def join_match(game_id: str, body: JoinRequest,
             (code, game_id, claims["game_tenant_id"], (_now() - MATCH_TTL).isoformat()),
         ).fetchone()
         if not match:
+            conn.commit()
             raise HTTPException(status_code=404, detail={"error": "match_not_found"})
         existing = _member(conn, match["id"], claims["player_id"])
         if not existing:
