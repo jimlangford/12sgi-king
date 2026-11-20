@@ -1,5 +1,56 @@
 # Active Agent Handoff
 
+## Held-request triage — 2026-11-20 (repository evidence only)
+
+**Scope / ownership:** Copilot reviewed the six owner-supplied summaries on
+`copilot/fix-ci-cd-workflows`. This is not a claim of live workboard ownership:
+the owner-machine Claude session must identify the actual jobs and coordinate
+with their current lanes. Existing auth/Studio and release ownership below is
+preserved. Waiting is safe; do not infer that a stale request is still broken.
+
+**VERIFY:** the cloud checkout was clean before this documentation change.
+`.dispatch_log.jsonl` (the default workboard event log) and
+`reports/_status/remote_threads.json` are absent here. Complete job descriptions,
+IDs (except a historical WordPress reference), lane reports, and current local
+runtime evidence are therefore unavailable. No owner-machine service was
+probed through cloud localhost. The reported ages, 7904 MiB usage, four rungs,
+27 lanes, and 13 threads are owner-provided snapshots, not current measurements.
+
+| Request | Disposition | Observed evidence / next responsible lane |
+| --- | --- | --- |
+| EI / audit-quad-os Fable v3 | **awaiting decision** | No request-specific ladder or adoption artifact located in this checkout. Owner-machine Claude should ask the EI/audit lane for the four rung definitions, complete 27-lane roster, and per-lane selection evidence; witness the result without changing selections or inventing ladder values. |
+| Wā8 ComfyUI restart | **awaiting decision** | `watchers/surface_health.py` explicitly makes ComfyUI/Ollama report-only. No current owner GPU/queue readings are available. `comfyui-quad-os` should confirm current service readiness, VRAM and active Ollama/render jobs against the actual 7800 MiB gate; coordinate any unload/restart and preserve queued work. Do not equate unavailable queue data with an empty queue. |
+| Yale-blue guided onboarding tour | **awaiting decision** | The actual `onboarding_tour` target and owning dashboard checkout were not located. `design-system-thread` should identify the source, existing dashboard tokens and current implementation, then coordinate styling and `design:accessibility-review` before publication. Generic recolor history does not verify this tour. |
+| ComfyUI-hub render audit | **awaiting decision** | `watchers/comfy_client.py` documents completion as `executing` with `node == None` for the same prompt ID, and outputs from history. This contract is not evidence that the owner's conductor produced a playable `scene_NN.mp4`. Render lane must supply its fix report and the complete untruncated audit checklist; audit lane then verifies prompt identity, actual finished media and playback. |
+| Remote-activated thread audit | **awaiting decision** | Requested status JSON is absent. Owner-machine audit lane should locate the actual report, check its timestamp and reconcile every reported entry with its original source, activation and latest outcome. The stated count of 13 is not a forced target. Retain stale/unresolved distinctions and private evidence locally. |
+| `wp-go-live` milestone | **awaiting decision** | Historical dispatch references #299 and a bundle ready for WordPress paste; neither proves current milestone identity, READY, or PUBLISHED. WordPress/output lane should retrieve current gates, lane reports and MILESTONE markers, reuse matching evidence, and obtain authenticated delivery plus live-page verification before claiming publication. |
+
+**Next evidence record (PRIVATE, on owner machine):** for each actual job record
+its ID, owning lane, source/report timestamp, observed acceptance evidence,
+disposition, and next responsible lane. Use **verified complete** only when the
+full current checklist is met; **needs action** for a confirmed unmet criterion;
+**awaiting decision** for missing evidence or a required coordination decision.
+Update the live board only after reconciling its current state; do not create
+duplicate jobs or mark existing ones done from these summaries.
+
+**Verified complete (repository subcheck only):**
+`python -m unittest tests.test_deploy_elementlotus_wp` passed all **4 tests**
+during this triage. This confirms the tested bundle generation/parity behavior,
+not the live WordPress configuration, rendered site, or go-live milestone.
+
+**Safe inspection:** read the actual configured workboard event log or use an
+explicit read-only board view. `services/v2_workboard.py` defaults to
+`selfheal_engineering_jobs()` when invoked without an action: do not run the
+bare CLI as an inventory command. `--pending` lists creative/output approvals
+only, not all six requests. Do not approve/reject/archive jobs merely to triage.
+Keep credentials, job payloads and private evidence out of this public handoff.
+
+**PRESERVED / NEXT:** no model upgrades, GPU operations, restarts, UI changes,
+workboard mutations, milestone completion, WordPress publication, DNS changes,
+or gate changes were performed. Claude on the owner's machine should reconcile
+these six requests against fresh evidence first. READY remains distinct from
+PUBLISHED; creative/output approvals and existing privacy boundaries remain.
+
 ## Active implementation — local primary and public static backup, 2026-11-19
 
 - Owner requested implementation of the prepared local-first plan. Copilot is

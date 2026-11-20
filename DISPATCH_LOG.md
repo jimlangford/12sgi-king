@@ -5,6 +5,33 @@ Append newest entries at the top. Keep it factual: intent + result.
 
 ---
 
+## 2026-11-20 — Held workboard requests: repository-side triage
+
+- INSPECTED: canon, existing handoff/dispatch, workboard event-log and CLI
+  handling, report-only GPU policy, ComfyUI completion contract, design guidance,
+  and WordPress bundle/readiness history. Branch: `copilot/fix-ci-cd-workflows`.
+- CHANGED: `docs/ACTIVE_AGENT_HANDOFF.md` now records all six requests as
+  **awaiting decision**, with observed evidence, missing owner-local evidence,
+  responsible lanes, acceptance checks and safe read-only reconciliation steps.
+  This entry and the handoff are coordination, not live workboard ownership.
+- VERIFY: `.dispatch_log.jsonl` and `reports/_status/remote_threads.json` are
+  absent in this cloud checkout. No current 27-lane adoption, GPU/queue state,
+  guided-tour review, rendered scene, 13-thread reconciliation or WordPress
+  milestone completion can be inferred. Historical #299/bundle-ready entries
+  are not current READY/PUBLISHED evidence.
+- VERIFY (repository subcheck): `python -m unittest
+  tests.test_deploy_elementlotus_wp` passed **4 tests**; this is bundle-test
+  evidence only, not live publishing or milestone acceptance.
+- PRESERVED: all live workboard states, active agent ownership, GPU/model state,
+  private services/evidence, creative/output approval gates and WordPress.
+  No restart, model unload, publish, UI patch or milestone completion performed.
+- NEXT: owner-machine Claude must retrieve complete jobs and fresh lane reports,
+  coordinate with existing owners, then mark verified complete / needs action /
+  awaiting decision using actual evidence. Never use the bare workboard CLI
+  for inventory: its default action self-heals engineering jobs.
+
+---
+
 ## 2026-11-19 — Implemented repository-side local/public backup release path
 
 - Branch: `copilot/fix-ci-cd-workflows`; owner requested implementation of the
