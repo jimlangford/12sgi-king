@@ -1,5 +1,16 @@
 # Active Agent Handoff
 
+## Deployment branch merge coordination — 2026-11-20
+
+- Owner requested conflict resolution on `copilot/fix-12sgi-king` (PR #385).
+- Merge latest `main`, retaining both the private deployment maintenance notes and
+  the newer CI/public-release handoffs. No deployment activation, source rewrites,
+  DNS changes, owner-machine operations, or release ownership changes are intended.
+- VERIFY: targeted merged-tree checks follow the merge commit; host-only deployment
+  verification remains pending as documented below.
+- NEXT: review updated PR checks before merge; preserve the newer public-release
+  approval/validation requirements independently of private deployment maintenance.
+
 ## Held-request triage — 2026-11-20 (repository evidence only)
 
 **Scope / ownership:** Copilot reviewed the six owner-supplied summaries on
@@ -238,6 +249,26 @@ without first recording a coordinated handoff.
 
 Merge PR #380, record its merge commit in the shared private Studio state and dispatch log, then run
 the environment-gated paired-aspect episode canary before declaring the complete Studio beta shipped.
+
+## Parallel Deployment Maintenance — 2026-11-17
+
+- Agent: Copilot; branch: `copilot/fix-12sgi-king`.
+- Scope: PRIVATE/BRIDGE Tailscale deployment configuration, host cleanup, local CI,
+  recovery, health verification, and focused regression tests. No auth, Studio application,
+  creative/output approval, public publishing, or Neo4j data changes.
+- Coordination: existing release ownership above remains intact; deployment configuration
+  overlaps are recorded in `DISPATCH_LOG.md` for owner review before merge.
+- Changed: loopback publishing; host nginx routes (including Studio project/media APIs and
+  private native owner routes); signed CI with local mode; safe stale-artifact/PID cleanup;
+  bounded recovery; Studio readiness; read-only host preflight/verification and runbook.
+- VERIFY: 61 focused/existing tests pass, including live nginx and static-path isolation tests.
+  Python compilation, v2/standalone-Neo4j Compose models, nginx configuration, and PowerShell
+  parsing pass. Secret scan clean; initial CodeQL Python analysis found no alerts.
+- Limits: broader tests require FastAPI and generated site artifacts absent here. No host
+  cleanup, DNS/TLS/ACL change, RAM observation, or live graph count was performed.
+- Next: owner/release agent reviews overlap before merge; follow `COMPLETE_INDEPENDENCE.md`
+  on king-server, verify native owner routes and separate Studio startup, and export
+  `DEPLOYMENT_HOSTNAME=12sgi.com` only when intentionally verifying custom-domain cutover.
 
 ## Local-first Validation Follow-up — Copilot, 2026-11-18
 

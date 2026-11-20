@@ -18,7 +18,7 @@ jobs:
       POST_DEPLOY_HEALTHCHECK_URL: ${{ secrets.POST_DEPLOY_HEALTHCHECK_URL }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set release identifier
         run: echo "RELEASE_ID=${GITHUB_RUN_ID}-$(date -u +%Y%m%d%H%M%S)" >> "$GITHUB_ENV"
