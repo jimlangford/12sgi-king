@@ -7,7 +7,7 @@ from urllib import error, request
 from fastapi import HTTPException
 
 OWNER_ROLE = "Owner"
-VALID_ROLES = {"Owner", "Municipality", "Partner", "Resident", "Service"}
+VALID_ROLES = {"Owner", "Municipality", "Partner", "Resident", "RegisteredUser", "Service"}
 KNOWN_SCOPES = {
     "tenant:read",
     "tenant:write",
@@ -87,6 +87,10 @@ DEFAULT_SCOPES_BY_ROLE = {
         "storage:read",
         "ai:assist",
         "gpu:infer",
+    },
+    "RegisteredUser": {
+        "game:read",
+        "game:write",
     },
     "Service": set(),
 }

@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sqlite3
 import sys
 import tempfile
 import time
@@ -673,15 +674,116 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
         self.assertEqual(replay.status_code, 400)
         self.assertIn("invalid or has already been used", replay.text)
 
-    def test_magic_email_does_not_disclose_allowlist_membership(self):
-        with mock.patch.object(self.auth, "_send_magic_email") as sender:
+    def test_any_email_can_register_as_a_game_player_without_disclosing_account_state(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
             resp = self.client.post(
                 "/api/v2/auth/magic-link",
-                json={"email": "not-authorized@example.com"},
+                json={
+                    "email": "new-player@example.com",
+                    "return_to": "/games/konane.html?circle=ABC234",
+                },
             )
+
         self.assertEqual(resp.status_code, 202)
         self.assertEqual(resp.json(), self.auth._MAGIC_LINK_ACCEPTED)
-        sender.assert_not_called()
+        sender.assert_called_once()
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(verified.status_code, 307)
+        self.assertTrue(verified.headers["location"].startswith(
+            "https://12sgi.com/games/login.html#token="
+        ))
+        self.assertIn("rt=%2Fgames%2Fkonane.html%3Fcircle%3DABC234", verified.headers["location"])
+        session_token = urllib.parse.unquote(
+            verified.headers["location"].split("#token=", 1)[1].split("&rt=", 1)[0]
+        )
+        claims = self.auth._decode_and_verify_token(session_token)[1]
+        self.assertEqual(claims["sub"], "magic:new-player@example.com")
+        self.assertEqual(claims["role"], "RegisteredUser")
+        self.assertEqual(claims["tenant_id"], "tribegamestudios")
+        self.assertEqual(claims["scopes"], ["game:read", "game:write"])
+        self.assertLessEqual(claims["exp"] - int(self.auth._now_utc().timestamp()), 3600)
+
+        introspection = self.client.post(
+            "/api/v2/auth/introspect",
+            json={"token": session_token},
+            headers={"X-Service-Token": "owner-oauth-service-token"},
+        )
+        self.assertEqual(introspection.status_code, 200)
+        self.assertTrue(introspection.json()["active"])
+
+        with sqlite3.connect(self.auth_db) as conn:
+            user = conn.execute(
+                "SELECT email, tenant_id, role, verified_at FROM users WHERE email = ?",
+                ("new-player@example.com",),
+            ).fetchone()
+        self.assertEqual(user[:3], ("new-player@example.com", "tribegamestudios", "RegisteredUser"))
+        self.assertTrue(user[3])
+
+    def test_magic_link_role_is_bound_when_requested(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ):
+            self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "new-player@example.com"},
+            )
+        self.auth.OWNER_MAGIC_EMAILS.add("new-player@example.com")
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        session_token = urllib.parse.unquote(
+            verified.headers["location"].split("#token=", 1)[1].split("&rt=", 1)[0]
+        )
+        claims = self.auth._decode_and_verify_token(session_token)[1]
+        self.assertEqual(claims["role"], "RegisteredUser")
+        self.assertEqual(claims["scopes"], ["game:read", "game:write"])
+
+    def test_magic_link_rejects_external_return_targets_and_rate_limits_ip(self):
+        self.auth.MAGIC_LINK_IP_HOURLY_LIMIT = 1
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
+            first = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={
+                    "email": "one@example.com",
+                    "return_to": "https://attacker.example/collect",
+                },
+            )
+            second = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "two@example.com"},
+            )
+
+        self.assertEqual(first.status_code, 202)
+        self.assertEqual(second.status_code, 202)
+        sender.assert_called_once()
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertIn("rt=%2Fgames%2F", verified.headers["location"])
 
 
 if __name__ == "__main__":
