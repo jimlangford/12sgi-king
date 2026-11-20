@@ -1,5 +1,27 @@
 # Active Agent Handoff
 
+## Active implementation — game-player magic links and multiplayer — 2026-11-20
+
+- INSPECTED: PR #380 (auth/Studio release) and PR #385 (local deployment hardening)
+  are merged. Work is isolated on `copilot/enable-registered-users-access-backend`.
+- CHANGED: public verified-email magic-link onboarding now issues a game-only
+  `RegisteredUser` session; a separate Compose-only service serves Konane/Weiqi
+  shared circles through the narrow `/games/api/` route. Owner allowlisting and
+  private backend routes remain unchanged.
+- PRESERVED: no general backend/Tailscale access, direct host publish for the game
+  API, production cutover, or owner-machine operation was performed.
+- VERIFY: 33 focused auth/game tests and the repository test stage pass. The isolated
+  public build, YAML lint, Compose config, targeted Ruff, Python compilation,
+  JavaScript syntax, whitespace, explicit-base Python lint, and secret checks pass.
+  Final read-only review found no significant remaining issues. Initial CodeQL
+  flagged polynomial backtracking in email validation; this was replaced with
+  bounded linear validation and covered by a regression test. The post-fix CodeQL
+  request timed out, so a clean CodeQL result is not established.
+- NEXT: obtain a successful CodeQL verification when available and confirm the static
+  host forwards `/games/api/` to the Compose web-server. GitHub Pages static backup
+  alone cannot run multiplayer; do not claim production availability until the host
+  route and live service are verified.
+
 ## Deployment branch merge coordination — 2026-11-20
 
 - Owner requested conflict resolution on `copilot/fix-12sgi-king` (PR #385).

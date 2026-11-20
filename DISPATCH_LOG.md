@@ -3,6 +3,26 @@
 Lightweight coordination log for parallel work on the civic surfaces.
 Append newest entries at the top. Keep it factual: intent + result.
 
+## 2026-11-20 — Verified-email game-player onboarding and shared circles
+
+**PUBLIC / BRIDGE** — On `copilot/enable-registered-users-access-backend`, add
+verified-email magic-link accounts limited to `game:read`/`game:write`, plus an
+internal Compose game API for Konane/Weiqi. PRs #380 and #385 were confirmed merged
+before this follow-on. Existing account roles, Owner allowlisting, private Tailscale
+routes, and no-host-publish for the game API are preserved.
+
+**VERIFY:** 31 focused auth/game tests, repository test stage, isolated public build,
+YAML lint, Compose config, targeted Ruff, Python compilation, JavaScript syntax, and
+whitespace checks pass; explicit-base Python lint and secret scan also pass. Final
+review found no significant remaining issues. Initial CodeQL flagged polynomial
+backtracking in email validation; bounded linear validation replaced the regex and a
+regression test passes. The post-fix CodeQL request timed out, so a clean CodeQL
+result is not established. No live public route or deployment was tested.
+
+**NEXT:** obtain successful CodeQL verification when available. Before claiming live
+multiplayer, confirm the served static client and public host forwarding of
+`/games/api/` to the Compose web-server.
+
 ## 2026-11-20 — Deployment branch merge conflict resolution
 
 **PRIVATE / BRIDGE** — Owner requested latest-main integration for PR #385 on
@@ -866,6 +886,29 @@ deleted from sandbox) is not staged and not in the CI trigger paths.
 **VERIFY:** python -m compileall -q . clean. python gordon_setup.py shows correct status. No secrets committed.
 
 **NEXT:** Start Postiz + genai-stack + v2 stack on king-server. Set WP/Jetpack secrets. Run python gordon_setup.py to verify. Pull latest: git pull origin main.
+
+---
+
+## 2026-11-17 — Registered-user backend access: authorization decisions needed
+**Thread:** enable-registered-users-access-backend
+**INSPECTED:** `services/auth/app/main.py`, `services/authz.py`, `docker-compose.v2.yml`,
+`NGINX_PRODUCTION_CONFIG.conf`, `king_landing.html`, `CANON.md`, and
+`docs/ACTIVE_AGENT_HANDOFF.md`.
+**FINDINGS:** Auth currently supports Owner/Municipality/Partner/Resident/Service sessions,
+with owner-allowlisted sign-in and no general account-registration or tenant-provisioning
+flow. V2 tenant authorization relies on verified claims. Backend service ports are loopback
+bound; the public landing page is static, and the sample Nginx routes are not a safe
+internet-facing authenticated gateway.
+**OPEN QUESTIONS FOR OWNER:** Confirm the identity-registration and email-verification policy;
+how tenant IDs and elevated tenant-admin roles are granted; the exact public-user service
+methods/routes (especially whether any write access is intended); and the intended HTTPS
+gateway host/deployment path. The proposed `registered_user` / `tenant_admin` roles also need
+an explicit mapping to the existing auth roles/scopes.
+**PRESERVED:** No backend service was exposed, no auth allowlist or role policy was changed,
+and the active auth/release surfaces named in the handoff were left untouched.
+**NEXT:** Resolve these decisions with the owner, then implement the gateway with a narrow
+route allowlist, server-side token verification, tenant-scoped authorization, and focused
+security tests. Do not pass bearer tokens in iframe query strings.
 
 ---
 

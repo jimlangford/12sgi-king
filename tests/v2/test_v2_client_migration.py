@@ -1,6 +1,6 @@
 import json
-import os
 import re
+import sqlite3
 import sys
 import tempfile
 import time
@@ -38,7 +38,9 @@ class TestClaimClientMigration(unittest.TestCase):
             },
             env_clear_keys=("GOVOS_ALLOW_DEV_SECRETS",),
         )
-        from fastapi.testclient import TestClient  # local import to avoid global dependency during discovery
+        from fastapi.testclient import (
+            TestClient,  # local import to avoid global dependency during discovery
+        )
         self.client = TestClient(self.auth.app)
         self.service_headers = {"X-Service-Token": "claim-client-service-token"}
 
@@ -673,15 +675,179 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
         self.assertEqual(replay.status_code, 400)
         self.assertIn("invalid or has already been used", replay.text)
 
-    def test_magic_email_does_not_disclose_allowlist_membership(self):
-        with mock.patch.object(self.auth, "_send_magic_email") as sender:
+    def test_any_email_can_register_as_a_game_player_without_disclosing_account_state(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
             resp = self.client.post(
                 "/api/v2/auth/magic-link",
-                json={"email": "not-authorized@example.com"},
+                json={
+                    "email": "new-player@example.com",
+                    "return_to": "/games/konane.html?circle=ABC234",
+                },
             )
+
         self.assertEqual(resp.status_code, 202)
         self.assertEqual(resp.json(), self.auth._MAGIC_LINK_ACCEPTED)
-        sender.assert_not_called()
+        sender.assert_called_once()
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(verified.status_code, 307)
+        self.assertTrue(verified.headers["location"].startswith(
+            "https://12sgi.com/games/login.html#token="
+        ))
+        self.assertIn("rt=%2Fgames%2Fkonane.html%3Fcircle%3DABC234", verified.headers["location"])
+        session_token = urllib.parse.unquote(
+            verified.headers["location"].split("#token=", 1)[1].split("&rt=", 1)[0]
+        )
+        claims = self.auth._decode_and_verify_token(session_token)[1]
+        self.assertEqual(claims["sub"], "magic:new-player@example.com")
+        self.assertEqual(claims["role"], "RegisteredUser")
+        self.assertEqual(claims["tenant_id"], "tribegamestudios")
+        self.assertEqual(claims["scopes"], ["game:read", "game:write"])
+        self.assertLessEqual(claims["exp"] - int(self.auth._now_utc().timestamp()), 3600)
+
+        introspection = self.client.post(
+            "/api/v2/auth/introspect",
+            json={"token": session_token},
+            headers={"X-Service-Token": "owner-oauth-service-token"},
+        )
+        self.assertEqual(introspection.status_code, 200)
+        self.assertTrue(introspection.json()["active"])
+
+        with sqlite3.connect(self.auth_db) as conn:
+            user = conn.execute(
+                "SELECT email, tenant_id, role, verified_at FROM users WHERE email = ?",
+                ("new-player@example.com",),
+            ).fetchone()
+        self.assertEqual(user[:3], ("new-player@example.com", "tribegamestudios", "RegisteredUser"))
+        self.assertTrue(user[3])
+
+    def test_legacy_magic_link_request_alias_keeps_working(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
+            response = self.client.post(
+                "/api/v2/auth/magiclink/request",
+                json={"email": "legacy-player@example.com"},
+            )
+        self.assertEqual(response.status_code, 202)
+        sender.assert_called_once()
+        self.assertTrue(delivered_urls)
+
+    def test_magic_link_email_validation_is_bounded_for_long_input(self):
+        adversarial = "!@!." + "!." * 50000
+        self.assertEqual(self.auth._normalise_email(adversarial), "")
+        self.assertEqual(self.auth._normalise_email("not-an-email"), "")
+
+    def test_game_signup_does_not_overwrite_an_existing_account_role(self):
+        with sqlite3.connect(self.auth_db) as conn:
+            conn.execute(
+                """
+                INSERT INTO users
+                  (id, email, display_name, tenant_id, role, created_at, updated_at, verified_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    "partner:existing@example.com",
+                    "existing@example.com",
+                    "Existing Partner",
+                    "partner-tenant",
+                    "Partner",
+                    "2026-01-01T00:00:00+00:00",
+                    "2026-01-01T00:00:00+00:00",
+                    "2026-01-01T00:00:00+00:00",
+                ),
+            )
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ):
+            self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "existing@example.com"},
+            )
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(verified.status_code, 307)
+        with sqlite3.connect(self.auth_db) as conn:
+            user = conn.execute(
+                "SELECT display_name, tenant_id, role FROM users WHERE email = ?",
+                ("existing@example.com",),
+            ).fetchone()
+        self.assertEqual(user, ("Existing Partner", "partner-tenant", "Partner"))
+
+    def test_magic_link_role_is_bound_when_requested(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ):
+            self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "new-player@example.com"},
+            )
+        self.auth.OWNER_MAGIC_EMAILS.add("new-player@example.com")
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        session_token = urllib.parse.unquote(
+            verified.headers["location"].split("#token=", 1)[1].split("&rt=", 1)[0]
+        )
+        claims = self.auth._decode_and_verify_token(session_token)[1]
+        self.assertEqual(claims["role"], "RegisteredUser")
+        self.assertEqual(claims["scopes"], ["game:read", "game:write"])
+
+    def test_magic_link_rejects_external_return_targets_and_rate_limits_ip(self):
+        self.auth.MAGIC_LINK_IP_HOURLY_LIMIT = 1
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
+            first = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={
+                    "email": "one@example.com",
+                    "return_to": "https://attacker.example/collect",
+                },
+            )
+            second = self.client.post(
+                "/api/v2/auth/magic-link",
+                json={"email": "two@example.com"},
+            )
+
+        self.assertEqual(first.status_code, 202)
+        self.assertEqual(second.status_code, 202)
+        sender.assert_called_once()
+        token = urllib.parse.parse_qs(urllib.parse.urlparse(delivered_urls[0]).query)["token"][0]
+        verified = self.client.get(
+            "/api/v2/auth/magic-link/verify",
+            params={"token": token},
+            follow_redirects=False,
+        )
+        self.assertIn("rt=%2Fgames%2F", verified.headers["location"])
 
 
 if __name__ == "__main__":
