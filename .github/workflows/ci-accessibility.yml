@@ -6,29 +6,73 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   a11y-scan:
+    name: a11y-scan (shard ${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        # Pages are assigned to a shard by a stable hash of their path, so the four shards together
+        # cover EVERY generated page exactly once (unit-tested in tools/a11y/scan.test.mjs).
+        shard: [1, 2, 3, 4]
+    env:
+      CHROME_BIN: /usr/bin/google-chrome
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Install pa11y
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/a11y/package-lock.json
+
+      - name: Install locked axe browser tools
+        working-directory: tools/a11y
         run: |
-          npm install -g pa11y pa11y-ci
+          mkdir -p .work
+          export TMPDIR="$PWD/.work"
+          npm ci --ignore-scripts --no-fund --no-audit
+          test -x "$CHROME_BIN"
+          "$CHROME_BIN" --version
 
-      - name: Scan HTML files for a11y issues (WCAG 2.2 AA)
+      - name: Build sanitized PUBLIC output, test browser checks, and scan this shard
+        run: >-
+          python tools/local_validation.py --stage build --stage accessibility
+          --shard "${{ matrix.shard }}/4"
+          --output-dir "${RUNNER_TEMP}/local-a11y-validation"
+
+      - name: Upload reports only (never generated HTML or owner material)
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: public-static-accessibility-report-shard-${{ matrix.shard }}
+          path: |
+            ${{ runner.temp }}/local-a11y-validation/run-*/a11y/report.json
+            ${{ runner.temp }}/local-a11y-validation/run-*/a11y/summary.md
+          if-no-files-found: warn
+          retention-days: 7
+
+  # One stable check name for branch protection: green only if ALL four shards passed. A skipped, cancelled
+  # or failed shard can never read as success.
+  a11y-complete:
+    name: a11y-complete
+    needs: a11y-scan
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require every accessibility shard to pass
+        env:
+          SHARD_RESULT: ${{ needs.a11y-scan.result }}
         run: |
-          find . -name "*.html" -path "./king_public_src/*" -o -path "./apps/*" | while read f; do
-            echo "Scanning $f..."
-            pa11y "$f" --standard WCAG2AA || true
-          done
-        continue-on-error: true
-
-      - name: Install axe for deeper scan
-        run: npm install -g @axe-core/cli
-
-      - name: Axe accessibility scan
-        run: |
-          # Scan common entry points
-          axe file://$(pwd)/king_public_src/index.html --exit || true
-        continue-on-error: true
+          echo "Accessibility shards: ${SHARD_RESULT}"
+          test "${SHARD_RESULT}" = "success"

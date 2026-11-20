@@ -5,7 +5,7 @@
 # (see services/tenant/app/main.py, services/documents/app/main.py, services/storage/app/main.py,
 # services/ai/app/main.py). One image, one dependency set; docker-compose.v2.yml picks which
 # service module to run per-container via CMD/entrypoint args.
-FROM python:3.12-slim
+FROM python:3.15-slim
 
 WORKDIR /repo
 

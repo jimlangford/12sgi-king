@@ -6,38 +6,59 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   lint-python:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.11'
-      - name: Install linters
-        run: pip install ruff mypy
-      - name: Ruff check (style + complexity)
-        run: ruff check . --select=E,W,F,C901 --ignore=E501 || true
-      - name: Ruff format check
-        run: ruff format . --check || true
+      - name: Install Ruff
+        run: python -m pip install ruff==0.17.5
+      # The tracked baseline has thousands of legacy findings. Start with the
+      # policy/readiness tools and ratchet ALL changed Python files into E/W/F/I.
+      # No whole-repository formatter or complexity rewrite is part of this gate.
+      - name: Ruff check (correctness, style, and import sorting)
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          DIFF_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: python tools/local_validation.py --stage lint-python
 
   lint-yaml:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.11'
       - name: Install yamllint
-        run: pip install yamllint
-      - name: Lint YAML files
-        run: yamllint -d relaxed docker-compose.v2.yml .github/workflows/*.yml || true
+        run: python -m pip install yamllint==1.38.0
+      # Structural validation, not a bulk long-line cleanup. `relaxed` accepts
+      # GitHub's `on` key. The sole comma-spacing exception preserves aligned
+      # owner asset mounts; duplicate keys/syntax/other rules still apply there.
+      - name: Lint tracked workflow, Dependabot, and Compose YAML
+        run: python tools/local_validation.py --stage lint-yaml
 
   lint-shell:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
       - name: Install shellcheck
-        run: sudo apt-get update && sudo apt-get install -y shellcheck
-      - name: Check shell scripts
-        run: find . -name "*.sh" -type f | xargs shellcheck -x || true
+        run: sudo apt-get update && sudo apt-get install -y shellcheck=0.9.0-1
+      # Enforce maintained automation, not the owner's local startup.sh or
+      # one-off .github/project_setup helper. Only check_surfaces.sh may source
+      # optional owner .env files absent from CI (SC1091); other findings fail.
+      - name: Check tracked automation shell scripts
+        run: python tools/local_validation.py --stage lint-shell

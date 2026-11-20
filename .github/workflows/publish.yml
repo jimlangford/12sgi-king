@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -41,8 +41,7 @@ jobs:
 
       - name: Build site for validation
         if: ${{ inputs.build_site == true }}
-        run: |
-          python build_site.py
+        run: python tools/local_validation.py --stage build --output-dir "${RUNNER_TEMP}/local-publish-validation"
 
       - name: Validate local hosting URLs
         run: |
