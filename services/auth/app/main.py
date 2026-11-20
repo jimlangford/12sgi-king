@@ -6,7 +6,6 @@ import html as _html
 import json
 import logging
 import os
-import re
 import secrets
 import smtplib
 import sqlite3
@@ -664,12 +663,17 @@ def _require_owner_session(authorization: str | None) -> tuple[str, dict]:
             detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
         )
     return owner_token, owner_claims
-_EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-
-
 def _normalise_email(raw: str) -> str:
     email = str(raw or "").strip().casefold()
-    return email if _EMAIL_PATTERN.fullmatch(email) else ""
+    if len(email) > 254 or not email or email.count("@") != 1 or any(char.isspace() for char in email):
+        return ""
+    local, domain = email.split("@", 1)
+    if not local or not domain:
+        return ""
+    first_label, separator, remaining_domain = domain.partition(".")
+    if not separator or not first_label or not remaining_domain:
+        return ""
+    return email
 
 
 def _magic_token_hash(token: str) -> str:
@@ -918,8 +922,8 @@ def _require_service_trust(x_service_token: str | None) -> None:
 
 # Compatibility aliases for the Tier 1 draft paths. Both use the durable hashed-token flow below.
 @app.post(f"{API_PREFIX}/auth/magiclink/request")
-def magiclink_request_endpoint(payload: MagicLinkRequest):
-    return request_magic_link(payload)
+def magiclink_request_endpoint(payload: MagicLinkRequest, request: Request):
+    return request_magic_link(payload, request)
 
 
 @app.get(f"{API_PREFIX}/auth/magiclink/claim")

@@ -730,6 +730,26 @@ class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
         self.assertEqual(user[:3], ("new-player@example.com", "tribegamestudios", "RegisteredUser"))
         self.assertTrue(user[3])
 
+    def test_legacy_magic_link_request_alias_keeps_working(self):
+        delivered_urls = []
+        with mock.patch.object(
+            self.auth,
+            "_send_magic_email",
+            side_effect=lambda _email, url: delivered_urls.append(url) or True,
+        ) as sender:
+            response = self.client.post(
+                "/api/v2/auth/magiclink/request",
+                json={"email": "legacy-player@example.com"},
+            )
+        self.assertEqual(response.status_code, 202)
+        sender.assert_called_once()
+        self.assertTrue(delivered_urls)
+
+    def test_magic_link_email_validation_is_bounded_for_long_input(self):
+        adversarial = "!@!." + "!." * 50000
+        self.assertEqual(self.auth._normalise_email(adversarial), "")
+        self.assertEqual(self.auth._normalise_email("not-an-email"), "")
+
     def test_game_signup_does_not_overwrite_an_existing_account_role(self):
         with sqlite3.connect(self.auth_db) as conn:
             conn.execute(
