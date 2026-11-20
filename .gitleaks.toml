@@ -1,0 +1,55 @@
+title = "Tracked tree and reachable history secret policy"
+
+[extend]
+useDefault = true
+
+# This exact value is a browser localStorage acknowledgement key, not a credential.
+# Requiring BOTH this source path and this assignment prevents a blanket JS exemption.
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Sage victory acknowledgement localStorage key"
+condition = "AND"
+paths = ['''(^|/)game_sage/js/sage_ui\.js$''']
+regexTarget = "match"
+regexes = ['''^VICTORY_ACK_KEY = 'sage_victory_ack_v1'$''']
+
+# This is the name of an environment setting in the initialization checklist,
+# not the setting's value. Do not exempt any other assignment in this file.
+[[rules.allowlists]]
+description = "Neo4j configuration identifier in initialization checklist"
+condition = "AND"
+paths = ['''(^|/)init-services\.js$''']
+regexTarget = "match"
+regexes = ['''^key: 'NEO4J_CONV_TTL_DAYS'$''']
+
+[[rules]]
+id = "curl-auth-header"
+
+# Literal uppercase variable name in two WordPress troubleshooting examples.
+[[rules.allowlists]]
+description = "WordPress documentation token substitution marker"
+condition = "AND"
+paths = ['''(^|/)(POINTS_3_5_QUICK_REFERENCE|SETUP_FINAL_INTEGRATION)\.md$''']
+regexTarget = "match"
+regexes = ['''Authorization: [B]earer [J]ETPACK_TOKEN"''']
+
+# This conspicuously synthetic value appears ONLY in this localhost API guide.
+# A different value or the same value in another file remains a finding.
+[[rules.allowlists]]
+description = "Local Gordon API documentation development example"
+condition = "AND"
+paths = ['''(^|/)GORDON_INTEGRATION_LOCAL_AI\.md$''']
+regexTarget = "match"
+regexes = ['''X-API-Key: dev_key_12345"''']
+
+# Historical localhost integration instructions use the repository's published
+# development service-token default. This is not a production credential
+# exemption: production must override that known development default.
+[[rules.allowlists]]
+description = "Historical localhost repair-test documentation development token"
+condition = "AND"
+paths = ['''(^|/)TEST_AUTONOMOUS_REPAIRS\.md$''']
+regexTarget = "match"
+regexes = ['''X-Service-Token: dev-internal-token"''']

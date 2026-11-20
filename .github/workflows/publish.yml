@@ -41,8 +41,7 @@ jobs:
 
       - name: Build site for validation
         if: ${{ inputs.build_site == true }}
-        run: |
-          python build_site.py
+        run: python tools/local_validation.py --stage build --output-dir "${RUNNER_TEMP}/local-publish-validation"
 
       - name: Validate local hosting URLs
         run: |

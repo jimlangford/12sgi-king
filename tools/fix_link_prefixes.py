@@ -5,11 +5,14 @@
 # strips it, generalizing the one-off fix build_site already applied to education.html so it can NEVER
 # recur for any page. Bounded to href/src ATTRIBUTES only (never touches text/JS/`${...}`).
 # Idempotent + safe to run every build. Returns the number of substitutions made.
-import os, re
+import os
+import re
+from urllib.parse import unquote, urlsplit, urlunsplit
 
 # strip one-or-more leading ../ from a href/src on a SITE-ROOT page (root has no parent, so any
 # ../ escapes the site and 404s). Bounded to the attribute value's leading segments only.
 _UP_RE = re.compile(r'((?:href|src)\s*=\s*["\'])((?:\.\./)+)(?=[^"\']*["\'])', re.I)
+
 
 def _fix_text(t, in_king):
     n = 0
@@ -34,7 +37,8 @@ def _fix_text(t, in_king):
     for a, b in pairs:
         c = t.count(a)
         if c:
-            t = t.replace(a, b); n += c
+            t = t.replace(a, b)
+            n += c
     return t, n
 
 # Owner-only backend routes have NO public page. build_site's privacy-sanitize rewrites the tailnet
@@ -46,18 +50,45 @@ _OWNER_RE = re.compile(
     r'(?:board(?:/[a-z0-9-]+)?/?|king/dispatch/?|king/quados/?|king/system_status\.html|owner_jobs\.html)'
     r'(["\'])', re.I)
 
+
 def _fix_owner(t):
     return _OWNER_RE.subn(lambda m: m.group(1) + "https://12sgi.com/king/" + m.group(2), t)
 
+
+_ROOT_RE = re.compile(r'(\b(?:href|src)\s*=\s*["\'])(/(?!/)[^"\']*)(["\'])', re.I)
+
+
+def _fix_root_relative(text, site_dir, depth):
+    count = 0
+
+    def replace(match):
+        nonlocal count
+        url = urlsplit(match[2])
+        target = url.path.lstrip("/")
+        if target == "api" or target.startswith("api/"):
+            return match[0]
+        candidate = os.path.abspath(os.path.join(site_dir, unquote(target)))
+        root = os.path.abspath(site_dir)
+        if os.path.commonpath((root, candidate)) != root or not os.path.exists(candidate):
+            return match[0]
+        relative = "../" * depth + target
+        if not relative:
+            relative = "./"
+        value = urlunsplit(("", "", relative, url.query, url.fragment))
+        count += 1
+        return match[1] + value + match[3]
+
+    updated = _ROOT_RE.sub(replace, text)
+    return updated, count
+
+
 def fix_site(site_dir):
-    total = 0; files = 0
+    total = 0
+    files = 0
     for dp, dn, fn in os.walk(site_dir):
         rel = os.path.relpath(dp, site_dir)
         depth = 0 if rel == "." else rel.count(os.sep) + 1
         in_king = (rel == "king") or rel.startswith("king" + os.sep)
-        # only fix root-level and king/ pages (that's where the repo-root/king_public_src authoring lands)
-        if not (rel == "." or in_king):
-            continue
         for f in fn:
             if not f.lower().endswith((".html", ".htm")) or f.lower().endswith(".dc.html"):
                 continue
@@ -66,17 +97,23 @@ def fix_site(site_dir):
                 t = open(p, encoding="utf-8", errors="replace").read()
             except Exception:
                 continue
-            t2, n = _fix_text(t, in_king)
+            # Existing authoring-prefix policy is unchanged; mount-relative
+            # conversion also covers nested public pages and assets.
+            t2, n = _fix_text(t, in_king) if rel == "." or in_king else (t, 0)
             t2, k = _fix_owner(t2)
+            n += k
+            t2, k = _fix_root_relative(t2, site_dir, depth)
             n += k
             if in_king:
                 # king/index.html links a bare king_bridge.html that has no public page -> King landing
                 c = t2.count('href="king_bridge.html"')
                 if c:
-                    t2 = t2.replace('href="king_bridge.html"', 'href="./"'); n += c
+                    t2 = t2.replace('href="king_bridge.html"', 'href="./"')
+                    n += c
             if n:
                 open(p, "w", encoding="utf-8", newline="\n").write(t2)
-                total += n; files += 1
+                total += n
+                files += 1
     return total, files
 
 if __name__ == "__main__":
