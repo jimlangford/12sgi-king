@@ -7,7 +7,7 @@
      the /king mount before proxying, so root-relative URLs escape to the wrong server on phone/iPad
      (e.g. /api -> :8810). Keep every request INSIDE the mount. No-op locally. MUST survive redesigns. */
   var m = location.pathname.match(/^\/(studio|board|king|comfy|status|aupuni|jrcsl|routes|prosecutor|login|git)(?=\/|$)/);
-  var PFX = m ? '/' + m[1] : (location.hostname.indexOf('.ts.net') >= 0 ? '/king' : '');
+  var PFX = m ? '/' + m[1] : (/\.ts\.net$/i.test(location.hostname) ? '/king' : '');
   if(!PFX) return;
   var SURF=/^\/(studio|board|king|comfy|status|aupuni|jrcsl|routes|prosecutor|login|git)(?=\/|$)/;
   var need = function(u){ return typeof u==='string' && u.charAt(0)==='/' && u.charAt(1)!=='/' && !SURF.test(u); };
