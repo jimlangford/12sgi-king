@@ -1,5 +1,21 @@
 # Active Agent Handoff
 
+## CI YAML lint repair — 2026-11-23
+
+- Branch: `copilot/fix-compose-yaml-lint`, based on `738fe2c`; no deployment.
+- INSPECTED: the GitHub job reported only a PRIVATE receipt; reproduction
+  showed an indentation warning promoted to failure by strict yamllint.
+- Scope: whitespace-only alignment of the `ai-gateway` volume list in
+  `docker-compose.v2.yml` to repair the strict YAML lint job. This overlaps
+  deployment configuration but does not change mounts or service behavior.
+- PRESERVED: existing release ownership, PRIVATE/BRIDGE configuration, and
+  creative/output approval gates.
+- VERIFY: `python tools/local_validation.py --stage lint-yaml` passed on Python
+  3.12 with yamllint 1.38.0; the parsed Compose model is unchanged, and
+  `tests.test_private_hosting.ConfigTests.test_private_defaults` passed.
+- NEXT: review the change and confirm GitHub lint on the resulting head;
+  no post-fix GitHub run is claimed.
+
 ## Deployment branch merge coordination — 2026-11-20
 
 - Owner requested conflict resolution on `copilot/fix-12sgi-king` (PR #385).

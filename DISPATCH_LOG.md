@@ -3,6 +3,18 @@
 Lightweight coordination log for parallel work on the civic surfaces.
 Append newest entries at the top. Keep it factual: intent + result.
 
+## 2026-11-23 — CI YAML lint repair
+
+**PRIVATE / BRIDGE** — `copilot/fix-compose-yaml-lint`, based on `738fe2c`;
+no deployment.
+Align the `ai-gateway` volume-list whitespace in `docker-compose.v2.yml` for
+the strict YAML lint job without changing mounts or service behavior. This
+overlaps deployment configuration; existing release ownership remains intact.
+**VERIFY:** the YAML gate passed with yamllint 1.38.0 on Python 3.12; parsed
+Compose configuration was unchanged, and the private-defaults test passed.
+**NEXT:** review the fix and confirm GitHub lint on the resulting head; no
+post-fix GitHub run is claimed.
+
 ## 2026-11-20 — Deployment branch merge conflict resolution
 
 **PRIVATE / BRIDGE** — Owner requested latest-main integration for PR #385 on
