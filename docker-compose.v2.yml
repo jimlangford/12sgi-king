@@ -580,8 +580,8 @@ services:
       GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
     volumes:
-      - v2-db:/data/db
-      - v2-dispatch:/data/dispatch
+    - v2-db:/data/db
+    - v2-dispatch:/data/dispatch
     ports: ["127.0.0.1:8110:8110"]
     depends_on: [auth, gpu-router]
     restart: unless-stopped
