@@ -609,6 +609,10 @@ services:
       retries: 3
 
   github-workflow-monitor:
+    # OFF by default (2026-11-17, owner: the local servers must not depend on GitHub - its account is billing-locked).
+    # Start only deliberately: docker compose --profile github up -d github-workflow-monitor
+    profiles:
+    - github
     build:
       context: .
       dockerfile: services/Dockerfile

@@ -38,9 +38,13 @@ BUILD_V = datetime.now(HST).date().isoformat()
 def mauios_src(rel):
     """Prefer the live local reports tree, but fall back to repo seed artifacts."""
     src = os.path.join(MAUIOS, rel)
+    seed = os.path.join(SEED_MAUIOS, rel)
+    # NEWEST WINS (2026-11-20): the live tree was always preferred, so a stale live file hid a newer committed seed
+    # (e.g. money_honolulu: live 07-09 vs seed 07-18). A missing file on either side falls back to the other.
+    if os.path.exists(src) and os.path.exists(seed):
+        return seed if os.path.getmtime(seed) > os.path.getmtime(src) else src
     if os.path.exists(src):
         return src
-    seed = os.path.join(SEED_MAUIOS, rel)
     return seed if os.path.exists(seed) else src
 
 
@@ -88,6 +92,8 @@ PAGES = [
     ("money_behind_officials.html",      "Money Behind Officials",       "Campaign finance per tracked official, real-estate donors flagged."),
     ("who_funds_elections_maui.html",    "Who Funds Our Elections",      "Every reported contribution sorted by the giver's own stated INDUSTRY — which sectors spend most to shape who governs. Real estate & development leads the identifiable industries ($10M+ / 3,127 givers). Public records (HICSC campaign finance), classified from self-reported employer/occupation, framed as questions."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
+    ("bill_audit_trail.html",            "Bill Audit Trail",             "Every measure from the committee vote to the floor vote, with the campaign money on file for each member who voted and County vendors who also gave to them."),
+    ("committee_votes_maui.html",        "Maui Committee Votes",         "How each Council member voted in committee, read from the Committee Reports in the County's agenda packets."),
     ("candidates_2026_maui.html",        "2026 Candidates & Their Money", "Everyone who filed for Mayor + all 9 Council seats by the June 2 2026 deadline, set beside the campaign money on file for each (real-estate slice flagged). Sourced to the County Clerk filing list + HICSC; 'no money on file' usually means the report isn't posted yet, not that none was raised."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
     ("bill9_money_vs_will.html",          "Bill 9 - the Vote, the Money","The Council's 5-3 final vote to phase out transient vacation rentals in apartment districts, set beside the real-estate money behind the three NO votes. Public records (roll-call + campaign finance), framed as questions, never accusations. Neo4j-backed."),
@@ -1297,7 +1303,9 @@ def main():
         # discover donor dirs from BOTH the live tree and the committed seed (CI = seed only), and copy
         # from whichever has them (live preferred). Fixes the seed-blind glob that 404'd donor profiles
         # linked from money_behind_officials*.html in CI. (2026-07-22 audit-quad-os.)
-        _dd = set(["donors"])
+        # + "votes" (2026-11-19): votes_watch writes one page per council meeting into reports/mauios/votes/ and
+        # bill9_money_vs_will.html / the officials scorecard link them, but the folder was never copied -> 404.
+        _dd = set(["donors", "votes"])
         for _root in (MAUIOS, SEED_MAUIOS):
             _dd |= set(os.path.basename(p) for p in _glob.glob(os.path.join(_root, "donors_*")) if os.path.isdir(p))
         for sub in sorted(_dd):
