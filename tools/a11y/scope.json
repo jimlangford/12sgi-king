@@ -1,0 +1,23 @@
+{
+  "description": "ALL generated PUBLIC static HTML pages (every .html under the sanitized public build), desktop initial rendered state only. This is a regression gate against an explicit reviewed backlog, NOT WCAG conformance. Owner-only surfaces never reach this build. No rules are disabled.",
+  "exclude": [],
+  "knownDefects": [
+    {
+      "page": "king/civic/templates/sage-realm/Sage Realm.html",
+      "missingStylesheetPaths": [
+        "/site/king/civic/templates/sage-realm/styles.css",
+        "/site/king/civic/templates/sage-realm/tokens/codex.css",
+        "/site/king/civic/templates/sage-realm/tokens/colors.css",
+        "/site/king/civic/templates/sage-realm/tokens/cosmology.css",
+        "/site/king/civic/templates/sage-realm/tokens/film.css",
+        "/site/king/civic/templates/sage-realm/tokens/fonts.css",
+        "/site/king/civic/templates/sage-realm/tokens/mauios.css",
+        "/site/king/civic/templates/sage-realm/tokens/motion.css",
+        "/site/king/civic/templates/sage-realm/tokens/ops.css",
+        "/site/king/civic/templates/sage-realm/tokens/spacing.css",
+        "/site/king/civic/templates/sage-realm/tokens/typography.css"
+      ],
+      "reason": "Verified 2026-11-17: the public build serves this page but the 11 exact stylesheet paths listed here return 404. king_public_src/ds-base.js injects styles.css and ten token stylesheets relative to this page's folder; working copies live in king_public_src/civic/. The page is still accessibility-scanned in its current state. Fix the source paths, then prune each resolved allowance and re-propose the baseline."
+    }
+  ]
+}

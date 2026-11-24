@@ -497,7 +497,7 @@ class TestPhase22RouterIntegration(unittest.TestCase):
     """GPU Router correctly rejects or routes new pipeline job types."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="phase22-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="phase22-", ignore_cleanup_errors=True)
         self.db_path = str(Path(self.tmp.name) / "gpu-router.db")
         self.module = _load_gpu(self.db_path)
         self.client = TestClient(self.module.app)
@@ -790,7 +790,7 @@ class TestKandinskyAnimationRouterIntegration(unittest.TestCase):
     """GPU Router accepts animation_shot jobs using kandinsky_animation capability."""
 
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="kandinsky-anim-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="kandinsky-anim-", ignore_cleanup_errors=True)
         self.db_path = str(Path(self.tmp.name) / "gpu-router.db")
         self.module = _load_gpu(self.db_path)
         self.client = TestClient(self.module.app)

@@ -1,12 +1,7 @@
 import unittest
-import sys
 from pathlib import Path
 
-try:
-    import yaml
-    YAML_AVAILABLE = True
-except ImportError:
-    YAML_AVAILABLE = False
+import yaml
 
 
 class TestV2Contract(unittest.TestCase):
@@ -15,31 +10,11 @@ class TestV2Contract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Load and validate the API contract YAML once for all tests."""
-        if not YAML_AVAILABLE:
-            raise unittest.SkipTest("PyYAML not installed")
-        
         contract_path = Path(__file__).resolve().parents[2] / "docs" / "api" / "v2-api-contract.yaml"
-        if not contract_path.exists():
-            # Fallback: try alternative paths
-            alternatives = [
-                Path.cwd() / "docs" / "api" / "v2-api-contract.yaml",
-                Path.cwd().parent / "docs" / "api" / "v2-api-contract.yaml",
-            ]
-            for alt in alternatives:
-                if alt.exists():
-                    contract_path = alt
-                    break
-        
-        if not contract_path.exists():
-            raise unittest.SkipTest(f"V2 API contract not found (checked {contract_path} and alternatives)")
-        
-        try:
-            with open(contract_path, "r") as f:
-                cls.contract = yaml.safe_load(f)
-            if cls.contract is None:
-                raise unittest.SkipTest("V2 API contract YAML is empty")
-        except Exception as e:
-            raise unittest.SkipTest(f"Failed to load API contract: {e}")
+        with contract_path.open(encoding="utf-8") as handle:
+            cls.contract = yaml.safe_load(handle)
+        if not isinstance(cls.contract, dict):
+            raise AssertionError("V2 API contract must be a non-empty mapping")
 
     def test_contract_has_openapi_version(self):
         """Contract must declare OpenAPI version."""
@@ -69,41 +44,60 @@ class TestV2Contract(unittest.TestCase):
             methods = [k for k in path_item.keys() if k.lower() in ("get", "post", "put", "delete", "patch", "options", "head")]
             self.assertGreater(len(methods), 0, f"Path {path_name} has no HTTP methods defined")
 
-    def test_contract_has_servers_or_host(self):
-        """Contract should define where the API is hosted."""
-        has_servers = "servers" in self.contract
-        self.assertTrue(
-            has_servers or True,
-            "Contract should define servers (optional for relative specs)"
-        )
+    def test_contract_has_servers(self):
+        """Contract must declare at least one usable server URL."""
+        servers = self.contract.get("servers", [])
+        self.assertGreater(len(servers), 0)
+        for server in servers:
+            self.assertIsInstance(server.get("url"), str)
+            self.assertTrue(server["url"].strip())
 
     def test_required_service_endpoints_exist(self):
-        """Verify that expected service readiness endpoints are documented or implied."""
+        """Readiness and authentication endpoints must be explicitly documented."""
         paths = self.contract.get("paths", {})
-        self.assertGreater(
-            len(paths),
-            0,
-            "Contract must define at least one endpoint (e.g., /api/v2/ready, /api/v2/health)"
-        )
+        for path, method in (
+            ("/api/v2/live", "get"),
+            ("/api/v2/ready", "get"),
+            ("/api/v2/health", "get"),
+            ("/api/v2/auth/session", "post"),
+        ):
+            with self.subTest(path=path):
+                self.assertIn(method, paths[path])
+                self.assertIn("200", paths[path][method]["responses"])
 
     def test_contract_syntax_is_valid_yaml(self):
         """Contract YAML must be valid and parseable (already loaded in setUpClass)."""
         self.assertIsNotNone(self.contract)
 
-    def test_no_hardcoded_credentials_in_contract(self):
-        """Contract must not contain hardcoded secrets or credentials."""
-        contract_str = yaml.dump(self.contract)
-        forbidden = [
-            "api_key",
-            "api-key",
-            "password",
-            "secret",
-            "token",
-            "Bearer ",
-        ]
-        for pattern in forbidden:
-            if pattern.lower() in contract_str.lower():
-                pass
+    def test_session_requires_service_token(self):
+        """Session creation must document the mandatory service-trust header."""
+        operation = self.contract["paths"]["/api/v2/auth/session"]["post"]
+        headers = {
+            parameter["name"]: parameter
+            for parameter in operation["parameters"]
+            if parameter["in"] == "header"
+        }
+        self.assertIs(headers["X-Service-Token"]["required"], True)
+        self.assertIn("403", operation["responses"])
+
+    def test_local_references_resolve(self):
+        """Broken schema references must fail CI rather than ship a partial contract."""
+        def check(value):
+            if isinstance(value, dict):
+                if "$ref" in value:
+                    reference = value["$ref"]
+                    self.assertTrue(reference.startswith("#/"), reference)
+                    target = self.contract
+                    for part in reference[2:].split("/"):
+                        target = target[part.replace("~1", "/").replace("~0", "~")]
+                    self.assertIsInstance(target, dict)
+                for child in value.values():
+                    check(child)
+            elif isinstance(value, list):
+                for child in value:
+                    check(child)
+
+        check(self.contract)
 
 
 if __name__ == "__main__":
