@@ -6,9 +6,10 @@
 - Scope: retain both handoffs and dispatch entries, plus both game and AI-gateway
   health dependencies and container ports. No deployment or owner-machine action.
 - VERIFY: Compose configuration, YAML lint, private-defaults test, and secret scan
-  passed. Focused auth/game tests could not run here because FastAPI is unavailable.
-- NEXT: run the auth/game tests and CodeQL with dependencies available; verify the
-  public game route before claiming production availability.
+  passed. CodeQL found zero Python or JavaScript alerts. Focused auth/game tests
+  could not run here because FastAPI is unavailable.
+- NEXT: run the auth/game tests with dependencies available; verify the public game
+  route before claiming production availability.
 
 ## CI YAML lint repair — 2026-11-23
 
