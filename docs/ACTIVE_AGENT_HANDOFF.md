@@ -1,5 +1,31 @@
 # Active Agent Handoff
 
+## Registered-user branch merge coordination — 2026-11-24
+
+- Branch: `copilot/enable-registered-users-access-backend`; merge current `main`.
+- Scope: retain both handoffs and dispatch entries, plus both game and AI-gateway
+  health dependencies and container ports. No deployment or owner-machine action.
+- VERIFY: Compose configuration, YAML lint, private-defaults test, and secret scan
+  passed. Focused auth/game tests could not run here because FastAPI is unavailable.
+- NEXT: run the auth/game tests and CodeQL with dependencies available; verify the
+  public game route before claiming production availability.
+
+## CI YAML lint repair — 2026-11-23
+
+- Branch: `copilot/fix-compose-yaml-lint`, based on `738fe2c`; no deployment.
+- INSPECTED: the GitHub job reported only a PRIVATE receipt; reproduction
+  showed an indentation warning promoted to failure by strict yamllint.
+- Scope: whitespace-only alignment of the `ai-gateway` volume list in
+  `docker-compose.v2.yml` to repair the strict YAML lint job. This overlaps
+  deployment configuration but does not change mounts or service behavior.
+- PRESERVED: existing release ownership, PRIVATE/BRIDGE configuration, and
+  creative/output approval gates.
+- VERIFY: `python tools/local_validation.py --stage lint-yaml` passed on Python
+  3.12 with yamllint 1.38.0; the parsed Compose model is unchanged, and
+  `tests.test_private_hosting.ConfigTests.test_private_defaults` passed.
+- NEXT: review the change and confirm GitHub lint on the resulting head;
+  no post-fix GitHub run is claimed.
+
 ## Active implementation — game-player magic links and multiplayer — 2026-11-20
 
 - INSPECTED: PR #380 (auth/Studio release) and PR #385 (local deployment hardening)

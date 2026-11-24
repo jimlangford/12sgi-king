@@ -6,7 +6,12 @@
 (function () {
   'use strict';
 
-  var API_BASE = 'http://localhost:8108/api/v2';
+  /* Talk to the local studio-assets API only when this page is itself served from this machine.
+     On a public origin "localhost" is the VISITOR's computer: the call can never reach our backend, and
+     browsers treat a public page reaching into a private address as a warning-worthy request. The static
+     tenant list (TENANT_REG) is the public path; the API call is progressive enhancement only. */
+  var IS_LOCAL_ORIGIN = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  var API_BASE = IS_LOCAL_ORIGIN ? 'http://localhost:8108/api/v2' : '';
 
   /* ── Tenant registry (static fallback if API unavailable) ── */
   var TENANT_REG = {
@@ -213,7 +218,7 @@
   /* ── Load tenants from v2 API (progressive enhancement) ── */
   function loadTenantsFromAPI() {
     var govSel = document.getElementById('tnav-gov');
-    if (!govSel) return;
+    if (!govSel || !API_BASE) return;
     fetch(API_BASE + '/tenants').then(function (r) { return r.json(); }).then(function (data) {
       var civicTenants = (data.tenants || []).filter(function (t) { return t.kind === 'civic'; });
       if (!civicTenants.length) return;

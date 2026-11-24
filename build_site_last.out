@@ -1,0 +1,89 @@
+  + civic money maps: == 6 map(s) injected, 8 skipped ==
+  [lane] civic_money_maps: ok (1.32s)
+  [lane] dashboards: ok (0.80s)
+  [lane] extra_pages: ok (5.12s)
+  [lane] data_files: ok (0.15s)
+  + datasets.html + data.json (DCAT): 12 public datasets indexed
+  [lane] open_data_catalog: ok (0.01s)
+  tenant_coverage_heatmap: 48/72 cells filled (67%) -> C:\Users\12sgi\Documents\Claude\12sgi-king\site\tenant_coverage.html
+  [lane] tenant_coverage: ok (0.20s)
+  + blog.html + 175 post pages (Aloha blog -> public site/)
+  [lane] blog: ok (0.31s)
+  + donors/: 10 profile pages
+  + donors_hi-hawaii/: 10 profile pages
+  + donors_hi-honolulu/: 10 profile pages
+  + donors_hi-kauai/: 7 profile pages
+  + donors_hi-state/: 5 profile pages
+  [lane] links_copy: ok (0.73s)
+  + bids/: 1 referenced bid page(s) shipped (archive has 3911)
+  [lane] bids_copy: ok (0.90s)
+  + sage/: 2D SAGE game (54 card assets, static, always-up)
+  [lane] sage_game: ok (0.70s)
+  + games/: TribeGameStudios hub (7 HTML games, static, always-up)
+  [lane] games_hub: ok (0.61s)
+  + king/: public King System (leak-gate clean)
+  + king/index.html: clean static landing (global system + live progress); old shell -> king/app.html
+  [lane] king_public_system: ok (4.78s)
+  + platform.html: rendered from packages.json (single source of truth)
+  + join.html: paid-pages shell (live Woo prices)
+  + go/ subpages: 9 Owner Console panels (fail-closed on mirror)
+  + go.html: live/mirror failover launcher (root + king/)
+  + go/: owner-console route pages (/go/*)
+  + go route wrappers: auto-generated 8 extensionless index route(s) for go/ and king/go/
+  [lane] platform_packages: ok (0.81s)
+  + Element Lotus shell: 9 public studio file(s) (games/films/music first)
+  [lane] element_lotus_public_shell: ok (0.26s)
+  + 404.html: 'no access — private surface' explanation (served by GitHub Pages on any 404)
+  + take_action.html: demand-the-records + supporter signup (+nav)
+  + testify.html: citizen testimony -> County Clerk + govOS (+nav)
+  + maui.html: mirrors tenant_hi-maui.html verbatim (35431 bytes) — no separate Maui rendering path
+  [lane] static_pages: ok (0.11s)
+  + grants.html: community grants library preview (97 grants, paywall gated)
+  [lane] grants: ok (0.02s)
+  + production_status.json
+  + slate-data.js (generated from production_status.json + media_catalog.json)
+  [lane] production_status: ok (0.05s)
+  [lane] build_index_html: ok (0.01s)
+  + studio.html: former front-door shell, preserved at a stable URL
+  + index.html = education.html (public front door: civic education leads; go.html stays the private launcher)
+  [lane] public_front_door: ok (0.08s)
+  + CNAME = 12sgi.com (GitHub Pages custom domain for the public mirror)
+  [lane] cname: ok (0.00s)
+  + buildinfo.json = 5f47761 (git-awareness live-deploy marker)
+  [lane] buildinfo_json: ok (0.16s)
+built site -> C:\Users\12sgi\Documents\Claude\12sgi-king\site: 33 dashboards + 12 data files
+  + quadrant_progress.html: published (resolves go.html / progress links)
+  + quadrant_progress_log.html: published (resolves go.html / progress links)
+  [lane] quadrant_progress: ok (0.03s)
+  + recolor: Yale-blue civic palette applied to 634 html/css files (all tenants; data/JS untouched)
+  [lane] recolor_site: ok (3.92s)
+  + wrapped 98 headless civic fragment(s) into full documents (shared shell now reaches them)
+  + maui.html: mirrors tenant_hi-maui.html verbatim (17404 bytes) — no separate Maui rendering path
+  + govos shell stamp: 619/624 pages carry shared govos.css + govos-shell.js (603 changed this run)
+  [lane] govos_shell_stamp: ok (3.10s)
+  + king-local PRIVATE root: index.html -> go.html (consolidated dashboard default)
+  + king-local blog: re-rendered PRIVATE nav (static=False) over the public mirror copy
+  + king-local (PRIVATE superset): mirrored 33 dashboards + data + king/ + civic/ -> served first via Tailscale
+  + king-local OWNER-ONLY: case_files.html (prosecutorial back end — never public)
+  + king-local OWNER-ONLY: system_status.html (private — never public)
+  + king-local OWNER-ONLY: onboard_readiness.html (private — never public)
+  + king-local OWNER-ONLY: king_message.html (private — never public)
+  + king-local OWNER-ONLY: maui_re_report.html (private — never public)
+  + king-local OWNER-ONLY: recusal_evidence.html (donor-tie dollar evidence — never public)
+  + king-local OWNER-ONLY: king_private_src/* (12SGI corporate data room + cap table + docs — never public)
+  + king_recolor: 5 page(s) recolored Yale-blue, 15 given the mobile viewport (private King)
+  [lane] king_local_mirror: ok (7.36s)
+  + public sanitize: VBASE='(opening-soon)' + stripped private ts.net host on 13 public page(s); king-local untouched
+  [lane] public_api_sanitize: ok (0.36s)
+  + link normalize: 123 href/src fixed across 17 page(s) (no broken internal links)
+  [lane] link_prefix_fix: ok (1.54s)
+  + owner-ops purge: dropped 28 private surface(s) from PUBLIC build [go.html, go/, king\Aupuni.dc.html, king\Connectors.dc.html, king\Council.dc.html, king\Dashboard.dc.html, king\Events.dc.html, king\Game.dc.html, king\Gpu.dc.html, king\Graph.dc.html, king\Hub.dc.html, king\LaunchCenter.dc.html]
+  [lane] owner_ops_purge: ok (0.47s)
+[reconcile] WARN (dev only — CI gate blocks on seed_reports):
+  reconcile: 3 possible duplicate pair(s) in C:\Users\12sgi\Documents\Claude\12sgi-king\site:
+    DUP  index.html  <=>  games/index.html   (same route/basename: index.html)
+    DUP  index.html  <=>  king/index.html   (same route/basename: index.html)
+    DUP  index.html  <=>  sage/index.html   (same route/basename: index.html)
+  [lane] reconcile: ok (0.22s)
+  + lane report: 29 lanes, 0 failed
+  [lane] lane_report: ok (0.00s)

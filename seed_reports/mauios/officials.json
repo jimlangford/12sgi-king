@@ -1,1 +1,5893 @@
-{}
+{
+ "Batangan": {
+  "meetings": 33,
+  "ayes": 152,
+  "noes": 0,
+  "recused": 1,
+  "excused": 0,
+  "total_votes": 152,
+  "vote_log": [
+   {
+    "date": "2026-10-23",
+    "item": "BILL 143",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "FAILED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 144",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 145",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 148",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 150",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 85",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 124",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 134",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-23",
+    "item": "BILL 138",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1395/files/minutes/5946"
+   },
+   {
+    "date": "2026-10-09",
+    "item": "BILL 133",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1394/files/minutes/5945"
+   },
+   {
+    "date": "2026-10-09",
+    "item": "BILL 134",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1394/files/minutes/5945"
+   },
+   {
+    "date": "2026-10-09",
+    "item": "BILL 135",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1394/files/minutes/5945"
+   },
+   {
+    "date": "2026-10-09",
+    "item": "BILL 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1394/files/minutes/5945"
+   },
+   {
+    "date": "2026-10-09",
+    "item": "BILL 138",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1394/files/minutes/5945"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "Bill 98",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "Bill 101",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "Bill 55",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "BILL 109",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "BILL 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "item": "BILL 112",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-11",
+    "item": "BILL 102",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1387/files/minutes/5918"
+   },
+   {
+    "date": "2026-08-11",
+    "item": "BILL 95",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1387/files/minutes/5918"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "Bill 55",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "Bill 55",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "Bill 55",
+    "motion": "Motion AMEND with",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-11",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-8",
+    "motion": "MOTION PASSED",
+    "vote": "RECUSED",
+    "result": "FAILED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-6",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-6",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "Bill 55",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "Bill 56",
+    "motion": "Motion AMEND with",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "CC 26-13",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "BILL 86",
+    "motion": "Motion AMEND/",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "BILL 87",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "BILL 79",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-15",
+    "item": "BILL NO. 82",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   },
+   {
+    "date": "2026-05-01",
+    "item": "BILL 80",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   },
+   {
+    "date": "2026-05-01",
+    "item": "BILL 82",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   },
+   {
+    "date": "2026-05-01",
+    "item": "BILL 83",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   },
+   {
+    "date": "2026-05-01",
+    "item": "BILL 75",
+    "motion": "Motion PASS 71, 72",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   },
+   {
+    "date": "2026-05-01",
+    "item": "BILL 34",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1371/files/minutes/5880"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "Bill 47",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "Bill 28",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 142",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 30",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 50",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 51",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 52",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "Bill 176",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "Bill 21",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 23",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 24",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 25",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 12",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL NO. 15",
+    "motion": "Motion PASS Bill 25",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 18",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 17",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 17",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 12",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 13",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 16",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 15",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 1",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 168",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 177",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 3",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 5",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   }
+  ],
+  "recusals": [
+   {
+    "date": "2026-09-04",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1389/files/minutes/5926"
+   },
+   {
+    "date": "2026-09-04",
+    "meeting": "County Council Meeting",
+    "item": "BILL 116",
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1389/files/minutes/5926"
+   },
+   {
+    "date": "2026-09-04",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1389/files/minutes/5926"
+   },
+   {
+    "date": "2026-06-19",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1383/files/minutes/5900"
+   },
+   {
+    "date": "2026-06-19",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1383/files/minutes/5900"
+   },
+   {
+    "date": "2026-06-05",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-06-05",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1378/files/minutes/5899"
+   },
+   {
+    "date": "2026-05-15",
+    "meeting": "County Council Meeting",
+    "item": "CC 26-11",
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1376/files/minutes/5888"
+   }
+  ]
+ },
+ "Cook": {
+  "meetings": 75,
+  "ayes": 277,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 277,
+  "vote_log": [
+   {
+    "date": "2026-02-06",
+    "item": "BILL NO. 15",
+    "motion": "Motion PASS Bill 25",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 18",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 17",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 17",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 12",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 13",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 16",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 15",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 1",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 168",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 177",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 3",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 5",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 173",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 149",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 155",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Johnson": {
+  "meetings": 75,
+  "ayes": 289,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 289,
+  "vote_log": [
+   {
+    "date": "2026-01-23",
+    "item": "Bill 5",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 171",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 149",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 155",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Lee": {
+  "meetings": 75,
+  "ayes": 309,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 309,
+  "vote_log": [
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 171",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 173",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 149",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 155",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Paltin": {
+  "meetings": 75,
+  "ayes": 281,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 281,
+  "vote_log": [
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 171",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 173",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 149",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 155",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Rawlins-Fernandez": {
+  "meetings": 75,
+  "ayes": 281,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 281,
+  "vote_log": [
+   {
+    "date": "2026-01-23",
+    "item": "Bill 13",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 16",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 15",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 1",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 168",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 177",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 3",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 5",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 173",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 155",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Sinenci": {
+  "meetings": 75,
+  "ayes": 277,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 277,
+  "vote_log": [
+   {
+    "date": "2026-02-06",
+    "item": "BILL 17",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 12",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 13",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 16",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 15",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 1",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 168",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 3",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 5",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 8",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 171",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 173",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 174",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 147",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 159",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 99",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Sugimura": {
+  "meetings": 75,
+  "ayes": 236,
+  "noes": 0,
+  "recused": 0,
+  "excused": 0,
+  "total_votes": 236,
+  "vote_log": [
+   {
+    "date": "2026-04-02",
+    "item": "Bill 28",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL NO. 65",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 142",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 30",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-04-02",
+    "item": "BILL 50",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1365/files/minutes/5844"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 12",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "CC 26-3",
+    "motion": "Motion Pass on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-02-06",
+    "item": "BILL 18",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1358/files/minutes/3816"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 12",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 13",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 177",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2026-01-23",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1356/files/minutes/3810"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 171",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 169",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 175",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 179",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 174",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-12-05",
+    "item": "Bill 136",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1311/files/minutes/3783"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 136",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 172",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 131",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-21",
+    "item": "Bill 156",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1290/files/minutes/2759"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 131",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 147",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 110",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 156",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "BILL 118",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 166",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 103",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-11-07",
+    "item": "Bill 106",
+    "motion": "Motion Pass Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1202/files/minutes/2694"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 103",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 138",
+    "motion": "Motion ADOPT recommendations",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 106",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 160",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 40",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 141",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 148",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 149",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 154",
+    "motion": "Motion PASS Bills 149",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-24",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1026/files/minutes/2692"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 40",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 141",
+    "motion": "Motion RECONSIDER",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 148",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 155",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 1",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 82",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 109",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 114",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 130",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "Bill 133",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-10-10",
+    "item": "CC 25-20",
+    "motion": "Motion ADOPT, as",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1025/files/minutes/2690"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 92",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 82",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 21",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 113",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 130",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 132",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 134",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   }
+  ],
+  "recusals": []
+ },
+ "Uu-Hodgins": {
+  "meetings": 75,
+  "ayes": 577,
+  "noes": 0,
+  "recused": 2,
+  "excused": 0,
+  "total_votes": 577,
+  "vote_log": [
+   {
+    "date": "2025-09-26",
+    "item": "Bill 78",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 111",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 114",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 109",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 135",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 136",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 123",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 124",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 125",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-26",
+    "item": "Bill 90",
+    "motion": "Motion PASS on second",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1023/files/minutes/43"
+   },
+   {
+    "date": "2025-09-08",
+    "item": "Bill 120",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1309/files/minutes/2753"
+   },
+   {
+    "date": "2025-09-08",
+    "item": "Bill 121",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1309/files/minutes/2753"
+   },
+   {
+    "date": "2025-09-08",
+    "item": "Bill 124",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1309/files/minutes/2753"
+   },
+   {
+    "date": "2025-09-08",
+    "item": "Bill 125",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1309/files/minutes/2753"
+   },
+   {
+    "date": "2025-09-08",
+    "item": "Bill 127",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1309/files/minutes/2753"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 79",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 116",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 117",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 118",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 96",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-26",
+    "item": "Bill 108",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1305/files/minutes/2739"
+   },
+   {
+    "date": "2025-08-12",
+    "item": "Bill 96",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1304/files/minutes/2735"
+   },
+   {
+    "date": "2025-08-12",
+    "item": "Bill 56",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1304/files/minutes/2735"
+   },
+   {
+    "date": "2025-08-12",
+    "item": "Bill 87",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1304/files/minutes/2735"
+   },
+   {
+    "date": "2025-08-12",
+    "item": "Bill 88",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1304/files/minutes/2735"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "BILL 54",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 87",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 88",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 89",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 47",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 75",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-25",
+    "item": "Bill 86",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1303/files/minutes/2733"
+   },
+   {
+    "date": "2025-07-08",
+    "item": "Bill 47",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1302/files/minutes/2725"
+   },
+   {
+    "date": "2025-07-08",
+    "item": "Bill 158",
+    "motion": "Motion AMEND;",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1302/files/minutes/2725"
+   },
+   {
+    "date": "2025-07-08",
+    "item": "Bill 84",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1302/files/minutes/2725"
+   },
+   {
+    "date": "2025-06-30",
+    "item": "Bill 104",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1301/files/minutes/2721"
+   },
+   {
+    "date": "2025-06-30",
+    "item": "Bill 81",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1301/files/minutes/2721"
+   },
+   {
+    "date": "2025-06-30",
+    "item": "Bill 84",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1301/files/minutes/2721"
+   },
+   {
+    "date": "2025-06-30",
+    "item": "Bill 39",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1301/files/minutes/2721"
+   },
+   {
+    "date": "2025-06-30",
+    "item": "Bill 77",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1301/files/minutes/2721"
+   },
+   {
+    "date": "2025-06-27",
+    "item": "Bill 104",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1300/files/minutes/2718"
+   },
+   {
+    "date": "2025-06-27",
+    "item": "Bill 81",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1300/files/minutes/2718"
+   },
+   {
+    "date": "2025-06-27",
+    "item": "Bill 84",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1300/files/minutes/2718"
+   },
+   {
+    "date": "2025-06-27",
+    "item": "Bill 39",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1300/files/minutes/2718"
+   },
+   {
+    "date": "2025-06-27",
+    "item": "Bill 77",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1300/files/minutes/2718"
+   },
+   {
+    "date": "2025-06-06",
+    "item": "Bill 78",
+    "motion": "Motion AMEND",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1298/files/minutes/2712"
+   },
+   {
+    "date": "2025-06-06",
+    "item": "Bill 74",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1298/files/minutes/2712"
+   },
+   {
+    "date": "2025-05-16",
+    "item": "Bill 74",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1293/files/minutes/2688"
+   },
+   {
+    "date": "2025-05-16",
+    "item": "Bill 75",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1293/files/minutes/2688"
+   },
+   {
+    "date": "2025-05-16",
+    "item": "Bill 59",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1293/files/minutes/2688"
+   },
+   {
+    "date": "2025-05-16",
+    "item": "Bill 61",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1293/files/minutes/2688"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 18",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 15",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 51",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 53",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 3",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "Bill 16",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-17",
+    "item": "RESOLUTION NO. 22",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1113/files/minutes/2651"
+   },
+   {
+    "date": "2025-04-04",
+    "item": "Bill 33",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1107/files/minutes/2649"
+   },
+   {
+    "date": "2025-04-04",
+    "item": "Bill 37",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1107/files/minutes/2649"
+   },
+   {
+    "date": "2025-03-21",
+    "item": "Bill 22",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1101/files/minutes/2647"
+   },
+   {
+    "date": "2025-03-21",
+    "item": "Bill 17",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1101/files/minutes/2647"
+   },
+   {
+    "date": "2025-03-21",
+    "item": "Bill 29",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1101/files/minutes/2647"
+   },
+   {
+    "date": "2025-03-07",
+    "item": "Bill 7",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1094/files/minutes/2646"
+   },
+   {
+    "date": "2025-03-07",
+    "item": "Bill 20",
+    "motion": "Motion PASS Bills 7,",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1094/files/minutes/2646"
+   },
+   {
+    "date": "2025-02-21",
+    "item": "Bill 51",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1091/files/minutes/2645"
+   },
+   {
+    "date": "2025-02-21",
+    "item": "Bill 16",
+    "motion": "Motion FILE",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1091/files/minutes/2645"
+   },
+   {
+    "date": "2025-02-21",
+    "item": "Bill 11",
+    "motion": "Motion PASS on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1091/files/minutes/2645"
+   },
+   {
+    "date": "2025-02-07",
+    "item": "Bill 11",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1085/files/minutes/1637"
+   },
+   {
+    "date": "2025-02-07",
+    "item": "Bill 13",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1085/files/minutes/1637"
+   },
+   {
+    "date": "2025-02-07",
+    "item": "Bill 15",
+    "motion": "Motion PASS Bills",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1085/files/minutes/1637"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 2",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 3",
+    "motion": "Motion PASS on first",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 4",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 7",
+    "motion": "Motion AMEND to",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 146",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 170",
+    "motion": "Motion PASS Bill",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 180",
+    "motion": "MOTION PASSED",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-17",
+    "item": "Bill 188",
+    "motion": "Motion PASS Bill on",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1238/files/minutes/1599"
+   },
+   {
+    "date": "2025-01-02",
+    "item": "Bill 1",
+    "motion": "Motion ADOPT",
+    "vote": "AYE",
+    "result": "PASSED",
+    "url": "https://mauicounty.portal.civicclerk.com/event/1029/files/minutes/1633"
+   }
+  ],
+  "recusals": [
+   {
+    "date": "2026-08-25",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   },
+   {
+    "date": "2026-08-25",
+    "meeting": "County Council Meeting",
+    "item": null,
+    "dollars": [],
+    "url": "https://mauicounty.portal.civicclerk.com/event/1388/files/minutes/5924"
+   }
+  ]
+ }
+}

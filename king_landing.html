@@ -179,7 +179,10 @@
 
 <script src="site/govos-shell.js" defer></script>
 <script>
-const BRIDGE = 'http://localhost:8109/api/v2';
+// Local bridge only when this page is served from this machine; on a public origin "localhost" would be
+// the visitor's own computer. Same-origin /api/v2 falls into the existing "bridge offline" message below.
+const BRIDGE = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)
+  ? 'http://localhost:8109/api/v2' : '/api/v2';
 const SITE   = 'site/';
 
 // ── Report class → page map ────────────────────────────────────────────────
