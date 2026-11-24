@@ -1,5 +1,20 @@
 # Active Agent Handoff
 
+## Education and creative connections — 2026-11-24
+
+- Branch: `copilot/enable-registered-users-access-backend`.
+- PUBLIC: connect education, games, films, music, and civic source pages with
+  descriptive links; regenerate the existing WordPress fragments.
+- PRIVATE: align the existing Neo education activities with the current page.
+  The loader marks current `USES` edges with a revision; its reader filters by
+  revision and falls back to the current static map until the loader runs.
+  Older edges remain intact, and other graph readers may still see them.
+- VERIFY: isolated public build, built-link checks at root and project mounts,
+  12 focused education/graph/bundle tests, Python compilation, and secret scan
+  passed. No live graph, public route, publishing, or deployment was exercised.
+- NEXT: owner review the links and mapping, reconcile other graph consumers, and
+  arrange an owner-machine graph load and verification before claiming live status.
+
 ## Registered-user branch merge coordination — 2026-11-24
 
 - Branch: `copilot/enable-registered-users-access-backend`; merge current `main`.
