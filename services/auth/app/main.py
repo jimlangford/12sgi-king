@@ -1,6 +1,7 @@
 import base64
 import binascii
 import hashlib
+import ipaddress
 import hmac
 import html as _html
 import json
@@ -680,6 +681,24 @@ def _magic_token_hash(token: str) -> str:
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
+def _client_ip(request: Request) -> str:
+    """Caller address for rate limiting. This service sits behind the Cloudflare tunnel / nginx on a private hop, so the
+    socket peer is the proxy and every visitor would share one bucket. Trust CF-Connecting-IP only when the peer is
+    loopback or private (our own tunnel); a direct internet peer can never choose its own bucket."""
+    peer = request.client.host if request.client else ""
+    try:
+        peer_ip = ipaddress.ip_address(peer)
+    except ValueError:
+        return peer
+    if peer_ip.is_loopback or peer_ip.is_private:
+        forwarded = (request.headers.get("cf-connecting-ip") or "").strip()
+        try:
+            return str(ipaddress.ip_address(forwarded))
+        except ValueError:
+            return peer
+    return peer
+
+
 def _safe_game_return_to(raw: str | None) -> str:
     value = str(raw or "").strip()
     if not value:
@@ -711,9 +730,11 @@ def _create_magic_link(
     token = secrets.token_urlsafe(32)
     token_hash = _magic_token_hash(token)
     expires_at = now + MAGIC_LINK_TTL_SECONDS
+    # The owner is never throttled by the per-IP bucket: it is the only brake a stranger could use to lock the owner
+    # out (the per-address minimum interval below still applies to the owner's own address).
     ip_hash = (
         hmac.new(SIGNING_SECRET.encode(), client_ip.encode("utf-8"), hashlib.sha256).hexdigest()
-        if client_ip
+        if client_ip and role != "Owner"
         else ""
     )
     with _db() as conn:
@@ -1504,7 +1525,7 @@ def request_magic_link(payload: MagicLinkRequest, request: Request):
         )
     role = "Owner" if email in OWNER_MAGIC_EMAILS else "RegisteredUser"
     return_to = _safe_game_return_to(payload.return_to)
-    client_ip = request.client.host if request.client else ""
+    client_ip = _client_ip(request)
     issued = _create_magic_link(
         email,
         role=role,

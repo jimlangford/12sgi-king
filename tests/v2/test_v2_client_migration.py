@@ -460,7 +460,7 @@ class TestClaimClientMigration(unittest.TestCase):
 
 class TestOwnerOAuthLaunchReadiness(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(prefix="v2-owner-oauth-")
+        self.tmp = tempfile.TemporaryDirectory(prefix="v2-owner-oauth-", ignore_cleanup_errors=True)
         self.auth_db = str(Path(self.tmp.name) / "auth.db")
         self.auth_env = {
             "AUTH_SIGNING_SECRET": "owner-oauth-secret",
