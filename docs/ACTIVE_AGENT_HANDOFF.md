@@ -96,6 +96,31 @@
 - PRESERVED: existing bridge routes, local-first services, public build exclusion for `owner_jobs.html`, and internal service authentication for other bridge mutation/inference endpoints. No publishing, deployment, DNS, or merge.
 - VERIFY: `python -m unittest tests.test_king_bridge_owner_auth -v` passed (3 tests); `git diff --check` passed. `python tools/local_validation.py --stage test` ran 548 tests and failed 6 unrelated Windows/environment tests: two scanner setup/exit checks (including missing npm), coverage reporting, Windows newline filename handling, and two `PermissionError` failures in public release pointer tests. The focused auth tests passed in that full run. Live auth-service integration remains unverified.
 - NEXT: review this focused diff; then continue the full interface and API-routing inventory. Before production use, confirm King Bridge can reach the configured auth introspection endpoint and align auth-service service credentials in deployment configuration.
+## Education and creative connections — 2026-11-24
+
+- Branch: `copilot/enable-registered-users-access-backend`.
+- PUBLIC: connect education, games, films, music, and civic source pages with
+  descriptive links; regenerate the existing WordPress fragments.
+- PRIVATE: align the existing Neo education activities with the current page.
+  The loader marks current `USES` edges with a revision; its reader filters by
+  revision and falls back to the current static map until the loader runs.
+  Older edges remain intact, and other graph readers may still see them.
+- VERIFY: isolated public build, built-link checks at root and project mounts,
+  12 focused education/graph/bundle tests, Python compilation, and secret scan
+  passed. No live graph, public route, publishing, or deployment was exercised.
+- NEXT: owner review the links and mapping, reconcile other graph consumers, and
+  arrange an owner-machine graph load and verification before claiming live status.
+
+## Registered-user branch merge coordination — 2026-11-24
+
+- Branch: `copilot/enable-registered-users-access-backend`; merge current `main`.
+- Scope: retain both handoffs and dispatch entries, plus both game and AI-gateway
+  health dependencies and container ports. No deployment or owner-machine action.
+- VERIFY: Compose configuration, YAML lint, private-defaults test, and secret scan
+  passed. CodeQL found zero Python or JavaScript alerts. Focused auth/game tests
+  could not run here because FastAPI is unavailable.
+- NEXT: run the auth/game tests with dependencies available; verify the public game
+  route before claiming production availability.
 
 ## CI YAML lint repair — 2026-11-23
 
@@ -112,6 +137,28 @@
   `tests.test_private_hosting.ConfigTests.test_private_defaults` passed.
 - NEXT: review the change and confirm GitHub lint on the resulting head;
   no post-fix GitHub run is claimed.
+
+## Active implementation — game-player magic links and multiplayer — 2026-11-20
+
+- INSPECTED: PR #380 (auth/Studio release) and PR #385 (local deployment hardening)
+  are merged. Work is isolated on `copilot/enable-registered-users-access-backend`.
+- CHANGED: public verified-email magic-link onboarding now issues a game-only
+  `RegisteredUser` session; a separate Compose-only service serves Konane/Weiqi
+  shared circles through the narrow `/games/api/` route. Owner allowlisting and
+  private backend routes remain unchanged.
+- PRESERVED: no general backend/Tailscale access, direct host publish for the game
+  API, production cutover, or owner-machine operation was performed.
+- VERIFY: 33 focused auth/game tests and the repository test stage pass. The isolated
+  public build, YAML lint, Compose config, targeted Ruff, Python compilation,
+  JavaScript syntax, whitespace, explicit-base Python lint, and secret checks pass.
+  Final read-only review found no significant remaining issues. Initial CodeQL
+  flagged polynomial backtracking in email validation; this was replaced with
+  bounded linear validation and covered by a regression test. The post-fix CodeQL
+  request timed out, so a clean CodeQL result is not established.
+- NEXT: obtain a successful CodeQL verification when available and confirm the static
+  host forwards `/games/api/` to the Compose web-server. GitHub Pages static backup
+  alone cannot run multiplayer; do not claim production availability until the host
+  route and live service are verified.
 
 ## Deployment branch merge coordination — 2026-11-20
 

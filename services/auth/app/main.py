@@ -6,7 +6,6 @@ import html as _html
 import json
 import logging
 import os
-import re
 import secrets
 import smtplib
 import sqlite3
@@ -18,24 +17,34 @@ from email.message import EmailMessage
 from uuid import uuid4
 
 import requests as _requests
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel
-from services.service_metadata import with_service_metadata
-from services.authz import DEFAULT_SCOPES_BY_ROLE, KNOWN_SCOPES, VALID_ROLES, audit_auth_event
-from services.event_bus import publish_event as _publish_event
 
 from services import entitlements as _entitlements
 from services.auth.app.passkeys import (
+    PasskeyRegisterBeginRequest,
+    PasskeyRegisterBeginResponse,
+    PasskeyRegisterCompleteRequest,
+    PasskeyRegisterCompleteResponse,
+    PasskeySigninBeginRequest,
+    PasskeySigninBeginResponse,
+    PasskeySigninCompleteRequest,
     init_passkeys_db,
-    PasskeyRegisterBeginRequest, PasskeyRegisterBeginResponse,
-    PasskeyRegisterCompleteRequest, PasskeyRegisterCompleteResponse,
-    PasskeySigninBeginRequest, PasskeySigninBeginResponse,
-    PasskeySigninCompleteRequest, PasskeySigninCompleteResponse,
-    passkey_register_begin, passkey_register_complete,
-    passkey_signin_begin, passkey_signin_complete,
+    passkey_register_begin,
+    passkey_register_complete,
+    passkey_signin_begin,
+    passkey_signin_complete,
 )
+from services.authz import (
+    DEFAULT_SCOPES_BY_ROLE,
+    KNOWN_SCOPES,
+    VALID_ROLES,
+    audit_auth_event,
+)
+from services.event_bus import publish_event as _publish_event
+from services.service_metadata import with_service_metadata
 
 _log = logging.getLogger(__name__)
 
@@ -128,6 +137,18 @@ MAGIC_LINK_MIN_INTERVAL_SECONDS = max(
     0,
     min(900, int(os.environ.get("MAGIC_LINK_MIN_INTERVAL_SECONDS", "60"))),
 )
+MAGIC_LINK_IP_HOURLY_LIMIT = max(
+    1,
+    min(100, int(os.environ.get("MAGIC_LINK_IP_HOURLY_LIMIT", "100"))),
+)
+GAME_SESSION_TTL_SECONDS = max(
+    300,
+    min(3600, int(os.environ.get("GAME_SESSION_TTL_SECONDS", "3600"))),
+)
+GAME_LOBBY_TENANT_ID = os.environ.get("GAME_LOBBY_TENANT_ID", "tribegamestudios").strip()
+GAME_MAGIC_REDIRECT_BASE = os.environ.get(
+    "GAME_MAGIC_REDIRECT_BASE", "https://12sgi.com/games/login.html"
+).strip()
 SMTP_HOST = os.environ.get("SMTP_HOST", "").strip()
 SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
 SMTP_USER = os.environ.get("SMTP_USER", "").strip()
@@ -139,7 +160,6 @@ MAGIC_EMAIL_CONFIGURED = bool(
     SMTP_HOST
     and SMTP_FROM
     and ((SMTP_USER and SMTP_PASS) or SMTP_ALLOW_UNAUTHENTICATED)
-    and OWNER_MAGIC_EMAILS
 )
 # Passkey registration requires an existing Owner session. The allowlist further constrains which
 # owner e-mails may bind a credential and defaults only to explicitly configured Google owners.
@@ -210,6 +230,7 @@ class AuthIdentityLinkDiagnosticRequest(BaseModel):
     email: str | None = None
 class MagicLinkRequest(BaseModel):
     email: str
+    return_to: str | None = None
 
 
 ALLOWED_PROVIDERS = {"passkey", "google", "apple", "microsoft", "magic_link", "github"}
@@ -369,7 +390,31 @@ def init_db() -> None:
                 email TEXT NOT NULL,
                 created_at INTEGER NOT NULL,
                 expires_at INTEGER NOT NULL,
-                used_at INTEGER
+                used_at INTEGER,
+                role TEXT NOT NULL DEFAULT 'Owner',
+                return_to TEXT NOT NULL DEFAULT ''
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                id TEXT PRIMARY KEY,
+                email TEXT NOT NULL UNIQUE,
+                display_name TEXT NOT NULL DEFAULT '',
+                tenant_id TEXT NOT NULL,
+                role TEXT NOT NULL,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL,
+                verified_at TEXT NOT NULL
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS magic_link_ip_limits (
+                ip_hash TEXT NOT NULL,
+                created_at INTEGER NOT NULL
             )
             """
         )
@@ -379,7 +424,15 @@ def init_db() -> None:
             ON magic_links (email, created_at DESC)
             """
         )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_magic_link_ip_limits_created
+            ON magic_link_ip_limits (ip_hash, created_at DESC)
+            """
+        )
         for ddl in (
+            "ALTER TABLE magic_links ADD COLUMN role TEXT NOT NULL DEFAULT 'Owner'",
+            "ALTER TABLE magic_links ADD COLUMN return_to TEXT NOT NULL DEFAULT ''",
             "ALTER TABLE sessions ADD COLUMN tenant_id TEXT",
             "ALTER TABLE sessions ADD COLUMN role TEXT NOT NULL DEFAULT 'Resident'",
             "ALTER TABLE sessions ADD COLUMN scopes_json TEXT",
@@ -610,26 +663,76 @@ def _require_owner_session(authorization: str | None) -> tuple[str, dict]:
             detail={"error": {"code": "forbidden", "message": "Owner role required", "details": {}}},
         )
     return owner_token, owner_claims
-_EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-
-
 def _normalise_email(raw: str) -> str:
     email = str(raw or "").strip().casefold()
-    return email if _EMAIL_PATTERN.fullmatch(email) else ""
+    if len(email) > 254 or not email or email.count("@") != 1 or any(char.isspace() for char in email):
+        return ""
+    local, domain = email.split("@", 1)
+    if not local or not domain:
+        return ""
+    first_label, separator, remaining_domain = domain.partition(".")
+    if not separator or not first_label or not remaining_domain:
+        return ""
+    return email
 
 
 def _magic_token_hash(token: str) -> str:
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
-def _create_magic_link(email: str) -> tuple[str, int] | None:
+def _safe_game_return_to(raw: str | None) -> str:
+    value = str(raw or "").strip()
+    if not value:
+        return ""
+    if len(value) > 2048 or any(ord(char) < 32 or ord(char) == 127 for char in value):
+        return ""
+    parsed = urllib.parse.urlsplit(value)
+    if (
+        parsed.scheme
+        or parsed.netloc
+        or parsed.fragment
+        or not parsed.path.startswith("/games/")
+        or parsed.path.startswith("//")
+        or "\\" in parsed.path
+    ):
+        return ""
+    return urllib.parse.urlunsplit(("", "", parsed.path, parsed.query, ""))
+
+
+def _create_magic_link(
+    email: str,
+    *,
+    role: str,
+    return_to: str = "",
+    client_ip: str = "",
+) -> tuple[str, int] | None:
     """Persist a hashed, single-use token unless this address is rate limited."""
     now = int(_now_utc().timestamp())
     token = secrets.token_urlsafe(32)
     token_hash = _magic_token_hash(token)
     expires_at = now + MAGIC_LINK_TTL_SECONDS
+    ip_hash = (
+        hmac.new(SIGNING_SECRET.encode(), client_ip.encode("utf-8"), hashlib.sha256).hexdigest()
+        if client_ip
+        else ""
+    )
     with _db() as conn:
         conn.execute("BEGIN IMMEDIATE")
+        if ip_hash:
+            conn.execute(
+                "DELETE FROM magic_link_ip_limits WHERE created_at < ?",
+                (now - 3600,),
+            )
+            requests_from_ip = conn.execute(
+                """
+                SELECT COUNT(*) FROM magic_link_ip_limits
+                WHERE ip_hash = ? AND created_at >= ?
+                """,
+                (ip_hash, now - 3600),
+            ).fetchone()[0]
+            if requests_from_ip >= MAGIC_LINK_IP_HOURLY_LIMIT:
+                conn.commit()
+                return None
         recent = conn.execute(
             "SELECT created_at FROM magic_links WHERE email = ? ORDER BY created_at DESC LIMIT 1",
             (email,),
@@ -643,11 +746,17 @@ def _create_magic_link(email: str) -> tuple[str, int] | None:
         )
         conn.execute(
             """
-            INSERT INTO magic_links (token_hash, email, created_at, expires_at, used_at)
-            VALUES (?, ?, ?, ?, NULL)
+            INSERT INTO magic_links
+              (token_hash, email, created_at, expires_at, used_at, role, return_to)
+            VALUES (?, ?, ?, ?, NULL, ?, ?)
             """,
-            (token_hash, email, now, expires_at),
+            (token_hash, email, now, expires_at, role, return_to),
         )
+        if ip_hash:
+            conn.execute(
+                "INSERT INTO magic_link_ip_limits (ip_hash, created_at) VALUES (?, ?)",
+                (ip_hash, now),
+            )
         conn.execute(
             "DELETE FROM magic_links WHERE expires_at < ? OR (used_at IS NOT NULL AND used_at < ?)",
             (now - 86400, now - 86400),
@@ -656,31 +765,31 @@ def _create_magic_link(email: str) -> tuple[str, int] | None:
     return token, expires_at
 
 
-def _consume_magic_link(token: str) -> tuple[str, str]:
-    """Atomically consume a magic link and return (status, email)."""
+def _consume_magic_link(token: str) -> tuple[str, str, str, str]:
+    """Atomically consume a magic link and return status, email, role, and return path."""
     if not token or len(token) > 512:
-        return "invalid", ""
+        return "invalid", "", "", ""
     now = int(_now_utc().timestamp())
     token_hash = _magic_token_hash(token)
     with _db() as conn:
         conn.execute("BEGIN IMMEDIATE")
         row = conn.execute(
-            "SELECT email, expires_at, used_at FROM magic_links WHERE token_hash = ?",
+            "SELECT email, expires_at, used_at, role, return_to FROM magic_links WHERE token_hash = ?",
             (token_hash,),
         ).fetchone()
         if not row:
             conn.commit()
-            return "invalid", ""
+            return "invalid", "", "", ""
         if row["used_at"] is not None:
             conn.commit()
-            return "used", ""
+            return "used", "", "", ""
         if int(row["expires_at"]) < now:
             conn.execute(
                 "UPDATE magic_links SET used_at = ? WHERE token_hash = ? AND used_at IS NULL",
                 (now, token_hash),
             )
             conn.commit()
-            return "expired", ""
+            return "expired", "", "", ""
         updated = conn.execute(
             """
             UPDATE magic_links SET used_at = ?
@@ -690,8 +799,8 @@ def _consume_magic_link(token: str) -> tuple[str, str]:
         ).rowcount
         conn.commit()
     if updated != 1:
-        return "used", ""
-    return "ok", str(row["email"])
+        return "used", "", "", ""
+    return "ok", str(row["email"]), str(row["role"] or ""), str(row["return_to"] or "")
 
 
 def _send_magic_email(email: str, magic_url: str) -> bool:
@@ -813,8 +922,8 @@ def _require_service_trust(x_service_token: str | None) -> None:
 
 # Compatibility aliases for the Tier 1 draft paths. Both use the durable hashed-token flow below.
 @app.post(f"{API_PREFIX}/auth/magiclink/request")
-def magiclink_request_endpoint(payload: MagicLinkRequest):
-    return request_magic_link(payload)
+def magiclink_request_endpoint(payload: MagicLinkRequest, request: Request):
+    return request_magic_link(payload, request)
 
 
 @app.get(f"{API_PREFIX}/auth/magiclink/claim")
@@ -1029,6 +1138,12 @@ def introspect_session(payload: AuthIntrospectionRequest, x_service_token: str |
         if disallowed.intersection(set(stored_scopes)):
             audit_auth_event("auth", "role_escalation_attempt", {"role": role, "scopes": stored_scopes})
             return {"active": False, "reason": "scope_role_violation"}
+    if role == "RegisteredUser" and (
+        not set(stored_scopes).issubset(DEFAULT_SCOPES_BY_ROLE["RegisteredUser"])
+        or tenant_id != GAME_LOBBY_TENANT_ID
+    ):
+        audit_auth_event("auth", "role_escalation_attempt", {"role": role, "scopes": stored_scopes})
+        return {"active": False, "reason": "scope_role_violation"}
 
     return {
         "active": True,
@@ -1364,13 +1479,13 @@ def owner_auth_providers():
 
 _MAGIC_LINK_ACCEPTED = {
     "accepted": True,
-    "message": "If that email is authorized, a sign-in link has been sent.",
+    "message": "If this email can sign in, a sign-in link has been sent.",
 }
 
 
 @app.post(f"{API_PREFIX}/auth/magic-link")
-def request_magic_link(payload: MagicLinkRequest):
-    """Send an allowlisted owner a durable, single-use sign-in link."""
+def request_magic_link(payload: MagicLinkRequest, request: Request):
+    """Send a durable, single-use link for an Owner or registered game player."""
     if not MAGIC_EMAIL_CONFIGURED:
         raise HTTPException(
             status_code=503,
@@ -1387,13 +1502,21 @@ def request_magic_link(payload: MagicLinkRequest):
             status_code=400,
             detail={"error": {"code": "invalid_email", "message": "A valid email address is required"}},
         )
-    if email not in OWNER_MAGIC_EMAILS:
-        audit_auth_event("auth", "magic_link_requested", {"authorized": False})
-        return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
-
-    issued = _create_magic_link(email)
+    role = "Owner" if email in OWNER_MAGIC_EMAILS else "RegisteredUser"
+    return_to = _safe_game_return_to(payload.return_to)
+    client_ip = request.client.host if request.client else ""
+    issued = _create_magic_link(
+        email,
+        role=role,
+        return_to=return_to,
+        client_ip=client_ip,
+    )
     if not issued:
-        audit_auth_event("auth", "magic_link_rate_limited", {"email": _redact_claim_identifier(email)})
+        audit_auth_event(
+            "auth",
+            "magic_link_rate_limited",
+            {"email": _redact_claim_identifier(email), "role": role},
+        )
         return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
     token, _ = issued
     callback_url = (
@@ -1412,31 +1535,70 @@ def request_magic_link(payload: MagicLinkRequest):
     audit_auth_event(
         "auth",
         "magic_link_requested",
-        {"authorized": True, "delivered": delivered, "email": _redact_claim_identifier(email)},
+        {"delivered": delivered, "email": _redact_claim_identifier(email), "role": role},
     )
     return JSONResponse(status_code=202, content=_MAGIC_LINK_ACCEPTED)
 
 
 @app.get(f"{API_PREFIX}/auth/magic-link/verify")
 def verify_magic_link(token: str = ""):
-    """Consume a magic link and issue an eight-hour owner session."""
-    status, email = _consume_magic_link(token)
+    """Consume a magic link and issue the role-bound session captured at request time."""
+    status, email, role, return_to = _consume_magic_link(token)
     if status == "expired":
         return _error_page("This sign-in link has expired. Request a new one.", provider="magic_link")
     if status != "ok":
         return _error_page("This sign-in link is invalid or has already been used.", provider="magic_link")
-    if email not in OWNER_MAGIC_EMAILS:
+    if role == "Owner" and email not in OWNER_MAGIC_EMAILS:
         return _error_page("This email is no longer authorized for owner access.", provider="magic_link")
+    if role not in {"Owner", "RegisteredUser"}:
+        audit_auth_event("auth", "denied_access", {"reason": "invalid_magic_link_role"})
+        return _error_page("This sign-in link is invalid or has already been used.", provider="magic_link")
+
+    tenant_id = GAME_LOBBY_TENANT_ID if role == "RegisteredUser" else ""
+    scopes = _default_scopes(role)
+    ttl = 8 * 3600 if role == "Owner" else GAME_SESSION_TTL_SECONDS
+    subject = f"magic:{email}"
+    if role == "RegisteredUser":
+        now = _now_utc().isoformat()
+        with _db() as conn:
+            conn.execute(
+                """
+                INSERT INTO users
+                  (id, email, display_name, tenant_id, role, created_at, updated_at, verified_at)
+                VALUES (?, ?, '', ?, ?, ?, ?, ?)
+                ON CONFLICT(email) DO UPDATE SET
+                  role = excluded.role,
+                  tenant_id = excluded.tenant_id,
+                  updated_at = excluded.updated_at,
+                  verified_at = excluded.verified_at
+                WHERE users.role = 'RegisteredUser'
+                """,
+                (subject, email, tenant_id, role, now, now, now),
+            )
+            conn.commit()
+        audit_auth_event(
+            "auth",
+            "game_player_verified",
+            {"user": _redact_claim_identifier(subject), "tenant_id": tenant_id},
+        )
+
     session_token, _ = _issue_and_store_session(
-        subject=f"magic:{email}",
+        subject=subject,
         provider="magic_link",
         email=email,
-        tenant_id="",
-        role="Owner",
-        scopes=_default_scopes("Owner"),
-        ttl_seconds=8 * 3600,
+        tenant_id=tenant_id,
+        role=role,
+        scopes=scopes,
+        ttl_seconds=ttl,
     )
-    redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(session_token, safe='')}"
+    if role == "RegisteredUser" or return_to:
+        return_path = return_to or "/games/"
+        redirect_url = (
+            f"{GAME_MAGIC_REDIRECT_BASE}#token={urllib.parse.quote(session_token, safe='')}"
+            f"&rt={urllib.parse.quote(return_path, safe='')}"
+        )
+    else:
+        redirect_url = f"{OAUTH_REDIRECT_BASE.rstrip('/')}/#token={urllib.parse.quote(session_token, safe='')}"
     return RedirectResponse(url=redirect_url)
 
 
