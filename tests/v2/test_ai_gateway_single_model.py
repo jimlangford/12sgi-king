@@ -2,11 +2,12 @@ import sys
 import time
 import unittest
 from pathlib import Path
+
 from fastapi.testclient import TestClient
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tests.v2._test_helpers import load_module
+from tests.v2._test_helpers import load_module  # noqa: E402
 
 
 class TestAiGatewaySingleModel(unittest.TestCase):

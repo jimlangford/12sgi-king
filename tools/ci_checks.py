@@ -181,7 +181,7 @@ def lint_python(args):
         raise CheckError(f"Ruff correctness failed (exit {result.returncode})")
     baseline = Counter(CORRECTNESS_BASELINE)
     unexpected = False
-    for finding in json.loads(result.stdout):
+    for finding in json.loads(result.stdout or "[]"):
         path = Path(finding["filename"]).relative_to(ROOT).as_posix()
         code, message = finding["code"], finding["message"]
         key = (path, code, message)

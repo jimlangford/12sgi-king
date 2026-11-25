@@ -43,7 +43,7 @@ try:
 except ImportError:
     _HAS_JSONSCHEMA = False
 
-from fastapi import FastAPI, Header, HTTPException, Request, Response
+from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
 from services.authz import (
@@ -627,7 +627,7 @@ class ActionDecisionRequest(BaseModel):
 @app.get("/api/v1/models")
 def list_models(authorization: str | None = Header(default=None)):
     """Return departmental profiles as OpenAI-compatible model objects."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,
@@ -674,7 +674,7 @@ async def chat_completions(
     if not profile:
         raise HTTPException(status_code=400, detail=f"Unknown profile: {profile_id}")
 
-    tenant_id = enforce_tenant_scope(
+    enforce_tenant_scope(
         service_name=SERVICE_NAME,
         claims=claims,
         requested_tenant_id=None,
@@ -747,7 +747,7 @@ def list_tools(
     authorization: str | None = Header(default=None),
 ):
     """List tools from the canonical registry, optionally filtered."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,
@@ -1221,7 +1221,7 @@ def get_conversation_audit(
     authorization: str | None = Header(default=None),
 ):
     """Return the audit trail for a specific conversation."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,

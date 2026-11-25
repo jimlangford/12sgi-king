@@ -276,7 +276,6 @@ class TestRiskModelMapping(unittest.TestCase):
 
     def test_at_least_one_tool_per_risk_class(self):
         """All risk classes used in the policy should have at least one example tool."""
-        expected_classes = IMMEDIATE_CLASSES | GUARDED_CLASSES
         present_classes = {t.get("risk_class") for t in self.registry}
         # We don't require every class to be present, but immediate and at
         # least one guarded class must be.
