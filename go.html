@@ -28,6 +28,9 @@
  @media(max-width:900px){.wrap{grid-template-columns:1fr}}
  
  .header{grid-column:1/-1;display:flex;align-items:center;gap:11px;margin:6px 0 4px}
+ .main-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+ .main-nav a{color:var(--ink);text-decoration:none;font-size:12px;font-weight:600;padding:7px 10px;border-radius:7px}
+ .main-nav a:hover,.main-nav a:focus-visible{background:var(--accent-wash);color:var(--accent-2);outline:2px solid var(--accent);outline-offset:1px}
  .seal{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--accent));color:#04121f;flex:none;
        display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;letter-spacing:-.5px;
        box-shadow:0 0 0 1px rgba(227,173,51,.35),0 6px 16px rgba(2,8,20,.5)}
@@ -104,13 +107,20 @@
     <div class="seal">12</div>
     <div><div class="brand">12 Stones Global</div><div class="syslabel">Quadcast OS · one system</div></div>
   </div>
+  <nav class="main-nav" aria-label="Quadcast OS sections">
+    <a href="#overview">Overview</a>
+    <a href="#systems">Owner tools</a>
+    <a href="#civic">Civic</a>
+    <a href="#operations">Operations</a>
+    <a href="#access">All links</a>
+  </nav>
   <p class="sub">One platform, four quadrants — built local, owned by you. Transparent government for <b>any</b>
      jurisdiction, plus films, music, and the Sage game, run as one. Private-first; the public site is a curated mirror.</p>
 
   <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">checking the live system…</span></div>
 
   <!-- LEFT COLUMN: Quick Actions + Quadrants + Civic -->
-  <div class="col-left">
+  <div class="col-left" id="overview">
     <a class="dash ghost" href="https://king.tail760750.ts.net/king/quadrant_progress.html" id="dashLink">
       <div><div class="dt">📊 Progress dashboard</div><div class="db">Self-healed hourly across four quadrants</div></div>
       <div class="pct" id="overallPct">61%</div>
@@ -146,44 +156,44 @@
         <div class="qb">Live events. <span class="tag mir">public</span></div></a>
     </div>
 
-    <div class="sect">Owner Console — Private</div>
+    <div class="sect" id="systems">Owner tools</div>
     <div class="console-grid">
-      <a class="card dim" id="goDocker" href="https://king.tail760750.ts.net/king/go/docker">
+      <a class="card dim" id="goDocker" href="/king/go/docker.html">
         <div style="font-size:20px;margin-bottom:4px">🐳</div>
         <div class="t">Docker</div>
         <div class="b">containers</div>
       </a>
-      <a class="card dim" id="goOllama" href="https://king.tail760750.ts.net/king/go/ollama">
+      <a class="card dim" id="goOllama" href="/king/go/ollama.html">
         <div style="font-size:20px;margin-bottom:4px">🦙</div>
         <div class="t">Ollama</div>
         <div class="b">LLM</div>
       </a>
-      <a class="card dim" id="goLlmWatch" href="https://king.tail760750.ts.net/king/go/llm-watch">
+      <a class="card dim" id="goLlmWatch" href="/king/go/llm-watch.html">
         <div style="font-size:20px;margin-bottom:4px">📡</div>
         <div class="t">LLM Watch</div>
         <div class="b">requests</div>
       </a>
-      <a class="card dim" id="goComfyui" href="https://king.tail760750.ts.net/king/go/comfyui">
+      <a class="card dim" id="goComfyui" href="/king/go/comfyui.html">
         <div style="font-size:20px;margin-bottom:4px">🎨</div>
         <div class="t">ComfyUI</div>
         <div class="b">renders</div>
       </a>
-      <a class="card dim" id="goGithub" href="https://king.tail760750.ts.net/king/go/github">
+      <a class="card dim" id="goGithub" href="/king/go/github.html">
         <div style="font-size:20px;margin-bottom:4px">⚙</div>
         <div class="t">GitHub</div>
         <div class="b">CI</div>
       </a>
-      <a class="card dim" id="goSystem" href="https://king.tail760750.ts.net/king/go/system">
+      <a class="card dim" id="goSystem" href="/king/go/system.html">
         <div style="font-size:20px;margin-bottom:4px">🖥</div>
         <div class="t">System</div>
         <div class="b">health</div>
       </a>
-      <a class="card dim" id="goLogs" href="https://king.tail760750.ts.net/king/go/logs">
+      <a class="card dim" id="goLogs" href="/king/go/logs.html">
         <div style="font-size:20px;margin-bottom:4px">📋</div>
         <div class="t">Logs</div>
         <div class="b">viewer</div>
       </a>
-      <a class="card dim" id="goGordon" href="https://king.tail760750.ts.net/king/go/healing">
+      <a class="card dim" id="goGordon" href="/king/go/healing.html">
         <div style="font-size:20px;margin-bottom:4px">🤖</div>
         <div class="t">Healing</div>
         <div class="b">auto-repair</div>
@@ -205,13 +215,13 @@
         <span class="dd">Verified member · Oversight Calc · all civic tools.</span></a>
     </div>
 
-    <div class="sect">govOS · Civic Transparency</div>
+    <div class="sect" id="civic">govOS · Civic transparency</div>
     <a class="card" href="https://king.tail760750.ts.net/king/reports.html"><span class="tag mir">govOS</span><div class="t">Home dashboard</div><div class="b">Votes · money · permits · patterns — every tenant</div></a>
     <a class="card" href="https://king.tail760750.ts.net/king/jurisdictions.html"><span class="tag mir">index</span><div class="t">All jurisdictions</div><div class="b">Every government on govOS, in one index</div></a>
     <a class="card" href="https://king.tail760750.ts.net/king/testify.html"><span class="tag mir">act</span><div class="t">⚖ Testify</div><div class="b">Submit testimony to your government's clerk</div></a>
     <a class="card" href="https://king.tail760750.ts.net/king/datasets.html"><span class="tag mir">data</span><div class="t">Open data</div><div class="b">Every figure, downloadable · DCAT catalog</div></a>
 
-    <div class="sect">Live System — Private (Tailscale)</div>
+    <div class="sect" id="operations">Live system</div>
     <div class="live-section">
       <a class="card dim" id="liveStudio" href="https://king.tail760750.ts.net/"><span class="tag live">live</span><div class="t">Element Lotus Studio</div><div class="b">Full production controls</div></a>
       <a class="card dim" id="liveKing" href="https://king.tail760750.ts.net/king/"><span class="tag live">live</span><div class="t">Naga (live)</div><div class="b">All surfaces · owner ops</div></a>
@@ -221,7 +231,7 @@
 
     <!-- Backend, every door (Jimmy 2026-07-15: "PUSH ALL BACK END To my go page ALL OF IT NO EXCEPTIONS").
          AURORA-GOLD v3 backend. Private links; the public build sanitizer strips ts.net hosts as usual. -->
-    <div class="sect">Backend — every door (AURORA·GOLD)</div>
+    <div class="sect">Operations &amp; coordination</div>
     <div class="live-section">
       <a class="card dim" id="beBoard" href="https://king.tail760750.ts.net/board/"><span class="tag live">backend</span><div class="t">♛ Work Board</div><div class="b">Flow · health · robots — one queue, every lane</div></a>
       <a class="card dim" id="beOwner" href="https://king.tail760750.ts.net/board/owner"><span class="tag live">backend</span><div class="t">Owner actions</div><div class="b">One-tap approvals · can't-fix-unattended items</div></a>
@@ -233,7 +243,7 @@
       <a class="card dim" id="beDispatch" href="https://king.tail760750.ts.net/king/dispatch"><span class="tag live">backend</span><div class="t">Dispatch feed</div><div class="b">The coordination bus, live</div></a>
     </div>
 
-    <div class="sect">Unified Access — Login + Full Route Index</div>
+    <div class="sect" id="access">Account &amp; all links</div>
     <div class="route-grid">
       <a class="card" href="https://12sgianonymous.tail760750.ts.net/king/app.html"><span class="tag live">login</span><div class="t">Owner sign in</div><div class="b">Open Naga app and use Private sign in (GitHub/Google).</div></a>
       <a class="card" href="https://12sgianonymous.tail760750.ts.net/go.html"><span class="tag live">root</span><div class="t">Consolidated launcher</div><div class="b">Primary dashboard for private root access.</div></a>
