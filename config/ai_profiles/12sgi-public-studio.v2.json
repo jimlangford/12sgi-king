@@ -1,10 +1,18 @@
 {
   "profile_id": "12sgi-public-studio",
-  "base_model": "local-reasoning-model",
+  "base_model": "king-quad-os-unified",
   "system_policy": "public-studio-v1",
-  "allowed_tools": ["public.*"],
-  "knowledge_scopes": ["studio-public"],
+  "allowed_tools": [
+    "public.*"
+  ],
+  "knowledge_scopes": [
+    "studio-public"
+  ],
   "max_context_tokens": 4096,
   "gpu_priority": "background",
-  "forbidden_actions": ["publish.release", "ops.*", "workboard.*"]
+  "forbidden_actions": [
+    "publish.release",
+    "ops.*",
+    "workboard.*"
+  ]
 }

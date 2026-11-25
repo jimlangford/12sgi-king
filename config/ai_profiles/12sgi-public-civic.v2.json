@@ -1,13 +1,20 @@
 {
   "profile_id": "12sgi-public-civic",
-  "base_model": "local-reasoning-model",
+  "base_model": "king-quad-os-unified",
   "system_policy": "public-civic-v1",
-  "allowed_tools": ["public.*"],
-  "knowledge_scopes": ["civic-public"],
+  "allowed_tools": [
+    "public.*"
+  ],
+  "knowledge_scopes": [
+    "civic-public"
+  ],
   "max_context_tokens": 4096,
   "gpu_priority": "background",
   "forbidden_actions": [
-    "publish.release", "ops.*", "workboard.*",
-    "graph.*", "records.get_provenance"
+    "publish.release",
+    "ops.*",
+    "workboard.*",
+    "graph.*",
+    "records.get_provenance"
   ]
 }

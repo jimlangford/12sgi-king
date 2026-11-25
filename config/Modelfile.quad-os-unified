@@ -1,0 +1,6 @@
+FROM king-quad-os:latest
+
+# Keep the shared owner model inside the laptop's VRAM budget.
+PARAMETER num_ctx 4096
+PARAMETER num_predict 512
+PARAMETER temperature 0.3
