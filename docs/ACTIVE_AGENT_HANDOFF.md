@@ -1,5 +1,24 @@
 # Active Agent Handoff
 
+## QUAD OS product experience contract — 2026-11-25
+
+- CHANGED: added `docs/QUAD_OS_PRODUCT_EXPERIENCE_CONTRACT.md` and linked it
+  from the master architecture. It applies the ElementLOTUS WordPress review
+  lessons across civic, creative, member, owner, local, and public surfaces:
+  task-based navigation, end-to-end interaction behavior, explicit boundaries,
+  local AI independence, connector capability checks, dry-run publishing, and
+  evidence-based release readiness.
+- LOCAL AI: embedded these rules in `tools/teach_local_ai.py` and ran the
+  teaching workflow. Ollama reported all four configured personas updated:
+  king-jrcsl, king-civic, king-workboard, and king-server. Their generated
+  Modelfiles remain local because they include owner-specific prompt material.
+- VERIFY: prompt Python compilation and scoped `git diff --check` passed.
+  The teaching workflow's prompt checks completed with exit code 0. No website,
+  live WordPress content, DNS, or external AI chat was changed or notified.
+- NEXT: external agents can read the contract after the scoped change feed and
+  documentation are pushed. A later product implementation should use the
+  contract while preserving the separate 12sgi.com civic routes.
+
 ## Cross-agent change broadcast — 2026-11-25
 
 - CHANGED: added `docs/AI_CHANGE_BROADCAST.md`, the tracked append-only

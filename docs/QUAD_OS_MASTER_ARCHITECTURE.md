@@ -118,6 +118,15 @@ Planned modules (phase 2):
   `/home/runner/work/12sgi-king/12sgi-king/docs/QUAD_OS_COMPLETION_RUBRIC.md`
 - Update that rubric checkpoint-by-checkpoint as operational evidence changes (especially deploy-v2 dry-run/restart evidence).
 
+17. Product experience and integration contract
+------------------------------------------------
+- Apply `docs/QUAD_OS_PRODUCT_EXPERIENCE_CONTRACT.md` to every public, member, owner, civic, creative, and local product surface.
+- Present task-based navigation while preserving explicit public/private boundaries and stable route ownership.
+- Trace each interface action to an authorized, observable backend outcome; define loading, empty, unavailable, and failure behavior.
+- Treat local AI and local services as first-class paths. Verify tool availability, dependency visibility, disconnected operation, and recovery in the runtime environment.
+- Separate source, generated artifact, connector, authenticated delivery, and live production evidence. Publishing is dry-run/review first and rollbackable.
+- A release is complete only when users can navigate and finish the intended task, boundaries hold, and verification evidence is recorded for source, runtime, and live routes.
+
 Appendix: Implementation checklist (first actions)
 - [ ] Verify label-by-path workflow passes for PR #313 (dry-run then apply)
 - [ ] Audit all workflows for least-privilege permissions and deprecated actions
