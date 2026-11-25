@@ -166,6 +166,10 @@ class TestProfileConsistency(unittest.TestCase):
     def test_profiles_loaded(self):
         self.assertGreater(len(self.profiles), 0, "No profiles found in config/ai_profiles/")
 
+    def test_profiles_share_one_local_base_model(self):
+        models = {profile.get("base_model") for profile in self.profiles}
+        self.assertEqual(models, {"king-quad-os-unified"})
+
     def test_every_profile_glob_resolves_to_at_least_one_tool(self):
         unresolved = []
         for profile in self.profiles:
@@ -272,7 +276,6 @@ class TestRiskModelMapping(unittest.TestCase):
 
     def test_at_least_one_tool_per_risk_class(self):
         """All risk classes used in the policy should have at least one example tool."""
-        expected_classes = IMMEDIATE_CLASSES | GUARDED_CLASSES
         present_classes = {t.get("risk_class") for t in self.registry}
         # We don't require every class to be present, but immediate and at
         # least one guarded class must be.

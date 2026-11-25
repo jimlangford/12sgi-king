@@ -905,31 +905,25 @@ class TestProductionPipelineAcceptance(unittest.TestCase):
             self.inventory = json.load(f)
         self.workflows = {w["workflow_id"]: w for w in self.inventory["workflows"]}
 
-    def test_22_kandinsky_batches_before_ltx(self):
-        """TEST 22: Kandinsky storyboards batch before LTX loads."""
+    def test_22_video_pipeline_uses_kandinsky_only(self):
         seq = self.roles_cfg["batch_routing_policy"]["sequence"]
         engines = [s.get("engine") for s in seq if s.get("engine")]
-        k_idx = next(i for i, e in enumerate(engines) if e and "kandinsky" in e)
-        ltx_idx = next(i for i, e in enumerate(engines) if e == "ltx")
-        self.assertLess(k_idx, ltx_idx)
+        self.assertEqual(set(engines), {"kandinsky5"})
+        self.assertEqual(engines.count("kandinsky5"), 2)
 
-    def test_23_ltx_gate_requires_storyboard_approval(self):
-        """TEST 23: LTX animation starts only after storyboard approval."""
+    def test_23_native_video_is_gated_on_storyboard_approval(self):
         seq = self.roles_cfg["batch_routing_policy"]["sequence"]
-        ltx_step = next(s for s in seq if s.get("engine") == "ltx")
-        self.assertIn("storyboard_approved", ltx_step.get("gate", "").lower())
+        video_step = next(s for s in seq if s.get("phase") == "native_video_batch")
+        self.assertEqual(video_step["engine"], "kandinsky5")
+        self.assertIn("storyboard_approved", video_step["gate"])
 
-    def test_24_rife_gate_requires_take_approval(self):
-        """TEST 24: Interpolation starts only after take approval."""
-        seq = self.roles_cfg["batch_routing_policy"]["sequence"]
-        rife_step = next(s for s in seq if s.get("engine") == "rife_local")
-        self.assertIn("approved", rife_step.get("gate", "").lower())
+    def test_24_no_interpolation_model_is_registered(self):
+        self.assertNotIn("rife_local_interpolation", self.workflows)
+        self.assertNotIn("rife_local", self.roles_cfg["engine_roles"])
 
-    def test_25_rife_gpu_measured_not_zero(self):
-        """TEST 25: RIFE GPU memory is measured rather than represented as zero."""
-        w = self.workflows["rife_local_interpolation"]
-        self.assertIsNone(w.get("vram_required_mb"))
-        self.assertTrue(w.get("requires_live_measurement"))
+    def test_25_inventory_keeps_only_kandinsky_workflows(self):
+        self.assertTrue(self.workflows)
+        self.assertEqual({w["engine"] for w in self.workflows.values()}, {"kandinsky5_local"})
 
     def test_26_pipeline_has_edit_ready_terminal(self):
         """TEST 26: Pipeline stops at edit_ready."""
@@ -946,10 +940,11 @@ class TestProductionPipelineAcceptance(unittest.TestCase):
         gate = (final.get("gate") or "").lower()
         self.assertIn("do_not_publish", gate)
 
-    def test_wan_engines_disabled(self):
-        """Acceptance: Wan VACE and T2V remain disabled by default."""
-        self.assertFalse(self.workflows["wan_vace_1_3b_experimental"]["enabled"])
-        self.assertFalse(self.workflows["wan_t2v_1_3b_atmospheric"]["enabled"])
+    def test_only_kandinsky_video_workflows_are_enabled(self):
+        self.assertEqual(
+            set(self.workflows),
+            {"kandinsky5_local_image", "kandinsky5_local_animation"},
+        )
 
     def test_no_wan_14b_in_inventory(self):
         """Acceptance: No Wan 14B model is scheduled."""

@@ -29,8 +29,8 @@
     "motion_prompt_builder": {
       "enabled": true,
       "lane": "creative",
-      "description": "Builds image-to-video motion prompts from approved storyboard frames for the LTX engine.",
-      "output": "ltx_motion_job"
+      "description": "Builds native video prompts from approved Kandinsky storyboard frames for the local Kandinsky 5 engine.",
+      "output": "kandinsky_animation_job"
     },
     "clip_engine_reverse": {
       "enabled": true,

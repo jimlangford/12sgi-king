@@ -145,7 +145,7 @@ The `project_id` + `scene_id` fields drive the scene grouping in
 | Script     | studiodepts (writing) | Writing Room tab |
 | Storyboard | studiodepts (storyboard) | Storyboards tab |
 | Kandinsky  | gpu               | Kandinsky is default local image engine |
-| LTX        | gpu               | LTX video generation |
+| Kandinsky5 | gpu               | Native image and video generation; only enabled visual model |
 | Editor     | studiodepts (fcp) | FCP tab |
 | Logic      | studiodepts (logic) | Logic tab |
 | FCP        | studiodepts (fcp) | FCP tab |

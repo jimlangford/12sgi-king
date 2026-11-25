@@ -1,10 +1,20 @@
 {
   "profile_id": "12sgi-records",
-  "base_model": "local-reasoning-model",
+  "base_model": "king-quad-os-unified",
   "system_policy": "records-v1",
-  "allowed_tools": ["records.*", "assets.*", "graph.*", "documents.*"],
-  "knowledge_scopes": ["active-tenant"],
-  "max_context_tokens": 8192,
+  "allowed_tools": [
+    "records.*",
+    "assets.*",
+    "graph.*",
+    "documents.*"
+  ],
+  "knowledge_scopes": [
+    "active-tenant"
+  ],
+  "max_context_tokens": 4096,
   "gpu_priority": "interactive-low",
-  "forbidden_actions": ["publish.release", "ops.propose_repair"]
+  "forbidden_actions": [
+    "publish.release",
+    "ops.propose_repair"
+  ]
 }

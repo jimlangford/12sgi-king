@@ -43,7 +43,7 @@ try:
 except ImportError:
     _HAS_JSONSCHEMA = False
 
-from fastapi import FastAPI, Header, HTTPException, Request, Response
+from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
 from services.authz import (
@@ -62,6 +62,7 @@ DB_PATH = os.environ.get("AI_GATEWAY_DB_PATH", "/tmp/govos_v2_ai_gateway.db")
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TOOL_REGISTRY_PATH = REPO_ROOT / "config" / "ai_tool_registry.v2.json"
+DEFAULT_LOCAL_MODEL = os.environ.get("LOCAL_LLM_MODEL", "king-quad-os-unified")
 PROFILES_DIR = REPO_ROOT / "config" / "ai_profiles"
 PROFILES_PATH = REPO_ROOT / "config" / "ai_gateway_profiles.json"  # legacy fallback
 
@@ -98,7 +99,7 @@ _LEGACY_MUTATION_CLASS = "mutation"
 _DEFAULT_PROFILES: list[dict] = [
     {
         "profile_id": "12sgi-owner",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "owner-v1",
         # Explicit domain list — forces new admin domains to be deliberately
         # admitted rather than becoming immediately available via wildcard.
@@ -110,89 +111,89 @@ _DEFAULT_PROFILES: list[dict] = [
             "fcp.*", "logic.*", "game.*",
         ],
         "knowledge_scopes": ["all"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-high",
         "forbidden_actions": [],
     },
     {
         "profile_id": "12sgi-records",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "records-v1",
         "allowed_tools": ["records.*", "assets.*", "graph.*", "documents.*"],
         "knowledge_scopes": ["active-tenant"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["publish.release", "ops.propose_repair"],
     },
     {
         "profile_id": "12sgi-studio-director",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "director-v2",
         "allowed_tools": [
             "studio.*", "writing.*", "director.*", "storyboard.*",
             "records.search", "records.get", "assets.get",
         ],
         "knowledge_scopes": ["media", "active-project"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["publish.release", "storyboard.approve-own-output"],
     },
     {
         "profile_id": "12sgi-writing-room",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "writing-v1",
         "allowed_tools": ["writing.*", "records.search", "records.get"],
         "knowledge_scopes": ["media", "active-project"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["writing.lock_script"],
     },
     {
         "profile_id": "12sgi-editor",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "editor-v1",
         "allowed_tools": [
             "animation.*", "editor.*", "storyboard.list", "storyboard.get",
             "fcp.*", "logic.*",
         ],
         "knowledge_scopes": ["media", "active-project"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["publish.release"],
     },
     {
         "profile_id": "12sgi-civic",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "civic-v1",
         "allowed_tools": ["civic.*", "records.search", "records.get"],
         "knowledge_scopes": ["civic", "active-tenant"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["civic.stage_public_report"],
     },
     {
         "profile_id": "12sgi-game",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "game-v1",
         "allowed_tools": ["game.*", "records.search", "assets.*"],
         "knowledge_scopes": ["game", "active-project"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["publish.release"],
     },
     {
         "profile_id": "12sgi-operations",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "ops-v1",
         "allowed_tools": ["ops.*", "workboard.*", "records.search"],
         "knowledge_scopes": ["all"],
-        "max_context_tokens": 8192,
+        "max_context_tokens": 4096,
         "gpu_priority": "interactive-low",
         "forbidden_actions": ["ops.propose_repair"],
     },
     {
         "profile_id": "12sgi-public-civic",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "public-civic-v1",
         "allowed_tools": ["public.*"],
         "knowledge_scopes": ["civic-public"],
@@ -205,7 +206,7 @@ _DEFAULT_PROFILES: list[dict] = [
     },
     {
         "profile_id": "12sgi-public-programs",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "public-programs-v1",
         "allowed_tools": ["public.*"],
         "knowledge_scopes": ["programs-public"],
@@ -215,7 +216,7 @@ _DEFAULT_PROFILES: list[dict] = [
     },
     {
         "profile_id": "12sgi-public-studio",
-        "base_model": "local-reasoning-model",
+        "base_model": DEFAULT_LOCAL_MODEL,
         "system_policy": "public-studio-v1",
         "allowed_tools": ["public.*"],
         "knowledge_scopes": ["studio-public"],
@@ -626,7 +627,7 @@ class ActionDecisionRequest(BaseModel):
 @app.get("/api/v1/models")
 def list_models(authorization: str | None = Header(default=None)):
     """Return departmental profiles as OpenAI-compatible model objects."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,
@@ -673,7 +674,7 @@ async def chat_completions(
     if not profile:
         raise HTTPException(status_code=400, detail=f"Unknown profile: {profile_id}")
 
-    tenant_id = enforce_tenant_scope(
+    enforce_tenant_scope(
         service_name=SERVICE_NAME,
         claims=claims,
         requested_tenant_id=None,
@@ -686,7 +687,7 @@ async def chat_completions(
     render_active = any(
         e.get("status") == "busy"
         for k, e in engines.items()
-        if k in ("comfyui", "kandinsky", "ltx", "wan")
+        if k in ("comfyui", "kandinsky", "kandinsky5")
     )
     if render_active:
         gpu_note = "render-active"
@@ -746,7 +747,7 @@ def list_tools(
     authorization: str | None = Header(default=None),
 ):
     """List tools from the canonical registry, optionally filtered."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,
@@ -1220,7 +1221,7 @@ def get_conversation_audit(
     authorization: str | None = Header(default=None),
 ):
     """Return the audit trail for a specific conversation."""
-    claims = require_claims(
+    require_claims(
         service_name=SERVICE_NAME,
         authorization=authorization,
         introspection_url=AUTH_INTROSPECTION_URL,

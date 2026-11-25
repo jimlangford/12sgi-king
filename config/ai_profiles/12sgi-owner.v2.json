@@ -1,6 +1,6 @@
 {
   "profile_id": "12sgi-owner",
-  "base_model": "local-reasoning-model",
+  "base_model": "king-quad-os-unified",
   "system_policy": "owner-v1",
   "allowed_tools": [
     "civic.*",
@@ -23,8 +23,10 @@
     "logic.*",
     "game.*"
   ],
-  "knowledge_scopes": ["all"],
-  "max_context_tokens": 8192,
+  "knowledge_scopes": [
+    "all"
+  ],
+  "max_context_tokens": 4096,
   "gpu_priority": "interactive-high",
   "forbidden_actions": []
 }

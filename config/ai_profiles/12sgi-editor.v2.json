@@ -1,13 +1,22 @@
 {
   "profile_id": "12sgi-editor",
-  "base_model": "local-reasoning-model",
+  "base_model": "king-quad-os-unified",
   "system_policy": "editor-v1",
   "allowed_tools": [
-    "animation.*", "editor.*", "storyboard.list", "storyboard.get",
-    "fcp.*", "logic.*"
+    "animation.*",
+    "editor.*",
+    "storyboard.list",
+    "storyboard.get",
+    "fcp.*",
+    "logic.*"
   ],
-  "knowledge_scopes": ["media", "active-project"],
-  "max_context_tokens": 8192,
+  "knowledge_scopes": [
+    "media",
+    "active-project"
+  ],
+  "max_context_tokens": 4096,
   "gpu_priority": "interactive-low",
-  "forbidden_actions": ["publish.release"]
+  "forbidden_actions": [
+    "publish.release"
+  ]
 }
