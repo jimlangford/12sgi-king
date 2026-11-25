@@ -18,6 +18,23 @@
 - NEXT: external agents can read the contract after the scoped change feed and
   documentation are pushed. A later product implementation should use the
   contract while preserving the separate 12sgi.com civic routes.
+## Engineering first release gate — 2026-11-25
+
+- OWNER DIRECTION: pause production publishing and deployment until engineering is complete.
+- CHANGED: the AI Gateway now supports a trusted executor URL contract and returns successful results only from that executor. Calls fail closed if it is not configured. Owner approval dispatches the stored, validated arguments before recording execution.
+- WORDPRESS: added Studio to primary navigation, split Games and SAGE destinations, and generated the Contact page with editable Jetpack contact fields. The builder package was regenerated.
+- VERIFY: `tests/v2/test_ai_gateway_execution_boundary.py` and `tests/v2/test_ai_gateway_policy.py` pass (21 tests); AI Gateway compiles. WordPress builder tests pass (8 tests, 21 subtests).
+- BLOCKED FOR PRODUCTION: no trusted executor implementation or URL is configured; dashboard still presents a curated surface launcher rather than all 121 tools and approval/job history; seven of eight WordPress pages still use source HTML inside a single Group rather than reusable native blocks; WordPress credentials/live visual and form-submission verification are unavailable; no private deployment or offline-independence test was performed.
+- DELIVERY: no deployment, WordPress publishing, push, or external provider notification. The AI change feed is the shared handoff; active Claude/GitHub AI sessions are not directly notified by it.
+
+## Local AI primary dashboard — 2026-11-25
+
+- Branch: `codex/local-ai-dashboard`, based on the published AI change-broadcast commit `c3027d0`; local implementation only, no deployment or push.
+- OWNER DIRECTION: the Local AI is the main QUAD OS authority and needs one dashboard with all functions. Paid/cloud systems remain optional bridges rather than runtime owners.
+- CHANGED: added `go/local-ai.html` and the machine-readable `go/local-ai-functions.json`. The registry exposes 33 functions under Local AI, Work, Civic, Studio, Corporate, Knowledge, and System, with `PUBLIC`/`PRIVATE`/`BRIDGE` boundaries and `local-primary`/`owner-gated`/`optional-bridge` authority labels. `/go/` now opens the Local AI dashboard, while `go.html` keeps the consolidated launcher and adds a primary dashboard door.
+- SAFETY: the dashboard performs read-only health probes and routes actions to their existing authenticated or owner-gated surfaces. It embeds no service token, paid-AI API, Stripe checkout, or external AI dependency. The private page is `noindex,nofollow`; public build purge behavior remains the governing boundary.
+- VERIFY: four dashboard contract tests pass; HTML and JSON parse; `git diff --check` passes. Browser QA verified the responsive page, 33 function cards, search (`docker` narrowed to one function), and optional-bridge filter. Live probes correctly fail closed as `Not confirmed` under the source-only preview. An existing `tests.test_public_frontdoor` workflow expectation fails independently because the current local-first publish workflow no longer contains the older quoted `education.html` path. Two redirected full-site builds were stopped after they continued in the background without reaching final output; no production or checked-in site tree was touched.
+- NEXT: review the registry names/routes with the owner, then integrate it into the private deployment. Before enabling direct dashboard mutations, require verified Owner claims rather than a browser-held internal service token.
 
 ## Cross-agent change broadcast — 2026-11-25
 

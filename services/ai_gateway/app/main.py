@@ -63,6 +63,7 @@ DB_PATH = os.environ.get("AI_GATEWAY_DB_PATH", "/tmp/govos_v2_ai_gateway.db")
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TOOL_REGISTRY_PATH = REPO_ROOT / "config" / "ai_tool_registry.v2.json"
 DEFAULT_LOCAL_MODEL = os.environ.get("LOCAL_LLM_MODEL", "king-quad-os-unified")
+TOOL_EXECUTOR_URL = os.environ.get("AI_GATEWAY_TOOL_EXECUTOR_URL", "").rstrip("/")
 PROFILES_DIR = REPO_ROOT / "config" / "ai_profiles"
 PROFILES_PATH = REPO_ROOT / "config" / "ai_gateway_profiles.json"  # legacy fallback
 
@@ -305,6 +306,39 @@ def _load_profiles() -> list[dict]:
 def _get_tool(tool_id: str) -> dict | None:
     registry = _load_tool_registry()
     return next((t for t in registry if t.get("tool_id") == tool_id), None)
+
+
+def _dispatch_tool(tool: dict, parameters: dict, authorization: str | None, **context) -> dict:
+    """Call the configured trusted executor; fail closed when unavailable."""
+    if not TOOL_EXECUTOR_URL:
+        raise HTTPException(status_code=503, detail="No trusted tool executor is configured.")
+    payload = {
+        "tool_id": tool["tool_id"],
+        "http_method": tool.get("http_method", "GET"),
+        "endpoint": tool.get("endpoint", ""),
+        "parameters": parameters,
+        **context,
+    }
+    headers = {"Content-Type": "application/json"}
+    if authorization:
+        headers["Authorization"] = authorization
+    req = request.Request(
+        TOOL_EXECUTOR_URL + "/api/v1/execute",
+        data=json.dumps(payload).encode("utf-8"),
+        headers=headers,
+        method="POST",
+    )
+    try:
+        with request.urlopen(req, timeout=int(tool.get("timeout_seconds", REQUEST_TIMEOUT))) as response:
+            result = json.loads(response.read().decode("utf-8"))
+            if not isinstance(result, dict):
+                raise ValueError("executor response must be a JSON object")
+            return result
+    except HTTPException:
+        raise
+    except Exception as exc:
+        _log.exception("Trusted tool executor failed for %s", tool.get("tool_id"))
+        raise HTTPException(status_code=502, detail="Trusted tool execution failed.") from exc
 
 
 def _profile_allows_tool(profile: dict, tool_id: str) -> bool:
@@ -784,6 +818,12 @@ async def invoke_tool(
         request_timeout=REQUEST_TIMEOUT,
     )
 
+    if not TOOL_EXECUTOR_URL:
+        raise HTTPException(
+            status_code=503,
+            detail="Tool execution is unavailable: no trusted executor is configured.",
+        )
+
     tool = _get_tool(tool_id)
     if not tool:
         raise HTTPException(status_code=404, detail=f"Tool not found: {tool_id}")
@@ -932,33 +972,22 @@ async def invoke_tool(
             ),
         }
 
-    # Immediate execution (read / analysis / draft / mutation_low).
+    result = _dispatch_tool(
+        tool, clean_params, authorization, actor=actor, tenant_id=tenant_id,
+        project_id=project_id, correlation_id=correlation_id,
+    )
     _emit_audit_event(
-        actor=actor,
-        profile="gateway",
-        tool_id=tool_id,
-        event_type="ai.tool.invoked",
-        tenant_id=tenant_id,
-        project_id=project_id,
-        correlation_id=correlation_id,
+        actor=actor, profile="gateway", tool_id=tool_id,
+        event_type="ai.tool.invoked", tenant_id=tenant_id,
+        project_id=project_id, correlation_id=correlation_id,
         request_hash=request_hash,
     )
-
     return {
-        "status": "ok",
-        "tool_id": tool_id,
-        "risk_class": risk_class,
-        "parameters": clean_params,
-        "result": {
-            "message": f"Tool {tool_id} invoked successfully.",
-            "correlation_id": correlation_id,
-        },
+        "status": "ok", "tool_id": tool_id, "risk_class": risk_class,
+        "result": result,
         "audit": {
-            "actor": actor,
-            "tenant_id": tenant_id,
-            "project_id": project_id,
-            "request_hash": request_hash,
-            "timestamp": _now_utc(),
+            "actor": actor, "tenant_id": tenant_id, "project_id": project_id,
+            "request_hash": request_hash, "timestamp": _now_utc(),
         },
     }
 
@@ -1093,13 +1122,21 @@ def approve_action(
     actor = claims.get("sub", "unknown")
     now = _now_utc()
 
-    # Atomically mark as approved and record executed_at to prevent replay.
+    tool = _get_tool(action["tool_id"])
+    if not tool:
+        raise HTTPException(status_code=503, detail="Registered tool is no longer available.")
+    try:
+        action_parameters = json.loads(action.get("parameters_json") or "{}")
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise HTTPException(status_code=500, detail="Stored action arguments are invalid.") from exc
+    # Claim the action atomically before dispatch so concurrent approvals cannot
+    # execute the same request twice.
     with _db() as conn:
         conn.execute(
             "UPDATE pending_actions "
-            "SET status='approved', resolved_at=?, resolved_by=?, outcome=?, executed_at=? "
+            "SET status='executing', resolved_by=?, outcome=? "
             "WHERE id=? AND status='pending'",
-            (now, actor, body.reason or "approved", now, action_id),
+            (actor, body.reason or "approved", action_id),
         )
         updated = conn.execute(
             "SELECT changes()"
@@ -1111,6 +1148,41 @@ def approve_action(
             status_code=409,
             detail=f"Action {action_id} was concurrently modified; approval rejected.",
         )
+
+    try:
+        execution_result = _dispatch_tool(
+            tool, action_parameters, authorization, actor=actor,
+            tenant_id=action["tenant_id"], project_id=action["project_id"],
+            approval_id=action_id,
+        )
+    except HTTPException:
+        failed_at = _now_utc()
+        with _db() as conn:
+            conn.execute(
+                "UPDATE pending_actions SET status='execution_failed', resolved_at=?, "
+                "outcome='executor_failed' WHERE id=? AND status='executing'",
+                (failed_at, action_id),
+            )
+            conn.commit()
+        raise
+    except Exception as exc:
+        failed_at = _now_utc()
+        with _db() as conn:
+            conn.execute(
+                "UPDATE pending_actions SET status='execution_failed', resolved_at=?, "
+                "outcome='executor_failed' WHERE id=? AND status='executing'",
+                (failed_at, action_id),
+            )
+            conn.commit()
+        raise HTTPException(status_code=502, detail="Trusted tool execution failed.") from exc
+
+    with _db() as conn:
+        conn.execute(
+            "UPDATE pending_actions SET status='approved', resolved_at=?, executed_at=? "
+            "WHERE id=? AND status='executing'",
+            (_now_utc(), _now_utc(), action_id),
+        )
+        conn.commit()
 
     # Audit approval and execution as separate events.
     correlation_id = str(uuid4())
@@ -1143,6 +1215,7 @@ def approve_action(
         "arguments_hash": action.get("arguments_hash", ""),
         "resolved_by": actor,
         "resolved_at": now,
+        "result": execution_result,
     }
 
 

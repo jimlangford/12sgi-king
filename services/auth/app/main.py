@@ -144,7 +144,7 @@ MAGIC_LINK_IP_HOURLY_LIMIT = max(
 )
 MAGIC_LINK_GLOBAL_HOURLY_LIMIT = max(
     10,
-    min(100000, int(os.environ.get("MAGIC_LINK_GLOBAL_HOURLY_LIMIT", "1000"))),
+    min(100000, int(os.environ.get("MAGIC_LINK_GLOBAL_HOURLY_LIMIT", "5000"))),
 )
 # Peers allowed to tell us the real visitor address via CF-Connecting-IP (our own cloudflared / nginx hop). Narrow this
 # in production to the exact proxy address(es) if the service is reachable from other private hosts.
