@@ -572,3 +572,22 @@ the environment-gated paired-aspect episode canary before declaring the complete
 - PRESERVED: public WordPress, civic routes, Tailscale boundaries, and deployment configuration.
 - VERIFY: live route inventory returned HTTP 200 for all eight `.html` pages; old extensionless owner links returned 404. Source diff passes `git diff --check`. Live post-deploy verification is pending.
 - NEXT: merge the reviewed change to `main`; the existing path-filtered private deployment workflow should deploy it. Confirm launcher navigation and owner-page back links on `king.tail760750.ts.net`.
+## Local AI guarded self-heal teaching — 2026-11-25
+
+- Codex updated `tools/teach_local_ai.py` so every generated persona inherits a
+  self-heal covenant: continuous diagnosis and bounded safe actions, with
+  ownership, active-job, approval, and post-repair verification checks.
+- Removed the old blanket permission for free engineering self-heal, Docker
+  restart/prune, service restarts, and package installs. ComfyUI remains solely
+  owned by `app/server/studio_supervisor.py`; cleanup, installs, restarts,
+  deployments, publishing, credential changes, and destructive edits require
+  the documented owner gate.
+- Ollama `0.40.18` accepted updates for `king-jrcsl`, `king-civic`,
+  `king-workboard`, and `king-server`. `/api/show` confirmed the covenant and
+  ComfyUI ownership instruction in all four active model templates.
+- The teaching script's four inference checks timed out. Prompt installation is
+  confirmed; responsive inference is not. Do not report end-to-end self-heal or
+  service recovery as runtime-proven until a model response and approved repair
+  path are verified. No service was restarted and no jobs were interrupted.
+- Shared AI change feed entry added for Local AI, Claude Code, Codex, and GitHub
+  Copilot. It is shared-file visibility, not a direct external chat notification.
