@@ -402,3 +402,12 @@ the environment-gated paired-aspect episode canary before declaring the complete
   History scanning cannot prove that inaccessible/deleted remote refs are clean;
   rotate/revoke any exposed credential before considering history remediation.
   Never rewrite shared history or redeploy private services as part of this CI PR.
+
+## Backend HTML navigation — 2026-11-25
+
+- Branch: `codex/simplify-backend-html-navigation`, based on `main` at `84ef6ef`.
+- Scope: PRIVATE `/king/go.html` launcher and `/king/go/` owner routes.
+- CHANGED: add concise section navigation; point owner-tool cards at their working `.html` routes; return owner pages and the `/king/go/` index to `/king/go.html`.
+- PRESERVED: public WordPress, civic routes, Tailscale boundaries, and deployment configuration.
+- VERIFY: live route inventory returned HTTP 200 for all eight `.html` pages; old extensionless owner links returned 404. Source diff passes `git diff --check`. Live post-deploy verification is pending.
+- NEXT: merge the reviewed change to `main`; the existing path-filtered private deployment workflow should deploy it. Confirm launcher navigation and owner-page back links on `king.tail760750.ts.net`.
