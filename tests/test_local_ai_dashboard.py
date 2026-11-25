@@ -72,8 +72,10 @@ class LocalAiDashboardTests(unittest.TestCase):
         self.assertNotIn("api.anthropic.com", lowered)
         self.assertNotIn("api.openai.com", lowered)
 
-    def test_private_go_route_defaults_to_the_local_ai_dashboard(self):
-        self.assertIn("/go/local-ai.html", self.go_index)
+    def test_private_go_route_leads_to_the_launcher_that_headlines_the_local_ai_dashboard(self):
+        # /go/ redirects to the King launcher (tests/test_king_go_wrapper_parity.py pins that); the launcher is where the
+        # Local AI dashboard is the headline entry.
+        self.assertIn("/king/go.html", self.go_index)
         self.assertIn('href="/go/local-ai.html"', self.go_launcher)
         self.assertIn("Local AI is the primary operating system", self.go_launcher)
 
