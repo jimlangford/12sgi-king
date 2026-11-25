@@ -35,6 +35,7 @@ RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
 # Bring in only what the v2 backend needs at runtime (not the whole civic site/watchers tree).
 COPY services/ /repo/services/
 COPY element_lotus_public/ /repo/element_lotus_public/
+COPY config/ai_tool_registry.v2.json /repo/config/ai_tool_registry.v2.json
 # entitlements.py does `from watchers import tier_access` (capabilities per tier). tier_access.py is a
 # self-contained stdlib-only module; copy ONLY it (not the whole civic watchers tree, per the note above).
 # Fixes the auth crash-loop: ModuleNotFoundError: No module named 'watchers' (Jimmy 2026-07-22 "NO BROKEN WORKERS").

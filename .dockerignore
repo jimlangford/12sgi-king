@@ -9,6 +9,9 @@
 # Re-include ONLY the build inputs the services/Dockerfile actually uses.
 !services/
 !element_lotus_public/
+!config/
+config/*
+!config/ai_tool_registry.v2.json
 # entitlements.py needs ONLY watchers/tier_access.py (self-contained stdlib module). Re-include that ONE
 # file — never the rest of the civic watchers tree (may hold private data). (Jimmy 2026-07-22 NO BROKEN WORKERS)
 !watchers/
