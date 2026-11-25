@@ -2,7 +2,9 @@ import json
 import sys
 import tempfile
 import unittest
+from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -10,10 +12,22 @@ sys.path.insert(0, str(ROOT))
 from watchers import deploy_elementlotus_wp
 
 
+class LinkCollector(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.hrefs = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self.hrefs.extend(value for key, value in attrs if key == "href" and value)
+
+
 class TestDeployElementLotusWp(unittest.TestCase):
     def test_rewrite_url_preserves_wordpress_and_static_boundaries(self):
         self.assertEqual(deploy_elementlotus_wp.rewrite_url('index.html'), '/')
         self.assertEqual(deploy_elementlotus_wp.rewrite_url('about.html'), '/about/')
+        self.assertEqual(deploy_elementlotus_wp.rewrite_url('partner.html'), '/partner/')
+        self.assertEqual(deploy_elementlotus_wp.rewrite_url('studio.html'), '/studio/')
         self.assertEqual(deploy_elementlotus_wp.rewrite_url('games/'), 'https://12sgi.com/games/')
         self.assertEqual(
             deploy_elementlotus_wp.rewrite_url('games/mahjong_crosswalk.html'),
@@ -35,6 +49,58 @@ class TestDeployElementLotusWp(unittest.TestCase):
             deploy_elementlotus_wp.rewrite_url('https://elementlotus.com/join/'),
             'https://elementlotus.com/join/',
         )
+
+    def test_navigation_fragment_has_grouped_public_paths(self):
+        navigation = deploy_elementlotus_wp.build_navigation_fragment()
+        self.assertIn('<nav class="nav" aria-label="Primary">', navigation)
+        self.assertIn('<details><summary>Explore</summary>', navigation)
+        self.assertIn('https://12sgi.com/games/', navigation)
+        self.assertIn('href="/membership/"', navigation)
+        self.assertIn('href="/my-account/"', navigation)
+        self.assertNotIn('/king/', navigation)
+        self.assertNotIn('/owner', navigation.lower())
+
+    def test_wordpress_fragment_does_not_duplicate_theme_header_or_load_private_shell(self):
+        source = (
+            '<!doctype html><html><head><title>Sample</title>'
+            '<meta name="description" content="desc"></head><body>'
+            '<header><nav>Duplicate</nav></header><main><h1>Content</h1></main>'
+            '<footer>Duplicate footer</footer><a class="skip-link" href="#main-content">Skip</a>'
+            '<script src="../govos-shell.js" defer></script></body></html>'
+        )
+        fragment = deploy_elementlotus_wp.build_page_fragment(
+            "sample.html", "/sample/", "default", source
+        )["fragment"]
+        self.assertIn("Content", fragment)
+        self.assertNotIn("Duplicate", fragment)
+        self.assertNotIn("govos-shell.js", fragment)
+        self.assertNotIn("<main", fragment)
+        self.assertNotIn("skip-link", fragment)
+
+    def test_generated_bundle_links_resolve_to_preserved_routes_or_public_bridge(self):
+        tracked = ROOT / 'content' / 'wordpress' / 'element_lotus'
+        html_names = [page['output'] for page in deploy_elementlotus_wp.PAGES]
+        html_names.append('primary-navigation.html')
+        allowed_routes = set(deploy_elementlotus_wp.LEGACY_WORDPRESS_ROUTES)
+        for name in html_names:
+            markup = (tracked / name).read_text(encoding='utf-8')
+            parser = LinkCollector()
+            parser.feed(markup)
+            with self.subTest(name=name):
+                self.assertNotIn('king.tail', markup)
+                self.assertNotIn('localhost', markup)
+                self.assertNotIn('/api/v2/civic/', markup)
+                self.assertNotIn('govos-shell.js', markup)
+                self.assertNotIn('href="../', markup)
+                for href in parser.hrefs:
+                    parsed = urlsplit(href)
+                    if parsed.scheme in {'http', 'https'} and parsed.hostname not in {
+                        'elementlotus.com', 'www.elementlotus.com'
+                    }:
+                        continue
+                    path = parsed.path or '/'
+                    if path.startswith('/'):
+                        self.assertIn(path, allowed_routes, f'{name}: {href}')
 
     def test_prefix_css_scopes_root_and_media_rules(self):
         css = ':root{--gold:#fff} html,body{margin:0} a,.card{color:gold}@media (max-width:600px){body{padding:0}}'
@@ -61,6 +127,8 @@ class TestDeployElementLotusWp(unittest.TestCase):
                 (src / page['source']).write_text(sample, encoding='utf-8')
             manifest = deploy_elementlotus_wp.build(src_dir=src, out_dir=out)
             self.assertEqual(len(manifest['pages']), len(deploy_elementlotus_wp.PAGES))
+            self.assertIn('/partner/', [page['slug'] for page in manifest['pages']])
+            self.assertIn('/studio/', [page['slug'] for page in manifest['pages']])
             fragment = (out / 'front-page.html').read_text(encoding='utf-8')
             self.assertIn('https://12sgi.com/games/', fragment)
             self.assertIn('/about/', fragment)
@@ -71,12 +139,15 @@ class TestDeployElementLotusWp(unittest.TestCase):
             self.assertIn('.element-lotus-shell{margin:0}', css_out)
             saved_manifest = json.loads((out / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(saved_manifest['pages'][0]['output'], 'front-page.html')
+            self.assertEqual(saved_manifest['source'], 'element_lotus_public/')
+            self.assertTrue((out / 'primary-navigation.html').is_file())
+            self.assertTrue((out / 'INSTALLATION.md').is_file())
 
     def test_checked_in_bundle_matches_current_public_shell(self):
         tracked = ROOT / 'content' / 'wordpress' / 'element_lotus'
         with tempfile.TemporaryDirectory() as tmp:
             manifest = deploy_elementlotus_wp.build(out_dir=Path(tmp))
-            tracked_files = {'additional-css.css', 'manifest.json'}
+            tracked_files = {'additional-css.css', 'manifest.json', 'primary-navigation.html', 'INSTALLATION.md'}
             tracked_files.update(page['output'] for page in manifest['pages'])
             for name in sorted(tracked_files):
                 with self.subTest(name=name):

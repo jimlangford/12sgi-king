@@ -24,6 +24,33 @@
 - NEXT: review the broadcast branch; add provider delivery connectors only
   after recipient scope and authorization are clear.
 
+## ElementLOTUS WordPress navigation rebuild — 2026-11-25
+
+- SCOPE: ElementLOTUS.com WordPress shell only; 12sgi.com civic routes remain
+  separate and intact. The public WordPress REST API currently lists 491 pages;
+  this package changes eight curated landing pages and leaves archive/content
+  pages untouched.
+- INSPECTED: current WordPress navigation and its destinations, local
+  `element_lotus_public/` sources, the WordPress bundle generator, and public
+  civic/game destinations on 12sgi.com.
+- CHANGED: rebuilt the eight-page local shell, added consistent grouped
+  navigation and installation instructions, made the partnership and studio
+  pages part of the WordPress bundle, removed the civic page's private API/
+  Tailscale fallback, and excluded duplicate theme navigation from fragments.
+- OUTPUT: `content/wordpress/element_lotus/` is a review package only. The
+  builder does not update WordPress. No live WordPress page, global menu, or
+  public post was changed.
+- PRESERVED: WordPress archive routes and the 12sgi.com civic site. No
+  application owner paths, credentials, private service hosts, or local API
+  calls are included in the WordPress fragments.
+- VERIFY: 7 focused WordPress builder tests passed; changed Python files
+  compiled; lxml structural checks passed for all 8 sources and fragments;
+  29 selected live WordPress and 12sgi public routes returned HTTP 200.
+  Browser visual review of the local bundle remains pending.
+- NEXT: review the generated menu and page package, then apply it to WordPress
+  with an approved WordPress editing path and verify the signed-out mobile and
+  desktop experience. Do not alter the separate 12sgi.com civic routes.
+
 ## Cross-workstream review snapshot — 2026-11-25
 
 - INSPECTED: GitHub open PRs and latest checks for `jimlangford/12sgi-king`; main checkout and local Copilot worktrees; Docker service status and King Bridge/AI Gateway logs. This is a point-in-time read-only review, not a deployment approval.
