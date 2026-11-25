@@ -107,8 +107,8 @@ class TestCanonicalJobContract(unittest.TestCase):
         self.assertIn("publish_media", media["job_type_profiles"])
         self.assertIn("image_generation", media["capability_routing"])
         self.assertIn("short_video_generation", media["capability_routing"])
-        self.assertEqual(media["capability_routing"]["short_video_generation"]["preferred"], "ltx")
-        self.assertEqual(media["capability_routing"]["long_video_generation"]["preferred"], "wan")
+        self.assertEqual(media["capability_routing"]["short_video_generation"]["preferred"], "kandinsky5_local")
+        self.assertEqual(media["capability_routing"]["long_video_generation"]["preferred"], "kandinsky5_local")
 
     def test_rtx4070_8gb_gpu_profile_is_declared(self):
         profile = json.loads((ROOT / "config" / "gpu_profiles" / "rtx4070_8gb.json").read_text(encoding="utf-8"))

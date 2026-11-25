@@ -113,7 +113,6 @@
         "quality_check",
         "publishing",
         "image_to_video",
-        "interpolation",
         "director_planning",
         "editor_review"
       ],
@@ -123,12 +122,12 @@
           "fallback": "comfyui_generic"
         },
         "short_video_generation": {
-          "preferred": "ltx",
-          "fallback": "wan"
+          "preferred": "kandinsky5_local",
+          "fallback": "kandinsky5_local"
         },
         "long_video_generation": {
-          "preferred": "wan",
-          "fallback": "segmented_ltx"
+          "preferred": "kandinsky5_local",
+          "fallback": "kandinsky5_local"
         },
         "upscale": {
           "preferred": "comfyui_upscale",
@@ -151,12 +150,8 @@
           "fallback": "publish_pipeline_manual"
         },
         "image_to_video": {
-          "preferred": "ltx",
-          "fallback": "wan_vace_1_3b"
-        },
-        "interpolation": {
-          "preferred": "rife_local",
-          "fallback": "film_local"
+          "preferred": "kandinsky5_local",
+          "fallback": "kandinsky5_local"
         },
         "director_planning": {
           "preferred": "director_local",
@@ -168,7 +163,7 @@
         },
         "kandinsky_animation": {
           "preferred": "kandinsky5_local",
-          "fallback": "ltx"
+          "fallback": "kandinsky5_local"
         }
       },
       "job_type_profiles": {
@@ -663,35 +658,6 @@
           "gpu_requirement": "rtx4070_8gb",
           "approval_required": true,
           "publish_eligibility": "approval_and_qc"
-        },
-        "interpolation_shot": {
-          "permitted_states": [
-            "planned",
-            "interpolation_queued",
-            "claimed",
-            "loading_model",
-            "rendering",
-            "rendered",
-            "final_qc",
-            "edit_ready",
-            "failed",
-            "timeout",
-            "cancelled"
-          ],
-          "required_inputs": [
-            "source_artifact",
-            "shot_id",
-            "capability"
-          ],
-          "completion_evidence": [
-            "output_hash",
-            "artifact_uri"
-          ],
-          "preferred_capability": "interpolation",
-          "fallback_capability": "interpolation",
-          "gpu_requirement": "none",
-          "approval_required": false,
-          "publish_eligibility": "n/a"
         },
         "edit_decision": {
           "permitted_states": [
@@ -1511,51 +1477,6 @@
             "cancelled": []
           }
         },
-        "interpolation_shot": {
-          "initial": "planned",
-          "allowed_transitions": {
-            "planned": [
-              "interpolation_queued",
-              "cancelled"
-            ],
-            "interpolation_queued": [
-              "claimed",
-              "cancelled"
-            ],
-            "claimed": [
-              "loading_model",
-              "failed"
-            ],
-            "loading_model": [
-              "rendering",
-              "failed",
-              "timeout"
-            ],
-            "rendering": [
-              "rendered",
-              "failed",
-              "timeout"
-            ],
-            "rendered": [
-              "final_qc",
-              "failed"
-            ],
-            "final_qc": [
-              "edit_ready",
-              "failed"
-            ],
-            "edit_ready": [],
-            "failed": [
-              "interpolation_queued",
-              "cancelled"
-            ],
-            "timeout": [
-              "interpolation_queued",
-              "cancelled"
-            ],
-            "cancelled": []
-          }
-        },
         "edit_decision": {
           "initial": "planned",
           "allowed_transitions": {
@@ -1643,7 +1564,7 @@
         "edit_ready"
       ],
       "batch_policy_notes": [
-        "kandinsky_animation is owner-preferred local animation engine; specify capability=kandinsky_animation to route animation_shot to Kandinsky5 instead of LTX"
+        "Kandinsky 5 is the only local video engine; route all native video work through Kandinsky and do not schedule interpolation models"
       ]
     },
     "gpu": {

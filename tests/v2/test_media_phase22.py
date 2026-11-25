@@ -2,10 +2,10 @@
 Phase 2.2 tests — Camera-Aware Storyboard-to-Edit pipeline.
 
 Covers:
-  - New job types (director_shot_plan, animation_shot, interpolation_shot, edit_decision)
+  - New job types (director_shot_plan, animation_shot, edit_decision)
   - New production states and transition graphs
-  - Capability routing for image_to_video, interpolation, director_planning, editor_review
-  - Workflow inventory (Kandinsky registered, LTX registered, Wan disabled by default)
+  - Capability routing for Kandinsky video, director planning, and editor review
+  - Workflow inventory (Kandinsky is the only local visual generation model)
   - Local skills registry completeness
   - Engine roles config
   - Camera spec schema fields
@@ -77,8 +77,9 @@ class TestContractNewJobTypes(unittest.TestCase):
     def test_animation_shot_registered(self):
         self.assertIn("animation_shot", self.media["job_type_profiles"])
 
-    def test_interpolation_shot_registered(self):
-        self.assertIn("interpolation_shot", self.media["job_type_profiles"])
+
+    def test_interpolation_shot_removed_with_its_model(self):
+        self.assertNotIn("interpolation_shot", self.media["job_type_profiles"])
 
     def test_edit_decision_registered(self):
         self.assertIn("edit_decision", self.media["job_type_profiles"])
@@ -101,17 +102,10 @@ class TestContractNewJobTypes(unittest.TestCase):
         profile = self.media["job_type_profiles"]["animation_shot"]
         self.assertEqual(profile["preferred_capability"], "image_to_video")
 
-    def test_interpolation_shot_preferred_capability_is_interpolation(self):
-        profile = self.media["job_type_profiles"]["interpolation_shot"]
-        self.assertEqual(profile["preferred_capability"], "interpolation")
 
     def test_director_shot_plan_approval_required(self):
         profile = self.media["job_type_profiles"]["director_shot_plan"]
         self.assertTrue(profile["approval_required"])
-
-    def test_interpolation_shot_approval_not_required(self):
-        profile = self.media["job_type_profiles"]["interpolation_shot"]
-        self.assertFalse(profile["approval_required"])
 
 
 class TestContractNewStates(unittest.TestCase):
@@ -187,12 +181,7 @@ class TestContractTransitions(unittest.TestCase):
         at = self.trans["animation_shot"]["allowed_transitions"]
         self.assertIn("animation_queued", at["timeout"])
 
-    def test_interpolation_shot_initial_is_planned(self):
-        self.assertEqual(self.trans["interpolation_shot"]["initial"], "planned")
 
-    def test_interpolation_shot_ends_at_edit_ready(self):
-        at = self.trans["interpolation_shot"]["allowed_transitions"]
-        self.assertIn("edit_ready", at["final_qc"])
 
     def test_edit_decision_initial_is_planned(self):
         self.assertEqual(self.trans["edit_decision"]["initial"], "planned")
@@ -216,116 +205,63 @@ class TestContractTransitions(unittest.TestCase):
 
 
 class TestContractCapabilityRouting(unittest.TestCase):
-    """New capabilities are routed to the correct engines."""
+    """All local video-generation routes select Kandinsky 5."""
 
     def setUp(self):
         with open(CONTRACT_PATH) as f:
             self.contract = json.load(f)
         self.routing = self.contract["tenant_state_profiles"]["media"]["capability_routing"]
 
-    def test_image_to_video_preferred_is_ltx(self):
-        self.assertEqual(self.routing["image_to_video"]["preferred"], "ltx")
+    def test_image_to_video_routes_only_to_kandinsky(self):
+        self.assertEqual(self.routing["image_to_video"], {"preferred": "kandinsky5_local", "fallback": "kandinsky5_local"})
 
-    def test_image_to_video_fallback_is_wan_vace_1_3b(self):
-        self.assertEqual(self.routing["image_to_video"]["fallback"], "wan_vace_1_3b")
+    def test_short_video_routes_only_to_kandinsky(self):
+        self.assertEqual(self.routing["short_video_generation"]["preferred"], "kandinsky5_local")
 
-    def test_interpolation_preferred_is_rife(self):
-        self.assertEqual(self.routing["interpolation"]["preferred"], "rife_local")
+    def test_long_video_routes_only_to_kandinsky(self):
+        self.assertEqual(self.routing["long_video_generation"]["preferred"], "kandinsky5_local")
 
-    def test_director_planning_preferred_is_director_local(self):
+    def test_non_kandinsky_interpolation_route_is_removed(self):
+        self.assertNotIn("interpolation", self.routing)
+
+    def test_director_and_editor_routes_remain(self):
         self.assertEqual(self.routing["director_planning"]["preferred"], "director_local")
-
-    def test_editor_review_preferred_is_editor_local(self):
         self.assertEqual(self.routing["editor_review"]["preferred"], "editor_local")
 
     def test_image_generation_still_routes_to_kandinsky(self):
         self.assertEqual(self.routing["image_generation"]["preferred"], "kandinsky5_local")
 
-    def test_kandinsky_animation_capability_routes_to_kandinsky5(self):
-        """kandinsky_animation is a distinct capability routing to Kandinsky5."""
-        self.assertEqual(self.routing["kandinsky_animation"]["preferred"], "kandinsky5_local")
-
-    def test_kandinsky_animation_fallback_is_ltx(self):
-        """LTX is the fallback when Kandinsky animation is unavailable."""
-        self.assertEqual(self.routing["kandinsky_animation"]["fallback"], "ltx")
+    def test_animation_route_has_no_alternate_engine(self):
+        self.assertEqual(self.routing["kandinsky_animation"], {"preferred": "kandinsky5_local", "fallback": "kandinsky5_local"})
 
 
 class TestWorkflowInventory(unittest.TestCase):
-    """Workflow inventory registers all required engines correctly."""
+    """Only Kandinsky visual generation workflows remain registered."""
 
     def setUp(self):
         with open(WORKFLOW_INVENTORY_PATH) as f:
             self.inv = json.load(f)
         self.workflows = {w["workflow_id"]: w for w in self.inv["workflows"]}
 
-    def test_kandinsky5_local_image_registered_and_enabled(self):
-        w = self.workflows.get("kandinsky5_local_image")
-        self.assertIsNotNone(w)
-        self.assertTrue(w["enabled"])
+    def test_kandinsky_workflows_are_the_only_visual_workflows(self):
+        self.assertEqual(set(self.workflows), {"kandinsky5_local_image", "kandinsky5_local_animation"})
+        self.assertEqual({w["engine"] for w in self.inv["workflows"]}, {"kandinsky5_local"})
 
-    def test_kandinsky5_resolution_is_768x512(self):
+    def test_kandinsky_image_and_animation_are_enabled(self):
+        self.assertTrue(self.workflows["kandinsky5_local_image"]["enabled"])
+        self.assertTrue(self.workflows["kandinsky5_local_animation"]["enabled"])
+
+    def test_kandinsky_resolution_and_vram_stay_inside_profile(self):
         w = self.workflows["kandinsky5_local_image"]
         self.assertEqual(w["resolution"], "768x512")
-        self.assertEqual(w["resolution_width"], 768)
-        self.assertEqual(w["resolution_height"], 512)
-
-    def test_kandinsky5_vram_within_safe_limit(self):
-        w = self.workflows["kandinsky5_local_image"]
         self.assertLessEqual(w["vram_required_mb"], 7600)
 
-    def test_ltx_image_to_video_registered_and_enabled(self):
-        w = self.workflows.get("ltx_image_to_video")
-        self.assertIsNotNone(w)
-        self.assertTrue(w["enabled"])
+    def test_animation_workflow_permits_animation_shots(self):
+        self.assertIn("animation_shot", self.workflows["kandinsky5_local_animation"]["permitted_job_types"])
 
-    def test_ltx_vram_within_safe_limit(self):
-        w = self.workflows["ltx_image_to_video"]
-        self.assertLessEqual(w["vram_required_mb"], 7600)
-
-    def test_wan_vace_disabled_by_default(self):
-        w = self.workflows.get("wan_vace_1_3b_experimental")
-        self.assertIsNotNone(w, "wan_vace entry must exist (disabled)")
-        self.assertFalse(w["enabled"])
-
-    def test_wan_t2v_disabled_by_default(self):
-        w = self.workflows.get("wan_t2v_1_3b_atmospheric")
-        self.assertIsNotNone(w, "wan_t2v entry must exist (disabled)")
-        self.assertFalse(w["enabled"])
-
-    def test_wan_vace_marked_experimental(self):
-        w = self.workflows["wan_vace_1_3b_experimental"]
-        self.assertTrue(w.get("experimental"))
-        self.assertTrue(w.get("requires_benchmark"))
-
-    def test_wan_t2v_prohibited_from_character_jobs(self):
-        w = self.workflows["wan_t2v_1_3b_atmospheric"]
-        prohibited = w.get("prohibited_job_types", [])
-        for jt in ("storyboard_frame", "character_reference", "animation_shot"):
-            self.assertIn(jt, prohibited)
-
-    def test_rife_interpolation_registered_and_enabled(self):
-        w = self.workflows.get("rife_local_interpolation")
-        self.assertIsNotNone(w)
-        self.assertTrue(w["enabled"])
-
-    def test_rife_requires_live_vram_measurement(self):
-        """RIFE CUDA mode requires live measurement; vram_required_mb must not be zero."""
-        w = self.workflows["rife_local_interpolation"]
-        self.assertIsNone(w.get("vram_required_mb"),
-                          "RIFE vram_required_mb must be null — use requires_live_measurement")
-        self.assertTrue(w.get("requires_live_measurement"),
-                        "RIFE must carry requires_live_measurement=true")
-        self.assertIn("cuda", w.get("execution_modes", []),
-                      "RIFE must list cuda as an execution mode")
-
-    def test_rife_default_mode_is_cuda(self):
-        w = self.workflows["rife_local_interpolation"]
-        self.assertEqual(w.get("default_mode"), "cuda")
-
-    def test_no_wan_14b_workflow_registered(self):
-        for w in self.inv["workflows"]:
-            name = w.get("display_name", "").lower() + w.get("engine", "").lower()
-            self.assertNotIn("14b", name, f"14B Wan model found in workflow: {w['workflow_id']}")
+    def test_no_other_video_engine_is_registered(self):
+        all_engines = {str(w.get("engine", "")).lower() for w in self.inv["workflows"]}
+        self.assertFalse(all_engines - {"kandinsky5_local"})
 
 
 class TestLocalSkillsRegistry(unittest.TestCase):
@@ -363,8 +299,8 @@ class TestLocalSkillsRegistry(unittest.TestCase):
     def test_storyboard_builder_output_is_kandinsky_job(self):
         self.assertEqual(self.skills["storyboard_builder"]["output"], "kandinsky_job")
 
-    def test_motion_prompt_builder_output_is_ltx_motion_job(self):
-        self.assertEqual(self.skills["motion_prompt_builder"]["output"], "ltx_motion_job")
+    def test_motion_prompt_builder_output_is_kandinsky_animation_job(self):
+        self.assertEqual(self.skills["motion_prompt_builder"]["output"], "kandinsky_animation_job")
 
     def test_all_skills_have_enabled_flag(self):
         for skill_id, skill in self.skills.items():
@@ -372,7 +308,7 @@ class TestLocalSkillsRegistry(unittest.TestCase):
 
 
 class TestEngineRolesConfig(unittest.TestCase):
-    """Engine roles and batch routing policy are correctly defined."""
+    """Engine policy permits Kandinsky as the sole local video model."""
 
     def setUp(self):
         with open(ENGINE_ROLES_PATH) as f:
@@ -380,58 +316,28 @@ class TestEngineRolesConfig(unittest.TestCase):
         self.roles = self.cfg["engine_roles"]
         self.policy = self.cfg["batch_routing_policy"]
 
-    def test_kandinsky5_role_is_storyboard_keyframe(self):
-        self.assertEqual(self.roles["kandinsky5"]["role"], "storyboard_image_and_keyframe")
+    def test_only_kandinsky_and_non_model_roles_remain(self):
+        self.assertEqual(set(self.roles), {"kandinsky5", "director_local", "editor_local"})
+        self.assertEqual(self.roles["kandinsky5"]["role"], "native_video_and_storyboard_generation")
+        self.assertIn("kandinsky_animation", self.roles["kandinsky5"]["capabilities"])
 
-    def test_ltx_role_is_primary_image_to_video(self):
-        self.assertEqual(self.roles["ltx"]["role"], "primary_image_to_video")
+    def test_kandinsky_permits_animation_shots(self):
+        self.assertIn("animation_shot", self.roles["kandinsky5"]["permitted_job_types"])
 
-    def test_wan_vace_disabled(self):
-        self.assertFalse(self.roles["wan_vace_1_3b"]["enabled"])
-
-    def test_wan_t2v_disabled(self):
-        self.assertFalse(self.roles["wan_t2v_1_3b"]["enabled"])
-
-    def test_wan_vace_not_permitted_for_storyboard_frame(self):
-        permitted = self.roles["wan_vace_1_3b"].get("permitted_job_types", [])
-        self.assertNotIn("storyboard_frame", permitted)
-
-    def test_wan_t2v_prohibited_from_storyboard_frame(self):
-        prohibited = self.roles["wan_t2v_1_3b"].get("prohibited_job_types", [])
-        self.assertIn("storyboard_frame", prohibited)
-
-    def test_vram_safe_limit_is_7600(self):
+    def test_gpu_policy_remains_serialized(self):
         self.assertEqual(self.cfg["vram_safe_limit_mb"], 7600)
-
-    def test_max_concurrent_large_models_is_1(self):
         self.assertEqual(self.cfg["max_concurrent_large_models"], 1)
 
-    def test_batch_policy_prohibits_per_shot_alternation(self):
-        prohibited = " ".join(self.policy.get("prohibited_patterns", []))
-        self.assertIn("alternation", prohibited.lower())
-
-    def test_batch_policy_prohibits_wan_14b(self):
-        prohibited = " ".join(self.policy.get("prohibited_patterns", []))
-        self.assertIn("14B", prohibited)
-
-    def test_batch_policy_sequence_has_kandinsky_before_ltx(self):
-        seq = self.policy["sequence"]
-        engines = [s.get("engine") for s in seq if s.get("engine")]
-        k_idx = next((i for i, e in enumerate(engines) if e and "kandinsky" in e), None)
-        ltx_idx = next((i for i, e in enumerate(engines) if e == "ltx"), None)
-        self.assertIsNotNone(k_idx)
-        self.assertIsNotNone(ltx_idx)
-        self.assertLess(k_idx, ltx_idx)
+    def test_batch_policy_prohibits_engine_alternation_and_non_kandinsky_video(self):
+        prohibited = " ".join(self.policy.get("prohibited_patterns", [])).lower()
+        self.assertIn("alternation", prohibited)
+        self.assertIn("non_kandinsky_video_model_scheduling", prohibited)
+        engines = [s.get("engine") for s in self.policy["sequence"] if s.get("engine")]
+        self.assertEqual(set(engines), {"kandinsky5"})
 
     def test_batch_policy_final_step_does_not_auto_publish(self):
-        seq = self.policy["sequence"]
-        final = seq[-1]
-        gate = (final.get("gate") or "").lower()
-        self.assertIn("do_not_publish", gate)
-
-    def test_rife_loads_after_all_takes_approved(self):
-        role = self.roles["rife_local"]
-        self.assertIn("approved", role["batch_policy"].lower())
+        final = self.policy["sequence"][-1]
+        self.assertIn("do_not_publish", final.get("gate", "").lower())
 
 
 class TestCameraSpecSchema(unittest.TestCase):
@@ -456,17 +362,13 @@ class TestCameraSpecSchema(unittest.TestCase):
         fd = self.schema["field_definitions"]["storyboard_engine"]
         self.assertEqual(fd.get("enum"), ["kandinsky5"])
 
-    def test_motion_engine_ltx_is_valid(self):
-        fd = self.schema["field_definitions"]["motion_engine"]
-        self.assertIn("ltx", fd.get("enum", []))
 
-    def test_motion_engine_wan_vace_is_experimental_only(self):
-        fd = self.schema["field_definitions"]["motion_engine"]
-        self.assertIn("wan_vace_1_3b", fd.get("enum", []))
 
-    def test_example_uses_ltx_as_motion_engine(self):
-        ex = self.schema["example"]
-        self.assertEqual(ex["motion_engine"], "ltx")
+
+    def test_motion_engine_is_kandinsky_only(self):
+        fd = self.schema["field_definitions"]["motion_engine"]
+        self.assertEqual(fd.get("enum"), ["kandinsky5"])
+        self.assertEqual(self.schema["example"]["motion_engine"], "kandinsky5")
 
     def test_example_shot_id_present(self):
         self.assertIn("shot_id", self.schema["example"])
@@ -514,11 +416,11 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
+            "model": "kandinsky-local",
             "prompt": "slow push in toward Haleakala ridge",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "resolution": "768x512",
             "frame_count": 97,
             "options": {
@@ -534,11 +436,11 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
+            "model": "kandinsky-local",
             "prompt": "slow push in",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "resolution": "768x512",
             "frame_count": 97,
             "options": {
@@ -555,11 +457,11 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
+            "model": "kandinsky-local",
             "prompt": "cinematic shot",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "vram_required_mb": 8000,
             "options": {
                 "source_artifact": "artifact://frame-001",
@@ -570,23 +472,16 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         self.assertEqual(resp.status_code, 422)
         self.assertEqual(resp.json()["detail"]["error"]["code"], "gpu_profile_exceeded")
 
-    def test_interpolation_shot_job_type_accepted(self):
-        """interpolation_shot is a registered media job type."""
+    def test_interpolation_shot_job_type_rejected_without_rife(self):
         payload = {
-            "client_id": "studio",
-            "tenant_id": "media",
-            "model": "rife-local",
-            "prompt": "smooth interpolation",
-            "media_job_type": "interpolation_shot",
-            "capability": "interpolation",
-            "workflow_id": "rife_local_interpolation",
-            "options": {
-                "source_artifact": "artifact://clip-001",
-                "shot_id": "HWTF-S01-SH003",
-            },
+            "client_id": "studio", "tenant_id": "media", "model": "rife-local",
+            "prompt": "smooth interpolation", "media_job_type": "interpolation_shot",
+            "capability": "interpolation", "workflow_id": "rife_local_interpolation",
+            "options": {"source_artifact": "artifact://clip-001", "shot_id": "HWTF-S01-SH003"},
         }
         resp = self.client.post("/api/v2/gpu/infer", json=payload, headers=self._auth())
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 422)
+        self.assertEqual(resp.json()["detail"]["error"]["code"], "unknown_media_job_type")
 
     def test_director_shot_plan_job_type_accepted(self):
         """director_shot_plan is a registered media job type."""
@@ -610,11 +505,11 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
+            "model": "kandinsky-local",
             "prompt": "dawn over the ridge",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "options": {
                 "source_artifact": "artifact://frame-002",
                 "shot_id": "HWTF-S01-SH004",
@@ -699,11 +594,11 @@ class TestPhase22RouterIntegration(unittest.TestCase):
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
+            "model": "kandinsky-local",
             "prompt": "animation shot with qc",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "options": {
                 "source_artifact": "artifact://frame-003",
                 "shot_id": "HWTF-S01-SH005",
@@ -771,19 +666,11 @@ class TestKandinskyAnimation(unittest.TestCase):
     def test_kandinsky_animation_preferred_is_kandinsky5_local(self):
         self.assertEqual(self.routing["kandinsky_animation"]["preferred"], "kandinsky5_local")
 
-    def test_kandinsky_animation_fallback_is_ltx(self):
-        self.assertEqual(self.routing["kandinsky_animation"]["fallback"], "ltx")
+    def test_kandinsky_animation_fallback_is_kandinsky(self):
+        self.assertEqual(self.routing["kandinsky_animation"]["fallback"], "kandinsky5_local")
 
-    def test_image_to_video_preferred_still_ltx(self):
-        """Existing image_to_video routing is not broken by adding kandinsky_animation."""
-        self.assertEqual(self.routing["image_to_video"]["preferred"], "ltx")
-
-    def test_rife_requires_live_measurement_in_roles(self):
-        role = self.roles["rife_local"]
-        self.assertTrue(role.get("requires_live_measurement"),
-                        "rife_local engine role must carry requires_live_measurement=true")
-        self.assertIsNone(role.get("vram_mb"),
-                          "rife_local vram_mb must be null in engine roles")
+    def test_image_to_video_preferred_is_kandinsky(self):
+        self.assertEqual(self.routing["image_to_video"]["preferred"], "kandinsky5_local")
 
 
 class TestKandinskyAnimationRouterIntegration(unittest.TestCase):
@@ -861,20 +748,20 @@ class TestKandinskyAnimationRouterIntegration(unittest.TestCase):
         self.assertEqual(resp.status_code, 422)
         self.assertEqual(resp.json()["detail"]["error"]["code"], "gpu_profile_exceeded")
 
-    def test_ltx_animation_still_accepted_alongside_kandinsky(self):
-        """Adding kandinsky_animation does not break the existing LTX animation path."""
+    def test_image_to_video_routes_through_kandinsky_only(self):
+        """image_to_video routes to the sole retained local visual model."""
         payload = {
             "client_id": "studio",
             "tenant_id": "media",
-            "model": "ltx-local",
-            "prompt": "LTX animation alongside Kandinsky",
+            "model": "kandinsky-local",
+            "prompt": "Kandinsky native animation",
             "media_job_type": "animation_shot",
             "capability": "image_to_video",
-            "workflow_id": "ltx_image_to_video",
+            "workflow_id": "kandinsky5_local_animation",
             "resolution": "768x512",
             "frame_count": 97,
             "options": {
-                "source_artifact": "artifact://frame-ltx-001",
+                "source_artifact": "artifact://frame-kandinsky-001",
                 "shot_id": "HWTF-S01-SH006",
             },
         }

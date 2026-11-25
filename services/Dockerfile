@@ -36,6 +36,11 @@ RUN cat /tmp/req-*.txt | sort -u > /tmp/requirements.txt \
 COPY services/ /repo/services/
 COPY element_lotus_public/ /repo/element_lotus_public/
 COPY config/ai_tool_registry.v2.json /repo/config/ai_tool_registry.v2.json
+# GPU Router consumes these explicit local model/job policy files; never copy the full config tree.
+COPY config/canonical_job_contract.v2.json /repo/config/canonical_job_contract.v2.json
+COPY config/media_engine_roles.v2.json /repo/config/media_engine_roles.v2.json
+COPY config/media_workflow_inventory.v2.json /repo/config/media_workflow_inventory.v2.json
+COPY config/gpu_profiles/rtx4070_8gb.json /repo/config/gpu_profiles/rtx4070_8gb.json
 # entitlements.py does `from watchers import tier_access` (capabilities per tier). tier_access.py is a
 # self-contained stdlib-only module; copy ONLY it (not the whole civic watchers tree, per the note above).
 # Fixes the auth crash-loop: ModuleNotFoundError: No module named 'watchers' (Jimmy 2026-07-22 "NO BROKEN WORKERS").

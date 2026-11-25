@@ -687,7 +687,7 @@ async def chat_completions(
     render_active = any(
         e.get("status") == "busy"
         for k, e in engines.items()
-        if k in ("comfyui", "kandinsky", "ltx", "wan")
+        if k in ("comfyui", "kandinsky", "kandinsky5")
     )
     if render_active:
         gpu_note = "render-active"

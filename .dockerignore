@@ -11,7 +11,14 @@
 !element_lotus_public/
 !config/
 config/*
+# Ship only the non-secret model/job policy consumed by the private GPU Router.
 !config/ai_tool_registry.v2.json
+!config/canonical_job_contract.v2.json
+!config/media_engine_roles.v2.json
+!config/media_workflow_inventory.v2.json
+!config/gpu_profiles/
+config/gpu_profiles/*
+!config/gpu_profiles/rtx4070_8gb.json
 # entitlements.py needs ONLY watchers/tier_access.py (self-contained stdlib module). Re-include that ONE
 # file — never the rest of the civic watchers tree (may hold private data). (Jimmy 2026-07-22 NO BROKEN WORKERS)
 !watchers/

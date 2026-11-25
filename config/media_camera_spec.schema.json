@@ -38,13 +38,17 @@
     },
     "storyboard_engine": {
       "type": "string",
-      "enum": ["kandinsky5"],
+      "enum": [
+        "kandinsky5"
+      ],
       "description": "Storyboard/keyframe generation is locked to the Kandinsky5 local engine."
     },
     "motion_engine": {
       "type": "string",
-      "enum": ["ltx", "wan_vace_1_3b"],
-      "description": "Image-to-video engine. ltx is the primary; wan_vace_1_3b is experimental-only (disabled in engine roles, requires benchmark before any use)."
+      "enum": [
+        "kandinsky5"
+      ],
+      "description": "Native video generation is locked to the local Kandinsky 5 engine."
     },
     "camera": {
       "type": "object",
@@ -96,13 +100,31 @@
         "type": "object",
         "description": "Whether the rendered take honored the camera spec: declared engine vs observed engine signature plus movement compliance.",
         "fields": {
-          "declared_engine": {"type": "string"},
-          "observed_engine_signature": {"type": ["string", "null"]},
-          "movement_compliant": {"type": "boolean"}
+          "declared_engine": {
+            "type": "string"
+          },
+          "observed_engine_signature": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "movement_compliant": {
+            "type": "boolean"
+          }
         }
       },
-      "motion_score": {"type": "number", "minimum": 0.0, "maximum": 1.0},
-      "identity_score": {"type": ["number", "null"]}
+      "motion_score": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      },
+      "identity_score": {
+        "type": [
+          "number",
+          "null"
+        ]
+      }
     }
   },
   "director_output_template": {
@@ -114,9 +136,13 @@
       "camera_movement_prohibitions": {
         "type": "array",
         "description": "Movements the director prohibits for this scene (e.g. no handheld_drift in ceremony scenes).",
-        "items": {"type": "string"}
+        "items": {
+          "type": "string"
+        }
       },
-      "notes": {"type": "string"}
+      "notes": {
+        "type": "string"
+      }
     }
   },
   "example": {
@@ -125,16 +151,22 @@
     "production": "prod-001",
     "scene": "HWTF-S04",
     "shot_type": "establishing",
-    "duration_seconds": 6.8,
+    "duration_seconds": 5.0,
     "storyboard_engine": "kandinsky5",
-    "motion_engine": "ltx",
+    "motion_engine": "kandinsky5",
     "camera": {
       "movement": "slow_push_in",
       "movement_strength": 0.35,
       "framing": "wide"
     },
-    "composition": {"subject": "Haleakala ridge at dawn", "foreground": "silversword"},
-    "continuity": {"time_of_day": "dawn", "weather": "clear"},
+    "composition": {
+      "subject": "Haleakala ridge at dawn",
+      "foreground": "silversword"
+    },
+    "continuity": {
+      "time_of_day": "dawn",
+      "weather": "clear"
+    },
     "transition": "cut"
   }
 }
