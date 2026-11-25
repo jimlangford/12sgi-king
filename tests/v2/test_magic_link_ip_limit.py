@@ -59,5 +59,29 @@ class TestMagicLinkIpLimit(unittest.TestCase):
         self.assertIsNotNone(self.auth._create_magic_link("d@example.com", role="RegisteredUser", client_ip="203.0.113.51"))
 
 
+    def test_ipv6_visitors_share_one_bucket_per_64(self):
+        a = self.auth._client_ip(_req("127.0.0.1", "2001:db8:1:2:aaaa:bbbb:cccc:dddd"))
+        b = self.auth._client_ip(_req("127.0.0.1", "2001:db8:1:2:1111:2222:3333:4444"))
+        c = self.auth._client_ip(_req("127.0.0.1", "2001:db8:1:3::1"))
+        self.assertEqual(a, b)
+        self.assertNotEqual(a, c)
+
+    def test_trust_is_limited_to_the_configured_proxy_cidrs(self):
+        import ipaddress
+        self.auth.TRUSTED_PROXY_CIDRS = [ipaddress.ip_network("127.0.0.1/32")]
+        self.assertEqual(self.auth._client_ip(_req("127.0.0.1", "203.0.113.9")), "203.0.113.9")
+        self.assertEqual(self.auth._client_ip(_req("10.9.9.9", "203.0.113.9")), "10.9.9.9")
+
+    def test_site_wide_ceiling_stops_rotation_but_not_the_owner(self):
+        self.auth.MAGIC_LINK_GLOBAL_HOURLY_LIMIT = 10
+        self.auth.MAGIC_LINK_IP_HOURLY_LIMIT = 100
+        sent = 0
+        for n in range(15):
+            if self.auth._create_magic_link(f"p{n}@example.com", role="RegisteredUser", client_ip=f"203.0.113.{n}"):
+                sent += 1
+        self.assertEqual(sent, 10)
+        self.assertIsNotNone(self.auth._create_magic_link("owner@example.com", role="Owner", client_ip="203.0.113.99"))
+
+
 if __name__ == "__main__":
     unittest.main()

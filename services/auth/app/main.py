@@ -142,6 +142,19 @@ MAGIC_LINK_IP_HOURLY_LIMIT = max(
     1,
     min(100, int(os.environ.get("MAGIC_LINK_IP_HOURLY_LIMIT", "100"))),
 )
+MAGIC_LINK_GLOBAL_HOURLY_LIMIT = max(
+    10,
+    min(100000, int(os.environ.get("MAGIC_LINK_GLOBAL_HOURLY_LIMIT", "1000"))),
+)
+# Peers allowed to tell us the real visitor address via CF-Connecting-IP (our own cloudflared / nginx hop). Narrow this
+# in production to the exact proxy address(es) if the service is reachable from other private hosts.
+TRUSTED_PROXY_CIDRS = [
+    ipaddress.ip_network(part.strip(), strict=False)
+    for part in os.environ.get(
+        "TRUSTED_PROXY_CIDRS", "127.0.0.0/8,::1/128,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7"
+    ).split(",")
+    if part.strip()
+]
 GAME_SESSION_TTL_SECONDS = max(
     300,
     min(3600, int(os.environ.get("GAME_SESSION_TTL_SECONDS", "3600"))),
@@ -681,22 +694,29 @@ def _magic_token_hash(token: str) -> str:
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
+def _ip_bucket(ip: "ipaddress.IPv4Address | ipaddress.IPv6Address") -> str:
+    """One bucket per visitor network: an IPv6 visitor owns a whole /64, so rotating addresses inside it gains nothing."""
+    if ip.version == 6:
+        return str(ipaddress.ip_network(f"{ip}/64", strict=False).network_address)
+    return str(ip)
+
+
 def _client_ip(request: Request) -> str:
-    """Caller address for rate limiting. This service sits behind the Cloudflare tunnel / nginx on a private hop, so the
-    socket peer is the proxy and every visitor would share one bucket. Trust CF-Connecting-IP only when the peer is
-    loopback or private (our own tunnel); a direct internet peer can never choose its own bucket."""
+    """Caller address for rate limiting. This service sits behind the Cloudflare tunnel / nginx, so the socket peer is the
+    proxy and every visitor would share one bucket. CF-Connecting-IP is honoured ONLY when the peer is inside
+    TRUSTED_PROXY_CIDRS (Cloudflare overwrites any client-sent copy of that header); a direct peer can never pick its bucket."""
     peer = request.client.host if request.client else ""
     try:
         peer_ip = ipaddress.ip_address(peer)
     except ValueError:
         return peer
-    if peer_ip.is_loopback or peer_ip.is_private:
+    if any(peer_ip in net for net in TRUSTED_PROXY_CIDRS):
         forwarded = (request.headers.get("cf-connecting-ip") or "").strip()
         try:
-            return str(ipaddress.ip_address(forwarded))
+            return _ip_bucket(ipaddress.ip_address(forwarded))
         except ValueError:
-            return peer
-    return peer
+            pass
+    return _ip_bucket(peer_ip)
 
 
 def _safe_game_return_to(raw: str | None) -> str:
@@ -752,6 +772,13 @@ def _create_magic_link(
                 (ip_hash, now - 3600),
             ).fetchone()[0]
             if requests_from_ip >= MAGIC_LINK_IP_HOURLY_LIMIT:
+                conn.commit()
+                return None
+            # Backstop against address rotation / spoofing: a site-wide hourly ceiling on PLAYER links (never the owner).
+            site_wide = conn.execute(
+                "SELECT COUNT(*) FROM magic_link_ip_limits WHERE created_at >= ?", (now - 3600,)
+            ).fetchone()[0]
+            if site_wide >= MAGIC_LINK_GLOBAL_HOURLY_LIMIT:
                 conn.commit()
                 return None
         recent = conn.execute(
