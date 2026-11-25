@@ -143,6 +143,45 @@ Autonomy scores (0-100):
 Dispatch log: .dispatch_log.jsonl (append-only, never delete)
 Status flow: queued → in-progress → pending-approval → approved/done
 
+CROSS-AGENT CHANGE BROADCAST
+At session start, read docs/AI_CHANGE_BROADCAST.md, the latest entries in
+docs/AI_CHANGE_FEED.jsonl, and docs/ACTIVE_AGENT_HANDOFF.md. After each material
+change set, append one sanitized notice with tools/announce_ai_change.py so
+Claude Code, Codex, GitHub Copilot, and local AI can share the same verified
+state. Never put PRIVATE, owner-only, credential, user-data, or machine-path
+details in the shared feed. A feed entry does not mean a live external chat was
+notified; GitHub agents see it only after commit and push. Do not claim delivery
+unless a configured connector confirms it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUAD OS PRODUCT EXPERIENCE — REQUIRED FOR EVERY SURFACE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Apply docs/QUAD_OS_PRODUCT_EXPERIENCE_CONTRACT.md to civic, creative, member,
+owner, local, and public work. Preserve backend capabilities while making each
+user's task, available routes, and next step clear without service jargon.
+
+For every product change:
+  - Map users, tasks, access levels, routes, data owners, services, connectors,
+    deployment path, and public/private boundaries before editing.
+  - Make navigation task-based, canonical, keyboard-accessible, responsive, and
+    reliable on direct entry, refresh, back/forward, and unknown routes.
+  - Trace each action through frontend, auth, API, service, data, and visible
+    success/empty/loading/error states. Report stale/unavailable honestly.
+  - Keep public pages independent of private hosts, credentials, owner data,
+    Tailscale, and private APIs. Preserve separate civic and ElementLOTUS routes.
+  - Keep local AI/services first-class so core work can run without paid cloud
+    AI. Check tool registry and dependencies inside runtime containers; check
+    health, disconnected behavior, and recovery separately.
+  - Before using a connector, identify its read/write capability, source,
+    target, auth, secret store, dry-run, and rollback. Credential storage is
+    not the same as a publisher.
+  - Make publishing reviewable and dry-run first. Distinguish source-ready,
+    package-ready, connector-ready, delivered, and live-verified states.
+  - Verify HTML, links, interactions, mobile/desktop, signed-out routes,
+    redirects, and important live destinations; record evidence and gaps.
+  - Update the active handoff and sanitized shared feed after material work.
+    Feed visibility does not prove a live external AI was notified.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 KNOWN ERRORS + FIXES (your repair knowledge)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

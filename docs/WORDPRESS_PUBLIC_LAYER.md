@@ -185,15 +185,30 @@ Operational rule:
 
 The bundle generates:
 
-- one WordPress-ready page fragment per public Element Lotus page
+- WordPress-ready page fragments for the Element LOTUS home, about, contact,
+  films, music, partnerships, studio, and civic landing pages
 - scoped CSS for WordPress (`additional-css.css`)
-- a manifest describing slugs, templates, titles, and source files
+- `primary-navigation.html`, a keyboard-accessible grouped menu for the global
+  WordPress navigation
+- `INSTALLATION.md` and a manifest describing slugs, templates, titles, source
+  files, and preserved public routes
 
 Boundary rules enforced by this bundle:
 
 - WordPress-owned public pages stay on WordPress routes (`/`, `/about/`, `/contact/`, `/films/`, `/music/`, `/civic/`)
 - static playables and civic artifacts stay on the 12sgi bridge (`https://12sgi.com/games/`, `https://12sgi.com/sage/`, `https://12sgi.com/reports.html`, etc.)
 - private/owner-only surfaces are not added to the WordPress bundle
+
+The current public WordPress site contains many additional content and archive
+pages. The rebuild package updates only the eight curated landing pages and
+provides a replacement navigation; it preserves existing archive routes and
+does not bulk-delete or rewrite them. Build output is a review artifact. The
+builder does not write to the live WordPress site.
+
+The civic landing page links to the verified public 12sgi.com routes. It must
+not call `/api/v2/civic/public-metrics` on WordPress or fall back to a private
+Tailscale hostname. `tests/test_deploy_elementlotus_wp.py` checks the route
+rewrites, navigation, page-fragment boundaries, and bundle parity.
 
 ## Launch Center (Owner Publishing Dashboard)
 

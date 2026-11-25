@@ -130,6 +130,12 @@ Use these labels in reports and handoffs:
 
 ## Lane Discipline & Cross-System Diplomacy
 
+For cross-agent change visibility, follow `docs/AI_CHANGE_BROADCAST.md` and read
+`docs/AI_CHANGE_FEED.jsonl` at session start. After each material change set,
+append one safe notice with `tools/announce_ai_change.py` and update the active
+handoff. A feed entry is shared context, not proof of direct delivery to a live
+external AI chat or of a GitHub push.
+
 This repo coordinates across more than one AI system, so any agent (Claude Code, Codex, GitHub
 Copilot, or a future agent) should work by these house rules rather than assuming another
 system's job:

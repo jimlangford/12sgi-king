@@ -1,5 +1,102 @@
 # Active Agent Handoff
 
+## QUAD OS product experience contract — 2026-11-25
+
+- CHANGED: added `docs/QUAD_OS_PRODUCT_EXPERIENCE_CONTRACT.md` and linked it
+  from the master architecture. It applies the ElementLOTUS WordPress review
+  lessons across civic, creative, member, owner, local, and public surfaces:
+  task-based navigation, end-to-end interaction behavior, explicit boundaries,
+  local AI independence, connector capability checks, dry-run publishing, and
+  evidence-based release readiness.
+- LOCAL AI: embedded these rules in `tools/teach_local_ai.py` and ran the
+  teaching workflow. Ollama reported all four configured personas updated:
+  king-jrcsl, king-civic, king-workboard, and king-server. Their generated
+  Modelfiles remain local because they include owner-specific prompt material.
+- VERIFY: prompt Python compilation and scoped `git diff --check` passed.
+  The teaching workflow's prompt checks completed with exit code 0. No website,
+  live WordPress content, DNS, or external AI chat was changed or notified.
+- NEXT: external agents can read the contract after the scoped change feed and
+  documentation are pushed. A later product implementation should use the
+  contract while preserving the separate 12sgi.com civic routes.
+
+## Cross-agent change broadcast — 2026-11-25
+
+- CHANGED: added `docs/AI_CHANGE_BROADCAST.md`, the tracked append-only
+  `docs/AI_CHANGE_FEED.jsonl`, and `tools/announce_ai_change.py`. `AGENTS.md`
+  now requires agents to read the feed at session start and record material
+  changes with boundary, audience, changed paths, and evidence.
+- DELIVERY: the shared feed is published on the dedicated
+  `codex/ai-change-broadcast` branch for GitHub-connected agents to read. No
+  direct provider chat connector is configured, so a branch push does not
+  actively notify a live Claude, Codex, or Copilot thread.
+- PRESERVED: private owner data and sensitive paths are rejected from the
+  shared feed; no external inference, GitHub comment, or deployment was
+  performed. The branch contains only the broadcast coordination files listed
+  above.
+- LOCAL AI: `tools/teach_local_ai.py` now gives the Ollama models the same
+  session-start and after-change feed workflow.
+- VERIFY: `python -m unittest tests.test_ai_change_broadcast -v` passed all 4;
+  `python -m py_compile tools/announce_ai_change.py
+  tests/test_ai_change_broadcast.py` passed; scoped `git diff --check` passed.
+  Whole-tree `git diff --check` also surfaced pre-existing generated-site
+  whitespace and line-ending warnings outside this change.
+- NEXT: review the broadcast branch; add provider delivery connectors only
+  after recipient scope and authorization are clear.
+
+## ElementLOTUS WordPress navigation rebuild — 2026-11-25
+
+- SCOPE: ElementLOTUS.com WordPress shell only; 12sgi.com civic routes remain
+  separate and intact. The public WordPress REST API currently lists 491 pages;
+  this package changes eight curated landing pages and leaves archive/content
+  pages untouched.
+- INSPECTED: current WordPress navigation and its destinations, local
+  `element_lotus_public/` sources, the WordPress bundle generator, and public
+  civic/game destinations on 12sgi.com.
+- CHANGED: rebuilt the eight-page local shell, added consistent grouped
+  navigation and installation instructions, made the partnership and studio
+  pages part of the WordPress bundle, removed the civic page's private API/
+  Tailscale fallback, and excluded duplicate theme navigation from fragments.
+- OUTPUT: `content/wordpress/element_lotus/` is a review package only. The
+  builder does not update WordPress. No live WordPress page, global menu, or
+  public post was changed.
+- PRESERVED: WordPress archive routes and the 12sgi.com civic site. No
+  application owner paths, credentials, private service hosts, or local API
+  calls are included in the WordPress fragments.
+- VERIFY: 7 focused WordPress builder tests passed; changed Python files
+  compiled; lxml structural checks passed for all 8 sources and fragments;
+  29 selected live WordPress and 12sgi public routes returned HTTP 200.
+  Browser visual review of the local bundle remains pending.
+- NEXT: review the generated menu and page package, then apply it to WordPress
+  with an approved WordPress editing path and verify the signed-out mobile and
+  desktop experience. Do not alter the separate 12sgi.com civic routes.
+
+## Cross-workstream review snapshot — 2026-11-25
+
+- INSPECTED: GitHub open PRs and latest checks for `jimlangford/12sgi-king`; main checkout and local Copilot worktrees; Docker service status and King Bridge/AI Gateway logs. This is a point-in-time read-only review, not a deployment approval.
+- GITHUB: PR #386 is the only open PR found. Its title/body describe prerequisite documentation, while its 26-file diff adds public RegisteredUser game signup, auth changes, a games API, Nginx routing, and Compose wiring. The automated review text says it reviewed the dispatch documentation, so it does not establish a review of the full implementation. Python lint and all four accessibility shards fail; Python 3.11/3.12 tests, secret scan, shell lint, and YAML lint pass. Public host forwarding and live multiplayer remain unverified.
+- LOCAL MAIN: checkout is at `f2b953d`, equal to `origin/main`, on `codex/owner-job-authentication`; the owner-auth and public-navigation changes remain uncommitted together. Keep those review scopes separate before preparing PRs.
+- LOCAL GOVOS V2: `jimlangford-probable-guacamole` is 47 commits behind main with a large uncommitted diff. Its `docs/GOVOS_V2_AUDIT.md` identifies the dispatch log/worker mismatch, missing verified Owner authorization for privileged actions, unconstrained file references, and separate database/dispatch writes. Treat these APIs as queued only until authorization, path policy, durable dispatch, and end-to-end execution are verified.
+- RUNTIME: AI Gateway is restarting because `/repo/config/ai_tool_registry.v2.json` is absent or invalid in the container. Neo4j currently publishes ports 7474 and 7687 on all host interfaces; external reachability is unverified and should be reconciled with the local-only architecture. The games service from PR #386 is not running in the inspected local Compose stack.
+- NEXT: resolve PR #386 scope and failed CI gates; restore Gateway registry availability; verify the Neo4j host/firewall boundary; keep GovOS v2 in queue-validation status; separate the local navigation and owner-auth changes. No GitHub changes, deployments, service changes, or merge were made during this review.
+
+## Public HTML/navigation verification — 2026-11-24
+
+- Branch: `codex/owner-job-authentication`; verification and source fix only, no commit or deployment.
+- FINDING: the isolated Python build succeeded, but the post-build link crawler found `grants.html` and `platform.html` still linked to private `go.html`, which the public owner-ops purge correctly removes.
+- CHANGED: both source pages now link to `site/index.html` (normalized to public `index.html` by the builder); `tests/test_public_frontdoor.py` covers the public/private navigation boundary and now verifies the current local-first workflow invokes the full validation build.
+- VERIFY: redirected `KA_SITE` build completed 29/29 lanes; Python parsed 658 rendered HTML pages with zero structural or duplicate-ID findings; `tools/link_audit.py` scanned 10,869 links/assets with zero broken internal links and zero broken anchors; five focused tests plus two subtests passed; reviewed private owner pages were absent from public output; `git diff --check` passed.
+- PRESERVED / NEXT: generated `site/` was not overwritten, owner-only routes remain private, and no publish occurred. Review and commit this navigation fix separately or with the active owner-authentication patch as appropriate.
+
+## Owner job authentication — 2026-11-24
+
+- Branch: `codex/owner-job-authentication`, based on `main`; no commit or deployment.
+- INSPECTED: `AGENTS.md`, `CANON.md`, `README.md`, the owner job dashboard, King Bridge owner job routes, shared `services/authz.py`, existing token usage in King frontend/apps, and public build exclusion test. Source inventory count: 81 HTML/JS files in `king_public_src/`, 9 in `element_lotus_public/`, 17 in `go/`, and 8 in `apps/`. No `dev-internal-token` or `X-Service-Token` literal found in those frontend directories beyond the reviewed owner dashboard before this change.
+- FINDING: `GET /api/v2/owner/jobs*` had no authentication. Approval relied on a browser-embedded `dev-internal-token`; the backend required only internal service trust for writes. This makes authenticated Owner identity unavailable for auditing approval actor attribution.
+- CHANGED: owner job list/stats/detail/approval routes require shared auth-service introspection and `Owner` role. Approval actor uses the verified subject. Dashboard sends bearer credentials and migrates `king_ownerToken` to the existing `king.ownerToken` key. Added focused regression tests.
+- PRESERVED: existing bridge routes, local-first services, public build exclusion for `owner_jobs.html`, and internal service authentication for other bridge mutation/inference endpoints. No publishing, deployment, DNS, or merge.
+- VERIFY: `python -m unittest tests.test_king_bridge_owner_auth -v` passed (3 tests); `git diff --check` passed. `python tools/local_validation.py --stage test` ran 548 tests and failed 6 unrelated Windows/environment tests: two scanner setup/exit checks (including missing npm), coverage reporting, Windows newline filename handling, and two `PermissionError` failures in public release pointer tests. The focused auth tests passed in that full run. Live auth-service integration remains unverified.
+- NEXT: review this focused diff; then continue the full interface and API-routing inventory. Before production use, confirm King Bridge can reach the configured auth introspection endpoint and align auth-service service credentials in deployment configuration.
+
 ## CI YAML lint repair — 2026-11-23
 
 - Branch: `copilot/fix-compose-yaml-lint`, based on `738fe2c`; no deployment.
