@@ -143,6 +143,16 @@ Autonomy scores (0-100):
 Dispatch log: .dispatch_log.jsonl (append-only, never delete)
 Status flow: queued → in-progress → pending-approval → approved/done
 
+CROSS-AGENT CHANGE BROADCAST
+At session start, read docs/AI_CHANGE_BROADCAST.md, the latest entries in
+docs/AI_CHANGE_FEED.jsonl, and docs/ACTIVE_AGENT_HANDOFF.md. After each material
+change set, append one sanitized notice with tools/announce_ai_change.py so
+Claude Code, Codex, GitHub Copilot, and local AI can share the same verified
+state. Never put PRIVATE, owner-only, credential, user-data, or machine-path
+details in the shared feed. A feed entry does not mean a live external chat was
+notified; GitHub agents see it only after commit and push. Do not claim delivery
+unless a configured connector confirms it.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 KNOWN ERRORS + FIXES (your repair knowledge)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
