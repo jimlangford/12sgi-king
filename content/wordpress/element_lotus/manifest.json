@@ -1,54 +1,176 @@
 {
-  "source": "C:\\Users\\12sgi\\Documents\\Codex\\2026-07-11\\github-plugin-github-openai-curated-remote\\work\\12sgi-king\\element_lotus_public",
-  "output": "C:\\Users\\12sgi\\Documents\\Codex\\2026-07-11\\github-plugin-github-openai-curated-remote\\work\\12sgi-king\\content\\wordpress\\element_lotus",
+  "source": "element_lotus_public/",
+  "output": "content/wordpress/element_lotus/",
   "css": "additional-css.css",
+  "primary_navigation": "primary-navigation.html",
+  "navigation_items": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Explore",
+      "children": [
+        {
+          "label": "Games",
+          "url": "https://12sgi.com/games/"
+        },
+        {
+          "label": "SAGE learning",
+          "url": "https://12sgi.com/sage/"
+        },
+        {
+          "label": "Films",
+          "url": "/films/"
+        },
+        {
+          "label": "Music",
+          "url": "/music/"
+        },
+        {
+          "label": "Audio Studio",
+          "url": "/audio-studio/"
+        },
+        {
+          "label": "Workshops",
+          "url": "/workshops/"
+        },
+        {
+          "label": "Creative Lab",
+          "url": "/lab-preview/"
+        },
+        {
+          "label": "Aupuni",
+          "url": "/aupuni/"
+        }
+      ]
+    },
+    {
+      "label": "Civic",
+      "url": "/civic/"
+    },
+    {
+      "label": "Membership",
+      "children": [
+        {
+          "label": "Membership options",
+          "url": "/membership/"
+        },
+        {
+          "label": "Join",
+          "url": "/join/"
+        },
+        {
+          "label": "My account",
+          "url": "/my-account/"
+        },
+        {
+          "label": "Store",
+          "url": "/store/"
+        }
+      ]
+    },
+    {
+      "label": "Journal",
+      "url": "/journal/"
+    },
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "preserved_wordpress_routes": [
+    "/",
+    "/about/",
+    "/contact/",
+    "/films/",
+    "/music/",
+    "/partner/",
+    "/studio/",
+    "/civic/",
+    "/games/",
+    "/sage/",
+    "/workshops/",
+    "/audio-studio/",
+    "/membership/",
+    "/join/",
+    "/my-account/",
+    "/store/",
+    "/shop/",
+    "/pricing/",
+    "/lab-preview/",
+    "/aupuni/",
+    "/journal/",
+    "/civic-transparency/",
+    "/hina/"
+  ],
   "pages": [
     {
       "source": "index.html",
       "slug": "/",
       "template": "front-page",
-      "title": "Element Lotus · studio first",
-      "description": "Element Lotus by 12 Stones Global — games, films, and music first. TribeGameStudios, SAGE canon, and a secondary govOS civic lane.",
+      "title": "Element LOTUS · creative work, learning, and community",
+      "description": "Explore Element LOTUS: games, film, music, learning, and the public civic work of 12 Stones Global.",
       "output": "front-page.html"
     },
     {
       "source": "about.html",
       "slug": "/about/",
       "template": "default",
-      "title": "Element Lotus · about the studio",
-      "description": "About Element Lotus, 12 Stones Global, and the TribeGameStudios public shell.",
+      "title": "About Element LOTUS",
+      "description": "Learn about Element LOTUS and 12 Stones Global: creative work, learning, and public service connected through one community.",
       "output": "about.html"
     },
     {
       "source": "contact.html",
       "slug": "/contact/",
       "template": "default",
-      "title": "Element Lotus · contact",
-      "description": "Contact and next-step page for the Element Lotus studio shell.",
+      "title": "Contact Element LOTUS",
+      "description": "Contact Element LOTUS about creative work, membership, workshops, and partnerships.",
       "output": "contact.html"
     },
     {
       "source": "films.html",
       "slug": "/films/",
       "template": "default",
-      "title": "Element Lotus · films",
-      "description": "Element Lotus film lane — story-first public shell for the 12 Stones Global slate.",
+      "title": "Films · Element LOTUS",
+      "description": "Explore the Element LOTUS film worlds and follow confirmed public releases.",
       "output": "films.html"
     },
     {
       "source": "music.html",
       "slug": "/music/",
       "template": "default",
-      "title": "Element Lotus · music",
-      "description": "Element Lotus music lane — songs, score, and sound first.",
+      "title": "Music · Element LOTUS",
+      "description": "Listen to Element LOTUS music, follow live offerings, and find public release updates.",
       "output": "music.html"
+    },
+    {
+      "source": "partner.html",
+      "slug": "/partner/",
+      "template": "default",
+      "title": "Partnerships · Element LOTUS",
+      "description": "Explore partnership paths across Element LOTUS creative work, learning, and public civic tools.",
+      "output": "partner.html"
+    },
+    {
+      "source": "studio.html",
+      "slug": "/studio/",
+      "template": "default",
+      "title": "Element LOTUS · studio",
+      "description": "Explore Element LOTUS films, music, live work, and creative experiences.",
+      "output": "studio.html"
     },
     {
       "source": "civic.html",
       "slug": "/civic/",
       "template": "default",
-      "title": "Element Lotus · civic / govOS",
-      "description": "Live civic events and transparency dashboard.",
+      "title": "Civic information · Element LOTUS",
+      "description": "Find public records, government meetings, civic dashboards, and participation resources from 12 Stones Global.",
       "output": "civic.html"
     }
   ]

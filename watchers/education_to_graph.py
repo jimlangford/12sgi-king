@@ -15,9 +15,7 @@ Same house rules as chain_to_graph.py / graph_vectors.py:
 
 TWO layers, both requested together (2026-07-11, Jimmy):
   (1) GradeBand <-[:USES]-> CivicTool  — which tool/page each grade band is pointed at, and why.
-      Sourced directly from education.html's own copy (nothing invented for the bands marked
-      "in development" there — this script mirrors that honesty: those bands get the tools
-      that are already usable as-is, no fabricated lesson content).
+      Sourced from the current activities in education.html.
   (2) GradeBand <-[:CAN_QUERY]-> Node  — links each grade band to the EXISTING money-chain /
       civic Node graph (chain_to_graph.py), tagged with a grade_floor so a query can be filtered
       to "what's appropriate to show this grade band" without duplicating or rewriting that data.
@@ -34,6 +32,7 @@ TWO layers, both requested together (2026-07-11, Jimmy):
 import os, sys, json, argparse, urllib.request, urllib.error
 
 NEO = os.environ.get("NEO4J_HTTP") or "http://127.0.0.1:7474/db/neo4j/tx/commit"
+EDUCATION_MAP_REVISION = "education-page-2026-11"
 
 # ---------------------------------------------------------------------------
 # Layer 1: grade band -> civic tool/page, sourced from education.html's own copy.
@@ -62,20 +61,13 @@ CIVIC_TOOLS = [
 # framed as a class-led activity (see USES.activity), never as a self-serve research source.
 
 USES = [  # (grade_id, tool_id, activity) — mirrors education.html's own text, nothing added
-    ("k2", "civic_dashboard",   "Name a local official and their job (Map Our Community Leaders activity)"),
-    ("k2", "agenda_viewer",     "Show a real upcoming agenda; ask what the county is deciding this week"),
-    ("k2", "civic_records",     "Coastal/permit records for the land-and-water lesson"),
-    ("g35", "news_vs_record",    "Compare a news headline to the underlying primary source, at a 3-5 reading level"),
-    ("g35", "meetings_calendar", "Find how often the local council actually meets"),
-    ("g68", "news_vs_record",    "Check a news story's frame against the filed record"),
-    ("g68", "civic_daily",       "Read today's real agenda before a class discussion"),
-    ("g912", "agenda_viewer",    "Track money-to-votes patterns tied to a real upcoming agenda item"),
-    ("g912", "civic_dashboard",  "Civic-action unit: testimony + public-comment workflow"),
-    ("college", "open_data",     "Research methods / data-journalism coursework on the raw sourced JSON"),
-    ("college", "meetings_calendar", "Longitudinal study of meeting cadence, 2015-present"),
-    ("grad", "open_data",        "Policy / public-administration research on the full sourced record"),
-    ("grad", "money_chain",      "Multi-hop funder -> prime -> subrecipient case study via the LOTUS graph"),
-    ("grad", "civic_daily",      "Same-day government-activity case material"),
+    ("k2", "civic_records", "Choose a public record with an adult; name a public role and its responsibility."),
+    ("k2", "agenda_viewer", "With an adult, discuss an age-appropriate agenda item and the decision."),
+    ("g35", "agenda_viewer", "Choose an agenda item, identify the decision-maker, and ask two questions."),
+    ("g68", "news_vs_record", "Compare a news claim or public statement with a primary source."),
+    ("g912", "civic_daily", "Trace a decision from agenda to meeting record and related documents."),
+    ("college", "open_data", "Build a research trail with source, date, jurisdiction, and limitations."),
+    ("grad", "civic_records", "Define a policy question and document source boundaries and uncertainty."),
 ]
 
 _GRADE_ORDER = {g["id"]: i for i, g in enumerate(GRADE_BANDS)}
@@ -125,8 +117,9 @@ def build_statements():
         {"statement": "UNWIND $rows AS t MERGE (x:CivicTool {id:t.id}) SET x.label=t.label, x.url=t.url, x.kind=t.kind, x.grade_floor=t.grade_floor",
          "parameters": {"rows": CIVIC_TOOLS}},
         {"statement": ("UNWIND $rows AS u MATCH (g:GradeBand {id:u.grade}) MATCH (t:CivicTool {id:u.tool}) "
-                        "MERGE (g)-[r:USES]->(t) SET r.activity=u.activity"),
-         "parameters": {"rows": [{"grade": g, "tool": t, "activity": a} for g, t, a in USES]}},
+                        "MERGE (g)-[r:USES]->(t) SET r.activity=u.activity, r.education_map_revision=$revision"),
+         "parameters": {"rows": [{"grade": g, "tool": t, "activity": a} for g, t, a in USES],
+                        "revision": EDUCATION_MAP_REVISION}},
         # Layer 2: link each GradeBand to the existing money-chain Node graph (chain_to_graph.py),
         # gated by grade_floor so grad/college reach it and younger bands don't get an unguided
         # self-serve link into raw financial-flow data. No-op (empty MATCH) if that graph hasn't
@@ -183,8 +176,9 @@ def ask(grade_id, query=None):
     """Grade-appropriate pull: try the live graph first (LOTUS), fall back to the static map."""
     out = cypher([
         {"statement": ("MATCH (g:GradeBand {id:$id})-[u:USES]->(t:CivicTool) "
+                        "WHERE u.education_map_revision=$revision "
                         "RETURN t.label, t.url, u.activity, t.kind ORDER BY t.grade_floor"),
-         "parameters": {"id": grade_id}},
+         "parameters": {"id": grade_id, "revision": EDUCATION_MAP_REVISION}},
     ])
     rows = _rows(out, 0) if out else []
     if not rows:

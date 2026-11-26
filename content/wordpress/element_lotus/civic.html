@@ -2,140 +2,25 @@
 <div class="element-lotus-shell-wrap">
 <!-- element_lotus_public/civic.html | slug: /civic/ | template: default -->
 <div class="element-lotus-shell" data-source="element_lotus_public/civic.html">
+
 <div class="shell">
-  <header class="topbar">
-    <div class="brand"><div class="mark">⚖</div><div class="wordmark"><strong>Civic / govOS</strong><span>Live transparency dashboard</span></div></div>
-    <nav class="nav"><a href="/">Home</a><a href="https://12sgi.com/games/">Games</a><a href="/films/">Films</a><a href="/music/">Music</a><a href="/contact/">Contact</a></nav>
-  </header>
-  <section class="hero">
-    <div class="eyebrow">Public civic lane</div>
-    <h1>govOS is here — tracking government with transparency and intention.</h1>
-    <p>Follow meetings, jurisdictions, and cases. Submit testimony. Request government records. Participate in the civic work.</p>
-    <div class="actions"><a class="btn primary" href="https://12sgi.com/reports.html">Open the civic hub</a><a class="btn secondary" href="https://12sgi.com/jurisdictions.html">Browse jurisdictions</a></div>
-  </section>
 
-  <section class="section" id="metrics-section">
-    <h2>Civic events dashboard</h2>
-    <div id="metrics-content" class="loading">Loading civic metrics...</div>
-  </section>
+  <div class="element-lotus-main" id="main-content">
+    <section class="hero"><div class="eyebrow">12 Stones Global · public civic tools</div><h1>Follow the public record.</h1><p>Explore government meetings, records, budgets, and decisions through the civic information site. These public tools live on 12sgi.com; this page helps you find the right one.</p><div class="actions"><a class="btn primary" href="https://12sgi.com/reports.html">Open the civic dashboard</a><a class="btn secondary" href="https://12sgi.com/">Visit 12 Stones Global</a></div></section>
+    <section class="section" aria-labelledby="resources-title">
+      <h2 id="resources-title">Civic resources</h2>
+      <div class="card-grid">
+        <article class="card"><div class="kicker">Meetings</div><h3>Agendas and calendar</h3><p>See what public bodies are considering and when they meet.</p><a href="https://12sgi.com/civic_daily.html">Today’s civic agenda <span aria-hidden="true">→</span></a><a href="https://12sgi.com/agendas.html">Browse agendas <span aria-hidden="true">→</span></a></article>
+        <article class="card"><div class="kicker">Government by place</div><h3>Jurisdictions</h3><p>Find the government bodies and public officials connected to a place.</p><a href="https://12sgi.com/jurisdictions.html">Browse jurisdictions <span aria-hidden="true">→</span></a></article>
+        <article class="card"><div class="kicker">Open records</div><h3>Data and documents</h3><p>Explore the public datasets and records used by civic tools.</p><a href="https://12sgi.com/datasets.html">Open the data catalog <span aria-hidden="true">→</span></a></article>
+        <article class="card"><div class="kicker">Take part</div><h3>Testimony</h3><p>Learn how to share testimony on a public decision.</p><a href="https://12sgi.com/testify.html">Find testimony resources <span aria-hidden="true">→</span></a></article>
+        <article class="card"><div class="kicker">Learn</div><h3>Education activities</h3><p>Hands-on learning that connects games, civic records, and creative work.</p><a href="https://12sgi.com/education.html">Open education activities <span aria-hidden="true">→</span></a></article>
+      </div>
+    </section>
+    <section class="section panel"><h2>Public by design</h2><p>These links open public civic pages. They do not require WordPress membership or access to private systems.</p></section>
+  </div>
 
-  <section class="section">
-    <h2>Upcoming meetings & events</h2>
-    <div id="events-content" class="loading">Loading civic calendar...</div>
-  </section>
-
-  <section class="section">
-    <h2>Participation & transparency</h2>
-    <div class="card-grid">
-      <article class="card"><div class="kicker">Testify</div><h3>Public testimony</h3><p>Submit written or oral testimony on government decisions.</p><a href="https://12sgi.com/testify.html">Testify →</a></article>
-      <article class="card"><div class="kicker">Jurisdictions</div><h3>Government by place</h3><p>Find your elected officials and government bodies by location.</p><a href="https://12sgi.com/jurisdictions.html">Browse →</a></article>
-      <article class="card"><div class="kicker">Records</div><h3>Request public records</h3><p>Access government records and documents under public records laws.</p><a href="https://12sgi.com/datasets.html">Request →</a></article>
-    </div>
-  </section>
-
-  <section class="section split">
-    <div class="panel"><h2>Boundary</h2><p>Civic pages stay public and transparent. Owner operations, workboards, and internal systems remain private.</p></div>
-    <div class="panel"><h2>Return to studio</h2><p><a href="/">Back to Element Lotus home →</a><br><a href="https://12sgi.com/games/">Games hub →</a><br><a href="/films/">Film lane →</a></p></div>
-  </section>
-
-  <footer class="footer">
-    <nav><a href="/">Home</a><a href="https://12sgi.com/reports.html">Civic hub</a><a href="https://12sgi.com/jurisdictions.html">Jurisdictions</a><a href="https://12sgi.com/testify.html">Testify</a></nav>
-    PUBLIC civic lane · Auto-rendered from live civic schedule
-  </footer>
-  <div class="last-update" id="last-update"></div>
 </div>
-
-<script>
-  // Fetch and render live civic metrics from /api/v2/civic/public-metrics
-  async function loadCivicMetrics() {
-    try {
-      // Try both localhost (dev) and Tailscale (production)
-      let url = '/api/v2/civic/public-metrics';
-      let response;
-
-      try {
-        response = await fetch(url, { timeout: 5000 });
-      } catch (e) {
-        // Fallback to Tailscale URL if available
-        url = 'https://king.tail760750.ts.net/api/v2/civic/public-metrics';
-        response = await fetch(url, { timeout: 5000 });
-      }
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-
-      renderMetrics(data);
-      renderEvents(data);
-
-      const updated = new Date(data.last_updated).toLocaleString();
-      document.getElementById('last-update').textContent = `Last updated: ${updated}`;
-    } catch (error) {
-      console.error('Failed to load civic metrics:', error);
-      document.getElementById('metrics-content').innerHTML =
-        `<p class="error">Could not load civic metrics. <a href="https://12sgi.com/reports.html">Visit the civic hub →</a></p>`;
-      document.getElementById('events-content').innerHTML =
-        `<p class="error">Could not load civic calendar. <a href="https://12sgi.com/reports.html">Visit the civic hub →</a></p>`;
-    }
-  }
-
-  function renderMetrics(data) {
-    const total = data.total_civic_events || 0;
-    const meetings = (data.upcoming_meetings || []).length;
-    const deadlines = (data.testimony_deadlines || []).length;
-
-    const html = `
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="number">${total}</div>
-          <div class="label">Total civic events</div>
-        </div>
-        <div class="metric-card">
-          <div class="number">${meetings}</div>
-          <div class="label">Meetings scheduled</div>
-        </div>
-        <div class="metric-card">
-          <div class="number">${deadlines}</div>
-          <div class="label">Testimony deadlines</div>
-        </div>
-      </div>
-    `;
-    document.getElementById('metrics-content').innerHTML = html;
-  }
-
-  function renderEvents(data) {
-    const meetings = data.upcoming_meetings || [];
-    const deadlines = data.testimony_deadlines || [];
-    const allEvents = [
-      ...meetings.map(m => ({ ...m, type: 'meeting' })),
-      ...deadlines.map(d => ({ ...d, type: 'deadline' }))
-    ].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
-
-    if (allEvents.length === 0) {
-      document.getElementById('events-content').innerHTML =
-        `<p>No upcoming civic events scheduled.</p>`;
-      return;
-    }
-
-    const html = `
-      <div class="event-list">
-        ${allEvents.slice(0, 15).map(ev => `
-          <article class="event">
-            <div class="date">${ev.date || '(no date)'}</div>
-            <div class="title">${ev.type === 'deadline' ? '⏰' : '📋'} ${ev.title || ev.body}</div>
-            ${ev.description ? `<p>${ev.description}</p>` : ''}
-            <a href="https://12sgi.com/reports.html">View details →</a>
-          </article>
-        `).join('')}
-      </div>
-    `;
-    document.getElementById('events-content').innerHTML = html;
-  }
-
-  // Load on page load, then refresh every 5 minutes
-  document.addEventListener('DOMContentLoaded', loadCivicMetrics);
-  setInterval(loadCivicMetrics, 300000);
-</script>
-<script src="https://12sgi.com/govos-shell.js" defer></script>
 </div>
 </div>
 <!-- /wp:group -->

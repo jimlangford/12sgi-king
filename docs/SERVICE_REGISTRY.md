@@ -71,8 +71,8 @@ Passwordless authentication, OAuth provider integration, JWT signing, token intr
 | POST | `/api/v2/auth/session` | Create session (email/provider) | Service token |
 | POST | `/api/v2/auth/introspect` | Verify + introspect JWT | Service token |
 | POST | `/api/v2/auth/diagnostics/claims` | Diagnostic token decode | Owner role |
-| POST | `/api/v2/auth/magic-link` | Request allowlisted owner magic email | No |
-| GET | `/api/v2/auth/magic-link/verify` | Consume single-use magic link | No |
+| POST | `/api/v2/auth/magic-link` | Request generic Owner or public game-player magic email | No |
+| GET | `/api/v2/auth/magic-link/verify` | Consume a single-use link and issue its request-time role | No |
 | GET | `/api/v2/auth/github` | GitHub OAuth redirect | No |
 | GET | `/api/v2/auth/github/callback` | GitHub OAuth callback | No |
 | GET | `/api/v2/auth/google` | Google OAuth redirect | No |

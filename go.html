@@ -2,7 +2,7 @@
 <!-- aurora-keep: the front door keeps its AURORA·GOLD palette (Jimmy 2026-07-16) — skip the Yale civic recolor + footer; still gets the shared govos shell nav/js. -->
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>12 Stones Global · Quadcast OS</title>
+<title>Local AI · 12 Stones Global · QUAD OS</title>
 <style>
  /* Quad-OS dark aurora + gold palette (12sgi-design canon). Reskinned 2026-07-16 to match the backend
     aurora: deep blue-aurora ground, cyan/blue accents, gold highlight. Was Yale-blue-light (07-13). */
@@ -52,6 +52,13 @@
  .dash .pct{font-size:23px;font-weight:700;font-family:var(--mono)}
  .dash.ghost{opacity:.55} .dash.ghost:hover{opacity:.85}
  .dash:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,53,107,.15)}
+ .ai-home{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;
+          text-decoration:none;color:inherit;padding:18px 20px;border:1px solid rgba(74,222,128,.3);border-radius:15px;
+          background:linear-gradient(135deg,rgba(74,222,128,.09),rgba(56,189,248,.08));margin-bottom:2px}
+ .ai-home:hover{border-color:var(--ok);transform:translateY(-1px)}
+ .ai-home strong{display:block;font-size:18px;margin-bottom:4px}.ai-home span{color:var(--ink-dim);font-size:13px;line-height:1.45}
+ .ai-home b{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--ok);white-space:nowrap}
+ @media(max-width:600px){.ai-home{grid-template-columns:1fr}.ai-home b{white-space:normal}}
  
  .sect{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:14px 0 8px;font-weight:600;padding:0 2px}
  
@@ -105,7 +112,7 @@
 
   <div class="header">
     <div class="seal">12</div>
-    <div><div class="brand">12 Stones Global</div><div class="syslabel">Quadcast OS · one system</div></div>
+    <div><div class="brand">12 Stones Global</div><div class="syslabel">Local AI · QUAD OS control</div></div>
   </div>
   <nav class="main-nav" aria-label="Quadcast OS sections">
     <a href="#overview">Overview</a>
@@ -114,10 +121,14 @@
     <a href="#operations">Operations</a>
     <a href="#access">All links</a>
   </nav>
-  <p class="sub">One platform, four quadrants — built local, owned by you. Transparent government for <b>any</b>
-     jurisdiction, plus films, music, and the Sage game, run as one. Private-first; the public site is a curated mirror.</p>
+    <p class="sub">Your Local AI is the primary operating system. Civic, Studio, corporate, knowledge and machine functions stay under one owner-controlled local authority; paid and cloud services are optional bridges.</p>
 
   <div class="status" id="status"><span class="dot" id="dot"></span><span id="stext">checking the live system…</span></div>
+
+  <a class="ai-home" href="/go/local-ai.html">
+    <div><strong>Open Local AI Control Center</strong><span>Every function, organized by Local AI, Work, Civic, Studio, Corporate, Knowledge and System.</span></div>
+    <b>LOCAL PRIMARY</b>
+  </a>
 
   <!-- LEFT COLUMN: Quick Actions + Quadrants + Civic -->
   <div class="col-left" id="overview">

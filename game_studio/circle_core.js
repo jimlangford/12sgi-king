@@ -36,10 +36,20 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
-  function jget(u) { return fetch(cfg.apiBase + u, { credentials: 'same-origin' }).then(function (r) { return r.json(); }); }
+  function authHeaders() {
+    try {
+      var token = sessionStorage.getItem('tribegame.session');
+      return token ? { Authorization: 'Bearer ' + token } : {};
+    } catch (e) { return {}; }
+  }
+  function jget(u) {
+    return fetch(cfg.apiBase + u, { credentials: 'same-origin', headers: authHeaders() })
+      .then(function (r) { return r.json(); });
+  }
   function jpost(u, b) {
     return fetch(cfg.apiBase + u, { method: 'POST', credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b || {}) })
+      headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+      body: JSON.stringify(b || {}) })
       .then(function (r) { return r.json(); });
   }
   function store() { try { localStorage.setItem(KEY, JSON.stringify(circle)); } catch (e) {} }
@@ -52,7 +62,7 @@
   }
   function signInHref() {
     // carry returnTo so the King sends the friend back to THIS invite after sign-in
-    return '/login?rt=' + encodeURIComponent(location.pathname + location.search);
+    return '/games/login.html?rt=' + encodeURIComponent(location.pathname + location.search);
   }
   function urlCode() {
     try { var c = new URLSearchParams(location.search).get('circle'); return c ? c.toUpperCase().trim() : null; }
@@ -199,17 +209,50 @@
       p.appendChild(inp);
       var bjoin = el('button', BTN + ';margin-top:6px', 'join');
       bjoin.addEventListener('click', function () {
-        jpost('match/join', { code: inp.value || '' }).then(function (m) {
-          if (!m.ok) return toastish(m.error || 'could not join');
-          circle = m; store(); p.remove(); enter();
-        });
+        joinCode(inp.value || '', p);
       });
       p.appendChild(bjoin);
+      var lobby = el('div', 'margin-top:12px;border-top:1px solid #3c5a38;padding-top:9px');
+      lobby.appendChild(el('b', '', 'shared lobby'));
+      var lobbyRows = el('div', 'margin-top:5px;color:#9aa88f');
+      lobbyRows.textContent = 'loading open circles…';
+      lobby.appendChild(lobbyRows);
+      var refresh = el('button', BTN + ';margin-top:5px', 'refresh lobby');
+      refresh.addEventListener('click', loadLobby);
+      lobby.appendChild(refresh);
+      p.appendChild(lobby);
+      function loadLobby() {
+        lobbyRows.textContent = 'loading open circles…';
+        jget('lobby').then(function (r) {
+          lobbyRows.replaceChildren();
+          var matches = r && r.ok && Array.isArray(r.matches) ? r.matches : [];
+          if (!matches.length) {
+            lobbyRows.textContent = 'no open circles yet — start one and invite a friend';
+            return;
+          }
+          matches.forEach(function (match) {
+            var open = el('button', BTN + ';margin:3px 0;text-align:left',
+              match.code + ' · ' + match.players + '/2 players');
+            open.addEventListener('click', function () { joinCode(match.code, p); });
+            lobbyRows.appendChild(open);
+          });
+        }).catch(function () { lobbyRows.textContent = 'could not load the lobby'; });
+      }
+      loadLobby();
     }
     document.body.appendChild(p);
     document.addEventListener('click', function close(e) {
       if (!p.contains(e.target) && e.target.id !== 'circle-chip') { p.remove(); document.removeEventListener('click', close); }
     });
+  }
+
+  function joinCode(code, panelEl) {
+    jpost('match/join', { code: code }).then(function (m) {
+      if (!m.ok) return toastish(m.error || (m.detail && m.detail.error) || 'could not join');
+      circle = m; store();
+      if (panelEl) panelEl.remove();
+      enter();
+    }).catch(function () { toastish('could not reach the lobby'); });
   }
 
   function stopTimers() {
@@ -316,8 +359,7 @@
 
   C.init = function (config) {
     cfg = config || {};
-    // /king prefix survives the Tailscale mount-strip; loopback serves at root.
-    cfg.apiBase = cfg.apiBase || (((location.pathname.indexOf('/king/') === 0) ? '/king' : '') + '/games/api/' + cfg.gameId + '/');
+    cfg.apiBase = cfg.apiBase || ('/games/api/' + cfg.gameId + '/');
     KEY = 'circle_' + cfg.gameId + '_v1';
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();
