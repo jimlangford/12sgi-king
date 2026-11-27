@@ -11,7 +11,8 @@ id = "generic-api-key"
 [[rules.allowlists]]
 description = "Sage victory acknowledgement localStorage key"
 condition = "AND"
-paths = ['''(^|/)game_sage/js/sage_ui\.js$''']
+# The public backup publishes game_sage/ as sage/, so the same file is allowed under both folder names.
+paths = ['''(^|/)(game_sage|sage)/js/sage_ui\.js$''']
 regexTarget = "match"
 regexes = ['''^VICTORY_ACK_KEY = 'sage_victory_ack_v1'$''']
 

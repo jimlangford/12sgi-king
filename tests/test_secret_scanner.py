@@ -51,6 +51,17 @@ class SecretScannerTests(unittest.TestCase):
                    "api_key = '" + "AKIA" + "Q7Z2X9V4N6M8C3B5" + "'\n")
         self.assertEqual(self.scan(), 1)
 
+    def test_published_copy_of_the_game_file_shares_the_exact_exception(self):
+        # The public backup publishes game_sage/ as sage/, so the same harmless line appears under both folders.
+        line = "var VICTORY_ACK_KEY = '" + "sage_victory_ack_v1" + "';\n"
+        self.write("sage/js/sage_ui.js", line)
+        self.assertEqual(self.scan(), 0)
+        self.write("sage/js/sage_ui.js", "api_key = '" + "AKIA" + "Q7Z2X9V4N6M8C3B5" + "'\n")
+        self.assertEqual(self.scan(), 1)
+        (self.work / "sage/js/sage_ui.js").unlink()
+        self.write("other_sage/js/sage_ui.js", line)
+        self.assertEqual(self.scan(), 1)
+
     def test_documentation_exceptions_are_exact_and_path_scoped(self):
         examples = [
             ("POINTS_3_5_QUICK_REFERENCE.md", "Authorization: Bearer " + "JETPACK_TOKEN"),
