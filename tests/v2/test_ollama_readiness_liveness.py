@@ -7,7 +7,6 @@ dispatch concern. The functions are run in isolation so the test needs no servic
 import ast
 import io
 import unittest
-import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]

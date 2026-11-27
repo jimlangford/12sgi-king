@@ -53,7 +53,7 @@ import hmac
 import json
 import os
 import sqlite3
-import time
+import sys
 import urllib.error
 import urllib.request
 from contextlib import contextmanager
@@ -62,29 +62,25 @@ from pathlib import Path
 from typing import Iterator
 from uuid import uuid4
 
-from fastapi import FastAPI, Header, HTTPException, Request, Response
+from fastapi import FastAPI, Header, HTTPException, Response
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 
 # ── Repo-root imports (same pattern as all other v2 services) ─────────────────
-import sys
 _HERE = Path(__file__).resolve()
 _REPO = _HERE.parents[3]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-from services.v2_workboard import (
+from services.event_bus import publish_event  # noqa: E402
+from services.owner_job_tracker import get_tracker  # noqa: E402
+from services.service_metadata import with_service_metadata  # noqa: E402
+from services.v2_workboard import (  # noqa: E402
     emit_workboard_job,
-    pending_approvals,
     resolve_workboard_job,
-    workboard_pulse,
     workboard_hub_feed,
-    selfheal_engineering_jobs,
+    workboard_pulse,
 )
-from services.ai_autonomy import classify_task, build_autonomy_system_prompt, record_autonomous_execution
-from services.owner_job_tracker import get_tracker, JobStatus, ApprovalType
-from services.event_bus import publish_event
-from services.service_metadata import with_service_metadata
 
 # ── Config ────────────────────────────────────────────────────────────────────
 API_PREFIX      = "/api/v2"
@@ -579,7 +575,7 @@ def pulse():
 @app.post(f"{API_PREFIX}/bridge/poll")
 def poll(x_service_token: str | None = Header(default=None)):
     _require_internal(x_service_token)
-    from services.v2_workboard import read_workboard_log, DISPATCH_LOG
+    from services.v2_workboard import read_workboard_log
 
     entries    = read_workboard_log()
     tombstoned = set()

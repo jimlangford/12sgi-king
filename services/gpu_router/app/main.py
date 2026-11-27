@@ -48,8 +48,14 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
+
 from services.authz import audit_auth_event, enforce_tenant_scope, require_claims
-from services.job_envelope import build_job_envelope, normalise_envelope, sync_envelope_state, transition_job_envelope
+from services.job_envelope import (
+    build_job_envelope,
+    normalise_envelope,
+    sync_envelope_state,
+    transition_job_envelope,
+)
 from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
