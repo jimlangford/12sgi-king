@@ -9,9 +9,11 @@ from __future__ import annotations
 import hmac
 import json
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
+import tempfile
 import threading
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -30,6 +32,45 @@ MAX_TASK_CHARS = 4000
 MAX_OUTPUT_CHARS = 24000
 MAX_RUNTIME_SECONDS = 900
 _slot = threading.BoundedSemaphore(1)
+
+# The reviewer sees a throwaway copy of TRACKED files only: untracked files (.env.v2, tokens, databases) never exist there,
+# and anything tracked whose name looks secret is left out too. Generated trees are skipped to keep the copy small.
+SKIP_PREFIXES = ("site/", "reports/", "seed_reports/")
+SECRET_FILE_RX = re.compile(
+    r"(^|/)(\.env[^/]*|[^/]*\.(pem|key|pfx|p12|sqlite3?|db)|[^/]*(secret|credential|token|password)[^/]*\.(json|ya?ml|txt|ini|cfg))$",
+    re.I,
+)
+REDACTIONS = (
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----.*?(-----END [A-Z ]*PRIVATE KEY-----|\Z)", re.S), "[redacted private key]"),
+    (re.compile(r"""(?i)\b([A-Z0-9_]*(?:TOKEN|SECRET|PASSWORD|API_KEY|PRIVATE_KEY)[A-Z0-9_]*["']?\s*[=:]\s*)["']?[^\s"',}]{8,}"""),
+     r"\1[redacted]"),
+    (re.compile(r"\b(?:ghp|gho|ghs|ghr)_[A-Za-z0-9]{20,}|\bsk-[A-Za-z0-9_\-]{20,}|\bAKIA[0-9A-Z]{16}"), "[redacted]"),
+    (re.compile(r"\b[0-9a-fA-F]{48,}\b"), "[redacted]"),
+)
+
+
+def _redact(text: str) -> str:
+    for pattern, replacement in REDACTIONS:
+        text = pattern.sub(replacement, text)
+    return text
+
+
+def _snapshot(destination: Path) -> int:
+    listed = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"], capture_output=True, check=True, timeout=120,
+                            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    copied = 0
+    for raw in listed.stdout.split(b"\0"):
+        name = raw.decode("utf-8", "replace")
+        if not name or name.startswith(SKIP_PREFIXES) or SECRET_FILE_RX.search(name):
+            continue
+        source = ROOT / name
+        if source.is_symlink() or not source.is_file():
+            continue
+        target = destination / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        copied += 1
+    return copied
 
 
 @contextmanager
@@ -68,16 +109,19 @@ def _run(job_id: str, task: str):
         # SECURITY (review 2026-11-26): the task is DATA and goes in on stdin. As an argv element, text beginning with "--" was
         # parsed as a CLI option (verified), and --settings can carry hooks that run commands. --safe-mode drops hooks,
         # plugins, MCP servers and CLAUDE.md; --tools limits the available tools (--allowedTools alone only pre-approves).
-        proc = subprocess.run(
-            [cli, "-p", "--output-format", "text", "--permission-mode", "plan",
-             "--safe-mode", "--strict-mcp-config", "--tools", "Read,Grep,Glob",
-             "--append-system-prompt", system_prompt],
-            input=task, encoding="utf-8", errors="replace",
-            cwd=str(ROOT), capture_output=True, text=True, timeout=MAX_RUNTIME_SECONDS,
-            check=False, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
-        )
-        output = (proc.stdout or "").strip()[-MAX_OUTPUT_CHARS:]
-        error = (proc.stderr or "").strip()[-3000:]
+        # --restricted confines the file tools to the working directory and ignores user/project settings.
+        with tempfile.TemporaryDirectory(prefix="claude-review-", ignore_cleanup_errors=True) as workdir:
+            _snapshot(Path(workdir))
+            proc = subprocess.run(
+                [cli, "-p", "--output-format", "text", "--permission-mode", "plan",
+                 "--restricted", "--safe-mode", "--strict-mcp-config", "--tools", "Read,Grep,Glob",
+                 "--append-system-prompt", system_prompt],
+                input=task, encoding="utf-8", errors="replace",
+                cwd=workdir, capture_output=True, text=True, timeout=MAX_RUNTIME_SECONDS,
+                check=False, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+            )
+        output = _redact((proc.stdout or "").strip())[-MAX_OUTPUT_CHARS:]
+        error = _redact((proc.stderr or "").strip())[-3000:]
         status = "complete" if proc.returncode == 0 else "failed"
         with _db() as conn:
             conn.execute("UPDATE jobs SET status=?,updated_at=?,result=?,error=? WHERE id=?",

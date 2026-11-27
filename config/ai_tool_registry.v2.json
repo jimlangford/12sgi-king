@@ -3158,7 +3158,7 @@
     "description": "Ask the installed Claude Code CLI for a read-only review of the 12SGI-KING checkout at explicit Owner direction.",
     "http_method": "POST",
     "endpoint": "/api/v2/bridge/claude/jobs",
-    "risk_class": "analysis",
+    "risk_class": "approval",
     "required_scopes": ["claude:invoke"],
     "arguments_schema": {
       "type": "object",
@@ -3171,7 +3171,7 @@
     },
     "audit_event": "tool.claude_code.review",
     "timeout_seconds": 10,
-    "idempotency_required": false
+    "idempotency_required": true
   },
   {
     "tool_id": "claude_code.status",

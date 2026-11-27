@@ -311,8 +311,44 @@ def _get_tool(tool_id: str) -> dict | None:
     return next((t for t in registry if t.get("tool_id") == tool_id), None)
 
 
+_CLAUDE_TOOLS = {"claude_code.review", "claude_code.status"}
+
+
+def _call_claude_bridge(tool_id: str, parameters: dict) -> dict:
+    """Narrow host-side adapter to the read-only Claude review bridge. claude_code.review is an approval-required risk class:
+    it reaches this function only after the Owner confirms the pending action. The owner_instruction argument is filled in by
+    the model, so it is an intent marker and never the authorization."""
+    if tool_id == "claude_code.review" and parameters.get("owner_instruction") is not True:
+        raise HTTPException(status_code=403, detail="Explicit Owner instruction is required")
+    if len(CLAUDE_BRIDGE_TOKEN) < 64:
+        raise HTTPException(status_code=503, detail="Claude Code bridge token is not configured")
+    headers = {"X-Service-Token": CLAUDE_BRIDGE_TOKEN}
+    if tool_id == "claude_code.review":
+        payload = json.dumps({"task": parameters.get("task", ""), "owner_instruction": True}).encode("utf-8")
+        target, method = f"{CLAUDE_BRIDGE_URL}/jobs", "POST"
+        headers["Content-Type"] = "application/json"
+    else:
+        payload, method = None, "GET"
+        target = f"{CLAUDE_BRIDGE_URL}/jobs/{quote(str(parameters.get('job_id', '')), safe='')}"
+    call = request.Request(target, data=payload, method=method, headers=headers)
+    try:
+        with request.urlopen(call, timeout=10) as response:
+            result = json.loads(response.read().decode("utf-8"))
+        if not isinstance(result, dict):
+            raise ValueError("bridge response must be a JSON object")
+        return result
+    except error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")[:500]
+        raise HTTPException(status_code=exc.code, detail=detail) from exc
+    except Exception as exc:
+        _log.exception("Claude Code bridge unavailable")
+        raise HTTPException(status_code=503, detail="Claude Code host bridge is unavailable") from exc
+
+
 def _dispatch_tool(tool: dict, parameters: dict, authorization: str | None, **context) -> dict:
     """Call the configured trusted executor; fail closed when unavailable."""
+    if tool["tool_id"] in _CLAUDE_TOOLS:
+        return _call_claude_bridge(tool["tool_id"], parameters)
     if not TOOL_EXECUTOR_URL:
         raise HTTPException(status_code=503, detail="No trusted tool executor is configured.")
     payload = {
@@ -973,46 +1009,6 @@ async def invoke_tool(
                 f"This action requires owner confirmation. "
                 f"Pending action: {action_id}"
             ),
-        }
-
-    # Claude Code is a narrow host-side adapter with a fixed read-only CLI policy, so it does not go through the generic
-    # trusted executor. It still needs the explicit owner flag, and the invocation is audited before the call.
-    if tool_id in {"claude_code.review", "claude_code.status"}:
-        if tool_id == "claude_code.review" and clean_params.get("owner_instruction") is not True:
-            raise HTTPException(status_code=403, detail="Explicit Owner instruction is required")
-        _emit_audit_event(
-            actor=actor, profile="gateway", tool_id=tool_id,
-            event_type="ai.tool.invoked", tenant_id=tenant_id,
-            project_id=project_id, correlation_id=correlation_id,
-            request_hash=request_hash,
-        )
-        if len(CLAUDE_BRIDGE_TOKEN) < 64:
-            raise HTTPException(status_code=503, detail="Claude Code bridge token is not configured")
-        if tool_id == "claude_code.review":
-            payload = json.dumps({"task": clean_params.get("task", ""), "owner_instruction": True}).encode("utf-8")
-            target = f"{CLAUDE_BRIDGE_URL}/jobs"
-            method = "POST"
-            headers = {"Content-Type": "application/json", "X-Service-Token": CLAUDE_BRIDGE_TOKEN}
-        else:
-            payload = None
-            target = f"{CLAUDE_BRIDGE_URL}/jobs/{quote(str(clean_params.get('job_id', '')), safe='')}"
-            method = "GET"
-            headers = {"X-Service-Token": CLAUDE_BRIDGE_TOKEN}
-        call = request.Request(target, data=payload, method=method, headers=headers)
-        try:
-            with request.urlopen(call, timeout=10) as response:
-                dispatch_result = json.loads(response.read().decode("utf-8"))
-        except error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", errors="replace")[:500]
-            raise HTTPException(status_code=exc.code, detail=detail) from exc
-        except Exception as exc:
-            _log.exception("Claude Code bridge unavailable")
-            raise HTTPException(status_code=503, detail="Claude Code host bridge is unavailable") from exc
-        return {
-            **dispatch_result,
-            "status": "queued" if tool_id == "claude_code.review" else dispatch_result.get("status", "ok"),
-            "tool_id": tool_id,
-            "risk_class": risk_class,
         }
 
     result = _dispatch_tool(
