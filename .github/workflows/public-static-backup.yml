@@ -28,12 +28,13 @@ jobs:
       CHROME_BIN: /usr/bin/google-chrome
       APPROVED_SHA: ${{ github.sha }}
       REVIEWED_BASE: ${{ vars.PUBLIC_BACKUP_BASE_SHA }}
-      RELEASE_STATE: ${{ runner.temp }}/public-backup
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Choose the private release state directory
+        run: echo "RELEASE_STATE=${RUNNER_TEMP}/public-backup" >> "$GITHUB_ENV"
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
