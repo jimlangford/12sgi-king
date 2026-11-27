@@ -9,7 +9,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from watchers import deploy_elementlotus_wp
+from watchers import deploy_elementlotus_wp  # noqa: E402
 
 
 class LinkCollector(HTMLParser):

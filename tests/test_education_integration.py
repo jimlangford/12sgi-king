@@ -5,7 +5,6 @@ from urllib.parse import urljoin
 
 from watchers import education_to_graph
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
