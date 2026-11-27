@@ -13,11 +13,11 @@ Targets:
   king-server     — system health + ops
 """
 
-import urllib.request
-import urllib.error
 import json
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 OLLAMA_URL = "http://localhost:11434"
@@ -479,15 +479,15 @@ def teach():
     print(f"  Updated: {updated}")
     if failed:
         print(f"  Failed:  {failed}")
-    print(f"\n  Models now know:")
-    print(f"    ✓ James Langford is their owner (JRCSL)")
-    print(f"    ✓ Christ Aloha is the operating canon")
-    print(f"    ✓ Full system architecture (services, ports, tenants)")
-    print(f"    ✓ Neo4j graph structure (6,544 nodes)")
-    print(f"    ✓ Workboard lanes + autonomy scores")
-    print(f"    ✓ 15 documented errors + fixes")
-    print(f"    ✓ Privacy and publishing rules")
-    print(f"    ✓ How to respond to James directly")
+    print("\n  Models now know:")
+    print("    ✓ James Langford is their owner (JRCSL)")
+    print("    ✓ Christ Aloha is the operating canon")
+    print("    ✓ Full system architecture (services, ports, tenants)")
+    print("    ✓ Neo4j graph structure (6,544 nodes)")
+    print("    ✓ Workboard lanes + autonomy scores")
+    print("    ✓ 15 documented errors + fixes")
+    print("    ✓ Privacy and publishing rules")
+    print("    ✓ How to respond to James directly")
     print()
     print("  Test your models:")
     print("    ollama run king-jrcsl")

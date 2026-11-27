@@ -29,7 +29,12 @@ TWO layers, both requested together (2026-07-11, Jimmy):
                                                                  # static map if Neo4j is down —
                                                                  # a student always gets an answer)
 """
-import os, sys, json, argparse, urllib.request, urllib.error
+import argparse
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
 
 NEO = os.environ.get("NEO4J_HTTP") or "http://127.0.0.1:7474/db/neo4j/tx/commit"
 EDUCATION_MAP_REVISION = "education-page-2026-11"

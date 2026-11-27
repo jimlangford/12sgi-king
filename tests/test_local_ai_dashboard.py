@@ -4,7 +4,6 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 
-
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "go" / "local-ai-functions.json"
 DASHBOARD_PATH = ROOT / "go" / "local-ai.html"
