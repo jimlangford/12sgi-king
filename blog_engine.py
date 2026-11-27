@@ -10,7 +10,9 @@ Usage:
   python tools/ops/blog_engine.py           # generate blog.html
   python tools/ops/blog_engine.py --list    # list posts
 """
-import os, sys, json, datetime, argparse
+import argparse
+import json
+import os
 
 ROOT     = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CONFIG   = os.path.join(ROOT, "config")
@@ -31,7 +33,7 @@ OUT_HTML = os.path.join(KING_LOCAL, "blog.html")
 
 # ── Design tokens (matches quados_dashboard) ──────────────────────────────
 CSS = """
-:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#8a7a6a;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
+:root{--bg:#0a0805;--surf:#161210;--surf2:#1e1810;--gold:#c8a060;--text:#e8dcc8;--muted:#928272;--border:rgba(200,160,96,.2);--red:#c04040;--grn:#3a8a60}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;padding-top:46px;min-height:100vh}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
@@ -43,7 +45,7 @@ nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
 /* LAYOUT */
 .wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
 .page-head{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--border)}
-.page-title{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.page-title{margin:0;font-size:26px;font-weight:700;color:var(--gold);letter-spacing:.03em}
 .page-sub{font-size:13px;color:var(--muted);margin-top:6px}
 /* POST CARD (list view) */
 .post-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:16px;transition:border-color .15s}
@@ -59,7 +61,7 @@ nav a:hover{color:var(--text);background:rgba(200,160,96,.1)}
 .read-link{margin-top:14px;font-size:13px;color:var(--gold)}
 /* POST FULL (article view) */
 .article-head{margin-bottom:32px}
-.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin-bottom:8px}
+.article-title{font-size:30px;font-weight:700;color:var(--gold);line-height:1.25;margin:0 0 8px}
 .article-subtitle{font-size:16px;color:var(--muted);margin-bottom:10px}
 .article-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
 .article-body{margin-top:28px}
@@ -82,11 +84,11 @@ def nav_html(static=False):
     # instead of the 12sgi.com custom domain — the same subpath-safe convention GitHub Pages/Jekyll
     # projects use (relative links survive both serving contexts; root-relative links do not).
     if static:
-        return """<nav>
+        return """<nav aria-label="Blog">
   <a href="king/" class="brand">KING</a>
   <a href="blog.html" style="color:var(--gold)">Blog</a>
 </nav>"""
-    return """<nav>
+    return """<nav aria-label="Blog">
   <a href="/king/" class="brand">KING</a>
   <a href="/king/quados_dashboard.html">Dashboard</a>
   <a href="/king/blog" style="color:var(--gold)">Blog</a>
@@ -154,7 +156,7 @@ def render_full_post(post, static=False):
     back_href = "blog.html" if static else "/king/blog"
     return f"""<a href="{back_href}" class="back">← All posts</a>
 <div class="article-head">
-  <div class="article-title">{title}</div>
+  <h1 class="article-title">{title}</h1>
   <div class="article-subtitle">{subtitle}</div>
   <div class="article-meta">{date_str} · {author}</div>
 </div>
@@ -172,13 +174,13 @@ def render_list_page(posts, static=False):
 </head>
 <body>
 {nav_html(static)}
-<div class="wrap">
+<main class="wrap">
   <div class="page-head">
-    <div class="page-title">Blog</div>
+    <h1 class="page-title">Blog</h1>
     <div class="page-sub">Studio notes · creative methodology · production dispatches</div>
   </div>
   {cards}
-</div>
+</main>
 </body></html>"""
 
 
@@ -194,7 +196,7 @@ def render_post_page(post, static=False):
 </head>
 <body>
 {nav_html(static)}
-<div class="wrap">{body}</div>
+<main class="wrap">{body}</main>
 </body></html>"""
 
 
@@ -248,7 +250,7 @@ def main():
 
     out = generate()
     if out:
-        print(f"Blog live at: https://king.tail760750.ts.net/king/blog")
+        print("Blog live at: https://king.tail760750.ts.net/king/blog")
 
 
 if __name__ == "__main__":
