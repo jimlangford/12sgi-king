@@ -49,3 +49,6 @@ king_private_src/
 .platform_events.db
 *.db
 .venv/
+# local runtime files, never committed
+.env.watchdog
+.coverage
