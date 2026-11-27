@@ -639,6 +639,24 @@ COPYRIGHT = ('<div class="sgi-copyright" style="text-align:center;font:11px/1.6 
              'color:#9a957f;padding:20px 12px;border-top:1px solid rgba(255,255,255,.08);margin-top:34px">'
              '&copy; 2026 James RCS Langford &middot; 12 Stones Global &middot; all rights reserved</div>')
 
+# Pages written by the data generators with no <main>: every card they add would fail the accessibility gate.
+MAIN_PAGES = {"county_dashboard.html", "officials_scorecard.html"}
+
+
+def ensure_main(html):
+    """Turn the generators' single outer <div class="wrap"> into the page's <main class="wrap">. A page that already has
+    a <main>, or is not shaped exactly like that (the wrapper's </div> is the last thing before </body>, apart from
+    empty script tags), is returned unchanged."""
+    if re.search(r"<main[\s>]", html, re.I):
+        return html
+    opening = re.search(r'(<body[^>]*>\s*)<div class="wrap">', html, re.I)
+    closing = re.search(r"</div>(?=\s*(?:<script[^>]*></script>\s*)*</body>)", html, re.I)
+    if not opening or not closing or closing.start() < opening.end():
+        return html
+    return (html[:opening.start()] + opening.group(1) + '<main class="wrap">' + html[opening.end():closing.start()]
+            + "</main>" + html[closing.end():])
+
+
 def inject_nav(html, current):
     """Insert the nav right after <body>; if there's no body tag, prepend it. Also append the
     James RCS Langford copyright footer to every served page (idempotent)."""
@@ -1146,6 +1164,8 @@ def main():
             if os.path.exists(src):
                 flat = rel.replace("/", "_")
                 html = open(src, encoding="utf-8", errors="replace").read()
+                if flat in MAIN_PAGES:
+                    html = ensure_main(html)
                 html = inject_nav(html, flat)          # govOS top nav on every civic page
                 html = inject_switcher(html, flat)     # per-tenant report: choose a government (same report, any tenant)
                 html = add_narrative(html, flat)       # plain-words door-in for the everyday person
@@ -1314,6 +1334,14 @@ def main():
                 s = os.path.join(SEED_MAUIOS, sub)
             if os.path.isdir(s):
                 shutil.copytree(s, os.path.join(SITE, sub), dirs_exist_ok=True)
+                if sub.startswith("donors"):
+                    for _f in os.listdir(os.path.join(SITE, sub)):
+                        if _f.endswith(".html"):
+                            _p = os.path.join(SITE, sub, _f)
+                            with open(_p, encoding="utf-8", errors="replace") as f:
+                                _t = f.read()
+                            with open(_p, "w", encoding="utf-8", newline="\n") as f:
+                                f.write(ensure_main(_t))
                 print(f"  + {sub}/: {len(os.listdir(s))} profile pages")
 
     with _lane("bids_copy"):
