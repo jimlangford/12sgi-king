@@ -77,17 +77,33 @@ class SecretScannerTests(unittest.TestCase):
         (self.work / "init-services.js").rename(self.work / "other.js")
         self.assertEqual(self.scan(), 1)
 
-    def test_removed_secret_still_fails_history(self):
-        def git(*args):
-            subprocess.run(
-                ["git", "-C", str(self.work), *args],
-                check=True, capture_output=True,
-                env={**os.environ, "GIT_AUTHOR_NAME": "Scanner Test",
-                     "GIT_AUTHOR_EMAIL": "scanner@example.invalid",
-                     "GIT_COMMITTER_NAME": "Scanner Test",
-                     "GIT_COMMITTER_EMAIL": "scanner@example.invalid"},
-            )
+    def git(self, *args):
+        subprocess.run(
+            ["git", "-C", str(self.work), *args],
+            check=True, capture_output=True,
+            env={**os.environ, "GIT_AUTHOR_NAME": "Scanner Test",
+                 "GIT_AUTHOR_EMAIL": "scanner@example.invalid",
+                 "GIT_COMMITTER_NAME": "Scanner Test",
+                 "GIT_COMMITTER_EMAIL": "scanner@example.invalid"},
+        )
 
+    def commit(self, message):
+        self.git("add", ".")
+        self.git("-c", "commit.gpgsign=false", "commit", "--quiet", "-m", message)
+
+    def test_public_backup_copy_is_allowed_only_at_the_repository_root(self):
+        # History mode reports repository-relative paths, which the root anchor relies on.
+        line = "var VICTORY_ACK_KEY = '" + "sage_victory_ack_v1" + "';\n"
+        self.git("init", "--quiet")
+        self.write("sage/js/sage_ui.js", line)
+        self.commit("public backup copy")
+        self.assertEqual(self.scan("git"), 0)
+        self.write("nested/sage/js/sage_ui.js", line)
+        self.commit("same line somewhere else")
+        self.assertEqual(self.scan("git"), 1)
+
+    def test_removed_secret_still_fails_history(self):
+        git = self.git
         git("init", "--quiet")
         self.write("clean.txt", "No credentials here.\n")
         git("add", ".")

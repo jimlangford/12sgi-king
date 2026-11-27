@@ -19,6 +19,8 @@ KNOWN_SCOPES = {
     "gpu:infer",
     "gpu:read",
     "ops:owner",
+    # Delegating a review to the Claude bridge. Declared so the registry is valid; granted to NO role by default.
+    "claude:invoke",
     "auth:introspect",
     # AI Gateway domain scopes
     "gateway:chat",

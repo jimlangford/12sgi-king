@@ -35,6 +35,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib import error, request
+from urllib.parse import quote
 from uuid import uuid4
 
 try:
@@ -82,6 +83,8 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 GPU_ROUTER_URL = os.environ.get("GPU_ROUTER_URL", "http://gpu-router:8107")
 GPU_ROUTER_READY_URL = os.environ.get("GPU_ROUTER_READY_URL", f"{GPU_ROUTER_URL}/api/v2/ready")
 GPU_INFER_TIMEOUT = float(os.environ.get("GPU_INFER_TIMEOUT", "120"))
+CLAUDE_BRIDGE_URL = os.environ.get("CLAUDE_CODE_BRIDGE_URL", "http://host.docker.internal:8127").rstrip("/")
+CLAUDE_BRIDGE_TOKEN = os.environ.get("CLAUDE_CODE_BRIDGE_TOKEN", "").strip()
 
 # Risk classes that create a pending action rather than executing immediately.
 APPROVAL_REQUIRED_CLASSES = {
@@ -308,8 +311,44 @@ def _get_tool(tool_id: str) -> dict | None:
     return next((t for t in registry if t.get("tool_id") == tool_id), None)
 
 
+_CLAUDE_TOOLS = {"claude_code.review", "claude_code.status"}
+
+
+def _call_claude_bridge(tool_id: str, parameters: dict) -> dict:
+    """Narrow host-side adapter to the read-only Claude review bridge. claude_code.review is an approval-required risk class:
+    it reaches this function only after the Owner confirms the pending action. The owner_instruction argument is filled in by
+    the model, so it is an intent marker and never the authorization."""
+    if tool_id == "claude_code.review" and parameters.get("owner_instruction") is not True:
+        raise HTTPException(status_code=403, detail="Explicit Owner instruction is required")
+    if len(CLAUDE_BRIDGE_TOKEN) < 64:
+        raise HTTPException(status_code=503, detail="Claude Code bridge token is not configured")
+    headers = {"X-Service-Token": CLAUDE_BRIDGE_TOKEN}
+    if tool_id == "claude_code.review":
+        payload = json.dumps({"task": parameters.get("task", ""), "owner_instruction": True}).encode("utf-8")
+        target, method = f"{CLAUDE_BRIDGE_URL}/jobs", "POST"
+        headers["Content-Type"] = "application/json"
+    else:
+        payload, method = None, "GET"
+        target = f"{CLAUDE_BRIDGE_URL}/jobs/{quote(str(parameters.get('job_id', '')), safe='')}"
+    call = request.Request(target, data=payload, method=method, headers=headers)
+    try:
+        with request.urlopen(call, timeout=10) as response:
+            result = json.loads(response.read().decode("utf-8"))
+        if not isinstance(result, dict):
+            raise ValueError("bridge response must be a JSON object")
+        return result
+    except error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")[:500]
+        raise HTTPException(status_code=exc.code, detail=detail) from exc
+    except Exception as exc:
+        _log.exception("Claude Code bridge unavailable")
+        raise HTTPException(status_code=503, detail="Claude Code host bridge is unavailable") from exc
+
+
 def _dispatch_tool(tool: dict, parameters: dict, authorization: str | None, **context) -> dict:
     """Call the configured trusted executor; fail closed when unavailable."""
+    if tool["tool_id"] in _CLAUDE_TOOLS:
+        return _call_claude_bridge(tool["tool_id"], parameters)
     if not TOOL_EXECUTOR_URL:
         raise HTTPException(status_code=503, detail="No trusted tool executor is configured.")
     payload = {

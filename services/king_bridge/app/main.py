@@ -72,6 +72,7 @@ _REPO = _HERE.parents[3]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
+from services.authz import require_claims  # noqa: E402
 from services.event_bus import publish_event  # noqa: E402
 from services.owner_job_tracker import get_tracker  # noqa: E402
 from services.service_metadata import with_service_metadata  # noqa: E402
@@ -95,6 +96,10 @@ DB_PATH         = os.environ.get("KING_BRIDGE_DB", "/data/db/king_bridge.db")
 INFER_TIMEOUT   = int(os.environ.get("KING_BRIDGE_INFER_TIMEOUT", "120"))
 POLL_MAX        = int(os.environ.get("KING_BRIDGE_POLL_MAX", "10"))
 INTERNAL_TOKEN  = os.environ.get("INTERNAL_SERVICE_TOKEN", "dev-internal-token")
+AUTH_INTROSPECTION_URL = os.environ.get(
+    "AUTH_INTROSPECTION_URL", "http://host.docker.internal:8101/api/v2/auth/introspect"
+)
+AUTH_REQUEST_TIMEOUT = float(os.environ.get("AUTH_REQUEST_TIMEOUT", "5"))
 # Enforcement is active only when the token is actually configured in the
 # environment (the compose stack sets a real one). The dev fallback above is
 # never enforced, so bare local runs keep working.
@@ -438,10 +443,8 @@ def _iso_now() -> str:
 def _require_internal(x_service_token: str | None):
     """Enforce X-Service-Token on mutating/inference endpoints.
 
-    Allowlist (read-only, tokenless — the browser dashboard king_bridge.html
-    fetches these with no headers): GET /ready, /bridge/models, /bridge/pulse,
-    /bridge/jobs, /bridge/tree, /owner/jobs*. Those endpoints deliberately
-    never call this function.
+    Read-only health/model/bridge views remain tokenless. Owner job routes use
+    verified owner bearer sessions through _require_owner_claims instead.
 
     Enforced (mutating / inference spend): POST /bridge/job, /bridge/poll,
     /bridge/chat, GET /bridge/chat, POST /board/message,
@@ -457,6 +460,21 @@ def _require_internal(x_service_token: str | None):
         raise HTTPException(status_code=401, detail="X-Service-Token required")
     if not hmac.compare_digest(x_service_token, INTERNAL_TOKEN):
         raise HTTPException(status_code=403, detail="invalid X-Service-Token")
+
+
+def _require_owner_claims(authorization: str | None) -> dict:
+    """Require an active, introspected owner session for owner job operations."""
+    claims = require_claims(
+        service_name=SERVICE_NAME,
+        authorization=authorization,
+        introspection_url=AUTH_INTROSPECTION_URL,
+        internal_service_token=INTERNAL_TOKEN,
+        request_timeout=AUTH_REQUEST_TIMEOUT,
+        required_scopes={"ops:owner"},
+    )
+    if claims.get("role") != "Owner":
+        raise HTTPException(status_code=403, detail="Owner role required")
+    return claims
 
 
 # ── Static HTML surfaces ──────────────────────────────────────────────────────
@@ -744,7 +762,9 @@ def recent_jobs(limit: int = 20):
 
 # ── Owner Job Tracking ────────────────────────────────────────────────────────
 @app.get(f"{API_PREFIX}/owner/jobs")
-def owner_jobs(limit: int = 50, status: str = None):
+def owner_jobs(limit: int = 50, status: str = None,
+               authorization: str | None = Header(default=None)):
+    _require_owner_claims(authorization)
     tracker = get_tracker()
     jobs  = tracker.list_jobs(limit=limit, status=status)
     stats = tracker.get_stats()
@@ -752,13 +772,15 @@ def owner_jobs(limit: int = 50, status: str = None):
 
 
 @app.get(f"{API_PREFIX}/owner/jobs/stats")
-def owner_jobs_stats():
+def owner_jobs_stats(authorization: str | None = Header(default=None)):
+    _require_owner_claims(authorization)
     tracker = get_tracker()
     return {"stats": tracker.get_stats(), "ts": _iso_now()}
 
 
 @app.get(f"{API_PREFIX}/owner/jobs/{{job_id}}")
-def owner_job_detail(job_id: str):
+def owner_job_detail(job_id: str, authorization: str | None = Header(default=None)):
+    _require_owner_claims(authorization)
     tracker = get_tracker()
     job = tracker.get_job(job_id)
     if not job:
@@ -776,19 +798,19 @@ class OwnerJobApprovalRequest(BaseModel):
 def owner_job_approval(
     job_id: str,
     req: OwnerJobApprovalRequest,
-    x_service_token: str | None = Header(default=None),
+    authorization: str | None = Header(default=None),
 ):
-    _require_internal(x_service_token)
+    claims = _require_owner_claims(authorization)
     tracker = get_tracker()
     job = tracker.get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found")
 
     if req.decision.lower() == "approve":
-        success = tracker.approve_job(job_id, approver="owner", note=req.reason)
+        success = tracker.approve_job(job_id, approver=claims["sub"], note=req.reason)
         action  = "approved"
     elif req.decision.lower() == "reject":
-        success = tracker.reject_job(job_id, rejector="owner", reason=req.reason)
+        success = tracker.reject_job(job_id, rejector=claims["sub"], reason=req.reason)
         action  = "rejected"
     else:
         raise HTTPException(status_code=400, detail="decision must be 'approve' or 'reject'")

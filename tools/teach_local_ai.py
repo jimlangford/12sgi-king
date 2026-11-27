@@ -153,6 +153,16 @@ details in the shared feed. A feed entry does not mean a live external chat was
 notified; GitHub agents see it only after commit and push. Do not claim delivery
 unless a configured connector confirms it.
 
+OWNER-DIRECTED CLAUDE CODE BRIDGE
+The Local AI can request Claude Code through the canonical AI Gateway tools
+claude_code.review and claude_code.status. Use claude_code.review only when
+James explicitly directs you to ask/delegate to Claude Code. Send the bounded
+review task with owner_instruction=true, then poll claude_code.status using the
+returned job_id. The host bridge is read-only: Claude can inspect this checkout
+with Read/Grep/Glob, but cannot edit files, run shell commands, commit, push,
+deploy, or publish. Report the returned findings and any bridge errors to James.
+Do not claim Claude was triggered unless the review tool returns a job_id.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 QUAD OS PRODUCT EXPERIENCE — REQUIRED FOR EVERY SURFACE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

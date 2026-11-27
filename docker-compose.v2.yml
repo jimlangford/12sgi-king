@@ -584,6 +584,8 @@ services:
       GPU_ROUTER_URL: http://gpu-router:8107
       GPU_ROUTER_READY_URL: http://gpu-router:8107/api/v2/ready
       GPU_INFER_TIMEOUT: ${GPU_INFER_TIMEOUT:-120}
+      CLAUDE_CODE_BRIDGE_URL: ${CLAUDE_CODE_BRIDGE_URL:-http://host.docker.internal:8127}
+      CLAUDE_CODE_BRIDGE_TOKEN: ${CLAUDE_CODE_BRIDGE_TOKEN:-}
     volumes:
     - v2-db:/data/db
     - v2-dispatch:/data/dispatch

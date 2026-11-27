@@ -17,13 +17,13 @@ import hashlib
 import hmac
 import json
 import logging
+import os
 import secrets as _secrets
 import sys
-import os
-import uvicorn
 from datetime import datetime, timezone
 from pathlib import Path
 
+import uvicorn
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
@@ -32,20 +32,19 @@ _repo_root = Path(__file__).resolve().parents[3]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from services.v2_workboard import (
+from services import elementlotus_publisher as _elementlotus_publisher  # noqa: E402
+from services.connectors import registry as _connector_registry  # noqa: E402
+from services.event_bus import get_dead_letters, get_recent_events  # noqa: E402
+from services.service_metadata import with_service_metadata  # noqa: E402
+from services.v2_workboard import (  # noqa: E402
     approve_workboard_job,
     pending_approvals,
     reject_workboard_job,
     selfheal_engineering_jobs,
-    workboard_pulse,
     workboard_hub_feed,
+    workboard_pulse,
 )
-from services.event_bus import get_recent_events, get_dead_letters
-from services.service_metadata import with_service_metadata
-from services.connectors import registry as _connector_registry
-from watchers import graph_refresh
-from watchers import pulse_geometry
-from watchers import studio_project
+from watchers import graph_refresh, pulse_geometry, studio_project  # noqa: E402
 
 SERVICE_NAME = "owner-node"
 VERSION = os.environ.get("VERSION", "2.0.0")
@@ -556,6 +555,49 @@ def connector_wordpress_app_password(
         site_url=body.site_url,
     )
     return {"stored": True, **card}
+
+
+@app.get("/publishing/elementlotus/health")
+def elementlotus_publisher_health(owner: dict = Depends(_require_owner)):
+    """Private Local AI publisher and self-heal state; never exposes credentials."""
+    return _elementlotus_publisher.status()
+
+
+@app.get("/publishing/elementlotus/preview")
+def elementlotus_publisher_preview(owner: dict = Depends(_require_owner)):
+    """Show the exact curated page set and hashes before an Owner publish call."""
+    try:
+        return _elementlotus_publisher.preview()
+    except Exception:
+        raise HTTPException(status_code=409, detail="The local Element LOTUS publish package is incomplete or invalid")
+
+
+class ElementLotusPublishRequest(BaseModel):
+    run_id: str
+
+
+@app.post("/publishing/elementlotus/publish")
+def publish_elementlotus(body: ElementLotusPublishRequest, owner: dict = Depends(_require_owner)):
+    """Publish the eight allowlisted pages using the stored WordPress connector."""
+    if not body.run_id or len(body.run_id) > 80 or not all(c.isalnum() or c in "-_" for c in body.run_id):
+        raise HTTPException(status_code=400, detail="run_id must be a short identifier")
+    try:
+        return _elementlotus_publisher.publish(body.run_id)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
+    except Exception:
+        _log.exception("Element LOTUS publish run failed")
+        raise HTTPException(status_code=502, detail="Publish failed; inspect the private run journal and health endpoint")
+
+
+@app.post("/publishing/elementlotus/{run_id}/recover")
+def recover_elementlotus_publish(run_id: str, owner: dict = Depends(_require_owner)):
+    """Self-heal a failed partial release with compare-before-restore safeguards."""
+    try:
+        return _elementlotus_publisher.recover(run_id)
+    except Exception:
+        _log.exception("Element LOTUS publish recovery failed")
+        raise HTTPException(status_code=502, detail="Recovery could not be completed safely")
 
 
 # ── Studio Project Brain ──────────────────────────────────────────────────────

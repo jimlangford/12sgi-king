@@ -47,3 +47,22 @@ The append-only, repository-visible feed is `docs/AI_CHANGE_FEED.jsonl`.
 This contract establishes shared change visibility. Provider-specific push
 notifications require verified, authorized connectors; no such broadcast
 connector is configured by this tool.
+
+## Local AI to Claude Code bridge
+
+The Owner AI profile has a scoped `claude_code.review` tool in the canonical
+registry. It sends the requested task through AI Gateway to the host-side
+`tools/claude_code_bridge.py` service. The host service runs `claude -p` in the
+12SGI-KING checkout with read-only `Read`, `Grep`, and `Glob` tools. It accepts
+only requests marked with an explicit Owner instruction and authenticated by
+the existing internal service token. No shell, file writes, commits, pushes,
+deploys, or publishing are exposed. Poll job output with `claude_code.status`.
+
+Start the Windows service with `tools/start_claude_code_bridge.ps1`. It reads
+the existing token from the ignored `.env.v2` file, binds port 8127 for the
+local Docker host bridge, and runs hidden. Stop it with
+`tools/start_claude_code_bridge.ps1 -Stop`. The AI Gateway must be rebuilt or
+restarted with `docker compose --env-file .env.v2 -f docker-compose.v2.yml
+up -d --build ai-gateway` after Compose configuration changes. If the host daemon is stopped,
+the tool returns an unavailable error; the local AI must report that state and
+must not claim Claude ran.
