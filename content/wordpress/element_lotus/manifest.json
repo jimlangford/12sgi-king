@@ -12,6 +12,10 @@
       "label": "Explore",
       "children": [
         {
+          "label": "Studio",
+          "url": "/studio/"
+        },
+        {
           "label": "Games",
           "url": "https://12sgi.com/games/"
         },

@@ -4,14 +4,16 @@ title = "Tracked tree and reachable history secret policy"
 useDefault = true
 
 # This exact value is a browser localStorage acknowledgement key, not a credential.
-# Requiring BOTH this source path and this assignment prevents a blanket JS exemption.
+# Requiring BOTH one of these source paths and this assignment prevents a blanket JS exemption.
+# The second path is the same file as published on the public-backup branch (leak-gated public
+# build, root folder sage/). It is anchored to the repository root on purpose (owner approved).
 [[rules]]
 id = "generic-api-key"
 
 [[rules.allowlists]]
 description = "Sage victory acknowledgement localStorage key"
 condition = "AND"
-paths = ['''(^|/)game_sage/js/sage_ui\.js$''']
+paths = ['''(^|/)game_sage/js/sage_ui\.js$''', '''^sage/js/sage_ui\.js$''']
 regexTarget = "match"
 regexes = ['''^VICTORY_ACK_KEY = 'sage_victory_ack_v1'$''']
 

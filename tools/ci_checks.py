@@ -260,7 +260,7 @@ def scan_secrets(args):
             sys.executable, "-m", "unittest", "discover",
             "-s", "tests", "-p", "test_secret_scanner.py", "-v",
         ], capture=True, env=env, cwd=work)
-        require_success(regression, "Five real-scanner enforcement tests (output suppressed)")
+        require_success(regression, "Real-scanner enforcement tests (output suppressed)")
         tree = work / "tree"
         tree.mkdir()
         for name in sorted(set(names)):

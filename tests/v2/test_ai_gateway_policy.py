@@ -40,7 +40,7 @@ KNOWN_SCOPES = {
     "documents:read", "documents:write",
     "storage:read", "storage:write",
     "ai:assist", "gpu:infer", "gpu:read",
-    "ops:owner", "auth:introspect",
+    "ops:owner", "claude:invoke", "auth:introspect",
     "gateway:chat",
     "records:read", "records:write",
     "projects:read", "projects:write",

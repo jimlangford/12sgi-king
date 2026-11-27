@@ -21,7 +21,8 @@
     "publish.*",
     "fcp.*",
     "logic.*",
-    "game.*"
+    "game.*",
+    "claude_code.*"
   ],
   "knowledge_scopes": [
     "all"

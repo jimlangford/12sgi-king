@@ -1,7 +1,6 @@
+import unittest
 from html.parser import HTMLParser
 from pathlib import Path
-import unittest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,9 +35,19 @@ class TestPublicFrontDoor(unittest.TestCase):
             "site/contact.html",
         }.issubset(parser.hrefs))
 
-    def test_pages_workflow_watches_frontdoor_source(self):
+    def test_publish_workflow_runs_full_site_build(self):
         workflow = (ROOT / ".github" / "workflows" / "publish.yml").read_text(encoding="utf-8")
-        self.assertIn('"education.html"', workflow)
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("python tools/local_validation.py --stage build", workflow)
+
+    def test_public_root_pages_do_not_link_to_private_launcher(self):
+        for name in ("grants.html", "platform.html"):
+            with self.subTest(page=name):
+                source = (ROOT / name).read_text(encoding="utf-8")
+                parser = _HrefCollector()
+                parser.feed(source)
+                self.assertNotIn("go.html", parser.hrefs)
+                self.assertIn("site/index.html", parser.hrefs)
 
 
 if __name__ == "__main__":

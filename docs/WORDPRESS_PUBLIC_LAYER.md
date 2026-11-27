@@ -61,6 +61,43 @@ QUAD OS is the private orchestration system that powers civic and creative workf
 
 ## Publishing Bridge
 
+### Local AI Element LOTUS page publisher
+
+The owner node exposes a separate, Owner-authenticated publisher for the
+curated eight-page Element LOTUS package. The implementation lives in
+`services/elementlotus_publisher.py`; it reads the local WordPress connector
+credential and the generated package manifest. It only targets the existing
+homepage plus `/about/`, `/contact/`, `/films/`, `/music/`, `/partner/`,
+`/studio/`, and `/civic/`. It rejects any configured host except
+`elementlotus.com` and `www.elementlotus.com`, and refuses to create missing
+pages or alter civic-site routes.
+
+Owner API routes:
+
+- `GET /publishing/elementlotus/health` reports connector and last-run state.
+- `GET /publishing/elementlotus/preview` reports the exact eight slugs, titles,
+  and content hashes without changing WordPress.
+- `POST /publishing/elementlotus/publish` applies the package by supplied
+  unique `run_id`.
+- `POST /publishing/elementlotus/{run_id}/recover` retries safe recovery.
+
+Each page is backed up to a local-only SQLite journal before its write. Updates
+are verified after writing. If a run fails partway, self-heal attempts to
+restore pages only when their live content still matches the package hash;
+pages edited by a person after the publish are skipped and reported. Recovery
+does not blindly republish content. Transient HTTP responses receive bounded
+retries. The journal defaults to `~/.quad-os/publishing/` and can be moved with
+`LOCAL_AI_PUBLISH_DATA`.
+
+The connector must be configured with the WordPress Application Password
+through the existing Owner endpoint `POST /connectors/wordpress/app-password`.
+No credential is stored in the repository. WordPress menu blocks and global
+CSS are outside this page publisher's current write scope and require their
+own validated API implementation before they can be published.
+
+The older GitHub Actions workflow below remains a post/changelog workflow; it
+is not the source of truth for this eight-page rebuild.
+
 The only connection from QUAD OS to WordPress is the **automated publishing workflow** (`wp-publish.yml`). This workflow:
 
 - Runs manually via `workflow_dispatch` with deliberate status choice

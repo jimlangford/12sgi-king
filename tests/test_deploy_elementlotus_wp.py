@@ -57,6 +57,7 @@ class TestDeployElementLotusWp(unittest.TestCase):
         self.assertIn('https://12sgi.com/games/', navigation)
         self.assertIn('href="/membership/"', navigation)
         self.assertIn('href="/my-account/"', navigation)
+        self.assertIn('href="/studio/"', navigation)
         self.assertNotIn('/king/', navigation)
         self.assertNotIn('/owner', navigation.lower())
 
@@ -142,6 +143,17 @@ class TestDeployElementLotusWp(unittest.TestCase):
             self.assertEqual(saved_manifest['source'], 'element_lotus_public/')
             self.assertTrue((out / 'primary-navigation.html').is_file())
             self.assertTrue((out / 'INSTALLATION.md').is_file())
+
+    def test_contact_fragment_uses_native_jetpack_form_and_explicit_games_links(self):
+        contact = (ROOT / 'element_lotus_public' / 'contact.html').read_text(encoding='utf-8')
+        fragment = deploy_elementlotus_wp.build_page_fragment(
+            'contact.html', '/contact/', 'default', contact
+        )['fragment']
+        self.assertIn('wp:jetpack/contact-form', fragment)
+        self.assertIn('wp:jetpack/field-email', fragment)
+        self.assertNotIn('Open the contact form', fragment)
+        home = (ROOT / 'element_lotus_public' / 'index.html').read_text(encoding='utf-8')
+        self.assertIn('Open SAGE learning', home)
 
     def test_checked_in_bundle_matches_current_public_shell(self):
         tracked = ROOT / 'content' / 'wordpress' / 'element_lotus'
