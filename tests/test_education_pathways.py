@@ -1,6 +1,8 @@
 import unittest
+
 from watchers.education_pathways import pathway
 from watchers.education_to_graph import GRADE_BANDS, USES
+
 
 class TestEducationPathways(unittest.TestCase):
     def test_all_bands(self):

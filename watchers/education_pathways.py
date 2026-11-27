@@ -4,7 +4,8 @@ Run from repo root: python -m watchers.education_pathways --grade g68
 """
 import argparse
 import json
-from watchers.education_to_graph import GRADE_BANDS, CIVIC_TOOLS, USES
+
+from watchers.education_to_graph import CIVIC_TOOLS, GRADE_BANDS, USES
 
 GAMES = {
     "k2": ("konane", "games/konane.html", "With an adult, practice taking turns."),
