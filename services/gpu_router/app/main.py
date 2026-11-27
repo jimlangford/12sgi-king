@@ -1300,7 +1300,7 @@ def _check_dependency_ready(url: str) -> bool:
 
 def _ollama_ready() -> bool:
     try:
-        with request.urlopen(f"{GPU_RUNTIME_URL}/api/tags", timeout=REQUEST_TIMEOUT) as resp:
+        with request.urlopen(f"{GPU_RUNTIME_URL}/api/version", timeout=REQUEST_TIMEOUT) as resp:   # liveness; /api/tags scans every model
             return resp.status == 200
     except Exception:
         return False

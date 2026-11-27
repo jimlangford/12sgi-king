@@ -233,7 +233,7 @@ def _ollama_models() -> list[str]:
 
 def _ollama_ready() -> bool:
     try:
-        with urllib.request.urlopen(f"{OLLAMA_BASE}/api/tags", timeout=3) as resp:
+        with urllib.request.urlopen(f"{OLLAMA_BASE}/api/version", timeout=3) as resp:   # liveness; /api/tags scans every model
             return resp.status == 200
     except Exception:
         return False
