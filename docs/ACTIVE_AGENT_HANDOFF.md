@@ -1,5 +1,14 @@
 # Active Agent Handoff
 
+## GitHub-only manual explainer sharing — 2026-11-27
+
+- OWNER REQUEST: Integrate civic explainer sharing using GitHub while preserving local-first authority and the existing engineering-first release gate.
+- CHANGED ON FEATURE BRANCH ONLY: `assets/sgi-share.js`, `tests/test_sgi_share.cjs`, `docs/EXPLAINER_SHARE_INTEGRATION.md`. Safe public URL allowlist, native share, clipboard and manual platform share intents. Does not auto-post or interact with private routes.
+- SOURCE BOUNDARY: `/status/explainers.html` was not found in the tracked repository; the local canonical generator must be identified before any live dashboard integration. No runtime, Docker, WordPress, server or social account access was exercised.
+- OWNER CLAUDE BOUNDARY: 2026-11-27 Claude change-feed record explicitly says the owner requested the Claude bridge and QUAD OS startup shortcuts stay disabled. Do not recreate or restart them without renewed explicit owner direction.
+- VERIFY: source-only review; `node --test tests/test_sgi_share.cjs` and live mobile acceptance still required. No deployment, auto-post, or merge performed.
+- NEXT: review draft PR, run focused tests, identify local dashboard generator, integrate manually with public canonical URLs, then validate staged publishing with existing approval workflows.
+
 ## Windows startup and Docker recovery — 2026-11-25
 
 - CHANGED: corrected `startup_system.py` to launch the installed Docker Desktop
