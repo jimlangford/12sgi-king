@@ -370,13 +370,28 @@
 
 <script>
   var BRIDGE_API = "https://king.tail760750.ts.net/king/api/v2";
-  var INTERNAL_TOKEN = "dev-internal-token";
   var currentApprovalJobId = null;
+
+  function ownerAuthorization() {
+    var token = null;
+    try {
+      token = localStorage.getItem("king.ownerToken");
+      var legacyToken = localStorage.getItem("king_ownerToken");
+      if (!token && legacyToken) {
+        token = legacyToken;
+        localStorage.setItem("king.ownerToken", legacyToken);
+      }
+      localStorage.removeItem("king_ownerToken");
+    } catch (e) {
+      return {};
+    }
+    return token ? { "Authorization": "Bearer " + token } : {};
+  }
   
   async function fetchJobs() {
     try {
       var resp = await fetch(BRIDGE_API + "/owner/jobs?limit=50", {
-        headers: { "X-Service-Token": INTERNAL_TOKEN }
+        headers: ownerAuthorization()
       });
       if (!resp.ok) throw new Error("API error: " + resp.status);
       return await resp.json();
@@ -505,7 +520,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Service-Token": INTERNAL_TOKEN
+          ...ownerAuthorization()
         },
         body: JSON.stringify({ decision: decision, reason: reason })
       });

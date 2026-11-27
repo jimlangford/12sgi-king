@@ -35,6 +35,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib import error, request
+from urllib.parse import quote
 from uuid import uuid4
 
 try:
@@ -82,6 +83,8 @@ REQUEST_TIMEOUT = float(os.environ.get("DEPENDENCY_TIMEOUT_SECONDS", "3"))
 GPU_ROUTER_URL = os.environ.get("GPU_ROUTER_URL", "http://gpu-router:8107")
 GPU_ROUTER_READY_URL = os.environ.get("GPU_ROUTER_READY_URL", f"{GPU_ROUTER_URL}/api/v2/ready")
 GPU_INFER_TIMEOUT = float(os.environ.get("GPU_INFER_TIMEOUT", "120"))
+CLAUDE_BRIDGE_URL = os.environ.get("CLAUDE_CODE_BRIDGE_URL", "http://host.docker.internal:8127").rstrip("/")
+CLAUDE_BRIDGE_TOKEN = os.environ.get("CLAUDE_CODE_BRIDGE_TOKEN", "").strip()
 
 # Risk classes that create a pending action rather than executing immediately.
 APPROVAL_REQUIRED_CLASSES = {
@@ -970,6 +973,46 @@ async def invoke_tool(
                 f"This action requires owner confirmation. "
                 f"Pending action: {action_id}"
             ),
+        }
+
+    # Claude Code is a narrow host-side adapter with a fixed read-only CLI policy, so it does not go through the generic
+    # trusted executor. It still needs the explicit owner flag, and the invocation is audited before the call.
+    if tool_id in {"claude_code.review", "claude_code.status"}:
+        if tool_id == "claude_code.review" and clean_params.get("owner_instruction") is not True:
+            raise HTTPException(status_code=403, detail="Explicit Owner instruction is required")
+        _emit_audit_event(
+            actor=actor, profile="gateway", tool_id=tool_id,
+            event_type="ai.tool.invoked", tenant_id=tenant_id,
+            project_id=project_id, correlation_id=correlation_id,
+            request_hash=request_hash,
+        )
+        if len(CLAUDE_BRIDGE_TOKEN) < 64:
+            raise HTTPException(status_code=503, detail="Claude Code bridge token is not configured")
+        if tool_id == "claude_code.review":
+            payload = json.dumps({"task": clean_params.get("task", ""), "owner_instruction": True}).encode("utf-8")
+            target = f"{CLAUDE_BRIDGE_URL}/jobs"
+            method = "POST"
+            headers = {"Content-Type": "application/json", "X-Service-Token": CLAUDE_BRIDGE_TOKEN}
+        else:
+            payload = None
+            target = f"{CLAUDE_BRIDGE_URL}/jobs/{quote(str(clean_params.get('job_id', '')), safe='')}"
+            method = "GET"
+            headers = {"X-Service-Token": CLAUDE_BRIDGE_TOKEN}
+        call = request.Request(target, data=payload, method=method, headers=headers)
+        try:
+            with request.urlopen(call, timeout=10) as response:
+                dispatch_result = json.loads(response.read().decode("utf-8"))
+        except error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")[:500]
+            raise HTTPException(status_code=exc.code, detail=detail) from exc
+        except Exception as exc:
+            _log.exception("Claude Code bridge unavailable")
+            raise HTTPException(status_code=503, detail="Claude Code host bridge is unavailable") from exc
+        return {
+            **dispatch_result,
+            "status": "queued" if tool_id == "claude_code.review" else dispatch_result.get("status", "ok"),
+            "tool_id": tool_id,
+            "risk_class": risk_class,
         }
 
     result = _dispatch_tool(

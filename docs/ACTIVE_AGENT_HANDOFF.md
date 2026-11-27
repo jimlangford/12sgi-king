@@ -1,5 +1,69 @@
 # Active Agent Handoff
 
+## Windows startup and Docker recovery — 2026-11-25
+
+- CHANGED: corrected `startup_system.py` to launch the installed Docker Desktop
+  executable, avoid `wsl --shutdown`, use the current checkout and `.env.v2`,
+  and start the v2 Compose stack. Added a hidden log-writing launcher at
+  `tools/startup_system_start.ps1`.
+- STARTUP: added user startup entries for Claude, Codex/ChatGPT, GitHub Desktop,
+  GitHub Copilot, QUAD OS services, and the Local AI Claude bridge. The QUAD OS
+  startup file launches Docker Desktop and waits for its daemon before Compose.
+- VERIFY: launcher syntax and `startup_system.py` compilation passed. Docker
+  Desktop was launched but its daemon remained unavailable after 60 seconds;
+  the Docker service was stopped. An elevated launch was canceled, so the stack
+  is not yet running. The system restart is being used to activate the login
+  startup entries; verify Docker and Gateway after Windows returns.
+
+## Local AI to Claude Code bridge — 2026-11-25
+
+- OWNER AUTHORIZATION: James approved building a bridge for Local AI to trigger
+  Claude Code.
+- CHANGED: added the authenticated host-side `tools/claude_code_bridge.py`,
+  Windows start/stop helper, AI Gateway invocation for `claude_code.review`
+  and `claude_code.status`, canonical tool entries, Owner profile access, and
+  Local AI teaching instructions.
+- BOUNDARY: the bridge accepts an explicit Owner instruction and uses the
+  existing internal service token. Claude Code runs only in read-only plan
+  mode with `Read`, `Grep`, and `Glob`; there is no shell, editing, commit,
+  push, deployment, or publish access.
+- RUNTIME: verify the service startup and AI Gateway-to-host connectivity
+  before claiming Local AI can trigger Claude end to end. Host bridge is
+  running and authenticated health returned ready; a request without the Owner
+  instruction flag was rejected. Docker Desktop service is stopped and could
+  not be opened by this session, so AI Gateway integration is not running.
+  Four Ollama personas were rebuilt with the tool instructions; all four
+  inference checks timed out. No Claude review job was launched.
+- VERIFY: Python compilation, registry/profile JSON parsing, PowerShell parser,
+  and Docker Compose config parsing passed. Installed Ollama model templates
+  contain the new review workflow. Docker service state prevented runtime
+  verification from Local AI through AI Gateway.
+- NEXT: start Docker Desktop with an authorized user session, then recreate
+  `ai-gateway` using `docker compose --env-file .env.v2 -f docker-compose.v2.yml
+  up -d --build ai-gateway`; verify `claude_code.review` queues a job and
+  `claude_code.status` returns it. Do not claim end-to-end Local AI dispatch
+  until that succeeds. Never echo or log `.env.v2` credentials.
+
+## Local AI WordPress publisher and self-heal — 2026-11-25
+
+- CHANGED: added `services/elementlotus_publisher.py` and Owner-authenticated
+  preview, health, publish, and recover routes in `v2/app/main.py`. Added the
+  operating contract to `docs/WORDPRESS_PUBLIC_LAYER.md`.
+- SCOPE: only the eight existing ElementLOTUS pages in the curated manifest;
+  strict `elementlotus.com` host allowlist; no 12sgi.com route writes. Each
+  page receives a local backup and journal record before modification.
+- SELF-HEAL: transient responses use bounded retries. Failed runs attempt
+  compare-before-restore recovery; pages changed remotely after publishing are
+  skipped and surfaced for owner review. Navigation and global CSS are not yet
+  part of the publisher.
+- VERIFY: Python compilation passed and the local preview enumerated all eight
+  expected pages. Health currently reports no WordPress connector credential,
+  so no live publish has occurred. Changes remain local and uncommitted.
+- NEXT: configure the WordPress Application Password for ElementLOTUS.com,
+  review the eight-page preview, then publish and verify live pages. Claude and
+  other external agents must read this handoff/feed after it is pushed; direct
+  Claude chat delivery is not configured in this environment.
+
 ## QUAD OS product experience contract — 2026-11-25
 
 - CHANGED: added `docs/QUAD_OS_PRODUCT_EXPERIENCE_CONTRACT.md` and linked it

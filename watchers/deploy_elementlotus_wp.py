@@ -68,6 +68,7 @@ INTERNAL_PAGE_REWRITES = {
 PRIMARY_NAVIGATION = (
     {"label": "Home", "url": "/"},
     {"label": "Explore", "children": (
+        {"label": "Studio", "url": "/studio/"},
         {"label": "Games", "url": "https://12sgi.com/games/"},
         {"label": "SAGE learning", "url": "https://12sgi.com/sage/"},
         {"label": "Films", "url": "/films/"},
@@ -245,6 +246,21 @@ def build_page_fragment(source_name: str, slug: str, template: str, html_text: s
         flags=re.I,
     )
     body = re.sub(r"</main\s*>", "</div>", body, flags=re.I)
+    if source_name == "contact.html":
+        body = re.sub(
+            r'<section class="section panel"><h2>Send a public inquiry</h2>.*?</section>',
+            '<section class="section panel"><h2>Send a public inquiry</h2>'
+            '<!-- wp:jetpack/contact-form {"subject":"Element LOTUS public inquiry"} -->'
+            '<div class="wp-block-jetpack-contact-form">'
+            '<!-- wp:jetpack/field-name {"required":true} /-->'
+            '<!-- wp:jetpack/field-email {"required":true} /-->'
+            '<!-- wp:jetpack/field-textarea {"label":"How can we help?","required":true} /-->'
+            '<!-- wp:jetpack/button -->'
+            '<button class="wp-block-button__link" type="submit">Send inquiry</button>'
+            '<!-- /wp:jetpack/button -->'
+            '</div><!-- /wp:jetpack/contact-form --></section>',
+            body, flags=re.I | re.S,
+        )
     body = "\n".join(line.rstrip() for line in rewrite_links(body).splitlines())
     fragment = (
         f"<!-- wp:group {{\"tagName\":\"div\",\"className\":\"element-lotus-shell-wrap\"}} -->\n"

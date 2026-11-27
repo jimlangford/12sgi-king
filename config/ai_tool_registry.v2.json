@@ -3153,6 +3153,45 @@
     "idempotency_required": false
   },
   {
+    "tool_id": "claude_code.review",
+    "name": "Request Claude Code Review",
+    "description": "Ask the installed Claude Code CLI for a read-only review of the 12SGI-KING checkout at explicit Owner direction.",
+    "http_method": "POST",
+    "endpoint": "/api/v2/bridge/claude/jobs",
+    "risk_class": "analysis",
+    "required_scopes": ["claude:invoke"],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {
+        "task": {"type": "string", "minLength": 12, "maxLength": 4000},
+        "owner_instruction": {"type": "boolean"}
+      },
+      "required": ["task", "owner_instruction"],
+      "additionalProperties": false
+    },
+    "audit_event": "tool.claude_code.review",
+    "timeout_seconds": 10,
+    "idempotency_required": false
+  },
+  {
+    "tool_id": "claude_code.status",
+    "name": "Get Claude Code Review Status",
+    "description": "Retrieve the status and bounded result of an existing Claude Code review job.",
+    "http_method": "GET",
+    "endpoint": "/api/v2/bridge/claude/jobs/{job_id}",
+    "risk_class": "read",
+    "required_scopes": ["claude:invoke"],
+    "arguments_schema": {
+      "type": "object",
+      "properties": {"job_id": {"type": "string", "minLength": 32, "maxLength": 40}},
+      "required": ["job_id"],
+      "additionalProperties": false
+    },
+    "audit_event": "tool.claude_code.status",
+    "timeout_seconds": 10,
+    "idempotency_required": false
+  },
+  {
     "tool_id": "public.list_studio_releases",
     "name": "List Public Studio Releases",
     "description": "List public studio releases.",
