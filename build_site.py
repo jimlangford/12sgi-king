@@ -5,8 +5,14 @@
 #
 #   python build_site.py            # -> ./site
 #   KA_SITE=/path python build_site.py
-import os, re, shutil, json, sys, time, subprocess
-from datetime import datetime, timezone, timedelta
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+from datetime import datetime, timedelta, timezone
 
 HOME    = os.path.expanduser("~")
 PROJECT = os.path.join(HOME, "Documents", "Claude", "Projects", "Video System elementLOTUS")
@@ -18,7 +24,7 @@ SEED_MAUIOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seed_rep
 # falls back to None if the project tree isn't present, so the build never breaks on a runner.
 sys.path.insert(0, os.path.join(PROJECT, "tools", "kilo-aupuni"))
 try:
-    import civic_shell as _civic_shell   # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
+    import civic_shell as _civic_shell  # vendored at repo root for CI (build-mirror; source = project tools/kilo-aupuni)
 except Exception:
     _civic_shell = None
 sys.path.insert(0, os.path.join(PROJECT, "tools", "ops"))
@@ -533,11 +539,14 @@ def _tenant_of(current):
     home tenant otherwise."""
     rev, byclass, treg, order = _switcher_maps()
     cf = (current or "").replace("/", "_")
-    if cf in rev: return rev[cf][2]
+    if cf in rev:
+        return rev[cf][2]
     m = re.match(r"tenant_(.+)\.html$", cf)
-    if m and treg and m.group(1) in treg: return m.group(1)
+    if m and treg and m.group(1) in treg:
+        return m.group(1)
     ft = _tenant_from_filename(cf, treg)
-    if ft: return ft
+    if ft:
+        return ft
     return _HOME_TENANT
 
 _NAVMAP_JSON = None
@@ -545,18 +554,22 @@ def _navmap_json():
     """{tid:{name, groups:[[glabel,[[linklabel,file],...]],...]}} — drives the client-side nav re-resolve so the
     bar follows the tenant the visitor PICKED (localStorage govos.tenant), on EVERY page, not just Maui."""
     global _NAVMAP_JSON
-    if _NAVMAP_JSON is not None: return _NAVMAP_JSON
+    if _NAVMAP_JSON is not None:
+        return _NAVMAP_JSON
     rev, byclass, treg, order = _switcher_maps()
     m = {}
     for tid in treg:
         gs = []
         for glabel, classes in NAV_GROUP_CLASSES:
-            seen = set(); links = []
+            seen = set()
+            links = []
             for ck in classes:
                 for (t, _n, f) in byclass.get(ck, []):
                     if t == tid and f and f not in seen:
-                        seen.add(f); links.append([_CLABELS.get(ck, ck), f])
-            if links: gs.append([glabel, links])
+                        seen.add(f)
+                        links.append([_CLABELS.get(ck, ck), f])
+            if links:
+                gs.append([glabel, links])
         m[tid] = {"name": treg[tid]["name"], "groups": gs}
     _NAVMAP_JSON = json.dumps(m, ensure_ascii=False)
     return _NAVMAP_JSON
@@ -591,7 +604,8 @@ def nav_bar(current):
         groups += '<div class="gn-group"><button class="gn-top">Governments<span class="ar">&#9662;</span></button><div class="gn-panel">%s</div></div>' % gv
         # tenant-aware groups, resolved from the registry for THIS tenant
         for glabel, classes in NAV_GROUP_CLASSES:
-            seen = set(); links = ""
+            seen = set()
+            links = ""
             for ck in classes:
                 for (t, _name, f) in byclass.get(ck, []):
                     if t == tid and f and f not in seen:
@@ -608,7 +622,6 @@ def nav_bar(current):
                        '<div class="gn-panel">%s</div></div>') % (glabel.replace("&", "&amp;"), links)
     here = '<span class="gn-here">viewing: <b>%s</b></span>' % _esc(tname)
     jc = " cur" if current == "jurisdictions.html" else ""
-    ac = " cur" if current == "agendas.html" else ""
     return (NAV_CSS +
             '<nav class="govos-nav" data-tenant="%s">' % tid +
             '<a class="gn-brand" href="reports.html"><span class="mk">&#10022;</span>'
@@ -723,7 +736,8 @@ def _switcher_maps():
     """(rev {file->(class_key,class_label,tid)}, byclass {class_key->[(tid,name,file|None)]},
         treg {tid->{name, reports:[[label,file],...]}}, order [class_key,...]) — all from the ONE registry."""
     global _SWITCHER, _CLABELS
-    if _SWITCHER is not None: return _SWITCHER
+    if _SWITCHER is not None:
+        return _SWITCHER
     rev, byclass, treg, order = {}, {}, {}, []
     try:
         reg = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tenant_registry.json"), encoding="utf-8"))
@@ -731,14 +745,16 @@ def _switcher_maps():
         _CLABELS = clabels
         order = [c["key"] for c in reg.get("report_classes", [])]
         for c in reg.get("report_classes", []):
-            k = c["key"]; byclass[k] = []
+            k = c["key"]
+            byclass[k] = []
             for t in reg.get("civic_tenants", []):
                 files = t["reports"].get(k) or []
                 # build_site flattens published subdir paths ("lege/x.html" -> "lege_x.html"); match that
                 # so the switcher chips never 404 (the seed-drift/flatten gotcha).
                 f = files[0].replace("/", "_") if files else None
                 byclass[k].append((t["id"], t["name"], f))
-                if f: rev.setdefault(f, (k, clabels.get(k, k), t["id"]))
+                if f:
+                    rev.setdefault(f, (k, clabels.get(k, k), t["id"]))
         for t in reg.get("civic_tenants", []):
             reports = []
             for k in order:
@@ -841,11 +857,13 @@ def _ftm_script(prefix=""):
     _rev, byclass, treg, _order = _switcher_maps()
     tenants, torder = {}, []
     for tid in treg:
-        torder.append(tid); trail = []
+        torder.append(tid)
+        trail = []
         for ck, lbl, blurb in _FTM_CLASSES:
             for (t, _n, f) in byclass.get(ck, []):
                 if t == tid and f:
-                    trail.append([lbl, prefix + f, blurb]); break
+                    trail.append([lbl, prefix + f, blurb])
+                    break
         tenants[tid] = {"name": treg[tid]["name"], "trail": trail}
     return '<script id="ftm-data">window.__FTM__=%s;</script>' % json.dumps({"order": torder, "tenants": tenants}, ensure_ascii=False)
 
@@ -1087,7 +1105,8 @@ _REC_MAUI = {"county_dashboard.html","money_behind_officials.html","officials_sc
              "rebuild_first.html","testimony_record.html","testimony_money.html","bill9_bill9_testimony_scan.html"}
 def _records_anchor(current):
     m = re.search(r"_(" + "|".join(_REC_TIDS) + r")\.html$", current or "")
-    if m: return "#" + m.group(1)
+    if m:
+        return "#" + m.group(1)
     return "#maui" if current in _REC_MAUI else ""
 def add_records_cta(html, current=""):
     # skip the target page itself, or pages that already carry the banner / an anchored gap-link
@@ -1118,7 +1137,7 @@ def now_hst(): return datetime.now(HST)
 # and recorded into buildinfo.json's "lanes" array so the heal system (selfheal.py / any
 # future CI check) can see EXACTLY which lane failed on a given build, instead of scanning
 # raw scrollback for a stray "skipped: ..." line buried in 500+ lines of output.
-import contextlib
+import contextlib  # noqa: E402  (placed beside the code that needs it)
 
 _LANE_REPORT = []
 
@@ -2042,7 +2061,8 @@ Sources are linked on every page.</div>
                 _t = _t.replace("https://%s:8443" % _TSNET, (_pub or "#"))
                 _t = _t.replace("https://%s" % _TSNET, "https://12sgi.com").replace(_TSNET, "12sgi.com")
                 if _t != _o:
-                    open(_h, "w", encoding="utf-8").write(_t); _n += 1
+                    open(_h, "w", encoding="utf-8").write(_t)
+                    _n += 1
             except Exception:
                 pass
         if _n:
@@ -2057,7 +2077,8 @@ Sources are linked on every page.</div>
         try:
             import sys as _sys
             _tp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools")
-            if _tp not in _sys.path: _sys.path.insert(0, _tp)
+            if _tp not in _sys.path:
+                _sys.path.insert(0, _tp)
             import fix_link_prefixes as _flp
             _lt, _lf = _flp.fix_site(SITE)
             print("  + link normalize: %d href/src fixed across %d page(s) (no broken internal links)" % (_lt, _lf))
@@ -2070,7 +2091,8 @@ Sources are linked on every page.</div>
         # so they can never ship: the /go/* owner-console routes, the go.html launcher, and the owner Vue
         # shells (king/app.html, king/go.html). king/ civic pages + king/index.html landing STAY (intended
         # public). This removes from the OUTPUT only; the private-king sources are untouched.
-        import shutil as _sh, glob as _glob
+        import glob as _glob
+        import shutil as _sh
         _purge = [os.path.join(SITE, "go"), os.path.join(SITE, "go.html"),
                   os.path.join(SITE, "king", "go"),   # redirect-stub dir: dead-end doors that still advertise ops names (docker/ollama/logs) publicly
                   os.path.join(SITE, "king", "app.html"), os.path.join(SITE, "king", "go.html"),
@@ -2081,10 +2103,12 @@ Sources are linked on every page.</div>
         _gone = []
         for _p in _purge:
             if os.path.isdir(_p):
-                _sh.rmtree(_p, ignore_errors=True); _gone.append(os.path.basename(_p) + "/")
+                _sh.rmtree(_p, ignore_errors=True)
+                _gone.append(os.path.basename(_p) + "/")
             elif os.path.exists(_p):
                 try:
-                    os.remove(_p); _gone.append(os.path.relpath(_p, SITE))
+                    os.remove(_p)
+                    _gone.append(os.path.relpath(_p, SITE))
                 except OSError:
                     pass
         # ROBUST self-declaration sweep: drop ANY public page that marks itself private/owner-only/
@@ -2101,7 +2125,8 @@ Sources are linked on every page.</div>
                 _fp = os.path.join(_root, _fn)
                 try:
                     if _priv_re.search(open(_fp, encoding="utf-8", errors="ignore").read(4000)):
-                        os.remove(_fp); _gone.append(os.path.relpath(_fp, SITE))
+                        os.remove(_fp)
+                        _gone.append(os.path.relpath(_fp, SITE))
                 except OSError:
                     pass
         print("  + owner-ops purge: dropped %d private surface(s) from PUBLIC build [%s]"
@@ -2109,7 +2134,8 @@ Sources are linked on every page.</div>
     with _lane("reconcile"):
         # reconcile post-build scan: warn-only (dev UX); the hard-block runs in CI on seed_reports (publish.yml)
         try:
-            import subprocess as _sp, sys as _sys
+            import subprocess as _sp
+            import sys as _sys
             _rp = os.path.join(os.path.dirname(__file__), "tools", "reconcile.py")
             if os.path.isfile(_rp):
                 _r = _sp.run([_sys.executable, _rp, "--scan", SITE, "html", "--route-only"],
@@ -2127,7 +2153,7 @@ Sources are linked on every page.</div>
         _bi_path = os.path.join(SITE, "buildinfo.json")
         _bi = json.load(open(_bi_path, encoding="utf-8")) if os.path.exists(_bi_path) else {}
         _bi["lanes"] = _LANE_REPORT
-        _failed = [l["lane"] for l in _LANE_REPORT if not l["ok"]]
+        _failed = [row["lane"] for row in _LANE_REPORT if not row["ok"]]
         _bi["lanes_failed"] = _failed
         json.dump(_bi, open(_bi_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"  + lane report: {len(_LANE_REPORT)} lanes, {len(_failed)} failed"
@@ -2135,4 +2161,5 @@ Sources are linked on every page.</div>
     return 0
 
 if __name__ == "__main__":
-    import sys; sys.exit(main())
+    import sys
+    sys.exit(main())

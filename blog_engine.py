@@ -10,7 +10,9 @@ Usage:
   python tools/ops/blog_engine.py           # generate blog.html
   python tools/ops/blog_engine.py --list    # list posts
 """
-import os, sys, json, datetime, argparse
+import argparse
+import json
+import os
 
 ROOT     = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CONFIG   = os.path.join(ROOT, "config")
@@ -248,7 +250,7 @@ def main():
 
     out = generate()
     if out:
-        print(f"Blog live at: https://king.tail760750.ts.net/king/blog")
+        print("Blog live at: https://king.tail760750.ts.net/king/blog")
 
 
 if __name__ == "__main__":
