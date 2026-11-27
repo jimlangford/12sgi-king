@@ -53,8 +53,6 @@ import hmac
 import json
 import os
 import sqlite3
-
-# ── Repo-root imports (same pattern as all other v2 services) ─────────────────
 import sys
 import urllib.error
 import urllib.request
@@ -68,6 +66,7 @@ from fastapi import FastAPI, Header, HTTPException, Response
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 
+# ── Repo-root imports (same pattern as all other v2 services) ─────────────────
 _HERE = Path(__file__).resolve()
 _REPO = _HERE.parents[3]
 if str(_REPO) not in sys.path:
@@ -235,7 +234,7 @@ def _ollama_models() -> list[str]:
 
 def _ollama_ready() -> bool:
     try:
-        with urllib.request.urlopen(f"{OLLAMA_BASE}/api/tags", timeout=3) as resp:
+        with urllib.request.urlopen(f"{OLLAMA_BASE}/api/version", timeout=3) as resp:   # liveness; /api/tags scans every model
             return resp.status == 200
     except Exception:
         return False

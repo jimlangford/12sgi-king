@@ -48,8 +48,14 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel
+
 from services.authz import audit_auth_event, enforce_tenant_scope, require_claims
-from services.job_envelope import build_job_envelope, normalise_envelope, sync_envelope_state, transition_job_envelope
+from services.job_envelope import (
+    build_job_envelope,
+    normalise_envelope,
+    sync_envelope_state,
+    transition_job_envelope,
+)
 from services.service_metadata import with_service_metadata
 
 API_PREFIX = "/api/v2"
@@ -1300,7 +1306,7 @@ def _check_dependency_ready(url: str) -> bool:
 
 def _ollama_ready() -> bool:
     try:
-        with request.urlopen(f"{GPU_RUNTIME_URL}/api/tags", timeout=REQUEST_TIMEOUT) as resp:
+        with request.urlopen(f"{GPU_RUNTIME_URL}/api/version", timeout=REQUEST_TIMEOUT) as resp:   # liveness; /api/tags scans every model
             return resp.status == 200
     except Exception:
         return False
