@@ -99,6 +99,8 @@ PAGES = [
     ("who_funds_elections_maui.html",    "Who Funds Our Elections",      "Every reported contribution sorted by the giver's own stated INDUSTRY — which sectors spend most to shape who governs. Real estate & development leads the identifiable industries ($10M+ / 3,127 givers). Public records (HICSC campaign finance), classified from self-reported employer/occupation, framed as questions."),
     ("officials_scorecard.html",         "Maui Officials Scorecard",     "Council votes + recusals from the minutes."),
     ("bill_audit_trail.html",            "Bill Audit Trail",             "Every measure from the committee vote to the floor vote, with the campaign money on file for each member who voted and County vendors who also gave to them."),
+    ("meeting_money.html",               "Money by Meeting",             "Upcoming Maui meetings bill by bill: votes so far, campaign money on file, related County contracts and federal subcontracts, with every contract and subaward on file. Public records, framed as questions."),
+    ("maui_explainers.html",             "Maui: Coming Up",              "Short videos on each upcoming County meeting in plain words, from the official public record, with how to testify and the money behind each meeting."),
     ("committee_votes_maui.html",        "Maui Committee Votes",         "How each Council member voted in committee, read from the Committee Reports in the County's agenda packets."),
     ("candidates_2026_maui.html",        "2026 Candidates & Their Money", "Everyone who filed for Mayor + all 9 Council seats by the June 2 2026 deadline, set beside the campaign money on file for each (real-estate slice flagged). Sourced to the County Clerk filing list + HICSC; 'no money on file' usually means the report isn't posted yet, not that none was raised."),
     ("council_votes_maui.html",          "Council Votes - Nay Narratives","Every Maui Council split vote + the dissenter's own recorded words, beside the campaign money behind each seat. Public records, framed as questions."),
@@ -298,6 +300,8 @@ NAV_LABEL = {
     "testimony_effect_map.html": "Testimony Effect Map",
     "great_mahele_overlay.html": "The Great Mahele on the Map",
     "maui_contract_awards.html": "Contract Awards",
+    "meeting_money.html": "Money by Meeting",
+    "maui_explainers.html": "Maui: Coming Up",
     "lobby_money_watch.html": "Lobby + Money",
     "officials_scorecard.html": "Officials Scorecard",
     "lege_legislator_scorecard.html": "Legislator Scorecard",
@@ -668,6 +672,22 @@ def ensure_main(html):
         return html
     return (html[:opening.start()] + opening.group(1) + '<main class="wrap">' + html[opening.end():closing.start()]
             + "</main>" + html[closing.end():])
+
+
+COMING_UP = (
+    '<section style="padding-top:0" aria-labelledby="coming-up"><h2 id="coming-up">Coming up in Maui</h2><div class="grid3">'
+    '<div class="card watch"><h3>Watch before you testify</h3><div class="m">A short video for each upcoming County meeting, in '
+    'plain words, from the official public record.</div><a class="go" href="maui_explainers.html">Watch the meetings -&gt;</a></div>'
+    '<div class="card watch"><h3>The money, bill by bill</h3><div class="m">Campaign money on file, related County contracts and '
+    'subcontracts, and votes so far for each bill coming up.</div><a class="go" href="meeting_money.html">Follow the money -&gt;</a>'
+    '</div></div></section>\n  ')
+
+
+def add_coming_up(front, site):
+    """Put the upcoming-meetings entry first on the front page, only when both pages were built (never a dead link)."""
+    if all(os.path.exists(os.path.join(site, p)) for p in ("maui_explainers.html", "meeting_money.html")):
+        return front.replace("<section", COMING_UP + "<section", 1)
+    return front
 
 
 def inject_nav(html, current):
@@ -1804,6 +1824,12 @@ Sources are linked on every page.</div>
         # contexts (public site root + king-local, where index.html is the King shell).
         with open(os.path.join(SITE, "reports.html"), "w", encoding="utf-8") as f:
             f.write(index)
+    with _lane("explainer_media"):
+        # videos of upcoming meetings for maui_explainers.html (made on the owner's machine; absent in CI)
+        _media = os.path.join(os.path.dirname(MAUIOS), "_status", "public_media")
+        if os.path.isdir(_media) and os.path.exists(os.path.join(SITE, "maui_explainers.html")):
+            shutil.copytree(_media, os.path.join(SITE, "media"), dirs_exist_ok=True)
+            print("  + media/: upcoming meeting videos")
     with _lane("public_front_door"):
         # [front door] 2026-07: the education page (Lux et Veritas PONO) is now the public front door
         # per owner request — it fronts the whole government watcher (daily briefing + yearly meeting
@@ -1829,6 +1855,7 @@ Sources are linked on every page.</div>
                 # target pages are siblings in the deployed root. Source stays untouched.
                 for _a in ('href="site/', "href='site/", 'src="site/', "src='site/"):
                     _front = _front.replace(_a, _a[:-5])   # drop the trailing "site/"
+                _front = add_coming_up(_front, SITE)
             with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8", newline="\n") as _f:
                 _f.write(_front)
             if _idx_src == _edu_root:
