@@ -1917,6 +1917,15 @@ Sources are linked on every page.</div>
             if not os.path.exists(_asrc):
                 raise RuntimeError("canonical %s missing at repo root - stamp skipped, pages keep inline blobs" % _an)
             shutil.copy(_asrc, os.path.join(SITE, _an))
+        # Public explainer sharing stays a separate, credential-free browser asset. It is
+        # referenced by generated agenda_explainer.html and must ship with the static build;
+        # copying it here cannot stage, approve, schedule, or publish a social post.
+        _share_src = os.path.join(_here, "assets", "sgi-share.js")
+        if not os.path.exists(_share_src):
+            raise RuntimeError("canonical assets/sgi-share.js missing - public sharing cannot be built")
+        _share_dir = os.path.join(SITE, "assets")
+        os.makedirs(_share_dir, exist_ok=True)
+        shutil.copy(_share_src, os.path.join(_share_dir, "sgi-share.js"))
         import pathlib as _pl
         # rebuild_site.py sits next to this file. If build_site is ever IMPORTED (e.g. publish_audit.py) or
         # run from a foreign cwd, this dir may not be on sys.path -> `No module named 'rebuild_site'` silently
