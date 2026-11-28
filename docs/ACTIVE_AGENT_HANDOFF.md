@@ -1,5 +1,43 @@
 # Active Agent Handoff
 
+## Issue #403 recovery and explainer-sharing integration — 2026-11-27
+
+- BRANCH: `codex/issue-403-recovery-sharing`, based on current `main`; review branch only, with no
+  deployment, public publishing, social queue mutation, or merge.
+- INSPECTED: issue #403, merged PR #404, the clean self-hosted runner checkout, the separate
+  modified Documents checkout, Docker/AI Gateway/King Bridge/Workboard, Ollama, Neo4j, Tailscale
+  Serve, the private NAGA phone-dispatch surface, and the existing social approval workers.
+- CHANGED: `watchers/agenda_explainer.py` now gives each sourced agenda card a stable
+  `https://12sgi.com/agenda_explainer.html?card=...` URL and mounts the credential-free
+  `assets/sgi-share.js` manual sharing controls while preserving the existing image-share fallback.
+  `build_site.py` now ships that asset into `site/assets/`. Focused regression coverage is in
+  `tests/test_agenda_explainer_sharing.py`.
+- LOCAL RECOVERY: Docker's v2 stack is running from the clean runner checkout and aggregate
+  `/api/v1/ready` reports ready. The AI Gateway image contains 123 registry tools and its Claude
+  bridge URL/token contract is configured. A non-elevated logon task named
+  `QUAD OS Claude Read-Only Bridge` now starts the loopback-only authenticated adapter. A real
+  stop/task-start test returned task result 0; unauthenticated health returned 401 and authenticated
+  host/container health returned 200.
+- SECURITY: removed Tailscale TCP forwards for Neo4j ports 7474 and 7687. Docker continues to bind
+  them only to `127.0.0.1`; the healthy graph contains 22,695 nodes. Neo4j intentionally has auth
+  disabled for its local consumers, so loopback-only exposure is the enforced boundary. The
+  `govOS Agenda Reels (auto-publish)` Windows task was disabled while the engineering release gate
+  is active; re-enabling that named task is the rollback after Owner release approval.
+- VERIFY: 3 focused Python tests, 2 Node share tests, Python compilation, and `git diff --check`
+  passed. Workboard board-api health returned alive and no pending approvals were present. No social
+  connector is configured and no post was attempted.
+- OLLAMA RECOVERY: the first model loads stalled. With no loaded model, no Workboard approvals, and
+  free GPU capacity, one bounded Ollama application restart was performed. `qwen3:1.7b` then returned
+  `KING_READY`, and the active `king-jrcsl` persona returned `KING_PERSONA_READY`; both were unloaded
+  after the probe. This verifies real inference rather than version/catalog reachability alone.
+- BLOCKERS: authenticated Claude reached the adapter but returned `Credit balance is too low`.
+  AI Gateway-to-Claude invocation still needs a real active Owner JWT; do not mint a synthetic Owner
+  session to bypass that claim boundary. Phone-side Tailscale/NAGA submission still needs validation
+  from the actual owner device.
+- NEXT: complete the real Owner-authenticated Gateway review/status test, then perform phone/mobile
+  and reboot verification. Do not re-enable automatic publishing or deploy the explainer change until
+  existing release gates pass and the Owner approves.
+
 ## GitHub-only manual explainer sharing — 2026-11-27
 
 - OWNER REQUEST: Integrate civic explainer sharing using GitHub while preserving local-first authority and the existing engineering-first release gate.

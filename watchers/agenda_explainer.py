@@ -36,6 +36,7 @@ NAMES = {"state":"State of Hawaiʻi","maui":"Maui County","honolulu":"City & Cou
          "paris":"Paris","dubai":"Dubai"}
 ORDER = ["maui","honolulu","state","hawaii","kauai","nyc","nys","liverpool","london","hongkong",
          "tokyo","singapore","zurich","frankfurt","paris","dubai"]
+PUBLIC_EXPLAINER_URL = "https://12sgi.com/agenda_explainer.html"
 
 def links_for(tid):
     out = {}
@@ -67,7 +68,10 @@ def card(tid, m, idx):
     caption = ("⚖ %s — %s%s on %s. Know the law, follow the money, and testify BEFORE the vote. "
                "This is how we get ahead of it.%s #govOS #FollowTheMoney #%s #KiloAupuni #Aloha" % (
                  nm, body, (" — " + title) if title else "", date, moon_cap, tid))
-    share_url = "https://jimlangford.github.io/12sgi-king/agenda_explainer.html"
+    card_id = "%s-%d" % (tid, idx)
+    # A query parameter survives the public-safe share module's deliberate removal of URL
+    # fragments, while the client-side reader below still scrolls to the exact card.
+    share_url = "%s?card=%s" % (PUBLIC_EXPLAINER_URL, card_id)
     chips = ""
     for k, lbl in (("law","the law ⇄"),("money","the money"),("parity","the pairs"),("agendas","full agenda")):
         if L.get(k): chips += '<a class="chip" href="%s">%s</a>' % (esc(L[k]), lbl)
@@ -76,7 +80,8 @@ def card(tid, m, idx):
     sub = esc(body) + ((" — " + esc(title)) if title else "") + " · " + esc(date)
     title_text = body[:80] + ((" — " + title) if title else "")
     moon_text = (mr["po"] + " moon · pō " + str(mr["night"]) + " — " + mr["offering"]) if mr else ""
-    return ('<div class="ex" data-cap="' + ja(caption) + '" data-url="' + ja(share_url) + '"'
+    return ('<div class="ex" id="explainer-' + card_id + '" data-card-id="' + card_id
+      + '" data-cap="' + ja(caption) + '" data-url="' + ja(share_url) + '"'
       ' data-date="' + ja(date) + '" data-tenant="' + ja(nm) + '" data-title="' + ja(title_text) + '"'
       ' data-cta="' + ja(tip) + '" data-moon="' + ja(moon_text) + '">'
       '<div class="card9"><div class="c9-top"><span class="c9-eye">govOS · get ahead of the vote</span></div>'
@@ -97,6 +102,7 @@ def card(tid, m, idx):
       '<button class="sb" data-copy>Copy caption</button>'
       '<a class="sb" data-x target="_blank" rel="noopener">Post to X</a>'
       '<a class="sb" data-fb target="_blank" rel="noopener">Facebook</a>' + src_btn + '</div>'
+      '<div class="manual-share" data-manual-share></div>'
       '<div class="hint">&#128228; Share graphic sends the card <b>image</b> itself (with the date in its title) straight to TikTok / IG / FB / X via your share sheet. No share sheet? It saves the .png and copies the caption.</div>'
       '</div></div>')
 
@@ -140,6 +146,7 @@ def build():
      " .chips{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 10px} .chip{font-family:Consolas,monospace;font-size:11px;text-decoration:none;color:#d9b24c;border:1px solid #243029;border-radius:8px;padding:5px 9px} .chip.act{color:#9fd9bf;border-color:#2a6b4e} .chip:hover{background:rgba(217,178,76,.1)}"
      " .cap{font-size:12.5px;color:#cfc9b6;background:#151d19;border:1px solid #243029;border-radius:9px;padding:10px 12px;margin:6px 0}"
      " .sbtns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0} .sb{font-family:Consolas,monospace;font-size:12px;padding:8px 13px;border-radius:9px;border:1px solid #d9b24c;color:#d9b24c;background:rgba(217,178,76,.06);cursor:pointer;text-decoration:none} .sb.primary{background:#d9b24c;color:#0c100e;font-weight:700} .sb:hover{background:rgba(217,178,76,.16)}"
+     " .sgi-share-bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 6px}.sgi-share-bar button,.sgi-share-bar a{font-family:Consolas,monospace;font-size:11px;padding:7px 10px;border-radius:8px;border:1px solid #2a6b4e;color:#9fd9bf;background:rgba(42,107,78,.08);cursor:pointer;text-decoration:none}.sgi-share-bar button:hover,.sgi-share-bar a:hover,.sgi-share-bar button:focus-visible,.sgi-share-bar a:focus-visible{background:rgba(42,107,78,.22);outline:2px solid #d9b24c;outline-offset:2px}.sgi-share-status{display:block;min-height:1.5em;font-family:Consolas,monospace;font-size:11px;color:#9a957f}"
      " .hint{font-size:11px;color:#9a957f;font-style:italic;margin-top:6px} .none{font-size:14px;color:#9a957f;font-style:italic}"
      " .tsec{font-size:16px;color:#f0ead8;margin:28px 0 2px;border-bottom:1px solid #243029;padding-bottom:6px;scroll-margin-top:60px} .tlink{font-family:Consolas,monospace;font-size:11px;margin-left:8px;font-weight:400} .jump{font-size:12px;color:#cfc9b6;margin:12px 0} .jump a{color:#d9b24c;font-family:Consolas,monospace;font-size:11px}"
      " a{color:#d9b24c} footer{margin-top:28px;border-top:1px solid #243029;padding-top:12px;font-family:Consolas,monospace;font-size:10.5px;color:#9a957f}</style>")
@@ -184,11 +191,20 @@ def build():
   var sv=ex.querySelector('[data-save]');if(sv)sv.addEventListener('click',function(){var o=sv.textContent;sv.textContent='Rendering…';toPng(ex,function(blob){dl(blob,fname(ex));sv.textContent='Saved ✓';setTimeout(function(){sv.textContent=o;},1800);});});
   var cp=ex.querySelector('[data-copy]');if(cp)cp.addEventListener('click',function(){if(navigator.clipboard)navigator.clipboard.writeText(cap+' '+url);var o=cp.textContent;cp.textContent='Copied ✓';setTimeout(function(){cp.textContent=o;},1500);});
  });
+  function initManualSharing(){
+   if(window.SGIShare){document.querySelectorAll('[data-manual-share]').forEach(function(mount){
+    var ex=mount.closest('.ex'),ok=window.SGIShare.addShareTools(mount,{url:ex.getAttribute('data-url'),title:'govOS agenda — '+(ex.getAttribute('data-tenant')||''),summary:ex.getAttribute('data-cap')||''});
+    if(ok){ex.querySelectorAll('[data-x],[data-fb]').forEach(function(el){el.hidden=true;});}
+   });}
+   try{var id=new URLSearchParams(window.location.search).get('card'),target=(id&&/^[a-z0-9-]+$/i.test(id))?document.getElementById('explainer-'+id):null;if(target)target.scrollIntoView({block:'start'});}catch(e){}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initManualSharing);else initManualSharing();
 })();
 </script>"""
     return ("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">"
-      "<title>Agenda Explainer — get ahead of the vote | govOS</title>" + CSS + "</head><body><div class=\"wrap\">"
+      "<title>Agenda Explainer — get ahead of the vote | govOS</title>" + CSS
+      + "<script src=\"assets/sgi-share.js\" defer></script></head><body><div class=\"wrap\">"
       "<div class=\"eyebrow\">12 Stones Global · Kilo Aupuni · forecast → fact → publish</div>"
       "<h1>Agenda Explainer — get ahead of the vote</h1>"
       "<p class=\"lead\">Every upcoming meeting becomes a shareable fact-card: what's being decided, the law that "
