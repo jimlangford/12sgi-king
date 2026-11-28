@@ -16,12 +16,12 @@ What it does:
   7. Ensures all internal links use correct relative paths (no broken /site/ prefixes)
   8. Writes in-place with CRLF normalization to LF
 """
+import argparse
+import datetime
 import os
+import pathlib
 import re
 import sys
-import argparse
-import pathlib
-import datetime
 
 # SITE_DIR must point at the built site/ directory so asset_prefix() calculates depth
 # relative to site/ (depth-0 for root pages, depth-1 for king/, depth-2 for king/civic/).
@@ -33,7 +33,15 @@ SITE_DIR = pathlib.Path(__file__).parent / "site"
 # carries ?v=<build date>. Bare links let a cached stylesheet outlive a palette/layout change --
 # the documented "stale cached CSS silently UNSTYLES civic pages" gotcha (looks broken, isn't a
 # code bug). Computed once per run; build_site.py's wrapper emission carries its own copy.
-BUILD_V = datetime.date.today().isoformat()
+HAWAII = datetime.timezone(datetime.timedelta(hours=-10))
+
+
+def build_date(now=None):
+    """The stamp's date in Hawaiʻi time, matching build_site.py whatever the build machine's clock zone is."""
+    return (now or datetime.datetime.now(HAWAII)).astimezone(HAWAII).date().isoformat()
+
+
+BUILD_V = build_date()
 
 # ── Patterns to strip (old inline blobs) ──────────────────────────────────────
 

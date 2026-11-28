@@ -1926,6 +1926,7 @@ Sources are linked on every page.</div>
             sys.path.insert(0, _here)
         import rebuild_site as _rs
         _rs.SITE_DIR = _pl.Path(SITE)   # honor KA_SITE overrides; asset ../ depth computed from the real SITE
+        _rs.BUILD_V = BUILD_V   # ONE date for the whole build: two dates reorder the stylesheets
         _sfiles = [p for p in sorted(_rs.SITE_DIR.glob("**/*.html"))
                    if ".git" not in p.parts and "__pycache__" not in p.parts]
         # ASSET dimension: give headless civic fragments a real <head>/<body> FIRST, so the stamp below
