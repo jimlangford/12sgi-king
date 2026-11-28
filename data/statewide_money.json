@@ -1,0 +1,458 @@
+{
+ "asOf": "2026-11-28 06:25 HST",
+ "by_office": [
+  {
+   "office": "House",
+   "total": 18693979.37,
+   "n": 39275
+  },
+  {
+   "office": "Governor",
+   "total": 18216230.24,
+   "n": 18489
+  },
+  {
+   "office": "Mayor",
+   "total": 16776870.01,
+   "n": 17645
+  },
+  {
+   "office": "Senate",
+   "total": 14074611.68,
+   "n": 25813
+  },
+  {
+   "office": "Lt. Governor",
+   "total": 9844247.47,
+   "n": 9950
+  },
+  {
+   "office": "Honolulu Council",
+   "total": 8818288.66,
+   "n": 10470
+  },
+  {
+   "office": "Maui Council",
+   "total": 4444368.22,
+   "n": 7744
+  },
+  {
+   "office": "Hawaii Council",
+   "total": 1529109.64,
+   "n": 2961
+  },
+  {
+   "office": "OHA",
+   "total": 1335979.48,
+   "n": 1846
+  },
+  {
+   "office": "Prosecuting Attorney",
+   "total": 1249103.96,
+   "n": 2536
+  },
+  {
+   "office": "Kauai Council",
+   "total": 1221930.29,
+   "n": 3042
+  }
+ ],
+ "top_donors": [
+  {
+   "name": "Local Union 1186 IBEW PAC Fund",
+   "total": 341900.0,
+   "cands": 97,
+   "gifts": 207
+  },
+  {
+   "name": "Hawaii Laborers Political Action Committee",
+   "total": 294950.0,
+   "cands": 83,
+   "gifts": 183
+  },
+  {
+   "name": "Hawaii Operating Engineers Industry Stabilization",
+   "total": 259000.0,
+   "cands": 73,
+   "gifts": 168
+  },
+  {
+   "name": "Hawaii Regional Council of Carpenters",
+   "total": 239800.0,
+   "cands": 79,
+   "gifts": 151
+  },
+  {
+   "name": "HGEA Political Contribution Account",
+   "total": 230833.19,
+   "cands": 80,
+   "gifts": 203
+  },
+  {
+   "name": "Hawaii Laborers PAC",
+   "total": 229275.0,
+   "cands": 56,
+   "gifts": 130
+  },
+  {
+   "name": "ARDA ROC-PAC",
+   "total": 224850.0,
+   "cands": 78,
+   "gifts": 262
+  },
+  {
+   "name": "United Public Workers PAC",
+   "total": 222300.0,
+   "cands": 72,
+   "gifts": 174
+  },
+  {
+   "name": "Local Union 293 State Legislature Fund",
+   "total": 218000.0,
+   "cands": 55,
+   "gifts": 90
+  },
+  {
+   "name": "Josh Green for Hawaii",
+   "total": 216920.46,
+   "cands": 3,
+   "gifts": 23
+  },
+  {
+   "name": "Island Insurance PAC",
+   "total": 208812.66,
+   "cands": 96,
+   "gifts": 321
+  },
+  {
+   "name": "MK Advocacy Group LLC",
+   "total": 186149.1,
+   "cands": 75,
+   "gifts": 226
+  },
+  {
+   "name": "ILWU Local 142",
+   "total": 185900.0,
+   "cands": 62,
+   "gifts": 163
+  },
+  {
+   "name": "Hawaii Realtors Political Action Committee",
+   "total": 183250.0,
+   "cands": 65,
+   "gifts": 162
+  },
+  {
+   "name": "Hawaii Realtors PAC",
+   "total": 179400.0,
+   "cands": 48,
+   "gifts": 157
+  },
+  {
+   "name": "Kobayashi, Patrick",
+   "total": 177000.0,
+   "cands": 53,
+   "gifts": 119
+  },
+  {
+   "name": "United Public Workers Political Action Committee",
+   "total": 165500.0,
+   "cands": 59,
+   "gifts": 134
+  },
+  {
+   "name": "Coppa, Bruce",
+   "total": 158418.12,
+   "cands": 91,
+   "gifts": 431
+  },
+  {
+   "name": "Park Hotels and Resorts",
+   "total": 152000.0,
+   "cands": 24,
+   "gifts": 49
+  },
+  {
+   "name": "Oshiro, Blake",
+   "total": 148367.84,
+   "cands": 94,
+   "gifts": 351
+  },
+  {
+   "name": "Nareit Hawaii",
+   "total": 148250.0,
+   "cands": 71,
+   "gifts": 281
+  },
+  {
+   "name": "Altria Client Services LLC",
+   "total": 145250.0,
+   "cands": 39,
+   "gifts": 178
+  },
+  {
+   "name": "University of Hawaii Professional Assembly",
+   "total": 144000.0,
+   "cands": 42,
+   "gifts": 90
+  },
+  {
+   "name": "HEMEP Political Fund",
+   "total": 135000.0,
+   "cands": 36,
+   "gifts": 53
+  },
+  {
+   "name": "Ironworkers for Better Government",
+   "total": 132475.0,
+   "cands": 41,
+   "gifts": 132
+  },
+  {
+   "name": "Kobayashi, Bert A.",
+   "total": 131400.0,
+   "cands": 60,
+   "gifts": 168
+  },
+  {
+   "name": "Imanaka, Mitchell A.",
+   "total": 130623.07,
+   "cands": 51,
+   "gifts": 164
+  },
+  {
+   "name": "Camp, Christine",
+   "total": 128590.81,
+   "cands": 43,
+   "gifts": 100
+  },
+  {
+   "name": "American Beverage Association",
+   "total": 128250.0,
+   "cands": 78,
+   "gifts": 356
+  },
+  {
+   "name": "Hawaii State Teachers Association",
+   "total": 126900.0,
+   "cands": 60,
+   "gifts": 202
+  },
+  {
+   "name": "Hawaii Carpenters Political Action Fund",
+   "total": 126271.0,
+   "cands": 39,
+   "gifts": 75
+  },
+  {
+   "name": "Sabas, Jennifer",
+   "total": 125508.28,
+   "cands": 79,
+   "gifts": 283
+  },
+  {
+   "name": "Patsy T. Mink PAC",
+   "total": 125500.0,
+   "cands": 26,
+   "gifts": 53
+  },
+  {
+   "name": "General Contractors Association of Hawaii PAC",
+   "total": 124257.0,
+   "cands": 63,
+   "gifts": 188
+  },
+  {
+   "name": "Kuriyama, Stanley",
+   "total": 122513.56,
+   "cands": 64,
+   "gifts": 185
+  },
+  {
+   "name": "Kosasa, Thomas",
+   "total": 120896.65,
+   "cands": 23,
+   "gifts": 34
+  },
+  {
+   "name": "ILWU Local 142 PAC",
+   "total": 119750.0,
+   "cands": 26,
+   "gifts": 96
+  },
+  {
+   "name": "Buck, Chad",
+   "total": 119340.75,
+   "cands": 35,
+   "gifts": 48
+  },
+  {
+   "name": "Plumbers & Pipefitters Political Action Committee",
+   "total": 118250.0,
+   "cands": 43,
+   "gifts": 95
+  },
+  {
+   "name": "Plumbers & Pipefitters PAC Fund",
+   "total": 118150.0,
+   "cands": 41,
+   "gifts": 89
+  }
+ ],
+ "by_year": [
+  {
+   "yr": "2008",
+   "total": 24000.0,
+   "n": 43
+  },
+  {
+   "yr": "2009",
+   "total": 213353.51,
+   "n": 253
+  },
+  {
+   "yr": "2010",
+   "total": 889289.16,
+   "n": 1073
+  },
+  {
+   "yr": "2011",
+   "total": 332903.35,
+   "n": 364
+  },
+  {
+   "yr": "2012",
+   "total": 482528.25,
+   "n": 992
+  },
+  {
+   "yr": "2013",
+   "total": 564796.12,
+   "n": 609
+  },
+  {
+   "yr": "2014",
+   "total": 2307663.68,
+   "n": 3253
+  },
+  {
+   "yr": "2015",
+   "total": 2933282.41,
+   "n": 5518
+  },
+  {
+   "yr": "2016",
+   "total": 8427090.31,
+   "n": 16428
+  },
+  {
+   "yr": "2017",
+   "total": 5715631.46,
+   "n": 8085
+  },
+  {
+   "yr": "2018",
+   "total": 11984198.2,
+   "n": 19215
+  },
+  {
+   "yr": "2019",
+   "total": 4983691.96,
+   "n": 7171
+  },
+  {
+   "yr": "2020",
+   "total": 11930959.66,
+   "n": 16224
+  },
+  {
+   "yr": "2021",
+   "total": 5481107.62,
+   "n": 4739
+  },
+  {
+   "yr": "2022",
+   "total": 14153623.55,
+   "n": 19190
+  },
+  {
+   "yr": "2023",
+   "total": 4524055.25,
+   "n": 5671
+  },
+  {
+   "yr": "2024",
+   "total": 8134123.26,
+   "n": 11400
+  },
+  {
+   "yr": "2025",
+   "total": 4179819.97,
+   "n": 6800
+  },
+  {
+   "yr": "2026",
+   "total": 8942601.3,
+   "n": 12743
+  }
+ ],
+ "realestate_by_office": [
+  {
+   "office": "Governor",
+   "total": 971968.88,
+   "n": 694
+  },
+  {
+   "office": "Mayor",
+   "total": 967119.61,
+   "n": 727
+  },
+  {
+   "office": "House",
+   "total": 705155.25,
+   "n": 1081
+  },
+  {
+   "office": "Honolulu Council",
+   "total": 565138.07,
+   "n": 550
+  },
+  {
+   "office": "Senate",
+   "total": 512542.5,
+   "n": 608
+  },
+  {
+   "office": "Lt. Governor",
+   "total": 390648.83,
+   "n": 321
+  },
+  {
+   "office": "Maui Council",
+   "total": 282510.77,
+   "n": 303
+  },
+  {
+   "office": "Hawaii Council",
+   "total": 62285.67,
+   "n": 91
+  },
+  {
+   "office": "OHA",
+   "total": 45552.0,
+   "n": 54
+  },
+  {
+   "office": "Kauai Council",
+   "total": 33899.45,
+   "n": 42
+  },
+  {
+   "office": "Prosecuting Attorney",
+   "total": 31221.15,
+   "n": 56
+  }
+ ],
+ "grand_total": 96204719.02,
+ "realestate_total": 4568042.18
+}

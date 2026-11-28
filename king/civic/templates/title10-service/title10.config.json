@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "id": "title10",
+    "codeTitle": 10,
+    "name": "Vehicles & Traffic",
+    "department": "Police Department + Public Works (Maui Traffic Code)",
+    "templateName": "Title 10 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 10 (Vehicles & Traffic) — parking rules, citations, vehicle removal, and who pays. Sourced to Municode; hands off to the County's payment options. First version, expanding.",
+    "pageTitle": "Title 10 — Vehicles & Traffic · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 10 — Vehicles &amp; Traffic <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title10 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 12 — Streets", "href": "../title12-service/Title12%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 10 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT10VETR", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 10 (Vehicles &amp; Traffic)</b> — the <b>Maui Traffic Code</b>: where you can and can't park, what happens with a citation or a towed vehicle, and who pays. Enforced by the <b>Police Department</b>; the roadway code is administered with <b>Public Works</b>. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in; nothing here is legal advice — and never rely on a summary for a specific parking sign.</b>"
+  },
+  "sections": [
+    {
+      "type": "table",
+      "title": "1 · Parking rules at a glance",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Common stopping/standing/parking rules from Ch. 10.48 (Maui Traffic Code, Art. I). Always obey posted signs — they can be stricter than these defaults.",
+      "columns": ["Rule", "Limit", "Cite"],
+      "rows": [
+        [{"v": "No parking near a fire hydrant"}, {"v": "within 10 ft", "cls": "n"}, {"v": "Ch. 10.48"}],
+        [{"v": "No parking approaching a stop sign / flashing beacon"}, {"v": "within 30 ft", "cls": "n"}, {"v": "Ch. 10.48"}],
+        [{"v": "No parking near a traffic signal"}, {"v": "within 75 ft", "cls": "n"}, {"v": "Ch. 10.48"}],
+        [{"v": "Park parallel, with traffic, wheels to curb"}, {"v": "within 12 in", "cls": "c"}, {"v": "§10.48.130"}],
+        [{"v": "Overnight on-street parking limit"}, {"v": "60 min, 2am–6am", "cls": "c"}, {"v": "§10.48.110"}],
+        [{"v": "Limited-parking zones (where posted)"}, {"v": "120 min, 8am–6pm", "cls": "c"}, {"v": "§10.48.095"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT10VETR_ARTIMATRCO_CH10.48STSTPA_10.48.120PAST\" target=\"_blank\" rel=\"noopener\">Ch. 10.48 (Stopping, Standing &amp; Parking)</a> §§10.48.020/.095/.110/.130. Posted signage controls.", "expanding": "full prohibited-parking list + special parking districts (Ch. 10.76)"}
+    },
+    {
+      "type": "process",
+      "title": "2 · Got a citation or a towed vehicle?",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "The general path after a parking/traffic citation or a removal under Title 10.",
+      "steps": [
+        {"name": "Citation issued", "what": "A police officer issues a citation for a parking/traffic violation; it states the violation and how to respond.", "pay": "Expense: the fine · paid by: vehicle owner/operator"},
+        {"name": "Pay or contest", "what": "Pay the citation, or contest it by the date stated. Many Hawaiʻi traffic citations are handled through the State Judiciary; County parking citations through the County's payment options.", "pay": "Expense: fine (or hearing) · paid by: owner"},
+        {"name": "Vehicle removal / tow", "what": "A vehicle parked as a hazard or obstruction may be <b>removed</b> by the police or a property owner (§10.48.210); recovering it means paying tow and storage.", "pay": "Expense: tow + storage · paid by: owner"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Traffic and parking rules exist for <b>safety and shared access</b>, not revenue. Fines and tow fees should be <b>proportionate and clearly posted</b> — a citation shouldn't function as a hidden tax on residents who can least afford it."}
+      },
+      "source": {"html": "Maui County Code <a href=\"http://mauico-hi.elaws.us/code/coor_title10_arti_ch10.48_sec10.48.210\" target=\"_blank\" rel=\"noopener\">§10.48.210 (Removal—Procedure)</a>; payment via the County's <a href=\"https://www.mauicounty.gov/1764/Electronic-Payment-Options\" target=\"_blank\" rel=\"noopener\">Electronic Payment Options</a>.", "expanding": "exact parking-citation portal + contest procedure"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Enforcement &amp; who enforces",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "How Title 10 is enforced. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">The <b>Maui Traffic Code (Title 10)</b> is enforced by the <b>Police Department</b>, layered over State traffic law (HRS Title 17). <i>Note:</i> the zoning-enforcement chapter §19.530.030 reaches MCC titles 8, 12, 14, 16, 18, 19 and 20 — it does <b>not</b> list Title 10, so traffic and parking enforcement runs on the Traffic Code's own citation/penalty mechanics and State law, not the zoning-enforcement engine.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT10VETR\" target=\"_blank\" rel=\"noopener\">Title 10 (Vehicles &amp; Traffic)</a> + State HRS Title 17. Specific penalty sections <span class=\"exp\">expanding</span>."}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · Who pays — the charter lens",
+      "note": "Labeled analysis — traffic rules read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Police Department enforces the traffic code and Public Works maintains the roads; fines are set by ordinance and State law. The Charter frames traffic regulation as a <b>public-safety</b> function.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, the public road is a <b>commons</b> held for everyone's free movement; rules are legitimate to keep that commons safe and open, but enforcement should serve <b>movement and safety</b>, not be turned into a revenue stream that falls hardest on working residents.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Keep the roads safe and moving; price citations to <b>change behavior</b>, not to balance a budget on the backs of the people who use the road most. Same code, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "5 · Rules → Code: candidates for codification / clarity",
+      "intro": "Provisions that, in our assessment, Title 10 should make <b>clearer or more transparent</b> so residents can comply and contest fairly. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>Publish a plain-language fine schedule.</b> Parking/traffic fine amounts are scattered. → Codify a single <b>readable fine table</b> so a resident knows the cost before, not after.",
+        "<b>One contest path.</b> Citations split between County and State systems confuse residents. → Document a <b>single front door</b> for paying or contesting a Maui citation. <span class=\"exp\">expanding</span>",
+        "<b>Tow-and-storage caps.</b> Recovery costs can exceed the fine. → Codify <b>caps and notice rules</b> for removal so a tow isn't a disproportionate penalty."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT10VETR\" target=\"_blank\" rel=\"noopener\">Title 10</a>; contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the parking-rules table, and the citation navigator are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a citation look-up helper and an <b>AI traffic-code assistant</b> will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only); any citation payment happens on the County's or State's own system."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 10 (Vehicles &amp; Traffic / Maui Traffic Code)</b> via Municode + State HRS Title 17 · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforced by Police; not reached by §19.530.030 · posted signage always controls · not legal advice · public records only."
+}

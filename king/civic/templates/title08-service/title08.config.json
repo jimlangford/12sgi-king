@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "id": "title08",
+    "codeTitle": 8,
+    "name": "Health & Safety",
+    "department": "Environmental Management (Solid Waste) + Health programs",
+    "templateName": "Title 8 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 8 (Health & Safety) — nuisances, sanitation, noise, solid waste, and enforcement. Sourced to Municode + County; first version, intentionally structural where corpus is pending; expanding.",
+    "pageTitle": "Title 8 — Health & Safety · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 8 — Health &amp; Safety <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title8 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 20 — Environmental", "href": "../title20-service/Title20%20Service.html"},
+    {"label": "↔ Title 6 — Animals", "href": "../title06-service/Title6%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 8 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT8HESA", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 8 (Health &amp; Safety)</b> — the County's <b>nuisance, sanitation, noise, and solid-waste</b> rules, and how violations are enforced. Solid waste is run by the <b>Department of Environmental Management</b>. <b>This is a structural first version — much of Title 8 is <span class=\"exp\">expanding</span> as the ingestion corpus is sourced verbatim; we assert only what is cited; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://www.mauicounty.gov/1017/Solid-Waste-Refuse",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT8HESA",
+    "permitLinkLabel": "Solid waste & refuse services ↗",
+    "codeLinkLabel": "Title 8 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Many health-and-safety matters (overgrown lots, illegal dumping, sanitation nuisances) are tied to a property. Enter a Maui County <b>TMK</b> to see the parcel's designations from the Hawaiʻi Statewide GIS as context before reporting or responding to a nuisance.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS</a>. No parcel data is stored or fabricated — fetched live.", "expanding": "nuisance / code-case overlay"}
+    },
+    {
+      "type": "prose",
+      "title": "1 · What Title 8 covers",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "A structural overview while chapters are sourced verbatim. We name only what is in the Code's own structure.",
+      "html": "<p style=\"font-size:14.5px\">Title 8 (<b>Health &amp; Safety</b>, §§8.04.005–8.34.080) carries the County's public-health, <b>sanitation</b>, <b>nuisance</b>, <b>noise</b>, and <b>solid-waste</b> rules. Solid waste — collection, transfer stations, the landfill, and illegal-dumping rules — is administered by the <b>Department of Environmental Management, Solid Waste Division</b>. The chapter-by-chapter content is <span class=\"exp\">expanding</span> as the ingestion session sources each chapter from Municode; until then, use the Municode link for authority.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT8HESA\" target=\"_blank\" rel=\"noopener\">Title 8 (Health &amp; Safety)</a> + County <a href=\"https://www.mauicounty.gov/1017/Solid-Waste-Refuse\" target=\"_blank\" rel=\"noopener\">Solid Waste Division</a>.", "expanding": "per-chapter content (nuisance, noise, sanitation, solid waste)"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Common Title 8 matters &amp; where to go",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "Where residents typically interact with Title 8.",
+      "columns": ["Matter", "What it covers", "Where"],
+      "rows": [
+        [{"v": "Trash, recycling, transfer stations, landfill"}, {"v": "Solid-waste collection & disposal"}, {"html": "<a href=\"https://www.mauicounty.gov/1017/Solid-Waste-Refuse\" target=\"_blank\" rel=\"noopener\">Solid Waste ↗</a>"}],
+        [{"v": "Illegal dumping"}, {"v": "Dumping on public/private land", "cls": "c"}, {"html": "<a href=\"https://www.mauicounty.gov/1017/Solid-Waste-Refuse\" target=\"_blank\" rel=\"noopener\">report ↗</a>"}],
+        [{"v": "Noise"}, {"v": "County noise rules (+ State noise code)", "cls": "c"}, {"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT8HESA\" target=\"_blank\" rel=\"noopener\">Title 8 ↗</a>"}],
+        [{"v": "Sanitation nuisance"}, {"v": "Conditions injurious to health"}, {"html": "<a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT8HESA\" target=\"_blank\" rel=\"noopener\">Title 8 ↗</a>"}]
+      ],
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/1017/Solid-Waste-Refuse\" target=\"_blank\" rel=\"noopener\">Solid Waste Division</a> + MCC Title 8.", "expanding": "exact reporting channels per matter"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Health-and-safety violations are reachable through the County enforcement engine. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of MCC <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits — so a Title 8 health-and-safety violation (e.g. an unsanitary nuisance or illegal dumping) can draw a <b>notice of violation and order</b> requiring abatement and/or civil fines, final after 30 days unless appealed to the <b>Board of Variances and Appeals</b>.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530</a> (§19.530.030 reach, sourced in the Title 19 service). <i>Note: the §15-2/MC-15 cross-title fine schedule is specific to Titles 16·18·19 and does not extend to Title 8.</i>", "expanding": "Title 8-specific penalty provisions"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · Who pays — the charter lens",
+      "note": "Labeled analysis — health & safety read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the County protects public health and safety through sanitation, nuisance, and solid-waste programs administered by Environmental Management; fees (e.g. tipping fees) and the general fund support the service.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, a clean, healthy living environment is a shared birthright; protecting it is a communal kuleana. The lens favors <b>accessible disposal and strong action against polluters</b>, and resists fees so high they push residents toward illegal dumping.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Keep legal disposal <b>easy and affordable</b> so the clean path is the cheap path, and aim enforcement at <b>those who dump on the commons</b>. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the parcel lookup, and the structural overview are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a nuisance-report helper and an <b>AI Title-8 assistant</b> will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 8 (Health &amp; Safety)</b> via Municode + County of Maui <b>Environmental Management / Solid Waste</b> + Hawaiʻi Statewide GIS · first version 2026-06-18, intentionally structural where corpus ingest is pending; expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforcement reach per §19.530.030 · not legal advice · public records only."
+}

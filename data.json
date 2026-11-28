@@ -1,0 +1,306 @@
+{
+ "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+ "@type": "dcat:Catalog",
+ "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+ "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+ "dataset": [
+  {
+   "@type": "dcat:Dataset",
+   "title": "Statewide campaign money",
+   "description": "Contributions across Hawaiʻi races, by office and giver — from the public Campaign Spending Commission record.",
+   "identifier": "govos/statewide_money.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "campaign-finance",
+    "money"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/statewide_money.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Donor profiles",
+   "description": "Per-donor giving aggregated from public campaign-finance filings.",
+   "identifier": "govos/donor_profiles.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "campaign-finance",
+    "donors"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/donor_profiles.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Officials roster",
+   "description": "Elected officials by tenant — who governs, sourced from each government's roster.",
+   "identifier": "govos/officials.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "officials",
+    "roster"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/officials.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Tenant parity check",
+   "description": "Coverage-parity audit across tenants — which data dimensions are present per government.",
+   "identifier": "govos/parity_check.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "transparency",
+    "audit"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/parity_check.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Feature Board",
+   "description": "Public civic dataset behind the govOS dashboards.",
+   "identifier": "govos/feature_board.json",
+   "modified": "2026-06-19",
+   "accessLevel": "public",
+   "keyword": [
+    "civic"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/feature_board.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Daily aloha / moon offering",
+   "description": "The public daily kaulana-mahina offering per tenant — pure aloha, no figures.",
+   "identifier": "govos/daily_aloha.json",
+   "modified": "2026-06-16",
+   "accessLevel": "public",
+   "keyword": [
+    "culture",
+    "moon"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/daily_aloha.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Legislators",
+   "description": "State legislators with district + identifiers.",
+   "identifier": "govos/legislators.json",
+   "modified": "2026-11-20",
+   "accessLevel": "public",
+   "keyword": [
+    "legislature",
+    "officials"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/legislators.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Twin metrics",
+   "description": "Dashboard summary metrics powering the civic overview tiles.",
+   "identifier": "govos/twin_metrics.json",
+   "modified": "2026-11-26",
+   "accessLevel": "public",
+   "keyword": [
+    "metrics"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/twin_metrics.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Maui contract awards",
+   "description": "County contract awards (HANDS public awards API) used in the contracts × donors join.",
+   "identifier": "govos/hands_maui_awards.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "contracts",
+    "spending"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/hands_maui_awards.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Contracts × donors join",
+   "description": "Public-records join of county contract awards to campaign donors — framed as a question, not a verdict.",
+   "identifier": "govos/vendor_donor_join.json",
+   "modified": "2026-11-28",
+   "accessLevel": "public",
+   "keyword": [
+    "contracts",
+    "money",
+    "join"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/vendor_donor_join.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Sage bridge",
+   "description": "The Sage/Kumulipo node bridge linking agenda dates to cultural offerings.",
+   "identifier": "govos/sage_bridge.json",
+   "modified": "2026-11-27",
+   "accessLevel": "public",
+   "keyword": [
+    "culture",
+    "sage"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/sage_bridge.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  },
+  {
+   "@type": "dcat:Dataset",
+   "title": "Prosecutor Public Feed",
+   "description": "Public civic dataset behind the govOS dashboards.",
+   "identifier": "govos/prosecutor_public_feed.json",
+   "modified": "2026-07-13",
+   "accessLevel": "public",
+   "keyword": [
+    "civic"
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "publisher": {
+    "@type": "org:Organization",
+    "name": "12 Stones Global / govOS"
+   },
+   "distribution": [
+    {
+     "@type": "dcat:Distribution",
+     "downloadURL": "data/prosecutor_public_feed.json",
+     "mediaType": "application/json",
+     "format": "JSON"
+    }
+   ]
+  }
+ ]
+}

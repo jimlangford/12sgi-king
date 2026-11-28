@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "id": "title06",
+    "codeTitle": 6,
+    "name": "Animals",
+    "department": "Finance (licensing) + Animal Control Board + Maui Humane Society (enforcement partner)",
+    "templateName": "Title 6 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 6 (Animals) — dog licensing, dangerous-dog rules, animal control, and who pays. Sourced to Municode + County; first version, expanding.",
+    "pageTitle": "Title 6 — Animals · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 6 — Animals <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title6 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 8 — Health & Safety", "href": "../title08-service/Title8%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 6 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT6AN", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 6 (Animals)</b> — Chapter 6.04 Animal Control: <b>dog licensing</b>, the rules for <b>dangerous dogs</b>, animal regulations, and who pays. Licensing runs through <b>Finance</b>; appeals on dangerous-dog determinations go to the <b>Animal Control Board</b>; the <b>Maui Humane Society</b> is the County's animal-services partner. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "process",
+      "title": "1 · License your dog",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Dog licensing is required under Ch. 6.04. Here's the path.",
+      "steps": [
+        {"name": "Who needs a license", "what": "No one may own, keep, or harbor a <b>dog over four months old</b> in the County unless it is licensed. Apply <b>within 30 days</b> of getting a dog over four months.", "pay": "Expense: none to check · paid by: you (time)"},
+        {"name": "What to bring", "what": "Picture ID; the dog's name, breed, color, age, and sex; a <b>veterinarian's certificate</b> if claiming the spay/neuter rate; and the fee.", "pay": "Expense: vet visit (if needed) · paid by: owner"},
+        {"name": "Pay the fee", "what": "<b>$11</b> with proof the dog is spayed/neutered; <b>$76</b> if unaltered. Late applicants owe a delinquent fee set in the annual budget ordinance.", "pay": "Expense: license fee · paid by: owner"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "The big gap between the <b>$11 altered</b> and <b>$76 unaltered</b> fee is good policy — it prices in the public cost of unplanned litters and overcrowded shelters. Keep licensing <b>cheap and easy</b> for responsible owners; the fee should encourage spay/neuter, not punish pet ownership."}
+      },
+      "source": {"html": "Maui County Code <a href=\"http://mauico-hi.elaws.us/code/coor_title6_ch6.04_sec6.04.020\" target=\"_blank\" rel=\"noopener\">§6.04.020 (Licensing)</a>; fees $11 (altered) / $76 (unaltered); licensing authority is the Department of Finance. Partner: <a href=\"https://www.mauihumanesociety.org/services/maui-county-animal-laws/\" target=\"_blank\" rel=\"noopener\">Maui Humane Society</a>.", "expanding": "online license-renewal portal link"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Dog license fees",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Set in Ch. 6.04 / the annual budget ordinance. Confirm current amounts before paying.",
+      "columns": ["Dog", "Fee", "Note"],
+      "rows": [
+        [{"v": "Spayed / neutered (with vet certificate)"}, {"v": "$11", "cls": "y"}, {"v": "lowest rate"}],
+        [{"v": "Unaltered"}, {"v": "$76"}, {"v": "intact dog"}],
+        [{"v": "Late (>30 days)"}, {"v": "+ delinquent fee", "cls": "c"}, {"v": "set in annual budget"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"http://mauico-hi.elaws.us/code/coor_title6_ch6.04\" target=\"_blank\" rel=\"noopener\">Ch. 6.04 (Animal Control)</a>.", "expanding": "multi-year & kennel license rates"}
+    },
+    {
+      "type": "prose",
+      "title": "3 · Dangerous dogs",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Special rules apply to a dog deemed dangerous. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">A <b>dangerous dog</b> is any dog deemed dangerous by an enforcement or animal-control officer (<b>§6.04.046</b>). Owners of a dangerous dog face special containment, signage, and insurance requirements; failure to comply carries a maximum penalty of <b>$1,000 and/or 30 days in jail</b>. A determination can be <b>appealed to the Animal Control Board</b> (§§6.04.046, 6.04.050).</p>",
+      "source": {"html": "Maui County Code §6.04.046 / §6.04.050; <a href=\"https://www.mauicounty.gov/168/Animal-Control-Board\" target=\"_blank\" rel=\"noopener\">Animal Control Board</a>.", "expanding": "full dangerous-dog requirements"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "4 · Who pays — the charter lens",
+      "note": "Labeled analysis — animal law read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the County licenses animals through Finance, regulates dangerous dogs, and partners with the Humane Society for shelter and enforcement; fees fund the program. The Charter frames animal control as a <b>public-safety and welfare</b> function.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, animals are part of the household and the living ʻāina; stewardship is a kuleana. The lens favors <b>low-cost licensing, strong spay/neuter incentives, and humane treatment</b> over punitive fees, and reads the dangerous-dog rules as protecting both people and animals from harm.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Make responsible ownership the easy, cheap path; reserve real penalties for genuine danger. The $11/$76 split already does this — keep it. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the licensing navigator, and the fee table are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a license-renewal reminder and an <b>AI animal-code assistant</b> will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only); any license payment happens on the County's own system."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 6 (Animals), Ch. 6.04</b> via Municode + County of Maui Finance / Animal Control Board / Maui Humane Society · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · not legal advice · public records only."
+}

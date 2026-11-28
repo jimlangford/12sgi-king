@@ -1,0 +1,58 @@
+{
+  "_note": "The productized Quad-OS platform — subscription packages + multi-tenant onboarding. Presentation layer only; NO billing/credentials here. Drives platform.html. Public-safe: describes the OFFERINGS, never the private tools/data behind them (the grants library, prosecutorial back end, etc. stay owner-only).",
+  "_render": "platform.html quadrant/tier/tagline sections are GENERATED from this file by build_site.py platform_packages lane — edit here, never in the html.",
+  "platform": "Quad-OS",
+  "tagline": "A studio-first public shell with games, films, music, and a separate civic lane. Built on Maui, under the aloha of Christ.",
+  "foundation": "Games and story lead the front door; govOS stays visible without owning the hero.",
+  "quadrants_heading": "Public lanes",
+  "quadrants": [
+    {"icon": "🎮", "name": "Games", "what": "TribeGameStudios, SAGE, Konane, Weiqi, Hawaiian Konami, and the Mahjong crosswalk — one playable canon.", "audience": "players · learners"},
+    {"icon": "🎞", "name": "Film", "what": "Feature films built shot-by-shot from a written script, carried as a first-class public studio lane.", "audience": "storytellers"},
+    {"icon": "♫", "name": "Music", "what": "Songs, score, and catalog growth come before any downstream video treatment on the public shell.", "audience": "artists · listeners"},
+    {"icon": "🏛", "name": "govOS", "what": "Public-record civic transparency remains available as a dedicated lane — dashboards, jurisdictions, and charter-to-law.", "audience": "counties · states · cities"}
+  ],
+  "tenant_heading": "Built for many — onboard a new tenant",
+  "multi_tenant": {
+    "headline": "Every government, every artist, every mission is a tenant.",
+    "body": "Each tenant is tracked separately — its own data, its own reports, its own surfaces — so the work never bleeds between them. Onboarding a new county, a new state, or a new creator is the same repeatable step: register the tenant, point it at its sources, and its pages fill themselves.",
+    "examples": ["A county wanting its own transparency portal", "A state legislature money/votes lens", "A studio carrying games, films, and music under one canon", "A mission needing the grant engine"]
+  },
+  "subscriptions_heading": "Subscriptions",
+  "subscriptions": [
+    {
+      "id": "grants",
+      "icon": "✎",
+      "name": "Grant Writing",
+      "tagline": "We write the grants that fund the work.",
+      "status": "available",
+      "body": "A library of authored grants + AI drafting turns your mission into ready applications — food security, housing, culture, education. Eligibility-gated, source-grounded, never boilerplate.",
+      "tiers": [
+        {"name": "Seed", "price": "by mission", "for": "one application, end to end"},
+        {"name": "Sustained", "price": "subscription", "for": "an ongoing pipeline of applications + deadlines watched"}
+      ]
+    },
+    {
+      "id": "sage",
+      "icon": "🎮",
+      "name": "Games · Sage",
+      "tagline": "Every game free to play. Live multiplayer when you want it.",
+      "status": "available",
+      "body": "All TribeGameStudios games — SAGE (the 54-node journey, Mauka to Makai, the lineages and the scrolls), Konane, Weiqi and the growing catalog — are free to play, solo, always. The Multiplayer Circles Pass unlocks live circles: real-time turns with friends across the catalog. (Reconciled 2026-07-16 to the live WooCommerce store; prices are read from it, never hardcoded.)",
+      "tiers": [
+        {"name": "Solo", "price": "free", "for": "every game, always"},
+        {"name": "Multiplayer Circles Pass", "price": "free during beta", "for": "live real-time circles with friends — post-beta pricing announced before anything changes"}
+      ]
+    },
+    {
+      "id": "newsletter",
+      "icon": "✉",
+      "name": "The Dispatch",
+      "tagline": "The work, sent to you — civic findings, the films, the harvest.",
+      "status": "coming",
+      "body": "A newsletter from inside the system: what the audits surfaced (asked in aloha-truth), the films as they render, the Sage cards as they land. Not yet invented — shaped with the first subscribers.",
+      "tiers": [
+        {"name": "Reader", "price": "free + paid tier", "for": "the dispatch in your inbox"}
+      ]
+    }
+  ]
+}

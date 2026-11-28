@@ -1,0 +1,57 @@
+/* ============================================================
+   elementLOTUS · Typography tokens
+   ------------------------------------------------------------
+   Two voices:
+   · A native UI sans (Segoe UI Variable on the artist's Windows
+     box; system-ui everywhere else) for everything human-facing.
+   · JetBrains Mono for every machine value — slugs, seeds, BPM,
+     timecodes, logs, versions, prompt text.
+
+   Display = the same family at heavier weights / tighter tracking.
+   The studio is a desktop tool, so the scale is compact and UI-like,
+   not editorial. Body text is 14px.
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI Semibold", "Segoe UI", -apple-system, system-ui, Roboto, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", "SFMono-Regular", Consolas, monospace;
+
+  /* ---- Weights ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  /* ---- Type scale (px) ----
+     Tuned for a dense desktop tool. Display sizes are for song
+     titles & empty-state headlines; everything else is UI text. */
+  --text-display:  28px;  /* song-title H1 */
+  --text-h1:       26px;  /* page headline */
+  --text-h2:       20px;  /* section headline */
+  --text-h3:       15px;  /* card / panel heading */
+  --text-lead:     16px;  /* lead / emphasis body */
+  --text-body:     14px;  /* base UI text */
+  --text-sm:       13px;  /* dense controls, table cells */
+  --text-xs:       12px;  /* metadata, captions */
+  --text-2xs:      11px;  /* micro labels, badges, log lines */
+  --text-3xs:      10px;  /* tiniest tags */
+
+  /* ---- Line heights ---- */
+  --leading-tight:  1.2;
+  --leading-snug:   1.45;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.8;  /* lyrics / long-form prompt reading */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tight:  -0.015em;  /* large display headings */
+  --tracking-normal: 0;
+  --tracking-wide:   0.02em;
+  --tracking-caps:   0.08em;    /* uppercase eyebrow labels */
+  --tracking-caps-lg: 0.1em;
+
+  /* ---- Semantic aliases ---- */
+  --font-ui:   var(--font-sans);
+  --font-code: var(--font-mono);
+}

@@ -1,0 +1,55 @@
+/* ============================================================
+   elementLOTUS · Spacing, radii, shadows, layout
+   ------------------------------------------------------------
+   Compact desktop rhythm built on a 4px grid. Panels sit on a
+   3-column app shell (library · workspace · rail). Radii are
+   gentle (the "polish layer" of the studio rounds cards to 9px,
+   buttons to 7px, and pills to a full 999px). Shadows are dark,
+   soft, and used sparingly — lift on hover, depth under chrome.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px grid) ---- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- Radii ---- */
+  --radius-xs:   3px;   /* badges-as-rect, tiny chips, scene prompts */
+  --radius-sm:   4px;   /* inset fields, small cards */
+  --radius-md:   7px;   /* buttons, inputs */
+  --radius-lg:   9px;   /* cards, panels, monitors */
+  --radius-xl:   12px;  /* modals */
+  --radius-pill: 999px; /* pills, filter chips, status badges */
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --border: var(--border-width) solid var(--line);
+  --border-focus-ring: 0 0 0 3px var(--accent-dim);
+
+  /* ---- Shadows ---- */
+  --shadow-chrome:  0 1px 0 rgba(255,255,255,.02), 0 10px 28px -20px #000;  /* under topbar */
+  --shadow-card:    0 12px 28px -18px #000;                                  /* card hover lift */
+  --shadow-accent:  0 6px 18px -8px rgba(227,173,51,.55);                    /* under gold buttons */
+  --shadow-modal:   0 12px 40px rgba(0,0,0,0.55);                            /* dialogs, toasts */
+  --shadow-toast:   0 4px 12px rgba(0,0,0,0.4);
+
+  /* Glow ring behind a live status dot */
+  --glow-dot-ok:   0 0 8px rgba(106,191,134,0.5);
+  --glow-dot-gold: 0 0 8px rgba(227,173,51,0.5);
+
+  /* ---- App-shell layout ---- */
+  --topbar-h:    56px;
+  --footer-h:    32px;
+  --rail-library-w: 300px;   /* left song library */
+  --rail-side-w:    360px;   /* right job / log rail */
+  --gutter:      32px;       /* workspace horizontal padding */
+}

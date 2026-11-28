@@ -1,0 +1,39 @@
+/* ============================================================
+   elementLOTUS · Motion tokens
+   ------------------------------------------------------------
+   Motion is quick and functional — this is a working tool, not a
+   showreel. Transitions land in 120–160ms on ease. The only looping
+   animation is the "running" pulse on an active pipeline step.
+   Buttons lift 1px on hover and settle on press. No bounces.
+   ============================================================ */
+
+:root {
+  /* ---- Durations ---- */
+  --dur-fast:   120ms; /* @kind other */
+  --dur-base:   150ms; /* @kind other */
+  --dur-slow:   600ms; /* @kind other */
+
+  /* ---- Easing ---- */
+  --ease-standard: ease; /* @kind other */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  /* ---- Common transitions ---- */
+  --transition-control: border-color var(--dur-base), box-shadow var(--dur-base), background var(--dur-base), color var(--dur-base);
+  --transition-lift: transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard);
+
+  /* ---- Hover / press deltas ---- */
+  --lift-hover: translateY(-1px); /* @kind other */
+  --lift-card:  translateY(-2px); /* @kind other */
+  --press: translateY(0); /* @kind other */
+}
+
+/* The pulse used on a step that is actively running in the pipeline. */
+@keyframes lotus-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(227,173,51,0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(227,173,51,0); }
+}
+
+/* Toast slide-in. */
+@keyframes lotus-slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}

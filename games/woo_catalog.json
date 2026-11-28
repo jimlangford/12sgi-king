@@ -1,0 +1,21 @@
+{
+  "_source": "https://elementlotus.com/wp-json/wc/store/v1/products?per_page=100",
+  "fetched_at": "2026-07-21T20:00:37",
+  "count": 1,
+  "products": [
+    {
+      "id": 429,
+      "name": "Multiplayer Circles Pass — Free Beta",
+      "slug": "multiplayer-circles-pass-free-beta",
+      "type": "simple",
+      "price": "$0.00",
+      "regular_price": "$0.00",
+      "on_sale": false,
+      "is_free": true,
+      "currency": "USD",
+      "permalink": "https://elementlotus.com/product/multiplayer-circles-pass-free-beta/",
+      "categories": [],
+      "short_description": "<p>Live multiplayer circles for TribeGameStudios games — free during beta. Play SAGE, Konane, Weiqi and more with friends in real time. Every game stays free to play solo, always.</p>"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+/* ============================================================
+   elementLOTUS · Webfonts
+   ------------------------------------------------------------
+   JetBrains Mono is the canonical monospace face — used for all
+   slugs, seeds, timecodes, BPM, logs, version strings and code.
+
+   The UI sans/display is Segoe UI Variable — the face the studio
+   was designed against on the artist's Windows machine. One
+   variable binary (wght 300–700, opsz 1–36) serves both the Text
+   and Display families declared in typography.css; the opsz axis
+   auto-selects the optical cut. Uploaded 2026-06-09 from
+   C:\Windows\Fonts\SEGUIVAR.TTF.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap");
+
+@font-face {
+  font-family: "Segoe UI Variable Text";
+  src: url("../assets/fonts/SegoeUIVariable.ttf") format("truetype-variations");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Segoe UI Variable Display";
+  src: url("../assets/fonts/SegoeUIVariable.ttf") format("truetype-variations");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}

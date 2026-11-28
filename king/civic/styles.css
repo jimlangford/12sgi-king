@@ -1,0 +1,17 @@
+/* ============================================================
+   elementLOTUS Design System — global entry point
+   Consumers link THIS file. It is a manifest of @imports only;
+   never add rules here. Everything reachable from these imports
+   ships to consumers (tokens + @font-face webfonts).
+   ============================================================ */
+
+@import "tokens/fonts.css?v=2026-06-15";
+@import "tokens/colors.css?v=2026-06-15";
+@import "tokens/typography.css?v=2026-06-15";
+@import "tokens/spacing.css?v=2026-06-15";
+@import "tokens/motion.css?v=2026-06-15";
+@import "tokens/cosmology.css?v=2026-06-15";
+@import "tokens/film.css?v=2026-06-15";
+@import "tokens/codex.css?v=2026-06-15";
+@import "tokens/ops.css?v=2026-06-15";
+@import "tokens/mauios.css?v=2026-06-15";

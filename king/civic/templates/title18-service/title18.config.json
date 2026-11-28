@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "id": "title18",
+    "codeTitle": 18,
+    "name": "Subdivisions",
+    "department": "Public Works — Development Services Administration (DSA), Subdivision Section",
+    "templateName": "Title 18 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 18 (Subdivisions) — preliminary & final plat process, fees and who pays, how it ties to zoning, enforcement. Sourced to Municode + County Subdivision Processing Guidelines; hands off to MAPPS. First version, expanding.",
+    "pageTitle": "Title 18 — Subdivisions · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 18 — Subdivisions <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title18 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "↔ Title 16 — Buildings", "href": "../title16-service/Title16%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "Charter ⇄ Law Crosswalk", "href": "../title19-crosswalk/Title19%20Crosswalk.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 18 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT18SU", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 18 (Subdivisions)</b>: a <b>live parcel lookup</b>, the preliminary &amp; final plat process, the fees and who pays, how subdivision ties to your zoning district, and enforcement. Administered by the <b>Subdivision Section, Public Works (DSA)</b>; the official application and review happen in <b>MAPPS</b> — this service explains the law and <b>hands you off to MAPPS</b>, it does not replace the County's record. <b>Sections marked <span class=\"exp\">expanding</span> are being filled in from the ingestion corpus; nothing here is legal advice.</b>"
+  },
+  "parcelLookup": {
+    "mappsPermitUrl": "https://mapps.mauicounty.gov/170/DSA-Subdivision",
+    "codeUrl": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT18SU",
+    "permitLinkLabel": "Subdivision filings (MAPPS) ↗",
+    "codeLinkLabel": "Title 18 (Municode) ↗"
+  },
+  "sections": [
+    {
+      "type": "parcel-lookup",
+      "title": "★ Parcel lookup",
+      "note": "Before you subdivide, check the parcel. Your <b>zoning district sets the minimum lot size and standards</b> a subdivision must meet (e.g. the Agricultural district's 2-acre minimum, Ch. 19.30A), and a <b>Special Management Area (SMA)</b> or <b>Important Ag Land</b> designation adds review. Enter a Maui County <b>TMK</b> to see all of these, pulled live from the Hawaiʻi Statewide GIS. For this parcel's actual subdivision/permit history (not in GIS), the result links you to MAPPS.",
+      "source": {"html": "Live designations: <a href=\"https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer\" target=\"_blank\" rel=\"noopener\">Hawaiʻi Statewide GIS — Parcels &amp; Zoning</a>. Subdivision filings via Maui County <b>MAPPS</b> (DSA Subdivision). No parcel data is stored or fabricated — every field is fetched live.", "expanding": "lot-standard overlay per district"}
+    },
+    {
+      "type": "process",
+      "title": "1 · How a subdivision works",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The path a subdivision takes under Title 18, administered by the <b>Subdivision Section, Public Works (DSA)</b>. Applications are online through MAPPS.",
+      "steps": [
+        {"name": "Create a MAPPS account &amp; apply", "what": "You must have a <b>MAPPS Customer Self-Service (CSS)</b> account to apply online; complete every step and upload the required documents and plans.", "pay": "Expense: free to register · paid by: you (time)"},
+        {"name": "Submit the preliminary plat", "what": "Required: a <b>preliminary plat stamped by a Hawaiʻi-licensed land surveyor</b>, a <b>current title report</b>, and an <b>Approved Land Use Designation Form</b> (applied through MAPPS).", "pay": "Expense: surveyor + title report + filing fee · paid by: subdivider"},
+        {"name": "County review — 45 calendar days", "what": "From the date the preliminary plat is deemed complete, the County has <b>45 calendar days</b> to review and issue preliminary approval; the application is routed to all reviewing agencies.", "pay": "Expense: County staff review · paid by: County (+ applicant fees)"},
+        {"name": "Preliminary approval", "what": "Issued as a <b>stamped plat</b> (with any revisions noted) plus a <b>letter listing the conditions</b> to be met for final approval.", "pay": "Expense: meeting conditions · paid by: subdivider"},
+        {"name": "Prepare &amp; submit the final plat", "what": "The subdivider shows all information required by Title 18 and <b>addresses every comment</b> on the approved preliminary letter and plat; the final plat is distributed to applicable agencies for their final recommendation.", "pay": "Expense: revisions + any required improvements · paid by: subdivider"},
+        {"name": "Final subdivision approval", "what": "Granted upon completion of all requirements — the subdivision may then be recorded.", "pay": "Expense: recording · paid by: subdivider"}
+      ],
+      "charterLens": {
+        "position": {"label": "⚖️ Position — James Langford (analysis, not law; a stance beside the rule)", "text": "Where preliminary approval <b>imposes a required improvement</b> (an off-site road, drainage, or utility upgrade as a condition of subdividing), the <b>County should bear the cost</b> of the requirement it imposes — not download public-infrastructure cost onto the subdivider, who then prices it into housing."}
+      },
+      "source": {"html": "County of Maui <a href=\"https://mapps.mauicounty.gov/DocumentCenter/View/235/Processing-Guidelines-2022\" target=\"_blank\" rel=\"noopener\">Subdivision Processing Guidelines (2022)</a> + <a href=\"https://www.mauicounty.gov/1413/Subdivision-Section\" target=\"_blank\" rel=\"noopener\">Subdivision Section</a>; apply via <a href=\"https://mapps.mauicounty.gov/170/DSA-Subdivision\" target=\"_blank\" rel=\"noopener\">MAPPS — DSA Subdivision ↗</a>. Process summarized in plain language; exact requirements are in MCC Title 18 + the Guidelines.", "expanding": "per-district lot-standard cross-reference"}
+    },
+    {
+      "type": "table",
+      "title": "2 · Subdivision fees — who pays",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Filing fees from the County's Subdivision Processing Guidelines. The subdivider pays; confirm current amounts with the Subdivision Section before relying on them.",
+      "columns": ["Item", "Fee", "Basis"],
+      "rows": [
+        [{"v": "Filing fee — 5 lots or fewer"}, {"v": "$250 + $50 per development lot"}, {"v": "per application"}],
+        [{"v": "Filing fee — 6 lots or more"}, {"v": "$400 + $100 per development lot"}, {"v": "per application"}],
+        [{"v": "Construction Plan review (where improvements required)"}, {"v": "$200 per lot"}, {"v": "per lot"}],
+        [{"v": "Surveyor, title report, required improvements"}, {"v": "varies", "cls": "c"}, {"v": "paid by subdivider"}]
+      ],
+      "source": {"html": "Maui County <a href=\"https://mapps.mauicounty.gov/DocumentCenter/View/235/Processing-Guidelines-2022\" target=\"_blank\" rel=\"noopener\">Subdivision Processing Guidelines</a> (DSA). Amounts are as published; verify the current schedule with the Subdivision Section, (808) 270-7253.", "expanding": "full fee schedule incl. time-extension & amendment fees"}
+    },
+    {
+      "type": "table",
+      "title": "3 · What the Subdivision Section handles",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Beyond subdivisions, the same section administers related land matters.",
+      "columns": ["Matter", "What it is", "Where"],
+      "rows": [
+        [{"v": "Subdivision approval"}, {"v": "Splitting / consolidating lots under Title 18"}, {"html": "<a href=\"https://mapps.mauicounty.gov/170/DSA-Subdivision\" target=\"_blank\" rel=\"noopener\">MAPPS ↗</a>"}],
+        [{"v": "Private easements over County ROW"}, {"v": "Easement requests across County right-of-way"}, {"html": "<a href=\"https://www.mauicounty.gov/1413/Subdivision-Section\" target=\"_blank\" rel=\"noopener\">Subdivision Section ↗</a>"}],
+        [{"v": "Roadway dedication"}, {"v": "Dedicating a roadway to the County"}, {"html": "<a href=\"https://www.mauicounty.gov/1413/Subdivision-Section\" target=\"_blank\" rel=\"noopener\">Subdivision Section ↗</a>"}],
+        [{"v": "Separate-lot determination"}, {"v": "Confirming legally separate lots of record"}, {"html": "<a href=\"https://www.mauicounty.gov/1413/Subdivision-Section\" target=\"_blank\" rel=\"noopener\">Subdivision Section ↗</a>"}]
+      ],
+      "source": {"html": "County of Maui <a href=\"https://www.mauicounty.gov/1413/Subdivision-Section\" target=\"_blank\" rel=\"noopener\">Subdivision Section</a> — administers MCC Title 18 + private easements, roadway dedication, and separate-lot determinations."}
+    },
+    {
+      "type": "prose",
+      "title": "4 · How subdivision ties to zoning (Title 19)",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Subdivision and zoning are twin layers — Title 18 is the process, Title 19 is the standard it must meet.",
+      "html": "<p style=\"font-size:14.5px\">A subdivision must conform to the <b>lot standards of the parcel's zoning district</b> under Title 19. For example, the <b>Agricultural district (Ch. 19.30A)</b> sets a <b>2-acre minimum lot area</b>, a 200-ft minimum lot width, and caps the number of lots per parcel by acreage (§19.30A.030(G)), with resubdivision limits at §19.30A.040 — so a Title 18 subdivision of ag land is bounded by those Title 19 numbers. Check your district's standards in the <a href=\"../title19-service/Title19%20Service.html\">Title 19 service</a> before filing.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTIICOZOPR_CH19.30AAGDI\" target=\"_blank\" rel=\"noopener\">Ch. 19.30A</a> (ag lot standards, sourced in the Title 19 service) + MCC Title 18.", "expanding": "lot-standard table for all districts"}
+    },
+    {
+      "type": "prose",
+      "title": "5 · Enforcement",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "Subdivision violations are reachable through the same County enforcement engine as zoning and building. Not legal advice.",
+      "html": "<p style=\"font-size:14.5px\">Title 19's enforcement chapter, <b>§19.530.030</b>, expressly reaches violations of Maui County Code <b>titles 8, 12, 14, 16, 18, 19 and 20</b> plus related rules and permits — so a Title 18 subdivision violation (e.g. selling lots from an unapproved subdivision) can be pursued by a director through a <b>notice of violation and order</b> (cease-and-desist, correction by a date, and/or civil fines), final after <b>30 days</b> unless appealed to the <b>Board of Variances and Appeals</b>.</p><p style=\"font-size:14px\">The assessment schedule is <b>Rule §15-2</b> (Title MC-15, eff. 9/3/1993) — the one cross-title rule for Buildings (16), Subdivisions (18) &amp; Zoning (19). Subdivision-relevant civil fines (initial / per-day): a <b>development standard</b> (lot size/width, frontage, etc.) <b>$1,000 / $100</b>; <b>permit conditions $1,000 / $100</b>; <b>misrepresentation on an application/plan $1,000 / $100</b>. Continuing violation: the daily fine <b>doubles each 30-day period</b> (max $1,000/day); appeals to the <b>Board of Variances and Appeals</b> or <b>Board of Code Appeals</b>. Full cross-title schedule in the <a href=\"../title19-service/Title19%20Service.html#enforcement\">Title 19 service §4B ↗</a>.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT19ZO_ARTVADEN_CH19.530EN\" target=\"_blank\" rel=\"noopener\">Ch. 19.530 (Enforcement)</a> — §19.530.030 reach + the implementing <b>Rule §15-2</b> (MC-15, <a href=\"https://www.mauicounty.gov/DocumentCenter/View/149499/Water-Supply-Rule-15-2-Violations-of-Titles-16-18-and-19-of-the-Maui-County-Code\" target=\"_blank\" rel=\"noopener\">mauicounty.gov ↗</a>) covering Titles 16/18/19; full table in the Title 19 service §4B.", "expanding": "Title 18-specific procedural provisions"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "6 · Who pays — the charter lens",
+      "note": "Labeled analysis — the same process read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, Public Works (DSA) administers subdivision approval and may condition approval on <b>required improvements</b> (roads, drainage, utilities) to serve the new lots; filing and review <b>fees are set by ordinance / the Guidelines</b>. The Charter frames subdivision as a delegated administrative approval funded by applicant fees plus subdivider-built infrastructure.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, subdividing is the owner exercising a right in their own land. Where the County conditions approval on <b>public infrastructure it would otherwise build</b>, that cost should be <b>County-borne or shared</b> — exacting it from the subdivider quietly raises the price of every resulting home and works against local housing.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "Fees that recover the <b>cost of review</b> are fair. <b>Required off-site improvements</b> — public infrastructure the County would otherwise fund — are where cost should shift back to the County, so subdivision doesn't become a hidden housing tax. Same process, read two ways."}
+    },
+    {
+      "type": "analysis-list",
+      "title": "7 · Rules → Code: candidates for codification",
+      "intro": "Provisions that live in the subdivision <b>guidelines / practice</b> that, in our assessment, should be <b>codified into Title 18</b> — so the binding standard is council-adopted and publicly noticed. Citations are verbatim-checked; the recommendation is a stance beside the rule.",
+      "items": [
+        "<b>The 45-day review clock.</b> The preliminary-review timeline lives in the Processing Guidelines. → Codify a <b>review SLA</b> in Title 18 so applicants have an enforceable expectation, not a practice that can drift.",
+        "<b>Required-improvement cost allocation.</b> Whether a subdivider must build (and pay for) off-site public infrastructure is decided case-by-case as a condition. → Codify a <b>cost-allocation rule</b> (what the County funds vs. the subdivider) so the housing-cost impact is transparent. <span class=\"exp\">expanding</span>",
+        "<b>Separate-lot determination criteria.</b> The standard for confirming a legally separate lot of record is administrative. → Codify the criteria so determinations are consistent and appealable."
+      ],
+      "source": {"html": "Analysis grounded in MCC <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT18SU\" target=\"_blank\" rel=\"noopener\">Title 18</a> + the <a href=\"https://mapps.mauicounty.gov/DocumentCenter/View/235/Processing-Guidelines-2022\" target=\"_blank\" rel=\"noopener\">Subdivision Processing Guidelines</a>; guideline contents <span class=\"exp\">expanding</span> pending verbatim ingest."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this page, the live parcel lookup, the process navigator, and the fee table are all <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a saved subdivision-readiness checklist, a document-package helper, and an <b>AI subdivision assistant</b> for Title 18 will be <b>verification-gated</b> (identity-verified). Identity is verified through the payment processor — only <b>verified-status</b> is stored here, never the raw ID. <b>No live billing is enabled</b> (Stripe keys are environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 18 (Subdivisions)</b> via Municode + County of Maui <b>Subdivision Processing Guidelines</b> + <b>DSA / Subdivision Section</b> + <b>MAPPS</b> (official filing) + Hawaiʻi Statewide GIS (live parcel data) · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · enforcement reach per MCC §19.530.030 · not legal advice · public records only · hands off to MAPPS for the official record."
+}

@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "source": "Maui County Council committee agendas (Legistar)",
+    "generated": "2026-07-06T10:00:00-10:00",
+    "jurisdiction": "MAU-001",
+    "week": "2026-07-06 · Housing and Land Use Committee reconvened",
+    "sunshine": "HRS §92-7 · agendas post ≥6 days before a meeting",
+    "producer": "council-watch — today's reconvened HLU committee"
+  },
+  "agendas": [
+    { "file": "Legistar · HLU", "title": "Housing & Land Use Committee — reconvened from 7/1/2026", "body": "Housing & Land Use Cmte (2025-2027) · Chair Uʻu-Hodgins", "type": "zoning", "meeting": "2026-07-06", "time": "10:30 a.m.", "charter": "HLU-reconvene-20260706", "stake": 4, "today": true },
+    { "file": "Legistar · HLU", "title": "Title 19 zoning rewrite — ongoing briefing series", "body": "Housing & Land Use Cmte · background context", "type": "zoning", "meeting": "2026-07-06", "charter": "HLU-3(5+)", "stake": 5, "today": true }
+  ],
+  "conflicts": [],
+  "ledger": [
+    { "id": "HLU-reconvene", "t": "Housing & Land Use Committee reconvened from 7/1/2026 (HLU)", "status": "reconvened meeting — check Legistar for item list" },
+    { "id": "Title 19", "t": "Zoning code rewrite — ongoing HLU briefing series", "status": "briefing / no vote today" }
+  ]
+}

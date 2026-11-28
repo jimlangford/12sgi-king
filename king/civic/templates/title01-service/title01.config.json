@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "id": "title01",
+    "codeTitle": 1,
+    "name": "General Provisions",
+    "department": "Office of the County Clerk / Council",
+    "templateName": "Title 1 — Plain-Language Service",
+    "description": "govOS free public service: a plain-language navigator to Maui County Code Title 1 (General Provisions) — how the Code is adopted and read, definitions, and the general penalty. Sourced to Municode; first version, expanding.",
+    "pageTitle": "Title 1 — General Provisions · govOS · Kilo Aupuni",
+    "eyebrow": "12 Stones Global · Kilo Aupuni · govOS · public service",
+    "h1": "Title 1 — General Provisions <span style=\"font-size:18px;font-weight:400;color:var(--ink-faint)\">Plain-Language Service</span>",
+    "freeBadge": "Free · no account",
+    "version": "2026-06-18",
+    "outFile": "Title1 Service.html"
+  },
+  "topnav": [
+    {"label": "← govOS home", "href": "../../../../index.html"},
+    {"label": "Maui County · govOS tenant", "href": "../../../../tenant_hi-maui.html"},
+    {"label": "↔ Title 2 — Administration", "href": "../title02-service/Title2%20Service.html"},
+    {"label": "↔ Title 19 — Zoning", "href": "../title19-service/Title19%20Service.html"},
+    {"label": "Maui County Code", "href": "../county-code/Maui%20County%20Code%20%26%20Rules.html"},
+    {"label": "govOS Charter Hub", "href": "../mauios-gov/MauiOS%20Government%20OS.html"},
+    {"label": "Title 1 (Municode) ↗", "href": "https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT1GEPR", "ext": true}
+  ],
+  "hero": {
+    "lead": "A plain-language navigator to <b>Maui County Code Title 1 (General Provisions)</b> — the title that explains <b>how the whole Code works</b>: how it's adopted and amended, how to read its three-part section numbers, the standard definitions, and the <b>general penalty</b> that applies when a chapter doesn't state its own. This is the Code's instruction manual. <b>Sections marked <span class=\"exp\">expanding</span> are being sourced verbatim; nothing here is legal advice.</b>"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "title": "1 · How the Code works",
+      "badge": {"kind": "live", "text": "sourced"},
+      "note": "The mechanics every other title relies on.",
+      "html": "<p style=\"font-size:14.5px\">Title 1 (<b>General Provisions</b>) adopts the Maui County Code and sets the rules for reading it. Section numbers use a <b>three-part decimal system</b> — Title.Chapter.Section (e.g. <b>2.12.040</b> is section .040 in chapter 2.12 of Title 2). Title 1 also carries the Code's <b>standard definitions</b> and the <b>general penalty</b> — the default penalty that applies to a violation when its own chapter doesn't prescribe one. When you read any ordinance, Title 1 is the lens that tells you how it's structured and enforced.</p>",
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT1GEPR\" target=\"_blank\" rel=\"noopener\">Title 1 (General Provisions)</a>.", "expanding": "exact general-penalty section + definitions list"}
+    },
+    {
+      "type": "table",
+      "title": "2 · What Title 1 contains",
+      "badge": {"kind": "exp", "text": "expanding"},
+      "note": "The structural pieces — verbatim section numbers being sourced.",
+      "columns": ["Piece", "What it does"],
+      "rows": [
+        [{"v": "Code adoption & construction"}, {"v": "Adopts the Code; rules for how it's read and amended"}],
+        [{"v": "Definitions"}, {"v": "Standard meanings used across all titles"}],
+        [{"v": "General penalty"}, {"v": "Default penalty when a chapter states none"}],
+        [{"v": "Numbering system"}, {"v": "Title.Chapter.Section decimal scheme"}]
+      ],
+      "source": {"html": "Maui County Code <a href=\"https://library.municode.com/hi/county_of_maui/codes/code_of_ordinances?nodeId=TIT1GEPR\" target=\"_blank\" rel=\"noopener\">Title 1</a>.", "expanding": "per-section citations"}
+    },
+    {
+      "type": "charter-lens",
+      "title": "3 · The lens — clarity as access",
+      "note": "Labeled analysis — the Code's own rules read through two charters. Not adopted law; an interpretive lens beside the Code.",
+      "mauiCharter": "Under the <b>Maui County Charter</b>, the Council enacts and codifies ordinances and the Code governs the County; Title 1 makes the body of law coherent and uniformly enforceable. The Charter frames general provisions as the <b>connective tissue</b> of self-government.",
+      "sovereignCharter": "Under the <b>Sovereign Charter (12 Stones)</b> lens, law that the people cannot read is law that excludes them. The lens reads Title 1's job — definitions, numbering, a general penalty — as a <b>duty of legibility</b>: the Code should be understandable to the resident it binds, not only to lawyers.",
+      "position": {"label": "⚖️ Position — analysis, not law", "text": "A code only governs justly if the governed can read it. This entire plain-language service exists to honor that — Title 1's clarity rules, made actually clear. Same title, read two ways."}
+    },
+    {
+      "type": "tier-gate",
+      "text": "<b>Free now (no account):</b> this whole page is <b>Tier 1 — free</b>. <b>Coming — Tier 3 (verified tools):</b> a plain-language Code-reading assistant will be <b>verification-gated</b> via the free <a href=\"../../../../beta_requests.html\">govOS beta portal</a> (identity verified with <b>Stripe Identity — free, no charge</b>); only <b>verified-status</b> is stored, never the raw ID. <b>No secret keys</b> (environment references only)."
+    }
+  ],
+  "footer": "govOS · Kilo Aupuni · 12 Stones Global · free public service · sourced to Maui County Code <b>Title 1 (General Provisions)</b> via Municode · first version 2026-06-18, expanding · <b>Built by the County Service Module Engine</b> (config + sourced content — no bespoke page) · the Code's own instruction manual · not legal advice · public records only."
+}
