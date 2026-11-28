@@ -55,6 +55,8 @@ FORBIDDEN = re.compile(
     r"prosecutor_daily|prosecutor\.py|prosecutorial back end|recusal_evidence)",
     re.I,
 )
+NOTES = re.compile(r"\boperator(:| alleges)|TO BE IDENTIFIED|cross testifier|real-estate-affiliated"
+                   r"|recused \S+ \{|homeowners\s*\(", re.I)
 EMAIL = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE = re.compile(r"(?:\+?1[-.\s])?(?:\(\d{3}\)|\d{3})[-.\s]\d{3}[-.\s]\d{4}")
 SSN = re.compile(r"\b\d{3}-\d{2}-\d{4}\b")
@@ -88,7 +90,7 @@ def list_items(block):
 def leak_gate(value, where):
     text = json.dumps(value, ensure_ascii=False) if not isinstance(value, str) else value
     hits = []
-    for label, rx in (("forbidden", FORBIDDEN), ("email", EMAIL), ("phone", PHONE), ("ssn", SSN)):
+    for label, rx in (("forbidden", FORBIDDEN), ("working note", NOTES), ("email", EMAIL), ("phone", PHONE), ("ssn", SSN)):
         if rx.search(text):
             hits.append(label)
     if hits:
