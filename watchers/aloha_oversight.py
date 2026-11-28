@@ -26,13 +26,16 @@ This module NEVER writes to reports/_status/ and never reads a secret; it only r
   python tools/kilo-aupuni/aloha_oversight.py            # build every tenant's public oversight page
   python tools/kilo-aupuni/aloha_oversight.py --tenant hi-maui
 """
-import os, sys, json
-from datetime import datetime, timezone, timedelta
+import json
+import os
+import sys
+from datetime import datetime, timedelta, timezone
 
 TOOL_DIR = os.path.dirname(os.path.abspath(__file__))
-if TOOL_DIR not in sys.path: sys.path.insert(0, TOOL_DIR)
-import case_document as CD            # the gate + tenant_cases + TENANTS (single source of truth)
-import tenant_pages as TP            # the one Yale-blue civic stylesheet + esc (single source of truth)
+if TOOL_DIR not in sys.path:
+    sys.path.insert(0, TOOL_DIR)
+import case_document as CD  # noqa: E402  (the gate + tenant_cases + TENANTS, single source of truth)
+import tenant_pages as TP  # noqa: E402  (the one civic stylesheet + esc, single source of truth)
 
 HST = timezone(timedelta(hours=-10))
 MAUIOS = CD.MAUIOS
@@ -44,7 +47,20 @@ CODES = {"hi-maui": "001", "hi-state": "000", "hi-hawaii": "002", "hi-kauai": "0
 # `question` + sourced evidence + requested record — but we scan the final blob anyway and HOLD on any hit.
 _LEAK = ("reports/_status", "reports\\_status", "_status", "owner only", "owner-only", "private king",
          "case_file", "case_document", "prosecutor", "tailscale", "127.0.0.1", ".ts.net", ".jsonl",
-         "is guilty", "proven that", "established that", "conclusively", "broke the law")
+         "is guilty", "proven that", "established that", "conclusively", "broke the law",
+         # working notes and raw records that once reached the public page (2026-11-27)
+         "operator", "to be identified", "cross testifier", "real-estate-affiliated", '{"date"')
+
+# Only these kinds of evidence are public facts. "lead", "next", "voice", "testimony" and "context" are working
+# material: notes, to-do lines, keyword-based labels and the names of private people.
+PUBLIC_KINDS = {"money", "contract", "advocacy", "decider", "vote", "recusal", "permit"}
+
+
+def _public_request(text):
+    """The record we have requested, without the internal "cross X to Y" work instructions."""
+    parts = [p.strip().rstrip(".") for p in (text or "").split(";")]
+    kept = [p for p in parts if p and not p.lower().startswith("cross ")]
+    return "; ".join(kept) + "." if kept else ""
 
 
 def aloha_finding(c):
@@ -52,10 +68,10 @@ def aloha_finding(c):
     support it, and the record we have requested. The prosecutorial theory is deliberately dropped."""
     return {
         "id": c.get("id", ""),
-        "title": c.get("title", ""),
+        "title": c.get("title", "").replace(" (operator lead)", ""),
         "question": (c.get("question", "") or "").strip(),
-        "record": [e.get("v", "") for e in c.get("evidence", []) if e.get("v")],
-        "asked": (c.get("next", "") or "").strip(),
+        "record": [e.get("v", "") for e in c.get("evidence", []) if e.get("v") and e.get("k") in PUBLIC_KINDS],
+        "asked": _public_request(c.get("next", "")),
         "strength": c.get("strength", 0),
     }
 
@@ -76,6 +92,9 @@ def cleared(tenant, maui_cases):
             held += 1
             continue
         af = aloha_finding(c)
+        if c.get("private_only") or not af["record"]:  # rests on private material, or nothing public to show
+            held += 1
+            continue
         hits = _leaky(af)
         if hits:
             leaked += 1
