@@ -2,8 +2,8 @@
 
 ## Issue #403 recovery and explainer-sharing integration — 2026-11-27
 
-- BRANCH: `codex/issue-403-recovery-sharing`, based on current `main`; review branch only, with no
-  deployment, public publishing, social queue mutation, or merge.
+- BRANCH: `codex/issue-403-recovery-sharing`, based on current `main`; draft PR #410 is review-only,
+  with no deployment, public publishing, social queue mutation, or merge.
 - INSPECTED: issue #403, merged PR #404, the clean self-hosted runner checkout, the separate
   modified Documents checkout, Docker/AI Gateway/King Bridge/Workboard, Ollama, Neo4j, Tailscale
   Serve, the private NAGA phone-dispatch surface, and the existing social approval workers.
