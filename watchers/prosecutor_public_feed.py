@@ -56,7 +56,7 @@ FORBIDDEN = re.compile(
     re.I,
 )
 NOTES = re.compile(r"\boperator(:| alleges)|TO BE IDENTIFIED|cross testifier|real-estate-affiliated"
-                   r"|recused \S+ \{|homeowners\s*\(", re.I)
+                   r"|recused \S+ \{|homeowners\s*\(|name also appears among County contract winners", re.I)
 EMAIL = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE = re.compile(r"(?:\+?1[-.\s])?(?:\(\d{3}\)|\d{3})[-.\s]\d{3}[-.\s]\d{4}")
 SSN = re.compile(r"\b\d{3}-\d{2}-\d{4}\b")

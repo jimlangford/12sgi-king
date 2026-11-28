@@ -49,7 +49,8 @@ _LEAK = ("reports/_status", "reports\\_status", "_status", "owner only", "owner-
          "case_file", "case_document", "prosecutor", "tailscale", "127.0.0.1", ".ts.net", ".jsonl",
          "is guilty", "proven that", "established that", "conclusively", "broke the law",
          # working notes and raw records that once reached the public page (2026-11-27)
-         "operator", "to be identified", "cross testifier", "real-estate-affiliated", '{"date"')
+         "operator", "to be identified", "cross testifier", "real-estate-affiliated", '{"date"',
+         "name also appears among county contract winners")  # was matched on one shared word
 
 # Only these kinds of evidence are public facts. "lead", "next", "voice", "testimony" and "context" are working
 # material: notes, to-do lines, keyword-based labels and the names of private people.
