@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
@@ -9,6 +10,10 @@ REGISTRY_PATH = ROOT / "go" / "local-ai-functions.json"
 DASHBOARD_PATH = ROOT / "go" / "local-ai.html"
 GO_INDEX_PATH = ROOT / "go" / "index.html"
 GO_LAUNCHER_PATH = ROOT / "go.html"
+DEPLOY_PATH = ROOT / ".github" / "workflows" / "deploy-v2-king-server.yml"
+# The private address serves several programs, one per first path segment. Anything outside these lands on the root
+# program, which answers every unknown address with its own home page.
+MOUNTS = ("/king/", "/board/", "/studio", "/status/")
 
 
 class _StrictEnoughHtmlParser(HTMLParser):
@@ -75,8 +80,35 @@ class LocalAiDashboardTests(unittest.TestCase):
         # /go/ redirects to the King launcher (tests/test_king_go_wrapper_parity.py pins that); the launcher is where the
         # Local AI dashboard is the headline entry.
         self.assertIn("/king/go.html", self.go_index)
-        self.assertIn('href="/go/local-ai.html"', self.go_launcher)
+        # relative: right at /king/go.html, at /go.html and in the public build, which rewrites it per folder
+        self.assertIn('href="go/local-ai.html"', self.go_launcher)
         self.assertIn("Local AI is the primary operating system", self.go_launcher)
+
+    def test_every_function_link_names_the_program_that_serves_it(self):
+        for section in self.registry["sections"]:
+            for function in section["functions"]:
+                href = function["href"]
+                with self.subTest(function=function["id"], href=href):
+                    self.assertTrue(href.startswith(MOUNTS))
+                    if href.startswith("/king/go/"):
+                        self.assertTrue((ROOT / "go" / href.rsplit("/", 1)[-1]).is_file())
+
+    def test_dashboard_reads_only_addresses_that_exist_under_a_program(self):
+        for url in re.findall(r"requestJson\('([^']+)'", self.dashboard):
+            with self.subTest(url=url):
+                if url.startswith("./"):
+                    self.assertTrue((ROOT / "go" / url[2:]).is_file())
+                else:
+                    self.assertTrue(url.startswith(MOUNTS))
+
+    def test_the_deploy_step_ships_every_file_the_dashboard_loads(self):
+        deploy = DEPLOY_PATH.read_text(encoding="utf-8")
+        beside = re.findall(r"requestJson\('\./([^']+)'", self.dashboard)
+        self.assertTrue(beside)
+        for name in beside + ["local-ai.html"]:
+            pattern = "*" + Path(name).suffix
+            with self.subTest(name=name):
+                self.assertRegex(deploy, r"-Filter \"%s\"|\$goPatterns = [^\n]*\"%s\"" % ((re.escape(pattern),) * 2))
 
 
 if __name__ == "__main__":

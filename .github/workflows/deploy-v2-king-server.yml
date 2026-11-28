@@ -254,10 +254,11 @@ jobs:
           $goDest = Join-Path $dest "go"
           if (Test-Path $goSrc) {
             if ($dry) {
-              Write-Host "[DRY RUN] Would copy go\*.html → $goDest\"
+              Write-Host "[DRY RUN] Would copy go\*.html and go\*.json → $goDest\"
             } else {
               if (-not (Test-Path $goDest)) { New-Item -ItemType Directory -Path $goDest -Force | Out-Null }
-              $goFiles = Get-ChildItem -Path $goSrc -Filter "*.html" -File
+              $goPatterns = "*.html", "*.json"   # the dashboard loads its function list from a .json beside it
+              $goFiles = foreach ($pattern in $goPatterns) { Get-ChildItem -Path $goSrc -Filter $pattern -File }
               foreach ($gf in $goFiles) {
                 $gtarget = Join-Path $goDest $gf.Name
                 Copy-Item -Path $gf.FullName -Destination $gtarget -Force -ErrorAction SilentlyContinue
