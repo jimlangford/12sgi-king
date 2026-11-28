@@ -22,6 +22,8 @@ from pathlib import Path
 
 OLLAMA_URL = "http://localhost:11434"
 HERE = Path(__file__).resolve().parent.parent
+CLAUDE_TASK_MIN_CHARS = 12
+CLAUDE_TASK_MAX_CHARS = 4000
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MASTER SYSTEM KNOWLEDGE — injected into every model
@@ -162,6 +164,8 @@ returned job_id. The host bridge is read-only: Claude can inspect this checkout
 with Read/Grep/Glob, but cannot edit files, run shell commands, commit, push,
 deploy, or publish. Report the returned findings and any bridge errors to James.
 Do not claim Claude was triggered unless the review tool returns a job_id.
+The review task must contain 12 to __CLAUDE_TASK_MAX_CHARS__ characters. Summarize
+or split a larger request before dispatch instead of sending an oversized task.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 QUAD OS PRODUCT EXPERIENCE — REQUIRED FOR EVERY SURFACE
@@ -278,6 +282,10 @@ HOW TO RESPOND
 - Report clearly so the next agent knows exactly where things stand
 - If a task needs James: say so directly and simply. No corporate speak.
 """
+
+SYSTEM_KNOWLEDGE = SYSTEM_KNOWLEDGE.replace(
+    "__CLAUDE_TASK_MAX_CHARS__", str(CLAUDE_TASK_MAX_CHARS)
+)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MODEL-SPECIFIC ADDITIONS
