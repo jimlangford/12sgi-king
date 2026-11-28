@@ -10,10 +10,10 @@
       "label": "Local AI",
       "description": "Reason, route, monitor and heal from the owner-controlled local stack.",
       "functions": [
-        {"id": "ai-chat", "label": "Talk to Local AI", "description": "Open the private Naga conversation surface.", "href": "/king/app.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["chat", "naga", "assistant"]},
-        {"id": "ai-models", "label": "Models", "description": "Inspect installed Ollama and king-* models.", "href": "/go/ollama.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["ollama", "models", "inference"]},
-        {"id": "ai-watch", "label": "Request Watch", "description": "Review local model requests, failures and queue depth.", "href": "/go/llm-watch.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["llm", "requests", "queue"]},
-        {"id": "ai-healing", "label": "Healing", "description": "Inspect deterministic health checks and bounded repair work.", "href": "/go/healing.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["repair", "health", "gordon"]},
+        {"id": "ai-chat", "label": "Talk to Local AI", "description": "Open the private Naga conversation surface.", "href": "/board/talk", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["chat", "naga", "assistant"]},
+        {"id": "ai-models", "label": "Models", "description": "Inspect installed Ollama and king-* models.", "href": "/king/go/ollama.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["ollama", "models", "inference"]},
+        {"id": "ai-watch", "label": "Request Watch", "description": "Review local model requests, failures and queue depth.", "href": "/king/go/llm-watch.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["llm", "requests", "queue"]},
+        {"id": "ai-healing", "label": "Healing", "description": "Inspect deterministic health checks and bounded repair work.", "href": "/king/go/healing.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["repair", "health", "gordon"]},
         {"id": "ai-quados", "label": "QUAD OS State", "description": "Observe the full operating system and its quadrants.", "href": "/king/quados", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["quados", "state", "dashboard"]}
       ]
     },
@@ -24,7 +24,7 @@
       "functions": [
         {"id": "work-board", "label": "Work Board", "description": "See every lane, dependency and current job.", "href": "/board/", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["jobs", "lanes", "queue"]},
         {"id": "work-owner", "label": "Owner Actions", "description": "Review decisions the local system cannot make alone.", "href": "/board/owner", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["approval", "review", "owner"]},
-        {"id": "work-jobs", "label": "Owner Jobs", "description": "Approve or reject creative and output jobs.", "href": "/owner_jobs.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["approval", "creative", "output"]},
+        {"id": "work-jobs", "label": "Owner Jobs", "description": "Approve or reject creative and output jobs.", "href": "/king/owner_jobs.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["approval", "creative", "output"]},
         {"id": "work-dispatch", "label": "Dispatch Feed", "description": "Read verified handoffs across local agents and lanes.", "href": "/king/dispatch", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["events", "handoff", "agents"]},
         {"id": "work-progress", "label": "Progress", "description": "Measured completion across the four quadrants.", "href": "/king/quadrant_progress.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["progress", "evidence", "quadrants"]}
       ]
@@ -38,7 +38,7 @@
         {"id": "civic-jurisdictions", "label": "Jurisdictions", "description": "Choose the government or tenant context.", "href": "/king/jurisdictions.html", "boundary": "PUBLIC", "authority": "local-primary", "keywords": ["tenant", "government", "location"]},
         {"id": "civic-testify", "label": "Testify", "description": "Prepare and submit testimony through the civic workflow.", "href": "/king/testify.html", "boundary": "PUBLIC", "authority": "owner-gated", "keywords": ["testimony", "participation", "clerk"]},
         {"id": "civic-data", "label": "Open Data", "description": "Inspect source datasets behind civic conclusions.", "href": "/king/datasets.html", "boundary": "PUBLIC", "authority": "local-primary", "keywords": ["data", "sources", "dcat"]},
-        {"id": "civic-education", "label": "Education", "description": "Use civic evidence as a people-first learning surface.", "href": "/education.html", "boundary": "PUBLIC", "authority": "local-primary", "keywords": ["sage", "learning", "education"]}
+        {"id": "civic-education", "label": "Education", "description": "Use civic evidence as a people-first learning surface.", "href": "/king/education.html", "boundary": "PUBLIC", "authority": "local-primary", "keywords": ["sage", "learning", "education"]}
       ]
     },
     {
@@ -46,10 +46,10 @@
       "label": "Studio",
       "description": "Create films, music, games and educational media with local production tools.",
       "functions": [
-        {"id": "studio-home", "label": "Element LOTUS Studio", "description": "Open the private production system.", "href": "/", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["studio", "production", "lotus"]},
+        {"id": "studio-home", "label": "Element LOTUS Studio", "description": "Open the private production system.", "href": "/studio", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["studio", "production", "lotus"]},
         {"id": "studio-console", "label": "King Console", "description": "Open lanes, timelines, galleries, voices and review tools.", "href": "/board/console/", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["timeline", "gallery", "voice"]},
         {"id": "studio-render", "label": "Render Box", "description": "Prepare local render jobs and inspect intake.", "href": "/board/render-box", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["render", "video", "gpu"]},
-        {"id": "studio-comfy", "label": "ComfyUI", "description": "Inspect the local image and video generation engine.", "href": "/go/comfyui.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["comfyui", "image", "video"]},
+        {"id": "studio-comfy", "label": "ComfyUI", "description": "Inspect the local image and video generation engine.", "href": "/king/go/comfyui.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["comfyui", "image", "video"]},
         {"id": "studio-public", "label": "Studio Projection", "description": "Review the curated Studio-facing projection.", "href": "/king/studio.html", "boundary": "PUBLIC", "authority": "owner-gated", "keywords": ["release", "public", "projection"]}
       ]
     },
@@ -59,8 +59,8 @@
       "description": "Entities, governance, grants and owner-controlled business records.",
       "functions": [
         {"id": "corp-register", "label": "Corporate Register", "description": "Review entities, governance and operational records.", "href": "/board/corporate", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["entities", "governance", "business"]},
-        {"id": "corp-cases", "label": "Case Files", "description": "Open private owner case packets.", "href": "/case_files.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["cases", "records", "legal"]},
-        {"id": "corp-grants", "label": "Grants", "description": "Open the grants and funding surface.", "href": "/grants.html", "boundary": "PUBLIC", "authority": "owner-gated", "keywords": ["grants", "funding", "applications"]},
+        {"id": "corp-cases", "label": "Case Files", "description": "Open private owner case packets.", "href": "/king/case_files.html", "boundary": "PRIVATE", "authority": "owner-gated", "keywords": ["cases", "records", "legal"]},
+        {"id": "corp-grants", "label": "Grants", "description": "Open the grants and funding surface.", "href": "/king/grants.html", "boundary": "PUBLIC", "authority": "owner-gated", "keywords": ["grants", "funding", "applications"]},
         {"id": "corp-aupuni", "label": "Aupuni", "description": "Enter the unified private operations lobby.", "href": "/board/aupuni/", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["lobby", "operations", "aupuni"]}
       ]
     },
@@ -69,9 +69,9 @@
       "label": "Knowledge",
       "description": "Grounding, provenance, graph state, sources and operating history.",
       "functions": [
-        {"id": "knowledge-graph", "label": "Knowledge Graph", "description": "Inspect Neo4j graph readiness and provenance state.", "href": "/king/graph/status", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["neo4j", "graph", "provenance"]},
+        {"id": "knowledge-graph", "label": "Knowledge Graph", "description": "Check whether the Neo4j provenance graph is up.", "href": "/status/system_status.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["neo4j", "graph", "provenance"]},
         {"id": "knowledge-data", "label": "Source Catalog", "description": "Review the datasets used by civic and AI outputs.", "href": "/king/datasets.html", "boundary": "PUBLIC", "authority": "local-primary", "keywords": ["sources", "datasets", "grounding"]},
-        {"id": "knowledge-logs", "label": "Logs", "description": "Read local service and execution logs.", "href": "/go/logs.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["logs", "errors", "history"]},
+        {"id": "knowledge-logs", "label": "Logs", "description": "Read local service and execution logs.", "href": "/king/go/logs.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["logs", "errors", "history"]},
         {"id": "knowledge-dispatch", "label": "Agent Handoffs", "description": "Read the shared coordination and change record.", "href": "/king/dispatch", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["agents", "changes", "handoff"]}
       ]
     },
@@ -80,11 +80,11 @@
       "label": "System",
       "description": "Hardware, services, containers, models and optional external bridges.",
       "functions": [
-        {"id": "system-health", "label": "System Health", "description": "Review CPU, memory, storage and uptime.", "href": "/go/system.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["cpu", "memory", "disk"]},
-        {"id": "system-docker", "label": "Docker", "description": "Inspect local service containers.", "href": "/go/docker.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["containers", "services", "docker"]},
-        {"id": "system-ollama", "label": "Ollama", "description": "Inspect the local inference runtime.", "href": "/go/ollama.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["models", "runtime", "ollama"]},
+        {"id": "system-health", "label": "System Health", "description": "Review CPU, memory, storage and uptime.", "href": "/king/go/system.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["cpu", "memory", "disk"]},
+        {"id": "system-docker", "label": "Docker", "description": "Inspect local service containers.", "href": "/king/go/docker.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["containers", "services", "docker"]},
+        {"id": "system-ollama", "label": "Ollama", "description": "Inspect the local inference runtime.", "href": "/king/go/ollama.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["models", "runtime", "ollama"]},
         {"id": "system-status", "label": "Service Status", "description": "Open the aggregated private status page.", "href": "/king/system_status.html", "boundary": "PRIVATE", "authority": "local-primary", "keywords": ["readiness", "services", "status"]},
-        {"id": "system-github", "label": "GitHub Bridge", "description": "Inspect optional source backup and CI status.", "href": "/go/github.html", "boundary": "BRIDGE", "authority": "optional-bridge", "keywords": ["github", "backup", "ci"]}
+        {"id": "system-github", "label": "GitHub Bridge", "description": "Inspect optional source backup and CI status.", "href": "/king/go/github.html", "boundary": "BRIDGE", "authority": "optional-bridge", "keywords": ["github", "backup", "ci"]}
       ]
     }
   ]

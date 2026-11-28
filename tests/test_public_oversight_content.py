@@ -14,7 +14,8 @@ sys.path.insert(0, str(ROOT / "watchers"))
 import aloha_oversight  # noqa: E402
 
 BANNED = re.compile(
-    r"\boperator(:| alleges)|TO BE IDENTIFIED|cross testifier|real-estate-affiliated|recused \S+ \{|homeowners\s*\(",
+    r"\boperator(:| alleges)|TO BE IDENTIFIED|cross testifier|real-estate-affiliated|recused \S+ \{|homeowners\s*\("
+    r"|name also appears among County contract winners",
     re.I,
 )
 PAGES = (

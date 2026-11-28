@@ -2,7 +2,7 @@
 
 ## Issue #403 recovery and explainer-sharing integration — 2026-11-27
 
-- BRANCH: `codex/issue-403-recovery-sharing`, based on current `main`; draft PR #410 is review-only,
+- BRANCH: `codex/issue-403-recovery-sharing`, merged with current `main`; PR #410 is review-only,
   with no deployment, public publishing, social queue mutation, or merge.
 - INSPECTED: issue #403, merged PR #404, the clean self-hosted runner checkout, the separate
   modified Documents checkout, Docker/AI Gateway/King Bridge/Workboard, Ollama, Neo4j, Tailscale
@@ -37,6 +37,14 @@
 - NEXT: complete the real Owner-authenticated Gateway review/status test, then perform phone/mobile
   and reboot verification. Do not re-enable automatic publishing or deploy the explainer change until
   existing release gates pass and the Owner approves.
+## Education and local AI coordination review — 2026-11-27
+
+- OWNER REQUEST: create an education system review and verify that the AI participants coordinate through the owner's local system.
+- REVIEW: `docs/EDUCATION_AI_SYSTEM_REVIEW.md` records the education manifest, local runtime, agent coordination paths, safety boundaries, and remaining gates.
+- RUNTIME: live source fast-forwarded to GitHub `main` at `4142a4fd`; PR #405 education tests pass there. Docker aggregate health is green. The authenticated read-only Claude bridge is running loopback-only and is reachable from AI Gateway.
+- LOCAL AI: Ollama completed a small-model response, but `king-civic` did not finish loading within 180 seconds during active GPU work. Treat education persona inference as degraded until a later bounded response succeeds.
+- PRESERVED: no Claude review job, graph write, film approval, student account, deployment, or publication occurred. The current owner instruction supersedes the earlier request to keep the bridge stopped only for this authenticated, read-only local coordination use; startup persistence was not changed.
+- NEXT: retest `king-civic` when render capacity is free, add a post-reboot coordination check, and obtain educator/film approvals before curriculum assignments.
 
 ## GitHub-only manual explainer sharing — 2026-11-27
 
