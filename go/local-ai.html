@@ -132,7 +132,7 @@
         <div class="seal" aria-hidden="true">12</div>
         <div><div class="system-name">12 Stones Global</div><div class="eyebrow">Private owner control</div></div>
       </div>
-      <a class="back" href="/go.html">Consolidated launcher</a>
+      <a class="back" href="/king/go.html">Consolidated launcher</a>
     </header>
 
     <section class="hero" aria-labelledby="page-title">
@@ -203,25 +203,26 @@
       }
 
       function probeStatus() {
-        requestJson('./api/ollama').then(function (data) {
-          var models = data.models || data.installed || [];
-          setStatus('Models', 'up', models.length ? models.length + ' available' : 'Online', 'Local inference is reachable');
+        requestJson('/king/api/models', 15000).then(function (data) {
+          var models = data.ollama || [];
+          setStatus('Models', models.length ? 'up' : 'down', models.length + ' installed', 'Listed by the local model service');
         }).catch(function () { setStatus('Models', 'down', 'Not confirmed', 'Open Models for diagnosis'); });
 
-        requestJson('/king/api/v2/bridge/pulse').then(function (data) {
-          var pending = data.pending == null ? data.queue_depth : data.pending;
-          setStatus('Work', 'up', pending == null ? 'Online' : pending + ' pending', 'Local work routing is reachable');
+        requestJson('/board/api/items', 20000).then(function (data) {
+          var queued = (data.items || []).filter(function (item) { return item.status === 'queued'; }).length;
+          setStatus('Work', 'up', queued + ' queued', 'Read from the Work Board');
         }).catch(function () { setStatus('Work', 'down', 'Not confirmed', 'Open Work Board for diagnosis'); });
 
-        requestJson('/king/graph/status').then(function (data) {
-          var ok = data.ok !== false && data.status !== 'down';
-          setStatus('Graph', ok ? 'up' : 'down', ok ? 'Ready' : 'Degraded', 'Neo4j provenance graph');
-        }).catch(function () { setStatus('Graph', 'down', 'Not confirmed', 'Open Knowledge Graph for diagnosis'); });
-
-        requestJson('./api/system').then(function (data) {
-          var cpu = data.cpu_percent == null ? data.cpu_pct : data.cpu_percent;
-          setStatus('System', 'up', cpu == null ? 'Online' : 'CPU ' + Math.round(cpu) + '%', 'Local machine telemetry');
-        }).catch(function () { setStatus('System', 'down', 'Not confirmed', 'Open System Health for diagnosis'); });
+        requestJson('/status/system_status.json', 15000).then(function (data) {
+          var graph = (data.servers || {})['Neo4j :7474'];
+          setStatus('Graph', graph ? 'up' : 'down', graph === undefined ? 'Not measured' : (graph ? 'Ready' : 'Down'),
+            'Neo4j provenance graph, as of ' + (data.generated || 'the last check'));
+          setStatus('System', 'up', data.cpu_pct == null ? 'Online' : 'CPU ' + Math.round(data.cpu_pct) + '%',
+            'Machine status as of ' + (data.generated || 'the last check'));
+        }).catch(function () {
+          setStatus('Graph', 'down', 'Not confirmed', 'Open Service Status for diagnosis');
+          setStatus('System', 'down', 'Not confirmed', 'Open System Health for diagnosis');
+        });
       }
 
       function matches(item) {
