@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# ruff: noqa: E401, E701, E702, E731, I001
 """agenda_explainer.py — "Forecast -> fact -> publish": turn each upcoming agenda item into a
 shareable fact-card so the community can get ahead of the vote.
 
@@ -12,7 +13,7 @@ Facebook, X — with the caption + link; for the visual, screenshot/download the
 login and no auto-posting: publishing is the user's tap. A narrated-VIDEO render lane is phase 2.)
 Output: reports/mauios/agenda_explainer.html
 """
-import os, json, html
+import os, json, html, hashlib
 from datetime import datetime, timezone, timedelta
 try:
     import moon_calendar          # kaulana mahina: the meeting date's pō + aloha offering on each card
@@ -54,7 +55,16 @@ def how_to_testify(tid):
                 "govOS makes it one tap.", "testify.html")
     return ("Submit testimony before the meeting through this government's process.", "request_records.html#" + tid)
 
-def card(tid, m, idx):
+def stable_card_id(tid, m):
+    """Return an order-independent ID for one sourced agenda record."""
+    identity = "\x1f".join(
+        str(m.get(field, "")).strip() for field in ("url", "date", "body", "title")
+    )
+    digest = hashlib.sha256((tid + "\x1f" + identity).encode("utf-8")).hexdigest()[:12]
+    return "%s-%s" % (tid, digest)
+
+
+def card(tid, m, idx=None):
     # truth_gate: every card fact is sourced from agenda_sources.json (named record).
     # Items with no source URL are marked NEEDS-RECORD so the claim is never fabricated.
     nm = NAMES.get(tid, tid); L = links_for(tid)
@@ -68,7 +78,7 @@ def card(tid, m, idx):
     caption = ("⚖ %s — %s%s on %s. Know the law, follow the money, and testify BEFORE the vote. "
                "This is how we get ahead of it.%s #govOS #FollowTheMoney #%s #KiloAupuni #Aloha" % (
                  nm, body, (" — " + title) if title else "", date, moon_cap, tid))
-    card_id = "%s-%d" % (tid, idx)
+    card_id = stable_card_id(tid, m)
     # A query parameter survives the public-safe share module's deliberate removal of URL
     # fragments, while the client-side reader below still scrolls to the exact card.
     share_url = "%s?card=%s" % (PUBLIC_EXPLAINER_URL, card_id)

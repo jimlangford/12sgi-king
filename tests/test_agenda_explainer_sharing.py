@@ -1,7 +1,6 @@
 import importlib.util
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = ROOT / "watchers" / "agenda_explainer.py"
 
@@ -16,20 +15,20 @@ def _module():
 
 def test_each_card_has_public_safe_stable_share_url():
     module = _module()
-    rendered = module.card(
-        "maui",
-        {
-            "body": "County Council",
-            "title": "Housing agenda",
-            "date": "2026-12-01",
-            "url": "https://example.gov/agenda/1",
-        },
-        7,
-    )
+    meeting = {
+        "body": "County Council",
+        "title": "Housing agenda",
+        "date": "2026-12-01",
+        "url": "https://example.gov/agenda/1",
+    }
+    rendered = module.card("maui", meeting, 7)
+    reordered = module.card("maui", meeting, 99)
+    card_id = module.stable_card_id("maui", meeting)
 
-    assert 'id="explainer-maui-7"' in rendered
-    assert 'data-card-id="maui-7"' in rendered
-    assert 'data-url="https://12sgi.com/agenda_explainer.html?card=maui-7"' in rendered
+    assert rendered == reordered
+    assert ('id="explainer-%s"' % card_id) in rendered
+    assert ('data-card-id="%s"' % card_id) in rendered
+    assert ('data-url="https://12sgi.com/agenda_explainer.html?card=%s"' % card_id) in rendered
     assert "data-manual-share" in rendered
     assert "jimlangford.github.io" not in rendered
 
